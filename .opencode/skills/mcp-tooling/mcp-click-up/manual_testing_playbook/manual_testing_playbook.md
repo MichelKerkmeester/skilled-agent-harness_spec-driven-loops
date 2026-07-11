@@ -161,8 +161,8 @@ Verify `cupt --version` returns a semver-like version string and exits 0.
 Prompt: `"Confirm cupt is installed and report its version."`
 Expected: version string printed; exit 0.
 
-> **Feature File:** [01--cupt-lifecycle/install-version.md](01--cupt-lifecycle/install-version.md)
-> **Catalog:** [10--cupt-global-flags/version-flag.md](../feature_catalog/10--cupt-global-flags/version-flag.md)
+> **Feature File:** [cupt-lifecycle/install-version.md](cupt-lifecycle/install-version.md)
+> **Catalog:** [cupt-global-flags/version-flag.md](../feature_catalog/cupt-global-flags/version-flag.md)
 
 ---
 
@@ -173,8 +173,8 @@ Verify `cupt auth` completes the interactive authentication flow and stores cred
 Prompt: `"Authenticate cupt with a Personal API Token."`
 Expected: `cupt status` shows workspace name after auth; exit 0.
 
-> **Feature File:** [01--cupt-lifecycle/session-auth.md](01--cupt-lifecycle/session-auth.md)
-> **Catalog:** [01--cupt-authentication/interactive-auth.md](../feature_catalog/01--cupt-authentication/interactive-auth.md)
+> **Feature File:** [cupt-lifecycle/session-auth.md](cupt-lifecycle/session-auth.md)
+> **Catalog:** [cupt-authentication/interactive-auth.md](../feature_catalog/cupt-authentication/interactive-auth.md)
 
 ---
 
@@ -185,8 +185,8 @@ Verify `cupt config --api-token pk_xxx` sets credentials non-interactively.
 Prompt: `"Set cupt API token directly without interactive auth."`
 Expected: `cupt status` shows workspace after token set; exit 0.
 
-> **Feature File:** [01--cupt-lifecycle/session-auth.md](01--cupt-lifecycle/session-auth.md)
-> **Catalog:** [01--cupt-authentication/direct-token.md](../feature_catalog/01--cupt-authentication/direct-token.md)
+> **Feature File:** [cupt-lifecycle/session-auth.md](cupt-lifecycle/session-auth.md)
+> **Catalog:** [cupt-authentication/direct-token.md](../feature_catalog/cupt-authentication/direct-token.md)
 
 ---
 
@@ -197,8 +197,8 @@ Verify `cupt config --workspace-id <id>` persists across sessions.
 Prompt: `"Set the default workspace ID in cupt config."`
 Expected: `cupt config --show` reflects the workspace ID after restart; exit 0.
 
-> **Feature File:** [01--cupt-lifecycle/config-show.md](01--cupt-lifecycle/config-show.md)
-> **Catalog:** [01--cupt-authentication/workspace-default.md](../feature_catalog/01--cupt-authentication/workspace-default.md)
+> **Feature File:** [cupt-lifecycle/config-show.md](cupt-lifecycle/config-show.md)
+> **Catalog:** [cupt-authentication/workspace-default.md](../feature_catalog/cupt-authentication/workspace-default.md)
 
 ---
 
@@ -209,8 +209,8 @@ Verify `cupt config --default-list <id>` persists in config.
 Prompt: `"Set the default list ID in cupt config."`
 Expected: `cupt config --show` reflects the list ID; exit 0.
 
-> **Feature File:** [01--cupt-lifecycle/config-show.md](01--cupt-lifecycle/config-show.md)
-> **Catalog:** [01--cupt-authentication/list-default.md](../feature_catalog/01--cupt-authentication/list-default.md)
+> **Feature File:** [cupt-lifecycle/config-show.md](cupt-lifecycle/config-show.md)
+> **Catalog:** [cupt-authentication/list-default.md](../feature_catalog/cupt-authentication/list-default.md)
 
 ---
 
@@ -221,8 +221,8 @@ Verify `cupt config --show` displays workspace, list, and masked token.
 Prompt: `"Show the current cupt configuration."`
 Expected: workspace ID, list ID, masked token displayed; exit 0.
 
-> **Feature File:** [01--cupt-lifecycle/config-show.md](01--cupt-lifecycle/config-show.md)
-> **Catalog:** [01--cupt-authentication/show-config.md](../feature_catalog/01--cupt-authentication/show-config.md)
+> **Feature File:** [cupt-lifecycle/config-show.md](cupt-lifecycle/config-show.md)
+> **Catalog:** [cupt-authentication/show-config.md](../feature_catalog/cupt-authentication/show-config.md)
 
 ---
 
@@ -233,8 +233,8 @@ Verify `cupt status` shows workspace name, user email, and workspace ID.
 Prompt: `"Check cupt authentication status and workspace."`
 Expected: workspace name + user email displayed; exit 0.
 
-> **Feature File:** [01--cupt-lifecycle/status-json.md](01--cupt-lifecycle/status-json.md)
-> **Catalog:** [01--cupt-authentication/auth-status.md](../feature_catalog/01--cupt-authentication/auth-status.md)
+> **Feature File:** [cupt-lifecycle/status-json.md](cupt-lifecycle/status-json.md)
+> **Catalog:** [cupt-authentication/auth-status.md](../feature_catalog/cupt-authentication/auth-status.md)
 
 ---
 
@@ -246,8 +246,8 @@ Prompt: `"Log out of cupt and verify credentials are cleared."`
 Expected: `cupt status` returns AuthError after logout; exit non-zero.
 Recovery: `cupt auth` or `cupt config --api-token` before continuing.
 
-> **Feature File:** [05--recovery-and-failure/missing-auth.md](05--recovery-and-failure/missing-auth.md)
-> **Catalog:** [01--cupt-authentication/logout.md](../feature_catalog/01--cupt-authentication/logout.md)
+> **Feature File:** [recovery-and-failure/missing-auth.md](recovery-and-failure/missing-auth.md)
+> **Catalog:** [cupt-authentication/logout.md](../feature_catalog/cupt-authentication/logout.md)
 
 ---
 
@@ -260,8 +260,8 @@ Verify `cupt list --json` returns a valid JSON array (empty or populated).
 Prompt: `"List my assigned ClickUp tasks."`
 Expected: JSON array; exit 0. `[]` is valid.
 
-> **Feature File:** [02--task-operations/list-today.md](02--task-operations/list-today.md)
-> **Catalog:** [02--cupt-task-listing/list-assigned.md](../feature_catalog/02--cupt-task-listing/list-assigned.md)
+> **Feature File:** [task-operations/list-today.md](task-operations/list-today.md)
+> **Catalog:** [cupt-task-listing/list-assigned.md](../feature_catalog/cupt-task-listing/list-assigned.md)
 
 ---
 
@@ -272,8 +272,8 @@ Verify `cupt list --today --json` returns tasks due today.
 Prompt: `"List tasks due today in JSON."`
 Expected: JSON array; each task `due_date` matches today or null; exit 0.
 
-> **Feature File:** [02--task-operations/list-today.md](02--task-operations/list-today.md)
-> **Catalog:** [02--cupt-task-listing/filter-today.md](../feature_catalog/02--cupt-task-listing/filter-today.md)
+> **Feature File:** [task-operations/list-today.md](task-operations/list-today.md)
+> **Catalog:** [cupt-task-listing/filter-today.md](../feature_catalog/cupt-task-listing/filter-today.md)
 
 ---
 
@@ -284,8 +284,8 @@ Verify `cupt list --tag ai_ready --json` returns only tasks with that tag.
 Prompt: `"List tasks tagged ai_ready in JSON."`
 Expected: JSON array; all tasks contain `"name": "ai_ready"` in tags; exit 0.
 
-> **Feature File:** [02--task-operations/list-today.md](02--task-operations/list-today.md)
-> **Catalog:** [02--cupt-task-listing/filter-tag.md](../feature_catalog/02--cupt-task-listing/filter-tag.md)
+> **Feature File:** [task-operations/list-today.md](task-operations/list-today.md)
+> **Catalog:** [cupt-task-listing/filter-tag.md](../feature_catalog/cupt-task-listing/filter-tag.md)
 
 ---
 
@@ -296,8 +296,8 @@ Verify `cupt list --json` output is valid JSON parseable by `jq`.
 Prompt: `"Fetch task list as JSON and validate structure."`
 Expected: `jq length` returns a number; exit 0.
 
-> **Feature File:** [02--task-operations/list-today.md](02--task-operations/list-today.md)
-> **Catalog:** [02--cupt-task-listing/json-output.md](../feature_catalog/02--cupt-task-listing/json-output.md)
+> **Feature File:** [task-operations/list-today.md](task-operations/list-today.md)
+> **Catalog:** [cupt-task-listing/json-output.md](../feature_catalog/cupt-task-listing/json-output.md)
 
 ---
 
@@ -308,8 +308,8 @@ Verify `cupt list --no-tag processed --json` excludes tasks with 'processed' tag
 Prompt: `"List tasks that do not have the 'processed' tag."`
 Expected: JSON array; no task in result has tag name 'processed'; exit 0.
 
-> **Feature File:** [06--cupt-advanced-listing/exclude-tag.md](06--cupt-advanced-listing/exclude-tag.md)
-> **Catalog:** [02--cupt-task-listing/exclude-tag.md](../feature_catalog/02--cupt-task-listing/exclude-tag.md)
+> **Feature File:** [cupt-advanced-listing/exclude-tag.md](cupt-advanced-listing/exclude-tag.md)
+> **Catalog:** [cupt-task-listing/exclude-tag.md](../feature_catalog/cupt-task-listing/exclude-tag.md)
 
 ---
 
@@ -320,8 +320,8 @@ Verify `cupt list -n 3 --json` returns at most 3 tasks.
 Prompt: `"List the first 3 tasks in JSON."`
 Expected: JSON array with `jq length` ≤ 3; exit 0.
 
-> **Feature File:** [06--cupt-advanced-listing/cap-results.md](06--cupt-advanced-listing/cap-results.md)
-> **Catalog:** [02--cupt-task-listing/cap-results.md](../feature_catalog/02--cupt-task-listing/cap-results.md)
+> **Feature File:** [cupt-advanced-listing/cap-results.md](cupt-advanced-listing/cap-results.md)
+> **Catalog:** [cupt-task-listing/cap-results.md](../feature_catalog/cupt-task-listing/cap-results.md)
 
 ---
 
@@ -332,8 +332,8 @@ Verify `cupt list --verbose` shows assignee and time columns.
 Prompt: `"List tasks with verbose output including assignee and time columns."`
 Expected: output includes 'Assignee' and 'Tracked' columns; exit 0.
 
-> **Feature File:** [06--cupt-advanced-listing/verbose.md](06--cupt-advanced-listing/verbose.md)
-> **Catalog:** [02--cupt-task-listing/verbose.md](../feature_catalog/02--cupt-task-listing/verbose.md)
+> **Feature File:** [cupt-advanced-listing/verbose.md](cupt-advanced-listing/verbose.md)
+> **Catalog:** [cupt-task-listing/verbose.md](../feature_catalog/cupt-task-listing/verbose.md)
 
 ---
 
@@ -344,8 +344,8 @@ Verify `cupt list --tag A --tag B --json` requires both tags (AND logic).
 Prompt: `"List tasks that have both 'sprint' and 'backend' tags."`
 Expected: all returned tasks carry both tags; exit 0.
 
-> **Feature File:** [06--cupt-advanced-listing/stacked-filters.md](06--cupt-advanced-listing/stacked-filters.md)
-> **Catalog:** [02--cupt-task-listing/stacked-filters.md](../feature_catalog/02--cupt-task-listing/stacked-filters.md)
+> **Feature File:** [cupt-advanced-listing/stacked-filters.md](cupt-advanced-listing/stacked-filters.md)
+> **Catalog:** [cupt-task-listing/stacked-filters.md](../feature_catalog/cupt-task-listing/stacked-filters.md)
 
 ---
 
@@ -358,8 +358,8 @@ Verify `cupt show TASK_ID --json` returns the task object.
 Prompt: `"Show full details for task TASK_ID."`
 Expected: JSON object with `id`, `name`, `status`, `assignees`; exit 0.
 
-> **Feature File:** [02--task-operations/show-task.md](02--task-operations/show-task.md)
-> **Catalog:** [03--cupt-task-details/show-task.md](../feature_catalog/03--cupt-task-details/show-task.md)
+> **Feature File:** [task-operations/show-task.md](task-operations/show-task.md)
+> **Catalog:** [cupt-task-details/show-task.md](../feature_catalog/cupt-task-details/show-task.md)
 
 ---
 
@@ -370,8 +370,8 @@ Verify `cupt show TASK_ID --notes` appends comments to output.
 Prompt: `"Show task details including all comments."`
 Expected: output includes comment section with author and text; exit 0.
 
-> **Feature File:** [02--task-operations/show-task.md](02--task-operations/show-task.md)
-> **Catalog:** [03--cupt-task-details/show-notes.md](../feature_catalog/03--cupt-task-details/show-notes.md)
+> **Feature File:** [task-operations/show-task.md](task-operations/show-task.md)
+> **Catalog:** [cupt-task-details/show-notes.md](../feature_catalog/cupt-task-details/show-notes.md)
 
 ---
 
@@ -382,8 +382,8 @@ Verify `cupt context TASK_ID` shows parent and siblings.
 Prompt: `"Show parent, siblings, and subtasks for task TASK_ID."`
 Expected: output sections for parent (or 'no parent'), siblings, subtasks; exit 0.
 
-> **Feature File:** [02--task-operations/show-task.md](02--task-operations/show-task.md)
-> **Catalog:** [03--cupt-task-details/task-context.md](../feature_catalog/03--cupt-task-details/task-context.md)
+> **Feature File:** [task-operations/show-task.md](task-operations/show-task.md)
+> **Catalog:** [cupt-task-details/task-context.md](../feature_catalog/cupt-task-details/task-context.md)
 
 ---
 
@@ -394,8 +394,8 @@ Verify `cupt prefetch` populates cache and `cupt show TASK_ID --offline` succeed
 Prompt: `"Prefetch the task cache and show a task in offline mode."`
 Expected: `cupt prefetch` exits 0; `cupt show TASK_ID --offline` returns task without API call; exit 0.
 
-> **Feature File:** [07--cupt-offline-and-cache/prefetch-offline.md](07--cupt-offline-and-cache/prefetch-offline.md)
-> **Catalog:** [09--cupt-workspace/prefetch.md](../feature_catalog/09--cupt-workspace/prefetch.md)
+> **Feature File:** [cupt-offline-and-cache/prefetch-offline.md](cupt-offline-and-cache/prefetch-offline.md)
+> **Catalog:** [cupt-workspace/prefetch.md](../feature_catalog/cupt-workspace/prefetch.md)
 
 ---
 
@@ -406,8 +406,8 @@ Verify `cupt statuses TASK_ID` lists all statuses and marks the closed one.
 Prompt: `"Show the status schema for task TASK_ID's list."`
 Expected: list of statuses printed; closed status marked; exit 0.
 
-> **Feature File:** [02--task-operations/statuses-dry-run.md](02--task-operations/statuses-dry-run.md)
-> **Catalog:** [03--cupt-task-details/status-schema.md](../feature_catalog/03--cupt-task-details/status-schema.md)
+> **Feature File:** [task-operations/statuses-dry-run.md](task-operations/statuses-dry-run.md)
+> **Catalog:** [cupt-task-details/status-schema.md](../feature_catalog/cupt-task-details/status-schema.md)
 
 ---
 
@@ -418,8 +418,8 @@ Verify `cupt statuses --list LIST_ID` returns status schema using only a list ID
 Prompt: `"Show the status schema for list LIST_ID."`
 Expected: same output as `cupt statuses TASK_ID`; exit 0.
 
-> **Feature File:** [02--task-operations/statuses-dry-run.md](02--task-operations/statuses-dry-run.md)
-> **Catalog:** [03--cupt-task-details/status-by-list.md](../feature_catalog/03--cupt-task-details/status-by-list.md)
+> **Feature File:** [task-operations/statuses-dry-run.md](task-operations/statuses-dry-run.md)
+> **Catalog:** [cupt-task-details/status-by-list.md](../feature_catalog/cupt-task-details/status-by-list.md)
 
 ---
 
@@ -432,8 +432,8 @@ Verify `cupt done TASK_ID --dry-run` shows resolved status without writing.
 Prompt: `"Preview completing task TASK_ID without changing it."`
 Expected: "DRY RUN" message with resolved status name; task status unchanged in ClickUp; exit 0.
 
-> **Feature File:** [02--task-operations/statuses-dry-run.md](02--task-operations/statuses-dry-run.md)
-> **Catalog:** [04--cupt-task-completion/dry-run.md](../feature_catalog/04--cupt-task-completion/dry-run.md)
+> **Feature File:** [task-operations/statuses-dry-run.md](task-operations/statuses-dry-run.md)
+> **Catalog:** [cupt-task-completion/dry-run.md](../feature_catalog/cupt-task-completion/dry-run.md)
 
 ---
 
@@ -445,8 +445,8 @@ Prompt: `"Mark task TASK_ID as complete."`
 Expected: task status in ClickUp changes to closed status; exit 0.
 **Use a throwaway test task.**
 
-> **Feature File:** [02--task-operations/done-with-note.md](02--task-operations/done-with-note.md)
-> **Catalog:** [04--cupt-task-completion/mark-complete.md](../feature_catalog/04--cupt-task-completion/mark-complete.md)
+> **Feature File:** [task-operations/done-with-note.md](task-operations/done-with-note.md)
+> **Catalog:** [cupt-task-completion/mark-complete.md](../feature_catalog/cupt-task-completion/mark-complete.md)
 
 ---
 
@@ -457,8 +457,8 @@ Verify `cupt done TASK_ID --note "text"` closes and adds comment in one call.
 Prompt: `"Mark task TASK_ID complete and add a note."`
 Expected: task closed AND comment with provided text appears in ClickUp; exit 0.
 
-> **Feature File:** [02--task-operations/done-with-note.md](02--task-operations/done-with-note.md)
-> **Catalog:** [04--cupt-task-completion/complete-with-note.md](../feature_catalog/04--cupt-task-completion/complete-with-note.md)
+> **Feature File:** [task-operations/done-with-note.md](task-operations/done-with-note.md)
+> **Catalog:** [cupt-task-completion/complete-with-note.md](../feature_catalog/cupt-task-completion/complete-with-note.md)
 
 ---
 
@@ -469,8 +469,8 @@ Verify `cupt tag remove TASK_ID ai_ready -> cupt tag add TASK_ID needs_review ->
 Prompt: `"Complete agent handoff: remove ai_ready tag, add needs_review, leave note."`
 Expected: task has needs_review tag, no ai_ready tag, and new comment in ClickUp; all exit 0.
 
-> **Feature File:** [02--task-operations/done-with-note.md](02--task-operations/done-with-note.md)
-> **Catalog:** [07--cupt-tag-management/add-tag.md](../feature_catalog/07--cupt-tag-management/add-tag.md)
+> **Feature File:** [task-operations/done-with-note.md](task-operations/done-with-note.md)
+> **Catalog:** [cupt-tag-management/add-tag.md](../feature_catalog/cupt-tag-management/add-tag.md)
 
 ---
 
@@ -483,7 +483,7 @@ Verify `cupt note TASK_ID "text"` appends comment with correct author.
 Prompt: `"Add a comment to task TASK_ID."`
 Expected: comment appears in `cupt notes TASK_ID` output; exit 0.
 
-> **Feature File:** [03--time-and-notes/note-and-notes.md](03--time-and-notes/note-and-notes.md)
+> **Feature File:** [time-and-notes/note-and-notes.md](time-and-notes/note-and-notes.md)
 
 ---
 
@@ -494,7 +494,7 @@ Verify `cupt notes TASK_ID` returns all comments chronologically.
 Prompt: `"List all comments on task TASK_ID."`
 Expected: at least one comment shown with author and timestamp; exit 0.
 
-> **Feature File:** [03--time-and-notes/note-and-notes.md](03--time-and-notes/note-and-notes.md)
+> **Feature File:** [time-and-notes/note-and-notes.md](time-and-notes/note-and-notes.md)
 
 ---
 
@@ -505,7 +505,7 @@ Verify timer lifecycle: `cupt time start -> cupt time status -> cupt time stop`.
 Prompt: `"Start a timer on task TASK_ID, check status, then stop it."`
 Expected: start exits 0; status shows running timer; stop exits 0 and logs time; final status shows "no timer".
 
-> **Feature File:** [03--time-and-notes/time-start-stop.md](03--time-and-notes/time-start-stop.md)
+> **Feature File:** [time-and-notes/time-start-stop.md](time-and-notes/time-start-stop.md)
 
 ---
 
@@ -516,7 +516,7 @@ Verify `cupt time add TASK_ID 1h30m` creates a time entry.
 Prompt: `"Log 1.5 hours on task TASK_ID."`
 Expected: time entry appears in ClickUp task; exit 0.
 
-> **Feature File:** [03--time-and-notes/time-add-manual.md](03--time-and-notes/time-add-manual.md)
+> **Feature File:** [time-and-notes/time-add-manual.md](time-and-notes/time-add-manual.md)
 
 ---
 
@@ -527,7 +527,7 @@ Verify `cupt config --clear-cache` removes cached data, forcing fresh API fetch.
 Prompt: `"Clear the cupt local cache."`
 Expected: exits 0; next `cupt list` shows fresh data from API; exit 0.
 
-> **Feature File:** [07--cupt-offline-and-cache/clear-cache.md](07--cupt-offline-and-cache/clear-cache.md)
+> **Feature File:** [cupt-offline-and-cache/clear-cache.md](cupt-offline-and-cache/clear-cache.md)
 
 ---
 
@@ -538,7 +538,7 @@ Verify `cupt teams` lists workspace user-groups.
 Prompt: `"List all teams in the workspace."`
 Expected: one or more team names printed; exit 0.
 
-> **Feature File:** [01--cupt-lifecycle/status-json.md](01--cupt-lifecycle/status-json.md)
+> **Feature File:** [cupt-lifecycle/status-json.md](cupt-lifecycle/status-json.md)
 
 ---
 
@@ -549,7 +549,7 @@ Verify `cupt attach list TASK_ID` returns attachment metadata.
 Prompt: `"List all attachments on task TASK_ID."`
 Expected: file names and sizes printed (or "no attachments" for tasks without files); exit 0.
 
-> **Feature File:** [07--cupt-offline-and-cache/attachments.md](07--cupt-offline-and-cache/attachments.md)
+> **Feature File:** [cupt-offline-and-cache/attachments.md](cupt-offline-and-cache/attachments.md)
 
 ---
 
@@ -560,7 +560,7 @@ Verify `cupt list --tag nonexistent_xyz --json` returns `[]` with exit 0.
 Prompt: `"Fetch tasks with a tag that doesn't exist."`
 Expected: output is `[]`; exit 0 (not an error condition).
 
-> **Feature File:** [05--recovery-and-failure/empty-queue.md](05--recovery-and-failure/empty-queue.md)
+> **Feature File:** [recovery-and-failure/empty-queue.md](recovery-and-failure/empty-queue.md)
 
 ---
 
@@ -573,8 +573,8 @@ Verify `clickup_create_task` creates a task and returns a task ID.
 Prompt: `"Create a task named 'Test Task' in list LIST_ID with priority 3."`
 Expected: response includes `id` field; task visible in ClickUp UI; exit 0.
 
-> **Feature File:** [08--mcp-task-crud/create-task.md](08--mcp-task-crud/create-task.md)
-> **Catalog:** [11--mcp-high-priority/create-task.md](../feature_catalog/11--mcp-high-priority/create-task.md)
+> **Feature File:** [mcp-task-crud/create-task.md](mcp-task-crud/create-task.md)
+> **Catalog:** [mcp-high-priority/create-task.md](../feature_catalog/mcp-high-priority/create-task.md)
 
 ---
 
@@ -585,7 +585,7 @@ Verify `clickup_get_task` returns full task object for the ID created in MCP-H00
 Prompt: `"Get all details for task TASK_ID."`
 Expected: JSON object with `id`, `name`, `status`, `priority`; exit 0.
 
-> **Feature File:** [08--mcp-task-crud/get-task.md](08--mcp-task-crud/get-task.md)
+> **Feature File:** [mcp-task-crud/get-task.md](mcp-task-crud/get-task.md)
 
 ---
 
@@ -596,7 +596,7 @@ Verify `clickup_update_task` changes the task status to a known value.
 Prompt: `"Update task TASK_ID status to 'in progress'."`
 Expected: task status in ClickUp UI is 'in progress'; exit 0.
 
-> **Feature File:** [08--mcp-task-crud/update-task.md](08--mcp-task-crud/update-task.md)
+> **Feature File:** [mcp-task-crud/update-task.md](mcp-task-crud/update-task.md)
 
 ---
 
@@ -608,7 +608,7 @@ Prompt: `"Delete test task TASK_ID permanently."`
 Expected: subsequent `clickup_get_task` returns 404/not-found; task gone from UI.
 **Use only the throwaway test task.**
 
-> **Feature File:** [08--mcp-task-crud/delete-task.md](08--mcp-task-crud/delete-task.md)
+> **Feature File:** [mcp-task-crud/delete-task.md](mcp-task-crud/delete-task.md)
 
 ---
 
@@ -619,7 +619,7 @@ Verify `clickup_search_tasks` returns tasks matching a keyword.
 Prompt: `"Search for tasks containing the word 'test' in the workspace."`
 Expected: JSON array with matching tasks; exit 0.
 
-> **Feature File:** [08--mcp-task-crud/search-tasks.md](08--mcp-task-crud/search-tasks.md)
+> **Feature File:** [mcp-task-crud/search-tasks.md](mcp-task-crud/search-tasks.md)
 
 ---
 
@@ -630,7 +630,7 @@ Verify `clickup_get_workspace` returns workspace name and ID matching `CLICKUP_T
 Prompt: `"Get workspace details via MCP."`
 Expected: JSON with workspace name and numeric ID matching `CLICKUP_TEAM_ID` env var; exit 0.
 
-> **Feature File:** [08--mcp-task-crud/get-workspace.md](08--mcp-task-crud/get-workspace.md)
+> **Feature File:** [mcp-task-crud/get-workspace.md](mcp-task-crud/get-workspace.md)
 
 ---
 
@@ -641,7 +641,7 @@ Verify `clickup_manage_comments` creates a comment and lists it back.
 Prompt: `"Add a comment 'MCP test comment' to task TASK_ID, then list comments."`
 Expected: comment appears in list response; exit 0.
 
-> **Feature File:** [08--mcp-task-crud/manage-comments.md](08--mcp-task-crud/manage-comments.md)
+> **Feature File:** [mcp-task-crud/manage-comments.md](mcp-task-crud/manage-comments.md)
 
 ---
 
@@ -652,7 +652,7 @@ Verify `clickup_create_bulk_tasks` creates 3+ tasks in one call.
 Prompt: `"Create three tasks at once in list LIST_ID."`
 Expected: response is array of 3 task objects with IDs; all visible in ClickUp; exit 0.
 
-> **Feature File:** [08--mcp-task-crud/bulk-create.md](08--mcp-task-crud/bulk-create.md)
+> **Feature File:** [mcp-task-crud/bulk-create.md](mcp-task-crud/bulk-create.md)
 
 ---
 
@@ -665,8 +665,8 @@ Verify `clickup_create_document` creates a document and returns a doc ID.
 Prompt: `"Create a document named 'Test Doc' in list LIST_ID with markdown content."`
 Expected: response includes `doc_id`; document visible in ClickUp; exit 0.
 
-> **Feature File:** [09--mcp-documents-goals/create-document.md](09--mcp-documents-goals/create-document.md)
-> **Catalog:** [12--mcp-medium-priority/create-document.md](../feature_catalog/12--mcp-medium-priority/create-document.md)
+> **Feature File:** [mcp-documents-goals/create-document.md](mcp-documents-goals/create-document.md)
+> **Catalog:** [mcp-medium-priority/create-document.md](../feature_catalog/mcp-medium-priority/create-document.md)
 
 ---
 
@@ -677,7 +677,7 @@ Verify `clickup_get_document` returns the document created in MCP-M015.
 Prompt: `"Get the document created in MCP-M015."`
 Expected: JSON with `name`, `doc_id`; exit 0.
 
-> **Feature File:** [09--mcp-documents-goals/get-document.md](09--mcp-documents-goals/get-document.md)
+> **Feature File:** [mcp-documents-goals/get-document.md](mcp-documents-goals/get-document.md)
 
 ---
 
@@ -688,7 +688,7 @@ Verify `clickup_create_document_page` adds a page and returns a `page_id`.
 Prompt: `"Add a page named 'Section 1' to the test document."`
 Expected: response includes `page_id`; page visible in ClickUp document; exit 0.
 
-> **Feature File:** [09--mcp-documents-goals/document-pages.md](09--mcp-documents-goals/document-pages.md)
+> **Feature File:** [mcp-documents-goals/document-pages.md](mcp-documents-goals/document-pages.md)
 
 ---
 
@@ -699,7 +699,7 @@ Verify `clickup_manage_goals` creates a goal and returns a `goal_id`.
 Prompt: `"Create a goal named 'Q3 Test Goal' in the workspace."`
 Expected: response includes `goal_id`; goal visible in ClickUp; exit 0.
 
-> **Feature File:** [09--mcp-documents-goals/manage-goals.md](09--mcp-documents-goals/manage-goals.md)
+> **Feature File:** [mcp-documents-goals/manage-goals.md](mcp-documents-goals/manage-goals.md)
 
 ---
 
@@ -712,7 +712,7 @@ Verify `clickup_manage_lists` creates a list and returns a `list_id`.
 Prompt: `"Create a list named 'Test List' in space SPACE_ID."`
 Expected: response includes `list_id`; list visible in ClickUp; exit 0.
 
-> **Feature File:** [10--mcp-bulk-and-structure/manage-lists.md](10--mcp-bulk-and-structure/manage-lists.md)
+> **Feature File:** [mcp-bulk-and-structure/manage-lists.md](mcp-bulk-and-structure/manage-lists.md)
 
 ---
 
@@ -723,7 +723,7 @@ Verify `clickup_manage_webhooks` creates a webhook.
 Prompt: `"Create a webhook for taskCreated events pointing to https://example.com/webhook."`
 Expected: response includes `webhook_id`; exit 0.
 
-> **Feature File:** [10--mcp-bulk-and-structure/create-webhook.md](10--mcp-bulk-and-structure/create-webhook.md)
+> **Feature File:** [mcp-bulk-and-structure/create-webhook.md](mcp-bulk-and-structure/create-webhook.md)
 
 ---
 
@@ -734,7 +734,7 @@ Verify checklist CRUD: create checklist → add item → mark resolved → delet
 Prompt: `"Create a checklist on task TASK_ID, add an item, check it off, then delete the checklist."`
 Expected: each operation exits 0; checklist and item state matches in ClickUp UI.
 
-> **Feature File:** [10--mcp-bulk-and-structure/checklist-lifecycle.md](10--mcp-bulk-and-structure/checklist-lifecycle.md)
+> **Feature File:** [mcp-bulk-and-structure/checklist-lifecycle.md](mcp-bulk-and-structure/checklist-lifecycle.md)
 
 ---
 
@@ -745,7 +745,7 @@ Verify `clickup_set_custom_field_value` sets a field and is readable back.
 Prompt: `"Set custom field FIELD_ID on task TASK_ID to value 'test-value'."`
 Expected: `clickup_get_task` response shows the field with the new value; exit 0.
 
-> **Feature File:** [10--mcp-bulk-and-structure/custom-field.md](10--mcp-bulk-and-structure/custom-field.md)
+> **Feature File:** [mcp-bulk-and-structure/custom-field.md](mcp-bulk-and-structure/custom-field.md)
 
 ---
 
@@ -758,7 +758,7 @@ Verify that after `cupt logout`, commands fail with AuthError and recovery via `
 Prompt: `"Simulate missing credentials and recover by re-authenticating."`
 Expected: `cupt status` returns AuthError after logout; `cupt status` succeeds after `cupt auth`.
 
-> **Feature File:** [05--recovery-and-failure/missing-auth.md](05--recovery-and-failure/missing-auth.md)
+> **Feature File:** [recovery-and-failure/missing-auth.md](recovery-and-failure/missing-auth.md)
 
 ---
 
@@ -769,7 +769,7 @@ Verify `cupt list --tag nonexistent --json` returns `[]` with exit 0 (not an err
 Prompt: `"Fetch tasks with a tag that has no tasks."`
 Expected: `[]` printed; exit 0; agent must not treat this as a failure.
 
-> **Feature File:** [05--recovery-and-failure/empty-queue.md](05--recovery-and-failure/empty-queue.md)
+> **Feature File:** [recovery-and-failure/empty-queue.md](recovery-and-failure/empty-queue.md)
 
 ---
 
@@ -780,7 +780,7 @@ Verify behavior when a list has no closed status defined.
 Prompt: `"Attempt cupt done on a task in a list with non-standard status configuration."`
 Expected: clear error message naming the status issue; exit non-zero; `cupt statuses` still works.
 
-> **Feature File:** [05--recovery-and-failure/status-error.md](05--recovery-and-failure/status-error.md)
+> **Feature File:** [recovery-and-failure/status-error.md](recovery-and-failure/status-error.md)
 
 ---
 
@@ -791,7 +791,7 @@ Verify behavior when `CLICKUP_API_KEY` is missing or wrong.
 Prompt: `"Call clickup_get_workspace with an invalid API key."`
 Expected: MCP returns 401/auth error; meaningful error message; exit non-zero.
 
-> **Feature File:** [05--recovery-and-failure/missing-auth.md](05--recovery-and-failure/missing-auth.md)
+> **Feature File:** [recovery-and-failure/missing-auth.md](recovery-and-failure/missing-auth.md)
 
 ---
 
@@ -802,7 +802,7 @@ Verify `cupt time status` correctly detects and clears an orphaned timer.
 Prompt: `"Detect and stop an orphaned timer left running from a previous session."`
 Expected: `cupt time status` shows the running timer; `cupt time stop` stops it; final status shows "no timer".
 
-> **Feature File:** [03--time-and-notes/time-start-stop.md](03--time-and-notes/time-start-stop.md)
+> **Feature File:** [time-and-notes/time-start-stop.md](time-and-notes/time-start-stop.md)
 
 ---
 
@@ -826,41 +826,41 @@ All test modules are at 86% coverage per the cupt upstream repo.
 
 | ID | Feature | Category | Catalog File |
 |----|---------|---------|-------------|
-| CU-001 | Version check | cupt Auth | `10--cupt-global-flags/version-flag.md` |
-| CU-002 | Interactive auth | cupt Auth | `01--cupt-authentication/interactive-auth.md` |
-| CU-007 | Auth status | cupt Auth | `01--cupt-authentication/auth-status.md` |
-| CU-008 | Logout | cupt Auth | `01--cupt-authentication/logout.md` |
-| CU-009 | List assigned | cupt Listing | `02--cupt-task-listing/list-assigned.md` |
-| CU-010 | Filter today | cupt Listing | `02--cupt-task-listing/filter-today.md` |
-| CU-011 | Filter tag | cupt Listing | `02--cupt-task-listing/filter-tag.md` |
-| CU-012 | JSON output | cupt Listing | `02--cupt-task-listing/json-output.md` |
-| CU-013 | Exclude tag | cupt Listing | `02--cupt-task-listing/exclude-tag.md` |
-| CU-014 | Cap results | cupt Listing | `02--cupt-task-listing/cap-results.md` |
-| CU-015 | Verbose output | cupt Listing | `02--cupt-task-listing/verbose.md` |
-| CU-016 | Stacked filters | cupt Listing | `02--cupt-task-listing/stacked-filters.md` |
-| CU-017 | Show task | cupt Details | `03--cupt-task-details/show-task.md` |
-| CU-019 | Task context | cupt Details | `03--cupt-task-details/task-context.md` |
-| CU-021 | Status schema | cupt Details | `03--cupt-task-details/status-schema.md` |
-| CU-022 | Status by list | cupt Details | `03--cupt-task-details/status-by-list.md` |
-| CU-023 | Dry-run | cupt Completion | `04--cupt-task-completion/dry-run.md` |
-| CU-024 | Mark complete | cupt Completion | `04--cupt-task-completion/mark-complete.md` |
-| CU-025 | Complete+note | cupt Completion | `04--cupt-task-completion/complete-with-note.md` |
-| CU-027 | Add comment | cupt Notes | `05--cupt-notes-comments/add-comment.md` |
-| CU-029 | Timer lifecycle | cupt Time | `06--cupt-time-tracking/start-timer.md` |
-| CU-030 | Log time | cupt Time | `06--cupt-time-tracking/log-manual.md` |
-| CU-031 | Clear cache | cupt Config | `01--cupt-authentication/clear-cache.md` |
-| CU-034 | Empty queue | Recovery | `02--cupt-task-listing/list-assigned.md` |
-| MCP-H001 | Create task | MCP HIGH | `11--mcp-high-priority/create-task.md` |
-| MCP-H002 | Get task | MCP HIGH | `11--mcp-high-priority/get-task.md` |
-| MCP-H003 | Update task | MCP HIGH | `11--mcp-high-priority/update-task.md` |
-| MCP-H004 | Delete task | MCP HIGH | `11--mcp-high-priority/delete-task.md` |
-| MCP-H005 | Search tasks | MCP HIGH | `11--mcp-high-priority/search-tasks.md` |
-| MCP-H006 | Get workspace | MCP HIGH | `11--mcp-high-priority/get-workspace.md` |
-| MCP-H007 | Manage comments | MCP HIGH | `11--mcp-high-priority/manage-comments.md` |
-| MCP-H008 | Bulk create | MCP HIGH | `11--mcp-high-priority/create-bulk-tasks.md` |
-| MCP-M015 | Create document | MCP MEDIUM | `12--mcp-medium-priority/create-document.md` |
-| MCP-M016 | Get document | MCP MEDIUM | `12--mcp-medium-priority/get-document.md` |
-| MCP-M019 | Manage goals | MCP MEDIUM | `12--mcp-medium-priority/manage-goals.md` |
-| MCP-M007 | Manage lists | MCP MEDIUM | `12--mcp-medium-priority/manage-lists.md` |
-| MCP-L009 | Checklist lifecycle | MCP LOW | `13--mcp-low-priority/create-checklist.md` |
-| MCP-L019 | Set custom field | MCP LOW | `13--mcp-low-priority/set-custom-field.md` |
+| CU-001 | Version check | cupt Auth | `cupt-global-flags/version-flag.md` |
+| CU-002 | Interactive auth | cupt Auth | `cupt-authentication/interactive-auth.md` |
+| CU-007 | Auth status | cupt Auth | `cupt-authentication/auth-status.md` |
+| CU-008 | Logout | cupt Auth | `cupt-authentication/logout.md` |
+| CU-009 | List assigned | cupt Listing | `cupt-task-listing/list-assigned.md` |
+| CU-010 | Filter today | cupt Listing | `cupt-task-listing/filter-today.md` |
+| CU-011 | Filter tag | cupt Listing | `cupt-task-listing/filter-tag.md` |
+| CU-012 | JSON output | cupt Listing | `cupt-task-listing/json-output.md` |
+| CU-013 | Exclude tag | cupt Listing | `cupt-task-listing/exclude-tag.md` |
+| CU-014 | Cap results | cupt Listing | `cupt-task-listing/cap-results.md` |
+| CU-015 | Verbose output | cupt Listing | `cupt-task-listing/verbose.md` |
+| CU-016 | Stacked filters | cupt Listing | `cupt-task-listing/stacked-filters.md` |
+| CU-017 | Show task | cupt Details | `cupt-task-details/show-task.md` |
+| CU-019 | Task context | cupt Details | `cupt-task-details/task-context.md` |
+| CU-021 | Status schema | cupt Details | `cupt-task-details/status-schema.md` |
+| CU-022 | Status by list | cupt Details | `cupt-task-details/status-by-list.md` |
+| CU-023 | Dry-run | cupt Completion | `cupt-task-completion/dry-run.md` |
+| CU-024 | Mark complete | cupt Completion | `cupt-task-completion/mark-complete.md` |
+| CU-025 | Complete+note | cupt Completion | `cupt-task-completion/complete-with-note.md` |
+| CU-027 | Add comment | cupt Notes | `cupt-notes-comments/add-comment.md` |
+| CU-029 | Timer lifecycle | cupt Time | `cupt-time-tracking/start-timer.md` |
+| CU-030 | Log time | cupt Time | `cupt-time-tracking/log-manual.md` |
+| CU-031 | Clear cache | cupt Config | `cupt-authentication/clear-cache.md` |
+| CU-034 | Empty queue | Recovery | `cupt-task-listing/list-assigned.md` |
+| MCP-H001 | Create task | MCP HIGH | `mcp-high-priority/create-task.md` |
+| MCP-H002 | Get task | MCP HIGH | `mcp-high-priority/get-task.md` |
+| MCP-H003 | Update task | MCP HIGH | `mcp-high-priority/update-task.md` |
+| MCP-H004 | Delete task | MCP HIGH | `mcp-high-priority/delete-task.md` |
+| MCP-H005 | Search tasks | MCP HIGH | `mcp-high-priority/search-tasks.md` |
+| MCP-H006 | Get workspace | MCP HIGH | `mcp-high-priority/get-workspace.md` |
+| MCP-H007 | Manage comments | MCP HIGH | `mcp-high-priority/manage-comments.md` |
+| MCP-H008 | Bulk create | MCP HIGH | `mcp-high-priority/create-bulk-tasks.md` |
+| MCP-M015 | Create document | MCP MEDIUM | `mcp-medium-priority/create-document.md` |
+| MCP-M016 | Get document | MCP MEDIUM | `mcp-medium-priority/get-document.md` |
+| MCP-M019 | Manage goals | MCP MEDIUM | `mcp-medium-priority/manage-goals.md` |
+| MCP-M007 | Manage lists | MCP MEDIUM | `mcp-medium-priority/manage-lists.md` |
+| MCP-L009 | Checklist lifecycle | MCP LOW | `mcp-low-priority/create-checklist.md` |
+| MCP-L019 | Set custom field | MCP LOW | `mcp-low-priority/set-custom-field.md` |

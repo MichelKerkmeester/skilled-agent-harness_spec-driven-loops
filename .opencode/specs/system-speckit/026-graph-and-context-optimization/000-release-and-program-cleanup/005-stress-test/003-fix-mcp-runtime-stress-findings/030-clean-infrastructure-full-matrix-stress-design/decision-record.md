@@ -107,7 +107,7 @@ The root feature catalog currently lists broad categories through `22--context-p
 |--------|------|------|-------|
 | **F1-F14 abstraction** | Matches user request and current inventory | Requires mapping discipline | 9/10 |
 | Test every catalog entry individually | Maximum coverage | Hundreds of cells per executor; not practical for first run | 4/10 |
-| Stop at on-disk `14--pipeline-architecture` | Simple | False: misses newer categories and the separate `14--stress-testing` root | 2/10 |
+| Stop at on-disk `pipeline-architecture` | Simple | False: misses newer categories and the separate `stress-testing` root | 2/10 |
 
 **Why this one**: It is honest about the current catalog while keeping the first full matrix executable.
 <!-- /ANCHOR:adr-002 -->
@@ -127,7 +127,7 @@ The root feature catalog currently lists broad categories through `22--context-p
 
 ### Context
 
-The stress-test pattern defines the generalized four dimensions and 0-2 scale (`14--stress-testing/01-stress-test-cycle.md:40`, `:49`). The user asked for aggregation per `(feature x CLI)` while also asking cells to be `feature x CLI x scenario`.
+The stress-test pattern defines the generalized four dimensions and 0-2 scale (`stress-testing/01-stress-test-cycle.md:40`, `:49`). The user asked for aggregation per `(feature x CLI)` while also asking cells to be `feature x CLI x scenario`.
 
 ### Decision
 

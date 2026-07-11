@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Finalize the remaining 009 remediation phases"
     blockers: []
     key_files:
-      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md"
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md"
+      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/loop-lock.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "adversarial-playbook-scenarios-2026-06-29"
@@ -56,14 +56,14 @@ Eight adversarial regression scenarios were added to the manual-testing playbook
 
 | Cluster | Playbook file | Regression test |
 |---------|---------------|-----------------|
-| Loop-lock refresh-vs-reclaim split-brain | `04--state-safety/loop-lock.md` | `tests/unit/loop-lock.vitest.ts` |
-| `writeStateAtomic(undefined)` must throw | `04--state-safety/atomic-state-integrity-helpers.md` | `tests/unit/atomic-state.vitest.ts` |
-| Concurrent diff-gated append no row loss | `04--state-safety/atomic-state-serialize-diff.md` | `tests/unit/atomic-state.vitest.ts` |
-| Deferred-writer flush error surfaces | `04--state-safety/atomic-state-deferred-writer.md` | `tests/unit/atomic-state.vitest.ts` |
-| JSONL append after no trailing newline no-corrupt | `04--state-safety/jsonl-repair.md` | `tests/unit/jsonl-repair.vitest.ts` |
-| Fan-out exit-0/no-artifact not fulfilled | `09--fanout/fanout-salvage-recovery.md` | `tests/unit/fanout-run.vitest.ts` |
-| Goal terminal-revival drops stale usage | `02--cli-hooks-and-plugin/goal-opencode-plugin.md` | `__tests__/mk-goal-lifecycle.test.cjs` |
-| Goal injection clamp preserves directive + fence | `02--cli-hooks-and-plugin/goal-opencode-plugin.md` | `__tests__/mk-goal-state.test.cjs` |
+| Loop-lock refresh-vs-reclaim split-brain | `state-safety/loop-lock.md` | `tests/unit/loop-lock.vitest.ts` |
+| `writeStateAtomic(undefined)` must throw | `state-safety/atomic-state-integrity-helpers.md` | `tests/unit/atomic-state.vitest.ts` |
+| Concurrent diff-gated append no row loss | `state-safety/atomic-state-serialize-diff.md` | `tests/unit/atomic-state.vitest.ts` |
+| Deferred-writer flush error surfaces | `state-safety/atomic-state-deferred-writer.md` | `tests/unit/atomic-state.vitest.ts` |
+| JSONL append after no trailing newline no-corrupt | `state-safety/jsonl-repair.md` | `tests/unit/jsonl-repair.vitest.ts` |
+| Fan-out exit-0/no-artifact not fulfilled | `fanout/fanout-salvage-recovery.md` | `tests/unit/fanout-run.vitest.ts` |
+| Goal terminal-revival drops stale usage | `cli-hooks-and-plugin/goal-opencode-plugin.md` | `__tests__/mk-goal-lifecycle.test.cjs` |
+| Goal injection clamp preserves directive + fence | `cli-hooks-and-plugin/goal-opencode-plugin.md` | `__tests__/mk-goal-state.test.cjs` |
 
 ### Approach
 
@@ -73,13 +73,13 @@ Each scenario is an `ADVERSARIAL REGRESSION` section added inside the feature's 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md` | Modified | Refresh-vs-reclaim split-brain adversarial scenario. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-integrity-helpers.md` | Modified | Non-representable-state-throws adversarial scenario. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-serialize-diff.md` | Modified | Concurrent diff-gated append adversarial scenario. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md` | Modified | Deferred-flush-error adversarial scenario. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/jsonl-repair.md` | Modified | No-trailing-newline no-corrupt adversarial scenario. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md` | Modified | Exit-0/no-artifact not-fulfilled adversarial scenario. |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | Modified | Terminal-revival and injection-clamp adversarial scenarios. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/loop-lock.md` | Modified | Refresh-vs-reclaim split-brain adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/atomic-state-integrity-helpers.md` | Modified | Non-representable-state-throws adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/atomic-state-serialize-diff.md` | Modified | Concurrent diff-gated append adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/atomic-state-deferred-writer.md` | Modified | Deferred-flush-error adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/jsonl-repair.md` | Modified | No-trailing-newline no-corrupt adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md` | Modified | Exit-0/no-artifact not-fulfilled adversarial scenario. |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | Modified | Terminal-revival and injection-clamp adversarial scenarios. |
 | `004-adversarial-playbook-scenarios/{spec,plan,tasks,implementation-summary}.md` | Modified | Authored concrete Level-1 phase docs. |
 <!-- /ANCHOR:what-built -->
 

@@ -45,19 +45,19 @@ Implemented the Phase 011 manual testing playbook alignment pass for the sk-desi
 
 | File Area | Action | Purpose |
 |-----------|--------|---------|
-| `.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/` | Added 3 files | `PB-004..006` for motion, audit, and shared polish-gate procedure-selection proof. |
-| `.opencode/skills/sk-design/manual_testing_playbook/07--fallback-and-resilience/` | Added 2 files | `FR-001..002` for no-card fallback and direct fallback without subagents. |
-| `.opencode/skills/sk-design/manual_testing_playbook/08--hub-manager-intake/` | Added 3 files | `HM-001..003` for hub intake, visible plan, and verifier-cadence pause. |
+| `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/` | Added 3 files | `PB-004..006` for motion, audit, and shared polish-gate procedure-selection proof. |
+| `.opencode/skills/sk-design/manual_testing_playbook/fallback-and-resilience/` | Added 2 files | `FR-001..002` for no-card fallback and direct fallback without subagents. |
+| `.opencode/skills/sk-design/manual_testing_playbook/hub-manager-intake/` | Added 3 files | `HM-001..003` for hub intake, visible plan, and verifier-cadence pause. |
 | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Modified | Updated to 32 scenarios across 8 categories and added candidate critical-path notation. |
-| `.opencode/skills/sk-design/design-interface/manual_testing_playbook/14--procedure-card-contract/` | Added 3 files | `ID-018..020` for interface card selection, no-card fallback, and direct fallback. |
+| `.opencode/skills/sk-design/design-interface/manual_testing_playbook/procedure-card-contract/` | Added 3 files | `ID-018..020` for interface card selection, no-card fallback, and direct fallback. |
 | `.opencode/skills/sk-design/design-interface/manual_testing_playbook/manual_testing_playbook.md` | Modified | Updated to 20 scenarios across 14 categories. |
-| `.opencode/skills/sk-design/design-foundations/manual_testing_playbook/07--procedure-card-contract/` | Added 3 files | `FOUND-PROCCARD-001..003`. |
+| `.opencode/skills/sk-design/design-foundations/manual_testing_playbook/procedure-card-contract/` | Added 3 files | `FOUND-PROCCARD-001..003`. |
 | `.opencode/skills/sk-design/design-foundations/manual_testing_playbook/manual_testing_playbook.md` | Modified | Added procedure-card rows and updated release-readiness count to 11. |
-| `.opencode/skills/sk-design/design-motion/manual_testing_playbook/07--procedure-card-contract/` | Added 3 files | `MOTION-PROCCARD-001..003`. |
+| `.opencode/skills/sk-design/design-motion/manual_testing_playbook/procedure-card-contract/` | Added 3 files | `MOTION-PROCCARD-001..003`. |
 | `.opencode/skills/sk-design/design-motion/manual_testing_playbook/manual_testing_playbook.md` | Modified | Added procedure-card rows and updated release-readiness count to 13. |
-| `.opencode/skills/sk-design/design-audit/manual_testing_playbook/05--procedure-card-contract/` | Added 3 files | `AUDIT-PROCCARD-001..003`. |
+| `.opencode/skills/sk-design/design-audit/manual_testing_playbook/procedure-card-contract/` | Added 3 files | `AUDIT-PROCCARD-001..003`. |
 | `.opencode/skills/sk-design/design-audit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Added procedure-card rows and updated release-readiness count to 14. |
-| `.opencode/skills/sk-design/design-md-generator/manual_testing_playbook/16--procedure-card-contract/` | Added 3 files | `PROCCARD-001..003`, including backend-preserving direct fallback. |
+| `.opencode/skills/sk-design/design-md-generator/manual_testing_playbook/procedure-card-contract/` | Added 3 files | `PROCCARD-001..003`, including backend-preserving direct fallback. |
 | `.opencode/skills/sk-design/design-md-generator/manual_testing_playbook/manual_testing_playbook.md` | Modified | Updated to 18 scenarios across 16 categories. |
 | Phase 011 docs | Modified/created | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and this `implementation-summary.md` now record completion evidence. |
 

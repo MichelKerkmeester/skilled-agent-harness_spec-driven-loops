@@ -75,7 +75,7 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
 
 The command YAML workflow owns dispatch. It initializes the research packet on first run, then loops: check convergence, dispatch the `@deep-research` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration is a single LEAF dispatch capped at roughly twelve tool calls. The agent investigates one focus area, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents, never nests another loop and never asks the user a question.
 
-Lifecycle controls now include [run-now control](./feature_catalog/01--loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature_catalog/01--loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature_catalog/01--loop-lifecycle/loop-wide-dry-run.md).
+Lifecycle controls now include [run-now control](./feature_catalog/loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature_catalog/loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature_catalog/loop-lifecycle/loop-wide-dry-run.md).
 
 ### Externalized State
 
@@ -83,7 +83,7 @@ All continuity lives in packet files under `{spec_folder}/research/`, not in con
 
 Because state is on disk, a crashed run resumes from the packet files. Use `/deep:research:auto` again and the workflow picks up the active lineage.
 
-Reducer-owned state also covers [injection inbox provenance](./feature_catalog/02--state-management/injection-inbox-provenance.md), [question conflict ownership](./feature_catalog/02--state-management/question-conflict-ownership.md), [rejected-pattern cache](./feature_catalog/02--state-management/rejected-pattern-cache.md), [ideas backlog lifecycle](./feature_catalog/02--state-management/ideas-backlog-lifecycle.md), and [dashboard sparkline trend](./feature_catalog/02--state-management/dashboard-sparkline-trend.md).
+Reducer-owned state also covers [injection inbox provenance](./feature_catalog/state-management/injection-inbox-provenance.md), [question conflict ownership](./feature_catalog/state-management/question-conflict-ownership.md), [rejected-pattern cache](./feature_catalog/state-management/rejected-pattern-cache.md), [ideas backlog lifecycle](./feature_catalog/state-management/ideas-backlog-lifecycle.md), and [dashboard sparkline trend](./feature_catalog/state-management/dashboard-sparkline-trend.md).
 
 ### Convergence Detection
 
@@ -91,7 +91,7 @@ Convergence is a composite stop signal driven by the new-information ratio per i
 
 The convergence model weighs the new-information ratio against a minimum-iterations floor. The full signal math lives in `references/convergence/convergence.md` and `references/convergence/convergence_signals.md`. The convergence threshold is not interchangeable with sibling deep loops. `deep-review` and `deep-ai-council` each use a different default tuned to their domain.
 
-The minimum-iteration behavior is documented as the [anti-convergence floor](./feature_catalog/03--convergence/anti-convergence-floor.md).
+The minimum-iteration behavior is documented as the [anti-convergence floor](./feature_catalog/convergence/anti-convergence-floor.md).
 
 ### Progressive Synthesis
 

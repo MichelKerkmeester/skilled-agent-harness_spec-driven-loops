@@ -120,8 +120,8 @@ Make `mk-goal` a first-class documented OpenCode plugin surface inside `system-s
 | `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Modify | Clarify bridge-backed versus standalone local plugins. |
 | `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md` | Modify | Record why `mk-goal` is not a plugin bridge. |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modify | Document `MK_GOAL_*` runtime controls. |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | Create | Feature catalog entry for the goal plugin. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | Create | Manual validation scenario for `/goal` status and injection. |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | Create | Feature catalog entry for the goal plugin. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` | Create | Manual validation scenario for `/goal` status and injection. |
 <!-- /ANCHOR:scope -->
 
 ---

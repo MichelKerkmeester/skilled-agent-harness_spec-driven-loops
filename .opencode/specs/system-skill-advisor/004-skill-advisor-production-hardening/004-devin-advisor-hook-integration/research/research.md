@@ -217,7 +217,7 @@ Primary evidence anchors (full structured citations live in `findings.json`):
 - F006/Q6 — Justified import `.opencode/skills/system-skill-advisor/mcp_server/lib/freshness.ts:22`; legacy bridge ref in test `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge.vitest.ts:13`.
 - F007/Q7 — Advisor vitest harness `.opencode/skills/system-skill-advisor/mcp_server/tests/` (exists; extend with 5-runtime parity).
 - F008/Q8 — Advisor tsconfig `.opencode/skills/system-skill-advisor/mcp_server/tsconfig.json:1-20`; test suite present `.opencode/skills/system-skill-advisor/mcp_server/tests/`.
-- F009/Q9 — Stale SKILL ref `.opencode/skills/system-skill-advisor/SET-UP_GUIDE.md:136`; stale plugin ref `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md:25`.
+- F009/Q9 — Stale SKILL ref `.opencode/skills/system-skill-advisor/SET-UP_GUIDE.md:136`; stale plugin ref `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/05-opencode-plugin-bridge.md:25`.
 - F010/Q10 — Synthesis source `research/iterations/iteration-10.md:1-50`.
 
 All citations verified against actual file:line positions at research time (2026-05-15).

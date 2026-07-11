@@ -126,15 +126,15 @@ INTENT_SIGNALS = {
 
 RESOURCE_DOMAINS = {
     "SCORING": {
-        "prefixes": ["references/scoring/", "feature_catalog/04--scorer-fusion/", "manual_testing_playbook/08--scorer-fusion/"],
+        "prefixes": ["references/scoring/", "feature_catalog/scorer-fusion/", "manual_testing_playbook/scorer-fusion/"],
         "priority": ["references/scoring/advisor_scorer.md"],
     },
     "GRAPH": {
-        "prefixes": ["references/graph/", "feature_catalog/06--mcp-surface/", "manual_testing_playbook/01--native-mcp-tools/"],
+        "prefixes": ["references/graph/", "feature_catalog/mcp-surface/", "manual_testing_playbook/native-mcp-tools/"],
         "priority": ["references/graph/skill_graph_query_cookbook.md"],
     },
     "RUNTIME": {
-        "prefixes": ["references/runtime/", "feature_catalog/01--daemon-and-freshness/", "manual_testing_playbook/05--auto-update-daemon/"],
+        "prefixes": ["references/runtime/", "feature_catalog/daemon-and-freshness/", "manual_testing_playbook/auto-update-daemon/"],
         "priority": ["references/runtime/tool_ids_reference.md", "references/runtime/standalone_mcp_shape.md"],
     },
     "CONFIG": {
@@ -142,7 +142,7 @@ RESOURCE_DOMAINS = {
         "priority": ["references/config/db_path_policy.md"],
     },
     "HOOKS": {
-        "prefixes": ["references/hooks/", "feature_catalog/07--hooks-and-plugin/", "manual_testing_playbook/02--cli-hooks-and-plugin/"],
+        "prefixes": ["references/hooks/", "feature_catalog/hooks-and-plugin/", "manual_testing_playbook/cli-hooks-and-plugin/"],
         "priority": ["references/hooks/skill_advisor_hook.md"],
     },
     "DECISIONS": {

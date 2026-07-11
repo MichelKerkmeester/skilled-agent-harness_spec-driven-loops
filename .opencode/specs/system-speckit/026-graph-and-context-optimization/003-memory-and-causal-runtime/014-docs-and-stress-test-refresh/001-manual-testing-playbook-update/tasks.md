@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "manual_testing_playbook/manual_testing_playbook.md"
-      - "manual_testing_playbook/05--lifecycle/"
-      - "manual_testing_playbook/04--maintenance/"
+      - "manual_testing_playbook/lifecycle/"
+      - "manual_testing_playbook/maintenance/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-testing-playbook-update-packet-setup"
@@ -55,10 +55,10 @@ _memory:
 **Phase 1 - Author checkpoint + maintenance scenarios** (read source anchors, then write feature files).
 
 - [x] T001 Read source anchors: `lib/storage/checkpoints.ts`, `lib/search/vector-index-schema.ts`, `handlers/save/enrichment-state.ts`, `handlers/memory-index.ts` (read-only)
-- [x] T002 [P] Author EX-037 checkpoint-v2 round-trip (05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md)
-- [x] T003 [P] Author EX-042 `.needs-rebuild` self-heal (05--lifecycle/checkpoint-v2-needs-rebuild-self-heal.md)
-- [x] T004 [P] Author EX-038 schema v30 enrichment lifecycle (04--maintenance/post-insert-enrichment-lifecycle-v30.md)
-- [x] T005 [P] Author EX-039 index_scan phased-async refinements (04--maintenance/index-scan-phased-async-refinements.md)
+- [x] T002 [P] Author EX-037 checkpoint-v2 round-trip (lifecycle/checkpoint-v2-file-snapshot-roundtrip.md)
+- [x] T003 [P] Author EX-042 `.needs-rebuild` self-heal (lifecycle/checkpoint-v2-needs-rebuild-self-heal.md)
+- [x] T004 [P] Author EX-038 schema v30 enrichment lifecycle (maintenance/post-insert-enrichment-lifecycle-v30.md)
+- [x] T005 [P] Author EX-039 index_scan phased-async refinements (maintenance/index-scan-phased-async-refinements.md)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -69,9 +69,9 @@ _memory:
 **Phase 2 - Author infra scenarios** (front-proxy + sk-git).
 
 - [x] T006 Read source anchors: `.opencode/bin/lib/launcher-session-proxy.cjs`, `.opencode/bin/mk-spec-memory-launcher.cjs`, `context-server.ts:2126` (read-only)
-- [x] T007 [P] Author EX-040 front-proxy reconnect + SPECKIT_BACKEND_ONLY + -32002/-32001 (14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md)
+- [x] T007 [P] Author EX-040 front-proxy reconnect + SPECKIT_BACKEND_ONLY + -32002/-32001 (pipeline-architecture/front-proxy-reconnect-and-backend-only.md)
 - [x] T008 Read sk-git worktree rule: `.opencode/skills/sk-git/SKILL.md` (rule on `wt/{NNNN}-{name}`)
-- [x] T009 [P] Author EX-041 sk-git worktree-convention validation (16--tooling-and-scripts/sk-git-worktree-convention.md)
+- [x] T009 [P] Author EX-041 sk-git worktree-convention validation (tooling-and-scripts/sk-git-worktree-convention.md)
 <!-- /ANCHOR:phase-2 -->
 
 ---

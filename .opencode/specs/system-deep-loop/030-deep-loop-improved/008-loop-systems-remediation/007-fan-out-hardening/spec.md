@@ -111,7 +111,7 @@ Make detached fan-out review lineages initialize correctly, reject/retry partial
 | `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Modify | reconstruction regression |
 | `.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts` | Modify | sandboxMode acceptance contract |
 | `.opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts` | Modify | Pre-existing duplicate-decl fix (unblocked the suite) |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md` | Modify | Repoint to exit-0/no-artifact regression |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md` | Modify | Repoint to exit-0/no-artifact regression |
 <!-- /ANCHOR:scope -->
 
 ---

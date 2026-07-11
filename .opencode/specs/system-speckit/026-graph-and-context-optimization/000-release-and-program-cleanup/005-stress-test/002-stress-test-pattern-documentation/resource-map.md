@@ -35,8 +35,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/README.md` | Created | OK | Section index for new sk-doc 14 entry |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md` | Created | OK | Section index for new manual-playbook 14 entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/README.md` | Created | OK | Section index for new sk-doc 14 entry |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/README.md` | Created | OK | Section index for new manual-playbook 14 entry |
 
 ---
 
@@ -44,12 +44,12 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle.md` | Created | OK | Feature catalog A — concept reference |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md` | Created | OK | Manual playbook B — operational guide |
+| `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/01-stress-test-cycle.md` | Created | OK | Feature catalog A — concept reference |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/01-run-stress-cycle.md` | Created | OK | Manual playbook B — operational guide |
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Created | OK | C — JSON rubric template |
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema.md` | Created | OK | C — field-by-field schema doc |
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings.template.md` | Created | OK | C — narrative skeleton |
-| `spec.md` | Updated | OK | Added See-Also link to 14--stress-testing |
+| `spec.md` | Updated | OK | Added See-Also link to stress-testing |
 | `spec.md` | Updated | OK | Added See-Also link |
 | `spec.md` | Updated | OK | Added See-Also link |
 
@@ -74,4 +74,4 @@ _memory:
 |------|--------|--------|------|
 | `.../009/graph-metadata.json` | Created | OK | Graph rollout metadata |
 | `.opencode/skills/sk-doc/SKILL.md` | Analyzed | OK | Reference for DQI rules |
-| `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/` | Analyzed | OK | Pattern reference |
+| `.opencode/skills/system-spec-kit/feature_catalog/memory-quality-and-indexing/` | Analyzed | OK | Pattern reference |

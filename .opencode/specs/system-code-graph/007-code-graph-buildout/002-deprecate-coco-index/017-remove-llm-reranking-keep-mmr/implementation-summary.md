@@ -96,18 +96,18 @@ Reranker-specific assertions, fixtures, and cases were removed from affected tes
 | `.opencode/skills/system-spec-kit/README.md` | Modified | Align system-spec-kit README to MMR-only and current embedder/tool counts. |
 | `.opencode/skills/system-spec-kit/references/config/environment_variables.md` | Modified | Remove retired reranker flags and stale cloud key row. |
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Modified | Align catalog index and confidence factor count. |
-| `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md` | Modified | Align retrieval docs to MMR-only Stage 3. |
-| `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md` | Modified | Align hybrid pipeline docs to MMR-only behavior. |
-| `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md` | Modified | Align Stage 3 architecture wording. |
-| `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/10-fast-delegated-search-memory-quick-search.md` | Modified | Remove stale reranker references. |
-| `.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md` | Modified | Align effective-score Stage 3 docs. |
-| `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/01-4-stage-pipeline-refactor.md` | Modified | Align pipeline architecture to MMR-only. |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/14-result-explainability.md` | Modified | Remove `reranker_support`. |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/19-result-confidence.md` | Modified | Remove `reranker_boost`. |
-| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md` | Modified | Remove retired reranker flags and correct confidence factors. |
-| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md` | Modified | Remove stale cloud reranker row. |
+| `.opencode/skills/system-spec-kit/feature_catalog/retrieval/02-semantic-and-lexical-search-memorysearch.md` | Modified | Align retrieval docs to MMR-only Stage 3. |
+| `.opencode/skills/system-spec-kit/feature_catalog/retrieval/04-hybrid-search-pipeline.md` | Modified | Align hybrid pipeline docs to MMR-only behavior. |
+| `.opencode/skills/system-spec-kit/feature_catalog/retrieval/05-4-stage-pipeline-architecture.md` | Modified | Align Stage 3 architecture wording. |
+| `.opencode/skills/system-spec-kit/feature_catalog/retrieval/10-fast-delegated-search-memory-quick-search.md` | Modified | Remove stale reranker references. |
+| `.opencode/skills/system-spec-kit/feature_catalog/scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md` | Modified | Align effective-score Stage 3 docs. |
+| `.opencode/skills/system-spec-kit/feature_catalog/pipeline-architecture/01-4-stage-pipeline-refactor.md` | Modified | Align pipeline architecture to MMR-only. |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/14-result-explainability.md` | Modified | Remove `reranker_support`. |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/19-result-confidence.md` | Modified | Remove `reranker_boost`. |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature-flag-reference/01-1-search-pipeline-features-speckit.md` | Modified | Remove retired reranker flags and correct confidence factors. |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature-flag-reference/05-5-embedding-and-api.md` | Modified | Remove stale cloud reranker row. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Remove dangling local GGUF reranker playbook index row. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/180-result-confidence-speckit-result-confidence-v1.md` | Modified | Correct confidence factor count. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/180-result-confidence-speckit-result-confidence-v1.md` | Modified | Correct confidence factor count. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts` | Modified | Remove reranker confidence assertions and strengthen high-envelope fixture. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts` | Modified | Remove reranker confidence expectations. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/scoring-opt-in.vitest.ts` | Modified | Remove reranker-gap cases and env helpers. |

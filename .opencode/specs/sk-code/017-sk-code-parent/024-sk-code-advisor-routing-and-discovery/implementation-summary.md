@@ -66,8 +66,8 @@ Phase 024 shipped the sk-code-local, advisor-scorer-independent Layer 1 routing 
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs` | Updated | Add `lcp`, `inp`, and `cls` to WORD_BOUNDARY_KEYWORDS so short acronyms match only on word boundaries | `ec014f95c6` |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs` | Updated | Return null/not-applicable D3 for scenarios with no positive-resource gold and exclude null D3 from mode A weighted normalization | `ec014f95c6` |
 | `.opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md` | Updated | Refresh stale sk-code worked example to workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-opencode`, and `defaultMode: null` | `ec014f95c6` |
-| `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/cwv-gates-animation-heavy.md` | Updated | Reconcile dead expected-asset paths to real on-disk homes | `ec014f95c6` |
-| `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/prefers-reduced-motion.md` | Updated | Reconcile dead expected-asset paths to real on-disk homes | `ec014f95c6` |
+| `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/cwv-gates-animation-heavy.md` | Updated | Reconcile dead expected-asset paths to real on-disk homes | `ec014f95c6` |
+| `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/prefers-reduced-motion.md` | Updated | Reconcile dead expected-asset paths to real on-disk homes | `ec014f95c6` |
 | `.opencode/skills/sk-code/benchmark/router-final/` | Regenerated | Record current/regenerable sk-code router-mode benchmark after routing discovery and D3 changes | `ec014f95c6` |
 | `.opencode/skills/sk-design/benchmark/after-d3-proxy/` | Added | Record sibling benchmark report after D3 proxy fix while preserving frozen `baseline/` | `ec014f95c6` |
 | `.opencode/skills/deep-loop-workflows/benchmark/after-d3-proxy/` | Added | Record sibling benchmark report after D3 proxy fix while preserving frozen `baseline/` | `ec014f95c6` |

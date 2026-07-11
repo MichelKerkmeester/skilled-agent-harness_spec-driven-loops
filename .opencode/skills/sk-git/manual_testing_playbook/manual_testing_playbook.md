@@ -12,12 +12,12 @@ This document combines the full manual-validation contract for the `sk-git` skil
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
-- `01--worktree-setup/`
-- `02--commit-formation/`
-- `03--safety-refusals/`
-- `04--integration-and-pr/`
-- `05--recovery-and-edge-cases/`
-- `06--cross-cli-orchestration/`
+- `worktree-setup/`
+- `commit-formation/`
+- `safety-refusals/`
+- `integration-and-pr/`
+- `recovery-and-edge-cases/`
+- `cross-cli-orchestration/`
 
 ---
 
@@ -169,7 +169,7 @@ Expected signals: Main status is unchanged; new worktree appears in `git worktre
 
 #### Test Execution
 
-> **Feature File:** [GIT-001](01--worktree-setup/fresh-feature-isolated-worktree.md)
+> **Feature File:** [GIT-001](worktree-setup/fresh-feature-isolated-worktree.md)
 
 ### GIT-002 | Current branch no worktree
 
@@ -185,7 +185,7 @@ Expected signals: Branch remains unchanged; worktree list has no new entry; resp
 
 #### Test Execution
 
-> **Feature File:** [GIT-002](01--worktree-setup/current-branch-no-worktree.md)
+> **Feature File:** [GIT-002](worktree-setup/current-branch-no-worktree.md)
 
 ### GIT-003 | Stay on main no feature branches
 
@@ -201,7 +201,7 @@ Expected signals: The final branch is `main`; response explains any branch recov
 
 #### Test Execution
 
-> **Feature File:** [GIT-003](01--worktree-setup/stay-on-main-no-feature-branches.md)
+> **Feature File:** [GIT-003](worktree-setup/stay-on-main-no-feature-branches.md)
 
 ---
 
@@ -223,7 +223,7 @@ Expected signals: Subject uses Conventional Commits; staged diff is reviewed; bo
 
 #### Test Execution
 
-> **Feature File:** [GIT-004](02--commit-formation/conventional-commit-from-diff.md)
+> **Feature File:** [GIT-004](commit-formation/conventional-commit-from-diff.md)
 
 ### GIT-005 | Scope inference skill folder
 
@@ -239,7 +239,7 @@ Expected signals: Both passes produce the same scope, ideally `sk-git`, with no 
 
 #### Test Execution
 
-> **Feature File:** [GIT-005](02--commit-formation/scope-inference-skill-folder.md)
+> **Feature File:** [GIT-005](commit-formation/scope-inference-skill-folder.md)
 
 ### GIT-006 | Mixed concerns split or warn
 
@@ -255,7 +255,7 @@ Expected signals: Unrelated concerns are identified; command sequence uses targe
 
 #### Test Execution
 
-> **Feature File:** [GIT-006](02--commit-formation/mixed-concerns-split-or-warn.md)
+> **Feature File:** [GIT-006](commit-formation/mixed-concerns-split-or-warn.md)
 
 ### GIT-007 | Co-Authored-By footer
 
@@ -271,7 +271,7 @@ Expected signals: Footer appears exactly once, with exact capitalization, spacin
 
 #### Test Execution
 
-> **Feature File:** [GIT-007](02--commit-formation/co-authored-by-footer.md)
+> **Feature File:** [GIT-007](commit-formation/co-authored-by-footer.md)
 
 ---
 
@@ -293,7 +293,7 @@ Expected signals: AI declines; transcript contains no executed bypass command; s
 
 #### Test Execution
 
-> **Feature File:** [GIT-008](03--safety-refusals/no-verify-bypass-refused.md)
+> **Feature File:** [GIT-008](safety-refusals/no-verify-bypass-refused.md)
 
 ### GIT-009 | Secrets in diff refused
 
@@ -309,7 +309,7 @@ Expected signals: AI refuses; no commit is created; remediation includes remove,
 
 #### Test Execution
 
-> **Feature File:** [GIT-009](03--safety-refusals/secrets-in-diff-refused.md)
+> **Feature File:** [GIT-009](safety-refusals/secrets-in-diff-refused.md)
 
 ### GIT-010 | Force-push to main refused
 
@@ -325,7 +325,7 @@ Expected signals: No force push occurs; response offers fetch/reconcile/PR path;
 
 #### Test Execution
 
-> **Feature File:** [GIT-010](03--safety-refusals/force-push-to-main-refused.md)
+> **Feature File:** [GIT-010](safety-refusals/force-push-to-main-refused.md)
 
 ### GIT-011 | Amend published commit refused
 
@@ -341,7 +341,7 @@ Expected signals: AI refuses; no amend occurs; alternative is a new follow-up co
 
 #### Test Execution
 
-> **Feature File:** [GIT-011](03--safety-refusals/amend-published-commit-refused.md)
+> **Feature File:** [GIT-011](safety-refusals/amend-published-commit-refused.md)
 
 ---
 
@@ -363,7 +363,7 @@ Expected signals: Tests pass before and after merge; merge succeeds without conf
 
 #### Test Execution
 
-> **Feature File:** [GIT-012](04--integration-and-pr/finish-merge-to-main.md)
+> **Feature File:** [GIT-012](integration-and-pr/finish-merge-to-main.md)
 
 ### GIT-013 | Finish create PR with template
 
@@ -379,7 +379,7 @@ Expected signals: Branch is pushed; PR has Summary and Test Plan sections; user 
 
 #### Test Execution
 
-> **Feature File:** [GIT-013](04--integration-and-pr/finish-create-pr-with-template.md)
+> **Feature File:** [GIT-013](integration-and-pr/finish-create-pr-with-template.md)
 
 ### GIT-014 | Failing tests block merge
 
@@ -395,7 +395,7 @@ Expected signals: Test failure is captured; merge is not executed; response says
 
 #### Test Execution
 
-> **Feature File:** [GIT-014](04--integration-and-pr/failing-tests-block-merge.md)
+> **Feature File:** [GIT-014](integration-and-pr/failing-tests-block-merge.md)
 
 ### GIT-015 | Branch cleanup after merge
 
@@ -411,7 +411,7 @@ Expected signals: Only merged branches are deleted; worktree list no longer incl
 
 #### Test Execution
 
-> **Feature File:** [GIT-015](04--integration-and-pr/branch-cleanup-after-merge.md)
+> **Feature File:** [GIT-015](integration-and-pr/branch-cleanup-after-merge.md)
 
 ---
 
@@ -433,7 +433,7 @@ Expected signals: Conflict files are listed; agent does not invent resolution; m
 
 #### Test Execution
 
-> **Feature File:** [GIT-016](05--recovery-and-edge-cases/merge-conflict-resolution.md)
+> **Feature File:** [GIT-016](recovery-and-edge-cases/merge-conflict-resolution.md)
 
 ### GIT-017 | Accidental commit wrong branch
 
@@ -449,7 +449,7 @@ Expected signals: Recovery branch contains the commit; main is clean or explicit
 
 #### Test Execution
 
-> **Feature File:** [GIT-017](05--recovery-and-edge-cases/accidental-commit-wrong-branch.md)
+> **Feature File:** [GIT-017](recovery-and-edge-cases/accidental-commit-wrong-branch.md)
 
 ### GIT-018 | Empty commit or no changes
 
@@ -465,7 +465,7 @@ Expected signals: Status is empty; no commit command runs; response says there i
 
 #### Test Execution
 
-> **Feature File:** [GIT-018](05--recovery-and-edge-cases/empty-commit-or-no-changes.md)
+> **Feature File:** [GIT-018](recovery-and-edge-cases/empty-commit-or-no-changes.md)
 
 ### GIT-019 | Rebase vs merge decision
 
@@ -481,7 +481,7 @@ Expected signals: Decision names the publication state; no force push is suggest
 
 #### Test Execution
 
-> **Feature File:** [GIT-019](05--recovery-and-edge-cases/rebase-vs-merge-decision.md)
+> **Feature File:** [GIT-019](recovery-and-edge-cases/rebase-vs-merge-decision.md)
 
 ---
 
@@ -503,7 +503,7 @@ Expected signals: Plan asks before workspace choice, uses `git worktree add -b` 
 
 #### Test Execution
 
-> **Feature File:** [GIT-020](06--cross-cli-orchestration/native-claude-code-invocation.md)
+> **Feature File:** [GIT-020](cross-cli-orchestration/native-claude-code-invocation.md)
 
 ### GIT-021 | cli-opencode delegation
 
@@ -519,7 +519,7 @@ Expected signals: Handback includes deterministic commit subject, targeted stagi
 
 #### Test Execution
 
-> **Feature File:** [GIT-021](06--cross-cli-orchestration/cli-opencode-delegation.md)
+> **Feature File:** [GIT-021](cross-cli-orchestration/cli-opencode-delegation.md)
 
 ### GIT-022 | cli-opencode and cli-copilot handback
 
@@ -535,7 +535,7 @@ Expected signals: External response is advisory; final command plan is filtered 
 
 #### Test Execution
 
-> **Feature File:** [GIT-022](06--cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md)
+> **Feature File:** [GIT-022](cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md)
 
 ---
 
@@ -559,25 +559,25 @@ The current sk-doc validator checks this root document's markdown structure. It 
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
-| Worktree Setup | GIT-001 | `01--worktree-setup/fresh-feature-isolated-worktree.md` | Yes |
-| Worktree Setup | GIT-002 | `01--worktree-setup/current-branch-no-worktree.md` | Yes |
-| Worktree Setup | GIT-003 | `01--worktree-setup/stay-on-main-no-feature-branches.md` | Yes |
-| Commit Formation | GIT-004 | `02--commit-formation/conventional-commit-from-diff.md` | Yes |
-| Commit Formation | GIT-005 | `02--commit-formation/scope-inference-skill-folder.md` | Yes |
-| Commit Formation | GIT-006 | `02--commit-formation/mixed-concerns-split-or-warn.md` | Yes |
-| Commit Formation | GIT-007 | `02--commit-formation/co-authored-by-footer.md` | Yes |
-| Safety Refusals | GIT-008 | `03--safety-refusals/no-verify-bypass-refused.md` | Yes |
-| Safety Refusals | GIT-009 | `03--safety-refusals/secrets-in-diff-refused.md` | Yes |
-| Safety Refusals | GIT-010 | `03--safety-refusals/force-push-to-main-refused.md` | Yes |
-| Safety Refusals | GIT-011 | `03--safety-refusals/amend-published-commit-refused.md` | Yes |
-| Integration And PR | GIT-012 | `04--integration-and-pr/finish-merge-to-main.md` | No |
-| Integration And PR | GIT-013 | `04--integration-and-pr/finish-create-pr-with-template.md` | No |
-| Integration And PR | GIT-014 | `04--integration-and-pr/failing-tests-block-merge.md` | No |
-| Integration And PR | GIT-015 | `04--integration-and-pr/branch-cleanup-after-merge.md` | No |
-| Recovery And Edge Cases | GIT-016 | `05--recovery-and-edge-cases/merge-conflict-resolution.md` | No |
-| Recovery And Edge Cases | GIT-017 | `05--recovery-and-edge-cases/accidental-commit-wrong-branch.md` | No |
-| Recovery And Edge Cases | GIT-018 | `05--recovery-and-edge-cases/empty-commit-or-no-changes.md` | No |
-| Recovery And Edge Cases | GIT-019 | `05--recovery-and-edge-cases/rebase-vs-merge-decision.md` | No |
-| Cross CLI Orchestration | GIT-020 | `06--cross-cli-orchestration/native-claude-code-invocation.md` | No |
-| Cross CLI Orchestration | GIT-021 | `06--cross-cli-orchestration/cli-opencode-delegation.md` | No |
-| Cross CLI Orchestration | GIT-022 | `06--cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md` | No |
+| Worktree Setup | GIT-001 | `worktree-setup/fresh-feature-isolated-worktree.md` | Yes |
+| Worktree Setup | GIT-002 | `worktree-setup/current-branch-no-worktree.md` | Yes |
+| Worktree Setup | GIT-003 | `worktree-setup/stay-on-main-no-feature-branches.md` | Yes |
+| Commit Formation | GIT-004 | `commit-formation/conventional-commit-from-diff.md` | Yes |
+| Commit Formation | GIT-005 | `commit-formation/scope-inference-skill-folder.md` | Yes |
+| Commit Formation | GIT-006 | `commit-formation/mixed-concerns-split-or-warn.md` | Yes |
+| Commit Formation | GIT-007 | `commit-formation/co-authored-by-footer.md` | Yes |
+| Safety Refusals | GIT-008 | `safety-refusals/no-verify-bypass-refused.md` | Yes |
+| Safety Refusals | GIT-009 | `safety-refusals/secrets-in-diff-refused.md` | Yes |
+| Safety Refusals | GIT-010 | `safety-refusals/force-push-to-main-refused.md` | Yes |
+| Safety Refusals | GIT-011 | `safety-refusals/amend-published-commit-refused.md` | Yes |
+| Integration And PR | GIT-012 | `integration-and-pr/finish-merge-to-main.md` | No |
+| Integration And PR | GIT-013 | `integration-and-pr/finish-create-pr-with-template.md` | No |
+| Integration And PR | GIT-014 | `integration-and-pr/failing-tests-block-merge.md` | No |
+| Integration And PR | GIT-015 | `integration-and-pr/branch-cleanup-after-merge.md` | No |
+| Recovery And Edge Cases | GIT-016 | `recovery-and-edge-cases/merge-conflict-resolution.md` | No |
+| Recovery And Edge Cases | GIT-017 | `recovery-and-edge-cases/accidental-commit-wrong-branch.md` | No |
+| Recovery And Edge Cases | GIT-018 | `recovery-and-edge-cases/empty-commit-or-no-changes.md` | No |
+| Recovery And Edge Cases | GIT-019 | `recovery-and-edge-cases/rebase-vs-merge-decision.md` | No |
+| Cross CLI Orchestration | GIT-020 | `cross-cli-orchestration/native-claude-code-invocation.md` | No |
+| Cross CLI Orchestration | GIT-021 | `cross-cli-orchestration/cli-opencode-delegation.md` | No |
+| Cross CLI Orchestration | GIT-022 | `cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md` | No |

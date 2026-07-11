@@ -37,8 +37,8 @@ You add display-only trust badges (`confidence`, `extractionAge`, `lastAccessAge
 | `mcp_server/formatters/search-results.ts` | **MODIFY** — add `trustBadges: { confidence, extractionAge, lastAccessAge, orphan, weightHistoryChanged }` to `MemoryResultEnvelope` (additive) |
 | `mcp_server/lib/response/profile-formatters.ts` | **MODIFY** — propagate badges into search results |
 | `mcp_server/tests/memory/trust-badges.test.ts` (or similar) | **CREATE** — badge population, age calculation, orphan detection, weight-history rendering |
-| `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/feature_catalog/memory-quality-and-indexing/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
 | `012/005/implementation-summary.md` | **MODIFY** — populate Display Placement Decision, What Was Built, Static Check Results |
 
 ## Files you may NOT touch

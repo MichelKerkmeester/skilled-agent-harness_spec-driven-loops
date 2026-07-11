@@ -109,10 +109,10 @@ Capture and apply an evidence-backed update map for feature catalog and manual t
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/implementation-summary.md` | Create/update | Concise summary of audit findings. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/description.json` | Create/update | Spec metadata. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit/graph-metadata.json` | Create/update | Phase graph metadata. |
-| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md` | Update | Add current provider cascade and local/fallback models. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/032-5-embedding-and-api.md` | Update | Validate provider cascade and local/fallback models. |
-| `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/23-embeddings-and-retry-api.md` | Update | Include current provider profile/model IDs. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/219-embeddings-and-retry-api.md` | Update | Validate provider profile/model IDs. |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature-flag-reference/05-5-embedding-and-api.md` | Update | Add current provider cascade and local/fallback models. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/feature-flag-reference/032-5-embedding-and-api.md` | Update | Validate provider cascade and local/fallback models. |
+| `.opencode/skills/system-spec-kit/feature_catalog/pipeline-architecture/23-embeddings-and-retry-api.md` | Update | Include current provider profile/model IDs. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/219-embeddings-and-retry-api.md` | Update | Validate provider profile/model IDs. |
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Update | Mirror corrected embedding/API flag summary. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Update | Mirror corrected EX-032 summary. |
 | `.opencode/skills/mcp-coco-index/**` | Update | Correct stale default/recommended model wording across catalog, playbook, README, install guide, settings reference, tool reference, config templates, and SKILL.md. |

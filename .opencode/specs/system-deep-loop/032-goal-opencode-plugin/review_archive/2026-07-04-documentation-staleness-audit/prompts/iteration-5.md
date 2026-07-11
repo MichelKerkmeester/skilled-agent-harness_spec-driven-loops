@@ -20,8 +20,8 @@ Do NOT re-emit either as new. Note if your review is directly adjacent to one of
 ## YOUR ASSIGNED FOCUS FOR THIS ITERATION (traceability, Finding #5)
 
 Companion research Finding #5 (P2 claim, "validation-coverage gap, not a factual error"): both goal-plugin manual testing playbooks --
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md`
 
 -- are claimed to be factually correct about command routing/tool names, but their pass criteria allegedly predate the new output fields: neither instructs the operator to verify `store_health=` output or `/goal set`'s `mutation=<created|refreshed|replaced>` output, meaning a manual test run could currently pass without ever exercising these newly-shipped status surfaces.
 

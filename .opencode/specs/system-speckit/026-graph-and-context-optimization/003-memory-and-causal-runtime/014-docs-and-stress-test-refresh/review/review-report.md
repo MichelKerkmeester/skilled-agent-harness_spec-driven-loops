@@ -46,10 +46,10 @@
 | R13-P1-001 | 013 continuity surfaces disagree on active-child / deployed state | `013-…/spec.md:119` (+ graph-metadata `last_active_child_id`) | correctness | Make parent spec, graph-metadata, and child summaries agree (active child = 003; all complete). |
 | R3-P1-001 | 014/003 implementation-summary still cites pre-fix serverInfo `1.7.2` | `014/003-readme-cluster-update/implementation-summary.md:72` | traceability | Mark `1.7.2` as historical pre-fix evidence; current state is `1.8.0`. |
 | R3-P1-002 | Tool-count contradicts canonical `TOOL_DEFINITIONS.length` | `feature_catalog/feature_catalog.md:48` (says 55; also 54 at :60) | traceability | `TOOL_DEFINITIONS` lists **36** (`tool-schemas.ts:670-716`); fix the catalog count or name the counted surface explicitly. |
-| R16-P1-001 | EX-037 requires `includeEmbeddings`, which the strict MCP surface rejects | `manual_testing_playbook/05--lifecycle/050-…roundtrip.md:35` | correctness | Remove/replace the unsupported parameter so the scenario runs as written. |
+| R16-P1-001 | EX-037 requires `includeEmbeddings`, which the strict MCP surface rejects | `manual_testing_playbook/lifecycle/050-…roundtrip.md:35` | correctness | Remove/replace the unsupported parameter so the scenario runs as written. |
 | R16-P1-002 | EX-037 says restore into a scratch copy, but `checkpoint_restore` has no per-call scratch | `…/050-…roundtrip.md:71` | correctness | Rewrite to the supported restore flow (or document the real isolation mechanism). |
 | R20-P1-001 | Error-code catalog documents active `E429` scan rejections after coalescing replaced them | `feature_catalog/08-…/error-code-reference.md:30` | traceability | `memory_index_scan` now returns `coalesced:true` success (`memory-index.ts:355-365`); frame `E429` as legacy. |
-| R9-P1-001 | EX-039 overstates when move reconciliation fires (packet_id + doc-type) | `manual_testing_playbook/04--maintenance/040-…refinements.md:63` | correctness | Narrow to the real conditions (sibling rename, same basename/grandparent, exactly one old row — `incremental-index.ts:500-579`). |
+| R9-P1-001 | EX-039 overstates when move reconciliation fires (packet_id + doc-type) | `manual_testing_playbook/maintenance/040-…refinements.md:63` | correctness | Narrow to the real conditions (sibling rename, same basename/grandparent, exactly one old row — `incremental-index.ts:500-579`). |
 
 ### P2 (9 — advisories; includes 1 adversarial downgrade)
 

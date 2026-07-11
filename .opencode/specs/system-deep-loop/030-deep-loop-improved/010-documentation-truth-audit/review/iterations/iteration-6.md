@@ -14,7 +14,7 @@ Maintainability: feature-catalog and skill-doc surfaces affected by the planned 
 - `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:17-37` was checked as the cli-opencode operator playbook index; it catalogs cli-opencode scenarios, not the root README Spec Kit or Goal Plugin sections.
 - `.opencode/skills/system-spec-kit/SKILL.md:435-438` documents the OpenCode Goal Plugin with a direct hook-contract reference, not a root README FEATURES anchor.
 - `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:46` already catalogs the Goal plugin and links to its feature catalog entry and hook contract.
-- `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md:21-37` describes the Goal plugin behavior and autonomy posture in the skill feature catalog.
+- `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md:21-37` describes the Goal plugin behavior and autonomy posture in the skill feature catalog.
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:3880` maps the Goal OpenCode plugin operator test to the feature catalog entry.
 - `.opencode/commands/goal_opencode.md:7-16` is a thin `/goal` router and does not depend on a root README section name or anchor.
 - Whole-repo exact grep for `#spec-kit-documentation` confirmed no new live skill/command/playbook anchor dependency outside README and existing review/spec evidence; the only live non-README action already remains `P1-003` for this phase's graph metadata.

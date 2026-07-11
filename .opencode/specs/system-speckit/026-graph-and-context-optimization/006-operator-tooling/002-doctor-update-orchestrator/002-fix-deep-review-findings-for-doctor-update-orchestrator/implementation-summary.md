@@ -61,9 +61,9 @@ _memory:
 ### Sandbox + bootstrap (clusters G + H — security)
 
 - `.opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh` — dropped `--no-audit`, added soft `npm audit --audit-level=high`, replaced mkdir-lock with `flock -n` at FD 9 (lockfile `/tmp/doctor-runtime-bootstrap.lock`)
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/docker-compose.yml` — narrowed mount to `..:/workspace:ro` + `./evidence:/workspace/evidence:rw`, added `cap_drop: [ALL]` + minimal `cap_add` (CHOWN, SETUID, SETGID, DAC_OVERRIDE) + `security_opt: no-new-privileges:true`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/Dockerfile` — base `debian:bookworm` → `debian:bookworm-slim`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/harness/{reset-state.sh, capture-evidence.sh, run-all.sh}` — sandbox guard now returns 125 / SKIP verdict instead of silent success
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/docker-compose.yml` — narrowed mount to `..:/workspace:ro` + `./evidence:/workspace/evidence:rw`, added `cap_drop: [ALL]` + minimal `cap_add` (CHOWN, SETUID, SETGID, DAC_OVERRIDE) + `security_opt: no-new-privileges:true`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/Dockerfile` — base `debian:bookworm` → `debian:bookworm-slim`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/harness/{reset-state.sh, capture-evidence.sh, run-all.sh}` — sandbox guard now returns 125 / SKIP verdict instead of silent success
 
 ## Verification
 

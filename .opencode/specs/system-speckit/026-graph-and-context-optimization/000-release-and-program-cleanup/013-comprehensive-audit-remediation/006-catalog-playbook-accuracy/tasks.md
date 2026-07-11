@@ -69,11 +69,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 [P] F4: Fix broken catalog link in scenario 019 (02--mutation/019-*.md)
-- [x] T009 [P] F4: Fix broken catalog link in scenario 006-hybrid (01--retrieval/006-*.md)
-- [x] T010 [P] F4: Fix broken catalog link in scenario 007-4-stage (01--retrieval/007-*.md)
-- [x] T011 [P] F4: Fix broken catalog link in scenario 170 (14--stress-testing/170-*.md)
-- [x] T012 [P] F4: Fix broken catalog link in scenario 036 (04--maintenance/036-*.md)
+- [x] T008 [P] F4: Fix broken catalog link in scenario 019 (mutation/019-*.md)
+- [x] T009 [P] F4: Fix broken catalog link in scenario 006-hybrid (retrieval/006-*.md)
+- [x] T010 [P] F4: Fix broken catalog link in scenario 007-4-stage (retrieval/007-*.md)
+- [x] T011 [P] F4: Fix broken catalog link in scenario 170 (stress-testing/170-*.md)
+- [x] T012 [P] F4: Fix broken catalog link in scenario 036 (maintenance/036-*.md)
 - [x] T013 F5: Fix garbled Real user request + Expected signals in scenario 232 (feature-catalog-annotation-name-validity.md lines 18, 21)
 - [x] T014 F9: Update scenario numbers 401-415 -> 361-375 in playbook 24 README
 - [x] T015 F9: Update scenario range in category-overview.md line 47

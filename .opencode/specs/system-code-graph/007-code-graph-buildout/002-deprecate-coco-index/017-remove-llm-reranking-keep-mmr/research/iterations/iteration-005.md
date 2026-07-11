@@ -54,7 +54,7 @@ All remaining cross-encoder/cocoindex hits in live docs fall into the INTENTIONA
 |------|-------|----------------|
 | `.opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md` | 143, 176 | Documents Path A (cross-encoder) rejection and CocoIndex removal — both accurate historical description of the deprecation decision |
 | `.opencode/skills/system-spec-kit/references/memory/embedder_architecture.md` | 172 | Documents Stage 3 cross-encoder removal in the 014 deprecation — accurate historical record of what was removed |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/04-dead-code-removal.md` | 24, 43, 95 | Documents variables/files that were removed in dead-code sweep — accurate record of what was deleted |
+| `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/04-dead-code-removal.md` | 24, 43, 95 | Documents variables/files that were removed in dead-code sweep — accurate record of what was deleted |
 | `sk-doc/references/benchmark_creation.md` | 364 | Historical reranker swap discovery in a bake-off story — already catalogued in iter-3 as HISTORICAL |
 | All changelogs (`v1.2.0.0`–`v3.4.1.0`) | various | Historical release notes — INTENTIONAL-HISTORICAL |
 | All benchmark reports (`benchmark-2026-05-*`) | various | Historical benchmarks of the removed feature — INTENTIONAL-HISTORICAL |

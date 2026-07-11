@@ -78,7 +78,7 @@ Run as one wave; fenced `cli-opencode openai/gpt-5.5-fast --variant xhigh`, DO-N
 2. **tri-080 (safe code-small, separate scoped commit):** add `unsupportedLanguageSkipped` counter in `structural-indexer.ts` (~:2146) and surface a warning when includeGlobs matched out-of-support extensions; thread the count through `scan.ts` accounting.
 3. **L7 honesty half (separate scoped commit; hand-review the runtime emit, fenced for the doc):**
    - `shadow-evaluation-runtime.ts` (~:204-211, :423-427): emit a typed `skipped: no-replay-pool` cycle result instead of silent `[]`.
-   - `feature_catalog/11--scoring-and-calibration/shadow-feedback-holdout-evaluation.md`: mark the weekly-replay claim inert-pending-design.
+   - `feature_catalog/scoring-and-calibration/shadow-feedback-holdout-evaluation.md`: mark the weekly-replay claim inert-pending-design.
    - tri-008: rewrite `tests/shadow-evaluation-runtime.vitest.ts` to assert the clean-schema skipped-cycle path instead of `describe.skip` on the retired PII schema.
 
 Playbook validation for any catalog/governance touch -> MiMo `xiaomi/mimo-v2.5-pro --variant high`.

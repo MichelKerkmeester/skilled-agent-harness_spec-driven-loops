@@ -76,7 +76,7 @@ code-opencode is an invokable parent-hub SURFACE packet: language trios (`refere
 
 **Phase 6 — SKILL.md + config genre + detection.** Files: `SKILL.md`, `references/config/style_guide.md`, `shared/references/stack_detection.md`. Backlog P1-22/6/7, P2-43, P3-52/53. Separate surface trigger from extension sub-detection; split JSONC-behavior vs strict-JSON-descriptor genres; add YAML detection row (62 live files); acknowledge changelog/`.sock`/assets-scripts. Effort M / risk low.
 
-**Phase 7 — Validator retirement (C1) + assets/scripts doc.** Files: `assets/scripts/verify_stack_folders.py`, `SKILL.md` §4, `assets/scripts/README.md`, `../../manual_testing_playbook/08--design-restraint/stack-folders-validator.md`. Backlog P1-25, C1. Retire/rewrite the always-failing validator; retire the impossible DR-004; document `assets/scripts/`. Intra-sk-code only. Effort S-M / risk low.
+**Phase 7 — Validator retirement (C1) + assets/scripts doc.** Files: `assets/scripts/verify_stack_folders.py`, `SKILL.md` §4, `assets/scripts/README.md`, `../../manual_testing_playbook/design-restraint/stack-folders-validator.md`. Backlog P1-25, C1. Retire/rewrite the always-failing validator; retire the impossible DR-004; document `assets/scripts/`. Intra-sk-code only. Effort S-M / risk low.
 
 <!-- /ANCHOR:phases -->
 ---

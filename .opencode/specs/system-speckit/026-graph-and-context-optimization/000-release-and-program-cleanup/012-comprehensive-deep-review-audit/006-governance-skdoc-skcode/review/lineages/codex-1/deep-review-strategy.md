@@ -106,7 +106,7 @@ Synthesis complete. Next useful action is remediation planning for F001, F002 an
 | `.opencode/skills/sk-doc/references/global/core_standards.md` | traceability | 5 | F004 | complete |
 | `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl` | traceability | 3 | F003 | complete |
 | `.opencode/skills/system-spec-kit/templates/examples/level_1/spec.md` | traceability | 3 | F003 | complete |
-| `.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/markdown-agent-cli-codex.md` | traceability | 3 | F004 | complete |
+| `.opencode/skills/sk-doc/manual_testing_playbook/agent-dispatch/markdown-agent-cli-codex.md` | traceability | 3 | F004 | complete |
 
 ## 14. REVIEW BOUNDARIES
 - Max iterations: 7

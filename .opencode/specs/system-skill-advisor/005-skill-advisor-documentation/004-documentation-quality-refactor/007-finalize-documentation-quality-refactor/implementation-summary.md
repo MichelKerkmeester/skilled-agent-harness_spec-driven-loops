@@ -55,7 +55,7 @@ Closed all remaining deferred items from packets 002-006 Known Limitations. Orig
 | `.opencode/skills/system-skill-advisor/references/daemon-lease-contract.md` | Created | 6 sections, ~115 lines, lease lifecycle + contention recovery + failure modes |
 | `.opencode/skills/system-skill-advisor/references/skill-graph-drift.md` | Created | 6 sections, ~155 lines, drift sources + detection + reconciliation + failure modes |
 | `.opencode/skills/system-skill-advisor/references/deferred-decisions.md` | Created | 8 sections, ~220 lines, Tier D rationale (F4/F6/F34/F35/F36/F37) for human review |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/{007-skill-graph-status,008-skill-graph-query,009-skill-graph-validate}.md` | Modified | F33 SOURCE FILES section added (3 files) |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/{007-skill-graph-status,008-skill-graph-query,009-skill-graph-validate}.md` | Modified | F33 SOURCE FILES section added (3 files) |
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/0[5-8]--*/*.md` (20 files) | Modified | F34 deviation note inserted at top of §3 TEST EXECUTION |
 | ~30 .md files across `.opencode/skills/system-skill-advisor/` (excluding changelog/) | Modified | Context-aware semicolon sweep (Python script with code-fence + URL + backtick + frontmatter protection) |
 <!-- /ANCHOR:what-built -->

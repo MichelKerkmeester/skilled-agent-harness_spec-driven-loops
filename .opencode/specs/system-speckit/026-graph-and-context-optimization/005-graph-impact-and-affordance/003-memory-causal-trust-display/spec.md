@@ -68,8 +68,8 @@ _memory:
 |-----------|-------------|-------------|
 | `mcp_server/formatters/search-results.ts` | MODIFY | Add `trustBadges` to envelope |
 | `mcp_server/lib/response/profile-formatters.ts` | MODIFY | Propagate badges into search results |
-| `feature_catalog/13--memory-quality-and-indexing/` | NEW entry | Trust display |
-| `manual_testing_playbook/13--memory-quality-and-indexing/` | NEW entry | Badge testing |
+| `feature_catalog/memory-quality-and-indexing/` | NEW entry | Trust display |
+| `manual_testing_playbook/memory-quality-and-indexing/` | NEW entry | Badge testing |
 
 ---
 

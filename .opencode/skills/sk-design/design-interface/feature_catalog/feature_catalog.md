@@ -36,7 +36,7 @@ The mode names subject, audience, and page job, then chooses palette, type, layo
 
 #### Source Files
 
-See [`01--aesthetic-direction-process/two-pass-grounding-and-critique.md`](01--aesthetic-direction-process/two-pass-grounding-and-critique.md) for implementation anchors.
+See [`aesthetic-direction-process/two-pass-grounding-and-critique.md`](aesthetic-direction-process/two-pass-grounding-and-critique.md) for implementation anchors.
 
 ---
 
@@ -52,7 +52,7 @@ The mode sets posture and internal calibration before recommendations. These val
 
 #### Source Files
 
-See [`01--aesthetic-direction-process/register-and-dials-intake.md`](01--aesthetic-direction-process/register-and-dials-intake.md) for source anchors.
+See [`aesthetic-direction-process/register-and-dials-intake.md`](aesthetic-direction-process/register-and-dials-intake.md) for source anchors.
 
 ---
 
@@ -70,7 +70,7 @@ The layout gate counts hero lines, bento cells, eyebrow labels, contrast, and sp
 
 #### Source Files
 
-See [`02--delivery-gates/mechanical-delivery-gates.md`](02--delivery-gates/mechanical-delivery-gates.md) for gate references.
+See [`delivery-gates/mechanical-delivery-gates.md`](delivery-gates/mechanical-delivery-gates.md) for gate references.
 
 ---
 
@@ -86,7 +86,7 @@ The mode applies interface-writing rules so words support usability instead of u
 
 #### Source Files
 
-See [`02--delivery-gates/interface-writing-rules.md`](02--delivery-gates/interface-writing-rules.md) for source anchors.
+See [`delivery-gates/interface-writing-rules.md`](delivery-gates/interface-writing-rules.md) for source anchors.
 
 ---
 
@@ -104,4 +104,4 @@ The mode chooses at most one primary card when a trigger matches, cites it in th
 
 #### Source Files
 
-See [`03--procedure-cards/interface-procedure-card-inventory.md`](03--procedure-cards/interface-procedure-card-inventory.md) for the card list and boundaries.
+See [`procedure-cards/interface-procedure-card-inventory.md`](procedure-cards/interface-procedure-card-inventory.md) for the card list and boundaries.

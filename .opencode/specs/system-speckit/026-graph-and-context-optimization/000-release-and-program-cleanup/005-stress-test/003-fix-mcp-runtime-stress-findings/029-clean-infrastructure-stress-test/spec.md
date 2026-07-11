@@ -67,7 +67,7 @@ Re-run the stress test against the now-clean infrastructure to:
 1. **Validate** the three caveats are closed (live handler path works; harness emits telemetry natively; degradedReadiness populated)
 2. **Measure** real metrics on the new envelope shape (no packet-local wrapper masking the contract)
 3. **Compare** apples-to-apples against v1.0.2 baseline (30-cell rubric / 201 / 83.8% / 6 PROVEN / 1 NOT-PROVEN / 0 REGRESSION)
-4. **Document** v1.0.4 as the first stress cycle authored under the new sk-doc stress-test pattern (`../../../../../skill/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle.md`)
+4. **Document** v1.0.4 as the first stress cycle authored under the new sk-doc stress-test pattern (`../../../../../skill/system-spec-kit/feature_catalog/stress-testing/01-stress-test-cycle.md`)
 5. **Render verdict**: PASS / CONDITIONAL / FAIL on the today's wiring + cleanup arc
 <!-- /ANCHOR:problem -->
 
@@ -96,7 +96,7 @@ Re-run the stress test against the now-clean infrastructure to:
 - Modifications to the harness (PP-2 already shipped the export mode)
 - Modifications to the corpus (frozen)
 - Re-running prior cycles
-- Stress-cycle pattern revisions (the 14--stress-testing pattern is the authoritative format)
+- Stress-cycle pattern revisions (the stress-testing pattern is the authoritative format)
 
 ### Files to Create
 
@@ -115,8 +115,8 @@ Re-run the stress test against the now-clean infrastructure to:
 - v1.0.3 packet: `../021-stress-test-enterprise-wiring-expansion/findings-v1-0-3.md` + measurements
 - v1.0.2 packet: `../010-stress-test-close-loop-measurement-rerun/findings.md` + rubric
 - Phase E measurements: `005-review-remediation/004-search-rag-measurement-implementation/measurements/`
-- Stress-cycle pattern: `../../../../../skill/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle.md`
-- Manual playbook: `../../../../../skill/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md`
+- Stress-cycle pattern: `../../../../../skill/system-spec-kit/feature_catalog/stress-testing/01-stress-test-cycle.md`
+- Manual playbook: `../../../../../skill/system-spec-kit/manual_testing_playbook/stress-testing/01-run-stress-cycle.md`
 - Templates: `../../../../../skill/system-spec-kit/templates/stress-test/findings-rubric.template.json` + `../../../../../skill/system-spec-kit/templates/stress-test/findings-rubric.schema.md` + `../../../../../skill/system-spec-kit/templates/stress-test/findings.template.md`
 - PP-1 test pattern: `mcp_server/tests/handler-memory-search-live-envelope.vitest.ts`
 - PP-2 harness export: `mcp_server/stress_test/search-quality/{harness.ts, harness-telemetry-export.vitest.ts}`

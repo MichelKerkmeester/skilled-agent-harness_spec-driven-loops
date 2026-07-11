@@ -72,7 +72,7 @@ _memory:
 ### Orphan-import stubs (3 files)
 - `tests/skill-graph-corruption-recovery.vitest.ts` — orphaned by `system-skill-advisor` migration. Replaced with `describe.skip` stub + legacy code in `if (false)` gate + `/* legacy */` block, pointing to `system-skill-advisor/mcp_server/tests/skill-graph-db.vitest.ts` as the migrated home.
 - `scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts` — orphaned by `system-code-graph` migration. Same stub-with-legacy-block pattern.
-- `tests/shared-daemon-runner-helpers.vitest.ts` — wraps `findRepoRoot` in null-fallback + `describe.skip` when the `_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs` runner is absent.
+- `tests/shared-daemon-runner-helpers.vitest.ts` — wraps `findRepoRoot` in null-fallback + `describe.skip` when the `_sandbox/local-llm-query-intelligence/evidence/run-mcp-direct.mjs` runner is absent.
 
 ### Skill Advisor MCP recovery (separate concern)
 - `feedback_skill_advisor_stale_daemon_lease_recovery.md` saved in user-memory with diagnostic signature + copy-paste recovery recipe.

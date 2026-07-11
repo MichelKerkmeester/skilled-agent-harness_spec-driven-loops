@@ -22,8 +22,8 @@ _memory:
       - ".opencode/skills/system-spec-kit/README.md"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/local-llm-query-intelligence/category-overview.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "subagent-F-catalog-playbook-implement"
@@ -99,21 +99,21 @@ Replace all 10 defects with accurate, verified text so the catalog and playbook 
 ### In Scope
 
 - feature_catalog/feature_catalog.md lines 3946, 3950 — coverage universality claims (F1, F7)
-- feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md line 30 — cleanup-complete claim (F7)
+- feature_catalog/tooling-and-scripts/feature-catalog-code-references.md line 30 — cleanup-complete claim (F7)
 - README.md lines 45, 256, 581, 1003, 1038 — 36-tool -> 37-tool (F2)
 - mcp_server/tests/review-fixes.vitest.ts line 117 — toBe(36) -> toBe(37) (F2)
 - manual_testing_playbook/manual_testing_playbook.md lines 166, 173 — 380 -> 384 (F3); line 2692 garbled text (F5)
-- manual_testing_playbook/02--mutation/019-*.md — broken catalog link (F4)
-- manual_testing_playbook/01--retrieval/006-*.md — broken catalog link (F4)
-- manual_testing_playbook/01--retrieval/007-*.md — broken catalog link (F4)
-- manual_testing_playbook/14--stress-testing/170-*.md — broken catalog link (F4)
-- manual_testing_playbook/04--maintenance/036-*.md — broken catalog link (F4)
-- manual_testing_playbook/16--tooling-and-scripts/232-*.md lines 18, 21 — garbled contract fields (F5)
-- feature_catalog/24--local-llm-query-intelligence/category-overview.md lines 40-47 — stale paths (F6, F9)
-- manual_testing_playbook/24--local-llm-query-intelligence/README.md — scenario numbers 401-415 -> 361-375 (F9)
-- manual_testing_playbook/16--tooling-and-scripts/234-*.md line 38 — wrong verifier path (F8)
-- manual_testing_playbook/03--discovery/032-*.md line 37 — stale session_bootstrap call (F10)
-- feature_catalog/17--governance/253-*.md line 28 — stale memory_ingest_start call (F10)
+- manual_testing_playbook/mutation/019-*.md — broken catalog link (F4)
+- manual_testing_playbook/retrieval/006-*.md — broken catalog link (F4)
+- manual_testing_playbook/retrieval/007-*.md — broken catalog link (F4)
+- manual_testing_playbook/stress-testing/170-*.md — broken catalog link (F4)
+- manual_testing_playbook/maintenance/036-*.md — broken catalog link (F4)
+- manual_testing_playbook/tooling-and-scripts/232-*.md lines 18, 21 — garbled contract fields (F5)
+- feature_catalog/local-llm-query-intelligence/category-overview.md lines 40-47 — stale paths (F6, F9)
+- manual_testing_playbook/local-llm-query-intelligence/README.md — scenario numbers 401-415 -> 361-375 (F9)
+- manual_testing_playbook/tooling-and-scripts/234-*.md line 38 — wrong verifier path (F8)
+- manual_testing_playbook/discovery/032-*.md line 37 — stale session_bootstrap call (F10)
+- feature_catalog/governance/253-*.md line 28 — stale memory_ingest_start call (F10)
 
 ### Out of Scope
 
@@ -125,21 +125,21 @@ Replace all 10 defects with accurate, verified text so the catalog and playbook 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | feature_catalog/feature_catalog.md | Modify | F1: partial-coverage language; F7: qualify cleanup-complete claim |
-| feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md | Modify | F7: qualify cleanup-complete claim in leaf |
+| feature_catalog/tooling-and-scripts/feature-catalog-code-references.md | Modify | F7: qualify cleanup-complete claim in leaf |
 | README.md | Modify | F2: 36-tool -> 37-tool (5 occurrences) |
 | mcp_server/tests/review-fixes.vitest.ts | Modify | F2: toBe(36) -> toBe(37) |
 | manual_testing_playbook/manual_testing_playbook.md | Modify | F3: 380->384; F5: fix garbled line 2692 |
-| manual_testing_playbook/02--mutation/019-*.md | Modify | F4: fix broken catalog link |
-| manual_testing_playbook/01--retrieval/006-*.md | Modify | F4: fix broken catalog link |
-| manual_testing_playbook/01--retrieval/007-*.md | Modify | F4: fix broken catalog link |
-| manual_testing_playbook/14--stress-testing/170-*.md | Modify | F4: fix broken catalog link |
-| manual_testing_playbook/04--maintenance/036-*.md | Modify | F4: fix broken catalog link |
-| manual_testing_playbook/16--tooling-and-scripts/232-*.md | Modify | F5: fix garbled contract fields |
-| feature_catalog/24--local-llm-query-intelligence/category-overview.md | Modify | F6: stale paths; F9: scenario range |
-| manual_testing_playbook/24--local-llm-query-intelligence/README.md | Modify | F9: scenario numbers 401-415 -> 361-375 |
-| manual_testing_playbook/16--tooling-and-scripts/234-*.md | Modify | F8: wrong verifier path |
-| manual_testing_playbook/03--discovery/032-*.md | Modify | F10: stale session_bootstrap call shape |
-| feature_catalog/17--governance/253-*.md | Modify | F10: stale memory_ingest_start call shape |
+| manual_testing_playbook/mutation/019-*.md | Modify | F4: fix broken catalog link |
+| manual_testing_playbook/retrieval/006-*.md | Modify | F4: fix broken catalog link |
+| manual_testing_playbook/retrieval/007-*.md | Modify | F4: fix broken catalog link |
+| manual_testing_playbook/stress-testing/170-*.md | Modify | F4: fix broken catalog link |
+| manual_testing_playbook/maintenance/036-*.md | Modify | F4: fix broken catalog link |
+| manual_testing_playbook/tooling-and-scripts/232-*.md | Modify | F5: fix garbled contract fields |
+| feature_catalog/local-llm-query-intelligence/category-overview.md | Modify | F6: stale paths; F9: scenario range |
+| manual_testing_playbook/local-llm-query-intelligence/README.md | Modify | F9: scenario numbers 401-415 -> 361-375 |
+| manual_testing_playbook/tooling-and-scripts/234-*.md | Modify | F8: wrong verifier path |
+| manual_testing_playbook/discovery/032-*.md | Modify | F10: stale session_bootstrap call shape |
+| feature_catalog/governance/253-*.md | Modify | F10: stale memory_ingest_start call shape |
 <!-- /ANCHOR:scope -->
 
 ---

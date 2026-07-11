@@ -120,8 +120,8 @@ Every WS-A finding is fixed in the live file, verified against file:line evidenc
 | `.opencode/skills/cli-opencode/SKILL.md` | Modify | F1 pkill scoping fix + version bump 1.3.15.2 → 1.3.15.3 |
 | `.opencode/skills/cli-opencode/README.md` | Modify | F2 stale row deleted, F3 share-confirm note added, F4 `--agent` recipe fixed |
 | `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md` | Modify | F5: 4 corrupted filename links repaired |
-| `.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md` | Modify | F5: 1 corrupted filename link repaired |
-| `.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md` | Modify | F5: 1 corrupted filename link repaired |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md` | Modify | F5: 1 corrupted filename link repaired |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md` | Modify | F5: 1 corrupted filename link repaired |
 | `.opencode/skills/cli-opencode/changelog/v1.3.15.3.md` | Create | Changelog entry documenting all 5 fixes |
 <!-- /ANCHOR:scope -->
 

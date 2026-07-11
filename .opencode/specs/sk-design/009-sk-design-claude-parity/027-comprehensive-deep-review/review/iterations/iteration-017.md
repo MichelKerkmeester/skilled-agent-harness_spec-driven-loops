@@ -11,7 +11,7 @@
 - `.opencode/skills/sk-design/design-md-generator/SKILL.md:12` through `.opencode/skills/sk-design/design-md-generator/SKILL.md:414`
 - `.opencode/skills/sk-design/design-md-generator/README.md:26` through `.opencode/skills/sk-design/design-md-generator/README.md:155`
 - `.opencode/skills/sk-design/design-md-generator/references/extraction_workflow.md:39` through `.opencode/skills/sk-design/design-md-generator/references/extraction_workflow.md:98`
-- `.opencode/skills/sk-design/design-md-generator/feature_catalog/05--report-preview/report-preview.md:20` through `.opencode/skills/sk-design/design-md-generator/feature_catalog/05--report-preview/report-preview.md:91`
+- `.opencode/skills/sk-design/design-md-generator/feature_catalog/report-preview/report-preview.md:20` through `.opencode/skills/sk-design/design-md-generator/feature_catalog/report-preview/report-preview.md:91`
 - `.opencode/skills/sk-design/design-md-generator/changelog/v1.0.0.0.md:1` through `.opencode/skills/sk-design/design-md-generator/changelog/v1.0.0.0.md:35`
 - `.opencode/skills/sk-design/design-md-generator/backend/scripts/README.md:17` through `.opencode/skills/sk-design/design-md-generator/backend/scripts/README.md:23` as backend cross-check only, not reviewed scope.
 - `.opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts:13` through `.opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts:18` as backend cross-check only, not reviewed scope.
@@ -27,7 +27,7 @@
 
 - None new.
 
-Existing-finding corroboration, not recounted: `.opencode/skills/sk-design/design-md-generator/feature_catalog/05--report-preview/report-preview.md:59` claims `report-gen.ts`, `preview-gen.ts`, and `proof.ts` all resolve output directories through shared `output-policy` and refuse overwrites without `--force`. The prior registry already has active `P1-001` for standalone md-generator artifact writers bypassing the central output boundary, so this is supporting evidence for that active finding rather than a new finding.
+Existing-finding corroboration, not recounted: `.opencode/skills/sk-design/design-md-generator/feature_catalog/report-preview/report-preview.md:59` claims `report-gen.ts`, `preview-gen.ts`, and `proof.ts` all resolve output directories through shared `output-policy` and refuse overwrites without `--force`. The prior registry already has active `P1-001` for standalone md-generator artifact writers bypassing the central output boundary, so this is supporting evidence for that active finding rather than a new finding.
 
 ### P2
 
@@ -53,7 +53,7 @@ Existing-finding corroboration, not recounted: `.opencode/skills/sk-design/desig
 - `checklist_evidence`: N/A. This leaf review produced evidence artifacts only and did not modify checklist completion state.
 - `skill_agent`: PASS. The review stayed in the `deep-review` leaf workflow and did not dispatch sub-agents.
 - `agent_cross_runtime`: N/A. The assigned target is a skill packet documentation/config surface, not a runtime agent definition.
-- `feature_catalog_code`: PARTIAL. Catalog-to-backend traceability was sampled. One catalog claim at `feature_catalog/05--report-preview/report-preview.md:59` corroborates existing active `P1-001` and is not counted as a new finding.
+- `feature_catalog_code`: PARTIAL. Catalog-to-backend traceability was sampled. One catalog claim at `feature_catalog/report-preview/report-preview.md:59` corroborates existing active `P1-001` and is not counted as a new finding.
 - `playbook_capability`: PARTIAL. Manual playbook files were included in glob/grep coverage; no new mismatch was confirmed in the sampled report, extraction, and guided-run paths.
 - `changelog_frontmatter`: PASS. The assigned changelog has `version: 1.0.0.0` at `.opencode/skills/sk-design/design-md-generator/changelog/v1.0.0.0.md:3`.
 

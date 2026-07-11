@@ -18,10 +18,10 @@ Correctness and traceability: adversarial re-verification of the six open findin
 - `.opencode/plugins/README.md:42-51`
 - `.opencode/plugins/README.md:69-126`
 - `.opencode/skills/system-skill-advisor/README.md:72-85`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md:19-25`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md:33-55`
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md:50-64`
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md:66-83`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md:19-25`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md:33-55`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md:50-64`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md:66-83`
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/handover.md:93-96`
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/011-command-surface-normalization/tasks.md:53-66`
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/011-command-surface-normalization/tasks.md:92-110`

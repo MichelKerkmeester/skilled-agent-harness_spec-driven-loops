@@ -19,8 +19,8 @@ _memory:
     blockers:
       - "Nested codex exec exits with failed to initialize in-process app-server client: Operation not permitted"
     key_files:
-      - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh"
-      - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv"
+      - "_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh"
+      - "_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000043"
       session_id: "044-suite-revalidation"
@@ -51,7 +51,7 @@ _memory:
 | **Branch** | main |
 | **Parent Spec** | `../spec.md` (`014-local-embeddings-migration`) |
 | **Phase** | 043 |
-| **Evidence Dir** | `_sandbox/24--local-llm-query-intelligence/evidence/` |
+| **Evidence Dir** | `_sandbox/local-llm-query-intelligence/evidence/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -76,10 +76,10 @@ Re-run the same 15-scenario suite through fresh `codex exec` child processes and
 ### In Scope
 
 - Scaffold this Level 2 packet with canonical anchors and metadata.
-- Create `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh`.
-- Execute scenarios 401-415 from `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/`.
+- Create `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh`.
+- Execute scenarios 401-415 from `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/`.
 - Capture per-scenario logs and a summary TSV.
-- Compare the new TSV against `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.summary.tsv`.
+- Compare the new TSV against `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.summary.tsv`.
 - Record per-scenario deltas and final PASS/PARTIAL/FAIL/SKIP counts.
 
 ### Out of Scope
@@ -95,9 +95,9 @@ Re-run the same 15-scenario suite through fresh `codex exec` child processes and
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation/` | Create | Level 2 packet docs and metadata. |
-| `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh` | Create | Sequential `codex exec` scenario runner. |
-| `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv` | Generate | Scenario verdict summary. |
-| `_sandbox/24--local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/` | Generate | Raw child-process logs for scenarios 401-415. |
+| `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh` | Create | Sequential `codex exec` scenario runner. |
+| `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv` | Generate | Scenario verdict summary. |
+| `_sandbox/local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/` | Generate | Raw child-process logs for scenarios 401-415. |
 <!-- /ANCHOR:scope -->
 
 ---

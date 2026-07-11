@@ -26,9 +26,9 @@ Security - stress isolation edge cases: throwaway temp DB/socket cleanup, zero a
 - `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:389` - index-scan lease uses the injected vector index handle.
 - `.opencode/bin/lib/launcher-session-proxy.cjs:61` - socket creation is inside `defaultConnect()`, not module load.
 - `.opencode/bin/lib/launcher-session-proxy.cjs:753` - module exports testing helpers without starting the proxy.
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md:14` - restore validation is sandbox-only.
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md:71` - restore must run against a disposable scratch copy.
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md:46` - front-proxy recycle validation is sandboxed.
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/checkpoint-v2-file-snapshot-roundtrip.md:14` - restore validation is sandbox-only.
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/checkpoint-v2-file-snapshot-roundtrip.md:71` - restore must run against a disposable scratch copy.
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/front-proxy-reconnect-and-backend-only.md:46` - front-proxy recycle validation is sandboxed.
 - `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:148` - heap snapshot docs warn about sensitive memory contents rather than exposing secrets.
 
 ## Findings by Severity (P0/P1/P2)

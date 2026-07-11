@@ -1,0 +1,73 @@
+---
+title: "230 -- Shadow-scoring retirement"
+description: "This scenario validates Shadow-scoring retirement for `230`. It focuses on confirming runtime shadow scoring and persistence stay retired while read-only comparison helpers remain usable."
+audited_post_018: true
+phase_018_change: "Validated against phase-018 canonical continuity refactor; shadow scoring stays retired and the scenario remains read-only."
+version: 3.6.0.13
+---
+
+# 230 -- Shadow-scoring retirement
+
+## 1. OVERVIEW
+
+This scenario validates Shadow-scoring retirement for `230`. It focuses on confirming runtime shadow scoring and persistence stay retired while read-only comparison helpers remain usable.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Confirm runtime shadow scoring and persistence stay retired while read-only comparison helpers remain usable.
+- Real user request: `` Please validate Shadow-scoring retirement against the documented validation surface and tell me whether the expected signals are present: The targeted shadow-scoring tests pass, `runShadowScoring()` returns `null`, `logShadowComparison()` returns `false`, `getShadowStats()` stays in the zero-case when no historical rows exist, and `compareShadowResults()` remains available as the live analysis surface. ``
+- Prompt: `Validate shadow-scoring retirement against the documented validation surface.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: The targeted shadow-scoring tests pass, `runShadowScoring()` returns `null`, `logShadowComparison()` returns `false`, `getShadowStats()` stays in the zero-case when no historical rows exist, and `compareShadowResults()` remains available as the live analysis surface
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if the targeted checks prove runtime execution and write paths are retired while comparison and historical read helpers remain intact
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate that shadow-scoring execution and persistence remain retired even when the legacy flag is set, while comparison and historical stats helpers stay safe to call. Run the targeted checks, capture the evidence that proves the runtime path is shut off, and return a concise pass/fail verdict with the main reason.
+```
+
+### Commands
+
+1. `cd .opencode/skills/system-spec-kit/mcp_server`
+2. `npx vitest run tests/shadow-scoring.vitest.ts tests/mpab-quality-gate-integration.vitest.ts`
+3. `sed -n '230,420p' lib/eval/shadow-scoring.ts`
+4. `rg -n "runShadowScoring|logShadowComparison|getShadowStats|compareShadowResults|SPECKIT_SHADOW_SCORING" lib/eval/shadow-scoring.ts tests/shadow-scoring.vitest.ts tests/mpab-quality-gate-integration.vitest.ts`
+
+### Expected
+
+The targeted shadow-scoring tests pass, `runShadowScoring()` returns `null`, `logShadowComparison()` returns `false`, `getShadowStats()` stays in the zero-case when no historical rows exist, and `compareShadowResults()` remains available as the live analysis surface
+
+### Evidence
+
+Vitest transcript plus the source excerpts showing the retired runtime/write paths and the retained comparison helpers
+
+### Pass / Fail
+
+- **Pass**: the targeted checks prove runtime execution and write paths are retired while comparison and historical read helpers remain intact
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Inspect `lib/eval/shadow-scoring.ts`; confirm the test sandbox DB path is isolated; verify no environment leakage or stale eval DB state is affecting the results
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [implement-and-remove-deprecated-features/shadow-scoring-retirement.md](../../feature_catalog/implement-and-remove-deprecated-features/shadow-scoring-retirement.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Implement and Remove Deprecated Features
+- Playbook ID: 230
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `implement-and-remove-deprecated-features/shadow-scoring-retirement.md`

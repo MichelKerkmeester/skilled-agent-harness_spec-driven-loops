@@ -27,7 +27,7 @@
 | `.opencode/skills/deep-loop-workflows/deep-improvement/README.md` | Scanner mirror surface drift |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md` | Scanner mirror surface drift |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/mirror_drift_policy.md` | Scanner mirror surface drift |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/02--integration-scanning/runtime-mirrors.md` | Scanner mirror surface drift |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/integration-scanning/runtime-mirrors.md` | Scanner mirror surface drift |
 
 ## Ruled-Out Docs
 
@@ -36,4 +36,4 @@
 | `AGENTS.md` | Mentions `/deep:ai-council` and `ai-council/**`, not direct `--agent` or `mode: all` |
 | `README.md` | Neutral roster/artifact references remain current |
 | `cli-opencode/references/agent_delegation.md` | Already updated to command-only/direct-forbidden ai-council wording |
-| `deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md` | Correctly documents new guard name/env/log behavior |
+| `deep-loop-runtime/feature_catalog/validation/mk-deep-loop-guard.md` | Correctly documents new guard name/env/log behavior |

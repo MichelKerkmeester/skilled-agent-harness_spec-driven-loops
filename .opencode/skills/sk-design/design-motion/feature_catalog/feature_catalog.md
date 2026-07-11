@@ -36,7 +36,7 @@ The gate runs four checks in order and stops at the first no: a 100-plus-times-a
 
 #### Source Files
 
-See [`01--restraint-gate-and-choreography/motion-restraint-gate.md`](01--restraint-gate-and-choreography/motion-restraint-gate.md) for the frequency table, the keyboard rule, and register coupling.
+See [`restraint-gate-and-choreography/motion-restraint-gate.md`](restraint-gate-and-choreography/motion-restraint-gate.md) for the frequency table, the keyboard rule, and register coupling.
 
 ---
 
@@ -52,7 +52,7 @@ Feedback motion stays under `300ms`, exit transitions run faster than their matc
 
 #### Source Files
 
-See [`01--restraint-gate-and-choreography/choreography-and-reduced-motion.md`](01--restraint-gate-and-choreography/choreography-and-reduced-motion.md) for timing tiers, `AnimatePresence` rules, and the reduced-motion contract.
+See [`restraint-gate-and-choreography/choreography-and-reduced-motion.md`](restraint-gate-and-choreography/choreography-and-reduced-motion.md) for timing tiers, `AnimatePresence` rules, and the reduced-motion contract.
 
 ---
 
@@ -70,7 +70,7 @@ Cards cover feedback, hover, focus, loading, state transition, toast, page trans
 
 #### Source Files
 
-See [`02--build-cards/motion-fill-in-cards.md`](02--build-cards/motion-fill-in-cards.md) for every card and its required fields.
+See [`build-cards/motion-fill-in-cards.md`](build-cards/motion-fill-in-cards.md) for every card and its required fields.
 
 ---
 
@@ -88,4 +88,4 @@ The mode chooses the card when a trigger matches, cites it in the plan or proof 
 
 #### Source Files
 
-See [`03--procedure-cards/motion-procedure-card-inventory.md`](03--procedure-cards/motion-procedure-card-inventory.md) for the card definition and boundaries.
+See [`procedure-cards/motion-procedure-card-inventory.md`](procedure-cards/motion-procedure-card-inventory.md) for the card definition and boundaries.

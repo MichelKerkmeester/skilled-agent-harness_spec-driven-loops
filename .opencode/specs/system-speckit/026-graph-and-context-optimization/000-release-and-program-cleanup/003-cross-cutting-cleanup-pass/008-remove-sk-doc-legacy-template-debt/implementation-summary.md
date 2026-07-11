@@ -170,14 +170,14 @@ The remediation used the audit report as the playbook, then applied a protected-
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish/spec.md` | HVR prose rewrite, em dash cleanup. |
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish/tasks.md` | HVR prose rewrite, em dash cleanup. |
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync/checklist.md` | HVR prose rewrite, em dash cleanup. |
-| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/unified-context-retrieval-memory-context.md` | Non-spec manual playbook source-file section backfill. |
-| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md` | Non-spec manual playbook source-file section backfill. |
-| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md` | Non-spec manual playbook source-file section backfill. |
-| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md` | Non-spec manual playbook source-file section backfill. |
-| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md` | Non-spec manual playbook source-file section backfill. |
-| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` | Non-spec manual playbook source-file section backfill. |
-| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md` | Non-spec manual playbook source-file section backfill. |
-| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md` | Non-spec manual playbook source-file section backfill. |
+| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/retrieval/unified-context-retrieval-memory-context.md` | Non-spec manual playbook source-file section backfill. |
+| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/retrieval/002-semantic-and-lexical-search-memory-search.md` | Non-spec manual playbook source-file section backfill. |
+| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/analysis/020-causal-graph-statistics-memory-causal-stats.md` | Non-spec manual playbook source-file section backfill. |
+| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/003-context-save-index-update.md` | Non-spec manual playbook source-file section backfill. |
+| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/01-run-stress-cycle.md` | Non-spec manual playbook source-file section backfill. |
+| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/071-debug-delegation-scaffold-generator.md` | Non-spec manual playbook source-file section backfill. |
+| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md` | Non-spec manual playbook source-file section backfill. |
+| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md` | Non-spec manual playbook source-file section backfill. |
 | G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md` | Non-spec manual playbook source-file section backfill. |
 | G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | Non-spec manual playbook source-file section backfill. |
 | G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/264-query-intent-routing.md` | Non-spec manual playbook source-file section backfill. |
@@ -188,7 +188,7 @@ The remediation used the audit report as the playbook, then applied a protected-
 | G12 | `.opencode/skills/system-spec-kit/README.md` | Non-spec README structure rewrite. |
 | G15 | `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Reference-doc retrieval anchor restructuring. |
 | G15 | `.opencode/skills/system-spec-kit/references/intake-contract.md` | Reference-doc retrieval anchor restructuring. |
-| G16 | `.opencode/skills/system-spec-kit/feature_catalog/06--analysis/02-causal-graph-statistics-memorycausalstats.md` | Non-spec feature catalog source metadata section backfill. |
+| G16 | `.opencode/skills/system-spec-kit/feature_catalog/analysis/02-causal-graph-statistics-memorycausalstats.md` | Non-spec feature catalog source metadata section backfill. |
 | G17 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Reference-doc frontmatter/title normalization outside spec-folder scope. |
 | G18 | `.opencode/skills/sk-code-opencode/references/shared/alignment_verification_automation.md` | Reference-doc frontmatter/title normalization outside spec-folder scope. |
 | G19 | `.opencode/skills/mcp-coco-index/references/tool_reference.md` | Reference-doc overview restructuring outside spec-folder scope. |

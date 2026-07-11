@@ -70,7 +70,7 @@ Bring up and maintain the link between the terminal and Figma Desktop. Safe plug
 | Daemon reconnect | Re-establishes the Desktop link without a full restart | MUTATING (app-level) | `figma-ds-cli daemon reconnect` |
 | init-agent (off by default) | Writes `AGENTS.md` + `.cursor/rules/figma-cli.mdc` into the repo; never run by default | MUTATING (app-level) | `figma-ds-cli init-agent [--tool claude\|cursor\|both] [--force]` |
 
-See [`01--connect-and-daemon/connect-and-daemon.md`](01--connect-and-daemon/connect-and-daemon.md) for the safe-vs-yolo gate, the daemon model, and the token-handling rules.
+See [`connect-and-daemon/connect-and-daemon.md`](connect-and-daemon/connect-and-daemon.md) for the safe-vs-yolo gate, the daemon model, and the token-handling rules.
 
 ---
 
@@ -91,7 +91,7 @@ Read the live document without changing it: list and find nodes, get properties,
 | Slot list | Lists component slots | READ-ONLY | `figma-ds-cli slot list <component>` |
 | Bind list | Lists existing variable bindings | READ-ONLY | `figma-ds-cli bind list` |
 
-See [`02--inspect/inspect.md`](02--inspect/inspect.md) for the read-only inspect surface and its session prerequisite.
+See [`inspect/inspect.md`](inspect/inspect.md) for the read-only inspect surface and its session prerequisite.
 
 ---
 
@@ -104,7 +104,7 @@ Move a design system out of Figma (read-only) or into Figma (gated). `extract` p
 | Extract DESIGN.md | Reads the design system to a `DESIGN.md` (11 sections + token JSON; auto-splits) | READ-ONLY (explicit output) | `figma-ds-cli extract [output] [--pages --sections --selection --split/--no-split]` |
 | Import design system | Imports Tailwind/CSS/tokens.json/Storybook into Figma collections | MUTATING | `figma-ds-cli import <source> [-c <collection> --save --type <tailwind\|css\|tokens\|storybook\|designmd> --print-context]` |
 
-See [`03--design-system-extract-and-import/design-system-extract-and-import.md`](03--design-system-extract-and-import/design-system-extract-and-import.md) for the extract output rule and the import gate.
+See [`design-system-extract-and-import/design-system-extract-and-import.md`](design-system-extract-and-import/design-system-extract-and-import.md) for the extract output rule and the import gate.
 
 ---
 
@@ -129,7 +129,7 @@ Author content in the document: render JSX-described nodes, create frames/icons/
 | Screenshot/recreate from URL | Captures or recreates a design from a URL | MUTATING | `figma-ds-cli screenshot-url \| recreate-url <url>` |
 | Arbitrary execution | Runs arbitrary code/commands, can do anything, review first | ARBITRARY | `figma-ds-cli eval\|raw\|run ...` |
 
-See [`04--render-and-create/render-and-create.md`](04--render-and-create/render-and-create.md) for the authoring surface, the dry-run previews, and the arbitrary-execution caveat.
+See [`render-and-create/render-and-create.md`](render-and-create/render-and-create.md) for the authoring surface, the dry-run previews, and the arbitrary-execution caveat.
 
 ---
 
@@ -149,7 +149,7 @@ Manage Figma variables and collections, bind `var:name` references, and visualiz
 | Delete node | Deletes a node by id or current selection (node-scoped, not variable-scoped) | DESTRUCTIVE | `figma-ds-cli delete\|remove [nodeId]` |
 | Delete all variables | Deletes every local variable, or one collection's with `-c`; the only variable-delete command, all-or-nothing | DESTRUCTIVE | `figma-ds-cli var delete-all [-c <collection>]` |
 
-See [`05--tokens-and-variables/tokens-and-variables.md`](05--tokens-and-variables/tokens-and-variables.md) for the bind syntax and the destructive delete gate.
+See [`tokens-and-variables/tokens-and-variables.md`](tokens-and-variables/tokens-and-variables.md) for the bind syntax and the destructive delete gate.
 
 ---
 
@@ -165,7 +165,7 @@ Write assets and code out of the document: PNG/SVG, CSS, Tailwind, JSX, and Stor
 | Export JSX | Exports a node (or the selection) as JSX; stdout unless `-o` names a file | READ-ONLY (explicit output) | `figma-ds-cli export-jsx [nodeId] [-o file] [--pretty]` |
 | Export Storybook | Exports components as Storybook stories; stdout unless `-o` names a file | READ-ONLY (explicit output) | `figma-ds-cli export-storybook [nodeId] [-o file]` |
 
-See [`07--export/export.md`](07--export/export.md) for the export surface and the explicit-output, no-overwrite rule.
+See [`export/export.md`](export/export.md) for the export surface and the explicit-output, no-overwrite rule.
 
 ---
 
@@ -181,7 +181,7 @@ Audit and analyze the document without changing it: accessibility checks, genera
 | Verify | Verifies the result of a prior operation | READ-ONLY | `figma-ds-cli verify ...` |
 | Gradient extract (read) | Extracts a gradient without applying it | READ-ONLY | `figma-ds-cli gradient extract <node>` |
 
-See [`06--a11y-and-analysis/a11y-and-analysis.md`](06--a11y-and-analysis/a11y-and-analysis.md) for the read-only audit surface and the applied-gradient boundary.
+See [`a11y-and-analysis/a11y-and-analysis.md`](a11y-and-analysis/a11y-and-analysis.md) for the read-only audit surface and the applied-gradient boundary.
 
 ---
 
@@ -194,7 +194,7 @@ The skill works fully with the CLI alone. When the agent must pull design contex
 | Discover MCP tools | Confirms the `figma` manual and its tool names before use | READ-ONLY | `search_tools()` / `tool_info()` (Code Mode) |
 | Pull design context | Calls a Framelink `figma` tool to pull design data into the agent | READ-ONLY (opt-in) | `call_tool_chain()` with `figma.figma_<tool>` |
 
-See [`08--optional-mcp/optional-mcp-context.md`](08--optional-mcp/optional-mcp-context.md) for the Code Mode discovery-first contract and the Dev Mode out-of-scope boundary.
+See [`optional-mcp/optional-mcp-context.md`](optional-mcp/optional-mcp-context.md) for the Code Mode discovery-first contract and the Dev Mode out-of-scope boundary.
 
 ---
 
@@ -204,14 +204,14 @@ Each capability area maps to exactly one per-feature file in its numbered catego
 
 | Section | Area | Commands listed | Per-feature file |
 |---|---|---|---|
-| 2 | Connect and daemon | 10 | `01--connect-and-daemon/connect-and-daemon.md` |
-| 3 | Inspect | 10 | `02--inspect/inspect.md` |
-| 4 | Design-system extract and import | 2 | `03--design-system-extract-and-import/design-system-extract-and-import.md` |
-| 5 | Render and create | 14 | `04--render-and-create/render-and-create.md` |
-| 6 | Tokens and variables | 9 | `05--tokens-and-variables/tokens-and-variables.md` |
-| 7 | Export | 5 | `07--export/export.md` |
-| 8 | A11y and analysis | 5 | `06--a11y-and-analysis/a11y-and-analysis.md` |
-| 9 | Optional MCP context | 2 | `08--optional-mcp/optional-mcp-context.md` |
+| 2 | Connect and daemon | 10 | `connect-and-daemon/connect-and-daemon.md` |
+| 3 | Inspect | 10 | `inspect/inspect.md` |
+| 4 | Design-system extract and import | 2 | `design-system-extract-and-import/design-system-extract-and-import.md` |
+| 5 | Render and create | 14 | `render-and-create/render-and-create.md` |
+| 6 | Tokens and variables | 9 | `tokens-and-variables/tokens-and-variables.md` |
+| 7 | Export | 5 | `export/export.md` |
+| 8 | A11y and analysis | 5 | `a11y-and-analysis/a11y-and-analysis.md` |
+| 9 | Optional MCP context | 2 | `optional-mcp/optional-mcp-context.md` |
 | **Total** | **8 capability areas** | **57 command rows** | **8 per-feature files** |
 
 > Counts cover the decision-relevant commands digested in the figma-cli capability research; the full per-command flag surface (≈130 rows) lives in the research raw output and is not reproduced here. The per-feature file count MUST equal the 8 capability areas; keep them in sync as areas are added or revised. Verify any command, flag, or class against `figma-ds-cli --help` before relying on it.

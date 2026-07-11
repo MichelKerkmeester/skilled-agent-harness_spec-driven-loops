@@ -18,8 +18,8 @@ _memory:
     blockers:
       - "Child codex exec fails before scenario execution with in-process app-server initialization permission error"
     key_files:
-      - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv"
-      - "_sandbox/24--local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/"
+      - "_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv"
+      - "_sandbox/local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000043"
       session_id: "044-suite-revalidation"
@@ -47,7 +47,7 @@ _memory:
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
 | **Status** | FAIL |
-| **Evidence Dir** | `_sandbox/24--local-llm-query-intelligence/evidence/` |
+| **Evidence Dir** | `_sandbox/local-llm-query-intelligence/evidence/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -61,16 +61,16 @@ The validation attempt failed before scenario logic. Every child `codex exec` pr
 
 ### Runner
 
-The runner lives at `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh`. It resolves the playbook, runs one `codex exec` child per scenario, captures raw logs under `per-scenario-logs-post-wave/`, and writes `run-2026-05-14-post-wave.summary.tsv`.
+The runner lives at `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh`. It resolves the playbook, runs one `codex exec` child per scenario, captures raw logs under `per-scenario-logs-post-wave/`, and writes `run-2026-05-14-post-wave.summary.tsv`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation/` | Created | Level 2 packet docs and metadata. |
-| `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh` | Created | Sequential scenario runner. |
-| `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv` | Created | Aggregated scenario verdicts. |
-| `_sandbox/24--local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/` | Created | Raw logs for scenarios 401-415. |
+| `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh` | Created | Sequential scenario runner. |
+| `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv` | Created | Aggregated scenario verdicts. |
+| `_sandbox/local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/` | Created | Raw logs for scenarios 401-415. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -78,7 +78,7 @@ The runner lives at `_sandbox/24--local-llm-query-intelligence/evidence/run-2026
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The packet was scaffolded through the system-spec-kit Level 2 create script, then filled with the user-bound scope and expected evidence paths. The playbook was located at `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/`.
+The packet was scaffolded through the system-spec-kit Level 2 create script, then filled with the user-bound scope and expected evidence paths. The playbook was located at `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/`.
 
 The runner was executed twice. The first run showed the same launcher failure in all rows but only as missing verdicts. The second run kept the same child-process behavior and classified the known startup error explicitly in each TSV row.
 <!-- /ANCHOR:how-delivered -->
@@ -91,7 +91,7 @@ The runner was executed twice. The first run showed the same launcher failure in
 | Decision | Why |
 |----------|-----|
 | Use `codex exec` child processes instead of SpawnAgent | The dispatch forbids SpawnAgent but allows fresh CLI child processes. |
-| Correct runner root resolution to `../../..` | From `_sandbox/24--local-llm-query-intelligence/evidence/`, three parent hops reach the repo root. |
+| Correct runner root resolution to `../../..` | From `_sandbox/local-llm-query-intelligence/evidence/`, three parent hops reach the repo root. |
 | Add a per-scenario watchdog | A stalled child should not prevent later scenarios from running. |
 | Preserve raw logs even when a scenario has no final verdict | The log is the only actionable evidence for missing-tail failures. |
 | Mark the packet FAIL rather than PARTIAL | All 15 rows failed at child startup, so no scenario semantics or substrate behavior were exercised. |
@@ -105,9 +105,9 @@ The runner was executed twice. The first run showed the same launcher failure in
 | Check | Result |
 |-------|--------|
 | Playbook listing | PASS: files 401-415 are present. |
-| Runner script executable | PASS: `chmod +x` applied and `bash -n _sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh` exited 0. |
+| Runner script executable | PASS: `chmod +x` applied and `bash -n _sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh` exited 0. |
 | Scenario suite | FAIL: all 15 child processes exited before scenario logic with `failed to initialize in-process app-server client: Operation not permitted`. |
-| Summary TSV | PASS: `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv` has 15 data rows. |
+| Summary TSV | PASS: `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv` has 15 data rows. |
 | Verdict distribution | FAIL result: 0 PASS / 0 PARTIAL / 15 FAIL / 0 SKIP. |
 | Baseline comparison | PASS: table below records each scenario delta. |
 | Strict validate | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation --strict` returned `RESULT: PASSED` with 0 errors and 0 warnings. |
@@ -118,7 +118,7 @@ The runner was executed twice. The first run showed the same launcher failure in
 <!-- ANCHOR:baseline-delta -->
 ## Baseline vs post-wave delta
 
-The named baseline TSV contains duplicate historical rows for some scenarios. The per-scenario baseline below uses the latest row for each scenario from `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.summary.tsv`; the TOTAL row keeps the dispatch's binding baseline of 2 PASS / 2 PARTIAL / 11 FAIL.
+The named baseline TSV contains duplicate historical rows for some scenarios. The per-scenario baseline below uses the latest row for each scenario from `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.summary.tsv`; the TOTAL row keeps the dispatch's binding baseline of 2 PASS / 2 PARTIAL / 11 FAIL.
 
 | Scenario | 032/002 baseline | 043 post-wave | Notes |
 |----------|------------------|---------------|-------|

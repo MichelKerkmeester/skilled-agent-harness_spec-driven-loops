@@ -12,7 +12,7 @@ The README says direct top-level `--agent` use is conditionally allowed for prim
 
 ### F003 — P1 — CO-017 still expects direct `--agent ai-council` to pass
 
-The root playbook says `ai-council` is a repo-defined primary and CO-017 verifies `--agent ai-council`. The feature file's objective, request, RCAF prompt, process, and command row all require direct `--agent ai-council` and expect exit 0. That contradicts phase 010's current subagent-only state. [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:362] [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:417-423] [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md:27-33] [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md:43] [SOURCE: .opencode/agents/ai-council.md:4]
+The root playbook says `ai-council` is a repo-defined primary and CO-017 verifies `--agent ai-council`. The feature file's objective, request, RCAF prompt, process, and command row all require direct `--agent ai-council` and expect exit 0. That contradicts phase 010's current subagent-only state. [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:362] [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:417-423] [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md:27-33] [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md:43] [SOURCE: .opencode/agents/ai-council.md:4]
 
 ## Verdict Rationale
 

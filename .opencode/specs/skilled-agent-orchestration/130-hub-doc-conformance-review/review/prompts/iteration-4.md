@@ -23,7 +23,7 @@ Review Iteration: 4 of 10
 Mode: review
 Dimension: reality-alignment
 Review Target: Doc-conformance + reality-alignment audit of cli-external + mcp-tooling hub docs (feature catalogs, testing playbooks, references, assets, READMEs, SKILLs) against sk-doc create-skill templates and creation standards
-Review Scope Files: .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/05--session-continuity/continue-last-session.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/05--session-continuity/fork-and-share.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/05--session-continuity/resume-by-session-id.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/06--integration-patterns/memory-epilogue-handback.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/clear-quality-card.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/minimax-design-context-manifest.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/template-applied-to-real-dispatch.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/templates-inventory.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/08--parallel-detached/ablation-suite.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/08--parallel-detached/parallel-detached-session.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/08--parallel-detached/worker-farm-loop.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/attach-remote-server.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/cross-repo-dispatch.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/self-invocation-guard-nested.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/manual_testing_playbook.md, .opencode/skills/cli-external/manual_testing_playbook/01--hub-routing/001-opencode-full-runtime-dispatch.md, .opencode/skills/cli-external/manual_testing_playbook/01--hub-routing/002-claude-code-second-opinion.md, .opencode/skills/cli-external/manual_testing_playbook/01--hub-routing/003-ambiguous-defer.md, .opencode/skills/cli-external/manual_testing_playbook/manual_testing_playbook.md, .opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/001-chrome-devtools-browser-debug.md, .opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/002-clickup-task-management.md, .opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/003-figma-transport.md, .opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/004-ambiguous-defer.md, .opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md, .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/install-version.md, .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/session-start.md, .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/session-stop.md, .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/status-json.md
+Review Scope Files: .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/session-continuity/continue-last-session.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/session-continuity/fork-and-share.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/session-continuity/resume-by-session-id.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/integration-patterns/memory-epilogue-handback.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/clear-quality-card.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/minimax-design-context-manifest.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/template-applied-to-real-dispatch.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/templates-inventory.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/parallel-detached/ablation-suite.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/parallel-detached/parallel-detached-session.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/parallel-detached/worker-farm-loop.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/cross-repo-cross-server/attach-remote-server.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/cross-repo-cross-server/cross-repo-dispatch.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/cross-repo-cross-server/self-invocation-guard-nested.md, .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/manual_testing_playbook.md, .opencode/skills/cli-external/manual_testing_playbook/hub-routing/001-opencode-full-runtime-dispatch.md, .opencode/skills/cli-external/manual_testing_playbook/hub-routing/002-claude-code-second-opinion.md, .opencode/skills/cli-external/manual_testing_playbook/hub-routing/003-ambiguous-defer.md, .opencode/skills/cli-external/manual_testing_playbook/manual_testing_playbook.md, .opencode/skills/mcp-tooling/manual_testing_playbook/hub-routing/001-chrome-devtools-browser-debug.md, .opencode/skills/mcp-tooling/manual_testing_playbook/hub-routing/002-clickup-task-management.md, .opencode/skills/mcp-tooling/manual_testing_playbook/hub-routing/003-figma-transport.md, .opencode/skills/mcp-tooling/manual_testing_playbook/hub-routing/004-ambiguous-defer.md, .opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md, .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/cli-bdg-lifecycle/install-version.md, .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/cli-bdg-lifecycle/session-start.md, .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/cli-bdg-lifecycle/session-stop.md, .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/cli-bdg-lifecycle/status-json.md
 Prior Findings: P0=25 P1=1 P2=2
 
 ## SHARED DOCTRINE
@@ -134,36 +134,36 @@ All three artifacts are REQUIRED. The post_dispatch_validate step fails the iter
 ## THIS ITERATION IS A DOC-CONFORMANCE + REALITY AUDIT (this overrides the generic spec-review framing above)
 
 You audit a SLICE of a 294-doc corpus (cli-external + mcp-tooling hub docs). Ignore "spec folder / correctness / security" framing — your job is DOC QUALITY. YOUR SLICE THIS ITERATION (30 docs — audit EVERY one, do not sample):
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/05--session-continuity/continue-last-session.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/05--session-continuity/fork-and-share.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/05--session-continuity/resume-by-session-id.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/06--integration-patterns/memory-epilogue-handback.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/clear-quality-card.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/minimax-design-context-manifest.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/template-applied-to-real-dispatch.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/templates-inventory.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/08--parallel-detached/ablation-suite.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/08--parallel-detached/parallel-detached-session.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/08--parallel-detached/worker-farm-loop.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/attach-remote-server.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/cross-repo-dispatch.md
-- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/self-invocation-guard-nested.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/session-continuity/continue-last-session.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/session-continuity/fork-and-share.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/session-continuity/resume-by-session-id.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/integration-patterns/memory-epilogue-handback.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/clear-quality-card.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/minimax-design-context-manifest.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/template-applied-to-real-dispatch.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/prompt-templates/templates-inventory.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/parallel-detached/ablation-suite.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/parallel-detached/parallel-detached-session.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/parallel-detached/worker-farm-loop.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/cross-repo-cross-server/attach-remote-server.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/cross-repo-cross-server/cross-repo-dispatch.md
+- .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/cross-repo-cross-server/self-invocation-guard-nested.md
 - .opencode/skills/cli-external/cli-opencode/manual_testing_playbook/manual_testing_playbook.md
-- .opencode/skills/cli-external/manual_testing_playbook/01--hub-routing/001-opencode-full-runtime-dispatch.md
-- .opencode/skills/cli-external/manual_testing_playbook/01--hub-routing/002-claude-code-second-opinion.md
-- .opencode/skills/cli-external/manual_testing_playbook/01--hub-routing/003-ambiguous-defer.md
+- .opencode/skills/cli-external/manual_testing_playbook/hub-routing/001-opencode-full-runtime-dispatch.md
+- .opencode/skills/cli-external/manual_testing_playbook/hub-routing/002-claude-code-second-opinion.md
+- .opencode/skills/cli-external/manual_testing_playbook/hub-routing/003-ambiguous-defer.md
 - .opencode/skills/cli-external/manual_testing_playbook/manual_testing_playbook.md
-- .opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/001-chrome-devtools-browser-debug.md
-- .opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/002-clickup-task-management.md
-- .opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/003-figma-transport.md
-- .opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/004-ambiguous-defer.md
+- .opencode/skills/mcp-tooling/manual_testing_playbook/hub-routing/001-chrome-devtools-browser-debug.md
+- .opencode/skills/mcp-tooling/manual_testing_playbook/hub-routing/002-clickup-task-management.md
+- .opencode/skills/mcp-tooling/manual_testing_playbook/hub-routing/003-figma-transport.md
+- .opencode/skills/mcp-tooling/manual_testing_playbook/hub-routing/004-ambiguous-defer.md
 - .opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md
-- .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/install-version.md
-- .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/session-start.md
-- .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/session-stop.md
-- .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/status-json.md
+- .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/cli-bdg-lifecycle/install-version.md
+- .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/cli-bdg-lifecycle/session-start.md
+- .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/cli-bdg-lifecycle/session-stop.md
+- .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/cli-bdg-lifecycle/status-json.md
 
 Authority: templates in `.opencode/skills/sk-doc/create-skill/assets/skill/{skill_md_template,skill_readme_template,skill_reference_template,skill_asset_template}.md` + `.../parent_skill/parent_skill_hub_template.md` (for HUB SKILL.md), and `.opencode/skills/sk-doc/shared/references/core_standards.md`. Validators (run the REAL scripts, NOT the sk-doc/scripts/ symlink facade): `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type <skill|readme|reference|asset>` and `extract_structure.py <file>` (DQI).
 

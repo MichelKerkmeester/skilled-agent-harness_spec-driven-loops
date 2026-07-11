@@ -36,13 +36,13 @@ Feature catalog and manual testing playbook verification slice.
 |---|---|---|
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/spec.md` | traceability | Defines the slice and sample requirement. |
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | correctness, traceability | Master catalog claims checked. |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` | correctness, traceability | Feature-specific catalog entry checked. |
+| `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md` | correctness, traceability | Feature-specific catalog entry checked. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | correctness, security, traceability | Release-readiness count and execution policy checked. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md` | security, traceability | Sample grep scenario checked. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md` | security, traceability | Annotation-name validation checked. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/multi-feature-annotation-coverage.md` | maintainability | Multi-feature scenario checked. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md` | correctness, maintainability | Verifier path checked. |
-| `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md` | traceability, maintainability | Catalog/playbook path mapping checked. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md` | security, traceability | Sample grep scenario checked. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md` | security, traceability | Annotation-name validation checked. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/multi-feature-annotation-coverage.md` | maintainability | Multi-feature scenario checked. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md` | correctness, maintainability | Verifier path checked. |
+| `.opencode/skills/system-spec-kit/feature_catalog/local-llm-query-intelligence/category-overview.md` | traceability, maintainability | Catalog/playbook path mapping checked. |
 
 ## Cross-Reference Status
 

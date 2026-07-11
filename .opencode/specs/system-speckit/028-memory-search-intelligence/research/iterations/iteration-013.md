@@ -9,15 +9,15 @@ Ambiguity note: “documentation claims” could include all review-depth v2 doc
 ## Findings
 
 1. The deep-review README accurately states the intended nine-gate legal-stop model, including candidate coverage and graphless fallback, and says failed gates persist `blocked_stop` with recovery focus. This is a contract claim, not a test-depth claim. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/README.md:94] [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/README.md:98]
-2. The deep-review quality-gates feature catalog also accurately mirrors the nine-gate event model and lists `graphlessFallbackGate` as requiring fallback ledger rows when the graph is unavailable; it does not claim an end-to-end workflow-runner test. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/feature_catalog/04--severity-system/quality-gates.md:27] [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/feature_catalog/04--severity-system/quality-gates.md:38] [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/feature_catalog/04--severity-system/quality-gates.md:41]
-3. The deep-review manual playbook root over-compresses the evidence level: it says the review-depth v2 category “validate[s]” graphless fallback and stop-gate blockers, while the scenario file itself discloses that `review-depth-convergence.vitest.ts` is marked/pending workflow-runner integration and that a manual harness is required today. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/manual_testing_playbook.md:751] [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md:31]
+2. The deep-review quality-gates feature catalog also accurately mirrors the nine-gate event model and lists `graphlessFallbackGate` as requiring fallback ledger rows when the graph is unavailable; it does not claim an end-to-end workflow-runner test. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/feature_catalog/severity-system/quality-gates.md:27] [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/feature_catalog/severity-system/quality-gates.md:38] [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/feature_catalog/severity-system/quality-gates.md:41]
+3. The deep-review manual playbook root over-compresses the evidence level: it says the review-depth v2 category “validate[s]” graphless fallback and stop-gate blockers, while the scenario file itself discloses that `review-depth-convergence.vitest.ts` is marked/pending workflow-runner integration and that a manual harness is required today. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/manual_testing_playbook.md:751] [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/review-depth-v2-rollout/stop-gate-graphless-fallback.md:31]
 4. The actual inspected review-depth convergence test checks YAML text, not workflow execution: it reads `deep_review_auto.yaml` and `deep_review_confirm.yaml` and asserts they contain `candidateCoverageGate`, `graphlessFallbackGate`, the `searchLedger` requirement, `unavailable_blocked`, and blocked-stop JSON wiring. [SOURCE: .opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts:20] [SOURCE: .opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts:22] [SOURCE: .opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts:24]
-5. Deep-loop-runtime documentation has the clearest overstatement risk: the integration README describes end-to-end coverage that spawns `.cjs` script entry points and touches SQLite, then lists `review-depth-convergence.vitest.ts` as “review convergence signals,” while the feature catalog calls the same file “Review-depth convergence fixture coverage.” Those labels are broader than the inspected YAML-string fixture and should distinguish script-spawn tests from static workflow-contract checks. [SOURCE: .opencode/skills/deep-loop-runtime/tests/integration/README.md:3] [SOURCE: .opencode/skills/deep-loop-runtime/tests/integration/README.md:12] [SOURCE: .opencode/skills/deep-loop-runtime/tests/integration/README.md:25] [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/07--script-entry-points/convergence-script.md:47] [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/06--coverage-graph/coverage-graph-signals.md:47]
+5. Deep-loop-runtime documentation has the clearest overstatement risk: the integration README describes end-to-end coverage that spawns `.cjs` script entry points and touches SQLite, then lists `review-depth-convergence.vitest.ts` as “review convergence signals,” while the feature catalog calls the same file “Review-depth convergence fixture coverage.” Those labels are broader than the inspected YAML-string fixture and should distinguish script-spawn tests from static workflow-contract checks. [SOURCE: .opencode/skills/deep-loop-runtime/tests/integration/README.md:3] [SOURCE: .opencode/skills/deep-loop-runtime/tests/integration/README.md:12] [SOURCE: .opencode/skills/deep-loop-runtime/tests/integration/README.md:25] [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/script-entry-points/convergence-script.md:47] [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/coverage-graph/coverage-graph-signals.md:47]
 
 ## Ruled Out
 
-- Treating all review-depth docs as overclaiming was ruled out. The README and quality-gates catalog describe the intended runtime contract without explicitly claiming workflow-runner test execution. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/README.md:98] [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/feature_catalog/04--severity-system/quality-gates.md:27]
-- Treating the graphless fallback TODO as hidden was ruled out. The dedicated manual scenario openly says workflow-runner integration is pending and a manual harness is required today. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md:31]
+- Treating all review-depth docs as overclaiming was ruled out. The README and quality-gates catalog describe the intended runtime contract without explicitly claiming workflow-runner test execution. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/README.md:98] [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/feature_catalog/severity-system/quality-gates.md:27]
+- Treating the graphless fallback TODO as hidden was ruled out. The dedicated manual scenario openly says workflow-runner integration is pending and a manual harness is required today. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/review-depth-v2-rollout/stop-gate-graphless-fallback.md:31]
 
 ## Dead Ends
 
@@ -34,19 +34,19 @@ Ambiguity note: “documentation claims” could include all review-depth v2 doc
 
 - `.opencode/skills/deep-loop-workflows/deep-review/README.md:94`
 - `.opencode/skills/deep-loop-workflows/deep-review/README.md:98`
-- `.opencode/skills/deep-loop-workflows/deep-review/feature_catalog/04--severity-system/quality-gates.md:27`
-- `.opencode/skills/deep-loop-workflows/deep-review/feature_catalog/04--severity-system/quality-gates.md:38`
-- `.opencode/skills/deep-loop-workflows/deep-review/feature_catalog/04--severity-system/quality-gates.md:41`
+- `.opencode/skills/deep-loop-workflows/deep-review/feature_catalog/severity-system/quality-gates.md:27`
+- `.opencode/skills/deep-loop-workflows/deep-review/feature_catalog/severity-system/quality-gates.md:38`
+- `.opencode/skills/deep-loop-workflows/deep-review/feature_catalog/severity-system/quality-gates.md:41`
 - `.opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/manual_testing_playbook.md:751`
-- `.opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md:31`
+- `.opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/review-depth-v2-rollout/stop-gate-graphless-fallback.md:31`
 - `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts:20`
 - `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts:22`
 - `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts:24`
 - `.opencode/skills/deep-loop-runtime/tests/integration/README.md:3`
 - `.opencode/skills/deep-loop-runtime/tests/integration/README.md:12`
 - `.opencode/skills/deep-loop-runtime/tests/integration/README.md:25`
-- `.opencode/skills/deep-loop-runtime/feature_catalog/07--script-entry-points/convergence-script.md:47`
-- `.opencode/skills/deep-loop-runtime/feature_catalog/06--coverage-graph/coverage-graph-signals.md:47`
+- `.opencode/skills/deep-loop-runtime/feature_catalog/script-entry-points/convergence-script.md:47`
+- `.opencode/skills/deep-loop-runtime/feature_catalog/coverage-graph/coverage-graph-signals.md:47`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/research/deep-research-strategy.md:122`
 
 ## Assessment

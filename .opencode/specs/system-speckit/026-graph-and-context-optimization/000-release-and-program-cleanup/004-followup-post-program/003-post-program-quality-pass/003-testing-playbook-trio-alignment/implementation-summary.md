@@ -48,9 +48,9 @@ System-spec-kit now links five new scenario files:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/278-memory-retention-sweep-basic-flow.md` | Created | Packet 033 retention sweep operator test |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-advisor-status-rebuild-separation.md` | Created | Packet 034 status/rebuild operator test |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md` | Created | Packet 036 matrix adapter operator test |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/maintenance/278-memory-retention-sweep-basic-flow.md` | Created | Packet 033 retention sweep operator test |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/279-advisor-status-rebuild-separation.md` | Created | Packet 034 status/rebuild operator test |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md` | Created | Packet 036 matrix adapter operator test |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/281-code-graph-read-path-selective-self-heal.md` | Created | Packet 032 code_graph read-path contract test |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/282-code-graph-cell-coverage-evidence.md` | Created | Packet 035 F5-F8 evidence reference |
 
@@ -58,7 +58,7 @@ Skill Advisor now links NC-006:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/advisor-status-rebuild-separation.md` | Created | Native MCP status/rebuild separation test |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/native-mcp-tools/advisor-status-rebuild-separation.md` | Created | Native MCP status/rebuild separation test |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Root links for IDs 278-282 |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` | Modified | Root link and count for NC-006 |
 | `discovery-notes.md` | Created | Records actual playbook locations and code_graph gap |

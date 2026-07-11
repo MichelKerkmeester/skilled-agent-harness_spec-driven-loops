@@ -39,7 +39,7 @@ Initialization classifies the prior state, resolves the target into files, order
 
 #### Source Files
 
-See [`01--loop-lifecycle/initialization.md`](01--loop-lifecycle/initialization.md) for full implementation and validation file listings.
+See [`loop-lifecycle/initialization.md`](loop-lifecycle/initialization.md) for full implementation and validation file listings.
 
 ---
 
@@ -55,7 +55,7 @@ Each loop pass reads the packet state, generates a compact state summary, dispat
 
 #### Source Files
 
-See [`01--loop-lifecycle/iteration-dispatch.md`](01--loop-lifecycle/iteration-dispatch.md) for full implementation and validation file listings.
+See [`loop-lifecycle/iteration-dispatch.md`](loop-lifecycle/iteration-dispatch.md) for full implementation and validation file listings.
 
 ---
 
@@ -71,7 +71,7 @@ The stop path combines hard stops, a three-signal weighted vote, blocked-stop pe
 
 #### Source Files
 
-See [`01--loop-lifecycle/convergence-check.md`](01--loop-lifecycle/convergence-check.md) for full implementation and validation file listings.
+See [`loop-lifecycle/convergence-check.md`](loop-lifecycle/convergence-check.md) for full implementation and validation file listings.
 
 ---
 
@@ -87,7 +87,7 @@ Synthesis deduplicates findings across iteration files, reconciles adjudicated s
 
 #### Source Files
 
-See [`01--loop-lifecycle/synthesis.md`](01--loop-lifecycle/synthesis.md) for full implementation and validation file listings.
+See [`loop-lifecycle/synthesis.md`](loop-lifecycle/synthesis.md) for full implementation and validation file listings.
 
 ---
 
@@ -103,7 +103,7 @@ The save phase treats `generate-context.js` as the supported handoff boundary, k
 
 #### Source Files
 
-See [`01--loop-lifecycle/memory-save.md`](01--loop-lifecycle/memory-save.md) for full implementation and validation file listings.
+See [`loop-lifecycle/memory-save.md`](loop-lifecycle/memory-save.md) for full implementation and validation file listings.
 
 ---
 
@@ -119,7 +119,7 @@ The reducer runs an explicit `--emit-resource-map` pass during synthesis that re
 
 #### Source Files
 
-See [`01--loop-lifecycle/resource-map-emission.md`](01--loop-lifecycle/resource-map-emission.md) for full implementation and validation file listings.
+See [`loop-lifecycle/resource-map-emission.md`](loop-lifecycle/resource-map-emission.md) for full implementation and validation file listings.
 
 ---
 
@@ -135,7 +135,7 @@ A conditional synthesis section emitted only when `config.resource_map_present =
 
 #### Source Files
 
-See [`01--loop-lifecycle/resource-map-coverage-gate.md`](01--loop-lifecycle/resource-map-coverage-gate.md) for full implementation and validation file listings.
+See [`loop-lifecycle/resource-map-coverage-gate.md`](loop-lifecycle/resource-map-coverage-gate.md) for full implementation and validation file listings.
 
 ---
 
@@ -151,7 +151,7 @@ Resolves which executor runs each iteration and enforces per-kind flag compatibi
 
 #### Source Files
 
-See [`01--loop-lifecycle/executor-selection-contract.md`](01--loop-lifecycle/executor-selection-contract.md) for full implementation and validation file listings.
+See [`loop-lifecycle/executor-selection-contract.md`](loop-lifecycle/executor-selection-contract.md) for full implementation and validation file listings.
 
 ---
 
@@ -177,7 +177,7 @@ empty single-executor state log. Command flags: `--executor` (repeatable), `--ex
 
 #### Source Files
 
-See [`01--loop-lifecycle/fanout-dispatch.md`](01--loop-lifecycle/fanout-dispatch.md) for full implementation and validation file listings.
+See [`loop-lifecycle/fanout-dispatch.md`](loop-lifecycle/fanout-dispatch.md) for full implementation and validation file listings.
 
 ---
 
@@ -197,7 +197,7 @@ Stores the append-only execution history for the review lineage.
 
 #### Source Files
 
-See [`02--state-management/jsonl-state-log.md`](02--state-management/jsonl-state-log.md) for full implementation and validation file listings.
+See [`state-management/jsonl-state-log.md`](state-management/jsonl-state-log.md) for full implementation and validation file listings.
 
 ---
 
@@ -213,7 +213,7 @@ Maintains the mutable review brain across fresh agent dispatches.
 
 #### Source Files
 
-See [`02--state-management/strategy-tracking.md`](02--state-management/strategy-tracking.md) for full implementation and validation file listings.
+See [`state-management/strategy-tracking.md`](state-management/strategy-tracking.md) for full implementation and validation file listings.
 
 ---
 
@@ -229,7 +229,7 @@ Defines the immutable packet contract for the current review lineage.
 
 #### Source Files
 
-See [`02--state-management/config-management.md`](02--state-management/config-management.md) for full implementation and validation file listings.
+See [`state-management/config-management.md`](state-management/config-management.md) for full implementation and validation file listings.
 
 ---
 
@@ -245,7 +245,7 @@ Holds the reducer-owned view of active, resolved, repeated, and blocked findings
 
 #### Source Files
 
-See [`02--state-management/findings-registry.md`](02--state-management/findings-registry.md) for full implementation and validation file listings.
+See [`state-management/findings-registry.md`](state-management/findings-registry.md) for full implementation and validation file listings.
 
 ---
 
@@ -261,7 +261,7 @@ Publishes the current review status as a machine-owned summary surface.
 
 #### Source Files
 
-See [`02--state-management/dashboard.md`](02--state-management/dashboard.md) for full implementation and validation file listings.
+See [`state-management/dashboard.md`](state-management/dashboard.md) for full implementation and validation file listings.
 
 ---
 
@@ -277,7 +277,7 @@ The workflow appends a `graph_convergence` event carrying a `decision` enum (`ST
 
 #### Source Files
 
-See [`02--state-management/graph-convergence-event.md`](02--state-management/graph-convergence-event.md) for full implementation and validation file listings.
+See [`state-management/graph-convergence-event.md`](state-management/graph-convergence-event.md) for full implementation and validation file listings.
 
 ---
 
@@ -293,7 +293,7 @@ Step 2a checks for `review/.deep-review-pause` before each dispatch. When presen
 
 #### Source Files
 
-See [`02--state-management/pause-sentinel.md`](02--state-management/pause-sentinel.md) for full implementation and validation file listings.
+See [`state-management/pause-sentinel.md`](state-management/pause-sentinel.md) for full implementation and validation file listings.
 
 ---
 
@@ -313,7 +313,7 @@ Correctness is the first-priority dimension, covers logic and state transitions 
 
 #### Source Files
 
-See [`03--review-dimensions/correctness.md`](03--review-dimensions/correctness.md) for full implementation and validation file listings.
+See [`review-dimensions/correctness.md`](review-dimensions/correctness.md) for full implementation and validation file listings.
 
 ---
 
@@ -329,7 +329,7 @@ Security is the second-priority dimension, checks authn and authz behavior, inpu
 
 #### Source Files
 
-See [`03--review-dimensions/security.md`](03--review-dimensions/security.md) for full implementation and validation file listings.
+See [`review-dimensions/security.md`](review-dimensions/security.md) for full implementation and validation file listings.
 
 ---
 
@@ -345,7 +345,7 @@ Traceability is the third review dimension and owns spec-to-code checks, checkli
 
 #### Source Files
 
-See [`03--review-dimensions/traceability.md`](03--review-dimensions/traceability.md) for full implementation and validation file listings.
+See [`review-dimensions/traceability.md`](review-dimensions/traceability.md) for full implementation and validation file listings.
 
 ---
 
@@ -361,7 +361,7 @@ Maintainability is the fourth default dimension and covers patterns, documentati
 
 #### Source Files
 
-See [`03--review-dimensions/maintainability.md`](03--review-dimensions/maintainability.md) for full implementation and validation file listings.
+See [`review-dimensions/maintainability.md`](review-dimensions/maintainability.md) for full implementation and validation file listings.
 
 ---
 
@@ -381,7 +381,7 @@ The review loop uses a three-level severity contract with weights `10.0 / 5.0 / 
 
 #### Source Files
 
-See [`04--severity-system/severity-classification.md`](04--severity-system/severity-classification.md) for full implementation and validation file listings.
+See [`severity-system/severity-classification.md`](severity-system/severity-classification.md) for full implementation and validation file listings.
 
 ---
 
@@ -397,7 +397,7 @@ Every P0 must be rechecked before it is accepted as final. The rule appears in t
 
 #### Source Files
 
-See [`04--severity-system/adversarial-self-check.md`](04--severity-system/adversarial-self-check.md) for full implementation and validation file listings.
+See [`severity-system/adversarial-self-check.md`](severity-system/adversarial-self-check.md) for full implementation and validation file listings.
 
 ---
 
@@ -413,7 +413,7 @@ Each new blocker or required finding must carry a typed adjudication packet with
 
 #### Source Files
 
-See [`04--severity-system/claim-adjudication.md`](04--severity-system/claim-adjudication.md) for full implementation and validation file listings.
+See [`severity-system/claim-adjudication.md`](severity-system/claim-adjudication.md) for full implementation and validation file listings.
 
 ---
 
@@ -429,7 +429,7 @@ Verdicts are derived from active findings plus gate state: unresolved P0 or fail
 
 #### Source Files
 
-See [`04--severity-system/verdicts.md`](04--severity-system/verdicts.md) for full implementation and validation file listings.
+See [`severity-system/verdicts.md`](severity-system/verdicts.md) for full implementation and validation file listings.
 
 ---
 
@@ -445,7 +445,7 @@ The legal-stop bundle combines evidence, scope, coverage, P0 resolution, evidenc
 
 #### Source Files
 
-See [`04--severity-system/quality-gates.md`](04--severity-system/quality-gates.md) for full implementation and validation file listings.
+See [`severity-system/quality-gates.md`](severity-system/quality-gates.md) for full implementation and validation file listings.
 
 ---
 
@@ -461,7 +461,7 @@ Applies the shared minimum-iteration floor, fail-closed stop policy, runtime cap
 
 #### Source Files
 
-See [`04--severity-system/cross-mode-anti-convergence-contract.md`](04--severity-system/cross-mode-anti-convergence-contract.md) for full implementation and validation file listings.
+See [`severity-system/cross-mode-anti-convergence-contract.md`](severity-system/cross-mode-anti-convergence-contract.md) for full implementation and validation file listings.
 
 ---
 
@@ -493,7 +493,7 @@ Two supplementary stop signals (semanticNovelty and findingStability) that measu
 
 #### Source Files
 
-See [`04--severity-system/convergence-signals.md`](04--severity-system/convergence-signals.md) for full implementation and validation file listings.
+See [`severity-system/convergence-signals.md`](severity-system/convergence-signals.md) for full implementation and validation file listings.
 
 ---
 
@@ -509,4 +509,4 @@ SPEC ONLY. The runtime does not auto-detect security sensitivity or apply these 
 
 #### Source Files
 
-See [`04--severity-system/security-sensitive-fix-overrides.md`](04--severity-system/security-sensitive-fix-overrides.md) for full implementation and validation file listings.
+See [`severity-system/security-sensitive-fix-overrides.md`](severity-system/security-sensitive-fix-overrides.md) for full implementation and validation file listings.

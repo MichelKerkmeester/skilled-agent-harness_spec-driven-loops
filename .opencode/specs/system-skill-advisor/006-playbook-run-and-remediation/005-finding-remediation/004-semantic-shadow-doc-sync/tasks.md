@@ -58,7 +58,7 @@ _memory:
 
 - [x] T003 [P] Update SC-004 (004-lane-attribution.md) to expect shadowOnly:false for the live lane
 - [x] T004 [P] Update SC-005 (005-ablation.md) to treat semantic_shadow as a non-zero ablation lane
-- [x] T005 [P] Update feature_catalog/04--scorer-fusion/04-attribution.md
+- [x] T005 [P] Update feature_catalog/scorer-fusion/04-attribution.md
 - [x] T006 Fix the stale comment in lanes/semantic-shadow.ts (clarify raw flag; keep weight)
 <!-- /ANCHOR:phase-2 -->
 

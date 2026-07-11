@@ -39,7 +39,7 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 1: `skill-advisor/anti-stuffing-cardinality-stress.vitest.ts` (sa-012)
 
-- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/02--auto-indexing/05-anti-stuffing.md`
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/auto-indexing/05-anti-stuffing.md`
 - **Source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/derived/anti-stuffing.ts` — exports `applyAntiStuffing` (or similarly-named function — discover by reading the file)
 - **Stress axes**:
   1. Build an adversarial skill metadata payload with 500 repeated trigger phrases — verify cardinality cap holds (output count ≤ documented limit, e.g. ~50-100)
@@ -47,7 +47,7 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 2: `skill-advisor/df-idf-corpus-stress.vitest.ts` (sa-013)
 
-- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/02--auto-indexing/06-df-idf-corpus.md`
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/auto-indexing/06-df-idf-corpus.md`
 - **Source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/corpus/df-idf.ts` — exports `computeCorpusStats`, `createDebouncedCorpusUpdater` (or similar)
 - **Stress axes**:
   1. Compute corpus stats over 1000 synthetic skills (each with 5-20 trigger phrases). Verify completion in <2s and IDF values are positive finite numbers
@@ -56,7 +56,7 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 3: `code-graph/deep-loop-graph-convergence-stress.vitest.ts` (cg-012)
 
-- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/04-deep-loop-graph-convergence.md`
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/coverage-graph/04-deep-loop-graph-convergence.md`
 - **Source**: `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts` — exports `handleCoverageGraphConvergence` (handler) and `ConvergenceDecision` type union
 - Also relevant: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts` for signal computation
 - **Stress axes**:

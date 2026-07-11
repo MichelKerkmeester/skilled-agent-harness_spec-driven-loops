@@ -41,7 +41,7 @@ Reconcile pre-existing failures across three packages via file-disjoint lanes: a
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-Each failure class is owned by one disjoint file set so lanes parallelize without conflict: advisor `mcp_server/**`, spec-kit `mcp_server/tests/**` + `feature_catalog/19--feature-flag-reference/**`, code-index `mcp_server/tests/lib/**`. The fixes are reconciliations to current shipped reality (renumbered filenames, current output, fixture-availability gates, cross-platform errno) — never assertion-weakening.
+Each failure class is owned by one disjoint file set so lanes parallelize without conflict: advisor `mcp_server/**`, spec-kit `mcp_server/tests/**` + `feature_catalog/feature-flag-reference/**`, code-index `mcp_server/tests/lib/**`. The fixes are reconciliations to current shipped reality (renumbered filenames, current output, fixture-availability gates, cross-platform errno) — never assertion-weakening.
 <!-- /ANCHOR:architecture -->
 
 ---

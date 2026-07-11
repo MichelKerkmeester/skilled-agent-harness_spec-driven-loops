@@ -21,9 +21,9 @@
 - `.opencode/skills/sk-design/design-motion/procedures/interaction_states_pass.md:29`
 - `.opencode/skills/sk-design/design-motion/changelog/v1.0.0.0.md:1`
 - `.opencode/skills/sk-design/design-motion/feature_catalog/feature_catalog.md:77`
-- `.opencode/skills/sk-design/design-motion/feature_catalog/03--procedure-cards/motion-procedure-card-inventory.md:18`
+- `.opencode/skills/sk-design/design-motion/feature_catalog/procedure-cards/motion-procedure-card-inventory.md:18`
 - `.opencode/skills/sk-design/design-motion/manual_testing_playbook/manual_testing_playbook.md:13`
-- `.opencode/skills/sk-design/design-motion/manual_testing_playbook/07--procedure-card-contract/card-selection-proof.md:25`
+- `.opencode/skills/sk-design/design-motion/manual_testing_playbook/procedure-card-contract/card-selection-proof.md:25`
 - `.opencode/skills/sk-design/mode-registry.json:82`
 - `.opencode/skills/sk-design/mode-registry.json:85`
 - `.opencode/skills/sk-design/mode-registry.json:91`
@@ -52,7 +52,7 @@
 - Evidence: `command-metadata.json:803` through `command-metadata.json:804` leaves `taskProjections` empty, so there is no alternate command-level projection for state-feedback or procedure-card routing.
 - Evidence: `SKILL.md:110` lists `procedures/interaction_states_pass.md` as conditional internal procedure support, `SKILL.md:113` states the private procedure-card selection table is part of the routing contract, and `SKILL.md:281` through `SKILL.md:284` defines the state-feedback trigger and proof to cite.
 - Evidence: `README.md:56` and `README.md:112` expose `procedures/interaction_states_pass.md` as the maintainer-facing procedure card after `motion` is selected.
-- Evidence: `manual_testing_playbook/07--procedure-card-contract/card-selection-proof.md:25` through `manual_testing_playbook/07--procedure-card-contract/card-selection-proof.md:35` makes exact card selection and proof a PASS/FAIL scenario.
+- Evidence: `manual_testing_playbook/procedure-card-contract/card-selection-proof.md:25` through `manual_testing_playbook/procedure-card-contract/card-selection-proof.md:35` makes exact card selection and proof a PASS/FAIL scenario.
 - Counterevidence sought: Checked whether command metadata compensates through another projection; it has motion identity, proof fields, pipeline, and a generic references/assets choreography, but no procedures resource or state-feedback task projection.
 - Alternative explanation: The command metadata may intentionally stay high-level and rely on SKILL.md to discover procedure cards after loading the packet. That still leaves the command projection stale relative to the packet's explicit procedure-surface contract and repeats the same omission pattern recorded for `/design:foundations` in P1-009-001.
 - Final severity: P1.

@@ -102,10 +102,10 @@ The parser is bounded: ~100 lines of execution, six unit tests covering minimal 
 
 | Path | Purpose |
 |------|---------|
-| `feature_catalog/03--discovery/04-detect-changes-preflight.md` | Catalog `detect_changes` (P1 safety, output contract, file map) |
-| `feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md` | Catalog the phase-DAG runner + `buildIndexPhases` decomposition |
-| `manual_testing_playbook/03--discovery/014-detect-changes-preflight.md` | EX-014 — stale vs fresh `detect_changes` walkthrough with explicit pass/fail |
-| `manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md` | 271 — runner rejection/regression playbook |
+| `feature_catalog/discovery/04-detect-changes-preflight.md` | Catalog `detect_changes` (P1 safety, output contract, file map) |
+| `feature_catalog/pipeline-architecture/25-code-graph-phase-dag-runner.md` | Catalog the phase-DAG runner + `buildIndexPhases` decomposition |
+| `manual_testing_playbook/discovery/014-detect-changes-preflight.md` | EX-014 — stale vs fresh `detect_changes` walkthrough with explicit pass/fail |
+| `manual_testing_playbook/pipeline-architecture/271-code-graph-phase-dag-runner.md` | 271 — runner rejection/regression playbook |
 
 ---
 
@@ -159,7 +159,7 @@ Pre-flight self-check (executed by reading the code, retained as audit trail):
 | `handlers/index.ts` exports `handleDetectChanges` | PASS — single line added; no other surface mutated |
 | Lines 80–100 of `structural-indexer.ts` (`detectorProvenanceFromParserBackend`, `buildEdgeMetadata`) untouched | PASS — only the import block (~line 21) and the body of `indexFiles()` (~line 1369+) were modified; sub-phase 003's metadata-writer zone is intact |
 | No SQLite schema migration | PASS — `code_files`, `code_nodes`, `code_edges` schemas untouched; `code-graph-db.ts` was not modified |
-| Per-packet docs land in BOTH `feature_catalog/` and `manual_testing_playbook/` for BOTH categories (`03--discovery/`, `14--pipeline-architecture/`) | PASS — four entries created |
+| Per-packet docs land in BOTH `feature_catalog/` and `manual_testing_playbook/` for BOTH categories (`discovery/`, `pipeline-architecture/`) | PASS — four entries created |
 | sk-doc DQI ≥ 85 on the four new entries | PASS by structural template adherence — frontmatter (title + description), four sections (Overview, Current Reality, Source Files, Source Metadata) for catalog entries; five sections (Overview, Current Reality, Test Execution, References, Source Metadata) for playbook entries; line counts (63–73) within the 50–80 LOC band of the existing peers I cross-referenced |
 
 ### `validate.sh --strict` — Wave-3 canonical evidence (010/007/T-B, 2026-04-25)
@@ -202,10 +202,10 @@ Pre-flight self-check (independent of the cosmetic warning):
 | `mcp_server/code_graph/handlers/index.ts` | Modified | `handleDetectChanges` exported |
 | `mcp_server/code_graph/tests/phase-runner.test.ts` | Created | Runner unit tests (12 cases) |
 | `mcp_server/code_graph/tests/detect-changes.test.ts` | Created | Handler safety + attribution tests + diff-parser unit cases (15 cases) |
-| `feature_catalog/03--discovery/04-detect-changes-preflight.md` | Created | Catalog entry |
-| `feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md` | Created | Catalog entry |
-| `manual_testing_playbook/03--discovery/014-detect-changes-preflight.md` | Created | Playbook entry |
-| `manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md` | Created | Playbook entry |
+| `feature_catalog/discovery/04-detect-changes-preflight.md` | Created | Catalog entry |
+| `feature_catalog/pipeline-architecture/25-code-graph-phase-dag-runner.md` | Created | Catalog entry |
+| `manual_testing_playbook/discovery/014-detect-changes-preflight.md` | Created | Playbook entry |
+| `manual_testing_playbook/pipeline-architecture/271-code-graph-phase-dag-runner.md` | Created | Playbook entry |
 | `012/002/implementation-summary.md` (this file) | Modified | Status / decision / what-was-built / verification |
 | `012/002/tasks.md` | Modified | Statuses flipped to `complete` with evidence |
 | `012/002/checklist.md` | Modified | All P1 + P2 + Hand-off items ticked with evidence |
@@ -237,10 +237,10 @@ Phase-root files (`012/spec.md`, `012/plan.md`, `012/tasks.md`, `012/checklist.m
    git commit -m "feat(012/002): add detect_changes preflight handler + custom diff parser"
 
    # Chunk 4 — Phase E+F (docs + spec docs)
-   git add .opencode/skills/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md \
-           .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md \
-           .opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md \
-           .opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md \
+   git add .opencode/skills/system-spec-kit/feature_catalog/discovery/04-detect-changes-preflight.md \
+           .opencode/skills/system-spec-kit/feature_catalog/pipeline-architecture/25-code-graph-phase-dag-runner.md \
+           .opencode/skills/system-spec-kit/manual_testing_playbook/discovery/014-detect-changes-preflight.md \
+           .opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/271-code-graph-phase-dag-runner.md \
            .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/002-code-graph-phase-runner-and-detect-changes/{tasks.md,checklist.md,implementation-summary.md}
    git commit -m "docs(012/002): catalog detect_changes + phase-DAG runner; populate spec docs"
    ```

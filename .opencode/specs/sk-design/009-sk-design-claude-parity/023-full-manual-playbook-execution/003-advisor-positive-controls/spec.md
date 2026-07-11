@@ -146,7 +146,7 @@ Dispatch 5 of the 6 assigned probes (`P1` interface, `P2` foundations, `P3` moti
 
 - **Parent Phase**: `../` (`023-full-manual-playbook-execution`, phase parent)
 - **Sibling Precedent**: `../001-mode-routing-core/` (documentation shape template; same wave pattern)
-- **Constituent Scenario**: `.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md` (`AI-001`)
+- **Constituent Scenario**: `.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/positive-design-controls.md` (`AI-001`)
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`

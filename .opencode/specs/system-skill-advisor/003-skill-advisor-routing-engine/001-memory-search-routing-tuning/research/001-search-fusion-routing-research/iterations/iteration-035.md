@@ -7,7 +7,7 @@ Turn the remaining post-implementation gaps into a concrete follow-on research a
 1. The next phase should decide how Stage 3 chooses its intent signal. The cleanest technical question is whether MMR should read `adaptiveFusionIntent`, whether the pipeline should mint a dedicated `stage3Intent`, or whether continuity should remain a Stage 1/2-only profile by design. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:153] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:209]
 2. That same phase should answer whether any operator-facing surface truly needs search-pipeline continuity at all. The canonical recovery path already bypasses `handleMemorySearch()`, so there may be no product reason to chase Stage 3 continuity for `/spec_kit:resume` itself. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:900] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts:6]
 3. A follow-on observability phase should define dashboard-grade reranker semantics: split stale expiry from capacity eviction, decide provider-scoped vs process-scoped counters, expose failure/circuit state, and include reset/uptime markers so snapshots are interpretable. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:140] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:171] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:551]
-4. The documentation follow-on is now straightforward: keep `SKILL.md` mostly as-is, but tighten `ARCHITECTURE.md`, `configs/README.md`, and any repeated feature-catalog wording so they distinguish canonical resume from search-style `profile='resume'` calls and stop implying that the continuity lambda is already live end to end. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:592] [SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:150] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/configs/README.md:50] [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md:25]
+4. The documentation follow-on is now straightforward: keep `SKILL.md` mostly as-is, but tighten `ARCHITECTURE.md`, `configs/README.md`, and any repeated feature-catalog wording so they distinguish canonical resume from search-style `profile='resume'` calls and stop implying that the continuity lambda is already live end to end. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:592] [SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:150] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/configs/README.md:50] [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/retrieval/05-4-stage-pipeline-architecture.md:25]
 
 ## Ruled Out
 - Repeating the old weight-tuning loop before the Stage 3 intent contract and telemetry semantics are resolved.
@@ -24,7 +24,7 @@ Turn the remaining post-implementation gaps into a concrete follow-on research a
 - `.opencode/skills/system-spec-kit/SKILL.md`
 - `.opencode/skills/system-spec-kit/ARCHITECTURE.md`
 - `.opencode/skills/system-spec-kit/mcp_server/configs/README.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/retrieval/05-4-stage-pipeline-architecture.md`
 
 ## Assessment
 - New information ratio: 0.05

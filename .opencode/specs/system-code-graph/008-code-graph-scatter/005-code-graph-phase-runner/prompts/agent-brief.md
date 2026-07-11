@@ -40,10 +40,10 @@ You own the Code Graph foundation sub-phase. You wrap the existing scan flow in 
 | `mcp_server/code_graph/handlers/index.ts` | **MODIFY** — register new `detect_changes` handler |
 | `mcp_server/code_graph/tests/phase-runner.test.ts` | **CREATE** — unit tests for runner |
 | `mcp_server/code_graph/tests/detect-changes.test.ts` | **CREATE** — handler tests |
-| `.opencode/skills/system-spec-kit/feature_catalog/03--discovery/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
-| `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/feature_catalog/discovery/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
+| `.opencode/skills/system-spec-kit/feature_catalog/pipeline-architecture/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/discovery/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
 | `012/002/implementation-summary.md` | **MODIFY** — populate Status, Diff Library Choice, What Was Built, Verification Evidence |
 
 ## Files you may NOT touch
@@ -65,7 +65,7 @@ You own the Code Graph foundation sub-phase. You wrap the existing scan flow in 
 4. **Phase runner contract:** rejects duplicate phase names, missing dependencies, cycles. Phases see only their declared dependency outputs.
 5. **Backward compat:** existing `indexFiles()` exports preserved; existing `code_graph` tests pass unchanged.
 6. **Read whole file before edit.** When modifying `structural-indexer.ts`, read the full file first; confirm line ranges before applying any Edit.
-7. **Per-packet docs MUST land** in feature_catalog `03--discovery/` (detect_changes) and `14--pipeline-architecture/` (phase-DAG).
+7. **Per-packet docs MUST land** in feature_catalog `discovery/` (detect_changes) and `pipeline-architecture/` (phase-DAG).
 
 ## Success criteria
 

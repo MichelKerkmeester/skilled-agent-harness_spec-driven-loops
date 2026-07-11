@@ -81,7 +81,7 @@ _memory:
   - **Current state**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-folder> --strict` run after metadata regeneration; result recorded in `implementation-summary.md` (Errors: 0).
 - [x] CHK-021 [P0] The `design-md-generator` completeness gap is real and correctly scoped [EVIDENCE: all 7 existing categories re-read.]
   - **Evidence required**: Comparison of the existing catalog's 7 categories against `procedures/design_system_extraction.md` and current `SKILL.md`/README capability list, confirming no existing entry covers the procedure card.
-  - **Current state**: Confirmed by reading all 7 existing category files (`01--extract` through `07--interaction-capture`) — none references the private procedure card. Gap closed: `08--procedure-cards/md-generator-procedure-card-inventory.md` added and root gained a "9. PROCEDURE CARDS" section; sections 1-8 and categories 01-07 unchanged in substance.
+  - **Current state**: Confirmed by reading all 7 existing category files (`extract` through `interaction-capture`) — none references the private procedure card. Gap closed: `procedure-cards/md-generator-procedure-card-inventory.md` added and root gained a "9. PROCEDURE CARDS" section; sections 1-8 and categories 01-07 unchanged in substance.
 - [x] CHK-022 [P1] Per-file validation command was actually run, not just named [EVIDENCE: 18/18 files pass 0 issues.]
   - **Evidence required**: `validate_document.py <path>` (auto-detect) invoked for every new/changed file.
   - **Current state**: Run against all 18 new/changed files (5 root + per-feature files); every file reports `Total issues: 0` (root catalogs auto-detect as `readme` type and per-feature files auto-detect as `feature_catalog` type — both pass clean; the CLI has no literal `--type feature_catalog` choice, so auto-detect is the correct invocation, superseding the plan's original assumption).
@@ -96,13 +96,13 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-005 [P0] The `design-md-generator` completeness gap is identified with a named fix, not just flagged [EVIDENCE: new category + file + section exist.]
-  - **Evidence required**: `spec.md` names the missing procedure-card category (`08--procedure-cards/`), the new feature file, and the new root section, not just "audit needed."
-  - **Current state**: Gap and fix recorded in `spec.md` and implemented: `08--procedure-cards/md-generator-procedure-card-inventory.md` exists, root gained "## 9. PROCEDURE CARDS".
+  - **Evidence required**: `spec.md` names the missing procedure-card category (`procedure-cards/`), the new feature file, and the new root section, not just "audit needed."
+  - **Current state**: Gap and fix recorded in `spec.md` and implemented: `procedure-cards/md-generator-procedure-card-inventory.md` exists, root gained "## 9. PROCEDURE CARDS".
 - [x] CHK-006 [P0] Every newly authored package closes a real zero/partial-catalog gap, not a cosmetic addition [EVIDENCE: prior-absence confirmed via `find`.]
   - **Evidence required**: Each of the three newly-authored packages traces to a confirmed prior absence of real content (`find` result).
   - **Current state**: Confirmed before authoring: `design-foundations` had only a root file (0 per-feature files); `design-motion` and `design-audit` had 0 files at all (only empty category directories). All three now have real, evidence-grounded content, not stub placeholders.
 - [x] CHK-007 [P1] New content does not duplicate content already covered by an existing category [EVIDENCE: 7 existing categories re-reviewed.]
-  - **Evidence required**: The `design-md-generator` audit confirms the new `08--procedure-cards/` category does not overlap any of the existing `01`-`07` categories.
+  - **Evidence required**: The `design-md-generator` audit confirms the new `procedure-cards/` category does not overlap any of the existing `01`-`07` categories.
   - **Current state**: Reviewed the existing catalog's 7 categories during authoring; no overlap found with a procedure-card entry, since none previously existed. Sections 1-8 and categories 01-07 left unmodified in substance.
 - [x] CHK-008 [P1] Fix scope stays proportional; no package invents features beyond real shipped capability [EVIDENCE: every source path Read and confirmed.]
   - **Evidence required**: Every new feature file cites a real, already-existing source path (README, `SKILL.md` section, references file, or `procedures/*.md` card).

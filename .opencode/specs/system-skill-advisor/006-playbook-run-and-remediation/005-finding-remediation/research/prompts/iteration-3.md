@@ -8,7 +8,7 @@ Focus: F3 — semantic_shadow lane weight drift. Live laneWeights show semantic_
 
 KEY FILES:
 - .opencode/skills/system-skill-advisor/mcp_server/lib/scorer/  (grep semantic_shadow, shadowOnly, laneWeights)
-- .opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/004-lane-attribution.md and 005-ablation.md
+- .opencode/skills/system-skill-advisor/manual_testing_playbook/scorer-fusion/004-lane-attribution.md and 005-ablation.md
 - .opencode/skills/system-skill-advisor/changelog/
 
 OUTPUT CONTRACT — all THREE (exact paths):

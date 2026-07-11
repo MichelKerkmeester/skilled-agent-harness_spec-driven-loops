@@ -90,8 +90,8 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 - [x] CHK-040 [P1] Both SKILL.md files document the new output and opt-out [EVIDENCE: `.opencode/skills/sk-deep-review/SKILL.md:250` and `:510`, plus `.opencode/skills/sk-deep-research/SKILL.md:241` and `:455`]
 - [x] CHK-041 [P1] Both command MD files mention the convergence-time emission [EVIDENCE: `.opencode/commands/deep/start-review-loop.md:188` and `:205`, plus `.opencode/commands/deep/start-research-loop.md:177` and `:194`]
 - [x] CHK-042 [P1] Both convergence.md references note the new step [EVIDENCE: `.opencode/skills/sk-deep-review/references/convergence.md:30` and `.opencode/skills/sk-deep-research/references/convergence.md:19`]
-- [x] CHK-043 [P1] Feature catalog entries exist for both skills [EVIDENCE: `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md:10` and `.opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md:10`]
-- [x] CHK-044 [P1] Manual testing playbook entries exist for both skills [EVIDENCE: `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md:14` and `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md:14`]
+- [x] CHK-043 [P1] Feature catalog entries exist for both skills [EVIDENCE: `.opencode/skills/sk-deep-review/feature_catalog/loop-lifecycle/06-resource-map-emission.md:10` and `.opencode/skills/sk-deep-research/feature_catalog/loop-lifecycle/06-resource-map-emission.md:10`]
+- [x] CHK-044 [P1] Manual testing playbook entries exist for both skills [EVIDENCE: `.opencode/skills/sk-deep-review/manual_testing_playbook/synthesis-save-and-guardrails/resource-map-emission.md:14` and `.opencode/skills/sk-deep-research/manual_testing_playbook/synthesis-save-and-guardrails/027-resource-map-emission.md:14`]
 - [x] CHK-045 [P2] README under `scripts/resource-map/` covers the input/output contract [EVIDENCE: `.opencode/skills/system-spec-kit/scripts/resource-map/README.md:9`, `:19`, and `:52`]
 <!-- /ANCHOR:docs -->
 

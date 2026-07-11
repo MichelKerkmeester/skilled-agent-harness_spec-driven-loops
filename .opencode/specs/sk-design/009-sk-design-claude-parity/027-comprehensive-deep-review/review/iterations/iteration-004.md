@@ -26,8 +26,8 @@
 - `.opencode/skills/sk-design/feature_catalog/feature_catalog.md:97`
 - `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:32`
 - `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:35`
-- `.opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md:22`
-- `.opencode/skills/sk-design/manual_testing_playbook/07--fallback-and-resilience/direct-fallback-without-subagents.md:22`
+- `.opencode/skills/sk-design/manual_testing_playbook/mode-routing/mcp-open-design-mode.md:22`
+- `.opencode/skills/sk-design/manual_testing_playbook/fallback-and-resilience/direct-fallback-without-subagents.md:22`
 
 ## Findings By Severity
 

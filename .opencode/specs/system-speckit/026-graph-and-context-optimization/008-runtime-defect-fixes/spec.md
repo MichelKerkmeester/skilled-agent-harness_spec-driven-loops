@@ -78,7 +78,7 @@ Fix all four in place — restoring the OpenCode code-graph plugin and correct C
 | mk-code-graph-bridge.mjs | Unchanged (fix reverted) | Dual-writer hazard; proper fix is IPC-backed (028 code-index phase 3) |
 | .codex/hooks.json | Modify | SessionStart + UserPromptSubmit → codex adapters |
 | .codex/config.toml | Modify | DB-path note corrected |
-| .opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/gemini-hook.md | Modify | Implementation/shim rows corrected |
+| .opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/gemini-hook.md | Modify | Implementation/shim rows corrected |
 <!-- /ANCHOR:scope -->
 
 ---

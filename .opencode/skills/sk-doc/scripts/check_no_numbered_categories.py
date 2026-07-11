@@ -1,0 +1,1 @@
+../shared/scripts/check_no_numbered_categories.py

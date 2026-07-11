@@ -21,10 +21,10 @@ Security
 | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` | 33-59 | Operator contract for sanitized objective, exact injection preview, env caps, and state boundaries. |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | 646-660 | Central env-variable reference and char-cap rows. |
 | `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md` | 53-71 | Runtime-routing constitutional note; no sanitizer/storage claim beyond tool routing. |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | 27-41 | Skill-advisor feature catalog claims for sanitized injection/readback. |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | 60-83, 115-145 | Manual validation and failure modes for bounded sanitized injection. |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | 29-61 | System-spec-kit feature catalog claims for raw sanitized objective and tests. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | 17-59 | System-spec-kit manual scenario for goal status and injection preview. |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | 27-41 | Skill-advisor feature catalog claims for sanitized injection/readback. |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | 60-83, 115-145 | Manual validation and failure modes for bounded sanitized injection. |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | 29-61 | System-spec-kit feature catalog claims for raw sanitized objective and tests. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` | 17-59 | System-spec-kit manual scenario for goal status and injection preview. |
 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | 168-177 | Hook-system note on raw objective preview and goalPrompt boundary. |
 | `.opencode/skills/system-spec-kit/SKILL.md` | 433-437 | Skill-level pointer to the goal-plugin operator contract. |
 | `README.md` | 1230-1233 | Root README high-level goal-plugin claim. |
@@ -48,7 +48,7 @@ Documentation adjudication:
 
 - `references/hooks/goal_plugin.md` accurately says `/goal set` stores a sanitized raw `objective`, derives `goalPrompt`, injects one active-goal block, and exposes the exact injection preview for operator inspection [SOURCE: `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:33-39`]. It does not overclaim encryption, secure storage, or full sanitization.
 - `ENV_REFERENCE.md` accurately lists the current char caps for objective, generated goal prompt, injection block, and verifier evidence [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:655-658`]. The pre-existing omission of three state-retention env vars remains covered by `P1-001` and was not re-emitted.
-- `system-spec-kit` and `system-skill-advisor` feature/playbook docs make bounded/sanitized injection claims that match the code's pattern-based sanitizer and cap behavior [SOURCE: `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:31-35`; `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md:70-81`; `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md:37-57`; `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md:23-25`].
+- `system-spec-kit` and `system-skill-advisor` feature/playbook docs make bounded/sanitized injection claims that match the code's pattern-based sanitizer and cap behavior [SOURCE: `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:31-35`; `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md:70-81`; `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md:37-57`; `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md:23-25`].
 - `hook_system.md`, `SKILL.md`, root `README.md`, and `.opencode/plugins/README.md` stay at a high-level contract boundary and do not assert stronger sanitizer guarantees than the code provides [SOURCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md:168-177`; `.opencode/skills/system-spec-kit/SKILL.md:433-437`; `README.md:1230-1233`; `.opencode/plugins/README.md:45-50`].
 
 ## Findings by Severity

@@ -23,14 +23,14 @@ D3 Traceability: spec/code alignment, checklist evidence, feature catalog consis
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/derived/sync.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/lifecycle/schema-migration.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/05--auto-update-daemon/003-daemon-lifecycle-shutdown.md`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/05--auto-update-daemon/005-rebuild-from-source.md`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/03--compat-and-disable/004-daemon-absent-fallback.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/scorer-fusion/01-five-lane-fusion.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/scorer-fusion/06-weights-config.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/mcp-surface/01-advisor-recommend.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/mcp-surface/03-advisor-validate.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/auto-update-daemon/003-daemon-lifecycle-shutdown.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/auto-update-daemon/005-rebuild-from-source.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/operator-h5/003-unavailable-daemon.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/compat-and-disable/004-daemon-absent-fallback.md`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts`
@@ -70,7 +70,7 @@ Evidence:
 - `spec.md` names only `advisor_recommend`, `advisor_status`, and `advisor_validate` as the MCP advisor tools: `spec.md:76`.
 - `REQ-006` likewise accepts only the three advisor tool contracts: `spec.md:116`.
 - The actual public MCP schema exposes `skill_graph_scan` as a maintenance tool with only optional `skillsRoot` input and no authority/session/caller field: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:673`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:676`.
-- OP-003 instructs operators to call `skill_graph_scan({})` for corrupt-state recovery but has no negative scenario for an external or untrusted caller: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md:47`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md:50`.
+- OP-003 instructs operators to call `skill_graph_scan({})` for corrupt-state recovery but has no negative scenario for an external or untrusted caller: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/operator-h5/003-unavailable-daemon.md:47`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/operator-h5/003-unavailable-daemon.md:50`.
 
 Concrete fix:
 
@@ -83,8 +83,8 @@ The catalog and implementation summary claim `derived_generated` is capped at `0
 Evidence:
 
 - The implementation summary says native scoring uses `derived_generated (0.10)`: `implementation-summary.md:120`.
-- The five-lane feature catalog repeats `derived_generated 0.10`: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md:3`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md:38`.
-- The weights-config catalog also says `derived_generated: 0.10`: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md:31`.
+- The five-lane feature catalog repeats `derived_generated 0.10`: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/scorer-fusion/01-five-lane-fusion.md:3`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/scorer-fusion/01-five-lane-fusion.md:38`.
+- The weights-config catalog also says `derived_generated: 0.10`: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/scorer-fusion/06-weights-config.md:31`.
 - Runtime source of truth sets `DERIVED_GENERATED_WEIGHT = 0.15`: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:8`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:11`.
 
 Concrete fix:

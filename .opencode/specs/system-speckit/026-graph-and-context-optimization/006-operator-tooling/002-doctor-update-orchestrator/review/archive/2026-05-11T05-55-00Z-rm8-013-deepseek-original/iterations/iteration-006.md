@@ -29,10 +29,10 @@
 | `.opencode/commands/doctor/assets/doctor_cocoindex.yaml` | spec_code | REQ-002 evidence | Exists; snapshot/VACUUM/rollback present |
 | `.opencode/commands/doctor/assets/doctor_update.yaml` (31410 bytes) | spec_code | REQ-002..007 evidence | 75 hits for key safety terms (flock, VACUUM, snapshot, dashboard, tier-aware, retry, SIGINT, gold-battery, state-log) |
 | `.opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json` (15174 bytes) | spec_code | REQ-008 evidence | Exists at expected path |
-| `manual_testing_playbook/23--doctor-commands/` (23 .md files) | spec_code | REQ-001 evidence | All 23 IDs 323-336, 338-342, 344-347 present |
-| `_sandbox/23--doctor-commands/harness/` (4 .sh) | spec_code | REQ-010 evidence | All 4 pass `bash -n` |
-| `_sandbox/23--doctor-commands/scenarios/` (23 .sh) | spec_code | REQ-011 evidence | All 23 exist on disk |
-| `_sandbox/23--doctor-commands/docker-compose.yml` | spec_code | REQ-008 evidence | Valid YAML (python3 yaml.safe_load exit 0) |
+| `manual_testing_playbook/doctor-commands/` (23 .md files) | spec_code | REQ-001 evidence | All 23 IDs 323-336, 338-342, 344-347 present |
+| `_sandbox/doctor-commands/harness/` (4 .sh) | spec_code | REQ-010 evidence | All 4 pass `bash -n` |
+| `_sandbox/doctor-commands/scenarios/` (23 .sh) | spec_code | REQ-011 evidence | All 23 exist on disk |
+| `_sandbox/doctor-commands/docker-compose.yml` | spec_code | REQ-008 evidence | Valid YAML (python3 yaml.safe_load exit 0) |
 | `manual_testing_playbook/manual_testing_playbook.md` | spec_code | REQ-004..006 evidence | 23 entries in Section 12; last_updated 2026-05-09; 23-- in canonical sources |
 
 ---

@@ -64,9 +64,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 Patch catalog automated harness coverage (`feature_catalog/14--stress-testing/category-overview.md`)
-- [x] T006 Patch manual playbook harness coverage (`manual_testing_playbook/14--stress-testing/README.md`)
-- [x] T007 Patch manual run scenario harness guidance (`manual_testing_playbook/14--stress-testing/run-stress-cycle.md`)
+- [x] T005 Patch catalog automated harness coverage (`feature_catalog/stress-testing/category-overview.md`)
+- [x] T006 Patch manual playbook harness coverage (`manual_testing_playbook/stress-testing/README.md`)
+- [x] T007 Patch manual run scenario harness guidance (`manual_testing_playbook/stress-testing/run-stress-cycle.md`)
 - [x] T008 Add top-level durability row (`mcp_server/stress_test/README.md`)
 - [x] T009 Add durability omitted test files (`mcp_server/stress_test/durability/README.md`)
 - [x] T010 Remove search-quality phantom file and add real files (`mcp_server/stress_test/search-quality/README.md`)

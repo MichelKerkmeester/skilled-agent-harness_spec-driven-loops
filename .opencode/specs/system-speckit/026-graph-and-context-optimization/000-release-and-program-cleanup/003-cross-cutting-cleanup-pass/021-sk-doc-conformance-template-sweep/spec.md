@@ -110,7 +110,7 @@ Bring every sk-doc-governed surface into strict conformance with the canonical s
 | `.opencode/skills/system-spec-kit/templates/stress-test/` | Rename | → `stress_test/` plus new README |
 | `.opencode/skills/system-spec-kit/templates/changelog/` | Modify | Align frontmatter to sk-doc shape |
 | `.opencode/skills/system-spec-kit/templates/addendum/level3plus-govern/` | Rename | → `level3-plus-govern/` |
-| ~10 path-reference files | Modify | system-spec-kit/{README.md,SKILL.md}, references/{workflows,templates,structure}, feature_catalog and manual_testing_playbook 14--stress-testing entries, feature_catalog 16--tooling-and-scripts/30-template-composition-system.md |
+| ~10 path-reference files | Modify | system-spec-kit/{README.md,SKILL.md}, references/{workflows,templates,structure}, feature_catalog and manual_testing_playbook stress-testing entries, feature_catalog tooling-and-scripts/30-template-composition-system.md |
 <!-- /ANCHOR:scope -->
 
 ---

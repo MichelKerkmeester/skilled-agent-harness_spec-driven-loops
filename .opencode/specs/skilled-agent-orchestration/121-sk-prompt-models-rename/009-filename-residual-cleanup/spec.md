@@ -61,7 +61,7 @@ This is a **review-remediation phase** addressing review recs **#2** (filename r
 - `git mv`; the manual-testing-playbook index that references the two playbook files by path.
 
 **Deliverables**:
-- `cli-opencode/manual_testing_playbook/07--prompt-templates/{deepseek-v4,kimi-k2-7}-direct-with-sk-prompt-models.md` → `…-with-sk-prompt-models.md`, with the playbook index references updated.
+- `cli-opencode/manual_testing_playbook/prompt-templates/{deepseek-v4,kimi-k2-7}-direct-with-sk-prompt-models.md` → `…-with-sk-prompt-models.md`, with the playbook index references updated.
 - `.opencode/changelog/sk-prompt-small-model` → `.opencode/changelog/sk-prompt-models` (confirm whether file or dir; repair any index referencing it).
 - Repo-root `README.md` reconciled to the new name (its rename edit currently sits uncommitted on top of unrelated WIP).
 
@@ -98,8 +98,8 @@ Make the filenames consistent with the rename and get the README to the new name
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md` | git mv | → `…-with-sk-prompt-models.md` |
-| `cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md` | git mv | → `…-with-sk-prompt-models.md` |
+| `cli-opencode/manual_testing_playbook/prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md` | git mv | → `…-with-sk-prompt-models.md` |
+| `cli-opencode/manual_testing_playbook/prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md` | git mv | → `…-with-sk-prompt-models.md` |
 | `cli-opencode/manual_testing_playbook/manual_testing_playbook.md` | Modify | Repair the index references to the two renamed files |
 | `.opencode/changelog/sk-prompt-small-model` | git mv | → `.opencode/changelog/sk-prompt-models` (confirm file vs dir) |
 | `README.md` (repo root) | Modify/commit | Reconcile to the new name without bundling unrelated WIP |

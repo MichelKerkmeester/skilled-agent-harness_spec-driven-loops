@@ -78,7 +78,7 @@ _memory:
 - [x] T013 Add exit-0/no-artifact regression test (`.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts`)
 - [x] T014 Add merge reconstruction unit tests (`.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts`)
 - [x] T015 Update executor-config contract test for sandboxMode acceptance (`.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts`)
-- [x] T016 Repoint playbook to exit-0/no-artifact regression (`.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md`)
+- [x] T016 Repoint playbook to exit-0/no-artifact regression (`.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md`)
 - [x] T017 Run full deep-loop-runtime Vitest suite (549 tests green)
 - [x] T018 Run comment hygiene on modified code files
 - [x] T019 Run strict spec validation after metadata refresh

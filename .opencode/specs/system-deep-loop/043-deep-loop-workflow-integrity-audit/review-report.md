@@ -71,7 +71,7 @@ The review prompt pack's JSON example omits most of those required fields and sh
 
 **Severity: P2.** Traceability friction.
 
-**Evidence:** The requested target surface includes `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/coverage-graph.ts`, but the scoped inventory under `mcp_server/lib/deep-loop/` contains only `executor-audit.ts`, `executor-config.ts`, `post-dispatch-validate.ts`, and `prompt-pack.ts`. Repository search found coverage-graph material under `mcp_server/code_graph/feature_catalog/05--coverage-graph/` and handlers/tests, not a `lib/deep-loop/coverage-graph.ts` file.
+**Evidence:** The requested target surface includes `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/coverage-graph.ts`, but the scoped inventory under `mcp_server/lib/deep-loop/` contains only `executor-audit.ts`, `executor-config.ts`, `post-dispatch-validate.ts`, and `prompt-pack.ts`. Repository search found coverage-graph material under `mcp_server/code_graph/feature_catalog/coverage-graph/` and handlers/tests, not a `lib/deep-loop/coverage-graph.ts` file.
 
 **Impact:** Reviewers can waste time looking for a file that no longer exists at the requested path. The actual graph convergence behavior is still auditable through YAML and code_graph references, but the brief path is stale.
 

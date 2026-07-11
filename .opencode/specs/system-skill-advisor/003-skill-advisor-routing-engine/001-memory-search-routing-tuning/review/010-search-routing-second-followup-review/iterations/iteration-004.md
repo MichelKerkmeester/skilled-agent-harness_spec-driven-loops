@@ -12,10 +12,10 @@ Check whether the catalog and supporting retrieval docs independently corrected 
 ### P2
 
 ## Ruled Out
-- Feature-catalog telemetry and neutral-length notes are stale: the reviewed catalog surfaces correctly describe rerank gating at four rows plus compatibility-only length scaling and telemetry counters. [SOURCE: `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md:25`] [SOURCE: `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:241`]
+- Feature-catalog telemetry and neutral-length notes are stale: the reviewed catalog surfaces correctly describe rerank gating at four rows plus compatibility-only length scaling and telemetry counters. [SOURCE: `.opencode/skills/system-spec-kit/feature_catalog/retrieval/05-4-stage-pipeline-architecture.md:25`] [SOURCE: `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:241`]
 
 ## Dead Ends
-- Looking for a catalog entry that limited continuity to Stage 1 or Stage 2 did not turn up any exception; the main catalog and retrieval entries repeat the same Stage 3 continuity-lambda language. [SOURCE: `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:147`] [SOURCE: `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md:22`]
+- Looking for a catalog entry that limited continuity to Stage 1 or Stage 2 did not turn up any exception; the main catalog and retrieval entries repeat the same Stage 3 continuity-lambda language. [SOURCE: `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:147`] [SOURCE: `.opencode/skills/system-spec-kit/feature_catalog/retrieval/02-semantic-and-lexical-search-memorysearch.md:22`]
 
 ## Recommended Next Focus
 Audit the packet-local `005-doc-surface-alignment` docs, where the same continuity-lambda behavior is recorded as verified packet evidence.

@@ -17,7 +17,7 @@ Two-track work across `.opencode/skills/system-spec-kit/mcp_server/stress_test/`
 
 - sk-code-opencode standards: `.opencode/skills/sk-code-opencode/SKILL.md` + `.opencode/skills/sk-code-opencode/references/`
 - Feature catalogs to audit:
-  - `.opencode/skills/system-spec-kit/feature_catalog/` (302 features — focus on stress-test-relevant categories: 06--analysis, 11--scoring, 12--query-intelligence, 13--memory-quality, 14--stress-testing, 15--retrieval, 22--context-preservation)
+  - `.opencode/skills/system-spec-kit/feature_catalog/` (302 features — focus on stress-test-relevant categories: analysis, 11--scoring, query-intelligence, 13--memory-quality, stress-testing, 15--retrieval, context-preservation)
   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/` (17 features)
   - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/` (37 features)
 - Existing stress test inventory: `.opencode/skills/system-spec-kit/mcp_server/stress_test/` (29 .ts files / 25 vitest / 63 tests; subsystems: memory/, code-graph/, skill-advisor/, search-quality/, matrix/, session/)

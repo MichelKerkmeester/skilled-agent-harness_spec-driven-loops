@@ -9,7 +9,7 @@ You are generating ONE Vitest stress test that wraps the Python skill_advisor be
 ## Feature
 
 - **feature_id**: `sa-037`
-- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/08--python-compat/03-bench-runner.md`
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/python-compat/03-bench-runner.md`
 - **Python script**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor_bench.py` — measures cache-hit p95 ≤ 50ms, uncached p95 ≤ 60ms (or whatever the catalog documents)
 
 ## Reference patterns

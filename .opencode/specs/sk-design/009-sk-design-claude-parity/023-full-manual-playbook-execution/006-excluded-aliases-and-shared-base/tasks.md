@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read `manual_testing_playbook/03--transform-verb-framing/audit-excluded-aliases.md` in full
-- [x] T002 Read `manual_testing_playbook/05--shared-reference-base/reference-base-backend-modes.md` in full
-- [x] T003 Read `manual_testing_playbook/05--shared-reference-base/shared-base-not-workflow.md` in full
+- [x] T001 Read `manual_testing_playbook/transform-verb-framing/audit-excluded-aliases.md` in full
+- [x] T002 Read `manual_testing_playbook/shared-reference-base/reference-base-backend-modes.md` in full
+- [x] T003 Read `manual_testing_playbook/shared-reference-base/shared-base-not-workflow.md` in full
 - [x] T004 Locate structural template: read `../../022-benchmark-rerun-and-coverage-fill/` docs as the exact Level 2 shape to mirror
 <!-- /ANCHOR:phase-1 -->
 

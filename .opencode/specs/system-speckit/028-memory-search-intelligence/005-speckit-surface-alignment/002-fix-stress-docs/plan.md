@@ -90,13 +90,13 @@ Audit finding -> read real files/scripts -> patch scoped markdown -> run grep/re
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `feature_catalog/14--stress-testing/category-overview.md` | Catalog inventory for stress testing. | Add automated harness awareness. | Compare to `mcp_server/stress_test/**` and `mcp_server/package.json`. |
-| `manual_testing_playbook/14--stress-testing/` | Manual operator stress cycle. | Add harness cross-reference without replacing manual flow. | Read README and run-stress-cycle after patch. |
+| `feature_catalog/stress-testing/category-overview.md` | Catalog inventory for stress testing. | Add automated harness awareness. | Compare to `mcp_server/stress_test/**` and `mcp_server/package.json`. |
+| `manual_testing_playbook/stress-testing/` | Manual operator stress cycle. | Add harness cross-reference without replacing manual flow. | Read README and run-stress-cycle after patch. |
 | `mcp_server/stress_test/**/README.md` | Automated harness domain docs. | Align file inventories and cleanup contract. | Glob real files and grep cleanup source/tests. |
 | `SKILL.md` and changelog | Confirmed current by audit. | No action. | User explicitly forbade touching them. |
 
 Required inventories:
-- Same-class docs were identified by globbing `mcp_server/stress_test/**/*.md` and the in-scope 14--stress-testing docs.
+- Same-class docs were identified by globbing `mcp_server/stress_test/**/*.md` and the in-scope stress-testing docs.
 - Script command surface was verified in `.opencode/skills/system-spec-kit/mcp_server/package.json`.
 - Substrate cleanup behavior was verified in `run-substrate-stress-harness.mjs` and `substrate-runner-harness.vitest.ts`.
 - Algorithm invariant: documentation must describe current shipped files and commands, not planned or phantom artifacts.

@@ -17,9 +17,9 @@ _memory:
     blockers: []
     key_files:
       - "manual_testing_playbook/manual_testing_playbook.md"
-      - "manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md"
-      - "manual_testing_playbook/04--maintenance/post-insert-enrichment-lifecycle-v30.md"
-      - "manual_testing_playbook/14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md"
+      - "manual_testing_playbook/lifecycle/checkpoint-v2-file-snapshot-roundtrip.md"
+      - "manual_testing_playbook/maintenance/post-insert-enrichment-lifecycle-v30.md"
+      - "manual_testing_playbook/pipeline-architecture/front-proxy-reconnect-and-backend-only.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-testing-playbook-update-packet-setup"
@@ -57,12 +57,12 @@ Six new human-run `EX-###` scenarios were added to the Spec Kit Memory manual te
 
 | ID | Title | Feature file | Folder rationale |
 |----|-------|--------------|------------------|
-| EX-037 | Checkpoint v2 file-snapshot round-trip | `05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md` | Sits with the existing checkpoint block (`EX-015`..`EX-018`) |
-| EX-038 | Post-insert enrichment lifecycle (schema v30) | `04--maintenance/post-insert-enrichment-lifecycle-v30.md` | Maintenance/index-time behavior |
-| EX-039 | index_scan phased-async refinements | `04--maintenance/index-scan-phased-async-refinements.md` | Extends `EX-014` (memory_index_scan) |
-| EX-040 | MCP front-proxy reconnect / SPECKIT_BACKEND_ONLY / -32002 vs -32001 | `14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md` | Runtime/pipeline infrastructure |
-| EX-041 | sk-git worktree convention | `16--tooling-and-scripts/sk-git-worktree-convention.md` | Tooling/scripts |
-| EX-042 | Checkpoint v2 .needs-rebuild self-heal | `05--lifecycle/checkpoint-v2-needs-rebuild-self-heal.md` | Checkpoint lifecycle |
+| EX-037 | Checkpoint v2 file-snapshot round-trip | `lifecycle/checkpoint-v2-file-snapshot-roundtrip.md` | Sits with the existing checkpoint block (`EX-015`..`EX-018`) |
+| EX-038 | Post-insert enrichment lifecycle (schema v30) | `maintenance/post-insert-enrichment-lifecycle-v30.md` | Maintenance/index-time behavior |
+| EX-039 | index_scan phased-async refinements | `maintenance/index-scan-phased-async-refinements.md` | Extends `EX-014` (memory_index_scan) |
+| EX-040 | MCP front-proxy reconnect / SPECKIT_BACKEND_ONLY / -32002 vs -32001 | `pipeline-architecture/front-proxy-reconnect-and-backend-only.md` | Runtime/pipeline infrastructure |
+| EX-041 | sk-git worktree convention | `tooling-and-scripts/sk-git-worktree-convention.md` | Tooling/scripts |
+| EX-042 | Checkpoint v2 .needs-rebuild self-heal | `lifecycle/checkpoint-v2-needs-rebuild-self-heal.md` | Checkpoint lifecycle |
 
 ### Coverage delivered
 
@@ -92,7 +92,7 @@ The accuracy guardrails were honored explicitly: `-32001` is documented as the l
 | Decision | Why |
 |----------|-----|
 | Additive EX scenarios (EX-037+) over restructuring | The playbook's EX/PHASE/M IDs and `NN--category/` structure are load-bearing across many cross-reference tables; additivity preserves every existing reference. |
-| Topic-affinity folder placement | Checkpoint scenarios join `05--lifecycle`, maintenance/index join `04--maintenance`, front-proxy joins `14--pipeline-architecture`, sk-git joins `16--tooling-and-scripts` — matching the playbook's existing organizing principle. |
+| Topic-affinity folder placement | Checkpoint scenarios join `lifecycle`, maintenance/index join `maintenance`, front-proxy joins `pipeline-architecture`, sk-git joins `tooling-and-scripts` — matching the playbook's existing organizing principle. |
 | Document `-32001` as live retryable-recycle | `-32001` is the live `RETRYABLE_RECYCLE_ERROR` in `launcher-session-proxy.cjs`; stating it was removed would be false and misleading. |
 | Feature-File-only master-index links | The catalog files are owned by sibling phase `002-feature-catalog-update`; linking only the Feature File keeps every link resolvable now. |
 <!-- /ANCHOR:decisions -->
@@ -105,7 +105,7 @@ The accuracy guardrails were honored explicitly: `-32001` is documented as the l
 | Check | Result |
 |-------|--------|
 | Packet docs authored (spec, plan, tasks, checklist, decision-record, summary) | PASS |
-| Six EX feature files created under topic-appropriate `NN--category/` folders | PASS — EX-037/042 in `05--lifecycle/`, EX-038/039 in `04--maintenance/`, EX-040 in `14--pipeline-architecture/`, EX-041 in `16--tooling-and-scripts/` |
+| Six EX feature files created under topic-appropriate `NN--category/` folders | PASS — EX-037/042 in `lifecycle/`, EX-038/039 in `maintenance/`, EX-040 in `pipeline-architecture/`, EX-041 in `tooling-and-scripts/` |
 | Master index wired with `### EX-037`..`### EX-042` entries | PASS — entries at master-index lines 769, 782, 795, 808, 821, 834 |
 | Feature-File links resolve to existing files | PASS — all six targets exist on disk |
 | Behavioral claims traced to source anchors | PASS — each Source Metadata cites the file path read (checkpoints.ts, vector-index-schema.ts, enrichment-state.ts, memory-index.ts, launcher-session-proxy.cjs, context-server.ts, sk-git SKILL.md) |

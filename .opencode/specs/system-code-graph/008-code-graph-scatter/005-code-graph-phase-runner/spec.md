@@ -80,10 +80,10 @@ _memory:
 | `mcp_server/code_graph/handlers/detect-changes.ts` | NEW | Read-only preflight handler |
 | `mcp_server/code_graph/lib/structural-indexer.ts:1369` | MODIFY | Wrap `indexFiles()` body as declared phases |
 | `mcp_server/code_graph/handlers/index.ts` | MODIFY | Register new handler |
-| `feature_catalog/03--discovery/` | NEW entry | Catalog `detect_changes` |
-| `feature_catalog/14--pipeline-architecture/` | NEW entry | Catalog phase-DAG runner |
-| `manual_testing_playbook/03--discovery/` | NEW entry | Playbook for `detect_changes` |
-| `manual_testing_playbook/14--pipeline-architecture/` | NEW entry | Playbook for phase-DAG runner |
+| `feature_catalog/discovery/` | NEW entry | Catalog `detect_changes` |
+| `feature_catalog/pipeline-architecture/` | NEW entry | Catalog phase-DAG runner |
+| `manual_testing_playbook/discovery/` | NEW entry | Playbook for `detect_changes` |
+| `manual_testing_playbook/pipeline-architecture/` | NEW entry | Playbook for phase-DAG runner |
 
 ---
 

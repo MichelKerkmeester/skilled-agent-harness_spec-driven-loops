@@ -98,8 +98,8 @@ Promote the README distinction into a shared SSOT predicate and wire it into eve
 | 005-memory-indexer-invariants/spec.md | Modify | Add REQ-017 storage-boundary invariant; refresh post-merge identity drift (P2-006). |
 | 005-memory-indexer-invariants/checklist.md | Modify | Add `file:line` evidence to existing CHK items (P2-002). |
 | 005-memory-indexer-invariants/decision-record.md | Modify | Back-fill alternatives for ADR-008..ADR-012 (P2-012). |
-| .opencode/skills/sk-doc/feature_catalog/13--memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md | Modify | Update packet ID + ADR refs (P2-007). |
-| .opencode/skills/sk-doc/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md | Modify | Add adversarial scenarios (P2-008). |
+| .opencode/skills/sk-doc/feature_catalog/memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md | Modify | Update packet ID + ADR refs (P2-007). |
+| .opencode/skills/sk-doc/manual_testing_playbook/memory-quality-and-indexing/003-context-save-index-update.md | Modify | Add adversarial scenarios (P2-008). |
 | Strategy file 005/.../deep-review-strategy.md | Modify | Fix `code-graph` → `code_graph` and `handlers/memory-parser.ts` → `lib/parsing/memory-parser.ts` (P2-001). |
 
 ---

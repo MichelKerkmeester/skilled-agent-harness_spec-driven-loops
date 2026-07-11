@@ -66,12 +66,12 @@ _memory:
 
 ### Package Layout Drafting
 
-- [x] T012 Hub package layout already complete out-of-band: `01--manager-shell/` (3 features) + `02--procedure-card-system/` (2 features) — verified untouched, 6 files [20m]
-- [x] T013 [P] `design-interface` package already complete out-of-band: `01--aesthetic-direction-process/`, `02--delivery-gates/`, `03--procedure-cards/` (5 features) — verified untouched, 6 files [20m]
-- [x] T014 [P] Authored the `design-foundations` package: `01--token-system/`, `02--adaptation-and-data/`, `03--procedure-cards/` (5 new per-feature files; root already existed) — 6 files total, `find` verified [20m]
-- [x] T015 [P] Authored the `design-motion` package: `01--restraint-gate-and-choreography/`, `02--build-cards/`, `03--procedure-cards/` (root + 4 new per-feature files) — 5 files total, `find` verified [20m]
-- [x] T016 [P] Authored the `design-audit` package: `01--findings-first-review/`, `02--ai-tell-catalog/`, `03--procedure-cards/` (root + 4 new per-feature files) — 5 files total, `find` verified [20m]
-- [x] T017 Authored the `design-md-generator` completeness fix: new `08--procedure-cards/md-generator-procedure-card-inventory.md` and a new root "9. PROCEDURE CARDS" section — 9 files total, `grep -n "^## "` confirms sections 1-8 unchanged plus new section 9 [15m]
+- [x] T012 Hub package layout already complete out-of-band: `manager-shell/` (3 features) + `procedure-card-system/` (2 features) — verified untouched, 6 files [20m]
+- [x] T013 [P] `design-interface` package already complete out-of-band: `aesthetic-direction-process/`, `delivery-gates/`, `procedure-cards/` (5 features) — verified untouched, 6 files [20m]
+- [x] T014 [P] Authored the `design-foundations` package: `token-system/`, `adaptation-and-data/`, `procedure-cards/` (5 new per-feature files; root already existed) — 6 files total, `find` verified [20m]
+- [x] T015 [P] Authored the `design-motion` package: `restraint-gate-and-choreography/`, `build-cards/`, `procedure-cards/` (root + 4 new per-feature files) — 5 files total, `find` verified [20m]
+- [x] T016 [P] Authored the `design-audit` package: `findings-first-review/`, `ai-tell-catalog/`, `procedure-cards/` (root + 4 new per-feature files) — 5 files total, `find` verified [20m]
+- [x] T017 Authored the `design-md-generator` completeness fix: new `procedure-cards/md-generator-procedure-card-inventory.md` and a new root "9. PROCEDURE CARDS" section — 9 files total, `grep -n "^## "` confirms sections 1-8 unchanged plus new section 9 [15m]
 
 ### Evidence and Contract Citation
 

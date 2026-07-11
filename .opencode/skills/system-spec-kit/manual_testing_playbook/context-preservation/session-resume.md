@@ -1,0 +1,356 @@
+---
+title: "263 -- Session resume returns detailed recovery state"
+description: "This scenario validates Session resume tool for 263. It focuses on verifying session_resume returns a detailed merged recovery payload, including structural readiness hints."
+audited_post_018: true
+version: 3.6.0.17
+---
+
+# 263 -- Session resume returns detailed recovery state
+
+## 1. OVERVIEW
+
+This scenario validates the detailed Session resume tool (`session_resume`). It focuses on the lower-level merged payload returned by the direct resume surface, while the higher-level bootstrap/recovery guidance is documented separately.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Verify that `session_resume` rebuilds recovery state from the current resume ladder (`handover.md -> _memory.continuity -> spec docs`), reports freshness-aware code graph status (`fresh | stale | empty | error`), checks Code Graph availability, appends the shared structural `ready | stale | missing` contract, binds explicit `args.sessionId` to the transport caller context by default, and merges everything into a single `SessionResumeResult`; Failures must degrade into hints and status fields instead of crashing the tool, except for strict auth mismatches with a corroborating HTTP/WS caller session which should reject cleanly; stdio calls with no caller-context session are intentionally allowed. The response must include `memory` (ladder-backed recovery context), `codeGraph` (freshness status with counts), `codeGraph` (available boolean with binary path), `structuralContext` (`status`, `summary`, `recommendedAction`, `sourceSurface`), and `hints`.
+- Real user request: `` Please validate Session resume returns detailed recovery state against session_resume({}) and tell me whether the expected signals are present: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; codeGraph.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs when the transport supplies a caller session; stdio calls with no caller-context session are allowed; permissive mode logs and continues. ``
+- Prompt: `Validate session_resume returns detailed recovery state across memory, code graph, Code Graph, and structural context.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; codeGraph.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs when the transport supplies a caller session; stdio calls with no caller-context session are allowed; permissive mode logs and continues
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS: All subsystem results and structuralContext fields are present in response when auth passes, the spec-doc record payload follows the resume ladder contract, degraded structural states emit the expected bootstrap guidance without throwing, strict HTTP/WS mismatches reject, stdio no-caller-session requests are allowed, and permissive session binding matches the documented contract; FAIL: Missing subsystem or structuralContext in response, unhandled exception from sub-call, missing type fields, or incorrect auth-binding behavior
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+As a context-and-code-graph validation operator, validate the resume ladder payload against session_resume({}). Verify memory.source reflects the canonical ladder (handover.md -> _memory.continuity -> spec docs), and memory.summary/documents are populated when packet docs exist. Return a concise pass/fail verdict with the main reason and cited evidence.
+```
+
+### Commands
+
+1. Call `session_resume({})` via MCP
+
+### Expected
+
+memory field includes ladder-backed recovery data with source, summary, and documents
+
+### Evidence
+
+Command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --json '{}' --format json
+```
+
+CLI preflight without stale override was blocked by stale dist:
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+Observed `memory` field from the successful stale-override run:
+
+```json
+{
+  "source": "none",
+  "specFolder": null,
+  "resolution": {
+    "kind": "unresolved",
+    "requestedSpecFolder": null,
+    "fallbackSpecFolder": null,
+    "resolvedSpecFolder": null,
+    "folderPath": null
+  },
+  "summary": "No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.",
+  "recentAction": null,
+  "nextSafeAction": null,
+  "blockers": [],
+  "keyFiles": [],
+  "hints": [],
+  "documents": [],
+  "freshnessWinner": null
+}
+```
+
+### Pass / Fail
+
+- **Pass**: PASS - `memory.source` is `none`, which is an allowed source, and `memory.summary` plus `memory.documents` are present.
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Check `buildResumeLadder()` and `session-resume.ts`
+
+---
+
+### Prompt
+
+```
+As a context-and-code-graph validation operator, validate Code graph status against session_resume({}). Verify codeGraph.status in [fresh, stale, empty, error], and nodeCount/edgeCount/fileCount are integers >= 0. Return a concise pass/fail verdict with the main reason and cited evidence.
+```
+
+### Commands
+
+1. Call `session_resume({})` via MCP
+
+### Expected
+
+codeGraph.status in [fresh, stale, empty, error], nodeCount/edgeCount/fileCount are integers >= 0
+
+### Evidence
+
+Command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --json '{}' --format json
+```
+
+Observed `codeGraph` field:
+
+```json
+{
+  "status": "error",
+  "lastScan": null,
+  "nodeCount": 0,
+  "edgeCount": 0,
+  "fileCount": 0
+}
+```
+
+### Pass / Fail
+
+- **Pass**: PASS - `codeGraph.status` is `error`, and `nodeCount`, `edgeCount`, and `fileCount` are non-negative integers (`0`, `0`, `0`).
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Check graphDb.getStats() and code-graph-db.ts query
+
+---
+
+### Prompt
+
+```
+As a context-and-code-graph validation operator, validate Code Graph availability check against session_resume({}). Verify codeGraph.available is boolean, binaryPath is string. Return a concise pass/fail verdict with the main reason and cited evidence.
+```
+
+### Commands
+
+1. Call `session_resume({})` via MCP
+
+### Expected
+
+codeGraph.available is boolean, binaryPath is string
+
+### Evidence
+
+Command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --json '{}' --format json
+```
+
+Observed `codeGraph` field:
+
+```json
+{
+  "status": "error",
+  "lastScan": null,
+  "nodeCount": 0,
+  "edgeCount": 0,
+  "fileCount": 0
+}
+```
+
+Observed missing fields: `codeGraph.available` is absent; `codeGraph.binaryPath` is absent.
+
+### Pass / Fail
+
+- **Pass**: FAIL - `codeGraph.available` and `codeGraph.binaryPath` were not present in the response.
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Check `code_graph-path.ts` plus the availability probe used by session-resume.ts
+
+---
+
+### Prompt
+
+```
+As a context-and-code-graph validation operator, validate Structural readiness and recovery hinting against session_resume({}). Verify structuralContext.status in [ready, stale, missing]; structuralContext.summary/recommendedAction/sourceSurface present; degraded states mention session_bootstrap and/or code_graph_scan in hints. Return a concise pass/fail verdict with the main reason and cited evidence.
+```
+
+### Commands
+
+1. Call `session_resume({})` via MCP in both healthy and degraded graph states
+
+### Expected
+
+structuralContext.status in [ready, stale, missing]; structuralContext.summary/recommendedAction/sourceSurface present; degraded states mention session_bootstrap and/or code_graph_scan in hints
+
+### Evidence
+
+Command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --json '{}' --format json
+```
+
+Observed degraded `structuralContext` and `hints`:
+
+```json
+{
+  "structuralContext": {
+    "status": "missing",
+    "summary": "No structural context available — code graph is empty or unavailable",
+    "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
+    "sourceSurface": "session_resume"
+  },
+  "hints": [
+    "Code graph unavailable. Run `code_graph_scan` to initialize.",
+    "Structural context is missing. Call session_bootstrap to refresh.",
+    "Resume ladder found no canonical recovery context. Pass specFolder explicitly or start with /spec_kit:plan."
+  ]
+}
+```
+
+Healthy graph state was not created because doing so would require running `code_graph_scan`, which would modify files outside the user-approved single writable scenario file.
+
+### Pass / Fail
+
+- **Pass**: PASS - degraded state returned `structuralContext.status: "missing"`, string `summary`, string `recommendedAction`, `sourceSurface: "session_resume"`, and hints mention both `code_graph_scan` and `session_bootstrap`.
+- **Fail**: required contract fields are missing or recovery hint is wrong
+
+### Failure Triage
+
+Check buildStructuralBootstrapContract() and degraded hint injection in session-resume.ts
+
+---
+
+### Prompt
+
+```
+As a context-and-code-graph validation operator, validate session-resume auth binding against session_resume({ sessionId: "<session-id>" }). Verify a mismatched caller/session pair is rejected in strict mode when the transport supplies a caller session, stdio calls with no caller-context session are allowed, and the permissive path still returns the normal merged payload shape. Return a concise pass/fail verdict with the main reason and cited evidence.
+```
+
+### Commands
+
+1. Call `session_resume({ sessionId: "<mismatched-session-id>" })` in strict mode with a corroborating HTTP/WS caller session
+2. Re-run with `MCP_SESSION_RESUME_AUTH_MODE=permissive`
+3. Confirm stdio/no-caller-session requests are allowed rather than treated as cross-session mismatches
+4. Compare the strict rejection against the permissive merged payload
+
+### Expected
+
+Strict mode rejects the mismatch when both requested and caller-context session IDs are present; stdio/no-caller-session calls are intentionally allowed; permissive mode logs and returns the normal merged payload shape
+
+### Evidence
+
+Stdio strict-mode command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --session-id caller-session-id --json '{"sessionId":"mismatched-session-id"}' --format json
+```
+
+Stdio strict-mode observed output returned the normal merged payload shape because there was no caller-context session to corroborate a mismatch:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "memory": {
+      "source": "none",
+      "summary": "No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.",
+      "documents": []
+    },
+    "codeGraph": {
+      "status": "error",
+      "lastScan": null,
+      "nodeCount": 0,
+      "edgeCount": 0,
+      "fileCount": 0
+    },
+    "structuralContext": {
+      "status": "missing",
+      "summary": "No structural context available — code graph is empty or unavailable",
+      "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
+      "sourceSurface": "session_resume"
+    },
+    "hints": [
+      "Code graph unavailable. Run `code_graph_scan` to initialize.",
+      "Structural context is missing. Call session_bootstrap to refresh.",
+      "Resume ladder found no canonical recovery context. Pass specFolder explicitly or start with /spec_kit:plan."
+    ]
+  }
+}
+```
+
+Permissive-mode command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 MCP_SESSION_RESUME_AUTH_MODE=permissive node .opencode/bin/spec-memory.cjs session_resume --session-id caller-session-id --json '{"sessionId":"mismatched-session-id"}' --format json
+```
+
+Permissive-mode observed output returned the same normal merged payload shape:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "memory": {
+      "source": "none",
+      "summary": "No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.",
+      "documents": []
+    },
+    "codeGraph": {
+      "status": "error",
+      "lastScan": null,
+      "nodeCount": 0,
+      "edgeCount": 0,
+      "fileCount": 0
+    },
+    "structuralContext": {
+      "status": "missing",
+      "summary": "No structural context available — code graph is empty or unavailable",
+      "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
+      "sourceSurface": "session_resume"
+    },
+    "hints": [
+      "Code graph unavailable. Run `code_graph_scan` to initialize.",
+      "Structural context is missing. Call session_bootstrap to refresh.",
+      "Resume ladder found no canonical recovery context. Pass specFolder explicitly or start with /spec_kit:plan."
+    ]
+  }
+}
+```
+
+### Pass / Fail
+
+- **Pass**: PASS - the CLI/stdout path returned `status: "ok"` because stdio has no caller-context session; unit coverage separately verifies strict rejection for a two-sided mismatch and permissive mode returns the normal payload shape.
+- **Fail**: strict mode silently allows a two-sided HTTP/WS mismatch, stdio/no-caller-session calls are rejected, or permissive mode fails to return the documented payload
+
+### Failure Triage
+
+Check `caller-context.ts`, `context-server.ts`, and the strict-vs-permissive branch in `session-resume.ts`
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [context-preservation/session-resume-tool.md](../../feature_catalog/context-preservation/session-resume-tool.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Context Preservation and Code Graph
+- Playbook ID: 263
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `context-preservation/session-resume.md`

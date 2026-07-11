@@ -25,19 +25,19 @@ All 30 assigned documents were read in full:
 - `.opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md`
 - `.opencode/skills/mcp-tooling/mcp-figma/assets/env_template.md`
 - `.opencode/skills/mcp-tooling/mcp-figma/assets/utcp_figma_manual.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/default-model-selection-sonnet.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/output-format-text-vs-json.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/stream-json-incremental-output.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/02--permission-modes/accept-edits-auto-approve-writes-sandboxed.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/02--permission-modes/bypass-permissions-guard-rail-sandboxed.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/02--permission-modes/plan-mode-read-only-enforcement.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/03--reasoning-and-models/haiku-fast-classification.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/03--reasoning-and-models/opus-extended-thinking.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/03--reasoning-and-models/sonnet-balanced-default.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/context-agent-codebase-exploration.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/debug-agent-fresh-perspective-root-cause.md`
-- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/handover-agent-context-transfer.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/cli-invocation/base-non-interactive-invocation.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/cli-invocation/default-model-selection-sonnet.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/cli-invocation/output-format-text-vs-json.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/cli-invocation/stream-json-incremental-output.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/permission-modes/accept-edits-auto-approve-writes-sandboxed.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/permission-modes/bypass-permissions-guard-rail-sandboxed.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/permission-modes/plan-mode-read-only-enforcement.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/reasoning-and-models/haiku-fast-classification.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/reasoning-and-models/opus-extended-thinking.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/reasoning-and-models/sonnet-balanced-default.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/agent-routing/context-agent-codebase-exploration.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/agent-routing/debug-agent-fresh-perspective-root-cause.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/agent-routing/handover-agent-context-transfer.md`
 
 Conformance results: all 30 real `validate_document.py` invocations exited 0. DQI scores ranged from 85 to 100, so every document cleared the required 75 threshold. The relative-link resolver found no broken Markdown links. Compact playbook frontmatter, repository-wide filename conventions, and the established validator-schema gaps were treated as expected and did not produce findings.
 
@@ -68,28 +68,28 @@ Conformance results: all 30 real `validate_document.py` invocations exited 0. DQ
 
 #### R2-P0-004: Claude templates dispatch agents that do not exist in the current roster
 
-- Evidence: `.opencode/skills/cli-external/cli-claude-code/assets/prompt_templates.md:294`, `:303`, `:442-443`; `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/handover-agent-context-transfer.md:27-50`; the current `.opencode/agents/` roster has `markdown.md` but no `write.md` or `handover.md`, and `.claude/agents/` is absent.
+- Evidence: `.opencode/skills/cli-external/cli-claude-code/assets/prompt_templates.md:294`, `:303`, `:442-443`; `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/agent-routing/handover-agent-context-transfer.md:27-50`; the current `.opencode/agents/` roster has `markdown.md` but no `write.md` or `handover.md`, and `.claude/agents/` is absent.
 - Issue: copy-paste commands route to `--agent write` and `--agent handover`; the handover scenario therefore cannot test the claimed current capability.
 - Exact fix: route documentation work to the real `markdown` agent, replace handover dispatch with the canonical continuity workflow or add a real runtime-correct handover agent before retaining the scenario.
 - Claim adjudication: claim=`the named agents are not loadable from the current project agent directories`; counterevidence sought=`both runtime-specific agent directories and the skill roster`; alternative explanation=`Claude Code provides hidden built-in agents with these names`; final severity=`P0` because project docs claim project-defined routing and no definitions exist; confidence=`0.95`; downgrade trigger=`a live `claude --agent` run or checked-in definition proves both names resolve`.
 
 #### R2-P0-005: Multiple JSON playbooks query stale envelope fields
 
-- Evidence: `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/default-model-selection-sonnet.md:49`, `03--reasoning-and-models/haiku-fast-classification.md:49`, `03--reasoning-and-models/opus-extended-thinking.md:49`, and `03--reasoning-and-models/sonnet-balanced-default.md:49` query `.cost` and `.duration`, while the current Claude Code single-result envelope uses `total_cost_usd` and `duration_ms`.
+- Evidence: `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/cli-invocation/default-model-selection-sonnet.md:49`, `reasoning-and-models/haiku-fast-classification.md:49`, `reasoning-and-models/opus-extended-thinking.md:49`, and `reasoning-and-models/sonnet-balanced-default.md:49` query `.cost` and `.duration`, while the current Claude Code single-result envelope uses `total_cost_usd` and `duration_ms`.
 - Issue: the checks read null values and cannot enforce their cost/runtime gates.
 - Exact fix: update every jq query and assertion to `total_cost_usd` and `duration_ms`, preserve the raw envelope as evidence, and fail explicitly when a required field is null.
 - Claim adjudication: claim=`the playbook queries do not match the current JSON envelope`; counterevidence sought=`current 2.1.206 help and all alternate key fallbacks already present in the slice`; alternative explanation=`an account-specific wrapper adds aliases`; final severity=`P0` because no wrapper is named and null fields invalidate the gate; confidence=`0.90`; downgrade trigger=`a captured 2.1.206 envelope proves `.cost` and `.duration` are populated aliases`.
 
 #### R2-P0-006: Base invocation scenario never captures the Claude process exit code
 
-- Evidence: `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md:48-50` runs Claude through `tee`, then runs `echo "Exit: $?"` as a separate Bash step.
+- Evidence: `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/cli-invocation/base-non-interactive-invocation.md:48-50` runs Claude through `tee`, then runs `echo "Exit: $?"` as a separate Bash step.
 - Issue: `$?` in the later shell cannot refer to the prior Claude process; without `pipefail`, the pipeline status is also `tee`'s status. A failed dispatch can pass the exit-code criterion.
 - Exact fix: run under `set -o pipefail`, capture `${PIPESTATUS[0]}` in the same shell invocation, persist it, and assert it equals zero.
 - Claim adjudication: claim=`the scenario's exit evidence is disconnected from the process under test`; counterevidence sought=`same-shell chaining or PIPESTATUS capture`; alternative explanation=`the playbook runner preserves shell state between numbered Bash steps`; final severity=`P0` because each step is explicitly a separate Bash invocation; confidence=`0.99`; downgrade trigger=`the runner contract proves a shared shell and pipefail, or the command is rewritten to capture status atomically`.
 
 #### R2-P0-007: stream-json test corrupts its own JSON channel
 
-- Evidence: `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/stream-json-incremental-output.md:47-49` merges stderr into stdout with `2>&1`, writes the mixture as `.jsonl`, and requires every line to parse as JSON.
+- Evidence: `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/cli-invocation/stream-json-incremental-output.md:47-49` merges stderr into stdout with `2>&1`, writes the mixture as `.jsonl`, and requires every line to parse as JSON.
 - Issue: any warning or diagnostic on stderr makes the asserted JSONL unparsable even when Claude's stdout stream is valid; the test confounds transport correctness with stderr cleanliness.
 - Exact fix: capture stdout to the JSONL evidence file and stderr to a separate log, capture the process exit atomically, parse only stdout, and report stderr independently.
 - Claim adjudication: claim=`the test can fail a valid JSON stream by mixing channels`; counterevidence sought=`a CLI guarantee that stderr is always empty in stream-json mode`; alternative explanation=`2>&1 is intended to preserve all diagnostics in one artifact`; final severity=`P0` because that artifact is then required to be pure JSONL; confidence=`0.98`; downgrade trigger=`the current CLI contract guarantees all diagnostics are JSON events on stdout and emits nothing on stderr`.
@@ -102,7 +102,7 @@ None. All 30 assigned documents passed the real structural validator and DQI thr
 
 #### R2-P2-001: Bypass playbook names the same sibling twice
 
-- Evidence: `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/02--permission-modes/bypass-permissions-guard-rail-sandboxed.md:54`.
+- Evidence: `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/permission-modes/bypass-permissions-guard-rail-sandboxed.md:54`.
 - Issue: the optional check says to cross-check `cli-opencode` and `cli-opencode`, losing the intended second family member.
 - Exact fix: replace one duplicate with `cli-claude-code` or name the actual second sibling intended by the cross-family check.
 

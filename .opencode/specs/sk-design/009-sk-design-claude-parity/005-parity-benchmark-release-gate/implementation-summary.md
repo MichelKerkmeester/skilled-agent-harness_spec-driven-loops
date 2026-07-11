@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-This packet executed the automated router-mode benchmark release gate for `sk-design` parity behavior: it compared a fresh `benchmark/after-009/` run against the frozen `benchmark/baseline/` ledger, added the PB-001..PB-003 parity-behavior manual playbook scenarios, and recorded a CONDITIONAL release verdict in `release-report.md`. Router/advisor invariants, procedure-selection route replay, and md-generator route replay pass. Live/manual/browser-mode scenario execution, design-quality reviewer lanes, and D1-inter/D4 usefulness scoring remain explicitly out of scope for this automated dispatch and are tracked as named operator follow-up items. No parent root files, sibling phases, `external/**`, `research/**` files, or `.opencode/skills/sk-design/**` files outside the approved Phase 005 artifact paths (`benchmark/after-009/**`, `manual_testing_playbook/06--parity-behavior/**`, `manual_testing_playbook/manual_testing_playbook.md`) were changed by this packet.
+This packet executed the automated router-mode benchmark release gate for `sk-design` parity behavior: it compared a fresh `benchmark/after-009/` run against the frozen `benchmark/baseline/` ledger, added the PB-001..PB-003 parity-behavior manual playbook scenarios, and recorded a CONDITIONAL release verdict in `release-report.md`. Router/advisor invariants, procedure-selection route replay, and md-generator route replay pass. Live/manual/browser-mode scenario execution, design-quality reviewer lanes, and D1-inter/D4 usefulness scoring remain explicitly out of scope for this automated dispatch and are tracked as named operator follow-up items. No parent root files, sibling phases, `external/**`, `research/**` files, or `.opencode/skills/sk-design/**` files outside the approved Phase 005 artifact paths (`benchmark/after-009/**`, `manual_testing_playbook/parity-behavior/**`, `manual_testing_playbook/manual_testing_playbook.md`) were changed by this packet.
 <!-- /ANCHOR:exec-summary -->
 
 ---
@@ -63,7 +63,7 @@ Executed a Level 3 phase packet covering the automated portion of the parity rel
 | `implementation-summary.md` | Updated | Records the executed automated gate, CONDITIONAL verdict, and remaining operator follow-up |
 | `description.json` | Regenerated | Memory discovery metadata refreshed after content reconciliation |
 | `graph-metadata.json` | Regenerated | Graph traversal metadata refreshed after content reconciliation |
-| `.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/*.md` | Added (approved path) | PB-001, PB-002, PB-003 parity-behavior scenarios |
+| `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/*.md` | Added (approved path) | PB-001, PB-002, PB-003 parity-behavior scenarios |
 | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Updated (approved path) | Root index now includes category 06 and PB-001..PB-003 |
 | `.opencode/skills/sk-design/benchmark/after-009/report.json` + `report.md` | Added (approved path) | Fresh router-mode benchmark run compared against the frozen baseline |
 <!-- /ANCHOR:what-built -->

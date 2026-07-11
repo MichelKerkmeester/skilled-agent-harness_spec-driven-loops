@@ -30,7 +30,7 @@ The source now returns `store_health=no_active_goal` for empty status, `store_he
 
 The system-skill-advisor README still states that the `/goal` plugin exposes `mk_goal` / `mk_goal_status` with "live OpenCode-run tool invocation still under investigation." [SOURCE: .opencode/skills/system-skill-advisor/README.md:85]
 
-That conflicts with the same skill's feature catalog, which now says a live `opencode serve` run lists `mk_goal` and `mk_goal_status`, and that a live model turn calls `mk_goal` and persists per-session state. [SOURCE: .opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:41]
+That conflicts with the same skill's feature catalog, which now says a live `opencode serve` run lists `mk_goal` and `mk_goal_status`, and that a live model turn calls `mk_goal` and persists per-session state. [SOURCE: .opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:41]
 
 ### P2 - Root `README.md` Still Advertises Bare `/goal <condition>` Without the Runtime-Specific Filename Caveat
 

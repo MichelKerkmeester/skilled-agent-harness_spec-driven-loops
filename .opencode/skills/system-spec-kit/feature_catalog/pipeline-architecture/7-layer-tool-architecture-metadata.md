@@ -1,0 +1,61 @@
+---
+title: "7-layer tool architecture metadata"
+description: "The 7-layer tool architecture defines token budgets, priorities and use-case guidance for each MCP tool layer (L1-L7) as governance metadata."
+trigger_phrases:
+  - "7-layer tool architecture metadata"
+  - "tool layer token budgets"
+  - "L1-L7 tool layers"
+  - "MCP tool governance metadata"
+  - "tool priority and use-case guidance"
+version: 3.6.0.12
+---
+
+# 7-layer tool architecture metadata
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+The 7-layer tool architecture defines token budgets, priorities and use-case guidance for each MCP tool layer (L1-L7) as governance metadata.
+
+The system has many different tools, and each one needs to know how much response space it is allowed to use and which task type it is best suited for. This feature organizes all tools into seven layers with budgets and guidance, like assigning departments in a company. It does not control how tools are called at runtime but helps recommend the right tool for the job.
+
+---
+
+## 2. HOW IT WORKS
+
+The layer definitions module (`lib/architecture/layer-definitions.ts`) defines a 7-layer MCP architecture (L1 through L7) where each layer has token budgets, priorities, use-case guidance and tool membership. Layer IDs still map to task types (`search`, `browse`, `modify`, `checkpoint`, `analyze`, `maintenance`, `default`) for recommendation/hinting.
+
+Runtime dispatch in `context-server.ts` has a single name-based dispatch hop (`dispatchTool(name, args)`), and that hop fans into 5 dispatcher modules in `tools/index.ts` (`context`, `memory`, `causal`, `checkpoint`, `lifecycle`). The 7-layer model is therefore metadata/governance (token budgets and advisory recommendations), not a 7-layer runtime classifier/router.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp_server/lib/architecture/layer-definitions.ts` | Lib | 7-layer architecture metadata and budget/recommendation helpers |
+| `mcp_server/context-server.ts` | Core | Runtime dispatch entrypoint and token-budget injection |
+| `mcp_server/tools/index.ts` | API | Name-based dispatcher routing across tool modules |
+| `mcp_server/handlers/memory-context.ts` | Handler | Surfaces recommended layers as advisory metadata |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp_server/tests/layer-definitions.vitest.ts` | Automated test | Layer definition tests |
+| `mcp_server/tests/token-budget-enforcement.vitest.ts` | Automated test | Token budget enforcement |
+| `mcp_server/tests/context-server.vitest.ts` | Automated test | Context-server dispatch and budget-injection behavior |
+| `mcp_server/tests/mcp-tool-dispatch.vitest.ts` | Automated test | Tool-to-handler dispatch matrix validation |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Pipeline Architecture
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `pipeline-architecture/7-layer-tool-architecture-metadata.md`
+Related references:
+- [embedding-retry-orchestrator.md](embedding-retry-orchestrator.md) — Embedding retry orchestrator
+- [atomic-pending-file-recovery.md](atomic-pending-file-recovery.md) — Atomic pending-file recovery

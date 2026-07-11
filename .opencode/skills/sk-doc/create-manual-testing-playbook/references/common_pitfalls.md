@@ -31,7 +31,7 @@ Most playbook defects come from splitting package truth across sidecar files, de
 | Mistake | Why It Breaks | Correct Fix |
 |---|---|---|
 | Keeping separate canonical `review_protocol.md` or `subagent_utilization_ledger.md` files | Splits package truth across sidecar docs | Fold shared review/orchestration rules into the root playbook |
-| Using a `snippets/` subtree | No longer matches the current package contract | Put per-feature files in numbered root-level category folders |
+| Using a `snippets/` subtree | No longer matches the current package contract | Put per-feature files in root-level category folders |
 | Unsynced prompt fields | Operators do not know which prompt is canonical | Update `SCENARIO CONTRACT`, the table prompt, and the root summary together |
 | Broken feature-catalog links | Scenario traceability is lost | Link each scenario to its catalog entry or clearly document the exception |
 | Bare command paraphrase prompts | Fails realistic orchestrator-led testing | Rewrite prompts around user intent, evidence, and verdict |

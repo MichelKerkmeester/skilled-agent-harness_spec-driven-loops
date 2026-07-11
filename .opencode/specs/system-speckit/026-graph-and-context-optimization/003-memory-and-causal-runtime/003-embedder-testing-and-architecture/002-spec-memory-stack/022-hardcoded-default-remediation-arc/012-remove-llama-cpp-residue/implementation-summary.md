@@ -71,8 +71,8 @@ _memory:
 - `.opencode/commands/doctor/assets/doctor_memory.yaml`: dropped "llama-cpp" from the invariant profile list (line 23)
 - `.opencode/commands/doctor/update.md`: example `snapshot_path` renamed from `context-index__llama-cpp__…` to `context-index__hf-local__…`
 - `.opencode/skills/system-spec-kit/references/memory/embedder_architecture.md`: routing-table column header `"Future sentence-transformers / llama-cpp"` → `"Future sentence-transformers"`
-- `.opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-multi-file-diff.md`: 5 substitutions — 4 path refs `shared/embeddings/providers/llama-cpp.ts` → `shared/embeddings/providers/hf-local.ts`, 1 class-name `LlamaCppProvider` → `HfLocalProvider`
-- `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-blast-radius.md`: 1 path substitution `llama-cpp.ts` → `hf-local.ts` in test scenario subject
+- `.opencode/skills/system-code-graph/manual_testing_playbook/detect-changes/detect-changes-multi-file-diff.md`: 5 substitutions — 4 path refs `shared/embeddings/providers/llama-cpp.ts` → `shared/embeddings/providers/hf-local.ts`, 1 class-name `LlamaCppProvider` → `HfLocalProvider`
+- `.opencode/skills/system-code-graph/manual_testing_playbook/mcp-tool-surface/code-graph-query-blast-radius.md`: 1 path substitution `llama-cpp.ts` → `hf-local.ts` in test scenario subject
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -165,8 +165,8 @@ Explicit paths:
 .opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs
 .opencode/skills/system-skill-advisor/mcp_server/lib/embedders/types.ts
 .opencode/skills/system-skill-advisor/mcp_server/lib/embedders/index.ts
-.opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-multi-file-diff.md
-.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-blast-radius.md
+.opencode/skills/system-code-graph/manual_testing_playbook/detect-changes/detect-changes-multi-file-diff.md
+.opencode/skills/system-code-graph/manual_testing_playbook/mcp-tool-surface/code-graph-query-blast-radius.md
 .opencode/specs/.../022-hardcoded-default-remediation-arc/012-remove-llama-cpp-residue/  (NEW packet)
 .opencode/specs/.../022-hardcoded-default-remediation-arc/graph-metadata.json  (children_ids updated)
 ```

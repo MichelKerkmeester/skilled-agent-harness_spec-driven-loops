@@ -20,14 +20,14 @@ Authoritative target files per finding (from the deep-research iterations). Path
 
 ## F2 — PC-005 bench doc + gate calibration
 - `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_bench.py:241,246,247`
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/005-bench-runner.md:33,36`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/python-compat/005-bench-runner.md:33,36`
 - `.opencode/skills/system-skill-advisor/mcp_server/stress_test/skill-advisor/python-bench-runner-stress.vitest.ts:93,97`
-- `.opencode/skills/system-skill-advisor/feature_catalog/08--python-compat/03-bench-runner.md:21`
+- `.opencode/skills/system-skill-advisor/feature_catalog/python-compat/03-bench-runner.md:21`
 
 ## F3 — semantic_shadow doc/comment sync
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/004-lane-attribution.md:47,57`
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/005-ablation.md:49`
-- `.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/04-attribution.md`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/scorer-fusion/004-lane-attribution.md:47,57`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/scorer-fusion/005-ablation.md:49`
+- `.opencode/skills/system-skill-advisor/feature_catalog/scorer-fusion/04-attribution.md`
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts:160,167` (stale comment + raw flag)
 - Source of truth (do NOT change): `lib/scorer/lane-registry.ts:12`, `lib/scorer/weights-config.ts:18`
 
@@ -37,6 +37,6 @@ Authoritative target files per finding (from the deep-research iterations). Path
 - `.opencode/bin/mk-skill-advisor-launcher.cjs`, `.opencode/bin/lib/launcher-ipc-bridge.cjs` (lease/socket handling)
 
 ## F5 — playbook vitest path
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md:38`
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md:36`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/ambiguous-brief-rendering.md:38`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/lifecycle-redirect-metadata.md:36`
 - Canonical: `cd .opencode/skills/system-skill-advisor/mcp_server && npm exec -- vitest run tests/...`

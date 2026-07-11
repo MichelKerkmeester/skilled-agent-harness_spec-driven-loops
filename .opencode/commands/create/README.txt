@@ -124,8 +124,8 @@ Each mode loads a separate YAML workflow from `assets/` when that command ships 
 The `--chained` flag on `/create:skill` doc-only operations indicates parent workflow handoff.
 
 The documentation-package commands preserve the live `sk-doc` contracts:
-- `/create:feature-catalog` produces `feature_catalog/feature_catalog.md` plus numbered category folders
-- `/create:manual-testing-playbook` produces `manual_testing_playbook/manual_testing_playbook.md` plus numbered category folders and no sidecar review/ledger files
+- `/create:feature-catalog` produces `feature_catalog/feature_catalog.md` plus bare descriptive-slug category folders (the root catalog owns display order)
+- `/create:manual-testing-playbook` produces `manual_testing_playbook/manual_testing_playbook.md` plus bare descriptive-slug category folders (the root playbook owns display order) and no sidecar review/ledger files
 
 ---
 

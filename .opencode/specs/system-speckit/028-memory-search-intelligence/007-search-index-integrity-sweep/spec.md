@@ -110,7 +110,7 @@ Reconcile `memory_index` and `vec_768` against current disk state: retire the st
 | (operational) `checkpoint_create` / `checkpoint_restore` MCP tool invocation | Run, not modify | Pre-mutation snapshot and rollback path |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts` | Modify (conditional) | Only if the F10 root-cause investigation confirms `listStaleIndexedPaths`/`categorizeFilesForIndexing` is not wired into the routine scan entrypoint, or if F11's `NULL content_hash` hypothesis is confirmed and the fast-path check needs a guard |
 | A scoped re-index/repair script or existing CLI invocation (target TBD by plan.md Phase 1 investigation) | Create or reuse | Refreshes `content_text`/`content_hash` for F11's confirmed-drifted rows and flips F13's 20 false-success rows to `pending` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/` | Modify (conditional) | Record the new integrity-sweep procedure if it becomes a repeatable operator playbook entry |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/` | Modify (conditional) | Record the new integrity-sweep procedure if it becomes a repeatable operator playbook entry |
 <!-- /ANCHOR:scope -->
 
 ---

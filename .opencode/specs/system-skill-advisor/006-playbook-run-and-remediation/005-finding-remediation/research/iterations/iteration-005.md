@@ -32,10 +32,10 @@ Runtime evidence: the combined corrected command passed 4 test files / 49 tests.
 
 The two affected scenarios still point at the old pre-extraction location:
 
-- NC-004 uses `npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/handlers/advisor-recommend.vitest.ts skill-advisor/tests/legacy/advisor-renderer.vitest.ts --reporter=default` at `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md:38`.
-- NC-005 uses `npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/lifecycle-derived-metadata.vitest.ts skill-advisor/tests/compat/plugin-bridge.vitest.ts --reporter=default` at `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md:36`.
+- NC-004 uses `npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/handlers/advisor-recommend.vitest.ts skill-advisor/tests/legacy/advisor-renderer.vitest.ts --reporter=default` at `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/ambiguous-brief-rendering.md:38`.
+- NC-005 uses `npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/lifecycle-derived-metadata.vitest.ts skill-advisor/tests/compat/plugin-bridge.vitest.ts --reporter=default` at `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/lifecycle-redirect-metadata.md:36`.
 
-The scenario metadata already identifies these files as part of the system-skill-advisor playbook rather than system-spec-kit: NC-004 source metadata names `01--native-mcp-tools/ambiguous-brief-rendering.md` at `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md:84`, and NC-005 does the same at `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md:76`.
+The scenario metadata already identifies these files as part of the system-skill-advisor playbook rather than system-spec-kit: NC-004 source metadata names `native-mcp-tools/ambiguous-brief-rendering.md` at `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/ambiguous-brief-rendering.md:84`, and NC-005 does the same at `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/lifecycle-redirect-metadata.md:76`.
 
 The actual test files now live under `.opencode/skills/system-skill-advisor/mcp_server/tests/`:
 
@@ -58,14 +58,14 @@ ls .opencode/skills/system-skill-advisor/mcp_server/tests/
 
 Both grep patterns returned exactly the same two affected scenario files:
 
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md:38`
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md:36`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/ambiguous-brief-rendering.md:38`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/lifecycle-redirect-metadata.md:36`
 
 No other playbook scenario contains either stale `skill-advisor/tests` or `system-spec-kit/mcp_server exec -- vitest` pattern.
 
 ## Concrete Remediation
 
-Edit `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md:38` from:
+Edit `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/ambiguous-brief-rendering.md:38` from:
 
 ```bash
 npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/handlers/advisor-recommend.vitest.ts skill-advisor/tests/legacy/advisor-renderer.vitest.ts --reporter=default
@@ -77,7 +77,7 @@ to:
 cd .opencode/skills/system-skill-advisor/mcp_server && npm exec -- vitest run tests/handlers/advisor-recommend.vitest.ts tests/legacy/advisor-renderer.vitest.ts --reporter=default
 ```
 
-Edit `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md:36` from:
+Edit `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/lifecycle-redirect-metadata.md:36` from:
 
 ```bash
 npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/lifecycle-derived-metadata.vitest.ts skill-advisor/tests/compat/plugin-bridge.vitest.ts --reporter=default

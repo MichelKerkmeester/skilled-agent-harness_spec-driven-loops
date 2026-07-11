@@ -114,8 +114,8 @@ This packet is placed as a new top-level `system-deep-loop/` entry rather than n
 | `.opencode/plugins/mk-deep-loop-guard.js` | Modify | Add sweep/archive/prune functions, the `event` hook, retention env vars and constants, warn-log rotation |
 | `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs` | Modify | Add sweep/archive/prune regression coverage, mutation-proved |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modify | New "DEEP-LOOP GUARD PLUGIN" section, all 5 env vars |
-| `.opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md` | Modify | New retention subsection, version bump |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/mk-deep-loop-guard.md` | Modify | New retention test step and failure mode, version bump |
+| `.opencode/skills/deep-loop-runtime/feature_catalog/validation/mk-deep-loop-guard.md` | Modify | New retention subsection, version bump |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/validation/mk-deep-loop-guard.md` | Modify | New retention test step and failure mode, version bump |
 <!-- /ANCHOR:scope -->
 
 ---

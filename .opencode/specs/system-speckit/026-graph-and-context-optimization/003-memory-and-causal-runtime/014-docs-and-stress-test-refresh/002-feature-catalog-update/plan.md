@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "feature_catalog/feature_catalog.md"
-      - "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md"
-      - "feature_catalog/14--pipeline-architecture/"
+      - "feature_catalog/lifecycle/checkpoint-creation-checkpointcreate.md"
+      - "feature_catalog/pipeline-architecture/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "feature-catalog-update-packet-setup"
@@ -76,12 +76,12 @@ Expand the two checkpoint feature files with the shipped v2 path, add four new f
 Expand-in-place plus add-and-register. Existing checkpoint files are expanded with the v2 path in the established feature-file format (Overview / How It Works / Source Files / Source Metadata). New capabilities each get a numbered file in the next free slot of their category and a Description/How-It-Works/Source-Files block in `feature_catalog.md`.
 
 ### Key Components
-- **`05--lifecycle/038` + `040` (expand)**: v2 `VACUUM INTO` create/restore, v29 columns, `active_vec` shard-attach, two-phase restore journal, `.needs-rebuild` sentinel.
-- **`14--pipeline-architecture/189` (new)**: front-proxy — reconnecting session proxy, in-place daemon recycle, `SPECKIT_BACKEND_ONLY`, `-32002` fail-closed.
-- **`08--bug-fixes-and-data-integrity/069` (new)**: schema v28→v29→v30 migration timeline.
-- **`08--bug-fixes-and-data-integrity/070` (new)**: unified error-code reference (`E429`, `-32001`, `-32002`).
-- **`13--memory-quality-and-indexing/162` (new)**: `post_insert_enrichment_status` discoverability.
-- **`16--tooling-and-scripts/249` (new)**: sk-git worktree convention cross-reference.
+- **`lifecycle/038` + `040` (expand)**: v2 `VACUUM INTO` create/restore, v29 columns, `active_vec` shard-attach, two-phase restore journal, `.needs-rebuild` sentinel.
+- **`pipeline-architecture/189` (new)**: front-proxy — reconnecting session proxy, in-place daemon recycle, `SPECKIT_BACKEND_ONLY`, `-32002` fail-closed.
+- **`bug-fixes-and-data-integrity/069` (new)**: schema v28→v29→v30 migration timeline.
+- **`bug-fixes-and-data-integrity/070` (new)**: unified error-code reference (`E429`, `-32001`, `-32002`).
+- **`memory-quality-and-indexing/162` (new)**: `post_insert_enrichment_status` discoverability.
+- **`tooling-and-scripts/249` (new)**: sk-git worktree convention cross-reference.
 
 ### Data Flow
 Each authored claim originates from a read source anchor (schema, storage, launcher, server), is written into the feature file in the existing format, then linked from `feature_catalog.md` so the index and the per-file detail stay consistent.
@@ -96,13 +96,13 @@ This packet documents shipped behavior. The affected-surface inventory is the ca
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `05--lifecycle/checkpoint-creation-checkpointcreate.md` | Documents v1 checkpoint create | update (add v2 path) | Claims trace to `checkpoints.ts` createCheckpointV2 / VACUUM INTO |
-| `05--lifecycle/checkpoint-restore-checkpointrestore.md` | Documents v1 restore | update (add v2 swap + journal) | Claims trace to `checkpoints.ts` restoreCheckpointV2 / restore journal |
-| `14--pipeline-architecture/mcp-launcher-front-proxy.md` | none | create | Claims trace to `launcher-session-proxy.cjs` + `mk-spec-memory-launcher.cjs` |
-| `08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | none | create | Claims trace to `vector-index-schema.ts` migrations 28/29/30 |
-| `08--bug-fixes-and-data-integrity/error-code-reference.md` | none | create | Claims trace to `errors/core.ts` (E429) + proxy (-32001/-32002) |
-| `13--memory-quality-and-indexing/post-insert-enrichment-marker.md` | none | create | Claims trace to `vector-index-schema.ts` migration 30 columns |
-| `16--tooling-and-scripts/sk-git-worktree-convention.md` | none | create | Cross-references sk-git skill convention |
+| `lifecycle/checkpoint-creation-checkpointcreate.md` | Documents v1 checkpoint create | update (add v2 path) | Claims trace to `checkpoints.ts` createCheckpointV2 / VACUUM INTO |
+| `lifecycle/checkpoint-restore-checkpointrestore.md` | Documents v1 restore | update (add v2 swap + journal) | Claims trace to `checkpoints.ts` restoreCheckpointV2 / restore journal |
+| `pipeline-architecture/mcp-launcher-front-proxy.md` | none | create | Claims trace to `launcher-session-proxy.cjs` + `mk-spec-memory-launcher.cjs` |
+| `bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | none | create | Claims trace to `vector-index-schema.ts` migrations 28/29/30 |
+| `bug-fixes-and-data-integrity/error-code-reference.md` | none | create | Claims trace to `errors/core.ts` (E429) + proxy (-32001/-32002) |
+| `memory-quality-and-indexing/post-insert-enrichment-marker.md` | none | create | Claims trace to `vector-index-schema.ts` migration 30 columns |
+| `tooling-and-scripts/sk-git-worktree-convention.md` | none | create | Cross-references sk-git skill convention |
 | `feature_catalog.md` | Index | update (register new files) | Each new file linked from the index |
 
 Required inventories:
@@ -124,14 +124,14 @@ Phase 0 is this packet setup, done by the orchestrator. The execution phases are
 - [ ] Sync the matching Description/How-It-Works blocks in `feature_catalog.md` section 6 (Lifecycle)
 
 ### Phase 2: New front-proxy, schema-history, and error-code files
-- [ ] Author `14--pipeline-architecture/mcp-launcher-front-proxy.md`
-- [ ] Author `08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md`
-- [ ] Author `08--bug-fixes-and-data-integrity/error-code-reference.md` (E429, -32001 still live, -32002)
+- [ ] Author `pipeline-architecture/mcp-launcher-front-proxy.md`
+- [ ] Author `bug-fixes-and-data-integrity/schema-version-history-v28-v30.md`
+- [ ] Author `bug-fixes-and-data-integrity/error-code-reference.md` (E429, -32001 still live, -32002)
 - [ ] Register all three in `feature_catalog.md`
 
 ### Phase 3: Enrichment discoverability + sk-git + register + validate
-- [ ] Author `13--memory-quality-and-indexing/post-insert-enrichment-marker.md` with a `post_insert_enrichment` trigger phrase
-- [ ] Author `16--tooling-and-scripts/sk-git-worktree-convention.md` cross-referencing the sk-git skill
+- [ ] Author `memory-quality-and-indexing/post-insert-enrichment-marker.md` with a `post_insert_enrichment` trigger phrase
+- [ ] Author `tooling-and-scripts/sk-git-worktree-convention.md` cross-referencing the sk-git skill
 - [ ] Register both in `feature_catalog.md`
 - [ ] Run `validate.sh --strict` on this packet to Errors: 0
 <!-- /ANCHOR:phases -->

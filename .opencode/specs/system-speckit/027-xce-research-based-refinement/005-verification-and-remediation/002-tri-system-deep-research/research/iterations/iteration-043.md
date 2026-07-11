@@ -20,7 +20,7 @@
 
 ## [P1][DOC-DRIFT] Manual baseline still says 52 cases while checked-in regression fixture has 50
 
-- Evidence: .opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/regression-suite.md:55 says 'Fewer than 52 cases' is partial load; .opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md:227 says '52/52 Python regression suite passed'; current command output reports total_cases=50 and passed_cases=50.
+- Evidence: .opencode/skills/system-skill-advisor/manual_testing_playbook/python-compat/regression-suite.md:55 says 'Fewer than 52 cases' is partial load; .opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md:227 says '52/52 Python regression suite passed'; current command output reports total_cases=50 and passed_cases=50.
 - Detail: The docs would tell an operator that the current checked-in fixture is partial, while the actual harness treats it as complete and passing. This is materially misleading for dataset growth work because it obscures whether the intended baseline is 50, 52, or 100.
 - Fix sketch: Update the docs to the current fixture count or, preferably, make the count an enforced harness threshold and cite that threshold everywhere.
 

@@ -11,8 +11,8 @@ Stabilization pass after full dimension coverage. This pass re-checked active fi
 - `.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/17--governance/governed-ingest-cancel-lifecycle.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/discovery/session-bootstrap-reader-ready-context.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/governance/governed-ingest-cancel-lifecycle.md`
 
 ## Findings
 

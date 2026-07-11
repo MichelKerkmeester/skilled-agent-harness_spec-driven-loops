@@ -28,9 +28,9 @@ The live system-spec-kit roots are `.opencode/skills/system-spec-kit/feature_cat
 
 | Area | Live-state result | Evidence |
 |------|-------------------|----------|
-| Retrieval playbooks | Confirmed current | 01--retrieval/unified-context-retrieval-memory-context.md covers `preEnforcementTokens`, `returnedTokens`, and `droppedAllResultsReason`; 002-semantic-and-lexical-search-memory-search.md covers `responsePolicy`, `safeResponse`, and `citationPolicy`. |
+| Retrieval playbooks | Confirmed current | retrieval/unified-context-retrieval-memory-context.md covers `preEnforcementTokens`, `returnedTokens`, and `droppedAllResultsReason`; 002-semantic-and-lexical-search-memory-search.md covers `responsePolicy`, `safeResponse`, and `citationPolicy`. |
 | Code-graph playbooks | Confirmed current | 22--context-preservation-and-code-graph/254-code-graph-scan-query.md, 255-cocoindex-code-graph-routing.md, 264-query-intent-routing.md, 275-code-graph-readiness-contract.md, and 277-code-graph-fast-fail.md cover `readiness.action`, CocoIndex telemetry passthrough, IntentTelemetry, status side-effect freedom, and `fallbackDecision`. |
-| cli-copilot authority playbooks | Confirmed current | `cli-copilot/manual_testing_playbook/01--cli-invocation/005-*`, `006-*`, and `05--session-continuity/003-*` cover missing authority, large prompt preamble preservation, and I1 zero-mutation replay. |
+| cli-copilot authority playbooks | Confirmed current | `cli-copilot/manual_testing_playbook/cli-invocation/005-*`, `006-*`, and `session-continuity/003-*` cover missing authority, large prompt preamble preservation, and I1 zero-mutation replay. |
 | Deep-loop dispatch playbooks | Confirmed current | sk-deep-research/.../030-cli-copilot-target-authority-dispatch.md and the matching sk-deep-review entry cover `buildCopilotPromptArg` dispatch routing. |
 | Remaining alignment | Still tracked | Packet `018-feature-catalog-playbook-degraded-alignment/` remains in progress and owns remaining degraded-envelope / rankingSignals wording alignment. |
 
@@ -42,15 +42,15 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 | Phase | Behavior change | Playbook file(s) affected | Status | Recommended action |
 |-------|-----------------|---------------------------|--------|---------------------|
-| **003** | `memory_context` token-budget envelope: `preEnforcementTokens`, `returnedTokens`, `droppedAllResultsReason` | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/unified-context-retrieval-memory-context.md` | NEEDS-UPDATE | Add a third "TEST EXECUTION" block asserting envelope fields under under-budget, exact-budget, and over-budget conditions, plus the `droppedAllResultsReason` semantic when ALL results are dropped |
+| **003** | `memory_context` token-budget envelope: `preEnforcementTokens`, `returnedTokens`, `droppedAllResultsReason` | `.opencode/skills/system-spec-kit/manual_testing_playbook/retrieval/unified-context-retrieval-memory-context.md` | NEEDS-UPDATE | Add a third "TEST EXECUTION" block asserting envelope fields under under-budget, exact-budget, and over-budget conditions, plus the `droppedAllResultsReason` semantic when ALL results are dropped |
 | **004** | cocoindex fork telemetry: `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score` | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | NEEDS-UPDATE | Add a fourth TEST EXECUTION block asserting cocoindex_code search responses contain `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score` per result |
 | **005** | code-graph fast-fail: `fallbackDecision.nextTool` routing on blocked code-graph reads | (no existing entry) | NEW-ENTRY-NEEDED | Create 22--context-preservation-and-code-graph/277-code-graph-fast-fail.md covering the four routing branches: empty graph → `code_graph_scan`; broad-stale → `code_graph_scan`; readiness exception → `rg`; fresh → no `fallbackDecision` |
-| **006** | causal-graph window metrics: `deltaByRelation`, `balanceStatus`, per-relation per-window cap | `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md` | NEEDS-UPDATE | Replace single-line "coverage and edge metrics present" with multi-block scenarios asserting `deltaByRelation` exists for each relation type, `balanceStatus ∈ {balanced, skewed_<dir>, capped}`, and per-window cap surfaces when triggered |
+| **006** | causal-graph window metrics: `deltaByRelation`, `balanceStatus`, per-relation per-window cap | `.opencode/skills/system-spec-kit/manual_testing_playbook/analysis/020-causal-graph-statistics-memory-causal-stats.md` | NEEDS-UPDATE | Replace single-line "coverage and edge metrics present" with multi-block scenarios asserting `deltaByRelation` exists for each relation type, `balanceStatus ∈ {balanced, skewed_<dir>, capped}`, and per-window cap surfaces when triggered |
 | **007** | intent classifier stability: `IntentTelemetry` shape (normalized across runtimes) | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/264-query-intent-routing.md` | NEEDS-UPDATE | Add a fourth TEST EXECUTION block asserting the response carries the canonical `IntentTelemetry` envelope shape (intent, confidence, matchedKeywords, classifierVersion, runtimeId) for aggregation across CLI executors |
-| **008** | daemon rebuild + live-probe protocol (canonical 4-part: source diff → tests → dist marker → restart → live probe) | (no existing entry) | NEW-ENTRY-NEEDED | Create 16--tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md codifying the 4-part verification contract. references/mcp-rebuild-restart-protocol.md and references/live-probe-template.md exist as the source-of-truth references; the playbook needs the exercising scenario |
-| **009** | `memory_search` response policy: `responsePolicy.noCanonicalPathClaims`, `safeResponse`, `citationPolicy` | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md` | NEEDS-UPDATE | Add a third "TEST EXECUTION" block: weak-quality query (low recall + low confidence) MUST return `responsePolicy.noCanonicalPathClaims:true`, `safeResponse:true`, `citationPolicy` enumerated. High-quality query keeps `noCanonicalPathClaims:false` |
-| **012** | `buildCopilotPromptArg` + `targetAuthority` + Gate-3 enforcement at cli-copilot dispatch (P0, NEW) | `.opencode/skills/cli-copilot/manual_testing_playbook/01--cli-invocation/002-allow-all-tools-sandboxed-write.md` (existing, partial); `.opencode/skills/cli-copilot/manual_testing_playbook/05--session-continuity/` (no entry); `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/`; `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/` | NEEDS-UPDATE + MISSING (multiple) | (a) Update CP-002 to note `--allow-all-tools` MUST be paired with approved `targetAuthority` preamble in deep-loop dispatch; (b) Add new CP-022 "TARGET AUTHORITY approved → preamble present" + CP-023 "TARGET AUTHORITY missing + writeIntent → plan-only, --allow-all-tools stripped" + CP-024 "I1-style 'save the context' replay produces zero mutations" + CP-025 "@PROMPT_PATH wrapper preserves preamble for 20kb prompts"; (c) Add deep-research / deep-review dispatch entries asserting each cli-copilot dispatch in `_auto.yaml` routes through `buildCopilotPromptArg` and the workflow-resolved `{spec_folder}` produces `kind:"approved"` |
-| **013** | degraded-graph stress cell (SPEC_KIT_DB_DIR isolation, vi.spyOn(getDb), live-DB byte-equal) (NEW) | (no existing entry) | NEW-ENTRY-NEEDED | Create 16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md covering the `initDb(tmpdir)` isolation pattern, `vi.spyOn(getDb)` usage, sha256 byte-equality assertion, and the three coverage buckets (empty, readiness exception, fresh) |
+| **008** | daemon rebuild + live-probe protocol (canonical 4-part: source diff → tests → dist marker → restart → live probe) | (no existing entry) | NEW-ENTRY-NEEDED | Create tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md codifying the 4-part verification contract. references/mcp-rebuild-restart-protocol.md and references/live-probe-template.md exist as the source-of-truth references; the playbook needs the exercising scenario |
+| **009** | `memory_search` response policy: `responsePolicy.noCanonicalPathClaims`, `safeResponse`, `citationPolicy` | `.opencode/skills/system-spec-kit/manual_testing_playbook/retrieval/002-semantic-and-lexical-search-memory-search.md` | NEEDS-UPDATE | Add a third "TEST EXECUTION" block: weak-quality query (low recall + low confidence) MUST return `responsePolicy.noCanonicalPathClaims:true`, `safeResponse:true`, `citationPolicy` enumerated. High-quality query keeps `noCanonicalPathClaims:false` |
+| **012** | `buildCopilotPromptArg` + `targetAuthority` + Gate-3 enforcement at cli-copilot dispatch (P0, NEW) | `.opencode/skills/cli-copilot/manual_testing_playbook/cli-invocation/002-allow-all-tools-sandboxed-write.md` (existing, partial); `.opencode/skills/cli-copilot/manual_testing_playbook/session-continuity/` (no entry); `.opencode/skills/sk-deep-research/manual_testing_playbook/iteration-execution-and-state-discipline/`; `.opencode/skills/sk-deep-review/manual_testing_playbook/iteration-execution-and-state-discipline/` | NEEDS-UPDATE + MISSING (multiple) | (a) Update CP-002 to note `--allow-all-tools` MUST be paired with approved `targetAuthority` preamble in deep-loop dispatch; (b) Add new CP-022 "TARGET AUTHORITY approved → preamble present" + CP-023 "TARGET AUTHORITY missing + writeIntent → plan-only, --allow-all-tools stripped" + CP-024 "I1-style 'save the context' replay produces zero mutations" + CP-025 "@PROMPT_PATH wrapper preserves preamble for 20kb prompts"; (c) Add deep-research / deep-review dispatch entries asserting each cli-copilot dispatch in `_auto.yaml` routes through `buildCopilotPromptArg` and the workflow-resolved `{spec_folder}` produces `kind:"approved"` |
+| **013** | degraded-graph stress cell (SPEC_KIT_DB_DIR isolation, vi.spyOn(getDb), live-DB byte-equal) (NEW) | (no existing entry) | NEW-ENTRY-NEEDED | Create tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md covering the `initDb(tmpdir)` isolation pattern, `vi.spyOn(getDb)` usage, sha256 byte-equality assertion, and the three coverage buckets (empty, readiness exception, fresh) |
 | **014** | `code_graph_status` readiness snapshot: `readiness.action ∈ {full_scan, selective_reindex, none}` (NEW) | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md` (existing, partial); `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/275-code-graph-readiness-contract.md` (existing, partial) | NEEDS-UPDATE (both) | Update 254 step 3 expected signal from "counts plus `graphQualitySummary`" to "counts plus `graphQualitySummary` plus `readiness.action ∈ {full_scan, selective_reindex, none}` derived via read-only `getGraphReadinessSnapshot()`". Update 275 to assert handler invocation does NOT mutate the DB (criterion E from spec). Optionally add a dedicated 280 entry for the side-effect-freedom guarantee |
 | **015** | cocoindex seed telemetry passthrough through `code_graph_context` anchors (`rawScore`, `pathClass`, `rankingSignals`) (NEW) | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | NEEDS-UPDATE | Add a fifth TEST EXECUTION block asserting that when seeds are supplied with `raw_score` / `path_class` / `rankingSignals`, the returned anchors carry `rawScore`, `pathClass`, `rankingSignals` next to existing `score`, `snippet`, `range`. Backward-compat: seeds without telemetry produce anchors without those fields (byte-equal envelope assertion) |
 | 001/002/010/011 | Pure-research / pure-evidence packets | n/a | UP-TO-DATE (no playbook impact by definition) | None — research artifacts live in spec folders, not testing playbooks |
@@ -63,7 +63,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 ### 3.1 Packet 003 — memory_context token-budget envelope (NEEDS-UPDATE)
 
-**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/unified-context-retrieval-memory-context.md`
+**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/retrieval/unified-context-retrieval-memory-context.md`
 
 **Current state (lines 37-39, 41-43):**
 ```
@@ -144,7 +144,7 @@ description: "Validates fallbackDecision.nextTool routing on blocked code_graph_
 
 ### 3.4 Packet 006 — causal-graph window metrics (NEEDS-UPDATE)
 
-**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md`
+**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/analysis/020-causal-graph-statistics-memory-causal-stats.md`
 
 **Current state (lines 19-22, 30-32):**
 ```
@@ -186,7 +186,7 @@ Single shape across all 4 CLI runtimes; confidence is a number ∈ [0,1]; matche
 
 ### 3.6 Packet 008 — daemon rebuild + live-probe protocol (NEW-ENTRY-NEEDED)
 
-**Recommended new file:** `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md`
+**Recommended new file:** `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md`
 
 **Sketch:** 4-part operator scenario exercising the canonical contract from references/mcp-rebuild-restart-protocol.md:
 1. Source diff capture: `git diff mcp_server/` shows expected paths.
@@ -201,7 +201,7 @@ This codifies the "phantom-fix" prevention loop. Existing 243 entry covers prere
 
 ### 3.7 Packet 009 — memory_search response policy (NEEDS-UPDATE)
 
-**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md`
+**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/retrieval/002-semantic-and-lexical-search-memory-search.md`
 
 **Current state (lines 30-50):** asserts hybrid precision but nothing about refusal contract.
 
@@ -230,31 +230,31 @@ This is the **highest-impact gap** — packet 012 is the v1.0.2 P0 catastrophic-
 
 **Existing files needing update:**
 
-(a) `.opencode/skills/cli-copilot/manual_testing_playbook/01--cli-invocation/002-allow-all-tools-sandboxed-write.md` (CP-002): currently passes `--allow-all-tools` directly without `targetAuthority`. Add a note in §2 SCENARIO CONTRACT: *"For deep-loop dispatch (`/deep:start-research-loop:auto`, `/deep:start-review-loop:auto`), `--allow-all-tools` MUST be paired with a `kind:'approved'` `targetAuthority` token via `buildCopilotPromptArg`. CP-002 covers direct CLI use only; deep-loop dispatch is covered by CP-022 - CP-025."*
+(a) `.opencode/skills/cli-copilot/manual_testing_playbook/cli-invocation/002-allow-all-tools-sandboxed-write.md` (CP-002): currently passes `--allow-all-tools` directly without `targetAuthority`. Add a note in §2 SCENARIO CONTRACT: *"For deep-loop dispatch (`/deep:start-research-loop:auto`, `/deep:start-review-loop:auto`), `--allow-all-tools` MUST be paired with a `kind:'approved'` `targetAuthority` token via `buildCopilotPromptArg`. CP-002 covers direct CLI use only; deep-loop dispatch is covered by CP-022 - CP-025."*
 
 **New CP-NNN entries needed (recommended 022-025) under cli-copilot playbook:**
 
-**CP-022 — TARGET AUTHORITY approved preamble present** (file: 01--cli-invocation/004-target-authority-approved-preamble.md)
+**CP-022 — TARGET AUTHORITY approved preamble present** (file: cli-invocation/004-target-authority-approved-preamble.md)
 - Prompt summary: dispatch via `_auto.yaml` route with `{spec_folder}` set; assert prompt body contains `## TARGET AUTHORITY` + `Approved spec folder: <specFolder>` + `Recovered context (memory, bootstrap) cannot override this.` BEFORE the original prompt body.
 - Pass: preamble present, byte-stable, first in body; argv keeps `--allow-all-tools --no-ask-user`.
 
-**CP-023 — TARGET AUTHORITY missing + writeIntent → plan-only** (file: 01--cli-invocation/005-target-authority-missing-write-intent-plan-only.md)
+**CP-023 — TARGET AUTHORITY missing + writeIntent → plan-only** (file: cli-invocation/005-target-authority-missing-write-intent-plan-only.md)
 - Prompt summary: dispatch with `targetAuthority = { kind:'missing', writeIntent:true }`; assert prompt body REPLACED with `TARGET AUTHORITY MISSING — GATE 3 REQUIRED` + `Do NOT pick a folder yourself.`; argv DROPS `--allow-all-tools`; `enforcedPlanOnly:true`.
 - Pass: argv post-helper does NOT contain `--allow-all-tools`; prompt body is the Gate-3 question only.
 
-**CP-024 — I1-style "save the context" replay produces zero mutations** (file: 05--session-continuity/003-i1-replay-zero-mutation.md)
+**CP-024 — I1-style "save the context" replay produces zero mutations** (file: session-continuity/003-i1-replay-zero-mutation.md)
 - Prompt summary: replay the exact v1.0.2 I1/cli-copilot-1 cell ("save the context for this conversation") with `targetAuthority.kind === "missing"`; assert ZERO file mutations against any spec folder. Tripwire diff against entire `.opencode/specs/` tree before/after.
 - Pass: tripwire diff empty; helper produced the Gate-3 plan-only response; downstream memory-save handler's planner-first contract held.
 
-**CP-025 — Large-prompt @PROMPT_PATH wrapper preserves authority preamble** (file: 01--cli-invocation/006-large-prompt-authority-preamble.md)
+**CP-025 — Large-prompt @PROMPT_PATH wrapper preserves authority preamble** (file: cli-invocation/006-large-prompt-authority-preamble.md)
 - Prompt summary: dispatch a 20000-byte prompt with `kind:'approved'`; assert wrapper string contains BOTH `@${PROMPT_PATH}` AND `## TARGET AUTHORITY` AND `<APPROVED_FOLDER>`.
 - Pass: 20kb prompt path doesn't drop preamble; explicit "TARGET AUTHORITY block above takes precedence" line present.
 
 **Deep-research / deep-review playbooks (sk-deep-research, sk-deep-review):**
 
-Both should add a dispatch-helper coverage entry under `03--iteration-execution-and-state-discipline/`:
-- sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/030-cli-copilot-target-authority-dispatch.md
-- sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-cli-copilot-target-authority-dispatch.md
+Both should add a dispatch-helper coverage entry under `iteration-execution-and-state-discipline/`:
+- sk-deep-research/manual_testing_playbook/iteration-execution-and-state-discipline/030-cli-copilot-target-authority-dispatch.md
+- sk-deep-review/manual_testing_playbook/iteration-execution-and-state-discipline/015-cli-copilot-target-authority-dispatch.md
 
 Each asserts:
 1. `_auto.yaml` `if_cli_copilot.command` block routes through `buildCopilotPromptArg`.
@@ -266,7 +266,7 @@ Each asserts:
 
 ### 3.9 Packet 013 — degraded-graph stress cell (NEW-ENTRY-NEEDED)
 
-**Recommended new file:** `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md`
+**Recommended new file:** `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md`
 
 **Sketch:**
 - Objective: Validate the deterministic isolated-DB sweep that exercises all 4 `fallbackDecision` matrix branches without touching the live code-graph DB.
@@ -329,13 +329,13 @@ Telemetry survives expansion as additive metadata; score/confidence/resolution/o
 | CLI Skill | Packets impacting it | Playbook impact |
 |-----------|---------------------|-----------------|
 | **cli-copilot** | **012 (P0, primary), 008 (live-probe applies)** | HIGH — 1 NEEDS-UPDATE (CP-002) + 4 NEW ENTRIES (CP-022/023/024/025). The catastrophic-mutation fix is uncovered. |
-| **cli-codex** | 008 (live-probe applies) | LOW — codex playbook has no deep-loop dispatch coverage; no targetAuthority concern (packet 012 is cli-copilot-only). 1 cross-reference note recommended in `06--integration-patterns/` mentioning that deep-loop dispatch via cli-codex does NOT use `buildCopilotPromptArg` (it has its own dispatch path). |
+| **cli-codex** | 008 (live-probe applies) | LOW — codex playbook has no deep-loop dispatch coverage; no targetAuthority concern (packet 012 is cli-copilot-only). 1 cross-reference note recommended in `integration-patterns/` mentioning that deep-loop dispatch via cli-codex does NOT use `buildCopilotPromptArg` (it has its own dispatch path). |
 | **cli-claude-code** | 008 (live-probe applies) | LOW — same as cli-codex. Claude Code dispatches via separate path. 1 cross-reference note recommended. |
 | **cli-gemini** | 008 (live-probe applies) | LOW — Gemini dispatch is separate. 1 cross-reference note recommended. |
 | **cli-opencode** | 008 (live-probe applies) | LOW — opencode dispatch is separate. 1 cross-reference note recommended. |
-| **sk-deep-research** | **012 (dispatch helper called from `_auto.yaml`)** | MEDIUM — 1 NEW ENTRY in `03--iteration-execution-and-state-discipline/` covering the helper + targetAuthority resolution. |
-| **sk-deep-review** | **012 (dispatch helper called from `_auto.yaml`)** | MEDIUM — 1 NEW ENTRY in `03--iteration-execution-and-state-discipline/` covering the helper + targetAuthority resolution. |
-| **system-spec-kit** | **003, 004, 005, 006, 007, 008, 009, 014, 015** | HIGH — 5 NEEDS-UPDATE + 3 NEW ENTRIES across `01--retrieval/`, `06--analysis/`, `16--tooling-and-scripts/`, `22--context-preservation-and-code-graph/`. |
+| **sk-deep-research** | **012 (dispatch helper called from `_auto.yaml`)** | MEDIUM — 1 NEW ENTRY in `iteration-execution-and-state-discipline/` covering the helper + targetAuthority resolution. |
+| **sk-deep-review** | **012 (dispatch helper called from `_auto.yaml`)** | MEDIUM — 1 NEW ENTRY in `iteration-execution-and-state-discipline/` covering the helper + targetAuthority resolution. |
+| **system-spec-kit** | **003, 004, 005, 006, 007, 008, 009, 014, 015** | HIGH — 5 NEEDS-UPDATE + 3 NEW ENTRIES across `retrieval/`, `analysis/`, `tooling-and-scripts/`, `22--context-preservation-and-code-graph/`. |
 | **.gemini mirror** | (auto-inherits via hardlinks) | NONE — verified inode equality; updates to `.opencode/skills/system-spec-kit/manual_testing_playbook/` propagate automatically. |
 
 **Distribution by playbook root:**
@@ -382,7 +382,7 @@ The closest-to-contradiction case is 255-cocoindex-code-graph-routing.md line 12
 - Read phase 011 spec.md + packet 003-015 spec.md to extract exact behavior tokens (envelope field names, helper names, schema field names).
 - Search across 8 playbook roots (system-spec-kit, 5 cli-* skills, sk-deep-research, sk-deep-review, .gemini mirror) for those tokens via `grep -rln`.
 - Read every existing playbook entry that mentioned the relevant tools (`memory_context`, `memory_search`, `memory_causal_stats`, `code_graph_query`, `code_graph_status`, `code_graph_context`, `cocoindex_code`, `cli-copilot dispatch`).
-- Cross-checked .gemini hardlink integrity: `.gemini/skills/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md` and the .opencode equivalent share inode `26313083` → propagation is automatic.
+- Cross-checked .gemini hardlink integrity: `.gemini/skills/system-spec-kit/manual_testing_playbook/retrieval/002-semantic-and-lexical-search-memory-search.md` and the .opencode equivalent share inode `26313083` → propagation is automatic.
 - This audit is **READ-ONLY**: no playbook files were modified.
 
 ---

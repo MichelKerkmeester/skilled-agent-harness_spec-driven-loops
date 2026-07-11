@@ -35,11 +35,11 @@ Generated 2026-06-28T09:17:36.393Z · 10 iterations · executor gpt-5.5 xhigh fa
 - **[confirmed]** All five deep-loop mode feature_catalog directories exist, with substantial file counts.
   - evidence: command `for d in deep-research deep-review deep-improvement deep-context deep-ai-council; do find .../feature_catalog -type f -name '*.md' | wc -l; done` -> deep-research 17, deep-review 28, deep-improvement 25, deep-context 26, deep-ai-council 33. _(i2)_
 - **[confirmed]** deep-research feature_catalog is EARNED; recommend keep.
-  - evidence: SKILL.md:15 defines iterative research with externalized state/convergence; feature_catalog/feature_catalog.md:17-22 covers lifecycle/state/convergence/output; feature_catalog/01--loop-lifecycle/initialization.md:33-53 lists implementation files and validation playbooks. _(i2)_
+  - evidence: SKILL.md:15 defines iterative research with externalized state/convergence; feature_catalog/feature_catalog.md:17-22 covers lifecycle/state/convergence/output; feature_catalog/loop-lifecycle/initialization.md:33-53 lists implementation files and validation playbooks. _(i2)_
 - **[confirmed]** deep-review feature_catalog is EARNED; recommend keep.
-  - evidence: SKILL.md:27-33 covers multi-round review dimensions and spec/code alignment; feature_catalog/feature_catalog.md:17-22 covers lifecycle/state/dimensions/severity; feature_catalog/04--severity-system/quality-gates.md:49-67 maps gates to implementation and validation scenarios. _(i2)_
+  - evidence: SKILL.md:27-33 covers multi-round review dimensions and spec/code alignment; feature_catalog/feature_catalog.md:17-22 covers lifecycle/state/dimensions/severity; feature_catalog/severity-system/quality-gates.md:49-67 maps gates to implementation and validation scenarios. _(i2)_
 - **[confirmed]** deep-improvement feature_catalog is EARNED; recommend keep.
-  - evidence: SKILL.md:30-41 defines four co-equal lanes; feature_catalog/feature_catalog.md:21-36 maps lanes A-D and shared scoring; feature_catalog/05--skill-benchmark/mode-wiring.md:31-46 anchors mode wiring to scripts and tests. _(i2)_
+  - evidence: SKILL.md:30-41 defines four co-equal lanes; feature_catalog/feature_catalog.md:21-36 maps lanes A-D and shared scoring; feature_catalog/skill-benchmark/mode-wiring.md:31-46 anchors mode wiring to scripts and tests. _(i2)_
 - **[confirmed]** deep-context feature_catalog is EARNED; recommend keep.
   - evidence: SKILL.md:12-14 defines a convergence-gated multi-model context loop; feature_catalog/feature_catalog.md:24-32 covers seven capability categories; feature_catalog/04--convergence-detection/context-coverage-signals.md:48-63 anchors runtime signal code and validation. _(i2)_
 - **[confirmed]** deep-ai-council feature_catalog is EARNED; recommend keep.
@@ -49,7 +49,7 @@ Generated 2026-06-28T09:17:36.393Z · 10 iterations · executor gpt-5.5 xhigh fa
 - **[confirmed]** The deep-loop catalogs are unevenly integrated: only deep-ai-council SKILL.md directly names feature_catalog.
   - evidence: command `rg -n 'Feature Catalog|feature catalog|feature_catalog' .../deep-*/SKILL.md` -> only `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md:125`. _(i2)_
 - **[confirmed]** There are stale playbook references saying no feature catalog exists.
-  - evidence: command `rg -n 'No dedicated feature catalog exists yet|No feature catalog exists yet' .../manual_testing_playbook | wc -l` -> 83; per mode: deep-research 30, deep-review 28, deep-ai-council 25. Examples: deep-research/manual_testing_playbook/01--entry-points-and-modes/auto-mode-deep-research-kickoff.md:68, deep-review/.../auto-mode-deep-review-kickoff.md:68, deep-ai-council/.../runtime-agent-renamed-to-deep-ai-council.md:82. _(i2)_
+  - evidence: command `rg -n 'No dedicated feature catalog exists yet|No feature catalog exists yet' .../manual_testing_playbook | wc -l` -> 83; per mode: deep-research 30, deep-review 28, deep-ai-council 25. Examples: deep-research/manual_testing_playbook/entry-points-and-modes/auto-mode-deep-research-kickoff.md:68, deep-review/.../auto-mode-deep-review-kickoff.md:68, deep-ai-council/.../runtime-agent-renamed-to-deep-ai-council.md:82. _(i2)_
 - **[confirmed]** Removing catalogs is higher blast than documenting keep-all.
   - evidence: spec.md:150 says deep-loop is the most-used skill family and regressions hit `/deep:*`, agents, and fanout; decision-record.md:237 says every removal must repoint SKILL.md/reference pointers. _(i2)_
 - **[confirmed]** R4 merged-identity layer still exists in the TypeScript advisor scorer.

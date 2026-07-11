@@ -94,14 +94,14 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   // 013 phases 004+005 — /doctor router consolidation legitimately uses "manifest" vocabulary
   // (route manifest + manifest-driven dispatch). Council + deep-loop graph surface docs likewise
   // reference "manifest"/"kind" vocab in their canonical descriptions.
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/03-doctor-router-and-manifest-dispatch.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/17--governance/07-council-graph-upsert-status-query.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/17--governance/09-deep-loop-graph-upsert-status-query.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/23--doctor-commands/01-category-overview.md')) return true;
-  if (rel.includes('.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/274-council-graph-')) return true;
-  if (rel.includes('.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/276-deep-loop-graph-')) return true;
-  if (rel.startsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/411-causal-graph-link-quality.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/maintenance/03-doctor-router-and-manifest-dispatch.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/governance/07-council-graph-upsert-status-query.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/governance/09-deep-loop-graph-upsert-status-query.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/doctor-commands/01-category-overview.md')) return true;
+  if (rel.includes('.opencode/skills/system-spec-kit/manual_testing_playbook/governance/274-council-graph-')) return true;
+  if (rel.includes('.opencode/skills/system-spec-kit/manual_testing_playbook/governance/276-deep-loop-graph-')) return true;
+  if (rel.startsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/411-causal-graph-link-quality.md')) return true;
   if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md')) return true;
   return false;
 }

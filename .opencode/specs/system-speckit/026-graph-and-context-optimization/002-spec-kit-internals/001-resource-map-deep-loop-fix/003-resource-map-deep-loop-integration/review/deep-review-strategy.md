@@ -267,10 +267,10 @@ None. Proceed to synthesis and remediation planning for the four recorded findin
   13. `.opencode/commands/deep/start-research-loop.md`
   14. `.opencode/skills/sk-deep-review/references/convergence.md`
   15. `.opencode/skills/sk-deep-research/references/convergence.md`
-  16. `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md`
-  17. `.opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md`
-  18. `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md`
-  19. `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md`
+  16. `.opencode/skills/sk-deep-review/feature_catalog/loop-lifecycle/06-resource-map-emission.md`
+  17. `.opencode/skills/sk-deep-research/feature_catalog/loop-lifecycle/06-resource-map-emission.md`
+  18. `.opencode/skills/sk-deep-review/manual_testing_playbook/synthesis-save-and-guardrails/resource-map-emission.md`
+  19. `.opencode/skills/sk-deep-research/manual_testing_playbook/synthesis-save-and-guardrails/027-resource-map-emission.md`
   20. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/spec.md`
   21. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/plan.md`
   22. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/tasks.md`
@@ -316,10 +316,10 @@ None. Proceed to synthesis and remediation planning for the four recorded findin
 | `.opencode/commands/deep/start-research-loop.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/skills/sk-deep-review/references/convergence.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/skills/sk-deep-research/references/convergence.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-review/feature_catalog/loop-lifecycle/06-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-research/feature_catalog/loop-lifecycle/06-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/synthesis-save-and-guardrails/resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/synthesis-save-and-guardrails/027-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/spec.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/plan.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration/tasks.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |

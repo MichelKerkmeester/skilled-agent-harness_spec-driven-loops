@@ -29,7 +29,7 @@ Traceability: spec/code alignment, checklist evidence accuracy, cross-reference 
 - `.opencode/commands/deep/assets/compiled/deep_ai-council.contract.md:14`
 - `.opencode/commands/deep/assets/compiled/deep_research.contract.md:14`
 - `.opencode/commands/deep/assets/compiled/deep_review.contract.md:14`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md:88`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md:88`
 - `.opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/z_archive/arc-workspaces/115-arc-review/iterations/iteration-009.md:15`
 
 ## Findings by Severity

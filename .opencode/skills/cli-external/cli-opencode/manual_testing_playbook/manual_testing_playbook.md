@@ -18,15 +18,15 @@ This playbook package adopts the Feature Catalog split-document pattern for the 
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
-- `01--cli-invocation/`
-- `02--external-dispatch/`
-- `03--multi-provider/`
-- `04--agent-routing/`
-- `05--session-continuity/`
-- `06--integration-patterns/`
-- `07--prompt-templates/`
-- `08--parallel-detached/`
-- `09--cross-repo-cross-server/`
+- `cli-invocation/`
+- `external-dispatch/`
+- `multi-provider/`
+- `agent-routing/`
+- `session-continuity/`
+- `integration-patterns/`
+- `prompt-templates/`
+- `parallel-detached/`
+- `cross-repo-cross-server/`
 
 ---
 
@@ -197,7 +197,7 @@ Expected signals: `command -v opencode` returns a path. No OPENCODE_* env vars s
 
 #### Test Execution
 
-> **Feature File:** [CO-001](01--cli-invocation/base-non-interactive-invocation.md)
+> **Feature File:** [CO-001](cli-invocation/base-non-interactive-invocation.md)
 
 ### CO-002 | Output format default vs json
 
@@ -213,7 +213,7 @@ Expected signals: Both formats exit 0. Default output mentions the expected conc
 
 #### Test Execution
 
-> **Feature File:** [CO-002](01--cli-invocation/format-default-vs-json.md)
+> **Feature File:** [CO-002](cli-invocation/format-default-vs-json.md)
 
 ### CO-003 | Working directory pinning via --dir
 
@@ -229,7 +229,7 @@ Expected signals: Dispatched session reports CWD as the pinned path. Tool.result
 
 #### Test Execution
 
-> **Feature File:** [CO-003](01--cli-invocation/dir-flag-working-directory.md)
+> **Feature File:** [CO-003](cli-invocation/dir-flag-working-directory.md)
 
 ### CO-004 | File attachment via -f / --file flag
 
@@ -245,7 +245,7 @@ Expected signals: Dispatch exits 0. Reply mentions the unique function name `hel
 
 #### Test Execution
 
-> **Feature File:** [CO-004](01--cli-invocation/file-attachment-via-f-flag.md)
+> **Feature File:** [CO-004](cli-invocation/file-attachment-via-f-flag.md)
 
 ### CO-005 | Plugin disable and verbose logs
 
@@ -261,7 +261,7 @@ Expected signals: All three exit 0. Baseline + debug stdout JSON parseable. --pu
 
 #### Test Execution
 
-> **Feature File:** [CO-005](01--cli-invocation/pure-and-print-logs.md)
+> **Feature File:** [CO-005](cli-invocation/pure-and-print-logs.md)
 
 ---
 
@@ -283,7 +283,7 @@ Expected signals: Dispatch exits 0. Tool.call event for memory_health appears. S
 
 #### Test Execution
 
-> **Feature File:** [CO-006](02--external-dispatch/from-claude-code.md)
+> **Feature File:** [CO-006](external-dispatch/from-claude-code.md)
 
 ### CO-007 | External dispatch from OpenCode into OpenCode (use case 1)
 
@@ -315,7 +315,7 @@ Expected signals: Layer 1 (env var) detection trips. Refusal message in referenc
 
 #### Test Execution
 
-> **Feature File:** [CO-008](02--external-dispatch/self-invocation-refusal.md)
+> **Feature File:** [CO-008](external-dispatch/self-invocation-refusal.md)
 
 ---
 
@@ -337,7 +337,7 @@ Expected signals: Exit 0. Model id `deepseek-v4-pro` in session.completed. Respo
 
 #### Test Execution
 
-> **Feature File:** [CO-011](03--multi-provider/deepseek-direct-api.md)
+> **Feature File:** [CO-011](multi-provider/deepseek-direct-api.md)
 
 ### CO-012 | Variant levels (minimal/low/medium/high/max)
 
@@ -353,7 +353,7 @@ Expected signals: Both exit 0. Max-variant byte count >= 2x minimal-variant byte
 
 #### Test Execution
 
-> **Feature File:** [CO-012](03--multi-provider/variant-levels-comparison.md)
+> **Feature File:** [CO-012](multi-provider/variant-levels-comparison.md)
 
 ---
 
@@ -375,7 +375,7 @@ Expected signals: Exit 0. Read tool.call appears. Agent slug `general` in sessio
 
 #### Test Execution
 
-> **Feature File:** [CO-013](04--agent-routing/general-agent-default.md)
+> **Feature File:** [CO-013](agent-routing/general-agent-default.md)
 
 ### CO-014 | Context LEAF agent (read-only)
 
@@ -391,7 +391,7 @@ Expected signals: Exit 0. Mtime diff is empty. No Edit/Write tool.calls. Respons
 
 #### Test Execution
 
-> **Feature File:** [CO-014](04--agent-routing/context-leaf-agent.md)
+> **Feature File:** [CO-014](agent-routing/context-leaf-agent.md)
 
 ### CO-015 | Review agent security audit
 
@@ -407,7 +407,7 @@ Expected signals: Exit 0. Severity tag present. Line reference present. Target f
 
 #### Test Execution
 
-> **Feature File:** [CO-015](04--agent-routing/review-agent-security-audit.md)
+> **Feature File:** [CO-015](agent-routing/review-agent-security-audit.md)
 
 
 ### CO-017 | Ultra-think multi-strategy planning
@@ -424,7 +424,7 @@ Expected signals: Exit 0. Sentinel mtimes unchanged. Zero Edit/Write tool.calls.
 
 #### Test Execution
 
-> **Feature File:** [CO-017](04--agent-routing/multi-ai-council-multi-strategy.md)
+> **Feature File:** [CO-017](agent-routing/multi-ai-council-multi-strategy.md)
 
 ### CO-032 | Deep-research agent iteration loop
 
@@ -440,7 +440,7 @@ Expected signals: Exit 0. JSON parseable. >= 2 findings or hypotheses. Zero Task
 
 #### Test Execution
 
-> **Feature File:** [CO-032](04--agent-routing/deep-research-agent-iterations.md)
+> **Feature File:** [CO-032](agent-routing/deep-research-agent-iterations.md)
 
 ### CO-033 | Deep-review agent audit loop
 
@@ -456,7 +456,7 @@ Expected signals: Exit 0. JSON parseable. >= 1 severity tag (P0, P1, or P2). >= 
 
 #### Test Execution
 
-> **Feature File:** [CO-033](04--agent-routing/deep-review-agent-audit.md)
+> **Feature File:** [CO-033](agent-routing/deep-review-agent-audit.md)
 
 ### CO-034 | Orchestrate agent multi-agent coordination
 
@@ -472,7 +472,7 @@ Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs descri
 
 #### Test Execution
 
-> **Feature File:** [CO-034](04--agent-routing/orchestrate-agent-multi-agent.md)
+> **Feature File:** [CO-034](agent-routing/orchestrate-agent-multi-agent.md)
 
 ---
 
@@ -494,7 +494,7 @@ Expected signals: Both exit 0. Second turn references "snowflake reducer" or its
 
 #### Test Execution
 
-> **Feature File:** [CO-018](05--session-continuity/continue-last-session.md)
+> **Feature File:** [CO-018](session-continuity/continue-last-session.md)
 
 ### CO-019 | Resume specific session by id (-s)
 
@@ -510,7 +510,7 @@ Expected signals: Both exit 0. SID captured non-empty. Second turn references pr
 
 #### Test Execution
 
-> **Feature File:** [CO-019](05--session-continuity/resume-by-session-id.md)
+> **Feature File:** [CO-019](session-continuity/resume-by-session-id.md)
 
 ### CO-020 | Fork session and share URL gate
 
@@ -526,7 +526,7 @@ Expected signals: Both exit 0. SID1 != SID2. SKILL.md NEVER rule 2 cites the `--
 
 #### Test Execution
 
-> **Feature File:** [CO-020](05--session-continuity/fork-and-share.md)
+> **Feature File:** [CO-020](session-continuity/fork-and-share.md)
 
 ---
 
@@ -564,7 +564,7 @@ Expected signals: Exit 0. Exactly one MEMORY_HANDBACK delimiter pair. Payload pa
 
 #### Test Execution
 
-> **Feature File:** [CO-022](06--integration-patterns/memory-epilogue-handback.md)
+> **Feature File:** [CO-022](integration-patterns/memory-epilogue-handback.md)
 
 ---
 
@@ -586,7 +586,7 @@ Expected signals: 13 unique TEMPLATE headers. >=12 Framework lines. >=11 bash co
 
 #### Test Execution
 
-> **Feature File:** [CO-023](07--prompt-templates/templates-inventory.md)
+> **Feature File:** [CO-023](prompt-templates/templates-inventory.md)
 
 ### CO-024 | CLEAR quality card 5-check
 
@@ -602,7 +602,7 @@ Expected signals: All 5 CLEAR criteria listed. 7 frameworks present. Task map pr
 
 #### Test Execution
 
-> **Feature File:** [CO-024](07--prompt-templates/clear-quality-card.md)
+> **Feature File:** [CO-024](prompt-templates/clear-quality-card.md)
 
 ### CO-025 | Template applied to a real dispatch
 
@@ -618,7 +618,7 @@ Expected signals: Exit 0. Mtime unchanged. Zero Edit/Write tool.calls. Severity 
 
 #### Test Execution
 
-> **Feature File:** [CO-025](07--prompt-templates/template-applied-to-real-dispatch.md)
+> **Feature File:** [CO-025](prompt-templates/template-applied-to-real-dispatch.md)
 
 ### CO-035 | DeepSeek-v4-pro via the direct DeepSeek API through sk-prompt/prompt-models + sk-prompt (triple-skill flow)
 
@@ -636,7 +636,7 @@ Desired user-visible outcome: A working implementation plus the dispatch-matrix 
 
 #### Test Execution
 
-> **Feature File:** [CO-035](07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md)
+> **Feature File:** [CO-035](prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md)
 
 ### CO-036 | Kimi K2.7 via the direct Kimi For Coding plan through sk-prompt/prompt-models + sk-prompt
 
@@ -654,7 +654,7 @@ Desired user-visible outcome: A consolidated multi-file analysis demonstrating K
 
 #### Test Execution
 
-> **Feature File:** [CO-036](07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md)
+> **Feature File:** [CO-036](prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md)
 
 ### CO-037 | MiniMax design dispatch carries context manifest and proof cards
 
@@ -672,7 +672,7 @@ Desired user-visible outcome: A MiniMax dispatch packet whose child output can e
 
 #### Test Execution
 
-> **Feature File:** [CO-037](07--prompt-templates/minimax-design-context-manifest.md)
+> **Feature File:** [CO-037](prompt-templates/minimax-design-context-manifest.md)
 
 ---
 
@@ -694,7 +694,7 @@ Expected signals: Exit 0. New SID captured non-empty. State directory exists. Ze
 
 #### Test Execution
 
-> **Feature File:** [CO-026](08--parallel-detached/parallel-detached-session.md)
+> **Feature File:** [CO-026](parallel-detached/parallel-detached-session.md)
 
 ### CO-027 | Worker farm loop with `</dev/null`
 
@@ -710,7 +710,7 @@ Expected signals: WAIT exit 0. 3 logs with content. 3 distinct session ids. Each
 
 #### Test Execution
 
-> **Feature File:** [CO-027](08--parallel-detached/worker-farm-loop.md)
+> **Feature File:** [CO-027](parallel-detached/worker-farm-loop.md)
 
 ### CO-028 | Ablation suite via parallel detached sessions
 
@@ -726,7 +726,7 @@ Expected signals: WAIT exit 0. Distinct session ids. HIGH/MIN ratio >= 2.0.
 
 #### Test Execution
 
-> **Feature File:** [CO-028](08--parallel-detached/ablation-suite.md)
+> **Feature File:** [CO-028](parallel-detached/ablation-suite.md)
 
 ---
 
@@ -748,7 +748,7 @@ Expected signals: Exit 0. Cross-repo path referenced in tool.result. Zero refere
 
 #### Test Execution
 
-> **Feature File:** [CO-029](09--cross-repo-cross-server/cross-repo-dispatch.md)
+> **Feature File:** [CO-029](cross-repo-cross-server/cross-repo-dispatch.md)
 
 ### CO-030 | Cross-server dispatch via --attach
 
@@ -764,7 +764,7 @@ Expected signals: cli_reference.md §4 + §3 document `--attach` and `opencode a
 
 #### Test Execution
 
-> **Feature File:** [CO-030](09--cross-repo-cross-server/attach-remote-server.md)
+> **Feature File:** [CO-030](cross-repo-cross-server/attach-remote-server.md)
 
 ### CO-031 | Self-invocation guard fires on nested cross-repo dispatch
 
@@ -780,7 +780,7 @@ Expected signals: Layer 1 trips. SKILL.md `has_parallel_session_keywords` is the
 
 #### Test Execution
 
-> **Feature File:** [CO-031](09--cross-repo-cross-server/self-invocation-guard-nested.md)
+> **Feature File:** [CO-031](cross-repo-cross-server/self-invocation-guard-nested.md)
 
 ---
 
@@ -802,61 +802,61 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### CLI INVOCATION
 
-- CO-001: [Base non-interactive invocation](01--cli-invocation/base-non-interactive-invocation.md)
-- CO-002: [Output format default vs json](01--cli-invocation/format-default-vs-json.md)
-- CO-003: [Working directory pinning via --dir](01--cli-invocation/dir-flag-working-directory.md)
-- CO-004: [File attachment via -f / --file flag](01--cli-invocation/file-attachment-via-f-flag.md)
-- CO-005: [Plugin disable and verbose logs](01--cli-invocation/pure-and-print-logs.md)
+- CO-001: [Base non-interactive invocation](cli-invocation/base-non-interactive-invocation.md)
+- CO-002: [Output format default vs json](cli-invocation/format-default-vs-json.md)
+- CO-003: [Working directory pinning via --dir](cli-invocation/dir-flag-working-directory.md)
+- CO-004: [File attachment via -f / --file flag](cli-invocation/file-attachment-via-f-flag.md)
+- CO-005: [Plugin disable and verbose logs](cli-invocation/pure-and-print-logs.md)
 
 ### EXTERNAL DISPATCH
 
-- CO-006: [External dispatch from Claude Code into OpenCode](02--external-dispatch/from-claude-code.md)
+- CO-006: [External dispatch from Claude Code into OpenCode](external-dispatch/from-claude-code.md)
 - CO-007: External dispatch from OpenCode into OpenCode (use case 1) (feature file not yet authored)
-- CO-008: [Self-invocation guard refusal (ADR-001)](02--external-dispatch/self-invocation-refusal.md)
+- CO-008: [Self-invocation guard refusal (ADR-001)](external-dispatch/self-invocation-refusal.md)
 
 ### MULTI-PROVIDER
 
-- CO-011: [deepseek direct API (deepseek-v4-pro)](03--multi-provider/deepseek-direct-api.md)
-- CO-012: [Variant levels (minimal/low/medium/high/max)](03--multi-provider/variant-levels-comparison.md)
+- CO-011: [deepseek direct API (deepseek-v4-pro)](multi-provider/deepseek-direct-api.md)
+- CO-012: [Variant levels (minimal/low/medium/high/max)](multi-provider/variant-levels-comparison.md)
 
 ### AGENT ROUTING
 
-- CO-013: [General agent default route](04--agent-routing/general-agent-default.md)
-- CO-014: [Context LEAF agent (read-only)](04--agent-routing/context-leaf-agent.md)
-- CO-015: [Review agent security audit](04--agent-routing/review-agent-security-audit.md)
-- CO-017: [Ultra-think multi-strategy planning](04--agent-routing/multi-ai-council-multi-strategy.md)
-- CO-032: [Deep-research agent iteration loop](04--agent-routing/deep-research-agent-iterations.md)
-- CO-033: [Deep-review agent audit loop](04--agent-routing/deep-review-agent-audit.md)
-- CO-034: [Orchestrate agent multi-agent coordination](04--agent-routing/orchestrate-agent-multi-agent.md)
+- CO-013: [General agent default route](agent-routing/general-agent-default.md)
+- CO-014: [Context LEAF agent (read-only)](agent-routing/context-leaf-agent.md)
+- CO-015: [Review agent security audit](agent-routing/review-agent-security-audit.md)
+- CO-017: [Ultra-think multi-strategy planning](agent-routing/multi-ai-council-multi-strategy.md)
+- CO-032: [Deep-research agent iteration loop](agent-routing/deep-research-agent-iterations.md)
+- CO-033: [Deep-review agent audit loop](agent-routing/deep-review-agent-audit.md)
+- CO-034: [Orchestrate agent multi-agent coordination](agent-routing/orchestrate-agent-multi-agent.md)
 
 ### SESSION CONTINUITY
 
-- CO-018: [Continue last session via -c](05--session-continuity/continue-last-session.md)
-- CO-019: [Resume specific session by id (-s)](05--session-continuity/resume-by-session-id.md)
-- CO-020: [Fork session and share URL gate](05--session-continuity/fork-and-share.md)
+- CO-018: [Continue last session via -c](session-continuity/continue-last-session.md)
+- CO-019: [Resume specific session by id (-s)](session-continuity/resume-by-session-id.md)
+- CO-020: [Fork session and share URL gate](session-continuity/fork-and-share.md)
 
 ### INTEGRATION PATTERNS
 
 - CO-021: Cross-AI orchestration handback (use case 3) (feature file not yet authored)
-- CO-022: [Memory Epilogue handback to generate-context.js](06--integration-patterns/memory-epilogue-handback.md)
+- CO-022: [Memory Epilogue handback to generate-context.js](integration-patterns/memory-epilogue-handback.md)
 
 ### PROMPT TEMPLATES
 
-- CO-023: [Prompt templates inventory (16 templates)](07--prompt-templates/templates-inventory.md)
-- CO-024: [CLEAR quality card 5-check](07--prompt-templates/clear-quality-card.md)
-- CO-025: [Template applied to a real dispatch](07--prompt-templates/template-applied-to-real-dispatch.md)
-- CO-035: [DeepSeek-v4-pro via the direct DeepSeek API through sk-prompt/prompt-models + sk-prompt](07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md)
-- CO-036: [Kimi K2.7 via the direct Kimi For Coding plan through sk-prompt/prompt-models + sk-prompt](07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md)
-- CO-037: [MiniMax design dispatch carries context manifest and proof cards](07--prompt-templates/minimax-design-context-manifest.md)
+- CO-023: [Prompt templates inventory (16 templates)](prompt-templates/templates-inventory.md)
+- CO-024: [CLEAR quality card 5-check](prompt-templates/clear-quality-card.md)
+- CO-025: [Template applied to a real dispatch](prompt-templates/template-applied-to-real-dispatch.md)
+- CO-035: [DeepSeek-v4-pro via the direct DeepSeek API through sk-prompt/prompt-models + sk-prompt](prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md)
+- CO-036: [Kimi K2.7 via the direct Kimi For Coding plan through sk-prompt/prompt-models + sk-prompt](prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md)
+- CO-037: [MiniMax design dispatch carries context manifest and proof cards](prompt-templates/minimax-design-context-manifest.md)
 
 ### PARALLEL DETACHED
 
-- CO-026: [Parallel detached session (use case 2)](08--parallel-detached/parallel-detached-session.md)
-- CO-027: [Worker farm loop with `</dev/null`](08--parallel-detached/worker-farm-loop.md)
-- CO-028: [Ablation suite via parallel detached sessions](08--parallel-detached/ablation-suite.md)
+- CO-026: [Parallel detached session (use case 2)](parallel-detached/parallel-detached-session.md)
+- CO-027: [Worker farm loop with `</dev/null`](parallel-detached/worker-farm-loop.md)
+- CO-028: [Ablation suite via parallel detached sessions](parallel-detached/ablation-suite.md)
 
 ### CROSS-REPO AND CROSS-SERVER
 
-- CO-029: [Cross-repo dispatch via --dir](09--cross-repo-cross-server/cross-repo-dispatch.md)
-- CO-030: [Cross-server dispatch via --attach](09--cross-repo-cross-server/attach-remote-server.md)
-- CO-031: [Self-invocation guard fires on nested cross-repo dispatch](09--cross-repo-cross-server/self-invocation-guard-nested.md)
+- CO-029: [Cross-repo dispatch via --dir](cross-repo-cross-server/cross-repo-dispatch.md)
+- CO-030: [Cross-server dispatch via --attach](cross-repo-cross-server/attach-remote-server.md)
+- CO-031: [Self-invocation guard fires on nested cross-repo dispatch](cross-repo-cross-server/self-invocation-guard-nested.md)

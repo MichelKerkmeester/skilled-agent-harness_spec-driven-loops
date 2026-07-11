@@ -16,15 +16,15 @@ This playbook package adopts the Feature Catalog split-document pattern. The roo
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
-- `01--surface-detection/`
-- `02--language-sub-detection/`
-- `03--routing-disambiguation/`
-- `04--skill-advisor-integration/`
-- `05--motion-dev-and-animation-regression/`
-- `06--cross-browser-and-performance-gates/`
-- `07--cross-stack-routing/`
-- `08--design-restraint/`
-- `09--tooling-and-hooks/`
+- `surface-detection/`
+- `language-sub-detection/`
+- `routing-disambiguation/`
+- `skill-advisor-integration/`
+- `motion-dev-and-animation-regression/`
+- `cross-browser-and-performance-gates/`
+- `cross-stack-routing/`
+- `design-restraint/`
+- `tooling-and-hooks/`
 
 ---
 
@@ -187,7 +187,7 @@ This section records wave planning and capacity guidance for the manual testing 
 | `SD-002` | OPENCODE Detection | Verify sk-code routes a system-code task to OPENCODE surface | `Add a console.error fallback to .opencode/skills/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts when the input prompt is empty.` | advisor probe → invoke sk-code → inspect surface + loaded refs | advisor: sk-code top-1, score ≥ 0.80; surface: OPENCODE; sub-language: TYPESCRIPT; refs: opencode/typescript/* + opencode/shared/* + router/* | `/tmp/skc-SD002-advisor.txt`, `/tmp/skc-SD002-loaded-refs.txt` | PASS iff surface == OPENCODE AND sub-language detected as TYPESCRIPT AND `code-opencode/references/typescript/*` in load set | If OPENCODE not detected, verify CWD/target check at `references/stack_detection.md:39-40` |
 | `SD-003` | UNKNOWN Fallback | Verify sk-code asks for disambiguation on unsupported stacks (Go) | `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header.` | advisor probe → invoke sk-code → inspect surface | advisor: sk-code top-1 with caveat OR no win; surface: UNKNOWN; AI asks "which runtime / verification commands?" | `/tmp/skc-SD003-advisor.txt`, `/tmp/skc-SD003-response.txt` | PASS iff surface == UNKNOWN AND AI explicitly asks for runtime/verification disambiguation AND no surface-specific refs are loaded | If sk-code silently proceeds, verify the disambiguation rule in SKILL.md "Unsupported / Unknown" row |
 
-Per-feature files: see `01--surface-detection/`.
+Per-feature files: see `surface-detection/`.
 
 ---
 
@@ -200,7 +200,7 @@ Per-feature files: see `01--surface-detection/`.
 | `LS-003` | OPENCODE/Shell | Verify Shell sub-language detection within OPENCODE | `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spec/validate.sh to clean up the temp dir on exit.` | advisor probe → invoke sk-code → inspect surface + sub-language + refs | surface: OPENCODE; sub-language: SHELL; refs: opencode/shell/{style_guide,quality_standards,quick_reference}.md + opencode/shared/* | `/tmp/skc-LS003-loaded-refs.txt` | PASS iff sub-language == SHELL AND all 3 shell/* refs loaded AND no python/typescript refs loaded | Verify `.sh` and shebang signals in SKILL.md sub-detection table |
 | `LS-004` | OPENCODE/Config | Verify JSON/JSONC sub-language detection within OPENCODE | `Add a derived.last_active_child_id field to the <spec-folder> file with value "001-spec".` | advisor probe → invoke sk-code → inspect surface + sub-language + refs | surface: OPENCODE; sub-language: CONFIG; refs: opencode/config/{style_guide,quality_standards,quick_reference}.md + opencode/shared/* | `/tmp/skc-LS004-loaded-refs.txt` | PASS iff sub-language == CONFIG AND all 3 config/* refs loaded | Verify `.json`/`.jsonc` extensions and `schema`/`descriptor` keywords are config signals |
 
-Per-feature files: see `02--language-sub-detection/`.
+Per-feature files: see `language-sub-detection/`.
 
 ---
 
@@ -211,7 +211,7 @@ Per-feature files: see `02--language-sub-detection/`.
 | `RD-001` | Mixed-Marker Ambiguity | Verify sk-code asks for clarification when WEBFLOW + OPENCODE markers co-occur | `I want to add a Lenis smooth-scroll initializer to my .opencode/skills/sk-doc/scripts/preview-server.js so the local preview server has smooth-scroll on its index page.` | advisor probe → invoke sk-code → inspect surface | advisor: sk-code top-1; surface: ambiguous (BOTH OPENCODE path AND WEBFLOW library marker); AI asks "is this an OpenCode internal tool or a Webflow shipping artifact?" | `/tmp/skc-RD001-response.txt` | PASS iff AI explicitly asks for surface clarification AND does not silently pick one | If AI silently picks OPENCODE (because of `.opencode/` path), document as a known-limitation finding |
 | `RD-002` | sk-code vs sk-doc Anti-Pattern | Verify skill advisor routes doc-edit prompts to sk-doc, NOT sk-code | `Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary at the top.` | advisor probe → inspect top-1 + score | advisor: sk-doc top-1, score ≥ 0.70; sk-code score lower | `/tmp/skc-RD002-advisor.txt` | PASS iff advisor top-1 != sk-code AND sk-doc is in the top-3 | If sk-code wins despite this being a doc-edit, propose anti-signal in skill-graph.json (Phase E5) |
 
-Per-feature files: see `03--routing-disambiguation/`.
+Per-feature files: see `routing-disambiguation/`.
 
 ---
 
@@ -221,7 +221,7 @@ Per-feature files: see `03--routing-disambiguation/`.
 |---|---|---|---|---|---|---|---|---|
 | `SA-001` | Advisor Probe Battery | Verify sk-code wins ≥80% of positive controls and loses 100% of negative controls | (multi-prompt battery — see per-feature file) | run `skill_advisor.py` for each prompt at threshold 0.8; tabulate top-1 and score | sk-code wins ≥12 of 15 positives at score ≥ 0.80; sk-code loses all 5 negatives | `/tmp/skc-SA001-advisor-results.jsonl` | PASS iff positive accuracy ≥ 0.80 AND negative-control false-positive rate == 0 | If positive accuracy < 0.80, propose `signals` array additions to skill-graph.json (Phase E5) |
 
-Per-feature file: see `04--skill-advisor-integration/advisor-probe-battery.md`.
+Per-feature file: see `skill-advisor-integration/advisor-probe-battery.md`.
 
 ---
 
@@ -238,7 +238,7 @@ Motion.dev install and API behavior referenced in these scenarios is anchored to
 | `MR-003` | Prefers Reduced Motion | Verify Motion interactions respect `prefers-reduced-motion: reduce` | `Enable prefers-reduced-motion: reduce in Chrome DevTools, exercise the Motion testimonial slider and nav dropdown, and verify transform-heavy movement is disabled, shortened to instant state changes, or replaced with opacity-only changes. Return PASS/FAIL with before/after evidence.` | capture normal video -> enable reduced-motion emulation -> reload -> exercise flows -> capture reduced video | media query true; large transform motion removed or neutralized; UI still usable | `/tmp/skc-MR003-normal.mp4`, `/tmp/skc-MR003-reduced.mp4`, console transcript | PASS iff reduced-motion mode removes large motion while preserving state changes | Verify emulation, source guards, and Motion accessibility guidance |
 | `MR-004` | Animation Regression Baseline | Capture baseline videos for key Motion-driven UI elements | `Record baseline videos for the Motion nav dropdown open/close flow and testimonial slider next/previous/drag flow. Compare the run against the current baseline, note any visual drift, console errors, or timing regressions, and return PASS/FAIL with artifact paths.` | open target -> record dropdown -> record slider -> save console -> compare baseline | correct open/close and slider final states; no console errors; drift noted | `/tmp/skc-MR004-nav-dropdown.mp4`, `/tmp/skc-MR004-testimonial.mp4`, `/tmp/skc-MR004-verdict.md` | PASS iff current behavior matches baseline or establishes approved first baseline | Isolate markup, Motion API, timing constants, or reduced-motion settings |
 
-Per-feature files: see `05--motion-dev-and-animation-regression/`.
+Per-feature files: see `motion-dev-and-animation-regression/`.
 
 ---
 
@@ -252,7 +252,7 @@ These scenarios validate browser compatibility and performance evidence for Moti
 | `CB-002` | Core Web Vitals Gates | Verify Motion-heavy page stays under CWV thresholds | `Measure LCP, CLS, and INP on a page with the Motion testimonial slider and nav dropdown. Use Chrome DevTools Performance panel or PageSpeed Insights, capture the report, and return PASS/FAIL against LCP < 2.5s, CLS < 0.1, INP < 200ms.` | open target -> run DevTools/PageSpeed -> interact -> export report -> write verdict | LCP < 2.5s; CLS < 0.1; INP < 200ms | `/tmp/skc-CB002-report.json` or `.html`, `/tmp/skc-CB002-verdict.md` | PASS iff all metrics meet thresholds and no animation-specific regression appears | Inspect hero delay, layout shifts, long tasks, and interaction handlers |
 | `CB-003` | GPU Compositing | Verify Motion animations use compositor-friendly properties where expected | `Use Chrome DevTools Rendering and Performance panels to inspect the Motion nav dropdown and testimonial slider. Verify transform/opacity animations are compositor-friendly, flag any height/layout animation, and return PASS/FAIL with screenshots and trace notes.` | enable paint/layer tooling -> record trace -> exercise flows -> inspect layout/paint/composite events -> write verdict | transform/opacity composited where expected; layout-affecting animations documented; no forced-layout loop | `/tmp/skc-CB003-trace.json`, `/tmp/skc-CB003-rendering.png`, verdict | PASS iff compositor-friendly behavior is confirmed and layout animation is bounded/documented | Inspect `scrollHeight`, `offsetHeight`, `translate3d`, `willChange`, and CWV correlation |
 
-Per-feature files: see `06--cross-browser-and-performance-gates/`.
+Per-feature files: see `cross-browser-and-performance-gates/`.
 
 ---
 
@@ -270,7 +270,7 @@ These scenarios validate Motion.dev as a cross-stack peer resource rather than a
 | `CS-006` | CWV Gates Animation Heavy | Verify animation-heavy Webflow performance prompts load both Motion and Webflow CWV refs | `Our Webflow landing page in src/2_javascript/hero.js uses motion.dev for scroll reveals and hover cards. LCP and INP regressed. Which sk-code references would you load before advising fixes?` | universal prompt -> runtime YAML -> inspect performance refs | refs include `code-webflow/references/animation/performance_and_pitfalls.md` and `code-webflow/references/performance/cwv_remediation.md` | `/tmp/skc-CS-006-<cli>.txt`, `results/CS-006-<cli>.yaml` | PASS iff both required performance refs load | If one side missing, inspect resource-loading PERFORMANCE maps |
 | `CS-007` | Prefers Reduced Motion | Verify Webflow plus Motion.dev reduced-motion prompts cite Motion accessibility guidance | `For a Webflow page with motion.dev-powered cards in src/2_javascript/cards.js, how should sk-code route a prefers-reduced-motion fix before editing?` | universal prompt -> runtime YAML -> inspect reduced-motion refs and response | surface: WEBFLOW; refs include Motion reduced-motion and Webflow verification guidance | `/tmp/skc-CS-007-<cli>.txt`, `results/CS-007-<cli>.yaml` | PASS iff both Webflow and Motion reduced-motion guidance load | If missing, inspect `performance_and_pitfalls.md` and `verification_workflows.md` |
 
-Per-feature files: see `07--cross-stack-routing/`.
+Per-feature files: see `cross-stack-routing/`.
 
 ---
 
@@ -285,7 +285,7 @@ These scenarios validate the v3.4.0.0 ponytail-based refinement: the pre-write D
 | `DR-003` | Ceiling Comment Convention | Verify sk-code marks a deliberate shortcut with a neutral `ceiling:` comment that passes comment-hygiene without allow-listing | `Add a small in-memory rate limiter to the sk-doc local preview server at .opencode/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.` | invoke sk-code in `/tmp/skc-DR003-sandbox/` → run check-comment-hygiene.sh on the result | `ceiling:` comment names shortcut, ceiling, and upgrade trigger as a plain WHY; hygiene exits 0; `ceiling:` not added to the allowed-pattern list | `/tmp/skc-DR003-hygiene.txt` | PASS iff the ceiling comment follows `references/universal/code_style_guide.md` §4 (neutral WHY, not allow-listed) AND comment-hygiene exits 0 | If hygiene fails, the comment likely embeds a forbidden id — rewrite as a durable WHY |
 | `DR-004` | STACK_FOLDERS Validator | Verify the validator passes clean and fails non-zero on an orphan surface folder | `Run the STACK_FOLDERS validator, confirm a clean pass, then add an orphan assets/<fake-surface> folder and confirm it fails.` | `python3 .../verify_stack_folders.py` (exit 0) → mkdir orphan `assets/zzz-fake-surface` → re-run (exit 1) → rmdir → re-run (exit 0) | clean run exits 0 listing declared surfaces; orphan run exits 1 naming the orphan; cleanup restores exit 0 | `/tmp/skc-DR004-clean.txt`, `/tmp/skc-DR004-orphan.txt` | PASS iff the clean run exits 0 AND an orphan folder in `references/` or `assets/` produces exit 1 naming the orphan, per `assets/scripts/verify_stack_folders.py` | If the orphan is not caught, verify both `references/` and `assets/` trees are scanned |
 
-Per-feature files: see `08--design-restraint/`.
+Per-feature files: see `design-restraint/`.
 
 ---
 
@@ -298,7 +298,7 @@ This category validates shared tooling hooks that sk-code ships or wires into, i
 | `TH-001` | Dist-Staleness Hook Wiring | Verify `claude-posttooluse.sh` prints a STALE DIST WARNING banner for a stale watched package and always exits 0 | `Edit .opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.` | make dist stale → invoke checker directly → invoke full hook via stdin JSON → restore | banner: `STALE DIST WARNING: @spec-kit/mcp-server -- run: ...`; hook exit 0 in all cases | `/tmp/th001-hook-stdout.txt`, `/tmp/th001-hook-stderr.txt` | PASS iff banner reaches hook stdout AND hook exits 0 | If banner is missing but hook still exits 0, check the checker's executable bit (`ls -la check-dist-staleness.sh`) — see per-feature file for the incident this scenario originally caught and how it was fixed |
 | `TH-002` | Comment-Hygiene Hook Wiring | Verify `claude-posttooluse.sh` prints a COMMENT HYGIENE WARNING banner for an edit that introduces a forbidden ephemeral-artifact comment and always exits 0, while `check-comment-hygiene.sh` flags rc=1 pre-fix and rc=0 post-fix | `In a /tmp sandbox, add a source file whose comment carries an ephemeral-artifact pointer (an ADR id), and confirm claude-posttooluse.sh prints a COMMENT HYGIENE WARNING banner and still exits 0, that check-comment-hygiene.sh returns rc=1 on that file, then fix the comment in place and confirm rc=0.` | write sandbox `.ts` with a forbidden `ADR-<n>` comment → invoke checker directly (rc=1) → invoke full hook via stdin JSON (banner, exit 0) → rewrite comment as a durable WHY → re-run checker directly (rc=0) | direct checker stdout `<file>:<line>: <excerpt>` with `direct_prefix_exit=1`; hook stdout banner `COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.` (blank-line wrapped); `hook_exit=0` in all cases; `direct_postfix_exit=0` after the fix | `/tmp/th002-hook-stdout.txt`, `/tmp/th002-direct-prefix.txt`, `/tmp/th002-direct-postfix.txt` | PASS iff the COMMENT HYGIENE WARNING banner reaches hook stdout AND the hook exits 0 AND `check-comment-hygiene.sh` returns rc=1 pre-fix AND rc=0 post-fix | If the banner is missing, confirm the checker returned rc=1 (not rc=2 skip / rc=0 clean): the comment must sit on a comment line, match a `VIOLATION_PATTERN`, and carry no `hygiene-ok` escape; if rc=1 yet no banner, check the checker's executable bit and the hook's `returncode==1 AND stdout.strip()` guard — see per-feature file |
 
-Per-feature files: see `09--tooling-and-hooks/`.
+Per-feature files: see `tooling-and-hooks/`.
 
 ---
 
@@ -322,7 +322,7 @@ Tests NOT covered by automation (manual playbook is the only validation):
 - Design restraint behaviors: ladder rung selection, anti-stall, and the `ceiling:` convention (DR-001, DR-002, DR-003). DR-004 wraps the deterministic `verify_stack_folders.py` check.
 - Dist-staleness hook wiring (TH-001): no automated test covers `claude-posttooluse.sh`'s dist-checker branch; this manual scenario is the only coverage.
 
-**Comment-hygiene hook wiring (TH-002)**: no automated test covers `claude-posttooluse.sh`'s comment-hygiene branch (`check-comment-hygiene.sh`, see `references/universal/code_style_guide.md` §4); it is now covered by the manual scenario TH-002 (see `09--tooling-and-hooks/comment-hygiene-hook.md`), which exercises the warn-only banner path and the checker's rc=1-then-rc=0 contract across an in-place fix. This closes the gap previously flagged here alongside the TH-001 addition; the `check-comment-hygiene.sh` checker itself still has no dedicated automated unit test, so this manual scenario is its only coverage.
+**Comment-hygiene hook wiring (TH-002)**: no automated test covers `claude-posttooluse.sh`'s comment-hygiene branch (`check-comment-hygiene.sh`, see `references/universal/code_style_guide.md` §4); it is now covered by the manual scenario TH-002 (see `tooling-and-hooks/comment-hygiene-hook.md`), which exercises the warn-only banner path and the checker's rc=1-then-rc=0 contract across an in-place fix. This closes the gap previously flagged here alongside the TH-001 addition; the `check-comment-hygiene.sh` checker itself still has no dedicated automated unit test, so this manual scenario is its only coverage.
 
 ---
 
@@ -330,36 +330,36 @@ Tests NOT covered by automation (manual playbook is the only validation):
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
-| Surface Detection | SD-001 | `01--surface-detection/webflow-detection.md` | Yes |
-| Surface Detection | SD-002 | `01--surface-detection/opencode-detection.md` | Yes |
-| Surface Detection | SD-003 | `01--surface-detection/unknown-fallback.md` | Yes |
-| Language Sub-Detection | LS-001 | `02--language-sub-detection/opencode-typescript.md` | No |
-| Language Sub-Detection | LS-002 | `02--language-sub-detection/opencode-python.md` | No |
-| Language Sub-Detection | LS-003 | `02--language-sub-detection/opencode-shell.md` | No |
-| Language Sub-Detection | LS-004 | `02--language-sub-detection/opencode-config.md` | No |
-| Routing Disambiguation | RD-001 | `03--routing-disambiguation/mixed-marker-ambiguity.md` | No |
-| Routing Disambiguation | RD-002 | `03--routing-disambiguation/skcode-vs-skdoc.md` | Yes |
-| Skill Advisor Integration | SA-001 | `04--skill-advisor-integration/advisor-probe-battery.md` | Yes |
-| Motion.dev And Animation Regression | MR-001 | `05--motion-dev-and-animation-regression/motion-api-smoke.md` | Yes |
-| Motion.dev And Animation Regression | MR-002 | `05--motion-dev-and-animation-regression/cdn-bundle-version-pin.md` | Yes |
-| Motion.dev And Animation Regression | MR-003 | `05--motion-dev-and-animation-regression/prefers-reduced-motion.md` | Yes |
-| Motion.dev And Animation Regression | MR-004 | `05--motion-dev-and-animation-regression/animation-regression-baseline.md` | Yes |
-| Cross-Browser And Performance Gates | CB-001 | `06--cross-browser-and-performance-gates/cross-browser-animate.md` | Yes |
-| Cross-Browser And Performance Gates | CB-002 | `06--cross-browser-and-performance-gates/cwv-gates.md` | Yes |
-| Cross-Browser And Performance Gates | CB-003 | `06--cross-browser-and-performance-gates/gpu-compositing.md` | Yes |
-| Cross-Stack Routing | CS-001 | `07--cross-stack-routing/webflow-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-002 | `07--cross-stack-routing/non-webflow-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-003 | `07--cross-stack-routing/opencode-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-004 | `07--cross-stack-routing/decision-matrix-routing.md` | No |
-| Cross-Stack Routing | CS-005 | `07--cross-stack-routing/snippet-reuse-cross-stack.md` | No |
-| Cross-Stack Routing | CS-006 | `07--cross-stack-routing/cwv-gates-animation-heavy.md` | No |
-| Cross-Stack Routing | CS-007 | `07--cross-stack-routing/prefers-reduced-motion.md` | No |
-| Design Restraint | DR-001 | `08--design-restraint/design-restraint-ladder.md` | No |
-| Design Restraint | DR-002 | `08--design-restraint/implementer-anti-stall.md` | No |
-| Design Restraint | DR-003 | `08--design-restraint/ceiling-comment-convention.md` | No |
-| Design Restraint | DR-004 | `08--design-restraint/stack-folders-validator.md` | No |
-| Tooling And Hooks | TH-001 | `09--tooling-and-hooks/check-dist-staleness-hook.md` | No |
-| Tooling And Hooks | TH-002 | `09--tooling-and-hooks/comment-hygiene-hook.md` | No |
+| Surface Detection | SD-001 | `surface-detection/webflow-detection.md` | Yes |
+| Surface Detection | SD-002 | `surface-detection/opencode-detection.md` | Yes |
+| Surface Detection | SD-003 | `surface-detection/unknown-fallback.md` | Yes |
+| Language Sub-Detection | LS-001 | `language-sub-detection/opencode-typescript.md` | No |
+| Language Sub-Detection | LS-002 | `language-sub-detection/opencode-python.md` | No |
+| Language Sub-Detection | LS-003 | `language-sub-detection/opencode-shell.md` | No |
+| Language Sub-Detection | LS-004 | `language-sub-detection/opencode-config.md` | No |
+| Routing Disambiguation | RD-001 | `routing-disambiguation/mixed-marker-ambiguity.md` | No |
+| Routing Disambiguation | RD-002 | `routing-disambiguation/skcode-vs-skdoc.md` | Yes |
+| Skill Advisor Integration | SA-001 | `skill-advisor-integration/advisor-probe-battery.md` | Yes |
+| Motion.dev And Animation Regression | MR-001 | `motion-dev-and-animation-regression/motion-api-smoke.md` | Yes |
+| Motion.dev And Animation Regression | MR-002 | `motion-dev-and-animation-regression/cdn-bundle-version-pin.md` | Yes |
+| Motion.dev And Animation Regression | MR-003 | `motion-dev-and-animation-regression/prefers-reduced-motion.md` | Yes |
+| Motion.dev And Animation Regression | MR-004 | `motion-dev-and-animation-regression/animation-regression-baseline.md` | Yes |
+| Cross-Browser And Performance Gates | CB-001 | `cross-browser-and-performance-gates/cross-browser-animate.md` | Yes |
+| Cross-Browser And Performance Gates | CB-002 | `cross-browser-and-performance-gates/cwv-gates.md` | Yes |
+| Cross-Browser And Performance Gates | CB-003 | `cross-browser-and-performance-gates/gpu-compositing.md` | Yes |
+| Cross-Stack Routing | CS-001 | `cross-stack-routing/webflow-plus-motion-dev.md` | Yes |
+| Cross-Stack Routing | CS-002 | `cross-stack-routing/non-webflow-plus-motion-dev.md` | Yes |
+| Cross-Stack Routing | CS-003 | `cross-stack-routing/opencode-plus-motion-dev.md` | Yes |
+| Cross-Stack Routing | CS-004 | `cross-stack-routing/decision-matrix-routing.md` | No |
+| Cross-Stack Routing | CS-005 | `cross-stack-routing/snippet-reuse-cross-stack.md` | No |
+| Cross-Stack Routing | CS-006 | `cross-stack-routing/cwv-gates-animation-heavy.md` | No |
+| Cross-Stack Routing | CS-007 | `cross-stack-routing/prefers-reduced-motion.md` | No |
+| Design Restraint | DR-001 | `design-restraint/design-restraint-ladder.md` | No |
+| Design Restraint | DR-002 | `design-restraint/implementer-anti-stall.md` | No |
+| Design Restraint | DR-003 | `design-restraint/ceiling-comment-convention.md` | No |
+| Design Restraint | DR-004 | `design-restraint/stack-folders-validator.md` | No |
+| Tooling And Hooks | TH-001 | `tooling-and-hooks/check-dist-staleness-hook.md` | No |
+| Tooling And Hooks | TH-002 | `tooling-and-hooks/comment-hygiene-hook.md` | No |
 
 **Total scenarios**: 30
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)

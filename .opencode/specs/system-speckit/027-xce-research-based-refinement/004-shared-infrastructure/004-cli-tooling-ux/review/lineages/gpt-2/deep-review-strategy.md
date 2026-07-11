@@ -70,7 +70,7 @@ Remediate F001 first, then tighten the bridge route-pair policy and update the p
 | `.opencode/skills/system-code-graph/mcp_server/code-index-cli.ts` | reviewed | Compact/completion/help paths checked. |
 | `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts` | reviewed | Compact/completion/help paths checked. |
 | `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs` | reviewed | F002 evidence. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md` | reviewed | F003 evidence. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/cli-list-tools-parity.md` | reviewed | F003 evidence. |
 
 ## Review Boundaries
 - Max iterations: 6.

@@ -162,6 +162,6 @@ Re-ran `node .opencode/plugins/tests/mk-deep-loop-guard.test.cjs` (exit 0) and `
 
 **Fix:** both warn-tier emissions (Check 1 mode-mismatch and Check 2 loop-repeat) now append a timestamped `[mk-deep-loop-guard] WARN: ...` line to `.opencode/skills/.loop-guard-state/guard-warnings.log` via a new fail-open `appendWarningLog()` helper — never to stdout/stderr. The hard-block path (`throw` when `MK_DEEP_LOOP_GUARD_REJECT` / `MK_DEEP_LOOP_GUARD_REJECT_LOOP` is set) is unchanged, and the detection logic is unchanged; the warning signal stays auditable and CI-inspectable in the log file.
 
-**Doc-truth sync:** updated `feature_catalog/03--validation/mk-deep-loop-guard.md` and `manual_testing_playbook/03--validation/mk-deep-loop-guard.md` to describe the log-file surface instead of console output.
+**Doc-truth sync:** updated `feature_catalog/validation/mk-deep-loop-guard.md` and `manual_testing_playbook/validation/mk-deep-loop-guard.md` to describe the log-file surface instead of console output.
 
 **Verification:** `node .opencode/plugins/tests/mk-deep-loop-guard.test.cjs` → exit 0 (assertions rewritten to read the warning log instead of intercepting `console.error`); confirmed zero `console.*` calls remain in the plugin.

@@ -80,8 +80,8 @@ A concurrent session's blanket `sk-prompt-models` to `sk-prompt/prompt-models` f
 | `.opencode/skills/cli-opencode/SKILL.md` | Modified | F1 pkill scoping fix (Rule 16); version `1.3.15.2` → `1.3.15.3`. |
 | `.opencode/skills/cli-opencode/README.md` | Modified | F2 stale row deleted; F3 share-confirm note added; F4 `--agent` recipe fixed. |
 | `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md` | Modified | F5: 4 corrupted filename links repaired (CO-035/CO-036 Feature File links + both index-list links). |
-| `.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md` | Modified | F5: its own "Feature file path" trailer repaired. |
-| `.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md` | Modified | F5: its own "Feature file path" trailer repaired. |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md` | Modified | F5: its own "Feature file path" trailer repaired. |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md` | Modified | F5: its own "Feature file path" trailer repaired. |
 | `.opencode/skills/cli-opencode/changelog/v1.3.15.3.md` | Created | Documents all 5 fixes, following the `v1.3.15.2.md` entry format. |
 <!-- /ANCHOR:what-built -->
 
@@ -115,7 +115,7 @@ Every finding was re-verified against the live file (grep or Read) immediately b
 |-------|--------|
 | Each of F1-F5 re-verified against the live file before editing | PASS - `SKILL.md:337`/`:351`, `README.md:63-76`/`:77-88`/`:135-145`, and a 6-hit grep all matched the manifest's claims. |
 | `grep -rn "with-sk-prompt/prompt-models" .opencode/skills/cli-opencode/` | PASS - 0 matches (exit 1) after the fix, down from 6 before. |
-| `git diff --stat -- .opencode/skills/cli-opencode/` | PASS - only `SKILL.md`, `README.md`, `manual_testing_playbook.md`, the two `07--prompt-templates/*-with-sk-prompt-models.md` trailers, and the new `changelog/v1.3.15.3.md` carry this phase's edits; the pre-existing GPT-5.6 rename files were untouched. |
+| `git diff --stat -- .opencode/skills/cli-opencode/` | PASS - only `SKILL.md`, `README.md`, `manual_testing_playbook.md`, the two `prompt-templates/*-with-sk-prompt-models.md` trailers, and the new `changelog/v1.3.15.3.md` carry this phase's edits; the pre-existing GPT-5.6 rename files were untouched. |
 | `SKILL.md` frontmatter `version:` | PASS - reads `1.3.15.3`. |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../001-cli-opencode-content-hygiene --strict` | PASS - `Errors: 0  Warnings: 0` (see command output below this table's authoring pass). |
 <!-- /ANCHOR:verification -->

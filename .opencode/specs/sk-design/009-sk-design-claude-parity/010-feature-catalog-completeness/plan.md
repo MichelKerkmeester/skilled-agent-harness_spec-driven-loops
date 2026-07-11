@@ -54,7 +54,7 @@ This plan defines how Phase 010 audits the current feature-catalog coverage acro
 
 ### Definition of Done
 - [x] Every one of the five uncataloged/audited packages has a binding root/category/feature file list in `spec.md`, and the four fully-new packages (`design-foundations`, `design-motion`, `design-audit`) plus the `design-md-generator` augmentation now exist on disk exactly matching that list.
-- [x] The existing `design-md-generator` catalog's completeness gap (missing procedure-card entry) is closed: `08--procedure-cards/md-generator-procedure-card-inventory.md` exists and root `feature_catalog.md` has a new "9. PROCEDURE CARDS" section.
+- [x] The existing `design-md-generator` catalog's completeness gap (missing procedure-card entry) is closed: `procedure-cards/md-generator-procedure-card-inventory.md` exists and root `feature_catalog.md` has a new "9. PROCEDURE CARDS" section.
 - [x] Every new/updated file cites `feature_catalog_template.md` or `feature_catalog_snippet_template.md` as its authoring contract (frontmatter + numbered-section shape verified against both DONE reference packages).
 - [x] `tasks.md` and `checklist.md` reflect the completed, implementation-included state with evidence citations (superseding the original planning-only scope, per the operator's 2026-07-06 decision).
 - [x] Strict spec validation passes for this phase folder after metadata regeneration (`Errors: 0`, see `checklist.md` CHK-020).
@@ -96,10 +96,10 @@ Root-catalog-plus-per-feature-file pattern, per `sk-doc`'s `feature_catalog_temp
 - [x] Read each remaining mode's README/SKILL.md/`procedures/*.md`/references and the existing `design-md-generator` catalog.
 
 ### Phase 2: Implementation (Remediation Authoring)
-- [x] Author the `design-foundations` package: 5 new per-feature files under `01--token-system/`, `02--adaptation-and-data/`, `03--procedure-cards/` (root `feature_catalog.md` already existed).
-- [x] Author the `design-motion` package: new root `feature_catalog.md` + 4 new per-feature files under `01--restraint-gate-and-choreography/`, `02--build-cards/`, `03--procedure-cards/`.
-- [x] Author the `design-audit` package: new root `feature_catalog.md` + 4 new per-feature files under `01--findings-first-review/`, `02--ai-tell-catalog/`, `03--procedure-cards/`.
-- [x] Author the `design-md-generator` completeness fix: new `08--procedure-cards/md-generator-procedure-card-inventory.md` plus a new root "9. PROCEDURE CARDS" section (sections 1-8 and categories 01-07 left unmodified in substance).
+- [x] Author the `design-foundations` package: 5 new per-feature files under `token-system/`, `adaptation-and-data/`, `procedure-cards/` (root `feature_catalog.md` already existed).
+- [x] Author the `design-motion` package: new root `feature_catalog.md` + 4 new per-feature files under `restraint-gate-and-choreography/`, `build-cards/`, `procedure-cards/`.
+- [x] Author the `design-audit` package: new root `feature_catalog.md` + 4 new per-feature files under `findings-first-review/`, `ai-tell-catalog/`, `procedure-cards/`.
+- [x] Author the `design-md-generator` completeness fix: new `procedure-cards/md-generator-procedure-card-inventory.md` plus a new root "9. PROCEDURE CARDS" section (sections 1-8 and categories 01-07 left unmodified in substance).
 - [x] Cite real source evidence (README/SKILL.md/references/procedures paths) in every new file's Source Files sections.
 
 ### Phase 3: Verification

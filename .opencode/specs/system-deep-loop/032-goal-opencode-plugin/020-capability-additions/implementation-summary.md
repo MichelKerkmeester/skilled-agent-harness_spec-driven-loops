@@ -75,10 +75,10 @@ Provider-limit detection now accepts numeric and string `429` status codes, non-
 | `.opencode/commands/goal_opencode.md` | Modified | Routed new verbs and documented `--budget N` validation. |
 | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` | Modified | Synced operator contract with verbs, envs, status fields, and validation. |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | Added `MK_GOAL_MAX_AUTO_TURNS` and `MK_GOAL_MAX_WALL_MS`. |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | Modified | Synced feature catalog. |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | Modified | Synced feature catalog. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | Modified | Added manual validation steps for new capabilities. |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | Modified | Added manual validation steps for new capabilities. |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | Modified | Synced feature catalog. |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | Modified | Synced feature catalog. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` | Modified | Added manual validation steps for new capabilities. |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | Modified | Added manual validation steps for new capabilities. |
 | `.opencode/specs/system-deep-loop/032-goal-opencode-plugin/020-capability-additions/tasks.md` | Modified | Marked tasks complete with evidence. |
 <!-- /ANCHOR:what-built -->
 

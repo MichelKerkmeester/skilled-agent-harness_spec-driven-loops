@@ -94,7 +94,7 @@ Completed. No additional high-value review branches remained after the final sta
 | `.opencode/commands/memory/save.md` | D3, D4 | 5 | 1 P1 | complete |
 | `.opencode/skills/system-spec-kit/references/memory/save_workflow.md` | D1, D3, D4 | 5 | 1 P1 | complete |
 | `.opencode/skills/system-spec-kit/SKILL.md` | D3, D4 | 5 | 1 P1 | complete |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/202-canonical-continuity-save-substrate.md` | D3, D4 | 6 | 1 P1, 1 P2 | complete |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/202-canonical-continuity-save-substrate.md` | D3, D4 | 6 | 1 P1, 1 P2 | complete |
 | `.mcp.json`, `.claude/mcp.json`, `.vscode/mcp.json`, `.gemini/settings.json`, `opencode.json` | D3 | 4 | 0 P0, 0 P1, 0 P2 | complete |
 | `002/.../001-fix-delivery-progress-confusion` | D3 | 8 | 1 P1 | complete |
 | `002/.../002-fix-handover-drop-confusion` | D3 | 8 | 1 P1 | complete |

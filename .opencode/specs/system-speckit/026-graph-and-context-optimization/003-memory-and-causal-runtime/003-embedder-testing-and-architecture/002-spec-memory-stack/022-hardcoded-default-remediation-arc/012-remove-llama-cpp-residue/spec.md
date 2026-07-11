@@ -25,8 +25,8 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs"
       - ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/types.ts"
       - ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/index.ts"
-      - ".opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-multi-file-diff.md"
-      - ".opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-blast-radius.md"
+      - ".opencode/skills/system-code-graph/manual_testing_playbook/detect-changes/detect-changes-multi-file-diff.md"
+      - ".opencode/skills/system-code-graph/manual_testing_playbook/mcp-tool-surface/code-graph-query-blast-radius.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000002b12"
       session_id: "016-002-022-012"

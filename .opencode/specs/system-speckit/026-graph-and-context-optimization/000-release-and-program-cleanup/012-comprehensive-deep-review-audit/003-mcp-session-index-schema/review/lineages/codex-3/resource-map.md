@@ -37,9 +37,9 @@
 | File | Review Use |
 |------|------------|
 | `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Checked for stale session/bootstrap call shapes; none accepted. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md` | F003 stale bootstrap call shape. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-resume.md` | F004 stale session resume expected fields. |
-| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/tool-routing-enforcement.md` | Search hit checked; no accepted finding. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/discovery/session-bootstrap-reader-ready-context.md` | F003 stale bootstrap call shape. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/context-preservation/session-resume.md` | F004 stale session resume expected fields. |
+| `.opencode/skills/system-spec-kit/feature_catalog/context-preservation/tool-routing-enforcement.md` | Search hit checked; no accepted finding. |
 
 ## Finding to Resource Links
 | Finding | Primary Resources |

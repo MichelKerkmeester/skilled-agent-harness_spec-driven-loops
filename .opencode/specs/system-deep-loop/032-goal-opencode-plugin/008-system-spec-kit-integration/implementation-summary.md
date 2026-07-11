@@ -18,8 +18,8 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/SKILL.md"
       - ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md"
     session_dedup:
       fingerprint: "sha256:4dd96e15edc43f058c632838ca4b944c38a85005ddc0741e46c02b9c0e99ec62"
       session_id: "goal-system-spec-kit-integration-20260630"
@@ -72,7 +72,7 @@ System-spec-kit now treats `/goal` as a documented OpenCode plugin surface. Oper
 
 ### Catalog And Playbook Assets
 
-The feature catalog now includes `18--ux-hooks/goal-opencode-plugin.md`, and the manual testing playbook now includes scenario `454` for active-goal injection and status output.
+The feature catalog now includes `ux-hooks/goal-opencode-plugin.md`, and the manual testing playbook now includes scenario `454` for active-goal injection and status output.
 
 ### Files Changed
 
@@ -86,8 +86,8 @@ The feature catalog now includes `18--ux-hooks/goal-opencode-plugin.md`, and the
 | `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Modified | Distinguishes bridge-backed plugin entrypoints from standalone local plugins. |
 | `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md` | Modified | Documents why `mk-goal` has no bridge helper in this directory. |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | Lists `MK_GOAL_*` plugin-level environment controls. |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | Created | Adds feature catalog coverage for `/goal`. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | Created | Adds manual validation scenario for status and injection preview. |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | Created | Adds feature catalog coverage for `/goal`. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` | Created | Adds manual validation scenario for status and injection preview. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -136,8 +136,8 @@ This was delivered as documentation and reference integration only. Runtime plug
 | `node .opencode/plugins/tests/mk-goal-supervisor.test.cjs` | PASS |
 | `node .opencode/plugins/tests/mk-goal-continuation.test.cjs` | PASS |
 | `python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` | PASS: checklist 5/5, DQI 83 |
-| `python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | PASS: checklist 1/1, DQI 91 |
-| `python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | PASS: checklist 1/1, DQI 93 |
+| `python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | PASS: checklist 1/1, DQI 91 |
+| `python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` | PASS: checklist 1/1, DQI 93 |
 | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` | PASS with one unrelated existing warning in `mcp_server/scripts/evals/generate-known-item-ground-truth.cjs` |
 | `LC_ALL=C rg -n "[^ -~]" ...` on new phase and new goal docs | PASS: no non-ASCII matches |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/032-goal-opencode-plugin --strict` | PASS: parent packet and all nine phases |

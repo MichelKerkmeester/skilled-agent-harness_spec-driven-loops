@@ -21,8 +21,8 @@ Generated from review delta evidence for lineage `gpt-fast-high`.
 | `.opencode/skills/cli-opencode/README.md` | User-facing dispatch contract | Read |
 | `.opencode/skills/cli-opencode/references/agent_delegation.md` | Linked roster/routing reference | Read; F001 found |
 | `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md` | Living playbook index | Read; F001 found |
-| `.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md` | Living scenario | Read; F001 found |
-| `.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/general-agent-default.md` | Living scenario | Read; F001 found |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/cli-invocation/base-non-interactive-invocation.md` | Living scenario | Read; F001 found |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/general-agent-default.md` | Living scenario | Read; F001 found |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/scan-integration.cjs` | Scanner mirror model | Read; no finding |
 | `.opencode/plugins/README.md` | Plugin entrypoint count/table | Read; no finding |
 

@@ -5,7 +5,7 @@ import * as api from '../api';
 
 const MCP_SERVER_ROOT = path.join(__dirname, '..');
 const SKILL_ROOT = path.join(MCP_SERVER_ROOT, '..');
-const FEATURE_FLAG_DOCS = path.join(SKILL_ROOT, 'feature_catalog', '19--feature-flag-reference');
+const FEATURE_FLAG_DOCS = path.join(SKILL_ROOT, 'feature_catalog', 'feature-flag-reference');
 
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -142,7 +142,7 @@ describe('Memory roadmap flag documentation', () => {
     const featureFilePath = path.join(
       SKILL_ROOT,
       'manual_testing_playbook',
-      '19--feature-flag-reference',
+      'feature-flag-reference',
       '311-memory-roadmap-capability-flags.md',
     );
     const playbookContent = fs.readFileSync(playbookPath, 'utf8');

@@ -73,7 +73,7 @@ Patches every confirmed finding from phase 014's audit to match current runtime 
 Direct, scoped text edits per cluster — no new abstractions, no refactors beyond what each finding names. Each cluster is patched independently and re-verified with its own scoped grep before moving to the next, so a mistake in one cluster doesn't block or contaminate the others.
 
 ### Key Components
-- **cli-opencode docs** (Cluster 1): `SKILL.md`, `README.md`, `assets/prompt_templates.md`, `manual_testing_playbook.md`, `04--agent-routing/multi-ai-council-multi-strategy.md`.
+- **cli-opencode docs** (Cluster 1): `SKILL.md`, `README.md`, `assets/prompt_templates.md`, `manual_testing_playbook.md`, `agent-routing/multi-ai-council-multi-strategy.md`.
 - **Deep-loop SKILL.md docs** (Clusters 2/3): `deep-research`, `deep-review` (+`loop_protocol.md`), `deep-context`, `deep-loop-runtime`, `deep-ai-council` (+`output_schema.md`).
 - **deep-improvement scanner** (Cluster 4): `scan-integration.cjs` (code) + 6 supporting docs.
 - **plugins/README.md** (Cluster 5): entrypoint count/table.

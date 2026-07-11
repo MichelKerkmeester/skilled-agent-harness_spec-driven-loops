@@ -39,7 +39,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | `skill_advisor.py` CLI probe; `opencode run` CLI live dispatch; manual-playbook markdown scenario contracts |
 | **Framework** | Existing `manual_testing_playbook` `{PREFIX}-NNN(-VN)` scenario contract shape |
-| **Storage** | `.opencode/skills/sk-design/manual_testing_playbook/03--transform-verb-framing/`; transcripts under `/tmp/skd-*` |
+| **Storage** | `.opencode/skills/sk-design/manual_testing_playbook/transform-verb-framing/`; transcripts under `/tmp/skd-*` |
 | **Testing** | Advisor probe (`--threshold 0.8`) + live `opencode run --format json` dispatch, one at a time, graded against each scenario's own criteria |
 
 ### Overview

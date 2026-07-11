@@ -24,8 +24,8 @@
 - `.opencode/skills/sk-design/design-interface/README.md:106`
 - `.opencode/skills/sk-design/design-interface/references/design-process/transform_application.md:17`
 - `.opencode/skills/sk-design/design-interface/references/design-process/transform_application.md:182`
-- `.opencode/skills/sk-design/design-interface/feature_catalog/03--procedure-cards/interface-procedure-card-inventory.md:24`
-- `.opencode/skills/sk-design/design-interface/manual_testing_playbook/14--procedure-card-contract/card-selection-proof.md:41`
+- `.opencode/skills/sk-design/design-interface/feature_catalog/procedure-cards/interface-procedure-card-inventory.md:24`
+- `.opencode/skills/sk-design/design-interface/manual_testing_playbook/procedure-card-contract/card-selection-proof.md:41`
 
 Package check run:
 
@@ -76,7 +76,7 @@ Warnings:
 
 - `sk-doc-package-check`: PASS with warnings. Warnings recorded as P2 findings per the iteration charter.
 - `mode-registry packetSkillName`: PASS. `mode-registry.json:49` declares packet `design-interface`, `mode-registry.json:51` declares `packetSkillName: design-interface`, and `SKILL.md:2` has `name: design-interface`.
-- `mode-registry proceduresPath`: PASS. `mode-registry.json:50` declares `design-interface/procedures`; the packet contains the six procedure cards listed in `SKILL.md:157` through `SKILL.md:162`, `README.md:108`, and the procedure inventory at `feature_catalog/03--procedure-cards/interface-procedure-card-inventory.md:28`.
+- `mode-registry proceduresPath`: PASS. `mode-registry.json:50` declares `design-interface/procedures`; the packet contains the six procedure cards listed in `SKILL.md:157` through `SKILL.md:162`, `README.md:108`, and the procedure inventory at `feature_catalog/procedure-cards/interface-procedure-card-inventory.md:28`.
 - `mode-registry toolSurface`: PASS. `mode-registry.json:43` through `mode-registry.json:47` allows `Read`, `Glob`, and `Grep`, forbids `Write`, `Edit`, and `Bash`, and marks `mutatesWorkspace:false`; `SKILL.md:4` allows `Read`, `Grep`, and `Glob`, and `SKILL.md:171` states direct fallback uses Read/Glob/Grep only and cannot rely on Write/Edit/Bash/Task.
 - `/design:interface command metadata`: PARTIAL. Command identity, argument grammar, tasks, handoff, proof fields, and procedure-family claims match the packet, but transform-verb projections do not reference the packet's transform-specific landing lane.
 - `procedure-card maintainability`: PASS. `README.md:106` through `README.md:108`, `SKILL.md:151` through `SKILL.md:165`, the feature catalog, and the manual testing scenario make the private procedure-card structure self-documenting.

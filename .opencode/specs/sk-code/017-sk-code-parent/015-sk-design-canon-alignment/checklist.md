@@ -78,7 +78,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] Acceptance criteria for four audited strict failures are met [EVIDENCE: 7a (symlinks), 8a (description), 9a (playbook), 9b (benchmark) each PASS]
-- [x] CHK-021 [P0] Manual testing playbook includes mode-classification and transform-verb framing scenarios [EVIDENCE: categories 01--mode-routing (6 scenarios) + 03--transform-verb-framing (5 scenarios) in b9abf16b31]
+- [x] CHK-021 [P0] Manual testing playbook includes mode-classification and transform-verb framing scenarios [EVIDENCE: categories mode-routing (6 scenarios) + transform-verb-framing (5 scenarios) in b9abf16b31]
 - [x] CHK-022 [P1] Broken `design-interface/README.md` link is verified repaired [EVIDENCE: fixed in 4f00dd262c; check-markdown-links reports zero broken sk-design links]
 - [x] CHK-023 [P1] Benchmark baseline artifacts are present for later phase 019 comparison [EVIDENCE: benchmark/baseline/{skill-benchmark-report.json,.md} pushed fc4644a98a; parsed programmatically during the identity re-check]
 

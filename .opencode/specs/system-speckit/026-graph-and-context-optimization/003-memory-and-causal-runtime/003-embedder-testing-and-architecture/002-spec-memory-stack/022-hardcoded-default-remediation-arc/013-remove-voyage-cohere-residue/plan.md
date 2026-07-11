@@ -87,7 +87,7 @@ Removal pattern with two compensating updates:
 
 ### Step 4 — Doc + comment updates (3 files)
 
-`mcp_server/lib/search/evidence-gap-detector.ts` Z_SCORE_THRESHOLD comment, `mcp_server/ENV_REFERENCE.md` §14 RERANKER intro, `feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md` rows.
+`mcp_server/lib/search/evidence-gap-detector.ts` Z_SCORE_THRESHOLD comment, `mcp_server/ENV_REFERENCE.md` §14 RERANKER intro, `feature_catalog/feature-flag-reference/05-5-embedding-and-api.md` rows.
 
 ### Step 5 — Test rewrites + deletion (3 test files)
 

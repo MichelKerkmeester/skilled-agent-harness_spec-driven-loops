@@ -25,7 +25,7 @@
 - `.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:146`
 - `.opencode/skills/sk-design/design-audit/procedures/accessibility_audit.md:42`
 - `.opencode/skills/sk-design/design-audit/procedures/ai_slop_check.md:41`
-- `.opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md:18`
+- `.opencode/skills/sk-design/design-audit/feature_catalog/procedure-cards/audit-procedure-card-inventory.md:18`
 - `.opencode/skills/sk-design/design-audit/references/audit_contract.md:97`
 - `.opencode/skills/sk-design/design-audit/references/transform_remediation.md:24`
 - `.opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md:26`
@@ -41,7 +41,7 @@
 #### P1-010-001 [P1] `/design:audit` metadata omits the packet's required procedure-card surface
 
 - Claim: `/design:audit` command metadata does not enumerate the design-audit procedure cards even though the packet makes procedure-card selection part of the runtime routing/proof contract.
-- Evidence: `.opencode/skills/sk-design/command-metadata.json:49` through `.opencode/skills/sk-design/command-metadata.json:52` load only `design-audit/references/` and assets for the audit workflow, while `.opencode/skills/sk-design/design-audit/SKILL.md:291` through `.opencode/skills/sk-design/design-audit/SKILL.md:299` require selecting and citing one of `procedures/accessibility_audit.md`, `procedures/ai_slop_check.md`, or `../shared/procedures/polish_gate_orchestration.md`. The feature catalog also states the packet has two private procedure cards at `.opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md:18` through `.opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md:26`.
+- Evidence: `.opencode/skills/sk-design/command-metadata.json:49` through `.opencode/skills/sk-design/command-metadata.json:52` load only `design-audit/references/` and assets for the audit workflow, while `.opencode/skills/sk-design/design-audit/SKILL.md:291` through `.opencode/skills/sk-design/design-audit/SKILL.md:299` require selecting and citing one of `procedures/accessibility_audit.md`, `procedures/ai_slop_check.md`, or `../shared/procedures/polish_gate_orchestration.md`. The feature catalog also states the packet has two private procedure cards at `.opencode/skills/sk-design/design-audit/feature_catalog/procedure-cards/audit-procedure-card-inventory.md:18` through `.opencode/skills/sk-design/design-audit/feature_catalog/procedure-cards/audit-procedure-card-inventory.md:26`.
 - Counterevidence sought: I checked whether `/design:audit` had task projections or choreography rows naming `procedures/`; it has harden/polish task projections at `.opencode/skills/sk-design/command-metadata.json:81` through `.opencode/skills/sk-design/command-metadata.json:104`, but those reference only `references/` files and do not cover the procedure-card surface.
 - Alternative explanation: The metadata may treat procedures as internal implementation details under `SKILL.md`; however, the packet states the private procedure-card selection table is part of the routing contract and must be cited before audit output.
 - FinalSeverity: P1.

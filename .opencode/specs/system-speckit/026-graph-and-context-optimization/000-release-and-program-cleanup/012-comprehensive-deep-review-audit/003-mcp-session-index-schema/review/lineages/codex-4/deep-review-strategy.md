@@ -83,8 +83,8 @@ The target packet contains only `spec.md`; `plan.md`, `tasks.md`, `checklist.md`
 | `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | reviewed |
 | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | reviewed; active P2 |
 | `.opencode/skills/system-spec-kit/mcp_server/schemas/` | reviewed; active P1/P2 |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md` | reviewed; active P2 |
-| `.opencode/skills/system-spec-kit/feature_catalog/17--governance/governed-ingest-cancel-lifecycle.md` | reviewed; active P2 |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/discovery/session-bootstrap-reader-ready-context.md` | reviewed; active P2 |
+| `.opencode/skills/system-spec-kit/feature_catalog/governance/governed-ingest-cancel-lifecycle.md` | reviewed; active P2 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | reviewed |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts` | reviewed |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts` | reviewed |

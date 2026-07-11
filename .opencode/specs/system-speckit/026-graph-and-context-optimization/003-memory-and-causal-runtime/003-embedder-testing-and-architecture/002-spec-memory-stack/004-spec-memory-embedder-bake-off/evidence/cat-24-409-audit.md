@@ -21,9 +21,9 @@ The scenario file does not define a static 10-pair fixture. It defines a runtime
 
 Evidence:
 
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-llm-made-memory-recall.md:19-25`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-llm-made-memory-recall.md:39-59`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-llm-made-memory-recall.md:80-86`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-llm-made-memory-recall.md:19-25`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-llm-made-memory-recall.md:39-59`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-llm-made-memory-recall.md:80-86`
 
 The current 016/004 reruns reused the same 10 trigger-bearing samples from prior 008 evidence rather than drawing a fresh random sample. The explicit sample ids are visible in later rerun rows, especially the Jina, Nomic, bge-m3, and Snowflake evidence:
 
@@ -83,15 +83,15 @@ Current audit spot-check with `memory_search(..., profile: "quick", rerank: fals
 
 The 8/10 threshold was authored in commit:
 
-`837f7e0d82 test(playbook,014/028): add 24--local-llm-query-intelligence operator scenarios`
+`837f7e0d82 test(playbook,014/028): add local-llm-query-intelligence operator scenarios`
 
 The commit message describes 10 operator-driven scenarios for the post-014 local-LLM stack and says they complement mechanical tests with human-verifiable pass/fail criteria. It does not cite a known-good system achieving 8/10 on cat-24/409. The threshold appears aspirational/operator-defined, not empirically calibrated.
 
 Relevant commit evidence:
 
-- `git log --all --oneline -- .opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-llm-made-memory-recall.md` returns only `837f7e0d82`.
+- `git log --all --oneline -- .opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-llm-made-memory-recall.md` returns only `837f7e0d82`.
 - `git show --format=fuller --no-patch 837f7e0d82` contains no benchmark calibration note.
-- Current scenario lines encode the threshold directly: `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-llm-made-memory-recall.md:23-25`.
+- Current scenario lines encode the threshold directly: `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-llm-made-memory-recall.md:23-25`.
 
 ## Realistic Max Score
 
@@ -129,9 +129,9 @@ Verdict: **BROKEN / stale ground truth risk.**
 
 The scenario expects four query pairs to achieve >=60% top-5 Jaccard for at least 3 of 4 pairs, and it names canonical targets for memory pair A/B and CocoIndex pair C/D:
 
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/402-synonymy-across-vocabularies.md:21-25`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/402-synonymy-across-vocabularies.md:41-63`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/402-synonymy-across-vocabularies.md:68-73`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/402-synonymy-across-vocabularies.md:21-25`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/402-synonymy-across-vocabularies.md:41-63`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/402-synonymy-across-vocabularies.md:68-73`
 
 The memory ground truth is stale or under-specified:
 
@@ -147,8 +147,8 @@ Verdict: **STRETCH / hard but partly fair.**
 
 The expected constituent set is explicit:
 
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/408-compound-concept-synthesis.md:23-29`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/408-compound-concept-synthesis.md:43-56`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/408-compound-concept-synthesis.md:23-29`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/408-compound-concept-synthesis.md:43-56`
 
 The sources mostly exist:
 

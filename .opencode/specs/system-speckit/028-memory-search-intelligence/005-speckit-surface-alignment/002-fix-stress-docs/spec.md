@@ -21,9 +21,9 @@ _memory:
     next_safe_action: "No further action"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/category-overview.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/stress-testing/category-overview.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/README.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/run-stress-cycle.md"
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md"
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/README.md"
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/README.md"
@@ -74,7 +74,7 @@ Bring the in-scope stress-test docs back to current reality without touching `SK
 ## 3. SCOPE
 
 ### In Scope
-- Document the automated Vitest stress harness in the 14--stress-testing catalog and playbook surface.
+- Document the automated Vitest stress harness in the stress-testing catalog and playbook surface.
 - Align stress_test README tables with the real domain folders and scripts.
 - Update domain README file inventories for durability, search-quality, and substrate.
 - Document substrate `--clean`, hermetic DB cleanup, and Vitest `afterAll` sandbox reap behavior.
@@ -83,15 +83,15 @@ Bring the in-scope stress-test docs back to current reality without touching `SK
 ### Out of Scope
 - `SKILL.md` and changelog changes, because the audit confirmed those surfaces current and the user explicitly forbade touching them.
 - Test or source code changes, because this packet fixes documentation only.
-- `feature_catalog/14--pipeline-architecture/stress-test-cycle.md`, because the user scope lock allowed only `feature_catalog/14--stress-testing/**` for feature-catalog edits.
+- `feature_catalog/pipeline-architecture/stress-test-cycle.md`, because the user scope lock allowed only `feature_catalog/stress-testing/**` for feature-catalog edits.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/category-overview.md` | Modify | Add automated harness coverage, domains, npm scripts, and version stamp. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md` | Modify | Add automated harness cross-reference and scripts. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md` | Modify | Add automated stress-slice guidance and version stamp. |
+| `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/category-overview.md` | Modify | Add automated harness coverage, domains, npm scripts, and version stamp. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/README.md` | Modify | Add automated harness cross-reference and scripts. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/run-stress-cycle.md` | Modify | Add automated stress-slice guidance and version stamp. |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md` | Modify | Add missing `durability/` key-file row and actual domain names. |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/durability/README.md` | Modify | Add four real omitted durability tests. |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/README.md` | Modify | Remove phantom test reference and add real omitted tests. |
@@ -109,7 +109,7 @@ Bring the in-scope stress-test docs back to current reality without touching `SK
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Preserve scope lock. | Only the allowed docs and spec folder are modified. |
-| REQ-002 | Fix catalog/playbook harness blindness. | 14--stress-testing docs name the six real harness domains and five npm stress commands verified in `mcp_server/package.json`. |
+| REQ-002 | Fix catalog/playbook harness blindness. | stress-testing docs name the six real harness domains and five npm stress commands verified in `mcp_server/package.json`. |
 | REQ-003 | Fix durability README inventory. | README lists all eleven real `.vitest.ts` files in `stress_test/durability/`. |
 | REQ-004 | Fix search-quality README inventory. | Phantom `w11-code_graph-calibration-telemetry.vitest.ts` is removed and real omitted tests are listed. |
 | REQ-005 | Fix substrate README cleanup gap. | README documents `--clean`, `.tmp-cg-db` cleanup, and Vitest `afterAll` sandbox cleanup verified in source/tests. |
@@ -119,7 +119,7 @@ Bring the in-scope stress-test docs back to current reality without touching `SK
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-007 | Refresh in-scope version stamps. | 14--stress-testing docs use current system-spec-kit version `3.7.1.0` verified from `SKILL.md` and changelog file list. |
+| REQ-007 | Refresh in-scope version stamps. | stress-testing docs use current system-spec-kit version `3.7.1.0` verified from `SKILL.md` and changelog file list. |
 | REQ-008 | Validate the spec packet. | `validate.sh --strict` exits 0 for this spec folder. |
 <!-- /ANCHOR:requirements -->
 

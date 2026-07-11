@@ -185,7 +185,7 @@ None - see section 7.
 ## RELATED DOCUMENTS
 
 - **Sibling wave-generation precedent**: `../022-benchmark-rerun-and-coverage-fill/` (Level 2 structural template followed by this document)
-- **Scenario sources**: `.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/shared-polish-gate-selection-proof.md`, `.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/interface-variation-set-selection-proof.md`, `.opencode/skills/sk-design/manual_testing_playbook/07--fallback-and-resilience/no-card-matches-fallback.md`
+- **Scenario sources**: `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/shared-polish-gate-selection-proof.md`, `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/interface-variation-set-selection-proof.md`, `.opencode/skills/sk-design/manual_testing_playbook/fallback-and-resilience/no-card-matches-fallback.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`

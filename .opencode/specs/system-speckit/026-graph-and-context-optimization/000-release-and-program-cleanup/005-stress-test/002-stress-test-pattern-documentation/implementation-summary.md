@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - "implementation-summary.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle"
+      - ".opencode/skills/system-spec-kit/feature_catalog/stress-testing/01-stress-test-cycle"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/01-run-stress-cycle"
       - ".opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.template.json"
     completion_pct: 90
     open_questions: []
@@ -56,8 +56,8 @@ The stress test cycle is now a reusable documentation pattern instead of three h
 
 | Requirement | Disposition |
 |-------------|-------------|
-| REQ-001 Feature catalog entry | Complete: `feature_catalog/14--stress-testing/01-stress-test-cycle` authored with overview, current reality, sources, and metadata. |
-| REQ-002 Manual playbook entry | Complete: `manual_testing_playbook/14--stress-testing/01-run-stress-cycle` authored with preconditions, ten execution steps, verification, and success criteria. |
+| REQ-001 Feature catalog entry | Complete: `feature_catalog/stress-testing/01-stress-test-cycle` authored with overview, current reality, sources, and metadata. |
+| REQ-002 Manual playbook entry | Complete: `manual_testing_playbook/stress-testing/01-run-stress-cycle` authored with preconditions, ten execution steps, verification, and success criteria. |
 | REQ-003 JSON schema template | Complete: `templates/stress-test/findings-rubric.template.json` and the rubric schema document authored. |
 | REQ-004 Findings narrative template | Complete: `templates/stress-test/findings.template` authored. |
 | REQ-005 README index files | Complete: feature catalog and manual playbook section indexes authored. |
@@ -71,10 +71,10 @@ The stress test cycle is now a reusable documentation pattern instead of three h
 | `plan.md` | Created | Level 2 implementation plan with A/B/C authoring sections. |
 | `tasks.md` | Created | Task ledger for catalog, playbook, templates, cross-links, and verification. |
 | `checklist.md` | Created | DQI verification checklist per artifact. |
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/README` | Created | Feature catalog section index. |
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle` | Created | Canonical stress test cycle reference. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README` | Created | Manual playbook section index. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle` | Created | Operational guide for running a stress cycle. |
+| `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/README` | Created | Feature catalog section index. |
+| `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/01-stress-test-cycle` | Created | Canonical stress test cycle reference. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/README` | Created | Manual playbook section index. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/01-run-stress-cycle` | Created | Operational guide for running a stress cycle. |
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Created | Parseable JSON sidecar template. |
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema` | Created | Field-by-field sidecar schema. |
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings.template` | Created | Narrative findings skeleton. |
@@ -99,7 +99,7 @@ The docs were derived from the actual stress cycle artifacts, not from a fresh a
 
 | Decision | Why |
 |----------|-----|
-| Created `14--stress-testing` as a new section | The pattern is reusable beyond memory quality and indexing, even though the first worked examples came from search/RAG stress testing. |
+| Created `stress-testing` as a new section | The pattern is reusable beyond memory quality and indexing, even though the first worked examples came from search/RAG stress testing. |
 | Kept the JSON template parseable | Completed sidecars need to pass ordinary JSON tooling; explanatory comments live in the rubric schema document. |
 | Generalized the canonical dimensions | v1.0.2's historical dimensions were search-quality specific; the new reusable cycle needs dimensions that fit broader packet review: correctness, robustness, telemetry, and regression-safety. |
 | Skipped sk-doc skill-file update | The approved write authority covered new system-spec-kit doc paths and historical packet cross-links, not sk-doc skill internals. |

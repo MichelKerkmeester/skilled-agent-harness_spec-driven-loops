@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files:
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/004-lane-attribution.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/scorer-fusion/004-lane-attribution.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-004"
@@ -50,7 +50,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The live `semantic_shadow` lane is an intentional promotion to weight 0.05 / `shadowOnly:false` / `live:true` (source of truth `lib/scorer/lane-registry.ts:12`, exported via `weights-config.ts:18`; asserted by `lanes/__tests__/semantic-shadow-cosine.vitest.ts:212-213`; feature catalog `04--scorer-fusion/01-five-lane-fusion.md:29` agrees). But SC-004 (`004-lane-attribution.md:47,57`) and SC-005 (`005-ablation.md:49`) still assume it is shadow-only/weight-0, a stale comment lingers in `lib/scorer/lanes/semantic-shadow.ts:160`, and the raw `LaneMatch.shadowOnly` returns true (line 167). This produced the SC-004 PARTIAL in the 028 run.
+The live `semantic_shadow` lane is an intentional promotion to weight 0.05 / `shadowOnly:false` / `live:true` (source of truth `lib/scorer/lane-registry.ts:12`, exported via `weights-config.ts:18`; asserted by `lanes/__tests__/semantic-shadow-cosine.vitest.ts:212-213`; feature catalog `scorer-fusion/01-five-lane-fusion.md:29` agrees). But SC-004 (`004-lane-attribution.md:47,57`) and SC-005 (`005-ablation.md:49`) still assume it is shadow-only/weight-0, a stale comment lingers in `lib/scorer/lanes/semantic-shadow.ts:160`, and the raw `LaneMatch.shadowOnly` returns true (line 167). This produced the SC-004 PARTIAL in the 028 run.
 
 ### Purpose
 Make the docs (and stale code commentary) match the live behavior so SC-004/SC-005 stop reporting a false drift. The live weight is NOT reverted.
@@ -64,7 +64,7 @@ Make the docs (and stale code commentary) match the live behavior so SC-004/SC-0
 ### In Scope
 - Update SC-004 to expect `semantic_shadow` fused `shadowOnly:false` when the lane is live.
 - Update SC-005 to treat `semantic_shadow` as a non-zero ablation lane.
-- Update `feature_catalog/04--scorer-fusion/04-attribution.md` (also says always shadowOnly:true).
+- Update `feature_catalog/scorer-fusion/04-attribution.md` (also says always shadowOnly:true).
 - Fix the stale comment / raw `LaneMatch.shadowOnly` semantics in `lanes/semantic-shadow.ts` (or remove that raw flag from any fused-attribution expectation).
 
 ### Out of Scope
@@ -75,9 +75,9 @@ Make the docs (and stale code commentary) match the live behavior so SC-004/SC-0
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/004-lane-attribution.md` | Modify | Expect shadowOnly:false for the live lane |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/005-ablation.md` | Modify | Non-zero ablation lane |
-| `.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/04-attribution.md` | Modify | Match live behavior |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/scorer-fusion/004-lane-attribution.md` | Modify | Expect shadowOnly:false for the live lane |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/scorer-fusion/005-ablation.md` | Modify | Non-zero ablation lane |
+| `.opencode/skills/system-skill-advisor/feature_catalog/scorer-fusion/04-attribution.md` | Modify | Match live behavior |
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts` | Modify | Fix stale comment / raw shadowOnly semantics |
 <!-- /ANCHOR:scope -->
 

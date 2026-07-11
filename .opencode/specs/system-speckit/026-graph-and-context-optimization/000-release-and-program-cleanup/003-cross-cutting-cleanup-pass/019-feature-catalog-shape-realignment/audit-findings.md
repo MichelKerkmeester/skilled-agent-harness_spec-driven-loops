@@ -63,5 +63,5 @@ Final six-root shape audit returned no `DRIFT` lines.
 | `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md` | Template asset | Source template, not a per-feature catalog snippet |
 | `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md` | Template asset | Root catalog template, not a per-feature catalog snippet |
 | `manual_testing_playbook/**/[0-9][0-9][0-9]-*.md` references | Stable scenario IDs | Validation artifacts, not packet-history claims |
-| `19--feature-flag-reference/08-audit-phase-020-mapping-note.md` | Published filename | File content was evergreen-cleaned, but the stable filename was not renamed |
+| `feature-flag-reference/08-audit-phase-020-mapping-note.md` | Published filename | File content was evergreen-cleaned, but the stable filename was not renamed |
 <!-- /ANCHOR:exemptions -->

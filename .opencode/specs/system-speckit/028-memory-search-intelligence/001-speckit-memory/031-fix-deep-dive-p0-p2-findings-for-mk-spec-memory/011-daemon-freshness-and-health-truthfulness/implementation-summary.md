@@ -74,7 +74,7 @@ The dist-freshness checker no longer deadlocks. A successful build now pre-warms
 | `mcp_server/hooks/spec-memory-cli-fallback.ts` | Modified | Record and surface the fallback skip reason |
 | `mcp_server/hooks/warm-cli-fallback-envelope.ts` | Modified | Carry `timedOut` on the envelope so fallback status can read it (final-verify correction) |
 | `mcp_server/tests/dist-freshness.vitest.ts` | Modified | Deadlock-bootstrap regression coverage |
-| `feature_catalog/16--tooling-and-scripts/dist-freshness-enforcement.md` | Modified | Corrected exit taxonomy and hash-cache paragraph |
+| `feature_catalog/tooling-and-scripts/dist-freshness-enforcement.md` | Modified | Corrected exit taxonomy and hash-cache paragraph |
 <!-- /ANCHOR:what-built -->
 
 ---

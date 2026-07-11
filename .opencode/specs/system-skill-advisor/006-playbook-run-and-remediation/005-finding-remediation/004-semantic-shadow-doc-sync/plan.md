@@ -85,7 +85,7 @@ Registry (0.05/live) → fusion derives shadowOnly:false → docs must describe 
 |---------|--------------|--------|--------------|
 | `004-lane-attribution.md:47,57` | scenario expectation | expect shadowOnly:false | SC-004 re-run PASS |
 | `005-ablation.md:49` | scenario expectation | non-zero ablation lane | SC-005 re-run PASS |
-| `feature_catalog/04--scorer-fusion/04-attribution.md` | catalog doc | match live | doc review |
+| `feature_catalog/scorer-fusion/04-attribution.md` | catalog doc | match live | doc review |
 | `lanes/semantic-shadow.ts:160,167` | stale comment + raw flag | correct comment; keep/clarify flag | grep consumers of LaneMatch.shadowOnly |
 
 Inventory: grep `LaneMatch.shadowOnly` / `shadowOnly` consumers before touching the raw flag — prefer comment fix only.

@@ -368,7 +368,7 @@ sha256: 7a82138526398e39c73fd8e25b4fdf375b03b396bb8788aa0b4ab6257cd5132d
 ```
 
 Fixture repair results:
-- 409 now reads 10 deterministic pairs from `manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json`.
+- 409 now reads 10 deterministic pairs from `manual_testing_playbook/local-llm-query-intelligence/409-fixture.json`.
 - 402 now references live targets for the stale lineages: `4437/5143 -> 7007`, `4400 -> 8048`, and `1534 -> 7636/7639` with `4356` pruned as orphaned.
 - 408 was remeasured with mirrored implementation paths counted as one factory/cascade constituent.
 

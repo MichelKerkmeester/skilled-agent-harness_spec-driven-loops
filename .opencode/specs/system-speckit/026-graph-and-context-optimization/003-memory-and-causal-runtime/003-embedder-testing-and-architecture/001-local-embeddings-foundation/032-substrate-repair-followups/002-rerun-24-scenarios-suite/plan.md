@@ -18,8 +18,8 @@ _memory:
       - "Spec Kit Memory MCP launcher fails: missing zod-to-json-schema"
       - "opencode-go/kimi-k2.6 provider call fails with ConnectionRefused/FailedToOpenSocket"
     key_files:
-      - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md"
-      - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.sh"
+      - "_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md"
+      - "_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000322"
       session_id: "002-rerun-24-scenarios-suite"
@@ -50,7 +50,7 @@ _memory:
 
 ### Overview
 
-The intended work was to run scenarios 401-415 from `manual_testing_playbook/24--local-llm-query-intelligence/` after substrate fixes landed, using OpenCode as the MCP-capable executor. The execution plan is sequential and one-shot: preflight health, preflight save/delete round-trip, then one `opencode run` dispatch per scenario with the required three-line verdict tail.
+The intended work was to run scenarios 401-415 from `manual_testing_playbook/local-llm-query-intelligence/` after substrate fixes landed, using OpenCode as the MCP-capable executor. The execution plan is sequential and one-shot: preflight health, preflight save/delete round-trip, then one `opencode run` dispatch per scenario with the required three-line verdict tail.
 
 The run is blocked before scenario execution because the Memory MCP server fails during launcher startup and the OpenCode Go provider call fails from this sandbox.
 <!-- /ANCHOR:summary -->
@@ -88,9 +88,9 @@ Sequential external-runner validation with strict preflight.
 
 ### Key Components
 
-- **Runner script**: `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.sh`
-- **Evidence report**: `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md`
-- **Scenario source**: `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/401-415`
+- **Runner script**: `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.sh`
+- **Evidence report**: `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md`
+- **Scenario source**: `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/401-415`
 - **Executor**: `opencode run --pure -m opencode-go/kimi-k2.6 --variant high`
 
 ### Data Flow
@@ -198,7 +198,7 @@ Spec read -> OpenCode/provider check -> Memory MCP preflight -> scenario suite -
 <!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
-1. Remove `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.sh` if a future runner supersedes it.
-2. Replace `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md` with the successful rerun report after preflight blockers are repaired.
+1. Remove `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.sh` if a future runner supersedes it.
+2. Replace `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md` with the successful rerun report after preflight blockers are repaired.
 3. Update `graph-metadata.json` from `blocked` to `complete` or `partial` according to the actual PASS/PARTIAL count.
 <!-- /ANCHOR:enhanced-rollback -->

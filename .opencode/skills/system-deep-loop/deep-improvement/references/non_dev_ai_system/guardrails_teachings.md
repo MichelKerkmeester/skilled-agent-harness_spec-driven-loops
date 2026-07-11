@@ -154,7 +154,7 @@ The promotion gate must be validated end-to-end before trusting it on real impro
 
 **Guardrail:** The red-team gauntlet (`benchmark/_loop/gauntlet.py`) runs 9 attacks producing 10 checks, all dispatch-free: frozen-surface edit, derived-copy or empty-derive integrity, same-family grader, unmeasurable held-out, hard-rule lint, synonym-laundering boundary, kill-switch cleanup, dirty tree, and the lock pair (concurrent refusal plus stale eviction). Promotion-accept was proven via a synthetic-deficit run in the pilot.
 
-**Lives in:** `benchmark/_loop/gauntlet.py`, pilot evidence in `feature_catalog/06--non-dev-ai-system/guarded-refine-loop.md`.
+**Lives in:** `benchmark/_loop/gauntlet.py`, pilot evidence in `feature_catalog/non-dev-ai-system/guarded-refine-loop.md`.
 
 ---
 

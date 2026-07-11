@@ -11,7 +11,7 @@ The three `setup-cp-sandbox.sh` files share the same argument parsing, path guar
 There is one automated test explicitly pinned to the council playbook root path. That means the migration must either move/update that test or add an equivalent merged-root anchor check; otherwise the old `deep-ai-council/manual_testing_playbook` path remains a stale enforced surface.
 The reusable playbook runner is scoped to `system-spec-kit`, not the five deep-loop skills. The only confirmed machine-enforced governance check in this slice is the council playbook anchor-integrity test pinned to `.opencode/skills/deep-ai-council/manual_testing_playbook`; the `COVERED_FEATURES == TOTAL_FEATURES` strings are prose contract literals unless another angle finds a skill-specific validator.
 A broad governance scan found more old-root references than the context report’s scenario-level estimate: 277 markdown files in the five governance packages contain old `.opencode/skills/deep-*` path roots, with 1,109 total old-root hits. This is a mechanical rewrite surface broader than just the per-scenario count.
-One additional drift surfaced: `deep-improvement` has 49 per-scenario playbook markdown files on disk, while its root release rule hardcodes 48. The extra file is `manual_testing_playbook/11--non-dev-ai-system/synthetic-deficit-and-gauntlet.md`, and the root index does not summarize that category after the skill-benchmark section.
+One additional drift surfaced: `deep-improvement` has 49 per-scenario playbook markdown files on disk, while its root release rule hardcodes 48. The extra file is `manual_testing_playbook/non-dev-ai-system/synthetic-deficit-and-gauntlet.md`, and the root index does not summarize that category after the skill-benchmark section.
 Runtime also shows a count drift in its own playbook: overview says 29 scenarios, but release readiness says 17. I would inherit its lowercase root/index convention, not its count prose.
 **Recommendation**
 Use **one unified governance tree** in `deep-loop-workflows`, but make it **mode-partitioned**, not category-flattened.
@@ -50,14 +50,14 @@ A flat merged category list would be artificial and would violate the “preserv
 - Move governance docs into `.opencode/skills/deep-loop-workflows/feature_catalog/modes/improvement/` from `.opencode/skills/deep-improvement/feature_catalog/`.
 - Move governance docs into `.opencode/skills/deep-loop-workflows/feature_catalog/modes/council/` from `.opencode/skills/deep-ai-council/feature_catalog/`.
 - Do the parallel move for `manual_testing_playbook/modes/{context,research,review,improvement,council}/`.
-- Normalize council’s uppercase root `FEATURE_CATALOG.md` to lowercase `feature_catalog.md`; current uppercase references appear in `.opencode/skills/deep-ai-council/README.md:210` and all council per-feature back-links, e.g. `.opencode/skills/deep-ai-council/feature_catalog/03--artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md:56`.
+- Normalize council’s uppercase root `FEATURE_CATALOG.md` to lowercase `feature_catalog.md`; current uppercase references appear in `.opencode/skills/deep-ai-council/README.md:210` and all council per-feature back-links, e.g. `.opencode/skills/deep-ai-council/feature_catalog/artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md:56`.
 - Update the council anchor-integrity test currently pinned to the old root: `.opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts:10`, `.opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts:83-124`.
 
 **Counts And Drift**
 - Confirmed runtime already has governance roots. It should be treated as the peer convention source, not merged into workflows.
 - Runtime’s own playbook has count drift: overview says 29 scenarios, release readiness says 17: `.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:28-30`, `.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:98`.
 - `deep-improvement` root hardcodes `COVERED_FEATURES == TOTAL_FEATURES == 48`: `.opencode/skills/deep-improvement/manual_testing_playbook/manual_testing_playbook.md:104-112`.
-- Disk has an additional Lane D scenario file, `PR-001`: `.opencode/skills/deep-improvement/manual_testing_playbook/11--non-dev-ai-system/synthetic-deficit-and-gauntlet.md:1-6`. Treat this as real and update the merged count model to include it unless another decision explicitly demotes it.
+- Disk has an additional Lane D scenario file, `PR-001`: `.opencode/skills/deep-improvement/manual_testing_playbook/non-dev-ai-system/synthetic-deficit-and-gauntlet.md:1-6`. Treat this as real and update the merged count model to include it unless another decision explicitly demotes it.
 - `deep-ai-council` has the equality-style prose without a numeric literal: `.opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md:121-128`.
 - `deep-context` and `deep-review` use prose coverage rules, not numeric literals: `.opencode/skills/deep-context/manual_testing_playbook/manual_testing_playbook.md:108-115`, `.opencode/skills/deep-review/manual_testing_playbook/manual_testing_playbook.md:102-110`.
 - I found no general machine validator enforcing `COVERED_FEATURES == TOTAL_FEATURES` for the five deep-loop skills. The confirmed machine-enforced item is the council playbook anchor-integrity test path.
@@ -73,9 +73,9 @@ A flat merged category list would be artificial and would violate the “preserv
 **Setup Sandbox Dedupe**
 The three `setup-cp-sandbox.sh` files share the same shell skeleton but differ in payload:
 
-- Shared safety/parser/helper body exists in research: `.opencode/skills/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh:8-85`.
-- Review adds `sk-code-review` and target fixture creation: `.opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh:87-124`.
-- Improvement uses fixture roots and a different sandbox payload: `.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh:6-7`, `.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh:88-106`.
+- Shared safety/parser/helper body exists in research: `.opencode/skills/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:8-85`.
+- Review adds `sk-code-review` and target fixture creation: `.opencode/skills/deep-review/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:87-124`.
+- Improvement uses fixture roots and a different sandbox payload: `.opencode/skills/deep-improvement/manual_testing_playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh:6-7`, `.opencode/skills/deep-improvement/manual_testing_playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh:88-106`.
 
 Recommendation: extract one shared helper under the merged workflow playbook support area, with mode-specific manifests for required paths and fixture copies. Do not force one universal shell body with mode branches embedded everywhere.
 

@@ -74,10 +74,10 @@ description: "Autonomous deep-review loop findings for deep-loops/032-goal-openc
     ".opencode/commands/goal_opencode.md",
     ".opencode/plugins/tests/mk-goal-*.test.cjs",
     "032-goal-opencode-plugin/{003,007,008}",
-    ".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md",
-    ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
-    ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
-    ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",
+    ".opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md",
+    ".opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md",
+    ".opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md",
     ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
   ],
   "fixCompletenessRequired": true
@@ -101,7 +101,7 @@ All findings are read-only observations against `.opencode/plugins/mk-goal.js` a
 | DR-006-P1-001 | P1 | security | Verifier exception messages bypass secret redaction before persistence/injection | `.opencode/plugins/mk-goal.js:1057` | active |
 | DR-007-P1-001 | P1 | traceability | Command surface split into three incompatible names across phase docs/metadata/live file | `032-goal-opencode-plugin/003-goal-command/tasks.md:18` | active |
 | DR-007-P2-001 | P2 | traceability | Generated phase graph metadata lists non-deliverable files as key files | `032-goal-opencode-plugin/004-lifecycle-tracking/graph-metadata.json:39` | active |
-| DR-008-P1-001 | P1 | traceability | Overlay feature catalogs/playbooks point operators at a stale command surface | `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:27` | active |
+| DR-008-P1-001 | P1 | traceability | Overlay feature catalogs/playbooks point operators at a stale command surface | `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:27` | active |
 | DR-009-P1-001 | P1 | maintainability | No regression test pins DR-001/DR-003/DR-005/DR-006's exact behaviors | `.opencode/plugins/tests/mk-goal-state.test.cjs:120` | active |
 | DR-009-P1-002 | P1 | maintainability | Prompt-enhancement tests never assert a RICCE metadata field | `.opencode/plugins/tests/mk-goal-state.test.cjs:40` | active |
 | DR-009-P1-003 | P1 | maintainability | No test suite validates command markdown / overlay catalog references | `.opencode/plugins/tests/mk-goal-export-contract.test.cjs:16` | active |
@@ -219,6 +219,6 @@ The coordinator subsequently requested 2 additional iterations (14-15) within th
 - Phase 006 "live idle smoke" completion overclaim: ruled out (iteration 13) — phase 006's own docs consistently and honestly flag the live-smoke gap as a residual validation item; it is not hidden or overclaimed.
 - New hook doc (`goal_plugin.md`) introducing a genuinely new defect class: ruled out (iteration 15) — every stale/mismatched claim in that doc mapped to an already-cataloged finding (command-name drift, disable-boundary drift, injection-cap behavior); no new root cause was found, and the LEAF agent correctly declined to mint duplicate finding IDs for identical causes.
 
-**Sources reviewed**: `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md` (formerly `opencode_goal.md`, renamed a second time mid-review), 6 `mk-goal-*.test.cjs` files, 8× `{spec,plan,tasks,implementation-summary,description.json,graph-metadata.json}` phase docs (001-008), `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`, `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` (added iteration 15), `.opencode/hooks/pre-commit`, `.opencode/scripts/git-hooks/pre-commit`, `.opencode/package.json`.
+**Sources reviewed**: `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md` (formerly `opencode_goal.md`, renamed a second time mid-review), 6 `mk-goal-*.test.cjs` files, 8× `{spec,plan,tasks,implementation-summary,description.json,graph-metadata.json}` phase docs (001-008), `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`, `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` (added iteration 15), `.opencode/hooks/pre-commit`, `.opencode/scripts/git-hooks/pre-commit`, `.opencode/package.json`.
 
 **Coverage summary**: correctness (4 passes + 2 adversarial re-verification lenses), security (2 passes + 2 adversarial re-verification lenses), traceability (2 passes + 2 adversarial re-verification lenses, 3 overlay docs total including the iteration-15 hook doc), maintainability (2 passes + 1 empirical test-execution pass + 1 adversarial re-verification lens). All required dimensions covered with `coverage_age >= 1`. `p0ResolutionRate = 1` (no P0 ever opened, across all 15 iterations). `hotspotSaturation` fully satisfied: all 12 plugin-scoped P1s and all 4 P2s were adversarially re-adjudicated at least once (iterations 11 and 14 for P1s, iteration 15 for the remainder and all P2s), with zero severity changes across the entire loop.

@@ -187,8 +187,8 @@ keep them that way).
   *.disposed (1758-1837) — no compaction-specific event. Remove/qualify the word.
 - **DOC-2 | RESOLVED 2026-07-04** — skill-advisor manual_testing_playbook.md:192 link TEXT reads
   `007-goal-opencode-plugin.md` while the file is `goal-opencode-plugin.md` (href resolves). Fix text.
-  Current evidence: .opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md:60 and .opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:62 list `mk-goal-export-contract.test.cjs` in the validation catalogs.
-- (minor, optional with DOC work) skill-advisor feature catalog validation table (07--hooks-and-plugin/
+  Current evidence: .opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md:60 and .opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:62 list `mk-goal-export-contract.test.cjs` in the validation catalogs.
+- (minor, optional with DOC work) skill-advisor feature catalog validation table (hooks-and-plugin/
   goal-opencode-plugin.md:58-66) omits mk-goal-export-contract.test.cjs from its test list.
 
 ## D. Spec-packet findings (032 bookkeeping)

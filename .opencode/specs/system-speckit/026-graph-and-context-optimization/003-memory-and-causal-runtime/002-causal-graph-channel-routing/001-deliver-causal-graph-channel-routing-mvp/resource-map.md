@@ -50,9 +50,9 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts` | Updated | OK | Added 15 tests across 012-T1..T4 (unit, integration, telemetry, latency) |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/entity-density.vitest.ts` | Created | OK | 12 tests across 012-ED-1..ED-3 (lookup, cold-start, cache) |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/routing-telemetry-stress.vitest.ts` | Created | OK | 11 stress tests across 012-S1..S4 (ring overflow, latency, cache invalidation, flag-off path) |
-| `.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/12-graph-channel-preservation.md` | Created | OK | New feature-catalog entry documenting the override + entity-density gate + flag |
-| `.opencode/skills/system-spec-kit/feature_catalog/03--discovery/03-health-diagnostics-memoryhealth.md` | Updated | OK | Append `data.routing` block reality + add routing-telemetry.ts to source files |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md` | Created | OK | Manual-test scenario validating graphChannelInvocationRate surfaces |
+| `.opencode/skills/system-spec-kit/feature_catalog/query-intelligence/12-graph-channel-preservation.md` | Created | OK | New feature-catalog entry documenting the override + entity-density gate + flag |
+| `.opencode/skills/system-spec-kit/feature_catalog/discovery/03-health-diagnostics-memoryhealth.md` | Updated | OK | Append `data.routing` block reality + add routing-telemetry.ts to source files |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md` | Created | OK | Manual-test scenario validating graphChannelInvocationRate surfaces |
 <!-- /ANCHOR:skills -->
 
 ---

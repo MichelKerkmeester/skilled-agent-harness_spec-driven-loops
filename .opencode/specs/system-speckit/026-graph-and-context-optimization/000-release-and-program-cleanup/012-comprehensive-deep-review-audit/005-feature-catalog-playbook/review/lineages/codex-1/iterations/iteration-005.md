@@ -18,7 +18,7 @@ Scenario 135's named examples returned handler plus lib/shared hits for:
 - Classification-based decay
 - Prediction-error save arbitration
 
-That prevents escalation of P1-005 into a broader "annotation names invalid" finding. The problem remains the dedicated scenario contract text [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:18].
+That prevents escalation of P1-005 into a broader "annotation names invalid" finding. The problem remains the dedicated scenario contract text [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md:18].
 
 ## Findings
 

@@ -26,6 +26,6 @@
 
 ## [P2][REFINEMENT] Playbooks validate detect_changes itself, not agent adoption
 
-- Evidence: .opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-no-inline-index.md:20-26 validates stale refusal; .opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-multi-file-diff.md:39-66 validates response shape and stale blocking; .opencode/skills/sk-code-review/manual_testing_playbook/01--baseline-review-flow/large-refactor-pr.md:46-48 reviews a large diff using git diff/stat/name-only and @review with no detect_changes step.
+- Evidence: .opencode/skills/system-code-graph/manual_testing_playbook/detect-changes/detect-changes-no-inline-index.md:20-26 validates stale refusal; .opencode/skills/system-code-graph/manual_testing_playbook/detect-changes/detect-changes-multi-file-diff.md:39-66 validates response shape and stale blocking; .opencode/skills/sk-code-review/manual_testing_playbook/baseline-review-flow/large-refactor-pr.md:46-48 reviews a large diff using git diff/stat/name-only and @review with no detect_changes step.
 - Detail: The tool’s blocked-on-stale behavior has direct validation, but the workflows most likely to benefit from it do not have regression scenarios proving they call it before acting on diffs. That leaves adoption vulnerable to future documentation-only drift.
 - Fix sketch: Add sk-code-review/@review/deep-review manual scenarios that require captured diff -> detect_changes -> blocked/ok handling evidence before final review output.

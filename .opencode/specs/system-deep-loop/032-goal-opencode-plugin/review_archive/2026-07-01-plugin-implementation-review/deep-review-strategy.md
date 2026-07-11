@@ -184,10 +184,10 @@ resource-map.md not present at `{spec_folder}/resource-map.md`; skipping Resourc
 | `032-goal-opencode-plugin/006-active-continuation/{spec,plan,tasks,implementation-summary}.md` | correctness | 3 | 1 P1 cross-phase | partial |
 | `032-goal-opencode-plugin/007-sk-prompt-goal-enhancement/{spec,plan,tasks,implementation-summary}.md` + metadata | correctness, traceability | 7 | 2 P1 | partial |
 | `032-goal-opencode-plugin/008-system-spec-kit-integration/{spec,plan,tasks,implementation-summary}.md` + metadata | correctness, traceability | 7 | 1 P1, 1 P2 metadata drift | partial |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | - | - | - | pending |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | - | - | - | pending |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | - | - | - | pending |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | - | - | - | pending |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | - | - | - | pending |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | - | - | - | pending |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` | - | - | - | pending |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | - | - | - | pending |
 
 **EXCLUDED (do not review):** `032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/**`
 <!-- MACHINE-OWNED: END -->

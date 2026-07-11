@@ -31,7 +31,7 @@ contextType: "implementation"
 - [x] T-009 cli-opencode/SKILL.md line 514: Skill Integration `sk-code-opencode` row → baseline+overlay row
 - [x] T-010 cli-opencode/references/opencode_tools.md line 37: skill access list updated
 - [x] T-011 cli-opencode/manual_testing_playbook/manual_testing_playbook.md line 113: notation note → `sk-code` baseline compatible
-- [x] T-012 cli-opencode/manual_testing_playbook/07--prompt-templates/003-template-applied-to-real-dispatch.md line 49: prompt body 2 lines updated (replace_all=true matched both contract bullet + table cell)
+- [x] T-012 cli-opencode/manual_testing_playbook/prompt-templates/003-template-applied-to-real-dispatch.md line 49: prompt body 2 lines updated (replace_all=true matched both contract bullet + table cell)
 - [x] T-013 cli-opencode/assets/prompt_templates.md TEMPLATE 5 lines 193, 196-197: canonical Code Review prompt template updated
 
 ## Phase 3: Verification

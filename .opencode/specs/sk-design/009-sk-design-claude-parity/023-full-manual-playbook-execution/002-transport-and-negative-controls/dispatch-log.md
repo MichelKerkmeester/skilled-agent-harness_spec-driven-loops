@@ -6,7 +6,7 @@ One row per real dispatch. Advisor probe run via `skill_advisor.py --threshold 0
 
 ## MR-007 — Open Design Transport Mode Routing
 
-- **Scenario file**: `.opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md`
+- **Scenario file**: `.opencode/skills/sk-design/manual_testing_playbook/mode-routing/mcp-open-design-mode.md`
 - **Exact prompt**: `Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.`
 - **NO_TARGET_CLAUSE**: Omitted (real, discoverable local target: Open Design's actually-installed CLI/daemon on this machine).
 - **Advisor probe top-1/confidence**: `sk-code` 0.95 (tied with `mcp-figma`, `cli-opencode`, `mcp-chrome-devtools`, all 0.95). `sk-design` ranked 6th at 0.90.
@@ -18,7 +18,7 @@ One row per real dispatch. Advisor probe run via `skill_advisor.py --threshold 0
 
 ## AI-002 — Pure Code Routes to sk-code
 
-- **Scenario file**: `.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/pure-code-routes-skcode.md`
+- **Scenario file**: `.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/pure-code-routes-skcode.md`
 - **Exact prompt**: `Refactor the parseExecutorConfig function in a TypeScript config loader to throw when the executor type is missing.`
 - **NO_TARGET_CLAUSE**: Omitted (non-UI target).
 - **Advisor probe top-1/confidence**: `sk-code` 0.9126. `sk-design` did not appear in the result set.
@@ -31,7 +31,7 @@ One row per real dispatch. Advisor probe run via `skill_advisor.py --threshold 0
 
 ## AI-003 — Documentation Write Routes Elsewhere
 
-- **Scenario file**: `.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/doc-write-routes-elsewhere.md`
+- **Scenario file**: `.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/doc-write-routes-elsewhere.md`
 - **Exact prompt**: `Write a README section explaining how the sk-design hub routes its six modes.`
 - **NO_TARGET_CLAUSE**: Omitted (pure prose deliverable, not a UI surface).
 - **Advisor probe top-1/confidence**: `sk-doc` 0.9185. `sk-design` ranked 2nd at 0.9062 (not top-1).
@@ -43,7 +43,7 @@ One row per real dispatch. Advisor probe run via `skill_advisor.py --threshold 0
 
 ## AI-004 — Code-Correctness Review Routes to sk-code
 
-- **Scenario file**: `.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/code-review-routes-skcode.md`
+- **Scenario file**: `.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/code-review-routes-skcode.md`
 - **Exact prompt**: `Review this checkout API handler for SQL-injection risk and missing input validation. This is a code-correctness review, not a visual or UI design review.`
 - **NO_TARGET_CLAUSE**: Omitted (backend/API target, explicitly not framed as a UI surface by the prompt itself).
 - **Advisor probe top-1/confidence**: `sk-code` 0.8985. `sk-design` ranked 2nd at 0.82 (not top-1).
@@ -55,7 +55,7 @@ One row per real dispatch. Advisor probe run via `skill_advisor.py --threshold 0
 
 ## SR-001 — Interface Shared References
 
-- **Scenario file**: `.opencode/skills/sk-design/manual_testing_playbook/05--shared-reference-base/interface-shared-references.md`
+- **Scenario file**: `.opencode/skills/sk-design/manual_testing_playbook/shared-reference-base/interface-shared-references.md`
 - **Exact prompt**: `Make this landing page look less generic and state the register before recommending colors.`
 - **NO_TARGET_CLAUSE**: Included (`"this landing page"` is a hypothetical local UI target absent from this repo).
 - **Advisor probe top-1/confidence**: `sk-design` 0.82 — the only skill above the 0.80 threshold in the result set.

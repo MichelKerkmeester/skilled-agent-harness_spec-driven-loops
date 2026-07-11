@@ -114,7 +114,7 @@ _memory:
 <!-- ANCHOR:phase-7 -->
 ## Phase 7: Validator retirement (C1) + assets/scripts doc
 - [ ] T7.1 `code-opencode/assets/scripts/verify_stack_folders.py` — retire OR rewrite against the real two-axis layout (currently always exit 1) (C1). Durable-WHY comments only.
-- [ ] T7.2 `manual_testing_playbook/08--design-restraint/stack-folders-validator.md` — retire the impossible DR-004 (requires exit 0) (C1).
+- [ ] T7.2 `manual_testing_playbook/design-restraint/stack-folders-validator.md` — retire the impossible DR-004 (requires exit 0) (C1).
 - [ ] T7.3 `code-opencode/SKILL.md` §4 + `assets/scripts/README.md` — document the `assets/scripts/` subtree (P1-25).
 - [ ] T7.V No scenario requires the impossible exit 0; SKILL.md §4 lists assets/scripts; comment-hygiene clean on the script.
 

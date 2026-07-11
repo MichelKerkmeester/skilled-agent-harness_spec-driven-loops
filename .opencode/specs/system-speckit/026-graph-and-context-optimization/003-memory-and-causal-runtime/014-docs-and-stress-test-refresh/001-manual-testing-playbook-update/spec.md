@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - "manual_testing_playbook/manual_testing_playbook.md"
-      - "manual_testing_playbook/05--lifecycle/"
-      - "manual_testing_playbook/04--maintenance/"
+      - "manual_testing_playbook/lifecycle/"
+      - "manual_testing_playbook/maintenance/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-testing-playbook-update-packet-setup"
@@ -89,12 +89,12 @@ Add new human-run `EX-###` scenarios — in the existing EX feature-file format 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `manual_testing_playbook/manual_testing_playbook.md` | Modify | Add `### EX-037`..`### EX-042` entries to `## 7. EXISTING FEATURES`; wire each to its feature file. |
-| `manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md` | Create | EX-037 checkpoint-v2 create→restore round-trip scenario. |
-| `manual_testing_playbook/04--maintenance/post-insert-enrichment-lifecycle-v30.md` | Create | EX-038 schema v30 post-insert enrichment lifecycle scenario. |
-| `manual_testing_playbook/04--maintenance/index-scan-phased-async-refinements.md` | Create | EX-039 index_scan phased-async / move-reconciliation / repair-counts scenario. |
-| `manual_testing_playbook/14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md` | Create | EX-040 front-proxy RSS-recycle / SPECKIT_BACKEND_ONLY / -32002 vs -32001 scenario. |
-| `manual_testing_playbook/16--tooling-and-scripts/sk-git-worktree-convention.md` | Create | EX-041 sk-git `wt/{NNNN}-{name}` worktree-convention scenario. |
-| `manual_testing_playbook/05--lifecycle/checkpoint-v2-needs-rebuild-self-heal.md` | Create | EX-042 `.needs-rebuild` self-heal (boot/pre-scan/scan-lease) scenario. |
+| `manual_testing_playbook/lifecycle/checkpoint-v2-file-snapshot-roundtrip.md` | Create | EX-037 checkpoint-v2 create→restore round-trip scenario. |
+| `manual_testing_playbook/maintenance/post-insert-enrichment-lifecycle-v30.md` | Create | EX-038 schema v30 post-insert enrichment lifecycle scenario. |
+| `manual_testing_playbook/maintenance/index-scan-phased-async-refinements.md` | Create | EX-039 index_scan phased-async / move-reconciliation / repair-counts scenario. |
+| `manual_testing_playbook/pipeline-architecture/front-proxy-reconnect-and-backend-only.md` | Create | EX-040 front-proxy RSS-recycle / SPECKIT_BACKEND_ONLY / -32002 vs -32001 scenario. |
+| `manual_testing_playbook/tooling-and-scripts/sk-git-worktree-convention.md` | Create | EX-041 sk-git `wt/{NNNN}-{name}` worktree-convention scenario. |
+| `manual_testing_playbook/lifecycle/checkpoint-v2-needs-rebuild-self-heal.md` | Create | EX-042 `.needs-rebuild` self-heal (boot/pre-scan/scan-lease) scenario. |
 <!-- /ANCHOR:scope -->
 
 ---

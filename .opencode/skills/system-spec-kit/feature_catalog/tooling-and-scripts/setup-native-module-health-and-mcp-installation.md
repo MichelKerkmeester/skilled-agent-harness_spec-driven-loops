@@ -1,0 +1,57 @@
+---
+title: "Setup, Native Module Health, and MCP Installation"
+description: "Spec-folder prerequisite validation, native module diagnostics and rebuild, Node ABI marker recording, and Spec Kit Memory MCP bootstrap/configuration scripts."
+trigger_phrases:
+  - "setup native module health and mcp installation"
+  - "install.sh"
+  - "install spec kit mcp"
+  - "native module rebuild"
+  - "check-native-modules"
+version: 3.6.0.13
+---
+
+# Setup, Native Module Health, and MCP Installation
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+This setup surface combines two neighboring but distinct responsibilities inside `scripts/setup/`: prerequisite validation for spec-driven implementation workflows, and local-environment bootstrap for the bundled Spec Kit Memory MCP server.
+
+Taken together, these scripts validate the active feature-folder shape, install and build the Spec Kit workspace, probe native Node module health, rebuild ABI-sensitive packages after runtime changes, record a compatibility marker, and register the MCP server in `opencode.json`.
+
+## 2. HOW IT WORKS
+
+The shipped behavior in this slice currently works as follows:
+
+1. `check-prerequisites.sh` is the workflow-facing prerequisite gate for spec work. It resolves repo, branch, and feature paths through `common.sh`, supports JSON and path-only output, can require `tasks.md`, and can pass through to `spec/validate.sh` in normal, strict, or verbose validation modes.
+2. Outside path-only mode, that same script hard-fails when the resolved feature directory is missing, when `plan.md` is absent, or when `--require-tasks` is used and `tasks.md` is absent. It also surfaces optional companion docs such as `research/research.md`, `checklists/`, `decisions/`, and `tasks.md` when requested.
+3. `install.sh` is the environment bootstrap for the bundled `mk-spec-memory` MCP. It requires Node.js >= 20.11, `npm`, and `npx`; logs the current Node version, module ABI version, and binary path; and verifies that the expected Spec Kit workspace, MCP server folder, and both `package.json` files exist before proceeding.
+4. Before installation, the installer clears a stale Hugging Face cache under the server package and removes `better-sqlite3` plus `sqlite-vec` from the server `node_modules` tree to avoid native-module load failures. It then runs `npm install` from the Spec Kit root, attempts `npm run build`, and falls back to `npx tsc --build --noCheck --force` if the standard build fails.
+5. Native module health is treated as part of installation, not a separate manual step. `install.sh` shells into `check-native-modules.sh`, prints the probe output verbatim, and if any `[FAIL]` marker appears it automatically runs `rebuild-native-modules.sh` with `n` piped into the optional Hugging Face cache prompt, then re-runs the health probe and aborts if failures remain.
+6. After dependency recovery, the installer verifies `mcp_server/dist/context-server.js`, runs a startup smoke test by launching the server with delayed stdin close, and adds a local MCP entry to `opencode.json` when one is not already present. The generated config uses a relative `node` command, leaves `EMBEDDINGS_PROVIDER` on `auto`, points `SPEC_KIT_DB_DIR` at the canonical database directory, and includes explanatory `_NOTE_*` environment keys about provider auto-detection, portability, and feature flags.
+7. Verification can be skipped with `--skip-verify`; otherwise `verify_installation()` syntax-checks the built server, confirms `node_modules` and the `opencode.json` entry, and reports whether the canonical database already exists and whether the compatibility symlink path is present.
+8. `check-native-modules.sh` is the standalone diagnostic probe. It compares the current Node runtime against `.node-version-marker`, reports Node and `MODULE_VERSION`, and attempts to load `better-sqlite3` plus optional `sharp` installs so ABI mismatches show up as explicit `[FAIL]` lines.
+9. `rebuild-native-modules.sh` is the repair path for ABI drift. It rebuilds `better-sqlite3` inside `mcp_server`, runs `npm rebuild` in `shared/` when that workspace is installed, optionally clears the global Hugging Face cache interactively, and then calls `record-node-version.js` to rewrite `.node-version-marker` with the current Node version, module ABI, platform, architecture, and timestamp.
+
+For canonical post-rebuild verification, see the four reference docs under packet `008-mcp-daemon-rebuild-protocol/references/`: `mcp-rebuild-restart-protocol.md` documents the rebuild + restart sequence, `live-probe-template.md` defines the live-probe envelope used to confirm a fresh daemon is responding to MCP traffic, `dist-marker-grep-cheatsheet.md` lists the grep patterns for verifying a `dist/` artifact carries the expected source change, and `implementation-verification-checklist.md` is the canonical checklist run after every MCP rebuild.
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `.opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh` | Workflow guard | Resolves feature-folder paths, validates required spec documents, and optionally invokes spec validation |
+| `.opencode/skills/system-spec-kit/scripts/setup/install.sh` | Installer | Installs/builds the Spec Kit workspace, probes and repairs native modules, smoke-tests the context server, and writes MCP config |
+| `.opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh` | Diagnostic probe | Compares recorded versus active Node ABI details and probes native package loadability |
+| `.opencode/skills/system-spec-kit/scripts/setup/rebuild-native-modules.sh` | Repair script | Rebuilds ABI-sensitive modules, optionally clears cache, and refreshes the Node-version marker |
+| `.opencode/skills/system-spec-kit/scripts/setup/record-node-version.js` | Marker writer | Persists the current Node/runtime compatibility snapshot into `.node-version-marker` |
+
+## 4. SOURCE METADATA
+- Group: Tooling And Scripts
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `tooling-and-scripts/setup-native-module-health-and-mcp-installation.md`
+Related references:
+- [spec-folder-detection-and-description.md](spec-folder-detection-and-description.md) — Spec-Folder Detection and Description Metadata
+- [template-composition-system.md](template-composition-system.md) — Template Composition System

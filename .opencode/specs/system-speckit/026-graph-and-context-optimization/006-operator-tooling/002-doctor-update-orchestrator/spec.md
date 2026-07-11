@@ -109,7 +109,7 @@ Group the complete doctor command surface timeline under one phase root so the s
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
 | 1 | `001-implement-initial-doctor-command-set/` | Complete | Feature Specification: 5 isolated `/doctor:*` commands (memory, causal-graph, deep-loop, cocoindex) + unified `/doctor:update` orchestrator implementing the council 10-line spec, plus the migration manifest for 3.3.0.0 → 3.4.1.0. Authored via cli-codex gpt-5.5 high fast across 5 sequential dispatch tracks; 23 deliverables total (5 cmds + 10 yamls + 1 manifest + 7 packet docs). G1+G2 verification gates passed. |
-| 2 | `002-sandbox-testing-playbook/` | Complete | Feature Specification: Docker sandbox + 23-scenario manual testing playbook covering all 5 doctor commands and the version-migration end-to-end. Adds new playbook category `23--doctor-commands/` (IDs 323-347 with gaps at 337 and 343) plus `_sandbox/23--doctor-commands/` with Dockerfile, docker-compose.yml, fixture-fetch script, 4 harness scripts, and 23 per-scenario shell wrappers. |
+| 2 | `002-sandbox-testing-playbook/` | Complete | Feature Specification: Docker sandbox + 23-scenario manual testing playbook covering all 5 doctor commands and the version-migration end-to-end. Adds new playbook category `doctor-commands/` (IDs 323-347 with gaps at 337 and 343) plus `_sandbox/doctor-commands/` with Dockerfile, docker-compose.yml, fixture-fetch script, 4 harness scripts, and 23 per-scenario shell wrappers. |
 | 3 | `002-fix-deep-review-findings-for-doctor-update-orchestrator/` | Complete | RM-8 doc-honesty + security hardening + cross-runtime mirror remediation that closed 30/30 P1 and 28/30 P2 findings from the original deep-review (commit `8d794afad`). 4 sequential cli-codex (gpt-5.5 high fast) batches: A doc honesty, B security (`flock(2)` + `--no-audit` drop + cap_drop), C cross-runtime mirror (10 doctor commands × 4 runtimes), D P2 cleanup. Verdict moved CONDITIONAL → PASS (hasAdvisories=true) per re-review commit `76daa9ef0`. |
 | 4 | `003-skill-advisor-routing-engine-consolidation/` | Complete | Router consolidation (was packet 014 Phase 1, dissolved into 013): authored `.opencode/commands/doctor.md` (argv-positional router) + `doctor/mcp.md` + `_routes.yaml` manifest + route-validate.sh CI assertion. 4-runtime mirrors (.claude / .gemini / .codex). Additive ship — old 10 `.md` commands still present during this phase. |
 | 5 | `004-cutover-doctor-router-from-legacy-files/` | Complete | Hard cutover (was packet 014 Phase 2, dissolved into 013): DELETED 9 legacy `/doctor:<name>.md` files across `.opencode` + `.gemini`; sed-updated 23 manual playbook scenarios + 28 sandbox shell scripts + 5 YAML assets + 3 install guides + sk-doc references + feature catalog + 013 historical spec docs (94 substitutions across 15 files); advisor reindex via `advisor_rebuild`. Final state: 3 `.md` files (router + mcp + update) per runtime; 10 unchanged YAML workflows. |
@@ -145,7 +145,7 @@ Group the complete doctor command surface timeline under one phase root so the s
 
 - **SC-P-001**: All five children reach complete status.
 - **SC-P-002**: 5 `/doctor:*` commands registered in Skill Advisor and pass `validate_document.py --type command` (already true for child 001).
-- **SC-P-003**: 23 manual playbook scenarios authored in `system-spec-kit/manual_testing_playbook/23--doctor-commands/` and indexed in the root playbook's Section 12 cross-reference (planned for child 002).
+- **SC-P-003**: 23 manual playbook scenarios authored in `system-spec-kit/manual_testing_playbook/doctor-commands/` and indexed in the root playbook's Section 12 cross-reference (planned for child 002).
 - **SC-P-004**: Sandbox harness scripts pass `bash -n` and `harness/run-all.sh --dry-run` exits 0 (planned for child 002).
 - **SC-P-005**: Strict spec-folder validate exits 0 on parent root with all five child phases.
 <!-- /ANCHOR:success-criteria -->
@@ -158,7 +158,7 @@ Group the complete doctor command surface timeline under one phase root so the s
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Phase parent strict validate may flag because the validator hasn't been updated for the lean-trio convention this packet adopted | Phase E gate G4 may fail on cross-packet template-manifest issue (same pattern as 002 + 003 packets in this session) | Document as known cross-packet issue; G4 acceptance allows it |
-| Risk | Children diverge on naming conventions or path roots over time | Cross-child references break, root playbook index gets stale | Pin: child 001 commands at `Public/.opencode/commands/doctor/`; child 002 scenarios at `system-spec-kit/manual_testing_playbook/23--doctor-commands/`. Locked in this spec. |
+| Risk | Children diverge on naming conventions or path roots over time | Cross-child references break, root playbook index gets stale | Pin: child 001 commands at `Public/.opencode/commands/doctor/`; child 002 scenarios at `system-spec-kit/manual_testing_playbook/doctor-commands/`. Locked in this spec. |
 | Risk | Codex parallel dispatch unreliability with 4 tracks (per memory `feedback_cli_dispatch_unreliability`) | Phase B in child 002 may need serial fallback | Tracks write to disjoint paths (5 ID ranges). Fallback to serial if hangs detected. |
 | Dependency | Existing `doctor_code-graph_apply.yaml` style as canonical reference | Child 001's polish track depends on this gold standard | Confirmed canonical and stable; cited in 001's polish track prompt. |
 | Dependency | sk-doc `validate_document.py` and spec-kit `validate.sh --strict` | All verification gates depend on these scripts | Both in repo; tracked in 001 + 002 verification sections. |
@@ -172,8 +172,8 @@ Group the complete doctor command surface timeline under one phase root so the s
 (All resolved at intake — kept for audit trail.)
 
 - **Q-A** *(answered 2026-05-09)*: Spec packet location for the sandbox playbook? **Answer**: New child `002-sandbox-testing-playbook/` inside this phase parent (parallel to `001-implement-initial-doctor-command-set/`).
-- **Q-B** *(answered 2026-05-09)*: Manual playbook home — packet-local or skill-level? **Answer**: Skill-level at `system-spec-kit/manual_testing_playbook/23--doctor-commands/` (matches existing 22-category convention).
-- **Q-C** *(answered 2026-05-09)*: Sandbox harness location? **Answer**: `manual_testing_playbook/_sandbox/23--doctor-commands/` (sibling to Markdown categories with `_` prefix to keep out of validator scans).
+- **Q-B** *(answered 2026-05-09)*: Manual playbook home — packet-local or skill-level? **Answer**: Skill-level at `system-spec-kit/manual_testing_playbook/doctor-commands/` (matches existing 22-category convention).
+- **Q-C** *(answered 2026-05-09)*: Sandbox harness location? **Answer**: `manual_testing_playbook/_sandbox/doctor-commands/` (sibling to Markdown categories with `_` prefix to keep out of validator scans).
 - **Q-D** *(answered 2026-05-09)*: Fixture archive hosting? **Answer**: External download via `fetch-fixtures.sh` at sandbox setup time (cleanest repo footprint).
 - **Q-E** *(answered 2026-05-09)*: Scenario ID range? **Answer**: 323-347 with gaps at 337 and 343 (23 IDs above current 322 file max in the playbook).
 <!-- /ANCHOR:questions -->

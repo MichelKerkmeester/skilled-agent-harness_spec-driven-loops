@@ -132,14 +132,14 @@ operation_router:
     requires_existing_catalog: false
     output_scope:
       - feature_catalog/feature_catalog.md
-      - feature_catalog/NN--category-name/
-      - feature_catalog/NN--category-name/feature-name.md
+      - feature_catalog/category-name/
+      - feature_catalog/category-name/feature-name.md
   update:
     requires_existing_catalog: true
     output_scope:
       - feature_catalog/feature_catalog.md
-      - feature_catalog/NN--category-name/
-      - feature_catalog/NN--category-name/feature-name.md
+      - feature_catalog/category-name/
+      - feature_catalog/category-name/feature-name.md
 
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/create-feature-catalog/references/README.md
@@ -247,7 +247,7 @@ workflow:
     activities:
       - Ensure catalog_root exists
       - Create or update feature_catalog.md
-      - Create or update numbered category folders
+      - Create or update category folders (bare descriptive slug, no numeric prefix)
       - Create or update one per-feature file per feature entry
       - Keep root summaries concise and route detail into per-feature files
     outputs:
@@ -260,7 +260,7 @@ workflow:
     activities:
       - Run validate_document.py on feature_catalog.md
       - Check that each root-linked feature file exists
-      - Check category folder names follow NN--category-name
+      - Check category folder names are bare descriptive slugs (no numeric prefix)
       - Check per-feature files contain required section headers
       - Check root entry count matches per-feature file count
     outputs:
@@ -329,7 +329,7 @@ rules:
   must:
     - "Load the creation reference and both templates before writing"
     - "Keep the root file as a directory/index, not a full monolith"
-    - "Use root-level numbered category folders"
+    - "Use root-level category folders with bare descriptive-slug names (root catalog owns display order)"
   must_not:
     - "Invent speculative features"
     - "Collapse all feature detail back into the root file"

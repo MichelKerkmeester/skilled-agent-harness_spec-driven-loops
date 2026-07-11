@@ -80,10 +80,10 @@ _memory:
 | `.opencode/skills/system-spec-kit/SKILL.md` | Analyzed | OK | Spec-folder workflow, phase-parent, resource-map, and validation rules. |
 | `.opencode/skills/sk-doc/SKILL.md` | Analyzed | OK | Documentation quality and Markdown creation guidance. |
 | `.opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl` | Analyzed | OK | Template source for this parent aggregate map. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Phase 002 registered category `23--doctor-commands` and scenario index entries. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/*.md` | Created | OK | 23 scenario docs: DOC-323..336, DOC-338..342, DOC-344..347. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/014-workspace-scanning-and-indexing-memory-index-scan.md` | Cited | OK | Scenario structure reference. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/startup-runtime-compatibility-guards.md` | Cited | OK | Startup/runtime scenario structure reference. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Phase 002 registered category `doctor-commands` and scenario index entries. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/*.md` | Created | OK | 23 scenario docs: DOC-323..336, DOC-338..342, DOC-344..347. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/maintenance/014-workspace-scanning-and-indexing-memory-index-scan.md` | Cited | OK | Scenario structure reference. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/maintenance/startup-runtime-compatibility-guards.md` | Cited | OK | Startup/runtime scenario structure reference. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md` | Cited | OK | Cross-runtime fallback scenario reference. |
 | `.opencode/skills/system-spec-kit/mcp_server/database/README.md` | Cited | OK | Database artifact and auto-init contract reference. |
 | `.opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json` | Updated | OK | 3.3.0.0 -> 3.4.1.0 migration chain and launcher/bootstrap guidance. |
@@ -131,12 +131,12 @@ _memory:
 | `.opencode/commands/doctor/scripts/{mcp-doctor.sh,mcp-doctor-lib.sh}` | Cited | OK | Existing shell doctor helper pattern. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh` | Cited | OK | Repo-rooted invocation pattern for graph initialization. |
 | `.opencode/skills/system-spec-kit/scripts/tests/test-validation.sh` | Cited | OK | Bash harness conventions for Phase 002 scripts. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/fixtures/fetch-fixtures.sh` | Created | OK | Fixture fetch and checksum verification script. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/harness/run-all.sh` | Created | OK | Sandbox scenario orchestrator. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/harness/reset-state.sh` | Created | OK | Fixture reset between scenarios. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/harness/capture-evidence.sh` | Created | OK | Evidence capture for stdout, exit codes, deltas, and snapshots. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/harness/assert-signals.sh` | Created | OK | Expected-signal matcher. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/scenarios/DOC-*.sh` | Created | OK | 23 scenario wrappers mapping playbook docs to runnable commands. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/fixtures/fetch-fixtures.sh` | Created | OK | Fixture fetch and checksum verification script. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/harness/run-all.sh` | Created | OK | Sandbox scenario orchestrator. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/harness/reset-state.sh` | Created | OK | Fixture reset between scenarios. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/harness/capture-evidence.sh` | Created | OK | Evidence capture for stdout, exit codes, deltas, and snapshots. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/harness/assert-signals.sh` | Created | OK | Expected-signal matcher. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/scenarios/DOC-*.sh` | Created | OK | 23 scenario wrappers mapping playbook docs to runnable commands. |
 <!-- /ANCHOR:scripts -->
 
 ---
@@ -146,14 +146,14 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/323-doctor-memory-fresh-install.md` | Created | OK | `/doctor:memory` fresh install scenario. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/324-doctor-memory-drift-detection.md` | Created | OK | `/doctor:memory` drift scenario. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/325-doctor-memory-long-pole-rebuild.md` | Created | OK | `/doctor:memory` long-pole rebuild scenario. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/326-doctor-memory-sigint-cancellation.md` | Created | OK | `/doctor:memory` cancellation scenario. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/327-doctor-memory-disk-pressure.md` | Created | OK | `/doctor:memory` disk pressure scenario. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/328-*.md` to `336-*.md` | Created | OK | Causal graph, deep-loop, and CocoIndex scenarios. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/338-*.md` to `347-*.md` | Created | OK | `/doctor:update` and version-migration scenarios; DOC-337 and DOC-343 intentionally unused. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/evidence/DOC-323/*` | Created | OK | Existing captured sample evidence from sandbox harness run. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/323-doctor-memory-fresh-install.md` | Created | OK | `/doctor:memory` fresh install scenario. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/324-doctor-memory-drift-detection.md` | Created | OK | `/doctor:memory` drift scenario. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/325-doctor-memory-long-pole-rebuild.md` | Created | OK | `/doctor:memory` long-pole rebuild scenario. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/326-doctor-memory-sigint-cancellation.md` | Created | OK | `/doctor:memory` cancellation scenario. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/327-doctor-memory-disk-pressure.md` | Created | OK | `/doctor:memory` disk pressure scenario. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/328-*.md` to `336-*.md` | Created | OK | Causal graph, deep-loop, and CocoIndex scenarios. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/338-*.md` to `347-*.md` | Created | OK | `/doctor:update` and version-migration scenarios; DOC-337 and DOC-343 intentionally unused. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/evidence/DOC-323/*` | Created | OK | Existing captured sample evidence from sandbox harness run. |
 | `/tmp/sk_bootstrap_full_matrix`, `/tmp/sk_oc_tool_visibility`, `/tmp/sk_doctor_update_full_e2e` | Validated | EXTERNAL | Disposable verification workspaces for bootstrap matrix, fresh MCP visibility, and full v3.3-style E2E. |
 <!-- /ANCHOR:tests -->
 
@@ -172,9 +172,9 @@ _memory:
 | `.opencode/commands/doctor/assets/{doctor_code-graph.yaml,doctor_skill-advisor.yaml,doctor_skill-budget.yaml,doctor_mcp_debug.yaml,doctor_mcp_install.yaml}` | Cited | OK | Existing doctor workflow references and surrounding command surface. |
 | `.mcp.json` | Updated | OK | Routes `spec_kit_memory` through the launcher. |
 | `opencode.json` | Updated | OK | Routes `spec_kit_memory` through the launcher for OpenCode. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/docker-compose.yml` | Created | OK | Sandbox service config. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/fixtures/manifest.json` | Created | OK | Fixture URL/checksum manifest. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/Dockerfile` | Created | OK | Sandbox container image definition. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/docker-compose.yml` | Created | OK | Sandbox service config. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/fixtures/manifest.json` | Created | OK | Fixture URL/checksum manifest. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/Dockerfile` | Created | OK | Sandbox container image definition. |
 <!-- /ANCHOR:config -->
 
 ---

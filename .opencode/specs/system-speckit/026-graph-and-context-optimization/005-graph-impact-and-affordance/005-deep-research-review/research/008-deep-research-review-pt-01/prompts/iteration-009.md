@@ -46,7 +46,7 @@ C4. Concurrency test: if two requests race during a mutation, does the test veri
 
 ### Section D — Playbook scenarios 014/026/199/203 — block-level fidelity
 
-For each block added in 011 (per `manual_testing_playbook/03--discovery/014`, `06--analysis/026`, `11--scoring-and-calibration/199`, `13--memory-quality-and-indexing/203`):
+For each block added in 011 (per `manual_testing_playbook/discovery/014`, `analysis/026`, `scoring-and-calibration/199`, `memory-quality-and-indexing/203`):
 
 D1. Block A baseline (existing) — does it still match current behavior?
 D2. Block B/C/D/E (newly added in 011) — do the prompts + commands + expected signals match the actual handler signatures + return shapes?
@@ -67,10 +67,10 @@ E3. **Stability test**: does anything in the fixture corpus still risk tripping 
 5. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` (sanitizer + rowToEdge)
 6. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts` (edgeMetadataOutput sanitizer call)
 7. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts` (formatContextEdge sanitizer call)
-8. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md`
-9. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md`
-10. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/199-skill-advisor-affordance-evidence.md`
-11. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md`
+8. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/discovery/014-detect-changes-preflight.md`
+9. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/analysis/026-code-graph-edge-explanation-blast-radius-uplift.md`
+10. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/scoring-and-calibration/199-skill-advisor-affordance-evidence.md`
+11. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/203-memory-causal-trust-display.md`
 12. `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts`
 
 ## Output contract

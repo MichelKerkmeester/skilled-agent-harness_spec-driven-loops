@@ -50,7 +50,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-PC-005 fails two ways that are not a scorer regression (the native scorer bench passes at 3.69/6.71 ms). (1) The scenario doc (`10--python-compat/005-bench-runner.md:33,36`) omits the required `--dataset` flag (`skill_advisor_bench.py:241`). (2) The `--max-warm-p95-ms` default is 20 ms (`skill_advisor_bench.py:246`) — tighter than the documented 50 ms envelope (`feature_catalog/08--python-compat/03-bench-runner.md:21`) and the machine's measured 25.26 ms — and `--max-cold-p95-ms` (60 ms) is applied to a per-prompt subprocess cold-start (876 ms), conflating Python+Node startup with native-scorer latency.
+PC-005 fails two ways that are not a scorer regression (the native scorer bench passes at 3.69/6.71 ms). (1) The scenario doc (`python-compat/005-bench-runner.md:33,36`) omits the required `--dataset` flag (`skill_advisor_bench.py:241`). (2) The `--max-warm-p95-ms` default is 20 ms (`skill_advisor_bench.py:246`) — tighter than the documented 50 ms envelope (`feature_catalog/python-compat/03-bench-runner.md:21`) and the machine's measured 25.26 ms — and `--max-cold-p95-ms` (60 ms) is applied to a per-prompt subprocess cold-start (876 ms), conflating Python+Node startup with native-scorer latency.
 
 ### Purpose
 Make PC-005 a meaningful, reproducible bench check: correct invocation + gates that reflect the documented envelope and subprocess scope, keeping `throughput_multiplier` as the real Python-surface regression gate.
@@ -74,7 +74,7 @@ Make PC-005 a meaningful, reproducible bench check: correct invocation + gates t
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/005-bench-runner.md` | Modify | Add `--dataset` + smoke guidance |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/python-compat/005-bench-runner.md` | Modify | Add `--dataset` + smoke guidance |
 | `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_bench.py` | Modify | Warm p95 default 50 ms; cold p95 advisory/renamed |
 | `.opencode/skills/system-skill-advisor/mcp_server/stress_test/skill-advisor/python-bench-runner-stress.vitest.ts` | Modify | Align to chosen gate contract |
 <!-- /ANCHOR:scope -->

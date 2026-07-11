@@ -83,7 +83,7 @@ Ran from `mcp_server/`: `npx vitest run tests/code-graph-apply-pipeline-safety.v
 
 ### Hunt 7 — Playbook/doc reconciliation
 
-`manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md`:
+`manual_testing_playbook/doctor-code-graph/code-graph-apply-sub-operations.md`:
 - Step 3 (`:42-49`, repair-nodes refusal with `requiredAction`): **now matches** (hedged wording covers the different action string).
 - Step 4 (`:51-57`, recover-sqlite-corruption refuses without confirm): **now matches unconditionally** — pre-fix this promise only held on hard-stale graphs.
 - Step 5 (`:59-68`, dry-run reports the rollback target / prior baseline): **now matches** (`rollbackTarget` + message).

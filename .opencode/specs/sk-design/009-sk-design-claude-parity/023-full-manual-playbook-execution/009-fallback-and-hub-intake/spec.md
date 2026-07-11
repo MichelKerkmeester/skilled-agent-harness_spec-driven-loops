@@ -49,7 +49,7 @@ _memory:
 
 ### Problem Statement
 
-The sk-design `manual_testing_playbook` documents real-orchestrator scenarios but none of the fallback-and-resilience (`07--fallback-and-resilience/`) or hub-manager-intake (`08--hub-manager-intake/`) scenarios had ever been run through a real `opencode run` dispatch against the live GPT-5.5-fast executor. Six scenarios in this wave (`FR-001`'s `audit` variant, `FR-002`'s `motion` variant, `HM-001` through `HM-004`) needed a real dispatch, a captured JSON-lines transcript, and a verdict graded strictly against each scenario file's own Pass/Fail Criteria.
+The sk-design `manual_testing_playbook` documents real-orchestrator scenarios but none of the fallback-and-resilience (`fallback-and-resilience/`) or hub-manager-intake (`hub-manager-intake/`) scenarios had ever been run through a real `opencode run` dispatch against the live GPT-5.5-fast executor. Six scenarios in this wave (`FR-001`'s `audit` variant, `FR-002`'s `motion` variant, `HM-001` through `HM-004`) needed a real dispatch, a captured JSON-lines transcript, and a verdict graded strictly against each scenario file's own Pass/Fail Criteria.
 
 ### Purpose
 
@@ -63,7 +63,7 @@ Execute the six assigned dispatches one at a time using the validated dispatch r
 
 ### In Scope
 
-- Read all 6 constituent scenario files in `07--fallback-and-resilience/` and `08--hub-manager-intake/` in full before dispatching.
+- Read all 6 constituent scenario files in `fallback-and-resilience/` and `hub-manager-intake/` in full before dispatching.
 - Run the advisor probe (`skill_advisor.py --threshold 0.8`) for each dispatch's clean exact prompt and record top-1 skill + confidence.
 - Run the real orchestrator dispatch (`opencode run --model openai/gpt-5.5-fast --variant medium --format json`) for each of the 6 assigned dispatch IDs, using the exact addendum recipe, appending the hypothetical-local-target clause only where the scenario names a hypothetical local UI surface (not for the hub-intake premise questions, which are explicitly exempted).
 - For `FR-001-audit`, author a narrow advisory `audit`-mode prompt following the same structural pattern as the scenario file's own `foundations` exact prompt (the file gives only the foundations variant verbatim), since the scenario's own text does not supply an audit-specific exact prompt; flag this authored-not-quoted status explicitly in the dispatch log.

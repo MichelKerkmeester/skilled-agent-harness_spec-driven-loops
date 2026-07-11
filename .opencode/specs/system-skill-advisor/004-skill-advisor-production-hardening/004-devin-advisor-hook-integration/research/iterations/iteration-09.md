@@ -17,8 +17,8 @@ Load sk-doc SKILL.md context. For each authored doc in advisor skill: SKILL.md, 
 Multiple docs reference old names:
 - `SET-UP_GUIDE.md:136` - references spec-kit-skill-advisor.js
 - `INSTALL_GUIDE.md:142` - references spec-kit-skill-advisor.js
-- `feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md` - multiple references
-- `manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md` - multiple references
+- `feature_catalog/hooks-and-plugin/05-opencode-plugin-bridge.md` - multiple references
+- `manual_testing_playbook/cli-hooks-and-plugin/005-opencode-plugin-bridge.md` - multiple references
 
 ### Finding 2: Bridge README Location
 

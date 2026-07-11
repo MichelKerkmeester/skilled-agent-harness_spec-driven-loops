@@ -44,7 +44,7 @@ The playbook says orphan scenario count must be zero, defined as every scenario 
 
 Section 12 is the declared feature catalog cross-reference index. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:3675]
 
-A path comparison found `384` scenario-like files, `325` root-index links, and `90` scenario files not linked by the root index extraction. One concrete unlinked scenario is `03--discovery/detect-changes-preflight.md`, which is a real scenario file with its own frontmatter and title. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/detect-changes-preflight.md:1]
+A path comparison found `384` scenario-like files, `325` root-index links, and `90` scenario files not linked by the root index extraction. One concrete unlinked scenario is `discovery/detect-changes-preflight.md`, which is a real scenario file with its own frontmatter and title. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/discovery/detect-changes-preflight.md:1]
 
 Impact: the playbook currently violates its own zero-orphan release-readiness rule, so root-index coverage cannot be trusted as the complete scenario ledger.
 
@@ -61,9 +61,9 @@ The playbook acknowledges that scenario coverage is not a one-to-one feature-fil
 
 The final verdict report is supposed to call out feature-catalog entries that are automated-only, indirect, or intentionally operator-only. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:172]
 
-The current source-reference extraction found `48` feature catalog files with no scenario source reference. Sampled unlinked entries include `Search API surface`, a public API-boundary feature. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/search-api-surface.md:15]
+The current source-reference extraction found `48` feature catalog files with no scenario source reference. Sampled unlinked entries include `Search API surface`, a public API-boundary feature. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/retrieval/search-api-surface.md:15]
 
-Another sampled unlinked entry is `Codex hook freshness smoke check`, which has implementation and test references but no playbook scenario source reference in the extraction. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/codex-hook-freshness-smoke-check.md:17]
+Another sampled unlinked entry is `Codex hook freshness smoke check`, which has implementation and test references but no playbook scenario source reference in the extraction. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/codex-hook-freshness-smoke-check.md:17]
 
 Impact: the catalog/playbook pair does not currently provide a complete classification for features without manual scenarios, so release reports cannot truthfully distinguish covered, indirect, automated-only, and unverified entries.
 

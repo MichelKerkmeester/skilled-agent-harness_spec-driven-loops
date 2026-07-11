@@ -25,17 +25,17 @@ Result: 5 files covering 11 features.
 
 | feature_id | Catalog path |
 |------------|--------------|
-| sa-022 | `mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/04-attribution.md` |
-| sa-023 | `mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/05-ablation.md` |
-| sa-027 | `mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md` |
-| sa-028 | `mcp_server/skill_advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md` |
-| sa-030 | `mcp_server/skill_advisor/feature_catalog/07--hooks-and-plugin/01-claude-hook.md` |
-| sa-031 | `mcp_server/skill_advisor/feature_catalog/07--hooks-and-plugin/02-copilot-hook.md` |
-| sa-032 | `mcp_server/skill_advisor/feature_catalog/07--hooks-and-plugin/03-gemini-hook.md` |
-| sa-033 | `mcp_server/skill_advisor/feature_catalog/07--hooks-and-plugin/04-codex-hook.md` |
-| sa-034 | `mcp_server/skill_advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md` |
-| sa-035 | `mcp_server/skill_advisor/feature_catalog/08--python-compat/01-cli-shim.md` |
-| sa-036 | `mcp_server/skill_advisor/feature_catalog/08--python-compat/02-regression-suite.md` |
+| sa-022 | `mcp_server/skill_advisor/feature_catalog/scorer-fusion/04-attribution.md` |
+| sa-023 | `mcp_server/skill_advisor/feature_catalog/scorer-fusion/05-ablation.md` |
+| sa-027 | `mcp_server/skill_advisor/feature_catalog/mcp-surface/02-advisor-status.md` |
+| sa-028 | `mcp_server/skill_advisor/feature_catalog/mcp-surface/03-advisor-validate.md` |
+| sa-030 | `mcp_server/skill_advisor/feature_catalog/hooks-and-plugin/01-claude-hook.md` |
+| sa-031 | `mcp_server/skill_advisor/feature_catalog/hooks-and-plugin/02-copilot-hook.md` |
+| sa-032 | `mcp_server/skill_advisor/feature_catalog/hooks-and-plugin/03-gemini-hook.md` |
+| sa-033 | `mcp_server/skill_advisor/feature_catalog/hooks-and-plugin/04-codex-hook.md` |
+| sa-034 | `mcp_server/skill_advisor/feature_catalog/hooks-and-plugin/05-opencode-plugin-bridge.md` |
+| sa-035 | `mcp_server/skill_advisor/feature_catalog/python-compat/01-cli-shim.md` |
+| sa-036 | `mcp_server/skill_advisor/feature_catalog/python-compat/02-regression-suite.md` |
 
 ## Requirements
 

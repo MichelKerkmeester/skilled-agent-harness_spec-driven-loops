@@ -131,7 +131,7 @@ Produce an honest routing verdict: run the deterministic benchmark, review the f
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs` | Update | Parse the "Expected NOT loaded" block into a forbidden-prefix set |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Update | Correct the negative-scoring test; add a positive-set regression test |
 | `.opencode/skills/sk-code/code-review/scripts/check-rule-copies.js` | Update | **P1**: repoint the Iron-Law canary to `code-verify/SKILL.md`; relax the matcher to "≥1 line carries both concepts" |
-| `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md` | Update | Fix an unsubstituted `<spec-folder>` fixture placeholder |
+| `.opencode/skills/sk-code/manual_testing_playbook/language-sub-detection/opencode-config.md` | Update | Fix an unsubstituted `<spec-folder>` fixture placeholder |
 | `.opencode/skills/sk-code/code-review/manual_testing_playbook/manual_testing_playbook.md` | Update | Fix a broken CR-018 link |
 | `.opencode/skills/sk-code/benchmark/README.md` | Update | Repoint two stale `smart_routing.md` paths to `shared/references/` |
 | `.opencode/skills/sk-code/code-review/SKILL.md` | Update | Fix a stale sub-file count |

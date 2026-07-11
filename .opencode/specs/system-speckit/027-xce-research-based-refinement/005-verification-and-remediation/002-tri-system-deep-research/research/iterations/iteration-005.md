@@ -14,7 +14,7 @@
 
 ## [P1][BROKEN-FEATURE] Scheduled shadow evaluation cannot consume clean consumption_log queries
 
-- Evidence: .opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:204-211 returns [] when consumption_log lacks query_text; :423-427 skips the cycle when the query pool is empty; .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/shadow-feedback-holdout-evaluation.md:18-30 claims default-on holdout evaluation over queries.
+- Evidence: .opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:204-211 returns [] when consumption_log lacks query_text; :423-427 skips the cycle when the query pool is empty; .opencode/skills/system-spec-kit/feature_catalog/scoring-and-calibration/shadow-feedback-holdout-evaluation.md:18-30 claims default-on holdout evaluation over queries.
 - Detail: The clean query_hash-only schema makes production query replay impossible because the scheduler still requires raw query_text. As a result, the scheduled runtime path skips instead of evaluating recent consumption telemetry.
 - Fix sketch: Introduce an explicit privacy-preserving replay pool, or document scheduled replay as disabled until raw-query-free replay exists.
 

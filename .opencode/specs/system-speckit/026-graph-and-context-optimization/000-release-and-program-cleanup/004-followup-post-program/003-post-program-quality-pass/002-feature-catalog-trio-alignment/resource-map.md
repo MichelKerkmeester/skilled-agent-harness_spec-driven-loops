@@ -49,13 +49,13 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md` | Created | OK | Feature catalog surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md` | Created | OK | Feature catalog surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md` | Created | OK | Feature catalog surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/feature_catalog/mutation/12-memory-retention-sweep.md` | Created | OK | Feature catalog surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/37-cli-matrix-adapter-runners.md` | Created | OK | Feature catalog surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/38-codex-hook-freshness-smoke-check.md` | Created | OK | Feature catalog surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` | Updated | OK | Feature catalog surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Updated | OK | Feature catalog surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md` | Updated | OK | Feature catalog surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/05-advisor-rebuild.md` | Created | OK | Feature catalog surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/mcp-surface/02-advisor-status.md` | Updated | OK | Feature catalog surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/mcp-surface/05-advisor-rebuild.md` | Created | OK | Feature catalog surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` | Updated | OK | Feature catalog surface touched by the packet. |
 <!-- /ANCHOR:skills -->
 

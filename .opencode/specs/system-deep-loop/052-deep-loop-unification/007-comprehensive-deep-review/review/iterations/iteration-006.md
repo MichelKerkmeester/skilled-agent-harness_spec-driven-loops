@@ -18,10 +18,10 @@ Sampled, not exhaustive, from the 146-file packet:
 - `.opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs:1-55`
 - `.opencode/skills/system-deep-loop/deep-research/README.md:76-155`
 - `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/manual_testing_playbook.md:180-204`
-- `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/02--initialization-and-state-setup/research-charter-validation.md:24-78`
+- `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/initialization-and-state-setup/research-charter-validation.md:24-78`
 - `.opencode/skills/system-deep-loop/deep-research/references/protocol/context_snapshot.md:1-30`
-- `.opencode/skills/system-deep-loop/deep-research/feature_catalog/01--loop-lifecycle/run-now-control.md:1-20`
-- `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/01--entry-points-and-modes/confirm-mode-checkpointed-execution.md:1-20`
+- `.opencode/skills/system-deep-loop/deep-research/feature_catalog/loop-lifecycle/run-now-control.md:1-20`
+- `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/entry-points-and-modes/confirm-mode-checkpointed-execution.md:1-20`
 - `.opencode/skills/system-deep-loop/deep-research/behavior_benchmark/baselines/claude-baseline.md:1-20`
 - `.opencode/skills/sk-code/code-review/references/review_core.md:28-40`
 
@@ -42,7 +42,7 @@ None.
 #### DR-006-P2-001 [P2] Research-charter manual tests still cite stale Step 5a
 
 - Claim: Live manual-testing docs direct operators to validate research-charter behavior at initialization `Step 5a`, but the canonical loop protocol now defines `Validate Research Charter` as `7a`, and `SKILL.md` already points readers to Step 7a.
-- Evidence: `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md:91-97` defines `7a. **Validate Research Charter**`; `.opencode/skills/system-deep-loop/deep-research/SKILL.md:333-334` points to `loop_protocol.md` Step 7a; `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/manual_testing_playbook.md:191` says `Verify initialization Step 5a`; `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/02--initialization-and-state-setup/research-charter-validation.md:30,48,54,58,74` repeatedly directs testers to Step 5a.
+- Evidence: `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md:91-97` defines `7a. **Validate Research Charter**`; `.opencode/skills/system-deep-loop/deep-research/SKILL.md:333-334` points to `loop_protocol.md` Step 7a; `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/manual_testing_playbook.md:191` says `Verify initialization Step 5a`; `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/initialization-and-state-setup/research-charter-validation.md:30,48,54,58,74` repeatedly directs testers to Step 5a.
 - Finding class: matrix/evidence.
 - Scope proof: `Grep` for `Step 5a|Step 7a|5a|7a` in the packet showed current Step 7a in `SKILL.md`/`loop_protocol.md`, stale Step 5a in live manual-testing docs, and one historical changelog mention not counted as live documentation.
 - Recommendation: Update the manual-testing scenario summary and execution contract to cite Step 7a, while leaving historical changelog text unchanged or clearly historical.
@@ -70,7 +70,7 @@ None.
 - Loop-protocol correctness: Sampled init and loop steps; found the Step 7a charter-validation canonical reference and the stale Step 5a manual-testing references above.
 - State-format correctness: Compared `state_format.md`/`state_jsonl.md` with `assets/deep_research_config.json`; the main packet files and config defaults align for config/state/strategy/dashboard/deltas, with the registry-name conflict recorded as DR-006-P2-002.
 - Script logic: Sampled reducer path resolution, prior-registry fallback, numeric iteration-file sorting, registry/dashboard/strategy writes, and runtime capability shim. No P0/P1 logic bug found in sampled code.
-- Cross-reference correctness: Sampled links to `references/protocol/context_snapshot.md`, `feature_catalog/01--loop-lifecycle/run-now-control.md`, `manual_testing_playbook/01--entry-points-and-modes/confirm-mode-checkpointed-execution.md`, and `behavior_benchmark/baselines/claude-baseline.md`; all resolved by direct read. Full link corpus not exhausted.
+- Cross-reference correctness: Sampled links to `references/protocol/context_snapshot.md`, `feature_catalog/loop-lifecycle/run-now-control.md`, `manual_testing_playbook/entry-points-and-modes/confirm-mode-checkpointed-execution.md`, and `behavior_benchmark/baselines/claude-baseline.md`; all resolved by direct read. Full link corpus not exhausted.
 
 ## Verdict
 

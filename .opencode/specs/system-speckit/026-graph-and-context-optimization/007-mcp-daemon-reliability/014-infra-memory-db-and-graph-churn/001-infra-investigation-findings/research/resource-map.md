@@ -11,8 +11,8 @@ Evidence sources consulted across iterations 001–003, grouped by sub-question.
 | ↳ same | 445–459 | Tool-availability gate → SKIP when client absent |
 | ↳ same | 582–590, 607–638 | Single TSV write in `finally`; builds **only** `clients.mk_spec_memory` (one daemon) |
 | `mcp_server/stress_test/substrate/README.md` | 17–18 | Conflicting claim of two daemons (Memory + Code Graph) |
-| `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv` | 1–6 | Captured TSV: header + `runner:mk-spec-memory`(FAIL,−32000), 403/404/407/410 |
-| `manual_testing_playbook/24--local-llm-query-intelligence/{403,404,407}-*.md` | 41/46/44 | Confirm 403/404/407 require Code Graph |
+| `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv` | 1–6 | Captured TSV: header + `runner:mk-spec-memory`(FAIL,−32000), 403/404/407/410 |
+| `manual_testing_playbook/local-llm-query-intelligence/{403,404,407}-*.md` | 41/46/44 | Confirm 403/404/407 require Code Graph |
 
 ## SQ2 — Memory PRIMARYKEY recurrence (production defect)
 | File | Lines | Role |

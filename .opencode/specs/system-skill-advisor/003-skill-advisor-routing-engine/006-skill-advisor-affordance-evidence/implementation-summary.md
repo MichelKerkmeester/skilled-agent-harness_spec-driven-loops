@@ -78,8 +78,8 @@ Disallowed free-form fields such as `description` do not become triggers. URLs, 
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/affordance-normalizer.test.ts` | Created | Cover allowlist and privacy behavior |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/lane-attribution.test.ts` | Created | Cover no-new-lane attribution |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/routing-fixtures.affordance.test.ts` | Created | Cover recall lift and explicit precedence |
-| `.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/24-skill-advisor-affordance-evidence.md` | Created | Document current feature behavior |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/199-skill-advisor-affordance-evidence.md` | Created | Document manual validation scenario |
+| `.opencode/skills/system-spec-kit/feature_catalog/scoring-and-calibration/24-skill-advisor-affordance-evidence.md` | Created | Document current feature behavior |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/scoring-and-calibration/199-skill-advisor-affordance-evidence.md` | Created | Document manual validation scenario |
 <!-- /ANCHOR:what-built -->
 
 ---

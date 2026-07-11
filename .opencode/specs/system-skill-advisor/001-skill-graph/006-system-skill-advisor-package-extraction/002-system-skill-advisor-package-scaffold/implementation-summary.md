@@ -62,9 +62,9 @@ Edit ledger (cli-codex gpt-5.5 high fast, run window 10:21-10:32):
 | `.opencode/skills/system-skill-advisor/references/legacy-tool-bridge.md` | A | 46 |
 | `.opencode/skills/system-skill-advisor/references/standalone-mcp-shape.md` | A | 50 |
 | `.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md` | A | 56 |
-| `.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md` | A | 65 |
+| `.opencode/skills/system-skill-advisor/feature_catalog/mcp-surface/01-advisor-recommend.md` | A | 65 |
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | A | 84 |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/native-recommend-happy-path.md` | A | 78 |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/native-recommend-happy-path.md` | A | 78 |
 | `.opencode/skills/system-skill-advisor/mcp_server/README.md` | A | 16 |
 | `.opencode/skills/system-skill-advisor/mcp_server/database/.gitkeep` | A | 1 |
 
@@ -144,6 +144,6 @@ BLOCKED state.
 
 1. **Scaffold only**: no runtime move. Children 003-006 carry the actual extraction work.
 2. **Parity delta partial**: closed 1 of 5 vitest failures (5 → 4). The remaining 4 are pre-existing and not collateral from the empty-stub state; child 003's runtime move is the right place to address them.
-3. **Catalog/playbook one-entry seeds**: 1 illustrative entry per surface (06--mcp-surface, 01--native-mcp-tools). Full mirror happens in child 003 alongside source movement.
+3. **Catalog/playbook one-entry seeds**: 1 illustrative entry per surface (mcp-surface, native-mcp-tools). Full mirror happens in child 003 alongside source movement.
 4. **References authored fresh**: mirror source had no `references/` dir; the three new reference docs (db-path-policy, legacy-tool-bridge, standalone-mcp-shape) are scaffold content, expected to evolve as 003-006 implementation reveals constraints.
 <!-- /ANCHOR:limitations -->

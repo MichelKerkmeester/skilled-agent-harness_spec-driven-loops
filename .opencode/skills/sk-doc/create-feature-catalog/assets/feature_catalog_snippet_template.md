@@ -160,7 +160,7 @@ Related references:
 - If no implementation files exist yet, add a single row: `| — | — | Not yet implemented |`.
 
 **SOURCE METADATA**
-- Preserve the feature file path after publication — other docs link to this path. Category FOLDER numbering is preserved; per-feature files have no numeric prefix.
+- Preserve the feature file path after publication — other docs link to this path. Category folders use the bare descriptive slug (no numeric prefix); per-feature files also have no numeric prefix.
 - Related references: link to the immediately adjacent features in the same category directory so readers can navigate without returning to the root catalog.
 
 ---

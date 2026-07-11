@@ -82,7 +82,7 @@ Execute F4 (Devin hooks migration), F6 (OLD location deprecation banners), F37 (
 
 ### Out of Scope
 - F35 catalog TOC renumber (status quo per deferred-decisions.md §5)
-- F36 07--hooks-and-plugin file renumber (status quo per deferred-decisions.md §6)
+- F36 hooks-and-plugin file renumber (status quo per deferred-decisions.md §6)
 - Any change to OLD hook source files (deprecation is documentation-only)
 - Deletion of OLD hook location (90-day migration window must elapse first)
 

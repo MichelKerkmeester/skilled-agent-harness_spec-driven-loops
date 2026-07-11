@@ -22,7 +22,7 @@ The result routes to remediation planning because F001 is a P1 correctness findi
 | --- | --- | --- | --- | --- | --- |
 | F001 | P1 | correctness | code-index and skill-advisor freshness hashes are not written by their build scripts | `.opencode/bin/code-index.cjs:60-78`; `.opencode/bin/skill-advisor.cjs:81-95`; `.opencode/skills/system-code-graph/package.json:6-8`; `.opencode/skills/system-skill-advisor/mcp_server/package.json:6-10` | active |
 | F002 | P2 | security | spec-memory bridge allowlist validates requests and tools independently instead of allowed route pairs | `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs:18-19`; `:221-227`; `:347-356` | active |
-| F003 | P2 | traceability | CLI parity playbook was not redirected to the unified offline smoke check | `001-cli-freshness-and-smoke/spec.md:89-96`; `implementation-summary.md:54-58`; `manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md:32-50` | active |
+| F003 | P2 | traceability | CLI parity playbook was not redirected to the unified offline smoke check | `001-cli-freshness-and-smoke/spec.md:89-96`; `implementation-summary.md:54-58`; `manual_testing_playbook/tooling-and-scripts/cli-list-tools-parity.md:32-50` | active |
 
 ## Remediation Workstreams
 | Workstream | Findings | Action |

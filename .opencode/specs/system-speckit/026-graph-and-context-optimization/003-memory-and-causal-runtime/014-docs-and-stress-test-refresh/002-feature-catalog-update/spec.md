@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "feature_catalog/feature_catalog.md"
-      - "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md"
-      - "feature_catalog/14--pipeline-architecture/"
+      - "feature_catalog/lifecycle/checkpoint-creation-checkpointcreate.md"
+      - "feature_catalog/pipeline-architecture/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "feature-catalog-update-packet-setup"
@@ -38,7 +38,7 @@ _memory:
 
 The `system-spec-kit` feature catalog is the canonical, operator-facing inventory of the Spec Kit Memory MCP server's behaviors. It has fallen behind the shipped runtime: the 013 memory-index-scan roadmap delivered checkpoint-v2 file-based snapshots (schema v29), the post-insert enrichment marker (schema v30), and the MCP launcher front-proxy, while the 128 work introduced the sk-git worktree convention. None of these are discoverable from the catalog, and the scattered error-code mentions (E429, -32001, -32002) are not unified anywhere. This packet expands and registers six catalog deltas so operators can find and reason about the shipped behaviors. It edits only `feature_catalog/` content — no runtime code.
 
-**Key Decisions**: Expand the existing checkpoint feature files in place rather than fork new ones; add one new front-proxy file under `14--pipeline-architecture/`; add a schema-version-history file and a unified error-code reference file; surface `post_insert_enrichment_status` as a discoverable entry; cross-reference the sk-git worktree convention.
+**Key Decisions**: Expand the existing checkpoint feature files in place rather than fork new ones; add one new front-proxy file under `pipeline-architecture/`; add a schema-version-history file and a unified error-code reference file; surface `post_insert_enrichment_status` as a discoverable entry; cross-reference the sk-git worktree convention.
 
 **Critical Dependencies**: Verified source anchors in `lib/search/vector-index-schema.ts` (SCHEMA_VERSION = 30, migrations 28/29/30), `lib/storage/checkpoints.ts` (VACUUM INTO, sentinel, restore journal), `.opencode/bin/lib/launcher-session-proxy.cjs` (-32001/-32002), and `context-server.ts` (serverInfo 1.7.2 — pre-fix value captured at planning time; current deployed value is 1.8.0 per `package.json:3`, SPECKIT_BACKEND_ONLY).
 
@@ -73,11 +73,11 @@ Expand the relevant existing catalog files and add the missing ones, then regist
 ## 3. SCOPE
 
 ### In Scope
-- Expanding `05--lifecycle/checkpoint-creation-checkpointcreate.md` and its restore sibling `checkpoint-restore-checkpointrestore.md` with the v2 path: `VACUUM INTO`, schema v29 columns (`snapshot_format`/`snapshot_path`), restore-journal crash-safety, shard-attach (`active_vec`), and the `.needs-rebuild` sentinel.
-- A new file under `14--pipeline-architecture/` for the MCP launcher front-proxy: reconnecting session proxy, in-place daemon recycle, `SPECKIT_BACKEND_ONLY`, and `-32002` protocol fail-closed.
+- Expanding `lifecycle/checkpoint-creation-checkpointcreate.md` and its restore sibling `checkpoint-restore-checkpointrestore.md` with the v2 path: `VACUUM INTO`, schema v29 columns (`snapshot_format`/`snapshot_path`), restore-journal crash-safety, shard-attach (`active_vec`), and the `.needs-rebuild` sentinel.
+- A new file under `pipeline-architecture/` for the MCP launcher front-proxy: reconnecting session proxy, in-place daemon recycle, `SPECKIT_BACKEND_ONLY`, and `-32002` protocol fail-closed.
 - A new schema-version-history file (`v28 → v29 → v30` timeline and what each migration added).
 - A new unified error-code reference file (`E429`, `-32001` retryable recycle — still live, `-32002` protocol fail-closed).
-- Surfacing `post_insert_enrichment_status` as a discoverable entry in `13--memory-quality-and-indexing/` with a trigger phrase.
+- Surfacing `post_insert_enrichment_status` as a discoverable entry in `memory-quality-and-indexing/` with a trigger phrase.
 - An sk-git worktree-convention entry (or a clear cross-reference to the sk-git skill) covering `wt/{NNNN}-{name}` branches and `.worktrees/{NNNN}-{name}` directories.
 - Registering every new file in `feature_catalog.md`.
 
@@ -91,13 +91,13 @@ Expand the relevant existing catalog files and add the missing ones, then regist
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md` | Modify | Add the v2 `VACUUM INTO` create path, v29 columns, manifest, shard-attach, sentinel. |
-| `feature_catalog/05--lifecycle/checkpoint-restore-checkpointrestore.md` | Modify | Add the v2 file-swap restore, restore-journal crash-safety, `reopenActiveDatabase`, sentinel. |
-| `feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md` | Create | MCP front-proxy: reconnecting session proxy, in-place recycle, `SPECKIT_BACKEND_ONLY`, `-32002`. |
-| `feature_catalog/13--memory-quality-and-indexing/post-insert-enrichment-marker.md` | Create | `post_insert_enrichment_status` discoverability entry. |
-| `feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | Create | Schema v28→v29→v30 migration timeline. |
-| `feature_catalog/08--bug-fixes-and-data-integrity/error-code-reference.md` | Create | Unified `E429` / `-32001` / `-32002` reference. |
-| `feature_catalog/16--tooling-and-scripts/sk-git-worktree-convention.md` | Create | sk-git `wt/{NNNN}-{name}` worktree convention cross-reference. |
+| `feature_catalog/lifecycle/checkpoint-creation-checkpointcreate.md` | Modify | Add the v2 `VACUUM INTO` create path, v29 columns, manifest, shard-attach, sentinel. |
+| `feature_catalog/lifecycle/checkpoint-restore-checkpointrestore.md` | Modify | Add the v2 file-swap restore, restore-journal crash-safety, `reopenActiveDatabase`, sentinel. |
+| `feature_catalog/pipeline-architecture/mcp-launcher-front-proxy.md` | Create | MCP front-proxy: reconnecting session proxy, in-place recycle, `SPECKIT_BACKEND_ONLY`, `-32002`. |
+| `feature_catalog/memory-quality-and-indexing/post-insert-enrichment-marker.md` | Create | `post_insert_enrichment_status` discoverability entry. |
+| `feature_catalog/bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | Create | Schema v28→v29→v30 migration timeline. |
+| `feature_catalog/bug-fixes-and-data-integrity/error-code-reference.md` | Create | Unified `E429` / `-32001` / `-32002` reference. |
+| `feature_catalog/tooling-and-scripts/sk-git-worktree-convention.md` | Create | sk-git `wt/{NNNN}-{name}` worktree convention cross-reference. |
 | `feature_catalog/feature_catalog.md` | Modify | Register every new file. |
 <!-- /ANCHOR:scope -->
 
@@ -111,7 +111,7 @@ Expand the relevant existing catalog files and add the missing ones, then regist
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Checkpoint create/restore feature files document the v2 path accurately. | `038` and `040` describe `VACUUM INTO`, v29 columns, shard-attach, restore-journal, and the `.needs-rebuild` sentinel with claims traceable to `checkpoints.ts`. |
-| REQ-002 | The MCP front-proxy is documented as a new catalog file. | `14--pipeline-architecture/189` describes the reconnecting session proxy, in-place recycle, `SPECKIT_BACKEND_ONLY`, and `-32002` fail-closed, traceable to `launcher-session-proxy.cjs` and `mk-spec-memory-launcher.cjs`. |
+| REQ-002 | The MCP front-proxy is documented as a new catalog file. | `pipeline-architecture/189` describes the reconnecting session proxy, in-place recycle, `SPECKIT_BACKEND_ONLY`, and `-32002` fail-closed, traceable to `launcher-session-proxy.cjs` and `mk-spec-memory-launcher.cjs`. |
 | REQ-003 | The error-code reference is unified and accurate. | The error-code file states `-32001` is the STILL-LIVE retryable recycle error, `-32002` is non-retryable protocol fail-closed, and `E429` is the scan rate-limit code. |
 | REQ-004 | The schema-version-history file is accurate. | The schema file states `SCHEMA_VERSION = 30` and what migrations 28, 29, 30 each added, traceable to `vector-index-schema.ts`. |
 
@@ -119,7 +119,7 @@ Expand the relevant existing catalog files and add the missing ones, then regist
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | `post_insert_enrichment_status` is discoverable. | A `13--memory-quality-and-indexing/` entry names the marker columns and carries a trigger phrase that matches `post_insert_enrichment`. |
+| REQ-005 | `post_insert_enrichment_status` is discoverable. | A `memory-quality-and-indexing/` entry names the marker columns and carries a trigger phrase that matches `post_insert_enrichment`. |
 | REQ-006 | The sk-git worktree convention is discoverable. | A catalog entry documents `wt/{NNNN}-{name}` branches and `.worktrees/{NNNN}-{name}` dirs, or cross-references the sk-git skill clearly. |
 | REQ-007 | Every new file is registered in `feature_catalog.md`. | Each new feature file is linked from the index with a Description/How-It-Works/Source-Files block in its section. |
 | REQ-008 | No `36`→`43` tool-count bump. | The README "36-tool" mk-spec-memory count stays; the catalog adds BEHAVIORS, not a tool-count change. |
@@ -131,7 +131,7 @@ Expand the relevant existing catalog files and add the missing ones, then regist
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `038` and `040` describe the v2 checkpoint path with claims traceable to `lib/storage/checkpoints.ts` (VACUUM INTO at ~L2217/L2220, sentinel, restore journal).
-- **SC-002**: A new `14--pipeline-architecture/` file documents the front-proxy and is registered in `feature_catalog.md`.
+- **SC-002**: A new `pipeline-architecture/` file documents the front-proxy and is registered in `feature_catalog.md`.
 - **SC-003**: A schema-version-history file and a unified error-code file exist, are accurate (SCHEMA_VERSION = 30; -32001 still live), and are registered.
 - **SC-004**: `post_insert_enrichment_status` and the sk-git worktree convention are both discoverable, and `validate.sh --strict` on this packet passes (Errors: 0).
 <!-- /ANCHOR:success-criteria -->

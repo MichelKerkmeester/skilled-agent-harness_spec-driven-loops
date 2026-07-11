@@ -38,7 +38,7 @@
 - Risk: guide-followers get `advisor_rebuild`/`skill_graph_scan` rejected from native MCP repair flows. Fix class: **doc-only**.
 
 ### tri-098 — CLI manifest documented as generated from TOOL_DEFINITIONS but hand-maintained — STILL-REAL
-- `.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/skill-advisor-cli.md:3` ("byte-identical schemas to TOOL_DEFINITIONS"), `:17` ("via a generated manifest"), `:41` ("Command registry generated from `TOOL_DEFINITIONS`").
+- `.opencode/skills/system-skill-advisor/feature_catalog/mcp-surface/skill-advisor-cli.md:3` ("byte-identical schemas to TOOL_DEFINITIONS"), `:17` ("via a generated manifest"), `:41` ("Command registry generated from `TOOL_DEFINITIONS`").
 - `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli-manifest.ts:22`: static `SKILL_ADVISOR_TOOL_DEFINITIONS` array; only the *type* is imported (`:5`), not the server registry. `SKILL_ADVISOR_CLI_TOOL_MANIFEST` (`:142`) maps from the static copy.
 - Server `TOOL_DEFINITIONS` assembled separately and exported at `advisor-server.ts:48`. Existing tests (`tests/skill-advisor-cli-help-aliases-errors.vitest.ts`) iterate only the CLI manifest — no deep-compare against server `TOOL_DEFINITIONS` exists.
 - Risk: a server schema change silently drifts the CLI; the documented drift-proof mechanism doesn't exist. Fix class: **code-small** (parity test or derive-from-server). Interlock: same drift-class as tri-156.

@@ -88,8 +88,8 @@ Sequential single-dispatch execution: advisor probe (deterministic, `--threshold
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/skills/sk-design/manual_testing_playbook/07--fallback-and-resilience/` | Scenario source | Read-only, no edits | Full-file reads before dispatching |
-| `.opencode/skills/sk-design/manual_testing_playbook/08--hub-manager-intake/` | Scenario source | Read-only, no edits | Full-file reads before dispatching |
+| `.opencode/skills/sk-design/manual_testing_playbook/fallback-and-resilience/` | Scenario source | Read-only, no edits | Full-file reads before dispatching |
+| `.opencode/skills/sk-design/manual_testing_playbook/hub-manager-intake/` | Scenario source | Read-only, no edits | Full-file reads before dispatching |
 | `.opencode/skills/sk-design/SKILL.md`, `design-motion/SKILL.md`, `design-audit/SKILL.md`, `design-mcp-open-design/SKILL.md` | Grading references | Read-only, no edits | Grep + targeted reads of the exact contract sections cited by each scenario's Pass/Fail Criteria |
 | Live Open Design MCP daemon | External system | `HM-004` dispatch created 1 project + started 1 run | Confirmed via the dispatch's own `open-design_create_project`/`open-design_start_run` tool-call outputs in the captured transcript |
 

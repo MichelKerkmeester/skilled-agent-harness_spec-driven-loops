@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "feature_catalog/feature_catalog.md"
-      - "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md"
-      - "feature_catalog/14--pipeline-architecture/"
+      - "feature_catalog/lifecycle/checkpoint-creation-checkpointcreate.md"
+      - "feature_catalog/pipeline-architecture/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "feature-catalog-update-packet-setup"

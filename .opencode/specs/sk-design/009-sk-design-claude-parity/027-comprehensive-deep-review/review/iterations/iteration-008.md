@@ -29,7 +29,7 @@
 - `.opencode/skills/sk-design/design-foundations/scripts/baseline_rhythm_check.py:205`
 - `.opencode/skills/sk-design/design-foundations/scripts/naming_doc_check.py:294`
 - `.opencode/skills/sk-design/design-foundations/feature_catalog/feature_catalog.md:103`
-- `.opencode/skills/sk-design/design-foundations/manual_testing_playbook/01--color/contrast-pair-inventory-before-audit.md:64`
+- `.opencode/skills/sk-design/design-foundations/manual_testing_playbook/color/contrast-pair-inventory-before-audit.md:64`
 - `.opencode/skills/sk-design/design-foundations/references/color/oklch_workflow.md:58`
 - `.opencode/skills/sk-design/design-foundations/README.md:128`
 

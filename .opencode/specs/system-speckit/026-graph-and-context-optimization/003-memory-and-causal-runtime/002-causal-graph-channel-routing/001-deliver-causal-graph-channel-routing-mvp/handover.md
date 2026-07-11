@@ -22,7 +22,7 @@ _memory:
       - "implementation-summary.md"
       - "scratch/baseline.md"
       - "scratch/post-change.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "handover-012-post-restart-verification"
@@ -118,9 +118,9 @@ _memory:
 | `specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/handover.md` | This file (initial author 14:45Z; refined 16:30Z post-restart) | untracked |
 | `specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/resource-map.md` | Path ledger | untracked |
 | `specs/system-spec-kit/026-graph-and-context-optimization/changelog/changelog-026-009-causal-graph-channel-routing.md` | Phase changelog at parent level (canonical) | modified |
-| `.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/12-graph-channel-preservation.md` | New catalog entry | untracked |
-| `.opencode/skills/system-spec-kit/feature_catalog/03--discovery/03-health-diagnostics-memoryhealth.md` | Added `data.routing` paragraph + routing-telemetry.ts source row | modified |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md` | New playbook scenario | untracked |
+| `.opencode/skills/system-spec-kit/feature_catalog/query-intelligence/12-graph-channel-preservation.md` | New catalog entry | untracked |
+| `.opencode/skills/system-spec-kit/feature_catalog/discovery/03-health-diagnostics-memoryhealth.md` | Added `data.routing` paragraph + routing-telemetry.ts source row | modified |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md` | New playbook scenario | untracked |
 <!-- /ANCHOR:context-transfer -->
 
 ---
@@ -173,7 +173,7 @@ Re-run §3.2 only if you suspect the runtime has drifted since this snapshot (e.
 ### 3.3 Priority Tasks Remaining (in execution order)
 
 1. **§4 Live MCP smoke** — 5-query mix (default) or 20-query mix (long-form); confirms the override fires and `graphChannelInvocationRate` moves with intent.
-2. **§5 Manual playbook 272 dispatch via cli-opencode** — runs the canonical scenario from `manual_testing_playbook/14--pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md` as a cross-AI handback, captures pass/fail with cited evidence.
+2. **§5 Manual playbook 272 dispatch via cli-opencode** — runs the canonical scenario from `manual_testing_playbook/pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md` as a cross-AI handback, captures pass/fail with cited evidence.
 3. **§6 Stress test** — sustained-burst routing + ring-buffer overflow check; either author a new vitest file OR run a cli-opencode dispatch loop. See §6 for the open question.
 
 ### 3.4 Open Question Going In — pick stress option by missing signal, not by effort
@@ -196,9 +196,9 @@ Both Option A and Option B procedure blocks are kept downstream in §6 so the ru
 
 - [ ] `implementation-summary.md` — what shipped + verification table + key decisions
 - [ ] `scratch/post-change.md` — long-form 20-query smoke procedure (alternative to §4 short form)
-- [ ] `manual_testing_playbook/14--pipeline-architecture/272-...md` — the canonical scenario script
-- [ ] `feature_catalog/12--query-intelligence/12-graph-channel-preservation.md` — feature mechanics + traceability table
-- [ ] `feature_catalog/03--discovery/03-health-diagnostics-memoryhealth.md` — `data.routing` field shape
+- [ ] `manual_testing_playbook/pipeline-architecture/272-...md` — the canonical scenario script
+- [ ] `feature_catalog/query-intelligence/12-graph-channel-preservation.md` — feature mechanics + traceability table
+- [ ] `feature_catalog/discovery/03-health-diagnostics-memoryhealth.md` — `data.routing` field shape
 
 <!-- /ANCHOR:next-session -->
 
@@ -282,7 +282,7 @@ opencode run \
   --agent general \
   --pure </dev/null \
   "Execute manual testing playbook scenario 272 \
-(.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md). \
+(.opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md). \
 Run all commands in §3 TEST EXECUTION (5 memory_search calls + memory_health), capture data.routing JSON, \
 toggle SPECKIT_GRAPH_CHANNEL_PRESERVATION=false and repeat, then return: \
 (a) pass/fail verdict, (b) captured before/after data.routing payloads, \

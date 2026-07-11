@@ -166,7 +166,7 @@ The `/api/embed` probe returns a JSON body with an `embedding` array. The `time`
 
 | Path | What |
 |---|---|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json` | Deterministic ten-pair fixture for cat-24/409. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-fixture.json` | Deterministic ten-pair fixture for cat-24/409. |
 
 ### Pointer doc
 

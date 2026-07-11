@@ -20,7 +20,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-MM-DD-rerank-ab/"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/"
 ---
 # Feature Specification: spec-memory rerank A/B benchmark
 

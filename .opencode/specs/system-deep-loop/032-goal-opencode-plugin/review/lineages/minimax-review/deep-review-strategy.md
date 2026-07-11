@@ -44,10 +44,10 @@ documentation surfaces) with structural angles the previous lineage did not cove
 | `.opencode/commands/goal_opencode.md` | yes | live command router |
 | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` | yes | primary goal-plugin reference |
 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | yes | hook taxonomy (DOC-1 finding target) |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | yes | feature catalog row |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | yes | mirror feature catalog |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | yes | playbook scenario |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | yes | mirror playbook |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | yes | feature catalog row |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | yes | mirror feature catalog |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` | yes | playbook scenario |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | yes | mirror playbook |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | yes | central env table |
 
 ## Cross-Reference Status

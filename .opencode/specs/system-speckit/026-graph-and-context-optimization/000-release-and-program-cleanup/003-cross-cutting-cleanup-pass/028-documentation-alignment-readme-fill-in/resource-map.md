@@ -96,7 +96,7 @@ Disjointness check: WB-1..WB-4 touch four distinct subtrees (`references/`, `tem
 | `.opencode/skills/system-spec-kit/shared/parsing/README.md` | Cited | OK | Minimal 6-section code README; closest peer-style for WB-3 + WB-4. |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md` | Cited | OK | Full code README (parent of WB-4); already documents `utils/` in §5. |
 | `.opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md` | Cited | OK | Full sk-doc-aligned playbook; pattern anchor for WB-5 entry-point file. |
-| `.opencode/skills/cli-claude-code/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md` | Cited | OK | Per-test scaffold pattern for WB-5 (9-column contract). |
+| `.opencode/skills/cli-claude-code/manual_testing_playbook/cli-invocation/base-non-interactive-invocation.md` | Cited | OK | Per-test scaffold pattern for WB-5 (9-column contract). |
 
 ### WB-1 — multi-ai-council reference files (modify in place)
 
@@ -130,15 +130,15 @@ Disjointness check: WB-1..WB-4 touch four distinct subtrees (`references/`, `tem
 |------|--------|--------|------|
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/` | Removed | OK | Entire directory `rm -rf`. No archival per memory `feedback_delete_not_archive_or_comment`. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/operator_runbook.md` | Removed | OK | 269 LOC entry-point absorbed into merged playbook entry. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/01--native-mcp-tools/**` | Removed | OK | 6 files (NC-001..NC-006), 503 LOC. Migrated to merged playbook category 01. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/02--cli-hooks-and-plugin/**` | Removed | OK | 4 files (CL-001..CL-004), 347 LOC. Migrated to merged playbook category 02. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/03--compat-and-disable/**` | Removed | OK | 4 files (CP-001..CP-004), 325 LOC. Migrated to merged playbook category 03. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/04--operator-h5/**` | Removed | OK | 3 files (OP-001..OP-003), 234 LOC. Migrated to merged playbook category 04. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/05--auto-update-daemon/**` | Removed | OK | 5 files (AU-001..AU-005), 432 LOC. Migrated to merged playbook category 05. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/06--auto-indexing/**` | Removed | OK | 5 files (AI-001..AI-005), 399 LOC. Migrated to merged playbook category 06. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/07--lifecycle-routing/**` | Removed | OK | 5 files (LC-001..LC-005), 380 LOC. Migrated to merged playbook category 07. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/08--scorer-fusion/**` | Removed | OK | 5 files (SC-001..SC-005), 383 LOC. Migrated to merged playbook category 08. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/10--python-compat/**` | Removed | OK | 5 files (PC-001..PC-005), 393 LOC. Migrated to merged playbook category 10 (number gap preserved per scope rule). |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/native-mcp-tools/**` | Removed | OK | 6 files (NC-001..NC-006), 503 LOC. Migrated to merged playbook category 01. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/cli-hooks-and-plugin/**` | Removed | OK | 4 files (CL-001..CL-004), 347 LOC. Migrated to merged playbook category 02. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/compat-and-disable/**` | Removed | OK | 4 files (CP-001..CP-004), 325 LOC. Migrated to merged playbook category 03. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/operator-h5/**` | Removed | OK | 3 files (OP-001..OP-003), 234 LOC. Migrated to merged playbook category 04. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/auto-update-daemon/**` | Removed | OK | 5 files (AU-001..AU-005), 432 LOC. Migrated to merged playbook category 05. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/auto-indexing/**` | Removed | OK | 5 files (AI-001..AI-005), 399 LOC. Migrated to merged playbook category 06. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/lifecycle-routing/**` | Removed | OK | 5 files (LC-001..LC-005), 380 LOC. Migrated to merged playbook category 07. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/scorer-fusion/**` | Removed | OK | 5 files (SC-001..SC-005), 383 LOC. Migrated to merged playbook category 08. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/operator_runbook/python-compat/**` | Removed | OK | 5 files (PC-001..PC-005), 393 LOC. Migrated to merged playbook category 10 (number gap preserved per scope rule). |
 
 ### WB-5 source B: manual_testing_playbook (target — gets enriched)
 
@@ -149,23 +149,23 @@ Disjointness check: WB-1..WB-4 touch four distinct subtrees (`references/`, `tem
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--recommendation/002-ambiguous-recommendation-rendering.md` | Removed | OK | SAD-002 absorbed into NC-004. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/02--hook-integration/001-claude-user-prompt-submit-additional-context.md` | Removed | OK | SAD-003 absorbed into CL-001. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/03--advisor-rebuild/001-explicit-advisor-rebuild-repair-path.md` | Removed | OK | SAD-004 absorbed into NC-006. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--recommendation/` | Removed | OK | Old category dir replaced by `01--native-mcp-tools/`. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/02--hook-integration/` | Removed | OK | Old category dir replaced by `02--cli-hooks-and-plugin/`. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/03--advisor-rebuild/` | Removed | OK | Old category dir folded into `01--native-mcp-tools/` (SAD-004 → NC-006). |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--recommendation/` | Removed | OK | Old category dir replaced by `native-mcp-tools/`. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/02--hook-integration/` | Removed | OK | Old category dir replaced by `cli-hooks-and-plugin/`. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/03--advisor-rebuild/` | Removed | OK | Old category dir folded into `native-mcp-tools/` (SAD-004 → NC-006). |
 
 ### WB-5 target: merged manual_testing_playbook (new structure)
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/` | Created | PLANNED | 6 files NC-001..NC-006. NC-001 + NC-004 + NC-006 each gain "Absorbed from former SAD-NNN" note. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/02--cli-hooks-and-plugin/` | Created | PLANNED | 4 files CL-001..CL-004. CL-001 gains "Absorbed from former SAD-003" note. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/03--compat-and-disable/` | Created | PLANNED | 4 files CP-001..CP-004. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/` | Created | PLANNED | 3 files OP-001..OP-003. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/05--auto-update-daemon/` | Created | PLANNED | 5 files AU-001..AU-005. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/06--auto-indexing/` | Created | PLANNED | 5 files AI-001..AI-005. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/07--lifecycle-routing/` | Created | PLANNED | 5 files LC-001..LC-005. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/08--scorer-fusion/` | Created | PLANNED | 5 files SC-001..SC-005. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/10--python-compat/` | Created | PLANNED | 5 files PC-001..PC-005. Number gap (`09--`) preserved per scope rule. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/native-mcp-tools/` | Created | PLANNED | 6 files NC-001..NC-006. NC-001 + NC-004 + NC-006 each gain "Absorbed from former SAD-NNN" note. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/cli-hooks-and-plugin/` | Created | PLANNED | 4 files CL-001..CL-004. CL-001 gains "Absorbed from former SAD-003" note. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/compat-and-disable/` | Created | PLANNED | 4 files CP-001..CP-004. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/operator-h5/` | Created | PLANNED | 3 files OP-001..OP-003. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/auto-update-daemon/` | Created | PLANNED | 5 files AU-001..AU-005. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/auto-indexing/` | Created | PLANNED | 5 files AI-001..AI-005. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/lifecycle-routing/` | Created | PLANNED | 5 files LC-001..LC-005. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/scorer-fusion/` | Created | PLANNED | 5 files SC-001..SC-005. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/python-compat/` | Created | PLANNED | 5 files PC-001..PC-005. Number gap (`09--`) preserved per scope rule. |
 
 ### WB-3 + WB-4 source code analyzed (read-only, no modification)
 

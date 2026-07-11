@@ -320,4 +320,4 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-
 | `scripts/agent-improvement/benchmark-stability.cjs` | Repeatability analysis |
 | `assets/agent_improvement/target_manifest.jsonc` | Target boundary definition |
 | `references/shared/promotion_rules.md` | Promotion policy documentation |
-| `feature_catalog/01--evaluation-loop/promotion-gates.md` | Feature catalog entry |
+| `feature_catalog/evaluation-loop/promotion-gates.md` | Feature catalog entry |

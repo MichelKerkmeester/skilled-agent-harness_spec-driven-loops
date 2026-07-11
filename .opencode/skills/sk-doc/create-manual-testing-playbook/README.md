@@ -27,7 +27,7 @@ Skip it when a small feature only needs checklist rows in a spec folder, automat
 - `SKILL.md`: Authoritative packet contract, activation rules, package shape, workflow, validation expectations, and hard rules.
 - `references/README.md`: Reference map routing to the overflow detail - prompt voice (`prompt_voice.md`), common pitfalls (`common_pitfalls.md`), and reference implementations (`examples.md`). The complete workflow lives in `SKILL.md`.
 - `assets/testing_playbook/manual_testing_playbook_template.md`: Root playbook scaffold for `manual_testing_playbook/manual_testing_playbook.md`.
-- `assets/testing_playbook/manual_testing_playbook_snippet_template.md`: Per-feature scenario scaffold for `manual_testing_playbook/{NN--category}/{feature-name}.md`.
+- `assets/testing_playbook/manual_testing_playbook_snippet_template.md`: Per-feature scenario scaffold for `manual_testing_playbook/{category}/{feature-name}.md`.
 - `changelog/.gitkeep`: Reserved changelog directory placeholder.
 - No packet-local `scripts/` directory currently exists.
 - Shared validators live under `../shared/scripts/`, including `validate_document.py` and `extract_structure.py`.
@@ -37,10 +37,10 @@ Skip it when a small feature only needs checklist rows in a spec folder, automat
 ```text
 manual_testing_playbook/
 ├── manual_testing_playbook.md
-├── 01--category-name/
+├── category-name/
 │   ├── feature-name.md
 │   └── another-feature-name.md
-└── 02--another-category/
+└── another-category/
     └── feature-name.md
 ```
 
@@ -54,7 +54,7 @@ Per-feature files own the executable scenario truth: exact prompt, exact command
 2. Skim `references/README.md` for overflow detail (prompt voice, pitfalls, examples) as needed.
 3. Copy the root scaffold from `assets/testing_playbook/manual_testing_playbook_template.md`.
 4. Create `manual_testing_playbook/manual_testing_playbook.md`.
-5. Define category folders using `NN--category-name`.
+5. Define category folders using the bare descriptive slug `category-name`; the root `manual_testing_playbook.md` owns display order, not the folder name.
 6. Create one per-feature file per feature ID from `assets/testing_playbook/manual_testing_playbook_snippet_template.md`.
 7. Keep prompt fields synchronized between the root summary, `SCENARIO CONTRACT`, and execution table.
 8. Validate the root playbook from the repo root (replace `<SKILL_PATH>` with the target skill directory, e.g. `.opencode/skills/system-spec-kit`):

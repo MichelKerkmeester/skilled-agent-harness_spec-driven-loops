@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/references/memory/memory_system.md"
       - ".opencode/skills/system-spec-kit/references/config/environment_variables.md"
       - ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/bug-fixes-and-data-integrity/schema-version-history-v28-v30.md"
       - ".opencode/skills/cli-opencode/SKILL.md"
       - "tasks.md"
       - "implementation-summary.md"
@@ -82,7 +82,7 @@ Aligned only the stale skill documentation surfaces discovered during inventory.
 | `.opencode/skills/system-spec-kit/references/memory/memory_system.md` | Modified | Corrected schema baseline, 37-tool registry, memory tool table, code-graph ownership boundary, and index scan coalescing behavior. |
 | `.opencode/skills/system-spec-kit/references/config/environment_variables.md` | Modified | Corrected the memory tool count and added the default-off memory hardening flag table. |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | Added missing shipped 027 flag rows and count update. |
-| `.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | Modified | Updated current schema history from v28-v30 to v28-v37 while preserving the existing file path. |
+| `.opencode/skills/system-spec-kit/feature_catalog/bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | Modified | Updated current schema history from v28-v30 to v28-v37 while preserving the existing file path. |
 | `.opencode/skills/cli-opencode/SKILL.md` | Modified | Added front-door preference guidance for Spec Kit runtime handback. |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Modified | Reconciled phase status, tasks, evidence, and continuity to completed. |
 <!-- /ANCHOR:what-built -->

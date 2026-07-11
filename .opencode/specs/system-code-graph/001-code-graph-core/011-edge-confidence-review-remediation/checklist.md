@@ -180,7 +180,7 @@ _memory:
 
 - [x] CHK-140 [P1] All spec documents synchronized (this folder plus `../010-edge-confidence-and-ppr-revisit`) -- both pass `validate.sh --strict`
 - [x] CHK-141 [P1] API documentation complete (if applicable) -- `ENV_REFERENCE.md` already documents both flags correctly; no new flag introduced here
-- [x] CHK-142 [P2] User-facing documentation updated (feature catalog + manual playbook per REQ-012) -- new `feature_catalog/09--edge-confidence-and-provenance/` group (3 files), 4 existing catalog files updated, 2 new manual playbook scenarios (028/029), `ENV_REFERENCE.md` gained a complete row for each flag; all independently re-verified against real source (exact line-cited values checked, not just asserted)
+- [x] CHK-142 [P2] User-facing documentation updated (feature catalog + manual playbook per REQ-012) -- new `feature_catalog/edge-confidence-and-provenance/` group (3 files), 4 existing catalog files updated, 2 new manual playbook scenarios (028/029), `ENV_REFERENCE.md` gained a complete row for each flag; all independently re-verified against real source (exact line-cited values checked, not just asserted)
 - [x] CHK-143 [P2] Knowledge transfer documented -- this checklist plus the 20 raw review iteration files serve as the transfer record
 <!-- /ANCHOR:docs-verify -->
 

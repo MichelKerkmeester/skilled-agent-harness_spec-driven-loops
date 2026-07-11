@@ -34,7 +34,7 @@ Cross-check surfaces used as evidence only:
 | `AGENTS.md` | Current spec-packet file requirements |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Verified the cited `metadata_only` behavior |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts` | Verified the cited handler regression coverage |
-| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md` | Verified the removed Tier-3 flag wording |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature-flag-reference/01-1-search-pipeline-features-speckit.md` | Verified the removed Tier-3 flag wording |
 
 ## 3. Method
 

@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "No further action"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/category-overview.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/stress-testing/category-overview.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/README.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/run-stress-cycle.md"
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md"
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/README.md"
       - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/README.md"
@@ -59,9 +59,9 @@ The stress-test docs now route readers from the manual release-readiness narrati
 
 ### Finding 1: Catalog and Playbook Automated Harness Awareness
 
-Before: `feature_catalog/14--stress-testing/category-overview.md`, `manual_testing_playbook/14--stress-testing/README.md`, and `manual_testing_playbook/14--stress-testing/run-stress-cycle.md` described only the manual operator cycle and carried `3.6.0.x` version stamps.
+Before: `feature_catalog/stress-testing/category-overview.md`, `manual_testing_playbook/stress-testing/README.md`, and `manual_testing_playbook/stress-testing/run-stress-cycle.md` described only the manual operator cycle and carried `3.6.0.x` version stamps.
 
-After: the in-scope 14--stress-testing docs now name the automated `mcp_server/stress_test/` harness, the six real domains (`durability/`, `matrix/`, `memory/`, `search-quality/`, `session/`, `substrate/`), and the five verified npm stress commands (`stress`, `stress:harness`, `stress:matrix`, `stress:substrate`, `stress:durability`). Their version stamps now use current system-spec-kit version `3.7.1.0` verified from `SKILL.md` and the changelog file list. The pipeline-architecture peer stayed untouched because it is outside the user's edit scope.
+After: the in-scope stress-testing docs now name the automated `mcp_server/stress_test/` harness, the six real domains (`durability/`, `matrix/`, `memory/`, `search-quality/`, `session/`, `substrate/`), and the five verified npm stress commands (`stress`, `stress:harness`, `stress:matrix`, `stress:substrate`, `stress:durability`). Their version stamps now use current system-spec-kit version `3.7.1.0` verified from `SKILL.md` and the changelog file list. The pipeline-architecture peer stayed untouched because it is outside the user's edit scope.
 
 ### Finding 2: Durability README Missing Files
 
@@ -91,9 +91,9 @@ After: the KEY FILES table includes `durability/`, and the architecture diagram 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/category-overview.md` | Modified | Added automated harness inventory and updated version. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md` | Modified | Added harness domains, npm scripts, and cross-links. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md` | Modified | Added automated stress-slice execution guidance and updated version. |
+| `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/category-overview.md` | Modified | Added automated harness inventory and updated version. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/README.md` | Modified | Added harness domains, npm scripts, and cross-links. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/run-stress-cycle.md` | Modified | Added automated stress-slice execution guidance and updated version. |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md` | Modified | Added missing `durability/` row and actual domain names. |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/durability/README.md` | Modified | Added four omitted real durability stress files. |
 | `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/README.md` | Modified | Removed phantom file and added real omitted files. |
@@ -117,7 +117,7 @@ The changes were made after reading the audit report, target docs, `mcp_server/p
 | Decision | Why |
 |----------|-----|
 | Kept the manual stress cycle intact. | The manual narrative was accurate; the bug was missing cross-reference to the automated harness. |
-| Left `feature_catalog/14--pipeline-architecture/stress-test-cycle.md` untouched. | The user scope lock did not allow edits outside `feature_catalog/14--stress-testing/**`. |
+| Left `feature_catalog/pipeline-architecture/stress-test-cycle.md` untouched. | The user scope lock did not allow edits outside `feature_catalog/stress-testing/**`. |
 | Updated only in-scope version stamps to `3.7.1.0`. | `SKILL.md` and changelog verified the current version, but the pipeline peer version is outside scope. |
 | Documented cleanup behavior from source/test reads. | The substrate README needed current behavior, not audit text copied forward. |
 <!-- /ANCHOR:decisions -->
@@ -142,6 +142,6 @@ The changes were made after reading the audit report, target docs, `mcp_server/p
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. `feature_catalog/14--pipeline-architecture/stress-test-cycle.md` still carries its prior version stamp and manual-cycle framing because it was outside the user-approved edit scope.
+1. `feature_catalog/pipeline-architecture/stress-test-cycle.md` still carries its prior version stamp and manual-cycle framing because it was outside the user-approved edit scope.
 2. Automated stress suites were not run as part of this documentation-only fix; verification targets document correctness and spec validation.
 <!-- /ANCHOR:limitations -->

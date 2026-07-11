@@ -26,11 +26,11 @@ exit 1, 0 hits as expected
 $ grep -nE 'flock' .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh
 129:if ! flock -n 9; then
 
-$ grep -nE 'cap_drop|cap_add' .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/docker-compose.yml
+$ grep -nE 'cap_drop|cap_add' .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/docker-compose.yml
 12:    cap_drop:
 14:    cap_add:
 
-$ grep -nE 'rw|ro' .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/docker-compose.yml
+$ grep -nE 'rw|ro' .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/docker-compose.yml
 9:      - ../../../../../..:/workspace:ro
 11:      - ./evidence:/workspace/evidence:rw
 12:    cap_drop:
@@ -140,13 +140,13 @@ index 8a674b3089..43651eb6ba 100755
        npm run build --workspace=@spec-kit/mcp-server
        npm run build --workspace=@spec-kit/scripts
      )
-diff --git a/.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/docker-compose.yml b/.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/docker-compose.yml
+diff --git a/.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/docker-compose.yml b/.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/docker-compose.yml
 index ec4d2672e6..fc495ca30f 100644
---- a/.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/docker-compose.yml
-+++ b/.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/docker-compose.yml
+--- a/.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/docker-compose.yml
++++ b/.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/docker-compose.yml
 @@ -5,8 +5,19 @@ services:
        context: ../../../../../..
-       dockerfile: .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/Dockerfile
+       dockerfile: .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/Dockerfile
      volumes:
 -      - ../../../../../..:/workspace
 -      - ./evidence:/workspace/evidence

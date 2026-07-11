@@ -249,7 +249,7 @@ Manual recovery scenarios live at:
 
 `skill_graph_scan` reports two numbers: `scannedFiles` (every `graph-metadata.json` discovered) and `indexedFiles` (real skills indexed into SQLite). The delta is normally 1 or 2 files. The indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding) and emits a `NON-SKILL-METADATA: skipped` warning. A larger delta means real skills are being filtered, so inspect the warning list.
 
-H5 operator scenarios live in the manual playbook under `04--operator-h5/`.
+H5 operator scenarios live in the manual playbook under `operator-h5/`.
 
 ---
 

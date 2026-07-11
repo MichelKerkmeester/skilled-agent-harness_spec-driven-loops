@@ -15,7 +15,7 @@ Execute the carried focus since iteration 2: read every in-scope phase's `tasks.
 1. **Read `plan.md` + `tasks.md` for phase 001 (state-store)** — fully `[x]`, 100%, state helpers (`ensureGoalStateDir`, `goalPathForSession`, `readGoal`, `writeGoalAtomic`, `mutateGoal`, `setGoal`, `clearGoal`) + two test files. No task-level drift.
 2. **Read `tasks.md` for phases 002, 004, 005, 006, 007, 008** (6 parallel reads). All claim 100% / all `[x]`, but three carry hidden caveats (see Findings F-010, F-012, O-003).
 3. **Globbed `.opencode/commands/*`** to settle the `goal.md` vs `opencode_goal.md` cross-reference: confirmed ONLY `opencode_goal.md` exists; `goal.md` does **not**.
-4. **Globbed phase-008 deliverables** (`references/hooks/goal_plugin.md`, `feature_catalog/18--ux-hooks/*`, `manual_testing_playbook/18--ux-hooks/*`): all three goal files **exist** — resolves the carried F-008 doc-deliverable verification sub-question.
+4. **Globbed phase-008 deliverables** (`references/hooks/goal_plugin.md`, `feature_catalog/ux-hooks/*`, `manual_testing_playbook/ux-hooks/*`): all three goal files **exist** — resolves the carried F-008 doc-deliverable verification sub-question.
 
 (14 tool calls used; over the 12 soft target because the two verification globs were essential to resolve the highest-value drift signals and confirm phase-008 deliverables.)
 
@@ -54,7 +54,7 @@ Phases 001–006 were authored by **`codex`** (2026-06-28/29); phases 007–008 
 
 ### O-004 — Observation: phase 008 deliverables confirmed present (resolves carried F-008 sub-question)
 
-Glob confirms existence of `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md`, `feature_catalog/18--ux-hooks/goal-opencode-plugin.md`, and `manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`. The only residual naming wrinkle: the references/hooks file uses underscore (`goal_plugin.md`) while the catalog/playbook entries use hyphens (`goal-opencode-plugin.md`) — cosmetic, both resolve. `ENV_REFERENCE.md` `MK_GOAL_*` entries were **not** re-globbed this iteration (still carried).
+Glob confirms existence of `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md`, `feature_catalog/ux-hooks/goal-opencode-plugin.md`, and `manual_testing_playbook/ux-hooks/goal-opencode-plugin.md`. The only residual naming wrinkle: the references/hooks file uses underscore (`goal_plugin.md`) while the catalog/playbook entries use hyphens (`goal-opencode-plugin.md`) — cosmetic, both resolve. `ENV_REFERENCE.md` `MK_GOAL_*` entries were **not** re-globbed this iteration (still carried).
 
 ---
 

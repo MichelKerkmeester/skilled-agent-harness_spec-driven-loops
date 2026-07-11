@@ -8,7 +8,7 @@
 
 ## [P1][BUG] recover-sqlite-corruption can mutate without confirm outside hard-stale state
 
-- Evidence: .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:415-428 only gates confirm when classification.state === "hard-stale"; .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:268-276 dispatches recover-sqlite-corruption without an operation-specific confirm check; .opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:171-176 closes/copies/moves the DB triplet and starts a full scan; .opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md:50-56 expects refusal without confirm:true.
+- Evidence: .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:415-428 only gates confirm when classification.state === "hard-stale"; .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:268-276 dispatches recover-sqlite-corruption without an operation-specific confirm check; .opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:171-176 closes/copies/moves the DB triplet and starts a full scan; .opencode/skills/system-code-graph/manual_testing_playbook/doctor-code-graph/code-graph-apply-sub-operations.md:50-56 expects refusal without confirm:true.
 - Detail: The playbook treats recover-sqlite-corruption as confirm-gated, but the code only requires confirm for hard-stale classification. On a fresh or soft-stale graph, an explicit recover-sqlite-corruption call can proceed to DB quarantine/rebuild without confirm.
 - Fix sketch: Add operation-specific confirm gates for destructive operations before snapshot/dispatch, independent of staleness classification.
 
@@ -20,7 +20,7 @@
 
 ## [P1][DOC-DRIFT] rollback-bad-apply dry-run cannot report the rollback target
 
-- Evidence: .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:431-443 returns generic dry-run data and skips operation dispatch; .opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md:58-67 says rollback-bad-apply dry-run reports the prior baseline.
+- Evidence: .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:431-443 returns generic dry-run data and skips operation dispatch; .opencode/skills/system-code-graph/manual_testing_playbook/doctor-code-graph/code-graph-apply-sub-operations.md:58-67 says rollback-bad-apply dry-run reports the prior baseline.
 - Detail: The dry-run path runs batteries and classification only, then returns before rollbackBadApply can resolve or report a knownGoodDir. The playbook's expected operator signal is therefore not produced by current code.
 - Fix sketch: Add a rollback preview path that resolves the intended known-good target without moving files, or update the playbook to state that dry-run is only generic.
 
@@ -32,12 +32,12 @@
 
 ## [P1][DOC-DRIFT] prune-excludes playbook says classification-only, but code mutates when classification is available
 
-- Evidence: .opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md:31-39 describes prune-excludes as "no mutation" and lists candidates only; .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:301-309 builds excludeGlobs and runs scan({ incremental:false, excludeGlobs }) for classified high/medium/low entries.
+- Evidence: .opencode/skills/system-code-graph/manual_testing_playbook/doctor-code-graph/code-graph-apply-sub-operations.md:31-39 describes prune-excludes as "no mutation" and lists candidates only; .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:301-309 builds excludeGlobs and runs scan({ incremental:false, excludeGlobs }) for classified high/medium/low entries.
 - Detail: The playbook presents prune-excludes as a safe classification preflight, but the implementation applies a full scan with excludeGlobs once patterns are classified and gates pass. Operators following the playbook could accidentally run a mutating prune path.
 - Fix sketch: Require dryRun:true in the classification-only playbook step, or split prune-excludes into explicit preview and apply modes.
 
 ## [P1][BUG] repair-nodes missing crashRootCauseAddressed returns committed no-op instead of refusal
 
-- Evidence: .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:313-321 returns repairNodes.skippedReason when crashRootCauseAddressed is not true; .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:508-518 then records status:"committed" after postflight passes; .opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md:41-48 expects requiredAction:"set_crash_root_cause_addressed" or equivalent refusal.
+- Evidence: .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:313-321 returns repairNodes.skippedReason when crashRootCauseAddressed is not true; .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:508-518 then records status:"committed" after postflight passes; .opencode/skills/system-code-graph/manual_testing_playbook/doctor-code-graph/code-graph-apply-sub-operations.md:41-48 expects requiredAction:"set_crash_root_cause_addressed" or equivalent refusal.
 - Detail: The operation does not fail closed when the required safety flag is missing. It can surface as a successful committed apply even though the repair operation was skipped.
 - Fix sketch: Return an aborted/blocked result with requiredAction when crashRootCauseAddressed is missing, before snapshot and postflight commit handling.

@@ -146,14 +146,14 @@ operation_router:
     requires_existing_playbook: false
     output_scope:
       - manual_testing_playbook/manual_testing_playbook.md
-      - manual_testing_playbook/NN--category-name/
-      - manual_testing_playbook/NN--category-name/feature-name.md
+      - manual_testing_playbook/category-name/
+      - manual_testing_playbook/category-name/feature-name.md
   update:
     requires_existing_playbook: true
     output_scope:
       - manual_testing_playbook/manual_testing_playbook.md
-      - manual_testing_playbook/NN--category-name/
-      - manual_testing_playbook/NN--category-name/feature-name.md
+      - manual_testing_playbook/category-name/
+      - manual_testing_playbook/category-name/feature-name.md
 
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/create-manual-testing-playbook/references/README.md
@@ -289,7 +289,7 @@ workflow:
     activities:
       - Ensure playbook_root exists
       - Create or update manual_testing_playbook.md
-      - Create or update numbered category folders
+      - Create or update category folders (bare descriptive slug, no numeric prefix)
       - Create or update one per-feature file per scenario entry
       - Keep review and orchestration guidance only in the root playbook
       - Keep execution truth in per-feature files
@@ -310,7 +310,7 @@ workflow:
     activities:
       - Run validate_document.py on manual_testing_playbook.md
       - Check that each root-linked feature file exists
-      - Check category folder names follow NN--category-name
+      - Check category folder names are bare descriptive slugs (no numeric prefix)
       - Check per-feature files contain required section headers and divider lines
       - Check root scenario count matches per-feature file count
       - Check forbidden sidecar files and snippets/ subtree are absent
@@ -372,7 +372,7 @@ rules:
   must:
     - "Load the creation reference and both templates before writing"
     - "Keep shared review and orchestration guidance in the root playbook"
-    - "Use root-level numbered category folders"
+    - "Use root-level category folders with bare descriptive-slug names (root playbook owns display order)"
   must_not:
     - "Generate review_protocol.md or subagent_utilization_ledger.md"
     - "Use a snippets/ subtree"

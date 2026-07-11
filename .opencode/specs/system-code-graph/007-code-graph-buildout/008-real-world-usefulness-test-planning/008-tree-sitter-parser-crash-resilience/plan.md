@@ -106,7 +106,7 @@ File enumeration → parser wrapper → tree-sitter call
 | `code_graph/handlers/scan.ts` | Consumer of parseDiagnostics | Add skip-list count to response payload | Live driver script JSON shape diff |
 | `code_graph/handlers/status.ts` | Consumer of indexer state | Expose skipListSummary | Vitest: stub DB → status response shape |
 | `code_graph/lib/code-graph-db.ts` | Schema owner | Add `parser_skip_list` table (v5 schema bump) | Migration test: v4 → v5 round-trip |
-| `manual_testing_playbook/02--manual-scan-verify-status/` | Scenario library | Add broad-scope scenario | Playbook run captures pass |
+| `manual_testing_playbook/manual-scan-verify-status/` | Scenario library | Add broad-scope scenario | Playbook run captures pass |
 
 Required inventories:
 - Producer search: `rg -n 'tree[-_]?sitter|parseSync|parseAsync' .opencode/skills/system-spec-kit/mcp_server/code_graph/`

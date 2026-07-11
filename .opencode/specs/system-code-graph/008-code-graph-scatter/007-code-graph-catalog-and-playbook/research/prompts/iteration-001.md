@@ -16,9 +16,9 @@ Mirror the pattern already used for `skill_advisor/`:
 ### Read these first
 
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` (parent index — pattern reference)
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md` (per-feature file pattern)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/mcp-surface/02-advisor-status.md` (per-feature file pattern)
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` (parent index — pattern)
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/advisor-status-rebuild-separation.md` (per-test entry pattern)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/native-mcp-tools/advisor-status-rebuild-separation.md` (per-test entry pattern)
 - `.opencode/skills/sk-doc/SKILL.md` (template owner)
 - `.opencode/skills/sk-doc/assets/` (feature-catalog + manual-testing-playbook templates)
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` (current state of the runtime package)
@@ -61,30 +61,30 @@ Create:
 ```
 mcp_server/code_graph/feature_catalog/
 ├── feature_catalog.md          (parent index)
-├── 01--read-path-freshness/
+├── read-path-freshness/
 │   ├── 01-ensure-code-graph-ready.md
 │   └── 02-query-self-heal.md
-├── 02--manual-scan-verify-status/
+├── manual-scan-verify-status/
 │   ├── 01-code-graph-scan.md
 │   ├── 02-code-graph-verify.md
 │   └── 03-code-graph-status.md
-├── 03--detect-changes/
+├── detect-changes/
 │   └── 01-detect-changes-preflight.md
-├── 04--context-retrieval/
+├── context-retrieval/
 │   ├── 01-code-graph-context.md
 │   └── 02-context-handler.md
-├── 05--coverage-graph/
+├── coverage-graph/
 │   ├── 01-deep-loop-graph-query.md
 │   ├── 02-deep-loop-graph-status.md
 │   ├── 03-deep-loop-graph-upsert.md
 │   └── 04-deep-loop-graph-convergence.md
-├── 06--mcp-tool-surface/
+├── mcp-tool-surface/
 │   └── 01-tool-registrations.md
 ├── 07--ccc-integration/
 │   ├── 01-ccc-reindex.md
 │   ├── 02-ccc-feedback.md
 │   └── 03-ccc-status.md
-└── 08--doctor-code-graph/
+└── doctor-code-graph/
     └── 01-doctor-apply-mode.md
 ```
 
@@ -106,28 +106,28 @@ Create:
 ```
 mcp_server/code_graph/manual_testing_playbook/
 ├── manual_testing_playbook.md  (parent index)
-├── 01--read-path-freshness/
+├── read-path-freshness/
 │   ├── ensure-ready-selective-reindex.md
 │   └── query-self-heal-stale-file.md
-├── 02--manual-scan-verify-status/
+├── manual-scan-verify-status/
 │   ├── code-graph-scan-incremental.md
 │   ├── code-graph-scan-full.md
 │   ├── code-graph-verify-blocked-on-stale.md
 │   └── code-graph-status-readonly.md
-├── 03--detect-changes/
+├── detect-changes/
 │   └── detect-changes-no-inline-index.md
-├── 04--context-retrieval/
+├── context-retrieval/
 │   └── code-graph-context-readiness-block.md
-├── 05--coverage-graph/
+├── coverage-graph/
 │   ├── deep-loop-graph-convergence-yaml-fire.md
 │   └── deep-loop-graph-upsert-conditional.md
-├── 06--mcp-tool-surface/
+├── mcp-tool-surface/
 │   └── tool-call-shape-validation.md
 ├── 07--ccc-integration/
 │   ├── 012-ccc-reindex-binary-shell-out.md
 │   ├── 013-ccc-feedback-jsonl-append.md
 │   └── 014-ccc-status-availability-probe.md
-└── 08--doctor-code-graph/
+└── doctor-code-graph/
     └── doctor-apply-mode-policy.md
 ```
 

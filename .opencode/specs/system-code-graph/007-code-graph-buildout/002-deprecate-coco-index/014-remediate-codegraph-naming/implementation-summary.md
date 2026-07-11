@@ -76,7 +76,7 @@ Removing the `07--ccc-integration` section from `feature_catalog.md` and `manual
 | `mcp_server/tests/lib/README.md` | Modified | removed `shared/retired-search-path.ts` ref |
 | `mcp_server/stress_test/code-graph/README.md` | Modified | "CCC bridge" prose + ghost `ccc-integration-stress.vitest.ts` |
 | `ARCHITECTURE.md` | Modified | "structural search bridge" subsystem → "Index lifecycle"; fixed diagram + topology comment; dropped false sqlite-vec/semantic-runtime claims |
-| `feature_catalog/06--mcp-tool-surface/01-tool-registrations.md` | Modified | phantom `code_graph_* and detect_changes` tool name |
+| `feature_catalog/mcp-tool-surface/01-tool-registrations.md` | Modified | phantom `code_graph_* and detect_changes` tool name |
 <!-- /ANCHOR:what-built -->
 
 ---

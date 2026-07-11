@@ -70,8 +70,8 @@ _memory:
 | `mcp_server/code_graph/handlers/query.ts:862-909` | MODIFY | Extend `computeBlastRadius` output shape |
 | `mcp_server/code_graph/handlers/query.ts:978-981` | MODIFY | Surface `reason`/`step` in relationship-query output |
 | `mcp_server/code_graph/lib/code-graph-context.ts` | MODIFY | Propagate enriched fields through context payloads |
-| `feature_catalog/06--analysis/` | NEW entry | blast_radius uplift |
-| `manual_testing_playbook/06--analysis/` | NEW entry | blast_radius testing flow |
+| `feature_catalog/analysis/` | NEW entry | blast_radius uplift |
+| `manual_testing_playbook/analysis/` | NEW entry | blast_radius testing flow |
 
 ---
 

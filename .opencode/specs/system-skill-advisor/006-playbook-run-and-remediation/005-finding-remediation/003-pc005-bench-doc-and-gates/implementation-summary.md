@@ -51,7 +51,7 @@ The PC-005 scenario doc now documents the required `--dataset` flag (with `--run
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.../manual_testing_playbook/10--python-compat/005-bench-runner.md` | Modify | Add `--dataset` + smoke note + gate descriptions |
+| `.../manual_testing_playbook/python-compat/005-bench-runner.md` | Modify | Add `--dataset` + smoke note + gate descriptions |
 | `.../mcp_server/scripts/skill_advisor_bench.py` | Modify | Warm p95 50ms default; `--enforce-cold-p95` flag; `cold_p95_advisory` in report |
 <!-- /ANCHOR:what-built -->
 

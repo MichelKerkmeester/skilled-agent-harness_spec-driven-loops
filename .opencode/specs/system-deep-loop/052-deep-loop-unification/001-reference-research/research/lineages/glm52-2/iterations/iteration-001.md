@@ -17,7 +17,7 @@ The proposed shape nests the entire `deep-loop-runtime/` tree as `system-deep-lo
 [SOURCE: deep-loop-workflows/mode-registry.json:7-20; 002/spec.md:169]
 
 ### F1.3 — Runtime-owned doc families move as a unit [CLARIFICATION, minor]
-The spec diagram lists `feature_catalog/`, `references/`, `changelog/` (frozen v1.5.0.1), `manual_testing_playbook/` under `runtime/`. These are runtime-scoped (e.g. `feature_catalog/01--executor/fallback-router.md` documents `lib/deep-loop/fallback-router.ts`) and must move with runtime, not be hoisted to hub. The prose in §3 Stage 2 only names `graph-metadata.json` deletion + `SKILL.md`→`README.md` demotion, leaving the doc families implicit. No correction — they're carried by the whole-tree `git mv` — but execution should verify no tool assumes these live at hub level.
+The spec diagram lists `feature_catalog/`, `references/`, `changelog/` (frozen v1.5.0.1), `manual_testing_playbook/` under `runtime/`. These are runtime-scoped (e.g. `feature_catalog/executor/fallback-router.md` documents `lib/deep-loop/fallback-router.ts`) and must move with runtime, not be hoisted to hub. The prose in §3 Stage 2 only names `graph-metadata.json` deletion + `SKILL.md`→`README.md` demotion, leaving the doc families implicit. No correction — they're carried by the whole-tree `git mv` — but execution should verify no tool assumes these live at hub level.
 [SOURCE: deep-loop-runtime/feature_catalog/feature_catalog.md:23; 002/spec.md:163-166]
 
 ### F1.4 — Nested package.json at two levels (NEW risk, low) [RISK]

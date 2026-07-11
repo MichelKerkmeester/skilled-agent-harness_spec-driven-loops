@@ -51,11 +51,11 @@ Closed the deferred backlog that ships without architectural decisions or contex
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md` | Modified | F30 — converted 3 plain-text refs to markdown links + added status notes citing 002 shipped the underlying fix |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-status.md` | Modified | F33 — added §4 SOURCE FILES section (status.ts + tools/skill-graph-tools.ts + skill-graph-handlers.vitest.ts); §4 renamed §5 SOURCE METADATA |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-query.md` | Modified | F33 — same shape (query.ts + 2 tests) |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-validate.md` | Modified | F33 — same shape (validate.ts + 2 tests) |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-status.md` | Modified | F33 — added §4 SOURCE FILES section (status.ts + tools/skill-graph-tools.ts + skill-graph-handlers.vitest.ts); §4 renamed §5 SOURCE METADATA |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-query.md` | Modified | F33 — same shape (query.ts + 2 tests) |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-validate.md` | Modified | F33 — same shape (validate.ts + 2 tests) |
 | ~33 .md files under `feature_catalog/`, `manual_testing_playbook/`, `hooks/`, `mcp_server/lib/`, `mcp_server/scripts/`, `mcp_server/stress_test/`, `references/`, `INSTALL_GUIDE.md`, `SKILL.md` | Modified | Bulk Oxford comma sweep (943 → 0 in authored files) |
-| `.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/{08-skill-graph-status,09-skill-graph-validate}.md` | Modified | End-of-line Oxford comma edge cases (2 instances) |
+| `.opencode/skills/system-skill-advisor/feature_catalog/mcp-surface/{08-skill-graph-status,09-skill-graph-validate}.md` | Modified | End-of-line Oxford comma edge cases (2 instances) |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/graph-metadata.json` | Modified | Appended 006 to children_ids[], advanced last_active_child_id |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/spec.md` | Modified | Added 006 row to PHASE DOCUMENTATION MAP |
 <!-- /ANCHOR:what-built -->
@@ -94,7 +94,7 @@ Sequential execution: Tier A small edits → Tier B re-verify → Tier C Oxford 
 | F30 plain-text patterns | Converted to markdown links with status notes; `058 verified delta` + `SKILL.md:189` patterns now resolve to real paths |
 | F33 SOURCE FILES presence | PASS — all 3 (007/008/009) show `grep -c "SOURCE FILES"` = 1 |
 | Tier B re-verify | PASS — compat/index.ts + plugin_bridges/mk-skill-advisor-bridge.mjs + scripts/fixtures/skill_advisor_regression_cases.jsonl all exist on disk and match INSTALL_GUIDE.md paths; F23 dist artifact (compat/index.js) missing is a build-state issue, not doc drift |
-| Spot-check 5 random files post-sweep | PASS — SKILL.md, INSTALL_GUIDE.md, feature_catalog/02--auto-indexing/06-df-idf-corpus.md, manual_testing_playbook/05--auto-update-daemon/001-watcher-narrow-scope.md, references/lane-weight-tuning.md all show intact conjunctions |
+| Spot-check 5 random files post-sweep | PASS — SKILL.md, INSTALL_GUIDE.md, feature_catalog/auto-indexing/06-df-idf-corpus.md, manual_testing_playbook/auto-update-daemon/001-watcher-narrow-scope.md, references/lane-weight-tuning.md all show intact conjunctions |
 | Parent metadata children_ids | PASS — 6 entries; `006-clean-deferred-documentation` present |
 | Parent last_active_child_id | PASS — points to `006-clean-deferred-documentation` |
 | PHASE DOCUMENTATION MAP | PASS — 6 rows now visible in spec.md |
@@ -112,7 +112,7 @@ Deferred to a future packet (Tier D + Tier C non-safe):
 - **F4 `.devin/hooks.v1.json` migration** — NEW location lacks `session-start.js`. Either build that file first (code work) or partially migrate UserPromptSubmit only with documented exception.
 - **F6 dual hook location resolution** — OLD `system-spec-kit/mcp_server/hooks/` plus NEW `system-skill-advisor/hooks/` both exist. Decision: deprecate OLD with migration timeline OR document dual-location as intentional.
 - **F35 catalog TOC renumber** — gap-05 explanatory note already added in child 004; renumber deferred per Open Question 4.
-- **F36 07--hooks-and-plugin numbering gap** — files 01, 03, 04, 05 (missing 02). Decision needed.
+- **F36 hooks-and-plugin numbering gap** — files 01, 03, 04, 05 (missing 02). Decision needed.
 - **F37 catalog/playbook asymmetry** — decision needed per Open Question 9.
 - **3 of 5 new ref docs** — skill-graph-query-cookbook.md, validation-baselines.md, daemon-lease-contract.md, skill-graph-drift.md. Partially redundant with existing surfaces. Author when a specific operator need surfaces.
 <!-- /ANCHOR:limitations -->

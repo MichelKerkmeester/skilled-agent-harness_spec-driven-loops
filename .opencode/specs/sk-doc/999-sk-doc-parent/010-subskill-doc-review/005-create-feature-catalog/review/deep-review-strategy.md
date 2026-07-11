@@ -45,7 +45,7 @@
 
 - Validation warnings in template scaffold code fences were recorded as non-blocking because the requested gate is 0 blocking issues, not zero warnings.
 - Placeholder links inside fenced template scaffolds were not treated as broken runtime links.
-- The live-example related-reference link appears inside an illustrative code fence and the actual live target exists under `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/`.
+- The live-example related-reference link appears inside an illustrative code fence and the actual live target exists under `.opencode/skills/system-spec-kit/feature_catalog/retrieval/`.
 - The root template's embedded per-feature scaffold is a maintainability risk even though it only triggers validator warnings, not blocking errors.
 - The CI markdown-link workflow skips if its guard file is missing, but the guard exists in this checkout, so the checked claim remains supported.
 - Max iterations reached with active P1 findings; final verdict remains CONDITIONAL.

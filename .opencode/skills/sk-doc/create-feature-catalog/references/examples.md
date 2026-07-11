@@ -35,17 +35,17 @@ Shape actually on disk:
 ```text
 feature_catalog/
 ├── feature_catalog.md            # root inventory + navigation
-├── 01--retrieval/                # ~17 per-feature files
+├── retrieval/                # ~17 per-feature files
 │   ├── unified-context-retrieval-memorycontext.md
 │   ├── semantic-and-lexical-search-memorysearch.md
 │   └── ...
-├── 02--mutation/                 # memory-indexing-memorysave.md, ...
-├── 03--discovery/                # health-diagnostics-memoryhealth.md, ...
-├── 04--maintenance/
+├── mutation/                 # memory-indexing-memorysave.md, ...
+├── discovery/                # health-diagnostics-memoryhealth.md, ...
+├── maintenance/
 └── ...                           # twenty-plus numbered category folders
 ```
 
-The catalog groups a large MCP surface into numbered category folders (`NN--category-name`), each holding one file per feature. The root `feature_catalog.md` is the only navigation surface; category numbering fixes the section order.
+The catalog groups a large MCP surface into category folders, each holding one file per feature. The root `feature_catalog.md` is the only navigation surface and owns the section order; the folder names do not encode ordering. (The paths shown above still carry the historical numeric prefixes on disk; the convention no longer adds them.)
 
 ---
 
@@ -75,7 +75,7 @@ Inside each category section, every feature is an H3 entry that stays deliberate
 ...
 
 #### Source Files
-See `01--retrieval/unified-context-retrieval-memorycontext.md` for full
+See `retrieval/unified-context-retrieval-memorycontext.md` for full
 implementation and test file listings.
 ```
 
@@ -85,7 +85,7 @@ The OVERVIEW section is where this catalog carries system-specific context (a co
 
 ## 4. PER-FEATURE FILE ANATOMY
 
-The file `01--retrieval/unified-context-retrieval-memorycontext.md` is a good model for a full feature entry. It shows all four required sections and the sub-heading rule in action.
+The file `retrieval/unified-context-retrieval-memorycontext.md` is a good model for a full feature entry. It shows all four required sections and the sub-heading rule in action.
 
 **Frontmatter** carries a stable `title`, a one-line `description`, five `trigger_phrases`, and a 4-part `version`. The `trigger_phrases` include the exact feature name plus natural-language alternates and the tool name:
 
@@ -118,7 +118,7 @@ trigger_phrases:
 ```markdown
 - Group: Retrieval
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `01--retrieval/unified-context-retrieval-memorycontext.md`
+- Feature file path: `retrieval/unified-context-retrieval-memorycontext.md`
 Related references:
 - [semantic-and-lexical-search-memorysearch.md](semantic-and-lexical-search-memorysearch.md) — Semantic and lexical search (memory_search)
 ```

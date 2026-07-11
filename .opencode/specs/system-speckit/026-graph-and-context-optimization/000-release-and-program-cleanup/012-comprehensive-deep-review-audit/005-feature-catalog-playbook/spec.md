@@ -50,7 +50,7 @@ Audit feature-catalog-to-code traceability and playbook coverage, reporting entr
 Review these artifacts and assess traceability/coverage:
 
 - `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` (master index)
-- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` (code-reference traceability)
+- `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md` (code-reference traceability)
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` (master index)
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/` items that validate catalog annotation/name validity (e.g. 231, 232)
 - A sample of theme sub-files under `feature_catalog/<NN>--*/` cross-checked against actual code

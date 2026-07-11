@@ -73,7 +73,7 @@ A second, unrelated bug surfaced in the same investigation: `load-playbook-scena
 |------|--------|---------|
 | `.opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.md` | Created | Human-readable router-mode benchmark evidence (PASS 100/100). |
 | `.opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.json` | Created | Machine-readable benchmark results backing the report. |
-| `.opencode/skills/sk-prompt/manual_testing_playbook/01--hub-routing/{001,002,003,004}-*.md` | Created | Per-scenario Lane-C scenario gold with `id`/`expected_intent`/`expected_resources` frontmatter (neither the sk-code-shape index-table loader nor the sk-doc-shape per-file loader matched the hub's original inline playbook). |
+| `.opencode/skills/sk-prompt/manual_testing_playbook/hub-routing/{001,002,003,004}-*.md` | Created | Per-scenario Lane-C scenario gold with `id`/`expected_intent`/`expected_resources` frontmatter (neither the sk-code-shape index-table loader nor the sk-doc-shape per-file loader matched the hub's original inline playbook). |
 | `.opencode/skills/sk-prompt/hub-router.json` | Modified | `routerSignals.prompt-models.weight` raised 3 → 5 to fix the named-model routing regression. |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs` | Modified | `expected_intent` regex widened from `[A-Za-z_]+` to `[A-Za-z0-9_-]+` to stop truncating hyphenated intent values. |
 | `../002-architecture-decision/decision-record.md` | Modified | Added the "Amendment (2026-07-09, post phase 007)" section closing ADR-001's deferred routingClass question with this phase's evidence. |

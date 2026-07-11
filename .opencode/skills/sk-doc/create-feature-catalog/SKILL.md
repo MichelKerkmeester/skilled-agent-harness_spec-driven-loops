@@ -1,13 +1,13 @@
 ---
 name: create-feature-catalog
-description: Author sk-doc feature-catalog inventory packages with a root catalog, numbered category folders, per-feature files, and auditable source anchors.
+description: Author sk-doc feature-catalog inventory packages with a root catalog, category folders, per-feature files, and auditable source anchors.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.0.0
 ---
 
 # Create Feature Catalog
 
-`create-feature-catalog` is the feature-inventory workflow packet of the `sk-doc` parent hub. It authors canonical current-state catalogs rooted at `feature_catalog/feature_catalog.md`, with numbered category folders and one per-feature reference file per root catalog entry.
+`create-feature-catalog` is the feature-inventory workflow packet of the `sk-doc` parent hub. It authors canonical current-state catalogs rooted at `feature_catalog/feature_catalog.md`, with category folders and one per-feature reference file per root catalog entry.
 
 Feature catalogs are the canonical inventory for what a system does today. They organize capabilities by category, summarize current behavior in a root catalog, and link to per-feature files that carry implementation anchors, tests, and metadata.
 
@@ -27,7 +27,7 @@ Use this workflow when the request involves:
 - Splitting a large feature surface into a root catalog plus per-feature files.
 - Documenting shipped behavior with source-file anchors, validation anchors, and stable feature slugs.
 - Creating or updating `feature_catalog/feature_catalog.md`.
-- Creating numbered category folders such as `01--retrieval/` or `02--mutation/`.
+- Creating category folders such as `retrieval/` or `mutation/`.
 - Creating per-feature files such as `unified-context-retrieval.md` under category folders.
 - Linking manual testing playbooks, README summaries, or operator docs back to a stable feature reference.
 
@@ -81,21 +81,21 @@ This is a nested workflow packet under `sk-doc`. It carries its own `SKILL.md`, 
 ```text
 feature_catalog/
 ├── feature_catalog.md
-├── 01--category-name/
+├── category-name/
 │   ├── feature-name.md
 │   └── another-feature-name.md
-└── 02--another-category/
+└── another-category/
     └── feature-name.md
 ```
 
 Invariants:
 
 - Root file is always `feature_catalog.md` in lowercase.
-- Category directories use `NN--category-name`.
+- Category directories use the bare descriptive slug `category-name` (no numeric prefix).
 - Per-feature files use `feature-name.md` without numeric prefixes.
 - One root entry maps to exactly one per-feature file.
 - Slugs should remain stable after publication.
-- Category numbering defines root section order.
+- Display order is owned by the root catalog index (`feature_catalog.md`), not the folder name.
 - Per-feature snippet order is defined by the root catalog listing order; filenames do not encode order.
 
 ### Required Resources
@@ -119,7 +119,7 @@ Follow this workflow in order.
 3. Decide the category taxonomy before writing prose.
 4. Stabilize category names, feature names, and feature slugs before polishing descriptions.
 5. Create `feature_catalog/feature_catalog.md` from `assets/feature_catalog/feature_catalog_template.md`.
-6. Create one numbered category folder per root section using `NN--category-name`.
+6. Create one category folder per root section using the bare descriptive slug `category-name`; the root catalog listing defines display order.
 7. Create one per-feature file for each root entry using `assets/feature_catalog/feature_catalog_snippet_template.md`.
 8. Write concise root summaries and link each feature to its per-feature file.
 9. Fill each per-feature `## 2. HOW IT WORKS` section with current behavior.
@@ -229,7 +229,7 @@ Cross-reference rule:
 - Catalogs should stay focused on current behavior, not test execution detail.
 - Manual execution scenario matrices belong in playbooks, not catalogs.
 
-Validation workflow — run from the repo root so the validator resolves the `feature_catalog` doc type on per-feature leaves (leaf detection keys on a `/feature_catalog/NN--category/` path):
+Validation workflow — run from the repo root so the validator resolves the `feature_catalog` doc type on per-feature leaves (leaf detection keys on any `feature_catalog/<category>/` subfolder path):
 
 ```bash
 # Root catalog (detected as the readme doc type)
@@ -237,7 +237,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skil
 python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <target-skill>/feature_catalog/feature_catalog.md
 
 # Each per-feature leaf (detected as the feature_catalog doc type; validates the Validation And Tests table taxonomy)
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature_catalog/NN--category/feature-name.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature_catalog/<category>/feature-name.md
 ```
 
 The validator machine-checks the root-catalog structure and each leaf's Validation And Tests table, but not cross-file link targets or source-anchor accuracy. Manually verify:
@@ -265,7 +265,7 @@ Validator boundary:
 1. Use `assets/feature_catalog/feature_catalog_template.md` for the root catalog scaffold.
 2. Use `assets/feature_catalog/feature_catalog_snippet_template.md` for per-feature files.
 3. Preserve the canonical root path `feature_catalog/feature_catalog.md`.
-4. Keep category folders numbered with `NN--category-name`.
+4. Name category folders with the bare descriptive slug `category-name`; let the root catalog index own display order.
 5. Keep per-feature filenames stable after publication.
 6. Keep per-feature filenames free of numeric prefixes.
 7. Include source-file and validation anchors for every feature claim.
@@ -285,10 +285,11 @@ Validator boundary:
 5. Never leave per-feature files unlinked from the root catalog.
 6. Never cite mutable packet numbers where current source paths, commands, or feature names should be used.
 7. Never use numeric prefixes on per-feature filenames.
-8. Never put manual execution scenario matrices in the catalog.
-9. Never omit source anchors for feature claims.
-10. Never leave long `HOW IT WORKS` sections as unbroken walls of prose.
-11. Never omit `trigger_phrases` from per-feature frontmatter.
+8. Never add numeric prefixes to category folder names; the root catalog index owns display order.
+9. Never put manual execution scenario matrices in the catalog.
+10. Never omit source anchors for feature claims.
+11. Never leave long `HOW IT WORKS` sections as unbroken walls of prose.
+12. Never omit `trigger_phrases` from per-feature frontmatter.
 
 ### ESCALATE IF
 

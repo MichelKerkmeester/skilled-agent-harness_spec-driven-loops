@@ -49,8 +49,8 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read `manual_testing_playbook.md` root index in full
-- [x] T002 Read `01--mode-routing/audit-mode.md` as the exact template
-- [x] T003 Read `02--advisor-integration/positive-design-controls.md` in full
+- [x] T002 Read `mode-routing/audit-mode.md` as the exact template
+- [x] T003 Read `advisor-integration/positive-design-controls.md` in full
 - [x] T004 Confirm no `command-metadata.json` entry needed for the transport mode
 <!-- /ANCHOR:phase-1 -->
 
@@ -59,7 +59,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 Author `01--mode-routing/mcp-open-design-mode.md` (`MR-007`)
+- [x] T005 Author `mode-routing/mcp-open-design-mode.md` (`MR-007`)
 - [x] T006 [P] Add `P6` probe to `AI-001` in `positive-design-controls.md`; version bump
 - [x] T007 [P] Fix stale "five modes" prompt text in `doc-write-routes-elsewhere.md` (`AI-003`); version bump
 - [x] T008 Update `manual_testing_playbook.md`: overview, preconditions, Section 7 table, critical-path list, AI-003 row, cross-reference index, totals; version bump

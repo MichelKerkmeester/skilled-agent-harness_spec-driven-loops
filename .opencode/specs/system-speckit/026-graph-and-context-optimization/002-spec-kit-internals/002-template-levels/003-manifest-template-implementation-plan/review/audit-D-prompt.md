@@ -19,11 +19,11 @@ Audit ALL files under:
 - `.opencode/skills/system-spec-kit/mcp_server/stress_test/` (6 subdirs)
 
 **Highest-impact candidates to check first** (read these end-to-end):
-- `feature_catalog/14--pipeline-architecture/` (likely describes template-system architecture)
-- `feature_catalog/19--feature-flag-reference/` (banned-vocab "feature flag/capability flag" usage)
+- `feature_catalog/pipeline-architecture/` (likely describes template-system architecture)
+- `feature_catalog/feature-flag-reference/` (banned-vocab "feature flag/capability flag" usage)
 - `feature_catalog/feature_catalog.md` (master catalog)
-- `manual_testing_playbook/14--pipeline-architecture/` (test scenarios for template system)
-- `manual_testing_playbook/14--stress-testing/`
+- `manual_testing_playbook/pipeline-architecture/` (test scenarios for template system)
+- `manual_testing_playbook/stress-testing/`
 - `manual_testing_playbook/manual_testing_playbook.md`
 - `templates/stress_test/{README.md, findings-rubric.schema.md, findings-rubric.template.json, findings.template.md}` (rubric for stress tests — likely references `level_N/` outputs)
 - `mcp_server/stress_test/` README + per-scenario READMEs in code-graph/, matrix/, memory/, search-quality/, session/, skill-advisor/

@@ -122,7 +122,7 @@ Ensure zero stale active references to the old flat `sk-prompt-models` skill rem
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Modify | Update template prose that instructs loading or consulting `sk-prompt-models`. |
 | `.opencode/skills/cli-opencode/references/context-budget.md` | Modify | Update context-budget guidance that references small-model prompt-craft lookup. |
 | `.opencode/skills/cli-opencode/references/permissions-matrix.md` | Modify | Update permission-matrix documentation for the folded packet. |
-| `.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/*.md` | Modify | Sweep prompt-template playbook references to the new packet. |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/prompt-templates/*.md` | Modify | Sweep prompt-template playbook references to the new packet. |
 | `.opencode/skills/system-deep-loop/deep-improvement/{SKILL.md,README.md,references/shared/runtime_truth_contracts.md,assets/model_benchmark/benchmark-profiles/reviewer_regression.json}` | Modify | Update deep-improvement and model-benchmark prose references that still name the old skill. |
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/{01,06,07}--*/*.md` | Modify | Update advisor manual-testing scenarios that mention the old skill identity. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/{14,16}--*/*.md` | Modify | Update spec-kit manual-testing playbook references to the folded prompt packet. |

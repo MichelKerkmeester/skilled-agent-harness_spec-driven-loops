@@ -45,9 +45,9 @@ CCC + eval reporting + ablation runner reality
 - `.opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts:164-176` - CLI explicitly calls `runAblation()` and stores results.
 - `.opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts:187-196` - CLI writes `/tmp/ablation-result.json`.
 - `.opencode/skills/system-spec-kit/scripts/evals/README.md:57-70` - eval script inventory lists `run-ablation.ts` but no dashboard CLI.
-- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/31-evaluation-benchmark-and-import-policy-tooling.md:25-31` - feature catalog documents `run-ablation.ts` and ground-truth ID mapping as operator-facing eval runners.
-- `.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:18-26` - feature catalog describes dual ablation/k-sensitivity MCP behavior and flag gating.
-- `.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/02-reporting-dashboard-evalreportingdashboard.md:18-22` - feature catalog describes dashboard as read-only report generation after possible DB initialization.
+- `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/31-evaluation-benchmark-and-import-policy-tooling.md:25-31` - feature catalog documents `run-ablation.ts` and ground-truth ID mapping as operator-facing eval runners.
+- `.opencode/skills/system-spec-kit/feature_catalog/evaluation/01-ablation-studies-evalrunablation.md:18-26` - feature catalog describes dual ablation/k-sensitivity MCP behavior and flag gating.
+- `.opencode/skills/system-spec-kit/feature_catalog/evaluation/02-reporting-dashboard-evalreportingdashboard.md:18-22` - feature catalog describes dashboard as read-only report generation after possible DB initialization.
 - `.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:183-202` - tests assert tool definition presence for eval and CCC tools.
 - `.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:303-306` - tests assert dispatch coverage includes eval and CCC names.
 - `.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:26-27` - tests map eval tools to handler exports; this is dispatch coverage, not auto-fire.

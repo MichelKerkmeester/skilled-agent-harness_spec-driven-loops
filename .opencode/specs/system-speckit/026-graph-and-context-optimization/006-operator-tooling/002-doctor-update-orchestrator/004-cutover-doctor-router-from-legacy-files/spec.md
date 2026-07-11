@@ -79,8 +79,8 @@ Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9
 - Delete these `.opencode/commands/doctor/*.md` files: `causal-graph.md`, `cocoindex.md`, `code-graph.md`, `deep-loop.md`, `memory.md`, `skill-advisor.md`, `skill-budget.md`, `mcp_debug.md`, `mcp_install.md`.
 - Delete matching `.gemini/commands/doctor/*.toml` files for the same 9 legacy names.
 - Verify `.claude/commands/doctor/` mirrors the `.opencode` delete state and `.codex` is covered by its command symlink.
-- Rewrite 23 manual playbook scenario files under `.opencode/specs/system-spec-kit/manual_testing_playbook/23--doctor-commands/`.
-- Rewrite sandbox harness and wrapper shell scripts under `_sandbox/23--doctor-commands/`.
+- Rewrite 23 manual playbook scenario files under `.opencode/specs/system-spec-kit/manual_testing_playbook/doctor-commands/`.
+- Rewrite sandbox harness and wrapper shell scripts under `_sandbox/doctor-commands/`.
 - Audit `doctor_update.yaml` cross-references for stale legacy invocation strings without changing orchestrator behavior.
 - Add concise "Superseded By 013 phases 004 + 005" annotations to the 013 historical spec docs and update invocation examples.
 - Rebuild advisor index after deletes so stale command descriptions stop influencing routing.
@@ -97,8 +97,8 @@ Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9
 |------|-------------|-------|
 | `.opencode/commands/doctor/*.md` legacy files | Delete | 9 old entrypoints only |
 | `.gemini/commands/doctor/*.toml` legacy files | Delete | 9 old TOML mirrors only |
-| `.opencode/specs/system-spec-kit/manual_testing_playbook/23--doctor-commands/*.md` | Update | Router-form invocations |
-| `.opencode/specs/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/**/*.sh` | Update | Router-form invocations |
+| `.opencode/specs/system-spec-kit/manual_testing_playbook/doctor-commands/*.md` | Update | Router-form invocations |
+| `.opencode/specs/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/**/*.sh` | Update | Router-form invocations |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/**/*.md` selected specs | Update | Historical annotation and invocation strings |
 | This packet | Update | Verification evidence and final summary |
 <!-- /ANCHOR:scope -->
@@ -132,7 +132,7 @@ Complete the locked 10 -> 3 markdown end state with a hard cutover. Delete the 9
 - **SC-004:** `.opencode/commands/doctor/assets/` still contains 10 YAML workflow assets.
 - **SC-005:** `route-validate.sh` exits 0 and reports 7 routes validated.
 - **SC-006:** Case-insensitive stale invocation grep over `.opencode`, `.claude`, `.gemini`, and `.codex` returns zero non-archival matches.
-- **SC-007:** Every sandbox `.sh` file under `_sandbox/23--doctor-commands/` passes `bash -n`.
+- **SC-007:** Every sandbox `.sh` file under `_sandbox/doctor-commands/` passes `bash -n`.
 - **SC-008:** 013 parent, 003-skill-advisor-routing-engine-consolidation, and 004-cutover-doctor-router-from-legacy-files all pass strict validation with zero errors and zero warnings.
 <!-- /ANCHOR:success-criteria -->
 

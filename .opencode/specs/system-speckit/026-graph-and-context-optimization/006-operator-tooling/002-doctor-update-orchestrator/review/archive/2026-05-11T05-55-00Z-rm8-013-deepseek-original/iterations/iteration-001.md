@@ -50,11 +50,11 @@ Paths surfaced from spec docs that warrant deeper inspection in later iterations
 | MCP launcher/bootstrap | parent handover.md, parent resource-map.md | `.opencode/bin/spec-kit-memory-launcher.cjs`, `.opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh` |
 | MCP server routing config | parent resource-map.md | `.mcp.json`, `opencode.json` |
 | Migration manifest | 001 spec.md | `.opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json` |
-| Playbook scenarios (23 files) | 002 spec.md, parent resource-map.md | `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/DOC-*.md` |
-| Sandbox harness (4 scripts) | 002 spec.md, parent resource-map.md | `_sandbox/23--doctor-commands/harness/{run-all,reset-state,capture-evidence,assert-signals}.sh` |
-| Per-scenario wrappers (23 files) | 002 spec.md, parent resource-map.md | `_sandbox/23--doctor-commands/scenarios/DOC-*.sh` |
-| Sandbox container config | 002 spec.md | `_sandbox/23--doctor-commands/Dockerfile`, `docker-compose.yml` |
-| Fixture infrastructure | 002 spec.md | `_sandbox/23--doctor-commands/fixtures/{manifest.json,fetch-fixtures.sh}` |
+| Playbook scenarios (23 files) | 002 spec.md, parent resource-map.md | `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/DOC-*.md` |
+| Sandbox harness (4 scripts) | 002 spec.md, parent resource-map.md | `_sandbox/doctor-commands/harness/{run-all,reset-state,capture-evidence,assert-signals}.sh` |
+| Per-scenario wrappers (23 files) | 002 spec.md, parent resource-map.md | `_sandbox/doctor-commands/scenarios/DOC-*.sh` |
+| Sandbox container config | 002 spec.md | `_sandbox/doctor-commands/Dockerfile`, `docker-compose.yml` |
+| Fixture infrastructure | 002 spec.md | `_sandbox/doctor-commands/fixtures/{manifest.json,fetch-fixtures.sh}` |
 | Root playbook | 002 spec.md | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` |
 | ai-council artifacts | parent handover.md | `001-initial-doctor-commands/ai-council/` (10 files) |
 | Parallel runtime mirrors | (cross-runtime) | `.claude/commands/doctor/`, `.codex/commands/doctor/`, `.gemini/commands/doctor/` (if they exist) |

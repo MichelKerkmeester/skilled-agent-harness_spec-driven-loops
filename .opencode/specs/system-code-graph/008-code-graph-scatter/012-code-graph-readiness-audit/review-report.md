@@ -102,7 +102,7 @@ Requirements:
 
 Question: After 032's watcher retraction, is there any remaining code path that claims "real-time watching" of code_graph?
 
-Answer: No current code_graph operator doc found by the targeted regex claims structural real-time watching. Current hits are negative or manual-contract statements: the coverage graph catalog says there is no watcher `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/01-deep-loop-graph-query.md:24`, ensure-ready says it is not a background watcher `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md:25`, and detect_changes says it has no watcher or hook trigger `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/03--detect-changes/01-detect-changes-preflight.md:29`. Historical specs still mention the old claim as evidence records, especially 032's retraction spec `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-claim-retraction/spec.md:53`.
+Answer: No current code_graph operator doc found by the targeted regex claims structural real-time watching. Current hits are negative or manual-contract statements: the coverage graph catalog says there is no watcher `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/coverage-graph/01-deep-loop-graph-query.md:24`, ensure-ready says it is not a background watcher `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/read-path-freshness/01-ensure-code-graph-ready.md:25`, and detect_changes says it has no watcher or hook trigger `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/detect-changes/01-detect-changes-preflight.md:29`. Historical specs still mention the old claim as evidence records, especially 032's retraction spec `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-code-graph-watcher-claim-retraction/spec.md:53`.
 
 Question: Does `ensureCodeGraphReady` handle concurrent modifications correctly when an operator edits five files, then runs `code_graph_query`?
 
@@ -155,10 +155,10 @@ Reviewed surfaces:
 Command class: `rg -n "real[- ]?time|watcher|watching|file watcher|file-watcher|watch mode|live watch" .opencode/skills/system-spec-kit/mcp_server/code_graph -g '*.md'`.
 
 Current code_graph docs returned only no-watcher/manual-contract hits:
-- `feature_catalog/05--coverage-graph/01-deep-loop-graph-query.md:24`
-- `feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md:14`
-- `feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md:25`
-- `feature_catalog/03--detect-changes/01-detect-changes-preflight.md:29`
+- `feature_catalog/coverage-graph/01-deep-loop-graph-query.md:24`
+- `feature_catalog/read-path-freshness/01-ensure-code-graph-ready.md:14`
+- `feature_catalog/read-path-freshness/01-ensure-code-graph-ready.md:25`
+- `feature_catalog/detect-changes/01-detect-changes-preflight.md:29`
 
 Historical specs outside current code_graph docs still mention watcher claims as evidence, not current operator guidance.
 

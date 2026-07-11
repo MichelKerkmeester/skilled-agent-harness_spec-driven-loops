@@ -24,9 +24,9 @@ Content hash: `d88b438e15c00c00`
 
 The root playbook declares Section 12 as the feature catalog cross-reference index. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:3675]
 
-That index contains stale catalog links; for example, the Hybrid search pipeline row points at `../feature_catalog/01--retrieval/hybrid-search-pipeline.md`, while the current catalog file is not at that path. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:3682]
+That index contains stale catalog links; for example, the Hybrid search pipeline row points at `../feature_catalog/retrieval/hybrid-search-pipeline.md`, while the current catalog file is not at that path. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:3682]
 
-The scenario package also has broken links. The stress-cycle scenario references `../../feature_catalog/14--stress-testing/01-stress-test-cycle.md`, while the current feature catalog entry is under the pipeline-architecture category. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md:146]
+The scenario package also has broken links. The stress-cycle scenario references `../../feature_catalog/stress-testing/01-stress-test-cycle.md`, while the current feature catalog entry is under the pipeline-architecture category. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/run-stress-cycle.md:146]
 
 Command evidence: root playbook link scan found 83 broken relative links; scenario-file scan found 29 broken relative links; sampled feature-catalog files had 0 broken links.
 
@@ -41,9 +41,9 @@ Category: portability
 Finding class: case-sensitive-path-risk  
 Content hash: `cfecb8e7e9ea35d6`
 
-The code-reference entry says annotation names must match headings in `feature_catalog/FEATURE_CATALOG.md`. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26]
+The code-reference entry says annotation names must match headings in `feature_catalog/FEATURE_CATALOG.md`. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md:26]
 
-Scenario 136 repeats `feature_catalog/FEATURE_CATALOG.md` and `FEATURE_CATALOG.md` in its command contract. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:38]
+Scenario 136 repeats `feature_catalog/FEATURE_CATALOG.md` and `FEATURE_CATALOG.md` in its command contract. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md:38]
 
 On this macOS worktree, that path resolves to the lower-case catalog due case-insensitive filesystem behavior. On a case-sensitive checkout, the documented command can fail even though `feature_catalog.md` exists.
 
@@ -56,9 +56,9 @@ Category: playbook-quality
 Finding class: malformed-scenario-prompt  
 Content hash: `90cca5460583247f`
 
-The scenario's real-user-request text starts in the middle of a command and contains unmatched formatting around `sort -u`. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:18]
+The scenario's real-user-request text starts in the middle of a command and contains unmatched formatting around `sort -u`. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md:18]
 
-The expected-signal text repeats the same malformed fragment instead of naming the complete command sequence cleanly. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:21]
+The expected-signal text repeats the same malformed fragment instead of naming the complete command sequence cleanly. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md:21]
 
 Impact: the scenario's executable command block is still usable, but the operator-facing prompt is degraded and can produce inconsistent delegated execution.
 

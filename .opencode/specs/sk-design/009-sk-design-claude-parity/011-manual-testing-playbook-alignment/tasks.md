@@ -64,10 +64,10 @@ All Phase 011 tasks are complete except final metadata regeneration and strict v
 - [x] T008 Implement `PB-004` motion procedure-selection proof.
 - [x] T009 [P] Implement `PB-005` audit procedure-selection proof.
 - [x] T010 [P] Implement `PB-006` shared polish-gate selection proof.
-- [x] T011 Implement category `07--fallback-and-resilience/`.
+- [x] T011 Implement category `fallback-and-resilience/`.
 - [x] T012 Implement `FR-001` no-procedure-card-matches fallback statement scenario.
 - [x] T013 Implement `FR-002` direct-fallback-without-subagents scenario.
-- [x] T014 Implement category `08--hub-manager-intake/`.
+- [x] T014 Implement category `hub-manager-intake/`.
 - [x] T015 Implement `HM-001` context-first intake scenario.
 - [x] T016 [P] Implement `HM-002` visible plan before build scenario.
 - [x] T017 [P] Implement `HM-003` verifier-cadence pause scenario.

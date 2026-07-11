@@ -14,7 +14,7 @@
 
 ## [P1][BROKEN-FEATURE] Hook brief renderer misses score-only ambiguity
 
-- Evidence: Implementation dual margin: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/ambiguity.ts:7-34`; renderer confidence-only checks: `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:166-174`, `.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts:95-98`; feature claim: `.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/ambiguity.md:22-27`
+- Evidence: Implementation dual margin: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/ambiguity.ts:7-34`; renderer confidence-only checks: `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:166-174`, `.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts:95-98`; feature claim: `.opencode/skills/system-skill-advisor/feature_catalog/scorer-fusion/ambiguity.md:22-27`
 - Detail: The scorer marks ambiguity when either score gap or confidence gap is within 0.05, but the hook brief path decides ambiguity from confidence gap only. A real score-near-tie with confidence gap above 0.05 will carry scorer ambiguity yet render as a singular `use <skill>` brief, creating a false negative in the user-visible ambiguity signal.
 - Fix sketch: Make brief/token-cap rendering consume `ambiguousWith` or the shared dual-margin predicate instead of rechecking confidence only.
 

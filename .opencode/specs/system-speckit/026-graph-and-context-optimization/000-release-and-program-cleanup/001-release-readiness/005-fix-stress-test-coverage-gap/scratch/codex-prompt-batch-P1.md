@@ -25,31 +25,31 @@ Look at the new files added by packet 043 to learn the project's stress-test sty
 
 ### File 2: `code-graph/code-graph-context-stress.vitest.ts` (cg-007)
 
-- **Catalog**: `mcp_server/code_graph/feature_catalog/04--context-retrieval/01-code-graph-context.md`
+- **Catalog**: `mcp_server/code_graph/feature_catalog/context-retrieval/01-code-graph-context.md`
 - **Source**: `mcp_server/handlers/code_graph/context.ts`
 - **Stress axes**: handler seed/deadline pressure — many seeds, tight budgets; deeply nested context; budget exhaustion
 
 ### File 3: `code-graph/context-handler-normalization-stress.vitest.ts` (cg-008)
 
-- **Catalog**: `mcp_server/code_graph/feature_catalog/04--context-retrieval/02-context-handler.md`
+- **Catalog**: `mcp_server/code_graph/feature_catalog/context-retrieval/02-context-handler.md`
 - **Source**: `mcp_server/lib/code_graph/context-handler.ts` (or similar)
 - **Stress axes**: normalization paths for adversarial input; blocked-output paths under saturation
 
 ### File 4: `skill-advisor/five-lane-fusion-stress.vitest.ts` (sa-019)
 
-- **Catalog**: `mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md`
+- **Catalog**: `mcp_server/skill_advisor/feature_catalog/scorer-fusion/01-five-lane-fusion.md`
 - **Source**: `mcp_server/skill_advisor/lib/scorer/fusion.ts` — `scoreAdvisorPrompt`
 - **Stress axes**: large-corpus lane pressure (500+ skills, varied lane signals); thrashing across lanes; degenerate inputs
 
 ### File 5: `skill-advisor/skill-projection-stress.vitest.ts` (sa-020)
 
-- **Catalog**: `mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/02-projection.md`
+- **Catalog**: `mcp_server/skill_advisor/feature_catalog/scorer-fusion/02-projection.md`
 - **Source**: `mcp_server/skill_advisor/lib/scorer/projection.ts` — projection helpers
 - **Stress axes**: large-fixture projections (1000+ skills); projection consistency under repeated calls; edge nodes/empty edges
 
 ### File 6: `skill-advisor/advisor-recommend-handler-stress.vitest.ts` (sa-025)
 
-- **Catalog**: `mcp_server/skill_advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md`
+- **Catalog**: `mcp_server/skill_advisor/feature_catalog/mcp-surface/01-advisor-recommend.md`
 - **Source**: `mcp_server/skill_advisor/handlers/advisor-recommend.ts` (or wherever the handler lives)
 - **Stress axes**: full MCP handler under load (many concurrent recommend calls); large prompt payload; degraded skill graph
 

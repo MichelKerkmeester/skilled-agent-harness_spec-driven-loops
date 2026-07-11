@@ -10,8 +10,8 @@
 
 - `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/local-llm-query-intelligence/category-overview.md`
 
 ## Findings - New
 

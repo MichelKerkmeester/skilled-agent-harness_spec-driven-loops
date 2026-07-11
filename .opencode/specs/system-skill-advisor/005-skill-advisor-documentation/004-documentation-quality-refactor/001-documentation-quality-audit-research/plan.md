@@ -103,7 +103,7 @@ Iter angles:
 | 05 | references/advisor-scorer.md ↔ scorer code drift |
 | 06 | references/db-path-policy.md + standalone-mcp-shape.md freshness |
 | 07 | references/{legacy-tool-bridge, tool-ids-reference, propagate-enhances, skill-graph-extraction-plan} cross-link integrity |
-| 08 | feature_catalog/01--daemon-and-freshness alignment + cross-links |
+| 08 | feature_catalog/daemon-and-freshness alignment + cross-links |
 | 09 | feature_catalog/02..04 (auto-indexing, lifecycle-routing, scorer-fusion) sk-doc alignment |
 | 10 | feature_catalog/05 GAP root-cause investigation |
 | 11 | feature_catalog/06..08 (mcp-surface, hooks-and-plugin, python-compat) alignment |

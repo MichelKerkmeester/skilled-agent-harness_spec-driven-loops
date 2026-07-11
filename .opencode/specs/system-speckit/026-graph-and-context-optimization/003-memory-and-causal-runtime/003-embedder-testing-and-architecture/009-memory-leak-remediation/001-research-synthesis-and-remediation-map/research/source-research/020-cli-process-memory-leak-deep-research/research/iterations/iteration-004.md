@@ -70,8 +70,8 @@ Audit the five cli-* skills (cli-claude-code, cli-codex, cli-opencode, cli-devin
 - `.opencode/skills/cli-claude-code/references/integration_patterns.md:1-350`
 - `.opencode/skills/cli-claude-code/references/agent_delegation.md:1-50`
 - `.opencode/skills/cli-devin/manual_testing_playbook/07--self-invocation-guard/001-self-invocation-refused.md:1-83`
-- `.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/003-self-invocation-refusal.md:1-60`
-- `.opencode/skills/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/003-self-invocation-guard-nested.md:1-82`
+- `.opencode/skills/cli-opencode/manual_testing_playbook/external-dispatch/003-self-invocation-refusal.md:1-60`
+- `.opencode/skills/cli-opencode/manual_testing_playbook/cross-repo-cross-server/003-self-invocation-guard-nested.md:1-82`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/runtime-detection.ts:1-136`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:1-207`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts:1-254`

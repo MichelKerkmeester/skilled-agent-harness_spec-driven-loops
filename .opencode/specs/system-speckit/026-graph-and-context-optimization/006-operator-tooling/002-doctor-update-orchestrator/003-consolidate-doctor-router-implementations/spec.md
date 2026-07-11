@@ -88,7 +88,7 @@ Ship a new `/doctor` router command (argv-positional dispatch: `/doctor <target>
 - Modifying the 10 YAML workflow files in `.opencode/commands/doctor/assets/` — all stay verbatim.
 - Modifying `.opencode/commands/doctor/update.md` — the orchestrator stays standalone.
 - Modifying the 4 helper scripts in `.opencode/commands/doctor/scripts/` (`audit_descriptions.py`, `doctor-runtime-bootstrap.sh`, `mcp-doctor-lib.sh`, `mcp-doctor.sh`).
-- sed-updating the 23 manual playbook scenarios at `system-spec-kit/manual_testing_playbook/23--doctor-commands/` — that's Phase 2.
+- sed-updating the 23 manual playbook scenarios at `system-spec-kit/manual_testing_playbook/doctor-commands/` — that's Phase 2.
 - Rebuilding the Skill Advisor index — that's Phase 2 (it happens after the old descriptions are gone).
 - Modifying `/doctor:update`'s YAML cross-references — that's Phase 2.
 

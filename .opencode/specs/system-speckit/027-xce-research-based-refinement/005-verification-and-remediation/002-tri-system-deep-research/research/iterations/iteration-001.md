@@ -32,6 +32,6 @@
 
 ## [P2][DOC-DRIFT] Manual/catalog docs still require retired replayed:true marker
 
-- Evidence: .opencode/skills/system-spec-kit/feature_catalog/02--mutation/memory-idempotency-receipts-and-near-duplicate-hints.md:27; .opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/memory-idempotency-replay-and-conflict.md:20; .opencode/specs/system-spec-kit/027-xce-research-based-refinement/before-vs-after.md:71
+- Evidence: .opencode/skills/system-spec-kit/feature_catalog/mutation/memory-idempotency-receipts-and-near-duplicate-hints.md:27; .opencode/skills/system-spec-kit/manual_testing_playbook/feature-flag-reference/memory-idempotency-replay-and-conflict.md:20; .opencode/specs/system-spec-kit/027-xce-research-based-refinement/before-vs-after.md:71
 - Detail: The current code and 027 summary say replay returns the original response verbatim with no `replayed: true` marker. The feature catalog and manual testing scenario still instruct validators to expect `replayed:true`, which would make a correct current implementation look like a manual-test failure.
 - Fix sketch: Update the catalog and playbook to validate verbatim replay rather than a replay marker.

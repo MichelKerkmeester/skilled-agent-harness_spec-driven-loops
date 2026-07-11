@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "manual_testing_playbook/manual_testing_playbook.md"
-      - "manual_testing_playbook/05--lifecycle/"
-      - "manual_testing_playbook/04--maintenance/"
+      - "manual_testing_playbook/lifecycle/"
+      - "manual_testing_playbook/maintenance/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-testing-playbook-update-packet-setup"
@@ -85,7 +85,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-FIX-001 [P0] Each new scenario maps to a concrete shipped behavior with a source anchor (not speculative).
-- [x] CHK-FIX-002 [P0] Same-format producer inventory completed: new files mirror `EX-014`/`EX-015` and the `05--lifecycle` checkpoint block.
+- [x] CHK-FIX-002 [P0] Same-format producer inventory completed: new files mirror `EX-014`/`EX-015` and the `lifecycle` checkpoint block.
 - [x] CHK-FIX-003 [P0] Consumer inventory completed: master-index `## 7` block updated; `## 12` cross-reference reviewed (no row required for new EX existing-feature entries beyond the directory link).
 - [x] CHK-FIX-004 [P1] Accuracy guardrails honored: `-32001` not described as removed; server count stays "36".
 - [x] CHK-FIX-005 [P1] Matrix axes listed where relevant: checkpoint format (v1/v2) x includeEmbeddings x shard-attached covered by EX-037 narrative.

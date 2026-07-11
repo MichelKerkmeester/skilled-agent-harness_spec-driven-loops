@@ -108,7 +108,7 @@ Iterative deep-research loop with fresh-context-per-iteration, externalized JSON
 - **Runtime surface:** Claude `PreToolUse` matcher `Bash` + OpenCode `tool.execute.before`
 - **Blast radius:** Medium (enforce/block, fail-open)
 - **Rationale:** Validates conventional-commit format, blocks `--no-verify`, blocks force-push to main, warns on amend of published commits. Matches 4 documented safety-refusal scenarios.
-- **Evidence:** [SOURCE: .opencode/skills/sk-git/manual_testing_playbook/03--safety-refusals/] [SOURCE: .opencode/plugins/mk-deep-loop-guard.js:42-67]
+- **Evidence:** [SOURCE: .opencode/skills/sk-git/manual_testing_playbook/safety-refusals/] [SOURCE: .opencode/plugins/mk-deep-loop-guard.js:42-67]
 
 ### Tier 2: Medium Value, Low Blast Radius, New Surface (Near-term)
 
@@ -311,7 +311,7 @@ Candidates 11 (CLI dispatch audit), 16 (advisor effectiveness tracker), and 10 (
 - `.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh`
 - `.opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh`
 - `.opencode/skills/sk-git/SKILL.md`
-- `.opencode/skills/sk-git/manual_testing_playbook/03--safety-refusals/`
+- `.opencode/skills/sk-git/manual_testing_playbook/safety-refusals/`
 - `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - `.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh`
 - `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh`

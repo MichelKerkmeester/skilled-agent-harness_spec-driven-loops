@@ -41,8 +41,8 @@ You add `reason`/`step` explanation fields to code-graph edge metadata and enric
 | `mcp_server/code_graph/lib/code-graph-context.ts` | **MODIFY** — propagate enriched fields through context payloads |
 | `mcp_server/code_graph/tests/blast-radius.test.ts` (or extend existing) | **MODIFY** — add tests for risk levels, min-confidence filter, ambiguity candidates, failure fallback |
 | `mcp_server/code_graph/tests/edge-metadata.test.ts` (or extend existing) | **MODIFY** — add tests for reason/step round-trip |
-| `.opencode/skills/system-spec-kit/feature_catalog/06--analysis/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/feature_catalog/analysis/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/analysis/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
 | `012/003/implementation-summary.md` | **MODIFY** — populate Status, Risk Classification Rules Decided, What Was Built, Verification Evidence |
 
 ## Files you may NOT touch

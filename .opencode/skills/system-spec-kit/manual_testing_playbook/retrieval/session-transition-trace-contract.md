@@ -1,0 +1,70 @@
+---
+title: "142 -- Session transition trace contract"
+description: "This scenario validates Session transition trace contract for `142`. It focuses on Verify `memory_context` emits trace-only session transitions with no non-trace leakage."
+audited_post_018: true
+version: 3.6.0.17
+---
+
+# 142 -- Session transition trace contract
+
+## 1. OVERVIEW
+
+This scenario validates Session transition trace contract for `142`. It focuses on Verify `memory_context` emits trace-only session transitions with no non-trace leakage.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Verify `memory_context` emits trace-only session transitions with no non-trace leakage.
+- Real user request: `` Please validate Session transition trace contract against memory_context({ input: "resume previous work on rollout hardening", mode: "resume", sessionId: "markovian-142", includeTrace: true }) and tell me whether the expected signals are present: Trace-enabled responses include spec-shaped `sessionTransition`; non-trace responses omit it entirely; no top-level metadata leak appears when trace is disabled. ``
+- Prompt: `Validate session transition tracing and confirm trace-only sessionTransition output appears without non-trace metadata leakage.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: Trace-enabled responses include spec-shaped `sessionTransition`; non-trace responses omit it entirely; no top-level metadata leak appears when trace is disabled
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if trace-only gating holds and the contract fields are present only in the traced call
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+`Validate session transition tracing and confirm trace-only sessionTransition output appears without non-trace metadata leakage.`
+
+### Commands
+
+1. `memory_context({ input: "resume previous work on rollout hardening", mode: "resume", sessionId: "markovian-142", includeTrace: true })`
+2. Verify each result exposes `trace.sessionTransition.previousState`, `currentState`, `confidence`, and ordered `signalSources`
+3. Repeat without `includeTrace` and verify `sessionTransition` is absent
+4. Confirm the non-trace response does not expose transition data in top-level metadata
+
+### Expected
+
+Trace-enabled responses include spec-shaped `sessionTransition`; non-trace responses omit it entirely; no top-level metadata leak appears when trace is disabled
+
+### Evidence
+
+Two `memory_context` outputs with and without `includeTrace` + field-level comparison
+
+### Pass / Fail
+
+- **Pass**: trace-only gating holds and the contract fields are present only in the traced call
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Inspect `handlers/memory-context.ts`, `handlers/memory-search.ts`, and `lib/search/session-transition.ts` if fields leak or ordering drifts
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [retrieval/unified-context-retrieval-memorycontext.md](../../feature_catalog/retrieval/unified-context-retrieval-memorycontext.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Retrieval
+- Playbook ID: 142
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `retrieval/session-transition-trace-contract.md`

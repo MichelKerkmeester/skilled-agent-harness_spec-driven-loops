@@ -40,7 +40,7 @@ Rubric applied:
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:115-117` defines `AdvisorRebuildInputSchema` with only optional `force`.
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tools/advisor-rebuild.ts:11-17` exposes only `force` and sets `additionalProperties: false`.
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts:57-60` resolves the workspace from injected dependencies or `process.cwd()`, not from tool input.
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/advisor-status-rebuild-separation.md:54` and `:66-67` instruct manual testers to call `advisor_rebuild({ "workspaceRoot": "...", ... })`.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/native-mcp-tools/advisor-status-rebuild-separation.md:54` and `:66-67` instruct manual testers to call `advisor_rebuild({ "workspaceRoot": "...", ... })`.
 
 **Fix.** Add `workspaceRoot?: string` to the rebuild input schema and tool descriptor, pass it into `rebuildAdvisorIndex`, and add a test that `advisor_status({ workspaceRoot })` followed by forced `advisor_rebuild({ workspaceRoot, force: true })` repairs that same workspace. If the intended contract is cwd-only rebuild, fix the playbook and status/rebuild docs instead.
 
@@ -67,8 +67,8 @@ Rubric applied:
 
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:5-10` sets runtime weights to explicit 0.45, lexical 0.30, graph 0.15, derived 0.15, semantic 0.00.
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/README.md:139-145` documents derived as 0.10.
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/08--scorer-fusion/001-five-lane-fusion.md:3` and `:26` document derived as 0.10.
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md:31` documents derived as 0.15, matching code.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/scorer-fusion/001-five-lane-fusion.md:3` and `:26` document derived as 0.10.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/scorer-fusion/06-weights-config.md:31` documents derived as 0.15, matching code.
 
 **Fix.** Update README and manual playbook to match `lane-registry.ts`, and add a lightweight doc check or generated snippet for the lane table.
 

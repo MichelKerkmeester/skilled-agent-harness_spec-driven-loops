@@ -30,7 +30,7 @@ Active counts: P0=0, P1=7, P2=1. Verdict remains CONDITIONAL because active P1 d
 | `.opencode/skills/cli-opencode/README.md` | covered | F002 |
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | covered | F004 |
 | `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md` | covered | F003 |
-| `.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md` | covered | F003 |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md` | covered | F003 |
 | `.opencode/skills/deep-loop-workflows/deep-context/SKILL.md` | covered | F005 |
 | `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md` | covered | F006 |
 | `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/output_schema.md` | covered | F007 |

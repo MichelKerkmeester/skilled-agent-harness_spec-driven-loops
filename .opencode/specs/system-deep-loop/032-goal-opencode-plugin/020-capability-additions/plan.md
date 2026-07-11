@@ -107,8 +107,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `.opencode/plugins/tests/mk-goal-*.test.cjs` | Regression suite (all green 2026-07-03) | Update/Create: coverage for every new path | `node --test` full run, fresh output pasted |
 | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` | Canonical plugin reference | Update: new verbs/envs/status fields (REQ-007) | Grep each new name |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Env inventory (exactly 10 `MK_GOAL_*` today) | Update: add new vars, defaults matching code | Var count + defaults cross-checked against code |
-| Both feature catalogs (`system-spec-kit/feature_catalog/18--ux-hooks/`, `system-skill-advisor/feature_catalog/07--hooks-and-plugin/`) | Capability inventory (audited accurate 2026-07-03) | Update: new capabilities (REQ-007) | Grep each new verb/env |
-| Both manual-testing playbooks (`system-spec-kit/manual_testing_playbook/18--ux-hooks/`, `system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/`) | Operator test scripts | Update: steps for new verbs (REQ-007) | Grep each new verb |
+| Both feature catalogs (`system-spec-kit/feature_catalog/ux-hooks/`, `system-skill-advisor/feature_catalog/hooks-and-plugin/`) | Capability inventory (audited accurate 2026-07-03) | Update: new capabilities (REQ-007) | Grep each new verb/env |
+| Both manual-testing playbooks (`system-spec-kit/manual_testing_playbook/ux-hooks/`, `system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/`) | Operator test scripts | Update: steps for new verbs (REQ-007) | Grep each new verb |
 | `mk-goal.js` verifier/completion path | Owns auto-completion | Not a consumer — untouched here (phase 021) | No diff in `maybeVerifyGoal` region |
 
 Required inventories:

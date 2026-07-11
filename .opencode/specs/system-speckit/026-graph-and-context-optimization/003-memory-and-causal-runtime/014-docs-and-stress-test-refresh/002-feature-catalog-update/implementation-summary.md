@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "feature_catalog/feature_catalog.md"
-      - "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md"
-      - "feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md"
+      - "feature_catalog/lifecycle/checkpoint-creation-checkpointcreate.md"
+      - "feature_catalog/pipeline-architecture/mcp-launcher-front-proxy.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "feature-catalog-update-packet-setup"
@@ -56,13 +56,13 @@ Six feature-catalog deltas that bring the `system-spec-kit` feature catalog up t
 
 | Delta | File | Action | Status |
 |-------|------|--------|--------|
-| Checkpoint-v2 create | `05--lifecycle/checkpoint-creation-checkpointcreate.md` | Expand | Done |
-| Checkpoint-v2 restore | `05--lifecycle/checkpoint-restore-checkpointrestore.md` | Expand | Done |
-| MCP front-proxy | `14--pipeline-architecture/mcp-launcher-front-proxy.md` | Create + register | Done |
-| Schema version history | `08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | Create + register | Done |
-| Error-code reference | `08--bug-fixes-and-data-integrity/error-code-reference.md` | Create + register | Done |
-| Post-insert enrichment marker | `13--memory-quality-and-indexing/post-insert-enrichment-marker.md` | Create + register | Done |
-| sk-git worktree convention | `16--tooling-and-scripts/sk-git-worktree-convention.md` | Create + register | Done |
+| Checkpoint-v2 create | `lifecycle/checkpoint-creation-checkpointcreate.md` | Expand | Done |
+| Checkpoint-v2 restore | `lifecycle/checkpoint-restore-checkpointrestore.md` | Expand | Done |
+| MCP front-proxy | `pipeline-architecture/mcp-launcher-front-proxy.md` | Create + register | Done |
+| Schema version history | `bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | Create + register | Done |
+| Error-code reference | `bug-fixes-and-data-integrity/error-code-reference.md` | Create + register | Done |
+| Post-insert enrichment marker | `memory-quality-and-indexing/post-insert-enrichment-marker.md` | Create + register | Done |
+| sk-git worktree convention | `tooling-and-scripts/sk-git-worktree-convention.md` | Create + register | Done |
 
 ### Shipped content
 

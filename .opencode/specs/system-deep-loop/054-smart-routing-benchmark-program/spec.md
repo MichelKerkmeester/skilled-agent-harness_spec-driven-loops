@@ -82,7 +82,7 @@ Every routing target (8 children + 2 hubs) has a reproducible Mode-A gate score 
 ### In Scope
 - Decentralize sk-code surface-child routing (`code-webflow`, `code-opencode`) into inline `INTENT_SIGNALS`/`RESOURCE_MAP` blocks over child-relative paths; rewrite the parent `smart_routing.md` `RESOURCE_MAP` as the mechanical union.
 - Thin honest Type-1 router for `code-quality`; tighten `code-review` gold to exact `assets/*` paths.
-- Per-child Type-1 gold as sk-doc-shape playbooks under each child's `manual_testing_playbook/10--intra-routing-recall/` (deep-loop children) or category folders (sk-code children).
+- Per-child Type-1 gold as sk-doc-shape playbooks under each child's `manual_testing_playbook/intra-routing-recall/` (deep-loop children) or category folders (sk-code children).
 - Extend the drift guard (`sk-code-router-sync.vitest.ts`) to assert parent `==` union(children) + parent-owned-tier allowlist, each child self-parseable, and every child path on disk.
 - Mode-A (router-replay, CI gate) + Mode-B (live `cli-opencode gpt-5.5-fast`, advisory) runs; capture reproducible baselines.
 

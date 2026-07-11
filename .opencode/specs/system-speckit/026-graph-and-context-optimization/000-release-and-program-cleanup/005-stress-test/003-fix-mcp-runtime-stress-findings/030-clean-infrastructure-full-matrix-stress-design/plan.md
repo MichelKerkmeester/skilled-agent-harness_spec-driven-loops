@@ -171,7 +171,7 @@ Feature-owned runners with a meta-aggregator.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Stress-test pattern | Documentation | Available | Required for rubric, sidecar, findings shape (`14--stress-testing/01-stress-test-cycle.md:40`, `:57`). |
+| Stress-test pattern | Documentation | Available | Required for rubric, sidecar, findings shape (`stress-testing/01-stress-test-cycle.md:40`, `:57`). |
 | Manual playbook real-execution policy | Documentation | Available | Required to distinguish fixture proof from real workflow proof (`manual_testing_playbook.md:9`). |
 | PP-1 live handler seam | Test pattern | Available | Search telemetry cells can use live handler with declared mocked boundary (`handler-memory-search-live-envelope.vitest.ts:3`, `:15`). |
 | PP-2 harness export mode | Harness feature | Available | Search-quality cells can export telemetry JSONL (`harness.ts:199`, `:239`). |
@@ -324,7 +324,7 @@ Hunter/Skeptic/Referee + strict validation
 
 ### Rubric Design
 
-The rubric inherits the generalized stress-cycle dimensions (`14--stress-testing/01-stress-test-cycle.md:40`, `:49`):
+The rubric inherits the generalized stress-cycle dimensions (`stress-testing/01-stress-test-cycle.md:40`, `:49`):
 
 | Dimension | Score 0 | Score 1 | Score 2 |
 |-----------|---------|---------|---------|

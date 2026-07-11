@@ -49,7 +49,7 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 1: `chokidar-narrow-scope-stress.vitest.ts` (sa-001)
 
-- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/01--daemon-and-freshness/01-watcher.md`
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/daemon-and-freshness/01-watcher.md`
 - **Source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts` — exports `discoverWatchTargets`, possibly `runWithBusyRetry`
 - **Stress axes**:
   1. `discoverWatchTargets` correctly narrows to `SKILL.md` and `graph-metadata.json` only when given a directory containing 100+ unrelated files
@@ -57,7 +57,7 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 2: `single-writer-lease-stress.vitest.ts` (sa-002)
 
-- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/01--daemon-and-freshness/02-lease.md`
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/daemon-and-freshness/02-lease.md`
 - **Source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lease.ts` — exports `acquireSkillGraphLease`, `readLeaseSnapshot`, `openLeaseDatabase`
 - **Stress axes**:
   1. 10 concurrent `acquireSkillGraphLease` calls in the same workspace — exactly one acquires; others see `stale`/`absent` snapshot without blocking
@@ -66,7 +66,7 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 3: `daemon-lifecycle-stress.vitest.ts` (sa-003)
 
-- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/01--daemon-and-freshness/03-lifecycle.md`
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/daemon-and-freshness/03-lifecycle.md`
 - **Source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts` — exports the lifecycle entry point; if hard to instantiate fully, exercise the underlying `acquireSkillGraphLease` + `discoverWatchTargets` in tight loop
 - **Stress axes**:
   1. 50 boot/shutdown cycles in <10s with no FD leaks (use `process.report` or simply check no `Error: EMFILE`)
@@ -74,7 +74,7 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 4: `generation-snapshot-stress.vitest.ts` (sa-004)
 
-- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/01--daemon-and-freshness/04-generation.md`
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/daemon-and-freshness/04-generation.md`
 - **Source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts` (atomic bump); `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/generation.ts` (storage)
 - **Stress axes**:
   1. 100 sequential generation bumps complete with monotonically increasing values, no gaps
@@ -83,7 +83,7 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 5: `trust-state-stress.vitest.ts` (sa-005)
 
-- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/01--daemon-and-freshness/05-trust-state.md`
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/daemon-and-freshness/05-trust-state.md`
 - **Source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/trust-state.ts` — exports the classifier; `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness.ts`
 - **Stress axes**:
   1. All four states (`live`, `stale`, `absent`, `unavailable`) reachable from the same workspace by simulating: present+fresh / present+aged / file-missing / file-corrupt
@@ -91,7 +91,7 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 6: `generation-cache-invalidation-stress.vitest.ts` (sa-007)
 
-- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/01--daemon-and-freshness/07-cache-invalidation.md`
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/daemon-and-freshness/07-cache-invalidation.md`
 - **Source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts`; `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/prompt-cache.ts`
 - **Stress axes**:
   1. After 10 generation bumps in <1s, no prompt-cache entry from before the first bump remains accessible

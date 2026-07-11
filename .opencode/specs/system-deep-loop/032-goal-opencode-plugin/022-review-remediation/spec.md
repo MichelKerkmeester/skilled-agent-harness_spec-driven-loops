@@ -121,8 +121,8 @@ The one confirmed runtime bug is fixed with regression proof, and every packet d
 | 8 child `spec.md` files (009-speckit, 012, 015, 016, 017, 018, 019, 021) | Modify | Status row Planned/Draft -> Complete; verify 020's row while there |
 | `../spec.md` (parent) | Modify | Phase-map rows match child statuses; fix test-file/seam counts; drop stale "(not cited)" annotation |
 | `../scratch/2026-07-03-four-reviewer-audit-findings.md` | Modify | Refresh header + RESOLVED markers with current evidence for F4/F5/DOC-2/e-2.2 |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | Modify | Add missing test row; align mk-goal-state description |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | Modify | Add missing test row; align mk-goal-state description |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | Modify | Add missing test row; align mk-goal-state description |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | Modify | Add missing test row; align mk-goal-state description |
 <!-- /ANCHOR:scope -->
 
 ---

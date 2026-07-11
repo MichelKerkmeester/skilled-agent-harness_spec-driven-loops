@@ -154,8 +154,8 @@ Verify `node "$OD_BIN" mcp install opencode` writes the `open-design` MCP entry 
 Prompt: `"Connect Open Design to this agent and confirm its tools are available."`
 Expected: dry-run prints the exact entry and writes nothing, the install deep-merges `opencode.json` under `mcp.open-design`, and the live `tools/list` shows the Open Design tools while the desktop app is open.
 
-> **Feature File:** [01--wiring/install-and-verify.md](01--wiring/install-and-verify.md)
-> **Catalog:** [01--wiring/od-mcp-install.md](../feature_catalog/01--wiring/od-mcp-install.md)
+> **Feature File:** [wiring/install-and-verify.md](wiring/install-and-verify.md)
+> **Catalog:** [wiring/od-mcp-install.md](../feature_catalog/wiring/od-mcp-install.md)
 
 ---
 
@@ -168,8 +168,8 @@ Verify a registered design system's `DESIGN.md` and `tokens.css` can be read rea
 Prompt: `"Read the DESIGN.md and tokens for one of Open Design's design systems."`
 Expected: `node "$OD_BIN" tools design-systems read --path <manifest-path>` returns the 9-section `DESIGN.md` and a `:root` `tokens.css`, no files are written to the repo, and the read is usable as grounding input for `sk-design`.
 
-> **Feature File:** [02--reading/read-design-system.md](02--reading/read-design-system.md)
-> **Catalog:** [02--reading/read-only-content.md](../feature_catalog/02--reading/read-only-content.md)
+> **Feature File:** [reading/read-design-system.md](reading/read-design-system.md)
+> **Catalog:** [reading/read-only-content.md](../feature_catalog/reading/read-only-content.md)
 
 ---
 
@@ -182,8 +182,8 @@ Verify a mutating verb runs only after explicit confirmation with a throwaway ta
 Prompt: `"Commission an Open Design run into a throwaway test project."`
 Expected: the agent first describes the effect and a rollback note and stops for confirmation, then fires turn 1 (`start_run` / `od run start`) which returns a discovery question-form with zero files, answers the form (`od ui respond` or a follow-up message) to fire the build that writes files and yields a `previewUrl`, and refuses the negative control (a mutating call without confirmation, or a destructive verb without `confirm:true`). Turn 1 alone, or `od artifacts create`, must not be claimed to produce a finished design.
 
-> **Feature File:** [03--gated-runs/gated-verb-confirm.md](03--gated-runs/gated-verb-confirm.md)
-> **Catalog:** [04--runs/headless-runs.md](../feature_catalog/04--runs/headless-runs.md)
+> **Feature File:** [gated-runs/gated-verb-confirm.md](gated-runs/gated-verb-confirm.md)
+> **Catalog:** [runs/headless-runs.md](../feature_catalog/runs/headless-runs.md)
 
 ---
 
@@ -194,8 +194,8 @@ Verify a design generation RUN, and a design-feeding READ, are blocked when `sk-
 Prompt: `"Ground a design in an Open Design system and commission a run for it."`
 Expected: with `sk-design` not loaded, the design run is blocked before turn 1 and the design-feeding read is refused as grounding (not merely left unconfirmed); after `sk-design` is loaded and ground -> token-system -> critique is applied, the grounded design work proceeds; and pure transport (`od mcp install --print --json`, a bare `list_projects`) completes with no `sk-design` requirement.
 
-> **Feature File:** [05--design-gate/mandatory-design-gate.md](05--design-gate/mandatory-design-gate.md)
-> **Catalog:** [03--grounding/design-system-grounding.md](../feature_catalog/03--grounding/design-system-grounding.md)
+> **Feature File:** [design-gate/mandatory-design-gate.md](design-gate/mandatory-design-gate.md)
+> **Catalog:** [grounding/design-system-grounding.md](../feature_catalog/grounding/design-system-grounding.md)
 
 ---
 
@@ -206,8 +206,8 @@ Verify that with the desktop app closed, a tool call fails with a clear daemon-u
 Prompt: `"List Open Design projects when the app is not running."`
 Expected: the socket is gone so the call fails with a meaningful error naming the unreachable daemon, and the agent surfaces the recovery (open the app, or start a standalone `od --no-open` daemon) instead of pretending success.
 
-> **Feature File:** [04--failure-paths/daemon-not-running.md](04--failure-paths/daemon-not-running.md)
-> **Catalog:** [05--transport/daemon-and-verification.md](../feature_catalog/05--transport/daemon-and-verification.md)
+> **Feature File:** [failure-paths/daemon-not-running.md](failure-paths/daemon-not-running.md)
+> **Catalog:** [transport/daemon-and-verification.md](../feature_catalog/transport/daemon-and-verification.md)
 
 ---
 
@@ -215,8 +215,8 @@ Expected: the socket is gone so the call fails with a meaningful error naming th
 
 | ID | Scenario | Category | Feature File | Catalog File |
 |---|---|---|---|---|
-| WIRE-001 | Install and verify the live tools | Wiring | [01--wiring/install-and-verify.md](01--wiring/install-and-verify.md) | `../feature_catalog/01--wiring/od-mcp-install.md` |
-| READ-001 | Read a design system | Reading | [02--reading/read-design-system.md](02--reading/read-design-system.md) | `../feature_catalog/02--reading/read-only-content.md` |
-| RUN-001 | Gated verb requires confirmation | Gated Runs | [03--gated-runs/gated-verb-confirm.md](03--gated-runs/gated-verb-confirm.md) | `../feature_catalog/04--runs/headless-runs.md` |
-| GATE-001 | Mandatory sk-design precondition | Design Gate | [05--design-gate/mandatory-design-gate.md](05--design-gate/mandatory-design-gate.md) | `../feature_catalog/03--grounding/design-system-grounding.md` |
-| FAIL-001 | Daemon not running | Failure Paths | [04--failure-paths/daemon-not-running.md](04--failure-paths/daemon-not-running.md) | `../feature_catalog/05--transport/daemon-and-verification.md` |
+| WIRE-001 | Install and verify the live tools | Wiring | [wiring/install-and-verify.md](wiring/install-and-verify.md) | `../feature_catalog/wiring/od-mcp-install.md` |
+| READ-001 | Read a design system | Reading | [reading/read-design-system.md](reading/read-design-system.md) | `../feature_catalog/reading/read-only-content.md` |
+| RUN-001 | Gated verb requires confirmation | Gated Runs | [gated-runs/gated-verb-confirm.md](gated-runs/gated-verb-confirm.md) | `../feature_catalog/runs/headless-runs.md` |
+| GATE-001 | Mandatory sk-design precondition | Design Gate | [design-gate/mandatory-design-gate.md](design-gate/mandatory-design-gate.md) | `../feature_catalog/grounding/design-system-grounding.md` |
+| FAIL-001 | Daemon not running | Failure Paths | [failure-paths/daemon-not-running.md](failure-paths/daemon-not-running.md) | `../feature_catalog/transport/daemon-and-verification.md` |

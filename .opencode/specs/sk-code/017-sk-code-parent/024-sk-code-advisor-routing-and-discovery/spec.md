@@ -74,8 +74,8 @@ Ship the sk-code-local, advisor-scorer-independent Layer 1 routing increment in 
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs` | Modify | Add `lcp`, `inp`, and `cls` to WORD_BOUNDARY_KEYWORDS |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs` | Modify | Return null/not-applicable D3 for scenarios with no positive-resource gold and exclude null D3 from weighted normalization |
 | `.opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md` | Modify | Refresh sk-code worked example and allow `defaultMode: null` for surface-primary hubs |
-| `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/cwv-gates-animation-heavy.md` | Modify | Reconcile dead expected-asset paths to real homes |
-| `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/prefers-reduced-motion.md` | Modify | Reconcile dead expected-asset paths to real homes |
+| `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/cwv-gates-animation-heavy.md` | Modify | Reconcile dead expected-asset paths to real homes |
+| `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/prefers-reduced-motion.md` | Modify | Reconcile dead expected-asset paths to real homes |
 | `.opencode/skills/sk-code/benchmark/router-final/` | Regenerate | Current/regenerable sk-code router benchmark report |
 | `.opencode/skills/sk-design/benchmark/after-d3-proxy/` | Add | Sibling report preserving frozen `baseline/` |
 | `.opencode/skills/deep-loop-workflows/benchmark/after-d3-proxy/` | Add | Sibling report preserving frozen `baseline/` |

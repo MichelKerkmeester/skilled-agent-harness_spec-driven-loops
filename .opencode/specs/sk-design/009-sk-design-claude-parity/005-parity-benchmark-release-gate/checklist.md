@@ -53,7 +53,7 @@ _memory:
 - [x] CHK-010 [P0] Single `sk-design` advisor identity remains intact. [EVIDENCE: `mode-registry.json` `"skill": "sk-design"` with hub-membership routing for all modes.]
 - [x] CHK-011 [P0] Five public modes remain the visible execution lanes. [EVIDENCE: `mode-registry.json` `modes[]` lists exactly `interface`, `foundations`, `motion`, `audit`, `md-generator`.]
 - [x] CHK-012 [P0] Private procedure behavior stays internal after public mode selection. [EVIDENCE: `proceduresPath` per mode in `mode-registry.json`; procedure cards live under `design-*/procedures/**`, never exposed as public skills.]
-- [x] CHK-013 [P0] Public mode outputs cite context/proof evidence before completion claims. [EVIDENCE: PB-001/PB-002 prompts require stating selected mode, procedure, and rationale before recommendations (`manual_testing_playbook/06--parity-behavior/*.md`); live response proof remains operator-required (`release-report.md` §5).]
+- [x] CHK-013 [P0] Public mode outputs cite context/proof evidence before completion claims. [EVIDENCE: PB-001/PB-002 prompts require stating selected mode, procedure, and rationale before recommendations (`manual_testing_playbook/parity-behavior/*.md`); live response proof remains operator-required (`release-report.md` §5).]
 - [x] CHK-014 [P1] No hidden dependency on Claude-only tooling, hidden subagents, or non-OpenCode execution assumptions is introduced. [EVIDENCE: benchmark harness and mode-registry remain OpenCode-native; `release-report.md` §4 Security/boundary lane PASS.]
 <!-- /ANCHOR:code-quality -->
 
@@ -71,7 +71,7 @@ _memory:
 - [x] CHK-026 [P0] Interaction review lane passes or blocks release. [EVIDENCE: same lane record, `release-report.md` §4-5.]
 - [x] CHK-027 [P0] Polish and usefulness review lanes pass or block release. [EVIDENCE: `release-report.md` §4, D4 usefulness `unscored-mode-a`, recorded release-blocking.]
 - [x] CHK-028 [P0] md-generator preservation tests pass or block release. [EVIDENCE: PB-003 replay reached `md-generator`/`playwright-extract` (`release-report.md` §3); live extraction not run and recorded release-blocking.]
-- [x] CHK-029 [P1] Manual playbook scenarios include reviewer notes for parity feel and usefulness. [EVIDENCE: scenario files exist under `06--parity-behavior/`; reviewer notes remain operator-required (`release-report.md` §5).]
+- [x] CHK-029 [P1] Manual playbook scenarios include reviewer notes for parity feel and usefulness. [EVIDENCE: scenario files exist under `parity-behavior/`; reviewer notes remain operator-required (`release-report.md` §5).]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -91,7 +91,7 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-040 [P0] No private procedure content, secrets, or hidden prompts are exposed through public docs or reports. [EVIDENCE: reviewed `release-report.md` and `manual_testing_playbook/06--parity-behavior/*.md`; no secrets present.]
+- [x] CHK-040 [P0] No private procedure content, secrets, or hidden prompts are exposed through public docs or reports. [EVIDENCE: reviewed `release-report.md` and `manual_testing_playbook/parity-behavior/*.md`; no secrets present.]
 - [x] CHK-041 [P0] Negative controls include unsafe or out-of-scope requests that must fail safely. [EVIDENCE: TV-004/TV-005 scenarios retained in the 24-scenario replay corpus.]
 - [x] CHK-042 [P1] md-generator side effects remain explicit and separately verified. [EVIDENCE: PB-003 confirms md-generator is the only mutating mode (`release-report.md` §3).]
 <!-- /ANCHOR:security -->
@@ -113,7 +113,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-060 [P0] Packet creation writes only inside the Phase 005 root (plus the explicitly approved playbook and benchmark artifact paths named in `spec.md` Files to Change). [EVIDENCE: `git status` shows Phase 005 writes limited to the spec folder, `benchmark/after-009/**`, `manual_testing_playbook/06--parity-behavior/**`, and the playbook index update.]
+- [x] CHK-060 [P0] Packet creation writes only inside the Phase 005 root (plus the explicitly approved playbook and benchmark artifact paths named in `spec.md` Files to Change). [EVIDENCE: `git status` shows Phase 005 writes limited to the spec folder, `benchmark/after-009/**`, `manual_testing_playbook/parity-behavior/**`, and the playbook index update.]
 - [x] CHK-061 [P0] Future benchmark artifacts are append-only unless overwrite authority is recorded. [EVIDENCE: `benchmark/baseline/` untouched; the new run was written only to `benchmark/after-009/`.]
 - [x] CHK-062 [P1] Temporary or scratch artifacts are removed before claiming release readiness. [EVIDENCE: no scratch artifacts remain in the Phase 005 root; this phase does not claim release-ready (CONDITIONAL only).]
 <!-- /ANCHOR:file-org -->

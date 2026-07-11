@@ -149,7 +149,7 @@ Review target: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Publi
 | `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` | security | 004 | 0 P0, 1 P1, 0 P2 | partial |
 | `.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts` | security | 004 | 0 P0, 1 P1, 0 P2 | partial |
 | `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md` | security | 004 | 0 P0, 1 P1, 0 P2 | partial |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md` | traceability | 005 | 0 P0, 1 P1, 0 P2 | partial |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md` | traceability | 005 | 0 P0, 1 P1, 0 P2 | partial |
 | `.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts` | traceability | 005 | 0 P0, 1 P1, 0 P2 | partial |
 | `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | traceability | 005 | 0 P0, 1 P1, 0 P2 | partial |
 | `.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios/spec.md` | traceability | 005 | 0 P0, 1 P1, 0 P2 | partial |
@@ -174,7 +174,7 @@ Review target: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Publi
 | `.opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts` | test-adequacy | 010 | 0 P0, 0 P1, 0 P2 | pass |
 | `.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts` | test-adequacy | 010 | 0 P0, 0 P1, 0 P2 | pass |
 | `.opencode/skills/deep-loop-runtime/tests/unit/observability-events.vitest.ts` | test-adequacy | 010 | 0 P0, 0 P1, 0 P2 | pass |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md` | test-adequacy | 010 | 0 P0, 0 P1, 0 P2 | pass |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md` | test-adequacy | 010 | 0 P0, 0 P1, 0 P2 | pass |
 | `.opencode/specs/deep-loops/030-deep-loop-improved/review/lineages/glm/deep-review-state.jsonl` | synthesis-readiness | 011 | 0 P0, 1 P1, 0 P2 | conditional |
 | `.opencode/specs/deep-loops/030-deep-loop-improved/review/lineages/glm/deep-review-strategy.md` | synthesis-readiness | 011 | 0 P0, 1 P1, 0 P2 | conditional |
 | `.opencode/specs/deep-loops/030-deep-loop-improved/review/lineages/glm/iterations/iteration-010.md` | synthesis-readiness | 011 | 0 P0, 1 P1, 0 P2 | conditional |

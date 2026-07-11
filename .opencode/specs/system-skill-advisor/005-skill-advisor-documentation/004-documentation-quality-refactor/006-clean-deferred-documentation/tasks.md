@@ -55,7 +55,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T003 [Tier A] F30: convert 3 plain-text refs in `references/skill-graph-extraction-plan.md` to markdown links (verify SKILL.md current line numbers first)
-- [ ] T004 [Tier A] F33: add SOURCE FILES section to `manual_testing_playbook/01--native-mcp-tools/skill-graph-status.md`
+- [ ] T004 [Tier A] F33: add SOURCE FILES section to `manual_testing_playbook/native-mcp-tools/skill-graph-status.md`
 - [ ] T005 [Tier A] F33: add SOURCE FILES section to `skill-graph-query.md`
 - [ ] T006 [Tier A] F33: add SOURCE FILES section to `skill-graph-validate.md`
 - [ ] T007 [Tier B] Re-verify F23 (compat/index.ts), F24 (plugin_bridges/mk-skill-advisor-bridge.mjs), F44 (scripts/fixtures/skill_advisor_regression_cases.jsonl) match INSTALL_GUIDE.md paths

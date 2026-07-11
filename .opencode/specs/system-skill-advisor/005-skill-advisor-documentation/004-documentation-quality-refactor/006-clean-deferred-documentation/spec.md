@@ -18,9 +18,9 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md"
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-status.md"
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-query.md"
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-validate.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-status.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-query.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-validate.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "006-scaffold"
@@ -69,7 +69,7 @@ Clear the deferred backlog that can ship without decisions or context-aware edit
 
 Tier A (easy mechanical, no decisions):
 - F30: convert 3 plain-text refs in `references/skill-graph-extraction-plan.md` to markdown links where targets exist
-- F33: add SOURCE FILES section to 3 playbook scenarios (007/008/009 under `01--native-mcp-tools/`)
+- F33: add SOURCE FILES section to 3 playbook scenarios (007/008/009 under `native-mcp-tools/`)
 
 Tier B (re-verify likely-false-positives):
 - F23: confirm `mcp_server/compat/index.ts` matches INSTALL_GUIDE.md path
@@ -92,9 +92,9 @@ Tier C subset (bulk-safe HVR):
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md` | Modify | F30 — 3 link conversions |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-status.md` | Modify | F33 — add SOURCE FILES |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-query.md` | Modify | F33 — add SOURCE FILES |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-validate.md` | Modify | F33 — add SOURCE FILES |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-status.md` | Modify | F33 — add SOURCE FILES |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-query.md` | Modify | F33 — add SOURCE FILES |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-validate.md` | Modify | F33 — add SOURCE FILES |
 | `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md` | Conditional | Tier B — only if path mismatch |
 | ~30 .md files under `.opencode/skills/system-skill-advisor/` (excluding `changelog/`) | Modify | Oxford comma sweep |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/spec.md` | Modify | Add 006 row to PHASE DOCUMENTATION MAP |

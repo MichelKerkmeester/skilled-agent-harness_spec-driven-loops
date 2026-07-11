@@ -66,7 +66,7 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
 
 ### In Scope
 
-- **A. Feature catalog entry** at `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle`:
+- **A. Feature catalog entry** at `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/01-stress-test-cycle`:
   - What a stress test cycle is (corpus + rubric + scoring + verdict)
   - When to use it (release readiness, post-remediation verification, regression hunting)
   - Expected artifacts (findings narrative, `findings-rubric.json`, `measurements/*`)
@@ -75,7 +75,7 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
   - Aggregate formula (sum / max-possible × 100, weighted by dimension if applicable)
   - Cross-references to v1.0.1 baseline + v1.0.2 rerun + v1.0.3 wiring run
 
-- **B. Manual testing playbook entry** at `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle`:
+- **B. Manual testing playbook entry** at `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/01-run-stress-cycle`:
   - Step 1: Freeze baseline corpus (link to template or fixture corpus pattern)
   - Step 2: Score each packet × dimension on 0–2 with explicit anchor descriptions per score
   - Step 3: Author findings narrative with verdict per packet + adversarial Hunter->Skeptic->Referee on any REGRESSION
@@ -101,10 +101,10 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle` | Create | Concept reference (A) |
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/README` | Create | Section index |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle` | Create | Step-by-step playbook (B) |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README` | Create | Section index |
+| `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/01-stress-test-cycle` | Create | Concept reference (A) |
+| `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/README` | Create | Section index |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/01-run-stress-cycle` | Create | Step-by-step playbook (B) |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/README` | Create | Section index |
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Create | JSON schema template (C) |
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema` | Create | Schema field documentation |
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings.template` | Create | Findings narrative skeleton |
@@ -121,17 +121,17 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Feature catalog entry authored. | `feature_catalog/14--stress-testing/01-stress-test-cycle` exists with sk-doc DQI-compliant structure (title, frontmatter, what/when/artifacts/rubric/verdict/aggregate sections + cross-refs). |
-| REQ-002 | Manual playbook entry authored. | `manual_testing_playbook/14--stress-testing/01-run-stress-cycle` exists with sk-doc playbook template (preconditions, 8 steps, verification, success criteria). |
+| REQ-001 | Feature catalog entry authored. | `feature_catalog/stress-testing/01-stress-test-cycle` exists with sk-doc DQI-compliant structure (title, frontmatter, what/when/artifacts/rubric/verdict/aggregate sections + cross-refs). |
+| REQ-002 | Manual playbook entry authored. | `manual_testing_playbook/stress-testing/01-run-stress-cycle` exists with sk-doc playbook template (preconditions, 8 steps, verification, success criteria). |
 | REQ-003 | JSON schema template authored. | `templates/stress-test/findings-rubric.template.json` exists with placeholder structure; the rubric schema document documents each field; v1.0.2 cited as example. |
 | REQ-004 | Findings narrative template authored. | `templates/stress-test/findings.template` skeleton matches the v1.0.2/v1.0.3 layout. |
-| REQ-005 | README index files authored for both new sections. | `feature_catalog/14--stress-testing/README` and `manual_testing_playbook/14--stress-testing/README` enumerate the entries. |
+| REQ-005 | README index files authored for both new sections. | `feature_catalog/stress-testing/README` and `manual_testing_playbook/stress-testing/README` enumerate the entries. |
 
 ### P2 — Optional
 
 | ID | Requirement |
 |----|-------------|
-| REQ-006 | Cross-link from existing 011/001 + 011/010 + 011/021 stress packets to the new feature catalog entry (one-line "see feature catalog 14--stress-testing/01"). |
+| REQ-006 | Cross-link from existing 011/001 + 011/010 + 011/021 stress packets to the new feature catalog entry (one-line "see feature catalog stress-testing/01"). |
 | REQ-007 | Cross-link from the sk-doc skill file (or feature catalog README index) listing the new section. |
 <!-- /ANCHOR:requirements -->
 
@@ -141,7 +141,7 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: All 7 new files authored with sk-doc DQI compliance.
-- **SC-002**: A future operator (or AI agent) running a v1.0.4 cycle can follow `manual_testing_playbook/14--stress-testing/01-run-stress-cycle` end-to-end without reading a prior packet.
+- **SC-002**: A future operator (or AI agent) running a v1.0.4 cycle can follow `manual_testing_playbook/stress-testing/01-run-stress-cycle` end-to-end without reading a prior packet.
 - **SC-003**: The JSON schema template produces a parseable `findings-rubric.json` when filled with v1.0.3 data.
 - **SC-004**: Strict validator exits 0 on this sub-phase.
 
@@ -170,6 +170,6 @@ Make the stress test cycle format discoverable and reproducible by authoring thr
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Q1: Should `14--stress-testing/` be the section number, or should it nest under existing `13--memory-quality-and-indexing/` since the only stress tests so far have been search/RAG focused? **Default**: `14--stress-testing/` as a new section, since stress testing is a generalizable pattern beyond search/RAG.
+- Q1: Should `stress-testing/` be the section number, or should it nest under existing `memory-quality-and-indexing/` since the only stress tests so far have been search/RAG focused? **Default**: `stress-testing/` as a new section, since stress testing is a generalizable pattern beyond search/RAG.
 - Q2: Should the JSON schema enforce dimension names? **Default**: yes — fixed enum `["correctness","robustness","telemetry","regression-safety"]` for v1; future versions can extend.
 <!-- /ANCHOR:questions -->

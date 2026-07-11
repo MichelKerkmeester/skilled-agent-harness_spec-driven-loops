@@ -22,8 +22,8 @@ contextType: "implementation"
 - [x] Backward compat: old callers still get prior shape — existing `nodes`, `affectedFiles`, `sourceFiles`, `hotFileBreadcrumbs`, `unionMode` and `maxDepth` remain in payload.
 
 ## P2 — Documentation
-- [x] feature_catalog entry in `06--analysis/` — `08-code-graph-edge-explanation-blast-radius-uplift.md`.
-- [x] manual_testing_playbook entry in `06--analysis/` — `026-code-graph-edge-explanation-blast-radius-uplift.md`.
+- [x] feature_catalog entry in `analysis/` — `08-code-graph-edge-explanation-blast-radius-uplift.md`.
+- [x] manual_testing_playbook entry in `analysis/` — `026-code-graph-edge-explanation-blast-radius-uplift.md`.
 - [ ] sk-doc DQI ≥85 — OPERATOR-PENDING. The original `[x]` cited feature catalog DQI 87 and playbook DQI 89 via `extract_structure.py`, but those scores were captured outside the canonical Wave-3 channel and are not reproducible from the current rubric without re-running `python3 .opencode/skills/sk-doc/scripts/validate_document.py <doc> --json` for both entries. Marked R-007-20 — premature PASS until script-backed scoring is captured.
 
 ## Phase Hand-off

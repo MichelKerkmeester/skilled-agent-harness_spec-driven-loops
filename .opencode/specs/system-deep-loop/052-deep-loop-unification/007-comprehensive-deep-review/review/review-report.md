@@ -61,7 +61,7 @@ None — all findings (P0, P1, and P2) are resolved and independently verified. 
 All 7 P1 fixes above were completed in one remediation pass (7 parallel fix agents + 7 parallel independent verify agents). Two gaps surfaced by verification were closed directly afterward:
 
 1. **DR-018-P1-001's max-round-escape sub-case**: the code-level fix only worked when a caller explicitly passed `--not-converged`; no real caller did. Closed by updating `command_wiring.md`'s canonical shell snippet (checks `current_round >= max_rounds` in `ai-council-config.json` and conditionally passes the flag) and YAML snippet, plus `orchestrate.md`'s `@orchestrate`-at-Depth-1 caller instructions.
-2. **DR-011-P1-001's residual sibling-doc gap**: `deep-review/feature_catalog/01--loop-lifecycle/executor-selection-contract.md` still stated the disproven `--sandbox workspace-write` claim after the primary fix. Synced it to match the corrected `loop_protocol.md`. The identical stale claim was also found in `deep-research/references/protocol/loop_protocol.md` (same bug class, not originally in DR-011's stated scope but fixed for consistency) and its compiled contract regenerated.
+2. **DR-011-P1-001's residual sibling-doc gap**: `deep-review/feature_catalog/loop-lifecycle/executor-selection-contract.md` still stated the disproven `--sandbox workspace-write` claim after the primary fix. Synced it to match the corrected `loop_protocol.md`. The identical stale claim was also found in `deep-research/references/protocol/loop_protocol.md` (same bug class, not originally in DR-011's stated scope but fixed for consistency) and its compiled contract regenerated.
 
 All hash-tracked compiled command contracts (`deep_research`, `deep_review`, `deep_ai-council`) were regenerated after these follow-up doc edits; `check-contract-drift.vitest.ts` (8/8) and `compile-command-contracts.vitest.ts` (6/6) both pass clean.
 
@@ -77,7 +77,7 @@ Not applicable — no further planning cycle triggered. All findings, including 
 | `checklist_evidence` | core | Pass | Every P1 finding's claim-adjudication packet (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) was present at discovery and re-validated at fix time. |
 | `skill_agent` | overlay | Pass | Agent definitions (`.opencode/agents/deep-research.md`, `orchestrate.md`) cross-checked and one (`orchestrate.md`) updated as part of remediation. |
 | `agent_cross_runtime` | overlay | Not deeply probed | Out of this review's declared scope (single-runtime focus); no cross-runtime drift was incidentally found. |
-| `feature_catalog_code` | overlay | Pass | `deep-review/feature_catalog/01--loop-lifecycle/executor-selection-contract.md` checked and fixed as part of DR-011 closure. |
+| `feature_catalog_code` | overlay | Pass | `deep-review/feature_catalog/loop-lifecycle/executor-selection-contract.md` checked and fixed as part of DR-011 closure. |
 | `playbook_capability` | overlay | Partial | `deep-review`'s manual-testing anchors were found to reference non-existent current lines (`DR-012-P2-001`, deferred as P2). |
 
 ## 8. Deferred Items

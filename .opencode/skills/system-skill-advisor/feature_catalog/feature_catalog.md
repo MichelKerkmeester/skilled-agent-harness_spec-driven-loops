@@ -21,17 +21,17 @@ This catalog is the current inventory for the skill advisor. The package source 
 
 The catalog covers 42 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 exposes the MCP tools plus the daemon-backed CLI fallback. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
 
-> **Numbering note (gap-05).** The directory layout skips slot `05--*` between `04--scorer-fusion` and `06--mcp-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
+> **Numbering note (gap-05).** The directory layout skips slot `05--*` between `scorer-fusion` and `mcp-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
 | Group | Count | Scope |
 | --- | --- | --- |
-| [01--daemon-and-freshness](./01--daemon-and-freshness/) | 7 | Watcher, lease, lifecycle, generation, trust state, rebuild-from-source, cache invalidation |
-| [02--auto-indexing](./02--auto-indexing/) | 7 | Derived extraction, sanitizer, provenance, sync, anti-stuffing, DF/IDF corpus, doc-frontmatter harvest |
-| [03--lifecycle-routing](./03--lifecycle-routing/) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
-| [04--scorer-fusion](./04--scorer-fusion/) | 6 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config |
-| [06--mcp-surface](./06--mcp-surface/) | 10 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, daemon-backed `skill-advisor` CLI |
-| [07--hooks-and-plugin](./07--hooks-and-plugin/) | 4 | Claude and OpenCode hooks, OpenCode plugin bridge and the `/goal` plugin |
-| [08--python-compat](./08--python-compat/) | 3 | Python CLI shim, regression suite, bench runner |
+| [daemon-and-freshness](./daemon-and-freshness/) | 7 | Watcher, lease, lifecycle, generation, trust state, rebuild-from-source, cache invalidation |
+| [auto-indexing](./auto-indexing/) | 7 | Derived extraction, sanitizer, provenance, sync, anti-stuffing, DF/IDF corpus, doc-frontmatter harvest |
+| [lifecycle-routing](./lifecycle-routing/) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
+| [scorer-fusion](./scorer-fusion/) | 6 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config |
+| [mcp-surface](./mcp-surface/) | 10 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, daemon-backed `skill-advisor` CLI |
+| [hooks-and-plugin](./hooks-and-plugin/) | 4 | Claude and OpenCode hooks, OpenCode plugin bridge and the `/goal` plugin |
+| [python-compat](./python-compat/) | 3 | Python CLI shim, regression suite, bench runner |
 
 Baseline numbers (remediation SHA `97a318d83`):
 
@@ -52,13 +52,13 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Chokidar narrow-scope watcher | [01--daemon-and-freshness/watcher.md](./01--daemon-and-freshness/watcher.md) |
-| Workspace single-writer lease | [01--daemon-and-freshness/lease.md](./01--daemon-and-freshness/lease.md) |
-| Daemon lifecycle and health | [01--daemon-and-freshness/lifecycle.md](./01--daemon-and-freshness/lifecycle.md) |
-| Generation-tagged snapshot publication | [01--daemon-and-freshness/generation.md](./01--daemon-and-freshness/generation.md) |
-| Live / stale / absent / unavailable trust state | [01--daemon-and-freshness/trust-state.md](./01--daemon-and-freshness/trust-state.md) |
-| Rebuild from source on corrupt SQLite | [01--daemon-and-freshness/rebuild-from-source.md](./01--daemon-and-freshness/rebuild-from-source.md) |
-| Generation-tied cache invalidation | [01--daemon-and-freshness/cache-invalidation.md](./01--daemon-and-freshness/cache-invalidation.md) |
+| Chokidar narrow-scope watcher | [daemon-and-freshness/watcher.md](./daemon-and-freshness/watcher.md) |
+| Workspace single-writer lease | [daemon-and-freshness/lease.md](./daemon-and-freshness/lease.md) |
+| Daemon lifecycle and health | [daemon-and-freshness/lifecycle.md](./daemon-and-freshness/lifecycle.md) |
+| Generation-tagged snapshot publication | [daemon-and-freshness/generation.md](./daemon-and-freshness/generation.md) |
+| Live / stale / absent / unavailable trust state | [daemon-and-freshness/trust-state.md](./daemon-and-freshness/trust-state.md) |
+| Rebuild from source on corrupt SQLite | [daemon-and-freshness/rebuild-from-source.md](./daemon-and-freshness/rebuild-from-source.md) |
+| Generation-tied cache invalidation | [daemon-and-freshness/cache-invalidation.md](./daemon-and-freshness/cache-invalidation.md) |
 
 ---
 
@@ -66,13 +66,13 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Deterministic derived extraction | [02--auto-indexing/derived-extraction.md](./02--auto-indexing/derived-extraction.md) |
-| A7 sanitizer at every write boundary | [02--auto-indexing/sanitizer.md](./02--auto-indexing/sanitizer.md) |
-| Provenance fingerprints and trust lanes | [02--auto-indexing/provenance-and-trust-lanes.md](./02--auto-indexing/provenance-and-trust-lanes.md) |
-| Graph-metadata derived sync | [02--auto-indexing/sync.md](./02--auto-indexing/sync.md) |
-| Anti-stuffing and cardinality caps | [02--auto-indexing/anti-stuffing.md](./02--auto-indexing/anti-stuffing.md) |
-| DF/IDF corpus stats (active-only) | [02--auto-indexing/df-idf-corpus.md](./02--auto-indexing/df-idf-corpus.md) |
-| Doc-frontmatter trigger harvest (flag-gated) | [02--auto-indexing/doc-frontmatter-harvest.md](./02--auto-indexing/doc-frontmatter-harvest.md) |
+| Deterministic derived extraction | [auto-indexing/derived-extraction.md](./auto-indexing/derived-extraction.md) |
+| A7 sanitizer at every write boundary | [auto-indexing/sanitizer.md](./auto-indexing/sanitizer.md) |
+| Provenance fingerprints and trust lanes | [auto-indexing/provenance-and-trust-lanes.md](./auto-indexing/provenance-and-trust-lanes.md) |
+| Graph-metadata derived sync | [auto-indexing/sync.md](./auto-indexing/sync.md) |
+| Anti-stuffing and cardinality caps | [auto-indexing/anti-stuffing.md](./auto-indexing/anti-stuffing.md) |
+| DF/IDF corpus stats (active-only) | [auto-indexing/df-idf-corpus.md](./auto-indexing/df-idf-corpus.md) |
+| Doc-frontmatter trigger harvest (flag-gated) | [auto-indexing/doc-frontmatter-harvest.md](./auto-indexing/doc-frontmatter-harvest.md) |
 
 ---
 
@@ -80,11 +80,11 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Derived-lane-only age haircut | [03--lifecycle-routing/age-haircut.md](./03--lifecycle-routing/age-haircut.md) |
-| Asymmetric supersession routing | [03--lifecycle-routing/supersession.md](./03--lifecycle-routing/supersession.md) |
-| Archive and future skills indexed but not routed | [03--lifecycle-routing/archive-handling.md](./03--lifecycle-routing/archive-handling.md) |
-| Schema v1 to v2 additive backfill | [03--lifecycle-routing/schema-migration.md](./03--lifecycle-routing/schema-migration.md) |
-| Atomic lifecycle rollback | [03--lifecycle-routing/rollback.md](./03--lifecycle-routing/rollback.md) |
+| Derived-lane-only age haircut | [lifecycle-routing/age-haircut.md](./lifecycle-routing/age-haircut.md) |
+| Asymmetric supersession routing | [lifecycle-routing/supersession.md](./lifecycle-routing/supersession.md) |
+| Archive and future skills indexed but not routed | [lifecycle-routing/archive-handling.md](./lifecycle-routing/archive-handling.md) |
+| Schema v1 to v2 additive backfill | [lifecycle-routing/schema-migration.md](./lifecycle-routing/schema-migration.md) |
+| Atomic lifecycle rollback | [lifecycle-routing/rollback.md](./lifecycle-routing/rollback.md) |
 
 ---
 
@@ -92,12 +92,12 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Five-lane analytical fusion | [04--scorer-fusion/five-lane-fusion.md](./04--scorer-fusion/five-lane-fusion.md) |
-| Registry projection drift guard and workflowMode publication | [04--scorer-fusion/projection.md](./04--scorer-fusion/projection.md) |
-| Top-2 ambiguity window | [04--scorer-fusion/ambiguity.md](./04--scorer-fusion/ambiguity.md) |
-| Lane contribution attribution | [04--scorer-fusion/attribution.md](./04--scorer-fusion/attribution.md) |
-| Lane-by-lane ablation protocol | [04--scorer-fusion/ablation.md](./04--scorer-fusion/ablation.md) |
-| Lane weights configuration | [04--scorer-fusion/weights-config.md](./04--scorer-fusion/weights-config.md) |
+| Five-lane analytical fusion | [scorer-fusion/five-lane-fusion.md](./scorer-fusion/five-lane-fusion.md) |
+| Registry projection drift guard and workflowMode publication | [scorer-fusion/projection.md](./scorer-fusion/projection.md) |
+| Top-2 ambiguity window | [scorer-fusion/ambiguity.md](./scorer-fusion/ambiguity.md) |
+| Lane contribution attribution | [scorer-fusion/attribution.md](./scorer-fusion/attribution.md) |
+| Lane-by-lane ablation protocol | [scorer-fusion/ablation.md](./scorer-fusion/ablation.md) |
+| Lane weights configuration | [scorer-fusion/weights-config.md](./scorer-fusion/weights-config.md) |
 
 ---
 
@@ -105,16 +105,16 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| `advisor_recommend` MCP tool | [06--mcp-surface/advisor-recommend.md](./06--mcp-surface/advisor-recommend.md) |
-| `advisor_rebuild` MCP tool | [06--mcp-surface/advisor-rebuild.md](./06--mcp-surface/advisor-rebuild.md) |
-| `advisor_status` MCP tool | [06--mcp-surface/advisor-status.md](./06--mcp-surface/advisor-status.md) |
-| `advisor_validate` MCP tool | [06--mcp-surface/advisor-validate.md](./06--mcp-surface/advisor-validate.md) |
-| Stable `compat/index.ts` entrypoint | [06--mcp-surface/compat-entrypoint.md](./06--mcp-surface/compat-entrypoint.md) |
-| `skill_graph_scan` MCP tool | [06--mcp-surface/skill-graph-scan.md](./06--mcp-surface/skill-graph-scan.md) |
-| `skill_graph_query` MCP tool | [06--mcp-surface/skill-graph-query.md](./06--mcp-surface/skill-graph-query.md) |
-| `skill_graph_status` MCP tool | [06--mcp-surface/skill-graph-status.md](./06--mcp-surface/skill-graph-status.md) |
-| `skill_graph_validate` MCP tool | [06--mcp-surface/skill-graph-validate.md](./06--mcp-surface/skill-graph-validate.md) |
-| Daemon-backed `skill-advisor` CLI (9 commands, fail-closed trusted-mutation gate) | [06--mcp-surface/skill-advisor-cli.md](./06--mcp-surface/skill-advisor-cli.md) |
+| `advisor_recommend` MCP tool | [mcp-surface/advisor-recommend.md](./mcp-surface/advisor-recommend.md) |
+| `advisor_rebuild` MCP tool | [mcp-surface/advisor-rebuild.md](./mcp-surface/advisor-rebuild.md) |
+| `advisor_status` MCP tool | [mcp-surface/advisor-status.md](./mcp-surface/advisor-status.md) |
+| `advisor_validate` MCP tool | [mcp-surface/advisor-validate.md](./mcp-surface/advisor-validate.md) |
+| Stable `compat/index.ts` entrypoint | [mcp-surface/compat-entrypoint.md](./mcp-surface/compat-entrypoint.md) |
+| `skill_graph_scan` MCP tool | [mcp-surface/skill-graph-scan.md](./mcp-surface/skill-graph-scan.md) |
+| `skill_graph_query` MCP tool | [mcp-surface/skill-graph-query.md](./mcp-surface/skill-graph-query.md) |
+| `skill_graph_status` MCP tool | [mcp-surface/skill-graph-status.md](./mcp-surface/skill-graph-status.md) |
+| `skill_graph_validate` MCP tool | [mcp-surface/skill-graph-validate.md](./mcp-surface/skill-graph-validate.md) |
+| Daemon-backed `skill-advisor` CLI (9 commands, fail-closed trusted-mutation gate) | [mcp-surface/skill-advisor-cli.md](./mcp-surface/skill-advisor-cli.md) |
 
 ---
 
@@ -122,10 +122,10 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Claude Code `user-prompt-submit` hook | [07--hooks-and-plugin/claude-hook.md](./07--hooks-and-plugin/claude-hook.md) |
-| OpenCode native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | 07--hooks-and-plugin/opencode-hook.md (not yet authored) |
-| OpenCode plugin bridge | [07--hooks-and-plugin/opencode-plugin-bridge.md](./07--hooks-and-plugin/opencode-plugin-bridge.md) |
-| Goal OpenCode plugin (`/goal`, `mk_goal`, `mk_goal_status`) | [07--hooks-and-plugin/goal-opencode-plugin.md](./07--hooks-and-plugin/goal-opencode-plugin.md) |
+| Claude Code `user-prompt-submit` hook | [hooks-and-plugin/claude-hook.md](./hooks-and-plugin/claude-hook.md) |
+| OpenCode native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | hooks-and-plugin/opencode-hook.md (not yet authored) |
+| OpenCode plugin bridge | [hooks-and-plugin/opencode-plugin-bridge.md](./hooks-and-plugin/opencode-plugin-bridge.md) |
+| Goal OpenCode plugin (`/goal`, `mk_goal`, `mk_goal_status`) | [hooks-and-plugin/goal-opencode-plugin.md](./hooks-and-plugin/goal-opencode-plugin.md) |
 
 ---
 
@@ -133,6 +133,6 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Python CLI shim (`skill_advisor.py`) | [08--python-compat/cli-shim.md](./08--python-compat/cli-shim.md) |
-| Python regression dataset | [08--python-compat/regression-suite.md](./08--python-compat/regression-suite.md) |
-| Python bench runner (`skill_advisor_bench.py`) | [08--python-compat/bench-runner.md](./08--python-compat/bench-runner.md) |
+| Python CLI shim (`skill_advisor.py`) | [python-compat/cli-shim.md](./python-compat/cli-shim.md) |
+| Python regression dataset | [python-compat/regression-suite.md](./python-compat/regression-suite.md) |
+| Python bench runner (`skill_advisor_bench.py`) | [python-compat/bench-runner.md](./python-compat/bench-runner.md) |

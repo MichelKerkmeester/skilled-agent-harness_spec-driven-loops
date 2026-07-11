@@ -63,7 +63,7 @@ _memory:
 ### Playbook and Benchmark Coherence
 - [x] T010 Re-derive stale manual-testing playbook scenario bodies to nested surface-packet paths (`.opencode/skills/sk-code/manual_testing_playbook/`) [large] — verified already-satisfied: 0 broken refs; playbook bodies resolve post-013
 - [x] T011 Replace nonexistent `code_surface_detection.md` citations with current shared stack-detection references (`.opencode/skills/sk-code/manual_testing_playbook/`) [small] — verified already-satisfied: no live broken citation after 013
-- [x] T012 Re-derive stale checklist asset expectations where no one-to-one moved asset exists (`.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/webflow-detection.md`) [medium] — verified already-satisfied: 0 broken refs in the surface-detection playbook
+- [x] T012 Re-derive stale checklist asset expectations where no one-to-one moved asset exists (`.opencode/skills/sk-code/manual_testing_playbook/surface-detection/webflow-detection.md`) [medium] — verified already-satisfied: 0 broken refs in the surface-detection playbook
 - [x] T013 Add a fresh benchmark baseline against current post-013 paths without overwriting historical benchmark artifacts (`.opencode/skills/sk-code/benchmark/`) [medium] — verified already-satisfied: parent-skill-check 9b baseline intact; no stale-path re-derivation needed
 
 ### Sub-Skill Alignment

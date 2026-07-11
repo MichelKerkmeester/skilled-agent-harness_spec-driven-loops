@@ -35,7 +35,7 @@ Plan remediation before calling this documentation surface release-ready. The ac
 
 | ID | Severity | Dimension | Title | Evidence |
 |----|----------|-----------|-------|----------|
-| DOC-TRUTH-001 | P1 | Traceability | Evergreen docs still contain unexempted packet-history references | `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md:68`, `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:128-130`, `.opencode/skills/system-spec-kit/ARCHITECTURE.md:404-406` |
+| DOC-TRUTH-001 | P1 | Traceability | Evergreen docs still contain unexempted packet-history references | `.opencode/skills/system-spec-kit/feature_catalog/mutation/12-memory-retention-sweep.md:68`, `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:128-130`, `.opencode/skills/system-spec-kit/ARCHITECTURE.md:404-406` |
 | DOC-TRUTH-002 | P1 | Correctness | Tool-count references still cite older totals beside the current 54-tool surface | `.opencode/skills/system-spec-kit/references/memory/memory_system.md:101`, `.opencode/skills/system-spec-kit/references/config/environment_variables.md:30`, `.opencode/skills/system-spec-kit/SKILL.md:571-575` |
 | DOC-TRUTH-003 | P1 | Traceability | Four registered Skill Graph MCP tools lack feature catalog entries | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:680-719` |
 | DOC-TRUTH-004 | P1 | Traceability | Operator-facing playbook coverage misses registered Skill Graph and coverage-graph read tools | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:692-719`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:851-865` |
@@ -93,7 +93,7 @@ Evergreen docs and generated documentation indexes no longer fully match the liv
 
 | Protocol | Status | Evidence |
 |----------|--------|----------|
-| Evergreen self-check | Partial | Grep produced many hits; examples include `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:128-130` and `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md:68`. |
+| Evergreen self-check | Partial | Grep produced many hits; examples include `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:128-130` and `.opencode/skills/system-spec-kit/feature_catalog/mutation/12-memory-retention-sweep.md:68`. |
 | Tool counts | Partial | `grep -c "name: '"` found 50 local descriptors; `AdvisorToolInputSchemas` lists 4 advisor schema entries at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:268-273`. Some docs still say 43 or 47. |
 | Feature catalog completeness | Partial | Registered Skill Graph tools exist at `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:680-719`; catalog search found no matching entries. |
 | Manual playbook completeness | Partial | Playbook search found no entries for `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, or `deep_loop_graph_query`. |

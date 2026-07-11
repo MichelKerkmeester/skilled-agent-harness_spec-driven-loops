@@ -22,14 +22,14 @@ The `sk-prompt` hub routes any prompt-engineering request to exactly one advisor
 
 ## 2. SCENARIOS
 
-Scored scenarios live as per-file YAML-frontmatter gold under `01--hub-routing/` (the sk-doc shape the Lane-C skill-benchmark loader reads):
+Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (the sk-doc shape the Lane-C skill-benchmark loader reads):
 
 | ID | File | Expected `workflowMode` |
 |----|------|--------------------------|
-| SP-001 | `01--hub-routing/001-generic-prompt-improve.md` | `prompt-improve` (default mode, no model named) |
-| SP-002 | `01--hub-routing/002-named-model-prompt-models.md` | `prompt-models` (DeepSeek-v4-pro named) |
-| SP-003 | `01--hub-routing/003-ambiguous-default.md` | `prompt-improve` (model-adjacent vocabulary, no model id) |
-| SP-004 | `01--hub-routing/004-second-model-glm.md` | `prompt-models` (GLM-5.2 named — confirms the signal generalizes beyond one example model) |
+| SP-001 | `hub-routing/001-generic-prompt-improve.md` | `prompt-improve` (default mode, no model named) |
+| SP-002 | `hub-routing/002-named-model-prompt-models.md` | `prompt-models` (DeepSeek-v4-pro named) |
+| SP-003 | `hub-routing/003-ambiguous-default.md` | `prompt-improve` (model-adjacent vocabulary, no model id) |
+| SP-004 | `hub-routing/004-second-model-glm.md` | `prompt-models` (GLM-5.2 named — confirms the signal generalizes beyond one example model) |
 
 A separate, non-scored functional check: `/prompt-improve "Write a blog post about AI"` should read `.opencode/skills/sk-prompt/prompt-improve/SKILL.md` (not the hub's own thin `SKILL.md`) — verified directly in phase 004, not part of this scored corpus.
 

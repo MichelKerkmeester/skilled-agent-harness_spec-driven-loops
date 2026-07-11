@@ -61,8 +61,8 @@ Status vocabulary: `OK`, `MISSING`, `PLANNED`.
 | `.opencode/skills/system-skill-advisor/ARCHITECTURE.md` | Updated | OK | Rename and bridge ownership details if present. |
 | `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md` | Updated | OK | Stale plugin refs; DQI baseline MEDIUM per F009/Q9. |
 | `.opencode/skills/system-skill-advisor/SET-UP_GUIDE.md` | Updated | OK | Stale plugin refs and runtime hook table per F002/F009. |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/*` | Updated | OK | Current feature catalog plugin refs per F009/Q9. |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/*` | Updated | OK | Manual hook/plugin smoke entries per F009/Q9. |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/*` | Updated | OK | Current feature catalog plugin refs per F009/Q9. |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/*` | Updated | OK | Manual hook/plugin smoke entries per F009/Q9. |
 | `.opencode/skills/cli-devin/references/devin_tools.md` | Updated | OK | Hooks row line 106: `No` to `Yes - Claude-compatible hooks`. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-devin-advisor-hook-integration/research/research.md` | Analyzed | OK | Frozen Phase A synthesis, 200 lines. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-devin-advisor-hook-integration/research/iterations/iteration-01.md` | Analyzed | OK | Devin context injection uncertainty. |

@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Gate then commit; proceed to child 003"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/403-code-intent-matching.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/403-code-intent-matching.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003610"
       session_id: "036-002-spec"
@@ -86,9 +86,9 @@ Correct the playbook tool calls to the verified tool + valid payload (`code_grap
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `manual_testing_playbook/24--local-llm-query-intelligence/403-code-intent-matching.md` | Modify | 4 calls + prose ref → code_graph_context |
-| `manual_testing_playbook/24--local-llm-query-intelligence/404-disambiguation-under-context.md` | Modify | 3 calls → code_graph_context |
-| `manual_testing_playbook/24--local-llm-query-intelligence/407-adversarial-near-miss.md` | Modify | 3 calls → code_graph_context |
+| `manual_testing_playbook/local-llm-query-intelligence/403-code-intent-matching.md` | Modify | 4 calls + prose ref → code_graph_context |
+| `manual_testing_playbook/local-llm-query-intelligence/404-disambiguation-under-context.md` | Modify | 3 calls → code_graph_context |
+| `manual_testing_playbook/local-llm-query-intelligence/407-adversarial-near-miss.md` | Modify | 3 calls → code_graph_context |
 
 <!-- /ANCHOR:scope -->
 ---

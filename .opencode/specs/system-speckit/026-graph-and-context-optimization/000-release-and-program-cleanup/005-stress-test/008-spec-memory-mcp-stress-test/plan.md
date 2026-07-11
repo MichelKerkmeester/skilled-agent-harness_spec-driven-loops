@@ -74,7 +74,7 @@ Paired-parallel cli-devin dispatch with JSONL-aggregated results, single-source-
 
 ### Key Components
 - 39 prompt files (one per tool) for Phase 1.
-- 25 prompt files (one per playbook category dir; `14--pipeline-architecture` and `14--stress-testing` share the `14--` prefix) for Phase 2. Heavy categories may split into sub-batches (cat 16 = 55 scenarios → ~3 batches).
+- 25 prompt files (one per playbook category dir; `pipeline-architecture` and `stress-testing` share the `14--` prefix) for Phase 2. Heavy categories may split into sub-batches (cat 16 = 55 scenarios → ~3 batches).
 - `evidence/agent-config-008.json` — cli-devin recipe with allow-list for Write to `evidence/`.
 
 ### Data Flow

@@ -92,8 +92,8 @@ Sequential single-agent dispatch loop: for each of the 5 scenarios, (1) run the 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `05--shared-reference-base/hub-routing-only.md` (`SR-004`) | Scenario source | Read-only real dispatch | Captured `/tmp/skd-SR004-response.jsonl`, graded |
-| `06--parity-behavior/{procedure-selection-proof,context-proof-gates,motion-procedure-selection-proof,audit-procedure-selection-proof}.md` (`PB-001/002/004/005`) | Scenario sources | Read-only real dispatches | Captured `/tmp/skd-{PB001,PB002,PB004,PB005,PB005neg}-response.jsonl`, graded |
+| `shared-reference-base/hub-routing-only.md` (`SR-004`) | Scenario source | Read-only real dispatch | Captured `/tmp/skd-SR004-response.jsonl`, graded |
+| `parity-behavior/{procedure-selection-proof,context-proof-gates,motion-procedure-selection-proof,audit-procedure-selection-proof}.md` (`PB-001/002/004/005`) | Scenario sources | Read-only real dispatches | Captured `/tmp/skd-{PB001,PB002,PB004,PB005,PB005neg}-response.jsonl`, graded |
 | This spec folder | New | Level 2 doc set + dispatch log | `validate.sh --strict` |
 
 Required inventories:

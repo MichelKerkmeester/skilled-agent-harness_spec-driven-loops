@@ -14,7 +14,7 @@
 
 ## [P1][BUG] repair-nodes missing crash-root-cause acknowledgement reports committed
 
-- Evidence: .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:313-320, .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:446-451, .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:508-518, .opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md:41-48
+- Evidence: .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:313-320, .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:446-451, .opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts:508-518, .opencode/skills/system-code-graph/manual_testing_playbook/doctor-code-graph/code-graph-apply-sub-operations.md:41-48
 - Detail: The docs expect repair-nodes without crashRootCauseAddressed to refuse with a required action. The implementation instead creates the known-good snapshot, returns a skippedReason from dispatch, runs postflight, records metadata, and returns status:'committed', which can mislead automation into thinking repair ran.
 - Fix sketch: Promote the crashRootCauseAddressed check to a pre-dispatch abort/noop path with a refusal status and requiredAction before snapshotting.
 

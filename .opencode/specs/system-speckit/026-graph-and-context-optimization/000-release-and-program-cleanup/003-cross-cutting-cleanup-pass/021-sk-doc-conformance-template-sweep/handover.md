@@ -54,7 +54,7 @@ Across cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools
 
 ### Tier 2b — Mechanical + targeted content (T-030..T-040)
 
-- T-030 sk-deep-review: 5 duplicate DRV-IDs deduped (DRV-015/016/021/022/023 in 04--convergence-and-recovery -> DRV-030/031/032/033/034); root §5 REVIEW PROTOCOL AND RELEASE READINESS added; root §14 FEATURE CATALOG CROSS-REFERENCE INDEX added with 34 scenarios; 8 sections renumbered
+- T-030 sk-deep-review: 5 duplicate DRV-IDs deduped (DRV-015/016/021/022/023 in convergence-and-recovery -> DRV-030/031/032/033/034); root §5 REVIEW PROTOCOL AND RELEASE READINESS added; root §14 FEATURE CATALOG CROSS-REFERENCE INDEX added with 34 scenarios; 8 sections renumbered
 - T-031 mcp-coco-index (cli-codex): 26 per-feature files, 23 REFERENCES->SOURCE FILES, 26 RCAF Prompt: relabels, full SCENARIO CONTRACT fields
 - T-032 code_graph (cli-codex): 15 per-feature files restructured + root reorganized with §5 + §16; 15 RCAF prompts; full SCENARIO CONTRACT
 - T-033 sk-improve-agent feature_catalog: 13 per-feature TOCs stripped (audit-driven; pre-existing validator missing_toc quirk noted)
@@ -69,7 +69,7 @@ Across cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools
 - T-051 skill_advisor: 44 files reclassified to `operator_runbook/` (filesystem mv due to sandbox git index lock); new canonical `manual_testing_playbook/` with 3 categories + 4 SAD-NNN scenarios
 - T-052 mcp-clickup: CREATED FROM SCRATCH — 6 categories, 12 CLU-NNN scenarios with full RCAF prompts (scenarios derived from historical SKILL.md/cli_reference.md commit since current parent dir is absent)
 - T-053 ssk canonical playbook FULL REMEDIATION: 320 per-feature files all RCAF-conformant, all REFERENCES->SOURCE FILES, full SCENARIO CONTRACT
-- T-054 ssk canonical feature catalog FULL REMEDIATION: 303 files modified, 676 packet-history annotations stripped (1 feature-purpose preserved), 272 canonical source lines added, 221 `### Tests` renames, duplicate `14--` directory consolidated into `14--pipeline-architecture`, non-feature `14--stress-testing/README.md` removed
+- T-054 ssk canonical feature catalog FULL REMEDIATION: 303 files modified, 676 packet-history annotations stripped (1 feature-purpose preserved), 272 canonical source lines added, 221 `### Tests` renames, duplicate `14--` directory consolidated into `pipeline-architecture`, non-feature `stress-testing/README.md` removed
 
 ### Tier 3 — Templates cleanup + path-reference sweep
 

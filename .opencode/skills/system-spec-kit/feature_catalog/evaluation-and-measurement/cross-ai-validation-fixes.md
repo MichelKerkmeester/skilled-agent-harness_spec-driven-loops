@@ -1,0 +1,82 @@
+---
+title: "Cross-AI validation fixes"
+description: "Covers 14 issues found by independent OpenCode reviews, including test suite false-pass patterns, deletion exception propagation and re-sort after feedback mutations."
+trigger_phrases:
+  - "cross-ai validation fixes"
+  - "opencode independent review fixes"
+  - "test false-pass pattern fix"
+  - "deletion exception propagation fix"
+  - "cross-model code review findings"
+version: 3.6.0.17
+---
+
+# Cross-AI validation fixes
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Covers 14 issues found by independent OpenCode reviews, including test suite false-pass patterns, deletion exception propagation and re-sort after feedback mutations.
+
+Independent AI reviewers checked the codebase and found 14 issues that the original review missed. This is like getting a second opinion from a different doctor: each one catches things the others overlooked. The fixes addressed problems ranging from tests that secretly passed when they should have failed to errors that were silently swallowed instead of reported.
+
+---
+
+## 2. HOW IT WORKS
+
+Independent reviews by OpenCode gpt-5.3-opencode identified 14 issues missed by the original audit. Key fixes:
+
+- **CR-P0-1:** Test suite false-pass patterns. 21 silent-return guards converted to `it.skipIf()`, fail-fast imports with throw on required handler/vectorIndex missing.
+- **CR-P1-1:** Deletion exception propagation. Causal edge cleanup errors in single-delete now propagate (previously swallowed).
+- **CR-P1-2:** Re-sort after feedback mutations before top-K slice in Stage 2 fusion.
+- **CR-P1-3:** Dedup/orphan queries gained parent-scoped filters, including `AND parent.parent_id IS NULL`, to exclude chunk rows.
+- **CR-P1-4:** Session dedup `id != null` guards against undefined collapse.
+- **CR-P1-5:** Cache lookup moved before embedding readiness gate in search handler.
+- **CR-P1-6:** Partial-update DB mutations wrapped inside transaction.
+- **CR-P1-8:** Config env var fallback chain (`SPEC_KIT_DB_DIR || SPECKIT_DB_DIR`).
+- **CR-P2-3:** Dashboard row limit configurable via `SPECKIT_DASHBOARD_LIMIT` (default 10000) with NaN guard.
+- **CR-P2-5:** `Number.isFinite` guards on evidence gap detector scores.
+
+All 14 items verified through staged review: OpenCode implemented, Claude final-reviewed.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp_server/lib/search/pipeline/stage2-fusion.ts` | Lib | Re-sort behavior after feedback mutations before top-K slicing |
+| `mcp_server/lib/search/vector-index-queries.ts` | Lib | Dedup/orphan query hardening with `parent.parent_id IS NULL` filters |
+| `mcp_server/lib/search/evidence-gap-detector.ts` | Lib | `Number.isFinite` guards for score safety |
+| `mcp_server/lib/eval/reporting-dashboard.ts` | Lib | Dashboard row-limit configurability (`SPECKIT_DASHBOARD_LIMIT`) |
+| `mcp_server/lib/storage/transaction-manager.ts` | Lib | Transaction safety for partial-update mutation paths |
+| `mcp_server/lib/storage/causal-edges.ts` | Lib | Deletion-path error propagation hardening |
+| `mcp_server/handlers/memory-search.ts` | Handler | Search-handler flow fix moving cache lookup ahead of the embedding-readiness wait |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp_server/tests/integration-search-pipeline.vitest.ts` | Automated test | Pipeline and guard behavior validation |
+| `mcp_server/tests/reporting-dashboard.vitest.ts` | Automated test | Dashboard configuration and metrics reporting |
+| `mcp_server/tests/transaction-manager.vitest.ts` | Automated test | Transaction boundary and rollback correctness |
+| `mcp_server/tests/causal-edges-unit.vitest.ts` | Automated test | Causal-edge cleanup and failure-path behavior |
+| `mcp_server/tests/memory-save-extended.vitest.ts` | Automated test | False-pass guard pattern remediation coverage |
+| `mcp_server/tests/hybrid-search.vitest.ts` | Automated test | Search-handler ordering and integration behavior |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Evaluation And Measurement
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `evaluation-and-measurement/cross-ai-validation-fixes.md`
+Related references:
+- [evaluation-and-housekeeping-fixes.md](evaluation-and-housekeeping-fixes.md) — Evaluation and housekeeping fixes
+- [evaluation-api-surface.md](evaluation-api-surface.md) — Evaluation API Surface
+
+---
+## 5. PLAYBOOK COVERAGE
+
+- Mapped to manual testing playbook scenario 088

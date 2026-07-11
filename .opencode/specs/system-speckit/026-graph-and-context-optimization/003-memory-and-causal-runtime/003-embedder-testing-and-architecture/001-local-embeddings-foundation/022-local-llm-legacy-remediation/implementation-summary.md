@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/"
     session_dedup:
       fingerprint: "sha256:022backfill-2026-05-14"
       session_id: "022-impl-summary-backfill-2026-05-14"
@@ -73,7 +73,7 @@ The full error message stays in the response's `error` field; the change is pure
 
 ### 24-- playbook scenario docs cleaned up
 
-Every save-heavy scenario in `manual_testing_playbook/24--local-llm-query-intelligence/` (6 files, 7 total occurrences) referenced `memory_save({..., retentionPolicy: "ephemeral"})`. That one parameter silently triggered governed-ingest enforcement at `lib/governance/scope-governance.ts:235`, requiring `tenantId`/`sessionId`/`userId`-or-`agentId`/`provenanceSource`/`provenanceActor`/`deleteAfter` — none of which the scenarios provided. Result: every scenario rejected, every error wrapped as E081, 0/15 PASS across the kimi run. Replaced each occurrence with `memory_save({filePath})` + a "Do NOT pass retentionPolicy:'ephemeral'" warning note pointing at the post-execution-followup ADR.
+Every save-heavy scenario in `manual_testing_playbook/local-llm-query-intelligence/` (6 files, 7 total occurrences) referenced `memory_save({..., retentionPolicy: "ephemeral"})`. That one parameter silently triggered governed-ingest enforcement at `lib/governance/scope-governance.ts:235`, requiring `tenantId`/`sessionId`/`userId`-or-`agentId`/`provenanceSource`/`provenanceActor`/`deleteAfter` — none of which the scenarios provided. Result: every scenario rejected, every error wrapped as E081, 0/15 PASS across the kimi run. Replaced each occurrence with `memory_save({filePath})` + a "Do NOT pass retentionPolicy:'ephemeral'" warning note pointing at the post-execution-followup ADR.
 
 ### ADR-002 proposed (governance trigger decoupling)
 
@@ -86,12 +86,12 @@ The underlying bug is the implicit coupling in `requiresGovernedIngest()` at `sc
 | `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts` | Modified | Env-overridable retry-throughput config (`SPECKIT_RETRY_*` env vars) |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts` | Modified | Added E085–E089 classified error codes |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts` | Modified | classifySaveErrorCode + extractSaveErrorDetails helpers; classify instead of catch-all |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/401-paraphrase-recall.md` | Modified | Removed ephemeral, added warning note |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/411-causal-graph-link-quality.md` | Modified | Removed ephemeral, added warning note |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/412-causal-coverage-under-bulk-save.md` | Modified | Removed ephemeral, added warning note |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/413-drift-detection-quality.md` | Modified | Removed ephemeral, added warning note |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/414-cross-ai-memory-handoff.md` | Modified | Removed ephemeral, added warning note |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/415-concurrent-multi-ai-safety.md` | Modified | Removed ephemeral × 2 (Phase 1 + Phase 3), added warning notes |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/401-paraphrase-recall.md` | Modified | Removed ephemeral, added warning note |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/411-causal-graph-link-quality.md` | Modified | Removed ephemeral, added warning note |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/412-causal-coverage-under-bulk-save.md` | Modified | Removed ephemeral, added warning note |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/413-drift-detection-quality.md` | Modified | Removed ephemeral, added warning note |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/414-cross-ai-memory-handoff.md` | Modified | Removed ephemeral, added warning note |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/415-concurrent-multi-ai-safety.md` | Modified | Removed ephemeral × 2 (Phase 1 + Phase 3), added warning notes |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic/seat-statements.md` | Created | Multi-seat AI council diagnosis (Systems/Empirical/Contrarian) |
 | `.opencode/specs/.../022.../ai-council/embedding-worker-diagnostic/cross-critique.md` | Created | 6 pairwise critiques across seats |
 | `.opencode/specs/.../022.../ai-council/embedding-worker-diagnostic/convergence.md` | Created | 6-step repair plan + kill-switch |

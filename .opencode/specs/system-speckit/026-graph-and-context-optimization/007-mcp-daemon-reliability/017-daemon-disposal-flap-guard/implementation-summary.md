@@ -67,8 +67,8 @@ This stops the dominant flap with a small, additive, reversible change. It does 
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | Modified | `LAUNCHER_INITIAL_PPID` const + fire-time gate in the `scheduleRelaunch` callback; the gate now calls (and re-exports) the extracted predicate |
 | `.opencode/bin/lib/model-server-supervision.cjs` | Modified | Extracted the pure `shouldAbortRelaunchOnFire` predicate next to `shouldSkipLaunch` / `superviseChildExit` so the gate is unit-testable |
 | `mcp_server/tests/launcher-watchdog.vitest.ts` | Modified | Five `shouldAbortRelaunchOnFire` unit cases: owner-alive, shutdown, changed-ppid, orphan-to-1, crash/recycle |
-| `feature_catalog/14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md` (+ `feature_catalog.md`) | Added | Feature catalog entry + index registration |
-| `manual_testing_playbook/14--pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md` (+ `manual_testing_playbook.md`) | Added | Playbook scenario 421 + index table row + count reconciliation (385->386 scenario / 319->320 catalog) |
+| `feature_catalog/pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md` (+ `feature_catalog.md`) | Added | Feature catalog entry + index registration |
+| `manual_testing_playbook/pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md` (+ `manual_testing_playbook.md`) | Added | Playbook scenario 421 + index table row + count reconciliation (385->386 scenario / 319->320 catalog) |
 
 ### Test, catalog, and playbook coverage
 

@@ -20,7 +20,7 @@
 
 ## [P1][DOC-DRIFT] Docs claim daemon-time schema migration that code does not perform
 
-- Evidence: .opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/schema-migration.md:19-22 says migration runs internally during daemon bring-up; .opencode/skills/system-skill-advisor/README.md:106-109 and .opencode/skills/system-skill-advisor/references/runtime/freshness_contract.md:132-135 say the daemon watches, invalidates cache, and does not rebuild or validate; grep usage shows backfillDerivedV2 only in schema-migration.ts and tests.
+- Evidence: .opencode/skills/system-skill-advisor/feature_catalog/lifecycle-routing/schema-migration.md:19-22 says migration runs internally during daemon bring-up; .opencode/skills/system-skill-advisor/README.md:106-109 and .opencode/skills/system-skill-advisor/references/runtime/freshness_contract.md:132-135 say the daemon watches, invalidates cache, and does not rebuild or validate; grep usage shows backfillDerivedV2 only in schema-migration.ts and tests.
 - Detail: The documentation describes an automatic v1-to-v2 freshness/provenance migration path, but the daemon contract explicitly stops at freshness signaling and cache invalidation. Operators may believe last_updated_at/generated_at is maintained by daemon bring-up when it is not.
 - Fix sketch: Either implement the documented daemon/rebuild migration path or downgrade the docs to state that v2 sync and migration are library/test scaffolding until an explicit maintenance command runs them.
 
