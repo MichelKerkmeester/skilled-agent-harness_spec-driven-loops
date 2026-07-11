@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Identify concrete improvements, refinements, and upgrade opportunities for the system-deep-loop skill: its shared runtime (.opencode/skills/system-deep-loop/runtime/**), all four subskills (deep-research, deep-review, deep-ai-council, deep-improvement), the deep/* commands (.opencode/commands/deep/**), and their agent definitions (.claude/agents/deep-research.md, .claude/agents/deep-review.md, and OpenCode equivalents). Look across correctness, ergonomics, cost/performance, documentation accuracy, and test coverage. Rotate focus across these areas iteration to iteration rather than fixating on one.
 - Started: 2026-07-11T06:21:34.834Z
 - Status: INITIALIZED
-- Iteration: 8 of 10
+- Iteration: 9 of 10
 - Session ID: dr-008-divergent-retry-1783750894834
 - Parent Session: none
 - Lifecycle Mode: new
@@ -39,8 +39,9 @@ Reducer-generated observability surface for the active research packet.
 | undefined | Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model? | - | 0.84 | 0 | insight |
 | undefined | Which shared-runtime and command-contract tests are missing for executor-family/model separation, per-seat model selection, and requested-versus-effective provenance? | - | 0.76 | 0 | insight |
 | undefined | Which shared-runtime and command-contract tests are missing for the four cost/liveness defects from iteration 5? | - | 0.82 | 0 | insight |
+| undefined | Which operator-facing defaults should become hard safety limits versus explicit opt-in overrides? | - | 0.74 | 0 | insight |
 
-- iterationsCompleted: 8
+- iterationsCompleted: 9
 - keyFindings: 0
 - openQuestions: 5
 - resolvedQuestions: 0
@@ -68,12 +69,12 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: ▅▆▇██▇▆▄▂▃▅▆▆▅▄▃▁▂▃▄
-- score sparkline: ▅▆▇██▇▆▄▂▃▅▆▆▅▄▃▁▂▃▄
-- Last 3 ratios: 0.84 -> 0.76 -> 0.82
+- newInfoRatio sparkline: ▆▇██▇▇▅▃▄▆▆▅▅▃▂▃▃▄▂▁
+- score sparkline: ▆▇██▇▇▅▃▄▆▆▅▅▃▂▃▃▄▂▁
+- Last 3 ratios: 0.76 -> 0.82 -> 0.74
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.82
+- convergenceScore: 0.74
 - coverageBySources: {"other":10}
 - Advisory events: none
 
@@ -95,7 +96,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Which operator-facing defaults should become hard safety limits versus explicit opt-in overrides?
+How do deep-improvement candidate prompts, reducer boundaries, and dispatch budgets compare with the review and council failure patterns?
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

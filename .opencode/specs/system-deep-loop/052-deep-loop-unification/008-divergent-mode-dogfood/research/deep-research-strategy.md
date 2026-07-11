@@ -128,6 +128,8 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 - Which shared-runtime and command-contract tests are missing for executor-family/model separation, per-seat model selection, and requested-versus-effective provenance? (iteration 6)
 - Which shared-runtime and command-contract tests are missing for the four cost/liveness defects from iteration 5? (iteration 7)
 - Which operator-facing defaults should become hard safety limits versus explicit opt-in overrides? (iteration 8)
+- What numeric hard ceilings fit supported host capacities, and should runtime capability profiles provide lower platform-specific ceilings? (iteration 9)
+- How do deep-improvement candidate prompts, reducer boundaries, and dispatch budgets compare with the review and council failure patterns? (iteration 9)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -135,7 +137,7 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Which operator-facing defaults should become hard safety limits versus explicit opt-in overrides?
+How do deep-improvement candidate prompts, reducer boundaries, and dispatch budgets compare with the review and council failure patterns?
 
 <!-- /ANCHOR:next-focus -->
 

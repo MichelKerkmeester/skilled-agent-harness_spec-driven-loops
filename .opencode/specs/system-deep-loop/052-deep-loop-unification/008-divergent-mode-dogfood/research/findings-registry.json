@@ -225,6 +225,16 @@
       "text": "Which operator-facing defaults should become hard safety limits versus explicit opt-in overrides?",
       "addedAtIteration": 8,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "What numeric hard ceilings fit supported host capacities, and should runtime capability profiles provide lower platform-specific ceilings?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How do deep-improvement candidate prompts, reducer boundaries, and dispatch budgets compare with the review and council failure patterns?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -284,17 +294,17 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 8,
+    "iterationsCompleted": 9,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 20,
+    "carriedForwardOpenQuestions": 22,
     "keyFindings": 0,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.82,
+    "convergenceScore": 0.74,
     "coverageBySources": {
       "other": 10
     },
