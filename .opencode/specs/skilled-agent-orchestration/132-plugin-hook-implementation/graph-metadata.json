@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-plugin-hook-implementation",
+  "spec_folder": "skilled-agent-orchestration/132-plugin-hook-implementation",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/132-plugin-hook-implementation/000-plugin-hook-opportunities",
+    "skilled-agent-orchestration/132-plugin-hook-implementation/001-cli-dispatch-audit-trail",
+    "skilled-agent-orchestration/132-plugin-hook-implementation/002-code-graph-freshness-guard",
+    "skilled-agent-orchestration/132-plugin-hook-implementation/003-post-edit-quality-router",
+    "skilled-agent-orchestration/132-plugin-hook-implementation/004-completion-evidence-sentinel",
+    "skilled-agent-orchestration/132-plugin-hook-implementation/005-mcp-route-guard",
+    "skilled-agent-orchestration/132-plugin-hook-implementation/006-spec-mutation-gate",
+    "skilled-agent-orchestration/132-plugin-hook-implementation/007-speckit-completion-exposer"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "132-plugin-hook-implementation",
+      "plugin hook implementation",
+      "plugins from skills implementation",
+      "phase parent"
+    ],
+    "key_topics": [
+      "132-plugin-hook-implementation",
+      "plugin",
+      "hook",
+      "implementation",
+      "plugins",
+      "skills",
+      "phase",
+      "parent",
+      "repo",
+      "already",
+      "ships",
+      "seven"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".claude/settings.json",
+      ".opencode/plugins/README.md",
+      "skilled-agent-orchestration/132-plugin-hook-implementation/000-plugin-hook-opportunities/research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Audit Trail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo already ships seven OpenCode plugins with paired Claude hooks, but a large body of proven policy and validation logic stays locked inside skills that run only in CI or on manual invocation, and two OpenCode plugin surfaces (`tool.execute.after`, `tool.register`) are entirely unused",
+    "created_at": "2026-07-11T05:50:59Z",
+    "last_save_at": "2026-07-11T09:03:31.798Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:c29db66558a4702b98dfa959c4a47a9676976763e26666afa06f4fb3819b251a",
+    "source_doc_hashes": {
+      "spec.md": "73aeac38c502b19ce482c1bdfbb4514794e9c9828ebce38aef5f3e7c4b0f89df"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

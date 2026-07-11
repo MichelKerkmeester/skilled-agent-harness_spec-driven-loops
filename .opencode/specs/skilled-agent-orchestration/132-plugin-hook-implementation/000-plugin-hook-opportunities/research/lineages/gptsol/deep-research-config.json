@@ -1,0 +1,62 @@
+{
+  "topic": "What additional OpenCode plugins and Claude hooks could we build based on existing repo skills? Ground every candidate in a real skill under .opencode/skills/ and name its concrete runtime surface (OpenCode plugin hook: tool.execute.before/after, session.*, experimental.*; or Claude hook: PreToolUse/PostToolUse/SessionStart/UserPromptSubmit/Stop/SessionEnd).",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence"
+  },
+  "stopPolicy": "convergence",
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/132-plugin-hook-implementation/000-plugin-hook-opportunities",
+  "fanout_lineage_artifact_dir": ".opencode/specs/skilled-agent-orchestration/132-plugin-hook-implementation/000-plugin-hook-opportunities/research/lineages/gptsol",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-11T04:29:38Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.6-sol-fast",
+    "configDir": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900,
+    "governor": null
+  },
+  "lineage": {
+    "sessionId": "fanout-gptsol-1783743995827-g7k8yl",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable-by-workflow-reducer",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

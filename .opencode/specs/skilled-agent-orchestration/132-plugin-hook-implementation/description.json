@@ -1,0 +1,33 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/132-plugin-hook-implementation",
+  "description": "The repo already ships seven OpenCode plugins with paired Claude hooks, but a large body of proven policy and validation logic stays locked inside",
+  "keywords": [
+    "repo",
+    "already",
+    "ships",
+    "seven",
+    "opencode",
+    "plugins",
+    "paired",
+    "claude",
+    "hooks",
+    "large",
+    "body",
+    "proven",
+    "policy",
+    "validation",
+    "logic",
+    "stays",
+    "locked",
+    "inside"
+  ],
+  "lastUpdated": "2026-07-11T09:02:47.168Z",
+  "specId": "132",
+  "folderSlug": "plugin-hook-implementation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

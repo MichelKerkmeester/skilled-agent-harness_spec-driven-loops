@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/132-plugin-hook-implementation/007-speckit-completion-exposer",
+  "description": "At the COMPLETION VERIFICATION gate an agent must run `check-completion.sh --json` and `calculate-completeness.sh --json` separately, then hand-merge",
+  "keywords": [
+    "completion",
+    "verification",
+    "gate",
+    "agent",
+    "must",
+    "run",
+    "check-completion",
+    "json",
+    "calculate-completeness",
+    "separately",
+    "hand-merge"
+  ],
+  "lastUpdated": "2026-07-11T09:03:34.228Z",
+  "specId": "007",
+  "folderSlug": "speckit-completion-exposer",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "132-plugin-hook-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

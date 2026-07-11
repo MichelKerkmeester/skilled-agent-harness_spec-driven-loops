@@ -1,0 +1,24 @@
+{
+  "type": "config",
+  "topic": "What additional OpenCode plugins and Claude hooks could we build based on existing repo skills? Ground every candidate in a real skill under .opencode/skills/ and name its concrete runtime surface (OpenCode plugin hook: tool.execute.before/after, session.*, experimental.*; or Claude hook: PreToolUse/PostToolUse/SessionStart/UserPromptSubmit/Stop/SessionEnd).",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/132-plugin-hook-implementation/000-plugin-hook-opportunities",
+  "sessionId": "fanout-glm52-1783743995827-g7k8yl",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2"
+  },
+  "stopPolicy": "convergence",
+  "loopType": "research",
+  "lineageMode": "new",
+  "generation": 1,
+  "fanoutLineage": true,
+  "fanoutLineageArtifactDir": ".opencode/specs/skilled-agent-orchestration/132-plugin-hook-implementation/000-plugin-hook-opportunities/research/lineages/glm52",
+  "fanoutLabel": "glm52",
+  "resource_map_present": false,
+  "progressiveSynthesis": true,
+  "createdAt": "2026-07-11T06:28:00Z",
+  "status": "complete"
+}
