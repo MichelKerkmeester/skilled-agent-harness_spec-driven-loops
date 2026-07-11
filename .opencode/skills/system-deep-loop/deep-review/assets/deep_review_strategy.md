@@ -105,6 +105,18 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
 
 ---
 
+## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
+<!-- MACHINE-OWNED: START -->
+- Completed pivots: 0
+- Failed pivots: 0
+- Audited overrides: 0
+- Swept: none yet
+- Pivot lineage: none yet
+- Remaining frontier: none recorded
+<!-- MACHINE-OWNED: END -->
+
+---
+
 ## 11. RULED OUT DIRECTIONS
 [Review angles that were investigated and definitively eliminated -- consolidated from iteration dead-end data]
 - [Approach]: [Why ruled out] (iteration N, evidence: [source])

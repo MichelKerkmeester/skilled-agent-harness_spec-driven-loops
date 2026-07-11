@@ -34,6 +34,7 @@ user_inputs:
   lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for `resume` (same sessionId, no archive) and `restart` (new sessionId, generation+1, prior review/ archived). `fork` and `completed-continue` are deferred and no longer accepted — see deep-review/references/protocol/loop_protocol.md §Lifecycle Branches."
   max_iterations: 7
   convergence_threshold: 0.10
+  convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
   stop_policy: "[convergence|max-iterations] - Stop behavior. Default: convergence. max-iterations treats convergence as telemetry until the hard iteration ceiling."
   config.fanout_lineage_artifact_dir: "[optional internal path] - Fan-out lineage artifact override for command-owned single-lineage execution."
 
@@ -193,7 +194,7 @@ workflow:
       step_preflight_contract:
         action: "Validate required setup bindings and executable workflow contract before any file writes"
         verify:
-          - required_values_present: [review_target, review_target_type, review_dimensions, spec_folder, lineage_mode, max_iterations, convergence_threshold, stop_policy]
+          - required_values_present: [review_target, review_target_type, review_dimensions, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, stop_policy]
           - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
           - tool_contract: "FAIL if executable steps reference tools outside the command allowlist"
@@ -399,6 +400,8 @@ workflow:
           maxIterations: "{max_iterations}"
           # Semantic: weighted P0/P1/P2 severity ratio. See SKILL.md §"Convergence Threshold Semantics".
           convergenceThreshold: "{convergence_threshold}"
+          antiConvergence.convergenceMode: "{convergence_mode}"
+          antiConvergence.divergent: {}
           stopPolicy: "{stop_policy}"
           stuckThreshold: 2
           maxDurationMinutes: 120
@@ -416,7 +419,7 @@ workflow:
         action: "Initialize JSONL state log with config record including review fields and lineage metadata"
         note: "Reuse review_dimensions_json from step_normalize_review_dimensions. Never re-normalize or wrap the raw template value."
         # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
-        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"stopPolicy":"{stop_policy}","createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"stopPolicy":"{stop_policy}","createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
         output: "{state_paths.state_log}"
 
       step_create_findings_registry:
@@ -515,6 +518,10 @@ workflow:
           - fix_completeness_replay_required_rows: "Count prior active or remediated P0/P1 findings, plus any prior security/path P2 findings, that require closed-gate replay before STOP."
           - fix_completeness_replay_passing_rows: "Count required replay rows marked PASS with file:line or command evidence and producer/consumer/matrix coverage."
           - stop_policy: "Extract stopPolicy from deep-review-config.json, default 'convergence'. Valid values: convergence, max-iterations."
+          - convergence_mode: "Extract antiConvergence.convergenceMode when it is one of 'default', 'off', 'sliding-window', or 'divergent'; default to 'default'"
+          - convergence_mode_warning: "Boolean true when antiConvergence.convergenceMode is present with an unsupported value; use 'default'"
+          - pivot_lineage: "Summarize registry.divergence.completed and registry.divergence.overrides with pivot ids, source iterations, and selected review direction; else 'none yet'"
+          - saturated_directions: "List registry.divergence.saturatedDirections; else 'none yet'"
 
       step_check_pause_sentinel:
         action: "Check for pause sentinel file"
@@ -528,6 +535,12 @@ workflow:
         if_not_exists:
           proceed: true
 
+      step_validate_convergence_config:
+        action: "Validate convergence mode when loading config"
+        if_convergence_mode_invalid:
+          append_jsonl: '{"type":"event","event":"config_warning","mode":"review","field":"antiConvergence.convergenceMode","fallback":"default","message":"Unsupported convergenceMode; using default convergence behavior.","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          log: "Unsupported convergenceMode; using default convergence behavior."
+
       step_graph_convergence:
         action: "Evaluate coverage-graph convergence before the inline review convergence vote"
         inspect:
@@ -539,7 +552,7 @@ workflow:
           3. Preserve raw graph signals and blockers for reducer rollup and blocked-stop evidence.
           4. Normalize blockers to both JSON array and CSV forms for downstream stop handling.
           5. Set graph_stop_blocked = true only when graph_decision == "STOP_BLOCKED".
-        bash: 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"'
+        bash: 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}"'
         note: "Invoke the runtime script directly. Review-side graph convergence must run before the inline review stop vote."
         append_jsonl: '{"type":"event","event":"graph_convergence","mode":"review","run":{current_iteration},"decision":"{graph_decision}","signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
         outputs:
@@ -692,8 +705,203 @@ workflow:
       step_handle_convergence:
         action: "Act on convergence decision"
         if_stop:
-          log: "Loop stopping. Reason: {reason}"
-          skip_to: phase_synthesis
+          branch_on: "convergence_mode == 'divergent' AND reason == 'all_dimensions_clean'"
+          if_divergent_eligible:
+            eligibility_contract:
+              required_decision: "STOP"
+              eligible_reasons: [all_dimensions_clean]
+              excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused]
+              fail_closed: "Any missing or ambiguous reason uses if_existing_terminal_path without preparing a pivot. The nine legal-stop gates have already run and remain unchanged."
+            steps:
+              step_prepare_divergent_pivot:
+                action: "Generate state-grounded read-only review candidates and prepare or resume the pivot transaction"
+                command: |
+                  node --experimental-strip-types --input-type=module <<'EOF'
+                  import {
+                    buildReviewPivotPreparationInput,
+                    renderReviewPivotSeatPrompt,
+                  } from './.opencode/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts';
+                  import {
+                    preparePivotTransaction,
+                  } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+
+                  const input = buildReviewPivotPreparationInput({
+                    artifactRoot: '{state_paths.packet_dir}',
+                    configPath: '{state_paths.config}',
+                    stateLogPath: '{state_paths.state_log}',
+                    strategyPath: '{state_paths.strategy}',
+                    registryPath: '{state_paths.findings_registry}',
+                    currentIteration: Number('{current_iteration}'),
+                    maxIterations: Number('{max_iterations}'),
+                    triggerReason: '{reason}',
+                  });
+                  const prepared = await preparePivotTransaction(input);
+                  const seatPrompts = prepared.status === 'pending'
+                    ? Object.fromEntries(prepared.missingSeats.map((seat) => [
+                        seat.id,
+                        renderReviewPivotSeatPrompt(seat, prepared.dispatchContext),
+                      ]))
+                    : {};
+                  process.stdout.write(`${JSON.stringify({
+                    ...prepared,
+                    seatPrompts,
+                    boundaryRejections: input.boundaryRejections,
+                  })}\n`);
+                  EOF
+                working_directory: "{repo_root}"
+                outputs:
+                  - pivot_prepare_json: "The complete parsed JSON result"
+                  - pivot_prepare_status: "status from the prepare result"
+                  - pivot_id: "pivotId from the prepare result"
+                  - pivot_paths_json: "paths from the prepare result as JSON"
+                  - pivot_resumed: "resumed from the prepare result"
+                  - pivot_missing_seat_ids: "missingSeats ids from a pending result"
+                  - pivot_seat_001_json: "The seat-001 mandate object from missingSeats"
+                  - pivot_seat_002_json: "The seat-002 mandate object from missingSeats"
+                  - pivot_seat_003_json: "The seat-003 mandate object from missingSeats"
+                  - pivot_seat_001_prompt: "seatPrompts['seat-001']"
+                  - pivot_seat_002_prompt: "seatPrompts['seat-002']"
+                  - pivot_seat_003_prompt: "seatPrompts['seat-003']"
+                  - pivot_dispatch_context_json: "dispatchContext from a pending result as JSON"
+                short_circuit: "When status is completed or failed, skip all dispatch and record steps and bind this result as pivot_result."
+
+              step_dispatch_pivot_seat_001:
+                action: "Natively dispatch the analytical read-only review direction-selection seat"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-001'"
+                capture_timing: true
+                if_native:
+                  dispatch:
+                    agent: deep-review
+                    model: opus
+                    context_source: "pivot_seat_001_prompt"
+                  wait_for_completion: true
+                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat_001."
+                outputs:
+                  - pivot_seat_001_dispatch_status: "fulfilled or rejected"
+                  - pivot_seat_001_output_json: "Raw native return serialized as JSON when fulfilled"
+                  - pivot_seat_001_error_json: "{name,message} when rejected"
+                  - pivot_seat_001_started_at_iso: "Dispatch start timestamp"
+                  - pivot_seat_001_completed_at_iso: "Dispatch completion timestamp"
+                  - pivot_seat_001_duration_ms: "Dispatch duration in milliseconds"
+
+              step_record_pivot_seat_001:
+                action: "Durably record the seat-001 native dispatch outcome"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-001'"
+                command: |
+                  node --experimental-strip-types --input-type=module <<'EOF'
+                  import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  const status = '{pivot_seat_001_dispatch_status}';
+                  const outcome = status === 'fulfilled'
+                    ? { status, output: {pivot_seat_001_output_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') }
+                    : { status: 'rejected', error: {pivot_seat_001_error_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') };
+                  process.stdout.write(`${JSON.stringify(recordPivotSeatResult({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', seat: {pivot_seat_001_json}, outcome }))}\n`);
+                  EOF
+                working_directory: "{repo_root}"
+
+              step_dispatch_pivot_seat_002:
+                action: "Natively dispatch the critical read-only review direction-selection seat"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-002'"
+                capture_timing: true
+                if_native:
+                  dispatch:
+                    agent: deep-review
+                    model: opus
+                    context_source: "pivot_seat_002_prompt"
+                  wait_for_completion: true
+                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat_002."
+                outputs:
+                  - pivot_seat_002_dispatch_status: "fulfilled or rejected"
+                  - pivot_seat_002_output_json: "Raw native return serialized as JSON when fulfilled"
+                  - pivot_seat_002_error_json: "{name,message} when rejected"
+                  - pivot_seat_002_started_at_iso: "Dispatch start timestamp"
+                  - pivot_seat_002_completed_at_iso: "Dispatch completion timestamp"
+                  - pivot_seat_002_duration_ms: "Dispatch duration in milliseconds"
+
+              step_record_pivot_seat_002:
+                action: "Durably record the seat-002 native dispatch outcome"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-002'"
+                command: |
+                  node --experimental-strip-types --input-type=module <<'EOF'
+                  import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  const status = '{pivot_seat_002_dispatch_status}';
+                  const outcome = status === 'fulfilled'
+                    ? { status, output: {pivot_seat_002_output_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') }
+                    : { status: 'rejected', error: {pivot_seat_002_error_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') };
+                  process.stdout.write(`${JSON.stringify(recordPivotSeatResult({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', seat: {pivot_seat_002_json}, outcome }))}\n`);
+                  EOF
+                working_directory: "{repo_root}"
+
+              step_dispatch_pivot_seat_003:
+                action: "Natively dispatch the pragmatic read-only review direction-selection seat"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-003'"
+                capture_timing: true
+                if_native:
+                  dispatch:
+                    agent: deep-review
+                    model: opus
+                    context_source: "pivot_seat_003_prompt"
+                  wait_for_completion: true
+                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat_003."
+                outputs:
+                  - pivot_seat_003_dispatch_status: "fulfilled or rejected"
+                  - pivot_seat_003_output_json: "Raw native return serialized as JSON when fulfilled"
+                  - pivot_seat_003_error_json: "{name,message} when rejected"
+                  - pivot_seat_003_started_at_iso: "Dispatch start timestamp"
+                  - pivot_seat_003_completed_at_iso: "Dispatch completion timestamp"
+                  - pivot_seat_003_duration_ms: "Dispatch duration in milliseconds"
+
+              step_record_pivot_seat_003:
+                action: "Durably record the seat-003 native dispatch outcome"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-003'"
+                command: |
+                  node --experimental-strip-types --input-type=module <<'EOF'
+                  import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  const status = '{pivot_seat_003_dispatch_status}';
+                  const outcome = status === 'fulfilled'
+                    ? { status, output: {pivot_seat_003_output_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') }
+                    : { status: 'rejected', error: {pivot_seat_003_error_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') };
+                  process.stdout.write(`${JSON.stringify(recordPivotSeatResult({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', seat: {pivot_seat_003_json}, outcome }))}\n`);
+                  EOF
+                working_directory: "{repo_root}"
+
+              step_finalize_divergent_pivot:
+                action: "Finalize the prepared pivot after all missing native seats are durable"
+                skip_when: "pivot_prepare_status != 'pending'"
+                command: |
+                  node --experimental-strip-types --input-type=module <<'EOF'
+                  import { finalizePivotTransaction } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  process.stdout.write(`${JSON.stringify(finalizePivotTransaction({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', resumed: {pivot_resumed} }))}\n`);
+                  EOF
+                working_directory: "{repo_root}"
+                outputs:
+                  - pivot_finalize_json: "The complete parsed final result"
+
+              step_resolve_divergent_pivot_result:
+                action: "Use prepare's terminal result on resume/short-circuit, otherwise use finalize's result"
+                branch_on: "pivot_prepare_status"
+                if_pending: { bind: { pivot_result: "{pivot_finalize_json}" } }
+                if_completed_or_failed: { bind: { pivot_result: "{pivot_prepare_json}" } }
+
+              step_apply_divergent_pivot_result:
+                action: "Adopt a successful read-only review direction or fail closed to the existing synthesis path"
+                branch_on: "pivot_result.status"
+                if_completed:
+                  set:
+                    next_dimension: "{pivot_result.restoredFocus}"
+                    pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
+                    saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
+                  command: "node .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs {spec_folder}"
+                  log: "Divergent review pivot {pivot_result.pivotId} restored focus to {pivot_result.restoredFocus}; continuing iteration {current_iteration}."
+                  proceed_to: step_normalize_pause_events
+                if_failed:
+                  log: "Divergent review pivot {pivot_result.pivotId} failed closed ({pivot_result.failureReason}); proceeding to synthesis."
+                  skip_to: phase_synthesis
+            on_error:
+              log: "Divergent review pivot integration error; failing closed to the existing synthesis path."
+              skip_to: phase_synthesis
+          if_existing_terminal_path:
+            log: "Loop stopping. Reason: {reason}"
+            skip_to: phase_synthesis
         if_blocked:
           log: "Legal-stop gates blocked STOP. Failed gates: {blocked_by_csv}. Continuing review."
         if_stuck_recovery:
@@ -794,6 +1002,8 @@ workflow:
               p0_count: "{p0_count}"
               p1_count: "{p1_count}"
               p2_count: "{p2_count}"
+              pivot_lineage: "{pivot_lineage}"
+              saturated_directions: "{saturated_directions}"
               state_paths_config: "{state_paths.config}"
               state_paths_state_log: "{state_paths.state_log}"
               state_paths_findings_registry: "{state_paths.findings_registry}"
@@ -1437,6 +1647,11 @@ workflow:
 
           8. **Deferred Items**
              - Advisory-only or backlog-worthy follow-ups that do not block the current verdict
+
+          **Dimension Expansion Map**
+             - Insert `## Dimension Expansion Map` after Deferred Items and before Search Ledger.
+             - Render reducer-owned `divergence.saturatedDirections`, completed pivots, failed pivots, audited overrides, Council artifact references, selected review directions, and remaining frontier.
+             - This section records breadth only. It cannot alter the Executive Summary verdict, hasAdvisories, finding registry, or adversarial self-check results.
 
           9. **Search Ledger**
              - Always include this section before the appendix.

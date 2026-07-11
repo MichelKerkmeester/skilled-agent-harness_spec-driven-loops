@@ -1069,6 +1069,116 @@ function buildGraphConvergenceRollup(records) {
   };
 }
 
+function loadPivotEventRecords(reviewDir) {
+  const pivotsRoot = path.join(reviewDir, 'divergent', 'pivots');
+  if (!fs.existsSync(pivotsRoot)) {
+    return [];
+  }
+
+  return fs.readdirSync(pivotsRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .sort((left, right) => {
+      const leftOrdinal = Number(left.name.match(/^pivot-(\d+)-/)?.[1] ?? 0);
+      const rightOrdinal = Number(right.name.match(/^pivot-(\d+)-/)?.[1] ?? 0);
+      return leftOrdinal - rightOrdinal || left.name.localeCompare(right.name);
+    })
+    .flatMap((entry) => {
+      const statePath = path.join(pivotsRoot, entry.name, 'council', 'state.jsonl');
+      if (!fs.existsSync(statePath)) return [];
+      return readUtf8(statePath)
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line, index) => {
+          try {
+            return {
+              ...JSON.parse(line),
+              pivotArtifactRef: path.relative(reviewDir, statePath),
+            };
+          } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            throw new Error(`Invalid pivot state at ${statePath}:${index + 1}: ${message}`);
+          }
+        });
+    });
+}
+
+function buildPivotState(eventRecords) {
+  const started = eventRecords.filter((record) => record?.event === 'pivot_started');
+  const selected = eventRecords.filter((record) => record?.event === 'pivot_selected');
+  const completed = eventRecords.filter((record) => record?.event === 'pivot_completed');
+  const failed = eventRecords.filter((record) => record?.event === 'pivot_failed');
+  const overrides = eventRecords.filter((record) => record?.event === 'pivot_override_accepted');
+  const sourceIterationByPivot = new Map(started.map((record) => [
+    record.pivotId,
+    isFiniteNumber(record.source?.sourceIteration) ? record.source.sourceIteration : null,
+  ]));
+  const selectedCandidateByPivot = new Map(selected.map((record) => [record.pivotId, record.selectedCandidate]));
+  const latestCompleted = completed.at(-1);
+  const latestOverride = overrides.at(-1);
+  const completedOrdinal = Number(String(latestCompleted?.pivotId ?? '').match(/^pivot-(\d+)-/)?.[1] ?? 0);
+  const overrideOrdinal = Number(String(latestOverride?.pivotId ?? '').match(/^pivot-(\d+)-/)?.[1] ?? 0);
+  const activeOverride = overrideOrdinal >= completedOrdinal ? latestOverride : null;
+  const activeCompleted = activeOverride ? null : latestCompleted;
+  const activeCandidate = activeOverride?.selectedCandidate
+    ?? activeCompleted?.selectedCandidate
+    ?? (activeCompleted ? selectedCandidateByPivot.get(activeCompleted.pivotId) : null)
+    ?? null;
+  const selectedFrontier = Array.isArray(activeOverride?.selectedFrontier)
+    ? activeOverride.selectedFrontier
+    : Array.isArray(activeCompleted?.selectedFrontier)
+      ? activeCompleted.selectedFrontier
+      : [];
+  const selectedId = activeCandidate && typeof activeCandidate === 'object' ? activeCandidate.id : null;
+  const remainingFrontier = selectedFrontier.filter((candidate) =>
+    candidate && typeof candidate === 'object' && candidate.id !== selectedId);
+  const saturatedDirections = Array.from(new Set(completed.concat(overrides).flatMap((record) => [
+    ...(Array.isArray(record.saturatedDirections) ? record.saturatedDirections : []),
+    record.previousFocus,
+  ]).map(normalizeText).filter(Boolean)));
+  const currentFocus = normalizeText(activeCandidate?.focus) || normalizeText(activeCompleted?.currentFocus);
+
+  return {
+    started: started.map((record) => ({
+      pivotId: record.pivotId,
+      sourceIteration: sourceIterationByPivot.get(record.pivotId) ?? null,
+      previousFocus: normalizeText(record.previousFocus),
+      trigger: normalizeText(record.source?.normalizedTrigger),
+      artifactRef: normalizeText(record.pivotArtifactRef),
+    })),
+    completed: completed.map((record) => ({
+      pivotId: record.pivotId,
+      sourceIteration: sourceIterationByPivot.get(record.pivotId) ?? null,
+      previousFocus: normalizeText(record.previousFocus),
+      currentFocus: normalizeText(record.currentFocus),
+      selectedCandidate: record.selectedCandidate ?? selectedCandidateByPivot.get(record.pivotId) ?? null,
+      agreement: record.agreement ?? null,
+      artifactRefs: record.artifactRefs ?? {},
+      artifactRef: normalizeText(record.pivotArtifactRef),
+      occurredAtIso: normalizeText(record.occurredAtIso),
+    })),
+    failed: failed.map((record) => ({
+      pivotId: record.pivotId,
+      sourceIteration: sourceIterationByPivot.get(record.pivotId) ?? null,
+      reason: normalizeText(record.reason),
+      recoverableByOverride: record.recoverableByOverride === true,
+      agreement: record.agreement ?? null,
+      artifactRef: normalizeText(record.pivotArtifactRef),
+      occurredAtIso: normalizeText(record.occurredAtIso),
+    })),
+    overrides: overrides.map((record) => ({
+      pivotId: record.pivotId,
+      sourceIteration: isFiniteNumber(record.run) ? record.run : null,
+      selectedCandidate: record.selectedCandidate ?? null,
+      reason: normalizeText(record.reason),
+      timestamp: normalizeText(record.timestamp),
+    })),
+    saturatedDirections,
+    remainingFrontier,
+    currentFocus,
+  };
+}
+
 /**
  * Aggregate the latest `traceabilityChecks` payload into the registry. This is
  * latest-wins because each iteration carries cumulative counts for the current
@@ -1373,7 +1483,7 @@ function validateReviewRecordFields(records) {
   return warnings;
 }
 
-function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = [], deltaRecords = []) {
+function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = [], deltaRecords = [], eventRecords = iterationRecords) {
   const terminalStop = buildTerminalStopState(iterationRecords);
   const lineage = buildLineageState(config, iterationRecords, terminalStop);
   const { openFindings, resolvedFindings } = buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords);
@@ -1384,6 +1494,7 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
   const blockedStopHistory = buildBlockedStopHistory(iterationRecords);
   const searchLedgerState = buildSearchLedgerState(iterationRecords);
   const traceability = buildTraceabilityRollup(iterationRecords);
+  const divergence = buildPivotState(eventRecords);
   const fieldWarnings = validateReviewRecordFields(iterationRecords);
   const status = deriveDashboardStatus(config, iterationRecords, terminalStop);
 
@@ -1436,6 +1547,7 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
     cleanSearchProof: searchLedgerState.cleanSearchProof,
     searchCoverage: searchLedgerState.searchCoverage,
     traceability,
+    divergence,
     fieldWarnings,
     corruptionWarnings,
   };
@@ -1541,6 +1653,21 @@ function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
   return content.replace(pattern, replacement);
 }
 
+function upsertHeadingSectionBefore(content, heading, body, beforeHeading) {
+  const escapedHeading = escapeRegExp(heading);
+  const sectionPattern = new RegExp(`(?:^|\\n)##\\s+${escapedHeading}\\s*\\n[\\s\\S]*?(?=\\n##\\s|$)`, 'i');
+  const replacement = `\n## ${heading}\n${body.trim() || '[None yet]'}\n`;
+  if (sectionPattern.test(content)) {
+    return content.replace(sectionPattern, replacement);
+  }
+  const escapedBefore = escapeRegExp(beforeHeading);
+  const beforePattern = new RegExp(`\\n##\\s+${escapedBefore}\\s*\\n`, 'i');
+  if (!beforePattern.test(content)) {
+    throw new Error(`Missing insertion heading "${beforeHeading}" in deep-review strategy file.`);
+  }
+  return content.replace(beforePattern, `${replacement}\n## ${beforeHeading}\n`);
+}
+
 function updateStrategyContent(strategyContent, registry, iterationFiles, options = {}, iterationRecords = []) {
   // Early return when there is no strategy file to update. Empty content
   // cannot contain the machine-owned anchors and replaceAnchorSection would
@@ -1573,6 +1700,9 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
   let nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
     || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
     || '[All dimensions covered]';
+  if (registry.divergence.currentFocus) {
+    nextFocus = registry.divergence.currentFocus;
+  }
 
   // Prefer the latest blocked-stop
   // recovery only when blocked-stop is genuinely the most recent loop event.
@@ -1611,6 +1741,30 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
     buildExhaustedApproaches(iterationFiles),
     anchorOptions,
   );
+  const expansionLines = [
+    `- Completed pivots: ${registry.divergence.completed.length}`,
+    `- Failed pivots: ${registry.divergence.failed.length}`,
+    `- Audited overrides: ${registry.divergence.overrides.length}`,
+    ...(registry.divergence.saturatedDirections.length
+      ? registry.divergence.saturatedDirections.map((direction) => `- Swept: ${direction}`)
+      : ['- Swept: none yet']),
+    ...(registry.divergence.completed.length
+      ? registry.divergence.completed.map((pivot) =>
+          `- Pivot ${pivot.pivotId}: ${pivot.previousFocus} -> ${pivot.currentFocus} (evidence: ${pivot.artifactRef})`)
+      : ['- Pivot lineage: none yet']),
+    ...(registry.divergence.failed.length
+      ? registry.divergence.failed.map((pivot) => `- Failed ${pivot.pivotId}: ${pivot.reason} (evidence: ${pivot.artifactRef})`)
+      : []),
+    ...(registry.divergence.remainingFrontier.length
+      ? registry.divergence.remainingFrontier.map((candidate) => `- Frontier: ${candidate.focus || candidate.title}`)
+      : ['- Remaining frontier: none recorded']),
+  ];
+  updated = upsertHeadingSectionBefore(
+    updated,
+    '10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER',
+    expansionLines.join('\n'),
+    '11. RULED OUT DIRECTIONS',
+  );
   updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus, anchorOptions);
   return updated;
 }
@@ -1625,6 +1779,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
   const nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
     || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
     || '[All dimensions covered]';
+  const effectiveNextFocus = registry.divergence.currentFocus || nextFocus;
 
   const severity = registry.findingsBySeverity;
   const hasSearchDebt = Array.isArray(registry.searchDebt) && registry.searchDebt.length > 0;
@@ -1688,6 +1843,22 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     ...(registry.terminalStop?.stopReason ? [`- stopReason: ${registry.terminalStop.stopReason}`] : []),
     '',
     '<!-- /ANCHOR:status -->',
+    '<!-- ANCHOR:dimension-expansion -->',
+    '## 2A. DIMENSION EXPANSION',
+    `- Completed pivots: ${registry.divergence.completed.length}`,
+    `- Failed pivots: ${registry.divergence.failed.length}`,
+    `- Audited overrides: ${registry.divergence.overrides.length}`,
+    ...(registry.divergence.saturatedDirections.length
+      ? registry.divergence.saturatedDirections.map((direction) => `- Swept: ${direction}`)
+      : ['- Swept: none yet']),
+    ...(registry.divergence.completed.length
+      ? registry.divergence.completed.map((pivot) => `- ${pivot.pivotId}: ${pivot.previousFocus} -> ${pivot.currentFocus} (${pivot.artifactRef})`)
+      : ['- Pivot lineage: none yet']),
+    ...(registry.divergence.remainingFrontier.length
+      ? registry.divergence.remainingFrontier.map((candidate) => `- Frontier: ${candidate.focus || candidate.title}`)
+      : ['- Remaining frontier: none recorded']),
+    '',
+    '<!-- /ANCHOR:dimension-expansion -->',
     '<!-- ANCHOR:findings-summary -->',
     '## 3. FINDINGS SUMMARY',
     '',
@@ -1771,7 +1942,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     '<!-- /ANCHOR:search-debt -->',
     '<!-- ANCHOR:next-focus -->',
     '## 11. NEXT FOCUS',
-    nextFocus,
+    effectiveNextFocus,
     '',
     '<!-- /ANCHOR:next-focus -->',
     '<!-- ANCHOR:active-risks -->',
@@ -1888,7 +2059,16 @@ function reduceReviewState(specFolder, options = {}) {
     .flat()
     .filter((record) => record !== null && record !== undefined);
 
-  const registry = buildRegistry(strategyDimensions, iterationFiles, records, config, corruptionWarnings, flattenedDeltaRecords);
+  const pivotEvents = loadPivotEventRecords(reviewDir);
+  const registry = buildRegistry(
+    strategyDimensions,
+    iterationFiles,
+    records,
+    config,
+    corruptionWarnings,
+    flattenedDeltaRecords,
+    records.concat(pivotEvents),
+  );
   const strategy = updateStrategyContent(strategyContent, registry, iterationFiles, { createMissingAnchors }, records);
   const dashboard = renderDashboard(config, registry, records, iterationFiles);
   let resourceMap = null;
