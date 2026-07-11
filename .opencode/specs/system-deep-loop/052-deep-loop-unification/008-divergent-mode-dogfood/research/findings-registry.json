@@ -180,6 +180,26 @@
       "text": "Does any supported OpenCode CLI flag select `ai-council` while preserving the current isolated seat process, or should route proof identify a generic council-seat executor instead?",
       "addedAtIteration": 3,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Are review prompt/validator schema mismatches covered outside skill-local tests?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How do deep-improvement candidate prompts and reducer boundaries compare with the review and council failure patterns?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the seat executor schema distinguish executor family, effective primary agent, requested council mode, seat id, lens, and model as separate fields?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which cost and operator-friction defects dominate after route proof and unrestricted council seat startup are corrected?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -233,17 +253,17 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 3,
+    "iterationsCompleted": 4,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 11,
+    "carriedForwardOpenQuestions": 15,
     "keyFindings": 0,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.9,
+    "convergenceScore": 0.78,
     "coverageBySources": {
       "other": 10
     },
