@@ -65,3 +65,76 @@ describe('sk-code surface-slice sync — router-replay slices to code-<surface>/
     expect(leaks).toEqual([]);
   });
 });
+
+// Rust language-slice sync guard.
+//
+// Within the OpenCode surface, router-replay slices to the touched-language SET so
+// an interop task that legitimately touches both Rust and TypeScript (a napi-rs /
+// WASM sidecar under byte-for-byte parity with the Node backend) loads BOTH trios,
+// while a single-language task still loads only its own. Rust is detected by `.rs`,
+// Cargo markers, or the napi-rs/wasm-bindgen/WASI/cdylib interop vocabulary — none
+// of the fixtures below say the word "Rust", so a passing assertion proves real
+// signal detection rather than a tautology. If the OPENCODE_LANGUAGES list, the
+// touched-language detector, or the rust reference folder drift apart, these fail
+// loudly the same way the surface-slice guard does.
+const OC_LANGS = ['typescript', 'python', 'shell', 'config', 'javascript', 'rust'];
+const langFolders = (paths: string[]): Set<string> => {
+  const s = new Set<string>();
+  for (const p of paths) {
+    const m = /^code-opencode\/references\/([^/]+)\//.exec(p);
+    if (m && OC_LANGS.includes(m[1])) s.add(m[1]);
+  }
+  return s;
+};
+const RUST_TRIO = [
+  'code-opencode/references/rust/style_guide.md',
+  'code-opencode/references/rust/quality_standards.md',
+  'code-opencode/references/rust/quick_reference.md',
+];
+const TS_TRIO = [
+  'code-opencode/references/typescript/style_guide.md',
+  'code-opencode/references/typescript/quality_standards.md',
+  'code-opencode/references/typescript/quick_reference.md',
+];
+
+describe('sk-code rust language-slice sync — touched-language set loads the right trios', () => {
+  const singleRust: Array<[string, string]> = [
+    ['a .rs source edit', 'add a request-ID field to the sidecar in .opencode/native/src/lib.rs'],
+    ['a Cargo manifest change', 'update dependencies in .opencode/native/Cargo.toml for the sidecar crate'],
+    ['a napi-rs binding', 'expose a napi-rs binding from .opencode/native/src/lib.rs for the scorer'],
+    ['a wasm-bindgen export', 'add wasm-bindgen exports in .opencode/native/src/lib.rs'],
+    ['a cdylib/WASI target', 'build a cdylib wasi target from .opencode/native/src/lib.rs'],
+  ];
+  for (const [label, prompt] of singleRust) {
+    it(`slices ${label} to the rust trio only — no other language folder, no webflow leak`, () => {
+      const r = routed(prompt);
+      expect(langFolders(r)).toEqual(new Set(['rust']));
+      for (const t of RUST_TRIO) expect(r).toContain(t);
+      expect(hasWebflowSurface(r)).toBe(false);
+    });
+  }
+
+  it('loads BOTH the rust and typescript trios for a Rust+TypeScript byte-parity task, and no other language', () => {
+    const r = routed(
+      'port scorer.ts compute to a napi-rs lib.rs crate under .opencode/native, byte-identical to the typescript oracle',
+    );
+    expect(langFolders(r)).toEqual(new Set(['rust', 'typescript']));
+    for (const t of RUST_TRIO) expect(r).toContain(t);
+    for (const t of TS_TRIO) expect(r).toContain(t);
+    expect(hasWebflowSurface(r)).toBe(false);
+  });
+
+  it('routes a rust quality/audit task to the rust quality standards (a trio member), not another language', () => {
+    const r = routed(
+      'review the .opencode/native/src/lib.rs sidecar for clippy lints and unsafe-block SAFETY invariants',
+    );
+    expect(langFolders(r)).toEqual(new Set(['rust']));
+    expect(r).toContain('code-opencode/references/rust/quality_standards.md');
+  });
+
+  it('never loads the rust trio for a non-Rust OpenCode task — the touched-set does not over-route', () => {
+    const r = routed('update the skill_advisor.py argparse block in .opencode/skills/system-skill-advisor');
+    expect(langFolders(r)).toEqual(new Set(['python']));
+    expect(r.some((p) => p.startsWith('code-opencode/references/rust/'))).toBe(false);
+  });
+});

@@ -43,7 +43,7 @@
       ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards.md",
       ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference.md",
       ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist.md",
-      ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language-standards/004-rust-standards.md",
+      ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language-standards/009-rust-standards.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -75,9 +75,9 @@
         "source": "derived"
       },
       {
-        "name": "004-rust-standards.md",
+        "name": "009-rust-standards.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language-standards/004-rust-standards.md",
+        "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language-standards/009-rust-standards.md",
         "source": "derived"
       },
       {

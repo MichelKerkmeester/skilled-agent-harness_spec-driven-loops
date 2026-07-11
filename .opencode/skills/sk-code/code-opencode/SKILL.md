@@ -131,7 +131,7 @@ RESOURCE_MAP = {
 - **Descriptors are load-bearing.** `graph-metadata.json` / `description.json` shape drives discovery; validate JSON/JSONC against `references/config/quality_standards.md`.
 - **Alignment drift is a verification gate.** System-code changes re-run the alignment verifier (`references/shared/alignment_verification_automation.md`) before any completion claim.
 - **Rust preserves the TypeScript contract.** Rust napi-rs, WASM/WASI, and sidecar modules are compatibility implementations, not independent behavior authorities. JS-visible bytes, six-decimal numeric behavior, comparator tie-breaks, deterministic IDs, collection order, DTOs, and error shapes must remain identical to the TypeScript oracle.
-- **One language per task.** A `.opencode/` task is a single language; keep the slice tight and lean on the shared tier for cross-language rules.
+- **Touched-language set, not one-per-task.** Most `.opencode/` tasks touch a single language — keep that slice tight and lean on the shared tier for cross-language rules. An interop task that spans a language pair (a napi-rs / WASM / sidecar Rust module held to its TypeScript oracle) legitimately touches both languages: the router slices to the set the task actually touches and loads both trios plus the shared tier, because you cannot hold Rust byte-identical to TypeScript without seeing both standards.
 
 ## 4. ASSETS AND OTHER SURFACE AREAS — on-demand
 

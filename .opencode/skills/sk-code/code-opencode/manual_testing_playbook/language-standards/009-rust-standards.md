@@ -1,5 +1,5 @@
 ---
-id: OC-004
+id: OC-009
 category: language-standards
 title: 'Rust standards routing'
 expected_intent: RUST
@@ -10,7 +10,7 @@ expected_resources:
 version: 1.0.0.0
 ---
 
-# OC-004: Rust standards routing
+# OC-009: Rust standards routing
 
 ## 2. SCENARIO CONTRACT
 

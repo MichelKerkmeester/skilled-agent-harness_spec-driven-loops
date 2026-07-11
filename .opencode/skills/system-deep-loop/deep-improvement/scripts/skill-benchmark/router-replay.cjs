@@ -352,7 +352,7 @@ function resourceSurface(r) {
 // the prose stack-detection contract: OpenCode system code wins, then Webflow
 // markers, else UNKNOWN. A task that names both is MIXED (cross-surface).
 function detectSurface(taskLower) {
-  const opencode = /\.opencode\/|\bskill\.md\b|\.cjs\b|\.mjs\b|\.tsx?\b|\.py\b|\.sh\b|\bspec-folder\b|\bargparse\b|graph-metadata/.test(taskLower);
+  const opencode = /\.opencode\/|\bskill\.md\b|\.cjs\b|\.mjs\b|\.tsx?\b|\.py\b|\.sh\b|\.rs\b|\bspec-folder\b|\bargparse\b|graph-metadata/.test(taskLower);
   const webflow = /src\/2_javascript|\bwebflow\b|\.webflow\b|--vw-/.test(taskLower);
   if (opencode && webflow) return 'MIXED';
   if (opencode) return 'OPENCODE';
@@ -363,14 +363,23 @@ function detectSurface(taskLower) {
 // is one language, so it needs only that language's guides — not every language
 // folder. Webflow deliberately has no sub-detection (a frontend task spans
 // css + html + js together).
-const OPENCODE_LANGUAGES = ['typescript', 'python', 'shell', 'config', 'javascript'];
-function detectOpencodeLanguage(taskLower) {
-  if (/\.tsx?\b/.test(taskLower)) return 'typescript';
-  if (/\.py\b|argparse/.test(taskLower)) return 'python';
-  if (/\.sh\b|set -euo|shellcheck/.test(taskLower)) return 'shell';
-  if (/\.jsonc?\b|graph-metadata|descriptor|spec-folder/.test(taskLower)) return 'config';
-  if (/\.cjs\b|\.mjs\b/.test(taskLower)) return 'javascript';
-  return null;
+const OPENCODE_LANGUAGES = ['typescript', 'python', 'shell', 'config', 'javascript', 'rust'];
+// Returns the SET of languages a task touches. An interop parity task legitimately
+// touches more than one (e.g. a napi-rs/WASM sidecar over a TypeScript backend must
+// load both the Rust and TypeScript standards), so selection is a set, not a single
+// first match. An empty set preserves the "no language slice" behaviour that a null
+// return used to signal. Rust is recognised by `.rs`, Cargo markers, or the
+// napi-rs/wasm-bindgen/WASI/cdylib interop vocabulary; those markers are consulted
+// here only after detectSurface has already resolved the OpenCode surface.
+function detectOpencodeLanguages(taskLower) {
+  const langs = new Set();
+  if (/\.tsx?\b/.test(taskLower)) langs.add('typescript');
+  if (/\.py\b|argparse/.test(taskLower)) langs.add('python');
+  if (/\.sh\b|set -euo|shellcheck/.test(taskLower)) langs.add('shell');
+  if (/\.jsonc?\b|graph-metadata|descriptor|spec-folder/.test(taskLower)) langs.add('config');
+  if (/\.cjs\b|\.mjs\b/.test(taskLower)) langs.add('javascript');
+  if (/\.rs\b|cargo\.toml|cargo\.lock|napi[-_]rs|wasm[-_]bindgen|\bwasi\b|\bcdylib\b/.test(taskLower)) langs.add('rust');
+  return langs;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -437,10 +446,11 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
   let surface;
   if (hasSurfaceLayout) {
     surface = detectSurface(taskLower);
-    // Within OpenCode, slice further to the detected language so a TypeScript task
-    // does not also pull the Python/shell/config guides. Non-language OpenCode
+    // Within OpenCode, slice further to the touched-language set so a TypeScript task
+    // does not also pull the Python/shell/config guides, while an interop task that
+    // touches both Rust and TypeScript keeps both trios. Non-language OpenCode
     // folders (e.g. `shared/`) are always kept.
-    const ocLang = surface === 'OPENCODE' ? detectOpencodeLanguage(taskLower) : null;
+    const ocLangs = surface === 'OPENCODE' ? detectOpencodeLanguages(taskLower) : new Set();
     resources = resources.filter((r) => {
       if (r.includes('/assets/')) return false;
       const rs = resourceSurface(r);
@@ -448,9 +458,9 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
       if (surface === 'MIXED') return true;
       if (surface === 'UNKNOWN') return false;
       if (rs !== surface) return false;
-      if (ocLang) {
+      if (ocLangs.size) {
         const m = /^code-opencode\/references\/([^/]+)\//.exec(r);
-        if (m && OPENCODE_LANGUAGES.includes(m[1]) && m[1] !== ocLang) return false;
+        if (m && OPENCODE_LANGUAGES.includes(m[1]) && !ocLangs.has(m[1])) return false;
       }
       return true;
     });
