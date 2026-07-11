@@ -6,10 +6,10 @@
   "traceMode": "live",
   "targetSkill": {
     "id": "code-opencode",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0032-018-followup/.opencode/skills/sk-code/code-opencode"
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/code-opencode"
   },
   "verdict": "PASS",
-  "aggregateScore": 84,
+  "aggregateScore": 82,
   "gate": {
     "d5Score": 100,
     "gateFailed": false,
@@ -30,7 +30,12 @@
     "D1inter": {
       "points": 12,
       "score": null,
-      "status": "unscored-mode-a"
+      "applicable": false,
+      "status": "excluded-by-design",
+      "reason": "advisor-invisible surface bundled by advisor identity sk-code",
+      "delegatedMeasure": {
+        "targetSkill": "sk-code"
+      }
     },
     "D1intra": {
       "points": 13,
@@ -42,7 +47,7 @@
     },
     "D3": {
       "points": 15,
-      "score": 47
+      "score": 42
     },
     "D4": {
       "points": 25,
@@ -56,8 +61,10 @@
     }
   },
   "unscoredDimensions": [
-    "D1inter",
     "D4"
+  ],
+  "excludedDimensions": [
+    "D1inter"
   ],
   "advisorySignals": {
     "D4_task_outcome": {
@@ -166,286 +173,7 @@
   "lintFindings": [],
   "scenarioRows": [
     {
-      "scenarioId": "OC-001",
-      "tier": "live",
-      "dims": {
-        "d1intra": {
-          "score": 1,
-          "intentRecall": 0,
-          "resourceRecall": 1,
-          "negative": false,
-          "liveResourceOnly": true
-        },
-        "commandRecipe": {
-          "applicable": false,
-          "valid": true,
-          "firstFailingStage": null,
-          "firstFailingSubcheck": null,
-          "missReasons": []
-        },
-        "d2": {
-          "score": 1,
-          "proxy": "router-replay-recall",
-          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
-        },
-        "d3": {
-          "score": 0.6,
-          "routedCount": 5,
-          "wastedCount": 2,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
-        },
-        "assetRecall": {
-          "score": null,
-          "note": "no expected assets for this scenario"
-        },
-        "d1inter": {
-          "score": null,
-          "unscored": "no advisor probe (run with --advisor-mode=python)"
-        },
-        "d4": {
-          "score": null,
-          "unscored": "requires skill-on/off ablation (live mode)"
-        },
-        "modePrecision": {
-          "score": null,
-          "expectedMode": null,
-          "observedMode": null,
-          "advisory": true,
-          "unscored": "fixture carries no expected.mode"
-        },
-        "relativeRanking": {
-          "score": null,
-          "pass": null,
-          "targetRank": null,
-          "violatingSkills": [],
-          "checkedSkillIds": [],
-          "ranks": {},
-          "advisory": true,
-          "unscored": "fixture carries no rankBelowSkillIds"
-        },
-        "hubRoute": {
-          "applicable": false,
-          "pass": true
-        },
-        "toolSurface": {
-          "applicable": false,
-          "pass": true,
-          "firstFailingStage": null,
-          "violations": []
-        }
-      },
-      "firstFailingStage": null,
-      "modeAScore": 88,
-      "applicable": true,
-      "recipeCapped": false,
-      "classKind": "routing",
-      "expectedSurface": null,
-      "observedSurface": "OPENCODE",
-      "surfaceMatch": null,
-      "traceMode": "live",
-      "liveEvidence": {
-        "eventCount": 6,
-        "activated": false,
-        "toolCalls": [
-          "read"
-        ],
-        "observedReads": [
-          "code-opencode/SKILL.md"
-        ],
-        "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"typescript\", \"resources\": [\"references/shared/universal_patterns.md\", \"references/shared/code_organization.md\", \"references/typescript/style_guide.md\", \"references/typescript/quality_standards.md\", \"references/typescript/quick_reference.md\"], \"assets\":"
-      },
-      "routeTelemetry": null
-    },
-    {
       "scenarioId": "OC-002",
-      "tier": "live",
-      "dims": {
-        "d1intra": {
-          "score": 1,
-          "intentRecall": 0,
-          "resourceRecall": 1,
-          "negative": false,
-          "liveResourceOnly": true
-        },
-        "commandRecipe": {
-          "applicable": false,
-          "valid": true,
-          "firstFailingStage": null,
-          "firstFailingSubcheck": null,
-          "missReasons": []
-        },
-        "d2": {
-          "score": 1,
-          "proxy": "router-replay-recall",
-          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
-        },
-        "d3": {
-          "score": 0.6,
-          "routedCount": 5,
-          "wastedCount": 2,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
-        },
-        "assetRecall": {
-          "score": null,
-          "note": "no expected assets for this scenario"
-        },
-        "d1inter": {
-          "score": null,
-          "unscored": "no advisor probe (run with --advisor-mode=python)"
-        },
-        "d4": {
-          "score": null,
-          "unscored": "requires skill-on/off ablation (live mode)"
-        },
-        "modePrecision": {
-          "score": null,
-          "expectedMode": null,
-          "observedMode": null,
-          "advisory": true,
-          "unscored": "fixture carries no expected.mode"
-        },
-        "relativeRanking": {
-          "score": null,
-          "pass": null,
-          "targetRank": null,
-          "violatingSkills": [],
-          "checkedSkillIds": [],
-          "ranks": {},
-          "advisory": true,
-          "unscored": "fixture carries no rankBelowSkillIds"
-        },
-        "hubRoute": {
-          "applicable": false,
-          "pass": true
-        },
-        "toolSurface": {
-          "applicable": false,
-          "pass": true,
-          "firstFailingStage": null,
-          "violations": []
-        }
-      },
-      "firstFailingStage": null,
-      "modeAScore": 88,
-      "applicable": true,
-      "recipeCapped": false,
-      "classKind": "routing",
-      "expectedSurface": null,
-      "observedSurface": "OPENCODE",
-      "surfaceMatch": null,
-      "traceMode": "live",
-      "liveEvidence": {
-        "eventCount": 6,
-        "activated": false,
-        "toolCalls": [
-          "read"
-        ],
-        "observedReads": [
-          "code-opencode/SKILL.md"
-        ],
-        "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"python\", \"resources\": [\"references/shared/universal_patterns.md\", \"references/shared/code_organization.md\", \"references/python/style_guide.md\", \"references/python/quality_standards.md\", \"references/python/quick_reference.md\"], \"assets\": [\"assets/checkl"
-      },
-      "routeTelemetry": null
-    },
-    {
-      "scenarioId": "OC-003",
-      "tier": "live",
-      "dims": {
-        "d1intra": {
-          "score": 1,
-          "intentRecall": 0,
-          "resourceRecall": 1,
-          "negative": false,
-          "liveResourceOnly": true
-        },
-        "commandRecipe": {
-          "applicable": false,
-          "valid": true,
-          "firstFailingStage": null,
-          "firstFailingSubcheck": null,
-          "missReasons": []
-        },
-        "d2": {
-          "score": 1,
-          "proxy": "router-replay-recall",
-          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
-        },
-        "d3": {
-          "score": 0.4285714285714286,
-          "routedCount": 7,
-          "wastedCount": 4,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
-        },
-        "assetRecall": {
-          "score": null,
-          "note": "no expected assets for this scenario"
-        },
-        "d1inter": {
-          "score": null,
-          "unscored": "no advisor probe (run with --advisor-mode=python)"
-        },
-        "d4": {
-          "score": null,
-          "unscored": "requires skill-on/off ablation (live mode)"
-        },
-        "modePrecision": {
-          "score": null,
-          "expectedMode": null,
-          "observedMode": null,
-          "advisory": true,
-          "unscored": "fixture carries no expected.mode"
-        },
-        "relativeRanking": {
-          "score": null,
-          "pass": null,
-          "targetRank": null,
-          "violatingSkills": [],
-          "checkedSkillIds": [],
-          "ranks": {},
-          "advisory": true,
-          "unscored": "fixture carries no rankBelowSkillIds"
-        },
-        "hubRoute": {
-          "applicable": false,
-          "pass": true
-        },
-        "toolSurface": {
-          "applicable": false,
-          "pass": true,
-          "firstFailingStage": null,
-          "violations": []
-        }
-      },
-      "firstFailingStage": null,
-      "modeAScore": 82,
-      "applicable": true,
-      "recipeCapped": false,
-      "classKind": "routing",
-      "expectedSurface": null,
-      "observedSurface": "OPENCODE",
-      "surfaceMatch": null,
-      "traceMode": "live",
-      "liveEvidence": {
-        "eventCount": 6,
-        "activated": false,
-        "toolCalls": [
-          "read"
-        ],
-        "observedReads": [
-          "code-opencode/SKILL.md"
-        ],
-        "statedRoutingParsed": true,
-        "responseHead": "```json\n{\n  \"surface\": \"OPENCODE\",\n  \"subLanguage\": \"shell\",\n  \"resources\": [\n    \"references/shell/style_guide.md\",\n    \"references/shell/quality_standards.md\",\n    \"references/shell/quick_reference.md\",\n    \"references/shared/universal_patterns.md\",\n    \"references/shared/code_organization.md\",\n  "
-      },
-      "routeTelemetry": null
-    },
-    {
-      "scenarioId": "OC-009",
       "tier": "live",
       "dims": {
         "d1intra": {
@@ -533,7 +261,286 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"Rust\", \"resources\": [\"references/shared/universal_patterns.md\", \"references/shared/code_organization.md\", \"references/rust/style_guide.md\", \"references/rust/quality_standards.md\", \"references/rust/quick_reference.md\", \"references/typescript/style_guide"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"python\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "OC-009",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5862068965517242,
+          "routedCount": 29,
+          "wastedCount": 12,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 87,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-opencode/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"rust\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/s"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "OC-003",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5454545454545454,
+          "routedCount": 11,
+          "wastedCount": 5,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 86,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-opencode/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"shell\", \"resources\": [\"references/shell/style_guide/overview-structure-and-naming.md\", \"references/shell/style_guide/variables-functions-and-output.md\", \"references/shell/quality_standards/overview-and-priority-blockers.md\", \"references/shell/quality_s"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "OC-001",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5833333333333333,
+          "routedCount": 12,
+          "wastedCount": 5,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 87,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-opencode/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"TypeScript\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"refere"
       },
       "routeTelemetry": null
     },
@@ -561,9 +568,9 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.6,
-          "routedCount": 5,
-          "wastedCount": 2,
+          "score": 0.375,
+          "routedCount": 8,
+          "wastedCount": 5,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -608,7 +615,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 88,
+      "modeAScore": 80,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -617,17 +624,16 @@
       "surfaceMatch": null,
       "traceMode": "live",
       "liveEvidence": {
-        "eventCount": 9,
+        "eventCount": 6,
         "activated": false,
         "toolCalls": [
-          "read",
           "read"
         ],
         "observedReads": [
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"config\", \"resources\": [\"references/shared/universal_patterns.md\", \"references/shared/code_organization.md\", \"references/config/style_guide.md\", \"references/config/quality_standards.md\", \"references/config/quick_reference.md\"], \"assets\": [\"assets/checkl"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"config\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references"
       },
       "routeTelemetry": null
     },
@@ -655,9 +661,9 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.33333333333333337,
-          "routedCount": 3,
-          "wastedCount": 2,
+          "score": 0.16666666666666663,
+          "routedCount": 6,
+          "wastedCount": 5,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -702,7 +708,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 79,
+      "modeAScore": 74,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -720,7 +726,100 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns.md\", \"references/shared/code_organization.md\", \"references/shared/hooks.md\"], \"assets\": [], \"agent\": \"none\", \"disambiguation\": false}\n```"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/s"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "OC-007",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 5,
+          "wastedCount": 5,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 69,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": false,
+        "toolCalls": [
+          "read"
+        ],
+        "observedReads": [
+          "code-opencode/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/s"
       },
       "routeTelemetry": null
     },
@@ -749,7 +848,7 @@
         },
         "d3": {
           "score": 1,
-          "routedCount": 2,
+          "routedCount": 5,
           "wastedCount": 0,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
@@ -813,100 +912,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns.md\", \"references/shared/code_organization.md\"], \"assets\": [\"assets/checklists/skill_authoring.md\", \"assets/checklists/command_authoring.md\", \"assets/checklists/mcp_server_authoring.md\", \"assets"
-      },
-      "routeTelemetry": null
-    },
-    {
-      "scenarioId": "OC-007",
-      "tier": "live",
-      "dims": {
-        "d1intra": {
-          "score": 1,
-          "intentRecall": 0,
-          "resourceRecall": 1,
-          "negative": false,
-          "liveResourceOnly": true
-        },
-        "commandRecipe": {
-          "applicable": false,
-          "valid": true,
-          "firstFailingStage": null,
-          "firstFailingSubcheck": null,
-          "missReasons": []
-        },
-        "d2": {
-          "score": 1,
-          "proxy": "router-replay-recall",
-          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
-        },
-        "d3": {
-          "score": 0,
-          "routedCount": 2,
-          "wastedCount": 2,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
-        },
-        "assetRecall": {
-          "score": null,
-          "note": "no expected assets for this scenario"
-        },
-        "d1inter": {
-          "score": null,
-          "unscored": "no advisor probe (run with --advisor-mode=python)"
-        },
-        "d4": {
-          "score": null,
-          "unscored": "requires skill-on/off ablation (live mode)"
-        },
-        "modePrecision": {
-          "score": null,
-          "expectedMode": null,
-          "observedMode": null,
-          "advisory": true,
-          "unscored": "fixture carries no expected.mode"
-        },
-        "relativeRanking": {
-          "score": null,
-          "pass": null,
-          "targetRank": null,
-          "violatingSkills": [],
-          "checkedSkillIds": [],
-          "ranks": {},
-          "advisory": true,
-          "unscored": "fixture carries no rankBelowSkillIds"
-        },
-        "hubRoute": {
-          "applicable": false,
-          "pass": true
-        },
-        "toolSurface": {
-          "applicable": false,
-          "pass": true,
-          "firstFailingStage": null,
-          "violations": []
-        }
-      },
-      "firstFailingStage": null,
-      "modeAScore": 69,
-      "applicable": true,
-      "recipeCapped": false,
-      "classKind": "routing",
-      "expectedSurface": null,
-      "observedSurface": "OPENCODE",
-      "surfaceMatch": null,
-      "traceMode": "live",
-      "liveEvidence": {
-        "eventCount": 6,
-        "activated": false,
-        "toolCalls": [
-          "read"
-        ],
-        "observedReads": [
-          "code-opencode/SKILL.md"
-        ],
-        "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns.md\", \"references/shared/code_organization.md\"], \"assets\": [\"assets/checklists/universal_checklist.md\", \"assets/checklists/javascript_checklist.md\", \"assets/checklists/typescript_checklist.md\", "
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/s"
       },
       "routeTelemetry": null
     },
@@ -934,9 +940,9 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.33333333333333337,
-          "routedCount": 3,
-          "wastedCount": 2,
+          "score": 0.16666666666666663,
+          "routedCount": 6,
+          "wastedCount": 5,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -981,7 +987,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 79,
+      "modeAScore": 74,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -999,7 +1005,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns.md\", \"references/shared/code_organization.md\", \"references/shared/alignment_verification_automation.md\"], \"assets\": [\"assets/scripts/README.md\"], \"agent\": \"none\", \"disambiguation\": false}\n```"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/s"
       },
       "routeTelemetry": null
     }

@@ -2,7 +2,7 @@
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-b-live` · trace mode: `live`.
 
-**Verdict: PASS** · aggregate 84/100
+**Verdict: PASS** · aggregate 82/100
 
 ## Coverage
 
@@ -13,14 +13,16 @@
 
 | Dimension | Weight | Score |
 | --------- | ------ | ----- |
-| D1 inter (advisor) | 12pts | _unscored-mode-a_ |
+| D1 inter (advisor) | 12pts | _excluded-by-design_ |
 | D1 intra (router) | 13pts | 100/100 |
 | D2 discovery | 20pts | 100/100 |
-| D3 efficiency | 15pts | 47/100 |
+| D3 efficiency | 15pts | 42/100 |
 | D4 usefulness | 25pts | _unscored-mode-a_ |
 | D5 connectivity (hard gate) | 15pts | 100/100 |
 
-_Unscored in this run (need live mode): D1inter, D4._
+_Unscored in this run (need live mode): D4._
+
+_Excluded by design (structurally N/A, not a gap): D1inter — advisor-invisible surface bundled by advisor identity sk-code (measured via sk-code)._
 
 ### Advisory signals (NOT in the weighted aggregate)
 
@@ -39,15 +41,15 @@ _None._
 
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
-| OC-001 | routing | 88/100 | passed |
-| OC-002 | routing | 88/100 | passed |
-| OC-003 | routing | 82/100 | passed |
-| OC-009 | routing | 80/100 | passed |
-| OC-004 | routing | 88/100 | passed |
-| OC-005 | routing | 79/100 | passed |
-| OC-006 | routing | 100/100 | passed |
+| OC-002 | routing | 80/100 | passed |
+| OC-009 | routing | 87/100 | passed |
+| OC-003 | routing | 86/100 | passed |
+| OC-001 | routing | 87/100 | passed |
+| OC-004 | routing | 80/100 | passed |
+| OC-005 | routing | 74/100 | passed |
 | OC-007 | routing | 69/100 | passed |
-| OC-008 | routing | 79/100 | passed |
+| OC-006 | routing | 100/100 | passed |
+| OC-008 | routing | 74/100 | passed |
 
 ## Methodology / caveats
 
