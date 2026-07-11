@@ -51,9 +51,12 @@ run_check() {
     fi
 
     local mismatch_count parse_error_count actual_path details
-    mismatch_count=$(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); console.log((data.mismatches || []).length);' 2>/dev/null || printf '0')
-    parse_error_count=$(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); console.log((data.parseErrors || []).length);' 2>/dev/null || printf '0')
-    actual_path=$(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); console.log(data.actualPacketId || "unknown");' 2>/dev/null || printf 'unknown')
+    # process.stdout.write(String(...)) keeps the captured value color-free so a
+    # FORCE_COLOR environment cannot inject ANSI codes into these numeric/string
+    # values and corrupt the [[ -eq ]] comparisons below.
+    mismatch_count=$(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); process.stdout.write(String((data.mismatches || []).length));' 2>/dev/null || printf '0')
+    parse_error_count=$(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); process.stdout.write(String((data.parseErrors || []).length));' 2>/dev/null || printf '0')
+    actual_path=$(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); process.stdout.write(String(data.actualPacketId || "unknown"));' 2>/dev/null || printf 'unknown')
     if [[ "$parse_error_count" -gt 0 ]]; then
         while IFS= read -r details; do
             [[ -n "$details" ]] && RULE_DETAILS+=("$details")
