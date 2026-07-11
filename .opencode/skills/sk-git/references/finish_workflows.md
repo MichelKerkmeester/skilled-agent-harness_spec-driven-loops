@@ -8,9 +8,11 @@ trigger_phrases:
   - "worktree cleanup after merge"
   - "create github release tag"
   - "discard failed experiment branch"
+  - "pushed work not visible in main checkout"
+  - "reconcile primary checkout after worktree push"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.16
+version: 1.1.0.17
 ---
 
 # Git Finish - Detailed Workflow Reference
@@ -318,6 +320,50 @@ echo "No worktree cleanup needed."
 
 **Validation**: `worktree_cleaned`
 
+### Step 5b: Reconcile the Primary Checkout (detached / worktree push to a shared branch)
+
+**Purpose**: Prevent the "invisible work" trap when work is finished by pushing a **detached HEAD or an isolated worktree** onto a shared long-lived branch (e.g. a short-lived agent worktree finishing onto an integration branch that the operator's main tree also tracks).
+
+**The trap**: `git push origin HEAD:<branch>` advances the *remote* `<branch>` but does **NOT** move the local `<branch>` ref that another working tree — usually the operator's primary checkout — has checked out. The pushed folder is safe on origin, yet does not appear in that checkout's editor until it runs a separate sync. Nothing is lost; the work is only invisible, which reads as "my push disappeared."
+
+**Applies to**: Option 2 (Push and Create PR) and any finish that ends in `git push origin HEAD:<branch>` from a detached HEAD or a linked worktree. It is a post-push reconciliation, not a fifth menu choice — the Step 3 menu stays at 4 options.
+
+**Actions**:
+
+```bash
+# 1. Rebase the worktree's own commits onto the CURRENT shared tip (avoid non-ff),
+#    then push. Never --force a shared branch.
+git fetch origin <branch>
+git rebase origin/<branch>          # replays ONLY your local worktree commits
+git push origin HEAD:<branch>
+
+# 2. MANDATORY: check whether the PRIMARY checkout of <branch> now contains the push.
+#    The primary checkout is the tree the operator actually looks at (often the repo root).
+git -C <primary-worktree> rev-parse HEAD
+git -C <primary-worktree> merge-base --is-ancestor <pushed-sha> HEAD \
+  && echo "primary already has the work" \
+  || echo "primary is BEHIND — work is on origin but not yet visible here"
+```
+
+**Reconcile — or state why you cannot**:
+
+- **Primary tree clean and fast-forwardable** → offer to sync it, then confirm the folder appears:
+  ```bash
+  git -C <primary-worktree> merge --ff-only origin/<branch>
+  ```
+- **Primary tree dirty, diverged, or owned by a concurrent session** → **DO NOT** stash / rebase / reset it. A live session mid-sync (its own stash on the stack, its HEAD moving between commands) must be left alone — forcing a sync there risks orphaning its autostash (SKILL.md ALWAYS #14) or clobbering its in-flight commits. Report plainly and stop:
+  ```text
+  Your work is on origin as <sha> (branch <branch>). It is not yet in your
+  main checkout because that tree is <dirty / diverged / has a concurrent
+  session running>. From a clean tree, sync with:
+    git pull --rebase
+  or, if you have uncommitted work to preserve:
+    git stash && git rebase origin/<branch> && git stash pop
+  ```
+- **A concurrent session is actively converging** (its HEAD advances between two `rev-parse` reads, or origin already contains your push) → the sync often completes on its own; verify with a re-read and report that the work has landed, rather than intervening.
+
+**Validation**: `primary_checkout_reconciled`
+
 ### Step 6: Create Release (Optional)
 
 **Purpose**: Create an annotated git tag AND a GitHub release with formatted release notes. This step runs only when the user explicitly asks for a release.
@@ -454,6 +500,11 @@ echo "No worktree cleanup needed."
 - **Problem**: Merged code breaks tests even though feature tests passed
 - **Fix**: Run tests again after merge in Option 1
 - **Detection**: After merge → verify test command runs again
+
+**Pushed from a worktree, work invisible in the main checkout**:
+- **Problem**: Work committed in a detached/worktree HEAD is pushed with `git push origin HEAD:<branch>`; it lands on origin but the operator's primary checkout still shows the old tree, so the folder looks lost.
+- **Fix**: Run the Step 5b reconciliation — verify the primary checkout contains the pushed commit; if not, fast-forward it when clean, or hand over the sync recipe when it is dirty/diverged/live. Never force-sync a concurrent session's tree.
+- **Detection**: After `git push origin HEAD:<branch>`, if the current HEAD is detached or in a worktree → the local `<branch>` ref elsewhere did not move; check and report before claiming the user will see the work.
 
 ---
 
