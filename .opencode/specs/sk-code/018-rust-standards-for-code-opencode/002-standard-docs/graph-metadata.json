@@ -17,7 +17,10 @@
       "018 phase 002 plan",
       "rust standard docs plan",
       "018 phase 002 tasks",
-      "rust standard docs checklist"
+      "rust standard docs checklist",
+      "018 rust standard docs summary",
+      "rust trio checklist playbook outcome",
+      "rust standard docs complete"
     ],
     "key_topics": [
       "phase",
@@ -36,11 +39,47 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/sk-code/code-opencode/references/rust/style_guide.md",
+      ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards.md",
+      ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference.md",
+      ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist.md",
+      ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language-standards/004-rust-standards.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "style_guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality_standards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "rust_checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "004-rust-standards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language-standards/004-rust-standards.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,6 +99,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -72,7 +117,7 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
+        "name": "Wire Rust",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -120,12 +165,6 @@
         "source": "derived"
       },
       {
-        "name": "Key Decision Interop",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -144,33 +183,35 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "authoring",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The research produced a complete Rust standard (section skeletons, consolidated rules, the four repo non-negotiables) but nothing is authored yet",
     "created_at": "2026-07-11T08:49:16.490Z",
-    "last_save_at": "2026-07-11T08:53:41.538Z",
+    "last_save_at": "2026-07-11T09:37:46.494Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3c1148271918ab9d9dbef69c5d1d0a84a7e04e88a7739d9ff1e04bff5e96d42",
+    "source_fingerprint": "sha256:d399f96d2832986fbbe838ea0c56b0509d35ff00f8df8ba7b083e1f32510fabd",
     "source_doc_hashes": {
-      "spec.md": "ba170be024b7afe283c1d74adadc8fee93be6d1452abc9676282425258d3eef0",
-      "plan.md": "a2c2ca03eec65d72ae087f35911c0e2d1a6ea439b01a00214b53a160c842edfd",
-      "tasks.md": "d442ddf44ebc14f5a924cef7c4718973b32400e50dc9f0929d7073817b594d02"
+      "spec.md": "90f5ec4ea6b6ba12e11e53aed394888f7dfa6a29b2a8f28f457f9776426f3ac6",
+      "plan.md": "45fd7bb1ff5e26920a26e27e2e94fbbbec040ddb6a645498b9df0e83a3fc30e5",
+      "tasks.md": "293ced76d19aa4db6d17cf682573dcffc6fba44b30ebd1bec3490e1f7355d05f",
+      "implementation-summary.md": "857089d01fbfda678cf217af17debf936269824265bf23fe3b254d399335df39"
     },
     "last_active_child_id": null,
     "last_active_at": null
