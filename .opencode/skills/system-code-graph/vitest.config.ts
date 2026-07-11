@@ -13,6 +13,7 @@ export default defineConfig({
     include: [
       '.opencode/skills/system-code-graph/mcp_server/tests/**/*.{vitest,test}.ts',
       '.opencode/skills/system-code-graph/mcp_server/stress_test/code-graph/**/*.{vitest,test}.ts',
+      '.opencode/skills/system-code-graph/runtime/**/*.{vitest,test}.ts',
     ],
     exclude: ['node_modules', 'dist'],
     globals: false,
