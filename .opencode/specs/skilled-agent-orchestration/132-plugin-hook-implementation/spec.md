@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-plugin-hook-implementation"
-    last_updated_at: "2026-07-11T06:21:18.096Z"
+    last_updated_at: "2026-07-11T13:12:24Z"
     last_updated_by: "spec-author"
     recent_action: "Authored phase-parent root purpose, phase-documentation map, and handoff criteria"
     next_safe_action: "Begin phase 001 (CLI Dispatch Audit Trail), the foundation after-hook pattern"
@@ -119,6 +119,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | 7 | 007-speckit-completion-exposer/ | Read-only spec completion-state tool via the unused OpenCode `tool.register` surface, over a shared completion-state core. | Planned |
 | 8 | 008-plugin-state-cleanup/ | State-hygiene remediation: adds auto-cleanup to the two plugin state dirs that lacked it (completion-sentinel dedup sweep/prune, smart-router-telemetry size-cap rotation), matching the bounded pattern the other guards already use. | Planned |
 
+| 9 | 009-plugin-manual-testing-playbooks/ | [Phase 9 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -138,6 +139,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | 005-mcp-route-guard | 006-spec-mutation-gate | Warn-only MCP guard shipped; manifest-strict-vs-broad fork resolved by operator | 005 table-driven normalization tests green |
 | 006-spec-mutation-gate | 007-speckit-completion-exposer | Spec Mutation Gate shipped classify+advise with enforce default-off; false-positive corpus recorded before any enforce flip | 006 golden-loop vitest green; fail-open assertions pass |
 | 007-speckit-completion-exposer | 008-plugin-state-cleanup | The plugin/hook pairs are shipped; their per-session state dirs are the cleanup target | 008 sentinel-sweep + telemetry-rotation tests green |
+| 008-plugin-state-cleanup | 009-plugin-manual-testing-playbooks | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
