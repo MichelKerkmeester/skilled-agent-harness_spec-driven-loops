@@ -1,0 +1,15 @@
+{
+  "executors": [
+    {
+      "label": "gpt55xhigh",
+      "kind": "cli-codex",
+      "model": "gpt-5.5",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "fast",
+      "iterations": 20,
+      "count": 1,
+      "timeoutSeconds": 5400
+    }
+  ],
+  "concurrency": 1
+}

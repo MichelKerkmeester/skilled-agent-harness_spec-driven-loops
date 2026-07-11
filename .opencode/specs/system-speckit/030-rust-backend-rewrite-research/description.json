@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/030-rust-backend-rewrite-research",
+  "description": "Phase parent for a deep-research investigation into whether, where, and how the system-spec-kit code backend would benefit from a Rust rewrite",
+  "keywords": [
+    "rust",
+    "rewrite",
+    "backend",
+    "speckit",
+    "typescript",
+    "deep",
+    "research",
+    "mcp_server",
+    "shared",
+    "native",
+    "performance",
+    "feasibility"
+  ],
+  "lastUpdated": "2026-07-11T00:00:00.000Z",
+  "specId": "030",
+  "folderSlug": "rust-backend-rewrite-research",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
