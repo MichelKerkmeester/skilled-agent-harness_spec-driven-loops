@@ -226,7 +226,7 @@ cli_skill_diagnostics:
     install_script_mutation_class: mutating  # installer: pipx/pip install of cupt
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; token presence check
-    install_guide: ".opencode/skills/mcp-tooling/mcp-click-up/INSTALL_GUIDE.md"
+    install_guide: ".opencode/skills/mcp-tooling/mcp-click-up/references/install_guide.md"
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: CONFIG TEMPLATES

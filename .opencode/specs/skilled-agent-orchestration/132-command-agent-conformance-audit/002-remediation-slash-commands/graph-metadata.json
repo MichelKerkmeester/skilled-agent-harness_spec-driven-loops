@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 001 deep-research packet (15 iterations, 3 model batches) confirmed 12 command-surface defects still present on disk as of 2026-07-10: a copy-pasted singular-path typo (`CMD-02`) breaks 10 create-family YAMLs' agent-path resolution; the speckit family interpolates a `[runtimeagentpath]` token with zero resolution definition anywhere in the repo (`CMD-01`); the create family still targets two agents retired in commit `dde19822df` (`speckit.md` in `CMD-03`, `write.md` in `CMD-04`); five `/design` commands advertise a nonexistent slash command (`CMD-07`); and the root `agentrouter.md`",
     "created_at": "2026-07-10T18:53:44Z",
-    "last_save_at": "2026-07-11T06:58:14.310Z",
+    "last_save_at": "2026-07-11T07:41:17.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11112cb4ba2f0c979c83f07924c4f27c4fef068d482f6e06dd1c96d0ef3395b9",
+    "source_fingerprint": "sha256:4011f948c204751fd497a32c0310b8d6f8d88f0b2c9a79009cd6eff9f0c5b7fe",
     "source_doc_hashes": {
       "spec.md": "3598c314a0129e435d078ae60e59fef522132df8c44b6a8f23797698e349a050",
       "plan.md": "cc2814fef4f49506515f1ec700c298a0988791e46aab3f29ab81c48162461ca3",
       "tasks.md": "142f6e1aa3d127d26bf6c98cf1332bdab338b8198778bd779b09be43f9b1b17e",
       "checklist.md": "1064d8cff9227e0801332fdd81caf4106ad38e17f722f897c7bc6657a63ab6d9",
-      "implementation-summary.md": "be62d65083740c7d98f0e961697b9bb591332545f8b3b44cf89eb5796bd97d49"
+      "implementation-summary.md": "f4dbdf086e9170474ba1227a583d9489afcea5775e726f966612c2684d0067c4"
     },
     "last_active_child_id": null,
     "last_active_at": null
