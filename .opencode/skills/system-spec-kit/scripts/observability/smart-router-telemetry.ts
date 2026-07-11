@@ -54,6 +54,9 @@ const TIER_PREFIXES: Record<string, ResourceTier> = {
 
 const TELEMETRY_PATH_ENV = 'SPECKIT_SMART_ROUTER_TELEMETRY_PATH';
 const TELEMETRY_DIR_ENV = 'SPECKIT_SMART_ROUTER_TELEMETRY_DIR';
+const TELEMETRY_MAX_BYTES_ENV = 'SPECKIT_SMART_ROUTER_TELEMETRY_MAX_BYTES';
+const TELEMETRY_BACKUP_SUFFIX = '.1';
+const DEFAULT_TELEMETRY_MAX_BYTES = 1024 * 1024; // 1 MiB
 
 type ComplianceInput = Omit<ComplianceRecord, 'complianceClass' | 'timestamp' | 'evidenceSource'> & {
   evidenceSource?: TelemetryEvidenceSource;
@@ -145,7 +148,7 @@ function locateRepoRoot(startDir: string): string {
   let current = path.resolve(startDir);
 
   while (true) {
-    if (fs.existsSync(path.join(current, '.opencode', 'skill'))) {
+    if (fs.existsSync(path.join(current, '.opencode', 'skills'))) {
       return current;
     }
 
@@ -173,18 +176,50 @@ export function telemetryFilePath(outputPath?: string): string {
   }
 
   const repoRoot = locateRepoRoot(process.cwd());
-  return path.join(repoRoot, '.opencode', 'skill', '.smart-router-telemetry', 'compliance.jsonl');
+  return path.join(repoRoot, '.opencode', 'skills', '.smart-router-telemetry', 'compliance.jsonl');
+}
+
+function positiveIntFromEnv(envName: string, fallback: number): number {
+  const raw = Number(process.env[envName]);
+  return Number.isFinite(raw) && raw > 0 ? Math.trunc(raw) : fallback;
+}
+
+// Rotates the telemetry file to a single backup generation when appending
+// would push it past the size cap, so the file never grows unbounded while
+// still preserving the most recent prior generation (never deleted outright).
+// Dependency-light rename, matching the mk-dist-freshness-guard / spec-gate
+// log-rotation idiom. Any failure here (e.g. a concurrent writer, an
+// unwritable backup target) is swallowed so the caller still appends the
+// record -- rotation is a best-effort space bound, never a reason to drop
+// observability data.
+function rotateTelemetryFileIfNeeded(resolvedOutputPath: string, incomingBytes: number): void {
+  try {
+    const stats = fs.statSync(resolvedOutputPath);
+    const maxBytes = positiveIntFromEnv(TELEMETRY_MAX_BYTES_ENV, DEFAULT_TELEMETRY_MAX_BYTES);
+    if (stats.size + incomingBytes <= maxBytes) {
+      return;
+    }
+
+    const backupPath = `${resolvedOutputPath}${TELEMETRY_BACKUP_SUFFIX}`;
+    try {
+      fs.unlinkSync(backupPath);
+    } catch {
+      // A prior backup generation is optional.
+    }
+    fs.renameSync(resolvedOutputPath, backupPath);
+  } catch {
+    // Absent/unreadable file needs no rotation; a rotation error must still
+    // let the append below through untouched.
+  }
 }
 
 function appendJsonl(record: ComplianceRecord, outputPath?: string): void {
   try {
     const resolvedOutputPath = telemetryFilePath(outputPath);
     fs.mkdirSync(path.dirname(resolvedOutputPath), { recursive: true });
-    fs.appendFileSync(
-      resolvedOutputPath,
-      `${JSON.stringify(record)}\n`,
-      'utf8'
-    );
+    const line = `${JSON.stringify(record)}\n`;
+    rotateTelemetryFileIfNeeded(resolvedOutputPath, Buffer.byteLength(line, 'utf8'));
+    fs.appendFileSync(resolvedOutputPath, line, 'utf8');
   } catch {
     // Observe-only: telemetry must never alter caller behavior.
   }

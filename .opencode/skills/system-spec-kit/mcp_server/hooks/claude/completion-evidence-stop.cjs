@@ -62,6 +62,17 @@ function readLastSpecFolder(cwd, sessionId) {
 async function main() {
   if (process.env[sentinelCore.KILL_SWITCH_ENV] === '1') return approve();
 
+  // Best-effort, throttled state sweep. This hook is a short-lived process
+  // spawned fresh per Stop event, so there is no in-memory runtimeState to
+  // carry across invocations -- the core's own on-disk sweep lock (not this
+  // fresh {} object) is what actually throttles the sweep across repeated
+  // Stop events. A sweep error must never affect Stop processing below.
+  try {
+    sentinelCore.sweepStaleSentinelState(process.cwd(), {});
+  } catch (_) {
+    // Fail open.
+  }
+
   let payload;
   try {
     payload = JSON.parse(await readStdin());
