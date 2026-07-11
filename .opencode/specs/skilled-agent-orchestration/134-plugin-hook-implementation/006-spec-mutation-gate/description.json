@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/134-plugin-hook-implementation/006-spec-mutation-gate",
+  "description": "Gate 3 (\"spec folder before any file mutation\") is enforced only as prose in `CLAUDE.md` and `AGENTS.md`, so nothing stops an agent from editing repo",
+  "keywords": [
+    "gate",
+    "spec",
+    "folder",
+    "file",
+    "mutation",
+    "enforced",
+    "only",
+    "prose",
+    "claude",
+    "agents",
+    "nothing",
+    "stops",
+    "agent",
+    "editing",
+    "repo"
+  ],
+  "lastUpdated": "2026-07-11T06:25:16.146Z",
+  "specId": "006",
+  "folderSlug": "spec-mutation-gate",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-plugin-hook-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

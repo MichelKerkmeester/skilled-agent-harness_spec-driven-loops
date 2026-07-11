@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-plugin-hook-implementation/005-mcp-route-guard",
+  "spec_folder": "skilled-agent-orchestration/134-plugin-hook-implementation/005-mcp-route-guard",
+  "parent_id": "skilled-agent-orchestration/134-plugin-hook-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp route guard",
+      "code mode routing nudge",
+      "native mcp advisory",
+      "call_tool_chain warning",
+      "external mcp warn-only",
+      "mcp route guard plan",
+      "runtime-neutral guard core",
+      "code mode adapter plan",
+      "warn-only plugin architecture",
+      "utcp manifest family set",
+      "mcp route guard tasks",
+      "guard core task breakdown"
+    ],
+    "key_topics": [
+      "mcp",
+      "route",
+      "guard",
+      "code",
+      "mode",
+      "routing",
+      "nudge",
+      "native",
+      "advisory",
+      "warning",
+      "external",
+      "warn-only"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".claude/settings.json",
+      ".opencode/plugins/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+      ".opencode/skills/mcp-code-mode/scripts/install.sh",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-code-mode/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Route Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The External",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcp-code-mode` SKILL declares Code Mode MANDATORY for all external MCP tool calls (`SKILL.md:18`) because routing through `calltoolchain` gives roughly a 98% context reduction versus loading a native MCP server's full tool surface",
+    "created_at": "2026-07-11T05:51:02Z",
+    "last_save_at": "2026-07-11T06:26:51.190Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cdadfce15189aa72054196655c681659659068657ee19fa227b4f3bf0b792d29",
+    "source_doc_hashes": {
+      "spec.md": "54befa9d1065ea61f1dbd1a9bb59d844a855891792df0c76097f47e9a1b5715d",
+      "plan.md": "8e98a41467375d09e283776eca8d91d4a5835c3b9d16b1e4b7afe01d5f50518c",
+      "tasks.md": "e8fb0b13c9f0ecac940dffe9f9220e3820ace946fb5e003bcd4b6153c98e0191",
+      "checklist.md": "846b85ea39c04cfad07c4b750d2434895f0258f23b96867d64aa2b484611df21",
+      "decision-record.md": "f07ca4055415d5c89da428737379a8de2b2ad083f212fa23265bad8131b81c8d",
+      "implementation-summary.md": "a480347a00a7fa48f20510b86a6917b8661cf9cdb71fa3f11b0f51dae49506f8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

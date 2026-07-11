@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/134-plugin-hook-implementation/005-mcp-route-guard",
+  "description": "The `mcp-code-mode` SKILL declares Code Mode MANDATORY for all external MCP tool calls (`SKILL.md:18`) because routing through `calltoolchain` gives",
+  "keywords": [
+    "mcp-code-mode",
+    "skill",
+    "declares",
+    "code",
+    "mode",
+    "mandatory",
+    "external",
+    "mcp",
+    "tool",
+    "calls",
+    "because",
+    "routing",
+    "calltoolchain",
+    "gives"
+  ],
+  "lastUpdated": "2026-07-11T06:25:16.145Z",
+  "specId": "005",
+  "folderSlug": "mcp-route-guard",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-plugin-hook-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-plugin-hook-implementation/007-speckit-completion-exposer",
+  "spec_folder": "skilled-agent-orchestration/134-plugin-hook-implementation/007-speckit-completion-exposer",
+  "parent_id": "skilled-agent-orchestration/134-plugin-hook-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "completion state exposer",
+      "speckit completion tool",
+      "tool.register",
+      "check-completion json",
+      "placeholder completeness",
+      "completion state plan",
+      "tool.register plugin",
+      "completion-state core",
+      "runtime-neutral core adapters",
+      "check-completion exit-1 catch",
+      "completion state tasks",
+      "tool.register tasks"
+    ],
+    "key_topics": [
+      "completion",
+      "state",
+      "exposer",
+      "speckit",
+      "tool",
+      "register",
+      "check-completion",
+      "json",
+      "placeholder",
+      "completeness",
+      "plan",
+      "plugin"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".claude/settings.json",
+      ".opencode/plugins/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Completion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "State Exposer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "At the COMPLETION VERIFICATION gate an agent must run `check-completion.sh --json` and `calculate-completeness.sh --json` separately, then hand-merge their JSON to reason about whether a spec folder is done",
+    "created_at": "2026-07-11T05:51:04Z",
+    "last_save_at": "2026-07-11T06:26:51.770Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2586e5943ad46ae52402fe3965d46d56b302f1d9d49d887167f25fadce037a6b",
+    "source_doc_hashes": {
+      "spec.md": "d8a4938ef69d068a4deffdf54b46e0831c8aa9c2ffffa301be1b14d86ba38600",
+      "plan.md": "171bf29077eb1b601a6b07334dc85c26bae663f946615875be3c2b80a4ae997d",
+      "tasks.md": "1443681d20b7ec09b45665dc5cbd4d5ef92d8cffb74c7fabd4d48feef6182174",
+      "checklist.md": "eefe23ada59ae80e441c6a08cd51b35dadfc97697ab235a20922529e6e49a7ea",
+      "decision-record.md": "b20f7a05161dfb4339e8b364b7bd5442df997b6a2dcfdf9b47bc6613b9a80997",
+      "implementation-summary.md": "c031cdce1c18a8498097cd648428630382bd51cedbb1767faa850d7aeeb61c32"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
