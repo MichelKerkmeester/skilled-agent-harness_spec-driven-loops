@@ -87,6 +87,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - Iteration 4: Generated-ownership tracing exposed one declarative-only renderer contract and one live stale compiled-contract path; digest replay and the focused drift test supplied executable evidence.
 - Iteration 7: Producer-consumer tracing across the previously unreviewed Council and improvement packets exposed proposal-identity loss in Council convergence and an unbound autonomous Lane B promotion step.
 - Iteration 8: Security boundary tracing across Council, improvement, research, and playbook surfaces exposed unvalidated run-label interpolation in both model-benchmark shell workflows while ruling out three lower-confidence path/helper hypotheses.
+- Iteration 9: Grader-cache producer-consumer tracing exposed a missing effective-model and prompt-content identity boundary across the harness, cache, and all discovered scoring callers.
 
 ---
 
@@ -97,6 +98,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - Iteration 4: Code graph remained absent; exact search, digest replay, byte comparison, and the focused drift gate supplied graphless fallback evidence.
 - Iteration 7: Code graph remained unavailable; exact search, direct reads, and auto-vs-confirm workflow comparison supplied graphless fallback evidence.
 - Iteration 8: Code graph remained unavailable; exact search, direct reads, and producer-consumer tracing supplied graphless fallback evidence.
+- Iteration 9: Code graph remained unavailable; exact search and direct producer-consumer reads supplied graphless fallback evidence.
 
 ---
 
@@ -171,6 +173,8 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 | `runtime/scripts/compile-command-contracts.cjs` | maintainability | 4 | R4-P1-002 | reviewed |
 | `runtime/scripts/render-command-contract.cjs` | maintainability | 4 | R4-P1-002 | reviewed |
 | `.opencode/commands/deep/assets/compiled/deep_review.contract.md` | maintainability | 4 | R4-P1-002 | reviewed |
+| `deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs` | maintainability | 9 | R9-P1-001 | reviewed |
+| `deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs` | maintainability | 9 | R9-P1-001 | reviewed |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -212,7 +216,7 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 12
+- P1 (Required): 13
 - P2 (Suggestions): 0
 - Resolved: 0
 
@@ -230,7 +234,7 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `checklist_evidence`: deferred as previously scheduled for the stabilization traceability pass.
 
-### `checklist_evidence`: not re-entered; iteration 5 owns that completed direction. -- BLOCKED (iteration 8, 2 attempts)
+### `checklist_evidence`: not re-entered; iteration 5 owns that completed direction. -- BLOCKED (iteration 9, 3 attempts)
 - What was tried: `checklist_evidence`: not re-entered; iteration 5 owns that completed direction.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `checklist_evidence`: not re-entered; iteration 5 owns that completed direction.
@@ -290,6 +294,11 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `spec_code`: partial, compared receipt authority and write-boundary claims with the active auto workflow and runtime implementation.
 
+### `spec_code`: partial. The cache module claims grader results depend on rubric and model-build identity, but the live harness supplies `na` and path identity rather than effective model and prompt-content identity. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: `spec_code`: partial. The cache module claims grader results depend on rubric and model-build identity, but the live harness supplies `na` and path identity rather than effective model and prompt-content identity.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `spec_code`: partial. The cache module claims grader results depend on rubric and model-build identity, but the live harness supplies `na` and path identity rather than effective model and prompt-content identity.
+
 ### `spec_code`: partial. The Council's material-agreement claim was checked against the production parser/adjudicator/scorer chain; Lane B's benchmark-only command claim was checked against its auto workflow and promotion helper. -- BLOCKED (iteration 7, 1 attempts)
 - What was tried: `spec_code`: partial. The Council's material-agreement claim was checked against the production parser/adjudicator/scorer chain; Lane B's benchmark-only command claim was checked against its auto workflow and promotion helper.
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -330,15 +339,30 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Overlay protocols: not re-entered; iteration 6 owns the overlay stabilization direction.
 
+### Overlay protocols: not re-entered; iterations 3 and 6 own those completed directions. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: Overlay protocols: not re-entered; iterations 3 and 6 own those completed directions.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Overlay protocols: not re-entered; iterations 3 and 6 own those completed directions.
+
 ### Premature pivot completion on high-severity blocker: ruled out because agreement convergence requires zero high blockers at `divergent-pivot.ts:868-895`. -- BLOCKED (iteration 1, 1 attempts)
 - What was tried: Premature pivot completion on high-severity blocker: ruled out because agreement convergence requires zero high blockers at `divergent-pivot.ts:868-895`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Premature pivot completion on high-severity blocker: ruled out because agreement convergence requires zero high blockers at `divergent-pivot.ts:868-895`.
 
+### Resource map: absent by configuration, so the coverage gate remains skipped. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: Resource map: absent by configuration, so the coverage gate remains skipped.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Resource map: absent by configuration, so the coverage gate remains skipped.
+
 ### Resource map: not present, so the coverage gate remains skipped. -- BLOCKED (iteration 7, 1 attempts)
 - What was tried: Resource map: not present, so the coverage gate remains skipped.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Resource map: not present, so the coverage gate remains skipped.
+
+### Review depth: complex/strict using graphless fallback. Required bug class `grader_cache_identity` produced R9-P1-001; no selected high-risk target was omitted. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: Review depth: complex/strict using graphless fallback. Required bug class `grader_cache_identity` produced R9-P1-001; no selected high-risk target was omitted.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Review depth: complex/strict using graphless fallback. Required bug class `grader_cache_identity` produced R9-P1-001; no selected high-risk target was omitted.
 
 ### Review depth: complex/strict with graphless fallback. Required bug classes `proposal_identity` and `autonomous_promotion_boundary` both produced findings; no high-risk selected target was omitted. -- BLOCKED (iteration 7, 1 attempts)
 - What was tried: Review depth: complex/strict with graphless fallback. Required bug classes `proposal_identity` and `autonomous_promotion_boundary` both produced findings; no high-risk selected target was omitted.

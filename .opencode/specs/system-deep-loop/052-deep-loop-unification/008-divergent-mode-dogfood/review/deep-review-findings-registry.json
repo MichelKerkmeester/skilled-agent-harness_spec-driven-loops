@@ -354,6 +354,35 @@
         "correctness"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-P1-001",
+      "severity": "P1",
+      "title": "Grader cache identity omits the effective model and mutable prompt content",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs",
+      "line": 388,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
@@ -369,29 +398,29 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 12,
+    "P1": 13,
     "P2": 0
   },
-  "openFindingsCount": 12,
+  "openFindingsCount": 13,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0,
-  "graphConvergenceScore": 0.645,
+  "convergenceScore": 0.923077,
+  "graphConvergenceScore": 0.654,
   "graphDecision": "STOP_BLOCKED",
   "graphBlockers": [
     {
       "type": "uncovered_dimensions",
-      "description": "Dimension coverage (0%) is below threshold (80%). 15 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
-      "count": 15,
+      "description": "Dimension coverage (0%) is below threshold (80%). 17 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "count": 17,
       "severity": "blocking"
     }
   ],
   "graphSignals": {
     "dimensionCoverage": 0,
-    "findingStability": 0.8181818181818182,
+    "findingStability": 0.8333333333333334,
     "p0ResolutionRate": 1,
-    "evidenceDensity": 0.5454545454545454,
+    "evidenceDensity": 0.5833333333333334,
     "hotspotSaturation": 1,
-    "score": 0.645
+    "score": 0.654
   },
   "candidateCoverage": {
     "covered": [
@@ -402,6 +431,7 @@
       "cross_runtime_contract_drift",
       "gate_bypass",
       "generated_contract_ownership",
+      "grader_cache_identity",
       "overlay_contract_drift",
       "playbook_capability_drift",
       "proposal_identity",
@@ -622,6 +652,15 @@
         "blocked": false,
         "iterations": [
           8
+        ]
+      },
+      "grader_cache_identity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
         ]
       }
     }
@@ -925,33 +964,26 @@
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "shell_command_injection",
-      "scoped_auxiliary_write",
-      "trusted_test_hook_execution",
-      "destructive_path_escape"
+      "grader_cache_identity"
     ],
     "covered": [
-      "shell_command_injection"
+      "grader_cache_identity"
     ],
-    "ruledOut": [
-      "scoped_auxiliary_write",
-      "trusted_test_hook_execution",
-      "destructive_path_escape"
-    ],
+    "ruledOut": [],
     "deferred": [],
     "blocked": [],
     "graphCoverageMode": "graphless_fallback"
   },
   "traceability": {
     "summary": {
-      "required": 0,
-      "executed": 0,
+      "required": 1,
+      "executed": 1,
       "pass": 0,
-      "partial": 0,
+      "partial": 1,
       "fail": 0,
       "blocked": 0,
       "notApplicable": 0,
-      "gatingFailures": 0
+      "gatingFailures": 1
     },
     "results": [
       {
@@ -966,13 +998,13 @@
           "skipped": 0
         },
         "evidence": [
-          ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml:146",
-          ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:91-94"
+          ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs:8-24",
+          ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs:388-398"
         ],
         "findingRefs": [
-          "R8-P1-001"
+          "R9-P1-001"
         ],
-        "summary": "Guarded benchmark command claims omit a run-label shell boundary."
+        "summary": "Declared grader-build cache identity is not bound to the effective model or prompt contents."
       }
     ]
   },
