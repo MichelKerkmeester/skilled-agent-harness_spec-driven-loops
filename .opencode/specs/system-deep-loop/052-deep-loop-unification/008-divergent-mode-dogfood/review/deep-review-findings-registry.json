@@ -325,6 +325,35 @@
         "correctness"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P1-001",
+      "severity": "P1",
+      "title": "Model-benchmark workflow interpolates an unvalidated run label into shell commands",
+      "file": ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+      "line": 146,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
@@ -340,13 +369,13 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 11,
+    "P1": 12,
     "P2": 0
   },
-  "openFindingsCount": 11,
+  "openFindingsCount": 12,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0.5,
-  "graphConvergenceScore": 0.622,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0.645,
   "graphDecision": "STOP_BLOCKED",
   "graphBlockers": [
     {
@@ -358,11 +387,11 @@
   ],
   "graphSignals": {
     "dimensionCoverage": 0,
-    "findingStability": 0.7777777777777778,
+    "findingStability": 0.8181818181818182,
     "p0ResolutionRate": 1,
-    "evidenceDensity": 0.4444444444444444,
+    "evidenceDensity": 0.5454545454545454,
     "hotspotSaturation": 1,
-    "score": 0.622
+    "score": 0.645
   },
   "candidateCoverage": {
     "covered": [
@@ -377,15 +406,19 @@
       "playbook_capability_drift",
       "proposal_identity",
       "receipt_integrity",
+      "shell_command_injection",
       "spec_code_drift",
       "workspace_containment"
     ],
     "ruledOut": [
       "command_injection",
       "cross_runtime_parity",
+      "destructive_path_escape",
       "durable_replay",
+      "scoped_auxiliary_write",
       "secret_exposure",
-      "state_transition"
+      "state_transition",
+      "trusted_test_hook_execution"
     ],
     "deferred": [
       "checklist_evidence"
@@ -554,6 +587,42 @@
         "iterations": [
           7
         ]
+      },
+      "shell_command_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "scoped_auxiliary_write": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "trusted_test_hook_execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "destructive_path_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
       }
     }
   },
@@ -662,6 +731,56 @@
         ".claude/agents/deep-research.md:52-56,394-426"
       ],
       "reason": "Both mirrors carry the same write targets, append rule, and reducer ownership."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
+        ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md"
+      ],
+      "bugClass": "scoped_auxiliary_write",
+      "disposition": "ruled_out",
+      "rationale": "The write is an explicit transport output rather than an implicit council artifact escape.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs:1003-1007",
+        ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md:139-154"
+      ],
+      "reason": "No untrusted production producer for the output path was identified."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-020",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts"
+      ],
+      "bugClass": "trusted_test_hook_execution",
+      "disposition": "ruled_out",
+      "rationale": "Evidence supports a test hook in the inherited trusted process environment, not a newly exposed input boundary.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:63-65",
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts:278"
+      ],
+      "reason": "No production producer or untrusted environment assignment was found."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-021",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh"
+      ],
+      "bugClass": "destructive_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The destructive target is lexically constrained and a terminal symlink is removed rather than traversed.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:45-68",
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:95-98"
+      ],
+      "reason": "Direct read established guards before both destructive calls."
     }
   ],
   "cleanSearchProof": [
@@ -752,28 +871,83 @@
         ".claude/agents/deep-research.md:52-56,394-426"
       ],
       "proof": "Both mirrors carry the same write targets, append rule, and reducer ownership."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
+        ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md"
+      ],
+      "bugClass": "scoped_auxiliary_write",
+      "disposition": "ruled_out",
+      "rationale": "The write is an explicit transport output rather than an implicit council artifact escape.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs:1003-1007",
+        ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md:139-154"
+      ],
+      "proof": "No untrusted production producer for the output path was identified."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-020",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts"
+      ],
+      "bugClass": "trusted_test_hook_execution",
+      "disposition": "ruled_out",
+      "rationale": "Evidence supports a test hook in the inherited trusted process environment, not a newly exposed input boundary.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:63-65",
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts:278"
+      ],
+      "proof": "No production producer or untrusted environment assignment was found."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-021",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh"
+      ],
+      "bugClass": "destructive_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The destructive target is lexically constrained and a terminal symlink is removed rather than traversed.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:45-68",
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:95-98"
+      ],
+      "proof": "Direct read established guards before both destructive calls."
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "proposal_identity",
-      "autonomous_promotion_boundary"
+      "shell_command_injection",
+      "scoped_auxiliary_write",
+      "trusted_test_hook_execution",
+      "destructive_path_escape"
     ],
     "covered": [
-      "proposal_identity",
-      "autonomous_promotion_boundary"
+      "shell_command_injection"
     ],
-    "ruledOut": [],
+    "ruledOut": [
+      "scoped_auxiliary_write",
+      "trusted_test_hook_execution",
+      "destructive_path_escape"
+    ],
     "deferred": [],
     "blocked": [],
     "graphCoverageMode": "graphless_fallback"
   },
   "traceability": {
     "summary": {
-      "required": 2,
-      "executed": 2,
+      "required": 0,
+      "executed": 0,
       "pass": 0,
-      "partial": 2,
+      "partial": 0,
       "fail": 0,
       "blocked": 0,
       "notApplicable": 0,
@@ -787,19 +961,18 @@
         "applicable": true,
         "counts": {
           "pass": 0,
-          "partial": 2,
+          "partial": 1,
           "fail": 0,
           "skipped": 0
         },
         "evidence": [
-          ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:244-252",
-          ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml:192-195"
+          ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml:146",
+          ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:91-94"
         ],
         "findingRefs": [
-          "R7-P1-001",
-          "R7-P1-002"
+          "R8-P1-001"
         ],
-        "summary": "Two mode-packet behavior claims diverge from default executable paths."
+        "summary": "Guarded benchmark command claims omit a run-label shell boundary."
       }
     ]
   },

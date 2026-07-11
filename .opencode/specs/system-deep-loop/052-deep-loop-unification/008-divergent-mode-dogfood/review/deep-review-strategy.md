@@ -86,6 +86,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - Iteration 3: Cross-runtime contract comparison exposed one shared artifact/state mismatch and showed that the playbook repeats two incompatible definitions of the iteration outputs.
 - Iteration 4: Generated-ownership tracing exposed one declarative-only renderer contract and one live stale compiled-contract path; digest replay and the focused drift test supplied executable evidence.
 - Iteration 7: Producer-consumer tracing across the previously unreviewed Council and improvement packets exposed proposal-identity loss in Council convergence and an unbound autonomous Lane B promotion step.
+- Iteration 8: Security boundary tracing across Council, improvement, research, and playbook surfaces exposed unvalidated run-label interpolation in both model-benchmark shell workflows while ruling out three lower-confidence path/helper hypotheses.
 
 ---
 
@@ -95,6 +96,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - Iteration 3: Code graph remained unavailable; exact cross-runtime search supplied contract evidence. Packet checklist evidence was deferred to a stabilization traceability pass.
 - Iteration 4: Code graph remained absent; exact search, digest replay, byte comparison, and the focused drift gate supplied graphless fallback evidence.
 - Iteration 7: Code graph remained unavailable; exact search, direct reads, and auto-vs-confirm workflow comparison supplied graphless fallback evidence.
+- Iteration 8: Code graph remained unavailable; exact search, direct reads, and producer-consumer tracing supplied graphless fallback evidence.
 
 ---
 
@@ -210,7 +212,7 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 11
+- P1 (Required): 12
 - P2 (Suggestions): 0
 - Resolved: 0
 
@@ -228,7 +230,7 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `checklist_evidence`: deferred as previously scheduled for the stabilization traceability pass.
 
-### `checklist_evidence`: not re-entered; iteration 5 owns that completed direction. -- BLOCKED (iteration 7, 1 attempts)
+### `checklist_evidence`: not re-entered; iteration 5 owns that completed direction. -- BLOCKED (iteration 8, 2 attempts)
 - What was tried: `checklist_evidence`: not re-entered; iteration 5 owns that completed direction.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `checklist_evidence`: not re-entered; iteration 5 owns that completed direction.
@@ -257,6 +259,11 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - What was tried: `playbook_capability`: not re-entered; iteration 3 owns that direction.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `playbook_capability`: not re-entered; iteration 3 owns that direction.
+
+### `resource-map`: not present, so the coverage gate remains skipped. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: `resource-map`: not present, so the coverage gate remains skipped.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `resource-map`: not present, so the coverage gate remains skipped.
 
 ### `skill_agent`: not re-entered; iteration 3 owns that direction. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: `skill_agent`: not re-entered; iteration 3 owns that direction.
@@ -292,6 +299,11 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - What was tried: `spec_code`: partial. The declared review contract generation model was checked against discoverable implementation; its render/validation claims have no executable owner.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `spec_code`: partial. The declared review contract generation model was checked against discoverable implementation; its render/validation claims have no executable owner.
+
+### `spec_code`: partial. The workflow's guarded, auditable benchmark claim was checked against its shell command templates and runner-side sanitization; R8-P1-001 records the mismatch. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: `spec_code`: partial. The workflow's guarded, auditable benchmark claim was checked against its shell command templates and runner-side sanitization; R8-P1-001 records the mismatch.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `spec_code`: partial. The workflow's guarded, auditable benchmark claim was checked against its shell command templates and runner-side sanitization; R8-P1-001 records the mismatch.
 
 ### Code graph: unavailable (`trustState=absent`, zero nodes); exact search, direct reads, digest replay, byte comparison, and focused tests supplied graphless fallback evidence. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: Code graph: unavailable (`trustState=absent`, zero nodes); exact search, direct reads, digest replay, byte comparison, and focused tests supplied graphless fallback evidence.
@@ -332,6 +344,11 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - What was tried: Review depth: complex/strict with graphless fallback. Required bug classes `proposal_identity` and `autonomous_promotion_boundary` both produced findings; no high-risk selected target was omitted.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Review depth: complex/strict with graphless fallback. Required bug classes `proposal_identity` and `autonomous_promotion_boundary` both produced findings; no high-risk selected target was omitted.
+
+### Review depth: complex/strict, graphless fallback. `shell_command_injection` produced R8-P1-001; `scoped_auxiliary_write` and `trusted_test_hook_execution` were ruled out with direct source and documentation evidence. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: Review depth: complex/strict, graphless fallback. `shell_command_injection` produced R8-P1-001; `scoped_auxiliary_write` and `trusted_test_hook_execution` were ruled out with direct source and documentation evidence.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Review depth: complex/strict, graphless fallback. `shell_command_injection` produced R8-P1-001; `scoped_auxiliary_write` and `trusted_test_hook_execution` were ruled out with direct source and documentation evidence.
 
 ### Shell interpolation in the active `cli-opencode` and `cli-claude-code` dispatches: arguments are passed as arrays without `shell:true`. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: Shell interpolation in the active `cli-opencode` and `cli-claude-code` dispatches: arguments are passed as arrays without `shell:true`.
