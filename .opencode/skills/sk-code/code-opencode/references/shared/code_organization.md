@@ -417,7 +417,8 @@ __all__ = [
 │   │   ├── quality_standards.md
 │   │   └── quick_reference.md
 │   ├── python/                 # Python-specific
-│   └── shell/                  # Shell-specific
+│   ├── shell/                  # Shell-specific
+│   └── rust/                   # Rust-specific (napi-rs/WASM/sidecar parity)
 ├── assets/                     # Templates, checklists
 │   └── checklists/
 │       ├── universal_checklist.md
@@ -425,6 +426,27 @@ __all__ = [
 └── scripts/                    # Executable tools
     └── *.py
 ```
+
+### Rust Module and Test Layout
+
+Rust code under `code-opencode` follows Cargo conventions; only the general
+placement is shared here — Cargo, napi-rs, and wasm-bindgen mechanics live in
+`../rust/`.
+
+```
+crate/
+├── Cargo.toml                  # Manifest (pinned edition, MSRV, features)
+├── src/
+│   ├── lib.rs                  # Pure core: deterministic, panic-free public API
+│   ├── boundary/               # Thin napi-rs / wasm-bindgen adapters over core
+│   └── *.rs                    # #[cfg(test)] mod tests { … }  (inline unit tests)
+├── tests/                      # Integration + byte-for-byte parity fixtures vs the TS oracle
+│   └── *.rs
+└── benches/                    # Optional criterion benchmarks
+```
+
+- **Unit tests** live inline as `#[cfg(test)] mod tests` beside the code they cover.
+- **Integration/parity tests** live in `tests/`, asserting the Rust path emits bytes identical to the TypeScript oracle for shared fixtures.
 
 ### MCP Server Structure
 

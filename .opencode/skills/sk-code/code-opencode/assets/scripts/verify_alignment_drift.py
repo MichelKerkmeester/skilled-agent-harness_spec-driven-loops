@@ -13,8 +13,16 @@ Coverage:
 - JavaScript (.js, .mjs, .cjs)
 - Python (.py)
 - Shell (.sh)
+- Rust (.rs)
 - JSON (.json)
 - JSONC (.jsonc)
+
+Rust checks stay mechanical and behavior-neutral like the rest of this file:
+they detect the two boundary-contract violations that are visible from text
+alone -- `unsafe` without a documented `// SAFETY:` invariant, and
+panic-prone calls that must not cross the napi-rs/WASM boundary. Deeper
+guarantees (borrow/ownership, deterministic sort/hash iteration) need real
+compilation and belong to clippy and the quality gate, not this verifier.
 """
 
 from __future__ import annotations
@@ -37,6 +45,7 @@ SUPPORTED_EXTENSIONS: Dict[str, str] = {
     ".cjs": "javascript",
     ".py": "python",
     ".sh": "shell",
+    ".rs": "rust",
     ".json": "json",
     ".jsonc": "jsonc",
 }
@@ -61,6 +70,7 @@ INTEGRITY_RULE_PREFIXES = (
     "SH-STRICT-MODE",
     "PY-SHEBANG",
     "TS-MODULE-HEADER",
+    "RUST-UNSAFE",
 )
 CONTEXT_ADVISORY_SEGMENTS = {
     "z_archive",
@@ -344,6 +354,44 @@ def check_shell(path: str, lines: List[str]) -> List[Finding]:
     return findings
 
 
+def check_rust(path: str, lines: List[str], content: str) -> List[Finding]:
+    findings: List[Finding] = []
+
+    # The interop-boundary non-negotiable: `unsafe` is only allowed with a
+    # documented `// SAFETY:` invariant. Detect the presence of an unsafe block,
+    # fn, impl, or trait and require at least one SAFETY comment in the file.
+    if re.search(r"(?:^|\s)unsafe\s+(?:\{|fn\b|impl\b|trait\b)", content):
+        if not re.search(r"//\s*SAFETY:", content):
+            findings.append(
+                Finding(
+                    path=path,
+                    line=find_line(lines, r"\bunsafe\b") or 1,
+                    rule_id="RUST-UNSAFE-NO-SAFETY",
+                    message="`unsafe` used without a documented `// SAFETY:` invariant.",
+                    fix_hint="Add a `// SAFETY:` comment stating the invariant each unsafe block upholds, backed by a test.",
+                )
+            )
+
+    # Panics must never cross the napi-rs/WASM boundary as raw aborts; flag
+    # panic-prone calls so they are translated to Result at the boundary. This
+    # is advisory (WARN) and downgraded further on test/fixture paths.
+    panic_line = find_line(
+        lines,
+        r"\.unwrap\(\)|\.expect\(|(?:^|\s)panic!\(|(?:^|\s)unreachable!\(|(?:^|\s)todo!\(|(?:^|\s)unimplemented!\(",
+    )
+    if panic_line:
+        findings.append(
+            Finding(
+                path=path,
+                line=panic_line,
+                rule_id="RUST-PANIC-BOUNDARY",
+                message="Panic-prone call (`unwrap`/`expect`/`panic!`) in a boundary-visible path.",
+                fix_hint="Return a `Result` and translate errors at the boundary; a panic must never cross into JS/WASM.",
+            )
+        )
+    return findings
+
+
 def check_json(path: str, content: str) -> List[Finding]:
     findings: List[Finding] = []
     if is_known_malformed_json_fixture(path):
@@ -435,6 +483,8 @@ def check_file(path: str) -> List[Finding]:
         raw_findings.extend(check_python(path, lines))
     elif extension == ".sh":
         raw_findings.extend(check_shell(path, lines))
+    elif extension == ".rs":
+        raw_findings.extend(check_rust(path, lines, content))
     elif extension == ".json":
         raw_findings.extend(check_json(path, content))
     elif extension == ".jsonc":

@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang"
-    last_updated_at: "2026-07-11T08:53:41Z"
+    last_updated_at: "2026-07-11T09:56:28Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded this phase plan from the 018 research manifest"
-    next_safe_action: "Apply the touchpoint edits, then the touched-language-set change"
+    recent_action: "Landed the five sk-code-local touchpoints; router-replay deferred"
+    next_safe_action: "Wire router-replay.cjs Rust detection + touched-language set when the operator session is quiet"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 5 — Registration Touchpoints & Multi-Language Routing
@@ -66,13 +66,13 @@ Additive Rust detection in each classifier; the touched-language-set change is a
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Step 1: Detection touchpoints
+### Phase 1: Detection touchpoints
 `stack_detection.md`, `hub-router.json`, `verify_stack_folders.py`, `verify_alignment_drift.py` (+ test), shared trio.
 
-### Step 2: Router-replay
+### Phase 2: Router-replay
 `router-replay.cjs` surface regex, languages, detection, and new fixtures.
 
-### Step 3: Multi-language selection
+### Phase 3: Multi-language selection
 Change first-match to a touched-language set; add Rust+TypeScript fixtures.
 <!-- /ANCHOR:phases -->
 

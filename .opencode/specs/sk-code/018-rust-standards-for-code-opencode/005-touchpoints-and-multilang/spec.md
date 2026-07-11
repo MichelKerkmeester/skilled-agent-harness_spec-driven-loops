@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang"
-    last_updated_at: "2026-07-11T08:53:41Z"
+    last_updated_at: "2026-07-11T09:56:28Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded this phase spec from the 018 research manifest"
-    next_safe_action: "Plan and apply the six touchpoint edits and the touched-language-set change"
+    recent_action: "Landed the five sk-code-local touchpoints; router-replay deferred"
+    next_safe_action: "Wire router-replay.cjs Rust detection + touched-language set when the operator session is quiet"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 5 — Registration Touchpoints & Multi-Language Routing
@@ -29,7 +29,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Created** | 2026-07-11 |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 004-parent-union-drift-guard |

@@ -12,7 +12,7 @@ from pathlib import Path
 
 SURFACE_ROOT = Path(__file__).resolve().parents[2]
 REFERENCES = SURFACE_ROOT / "references"
-KNOWN_LANGUAGES = {"typescript", "javascript", "python", "shell", "config"}
+KNOWN_LANGUAGES = {"typescript", "javascript", "python", "shell", "rust", "config"}
 EXEMPT_NON_LANGUAGE_DIRS = {"shared"}
 
 
