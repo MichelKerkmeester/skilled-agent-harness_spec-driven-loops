@@ -1,11 +1,11 @@
 {
   "owner_pid": 95060,
-  "started_at_iso": "2026-07-11T07:26:54.239Z",
+  "started_at_iso": "2026-07-11T07:33:23.359Z",
   "ttl_ms": 1500000,
-  "last_heartbeat_iso": "2026-07-11T07:26:54.239Z",
+  "last_heartbeat_iso": "2026-07-11T07:33:23.359Z",
   "packet_id": ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood",
   "runtime_kind": "main",
   "phase": "running",
-  "last_activity_iso": "2026-07-11T07:26:54.239Z",
-  "acquire_nonce": "95060-1783754814240-7c1f2ee6-4f19-42c9-8095-8485be435d6f"
+  "last_activity_iso": "2026-07-11T07:33:23.359Z",
+  "acquire_nonce": "95060-1783755203359-c4171e8c-2c0d-45ef-9d0c-602a28a06a19"
 }

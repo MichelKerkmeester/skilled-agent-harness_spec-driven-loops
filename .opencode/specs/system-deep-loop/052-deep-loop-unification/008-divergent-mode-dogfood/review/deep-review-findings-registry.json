@@ -238,6 +238,35 @@
         "correctness"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P1-001",
+      "severity": "P1",
+      "title": "Deep-research overlay contracts omit the workflow-required delta artifact",
+      "file": ".opencode/agents/deep-research.md",
+      "line": 69,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
@@ -253,13 +282,13 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 8,
+    "P1": 9,
     "P2": 0
   },
-  "openFindingsCount": 8,
+  "openFindingsCount": 9,
   "resolvedFindingsCount": 0,
   "convergenceScore": 0.5,
-  "graphConvergenceScore": 0.643,
+  "graphConvergenceScore": 0.631,
   "graphDecision": "STOP_BLOCKED",
   "graphBlockers": [
     {
@@ -271,11 +300,11 @@
   ],
   "graphSignals": {
     "dimensionCoverage": 0,
-    "findingStability": 1,
+    "findingStability": 0.875,
     "p0ResolutionRate": 1,
-    "evidenceDensity": 0.2857142857142857,
+    "evidenceDensity": 0.375,
     "hotspotSaturation": 1,
-    "score": 0.643
+    "score": 0.631
   },
   "candidateCoverage": {
     "covered": [
@@ -285,6 +314,7 @@
       "cross_runtime_contract_drift",
       "gate_bypass",
       "generated_contract_ownership",
+      "overlay_contract_drift",
       "playbook_capability_drift",
       "receipt_integrity",
       "spec_code_drift",
@@ -292,6 +322,7 @@
     ],
     "ruledOut": [
       "command_injection",
+      "cross_runtime_parity",
       "durable_replay",
       "secret_exposure",
       "state_transition"
@@ -427,6 +458,24 @@
         "iterations": [
           4
         ]
+      },
+      "overlay_contract_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "cross_runtime_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
       }
     }
   },
@@ -518,6 +567,23 @@
         ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts:159-236"
       ],
       "reason": "Source and end-to-end child visibility test agree."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/agents/deep-research.md",
+        ".claude/agents/deep-research.md"
+      ],
+      "bugClass": "cross_runtime_parity",
+      "disposition": "ruled_out",
+      "rationale": "No runtime-specific divergence exists in the reviewed slice.",
+      "evidenceRefs": [
+        ".opencode/agents/deep-research.md:69-73,411-443",
+        ".claude/agents/deep-research.md:52-56,394-426"
+      ],
+      "reason": "Both mirrors carry the same write targets, append rule, and reducer ownership."
     }
   ],
   "cleanSearchProof": [
@@ -591,16 +657,36 @@
         ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts:159-236"
       ],
       "proof": "Source and end-to-end child visibility test agree."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/agents/deep-research.md",
+        ".claude/agents/deep-research.md"
+      ],
+      "bugClass": "cross_runtime_parity",
+      "disposition": "ruled_out",
+      "rationale": "No runtime-specific divergence exists in the reviewed slice.",
+      "evidenceRefs": [
+        ".opencode/agents/deep-research.md:69-73,411-443",
+        ".claude/agents/deep-research.md:52-56,394-426"
+      ],
+      "proof": "Both mirrors carry the same write targets, append rule, and reducer ownership."
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "checklist_evidence"
+      "overlay_contract_drift",
+      "cross_runtime_parity"
     ],
     "covered": [
-      "checklist_evidence"
+      "overlay_contract_drift"
     ],
-    "ruledOut": [],
+    "ruledOut": [
+      "cross_runtime_parity"
+    ],
     "deferred": [],
     "blocked": [],
     "graphCoverageMode": "graphless_fallback"

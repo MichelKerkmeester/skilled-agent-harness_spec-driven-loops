@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active review packet.
 - Review Target: .opencode/skills/system-deep-loop (skill)
 - Started: 2026-07-11T06:22:25Z
 - Status: INITIALIZED
-- Iteration: 5 of 10
+- Iteration: 6 of 10
 - Provisional Verdict: CONDITIONAL
 - hasSearchDebt: true
 - hasAdvisories: false
@@ -45,7 +45,7 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 8 |
+| P1 (Required) | 9 |
 | P2 (Suggestions) | 0 |
 | Resolved | 0 |
 
@@ -60,6 +60,7 @@ Reducer-generated observability surface for the active review packet.
 | run-003 | traceability | traceability | 1.00 | 0/1/0 | complete |
 | run-004 | maintainability | maintainability | 1.00 | 0/2/0 | complete |
 | run-005 | traceability stabilization: checklist_evidence and typed adjudication recovery | traceability | 0.50 | 0/1/0 | complete |
+| run-006 | traceability overlay protocol coverage: skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability | traceability | 0.50 | 0/1/0 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -67,7 +68,7 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 6 |
+| correctness | covered | 7 |
 | security | covered | 2 |
 | traceability | covered | 0 |
 | maintainability | covered | 0 |
@@ -80,16 +81,16 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:blocked-stops -->
 <!-- ANCHOR:graph-convergence -->
 ## 7. GRAPH CONVERGENCE
-- graphConvergenceScore: 0.64
+- graphConvergenceScore: 0.63
 - graphDecision: STOP_BLOCKED
 - graphBlockers: {"type":"uncovered_dimensions","description":"Dimension coverage (0%) is below threshold (80%). 12 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.","count":12,"severity":"blocking"}
 
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 1.00 -> 1.00 -> 0.50
+- Last 3 ratios: 1.00 -> 0.50 -> 0.50
 - convergenceScore: 0.50
-- openFindings: 8
+- openFindings: 9
 - persistentSameSeverity: 0
 - severityChanged: 0
 - repeatedFindings (deprecated combined bucket): 0
@@ -103,7 +104,7 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=10, ruledOut=4, deferred=1, blocked=0
+- candidateCoverage: covered=11, ruledOut=5, deferred=1, blocked=0
 
 ### Search Debt
 - iteration 3 checklist_evidence (deferred): Iteration budget prioritized the newly discovered cross-consumer contract split.; evidence=.opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/review/deep-review-config.json:9-12
@@ -113,12 +114,14 @@ No corrupt JSONL lines detected.
 - iteration 1 durable_replay (ruled_out): Event IDs and persisted seat discovery gate redispatch.; evidence=.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:499-573, .opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1028-1160, .opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:401-434
 - iteration 2 command_injection (ruled_out): spawn/spawnSync receive structured argv arrays.; evidence=.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:874-881, .opencode/commands/deep/assets/deep_review_auto.yaml:1225-1261
 - iteration 2 secret_exposure (ruled_out): Source and end-to-end child visibility test agree.; evidence=.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:391-427, .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:730-756, .opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts:159-236
+- iteration 6 cross_runtime_parity (ruled_out): Both mirrors carry the same write targets, append rule, and reducer ownership.; evidence=.opencode/agents/deep-research.md:69-73,411-443, .claude/agents/deep-research.md:52-56,394-426
 
 ### Clean Search Proof
 - iteration 1 state_transition (ruled_out): Three-seat quorum and blocker veto are explicit.; evidence=.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:685-705, .opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:868-895, .opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:246-341
 - iteration 1 durable_replay (ruled_out): Event IDs and persisted seat discovery gate redispatch.; evidence=.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:499-573, .opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1028-1160, .opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:401-434
 - iteration 2 command_injection (ruled_out): spawn/spawnSync receive structured argv arrays.; evidence=.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:874-881, .opencode/commands/deep/assets/deep_review_auto.yaml:1225-1261
 - iteration 2 secret_exposure (ruled_out): Source and end-to-end child visibility test agree.; evidence=.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:391-427, .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:730-756, .opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts:159-236
+- iteration 6 cross_runtime_parity (ruled_out): Both mirrors carry the same write targets, append rule, and reducer ownership.; evidence=.opencode/agents/deep-research.md:69-73,411-443, .claude/agents/deep-research.md:52-56,394-426
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
@@ -128,7 +131,7 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 8 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
+- 9 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 - 1 search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.
 
 <!-- /ANCHOR:active-risks -->

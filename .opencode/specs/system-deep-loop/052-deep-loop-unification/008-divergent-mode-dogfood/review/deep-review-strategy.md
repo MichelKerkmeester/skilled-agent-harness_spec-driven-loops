@@ -208,7 +208,7 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 8
+- P1 (Required): 9
 - P2 (Suggestions): 0
 - Resolved: 0
 
