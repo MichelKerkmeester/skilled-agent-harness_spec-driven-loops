@@ -5,7 +5,7 @@ trigger_phrases:
   - "opencode system code"
   - "opencode authoring"
   - "system code standards"
-version: 1.0.0.3
+version: 1.0.0.4
 ---
 
 # opencode — System-Code Evidence (sk-code surface)

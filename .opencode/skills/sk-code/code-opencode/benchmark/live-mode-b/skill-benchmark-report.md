@@ -2,12 +2,12 @@
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-b-live` · trace mode: `live`.
 
-**Verdict: PASS** · aggregate 88/100
+**Verdict: PASS** · aggregate 84/100
 
 ## Coverage
 
-- Scored (text executors): **8** · routed out to browser harness: **0**
-- By class — routing: 8 · advisor: 0 · browser: 0
+- Scored (text executors): **9** · routed out to browser harness: **0**
+- By class — routing: 9 · advisor: 0 · browser: 0
 
 ## Dimension scores
 
@@ -16,7 +16,7 @@
 | D1 inter (advisor) | 12pts | _unscored-mode-a_ |
 | D1 intra (router) | 13pts | 100/100 |
 | D2 discovery | 20pts | 100/100 |
-| D3 efficiency | 15pts | 59/100 |
+| D3 efficiency | 15pts | 47/100 |
 | D4 usefulness | 25pts | _unscored-mode-a_ |
 | D5 connectivity (hard gate) | 15pts | 100/100 |
 
@@ -29,7 +29,7 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Funnel
 
-- passed: 8
+- passed: 9
 
 ## Ranked bottlenecks
 
@@ -39,16 +39,17 @@ _None._
 
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
-| OC-006 | routing | 100/100 | passed |
-| OC-007 | routing | 69/100 | passed |
-| OC-008 | routing | 100/100 | passed |
-| OC-004 | routing | 88/100 | passed |
-| OC-005 | routing | 79/100 | passed |
 | OC-001 | routing | 88/100 | passed |
 | OC-002 | routing | 88/100 | passed |
-| OC-003 | routing | 88/100 | passed |
+| OC-003 | routing | 82/100 | passed |
+| OC-009 | routing | 80/100 | passed |
+| OC-004 | routing | 88/100 | passed |
+| OC-005 | routing | 79/100 | passed |
+| OC-006 | routing | 100/100 | passed |
+| OC-007 | routing | 69/100 | passed |
+| OC-008 | routing | 79/100 | passed |
 
 ## Methodology / caveats
 
 - Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0).
-- Scenario count: 8.
+- Scenario count: 9.

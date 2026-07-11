@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup"
-    last_updated_at: "2026-07-11T13:20:00Z"
+    last_updated_at: "2026-07-11T13:45:00Z"
     last_updated_by: "claude-code"
-    recent_action: "All four gates green; 018 parent rolled up to complete"
+    recent_action: "Follow-up: removed orphaned OC-004 dup, ran live Mode-B, reconciled docs to v1.0.0.4"
     next_safe_action: "Packet 018 complete — no further action"
 ---
 # Implementation Summary
@@ -102,3 +102,12 @@ All gates ran in the isolated worktree pinned to the origin tip, so the determin
 2. **Mode-B (live) benchmark not regenerated.** Its numbers predate the Rust scenario; regenerating requires a live executor dispatch outside the deterministic gate plan.
 
 <!-- /ANCHOR:limitations -->
+---
+
+## Post-Completion Follow-Up
+
+A later documentation-and-evidence pass closed the two open items above and reconciled the committed tree with the nine-scenario report it already assumed.
+
+1. **Orphaned duplicate playbook file removed.** The committed tree still carried `language-standards/004-rust-standards.md` — a byte-identical pre-rename copy of the Rust scenario (only its `id` and heading differed) colliding with `config-hooks/004-config-schema.md` on `OC-004`. The router-replay report and this summary were written against a locally de-duplicated tree, so that deletion never landed and the `code-opencode-playbook-ids` gate was actually red on origin (`dups: ["OC-004"]`, the loader produced ten rows). Deleting the orphan makes the tree match the report: nine unique scenarios, id gate 2/2 green.
+2. **Mode-B (live) benchmark regenerated — Limitation 2 resolved.** `run-skill-benchmark.cjs --trace-mode live` dispatched all nine scenarios (including `OC-009`) through a real `opencode` / `deepseek-v4-pro` executor: verdict PASS, aggregate 84, D1intra 100 / D2 100 / D3 47 / D5 100 (hard gate). D1-inter and D4 stay unscored (they need the advisor probe and the opt-in `--d4` ablation), matching the prior report's dimensional scope; the stale eight-scenario report without `OC-009` is replaced.
+3. **Surface documentation completeness.** `code-opencode` `SKILL.md` `description` / `Keywords` and `README.md` now name Rust (the reference map and body already did), and `SKILL.md` / `README.md` / the changelog are reconciled to `v1.0.0.4`, whose entry records the Rust addition, the touched-language-set change, and the `OC-004`→`OC-009` fix. The vocabulary edit was proved non-regressing: vocab-sync score 100 with no drift and the drift guards 16/16 byte-identical before and after.

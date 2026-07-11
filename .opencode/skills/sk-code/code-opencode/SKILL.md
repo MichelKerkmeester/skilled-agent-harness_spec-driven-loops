@@ -1,15 +1,15 @@
 ---
 name: code-opencode
-description: "sk-code OPENCODE surface: system-code evidence (TypeScript/Python/shell/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
+description: "sk-code OPENCODE surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.0.4
 metadata:
   author: OpenCode
   family: sk-code
   packetKind: surface
 ---
 
-<!-- Keywords: opencode, system-code, typescript, python, shell, jsonc, config, mcp, skill-authoring, agent-authoring, command-authoring, hooks, alignment-verifier, surface-evidence, sk-code -->
+<!-- Keywords: opencode, system-code, typescript, python, shell, rust, jsonc, config, mcp, skill-authoring, agent-authoring, command-authoring, hooks, alignment-verifier, surface-evidence, sk-code -->
 
 # opencode Surface — System-Code Evidence
 
