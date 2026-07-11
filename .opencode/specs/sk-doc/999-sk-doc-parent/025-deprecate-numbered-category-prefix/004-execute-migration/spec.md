@@ -31,7 +31,7 @@ _memory:
 |-------|-------|
 | **Packet** | 025/004-execute-migration |
 | **Level** | 2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Phase** | 004 of 005 (execution) |
 <!-- /ANCHOR:metadata -->
 

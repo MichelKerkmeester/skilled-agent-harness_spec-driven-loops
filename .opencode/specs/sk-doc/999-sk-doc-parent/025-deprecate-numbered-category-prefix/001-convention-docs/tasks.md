@@ -28,22 +28,22 @@ _memory:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] Grep the two convention skills + templates + `/create:*` generators for every `NN--` mandate/example.
+- [x] Grep the two convention skills + templates + `/create:*` generators for every `NN--` mandate/example.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] Rewrite `create-feature-catalog/SKILL.md` naming rule + examples to the bare slug.
-- [ ] Rewrite `create-manual-testing-playbook/SKILL.md` naming rule + examples to the bare slug.
-- [ ] Update the sk-doc asset templates (frontmatter/scaffold snippets) to de-numbered form.
-- [ ] Update the `/create:feature-catalog` + `/create:manual-testing-playbook` generators.
-- [ ] Add the "ordering is owned by the root index table" note to both skills.
+- [x] Rewrite `create-feature-catalog/SKILL.md` naming rule + examples to the bare slug.
+- [x] Rewrite `create-manual-testing-playbook/SKILL.md` naming rule + examples to the bare slug.
+- [x] Update the sk-doc asset templates (frontmatter/scaffold snippets) to de-numbered form.
+- [x] Update the `/create:feature-catalog` + `/create:manual-testing-playbook` generators.
+- [x] Add the "ordering is owned by the root index table" note to both skills.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] Grep confirms zero surviving numbered mandate/example in edited surfaces.
-- [ ] Fresh reader confirms coherence; `validate.sh --strict` Errors 0.
+- [x] Grep confirms zero surviving numbered mandate/example in edited surfaces.
+- [x] Fresh reader confirms coherence; `validate.sh --strict` Errors 0.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

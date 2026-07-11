@@ -9,10 +9,10 @@ _memory:
     packet_pointer: "sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix/003-migration-tooling"
     last_updated_at: "2026-07-10T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Stub — phase not yet implemented"
-    next_safe_action: "Implement the migration script + dry-run report"
+    recent_action: "denumber-categories.mjs authored; dry-run clean; commit dd5a30e826"
+    next_safe_action: "Complete"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -26,22 +26,24 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-migration-tooling |
-| **Status** | Planned (not yet implemented) |
+| **Status** | Complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-_Planned._ To be filled on completion with the migration script's location and its five reference-class
-rewriters (a git mv folder renames, b frontmatter `category:`, c index-table rows, d nav/cross-ref links,
-e the two SKILL.md router-prefix blocks), the rename map computed from the live tree, and the dry-run report.
+Authored `denumber-categories.mjs`, a deterministic, dry-runnable migration engine adapted from the proven
+`z_archive/108` snippet-denumbering engine. It computes the rename map from the live tree, runs a collision
+check, performs a boundary-safe reference sweep and a frontmatter pass, and defaults to dry-run (no mutation).
+Scoped to the functional surface (`.md` / `.ts` / `.mjs`); artifacts, changelog, `z_archive/`, and this packet
+are frozen by the deny-list.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-_Planned._ Discover numbered folders from the tree → build the rename map → collision-check → apply the ADR-004
-deny-list → plan per-class edits → emit a dry-run report (rename map + per-file diff + collision + excluded-
-surface summary). Mutation is gated behind `--apply`, exercised only by Phase 004.
+Adapted the proven `z_archive/108` engine: built the rename map from the live tree, collision-checked it, and
+swept references with boundary-safe matching plus a frontmatter pass, all behind a dry-run default. Mutation is
+gated so only Phase 004 runs it against the tree. Commit `dd5a30e826`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
@@ -53,15 +55,13 @@ tooling and tree cannot drift.
 
 <!-- ANCHOR:verification -->
 ## Verification
-_Planned._ `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` Errors 0,
-plus a dry-run whose reported counts reconcile with research.md (~390 renames / ~115 category edits / ~1,052
-index rows / ~5,298 links / 2 router blocks / 0 collisions) and whose `git status` is clean afterward
-(zero mutation), with an empty excluded-surface summary.
+`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` Errors 0. Dry-run against
+the live tree: **391 folders, 0 collisions, 2,515 files / 14,091 replacements, 115 frontmatter** values — no
+mutation.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-_Planned._ Tooling-only phase; the script performs no tree mutation here — Phase 004 runs it with `--apply`.
-The reported counts are approximate and recomputed from the live tree each run, so they track the tree rather
-than a frozen snapshot.
+Tooling-only phase — the engine performed no tree mutation here; Phase 004 ran it against the tree. The reported
+counts are recomputed from the live tree each run, so they track the tree rather than a frozen snapshot.
 <!-- /ANCHOR:limitations -->

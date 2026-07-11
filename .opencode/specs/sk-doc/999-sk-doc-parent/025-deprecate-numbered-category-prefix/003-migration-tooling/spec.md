@@ -32,7 +32,7 @@ _memory:
 |-------|-------|
 | **Packet** | 025/003-migration-tooling |
 | **Level** | 2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Phase** | 003 of 005 (tooling) |
 <!-- /ANCHOR:metadata -->
 

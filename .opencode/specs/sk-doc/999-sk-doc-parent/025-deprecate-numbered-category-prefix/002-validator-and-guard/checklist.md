@@ -28,46 +28,46 @@ Every item carries a fixture result, test-run, or grep evidence line.
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [ ] Confirmed the `^\d{2}--` parent tests at `:129,135` and their surrounding path-segment checks are
+- [x] Confirmed the `^\d{2}--` parent tests at `:129,135` and their surrounding path-segment checks are
   identical across both `validate_document.py` copies.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [ ] Both copies changed identically and stay byte-identical in the changed region (no drift).
-- [ ] No ephemeral spec/ADR/phase ids embedded in code comments; comments keep the durable WHY.
+- [x] Both copies changed identically and stay byte-identical in the changed region (no drift).
+- [x] No ephemeral spec/ADR/phase ids embedded in code comments; comments keep the durable WHY.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [ ] De-numbered leaf → classified `feature_catalog` / `playbook_feature` (not `readme`).
-- [ ] Numbered `NN--slug` leaf → still classified as its typed document.
-- [ ] Root `feature_catalog.md` / `manual_testing_playbook.md` index → NOT classified as a leaf.
-- [ ] New `NN--` category folder → no-new-numbers guard FAILS; de-numbered folder → guard PASSES.
-- [ ] Existing sk-doc validator tests pass (no regression).
-- [ ] `validate.sh --strict` Errors 0 on this phase folder.
+- [x] De-numbered leaf → classified `feature_catalog` / `playbook_feature` (not `readme`).
+- [x] Numbered `NN--slug` leaf → still classified as its typed document.
+- [x] Root `feature_catalog.md` / `manual_testing_playbook.md` index → NOT classified as a leaf.
+- [x] New `NN--` category folder → no-new-numbers guard FAILS; de-numbered folder → guard PASSES.
+- [x] Existing sk-doc validator tests pass (no regression).
+- [x] `validate.sh --strict` Errors 0 on this phase folder.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [ ] Both `validate_document.py` copies, the guard, and (if needed) `template_rules.json` prose all updated —
+- [x] Both `validate_document.py` copies, the guard, and (if needed) `template_rules.json` prose all updated —
   no surface missed.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [ ] Change only widens classification and adds a fail-closed guard; no gate, allowlist, or execution-path
+- [x] Change only widens classification and adds a fail-closed guard; no gate, allowlist, or execution-path
   behavior weakened.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [ ] `template_rules.json` prose descriptions no longer imply the number is required for classification.
+- [x] `template_rules.json` prose descriptions no longer imply the number is required for classification.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [ ] Edits confined to the two sk-doc `validate_document.py` copies, `template_rules.json`, and the new guard +
+- [x] Edits confined to the two sk-doc `validate_document.py` copies, `template_rules.json`, and the new guard +
   its fixtures.
 <!-- /ANCHOR:file-org -->
 

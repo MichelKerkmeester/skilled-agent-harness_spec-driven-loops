@@ -29,7 +29,7 @@
       "playbook"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-doc/scripts/validate_document.py",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Phase 002 of the numbered-prefix deprecation. Re-base the sk-doc catalog/playbook leaf classifier in validate_document.py (both copies) from the number-anchored `^\\\\d{2}--` parent test to a structural test — the file sits in a SUBfolder of feature_catalog/ (resp. manual_testing_playbook/), so both the numbered NN--slug form and the de-numbered slug form validate during the transition while the root index file stays excluded.",
     "created_at": "2026-07-10T18:51:12.779Z",
-    "last_save_at": "2026-07-10T18:51:12.779Z",
+    "last_save_at": "2026-07-11T04:21:39.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b1381ebfe880acfe9b15124abefef5c93bbd5b1cf297ba75b9a318346732bdc3",
+    "source_fingerprint": "sha256:5f6f9d3dc5692cc6fc54d07ef5782858c629b50622e1b51770536384afb39f1d",
     "source_doc_hashes": {
-      "spec.md": "b3471f46e40c4dfeca592201f7c8477de82d9c3d4c2e01e3b9db44dad981376a",
+      "spec.md": "ca1e57c3fe8b0976f47acd055866e0b791a5219d8bcb21f7bc084f60d00c1b06",
       "plan.md": "e51570a091f6c11ef638bfa8551e495378ca8cf461480d4e2970aec0d1334d1d",
-      "tasks.md": "2f30257cc433c8407adf0eafee9f1d8f3bc0b5f48a47707faf29f3f11226e84c",
-      "checklist.md": "1d45acd691ff2757a10c06e351a4fbfa210cd3a6797f026ca4a854ad7a9166be",
-      "implementation-summary.md": "3e34c8b5a9453b7dce01b63fc7819022d4d8e9d17420dfeca58a055d29a02be3"
+      "tasks.md": "347d8e482afad04b53e9011e9a883defc520a3f69030075c902151638080da26",
+      "checklist.md": "4601b9dc34f4862a534396a010c2dccf81094f02b5baa25def0c59c9f9f7904d",
+      "implementation-summary.md": "93f84393e0a5f95e979291d62cfa633aa722c44348442999131183ae1b627e48"
     },
     "last_active_child_id": null,
     "last_active_at": null

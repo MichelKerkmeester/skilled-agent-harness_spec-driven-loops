@@ -9,10 +9,10 @@ _memory:
     packet_pointer: "sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix/002-validator-and-guard"
     last_updated_at: "2026-07-10T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Stub — phase not yet implemented"
-    next_safe_action: "Implement the classifier change"
+    recent_action: "Structural leaf classifier + no-new-numbers guard; commit cc422d6037"
+    next_safe_action: "Complete"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -26,23 +26,24 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-validator-and-guard |
-| **Status** | Planned (not yet implemented) |
+| **Status** | Complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-_Planned._ To be filled on completion with the exact edits that re-base catalog/playbook leaf classification in
-both `validate_document.py` copies from the `^\d{2}--` parent test to a structural subfolder test, plus the new
-no-new-numbers guard and any `template_rules.json` prose correction.
+Changed the leaf classification in `validate_document.py` from an `^\d{2}--` parent-prefix test to a structural
+grandparent test (`parent.parent == feature_catalog` / `manual_testing_playbook`), so BOTH the numbered
+`NN--slug` form and the de-numbered `slug` form classify as their typed document while the root index file stays
+excluded. Added a standalone opt-in no-new-numbers guard (`check_no_numbered_categories.py`), symlinked into
+`scripts/`.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-_Planned._ Confirm the `:129,135` tests are identical across `scripts/` and `shared/scripts/`, replace each with
-the structural "parent is a subfolder, not the catalog/playbook root file" test, add the guard, add fixtures
-(de-numbered leaf, numbered leaf, root index, non-leaf negative, new numbered folder), then run the existing
-sk-doc validator suite and validate.
+Replaced the `^\d{2}--` parent test with the structural grandparent test so a catalog/playbook leaf classifies
+by *being a subfolder* of the typed root rather than by its numeric prefix; added the standalone opt-in guard
+and its `scripts/` symlink, and covered both with a new classification + guard suite. Commit `cc422d6037`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
@@ -55,14 +56,14 @@ before any rename.
 
 <!-- ANCHOR:verification -->
 ## Verification
-_Planned._ `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix/002-validator-and-guard --strict`
-Errors 0, plus fixture assertions (de-numbered leaf and numbered leaf both classify; root index excluded; new
-`NN--` folder trips the guard) and a green run of the existing sk-doc validator tests.
+`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix/002-validator-and-guard --strict`
+Errors 0. New classification + guard suite **9/9 PASS** (de-numbered leaf and numbered leaf both classify; root
+index excluded; new `NN--` folder trips the guard); existing `test_feature_catalog_validation` **6/6 PASS**.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-_Planned._ The classifier tolerates BOTH numbered and de-numbered forms by design (transition state); the tree
-still carries numbered folders until Phase 004 executes the rename, after which the no-new-numbers guard keeps
-the de-numbered form the only legal one.
+The classifier tolerates BOTH numbered and de-numbered forms by design; after Phase 004's rename the
+no-new-numbers guard keeps the de-numbered form the only legal one going forward. The guard is standalone and
+opt-in — it is not wired into the default validator run.
 <!-- /ANCHOR:limitations -->

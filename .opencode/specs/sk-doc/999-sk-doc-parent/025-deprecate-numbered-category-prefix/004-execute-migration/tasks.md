@@ -28,22 +28,22 @@ _memory:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] Full dry-run; reconcile the report against research.md counts and confirm 0 collisions.
-- [ ] Confirm Phase 002 (tolerant classifier) has landed.
+- [x] Full dry-run; reconcile the report against research.md counts and confirm 0 collisions.
+- [x] Confirm Phase 002 (tolerant classifier) has landed.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] Execute the migration family-by-family across all 34 skills (fan out on disjoint families).
-- [ ] Validate each family `--strict` Errors 0 before its commit.
-- [ ] Path-scoped commit per family (exclude branch WIP + concurrent-session dirt).
+- [x] Execute the migration family-by-family across all 34 skills (fan out on disjoint families).
+- [x] Validate each family `--strict` Errors 0 before its commit.
+- [x] Path-scoped commit per family (exclude branch WIP + concurrent-session dirt).
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] Repo-wide find: zero in-scope `NN--` category folders.
-- [ ] Router prefixes + 115 `category:` values resolve to real de-numbered paths.
-- [ ] Excluded surfaces (z_archive/CHANGELOG/history) byte-unchanged.
+- [x] Repo-wide find: zero in-scope `NN--` category folders.
+- [x] Router prefixes + 115 `category:` values resolve to real de-numbered paths.
+- [x] Excluded surfaces (z_archive/CHANGELOG/history) byte-unchanged.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

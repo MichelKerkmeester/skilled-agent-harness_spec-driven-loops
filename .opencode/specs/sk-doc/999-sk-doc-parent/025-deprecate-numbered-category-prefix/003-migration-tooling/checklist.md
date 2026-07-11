@@ -28,39 +28,39 @@ Every item carries a dry-run-output or `git status` evidence line.
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [ ] Rename map built from the live tree and reconciled against research.md (390 = 123 + 267 / 34 skills).
+- [x] Rename map built from the live tree and reconciled against research.md (390 = 123 + 267 / 34 skills).
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [ ] Rename map computed from the filesystem, not hardcoded; script comments keep durable WHY only (no spec/packet ids).
+- [x] Rename map computed from the filesystem, not hardcoded; script comments keep durable WHY only (no spec/packet ids).
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [ ] Dry-run mutates nothing: `git status` clean afterward (R1).
-- [ ] Collision check reports 0 and aborts on a synthetic colliding pair (R3).
-- [ ] Re-run is byte-identical (idempotent, R5); `validate.sh --strict` Errors 0 on this phase folder.
+- [x] Dry-run mutates nothing: `git status` clean afterward (R1).
+- [x] Collision check reports 0 and aborts on a synthetic colliding pair (R3).
+- [x] Re-run is byte-identical (idempotent, R5); `validate.sh --strict` Errors 0 on this phase folder.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [ ] All five reference classes covered (a git mv, b frontmatter, c index rows, d nav links, e router blocks) — none missed (R4).
+- [x] All five reference classes covered (a git mv, b frontmatter, c index rows, d nav links, e router blocks) — none missed (R4).
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [ ] Dry-run is the default; `--apply` gates mutation; no network/out-of-band state; reversible via git.
+- [x] Dry-run is the default; `--apply` gates mutation; no network/out-of-band state; reversible via git.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [ ] Dry-run report format documented: rename map + per-file diff + collision + excluded-surface summary.
+- [x] Dry-run report format documented: rename map + per-file diff + collision + excluded-surface summary.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [ ] Script confined to its planned packet-local `scripts/` location; touches no tree file in dry-run.
+- [x] Script confined to its planned packet-local `scripts/` location; touches no tree file in dry-run.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

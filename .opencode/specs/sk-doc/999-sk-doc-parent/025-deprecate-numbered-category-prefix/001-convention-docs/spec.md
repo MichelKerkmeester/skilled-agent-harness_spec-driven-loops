@@ -31,7 +31,7 @@ _memory:
 |-------|-------|
 | **Packet** | 025/001-convention-docs |
 | **Level** | 2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Phase** | 001 of 005 (foundation) |
 <!-- /ANCHOR:metadata -->
 

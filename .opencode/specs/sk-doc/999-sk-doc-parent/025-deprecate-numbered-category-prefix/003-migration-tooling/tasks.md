@@ -28,26 +28,26 @@ _memory:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] Discover numbered folders from the live tree and build the `{ oldPath → newPath }` rename map.
-- [ ] Assert the map size against research.md (390 = 123 feature_catalog + 267 manual_testing_playbook / 34 skills).
+- [x] Discover numbered folders from the live tree and build the `{ oldPath → newPath }` rename map.
+- [x] Assert the map size against research.md (390 = 123 feature_catalog + 267 manual_testing_playbook / 34 skills).
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] Implement the collision check (abort if two stripped names collide in a parent; expected 0).
-- [ ] Implement the ADR-004 deny-list predicate (`z_archive/`, `CHANGELOG*`/`changelog*`, history, this packet's evidence).
-- [ ] Implement rewriter (a): `git mv` folder renames from the rename map.
-- [ ] Implement rewriter (b): frontmatter `category:` value rewrites (115).
-- [ ] Implement rewriter (c): root index-table path rows (`feature_catalog.md` / `manual_testing_playbook.md`, ~1,052).
-- [ ] Implement rewriter (d): nav / cross-ref markdown links (~5,298 across ~1,841 files), deny-list applied.
-- [ ] Implement rewriter (e): the two SKILL.md router-prefix blocks (skill-advisor + code-graph).
-- [ ] Implement the dry-run report (rename map + per-file diff + collision + excluded-surface summary) and the `--apply` gate.
+- [x] Implement the collision check (abort if two stripped names collide in a parent; expected 0).
+- [x] Implement the ADR-004 deny-list predicate (`z_archive/`, `CHANGELOG*`/`changelog*`, history, this packet's evidence).
+- [x] Implement rewriter (a): `git mv` folder renames from the rename map.
+- [x] Implement rewriter (b): frontmatter `category:` value rewrites (115).
+- [x] Implement rewriter (c): root index-table path rows (`feature_catalog.md` / `manual_testing_playbook.md`, ~1,052).
+- [x] Implement rewriter (d): nav / cross-ref markdown links (~5,298 across ~1,841 files), deny-list applied.
+- [x] Implement rewriter (e): the two SKILL.md router-prefix blocks (skill-advisor + code-graph).
+- [x] Implement the dry-run report (rename map + per-file diff + collision + excluded-surface summary) and the `--apply` gate.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] Dry-run reports ~390 / ~115 / ~1,052 / ~5,298 / 2 router blocks / 0 collisions; `git status` clean after.
-- [ ] Excluded-surface summary is empty; re-run is byte-identical (idempotent); `validate.sh --strict` Errors 0.
+- [x] Dry-run reports ~390 / ~115 / ~1,052 / ~5,298 / 2 router blocks / 0 collisions; `git status` clean after.
+- [x] Excluded-surface summary is empty; re-run is byte-identical (idempotent); `validate.sh --strict` Errors 0.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

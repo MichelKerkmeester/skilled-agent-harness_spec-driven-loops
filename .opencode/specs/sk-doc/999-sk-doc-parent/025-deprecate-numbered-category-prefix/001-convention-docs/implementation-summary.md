@@ -9,10 +9,10 @@ _memory:
     packet_pointer: "sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix/001-convention-docs"
     last_updated_at: "2026-07-10T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Stub — phase not yet implemented"
-    next_safe_action: "Implement doc edits"
+    recent_action: "Convention de-numbered across 18 files; commit 4d0835af00"
+    next_safe_action: "Complete"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -26,20 +26,24 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-convention-docs |
-| **Status** | Planned (not yet implemented) |
+| **Status** | Complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-_Planned._ To be filled on completion with the exact sections/templates/generators edited to make the bare
-descriptive slug the sole canonical category-folder form.
+Removed the `NN--category` folder-naming mandate from the two authoritative sk-doc convention skills
+(`create-feature-catalog`, `create-manual-testing-playbook`) — their `SKILL.md`, READMEs, templates, and
+examples — and from the `/create:*` generator YAMLs: **18 files** in total. The bare descriptive slug is now
+documented as the sole canonical category-folder name, and display ordering is documented as owned by the root
+index table (`feature_catalog.md` / `manual_testing_playbook.md`).
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-_Planned._ Grep-locate every `NN--` mandate/example, rewrite to the bare slug, update the `/create:*`
-generators, then grep-verify and validate.
+Grep-located every `NN--` mandate/example across the two convention skills, their READMEs, templates, examples,
+and the `/create:*` generator YAMLs; rewrote each to the bare descriptive slug; documented ordering as
+index-owned. A follow-up grep confirmed no `NN--` mandate survives outside changelog text. Commit `4d0835af00`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
@@ -50,11 +54,12 @@ root index table.
 
 <!-- ANCHOR:verification -->
 ## Verification
-_Planned._ `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` Errors 0,
-plus a grep asserting no surviving numbered mandate/example in the edited surfaces.
+`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` Errors 0. Grep is clean
+of any `NN--` category mandate outside changelog history across the 18 edited surfaces.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-_Planned._ Docs-only phase; the tree still carries numbered folders until Phase 004 executes the rename.
+Docs-only phase — it removed the naming mandate but renamed no folders; the actual tree rename was executed in
+Phase 004. Historical/changelog references to the numbered form are deliberately left intact.
 <!-- /ANCHOR:limitations -->

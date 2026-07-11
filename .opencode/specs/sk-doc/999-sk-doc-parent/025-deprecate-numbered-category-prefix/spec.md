@@ -15,11 +15,11 @@ _memory:
     packet_pointer: "sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix"
     last_updated_at: "2026-07-10T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase-parent authored from 4-agent GPT-5.6 investigation; 5 phase children scaffolded"
-    next_safe_action: "Implement 001 (convention docs) + 002 (validator+guard) in parallel"
+    recent_action: "All 5 phases shipped + verified"
+    next_safe_action: "Memory save + push (operator-gated)"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "No consumer parses the NN ordinal numerically — ordering lives in the root index tables (GPT investigation, agent B/D)"
@@ -41,7 +41,7 @@ _memory:
 | **Packet** | sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix |
 | **Level** | phase parent (program Level 3) |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-10 |
 | **Owner skill** | sk-doc (owns the `create-feature-catalog` + `create-manual-testing-playbook` convention and the `validate_document.py` classifier) |
 | **Origin** | Operator: "deprecate the numbered prefix of feature catalog and playbook snippet folders … retroactively in all skills and update path references" |

@@ -28,28 +28,28 @@ _memory:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] Read both `validate_document.py` copies; confirm the `^\d{2}--` parent tests at `:129,135` and their
+- [x] Read both `validate_document.py` copies; confirm the `^\d{2}--` parent tests at `:129,135` and their
   surrounding path-segment checks are identical across `scripts/` and `shared/scripts/`.
-- [ ] Confirm whether `template_rules.json` hard-codes the number in any executable rule (vs prose description).
+- [x] Confirm whether `template_rules.json` hard-codes the number in any executable rule (vs prose description).
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] Replace the `^\d{2}--` parent test with the structural "parent is a subfolder, not the catalog root file"
+- [x] Replace the `^\d{2}--` parent test with the structural "parent is a subfolder, not the catalog root file"
   test in `scripts/validate_document.py` (both `manual_testing_playbook` and `feature_catalog` branches).
-- [ ] Apply the identical change to `shared/scripts/validate_document.py`.
-- [ ] Correct any stale `NN--category` prose in `template_rules.json` descriptions (accuracy only).
-- [ ] Add the no-new-numbers guard (validator/CI check) that FAILS on a new `feature_catalog/NN--*/` or
+- [x] Apply the identical change to `shared/scripts/validate_document.py`.
+- [x] Correct any stale `NN--category` prose in `template_rules.json` descriptions (accuracy only).
+- [x] Add the no-new-numbers guard (validator/CI check) that FAILS on a new `feature_catalog/NN--*/` or
   `manual_testing_playbook/NN--*/` folder.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] Add fixtures: de-numbered leaf, numbered leaf, root index file, non-leaf negative, new numbered folder.
-- [ ] De-numbered leaf → typed document; numbered leaf → typed document; root index → NOT a leaf.
-- [ ] New `NN--` folder → guard FAILS; de-numbered folder → guard PASSES.
-- [ ] Existing sk-doc validator tests pass; both copies byte-identical in the changed region.
-- [ ] `validate.sh --strict` Errors 0 on this phase folder.
+- [x] Add fixtures: de-numbered leaf, numbered leaf, root index file, non-leaf negative, new numbered folder.
+- [x] De-numbered leaf → typed document; numbered leaf → typed document; root index → NOT a leaf.
+- [x] New `NN--` folder → guard FAILS; de-numbered folder → guard PASSES.
+- [x] Existing sk-doc validator tests pass; both copies byte-identical in the changed region.
+- [x] `validate.sh --strict` Errors 0 on this phase folder.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

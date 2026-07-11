@@ -9,10 +9,10 @@ _memory:
     packet_pointer: "sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix/004-execute-migration"
     last_updated_at: "2026-07-10T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Stub — phase not yet implemented"
-    next_safe_action: "Run dry-run, then execute per family"
+    recent_action: "Migration executed atomically; 391 folders renamed; commit b2f6c3ee52"
+    next_safe_action: "Complete"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -26,19 +26,23 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-execute-migration |
-| **Status** | Planned (not yet implemented) |
+| **Status** | Complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-_Planned._ To be filled on completion with the family batches migrated and the aggregate counts actually applied.
+Applied the migration atomically. Renamed **391 numbered category folders** (123 `feature_catalog` + 268
+`manual_testing_playbook`, across 34 skills) to their bare slugs; rewrote **14,091 reference replacements across
+2,515 files**, **115 frontmatter `category:` values**, **both SKILL.md router-prefix blocks**
+(`system-skill-advisor`, `system-code-graph`), and the **3 hard-coded category paths** (2 vitest + the stress
+harness).
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-_Planned._ Dry-run reconcile, then family-by-family execute → validate → path-scoped commit, fanned out across
-the GPT-terra + Sonnet fleet on disjoint families.
+Ran the Phase 003 engine with mutation enabled in one atomic pass over the live worktree, then verified the
+residual-folder and reference invariants. Commit `b2f6c3ee52`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
@@ -48,11 +52,15 @@ Per `decision-record.md` ADR-001 (hard rename) and ADR-002 (executed only after 
 
 <!-- ANCHOR:verification -->
 ## Verification
-_Planned._ Per-family `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <family-folder> --strict`
-Errors 0, plus a repo-wide `find` asserting zero in-scope `NN--` category folders remain.
+0 numbered category folders remain; 0 full-path (link-like) references to renamed folders survive in active
+docs; leaf classification intact on the real renamed paths. `validate.sh --strict` on this phase folder
+Errors 0 (and green under the Phase 005 recursive strict pass).
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-_Planned._ The end-to-end recursive validation, link-guard, and benchmark regression proof are Phase 005, not here.
+Bare category-name LABELS (~500) in historical audit / log / handover / completed-packet records were left
+frozen deliberately — they are labels, not links, and rewriting them would falsify history (decision-record
+ADR-004). Changelog, `z_archive/`, and this packet's own evidence stay numbered by the same deny-list. The
+end-to-end recursive validation, link-guard, and benchmark regression proof are Phase 005.
 <!-- /ANCHOR:limitations -->

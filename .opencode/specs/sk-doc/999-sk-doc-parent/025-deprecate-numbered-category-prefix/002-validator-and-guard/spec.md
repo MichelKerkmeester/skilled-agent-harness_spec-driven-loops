@@ -31,7 +31,7 @@ _memory:
 |-------|-------|
 | **Packet** | 025/002-validator-and-guard |
 | **Level** | 2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Phase** | 002 of 005 (foundation) |
 <!-- /ANCHOR:metadata -->
 

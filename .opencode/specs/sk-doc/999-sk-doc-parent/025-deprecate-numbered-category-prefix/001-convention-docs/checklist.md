@@ -28,38 +28,38 @@ Every item carries a grep or fresh-reader evidence line.
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [ ] Enumerated every `NN--` mandate/example in the two skills + templates + generators.
+- [x] Enumerated every `NN--` mandate/example in the two skills + templates + generators.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [ ] Docs-only; no code touched; edits read coherently as de-numbered.
+- [x] Docs-only; no code touched; edits read coherently as de-numbered.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [ ] Grep: zero surviving numbered mandate/example in edited surfaces (historical prose excluded).
-- [ ] `validate.sh --strict` Errors 0 on this phase folder.
+- [x] Grep: zero surviving numbered mandate/example in edited surfaces (historical prose excluded).
+- [x] `validate.sh --strict` Errors 0 on this phase folder.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [ ] Both convention skills, their templates, and both `/create:*` generators edited (no surface missed).
+- [x] Both convention skills, their templates, and both `/create:*` generators edited (no surface missed).
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [ ] No executable/config behavior changed; docs-only edit with no gate or allowlist impact.
+- [x] No executable/config behavior changed; docs-only edit with no gate or allowlist impact.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [ ] Ordering documented as owned by the root index table (both skills).
+- [x] Ordering documented as owned by the root index table (both skills).
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [ ] Edits confined to sk-doc convention skills, templates, and `/create:*` generators.
+- [x] Edits confined to sk-doc convention skills, templates, and `/create:*` generators.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

@@ -30,7 +30,7 @@
       "deprecation"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "implementation-summary.md",
       "spec.md",
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Phase 003 of the numbered-prefix deprecation. Author one deterministic migration script that performs the whole de-numbering — git mv the 390 numbered category folders to bare slugs, rewrite the 115 frontmatter category: values, the ~1,052 root index-table path rows, the ~5,298 nav/cross-ref links across ~1,841 files, and the two SKILL.md router-prefix blocks — with a DRY-RUN mode that mutates nothing and emits a rename map, per-file diff, and safety/collision report. Honors the ADR-004 deny-list (z_archive, CHANGELOG, history, this packet's evidence). Tooling-only phase — Phase 004 runs it.",
     "created_at": "2026-07-10T18:51:12.903Z",
-    "last_save_at": "2026-07-10T18:51:12.903Z",
+    "last_save_at": "2026-07-11T04:21:40.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3101d69218a9254e7aad675b9ce6565e063ea64af8f53ed13479ca25031a3ca1",
+    "source_fingerprint": "sha256:dedb30af7649e779be65fc67ccbaae7c837abc8874adf425b6386522c85e4af9",
     "source_doc_hashes": {
-      "spec.md": "d175836b8768aaba8b89f56c880b1c03e0a30cd3878fca87a1f26c3e8b3ac822",
+      "spec.md": "6d3f16c05145e5c1ebc0fc3f4e61798cfde22d52f822c8a73f943e87342bc8b9",
       "plan.md": "c4c5de46928beaa07f77ea6ab0e2ea76a71c15cb755c793f4d259b2a65d8f1d5",
-      "tasks.md": "3f954b5cf0ccfee60efb30325215fa3236f101506df3aef03fe507441a6eec3d",
-      "checklist.md": "146a41e346c6c24ed0a861a2c0204b01aa7f37fb1dfe3266ce0ae2fa9f0da9d1",
-      "implementation-summary.md": "e264293b0b466fce802d4e5a2a7ced87f550c83b8906b33dde002e7b06d56a2f"
+      "tasks.md": "1223d6275c803c2dbcbe518bb519363978560388e529f1485afac66c04fb399e",
+      "checklist.md": "a78b9d0f03f3d7178a20c968cd5a9b662cc071e3114f93b0da356ce25029e506",
+      "implementation-summary.md": "6d90c8120e34591df5c851871a19d8835db4fcbb89165568a5c06fe2d9c41210"
     },
     "last_active_child_id": null,
     "last_active_at": null

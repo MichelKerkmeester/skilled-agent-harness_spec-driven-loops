@@ -31,7 +31,7 @@ _memory:
 |-------|-------|
 | **Packet** | 025/005-validate-and-rebenchmark |
 | **Level** | 2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Phase** | 005 of 005 (gate) |
 <!-- /ANCHOR:metadata -->
 

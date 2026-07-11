@@ -28,21 +28,21 @@ _memory:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] Capture the Lane C baseline on the to-be-touched skills BEFORE Phase 004 runs.
+- [x] Capture the Lane C baseline on the to-be-touched skills BEFORE Phase 004 runs.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] Recursive `validate.sh --strict` across the parent + every touched skill; Errors 0.
-- [ ] Leaf-classification spot-check per family (catalog/playbook leaves not downgraded to readme).
-- [ ] Run the whole-workspace markdown-link guard + the hard-coded-path tests.
-- [ ] Re-run Lane C on affected skills; compute the before/after delta.
-- [ ] Guard proof: create a throwaway `NN--` folder → FAIL → remove → PASS.
+- [x] Recursive `validate.sh --strict` across the parent + every touched skill; Errors 0.
+- [x] Leaf-classification spot-check per family (catalog/playbook leaves not downgraded to readme).
+- [x] Run the whole-workspace markdown-link guard + the hard-coded-path tests.
+- [x] Re-run Lane C on affected skills; compute the before/after delta.
+- [x] Guard proof: create a throwaway `NN--` folder → FAIL → remove → PASS.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] All gates green; benchmark delta explained; guard proof captured.
+- [x] All gates green; benchmark delta explained; guard proof captured.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
