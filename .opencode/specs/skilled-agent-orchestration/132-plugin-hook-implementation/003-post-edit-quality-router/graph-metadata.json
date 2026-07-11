@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-plugin-hook-implementation/003-post-edit-quality-router",
+  "spec_folder": "skilled-agent-orchestration/132-plugin-hook-implementation/003-post-edit-quality-router",
+  "parent_id": "skilled-agent-orchestration/132-plugin-hook-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post-edit quality router",
+      "post-edit-router core",
+      "warn-only edit hook",
+      "quality checker dispatch table",
+      "comment hygiene frontmatter placeholders",
+      "post-edit router plan",
+      "runtime-neutral core two adapters",
+      "callID filePath correlation",
+      "warn-only fail-open checker dispatch",
+      "post-edit router tasks",
+      "post-edit-router core tasks",
+      "checker dispatch tasks"
+    ],
+    "key_topics": [
+      "post-edit",
+      "quality",
+      "router",
+      "post-edit-router",
+      "core",
+      "warn-only",
+      "edit",
+      "hook",
+      "checker",
+      "dispatch",
+      "table",
+      "comment"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs",
+      ".opencode/plugins/mk-post-edit-quality.js",
+      ".opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh",
+      ".claude/settings.json",
+      ".opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs",
+      ".opencode/plugins/README.md",
+      ".opencode/plugins/tests/mk-post-edit-quality.test.cjs",
+      "tasks.md",
+      "checklist.md",
+      "plan.md",
+      "decision-record.md",
+      "spec.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-post-edit-quality.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-post-edit-quality.js",
+        "source": "derived"
+      },
+      {
+        "name": "claude-posttooluse.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "claude-posttooluse.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-post-edit-quality.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-post-edit-quality.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Post",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edit Quality Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each quality checker is wired independently into the post-edit path, and the Claude hook (a Python script named `claude-posttooluse.sh`) and any OpenCode wiring duplicate the \"which checker runs for this path\" decision",
+    "created_at": "2026-07-11T05:51:01Z",
+    "last_save_at": "2026-07-11T09:03:33.074Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3572ad3c37ccdcaf2492a8f93cede75396da8db153b4dea1b1c31008e54e4fb2",
+    "source_doc_hashes": {
+      "spec.md": "237c163c81ad3fb9a4b7e968e35057ccbc508571a7f591c222faac55ebea0c08",
+      "plan.md": "ddef5911d24802a2215f0dae39b90475068251df4c14f3784b7ee5a67ef7e8d8",
+      "tasks.md": "6a68ef5ee021471a1dcd4b540e24df74e4fc9f8aaf6cdcea15d1e9fe5ac4b276",
+      "checklist.md": "1afe29c87653de6206ed3d6029ee092253b9ecfbb23b8695545bb9ecd36f2efe",
+      "decision-record.md": "28798cc2b17e469a9df73fc1eb0a13da7b282fe6315dd3a68d1ccc719642e5e2",
+      "implementation-summary.md": "295b5e4568a5a43586498980db94a16f62038b31e96b2ff1498199602c3aa4fd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-plugin-hook-implementation/002-code-graph-freshness-guard",
+  "spec_folder": "skilled-agent-orchestration/132-plugin-hook-implementation/002-code-graph-freshness-guard",
+  "parent_id": "skilled-agent-orchestration/132-plugin-hook-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph freshness guard",
+      "incremental scan guard",
+      "warm-only code graph refresh",
+      "post-edit graph self-heal",
+      "code-graph-freshness-guard",
+      "code graph freshness plan",
+      "freshness core architecture",
+      "warm-only scan dispatch",
+      "thin runtime adapters",
+      "code graph freshness tasks",
+      "freshness core tasks",
+      "warm-only scan tasks"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "freshness",
+      "guard",
+      "incremental",
+      "scan",
+      "warm-only",
+      "refresh",
+      "post-edit",
+      "self-heal",
+      "code-graph-freshness-guard",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.cjs",
+      ".opencode/plugins/mk-code-graph-freshness.js",
+      ".opencode/skills/system-code-graph/runtime/hooks/claude/code-graph-freshness.cjs",
+      ".claude/settings.json",
+      "plan.md",
+      "decision-record.md",
+      ".opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.vitest.ts",
+      ".opencode/plugins/README.md",
+      ".opencode/bin/code-index.cjs",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "freshness-core.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph-freshness.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-code-graph-freshness.js",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/runtime/hooks/claude/code-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "freshness-core.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-index.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/code-index.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Incremental Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Freshness Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After a source edit, the structural code graph drifts soft-stale, and `detectchanges` / `blastradius` / `codegraphcontext` fall back to a false-safe `blocked` payload until an operator manually re-runs `codegraphscan`",
+    "created_at": "2026-07-11T05:51:00Z",
+    "last_save_at": "2026-07-11T09:03:32.752Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3bb5cb3293e6907079ab1d05a2b0c40687c40499e8b4eeabc08ec766bb92a014",
+    "source_doc_hashes": {
+      "spec.md": "026a4c640c026c85aed0042457df9851887bdb562f067fa8a917f122c234ad8d",
+      "plan.md": "4129a8373937ad83fd040a56a4a3995743547be9ac857e07ece84dfeb582b3f9",
+      "tasks.md": "3dd5cb9649435edab2e4a5205a318633f0108c9c0395d7de07c1e0a7b5b16d8f",
+      "checklist.md": "fe27f07bd74ed00a904a158e29594b7ef01bf05db9d5cfc67c8d22dfc25f4b47",
+      "decision-record.md": "497e54c6038e6dace0206a7848d65e766586fb4930c2c69802227a0e396d0bb7",
+      "implementation-summary.md": "d34993fc62453883567ad5501aa727b039100bfbc7ddf0ff74b3bf121b1bf3e0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

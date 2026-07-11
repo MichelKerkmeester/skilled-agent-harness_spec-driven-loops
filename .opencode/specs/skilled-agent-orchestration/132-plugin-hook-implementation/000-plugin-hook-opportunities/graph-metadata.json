@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-plugin-hook-implementation/000-plugin-hook-opportunities",
+  "spec_folder": "skilled-agent-orchestration/132-plugin-hook-implementation/000-plugin-hook-opportunities",
+  "parent_id": "skilled-agent-orchestration/132-plugin-hook-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plugin hook opportunities",
+      "plugins from skills",
+      "hooks from skills",
+      "deep research plugins",
+      "plugin hook research method",
+      "two model deep research fan-out",
+      "plugin hook backlog plan",
+      "plugin hook research tasks",
+      "two model fan-out task list",
+      "plugin hook backlog tasks",
+      "plugin hook backlog delivery",
+      "two model fan-out summary"
+    ],
+    "key_topics": [
+      "plugin",
+      "hook",
+      "opportunities",
+      "plugins",
+      "skills",
+      "hooks",
+      "deep",
+      "research",
+      "method",
+      "two",
+      "model",
+      "fan-out"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "spec.md",
+      "research/lineages/gptsol/deep-research-config.json",
+      "research/lineages/glm52/deep-research-state.jsonl",
+      "plan.md",
+      ".claude/settings.json",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/lineages/gptsol/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/lineages/glm52/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo ships seven OpenCode plugins with paired Claude hooks, but a much larger body of skills (`sk-code`, `sk-design`, `sk-doc`, `sk-git`, `sk-prompt`, `system-deep-loop`, `system-spec-kit`, `system-skill-advisor`, `system-code-graph`, cli-external hubs, mcp-tooling hubs) exposes capability that is only reachable interactively",
+    "created_at": "2026-07-11T04:08:27.701Z",
+    "last_save_at": "2026-07-11T09:03:32.133Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:d066d37ff840570b35a8316bb56e773d545e21695da3058ad42cee07c8d67e70",
+    "source_doc_hashes": {
+      "spec.md": "f4bdfff129521eff4a7e7e5ecfc61e73d85ae6762857e0882bff18f2035b7940",
+      "plan.md": "ee55ef1408a0f0fa90d992a2ab0d34e220aadda3d0b6989a223e96c918f4af6b",
+      "tasks.md": "bd699805ed73d4fad0a7fbbc41881a3b3ef40e7680dc73fe2c9667179fa93be6",
+      "implementation-summary.md": "d1f2250cc41a355766512aabb9126115d2f63664857866fd08d6913c2a5b6c27",
+      "research/research.md": "5762fcc731ce1efd9f4f5c2f682bd619f48f5e9d1c79a1ff3db8460745c8c7e4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

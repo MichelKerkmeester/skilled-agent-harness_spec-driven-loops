@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-plugin-hook-implementation/005-mcp-route-guard",
+  "spec_folder": "skilled-agent-orchestration/132-plugin-hook-implementation/005-mcp-route-guard",
+  "parent_id": "skilled-agent-orchestration/132-plugin-hook-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp route guard",
+      "code mode routing nudge",
+      "native mcp advisory",
+      "call_tool_chain warning",
+      "external mcp warn-only",
+      "mcp route guard plan",
+      "runtime-neutral guard core",
+      "code mode adapter plan",
+      "warn-only plugin architecture",
+      "utcp manifest family set",
+      "mcp route guard tasks",
+      "guard core task breakdown"
+    ],
+    "key_topics": [
+      "mcp",
+      "route",
+      "guard",
+      "code",
+      "mode",
+      "routing",
+      "nudge",
+      "native",
+      "advisory",
+      "warning",
+      "external",
+      "warn-only"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs",
+      ".opencode/plugins/mk-mcp-route-guard.js",
+      ".opencode/skills/mcp-code-mode/runtime/hooks/claude/mcp-route-guard.cjs",
+      ".claude/settings.json",
+      ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.test.cjs",
+      ".opencode/plugins/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+      ".opencode/skills/mcp-code-mode/scripts/install.sh",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mcp-route-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-mcp-route-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-mcp-route-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-code-mode/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Route Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The External",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcp-code-mode` SKILL declares Code Mode MANDATORY for all external MCP tool calls (`SKILL.md:18`) because routing through `calltoolchain` gives roughly a 98% context reduction versus loading a native MCP server's full tool surface",
+    "created_at": "2026-07-11T05:51:02Z",
+    "last_save_at": "2026-07-11T09:03:33.752Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d695268cdef25236a0f5488665931c3cd29c215a92ac028291499b8af397c3af",
+    "source_doc_hashes": {
+      "spec.md": "01692cf5b706fbb1195888618907cd4594b4fda70ae7448b4a9800c0df2fe894",
+      "plan.md": "591b943adaf234d9b72e21b06db7ad328c250f96a78b1bca32cc5c50cebc4a98",
+      "tasks.md": "4f948ceb4c2eb191a4cba149bb57f1e95a853e5ef23bf907ba18cf71a7e2cf1e",
+      "checklist.md": "86d72e2b096761f635ee1fb723443c4f604bbd49c9d8d62a0a11dee012307807",
+      "decision-record.md": "13fe80520c52b2d8ebfce937c38895420de82848901848fbf063c32a10c240be",
+      "implementation-summary.md": "8b0872f1c1154e0fce49f474495be6d5068548101e5b21709a6d32bf077cf2dd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

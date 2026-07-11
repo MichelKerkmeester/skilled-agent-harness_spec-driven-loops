@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-plugin-hook-implementation/006-spec-mutation-gate",
+  "spec_folder": "skilled-agent-orchestration/132-plugin-hook-implementation/006-spec-mutation-gate",
+  "parent_id": "skilled-agent-orchestration/132-plugin-hook-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec mutation gate",
+      "gate 3 enforcement",
+      "write edit guard",
+      "mk-spec-gate",
+      "spec folder gate",
+      "spec mutation gate plan",
+      "gate 3 runtime guard",
+      "classify enforce adapters",
+      "mk-spec-gate plugin",
+      "answerParse corpus",
+      "spec mutation gate tasks",
+      "mk-spec-gate tasks"
+    ],
+    "key_topics": [
+      "spec",
+      "mutation",
+      "gate",
+      "enforcement",
+      "write",
+      "edit",
+      "guard",
+      "mk-spec-gate",
+      "folder",
+      "plan",
+      "runtime",
+      "classify"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".claude/settings.json",
+      ".opencode/plugins/mk-spec-gate.js",
+      ".opencode/plugins/README.md",
+      "shared/dist/gate-3-classifier.js",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "shared/gate-3-classifier.ts",
+      "mcp_server/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-gate.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-gate.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.js",
+        "kind": "code",
+        "path": "shared/dist/gate-3-classifier.js",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": "shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Mutation Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Gate 3 (\"spec folder before any file mutation\") is enforced only as prose in `CLAUDE.md` and `AGENTS.md`, so nothing stops an agent from editing repo files without first asking the mandated A/B/C/D/E spec-folder question",
+    "created_at": "2026-07-11T05:51:03Z",
+    "last_save_at": "2026-07-11T09:03:34.055Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9aab217479fe7b7bcb22a231b657326aa98fd93b97f5bdc8e9d3a4a6b2e00ea6",
+    "source_doc_hashes": {
+      "spec.md": "fb5b7c5c37f7f3bcaf71b9e04562bed404f6748a9b5461a279ff6f7925081333",
+      "plan.md": "481f6b8b9243085d86d77b2bc16765e40e9db0ac16961dd7223ea80ccfdebf08",
+      "tasks.md": "8eb0080321f3be40c606648a16e17d063633595993085ce41a7a2be2011f48c9",
+      "checklist.md": "feaa9a02db887bf8f061c57c969dc3a6a375b6b026a82ae99e65bffbbcaf8bbc",
+      "decision-record.md": "0127e9b9eb115e37374a58361c5487a9b12051bf4b1035673d880969b085ce5c",
+      "implementation-summary.md": "ba50989af3b81342151eb423613c0f9742fcb232d4438b932fca54265de7b0e9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

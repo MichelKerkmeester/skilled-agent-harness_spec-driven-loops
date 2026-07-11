@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-plugin-hook-implementation/001-cli-dispatch-audit-trail",
+  "spec_folder": "skilled-agent-orchestration/132-plugin-hook-implementation/001-cli-dispatch-audit-trail",
+  "parent_id": "skilled-agent-orchestration/132-plugin-hook-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli dispatch audit",
+      "tool.execute.after",
+      "post-execution telemetry",
+      "dispatch audit log",
+      "opencode run audit",
+      "cli dispatch audit plan",
+      "tool.execute.after adapter",
+      "dispatch-audit.mjs",
+      "shared core plus adapters",
+      "cli dispatch audit tasks",
+      "dispatch-audit.mjs tasks",
+      "tool.execute.after tasks"
+    ],
+    "key_topics": [
+      "cli",
+      "dispatch",
+      "audit",
+      "tool",
+      "execute",
+      "post-execution",
+      "telemetry",
+      "log",
+      "opencode",
+      "run",
+      "plan",
+      "adapter"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "tasks.md",
+      ".claude/settings.json",
+      ".opencode/logs/cli-dispatch-audit.log",
+      ".opencode/skills/cli-external/cli-opencode/scripts/lib/dispatch-audit.mjs",
+      ".opencode/plugins/mk-cli-dispatch-audit.js",
+      ".opencode/skills/cli-external/cli-opencode/scripts/hooks/dispatch-audit-posttooluse.mjs",
+      ".opencode/skills/cli-external/cli-opencode/scripts/lib/dispatch-audit.test.mjs",
+      ".opencode/plugins/README.md",
+      ".opencode/skills/cli-external/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/cli-external/cli-opencode/scripts/lib/dispatch-rule-checks.mjs",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-audit.log",
+        "kind": "file",
+        "path": ".opencode/logs/cli-dispatch-audit.log",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/cli-external/cli-opencode/scripts/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-cli-dispatch-audit.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-cli-dispatch-audit.js",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit-posttooluse.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/cli-external/cli-opencode/scripts/hooks/dispatch-audit-posttooluse.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/cli-external/cli-opencode/scripts/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/cli-external/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/cli-external/cli-opencode/scripts/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Audit Trail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo has zero post-execution telemetry",
+    "created_at": "2026-07-11T05:50:59Z",
+    "last_save_at": "2026-07-11T09:03:32.445Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fbe85d07ef1df075de34d61db526e1c39a30fe68d336575cb7affde1d4ce7e58",
+    "source_doc_hashes": {
+      "spec.md": "9139fdc385e864deeb90d1deb27919060372e8864ac844a5ba3f9e29c284951d",
+      "plan.md": "fbe2e13b0e80396431e9ddffe6ce10d4555906d05f0a10d9ce3431da5acf8362",
+      "tasks.md": "b863e51051da6ae6c5d5a1aa1ba6a52dee028605a17b162bf79ea28dd8fd294d",
+      "checklist.md": "b34a7db6aa2ff94fab12123177292dcff48ca09abcc6f4d68754a4544597974a",
+      "decision-record.md": "12bbbbd3f036fe58fb0d18c8a53052bb568848cd52484d84dc34fdab587e100c",
+      "implementation-summary.md": "c17cd7c417407fb2135ac5518c531045b5ee1d7da048030c12063938a0107bbc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

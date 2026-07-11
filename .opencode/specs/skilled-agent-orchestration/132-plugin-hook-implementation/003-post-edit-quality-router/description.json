@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/132-plugin-hook-implementation/003-post-edit-quality-router",
+  "description": "Each quality checker is wired independently into the post-edit path, and the Claude hook (a Python script named `claude-posttooluse.sh`) and any",
+  "keywords": [
+    "quality",
+    "checker",
+    "wired",
+    "independently",
+    "post-edit",
+    "path",
+    "claude",
+    "hook",
+    "python",
+    "script",
+    "named",
+    "claude-posttooluse"
+  ],
+  "lastUpdated": "2026-07-11T09:03:32.923Z",
+  "specId": "003",
+  "folderSlug": "post-edit-quality-router",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "132-plugin-hook-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
