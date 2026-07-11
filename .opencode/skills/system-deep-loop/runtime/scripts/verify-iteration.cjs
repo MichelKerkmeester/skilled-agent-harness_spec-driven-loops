@@ -131,10 +131,15 @@ function verify(loopType, artifactDir, iteration) {
   if (!narrative.trim()) {
     return { ok: false, reason: REASONS.ITERATION_FILE_MISSING, detail: `${narrativePath} is empty` };
   }
-  // Review narratives must end on a machine-readable verdict; research/context use a
-  // different closing shape, so only review enforces the verdict line here.
-  if (loopType === 'review' && !/Review verdict:\s*(PASS|CONDITIONAL|FAIL)/i.test(narrative)) {
-    return { ok: false, reason: REASONS.ITERATION_VERDICT_MISSING, detail: `${narrativePath} lacks a "Review verdict: PASS|CONDITIONAL|FAIL" line` };
+  // Review narratives must end on exactly one machine-readable verdict; research/context
+  // use a different closing shape, so only review enforces the verdict line here.
+  if (loopType === 'review') {
+    const verdictPattern = /^Review verdict:\s*(PASS|CONDITIONAL|FAIL)\s*$/i;
+    const verdictLines = narrative.split(/\r?\n/).filter((line) => verdictPattern.test(line));
+    const finalLine = narrative.trimEnd().split(/\r?\n/).at(-1) ?? '';
+    if (verdictLines.length !== 1 || !verdictPattern.test(finalLine)) {
+      return { ok: false, reason: REASONS.ITERATION_VERDICT_MISSING, detail: `${narrativePath} must end with exactly one "Review verdict: PASS|CONDITIONAL|FAIL" line` };
+    }
   }
 
   // 2. Canonical state-log record for this iteration + route-proof.

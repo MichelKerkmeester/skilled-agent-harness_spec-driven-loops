@@ -207,7 +207,8 @@ type PostDispatchFailureReason =
   | 'v2_uncited_ledger_row'
   | 'v2_broken_linked_finding'
   | 'v2_shallow_finding_details'
-  | 'delta_iteration_id_mismatch';
+  | 'delta_iteration_id_mismatch'
+  | 'state_delta_iteration_mismatch';
 
 export type PostDispatchValidateResult =
   | { ok: true; warnings?: PostDispatchAdvisory[] }
@@ -1190,6 +1191,11 @@ function validateV2IterationRecord(
         `state-log iteration ${stateIteration} does not match delta iteration ${deltaIteration}`,
         'iteration',
       ));
+    } else if (canonicalReceiptJson(record) !== canonicalReceiptJson(deltaIterationRecord)) {
+      failures.push(v2Failure(
+        'state_delta_iteration_mismatch',
+        'state-log and delta canonical iteration records differ',
+      ));
     }
   }
 
@@ -1686,12 +1692,15 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
         }
       } else {
         const v2Failures = validateV2IterationRecord(parsedRecord, deltaIterationRecord);
-        const identityFailure = v2Failures.find((failure) => failure.reason === 'delta_iteration_id_mismatch');
-        if (identityFailure) {
+        const parityFailure = v2Failures.find(
+          (failure) => failure.reason === 'delta_iteration_id_mismatch'
+            || failure.reason === 'state_delta_iteration_mismatch',
+        );
+        if (parityFailure) {
           return {
             ok: false,
-            reason: identityFailure.reason,
-            details: identityFailure.details,
+            reason: parityFailure.reason,
+            details: parityFailure.details,
             warnings: warnings.length > 0 ? warnings : undefined,
           };
         }

@@ -71,14 +71,23 @@ function normalizeOptions(input = {}) {
 
 function withCouncilRouteConfig(executorConfig) {
   const configuredFields = isRecord(executorConfig.route_fields) ? executorConfig.route_fields : {};
+  for (const [key, value] of Object.entries(COUNCIL_ROUTE_FIELDS)) {
+    if (key in configuredFields && configuredFields[key] !== value) {
+      throw new RangeError(`route_fields.${key} cannot override the canonical council route`);
+    }
+  }
+  if (
+    typeof executorConfig.resolved_route_header === 'string'
+    && executorConfig.resolved_route_header !== COUNCIL_RESOLVED_ROUTE_HEADER
+  ) {
+    throw new RangeError('resolved_route_header cannot override the canonical council route');
+  }
   return {
     ...executorConfig,
-    resolved_route_header: typeof executorConfig.resolved_route_header === 'string'
-      ? executorConfig.resolved_route_header
-      : COUNCIL_RESOLVED_ROUTE_HEADER,
+    resolved_route_header: COUNCIL_RESOLVED_ROUTE_HEADER,
     route_fields: {
-      ...COUNCIL_ROUTE_FIELDS,
       ...configuredFields,
+      ...COUNCIL_ROUTE_FIELDS,
     },
   };
 }
@@ -167,12 +176,29 @@ function mergeVerdicts(verdictEntries) {
     ? confidenceValues.reduce((sum, value) => sum + value, 0) / confidenceValues.length
     : 0;
 
+  const seatVotes = Object.fromEntries(
+    verdictEntries.map((entry) => [
+      entry.seat_id,
+      String(entry.verdict.recommended_option || 'undecided'),
+    ]),
+  );
+  const decisionAxes = matching.reduce(
+    (axes, verdict) => ({ ...axes, ...(verdict.decision_axes || {}) }),
+    {},
+  );
+
   return {
     recommended_option: recommendedOption,
     confidence,
     blocking_disagreements: [...new Set(matching.flatMap((verdict) => verdict.blocking_disagreements || []))],
     material_risks: [...new Set(matching.flatMap((verdict) => verdict.material_risks || []))],
-    decision_axes: matching.reduce((axes, verdict) => ({ ...axes, ...(verdict.decision_axes || {}) }), {}),
+    seat_votes: seatVotes,
+    decision_axes: {
+      ...decisionAxes,
+      ...Object.fromEntries(
+        Object.entries(seatVotes).map(([seatId, option]) => [`seat:${seatId}`, option]),
+      ),
+    },
   };
 }
 
@@ -305,6 +331,17 @@ async function orchestrateTopic(options = {}) {
     stopReason = currentStopReason;
 
     const statePath = roundStatePath(packetSpecFolder, topicId, roundId);
+    const seatExecutions = dispatchResult.results.map((result) => ({
+      seat_id: result.seat_id,
+      status: result.status,
+      started_at_iso: result.started_at_iso,
+      completed_at_iso: result.completed_at_iso,
+      duration_ms: result.duration_ms,
+      execution_provenance: result.output?.execution_provenance
+        || result.error?.execution_provenance
+        || null,
+      error: result.error || null,
+    }));
     appendRoundCompletion(statePath, {
       topic_id: topicId,
       round_id: roundId,
@@ -312,8 +349,9 @@ async function orchestrateTopic(options = {}) {
       mode: 'ai-council',
       target_agent: 'plan',
       agent_definition_loaded: true,
-      resolved_route: 'Resolved route: mode=ai-council target_agent=plan',
+      resolved_route: executorConfig.resolved_route_header,
       seats: seats.map((seat) => (typeof seat === 'string' ? seat : seat.id)),
+      seat_executions: seatExecutions,
       dispatch_summary: dispatchResult.summary,
       adjudicator_verdict: adjudicatorVerdict,
       verdict_delta_from_previous: score ? score.verdict_delta : null,
@@ -323,6 +361,7 @@ async function orchestrateTopic(options = {}) {
 
     roundSummaries.push({
       round_id: roundId,
+      seat_executions: seatExecutions,
       dispatch_summary: dispatchResult.summary,
       adjudicator_verdict: adjudicatorVerdict,
       verdict_delta_from_previous: score ? score.verdict_delta : null,

@@ -386,7 +386,12 @@ async function gradeD4(opts) {
   const systemPromptPath = path.resolve(opts.system_prompt_path || SYSTEM_PROMPT_PATH);
 
   const swe16OutputHash = sha256Hex(swe16_output_text);
-  const graderBuildIdentity = [grader_model_build_hash || '', 'system_prompt_path=' + systemPromptPath].join('|');
+  const systemPromptHash = sha256Hex(readSystemPrompt(systemPromptPath));
+  const graderBuildIdentity = [
+    grader_model_build_hash || '',
+    'grader_model=' + GRADER_MODEL,
+    'system_prompt_sha256=' + systemPromptHash,
+  ].join('|');
   const cacheKey = cache.derive_grader_key({
     variant_hash,
     fixture_id: fixture.id,

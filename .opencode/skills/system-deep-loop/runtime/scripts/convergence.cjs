@@ -804,7 +804,8 @@ async function main() {
           return typeof latest === 'number' && typeof previous === 'number' ? [[key, latest - previous]] : [];
         }));
 
-    if (asBoolean(args.persistSnapshot) && args.iteration !== undefined) {
+    const snapshotPersisted = asBoolean(args.persistSnapshot) && args.iteration !== undefined;
+    if (snapshotPersisted) {
       // Snapshot writes share the deep-loop graph DB with upsert.cjs, so they
       // must take the same writer lock to avoid a concurrent-write race.
       const releaseWriterLock = acquireWriterLock(path.join(db.COVERAGE_GRAPH_DATABASE_DIR, '.deep-loop-graph-writer.lock'));
@@ -836,7 +837,9 @@ async function main() {
       namespace: ns,
       scopeMode: 'session',
       notes: ['Convergence signals were computed from the session-scoped subgraph only.'],
-      snapshotPersistence: asBoolean(args.persistSnapshot) ? 'persisted' : 'not_requested',
+      snapshotPersistence: snapshotPersisted
+        ? 'persisted'
+        : asBoolean(args.persistSnapshot) ? 'skipped_missing_iteration' : 'not_requested',
       nodeCount: stats.totalNodes,
       edgeCount: stats.totalEdges,
       lastIteration: stats.lastIteration,

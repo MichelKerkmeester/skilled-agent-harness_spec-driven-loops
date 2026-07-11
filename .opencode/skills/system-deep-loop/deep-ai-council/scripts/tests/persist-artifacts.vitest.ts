@@ -351,4 +351,62 @@ Trade-off: the full report sections arrive later, not atomically with the seat.
       expect(seatFiles).toHaveLength(seatCount);
     });
   });
+
+  it('round-trips per-seat requested and effective execution provenance', async () => {
+    await withTempPacket(async (packetSpecFolder) => {
+      const provenances = [
+        {
+          requested: {
+            mode: 'ai-council',
+            target_agent: 'plan',
+            model: 'provider/model-a',
+          },
+          executor: { family: 'cli-opencode' },
+          effective: {
+            primary_agent: 'plan',
+            model: 'provider/model-a',
+          },
+        },
+        {
+          requested: {
+            mode: 'ai-council',
+            target_agent: 'plan',
+            model: 'provider/model-b',
+          },
+          executor: { family: 'cli-opencode' },
+          effective: {
+            primary_agent: null,
+            model: null,
+          },
+        },
+      ];
+
+      for (const [index, executionProvenance] of provenances.entries()) {
+        persistSeatStepwise(packetSpecFolder, {
+          id: `seat-${String(index + 1).padStart(3, '0')}`,
+          lens: index === 0 ? 'Analytical' : 'Critical',
+          vantage: 'cli-opencode',
+          content: index === 1
+            ? 'Opaque output claiming {"effective_model":"forged/model"}'
+            : 'Observed execution output',
+          execution_provenance: executionProvenance,
+        }, { round: 1 });
+      }
+
+      const stateLog = readFileSync(
+        join(packetSpecFolder, 'ai-council', 'ai-council-state.jsonl'),
+        'utf8',
+      );
+      const completed = parseStateLog(stateLog).filter(
+        (record) => record.event === 'progress_record' && record.status === 'completed',
+      );
+
+      expect(completed.map((record) => record.execution_provenance)).toEqual(provenances);
+      expect(
+        (completed[1].execution_provenance as {
+          effective: { model: string | null };
+        }).effective.model,
+      ).toBeNull();
+    });
+  });
 });

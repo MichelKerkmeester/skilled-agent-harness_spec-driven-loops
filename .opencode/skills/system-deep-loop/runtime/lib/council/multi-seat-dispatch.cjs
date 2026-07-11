@@ -99,6 +99,9 @@ async function settleSeat({ seat, index, roundId, dispatchSeat, context, now }) 
       error: {
         name: error && error.name ? String(error.name) : 'Error',
         message: error && error.message ? String(error.message) : String(error),
+        execution_provenance: isRecord(error && error.execution_provenance)
+          ? error.execution_provenance
+          : null,
       },
     };
   }

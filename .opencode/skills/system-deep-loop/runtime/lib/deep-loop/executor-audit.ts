@@ -832,15 +832,23 @@ export function emitDispatchFailure(
   iteration: number,
   detail?: string,
 ): void {
+  const executorAudit = getExecutorKind(executor) === 'native'
+    ? undefined
+    : buildExecutorAuditRecord(executor);
   const lastIterationEvent = findLatestIterationEvent(readJsonlFileAfterTailRepair(stateLogPath).lines, iteration);
-  if (lastIterationEvent?.event === 'dispatch_failure') {
+  if (
+    lastIterationEvent?.event === 'dispatch_failure'
+    && lastIterationEvent.reason === reason
+    && lastIterationEvent.detail === (detail || undefined)
+    && JSON.stringify(lastIterationEvent.executor) === JSON.stringify(executorAudit)
+  ) {
     return;
   }
 
   appendJsonlRecordSafe(stateLogPath, {
     type: 'event',
     event: 'dispatch_failure',
-    ...(getExecutorKind(executor) === 'native' ? {} : { executor: buildExecutorAuditRecord(executor) }),
+    ...(executorAudit ? { executor: executorAudit } : {}),
     reason,
     iteration,
     ...(detail ? { detail } : {}),

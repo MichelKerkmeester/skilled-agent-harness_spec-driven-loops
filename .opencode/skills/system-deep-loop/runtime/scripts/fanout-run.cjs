@@ -655,6 +655,8 @@ function normalizeStallWatchdogMs(rawConfig) {
   ], 'stallWatchdogMs') ?? 300000;
 }
 
+const DEFAULT_MAX_COST_UNITS_PER_LINEAGE = 72;
+
 function normalizeLineageBudgetGuards(rawConfig = {}) {
   return {
     max_cost_units_per_lineage: readRawConfigNumber(rawConfig, [
@@ -668,7 +670,7 @@ function normalizeLineageBudgetGuards(rawConfig = {}) {
       'max_token_budget',
       'maxTokenBudgetPerLineage',
       'max_token_budget_per_lineage',
-    ], 'maxCostUnitsPerLineage') ?? 0,
+    ], 'maxCostUnitsPerLineage') ?? DEFAULT_MAX_COST_UNITS_PER_LINEAGE,
     cost_units_per_iteration: readPositiveRawConfigNumber(rawConfig, [
       'costUnitsPerIteration',
       'cost_units_per_iteration',
@@ -678,19 +680,28 @@ function normalizeLineageBudgetGuards(rawConfig = {}) {
   };
 }
 
-function computeLineageBudgetUpperBound(lineage, guardsInput = {}) {
+function computeLineageBudgetUpperBound(lineage, guardsInput = {}, maxRetries = 0) {
   const guards = normalizeLineageBudgetGuards(guardsInput);
   const rawIterations = Number(lineage && lineage.iterations);
   const iterations = Number.isFinite(rawIterations) && rawIterations > 0 ? Math.floor(rawIterations) : 12;
+  const normalizedRetries = Number.isFinite(Number(maxRetries)) && Number(maxRetries) >= 0
+    ? Math.floor(Number(maxRetries))
+    : 0;
+  const totalAttempts = normalizedRetries + 1;
   return {
     ...guards,
     iterations,
-    estimated_cost_units: iterations * guards.cost_units_per_iteration,
+    total_attempts: totalAttempts,
+    estimated_cost_units: iterations * guards.cost_units_per_iteration * totalAttempts,
   };
 }
 
 function evaluateLineageBudgetCap(input = {}) {
-  const upperBound = computeLineageBudgetUpperBound(input.lineage || {}, input.guards || input);
+  const upperBound = computeLineageBudgetUpperBound(
+    input.lineage || {},
+    input.guards || input,
+    input.maxRetries,
+  );
   const exceeded = upperBound.max_cost_units_per_lineage > 0
     && upperBound.estimated_cost_units > upperBound.max_cost_units_per_lineage;
   return {
@@ -1251,6 +1262,7 @@ function runLineageProcess(command, cmdArgs, opts) {
 
     child.stdout?.setEncoding('utf8');
     child.stdout?.on('data', (chunk) => {
+      if (typeof opts.onOutput === 'function') opts.onOutput();
       if (truncated) return;
       stdoutBytes += Buffer.byteLength(chunk, 'utf8');
       if (stdoutBytes > maxBuffer) {
@@ -1555,7 +1567,11 @@ async function main() {
       fs.mkdirSync(lineageDir, { recursive: true });
       fs.mkdirSync(stateDir, { recursive: true });
 
-      const budgetDecision = evaluateLineageBudgetCap({ lineage, guards: lineageBudgetGuards });
+      const budgetDecision = evaluateLineageBudgetCap({
+        lineage,
+        guards: lineageBudgetGuards,
+        maxRetries: fanoutConfig.maxRetries,
+      });
       if (!budgetDecision.continue_allowed) {
         appendFanoutStatusLedger(ledgerPath, {
           event: 'budget_cap_exceeded',
@@ -1667,7 +1683,6 @@ async function main() {
         label: lineage.label,
         ledgerPath,
         getGauges: () => latestGauges,
-        onProgress: markLineageEvent,
       });
       let result;
       try {
@@ -1677,6 +1692,7 @@ async function main() {
           env: dispatchEnv,
           maxBuffer: 20 * 1024 * 1024,
           abortSignal: context.signal,
+          onOutput: markLineageEvent,
           onSpawn: ({ pid }) => {
             lineageProcessLiveness.set(livenessKey, { alive: true, pid });
           },

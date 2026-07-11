@@ -32,7 +32,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "39bc42a8881b45c5a16a432bb33f94f62565b2d935c31e5b9c373c5e144a019f",
+      "sha256": "c3946dec6040fe5c13d07bcdeda8bd3410d8a18f959fac3fb339ae89b8a52c09",
       "section": "full"
     },
     {
@@ -122,12 +122,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/assets/deep_ai_council_config.json",
-      "sha256": "95c0e8a1d90432c5b486e5f70b516ad526b2fe7a8973d0d3f899471349a025f3",
+      "sha256": "6b2aad41db0f3f45e462e8ba357ffd5d451d5663e98033f55606ca20ad81d4c2",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/assets/prompt_pack_round.md",
-      "sha256": "d2188bd9289b36eee0be3e7b8183e92b88fa792f7f7417bd52d2959163bbb7b6",
+      "sha256": "2bdf4813b69603a13a45ef971a1edcec0fbe1ad202de64b493bf66cff17da2f0",
       "section": "full"
     },
     {

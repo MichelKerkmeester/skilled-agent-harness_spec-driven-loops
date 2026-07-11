@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode/001-research"
-    last_updated_at: "2026-07-11T08:29:40Z"
+    last_updated_at: "2026-07-11T13:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "Completed the 10-round Rust-standards research and merged research.md"
-    next_safe_action: "Execute phase 002-upgrade from the research.md manifest"
+    next_safe_action: "Packet complete; handoff was to 002-standard-docs (not 002-upgrade)"
     blockers: []
     key_files:
       - "spec.md"
@@ -50,9 +50,9 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 2 (research gate) |
+| **Phase** | 1 of 6 (research gate) |
 | **Predecessor** | None |
-| **Successor** | `002-upgrade/` — implements the Rust standards from this phase's manifest |
+| **Successor** | `002-standard-docs/` — authors the Rust standard docs from this phase's manifest |
 | **Handoff Criteria** | `research/research.md` produced with a Rust standard synthesis + an exact code-opencode upgrade file/edit manifest for human review |
 <!-- /ANCHOR:metadata -->
 
@@ -213,7 +213,7 @@ These **predefined research angles** seed the loop, grouped by thrust. Each must
 ## RELATED DOCUMENTS
 
 - **Parent**: `../spec.md`
-- **Successor**: `../002-upgrade/`
+- **Successor**: `../002-standard-docs/`
 - **Upgrade target**: `../../../../skills/sk-code/code-opencode/`
 - **Plan**: `plan.md` (10-round allocation + executor config)
 - **Loop artifacts**: `research/research.md`, `research/deep-research-strategy.md`, `research/deep-research-state.jsonl`

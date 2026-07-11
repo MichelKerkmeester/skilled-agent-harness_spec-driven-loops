@@ -39,6 +39,7 @@ user_inputs:
   scoring_method: "[SCORING_METHOD] - 'pattern' for the default heading/pattern matcher, '5dim' for the ported 5-dimension scorer, 'reviewer' for flagged expected-verdict reviewer fixtures. Default: pattern."
   grader: "[GRADER] - 'noop' deterministic no-dispatch grader, 'mock', or 'llm' (model dispatch). Default: noop."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for benchmark runtime. REQUIRED."
+  run_label: "[RUN_LABEL] - Directory-safe benchmark identifier matching ^[a-z0-9][a-z0-9-]{0,63}$. REQUIRED."
   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations before forced stop. Default: 5."
   target_model: "[TARGET_MODEL] - Model identifier dispatched only when grader=llm. Optional; ignored for noop/mock graders."
   execution_mode: "[EXECUTION_MODE] - AUTONOMOUS or INTERACTIVE. Derived from :auto/:confirm suffix."
@@ -55,6 +56,8 @@ field_handling:
     target_model_empty: "Unused unless grader == 'llm'"
   validation:
     spec_folder_required: true
+    run_label_required: true
+    run_label_directory_safe: "Must match ^[a-z0-9][a-z0-9-]{0,63}$ exactly; reject before deriving outputs_dir or rendering any shell command."
     profile_must_resolve: "Profile path or ID must resolve to an existing profile JSON before phase_loop"
     scoring_method_enum: "Must be one of: pattern, 5dim, reviewer"
     reviewer_scorer_flag: "scoring_method=reviewer requires SPECKIT_REVIEWER_BENCHMARKS=1 or true; otherwise reviewer fixtures are inert."

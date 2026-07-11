@@ -143,6 +143,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - profile_path = [from Q0 or $ARGUMENTS or default profile]
    - spec_folder = [from Q1 or --spec-folder]
    - run_label = [from --run-label or Q1b; e.g. "minimax-tidd-ec", "mimo-costar"]
+   - Validate run_label against `^[a-z0-9][a-z0-9-]{0,63}$` exactly. Reject invalid input before deriving outputs_dir or rendering any command; do not sanitize by deletion or shell quoting.
    - outputs_dir = [.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - scoring_method = [pattern, 5dim, or reviewer from Q3 or --scorer]

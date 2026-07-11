@@ -38,7 +38,7 @@ _memory:
 
 ## How to read this packet
 
-This packet adds **Rust** as a first-class language to the `sk-code` `code-opencode` surface, so that when Rust enters the codebase (the 011/013/030 rewrite-research packets all point at napi-rs/WASM/sidecar Rust as the realistic target), sk-code already carries its standards, checklists, and routing. Phase `001-research/` runs the deep-research pass; phase `002-upgrade/` implements the code-opencode change from the research findings.
+This packet adds **Rust** as a first-class language to the `sk-code` `code-opencode` surface, so that when Rust enters the codebase (the 011/013/030 rewrite-research packets all point at napi-rs/WASM/sidecar Rust as the realistic target), sk-code already carries its standards, checklists, and routing. Phase `001-research/` runs the deep-research pass; phases `002-standard-docs/` through `006-gate-verification-rollup/` implement the code-opencode change from the research findings (see the Phase Documentation Map below).
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -132,7 +132,7 @@ Produce, from evidence, a Rust standard that (1) matches idiomatic Rust and the 
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- None for parent wiring. The substantive research questions live in `001-research/spec.md`; the implementation questions resolve in `002-upgrade/` after research.
+- None for parent wiring. The substantive research questions live in `001-research/spec.md`; the implementation questions resolve across phases `002-standard-docs/` through `006-gate-verification-rollup/` after research.
 <!-- /ANCHOR:questions -->
 
 ---

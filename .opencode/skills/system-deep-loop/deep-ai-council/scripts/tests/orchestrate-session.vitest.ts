@@ -198,4 +198,44 @@ describe('deep-ai-council session orchestration', () => {
       });
     });
   });
+
+  it('keeps requested route identity separate from unobserved effective identity', async () => {
+    await withTempPacket(async (packetSpecFolder) => {
+      let routeFields: Record<string, unknown> | null = null;
+
+      await orchestrateSession({
+        session_state: sessionState(packetSpecFolder),
+        executor_config: {
+          cost_guards: { max_topics_per_session: 1 },
+          orchestrateTopic: async ({
+            topic_id,
+            executor_config,
+          }: {
+            topic_id: string;
+            executor_config: Record<string, unknown>;
+          }) => {
+            routeFields = executor_config.route_fields as Record<string, unknown>;
+            return {
+              topic_id,
+              rounds_completed: 1,
+              final_verdict: { recommended_option: 'plan', confidence: 0.8 },
+              stability_score: 0.5,
+              stop_reason: 'max_rounds_per_topic',
+            };
+          },
+        },
+      });
+
+      expect(routeFields).toMatchObject({
+        requested: {
+          mode: 'ai-council',
+          target_agent: 'plan',
+        },
+        effective: {
+          primary_agent: null,
+          model: null,
+        },
+      });
+    });
+  });
 });

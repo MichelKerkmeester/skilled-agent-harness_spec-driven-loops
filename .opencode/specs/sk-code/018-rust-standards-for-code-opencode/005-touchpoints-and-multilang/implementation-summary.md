@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-All six Rust registration touchpoints from `research.md` Deliverable 2D.
+All six Rust registration touchpoints from [`research.md`](../001-research/research/research.md) Deliverable 2D.
 
 The five sk-code-local touchpoints (landed earlier this session):
 
@@ -77,7 +77,7 @@ Two reconciliations required by the touched-language contract:
 | `code-opencode/SKILL.md` | Modified | Touched-set reconciliation |
 | `code-opencode/.../language-standards/004→009-rust-standards.md` | Renamed | OC-004→OC-009 collision fix |
 | `code-opencode/manual_testing_playbook/manual_testing_playbook.md` | Modified | Index totals 8→9 |
-| `002-standard-docs/graph-metadata.json` | Modified | Manifest repointed to `009-rust-standards.md` |
+| [`002-standard-docs/graph-metadata.json`](../002-standard-docs/graph-metadata.json) | Modified | Manifest repointed to `009-rust-standards.md` |
 
 <!-- /ANCHOR:what-built -->
 ---

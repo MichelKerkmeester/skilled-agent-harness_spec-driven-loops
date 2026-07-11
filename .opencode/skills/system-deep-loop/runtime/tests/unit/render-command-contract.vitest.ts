@@ -8,7 +8,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
 
-type Command = 'deep/review' | 'deep/research';
+type Command = 'deep/ai-council' | 'deep/review' | 'deep/research';
 
 type ManifestRow = {
   command: Command;
@@ -32,7 +32,7 @@ const renderer = require('../../scripts/render-command-contract.cjs') as {
   sha256: (input: string | Buffer) => string;
 };
 
-const commands = ['deep/review', 'deep/research'] as const;
+const commands = ['deep/ai-council', 'deep/review', 'deep/research'] as const;
 const tempDirs: string[] = [];
 
 function workspacePath(sourcePath: string): string {

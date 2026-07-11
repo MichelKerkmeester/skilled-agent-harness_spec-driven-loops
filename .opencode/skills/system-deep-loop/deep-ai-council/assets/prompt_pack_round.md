@@ -30,7 +30,7 @@ You are read-only. Do not create, edit, move, rename, or delete files, and do no
 - Planning boundary: {{planning_boundary}}
 - Prior state summary: {{prior_state_summary}}
 - Known disagreements: {{known_disagreements}}
-- Required output contract: `references/structure/output_schema.md`
+- Required output contract: the five seat-local sections and structured footer below. `references/structure/output_schema.md` applies to the synthesized full-council report, not an individual seat.
 
 ## Action
 
@@ -49,8 +49,9 @@ Return markdown with these sections:
 4. `## Risks And Blockers`
 5. `## Handoff Recommendation`
 
-End with:
+End with a stable identifier for the proposal you recommend, followed by your stance:
 
 ```text
+Council seat option: <lowercase-kebab-case-proposal-id>
 Council seat verdict: SUPPORT|SUPPORT_WITH_RISKS|BLOCK
 ```

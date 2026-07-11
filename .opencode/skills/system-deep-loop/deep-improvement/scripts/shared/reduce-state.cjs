@@ -313,7 +313,7 @@ function buildJournalSummary(filePath) {
       eventTypeCounts[eventType] = (eventTypeCounts[eventType] || 0) + 1;
     }
 
-    if (eventType === 'session_start' && timestamp) {
+    if ((eventType === 'session_start' || eventType === 'session_initialized') && timestamp) {
       lastSessionStart = timestamp;
     }
 

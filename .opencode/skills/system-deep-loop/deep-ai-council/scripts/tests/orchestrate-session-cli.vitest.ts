@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import { EventEmitter } from 'node:events';
-import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -74,6 +74,30 @@ function inertInterval() {
   };
 }
 
+async function waitForProcessExit(pid: number, timeoutMs = 2_000): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    try {
+      process.kill(pid, 0);
+    } catch (error: unknown) {
+      if ((error as NodeJS.ErrnoException).code === 'ESRCH') return;
+      throw error;
+    }
+    await new Promise((resolvePromise) => setTimeout(resolvePromise, 20));
+  }
+  throw new Error(`process ${pid} remained alive after timeout cleanup`);
+}
+
+function killIfAlive(pid: number): void {
+  try {
+    process.kill(pid, 'SIGKILL');
+  } catch (error: unknown) {
+    if ((error as NodeJS.ErrnoException).code !== 'ESRCH') throw error;
+  }
+}
+
+const posixIt = process.platform === 'win32' ? it.skip : it;
+
 describe('deep-ai-council session CLI runner', () => {
   it('loads inline JSON session state and executor config', async () => {
     await withTempPacket(async (packetSpecFolder) => {
@@ -112,6 +136,45 @@ describe('deep-ai-council session CLI runner', () => {
       expect(timers.clearInterval).toHaveBeenCalledWith(timers.token);
     });
   });
+
+  it.each(['cli-opencode', 'cli-claude-code'])(
+    'rejects executor family %s when supplied as a model identifier',
+    async (family) => {
+      await withTempPacket(async (packetSpecFolder) => {
+        const stdout = bufferedStream();
+        const stderr = bufferedStream();
+        const timers = inertInterval();
+        const state = sessionState(packetSpecFolder);
+        const fakeSpawn = vi.fn(() => {
+          const child = new EventEmitter() as EventEmitter & {
+            stdout: EventEmitter;
+            stderr: EventEmitter;
+            kill: ReturnType<typeof vi.fn>;
+          };
+          child.stdout = new EventEmitter();
+          child.stderr = new EventEmitter();
+          child.kill = vi.fn();
+          queueMicrotask(() => child.emit('close', 0, null));
+          return child;
+        });
+
+        const exitCode = await main(inlineArgs(state, {
+          executor: { kind: 'cli-opencode', model: family },
+          cost_guards: { max_topics_per_session: 1, max_rounds_per_topic: 1 },
+        }), {
+          stdout,
+          stderr,
+          spawn: fakeSpawn,
+          setInterval: timers.setInterval,
+          clearInterval: timers.clearInterval,
+        });
+
+        expect(exitCode).toBe(1);
+        expect(fakeSpawn).not.toHaveBeenCalled();
+        expect(stderr.text()).toMatch(/model.*executor family|executor family.*model/i);
+      });
+    },
+  );
 
   it('writes heartbeat progress records during a slow session and clears the timer', async () => {
     await withTempPacket(async (packetSpecFolder) => {
@@ -210,6 +273,125 @@ describe('deep-ai-council session CLI runner', () => {
       expect(started).toHaveLength(1);
       expect(completed).toHaveLength(1);
       expect(completed[0]).toMatchObject({ seat_id: 'seat-001', progress_delta: 1 });
+    });
+  });
+
+  it('passes each seat model to its subprocess and falls back to the session model', async () => {
+    await withTempPacket(async (packetSpecFolder) => {
+      const stdout = bufferedStream();
+      const stderr = bufferedStream();
+      const timers = inertInterval();
+      const seats = [
+        { id: 'seat-001', lens: 'Analytical', model: 'provider/seat-model-a' },
+        { id: 'seat-002', lens: 'Critical' },
+      ];
+      const state = sessionState(packetSpecFolder, seats);
+      const spawns: Array<{ command: string; args: string[] }> = [];
+      const fakeSpawn = vi.fn((command: string, args: string[]) => {
+        spawns.push({ command, args });
+        const child = new EventEmitter() as EventEmitter & {
+          stdout: EventEmitter;
+          stderr: EventEmitter;
+          kill: ReturnType<typeof vi.fn>;
+        };
+        child.stdout = new EventEmitter();
+        child.stderr = new EventEmitter();
+        child.kill = vi.fn();
+        queueMicrotask(() => {
+          child.stdout.emit('data', Buffer.from('Council seat verdict: SUPPORT\n'));
+          child.emit('close', 0, null);
+        });
+        return child;
+      });
+
+      const exitCode = await main(inlineArgs(state, {
+        executor: { kind: 'cli-opencode', model: 'provider/session-default' },
+        cost_guards: {
+          max_topics_per_session: 1,
+          max_rounds_per_topic: 1,
+          max_concurrent_seats: 2,
+        },
+        seats,
+      }), {
+        stdout,
+        stderr,
+        spawn: fakeSpawn,
+        setInterval: timers.setInterval,
+        clearInterval: timers.clearInterval,
+      });
+
+      expect(exitCode).toBe(0);
+      expect(fakeSpawn).toHaveBeenCalledTimes(2);
+      expect(spawns.map(({ args }) => args[args.indexOf('--model') + 1])).toEqual([
+        'provider/seat-model-a',
+        'provider/session-default',
+      ]);
+      expect(spawns.flatMap(({ args }) => args)).not.toContain('cli-opencode');
+    });
+  });
+
+  posixIt('reaps a SIGTERM-ignoring seat subprocess and its descendant after timeout', async () => {
+    await withTempPacket(async (packetSpecFolder) => {
+      const binDir = mkdtempSync(join(tmpdir(), 'council-timeout-tree-bin-'));
+      const pidPath = join(binDir, 'seat-processes.json');
+      const executablePath = join(binDir, 'opencode');
+      let observedPids: { parent: number; grandchild: number } | null = null;
+
+      writeFileSync(
+        executablePath,
+        [
+          '#!/usr/bin/env node',
+          'const fs = require("node:fs");',
+          'const { spawn } = require("node:child_process");',
+          'const grandchild = spawn(process.execPath, [',
+          '  "-e",',
+          '  "process.on(\\"SIGTERM\\", () => {}); setInterval(() => {}, 1000);",',
+          '], { stdio: "ignore" });',
+          `fs.writeFileSync(${JSON.stringify(pidPath)}, JSON.stringify({ parent: process.pid, grandchild: grandchild.pid }));`,
+          'process.on("SIGTERM", () => {});',
+          'setInterval(() => {}, 1000);',
+          '',
+        ].join('\n'),
+        { mode: 0o755 },
+      );
+
+      try {
+        const stdout = bufferedStream();
+        const stderr = bufferedStream();
+        const timers = inertInterval();
+        const state = sessionState(packetSpecFolder);
+
+        const exitCode = await main(inlineArgs(state, {
+          executor: { kind: 'cli-opencode', model: 'provider/test-model' },
+          seat_timeout_ms: 1500,
+          cost_guards: { max_topics_per_session: 1, max_rounds_per_topic: 1 },
+        }), {
+          stdout,
+          stderr,
+          env: {
+            ...process.env,
+            PATH: `${binDir}:${process.env.PATH ?? ''}`,
+          },
+          setInterval: timers.setInterval,
+          clearInterval: timers.clearInterval,
+        });
+
+        expect(exitCode).toBe(0);
+        expect(existsSync(pidPath)).toBe(true);
+        observedPids = JSON.parse(readFileSync(pidPath, 'utf8')) as {
+          parent: number;
+          grandchild: number;
+        };
+
+        await expect(waitForProcessExit(observedPids.parent)).resolves.toBeUndefined();
+        await expect(waitForProcessExit(observedPids.grandchild)).resolves.toBeUndefined();
+      } finally {
+        if (observedPids) {
+          killIfAlive(observedPids.parent);
+          killIfAlive(observedPids.grandchild);
+        }
+        rmSync(binDir, { recursive: true, force: true });
+      }
     });
   });
 });
