@@ -220,6 +220,11 @@
       "text": "Which shared-runtime and command-contract tests are missing for the four cost/liveness defects from iteration 5?",
       "addedAtIteration": 7,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Which operator-facing defaults should become hard safety limits versus explicit opt-in overrides?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -251,7 +256,7 @@
   "promotedIdeas": [],
   "suppressedIdeas": [],
   "blockedStopHistory": [],
-  "graphConvergenceScore": 0.507,
+  "graphConvergenceScore": 0.505,
   "graphDecision": "STOP_BLOCKED",
   "graphBlockers": [
     {
@@ -262,8 +267,8 @@
     },
     {
       "type": "unverified_claims",
-      "description": "2 claim(s) remain unverified",
-      "count": 2,
+      "description": "3 claim(s) remain unverified",
+      "count": 3,
       "severity": "blocking"
     }
   ],
@@ -279,17 +284,17 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 7,
+    "iterationsCompleted": 8,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 19,
+    "carriedForwardOpenQuestions": 20,
     "keyFindings": 0,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.76,
+    "convergenceScore": 0.82,
     "coverageBySources": {
       "other": 10
     },

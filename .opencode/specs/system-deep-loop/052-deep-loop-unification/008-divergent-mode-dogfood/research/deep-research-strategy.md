@@ -127,6 +127,7 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 - Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model? (iteration 5)
 - Which shared-runtime and command-contract tests are missing for executor-family/model separation, per-seat model selection, and requested-versus-effective provenance? (iteration 6)
 - Which shared-runtime and command-contract tests are missing for the four cost/liveness defects from iteration 5? (iteration 7)
+- Which operator-facing defaults should become hard safety limits versus explicit opt-in overrides? (iteration 8)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -134,7 +135,7 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Which shared-runtime and command-contract tests are missing for the four cost/liveness defects from iteration 5?
+Which operator-facing defaults should become hard safety limits versus explicit opt-in overrides?
 
 <!-- /ANCHOR:next-focus -->
 
