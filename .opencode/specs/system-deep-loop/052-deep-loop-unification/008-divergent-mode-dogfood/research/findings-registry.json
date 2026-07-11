@@ -235,6 +235,26 @@
       "text": "How do deep-improvement candidate prompts, reducer boundaries, and dispatch budgets compare with the review and council failure patterns?",
       "addedAtIteration": 9,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `NO-CANDIDATE` be a first-class typed event and legal stop path rather than flowing into `candidate_generated`?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are the five original cross-cutting key questions intentionally left unresolved for synthesis, or should the final reducer map accumulated findings to them before completion?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the reducer reject a run when journal, lineage, state ledger, candidate artifact, and score output do not form a one-to-one candidate transaction?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What numeric ceilings should govern Lane A iterations, candidate wall time, benchmark wall time, and aggregate subprocess time on each supported capability profile?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -266,7 +286,7 @@
   "promotedIdeas": [],
   "suppressedIdeas": [],
   "blockedStopHistory": [],
-  "graphConvergenceScore": 0.505,
+  "graphConvergenceScore": 0.506,
   "graphDecision": "STOP_BLOCKED",
   "graphBlockers": [
     {
@@ -294,19 +314,19 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 9,
+    "iterationsCompleted": 10,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 22,
+    "carriedForwardOpenQuestions": 26,
     "keyFindings": 0,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.74,
+    "convergenceScore": 0.88,
     "coverageBySources": {
-      "other": 10
+      "other": 20
     },
     "completedPivots": 0,
     "failedPivots": 0,

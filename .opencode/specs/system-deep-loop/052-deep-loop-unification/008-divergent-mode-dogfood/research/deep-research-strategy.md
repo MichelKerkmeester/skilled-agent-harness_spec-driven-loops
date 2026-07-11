@@ -130,6 +130,10 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 - Which operator-facing defaults should become hard safety limits versus explicit opt-in overrides? (iteration 8)
 - What numeric hard ceilings fit supported host capacities, and should runtime capability profiles provide lower platform-specific ceilings? (iteration 9)
 - How do deep-improvement candidate prompts, reducer boundaries, and dispatch budgets compare with the review and council failure patterns? (iteration 9)
+- Should `NO-CANDIDATE` be a first-class typed event and legal stop path rather than flowing into `candidate_generated`? (iteration 10)
+- Are the five original cross-cutting key questions intentionally left unresolved for synthesis, or should the final reducer map accumulated findings to them before completion? (iteration 10)
+- Should the reducer reject a run when journal, lineage, state ledger, candidate artifact, and score output do not form a one-to-one candidate transaction? (iteration 10)
+- What numeric ceilings should govern Lane A iterations, candidate wall time, benchmark wall time, and aggregate subprocess time on each supported capability profile? (iteration 10)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -137,7 +141,7 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-How do deep-improvement candidate prompts, reducer boundaries, and dispatch budgets compare with the review and council failure patterns?
+What numeric ceilings should govern Lane A iterations, candidate wall time, benchmark wall time, and aggregate subprocess time on each supported capability profile?
 
 <!-- /ANCHOR:next-focus -->
 
