@@ -1,0 +1,28 @@
+{
+  "level": "phase",
+  "specFolder": "system-deep-loop/059-deep-alignment-mode",
+  "description": "This repository defines conformance standards for its own artifacts — `sk-doc`'s document templates and DQI validators, `sk-git`'s commit and",
+  "keywords": [
+    "repository",
+    "defines",
+    "conformance",
+    "standards",
+    "own",
+    "artifacts",
+    "sk-doc",
+    "document",
+    "templates",
+    "dqi",
+    "validators",
+    "sk-git",
+    "commit"
+  ],
+  "lastUpdated": "2026-07-11T06:24:14.326Z",
+  "specId": "059",
+  "folderSlug": "deep-alignment-mode",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

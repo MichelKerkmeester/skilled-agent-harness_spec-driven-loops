@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/059-deep-alignment-mode/007-adapter-sk-code",
+  "spec_folder": "system-deep-loop/059-deep-alignment-mode/007-adapter-sk-code",
+  "parent_id": "system-deep-loop/059-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment sk-code adapter",
+      "sk-code surface detection alignment",
+      "reasoning agent conformance check",
+      "sk-code automatability limits",
+      "accepted deviation set sk-code",
+      "phase 007 implementation plan",
+      "sk-code adapter plan",
+      "surface detection reuse",
+      "deterministic reasoning agent layering",
+      "tasks",
+      "phase 007",
+      "adapter sk-code"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "sk-code",
+      "adapter",
+      "surface",
+      "detection",
+      "alignment",
+      "reasoning",
+      "agent",
+      "conformance",
+      "check",
+      "automatability",
+      "limits"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-code/shared/references/stack_detection.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "stack_detection.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/stack_detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pluggable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-alignment` sequences its v1 authorities by determinism (sk-doc, sk-git, sk-design, then sk-code last) because sk-code conformance is the hardest to automate: \"does this code follow the surface's stack patterns\" is a judgment call, not a fixed grammar",
+    "created_at": "2026-07-11T06:17:04.546Z",
+    "last_save_at": "2026-07-11T06:17:04.546Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f4b672c8c188308da6df28f8085f1c37edc31426deeaffbf91c5df381041602f",
+    "source_doc_hashes": {
+      "spec.md": "9e09b999e14d0bd100f83f812d9bbbed934e2aa6dbc4dbd6c0ec48f6d14ab159",
+      "plan.md": "7035d301db03fe0098eab92e614423c6741174e010743f4f6c0473c4fcf257e9",
+      "tasks.md": "bc670ded169331534aac1310aebaa468f240a98a5f6de2690b9a8cd1e428562b",
+      "checklist.md": "d8870ac360b47f72f6df9e35433b434120f8cbb5cc4a538477ece637a929e599",
+      "implementation-summary.md": "dee8e2ef383b349e173a9c78188dc92000cefa2bc505571221b72f7dfaf7e4c5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

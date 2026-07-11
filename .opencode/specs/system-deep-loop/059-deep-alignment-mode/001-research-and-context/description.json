@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/059-deep-alignment-mode/001-research-and-context",
+  "description": "Phase 002's architecture freeze (adapter contract, state machine, reuse boundary) depends on accurate, current facts about the `deep-review` engine's",
+  "keywords": [
+    "phase",
+    "architecture",
+    "freeze",
+    "adapter",
+    "contract",
+    "state",
+    "machine",
+    "reuse",
+    "boundary",
+    "depends",
+    "accurate",
+    "current",
+    "facts",
+    "about",
+    "deep-review",
+    "engine"
+  ],
+  "lastUpdated": "2026-07-11T06:11:09.344Z",
+  "specId": "001",
+  "folderSlug": "research-and-context",
+  "parentChain": [
+    "system-deep-loop",
+    "059-deep-alignment-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

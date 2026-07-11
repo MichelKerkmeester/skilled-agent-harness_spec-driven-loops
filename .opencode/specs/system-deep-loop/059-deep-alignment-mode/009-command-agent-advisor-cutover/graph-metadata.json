@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/059-deep-alignment-mode/009-command-agent-advisor-cutover",
+  "spec_folder": "system-deep-loop/059-deep-alignment-mode/009-command-agent-advisor-cutover",
+  "parent_id": "system-deep-loop/059-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment command plan",
+      "deep-alignment leaf agent plan",
+      "deep-alignment advisor routing",
+      "deep-alignment behavior benchmark",
+      "deep-alignment cutover gates",
+      "phase 009 implementation plan",
+      "deep-alignment command agent plan",
+      "advisor routing plan",
+      "cutover gate sequence",
+      "tasks",
+      "phase 009",
+      "command agent cutover"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "command",
+      "plan",
+      "leaf",
+      "agent",
+      "advisor",
+      "routing",
+      "behavior",
+      "benchmark",
+      "cutover",
+      "gates",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/deep/review.md",
+      ".claude/agents/deep-review.md",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
+      ".opencode/skills/system-deep-loop/deep-review/behavior_benchmark/behavior_benchmark.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "checklist.md",
+      ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "aliases.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift-guard.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "behavior_benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/behavior_benchmark/behavior_benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every prior phase in this packet plans internals (adapters, runtime wiring); none of it is reachable by a user or by the advisor until a command exists to invoke it, a leaf agent exists to execute one iteration, the advisor knows to route alignment requests here, a benchmark proves the mode behaves as intended, and the standard cutover gates confirm the packet is structurally sound before it ships",
+    "created_at": "2026-07-11T06:23:43.199Z",
+    "last_save_at": "2026-07-11T06:23:43.199Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9797d903337e57cbc42353d20cde01625a488b5743696926aca61cdb75995a94",
+    "source_doc_hashes": {
+      "spec.md": "f20e2046210c248e504649c1b4375bc4f250276288fa71d39232adfe48171ba3",
+      "plan.md": "f474109cb746d61defc67b3f8fabfdd9cf0ba526fc5c782e076fde5573b867dc",
+      "tasks.md": "ad59954912cdd047745c2b0c2f08f55742826e3414e22d5ec0a8bbfe45bb8b56",
+      "checklist.md": "99bdd4990d1481c54632a39b120dae07f0678bed3ad62806e9e40c3e26b6aa78",
+      "implementation-summary.md": "55f03ed88f97dedd80327a97201f85cc36ede90a5e3e597f7441b783d42e1531"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

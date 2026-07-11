@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report",
+  "spec_folder": "system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report",
+  "parent_id": "system-deep-loop/059-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment convergence wiring",
+      "alignment report reducer",
+      "corpus partitioning deep-alignment",
+      "deep-alignment loop state",
+      "coverage dry-run convergence threshold",
+      "phase 008 implementation plan",
+      "convergence reuse plan",
+      "alignment report reducer plan",
+      "corpus partitioning plan",
+      "tasks",
+      "phase 008",
+      "convergence wiring"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "convergence",
+      "wiring",
+      "alignment",
+      "report",
+      "reducer",
+      "corpus",
+      "partitioning",
+      "loop",
+      "state",
+      "coverage",
+      "dry-run"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".claude/agents/deep-review.md",
+      "checklist.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
+      ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/.deep-review.lock",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
+        "source": "derived"
+      },
+      {
+        "name": ".deep-review.lock",
+        "kind": "file",
+        "path": ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/.deep-review.lock",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-alignment` is specified to MAXIMALLY reuse the deep-review/runtime engine rather than rebuild a loop from scratch, but the runtime's convergence entrypoint hard-validates its loop type: `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` lines 659-660 accept only `\"research\"`, `\"review\"`, `\"council\"`, or `\"context\"` and throw an input error otherwise",
+    "created_at": "2026-07-11T06:20:25.587Z",
+    "last_save_at": "2026-07-11T06:20:25.587Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bb0b1b881459c002ec30107469f80d90dee209a00a7f5c3d399072dba0a874d1",
+    "source_doc_hashes": {
+      "spec.md": "dc8122d757f658d974ebf5003c01292cc70f2d245ed42c0e0557fc35e1e2c29c",
+      "plan.md": "4b66c733467ae2ce5ed3ae98a7f0dc676e780e8e3ab2fc2c5d18f2e2b269b25a",
+      "tasks.md": "874772480ee56aec7d3ec36edb8737821acd05a89575f26aba6781f0c210bc3e",
+      "checklist.md": "23ada3b46ad61bd06c9d901a9513e1b9110cacd097a080a93f0e8d278f99d7ea",
+      "implementation-summary.md": "dfb528d63d7d6a6beb1a34e97f0c71a4faea9477da5d9382ae73c8ddad7e09b9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/059-deep-alignment-mode/002-architecture-decision",
+  "spec_folder": "system-deep-loop/059-deep-alignment-mode/002-architecture-decision",
+  "parent_id": "system-deep-loop/059-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment architecture decision",
+      "alignment adapter contract freeze",
+      "deep-alignment state machine",
+      "deep-alignment vs deep-review boundary",
+      "phase 002 architecture-decision",
+      "deep-alignment architecture plan",
+      "alignment state machine target",
+      "adapter contract target shape",
+      "deep-alignment boundary freeze",
+      "phase 002 plan",
+      "deep-alignment architecture tasks",
+      "adr authoring tasks"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "architecture",
+      "decision",
+      "alignment",
+      "adapter",
+      "contract",
+      "freeze",
+      "state",
+      "machine",
+      "deep-review",
+      "boundary",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/spec.md",
+      ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md",
+      "decision-record.md",
+      "spec.md",
+      ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/deep-review-strategy.md",
+      ".opencode/specs/skilled-agent-orchestration/131-hub-doc-conformance-fixes/spec.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/plan.md",
+      ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/tasks.md",
+      ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/checklist.md",
+      "plan.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/deep-review-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Decision",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The frozen design brief locks five architecture-level decision clusters for `deep-alignment` and names five open questions it explicitly defers rather than resolves",
+    "created_at": "2026-07-11T06:20:55.583Z",
+    "last_save_at": "2026-07-11T06:22:31.817Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:31d7298721b7db129b00481ab3d5434d742f96400f71ea0323f647ac32a3ab26",
+    "source_doc_hashes": {
+      "spec.md": "ca1721f4f8b0b295b1e850388178f5033361944b05d32c74184637f57c4ea0ec",
+      "plan.md": "6b81ae51a0d9ec1f099586f8ae5cb58f179aa35eb0a4ecde2c4911347dfefb23",
+      "tasks.md": "9e418a9ebdb6f09cc6fdeb55338c40911db85ce988aa7966f4827c91e4c03b83",
+      "checklist.md": "7aec785d2f652ad445a1c6a91481b2479ac77d99b3ca5107790409ec07df80c8",
+      "decision-record.md": "73bf56b449fe305ed7186c2fa5cf9f8a0049f35ece2ac8db540b46487629a1bd",
+      "implementation-summary.md": "d84f9f8818caa94acd8f7dd1c9bbb8e485b2c81c8f21dd4c27ea4fd112888612"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
