@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/133-spec-gate-enforce-readiness",
+  "description": "The Spec Mutation Gate ships advise-only and harmless, but a fresh independent review reproduced three structural \"stuck-open\" defects in its close",
+  "keywords": [
+    "spec",
+    "mutation",
+    "gate",
+    "ships",
+    "advise-only",
+    "harmless",
+    "fresh",
+    "independent",
+    "review",
+    "reproduced",
+    "three",
+    "structural",
+    "stuck-open",
+    "defects",
+    "close"
+  ],
+  "lastUpdated": "2026-07-11T11:05:30.666Z",
+  "specId": "133",
+  "folderSlug": "spec-gate-enforce-readiness",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
