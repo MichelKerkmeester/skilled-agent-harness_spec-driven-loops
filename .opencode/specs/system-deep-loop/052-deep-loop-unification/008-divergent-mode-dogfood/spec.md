@@ -10,21 +10,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood"
-    last_updated_at: "2026-07-11T08:00:00Z"
+    last_updated_at: "2026-07-11T10:30:00Z"
     last_updated_by: "claude"
-    recent_action: "P0 incident: entire packet deleted mid-run by a CLI dispatch, docs recreated from context"
-    next_safe_action: "Operator decision needed before any re-run: see implementation-summary.md"
-    blockers:
-      - "Both loops destroyed mid-run by a CLI-dispatched opencode session with unscoped repo write access"
+    recent_action: "Both loops completed 10/10 real iterations post-incident-retry, no pivot fired either side"
+    next_safe_action: "Merge wt/0028-divergent-dogfood-retry to skilled/v4.0.0.0"
+    blockers: []
     key_files:
+      - "research/research.md"
+      - "review/deep-review-findings-registry.json"
       - "research/INCIDENT.md"
       - "review/INCIDENT.md"
-      - ".opencode/skills/cli-external/cli-opencode/references/destructive_scope_violations.md"
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Deliberately trigger the divergent pivot, not just default-mode regression testing — confirmed by operator."
       - "Spec folder: new phase (008) under 052-deep-loop-unification, matching where the only precedent (007) already lives — confirmed by operator."
+      - "After the destructive incident, fix deep-research's containment-parity gap and retry inside a worktree — confirmed by operator."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -39,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -108,9 +109,9 @@ Run two real, parallel, 10-iteration deep-loop passes against `system-deep-loop`
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Both loops reach a terminal state (converged, max-iterations, or a genuine hard boundary) with mechanically valid state artifacts.
-- **SC-002**: At least one divergent pivot attempt is either observed, or its absence is explained by genuine non-eligibility (not a suppressed/misconfigured branch).
-- **SC-003**: `system-deep-loop`'s own tree is unmodified by this packet's execution.
+- **SC-001 MET**: Both loops reached the `maxIterationsReached` terminal state (10/10 real iterations each), confirmed via raw `deep-research-state.jsonl`/`deep-review-state.jsonl` `loopStopped`/`loop_stop` records, not self-reports.
+- **SC-002 MET (absence explained)**: No divergent pivot fired in either loop. Both loops' convergence checks stayed `STOP_BLOCKED` at every boundary (research: source-diversity/unverified-claims guards; review: dimension-coverage/finding-stability guards) and never independently nominated a legal STOP before the iteration ceiling — `maxIterationsReached` is an explicitly excluded pivot-eligibility reason by design, so the terminal `divergentPivotFired:false` on both sides is correct, not a suppressed branch.
+- **SC-003 MET**: `git status` on `.opencode/skills/system-deep-loop/**` confirmed clean throughout and after both runs (only the expected benign DB/telemetry regeneration noise, `deep-loop-graph.sqlite` and `observability-events.jsonl` — no source/doc changes).
 <!-- /ANCHOR:success-criteria -->
 
 ---

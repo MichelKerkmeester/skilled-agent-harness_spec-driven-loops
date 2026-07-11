@@ -8,14 +8,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood"
-    last_updated_at: "2026-07-11T08:00:00Z"
+    last_updated_at: "2026-07-11T10:30:00Z"
     last_updated_by: "claude"
-    recent_action: "P0 incident during dispatch; blast radius independently confirmed contained"
-    next_safe_action: "Operator decision needed before any re-run"
-    blockers:
-      - "Both loops destroyed mid-run by a CLI-dispatched opencode session with unscoped repo write access"
+    recent_action: "Retry complete: both loops verified 10/10 real iterations, no pivot fired"
+    next_safe_action: "Merge wt/0028-divergent-dogfood-retry to skilled/v4.0.0.0"
+    blockers: []
     key_files: []
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,10 +56,10 @@ N/A — this packet makes no code changes. Both loops are structurally read-only
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-010 [P0] Both loops' real config files (`research/deep-research-config.json`, `review/deep-review-config.json`) confirmed `antiConvergence.convergenceMode: "divergent"` and the `cli-opencode`/`openai/gpt-5.6-sol-fast`/high executor before the incident destroyed them (verified at read time, before loss)
-- [ ] CHK-011 [P0] Raw `deep-research-state.jsonl` and `deep-review-state.jsonl` independently read and reconciled against each loop's own completion claim — **BLOCKED**: both files were destroyed mid-run; only partial reconstruction from transcript was possible (see `research/INCIDENT.md`, `review/INCIDENT.md`)
-- [x] CHK-012 [P1] Real wall-clock concurrency confirmed between the two loops via `research/dispatch-receipts/dispatch-research-i9-g1.completion.json` and `review/dispatch-receipts/dispatch-review-i7-g1.completion.json` (research reached iteration 9, review reached iteration 7, in overlapping wall-clock time before the shared incident cut both off simultaneously)
-- [ ] CHK-013 [P1] 2-3 iterations per loop spot-checked for genuine (not fabricated/templated) dispatched content — **DEFERRED**: superseded by incident investigation; research's own agent independently verified its 8 completed iterations in real time before the loss (per its own Iron Law discipline), which stands as evidence of genuineness even though the raw artifacts are now gone
+- [x] CHK-010 [P0] Both loops' real config files (`research/deep-research-config.json`, `review/deep-review-config.json`) confirmed `antiConvergence.convergenceMode: "divergent"` and the `cli-opencode`/`openai/gpt-5.6-sol-fast`/high executor throughout the retry run (verified directly, post-completion)
+- [x] CHK-011 [P0] Raw `deep-research-state.jsonl` and `deep-review-state.jsonl` independently read end-to-end and reconciled against each loop's own completion claim: both show exactly 10 `type:"iteration"` records and a real terminal `loopStopped`/`loop_stop` event with `stopReason:"maxIterationsReached"` and `divergentPivotFired:false` — not trusted from either agent's self-report
+- [x] CHK-012 [P1] Real wall-clock concurrency confirmed between the two loops throughout the retry via interleaved dispatch-receipt and checkpoint-commit timestamps in both `research/dispatch-receipts/` and `review/dispatch-receipts/`
+- [x] CHK-013 [P1] Multiple iterations per loop spot-checked for genuine (not fabricated/templated) dispatched content across the retry (e.g. `research/iterations/iteration-001.md` and `iteration-010.md` read directly, both substantial and distinct; review's per-iteration findings independently read with full evidence chains) — confirmed genuine, not templated
 <!-- /ANCHOR:testing -->
 
 ---
@@ -76,8 +75,8 @@ N/A — no findings are remediated in this packet by design (discovery-only dogf
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-020 [P0] `git status` on `.opencode/skills/system-deep-loop/` confirmed clean of any deletion (read-only guarantee against the RESEARCHED/REVIEWED target held — the incident destroyed only this packet's own untracked artifacts, not the target under study)
-- [x] CHK-021 [P0] Blast radius of the destructive incident independently verified repo-wide, not assumed: `git status --porcelain | grep "^ D\|^D "` returns zero deletions anywhere in the tracked tree; the loss is fully contained to the never-committed `008-divergent-mode-dogfood/` packet
+- [x] CHK-020 [P0] `git status` on `.opencode/skills/system-deep-loop/` confirmed clean of any deletion or content modification throughout the retry — only the expected benign `deep-loop-graph.sqlite`/`observability-events.jsonl` regeneration noise, the read-only guarantee held end-to-end
+- [x] CHK-021 [P0] Blast radius of the original destructive incident independently verified repo-wide via `git status --porcelain | grep "^ D\|^D "` (zero deletions anywhere in the tracked tree, unchanged from the pre-retry finding); the loss was fully contained to the never-committed packet, and the worktree-isolated retry introduced zero further risk to the live tree
 <!-- /ANCHOR:security -->
 
 ---
@@ -85,7 +84,7 @@ N/A — no findings are remediated in this packet by design (discovery-only dogf
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-030 [P1] `implementation-summary.md` reports the real outcome honestly (P0 incident, partial recovery, what is and isn't recoverable) — not an assumed clean run
+- [x] CHK-030 [P1] `implementation-summary.md` reports the real outcome honestly (P0 incident, fixes applied, retry result, real findings, the one remaining asymmetry — research has a synthesis doc, review does not) — not an assumed clean run
 <!-- /ANCHOR:docs -->
 
 ---
@@ -103,8 +102,8 @@ N/A — no findings are remediated in this packet by design (discovery-only dogf
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 6 | 5/6 |
-| P1 Items | 3 | 2/3 |
+| P0 Items | 6 | 6/6 |
+| P1 Items | 3 | 3/3 |
 
-**Verification Date**: 2026-07-11 (incident occurred mid-run; verification is of the incident response, not the originally planned dogfood outcome)
+**Verification Date**: 2026-07-11 (post-incident retry, worktree-isolated; both loops reached genuine terminal state, independently verified)
 <!-- /ANCHOR:summary -->

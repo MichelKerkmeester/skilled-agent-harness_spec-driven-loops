@@ -18,7 +18,11 @@
       "divergent mode dogfood tasks",
       "divergent mode dogfood checklist",
       "divergent mode dogfood implementation summary",
-      "divergent mode dogfood incident"
+      "divergent mode dogfood retry complete",
+      "system-deep-loop improvements",
+      "deep-loop runtime findings",
+      "council provenance defects",
+      "deep-loop cost and liveness defects"
     ],
     "key_topics": [
       "divergent",
@@ -35,27 +39,88 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "research/research.md",
+      "review/deep-review-findings-registry.json",
       "research/INCIDENT.md",
       "review/INCIDENT.md",
+      ".opencode/agents/deep-research.md",
+      ".claude/agents/deep-research.md",
+      "research/deep-research-config.json",
+      "review/deep-review-config.json",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      ".opencode/skills/cli-external/cli-opencode/SKILL.md",
       ".opencode/skills/cli-external/cli-opencode/references/destructive_scope_violations.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
-      ".opencode/skills/cli-external/cli-opencode/SKILL.md",
-      "research/dispatch-receipts/dispatch-research-i9-g1.completion.json",
-      "review/dispatch-receipts/dispatch-review-i7-g1.completion.json"
+      "research/iterations/iteration-001.md",
+      ".claude/agents/deep-review.md",
+      "research/iterations/iteration-003.md"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-findings-registry.json",
+        "kind": "config",
+        "path": "review/deep-review-findings-registry.json",
+        "source": "derived"
+      },
       {
         "name": "INCIDENT.md",
         "kind": "doc",
         "path": "research/INCIDENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-config.json",
+        "kind": "config",
+        "path": "review/deep-review-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "divergent-pivot.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external/cli-opencode/SKILL.md",
         "source": "derived"
       },
       {
@@ -89,39 +154,21 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "iteration-001.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
-        "name": "render-command-contract.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "divergent-pivot.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
+        "name": "deep-review.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-external/cli-opencode/SKILL.md",
+        "path": ".claude/agents/deep-review.md",
         "source": "derived"
       },
       {
-        "name": "dispatch-research-i9-g1.completion.json",
-        "kind": "config",
-        "path": "research/dispatch-receipts/dispatch-research-i9-g1.completion.json",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-review-i7-g1.completion.json",
-        "kind": "config",
-        "path": "review/dispatch-receipts/dispatch-review-i7-g1.completion.json",
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
         "source": "derived"
       },
       {
@@ -132,12 +179,6 @@
       },
       {
         "name": "Mode Live Dogfood",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -161,45 +202,15 @@
         "source": "derived"
       },
       {
-        "name": "Parallel Dispatch Launch",
+        "name": "In Scope",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Independent Verification",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "GPT-5.6-Sol-fast",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "unscoped",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "the Workflow",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet `055-deep-loop-divergent-mode` shipped `convergenceMode: \"divergent\"` — an opt-in scope-expansion pivot where a legal STOP triggers a 3-seat native Council direction-selection instead of terminating",
     "created_at": "2026-07-11T06:01:10.004Z",
-    "last_save_at": "2026-07-11T06:02:11.538Z",
+    "last_save_at": "2026-07-11T08:51:11.924Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +218,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:479b03b871165f45a6f95e1e5f91d6af81552cdc8e6d31bdbceeacc41ac47908",
+    "source_fingerprint": "sha256:738af4f0ff631485e6d9408ee4d3bee66fecf5f2e381a18d83434c74de8869f7",
     "source_doc_hashes": {
-      "spec.md": "6517d97642f3eaa6e5a29f336d5c9da2ed1c945262bf52e981a963be27cb31ef",
-      "plan.md": "5a50791d174cba8893631f22f3f8a696b263c81075cb43d41d6d5b55a6108b56",
-      "tasks.md": "57b4cea760741b00e5c00bf3553f11c4acbeb8a3ce6b9cf3e49ebd599c6e5501",
-      "checklist.md": "303436a02eb215f34d8fc99993db432c52920a82ad8059137df92a7839dac134",
-      "implementation-summary.md": "ff69ee4f995665074d41a16f52761b67163076904e93d9c47e4a37378b908a6c"
+      "spec.md": "45962ae1192d145a78c5d1342319c5af964810b30052ba35861726c1bc2d2011",
+      "plan.md": "11693e2512a09dca92bc1c953dd0d8b46b6e40584065f209dd1eb0f3c4a19284",
+      "tasks.md": "d4b0d4ff4bd5a2bbc0968aa02ce1eee378d088fddcca691f626939ea606da4b5",
+      "checklist.md": "4de9c539bd57c297431772d6eca217b027fa105f45359065c35e6286e46bf247",
+      "implementation-summary.md": "1b6baa2be5ba1a39dbededc715be8029c3ff49616a3ceee181c747cf888bd549",
+      "research/research.md": "3ed8c628eb637364b452696c1b2173c91f376e931589919577c97e5cdf996fc7"
     },
     "last_active_child_id": null,
     "last_active_at": null

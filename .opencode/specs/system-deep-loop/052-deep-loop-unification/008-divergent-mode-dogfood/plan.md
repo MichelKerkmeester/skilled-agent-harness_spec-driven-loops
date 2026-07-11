@@ -8,14 +8,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood"
-    last_updated_at: "2026-07-11T08:00:00Z"
+    last_updated_at: "2026-07-11T10:30:00Z"
     last_updated_by: "claude"
-    recent_action: "P0 incident during Phase 1 dispatch, docs recreated from context"
-    next_safe_action: "Operator decision needed before any re-run"
-    blockers:
-      - "Both loops destroyed mid-run by a CLI-dispatched opencode session with unscoped repo write access"
+    recent_action: "Retry complete: Phase 5 (retry) executed successfully, both loops verified terminal"
+    next_safe_action: "Merge wt/0028-divergent-dogfood-retry to skilled/v4.0.0.0"
+    blockers: []
     key_files: []
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -29,7 +28,7 @@ _memory:
 
 Run `/deep:research` and `/deep:review` in parallel against `system-deep-loop` itself, both capped at 10 iterations, both with `convergenceMode: "divergent"` active, both using `cli-opencode`/`openai/gpt-5.6-sol-fast`/high — a genuine first live-fire test of the divergent-pivot mechanism shipped in packet 055, producing real research/review findings as a byproduct. No remediation in this packet; discovery only.
 
-**Update**: Phase 1 dispatch triggered a real P0 incident — see `implementation-summary.md`. This plan's Phase 2/3 did not execute.
+**Update**: Phase 1's dispatch triggered a real P0 incident (destructive deletion by an unsandboxed CLI dispatch — see `implementation-summary.md`). After operator-approved fixes (worktree isolation, `deep-research` containment-parity fix), a full retry (Phase 5) completed successfully: both loops reached genuine `maxIterationsReached` terminal states with 10/10 real iterations each and no pivot fired either side.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -68,13 +67,21 @@ Launch both loops concurrently via `Workflow`'s `parallel()`:
 
 **Outcome**: Research reached iteration 9/10 (8 independently verified), review reached iteration 7/10 (6 independently verified by that loop's own agent) before a dispatched CLI session deleted the entire packet. See `research/INCIDENT.md` and `review/INCIDENT.md`.
 
-### Phase 2: Independent Verification (not reached)
+### Phase 2: Incident Verification
 
-Was to independently read raw state logs, spot-check dispatch content, confirm `git status` clean. Superseded by incident investigation, which confirmed `system-deep-loop`'s tracked tree was NOT touched — only the packet's own untracked artifacts were destroyed.
+Independently read raw state logs (what survived), confirmed `git status` clean on `system-deep-loop`'s tracked tree (zero deletions repo-wide), confirmed the loss was fully contained to this packet's own never-committed artifacts. See `research/INCIDENT.md` and `review/INCIDENT.md`.
 
-### Phase 3: Close-Out (not reached)
+### Phase 3: Recovery
 
-Pending operator decision on whether/how to re-run with proper isolation.
+Recreated the 5 packet-level spec docs from this conversation's own authored content (verbatim, previously validated). Recovered what was independently verifiable from each loop's own transcript/conversation record without fabricating raw JSONL/registry content that no longer existed.
+
+### Phase 4: Remediation
+
+Added the missing containment block to `deep-research/assets/prompt_pack_iteration.md.tmpl` (parity with `deep-review`'s), regenerated its compiled contract, verified clean. Created worktree `wt/0028-divergent-dogfood-retry` off a clean baseline commit.
+
+### Phase 5: Retry
+
+Relaunched both loops inside the worktree with per-iteration git checkpoints as an added safety net. Diagnosed and recovered from two instances of agents ending their turn to passively "wait for a notification" that never reliably arrives (once compounded by a wrong-PID mixup with an unrelated concurrent session's process) — resumed/relaunched each explicitly instructed to block synchronously instead. Both loops reached genuine terminal state: 10/10 real iterations each, `maxIterationsReached` on both, `divergentPivotFired:false` on both (never reached a genuine legal STOP within budget — correct, not a bug). A re-awakened original research-loop agent correctly avoided creating a competing third writer once it detected the relaunch already progressing, and completed `phase_synthesis` (`research.md`, `resource-map.md`) once the relaunch's real 10-iteration data was complete. Review did not run `phase_synthesis` — one remaining asymmetry between the two loops.
 <!-- /ANCHOR:phases -->
 
 ---

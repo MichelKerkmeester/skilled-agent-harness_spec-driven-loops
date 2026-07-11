@@ -10,6 +10,20 @@ trigger_phrases:
 importance_tier: important
 contextType: research
 version: 1.0.0
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood"
+    last_updated_at: "2026-07-11T09:52:00Z"
+    last_updated_by: "claude"
+    recent_action: "Synthesis completed after 10/10 real research iterations"
+    next_safe_action: "None — synthesis complete"
+    blockers: []
+    key_files:
+      - "deep-research-state.jsonl"
+      - "findings-registry.json"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 
 # Deep Research Synthesis: system-deep-loop Improvement Opportunities
@@ -32,6 +46,7 @@ The loop terminated at **`maxIterationsReached` (10/10)**, not at a legal conver
 
 Each iteration was dispatched as an isolated `cli-opencode` LEAF run (`opencode run --model openai/gpt-5.6-sol-fast --variant high --format json --dangerously-skip-permissions --pure`) against the live worktree, receiving only the externalized state (config, JSONL log, strategy.md Next Focus, carried-forward open questions, pivot lineage) via the rendered prompt pack — no cross-iteration conversation memory. Findings were required to carry `[SOURCE: file:line]` citations; every iteration file in this run does. Rotation followed the prompt's instruction to avoid fixating on one lens: iteration 1 covered shared-runtime correctness; iteration 2 covered research command/agent contract drift; iteration 3 extended that comparison to review and council; iterations 4–8 followed a single deep thread into council provenance, cost/liveness, and their missing tests (an emergent, evidence-driven narrowing rather than a scripted rotation — each iteration's "Next Focus" was set by the leaf itself from real gaps found, per the loop's design); iteration 9 synthesized a hard-limit-vs-opt-in policy; iteration 10 closed the loop by checking whether deep-improvement (Lane A) repeats the same patterns.
 
+<!-- ANCHOR:findings -->
 ## 4. KEY FINDINGS — SHARED RUNTIME CORRECTNESS (Iteration 1)
 
 - **Snapshot persistence can be falsely reported as successful (P1).** `convergence.cjs` reports `snapshotPersistence: "persisted"` based only on `--persist-snapshot`, even when `--iteration` is omitted and no snapshot write occurs (non-council path). [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:807-843`]
@@ -199,3 +214,4 @@ Primary sources are inlined as `[SOURCE: file:line]` citations throughout Sectio
 - Convergence threshold: 0.05 (never approached; mean ratio 0.838)
 - Divergence summary: see "Divergence Map" above — 0 pivots started/completed/failed; loop correctly hard-stopped at the iteration ceiling before any legal-STOP candidate was ever nominated, and the coverage-graph engine independently flagged `STOP_BLOCKED` (source-diversity + unverified-claims blockers) at the final boundary check.
 - Segment transitions, wave scores, and checkpoint metrics are experimental and omitted from this live report per the workflow's own convergence reference.
+<!-- /ANCHOR:findings -->

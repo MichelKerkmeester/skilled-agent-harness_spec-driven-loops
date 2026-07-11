@@ -8,15 +8,14 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood"
-    last_updated_at: "2026-07-11T08:00:00Z"
+    last_updated_at: "2026-07-11T10:30:00Z"
     last_updated_by: "claude"
-    recent_action: "P0 incident during T003/T004 dispatch, docs recreated from context"
-    next_safe_action: "Operator decision needed before any re-run"
-    blockers:
-      - "Both loops destroyed mid-run by a CLI-dispatched opencode session with unscoped repo write access"
+    recent_action: "Retry complete: both loops reached 10/10 real iterations, no pivot fired either side"
+    next_safe_action: "Merge wt/0028-divergent-dogfood-retry to skilled/v4.0.0.0"
+    blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -68,10 +67,11 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-4 -->
-## Phase 4: Close-Out
+## Phase 4: Retry (operator-approved)
 
-- [ ] T007 [B] Blocked on operator decision: whether/how to re-run this dogfood pass with proper isolation (git worktree per dispatch, and/or adding the missing BANNED OPERATIONS block to `deep-research`'s prompt pack to close the confirmed asymmetry with `deep-review`'s).
-- [ ] T008 Run `validate.sh --strict` on this packet once its final state (incident-only vs. re-run) is settled.
+- [x] T007 Operator decision received: fix the containment gap, then retry inside a worktree. Added the missing ALLOWED WRITE PATHS/BANNED OPERATIONS/SCOPE VIOLATION PROTOCOL block to `deep-research/assets/prompt_pack_iteration.md.tmpl` (parity with `deep-review`'s), regenerated the compiled contract, verified clean via `check-contract-drift.vitest.ts`/`compile-command-contracts.vitest.ts`. Created worktree `wt/0028-divergent-dogfood-retry`, committed a clean git-recoverable baseline before any dispatch, added per-iteration checkpoint commits as an ongoing safety net.
+- [x] T008 Relaunched both loops inside the worktree, `--dir` pointed at the worktree for every CLI dispatch. Two agents independently hit a "detached wait for a notification" stall (once from grabbing an unrelated concurrent session's process PID) — diagnosed and either relaunched or resumed via `SendMessage`, each time explicitly instructing synchronous blocking instead. Both loops reached genuine terminal state: `research` — `loopStopped` event, `stopReason:"maxIterationsReached"`, `divergentPivotFired:false`, 10/10 real iterations, `research.md` (17-section synthesis, 47 cited findings) + `resource-map.md` completed by a re-awakened original agent that correctly avoided a competing third writer once it detected the relaunch already in progress. `review` — `loop_stop` event, `hardStopReason:"maxIterationsReached"`, `divergentPivotFired:false`, 10/10 real iterations, 15 open P1 findings (0 P0); `phase_synthesis` (review-report.md) not run.
+- [x] T009 Independent verification (not trusting either loop's self-report): confirmed both terminal events directly from raw `deep-research-state.jsonl`/`deep-review-state.jsonl`; confirmed both loops' locks released; confirmed `system-deep-loop`'s own tree stayed clean (`git status` — only the expected benign `deep-loop-graph.sqlite`/`observability-events.jsonl` regeneration noise, matching the pattern seen throughout this whole session, no source/doc changes); removed one confirmed-empty stray file (`retry-placeholder`) an iteration had accidentally created outside its allowed-write scope.
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`.
-- [ ] No `[B]` blocked tasks remaining. — T007 blocked on operator decision.
-- [ ] `validate.sh --strict` exits 0 for this folder.
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] `validate.sh --strict` exits 0 for this folder.
 <!-- /ANCHOR:completion -->
 
 ---
