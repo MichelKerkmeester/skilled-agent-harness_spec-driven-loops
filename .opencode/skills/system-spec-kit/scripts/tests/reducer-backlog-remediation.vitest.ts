@@ -141,8 +141,8 @@ describe('LG-0008: content_hash two-tier dedup', () => {
 describe('LG-0006: traceabilityChecks rollup', () => {
   it('returns the latest summary + results', () => {
     const rollup = reducer.buildTraceabilityRollup([
-      { type: 'iteration', run: 1, traceabilityChecks: { summary: { required: 1, executed: 1, pass: 1, partial: 0, fail: 0, blocked: 0, notApplicable: 0, gatingFailures: 0 }, results: [{ protocolId: 'spec_code', status: 'pass' }] } },
-      { type: 'iteration', run: 2, traceabilityChecks: { summary: { required: 2, executed: 2, pass: 1, partial: 0, fail: 1, blocked: 0, notApplicable: 0, gatingFailures: 1 }, results: [{ protocolId: 'spec_code', status: 'fail' }] } },
+      { type: 'iteration', run: 1, traceabilityChecks: { summary: { required: 1, executed: 1, pass: 1, partial: 0, fail: 0, blocked: 0, notApplicable: 0, gatingFailures: 0 }, results: [{ protocolId: 'spec_code', status: 'pass', applicable: true, gateClass: 'hard' }] } },
+      { type: 'iteration', run: 2, traceabilityChecks: { summary: { required: 2, executed: 2, pass: 1, partial: 0, fail: 1, blocked: 0, notApplicable: 0, gatingFailures: 1 }, results: [{ protocolId: 'spec_code', status: 'fail', applicable: true, gateClass: 'hard' }] } },
     ]);
     expect(rollup.summary.gatingFailures).toBe(1);
     expect(rollup.results[0].status).toBe('fail');

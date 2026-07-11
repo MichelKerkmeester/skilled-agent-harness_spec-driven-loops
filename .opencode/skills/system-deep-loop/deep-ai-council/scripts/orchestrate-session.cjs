@@ -705,6 +705,16 @@ async function main(argv = process.argv.slice(2), options = {}) {
     const args = parseArgs(argv);
     const sessionState = readJsonValue(args.sessionState, '--session-state');
     const executorConfig = readJsonValue(args.executorConfig, '--executor-config');
+    const rawModel = executorConfig?.executor?.model;
+    if (typeof rawModel === 'string') {
+      const { EXECUTOR_KINDS } = await import('../../runtime/lib/deep-loop/executor-config.ts');
+      if (EXECUTOR_KINDS.includes(rawModel)) {
+        throw new RangeError(
+          `executor.model is "${rawModel}", which is an executor family/kind identifier, not a model name. `
+          + 'Set executor.kind to select the family and executor.model to a real model identifier.',
+        );
+      }
+    }
     const packetSpecFolder = path.resolve(args.packetSpecFolder || resolvePacketSpecFolder(sessionState, executorConfig));
     const councilConfig = options.councilConfig || loadCouncilConfig(options.configPath);
     const promptTemplate = options.promptTemplate || loadPromptTemplate(options.promptPath);

@@ -38,7 +38,6 @@ function readWorkspaceFile(relativePath: string): string {
   const runtimeMirrors = [
     '.opencode/agents/deep-review.md',
     '.claude/agents/deep-review.md',
-    '.opencode/agents/deep-review.toml',
   ];
 
   const commandAssets = [
@@ -233,7 +232,7 @@ function readWorkspaceFile(relativePath: string): string {
   // Add executable coverage for deep-review runtime-capabilities.cjs
   it('exposes a machine-readable capability matrix for every supported deep-review runtime', () => {
     const runtimeIds = reviewCapabilityModule!.listRuntimeCapabilityIds();
-    expect(runtimeIds).toEqual(['opencode', 'claude', 'opencode']);
+    expect(runtimeIds).toEqual(['opencode', 'claude']);
 
     const matrix = reviewCapabilityModule!.loadRuntimeCapabilities().matrix;
     for (const runtime of matrix.runtimes) {
