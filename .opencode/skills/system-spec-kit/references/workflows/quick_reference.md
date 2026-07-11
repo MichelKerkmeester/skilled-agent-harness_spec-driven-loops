@@ -227,42 +227,54 @@ Before making ANY file changes, verify:
 
 ---
 
-## 8. UPDATE VS CREATE DECISION
+## 8. UPDATE, PHASE, OR CREATE DECISION
 
-### UPDATE Existing Spec When:
+### CONTINUE or UPDATE Existing Work When:
 
-✅ Iterative development (continuing same feature)
-✅ Bug fixes (fixing existing implementation)
-✅ Scope escalation (work grew beyond estimate)
-✅ Feature enhancement (adding to existing functionality)
+✅ Iterative development of the same feature
+✅ Bug fixes to the existing implementation
+✅ Scope escalation within the same outcome
+✅ Enhancement of existing functionality
 ✅ Resuming paused work
+✅ The request fits the active packet's purpose, scope, requirements, or Phase Documentation Map
 
-### CREATE New Spec When:
+### PREFER A PHASED PACKET When:
 
-❌ Distinct feature (completely separate)
-❌ Different approach (alternative strategy)
-❌ Separate user story (different requirement)
-❌ Complete redesign (starting over)
-❌ Unrelated work (no connection)
+✅ The work is related to one coordinated outcome
+✅ Phase complexity score >= 25 AND documentation level >= 3
+✅ The work contains distinct workstreams that would otherwise become separate top-level single-spec folders
 
-**Phased Packets**: If the target spec already has child phase folders,
-resume/update in the active child phase - not the coordination root.
-Use the root only for coordination snapshots, phase-map updates,
-and tree-truth verification.
+The phased-packet preference does not override qualification. If only one or neither threshold is met, continue or update a standard non-phased packet.
+
+### CREATE New Top-Level Work When:
+
+❌ Distinct feature with a separate outcome
+❌ Different requirement or separate user story outside the current scope
+❌ Alternative strategy that must remain independently governed
+❌ Complete redesign that supersedes rather than extends the current packet
+❌ Unrelated work with no requirement, implementation, or dependency continuity
+
+New/unrelated work is allowed to use Option B, but the new packet must still be evaluated independently. If it meets both phase thresholds, create a new phased packet; otherwise create a standard packet.
+
+**Phased Packets:** If the target already has child phase folders, use the active child when the work fits that child's scope. For a distinct but related workstream, prefer Option E and add the next sequential child phase instead of creating a new top-level sibling packet. Use the coordination root only for phase-map updates, root-scope decisions, and tree-truth verification. Use Option B only when the work is outside the phase parent's documented purpose and scope.
+
+**Small-task definition:** "Small" means exempt work or work that remains Level 1 after LOC guidance and all secondary risk/complexity factors are applied. A Level 2 or Level 3 task that does not phase-qualify is not automatically "small"; it remains standard because the phase thresholds were not both met.
 
 ---
 
 ## 9. CONFIRMATION OPTIONS
 
-When workflow prompts at conversation start:
+When Gate 3 applies, always present all five stable labels and ask the user to choose:
 
-**Option A:** Use detected folder (if related work found)
-**Option B:** Create new spec folder with suggested number
-**Option C:** Update one of the related specs shown
-**Option D:** Skip spec folder creation (**WARNING:** Technical debt!)
-**Option E:** Add phase to existing spec — target a specific phase child (e.g., `specs/NNN-name/001-phase/`). Only shown when existing spec has high complexity or phased content.
+**Option A:** Continue in the detected/current spec or current phase child when its scope fits.
+**Option B:** Create a new top-level packet for new/unrelated work; independently evaluate whether that new packet qualifies for phases.
+**Option C:** Update another related existing spec when it is a better scope match.
+**Option D:** Skip spec documentation after the required warning or under an existing exemption.
+**Option E:** Extend a phased packet by adding or targeting a specific child, or decompose a related standard packet that meets both phase thresholds.
 
-**AI Agent Rule:** NEVER decide autonomously - ask user to choose (A/B/C/D/E)
+**Recommendation priority:** `E` for a distinct related workstream in an existing or qualifying phased packet; otherwise `A` when the current packet fits; otherwise `C` for another related packet; `B` only for new/unrelated work; `D` is never the default.
+
+**AI Agent Rule:** Recommend the best-fit option using this priority, but NEVER select it autonomously. The user must choose A/B/C/D/E.
 
 ---
 

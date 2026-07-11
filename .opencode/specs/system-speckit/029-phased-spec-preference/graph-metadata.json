@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-phased-spec-preference",
+  "spec_folder": "system-speckit/029-phased-spec-preference",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core",
+      "implementation",
+      "plan",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "verification",
+      "checklist"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "system-spec-kit"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "scratch/opus-review.md",
+      "scratch/dispatch-prompt.txt",
+      "scratch/gpt-5.6-sol-analysis.json",
+      "scratch/gpt-5.6-sol-proposal.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
+      ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+      ".opencode/skills/system-spec-kit/references/structure/folder_routing.md",
+      ".opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md",
+      ".opencode/skills/system-spec-kit/references/workflows/spec_folder_authoring_checklist.md",
+      "assets/level_decision_matrix.md",
+      "constitutional/spec-folder-naming.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "opus-review.md",
+        "kind": "doc",
+        "path": "scratch/opus-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-prompt.txt",
+        "kind": "file",
+        "path": "scratch/dispatch-prompt.txt",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-5.6-sol-analysis.json",
+        "kind": "config",
+        "path": "scratch/gpt-5.6-sol-analysis.json",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-5.6-sol-proposal.md",
+        "kind": "doc",
+        "path": "scratch/gpt-5.6-sol-proposal.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase_definitions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/structure/folder_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "sub_folder_versioning.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec_folder_authoring_checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/spec_folder_authoring_checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "level_decision_matrix.md",
+        "kind": "doc",
+        "path": "assets/level_decision_matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-naming.md",
+        "kind": "doc",
+        "path": "constitutional/spec-folder-naming.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "system-spec-kit already has a phase-decomposition system (`phasesystem.md`, `phasedefinitions.md`) gated on a complexity score (>=25/50) AND a level threshold (>=3), but nothing tells AI agents to prefer extending an existing phased packet with a new phase over spinning up a brand-new sibling spec folder",
+    "created_at": "2026-07-11T11:09:23Z",
+    "last_save_at": "2026-07-11T12:29:15.110Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0ee5ad14bf20ea452204c0a045754d9af06ea46a25a5289306e3a1a3e1a94c28",
+    "source_doc_hashes": {
+      "spec.md": "54952bbee131592c37e6fc6652444c754f28c605d93475015a02fe970eb4469d",
+      "plan.md": "a686f497470f002fb98f195c79bbef1416663680a55cb8aed95a995b3c3338a3",
+      "tasks.md": "5824a2d5ea8cba60eb7db7b48c47788a6a9d162a016eabe9c4f6c6cf8c6c9dd2",
+      "checklist.md": "0fde8dc855b3c7497a831a1a10d3d6b656def1010ea4c326d0b82a0abf48e85c",
+      "implementation-summary.md": "2f31273de79a4c2549c21c19fb5c517d744f70ea77c9f7bbfd0b7dd361052d59"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

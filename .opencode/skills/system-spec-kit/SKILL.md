@@ -456,7 +456,7 @@ Use Grep/Glob for semantic/token discovery, Code Graph for structural relationsh
 2. **Scaffold from contract-backed templates** - Use `create.sh` or `inline-gate-renderer`, NEVER create from scratch
 3. **Fill ALL placeholders** - Remove placeholder markers and sample content
 4. **Ask A/B/C/D/E when file modification detected** - Present options, wait for selection
-5. **Check for related specs before creating new folders** - Search keywords, review status
+5. **Prefer coordinated related packets before new top-level folders** - Check active and related specs, their scope, status, and Phase Documentation Map. When related work qualifies for phase decomposition, recommend one phased packet rather than separate single-spec folders.
 6. **Get explicit user approval before changes** - Show level, path, templates, approach
 7. **Use consistent folder naming** - `specs/###-short-name/` format
 8. **Use checklist.md to verify (Level 2+)** - Load before claiming done
@@ -467,7 +467,7 @@ Use Grep/Glob for semantic/token discovery, Code Graph for structural relationsh
 13. **Create implementation-summary.md at end of implementation phase (Level 1+)** - Document what was built
 14. **Suggest /memory:save when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
 15. **Suggest Task-tool debug delegation after 3+ failed fix attempts on same error** - Do not continue without offering a fresh debugging pass
-16. **Suggest /speckit:plan :with-phases when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
+16. **Apply the phased-packet preference without bypassing qualification** - Suggest `/speckit:plan :with-phases` only when phase complexity score >= 25 AND documentation level >= 3. If either condition fails, use a standard packet; if the work is new or unrelated, create a separate packet and evaluate that packet independently.
 17. **Route all code creation/updates through `sk-code`** - Full surface alignment is mandatory before claiming completion
    - **Authoring-time vs review-time load**: `sk-code` is loaded at TWO distinct points in `/speckit:complete`. (a) Authoring-time (Step 10 development): when the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, load the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) and, for `.opencode/specs/` targets, the system-spec-kit spec-folder docs (`references/workflows/spec_folder_authoring_checklist.md` + `references/workflows/spec_folder_write_recipe.md`) BEFORE the first write. (b) Review-time (Step 11 review): the existing `sk-code` code-review mode (findings-first baseline + router-selected surface evidence) overlay runs after writes complete. Authoring-time load surfaces invariants the writer needs to honor; review-time load catches drift the writer didn't honor. See `cross_skill_authoring_load` block in `speckit_complete_auto.yaml` and `speckit_complete_confirm.yaml` for the YAML contract.
 18. **Route all documentation creation/updates through `sk-doc`** - Full alignment is mandatory before claiming completion

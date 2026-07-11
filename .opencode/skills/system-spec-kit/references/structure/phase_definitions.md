@@ -28,7 +28,7 @@ Phases are a **behavioral overlay** on the existing documentation level system (
 
 ### When Phases Apply
 
-Phases are suggested when a specification exceeds complexity thresholds that make single-folder management impractical. The phase system is most commonly used with Level 3 and Level 3+ specifications, though any level can technically use phases.
+Phases are suggested when a specification exceeds complexity thresholds that make single-folder management impractical. The phase decomposition workflow is offered only when both qualification thresholds in §2 are met. Child phases inside an already-established phase parent may use the documentation level appropriate to that child's work.
 
 ### Important Note
 
@@ -62,6 +62,17 @@ Phase decomposition is suggested when BOTH conditions are met:
 > **Scoring systems clarification:** The 50-point phase complexity score (this section) is separate from the 100-point level recommendation score used by `recommend-level.sh`. The level score determines documentation depth (L1/L2/L3/L3+); the phase score determines whether to decompose into child folders. Both thresholds must be met independently.
 
 If only one condition is met, the specification proceeds as a standard (non-phased) spec folder.
+
+### Phased-Packet Preference
+
+**Governance rule:** "AI's should always prefer multi-phased specs over separate single spec folders, unless the task is small or new from current work."
+
+This is a routing preference, not an override of phase qualification:
+
+- When related work has a phase complexity score >= 25 AND documentation level >= 3, the AI MUST recommend one coordinated phased packet instead of separate top-level single-spec folders.
+- When only one or neither threshold is met, the work MUST remain a standard non-phased spec. Related standard work should reuse or update an existing packet when its scope fits.
+- New or unrelated work may start a new top-level packet. The new packet must still be evaluated independently: create it as a phased packet when both thresholds are met, otherwise create it as a standard packet.
+- A small task does not justify creating a new sibling packet when it fits an active existing packet. Continue in the applicable existing packet or phase child instead.
 
 ### Suggested Phase Counts
 
@@ -183,6 +194,20 @@ Phase folders use the same status values as regular spec folders:
 | `active` | Phase currently being implemented |
 | `paused` | Phase temporarily on hold |
 | `complete` | Phase implementation finished |
+
+### Extending an Existing Phase Parent
+
+**Governance rule:** "Also when they are working inside a phased spec they should prefer adding new phases to that instead of create a new separate spec folder."
+
+When the current work is already inside a phase parent:
+
+1. Use Option A when the requested work fits the current active, draft, or paused child phase.
+2. Prefer Option E when the work is a distinct but related workstream within the parent's documented purpose and scope. Add the next sequential child phase and update the Phase Documentation Map.
+3. Use Option C when another related existing packet is a better scope match.
+4. Use Option B only when the work is new or unrelated to the phase parent's purpose, requirements, and Phase Documentation Map.
+5. Option D remains an explicit documentation opt-out and is never the default.
+
+The phase-qualification thresholds govern whether a standard packet may become a phase parent. An already-established phase parent does not need to requalify for every later child, but every new child must remain inside the parent's documented scope and use the documentation level appropriate to that child. A standard non-phased packet may not gain phase children unless both qualification thresholds are met.
 
 ### Cross-Phase Dependencies
 

@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-phased-spec-preference",
+  "description": "system-spec-kit already has a phase-decomposition system (`phasesystem.md`, `phasedefinitions.md`) gated on a complexity score (>=25/50) AND a level",
+  "keywords": [
+    "system-spec-kit",
+    "already",
+    "phase-decomposition",
+    "system",
+    "phasesystem",
+    "phasedefinitions",
+    "gated",
+    "complexity",
+    "score",
+    "level"
+  ],
+  "lastUpdated": "2026-07-11T12:28:21.201Z",
+  "specId": "029",
+  "folderSlug": "phased-spec-preference",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

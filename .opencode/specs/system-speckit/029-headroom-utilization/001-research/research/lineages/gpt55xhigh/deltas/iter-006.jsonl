@@ -1,2 +1,0 @@
-{"type":"iteration","iteration":6,"status":"insight","focus":"deep-loop workflows and artifact determinism","newInfoRatio":0.55,"findingsCount":7,"answeredQuestions":[6],"citations":[".opencode/commands/deep/assets/deep_research_auto.yaml:94",".opencode/commands/deep/assets/deep_research_auto.yaml:756",".opencode/commands/deep/assets/deep_research_auto.yaml:895"]}
-{"type":"finding","id":"I006-F1","summary":"Deep-loop state is command-owned; Headroom can assist prompt-pack context but must not rewrite state JSONL, deltas, reducer outputs, or convergence records."}

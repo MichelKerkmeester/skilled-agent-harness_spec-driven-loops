@@ -130,7 +130,15 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 - **Positive triggers (continuity writes):** `save context`, `save memory`, `/memory:save`, `/speckit:resume`, `resume iteration`, `resume deep research`, `resume deep review`, `continue iteration` (these produce `description.json` / `graph-metadata.json` / continuity frontmatter / `iteration-NNN.md` writes)
 - **Read-only disqualifiers:** `review`, `audit`, `inspect`, `analyze`, `explain` — suppress Gate 3 when they appear ALONE (e.g. "review the decomposition phase"). Do NOT suppress when a continuity-write trigger is also present.
 - **Note:** tokens `analyze`, `decompose`, `phase` are NOT positive triggers; they false-positive on read-only review prompts.
-- **Options:** A) Existing | B) New | C) Update related | D) Skip | E) Phase folder (e.g., `specs/NNN-name/001-phase/`)
+- **Options (stable labels):**
+  - **A) Existing** - Continue in the detected/current spec or its current phase child when the requested work fits that scope.
+  - **B) New** - Create a new top-level packet only when the work is new or unrelated to suitable existing packets. Evaluate the new packet independently for standard versus phased structure.
+  - **C) Update related** - Use another related existing spec when the current packet is not the best scope match.
+  - **D) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never make this the default.
+  - **E) Extend phased packet** - Add or target a specific child under an existing phase parent, or decompose a related standard packet that now meets both phase-qualification thresholds.
+- **Recommendation order:** Keep the A-E labels stable. First test the request against the active/related packet's documented purpose, scope, requirements, and Phase Documentation Map. If it is a positive scope match: recommend `A` when the current packet or child already fits; recommend `E` for a distinct related workstream in an existing or qualifying phased packet; recommend `C` when another related packet fits better. Only when it is NOT a scope match, recommend `B` (new/unrelated). Never recommend `D` by default. "Currently open" is never sufficient to recommend A or E. The user still makes the final selection.
+- **Phase-qualification guard:** Creating a new phased packet or converting a standard packet into a phase parent requires BOTH phase complexity score >= 25/50 AND documentation level >= 3. If only one or neither condition is met, use a standard non-phased packet.
+- **Routing definitions:** "Small" means exempt work or work that remains Level 1 after applying LOC guidance and all risk/complexity overrides. "New/unrelated" means outside the active packet's documented purpose, scope, requirements, and Phase Documentation Map, using the update-versus-create criteria in `references/workflows/quick_reference.md` §8.
 - **Router commands:** For router-style commands such as `/doctor`, evaluate Gate 3 per selected route. The route manifest/table must expose each target's location and mutation class before asking or acting:
   - `read-only` routes may inspect and report without a spec-folder write path.
   - `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied.

@@ -30,7 +30,7 @@ Sub-folder versioning is **workflow-assisted**: the AI can suggest it during Opt
 ### When to Use
 
 - Working on distinct phases of the same feature
-- Separating unrelated tasks within a parent spec folder
+- Separating distinct but related iterations within the parent spec's documented scope; genuinely unrelated work belongs in a separate top-level packet
 - Creating clear boundaries between implementation iterations
 - Preserving context when returning to old work
 

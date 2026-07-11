@@ -349,7 +349,7 @@ Users can set preferences that persist within a session:
 | -------------- | ---------------------------------------- |
 | `"auto-select"`| Skip prompts, use highest-scoring folder |
 | `"always ask"` | Prompt even for high-confidence matches  |
-| `"new folder"` | Always create new spec folder            |
+| `"new folder"` | Route this save to a newly created spec folder rather than scoring against existing matches. This is a save-time preference only; it does not grant standing permission to relocate related work out of an active phased packet, and Gate 3 (AGENTS.md §2) still governs create-vs-extend routing for new work. |
 
 ---
 

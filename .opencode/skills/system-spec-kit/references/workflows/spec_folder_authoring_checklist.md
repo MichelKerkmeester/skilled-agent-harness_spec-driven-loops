@@ -38,6 +38,10 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 - [ ] Confirm required anchor counts for the selected level before writing.
 - [ ] Confirm `_memory.continuity.packet_pointer` is slash-separated and relative to the specs track.
 - [ ] Confirm `description.json` and `graph-metadata.json` will be refreshed after authoring.
+- [ ] Before creating a new top-level packet, check whether the current work is inside a phase parent.
+- [ ] If it is, compare the request with the parent `spec.md` purpose, scope, requirements, and Phase Documentation Map.
+- [ ] Continue in the current child when its scope fits; otherwise prefer a new child phase for a distinct related workstream. Create a separate top-level packet only for new/unrelated work.
+- [ ] Do not convert a standard packet into a phase parent unless phase complexity score >= 25 AND documentation level >= 3.
 
 ---
 
