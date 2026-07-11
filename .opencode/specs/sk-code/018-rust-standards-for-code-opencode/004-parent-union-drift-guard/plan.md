@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard"
-    last_updated_at: "2026-07-11T08:53:41Z"
+    last_updated_at: "2026-07-11T09:56:28Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded this phase plan from the 018 research manifest"
-    next_safe_action: "Apply the smart_routing.md union edits, then run the drift guard"
+    recent_action: "Mirrored RUST into the smart_routing.md parent union; drift guard green"
+    next_safe_action: "Wire the six registration touchpoints (phase 005)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 4 — Parent-Hub Union & Drift Guard
@@ -65,13 +65,13 @@ Parent map equals the set union of child maps (re-prefixed) plus the fixed paren
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Step 1: Union
+### Phase 1: Union
 Add the re-prefixed RUST resource entry and parent CODE_QUALITY.
 
-### Step 2: Intent + overlay
+### Phase 2: Intent + overlay
 Add the parent RUST intent and human-facing overlay row.
 
-### Step 3: Guard
+### Phase 3: Guard
 Run the drift-guard vitest; resolve any orphan/missing-projection finding.
 <!-- /ANCHOR:phases -->
 

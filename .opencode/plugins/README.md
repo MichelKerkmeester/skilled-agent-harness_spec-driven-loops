@@ -54,7 +54,7 @@ When OpenCode boots, every `.js` file in this folder is invoked once. To add a n
 | `mk-post-edit-quality.js` | Warn-only post-edit quality router `tool.execute.before` + `tool.execute.after` + `experimental.chat.system.transform` (Claude side rewrites the PostToolUse `Write\|Edit` hook to `claude-posttooluse.cjs`). Maps each edited path to the right existing checker via `post-edit-router.cjs`. Fail-open, deadline-bounded. Kill-switch `MK_POST_EDIT_QUALITY_DISABLED=1`. |
 | `mk-completion-sentinel.js` | Advisory `session.idle` plugin (paired Claude `Stop` hook). When a turn claims completion, verifies recorded completion evidence WITHOUT running any test/build, via `completion-evidence-sentinel.cjs`. Never blocks. Kill-switch `MK_COMPLETION_SENTINEL_DISABLED=1`. |
 | `mk-mcp-route-guard.js` | Warn-only `tool.execute.before` plugin (paired Claude PreToolUse `mcp__claude_ai_.*` hook). Nudges routing native external MCP calls through Code Mode via `mcp-route-guard.cjs`; no deny path anywhere. Kill-switch `MK_MCP_ROUTE_GUARD_DISABLED=1`; advisory-widener `MK_MCP_ROUTE_GUARD_BROAD_MODE=1`. |
-| `mk-spec-gate.js` | Two-surface Gate-3 spec-mutation gate over the ESM `spec-gate-core.mjs`: classify (`experimental.chat.system.transform` / Claude UserPromptSubmit) + enforce (`tool.execute.before` / Claude PreToolUse `Write\|Edit`). Classify+advise by default; deny is opt-in behind `MK_SPEC_GATE_ENFORCE=1`. Fail-open everywhere. Kill-switch `MK_SPEC_GATE_DISABLED=1`. |
+| `mk-spec-gate.js` | Two-surface Gate-3 spec-mutation gate over the ESM `spec-gate-core.mjs`: classify (`experimental.chat.system.transform` / Claude UserPromptSubmit) + enforce (`tool.execute.before` / Claude PreToolUse `Write\|Edit`). Classify+advise by default; deny is opt-in behind `MK_SPEC_GATE_ENFORCE=1`, further narrowed to never fire for a dispatched/child session (`AI_SESSION_CHILD=1` — see §5.4). Every advise/would-deny event writes one structured `session\|tool\|path\|decision` telemetry line via `formatSpecGateEvent`. Fail-open everywhere. Kill-switch `MK_SPEC_GATE_DISABLED=1`. |
 | `mk-speckit-completion.js` | Read-only `tool.register` plugin exposing `mk_speckit_completion` — a spec folder's merged completion state (level, checklist P0/P1/P2 + evidence gaps, placeholder completeness) via `completion-state.cjs`. No hooks; cannot block. Kill-switch `MK_SPECKIT_COMPLETION_DISABLED=1`. |
 | `session-cleanup.js` | Session-end MCP cleanup plugin. OpenCode has no JSON SessionEnd hook, so this listens for the `server.instance.disposed` / `global.disposed` dispose lifecycle events and runs `.opencode/scripts/session-cleanup.sh` to reclaim the session's MCP helper descendants. Best-effort and bounded; never blocks teardown. |
 
@@ -138,6 +138,18 @@ Example config file:
 - **Malformed config file** (invalid JSON): Silent fall-through — `loadConfig()` returns `{}` and the plugin proceeds with env + defaults.
 - All disable env vars (`MK_SKILL_ADVISOR_HOOK_DISABLED=1`, `MK_SKILL_ADVISOR_PLUGIN_DISABLED=1`, legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1`, `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1`) are **preserved unchanged**.
 
+### 5.4 mk-spec-gate: who can deny
+
+`evaluateMutation()` in `spec-gate-core.mjs` is the single deterministic deny producer both the OpenCode plugin and the Claude `spec-gate-enforce.mjs` hook read — deny is never decided per-runtime. A Write/Edit is denied only when **every** one of these holds:
+
+1. `MK_SPEC_GATE_DISABLED` is not `1` (the kill-switch always wins first).
+2. `MK_SPEC_GATE_ENFORCE=1` for that process (default-off; scoped to interactive Claude Code first, see `.claude/settings.json`).
+3. The session is **not** a dispatched/child session — `AI_SESSION_CHILD=1` forces `advise`, never `deny`, even with enforce on. A child has no user turn available to answer Gate 3, so denying it would just block autonomous work with no way to resolve the question.
+4. The session's Gate-3 state is `open` (triggered, not yet answered/skipped).
+5. The target file is a real in-repo, non-exempt path (the spec tree itself, `/tmp`, `dist`, `node_modules`, `.git`, and out-of-repo paths are always exempt).
+
+Every other combination resolves to `advise` (the question/telemetry surfaces, nothing is blocked) or `allow`. Both `evaluateMutation()`'s `wouldDeny` field and the structured telemetry line (`session|tool|path|decision`, written by `appendWarningLog`/`formatSpecGateEvent`) exist so an operator can measure the would-be-deny rate from real advise-mode traffic before flipping enforce anywhere.
+
 ---
 
 ## 6. UPGRADE NOTES
@@ -154,6 +166,7 @@ When upgrading OpenCode beyond 1.3.17, rerun the 026/007/009 discovery probe:
 
 ## 7. RELATED
 
+- [`tests/README.md`](./tests/README.md) — regression suites covering these entrypoints, one `node:test` file per plugin
 - `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/` — advisor bridge home
 - `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` — spec-kit bridge modules
 - `.opencode/skills/system-skill-advisor/mcp_server/hooks/` — sibling hook entrypoints (different runtime contract)

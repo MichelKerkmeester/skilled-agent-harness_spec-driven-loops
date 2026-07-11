@@ -13,26 +13,25 @@ parent: "system-speckit/028-memory-search-intelligence/001-speckit-memory"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/032-embedder-relisten-and-reaper-hardening"
-    last_updated_at: "2026-07-11T00:00:00Z"
-    last_updated_by: "claude-sonnet-5"
-    recent_action: "Deferred-work spec authored"
-    next_safe_action: "Implement WS1 (embedder re-listen) first"
-    blockers:
-      - "WS1 and WS3 are high-blast-radius (shared launcher/daemon lifecycle, a process killer) and need adversarial review before merge/live activation"
+    last_updated_at: "2026-07-11T11:16:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "WS1-WS5 implemented + verified; two adversarial-review rounds resolved"
+    next_safe_action: "Path-scoped commit + push"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "032-embedder-relisten-and-reaper-hardening-authoring"
+      session_id: "032-embedder-relisten-and-reaper-hardening-implementation"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Is the launcher-lease.vitest.ts owner-reap timeout (WS5) an environment-timing artifact or a real bug in reapOwnerBeforeRespawn?"
-      - "Should WS1's re-arm check live inline in the bridge/adopt call sites, or as a periodic self-heal check inside startModelServerDemandListener itself?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "WS1 is P0 and ships first: it is the only item in this packet currently blocking the memory-index scan of packet 025's docs."
+      - "WS1 is P0 and shipped first; it unblocks the memory-index scan of packet 025's docs once merged."
+      - "WS5 owner-reap timeout: real fixture-staleness bug, not env timing (production heartbeat guard correctly refuses to reap a live owner)."
+      - "WS1 re-arm placement: central chokepoint in bridgeOrReportLeaseHeld on action bridge, not inline per call site nor a periodic self-heal."
 ---
 # Feature Specification: Phase 32: Embedder Demand-Listener Relisten and Reaper Hardening
 
@@ -55,14 +54,14 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Branch** | `scaffold/032-embedder-relisten-and-reaper-hardening` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-speckit/028-memory-search-intelligence/001-speckit-memory` |
 | **Predecessor** | `030-opencode-temp-worker-reaping` (Done, `90a2462721` + `d4be07abbc`) |
 | **Successor** | None |
-| **Handoff Criteria** | Spec approved; implementation not yet started |
+| **Handoff Criteria** | WS1-WS5 shipped + verified (84/84, two adversarial rounds); post-merge stress + `memory_index_scan` remain |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -231,7 +230,9 @@ Land the demand-listener re-arm and the hf-local fail-fast so a dead embedder si
 
 ## 10. OPEN QUESTIONS
 
-- Is the `launcher-lease.vitest.ts` owner-reap timeout (WS5) an environment-timing artifact, or a real bug in `reapOwnerBeforeRespawn` (`mk-spec-memory-launcher.cjs:776-779`)?
-- Should WS1's re-arm check live inline at the bridge/adopt call sites (`mk-spec-memory-launcher.cjs:1656-1691`), or as a periodic self-heal check inside `startModelServerDemandListener` itself?
-- Does WS3(b)'s singleton rule need a grace window for the brief moment during a legitimate hand-off when two processes might transiently both look live?
+All resolved during implementation:
+
+- **WS5 owner-reap timeout** — Resolved: a real test-fixture staleness bug, not an environment-timing artifact. The production `reapOwnerBeforeRespawn` heartbeat guard correctly refuses to reap a heartbeat-fresh live owner; the fixture never aged out the recorded owner lease, so the reap path could not proceed. Fix aged out the lease in the fixture; production guard unchanged.
+- **WS1 re-arm placement** — Resolved: a single central chokepoint in `bridgeOrReportLeaseHeld()` gated on `decision.action === 'bridge'`, not inline at each call site nor a periodic self-heal. It fires only after the deep liveness probe, is idempotent and respawn-lock-arbitrated, and leaves the fresh-owner boot path untouched.
+- **WS3(b) singleton grace window** — Resolved: no separate grace window needed. The singleton decision is derived from the affirmative path-named unix-socket fd (the macOS listener discriminator), and the reap is gated on a tri-state probe that preserves on any ambiguous/annotated/failed lsof result — a transient hand-off reads as ambiguous and is preserved, not reaped.
 <!-- /ANCHOR:questions -->

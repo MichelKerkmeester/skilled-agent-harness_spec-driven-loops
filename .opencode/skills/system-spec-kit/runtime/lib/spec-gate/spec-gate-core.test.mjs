@@ -6,7 +6,7 @@
 //   node --experimental-test-module-mocks --test spec-gate-core.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync, chmodSync, symlinkSync, realpathSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync, chmodSync, symlinkSync, realpathSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { readFileSync } from 'node:fs';
@@ -56,6 +56,9 @@ test('golden loop: open -> deny -> answer -> allow', () => {
     assert.ok(opened.question && opened.question.includes('SPEC FOLDER QUESTION'));
 
     // 2. A Write to a real in-repo source file denies while enforce is on.
+    // The deny detail is the model-audience string, NOT the human-facing
+    // relay question -- a denied model needs an instruction ("go ask the
+    // user"), not the menu itself.
     const denied = core.evaluateMutation({
       tool: 'Write',
       filePath: 'src/login.ts',
@@ -64,7 +67,9 @@ test('golden loop: open -> deny -> answer -> allow', () => {
       env: { [core.ENFORCE_ENV]: '1' },
     });
     assert.equal(denied.decision, 'deny');
-    assert.ok(denied.detail && denied.detail.includes('SPEC FOLDER QUESTION'));
+    assert.equal(denied.detail, core.GATE_3_DENY_DETAIL);
+    assert.notEqual(denied.detail, core.GATE_3_QUESTION);
+    assert.equal(denied.wouldDeny, true);
 
     // 3. Answering with a real, validated folder satisfies the gate.
     const answered = core.classifyIntent({
@@ -84,6 +89,7 @@ test('golden loop: open -> deny -> answer -> allow', () => {
       env: { [core.ENFORCE_ENV]: '1' },
     });
     assert.equal(allowed.decision, 'allow');
+    assert.equal(allowed.wouldDeny, false);
   } finally {
     cleanup(root);
   }
@@ -104,6 +110,9 @@ test('enforce-env unset returns advise, not deny', () => {
     });
     assert.equal(result.decision, 'advise');
     assert.ok(result.detail);
+    // wouldDeny is computed independent of the enforce env: this is exactly
+    // the row an operator measures to size a future enforce flip.
+    assert.equal(result.wouldDeny, true);
   } finally {
     cleanup(root);
   }
@@ -294,6 +303,8 @@ test('bash never denies even with enforce on and gate open', () => {
     });
     assert.notEqual(result.decision, 'deny');
     assert.equal(result.decision, 'advise');
+    // bash is never deny-capable, so it can never register as would-deny either.
+    assert.equal(result.wouldDeny, false);
   } finally {
     cleanup(root);
   }
@@ -329,12 +340,22 @@ test('deny matrix: only enforce-on + write/edit + open + non-exempt denies', () 
           });
 
           const expectDeny = enforceValue === '1' && (tool === 'write' || tool === 'edit') && !target.exempt;
+          // wouldDeny is independent of the enforce env entirely: it is true
+          // for exactly the (write|edit) + non-exempt rows, regardless of
+          // enforceValue -- the discriminator this telemetry signal exists
+          // to measure would-be-deny traffic while enforce stays off.
+          const expectWouldDeny = (tool === 'write' || tool === 'edit') && !target.exempt;
           if (expectDeny) {
             denyCount += 1;
             assert.equal(result.decision, 'deny', `expected deny for ${tool}/${enforceValue}/${target.label}`);
           } else {
             assert.notEqual(result.decision, 'deny', `expected non-deny for ${tool}/${enforceValue}/${target.label}`);
           }
+          assert.equal(
+            result.wouldDeny,
+            expectWouldDeny,
+            `expected wouldDeny=${expectWouldDeny} for ${tool}/${enforceValue}/${target.label}`,
+          );
         }
       }
     }
@@ -457,6 +478,7 @@ test('MK_SPEC_GATE_DISABLED=1 makes both entrypoints a full no-op', () => {
       env: { [core.DISABLED_ENV]: '1', [core.ENFORCE_ENV]: '1' },
     });
     assert.equal(mutation.decision, 'allow');
+    assert.equal(mutation.wouldDeny, false);
   } finally {
     cleanup(root);
   }
@@ -494,6 +516,14 @@ const POSITIVE_ANSWER_CORPUS = [
   { prompt: 'Skip - handled elsewhere', expect: 'skip' },
   { prompt: 'A, 059-login-fix', expect: 'binding' },
   { prompt: 'C: specs/legacy-042-bar', expect: 'binding' },
+  // WS5: standalone-D immediately followed by punctuation still skips.
+  { prompt: 'D, no spec folder needed', expect: 'skip' },
+  { prompt: 'D) no spec folder needed', expect: 'skip' },
+  // WS5: "skip it" natural form, separated cleanly from any trailing aside.
+  { prompt: 'skip it, no folder needed', expect: 'skip' },
+  // WS5: closed-set natural lead-ins register the letter for a bare-token bind.
+  { prompt: 'option B, 042-foo', expect: 'binding' },
+  { prompt: 'go with C, 099-bar-baz', expect: 'binding' },
 ];
 
 const NEGATIVE_PROMPT_CORPUS = [
@@ -509,6 +539,11 @@ const NEGATIVE_PROMPT_CORPUS = [
   'run the test suite again',
   '404-not-found is the error page component',
   'A pretty big refactor is coming',
+  // WS5: a bare "skip" running straight into a full sentence is prose ABOUT
+  // skipping something else, not an answer to Gate 3 -- must not false-close.
+  'skip the lint errors for now, just fix the parser bug',
+  // WS5: a bare "D" running into ordinary prose about option D, not a chosen skip.
+  'D is the wrong option, use A instead',
 ];
 
 test('answerParse() corpus: recognized answers parse correctly (false-negative rate)', () => {
@@ -576,6 +611,117 @@ test('appendWarningLog never throws and is fail-open on an unwritable dir', () =
   assert.doesNotThrow(() => {
     core.appendWarningLog('/definitely/not/writable/path/xyz', 'test detail');
   });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WS1: formatSpecGateEvent -- the shared telemetry line formatter
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('formatSpecGateEvent: composes the canonical pipe-delimited fields in order', () => {
+  const line = core.formatSpecGateEvent({
+    runtime: 'opencode',
+    sessionID: 'sess-123',
+    tool: 'write',
+    filePath: 'src/login.ts',
+    decision: 'would-deny',
+  });
+  assert.equal(line, 'opencode | sess-123 | write | src/login.ts | would-deny');
+});
+
+test('formatSpecGateEvent: missing/empty fields render as "-", never break the field count', () => {
+  const line = core.formatSpecGateEvent({ runtime: 'claude', decision: 'advise' });
+  const fields = line.split(' | ');
+  assert.equal(fields.length, 5);
+  assert.equal(fields[0], 'claude');
+  assert.equal(fields[1], '-'); // sessionID missing
+  assert.equal(fields[2], '-'); // tool missing
+  assert.equal(fields[3], '-'); // filePath missing
+  assert.equal(fields[4], 'advise');
+});
+
+test('formatSpecGateEvent: a hostile filePath (pipe/newline) cannot inject a second field or line', () => {
+  const line = core.formatSpecGateEvent({
+    runtime: 'opencode',
+    sessionID: 'sess-1',
+    tool: 'write',
+    filePath: 'src/evil.ts | fake-field\ninjected second line',
+    decision: 'would-deny',
+  });
+  assert.equal(line.includes('\n'), false, 'no raw newline may survive sanitization');
+  const fields = line.split(' | ');
+  // The formatter still emits exactly 5 fields even though the hostile
+  // filePath TRIED to smuggle in extra pipes -- every internal '|' in the
+  // field is stripped before the real separators are joined.
+  assert.equal(fields.length, 5);
+  assert.equal(fields[4], 'would-deny');
+});
+
+test('formatSpecGateEvent: the runtime field is the only thing that differs between the two adapters', () => {
+  const shared = { sessionID: 'sess-9', tool: 'edit', filePath: 'src/x.ts', decision: 'advise' };
+  const opencodeLine = core.formatSpecGateEvent({ runtime: 'opencode', ...shared });
+  const claudeLine = core.formatSpecGateEvent({ runtime: 'claude', ...shared });
+  assert.equal(opencodeLine.replace(/^opencode/, 'RUNTIME'), claudeLine.replace(/^claude/, 'RUNTIME'));
+});
+
+test('appendWarningLog + formatSpecGateEvent: a source-file mutation event produces exactly one parseable line', () => {
+  const { root } = makeWorkspace();
+  try {
+    const { stateDir } = core.resolveGuardPaths(root);
+    const logPath = join(stateDir, 'spec-gate-warnings.log');
+
+    const line = core.formatSpecGateEvent({
+      runtime: 'opencode',
+      sessionID: 'sess-parse',
+      tool: 'write',
+      filePath: 'src/login.ts | injected\nsecond-line',
+      decision: 'would-deny',
+    });
+    core.appendWarningLog(stateDir, line);
+
+    const contents = readFileSync(logPath, 'utf8');
+    const lines = contents.split('\n').filter((entry) => entry.length > 0);
+    assert.equal(lines.length, 1, 'a hostile field must never split one advisory into two log lines');
+    assert.ok(lines[0].includes('[mk-spec-gate]'));
+    const [, payload] = lines[0].split('[mk-spec-gate] ');
+    const fields = payload.split(' | ');
+    assert.equal(fields.length, 5);
+    assert.equal(fields[0], 'opencode');
+    assert.equal(fields[1], 'sess-parse');
+    assert.equal(fields[2], 'write');
+    assert.equal(fields[4], 'would-deny');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('MK_SPEC_GATE_DISABLED=1: the kill-switch means no telemetry line is ever written', () => {
+  const { root } = makeWorkspace();
+  const sessionID = nextSessionID();
+  const { stateDir } = core.resolveGuardPaths(root);
+  const logPath = join(stateDir, 'spec-gate-warnings.log');
+  try {
+    core.classifyIntent({
+      prompt: 'fix the login bug',
+      sessionID,
+      projectDir: root,
+      env: { [core.DISABLED_ENV]: '1' },
+    });
+    const result = core.evaluateMutation({
+      tool: 'write',
+      filePath: 'src/login.ts',
+      sessionID,
+      projectDir: root,
+      env: { [core.DISABLED_ENV]: '1', [core.ENFORCE_ENV]: '1' },
+    });
+    assert.equal(result.decision, 'allow');
+    assert.equal(result.wouldDeny, false);
+    // The disabled path never even reaches the adapter's log call (decision
+    // is 'allow'), so this test only pins evaluateMutation's own contract;
+    // no log file should exist from this sequence at all.
+    assert.equal(existsSync(logPath), false);
+  } finally {
+    cleanup(root);
+  }
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -843,5 +989,423 @@ test('HIGHEST BLAST proof: every known error path resolves to allow, even with e
   {
     const result = core.evaluateMutation({ tool: 'write', filePath: 'x.ts', sessionID: 's', projectDir: 12345, env: enforceEnv });
     assert.notEqual(result.decision, 'deny');
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WS2: trigger-turn self-binding -- a prompt that BOTH triggers Gate 3 AND
+// names a valid folder in the same breath binds on that turn, never opens.
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('WS2 self-bind: a trigger prompt naming a valid spec-path folder satisfies on the same turn', () => {
+  const { root, folderRel } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    const result = core.classifyIntent({
+      prompt: `fix the login bug, use ${folderRel}`,
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(result.status, 'satisfied');
+    assert.equal(result.question, null);
+
+    // The very next Write allows even with enforce on -- no second turn needed.
+    const mutation = core.evaluateMutation({
+      tool: 'Write',
+      filePath: 'src/login.ts',
+      sessionID,
+      projectDir: root,
+      env: { [core.ENFORCE_ENV]: '1' },
+    });
+    assert.equal(mutation.decision, 'allow');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS2 self-bind: a trigger prompt naming a valid bare NNN-slug folder satisfies on the same turn', () => {
+  const { root } = makeWorkspace();
+  const folderName = '997-self-bind-bare';
+  mkdirSync(join(root, '.opencode', 'specs', folderName), { recursive: true });
+  writeFileSync(join(root, '.opencode', 'specs', folderName, 'spec.md'), '# Test\n');
+  writeFileSync(join(root, '.opencode', 'specs', folderName, 'description.json'), '{}\n');
+  writeFileSync(join(root, '.opencode', 'specs', folderName, 'graph-metadata.json'), '{}\n');
+  try {
+    const sessionID = nextSessionID();
+    const result = core.classifyIntent({
+      prompt: `implement the export pipeline, ${folderName}`,
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(result.status, 'satisfied');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS2 self-bind: a trigger prompt naming an INVALID folder still opens the gate (never guesses)', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    const result = core.classifyIntent({
+      prompt: 'fix the login bug, use .opencode/specs/does-not-exist',
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(result.status, 'open');
+    assert.ok(result.question && result.question.includes('SPEC FOLDER QUESTION'));
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS2 self-bind: a trigger prompt naming no folder at all still opens the gate (unchanged)', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    const result = core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
+    assert.equal(result.status, 'open');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS2 self-bind: an incidental digit-dash token in ordinary prose never falsely self-binds', () => {
+  // "404-not-found" looks like a bare NNN-slug token but is not a real spec
+  // folder -- classifyIntent must fall through to opening the gate, not deny
+  // or silently satisfy against a nonexistent path. This prompt does not
+  // trigger Gate 3 at all (no file-write verb), so it should not even open.
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    const result = core.classifyIntent({
+      prompt: '404-not-found is the error page component',
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(result.status, 'closed');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('extractSpecFolderCandidate: returns a spec-path token, a bare token, or null with no letter/skip grammar', () => {
+  assert.equal(core.extractSpecFolderCandidate('fix the bug, use .opencode/specs/059-login'), '.opencode/specs/059-login');
+  assert.equal(core.extractSpecFolderCandidate('implement the feature, 042-foo'), '042-foo');
+  assert.equal(core.extractSpecFolderCandidate('fix the login bug'), null);
+  assert.equal(core.extractSpecFolderCandidate(''), null);
+  assert.equal(core.extractSpecFolderCandidate(undefined), null);
+});
+
+test('WS2 options-threading: classificationOptions with a satisfying prebound folder closes the gate without a question', async (t) => {
+  if (typeof t.mock?.module !== 'function') {
+    t.skip('requires --experimental-test-module-mocks (Node ESM module mocking)');
+    return;
+  }
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    t.mock.module(CLASSIFIER_MODULE_PATH, {
+      namedExports: {
+        classifyPrompt: () => ({
+          triggersGate3: true,
+          requiresGate3Prompt: false,
+          satisfiedBy: 'prebound_spec_folder',
+          writeBoundary: '.opencode/specs/999-mock',
+          reason: 'file_write_match',
+          matched: [],
+          readOnlyMatched: [],
+        }),
+        validateSpecFolderBinding: () => ({ valid: false, reason: 'missing_binding', path: null, resolvedPath: null, resolvedAbsolutePath: null, writeBoundary: null }),
+      },
+    });
+    const mockedCore = await import(`${CORE_MODULE_URL}?mock-options-satisfied=${Date.now()}`);
+
+    const result = mockedCore.classifyIntent({
+      prompt: 'run the autonomous workflow',
+      sessionID,
+      projectDir: root,
+      classificationOptions: { executionMode: 'AUTONOMOUS' },
+    });
+    assert.equal(result.status, 'satisfied');
+    assert.equal(result.question, null);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS2 options-threading regression guard: requiresGate3Prompt=true still opens the gate as before', async (t) => {
+  if (typeof t.mock?.module !== 'function') {
+    t.skip('requires --experimental-test-module-mocks (Node ESM module mocking)');
+    return;
+  }
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    t.mock.module(CLASSIFIER_MODULE_PATH, {
+      namedExports: {
+        classifyPrompt: () => ({
+          triggersGate3: true,
+          requiresGate3Prompt: true,
+          satisfiedBy: null,
+          writeBoundary: null,
+          reason: 'file_write_match',
+          matched: [],
+          readOnlyMatched: [],
+        }),
+        validateSpecFolderBinding: () => ({ valid: false, reason: 'missing_binding', path: null, resolvedPath: null, resolvedAbsolutePath: null, writeBoundary: null }),
+      },
+    });
+    const mockedCore = await import(`${CORE_MODULE_URL}?mock-options-open=${Date.now()}`);
+
+    const result = mockedCore.classifyIntent({
+      prompt: 'do something without a resolvable prebound folder',
+      sessionID,
+      projectDir: root,
+      classificationOptions: { executionMode: 'AUTONOMOUS' },
+    });
+    assert.equal(result.status, 'open');
+    assert.ok(result.question);
+  } finally {
+    cleanup(root);
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WS3: scaffolded-folder acceptance -- a folder with only spec.md (no
+// description.json/graph-metadata.json yet) satisfies a prior_answer binding.
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('WS3 scaffolded accept: a folder with ONLY spec.md (no save-time trio) still satisfies the gate', () => {
+  const { root } = makeWorkspace();
+  const folderRel = '.opencode/specs/042-scaffolded-only';
+  mkdirSync(join(root, folderRel), { recursive: true });
+  writeFileSync(join(root, folderRel, 'spec.md'), '# Scaffolded Spec\n\n| **Status** | Active |\n');
+  // Deliberately NO description.json / graph-metadata.json -- these are
+  // produced at memory-save time, not at scaffold time.
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    const answered = core.classifyIntent({ prompt: `B, ${folderRel}`, sessionID, projectDir: root });
+    assert.equal(answered.status, 'satisfied');
+
+    const mutation = core.evaluateMutation({
+      tool: 'Write',
+      filePath: 'src/login.ts',
+      sessionID,
+      projectDir: root,
+      env: { [core.ENFORCE_ENV]: '1' },
+    });
+    assert.equal(mutation.decision, 'allow');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3 scaffolded accept: a folder with description.json but NO spec.md still stays open', () => {
+  const { root } = makeWorkspace();
+  const folderRel = '.opencode/specs/043-no-spec-md';
+  mkdirSync(join(root, folderRel), { recursive: true });
+  writeFileSync(join(root, folderRel, 'description.json'), '{}\n');
+  writeFileSync(join(root, folderRel, 'graph-metadata.json'), '{}\n');
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    const answered = core.classifyIntent({ prompt: `B, ${folderRel}`, sessionID, projectDir: root });
+    assert.equal(answered.status, 'open');
+    assert.ok(answered.question);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3 scaffolded accept: a genuinely non-existent folder still stays open (unaffected by the relaxation)', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    const answered = core.classifyIntent({
+      prompt: 'B, .opencode/specs/999-never-scaffolded',
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(answered.status, 'open');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3 scaffolded accept: an out-of-tree / traversal candidate still stays open', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    // Parses as a path candidate (SPEC_PATH_REGEX requires an alnum right
+    // after "specs/"), so it actually reaches validateSpecFolderBinding's
+    // traversal check and comes back 'out_of_tree', not 'missing_metadata' --
+    // the scaffolded-accept relaxation must never paper over that.
+    const answered = core.classifyIntent({
+      prompt: 'B, .opencode/specs/foo/../../../etc',
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(answered.status, 'open');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3 scaffolded accept: a deprecated folder carrying the FULL trio still stays open (unchanged)', () => {
+  const { root } = makeWorkspace();
+  const folderRel = '.opencode/specs/044-deprecated-full-trio';
+  mkdirSync(join(root, folderRel), { recursive: true });
+  writeFileSync(join(root, folderRel, 'spec.md'), '# Deprecated Spec\n\n| **Status** | Deprecated |\n');
+  writeFileSync(join(root, folderRel, 'description.json'), '{}\n');
+  writeFileSync(join(root, folderRel, 'graph-metadata.json'), '{}\n');
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    const answered = core.classifyIntent({ prompt: `B, ${folderRel}`, sessionID, projectDir: root });
+    assert.equal(answered.status, 'open', 'a deprecated folder must still be rejected regardless of the scaffolded relaxation');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3 scaffolded accept: MK_SPEC_GATE_DISABLED=1 short-circuits before the relaxation ever runs', () => {
+  const { root } = makeWorkspace();
+  const folderRel = '.opencode/specs/045-disabled-check';
+  mkdirSync(join(root, folderRel), { recursive: true });
+  writeFileSync(join(root, folderRel, 'spec.md'), '# Test\n');
+  try {
+    const sessionID = nextSessionID();
+    const result = core.classifyIntent({
+      prompt: `B, ${folderRel}`,
+      sessionID,
+      projectDir: root,
+      env: { [core.DISABLED_ENV]: '1' },
+    });
+    assert.equal(result.status, 'closed');
+  } finally {
+    cleanup(root);
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WS4: headless / subagent enforce scoping -- a dispatched/child session
+// (AI_SESSION_CHILD=1) never denies, even with enforce on.
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('isChildSession: only the exact value "1" reads as a child session', () => {
+  assert.equal(core.isChildSession({ [core.CHILD_SESSION_ENV]: '1' }), true);
+  for (const value of ['', '0', 'true', 'yes', '2', undefined]) {
+    assert.equal(core.isChildSession({ [core.CHILD_SESSION_ENV]: value }), false, `value ${JSON.stringify(value)} must NOT read as a child`);
+  }
+  assert.equal(core.isChildSession({}), false);
+  assert.equal(core.isChildSession(undefined), false);
+  assert.equal(core.isChildSession(null), false);
+});
+
+test('WS4 child matrix: enforce on + child session -> advise, never deny', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
+
+    const result = core.evaluateMutation({
+      tool: 'write',
+      filePath: 'src/login.ts',
+      sessionID,
+      projectDir: root,
+      env: { [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: '1' },
+    });
+    assert.equal(result.decision, 'advise');
+    // wouldDeny still reports true -- it measures the underlying predicate
+    // independent of child status, so the telemetry line still records this
+    // as a would-deny row for operators sizing the flip.
+    assert.equal(result.wouldDeny, true);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS4 child matrix: enforce on + NO child signal -> still denies (unchanged interactive behavior)', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
+
+    const result = core.evaluateMutation({
+      tool: 'write',
+      filePath: 'src/login.ts',
+      sessionID,
+      projectDir: root,
+      env: { [core.ENFORCE_ENV]: '1' },
+    });
+    assert.equal(result.decision, 'deny');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS4 child matrix: child + disabled -> allow (kill-switch still outranks everything)', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    const result = core.evaluateMutation({
+      tool: 'write',
+      filePath: 'src/login.ts',
+      sessionID,
+      projectDir: root,
+      env: { [core.DISABLED_ENV]: '1', [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: '1' },
+    });
+    assert.equal(result.decision, 'allow');
+    assert.equal(result.wouldDeny, false);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS4 child matrix: AI_SESSION_CHILD value variants -- only exact "1" suppresses deny', () => {
+  const { root } = makeWorkspace();
+  try {
+    for (const value of ['', '0', 'true', 'yes', '2']) {
+      const sessionID = nextSessionID();
+      core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
+      const result = core.evaluateMutation({
+        tool: 'write',
+        filePath: 'src/login.ts',
+        sessionID,
+        projectDir: root,
+        env: { [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: value },
+      });
+      assert.equal(result.decision, 'deny', `AI_SESSION_CHILD=${JSON.stringify(value)} must NOT suppress deny (only exact '1' does)`);
+    }
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS4 child matrix: bash stays advise-only for a child session too (never widens)', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
+
+    const result = core.evaluateMutation({
+      tool: 'bash',
+      sessionID,
+      projectDir: root,
+      env: { [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: '1' },
+    });
+    assert.equal(result.decision, 'advise');
+    assert.equal(result.wouldDeny, false);
+  } finally {
+    cleanup(root);
   }
 });

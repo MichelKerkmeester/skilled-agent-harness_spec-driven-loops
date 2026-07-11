@@ -21,7 +21,7 @@ Patterns applicable to ALL languages in OpenCode system code.
 
 ### Purpose
 
-This reference defines patterns that apply universally across JavaScript, TypeScript, Python, Shell, and JSON/JSONC in the OpenCode codebase. These principles ensure consistency regardless of language choice.
+This reference defines patterns that apply universally across JavaScript, TypeScript, Python, Shell, Rust, and JSON/JSONC in the OpenCode codebase. These principles ensure consistency regardless of language choice.
 
 ### Core Principle
 
@@ -540,7 +540,20 @@ readonly MAX_RETRIES=3
 - `../typescript/style_guide.md` - TypeScript naming, types, interfaces, imports
 - `../python/style_guide.md` - Python naming, docstrings, imports
 - `../shell/style_guide.md` - Shell shebang, quoting, functions
+- `../rust/style_guide.md` - Rust naming, boundary API, error style, module layout
 - `../config/style_guide.md` - JSON/JSONC structure, comments
+
+### Cross-Language Determinism Contracts
+
+Rust here is a napi-rs/WASM/sidecar compatibility layer over the TypeScript
+backend, so its outputs are bound by language-neutral contracts the shared tier
+owns (the mechanics live in each language's trio, not here):
+
+- Six-decimal numeric behavior — identical rounding/quantization across languages.
+- Stable ordering and comparator tie-breaks — no reliance on unspecified sort order.
+- Deterministic IDs — same inputs produce the same identifiers everywhere.
+- Deterministic hash/iteration order — canonical map iteration, never hash-seeded.
+- Byte-for-byte differential fixtures — the same input yields identical bytes from the Rust and TypeScript paths.
 
 ### Related Documents
 

@@ -3,7 +3,8 @@
     "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
     "ENABLE_PROMPT_CACHING_1H": "true",
     "ENABLE_TOOL_SEARCH": "true",
-    "MAX_THINKING_TOKENS": "999999"
+    "MAX_THINKING_TOKENS": "999999",
+    "MK_SPEC_GATE_ENFORCE": "0"
   },
   "statusLine": {
     "type": "command",

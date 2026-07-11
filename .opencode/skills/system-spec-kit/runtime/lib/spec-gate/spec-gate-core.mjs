@@ -60,6 +60,22 @@ export const ENFORCE_ENV = 'MK_SPEC_GATE_ENFORCE';
 /** Full no-op kill-switch: both classify and enforce become inert. */
 export const DISABLED_ENV = 'MK_SPEC_GATE_DISABLED';
 /**
+ * Cross-runtime convention for an orchestrated child/dispatched sub-session
+ * (see worktree-session.sh's own child-detection branch and the cli-external
+ * dispatch recipes). A dispatched session has no user turn to answer Gate 3,
+ * so it must never be denied even when the enforce env leaks into its
+ * environment -- only the exact value '1' reads as a child; every other
+ * value (unset, '0', 'true', 'yes', ...) is treated as interactive, the safe
+ * default when the signal is missing or ambiguous.
+ */
+export const CHILD_SESSION_ENV = 'AI_SESSION_CHILD';
+
+export function isChildSession(env) {
+  const environment = env && typeof env === 'object' ? env : {};
+  return environment[CHILD_SESSION_ENV] === '1';
+}
+
+/**
  * Canonical no-session state key. Every adapter that can call classifyIntent()
  * or evaluateMutation() with a missing/empty sessionID MUST resolve to this
  * exact token before (or by leaving sessionID undefined and letting
@@ -93,6 +109,13 @@ export const GATE_3_QUESTION = [
   'D) Skip (no spec folder needed for this change)',
   'E) Use a phase folder (e.g. .opencode/specs/<parent>/<NNN-phase>, name it)',
 ].join('\n');
+
+// The human-facing relay question above and the model-facing deny reason
+// below are deliberately different strings: GATE_3_QUESTION is what the USER
+// sees (a menu to answer); GATE_3_DENY_DETAIL is what the MODEL sees when a
+// Write/Edit is actually blocked -- an instruction to go get that answer from
+// the user, not a menu the model itself could try to resolve alone.
+export const GATE_3_DENY_DETAIL = 'DENIED: this Write/Edit needs a bound spec folder first. Ask the USER to reply with a letter A-E naming an existing (or new) spec folder, then retry.';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS -- session-scoped state (atomic file persistence)
@@ -184,13 +207,44 @@ function maintainWarningLogPath(logPath, incomingBytes = 0) {
   }
 }
 
+const LOG_FIELD_UNSAFE_CHARS_REGEX = /[\r\n|]+/g;
+const LOG_FIELD_MAX_LENGTH = 500;
+
+function sanitizeLogField(value) {
+  const text = value === null || value === undefined ? '' : String(value);
+  const collapsed = text.replace(LOG_FIELD_UNSAFE_CHARS_REGEX, ' ').trim();
+  if (collapsed.length === 0) return '-';
+  return collapsed.length > LOG_FIELD_MAX_LENGTH ? `${collapsed.slice(0, LOG_FIELD_MAX_LENGTH)}...` : collapsed;
+}
+
+/**
+ * Compose the one canonical, single-line telemetry payload both runtime
+ * adapters write on every advise / would-deny mutation event. Every field is
+ * sanitized independently (pipes and newlines stripped, length-clamped) so a
+ * hostile filePath or sessionID can never inject a second log line or
+ * misalign the parser -- the fields are joined AFTER sanitization, so a
+ * stripped pipe inside one field can never be confused with a real
+ * separator.
+ *
+ * @param {{ runtime?: string, sessionID?: string, tool?: string, filePath?: string, decision?: string }} event
+ * @returns {string}
+ */
+export function formatSpecGateEvent(event = {}) {
+  const { runtime, sessionID, tool, filePath, decision } = event;
+  return [runtime, sessionID, tool, filePath, decision].map(sanitizeLogField).join(' | ');
+}
+
 /**
  * Append one advisory line to the bounded, rotated spec-gate warning log.
  * Adapter-invoked only -- classifyIntent/evaluateMutation never call this
- * themselves, so the core stays transport-free.
+ * themselves, so the core stays transport-free. `detail` is expected to
+ * already be a composed, single-line payload (see formatSpecGateEvent
+ * above); this still strips any stray newline so a careless caller can never
+ * split one advisory into two log lines.
  */
 export function appendWarningLog(stateDir, detail) {
-  const line = `${new Date().toISOString()} [mk-spec-gate] ADVISE: ${detail}\n`;
+  const safeDetail = typeof detail === 'string' ? detail.replace(/[\r\n]+/g, ' ') : String(detail ?? '');
+  const line = `${new Date().toISOString()} [mk-spec-gate] ${safeDetail}\n`;
   try {
     mkdirSync(stateDir, { recursive: true });
     const logPath = join(stateDir, WARN_LOG_FILENAME);
@@ -326,8 +380,21 @@ export function sweepStaleGateStates(stateDir, runtimeState) {
 // 5. HELPERS -- answer parsing
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SKIP_WORD_REGEX = /^\s*skip\b/i;
+// Bare "skip" / "skip it", optionally followed by a short aside that is
+// clearly SEPARATED from the word itself (a dash/colon/comma/period right
+// after "skip", or end of string) -- never a bare word running straight into
+// a full sentence ("skip the lint errors ... fix the parser"), which is
+// prose ABOUT skipping something else, not an answer to Gate 3.
+const SKIP_WORD_REGEX = /^\s*skip\b(?:\s+it\b)?\s*(?:[-:,.]|$)/i;
+// A standalone "D"/"d" immediately followed by punctuation or end of string
+// -- never a bare letter running into ordinary prose ("D is the wrong
+// option, use A instead"), which is prose ABOUT option D, not a chosen skip.
+const STANDALONE_LETTER_D_REGEX = /^\s*[dD](?:[,.:)\-]|$)/;
 const ANSWER_LETTER_PREFIX_REGEX = /^\s*([a-eA-E])(?=[\s,.:)\-]|$)/;
+// A closed set of natural lead-ins ("option B", "go with C", ...) so the
+// letter still registers when the bare-token bind below needs it, without
+// opening the grammar to arbitrary prose that happens to contain a letter.
+const NATURAL_LEAD_IN_LETTER_REGEX = /^\s*(?:option|choice|answer|go with|use option)\s+([a-eA-E])(?=[\s,.:)\-]|$)/i;
 const SPEC_PATH_REGEX = /(?:\.opencode\/specs|specs)\/[a-zA-Z0-9][\w./-]*/;
 const BARE_FOLDER_TOKEN_REGEX = /\b\d{3}-[a-z0-9][a-z0-9-]*\b/i;
 const TRAILING_PUNCTUATION_REGEX = /[.,;:)]+$/;
@@ -356,8 +423,7 @@ export function answerParse(promptText, isOpen = true) {
   const text = typeof promptText === 'string' ? promptText.trim() : '';
   if (!text) return null;
 
-  const letterMatch = ANSWER_LETTER_PREFIX_REGEX.exec(text);
-  if (SKIP_WORD_REGEX.test(text) || (letterMatch && letterMatch[1].toUpperCase() === 'D')) {
+  if (SKIP_WORD_REGEX.test(text) || STANDALONE_LETTER_D_REGEX.test(text)) {
     return { type: 'skip' };
   }
 
@@ -366,6 +432,7 @@ export function answerParse(promptText, isOpen = true) {
     return { type: 'binding', path: pathMatch[0].replace(TRAILING_PUNCTUATION_REGEX, '') };
   }
 
+  const letterMatch = ANSWER_LETTER_PREFIX_REGEX.exec(text) || NATURAL_LEAD_IN_LETTER_REGEX.exec(text);
   if (letterMatch) {
     const bareMatch = BARE_FOLDER_TOKEN_REGEX.exec(text);
     if (bareMatch) {
@@ -377,6 +444,79 @@ export function answerParse(promptText, isOpen = true) {
   }
 
   return null;
+}
+
+/**
+ * Extract a candidate spec-folder token directly from a TRIGGER prompt (the
+ * same turn that opens the gate), with no letter/skip grammar at all --
+ * distinct from answerParse, which only runs against an already-open gate's
+ * answer turn. Surfacing a token here is advisory only: only
+ * validateSpecFolderBinding (via acceptPriorAnswerBinding below) decides
+ * whether it actually binds, so an incidental digit-dash token in ordinary
+ * prose (e.g. a component named "404-not-found") can surface here and still
+ * safely fall through to opening the gate when it does not resolve to a
+ * real, valid, in-tree spec folder.
+ *
+ * @param {string} promptText
+ * @returns {string|null}
+ */
+export function extractSpecFolderCandidate(promptText) {
+  const text = typeof promptText === 'string' ? promptText.trim() : '';
+  if (!text) return null;
+
+  const pathMatch = SPEC_PATH_REGEX.exec(text);
+  if (pathMatch) return pathMatch[0].replace(TRAILING_PUNCTUATION_REGEX, '');
+
+  const bareMatch = BARE_FOLDER_TOKEN_REGEX.exec(text);
+  if (bareMatch) return bareMatch[0].replace(TRAILING_PUNCTUATION_REGEX, '');
+
+  return null;
+}
+
+/**
+ * Decide whether a prior_answer-sourced candidate path satisfies Gate 3,
+ * shared by both binding call sites (an explicit answer to an already-open
+ * gate, and the trigger-turn self-bind below) so the acceptance rule can
+ * never drift between them.
+ *
+ * Accepts outright when the shared classifier validates the candidate.
+ * Additionally accepts when the ONLY failing check was the save-time
+ * metadata trio (description.json/graph-metadata.json do not exist yet --
+ * they are produced at memory-save time, not at scaffold time) AND the
+ * folder already carries a real spec.md: validateSpecFolderCandidate has, by
+ * that point, already confirmed the folder is in-tree, exists, is not a
+ * symlink escape, and is not a repeat/cycle -- the trio is the only gap.
+ * This relaxation is local to the spec-gate's own binding path; the shared
+ * classifier's MANDATORY_SPEC_METADATA_FILES contract is never touched, and
+ * prebound/AUTONOMOUS bindings (which do not use source:'prior_answer')
+ * still require the full trio via applyGate3Satisfaction.
+ *
+ * @param {string} candidatePath
+ * @param {string} workspaceRoot
+ * @returns {{ accepted: boolean, resolvedAbsolutePath: string|null }}
+ */
+function acceptPriorAnswerBinding(candidatePath, workspaceRoot) {
+  const validation = validateSpecFolderBinding(
+    { path: candidatePath, source: 'prior_answer' },
+    { workspaceRoot },
+  );
+  if (validation.valid && validation.resolvedAbsolutePath) {
+    return { accepted: true, resolvedAbsolutePath: validation.resolvedAbsolutePath };
+  }
+
+  if (validation.reason === 'missing_metadata' && typeof validation.path === 'string' && validation.path.length > 0) {
+    try {
+      const scaffoldedAbsolutePath = join(workspaceRoot, validation.path);
+      if (statSync(join(scaffoldedAbsolutePath, 'spec.md')).isFile()) {
+        return { accepted: true, resolvedAbsolutePath: scaffoldedAbsolutePath };
+      }
+    } catch (_) {
+      // No real spec.md (or an unreadable scaffold) -- fall through to reject,
+      // never let this optional check propagate to the outer classify catch.
+    }
+  }
+
+  return { accepted: false, resolvedAbsolutePath: null };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -475,7 +615,7 @@ export function isExemptTargetPath(filePath, projectDir) {
  * returned. Fails open: any internal error returns the current status with
  * no side effects.
  *
- * @param {{ prompt?: string, sessionID?: string, projectDir?: string, env?: NodeJS.ProcessEnv }} request
+ * @param {{ prompt?: string, sessionID?: string, projectDir?: string, env?: NodeJS.ProcessEnv, classificationOptions?: { executionMode?: string, boundSpecFolder?: object|null, commandContract?: object|null } }} request
  * @returns {{ status: 'open'|'satisfied'|'skipped'|'closed', question: string|null }}
  */
 export function classifyIntent(request = {}) {
@@ -487,7 +627,7 @@ export function classifyIntent(request = {}) {
   let stateDir;
   let sessionID;
   try {
-    const { prompt, projectDir } = request;
+    const { prompt, projectDir, classificationOptions } = request;
     sessionID = request.sessionID;
     const dir = projectDir || process.cwd();
     ({ stateDir } = resolveGuardPaths(dir));
@@ -499,15 +639,12 @@ export function classifyIntent(request = {}) {
       return { status: 'skipped', question: null };
     }
     if (answer?.type === 'binding') {
-      const validation = validateSpecFolderBinding(
-        { path: answer.path, source: 'prior_answer' },
-        { workspaceRoot: dir },
-      );
-      if (validation.valid && validation.resolvedAbsolutePath) {
+      const accepted = acceptPriorAnswerBinding(answer.path, dir);
+      if (accepted.accepted) {
         writeGateStateAtomic(stateDir, sessionID, {
           status: 'satisfied',
           boundSpecFolder: { path: answer.path, source: 'prior_answer' },
-          validatedResolvedPath: validation.resolvedAbsolutePath,
+          validatedResolvedPath: accepted.resolvedAbsolutePath,
           answeredAtMs: Date.now(),
         });
         return { status: 'satisfied', question: null };
@@ -519,8 +656,40 @@ export function classifyIntent(request = {}) {
       return { status: state.status, question: null };
     }
 
-    const classification = classifyPrompt(typeof prompt === 'string' ? prompt : '');
+    const classification = classifyPrompt(typeof prompt === 'string' ? prompt : '', classificationOptions);
     if (classification.triggersGate3) {
+      // A prebound/command-contract context the shared classifier already
+      // trusts (see ClassificationOptions/applyGate3Satisfaction) closes the
+      // gate on this same turn -- no generic question needed.
+      if (!classification.requiresGate3Prompt && classification.satisfiedBy) {
+        writeGateStateAtomic(stateDir, sessionID, {
+          status: 'satisfied',
+          satisfiedBy: classification.satisfiedBy,
+          writeBoundary: classification.writeBoundary,
+          answeredAtMs: Date.now(),
+        });
+        return { status: 'satisfied', question: null };
+      }
+
+      // Trigger-turn self-binding: the SAME prompt that just opened the gate
+      // may also already name a folder ("fix the login bug, use
+      // .opencode/specs/999-valid") -- validate it before falling back to
+      // asking again, rather than opening the gate and denying the very next
+      // Write for a turn that already answered its own question.
+      const candidatePath = extractSpecFolderCandidate(prompt);
+      if (candidatePath) {
+        const accepted = acceptPriorAnswerBinding(candidatePath, dir);
+        if (accepted.accepted) {
+          writeGateStateAtomic(stateDir, sessionID, {
+            status: 'satisfied',
+            boundSpecFolder: { path: candidatePath, source: 'prior_answer' },
+            validatedResolvedPath: accepted.resolvedAbsolutePath,
+            answeredAtMs: Date.now(),
+          });
+          return { status: 'satisfied', question: null };
+        }
+      }
+
       if (state.status !== 'open') {
         writeGateStateAtomic(stateDir, sessionID, { status: 'open', askedAtMs: Date.now() });
       }
@@ -547,16 +716,23 @@ export function classifyIntent(request = {}) {
  * calls validateSpecFolderBinding; this reads the already-persisted status.
  *
  * Deny is deterministic and opt-in: it fires only when the enforce env is
- * set, the tool is Write or Edit, the gate is open and unanswered, and the
- * target is a real in-repo, non-exempt file. Every other combination
- * resolves to advise (question surfaced, never blocking) or allow.
+ * set, the session is not a dispatched/child session (see isChildSession --
+ * a child has no user turn to answer Gate 3, so it can never be denied), the
+ * tool is Write or Edit, the gate is open and unanswered, and the target is
+ * a real in-repo, non-exempt file. Every other combination resolves to
+ * advise (question surfaced, never blocking) or allow.
+ *
+ * `wouldDeny` is an additive telemetry signal, computed independent of the
+ * enforce env: it answers "would this exact mutation be denied if enforce
+ * were on for every session", so operators can size a future enforce flip
+ * from real advise-mode traffic without needing enforce on anywhere yet.
  *
  * @param {{ tool?: string, filePath?: string, sessionID?: string, projectDir?: string, env?: NodeJS.ProcessEnv }} request
- * @returns {{ decision: 'allow'|'advise'|'deny', detail: string|null }}
+ * @returns {{ decision: 'allow'|'advise'|'deny', detail: string|null, wouldDeny: boolean }}
  */
 export function evaluateMutation(request = {}) {
   const environment = request.env || process.env;
-  if (environment[DISABLED_ENV] === '1') return { decision: 'allow', detail: null };
+  if (environment[DISABLED_ENV] === '1') return { decision: 'allow', detail: null, wouldDeny: false };
 
   try {
     const { filePath, sessionID, projectDir } = request;
@@ -566,25 +742,26 @@ export function evaluateMutation(request = {}) {
 
     const state = readGateState(stateDir, sessionID);
     if (state.status === 'satisfied' || state.status === 'skipped') {
-      return { decision: 'allow', detail: null };
+      return { decision: 'allow', detail: null, wouldDeny: false };
     }
     if (state.status !== 'open') {
       // Gate was never opened this session -- nothing to enforce or advise.
-      return { decision: 'allow', detail: null };
+      return { decision: 'allow', detail: null, wouldDeny: false };
     }
 
     if (tool !== 'bash' && isExemptTargetPath(filePath, dir)) {
-      return { decision: 'allow', detail: null };
+      return { decision: 'allow', detail: null, wouldDeny: false };
     }
 
     const denyCapable = DENY_CAPABLE_TOOLS.has(tool);
+    const wouldDeny = denyCapable;
     const enforceOn = environment[ENFORCE_ENV] === '1';
-    if (denyCapable && enforceOn) {
-      return { decision: 'deny', detail: GATE_3_QUESTION };
+    if (denyCapable && enforceOn && !isChildSession(environment)) {
+      return { decision: 'deny', detail: GATE_3_DENY_DETAIL, wouldDeny };
     }
-    return { decision: 'advise', detail: GATE_3_QUESTION };
+    return { decision: 'advise', detail: GATE_3_QUESTION, wouldDeny };
   } catch (_) {
     // Fail open on any unexpected internal error -- never block the mutation.
-    return { decision: 'allow', detail: null };
+    return { decision: 'allow', detail: null, wouldDeny: false };
   }
 }

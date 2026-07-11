@@ -2,7 +2,7 @@
 // MODULE: HF Local
 // ───────────────────────────────────────────────────────────────────
 
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { request as httpRequest } from 'node:http';
 import type { IncomingMessage, RequestOptions } from 'node:http';
 import path from 'node:path';
@@ -29,6 +29,7 @@ const DEFAULT_LOADING_TIMEOUT: number = 150000;
 const DEFAULT_HEALTH_TIMEOUT: number = 5000;
 const READY_RETRY_INITIAL_DELAY: number = 100;
 const READY_RETRY_MAX_DELAY: number = 1000;
+const NO_OWNER_GRACE_MS = 5000;
 const DEFAULT_READY_LATCH_TTL_MS: number = 30000;
 const MAX_READY_LATCH_TTL_MS: number = 120000;
 const SOCKET_FILE_NAME = 'hf-embed.sock';
@@ -189,6 +190,7 @@ interface ErrorWithCode extends Error {
 let currentDevice: string | null = null;
 let activeTransport: HfLocalTransport = nodeHttpTransport;
 let sleep: SleepFn = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+let spawnAuthorityDbDir = defaultDbDir();
 
 export function resolveDtype(explicit?: string): HfLocalDtype {
   const raw = explicit ?? process.env.HF_EMBEDDINGS_DTYPE ?? 'q8';
@@ -221,6 +223,66 @@ function createError(message: string, code?: string): ErrorWithCode {
     error.code = code;
   }
   return error;
+}
+
+function hfSpawnAuthorityLiveness(pid: number): 'live' | 'dead' {
+  try {
+    process.kill(pid, 0);
+    return 'live';
+  } catch (error: unknown) {
+    return getErrorCode(error) === 'EPERM' ? 'live' : 'dead';
+  }
+}
+
+function readSpawnAuthorityPid(filePath: string): number | null {
+  try {
+    const raw = readFileSync(filePath, 'utf8').trim();
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = Number.parseInt(raw, 10);
+    }
+    const pid = isRecord(parsed) ? parsed.pid : parsed;
+    return Number.isInteger(pid) && (pid as number) > 0 ? pid as number : null;
+  } catch {
+    return null;
+  }
+}
+
+function hasLiveHfSpawnAuthority(socketPath: string): boolean {
+  try {
+    const ownerLease = JSON.parse(
+      readFileSync(path.join(spawnAuthorityDbDir, '.spec-memory-owner.json'), 'utf8'),
+    ) as unknown;
+    if (isRecord(ownerLease) && Number.isInteger(ownerLease.ownerPid) && (ownerLease.ownerPid as number) > 0) {
+      const heartbeatMs = typeof ownerLease.lastHeartbeatIso === 'string'
+        ? Date.parse(ownerLease.lastHeartbeatIso)
+        : NaN;
+      const ttlMs = typeof ownerLease.ttlMs === 'number' && Number.isFinite(ownerLease.ttlMs)
+        ? ownerLease.ttlMs
+        : 0;
+      if (
+        ttlMs > 0
+        && Number.isFinite(heartbeatMs)
+        && Date.now() - heartbeatMs <= ttlMs * 2
+        && hfSpawnAuthorityLiveness(ownerLease.ownerPid as number) === 'live'
+      ) {
+        return true;
+      }
+    }
+  } catch {
+    // Missing or malformed authority files do not prove that a launcher is active.
+  }
+
+  const socketDir = path.dirname(socketPath);
+  for (const fileName of ['hf-embed-respawn.lock', 'hf-embed.pid']) {
+    const pid = readSpawnAuthorityPid(path.join(socketDir, fileName));
+    if (pid !== null && hfSpawnAuthorityLiveness(pid) === 'live') {
+      return true;
+    }
+  }
+  return false;
 }
 
 function parsePositiveInteger(value: string | undefined, fallback: number): number {
@@ -756,6 +818,18 @@ export class HfLocalProvider implements IEmbeddingProvider {
           this.isHealthy = false;
           throw error;
         }
+        if (
+          getErrorCode(error) === 'ENOENT'
+          && this.target.kind === 'socket'
+          && Date.now() - startedAt >= NO_OWNER_GRACE_MS
+          && !hasLiveHfSpawnAuthority(this.target.socketPath)
+        ) {
+          this.isHealthy = false;
+          throw new Error(
+            `HF local model server socket ${this.target.socketPath} is absent and no live launcher or `
+            + `model-server spawn authority exists; not retrying. Restart or reconnect mk-spec-memory.`,
+          );
+        }
         lastError = error;
       }
 
@@ -1016,12 +1090,16 @@ export const __hfLocalProviderTestables = {
     activeTransport = nodeHttpTransport;
     sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     currentDevice = null;
+    spawnAuthorityDbDir = defaultDbDir();
   },
   setTransport(transport: HfLocalTransport): void {
     activeTransport = transport;
   },
   setSleep(sleepFn: SleepFn): void {
     sleep = sleepFn;
+  },
+  setSpawnAuthorityDbDir(dbDir: string): void {
+    spawnAuthorityDbDir = dbDir;
   },
   resolveHfLocalServerTarget,
 };

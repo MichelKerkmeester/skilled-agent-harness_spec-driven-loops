@@ -177,6 +177,8 @@ Full env-var detail lives in the MCP server's [`ENV_REFERENCE.md`](../skills/sys
 
 **Child suppression.** Orchestrated children must NOT create their own worktree. Two signals make the wrapper exec in place: the env var `AI_SESSION_CHILD=1` (which the wrapper exports for its own descendants, and which cli-* dispatch recipes should set when spawning a child runtime), and a structural backstop (`git --git-dir` differs from `--git-common-dir`, i.e. already inside a linked worktree). An unknown signal defaults to top-level (isolate) — the safe failure mode.
 
+**Spec-gate enforce neutralization.** Every `exec_in_place` path (both child signals above) also exports `MK_SPEC_GATE_ENFORCE=0` before handing off to the runtime, so a child can never inherit an enforced spec-mutation gate from its parent shell — a dispatched session has no user turn to answer Gate 3, so denying it would just block autonomous work. This is belt-and-suspenders: the spec-gate core's own `evaluateMutation()` independently narrows its deny predicate to skip any session carrying `AI_SESSION_CHILD=1`, so a leaked enforce env is harmless even without this wrapper. See `.opencode/plugins/README.md` §5.4 for the full who-can-deny scoping.
+
 To make a runtime isolate by default, alias its launch through the wrapper, e.g. `alias claude='bash /abs/path/.opencode/bin/worktree-session.sh claude'`. See [`sk-git`](../skills/sk-git/SKILL.md) §3 for how this relates to the in-session worktree ask-first rule.
 
 **Backstop warning.** For sessions that still start directly (no alias), add `worktree-guard.sh` as a SessionStart hook step so the operator is warned when a top-level session lands on shared `main`. It is detect-and-warn only — it never relocates or blocks the session.

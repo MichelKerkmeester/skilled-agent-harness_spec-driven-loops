@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode"
-    last_updated_at: "2026-07-11T08:53:41Z"
+    last_updated_at: "2026-07-11T13:20:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded implementation phases 002-006 from the research manifest"
-    next_safe_action: "Execute phase 002 (author the Rust standard docs) from research.md"
+    recent_action: "All phases 001-006 complete; Rust is a first-class code-opencode language"
+    next_safe_action: "Packet 018 complete — no further action"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,8 +25,8 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-11-sk-code-018-rust-standards-parent"
       parent_session_id: null
-    completion_pct: 0
-    status: "Not Started"
+    completion_pct: 100
+    status: "Complete"
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ This packet adds **Rust** as a first-class language to the `sk-code` `code-openc
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Not Started |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `sk-code` |
@@ -103,11 +103,11 @@ Produce, from evidence, a Rust standard that (1) matches idiomatic Rust and the 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-research/` | 10-round deep-research pass (GPT-5.6-sol, high, fast, via `cli-opencode`) producing `research.md` with the Rust standard synthesis and an exact upgrade file/edit manifest | Complete |
-| 002 | `002-standard-docs/` | Author the Rust standard docs: `references/rust/{style_guide,quality_standards,quick_reference}.md`, `assets/checklists/rust_checklist.md`, and `manual_testing_playbook/language-standards/004-rust-standards.md` (content from research.md Deliverables 1 + 3) | Not Started |
-| 003 | `003-surface-routing/` | `code-opencode/SKILL.md`: `.rs`/Cargo detection, RUST `INTENT_SIGNALS` + `RESOURCE_MAP`, `CODE_QUALITY` registration, surface non-negotiable (Deliverable 2B) | Not Started |
-| 004 | `004-parent-union-drift-guard/` | `shared/references/smart_routing.md` parent RUST union + `CODE_QUALITY`; make `sk-code-router-sync.vitest.ts` pass (Deliverable 2C). NOTE: the union is here, not in `sk-code/SKILL.md` | Not Started |
-| 005 | `005-touchpoints-and-multilang/` | Six registration touchpoints (stack_detection, hub-router.json, two Python verifiers, router-replay.cjs, shared trio) + the touched-language-set behavior change (Deliverable 2D) | Not Started |
-| 006 | `006-gate-verification-rollup/` | Run the Deliverable 4 gate plan (drift guard, fail-closed router-replay, verifiers, `validate.sh --strict`) and roll up the parent | Not Started |
+| 002 | `002-standard-docs/` | Author the Rust standard docs: `references/rust/{style_guide,quality_standards,quick_reference}.md`, `assets/checklists/rust_checklist.md`, and `manual_testing_playbook/language-standards/009-rust-standards.md` (content from research.md Deliverables 1 + 3) | Complete |
+| 003 | `003-surface-routing/` | `code-opencode/SKILL.md`: `.rs`/Cargo detection, RUST `INTENT_SIGNALS` + `RESOURCE_MAP`, `CODE_QUALITY` registration, surface non-negotiable (Deliverable 2B) | Complete |
+| 004 | `004-parent-union-drift-guard/` | `shared/references/smart_routing.md` parent RUST union + `CODE_QUALITY`; make `sk-code-router-sync.vitest.ts` pass (Deliverable 2C). NOTE: the union is here, not in `sk-code/SKILL.md` | Complete |
+| 005 | `005-touchpoints-and-multilang/` | Six registration touchpoints (stack_detection, hub-router.json, two Python verifiers, router-replay.cjs, shared trio) + the touched-language-set behavior change (Deliverable 2D) | Complete |
+| 006 | `006-gate-verification-rollup/` | Run the Deliverable 4 gate plan (drift guard, fail-closed router-replay, verifiers, `validate.sh --strict`) and roll up the parent | Complete |
 
 ### Phase Transition Rules
 

@@ -164,6 +164,54 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             finding = next(item for item in findings if item.rule_id == "JSON-PARSE")
             self.assertEqual("WARN", finding.severity)
 
+    def test_discovers_rs_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            file_path = root / "lib.rs"
+            self.write_file(file_path, "pub fn add(a: i64, b: i64) -> i64 { a + b }\n")
+
+            discovered = list(self.module.iter_code_files([str(root)]))
+            self.assertIn(str(file_path.resolve()), discovered)
+
+    def test_rust_unsafe_without_safety_is_error(self) -> None:
+        # The interop-boundary non-negotiable: unsafe requires a // SAFETY: invariant.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(
+                root / "bind.rs",
+                "pub fn call() {\n    unsafe {\n        raw_ffi();\n    }\n}\n",
+            )
+
+            result = self.run_cli(root)
+            self.assertEqual(1, result.returncode)
+            self.assertIn("[RUST-UNSAFE-NO-SAFETY] [ERROR]", result.stdout)
+
+    def test_rust_unsafe_with_safety_comment_is_accepted(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            file_path = root / "bind.rs"
+            self.write_file(
+                file_path,
+                "pub fn call() {\n    // SAFETY: raw_ffi upholds the null-checked pointer invariant.\n"
+                "    unsafe {\n        raw_ffi();\n    }\n}\n",
+            )
+
+            findings = self.module.check_file(str(file_path))
+            self.assertFalse(any(item.rule_id == "RUST-UNSAFE-NO-SAFETY" for item in findings))
+
+    def test_rust_panic_boundary_is_warning(self) -> None:
+        # Panic-prone calls are advisory (WARN) and non-blocking by default.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(
+                root / "convert.rs",
+                "pub fn parse(input: &str) -> i64 {\n    input.parse().unwrap()\n}\n",
+            )
+
+            result = self.run_cli(root)
+            self.assertEqual(0, result.returncode)
+            self.assertIn("[RUST-PANIC-BOUNDARY] [WARN]", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

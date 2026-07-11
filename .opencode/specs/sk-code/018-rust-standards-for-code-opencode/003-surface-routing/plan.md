@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode/003-surface-routing"
-    last_updated_at: "2026-07-11T08:53:41Z"
+    last_updated_at: "2026-07-11T09:56:28Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded this phase plan from the 018 research manifest"
-    next_safe_action: "Apply the SKILL.md detection and RUST intent/resource edits"
+    recent_action: "Applied the seven code-opencode SKILL.md Rust routing edits"
+    next_safe_action: "Mirror the RUST routing into the parent union (phase 004)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 3 — Surface Detection & Routing
@@ -65,13 +65,13 @@ Mirror an existing language entry (e.g. python) for the RUST intent/resource; ke
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Step 1: Detection
+### Phase 1: Detection
 Add `.rs` + Cargo marker detection after surface selection.
 
-### Step 2: Routing
+### Phase 2: Routing
 Add RUST INTENT_SIGNALS + RESOURCE_MAP; register the checklist under CODE_QUALITY; extend the human-facing reference map.
 
-### Step 3: Non-negotiable
+### Phase 3: Non-negotiable
 Add the surface-wide Rust-preserves-the-TypeScript-contract rule.
 <!-- /ANCHOR:phases -->
 

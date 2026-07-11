@@ -3,17 +3,17 @@
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: OpenCode transport adapter over the runtime-neutral spec-gate   ║
 // ║ core. Classify runs in experimental.chat.system.transform, whose typed   ║
-// ║ input carries no prompt field -- so this adapter best-effort fetches     ║
+// ║ input carries no prompt field -- so this adapter best-effort fetches      ║
 // ║ the session's last user message via ctx.client (guarded, fail-open)      ║
 // ║ when extractPrompt(input) comes up empty, then opens the session gate    ║
-// ║ + injects the bounded Gate-3 question when a turn triggers file-         ║
+// ║ + injects the bounded Gate-3 question when a turn triggers file-          ║
 // ║ mutation intent. Enforce runs in tool.execute.before on the mutating-    ║
 // ║ tool set and denies a Write/Edit only when the session gate is open,     ║
 // ║ unanswered, and the opt-in enforce env is set -- otherwise it advises    ║
 // ║ via a bounded state-dir log, never stdout/stderr. event() sweeps         ║
 // ║ stale per-session state on session.created and evicts it on              ║
 // ║ session.deleted. All policy and persistence live in the core; this       ║
-// ║ file only maps OpenCode's transport onto it.                             ║
+// ║ file only maps OpenCode's transport onto it.                              ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -224,19 +224,30 @@ export default async function MkSpecGatePlugin(ctx) {
         if (!guardCore.MUTATING_TOOLS.has(tool) && tool !== 'bash') return;
 
         const args = output && output.args;
+        const filePath = filePathFromArgs(args);
+        // Routed through the SAME sessionIdFrom() helper the classify
+        // surface uses (not a raw input.sessionID read) so a missing
+        // session ID resolves to the identical state key on both sides.
+        const sessionID = sessionIdFrom(input);
         const result = guardCore.evaluateMutation({
           tool,
-          filePath: filePathFromArgs(args),
-          // Routed through the SAME sessionIdFrom() helper the classify
-          // surface uses (not a raw input.sessionID read) so a missing
-          // session ID resolves to the identical state key on both sides.
-          sessionID: sessionIdFrom(input),
+          filePath,
+          sessionID,
           projectDir,
           env: process.env,
         });
 
-        if (result.decision === 'advise' && result.detail) {
-          guardCore.appendWarningLog(stateDir, result.detail);
+        // One structured telemetry line per open-gate mutation event (advise
+        // or would-deny); 'allow' means the gate was never open or the
+        // target was exempt -- nothing to measure.
+        if (result.decision !== 'allow') {
+          guardCore.appendWarningLog(stateDir, guardCore.formatSpecGateEvent({
+            runtime: 'opencode',
+            sessionID,
+            tool,
+            filePath,
+            decision: result.wouldDeny ? 'would-deny' : 'advise',
+          }));
         }
         if (result.decision === 'deny') {
           throw new Error(`mk-spec-gate: ${result.detail}`);

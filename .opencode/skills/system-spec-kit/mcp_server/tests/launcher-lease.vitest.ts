@@ -1,5 +1,6 @@
 import { spawn, type ChildProcess, type ChildProcessWithoutNullStreams } from 'node:child_process';
 import { copyFileSync, cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -28,11 +29,16 @@ interface Workspace {
 }
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
+const require = createRequire(import.meta.url);
+const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
+  writeLeaseForOwnedContextChild: () => boolean;
+};
 const launcherRelativePath = '.opencode/bin/mk-spec-memory-launcher.cjs';
 const libRelativeDir = '.opencode/bin/lib';
 const pidFileRelativePath = '.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json';
 const ownerLeaseRelativePath = '.opencode/skills/system-spec-kit/mcp_server/database/.spec-memory-owner.json';
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
+const HF_MODEL_SERVER_SOCKET_FILE_NAME = 'hf-embed.sock';
 const tempDirs: string[] = [];
 const launcherRuns: LauncherRun[] = [];
 
@@ -299,6 +305,10 @@ describe('mk-spec-memory launcher lease', () => {
     }
   });
 
+  it('does not rewrite the context lease without an owned daemon child', () => {
+    expect(launcher.writeLeaseForOwnedContextChild()).toBe(false);
+  });
+
   // Duplicate launcher exits before opening SQLite.
   it('exits with a retryable JSON-RPC error when a live owner exists but cannot be bridged', async () => {
     const workspace = createWorkspace();
@@ -341,7 +351,7 @@ describe('mk-spec-memory launcher lease', () => {
     expect(blocked).toHaveLength(1);
   });
 
-  it('reaps the recorded owner before taking over a dead socket', async () => {
+  it('reaps a heartbeat-stale recorded owner before taking over a dead socket', async () => {
     const workspace = createWorkspace();
     const first = spawnLauncher(workspace);
     await waitForLeasePid(workspace.pidFilePath, first.child.pid);
@@ -352,7 +362,19 @@ describe('mk-spec-memory launcher lease', () => {
     if (typeof socketPath !== 'string') throw new Error('expected lease socketPath');
     writeFileSync(socketPath, 'stale socket placeholder', 'utf8');
 
+    await waitFor(() => readOwnerLeasePid(workspace.root) === first.child.pid, 8000, 'first owner lease');
     const second = spawnLauncher(workspace);
+    await waitFor(() => second.stderr.includes(`liveOwnerDetected: ownerPid=${first.child.pid}`), 8000, 'second launcher to observe first owner');
+
+    // Age out the recorded owner lease so the dead-socket takeover is allowed to reap the
+    // prior owner: the production guard refuses to reap a heartbeat-fresh live owner.
+    const ownerLeasePath = join(workspace.root, ownerLeaseRelativePath);
+    const ownerLease = JSON.parse(readFileSync(ownerLeasePath, 'utf8'));
+    writeFileSync(ownerLeasePath, JSON.stringify({
+      ...ownerLease,
+      lastHeartbeatIso: new Date(0).toISOString(),
+      ttlMs: 1,
+    }, null, 2));
 
     await waitForExit(first.child, 10000);
     await waitFor(() => readOwnerLeasePid(workspace.root) === second.child.pid, 10000, 'replacement owner lease');
@@ -503,6 +525,8 @@ describe('mk-spec-memory launcher lease', () => {
     const ownerSocket = join(resolve(owner.socketDir), SOCKET_FILE_NAME);
     const lease = readLease(owner.pidFilePath);
     expect(lease?.socketPath).toBe(ownerSocket);
+    const ownerChildPid = lease?.childPid;
+    expect(ownerChildPid).toEqual(expect.any(Number));
 
     // The owner's stub daemon must actually be listening before a bridge can succeed.
     await waitFor(() => existsSync(ownerSocket), 10000, 'owner daemon socket bound');
@@ -520,10 +544,31 @@ describe('mk-spec-memory launcher lease', () => {
       12000,
       'secondary bridge decision',
     );
+    await waitFor(
+      () => second.stderr.includes('hf-model-server demand listener bridge re-arm:'),
+      12000,
+      'secondary embed listener re-arm',
+    );
 
     // Prefers the stored owner socket, not the divergent recompute.
     expect(second.stderr).toContain(`bridging to lease holder pid=${first.child.pid} socket=${ownerSocket}`);
     expect(second.stderr).not.toMatch(/no-bridge-socket/);
     expect(second.stderr).not.toContain(join(divergentSocketDir, SOCKET_FILE_NAME));
+    // The daemon-ipc bridge follows the recorded owner socket, but the embed re-arm intentionally
+    // binds THIS launcher's local model-server socket so the demand listener and the resident it
+    // later spawns stay consistent. Under a divergent SPECKIT_IPC_SOCKET_DIR that means the local
+    // hf-embed socket is used; restoring embedding for owner-side clients on the adopted directory
+    // is a known limitation, deliberately preferred over splitting the listener from the resident.
+    // Poll rather than snapshot: under load the listener binds a moment after it logs the re-arm.
+    await waitFor(
+      () => existsSync(join(divergentSocketDir, HF_MODEL_SERVER_SOCKET_FILE_NAME)),
+      8000,
+      'local embed listener socket bound in divergent dir',
+    );
+    expect(readLease(owner.pidFilePath)).toMatchObject({
+      pid: first.child.pid,
+      childPid: ownerChildPid,
+      socketPath: ownerSocket,
+    });
   });
 });

@@ -40,13 +40,30 @@ async function main() {
   if (tool !== 'write' && tool !== 'edit' && tool !== 'bash') return approve();
 
   const projectDir = payload?.cwd || process.env.CLAUDE_PROJECT_DIR || process.cwd();
+  const filePath = filePathFrom(payload?.tool_input);
+  const sessionID = payload?.session_id;
   const result = guardCore.evaluateMutation({
     tool,
-    filePath: filePathFrom(payload?.tool_input),
-    sessionID: payload?.session_id,
+    filePath,
+    sessionID,
     projectDir,
     env: process.env,
   });
+
+  // One structured telemetry line per open-gate mutation event (advise or
+  // would-deny), written to a real file log -- do not depend on
+  // additionalContext landing anywhere observable. 'allow' means the gate
+  // was never open or the target was exempt -- nothing to measure.
+  if (result.decision !== 'allow') {
+    const { stateDir } = guardCore.resolveGuardPaths(projectDir);
+    guardCore.appendWarningLog(stateDir, guardCore.formatSpecGateEvent({
+      runtime: 'claude',
+      sessionID,
+      tool,
+      filePath,
+      decision: result.wouldDeny ? 'would-deny' : 'advise',
+    }));
+  }
 
   if (result.decision === 'deny') {
     process.stdout.write(JSON.stringify({

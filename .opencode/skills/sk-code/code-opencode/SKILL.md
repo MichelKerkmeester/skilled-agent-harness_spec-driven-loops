@@ -15,7 +15,7 @@ metadata:
 
 **Domain evidence** and shared workflow doctrine for OpenCode system code (the `.opencode/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface owns the implement -> debug -> verify phases through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.
 
-Detection is two-step. First, the surface trigger is work under `.opencode/` (including `SKILL.md`, descriptors, commands, agents, plugins, MCP servers, assets, scripts, and changelogs). Second, once the OpenCode surface is selected, file extensions and local markers select the language trio: `.cjs`/`.mjs`/`.js` -> JavaScript, `.ts`/`.tsx`/`.mts`/`.d.ts` -> TypeScript, `.py` plus `argparse` -> Python, `.sh`/`.bash` -> shell, `.json`/`.jsonc`/`.yaml`/`.yml` plus `graph-metadata` or `spec-folder` -> config.
+Detection is two-step. First, the surface trigger is work under `.opencode/` (including `SKILL.md`, descriptors, commands, agents, plugins, MCP servers, assets, scripts, and changelogs). Second, once the OpenCode surface is selected, file extensions and local markers select the language trio: `.cjs`/`.mjs`/`.js` -> JavaScript, `.ts`/`.tsx`/`.mts`/`.d.ts` -> TypeScript, `.py` plus `argparse` -> Python, `.sh`/`.bash` -> shell, `.rs` -> Rust, `.json`/`.jsonc`/`.yaml`/`.yml` plus `graph-metadata` or `spec-folder` -> config. For Rust, when no `.rs` file is present, local `Cargo.toml`/`Cargo.lock` markers select it after the OpenCode surface is established; napi-rs and wasm-bindgen vocabulary are additional intent signals, not cross-project surface detectors.
 
 ## 1. WHEN THE HUB BUNDLES THIS
 
@@ -29,6 +29,7 @@ Language standards — after `.opencode/` selects this surface, load ONLY the de
 - TypeScript — `references/typescript/`
 - Python — `references/python/`
 - Shell — `references/shell/`
+- Rust (napi-rs/WASM/sidecar interop under TypeScript parity) — `references/rust/`
 - Config (JSON/JSONC/YAML descriptors and route assets) — `references/config/`
 - JavaScript (CommonJS/ESM plugins) — `references/javascript/`
 
@@ -63,6 +64,7 @@ INTENT_SIGNALS = {
     "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
+    "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
 }
 
 RESOURCE_MAP = {
@@ -80,6 +82,7 @@ RESOURCE_MAP = {
         "assets/checklists/typescript_checklist.md",
         "assets/checklists/python_checklist.md",
         "assets/checklists/shell_checklist.md",
+        "assets/checklists/rust_checklist.md",
     ],
     "VERIFICATION": [
         "references/shared/alignment_verification_automation.md",
@@ -114,6 +117,11 @@ RESOURCE_MAP = {
         "references/shell/quality_standards.md",
         "references/shell/quick_reference.md",
     ],
+    "RUST": [
+        "references/rust/style_guide.md",
+        "references/rust/quality_standards.md",
+        "references/rust/quick_reference.md",
+    ],
 }
 ```
 
@@ -122,13 +130,14 @@ RESOURCE_MAP = {
 - **Plugins never write to the TUI.** OpenCode plugins must not print to the process stdout/stderr (no overlay on the chat input); user/agent-visible output goes through system-context injection, tools, or append-only log files; DEBUG-gated stderr is allowed only behind an env flag. See `references/javascript/quality_standards.md` and the plugin exemption tier.
 - **Descriptors are load-bearing.** `graph-metadata.json` / `description.json` shape drives discovery; validate JSON/JSONC against `references/config/quality_standards.md`.
 - **Alignment drift is a verification gate.** System-code changes re-run the alignment verifier (`references/shared/alignment_verification_automation.md`) before any completion claim.
-- **One language per task.** A `.opencode/` task is a single language; keep the slice tight and lean on the shared tier for cross-language rules.
+- **Rust preserves the TypeScript contract.** Rust napi-rs, WASM/WASI, and sidecar modules are compatibility implementations, not independent behavior authorities. JS-visible bytes, six-decimal numeric behavior, comparator tie-breaks, deterministic IDs, collection order, DTOs, and error shapes must remain identical to the TypeScript oracle.
+- **Touched-language set, not one-per-task.** Most `.opencode/` tasks touch a single language — keep that slice tight and lean on the shared tier for cross-language rules. An interop task that spans a language pair (a napi-rs / WASM / sidecar Rust module held to its TypeScript oracle) legitimately touches both languages: the router slices to the set the task actually touches and loads both trios plus the shared tier, because you cannot hold Rust byte-identical to TypeScript without seeing both standards.
 
 ## 4. ASSETS AND OTHER SURFACE AREAS — on-demand
 
 Component authoring (`assets/checklists/`): `skill_authoring.md`, `agent_authoring.md`, `command_authoring.md`, `mcp_server_authoring.md`
 
-Language quality gates (`assets/checklists/`): `universal_checklist.md`, `typescript_checklist.md`, `python_checklist.md`, `shell_checklist.md`, `javascript_checklist.md`, `config_checklist.md`
+Language quality gates (`assets/checklists/`): `universal_checklist.md`, `typescript_checklist.md`, `python_checklist.md`, `shell_checklist.md`, `javascript_checklist.md`, `rust_checklist.md`, `config_checklist.md`
 
 Verifier assets (`assets/scripts/`): alignment-drift and stack-folder verifier scripts used by this surface.
 

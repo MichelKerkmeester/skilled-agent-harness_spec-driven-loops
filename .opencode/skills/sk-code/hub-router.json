@@ -67,7 +67,7 @@
       "keywords": ["opencode system code", "opencode system code workflow", "opencode typescript verification", "opencode", "system code", "system-code", "mcp"]
     },
     "code-opencode-runtime": {
-      "keywords": ["typescript", "python", "shell", "json", "jsonc", "config"]
+      "keywords": ["typescript", "python", "shell", "json", "jsonc", "config", "rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib"]
     },
     "code-opencode-authoring": {
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]

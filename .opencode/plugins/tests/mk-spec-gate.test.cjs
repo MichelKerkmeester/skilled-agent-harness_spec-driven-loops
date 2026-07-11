@@ -284,3 +284,100 @@ test('MK_SPEC_GATE_ENFORCE unset: no Write/Edit is ever denied through the OpenC
     fs.rmSync(projectDir, { recursive: true, force: true });
   }
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WS1: one structured telemetry line per open-gate mutation event, written
+// via the shared appendWarningLog/formatSpecGateEvent core helpers.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function warningLogPath(projectDir) {
+  return path.join(projectDir, '.opencode', 'skills', '.spec-gate-state', 'spec-gate-warnings.log');
+}
+
+test('WS1 telemetry: a source-file Write with an open gate writes exactly one parseable session|tool|path|decision line', async () => {
+  const { default: MkSpecGatePlugin } = await loadPlugin();
+  const projectDir = makeProjectDir();
+  try {
+    await withEnv('MK_SPEC_GATE_ENFORCE', undefined, async () => {
+      const sessionID = 'telemetry-session';
+      const hooks = await MkSpecGatePlugin({ directory: projectDir });
+
+      await hooks['experimental.chat.system.transform']({ prompt: 'implement the export pipeline', sessionID }, {});
+
+      fs.mkdirSync(path.join(projectDir, 'src'), { recursive: true });
+      fs.writeFileSync(path.join(projectDir, 'src', 'login.ts'), '// placeholder\n');
+
+      await hooks['tool.execute.before']({ tool: 'write', sessionID }, { args: { filePath: 'src/login.ts' } });
+
+      const logPath = warningLogPath(projectDir);
+      assert.ok(fs.existsSync(logPath), 'a structured telemetry line must be written for an open-gate mutation event');
+      const lines = fs.readFileSync(logPath, 'utf8').split('\n').filter(Boolean);
+      assert.equal(lines.length, 1, 'exactly one line per mutation event');
+      assert.ok(lines[0].includes('[mk-spec-gate]'));
+      const [, payload] = lines[0].split('[mk-spec-gate] ');
+      const fields = payload.split(' | ');
+      assert.equal(fields.length, 5);
+      assert.equal(fields[0], 'opencode');
+      assert.equal(fields[1], sessionID);
+      assert.equal(fields[2], 'write');
+      assert.equal(fields[3], 'src/login.ts');
+      // enforce is unset, so the decision resolves to advise, but wouldDeny is
+      // true underneath -- the telemetry line surfaces the would-deny signal.
+      assert.equal(fields[4], 'would-deny');
+    });
+  } finally {
+    fs.rmSync(projectDir, { recursive: true, force: true });
+  }
+});
+
+test('WS1 telemetry: MK_SPEC_GATE_DISABLED=1 writes no telemetry line at all', async () => {
+  const { default: MkSpecGatePlugin } = await loadPlugin();
+  const projectDir = makeProjectDir();
+  try {
+    await withEnv(DISABLED_ENV, '1', async () => {
+      const sessionID = 'telemetry-disabled-session';
+      const hooks = await MkSpecGatePlugin({ directory: projectDir });
+
+      await hooks['experimental.chat.system.transform']({ prompt: 'implement the export pipeline', sessionID }, {});
+
+      fs.mkdirSync(path.join(projectDir, 'src'), { recursive: true });
+      fs.writeFileSync(path.join(projectDir, 'src', 'login.ts'), '// placeholder\n');
+
+      await hooks['tool.execute.before']({ tool: 'write', sessionID }, { args: { filePath: 'src/login.ts' } });
+
+      assert.equal(fs.existsSync(warningLogPath(projectDir)), false, 'the kill-switch must produce no telemetry at all');
+    });
+  } finally {
+    fs.rmSync(projectDir, { recursive: true, force: true });
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WS4: a dispatched/child session (AI_SESSION_CHILD=1) never denies through
+// the OpenCode adapter, even with enforce on.
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('WS4: AI_SESSION_CHILD=1 + enforce on + open gate -> tool.execute.before never throws (advise, not deny)', async () => {
+  const { default: MkSpecGatePlugin } = await loadPlugin();
+  const projectDir = makeProjectDir();
+  try {
+    await withEnv('MK_SPEC_GATE_ENFORCE', '1', async () => {
+      await withEnv('AI_SESSION_CHILD', '1', async () => {
+        const sessionID = 'child-session';
+        const hooks = await MkSpecGatePlugin({ directory: projectDir });
+
+        await hooks['experimental.chat.system.transform']({ prompt: 'implement the export pipeline', sessionID }, {});
+
+        fs.mkdirSync(path.join(projectDir, 'src'), { recursive: true });
+        fs.writeFileSync(path.join(projectDir, 'src', 'login.ts'), '// placeholder\n');
+
+        await assert.doesNotReject(
+          hooks['tool.execute.before']({ tool: 'write', sessionID }, { args: { filePath: 'src/login.ts' } }),
+          'a dispatched/child session must never be denied, even with enforce on',
+        );
+      });
+    });
+  } finally {
+    fs.rmSync(projectDir, { recursive: true, force: true });
+  }
+});

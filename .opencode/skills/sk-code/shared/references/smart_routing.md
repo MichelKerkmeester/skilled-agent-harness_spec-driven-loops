@@ -217,6 +217,7 @@ OPENCODE loads from `code-opencode/references/` and `assets/code-opencode/`.
 | TYPESCRIPT | `code-opencode/references/typescript/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/typescript_checklist.md` |
 | PYTHON | `code-opencode/references/python/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/python_checklist.md` |
 | SHELL | `code-opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/shell_checklist.md` |
+| RUST | `code-opencode/references/rust/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/rust_checklist.md` |
 | CONFIG | `code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/config_checklist.md` |
 
 ### Authoring checklist gating
@@ -336,6 +337,7 @@ INTENT_SIGNALS = {
     "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
+    "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
 }
 
 RESOURCE_MAP = {
@@ -369,6 +371,7 @@ RESOURCE_MAP = {
         "code-opencode/assets/checklists/typescript_checklist.md",
         "code-opencode/assets/checklists/python_checklist.md",
         "code-opencode/assets/checklists/shell_checklist.md",
+        "code-opencode/assets/checklists/rust_checklist.md",
         "code-review/assets/code_quality_checklist.md"
     ],
     "DEBUGGING": [
@@ -472,6 +475,11 @@ RESOURCE_MAP = {
         "code-opencode/references/shell/style_guide.md",
         "code-opencode/references/shell/quality_standards.md",
         "code-opencode/references/shell/quick_reference.md"
+    ],
+    "RUST": [
+        "code-opencode/references/rust/style_guide.md",
+        "code-opencode/references/rust/quality_standards.md",
+        "code-opencode/references/rust/quick_reference.md"
     ],
 }
 ```

@@ -950,6 +950,21 @@ async function bridgeOrReportLeaseHeld(leaseResult) {
   if (decision && decision.action === 'respawn') {
     return await respawnAfterDeadSocket(leaseResult, decision);
   }
+  // The demand listener and the resident it lazily spawns must share this launcher's
+  // resolved model-server socket, so arm it without an explicit target. Restoring embedding
+  // for a daemon adopted under a divergent SPECKIT_IPC_SOCKET_DIR remains unsupported;
+  // targeting the adopted directory would split the listener from the spawned resident.
+  // startModelServerDemandListener() is idempotent and lock-arbitrated, so it no-ops when a
+  // live server/listener already exists. Failure is non-fatal: a working SQLite/MCP bridge
+  // must not be torn down because the optional embedder listener could not be restored.
+  if (decision && decision.action === 'bridge') {
+    try {
+      const listener = await startModelServerDemandListener();
+      log(`hf-model-server demand listener bridge re-arm: ${listener && listener.reason ? listener.reason : 'started'}`);
+    } catch (error) {
+      log(`hf-model-server demand listener bridge re-arm failed (embedder unavailable until reconnect): ${error && error.stack ? error.stack : (error && error.message) || error}`);
+    }
+  }
   return decision;
 }
 
@@ -1036,6 +1051,10 @@ function readSharedModelServerPid() {
   return Number.isInteger(lease?.modelServerPid) && lease.modelServerPid > 0 ? lease.modelServerPid : null;
 }
 
+function writeLeaseForOwnedContextChild() {
+  return isChildRunning(childProcess) ? writeLeaseFile() : false;
+}
+
 const hfControl = mss.createModelServerControl({
   log,
   env: process.env,
@@ -1047,7 +1066,7 @@ const hfControl = mss.createModelServerControl({
   bridge: loadBridgeModule(),
   writeModelServerPid: (pid) => writeSharedModelServerPid(pid),
   readModelServerPid: () => readSharedModelServerPid(),
-  writeLease: () => writeLeaseFile(),
+  writeLease: () => writeLeaseForOwnedContextChild(),
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1957,6 +1976,7 @@ module.exports = {
   stopModelServerDemandListener,
   superviseChildExit,
   writeLeaseFile,
+  writeLeaseForOwnedContextChild,
   writeSharedModelServerPid,
 };
 

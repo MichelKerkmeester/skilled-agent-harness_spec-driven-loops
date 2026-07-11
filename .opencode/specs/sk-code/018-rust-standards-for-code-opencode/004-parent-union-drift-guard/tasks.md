@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Locate the `smart_routing.md` RESOURCE_MAP, INTENT_SIGNALS, and overlay blocks + the parent-owned allowlist in the drift-guard vitest
+- [x] T001 Locate the `smart_routing.md` RESOURCE_MAP, INTENT_SIGNALS, and overlay blocks + the parent-owned allowlist in the drift-guard vitest — machine block L308, `INTENT_SIGNALS` L319, `RESOURCE_MAP` L341, §6 overlay L193; `loadSurfaceRouter` confirmed to read `smart_routing.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -47,9 +47,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Add the re-prefixed RUST RESOURCE_MAP entry (code-opencode/references/rust/*)
-- [ ] T003 Add `code-opencode/assets/checklists/rust_checklist.md` under parent CODE_QUALITY
-- [ ] T004 Add the parent RUST intent + human-facing overlay row
+- [x] T002 Add the re-prefixed RUST RESOURCE_MAP entry (code-opencode/references/rust/*) — parent `RESOURCE_MAP["RUST"]` = the three `code-opencode/references/rust/*` paths
+- [x] T003 Add `code-opencode/assets/checklists/rust_checklist.md` under parent CODE_QUALITY — appended after `shell_checklist.md`, before the code-review checklist
+- [x] T004 Add the parent RUST intent + human-facing overlay row — parent `RUST` `INTENT_SIGNALS` (12 kw) + §6 Language-overlay `RUST` row added
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -57,8 +57,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Run `npx vitest run .../sk-code-router-sync.vitest.ts`; confirm exit 0
-- [ ] T006 Confirm parent map equals the re-prefixed child union + allowlist; no orphan Rust path
+- [x] T005 Run `npx vitest run .../sk-code-router-sync.vitest.ts`; confirm exit 0 — `vitest` reports 7/7 pass (was 1 failed with the 4-path overExtraction before this phase)
+- [x] T006 Confirm parent map equals the re-prefixed child union + allowlist; no orphan Rust path — 7/7 green: `overExtraction`, `uncovered`, and `tierViolations` all empty
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,9 +66,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Parent union + CODE_QUALITY + overlay applied
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Drift-guard vitest green
+- [x] Parent union + CODE_QUALITY + overlay applied — 4 `smart_routing.md` edits (T002–T004)
+- [x] No `[B]` blocked tasks remaining — all T001–T006 marked `[x]`
+- [x] Drift-guard vitest green — `sk-code-router-sync.vitest.ts` 7/7 pass
 <!-- /ANCHOR:completion -->
 
 ---

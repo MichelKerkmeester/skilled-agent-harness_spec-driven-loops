@@ -39,7 +39,7 @@
       "typescript"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-research/research/research.md",
@@ -72,12 +72,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -88,21 +82,27 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-code`'s `code-opencode` surface encodes per-language standards (TypeScript, Python, shell, JavaScript, config) as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio plus an `assets/checklists/<lang>checklist.md` and a `manualtestingplaybook/language-standards/` entry, wired into a machine-readable SMART ROUTING block whose `RESOURCEMAP` the parent hub mirrors under a drift guard",
     "created_at": "2026-07-11T07:13:21.076Z",
-    "last_save_at": "2026-07-11T08:53:42.969Z",
+    "last_save_at": "2026-07-11T11:33:59.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a5ff8f8630fd553a672fe23daa7a7d3422f79921d7c5a13b82f8c8db70704fad",
+    "source_fingerprint": "sha256:711460ce68d51ef43d9901dd9dbff9b2afa172a8d75f39163352b050e940ec7a",
     "source_doc_hashes": {
-      "spec.md": "b939adc0eeebd6d26a3be3dbe453a7ba920cd101f707db8e187a32557c15c6fd"
+      "spec.md": "b3ce1695fea75471e359eebb81b11dc4d9aaf87926d7531afaced25ce2620c1c"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup",
+    "last_active_at": "2026-07-11T13:20:00Z"
   }
 }

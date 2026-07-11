@@ -17,7 +17,10 @@
       "018 phase 006 plan",
       "gate verification rollup plan",
       "018 phase 006 tasks",
-      "gate verification rollup tasks"
+      "gate verification rollup tasks",
+      "018 phase 006 gate outcome",
+      "rust upgrade gates green parent rollup",
+      "018 parent complete rust"
     ],
     "key_topics": [
       "phase",
@@ -30,13 +33,14 @@
       "skill-benchmark",
       "parent",
       "tasks",
-      "done",
-      "until"
+      "outcome",
+      "gates"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md"
     ],
@@ -45,6 +49,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -78,12 +88,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -91,6 +95,12 @@
       },
       {
         "name": "Problem Statement The Rust",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -142,23 +152,49 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Mode",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Rust upgrade is not \"done\" until every gate is green",
     "created_at": "2026-07-11T08:51:45.057Z",
-    "last_save_at": "2026-07-11T08:53:42.657Z",
+    "last_save_at": "2026-07-11T11:33:58.709Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7633fd5505d82b90739d3f71f41fb64e3838a569a0676095e063e29c1083c25a",
+    "source_fingerprint": "sha256:150ff5742c38d154381acf9b1136a3d8be50626e0710fbb2b3da5e201aafbbae",
     "source_doc_hashes": {
-      "spec.md": "68db47f195670aabb2e5b53776344fbd721136e71542ddbd1132c2bcf408a1b1",
+      "spec.md": "e820260d74c23be81cf3649df8fbe32c2485a193bf9968360ed2b084bf4b4bb0",
       "plan.md": "066ec238c8c16cd294de714d4a00ce614b9aadcac9c5a2ce21699be69fc737e5",
-      "tasks.md": "ee1fa8826a369f98cc832fb497b969a66b70b0f3f24b87c95496e0e42ebcef7b"
+      "tasks.md": "7a22a969962284dcf19f99fe01fc0ff8c54d56759c429024e0af8439bf09ba6a",
+      "implementation-summary.md": "ae7344acd4030d444a42c95772ee7414cb70a9448f35a008a610d4708ef88968"
     },
     "last_active_child_id": null,
     "last_active_at": null
