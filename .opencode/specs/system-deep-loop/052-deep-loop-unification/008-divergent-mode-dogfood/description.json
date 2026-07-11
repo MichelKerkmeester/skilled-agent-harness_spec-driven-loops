@@ -1,0 +1,36 @@
+{
+  "level": 2,
+  "specFolder": "system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood",
+  "description": "Packet `055-deep-loop-divergent-mode` shipped `convergenceMode: \"divergent\"` — an opt-in scope-expansion pivot where a legal STOP triggers a 3-seat",
+  "keywords": [
+    "packet",
+    "055-deep-loop-divergent-mode",
+    "shipped",
+    "convergencemode",
+    "divergent",
+    "opt-in",
+    "scope-expansion",
+    "pivot",
+    "legal",
+    "stop",
+    "triggers",
+    "3-seat"
+  ],
+  "lastUpdated": "2026-07-11T08:51:11.924Z",
+  "specId": "008",
+  "folderSlug": "divergent-mode-dogfood",
+  "parentChain": [
+    "system-deep-loop",
+    "052-deep-loop-unification"
+  ],
+  "memorySequence": 7,
+  "memoryNameHistory": [
+    "11-07-26_07-01__new-phase-008-under-system-deep-loop-052-deep.md",
+    "11-07-26_07-01__new-phase-008-under-system-deep-loop-052-deep.md",
+    "11-07-26_07-02__new-phase-008-under-system-deep-loop-052-deep.md",
+    "11-07-26_09-47__new-phase-008-under-system-deep-loop-052-deep.md",
+    "11-07-26_09-48__new-phase-008-under-system-deep-loop-052-deep.md",
+    "11-07-26_09-49__new-phase-008-under-system-deep-loop-052-deep.md",
+    "11-07-26_09-51__new-phase-008-under-system-deep-loop-052-deep.md"
+  ]
+}

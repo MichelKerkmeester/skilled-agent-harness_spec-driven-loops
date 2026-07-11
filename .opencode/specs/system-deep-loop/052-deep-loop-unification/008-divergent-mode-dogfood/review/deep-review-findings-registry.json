@@ -1,0 +1,1180 @@
+{
+  "sessionId": "2026-07-11T06:22:25Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Delta validation does not enforce canonical-record parity",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+      "line": 1182,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Narrative verdict gate accepts a non-final or duplicated verdict",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      "line": 136,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-P1-001",
+      "severity": "P1",
+      "title": "Live benchmark reports PASS while presenting Mode-A-only and P1 evidence as complete",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      "line": 1347,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-P1-002",
+      "severity": "P1",
+      "title": "Reducer preserves resolved checklist search debt and drops the executed failure from current traceability",
+      "file": ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+      "line": 1187,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Dispatch receipts cannot authenticate across the workflow process boundary",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      "line": 410,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "The advertised permissions gate is not connected to executor dispatch",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts",
+      "line": 428,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Cross-runtime LEAF contracts omit the required delta artifact and contradict append-only state handling",
+      "file": ".opencode/agents/deep-review.md",
+      "line": 387,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P1-001",
+      "severity": "P1",
+      "title": "The canonical review-mode render contract has no executable renderer",
+      "file": ".opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml",
+      "line": 374,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P1-002",
+      "severity": "P1",
+      "title": "Runtime command injection consumes stale compiled contracts without checking source freshness",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      "line": 66,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P1-001",
+      "severity": "P1",
+      "title": "Checked incident claims lack durable evidence and conflict with the active retry lineage",
+      "file": ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/checklist.md",
+      "line": 60,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P1-001",
+      "severity": "P1",
+      "title": "Deep-research overlay contracts omit the workflow-required delta artifact",
+      "file": ".opencode/agents/deep-research.md",
+      "line": 69,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P1-001",
+      "severity": "P1",
+      "title": "Council convergence discards proposal identity before stability scoring",
+      "file": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+      "line": 244,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P1-002",
+      "severity": "P1",
+      "title": "Auto model-benchmark synthesis executes an unbound promotion step",
+      "file": ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+      "line": 192,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P1-001",
+      "severity": "P1",
+      "title": "Model-benchmark workflow interpolates an unvalidated run label into shell commands",
+      "file": ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+      "line": 146,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-P1-001",
+      "severity": "P1",
+      "title": "Grader cache identity omits the effective model and mutable prompt content",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs",
+      "line": 388,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 15,
+    "P2": 0
+  },
+  "openFindingsCount": 15,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.866667,
+  "graphConvergenceScore": 0.623,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "type": "uncovered_dimensions",
+      "description": "Dimension coverage (0%) is below threshold (80%). 22 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "count": 22,
+      "severity": "blocking"
+    },
+    {
+      "type": "unstable_findings",
+      "description": "5 contradiction(s) are lowering finding stability below threshold",
+      "count": 5,
+      "severity": "blocking"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0,
+    "findingStability": 0.6666666666666666,
+    "p0ResolutionRate": 1,
+    "evidenceDensity": 0.6,
+    "hotspotSaturation": 1,
+    "score": 0.623
+  },
+  "candidateCoverage": {
+    "covered": [
+      "artifact_consistency",
+      "autonomous_promotion_boundary",
+      "benchmark_report_truthfulness",
+      "checklist_evidence",
+      "checklist_evidence_state",
+      "compiled_artifact_freshness",
+      "cross_runtime_contract_drift",
+      "gate_bypass",
+      "generated_contract_ownership",
+      "grader_cache_identity",
+      "overlay_contract_drift",
+      "playbook_capability_drift",
+      "proposal_identity",
+      "receipt_integrity",
+      "shell_command_injection",
+      "spec_code_drift",
+      "workspace_containment"
+    ],
+    "ruledOut": [
+      "changelog_history_integrity",
+      "command_injection",
+      "cross_runtime_parity",
+      "destructive_path_escape",
+      "durable_replay",
+      "scoped_auxiliary_write",
+      "secret_exposure",
+      "state_transition",
+      "trusted_test_hook_execution"
+    ],
+    "deferred": [
+      "checklist_evidence"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "artifact_consistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "gate_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "durable_replay": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "receipt_integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "workspace_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cross_runtime_contract_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_capability_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "generated_contract_ownership": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "compiled_artifact_freshness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "overlay_contract_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "cross_runtime_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "proposal_identity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "autonomous_promotion_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "shell_command_injection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "scoped_auxiliary_write": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "trusted_test_hook_execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "destructive_path_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "grader_cache_identity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "benchmark_report_truthfulness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "checklist_evidence_state": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "changelog_history_integrity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "deferred",
+      "rationale": "Must be executed in a stabilization traceability pass before legal STOP.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/review/deep-review-config.json:9-12"
+      ],
+      "reason": "Iteration budget prioritized the newly discovered cross-consumer contract split."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "divergent-pivot.ts",
+        "divergent-pivot.vitest.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Direct source and integration tests agree.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:685-705",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:868-895",
+        ".opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:246-341"
+      ],
+      "reason": "Three-seat quorum and blocker veto are explicit."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "divergent-pivot.ts",
+        "divergent-pivot.vitest.ts"
+      ],
+      "bugClass": "durable_replay",
+      "disposition": "ruled_out",
+      "rationale": "Durable replay is idempotent for tested interruption boundaries.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:499-573",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1028-1160",
+        ".opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:401-434"
+      ],
+      "reason": "Event IDs and persisted seat discovery gate redispatch."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "executor-audit.ts",
+        "deep_review_auto.yaml"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell interpolation exists at the reviewed dispatch boundary.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:874-881",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:1225-1261"
+      ],
+      "reason": "spawn/spawnSync receive structured argv arrays."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "executor-audit.ts",
+        "executor-audit-receipts.test.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "No child-visible key path was identified.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:391-427",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:730-756",
+        ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts:159-236"
+      ],
+      "reason": "Source and end-to-end child visibility test agree."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/agents/deep-research.md",
+        ".claude/agents/deep-research.md"
+      ],
+      "bugClass": "cross_runtime_parity",
+      "disposition": "ruled_out",
+      "rationale": "No runtime-specific divergence exists in the reviewed slice.",
+      "evidenceRefs": [
+        ".opencode/agents/deep-research.md:69-73,411-443",
+        ".claude/agents/deep-research.md:52-56,394-426"
+      ],
+      "reason": "Both mirrors carry the same write targets, append rule, and reducer ownership."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
+        ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md"
+      ],
+      "bugClass": "scoped_auxiliary_write",
+      "disposition": "ruled_out",
+      "rationale": "The write is an explicit transport output rather than an implicit council artifact escape.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs:1003-1007",
+        ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md:139-154"
+      ],
+      "reason": "No untrusted production producer for the output path was identified."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-020",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts"
+      ],
+      "bugClass": "trusted_test_hook_execution",
+      "disposition": "ruled_out",
+      "rationale": "Evidence supports a test hook in the inherited trusted process environment, not a newly exposed input boundary.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:63-65",
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts:278"
+      ],
+      "reason": "No production producer or untrusted environment assignment was found."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-021",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh"
+      ],
+      "bugClass": "destructive_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The destructive target is lexically constrained and a terminal symlink is removed rather than traversed.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:45-68",
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:95-98"
+      ],
+      "reason": "Direct read established guards before both destructive calls."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-023",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/changelog/v1.0.0.0.md",
+        ".opencode/skills/system-deep-loop/changelog/v1.1.0.0.md",
+        ".opencode/skills/system-deep-loop/changelog/v2.0.0.0.md"
+      ],
+      "bugClass": "changelog_history_integrity",
+      "disposition": "ruled_out",
+      "rationale": "Historical naming is release-scoped and migration lineage is explicit.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/changelog/v1.0.0.0.md:7-34",
+        ".opencode/skills/system-deep-loop/changelog/v1.1.0.0.md:1-25",
+        ".opencode/skills/system-deep-loop/changelog/v2.0.0.0.md:1-42"
+      ],
+      "reason": "All three entries preserve chronological identity without asserting obsolete names as current behavior."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "divergent-pivot.ts",
+        "divergent-pivot.vitest.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Direct source and integration tests agree.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:685-705",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:868-895",
+        ".opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:246-341"
+      ],
+      "proof": "Three-seat quorum and blocker veto are explicit."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "divergent-pivot.ts",
+        "divergent-pivot.vitest.ts"
+      ],
+      "bugClass": "durable_replay",
+      "disposition": "ruled_out",
+      "rationale": "Durable replay is idempotent for tested interruption boundaries.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:499-573",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1028-1160",
+        ".opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:401-434"
+      ],
+      "proof": "Event IDs and persisted seat discovery gate redispatch."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "executor-audit.ts",
+        "deep_review_auto.yaml"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell interpolation exists at the reviewed dispatch boundary.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:874-881",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:1225-1261"
+      ],
+      "proof": "spawn/spawnSync receive structured argv arrays."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "executor-audit.ts",
+        "executor-audit-receipts.test.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "No child-visible key path was identified.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:391-427",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:730-756",
+        ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts:159-236"
+      ],
+      "proof": "Source and end-to-end child visibility test agree."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-015",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/agents/deep-research.md",
+        ".claude/agents/deep-research.md"
+      ],
+      "bugClass": "cross_runtime_parity",
+      "disposition": "ruled_out",
+      "rationale": "No runtime-specific divergence exists in the reviewed slice.",
+      "evidenceRefs": [
+        ".opencode/agents/deep-research.md:69-73,411-443",
+        ".claude/agents/deep-research.md:52-56,394-426"
+      ],
+      "proof": "Both mirrors carry the same write targets, append rule, and reducer ownership."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
+        ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md"
+      ],
+      "bugClass": "scoped_auxiliary_write",
+      "disposition": "ruled_out",
+      "rationale": "The write is an explicit transport output rather than an implicit council artifact escape.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs:1003-1007",
+        ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md:139-154"
+      ],
+      "proof": "No untrusted production producer for the output path was identified."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-020",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts"
+      ],
+      "bugClass": "trusted_test_hook_execution",
+      "disposition": "ruled_out",
+      "rationale": "Evidence supports a test hook in the inherited trusted process environment, not a newly exposed input boundary.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:63-65",
+        ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts:278"
+      ],
+      "proof": "No production producer or untrusted environment assignment was found."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-021",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh"
+      ],
+      "bugClass": "destructive_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The destructive target is lexically constrained and a terminal symlink is removed rather than traversed.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:45-68",
+        ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:95-98"
+      ],
+      "proof": "Direct read established guards before both destructive calls."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-023",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/changelog/v1.0.0.0.md",
+        ".opencode/skills/system-deep-loop/changelog/v1.1.0.0.md",
+        ".opencode/skills/system-deep-loop/changelog/v2.0.0.0.md"
+      ],
+      "bugClass": "changelog_history_integrity",
+      "disposition": "ruled_out",
+      "rationale": "Historical naming is release-scoped and migration lineage is explicit.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/changelog/v1.0.0.0.md:7-34",
+        ".opencode/skills/system-deep-loop/changelog/v1.1.0.0.md:1-25",
+        ".opencode/skills/system-deep-loop/changelog/v2.0.0.0.md:1-42"
+      ],
+      "proof": "All three entries preserve chronological identity without asserting obsolete names as current behavior."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "benchmark_report_truthfulness",
+      "changelog_history_integrity",
+      "checklist_evidence_state"
+    ],
+    "covered": [
+      "benchmark_report_truthfulness",
+      "checklist_evidence_state"
+    ],
+    "ruledOut": [
+      "changelog_history_integrity"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 1,
+      "fail": 1,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/system-deep-loop/benchmark/live-mode-b/skill-benchmark-report.md:3-50",
+          ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1347-1399"
+        ],
+        "findingRefs": [
+          "R10-P1-001"
+        ],
+        "summary": "Live benchmark claims conflict with scorer and report evidence."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/review/iterations/iteration-005.md:51-68",
+          ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/review/deep-review-findings-registry.json:557-565,668-683,977-1010"
+        ],
+        "findingRefs": [
+          "R5-P1-001",
+          "R10-P1-002"
+        ],
+        "summary": "Protocol was executed and failed in iteration 5; reducer state still misclassifies it as deferred."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
