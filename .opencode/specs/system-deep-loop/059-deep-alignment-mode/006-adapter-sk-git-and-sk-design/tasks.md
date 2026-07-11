@@ -14,8 +14,9 @@ _memory:
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Draft phase 006 task list"
-    next_safe_action: "Start T004 sk-git discover implementation"
-    blockers: []
+    next_safe_action: "Start T001 once 005 reference shape lands"
+    blockers:
+      - "005-adapter-sk-doc not yet executed"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -60,13 +61,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [P] Implement sk-git adapter `discover(scope)` over commit range / branch diff (adapters/sk-git-adapter)
-- [ ] T005 [P] Implement sk-git adapter `standardSource(authority)` reading the commit grammar + branch rule (adapters/sk-git-adapter)
-- [ ] T006 Implement sk-git adapter `check(artifact, rules)` with the Git-generated-subject exemption list honored (adapters/sk-git-adapter)
-- [ ] T007 [P] Implement sk-design adapter `discover(scope)` over DESIGN.md/tokens.json paths, v1 static-only (adapters/sk-design-adapter)
-- [ ] T008 [P] Implement sk-design adapter `standardSource(authority)` reading the token vocabulary + audit rubric (adapters/sk-design-adapter)
-- [ ] T009 Implement sk-design adapter `check(artifact, rules)` citing the specific violated dimension per finding (adapters/sk-design-adapter)
-- [ ] T010 Author each adapter's known-deviation/accepted-convention list per the location decided in the 002 decision-record
+<!-- These tasks belong to a future execution pass, gated behind 005-adapter-sk-doc's reference shape. -->
+
+- [ ] T004 [B] Implement sk-git adapter `discover(scope)` over commit range / branch diff (adapters/sk-git-adapter)
+- [ ] T005 [B] Implement sk-git adapter `standardSource(authority)` reading the commit grammar + branch rule (adapters/sk-git-adapter)
+- [ ] T006 [B] Implement sk-git adapter `check(artifact, rules)` with the Git-generated-subject exemption list honored (adapters/sk-git-adapter)
+- [ ] T007 [B] Implement sk-design adapter `discover(scope)` over DESIGN.md/tokens.json paths, v1 static-only (adapters/sk-design-adapter)
+- [ ] T008 [B] Implement sk-design adapter `standardSource(authority)` reading the token vocabulary + audit rubric (adapters/sk-design-adapter)
+- [ ] T009 [B] Implement sk-design adapter `check(artifact, rules)` citing the specific violated dimension per finding (adapters/sk-design-adapter)
+- [ ] T010 [B] Author each adapter's known-deviation/accepted-convention list (authority-local per ADR-005; format settled at build time)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,10 +77,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Dry-run sk-git adapter against a real commit range; confirm exempt Git-generated subjects are not flagged
-- [ ] T012 Dry-run sk-design adapter against a real repo `DESIGN.md`; confirm findings cite a real rubric dimension
-- [ ] T013 Confirm both adapters return the documented empty-scope result on zero artifacts
-- [ ] T014 Update `checklist.md` with evidence for each verified item
+<!-- These tasks belong to a future execution pass, gated behind 005-adapter-sk-doc's reference shape. -->
+
+- [ ] T011 [B] Dry-run sk-git adapter against a real commit range; confirm exempt Git-generated subjects are not flagged
+- [ ] T012 [B] Dry-run sk-design adapter against a real repo `DESIGN.md`; confirm findings cite a real rubric dimension
+- [ ] T013 [B] Confirm both adapters return the documented empty-scope result on zero artifacts
+- [ ] T014 [B] Update `checklist.md` with evidence for each verified item
 <!-- /ANCHOR:phase-3 -->
 
 ---

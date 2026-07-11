@@ -96,7 +96,7 @@ INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT -> [optional] REMEDIA
 - `ITERATE`: partitions the corpus across iterations, audits each slice against its lane's authority via `adapter.check(artifact, rules)`, emits P0/P1/P2 conformance findings with file:line, standard-violated, and fix, each VERIFY-FIRST re-probed against live ground truth.
 - `CONVERGE`: coverage threshold or max-iterations, reusing `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`.
 - `REPORT`: emits a per-lane `alignment-report.md` verdict.
-- `REMEDIATE` (optional, gated): operator-approved, read-only by default; never auto-stages, never runs unattended when concurrent sessions are live.
+- `REMEDIATE` (optional, gated): an opt-in, operator-approved write pass — the default loop stays read-only and terminates at `REPORT`; scoped staging only (never `git add -A`), a worktree when the branch has diverged, doc-only/skip-shared-files when concurrent sessions are live.
 
 **Pluggable per-authority adapter contract** — authority-agnostic, not hard-wired to four:
 
@@ -108,7 +108,7 @@ adapter.check(artifact, rules) -> findings
 
 **Authorities v1**, sequenced by determinism (most deterministic first): `sk-doc` (reference adapter — `validate_document.py` + `extract_structure.py` DQI + `core_standards.md`), `sk-git` (deterministic — conventional-commit + worktree/branch rules already AI-scannable in `SKILL.md`), `sk-design` (audit-rubric — DESIGN.md structure + tokens, STATIC-first, v1 defers live-render), `sk-code` (hardest — surface-detection via `SKILL.md` §2 Smart Routing, reasoning-checked, honest limits not a deterministic linter).
 
-**Alignment contract** (first-class mode invariants, not per-adapter options): (1) verify-first — every reality-drift finding is re-probed against the real validator/CLI/registry before assertion; (2) known-deviation suppression — a per-authority accepted-conventions list so intentional repo conventions are never flagged as drift; (3) read-only by default; (4) gated remediation — opt-in, operator-approved, verify-first, never auto-`-A`/scoped-stage/worktree-when-diverged/doc-only-skip when concurrent sessions are live.
+**Alignment contract** (first-class mode invariants, not per-adapter options): (1) verify-first — every reality-drift finding is re-probed against the real validator/CLI/registry before assertion; (2) known-deviation suppression — a per-authority accepted-conventions list so intentional repo conventions are never flagged as drift; (3) read-only by default; (4) gated remediation — opt-in, operator-approved, verify-first, with hard safety discipline: never `git add -A` (scoped staging only), a worktree when the branch has diverged, and doc-only/skip-shared-files restraint when concurrent sessions are live.
 
 **Artifact layout**: all mode state lives in the bound spec folder's `alignment/` subdirectory (mirroring `deep-review`'s `review/` convention: config, findings registry, state JSONL, iterations, prompts, dispatch receipts) — no manual `/tmp` state, per Gate 4.
 
@@ -142,7 +142,7 @@ Required inventories:
 
 ### Phase 1: Setup
 - [ ] Confirm the seven locked-decision clusters and five open questions from the frozen design brief
-- [ ] Confirm phase 001's research/context map is available as ADR evidence
+- [ ] Confirm phase 001's research/context map has been produced and is available as ADR evidence (gate executes before this phase)
 - [ ] Draft the ADR numbering: 001-007 accepted, 008-012 open
 
 ### Phase 2: Core Implementation
@@ -175,7 +175,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 001's confirmed research/context map | Internal | Green | ADR evidence would rest on assumption rather than confirmed fact |
+| Phase 001's research/context map (gate not yet executed) | Internal | Pending | ADR evidence would rest on assumption rather than confirmed fact |
 | Human approval of the decision gate | Process | Green | Phase 003 must not start until the operator accepts or amends the ADRs |
 <!-- /ANCHOR:dependencies -->
 

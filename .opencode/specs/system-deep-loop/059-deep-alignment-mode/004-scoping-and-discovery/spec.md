@@ -26,7 +26,7 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "Non-interactive lane-arg schema exact grammar (pending 002-architecture-decision)"
+      - "Non-interactive lane-arg schema exact grammar (open ADR-011; owned and resolved by this phase)"
     answered_questions: []
 status: "planned"
 ---
@@ -67,7 +67,7 @@ FAILURE MODES:
 
 This is **Phase 4** of the `deep-alignment` deep-loop mode specification (`.opencode/specs/system-deep-loop/059-deep-alignment-mode/`).
 
-**Scope Boundary**: this phase plans the SCOPE state of the mode's state machine (INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT): the interactive question that resolves alignment lanes, the headless/cron equivalent, and the per-adapter discovery contract those lanes feed into. It does not implement any adapter's `discover()` body — phases 005-007 own each adapter's real logic behind this contract.
+**Scope Boundary**: this phase plans the SCOPE state of the mode's state machine (INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT -> optional REMEDIATE): the interactive question that resolves alignment lanes, the headless/cron equivalent, and the per-adapter discovery contract those lanes feed into. It does not implement any adapter's `discover()` body — phases 005-007 own each adapter's real logic behind this contract.
 
 **Dependencies**:
 - Phase 003's scaffold plan (mode-registry entry, directory skeleton) must exist before this phase's engine has anywhere to live.
@@ -121,7 +121,7 @@ Specify a structured, non-ambiguous scoping question and discovery contract so a
 |-----------|-------------|-------------|
 | `.opencode/skills/system-deep-loop/deep-alignment/references/scoping_protocol.md` | Create (future) | The structured decision-tree spec, deferred to the implementation pass |
 | `.opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md` | Create (future) | The `discover(scope)->artifacts` contract every adapter implements, deferred to the implementation pass |
-| `.opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs` (or equivalent) | Create (future) | Lane resolution + non-interactive arg parsing, deferred to the implementation pass and to 002's `scripts/` directory decision |
+| `.opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs` (or equivalent) | Create (future) | Lane resolution + non-interactive arg parsing, deferred to the implementation pass and to the reuse-boundary resolution (open ADR-010, phase 008) that settles the `scripts/` directory question |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -221,7 +221,7 @@ Specify a structured, non-ambiguous scoping question and discovery contract so a
 
 ## 10. OPEN QUESTIONS
 
-- Exact non-interactive lane-arg grammar (flag syntax, delimiter, ordering) — resolved in 002-architecture-decision.
+- Exact non-interactive lane-arg grammar (flag syntax, delimiter, ordering) — recorded as open ADR-011 in 002-architecture-decision; owned and resolved by this phase's execution pass, designed alongside the interactive tree so both paths resolve to the same lane representation.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -59,7 +59,7 @@ Nothing outside this phase folder has been touched. No `deep-alignment` skill fi
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not applicable yet for the approval step — the ADR content was authored directly from the frozen design brief and phase 001's confirmed research/context map. Delivery of the actual gate closure is the pending human-approval round trip named in `spec.md`'s Handoff Criteria.
+Not applicable yet for the approval step — the ADR content was authored directly from the frozen design brief plus scaffold-time reads of the runtime scripts; phase 001's research gate re-confirms those facts before this gate is walked. Delivery of the actual gate closure is the pending human-approval round trip named in `spec.md`'s Handoff Criteria.
 <!-- /ANCHOR:how-delivered -->
 
 ---

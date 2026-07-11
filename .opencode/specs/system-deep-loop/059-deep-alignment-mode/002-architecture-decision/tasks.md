@@ -53,7 +53,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm the seven locked-decision clusters and five open questions from the frozen design brief (spec.md §2 Evidence)
-- [ ] T002 [P] Confirm phase 001's confirmed research/context map is available as ADR evidence
+- [ ] T002 [P] Confirm phase 001's research/context map has been produced and is available as ADR evidence
 - [ ] T003 [P] Draft the ADR numbering plan: 001-007 accepted, 008-012 open, each with an owning phase for the open set
 <!-- /ANCHOR:phase-1 -->
 

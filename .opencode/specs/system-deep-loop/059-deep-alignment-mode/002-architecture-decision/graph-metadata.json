@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The frozen design brief locks five architecture-level decision clusters for `deep-alignment` and names five open questions it explicitly defers rather than resolves",
     "created_at": "2026-07-11T06:20:55.583Z",
-    "last_save_at": "2026-07-11T06:22:31.817Z",
+    "last_save_at": "2026-07-11T06:51:20.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31d7298721b7db129b00481ab3d5434d742f96400f71ea0323f647ac32a3ab26",
+    "source_fingerprint": "sha256:a102dbe3f5c9fdef413be415b083f9da23b5aad07796c176833edf7f7eb8ec25",
     "source_doc_hashes": {
-      "spec.md": "ca1721f4f8b0b295b1e850388178f5033361944b05d32c74184637f57c4ea0ec",
-      "plan.md": "6b81ae51a0d9ec1f099586f8ae5cb58f179aa35eb0a4ecde2c4911347dfefb23",
-      "tasks.md": "9e418a9ebdb6f09cc6fdeb55338c40911db85ce988aa7966f4827c91e4c03b83",
+      "spec.md": "5f0448c4cba5110e66b41d56fe430ec003bde0b966666cefdbe04a79e3995f67",
+      "plan.md": "1ac92e7c69b5e71fb66dce7aabbf93df239be18c30cff9a9e5e21f9a4ca69677",
+      "tasks.md": "6cfc87127126c240f993ea2d3c9cc73afc1d72f5f2be189749b6bca9fbfcf336",
       "checklist.md": "7aec785d2f652ad445a1c6a91481b2479ac77d99b3ca5107790409ec07df80c8",
-      "decision-record.md": "73bf56b449fe305ed7186c2fa5cf9f8a0049f35ece2ac8db540b46487629a1bd",
-      "implementation-summary.md": "d84f9f8818caa94acd8f7dd1c9bbb8e485b2c81c8f21dd4c27ea4fd112888612"
+      "decision-record.md": "e96e4ed2712b8de344079fd58d3cb499d67b6c005ab511f5748532f35faa94fe",
+      "implementation-summary.md": "c2d260572ebf1e66d8b22cdd6a1298e04b09a16cd4c4c258b8c041f2112dfa7d"
     },
     "last_active_child_id": null,
     "last_active_at": null

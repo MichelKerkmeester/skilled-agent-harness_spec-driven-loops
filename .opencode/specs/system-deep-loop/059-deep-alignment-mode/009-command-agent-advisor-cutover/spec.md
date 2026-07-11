@@ -53,7 +53,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Planned |
 | **Created** | 2026-07-11 |
 | **Branch** | `system-deep-loop/059-deep-alignment-mode` |
 | **Parent Spec** | ../spec.md |
@@ -86,11 +86,11 @@ This is **Phase 9**, the final phase, of the `system-deep-loop/059-deep-alignmen
 
 **Scope Boundary**: Plan only. No command file, no agent file, no `mode-registry.json` edit, no advisor script edit, no benchmark folder, and no `SKILL.md` for the real `deep-alignment` skill ship in this phase. This phase documents the plan for those artifacts.
 
-**Dependencies**: Phase 003 (scaffold-mode-packet, out of this agent's scope) plans the mode-packet skeleton this phase's command/agent point at. Phases 004-008 (three of which - 006, 007, 008 - are this agent's own prior work) supply the scoping, adapters, and runtime wiring the command/agent actually invoke once built.
+**Dependencies**: Phase 003 (scaffold-mode-packet) plans the mode-packet skeleton this phase's command/agent point at. Phases 004-008 supply the scoping, adapters, and runtime wiring the command/agent actually invoke once built.
 
 **Deliverables**: A named plan for the `/deep:alignment` command and its auto/confirm assets, the `@deep-alignment` leaf agent contract, the `mode-registry.json` entry and advisor projection-map updates, a behavior benchmark plan, and the exact cutover-gate sequence.
 
-**Changelog**: When this phase closes, add an entry to `.opencode/skills/system-deep-loop/changelog/` referencing packet `059` phase `009`.
+**Changelog**: When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 
 ### In Scope
 - Plan the `/deep:alignment` command as a thin router mirroring `.opencode/commands/deep/review.md`'s pattern (a single `render-command-contract.cjs --command deep/alignment` dispatch line plus frontmatter), and plan its `:auto`/`:confirm` asset YAMLs mirroring `deep_review_auto.yaml`/`deep_review_confirm.yaml`.

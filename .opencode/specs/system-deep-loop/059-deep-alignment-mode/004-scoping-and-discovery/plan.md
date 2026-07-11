@@ -48,7 +48,7 @@ FAILURE MODES:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | OpenCode skill markdown (interactive question protocol), CommonJS scripts (non-interactive arg parsing) |
-| **Framework** | `system-deep-loop` runtime state machine (INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT) |
+| **Framework** | `system-deep-loop` runtime state machine (INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT -> optional REMEDIATE) |
 | **Storage** | Future `deep-alignment/references/scoping_protocol.md`, `discover_contract.md`, and a lane-resolution script |
 | **Testing** | None in this phase — design-only pass; a future implementation pass adds unit coverage for lane resolution |
 
@@ -67,7 +67,7 @@ This phase specifies the SCOPE and the input half of the DISCOVER state for `dee
 
 ### Definition of Done
 - [ ] The three-axis decision tree, lane-resolution algorithm, non-interactive arg form, and `discover()` contract are each specified with no adapter-specific logic leaking into the contract.
-- [ ] Every genuinely undecided detail (the non-interactive arg grammar) is flagged as pending 002, not invented here.
+- [ ] The non-interactive arg grammar (open ADR-011, owned by this phase) is designed alongside the interactive tree, with both paths resolving to the same internal lane-tuple representation.
 - [ ] `validate.sh` passes `--strict` with Errors:0 on this phase folder.
 <!-- /ANCHOR:quality-gates -->
 
@@ -88,7 +88,7 @@ Structured decision tree feeding a lane-resolution function, which feeds N calls
 
 **Lane resolution**: the tree's answers cross-product into N lanes, one per `(authority, artifact-class, scope)` combination the operator actually selected — not a full cross-product of every possible combination. Each lane is an independent unit for DISCOVER and ITERATE.
 
-**Non-interactive arg form**: lanes are passed as structured arguments (exact grammar TBD, pending 002) that resolve to the identical internal lane-tuple representation the interactive path produces. When lane args are present, the interactive question is skipped entirely; when absent, the interactive question is the only path. The two never run together and neither is silently skipped when required.
+**Non-interactive arg form**: lanes are passed as structured arguments (exact grammar designed by this phase's execution pass, closing open ADR-011) that resolve to the identical internal lane-tuple representation the interactive path produces. When lane args are present, the interactive question is skipped entirely; when absent, the interactive question is the only path. The two never run together and neither is silently skipped when required.
 
 **`discover(scope) -> artifacts` contract** (`references/discover_contract.md`, future):
 - **Input**: one resolved lane's `scope` value (paths/globs/branch-range), already validated against the repo root.
@@ -121,7 +121,7 @@ Not applicable. This phase is not a bug fix and touches zero production surfaces
 - [ ] Author `deep-alignment/references/scoping_protocol.md` with the three-axis decision tree and lane-resolution algorithm.
 - [ ] Author `deep-alignment/references/discover_contract.md` with the authority-agnostic `discover(scope)->artifacts` signature and output shape.
 - [ ] Implement the lane-resolution script (interactive path).
-- [ ] Implement the non-interactive arg parser once 002 finalizes the grammar, converging on the same internal lane-tuple representation as the interactive path.
+- [ ] Design the lane-arg grammar (closing open ADR-011) and implement the non-interactive arg parser, converging on the same internal lane-tuple representation as the interactive path.
 
 ### Phase 3: Verification (future execution pass — not run in this phase)
 - [ ] Confirm a multi-authority single-run scoping session resolves N independent lanes with no cross-authority coupling.
@@ -149,7 +149,7 @@ Not applicable. This phase is not a bug fix and touches zero production surfaces
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | 003-scaffold-mode-packet | Internal | Pending | No directory skeleton exists for the future reference docs and scripts this phase plans |
-| 002-architecture-decision (adapter contract, non-interactive arg grammar) | Internal | Pending | `discover()` contract and arg grammar details stay provisional |
+| 002-architecture-decision (adapter contract freeze, ADR-003) | Internal | Pending | `discover()` contract details stay provisional; the lane-arg grammar (open ADR-011) is this phase's own deliverable, not a 002 output |
 | `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Internal | Green | Without it, the discovered-artifact seeding plan has no real target shape to match |
 <!-- /ANCHOR:dependencies -->
 

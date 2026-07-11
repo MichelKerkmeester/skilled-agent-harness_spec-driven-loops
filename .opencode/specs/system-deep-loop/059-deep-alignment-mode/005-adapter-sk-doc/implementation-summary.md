@@ -98,7 +98,7 @@ Not delivered. This is a planning stub; the sk-doc adapter will be executed in a
 ## Known Limitations
 
 1. **This phase is a plan, not an implementation.** No adapter spec doc, suppression list, or wiring script exists yet. The plan cannot be marked executed until 004-scoping-and-discovery's execution pass has run and a future implementation pass runs Phase 2 and Phase 3 of `tasks.md`.
-2. **The suppression-list delivery mechanism is genuinely undecided.** Whether it ships as a static reference doc or a queryable rules file is explicitly deferred to 002-architecture-decision rather than invented here.
+2. **The suppression-list delivery mechanism is genuinely undecided.** Whether it ships as a static reference doc or a queryable rules file is a phase-local design detail settled when this phase executes; ADR-005 locks only that a per-authority list exists.
 <!-- /ANCHOR:limitations -->
 
 ---

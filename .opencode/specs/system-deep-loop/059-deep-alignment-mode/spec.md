@@ -167,9 +167,9 @@ Summary of aggregate file scope across all 9 phases; per-phase detail lives in e
 
 - `sk-code` adapter automatability limits — how deterministic can pattern-conformance be for a judgment-heavy surface? Owned by phase 007.
 - `sk-design` live-render audits (chrome-devtools-driven) — confirmed v1 static DESIGN.md/token-only scope; live-render is a later-phase question, not resolved here.
-- Exact reuse boundary with the `deep-review` runtime engine: shared scripts vs. an intentional fork. Owned by phase 002/008.
+- Exact reuse boundary with the `deep-review` runtime engine: shared scripts vs. an intentional fork. Recorded as open ADR-010 in phase 002; resolution owned by phase 008.
 - Non-interactive lane-arg schema for headless/cron invocation. Owned by phase 004.
-- Governance for registering a new authority adapter beyond the v1 four. Owned by phase 002, deferred to a later packet if it needs code.
+- Governance for registering a new authority adapter beyond the v1 four. Recorded as open ADR-012 in phase 002; resolution deferred to a later phase or packet if it needs code.
 <!-- /ANCHOR:questions -->
 
 ---

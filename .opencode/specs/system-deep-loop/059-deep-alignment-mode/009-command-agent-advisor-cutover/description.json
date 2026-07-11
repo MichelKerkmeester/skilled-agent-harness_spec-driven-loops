@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/059-deep-alignment-mode/009-command-agent-advisor-cutover",
   "description": "Every prior phase in this packet plans internals (adapters, runtime wiring); none of it is reachable by a user or by the advisor until a command",
   "keywords": [
@@ -18,7 +19,7 @@
     "until",
     "command"
   ],
-  "lastUpdated": "2026-07-11T06:23:38.062Z",
+  "lastUpdated": "2026-07-11T06:55:54.054Z",
   "specId": "009",
   "folderSlug": "command-agent-advisor-cutover",
   "parentChain": [
@@ -26,6 +27,5 @@
     "059-deep-alignment-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

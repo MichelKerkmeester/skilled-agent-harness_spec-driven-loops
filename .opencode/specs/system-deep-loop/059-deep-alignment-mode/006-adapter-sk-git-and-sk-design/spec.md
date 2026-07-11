@@ -16,8 +16,9 @@ _memory:
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Draft phase 006 adapter spec"
-    next_safe_action: "Freeze discover-scope grammar for sk-git commit range"
-    blockers: []
+    next_safe_action: "Await 005 reference-adapter shape before execution"
+    blockers:
+      - "005-adapter-sk-doc not yet executed"
     key_files:
       - ".opencode/skills/sk-git/SKILL.md"
       - ".opencode/skills/sk-design/design-audit/references/audit_contract.md"
@@ -29,7 +30,7 @@ _memory:
     completion_pct: 0
     open_questions:
       - "sk-git discover() scope grammar: commit range vs branch-diff vs path glob"
-      - "sk-design known-deviation list: shared with sk-doc suppression list or authority-local"
+      - "sk-design known-deviation list storage format (authority-local per ADR-005; file format TBD at build time)"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -53,7 +54,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Planned |
 | **Created** | 2026-07-11 |
 | **Branch** | `system-deep-loop/059-deep-alignment-mode` |
 | **Parent Spec** | ../spec.md |
@@ -86,11 +87,11 @@ This is **Phase 6** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 
 **Scope Boundary**: Plan only. No adapter code, no mode-packet `SKILL.md`, no scripts ship in this phase.
 
-**Dependencies**: Phase 005 freezes the adapter contract shape `{ discover(scope)->artifacts, standardSource(authority)->templates+rules, check(artifact,rules)->findings }` that both adapters here MUST implement identically. This phase treats that contract as locked per the design brief and does not re-derive it.
+**Dependencies**: The adapter contract shape `{ discover(scope)->artifacts, standardSource(authority)->templates+rules, check(artifact,rules)->findings }` was frozen in phase 002 (ADR-003); phase 005's sk-doc adapter is its reference implementation, whose shape both adapters here MUST match identically. This phase treats that contract as locked per the design brief and does not re-derive it.
 
 **Deliverables**: A named plan for the sk-git adapter's discover/standardSource/check behavior, a named plan for the sk-design adapter's discover/standardSource/check behavior (v1 static-only), and the known-deviation list location for each.
 
-**Changelog**: When this phase closes, add an entry to `.opencode/skills/system-deep-loop/changelog/` referencing packet `059` phase `006`.
+**Changelog**: When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 
 ### In Scope
 - Plan the sk-git adapter: `discover()` scope resolution over a commit range or branch diff, `standardSource()` reading sk-git's deterministic commit-message grammar and branch-naming rule, `check()` flagging conventional-commit and branch-naming violations.
@@ -131,7 +132,7 @@ This is **Phase 6** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | Define each adapter's known-deviation list location. | `plan.md` Architecture section names where each adapter's accepted-convention list lives (authority-local file vs shared list) and how a future authority-owner edits it. |
+| REQ-003 | Define each adapter's known-deviation list location. | `plan.md` Architecture section names where each adapter's accepted-convention list lives (authority-local, per ADR-005's per-authority suppression lists) and how a future authority-owner edits it. |
 | REQ-004 | Define each adapter's VERIFY-FIRST re-probe behavior. | `plan.md` states that findings are re-probed against live ground truth (re-run `git log`/`git show` for sk-git; re-read the current `DESIGN.md`/`tokens.json` for sk-design) immediately before a finding is asserted, not cached from an earlier discover pass. |
 | REQ-005 | Confirm the sk-git adapter honors sk-git's Git-generated-subject exemption list instead of flagging exempt commits as violations. | `plan.md` names the exemption prefixes (`Merge `, `Revert "`, `fixup! `, `squash! `, `amend! `) cited from `.opencode/skills/sk-git/SKILL.md` §"Classify Special Git Messages" and `tasks.md` includes a dry-run task proving it. |
 <!-- /ANCHOR:requirements -->
@@ -210,8 +211,8 @@ This is **Phase 6** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 
 ## 10. OPEN QUESTIONS
 
-- Exact `discover()` scope grammar for sk-git (commit range vs branch-diff vs path glob) - resolve once the non-interactive lane-arg schema (002 open question) is frozen.
-- Whether sk-design's known-deviation list is shared with sk-doc's convention-suppression list or kept authority-local - TBD, resolve in the 002 decision-record.
+- Exact `discover()` scope grammar for sk-git (commit range vs branch-diff vs path glob) - resolve once the non-interactive lane-arg schema (open ADR-011, owned by phase 004) is frozen.
+- The sk-design known-deviation list's storage format - ADR-005 already locks suppression lists as per-authority (each adapter's `standardSource` carries its own); only the authority-local file format remains TBD at build time.
 - Whether the sk-git adapter should shell out to the actual `commit-msg` hook script for parity, or independently re-read its grammar - TBD.
 <!-- /ANCHOR:questions -->
 

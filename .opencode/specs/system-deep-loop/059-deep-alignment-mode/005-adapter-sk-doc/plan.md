@@ -49,7 +49,7 @@ FAILURE MODES:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Python (wrapped tools), OpenCode skill markdown (adapter spec docs), CommonJS (adapter wiring script) |
-| **Framework** | Pluggable adapter contract from phase 004: `{ discover(scope)->artifacts, standardSource(authority)->templates+rules, check(artifact,rules)->findings }` |
+| **Framework** | Pluggable adapter contract (frozen in phase 002 as ADR-003; discovery half detailed in phase 004): `{ discover(scope)->artifacts, standardSource(authority)->templates+rules, check(artifact,rules)->findings }` |
 | **Storage** | Future `deep-alignment/references/adapters/sk_doc_adapter.md`, `sk_doc_known_deviations.md`, and an adapter wiring script |
 | **Testing** | None in this phase — design-only pass; a future implementation pass adds a dry-run against a known corpus (e.g. `cli-external`, `mcp-tooling`, matching the 130-packet's real scope) |
 

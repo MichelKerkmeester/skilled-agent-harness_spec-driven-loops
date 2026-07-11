@@ -60,11 +60,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
+<!-- These tasks belong to a future execution pass, gated behind phases 001-008 landing as real code. -->
+
 - [ ] T004 [B] Author `/deep:alignment` command and `:auto`/`:confirm` asset YAMLs (blocked on T001)
 - [ ] T005 [B] Author `@deep-alignment` leaf agent, per-lane translation of the deep-review contract (blocked on phases 006-008 real code)
-- [ ] T006 Add the `mode-registry.json` entry for the new mode
-- [ ] T007 [P] Add advisor projection-map entries (`skill_advisor.py`, `aliases.ts`) and run the drift-guard test
-- [ ] T008 Author the behavior benchmark folder with three minimum scenarios (clean corpus, real violations, known-deviation suppression)
+- [ ] T006 [B] Add the `mode-registry.json` entry for the new mode
+- [ ] T007 [B] Add advisor projection-map entries (`skill_advisor.py`, `aliases.ts`) and run the drift-guard test
+- [ ] T008 [B] Author the behavior benchmark folder with three minimum scenarios (clean corpus, real violations, known-deviation suppression)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,10 +74,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Run `node .opencode/commands/doctor/scripts/parent-skill-check.cjs` STRICT against the real `deep-alignment` skill
-- [ ] T010 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/059-deep-alignment-mode --recursive --strict`
-- [ ] T011 Run the behavior benchmark and confirm all three scenarios behave as expected
-- [ ] T012 Update `checklist.md` with evidence for each verified item
+<!-- These tasks belong to a future execution pass, gated behind phases 001-008 landing as real code. -->
+
+- [ ] T009 [B] Run `node .opencode/commands/doctor/scripts/parent-skill-check.cjs` STRICT against the real `deep-alignment` skill
+- [ ] T010 [B] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/059-deep-alignment-mode --recursive --strict`
+- [ ] T011 [B] Run the behavior benchmark and confirm all three scenarios behave as expected
+- [ ] T012 [B] Update `checklist.md` with evidence for each verified item
 <!-- /ANCHOR:phase-3 -->
 
 ---

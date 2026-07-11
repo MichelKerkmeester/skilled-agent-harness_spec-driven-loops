@@ -27,8 +27,8 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "Exact runtimeLoopType/backendKind values for the mode-registry entry (pending 002-architecture-decision)"
-      - "Whether deep-alignment gets its own scripts/ dir or fully reuses runtime/scripts/*.cjs"
+      - "Exact runtimeLoopType/backendKind values for the mode-registry entry (follow the reuse-boundary resolution, open ADR-010, owned by phase 008)"
+      - "Whether deep-alignment gets its own scripts/ dir or fully reuses runtime/scripts/*.cjs (open ADR-010, resolved by phase 008)"
     answered_questions: []
 status: "planned"
 ---
@@ -142,8 +142,8 @@ Produce a build-ready scaffold plan so a later implementation pass can create th
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | The future SKILL.md contract plan enumerates every frontmatter field and structural section deep-review's real SKILL.md carries. | `plan.md` §3 lists `name`, `description`, `allowed-tools`, `argument-hint`, `version` frontmatter fields and the "WHEN TO USE" / "FORBIDDEN INVOCATION PATTERNS" sections, each mapped against `.opencode/skills/system-deep-loop/deep-review/SKILL.md`. |
-| REQ-002 | The future mode-registry.json entry plan captures every required per-mode field from the registry's own discriminator contract. | `plan.md` §3 lists `workflowMode`, `runtimeLoopType`, `backendKind`, `packetKind`, `toolSurface`, `packet`, `command`, `agent`, `artifactRoot`, `aliases`, and `advisorRouting`, with `runtimeLoopType`/`backendKind` explicitly marked pending 002-architecture-decision. |
-| REQ-003 | The directory skeleton plan enumerates every top-level subdirectory phases 004-008 need before they can add content. | `plan.md` §3 lists `assets/`, `references/`, `changelog/`, and states that a `scripts/` directory is deferred pending the reuse-boundary decision. |
+| REQ-002 | The future mode-registry.json entry plan captures every required per-mode field from the registry's own discriminator contract. | `plan.md` §3 lists `workflowMode`, `runtimeLoopType`, `backendKind`, `packetKind`, `toolSurface`, `packet`, `command`, `agent`, `artifactRoot`, `aliases`, and `advisorRouting`, with `runtimeLoopType`/`backendKind` explicitly marked as following the reuse-boundary resolution (open ADR-010, owned by phase 008) rather than asserted as final. |
+| REQ-003 | The directory skeleton plan enumerates every top-level subdirectory phases 004-008 need before they can add content. | `plan.md` §3 lists `assets/`, `references/`, `changelog/`, and states that a `scripts/` directory is deferred pending the reuse-boundary decision (open ADR-010, phase 008). |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -160,7 +160,7 @@ Produce a build-ready scaffold plan so a later implementation pass can create th
 
 - **SC-001**: `tasks.md`'s Phase 2 task list, if executed by a future implementation pass, is sufficient to create the mode-packet skeleton without further design decisions beyond 002's resolutions.
 - **SC-002**: No file under `.opencode/skills/system-deep-loop/deep-alignment/` exists, and `.opencode/skills/system-deep-loop/mode-registry.json` / `hub-router.json` remain unmodified, at the close of this phase.
-- **SC-003**: Every open design item (reuse boundary, exact registry field values, scripts/ directory question) is explicitly flagged as pending 002-architecture-decision rather than asserted as decided.
+- **SC-003**: Every open design item (reuse boundary, exact registry field values, scripts/ directory question) is explicitly flagged as pending its owning decision (the 002 gate approval, or open ADR-010 owned by phase 008) rather than asserted as decided.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -170,7 +170,7 @@ Produce a build-ready scaffold plan so a later implementation pass can create th
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | 002-architecture-decision not yet approved | Mode-registry field values (`runtimeLoopType`, `backendKind`) cannot be finalized | Plan both as TBD pending 002, cite the reuse-boundary open question explicitly |
+| Dependency | 002-architecture-decision not yet approved | Mode-registry field values (`runtimeLoopType`, `backendKind`) cannot be finalized | Plan both as TBD defaulting to reuse; cite the reuse-boundary open question (ADR-010, phase 008) explicitly |
 | Dependency | `runtime/scripts/convergence.cjs` validates `runtimeLoopType` against exactly `research\|review\|council` (per `.opencode/skills/system-deep-loop/mode-registry.json:5`) | A brand-new `"alignment"` enum value would require a convergence.cjs change, which is out of scope for a thin-specialization mode | Default plan reuses `runtimeLoopType: "review"`, consistent with the "maximally reuse the review/runtime engine" design decision |
 | Risk | Scaffold drifts from deep-review's real shape, making later adapters harder to write | Adapter phases (005-007) inherit design debt | Model every planned artifact directly on deep-review's real files, cited by path |
 | Risk | Planning phase accidentally creates live files | Violates the scaffold-only mandate for this phase | Restrict this phase strictly to `.opencode/specs/system-deep-loop/059-deep-alignment-mode/003-scaffold-mode-packet/` |
@@ -181,8 +181,8 @@ Produce a build-ready scaffold plan so a later implementation pass can create th
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Exact `runtimeLoopType`/`backendKind` values for the mode-registry entry — resolved in 002-architecture-decision.
-- Whether `deep-alignment` gets its own `scripts/` directory or fully reuses `runtime/scripts/*.cjs` — resolved in 002-architecture-decision, refined further in 008-iterate-converge-report.
+- Exact `runtimeLoopType`/`backendKind` values for the mode-registry entry — follow the reuse-boundary resolution recorded as open ADR-010 in 002-architecture-decision and owned by phase 008; the plan's default is reuse (`runtimeLoopType: "review"`).
+- Whether `deep-alignment` gets its own `scripts/` directory or fully reuses `runtime/scripts/*.cjs` — recorded as open ADR-010 in 002-architecture-decision; resolved by 008-iterate-converge-report.
 <!-- /ANCHOR:questions -->
 
 ---

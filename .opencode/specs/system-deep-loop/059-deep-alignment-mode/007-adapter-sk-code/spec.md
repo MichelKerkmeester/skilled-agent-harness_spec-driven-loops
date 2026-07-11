@@ -16,8 +16,9 @@ _memory:
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Draft phase 007 sk-code adapter spec"
-    next_safe_action: "Freeze surface-detection reuse boundary against sk-code shared router"
-    blockers: []
+    next_safe_action: "Await 006 adapter shapes before execution"
+    blockers:
+      - "006-adapter-sk-git-and-sk-design not yet executed"
     key_files:
       - ".opencode/skills/sk-code/SKILL.md"
       - ".opencode/skills/sk-code/shared/references/smart_routing.md"
@@ -53,7 +54,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Planned |
 | **Created** | 2026-07-11 |
 | **Branch** | `system-deep-loop/059-deep-alignment-mode` |
 | **Parent Spec** | ../spec.md |
@@ -86,11 +87,11 @@ This is **Phase 7** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 
 **Scope Boundary**: Plan only. No adapter code, no mode-packet `SKILL.md`, no scripts ship in this phase.
 
-**Dependencies**: Phase 005's adapter contract `{ discover(scope)->artifacts, standardSource(authority)->templates+rules, check(artifact,rules)->findings }` is treated as locked. Phase 006 established the pattern of layering an existing deterministic rule source (sk-git's commit grammar) before adding adapter-local judgment; this phase extends that pattern to sk-code, where the deterministic layer is thinner and the honest-limits statement matters more.
+**Dependencies**: The adapter contract `{ discover(scope)->artifacts, standardSource(authority)->templates+rules, check(artifact,rules)->findings }` (frozen in phase 002 as ADR-003; phase 005 is its reference implementation) is treated as locked. Phase 006 established the pattern of layering an existing deterministic rule source (sk-git's commit grammar) before adding adapter-local judgment; this phase extends that pattern to sk-code, where the deterministic layer is thinner and the honest-limits statement matters more.
 
 **Deliverables**: A named plan for the sk-code adapter's `discover()`/`standardSource()`/`check()` behavior, an explicit deterministic-vs-reasoning-agent layering rule, an accepted-deviation set location, and a written automatability-limits statement.
 
-**Changelog**: When this phase closes, add an entry to `.opencode/skills/system-deep-loop/changelog/` referencing packet `059` phase `007`.
+**Changelog**: When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 
 ### In Scope
 - Plan `discover()`: resolve a lane's scope into code artifacts and, for each, detect its sk-code surface (`WEBFLOW`, `OPENCODE`, `MOTION_DEV` overlay) by reusing the shared surface router rather than reimplementing detection heuristics.
@@ -130,7 +131,7 @@ This is **Phase 7** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | Define the deterministic-first, reasoning-agent-second layering rule for `check()`. | `plan.md` Architecture section states the adapter runs the surface's existing deterministic checker first (when one exists for that surface) and only falls back to reasoning-agent judgment for what the checker does not cover, with each finding tagged by which layer produced it. |
-| REQ-004 | Define the accepted-deviation set location for sk-code. | `plan.md` names where the sk-code known-deviation list lives (authority-local, consistent with the location decided for sk-git/sk-design in phase 006 or the 002 decision-record). |
+| REQ-004 | Define the accepted-deviation set location for sk-code. | `plan.md` names where the sk-code known-deviation list lives (authority-local per ADR-005's per-authority suppression lists, consistent with phase 006's adapters). |
 | REQ-005 | Define the VERIFY-FIRST re-probe behavior for sk-code findings. | `plan.md` states that a reasoning-agent finding is re-checked against the current file content (not a cached discover-time snapshot) immediately before being asserted, and that deterministic-checker findings are re-run rather than reused from a prior pass. |
 <!-- /ANCHOR:requirements -->
 
@@ -208,7 +209,7 @@ This is **Phase 7** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 
 ## 10. OPEN QUESTIONS
 
-- How deterministic can pattern-conformance become beyond the existing `verify_alignment_drift.py` coverage without building a new linter (explicitly out of scope for this phase) - TBD, resolve in the 002 decision-record.
+- How deterministic can pattern-conformance become beyond the existing `verify_alignment_drift.py` coverage without building a new linter (explicitly out of scope for this phase) - recorded as open ADR-008 in 002's decision-record and owned by this phase; this phase's execution closes or amends ADR-008 with evidence from real sk-code surfaces.
 - Whether MOTION_DEV overlay findings route through the WEBFLOW lane's report or form their own peer lane - TBD.
 - Whether the accepted-deviation set for sk-code should be seeded from `verify_alignment_drift.py`'s own skip-path allowlist (e.g. `is_context_advisory_path`, `is_test_heavy_path`) or authored fresh - TBD.
 <!-- /ANCHOR:questions -->

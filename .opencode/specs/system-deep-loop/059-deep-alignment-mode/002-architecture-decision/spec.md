@@ -160,7 +160,7 @@ Produce an operator-approvable architecture decision record for phase 002 so eve
 | REQ-005 | Decision record covers the alignment contract's four invariants (ADR-005). | ADR-005 states Status: Accepted and names verify-first, suppression, read-only default, and gated remediation. |
 | REQ-006 | Decision record covers the state machine and artifact layout (ADR-006). | ADR-006 states Status: Accepted and names all seven states plus the `alignment/` storage location. |
 | REQ-007 | Decision record covers the explicit boundary against `parent-skill-check.cjs` and `deep-review` (ADR-007). | ADR-007 states Status: Accepted and names both adjacent systems by path. |
-| REQ-008 | Decision record records all five brief open questions as explicitly Open ADRs, each naming the phase that owns eventual resolution. | ADR-008 through ADR-012 carry `Status: Open (Deferred)` and a named owning phase; none are silently resolved in this gate. |
+| REQ-008 | Decision record records all five brief open questions as explicitly Open ADRs, each with an explicit owner. | ADR-008 through ADR-012 carry `Status: Open (Deferred)` with an explicit owner — a named phase (007 for ADR-008, 008 for ADR-010, 004 for ADR-011) or an explicit beyond-this-program deferral (ADR-009, ADR-012, not pre-scoped); none are silently resolved in this gate. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -176,7 +176,7 @@ Produce an operator-approvable architecture decision record for phase 002 so eve
 
 - **SC-001**: Operator accepts the phase 002 architecture decision gate before phase 003 starts.
 - **SC-002**: Phase 003 has zero remaining ambiguity about the mode-packet's state names, adapter contract signatures, and authority set.
-- **SC-003**: All five brief open questions are traceable to a named owning phase, none silently defaulted.
+- **SC-003**: All five brief open questions are traceable to an explicit owner — a named phase (007/008/004) or an explicit beyond-this-program deferral (ADR-009, ADR-012) — none silently defaulted.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -189,7 +189,7 @@ Produce an operator-approvable architecture decision record for phase 002 so eve
 | Dependency | Human approval of the decision gate | Phase 003 must not start with unsettled architecture | Keep this phase in review-gate status until the operator explicitly accepts or amends the ADRs |
 | Risk | Under-specified adapter-contract signatures cause phase 005-007 rework | High | Freeze the exact `discover(scope)`/`standardSource(authority)`/`check(artifact, rules)` shapes in `plan.md` §3 |
 | Risk | `sk-code` adapter honesty limits get silently dropped in favor of a false-deterministic design | High | Record ADR-004 and open ADR-008 so phase 007 inherits the "honest limits" framing explicitly |
-| Risk | Reuse boundary with `deep-review`'s runtime scripts is assumed rather than confirmed | Medium | Record open ADR-010 pointing at phase 001's confirmed shared-vs-mode-local script finding |
+| Risk | Reuse boundary with `deep-review`'s runtime scripts is assumed rather than confirmed | Medium | Record open ADR-010 pointing at the scaffold-time shared-vs-mode-local script finding, which phase 001's research gate re-confirms |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -246,7 +246,7 @@ If phase 007's `sk-code` adapter work shows the chosen adapter contract cannot e
 |---------|-------------|--------|------------|------------|
 | R-001 | `sk-code` adapter's judgment-heavy checks get treated as deterministic in a later phase | H | M | Open ADR-008 keeps the honesty-limits framing explicit through phase 007 |
 | R-002 | The state machine gets re-litigated per adapter phase, causing drift | M | M | Freeze the seven-state machine here; adapters implement `check()`, they do not redesign the loop |
-| R-003 | The `deep-review` reuse boundary is assumed shared when it is actually mode-local (as phase 001 found for `reduce-state.cjs`) | M | M | Open ADR-010 explicitly defers the shared-vs-fork call to phase 008 with phase 001's finding cited |
+| R-003 | The `deep-review` reuse boundary is assumed shared when it is actually mode-local (as a scaffold-time read found for `reduce-state.cjs`; phase 001 re-confirms) | M | M | Open ADR-010 explicitly defers the shared-vs-fork call to phase 008 with that finding cited |
 | R-004 | The alignment contract's read-only default gets bypassed by an eager remediation implementation later | H | L | ADR-005 states remediation is opt-in and operator-gated as an architecture invariant, not an implementation detail |
 <!-- /ANCHOR:risk-matrix -->
 
@@ -260,7 +260,7 @@ If phase 007's `sk-code` adapter work shows the chosen adapter contract cannot e
 **As an** operator, **I want** the twelve ADRs in `decision-record.md` clearly split into Accepted and Open, **so that** I can approve the frozen architecture in one pass without re-deriving which questions are still mine to answer.
 
 **Acceptance Criteria**:
-1. Given the twelve ADRs, When I read `decision-record.md`, Then seven are marked Accepted with rationale and five are marked Open with an owning phase.
+1. Given the twelve ADRs, When I read `decision-record.md`, Then seven are marked Accepted with rationale and five are marked Open, each with an explicit owner or an explicit not-pre-scoped deferral.
 
 ---
 

@@ -100,7 +100,7 @@ Not applicable yet. When this phase executes, delivery will follow `tasks.md` Ph
 
 1. **No adapter code exists.** This phase is planning-only per the parent packet's scaffold constraint; `tasks.md` T004-T010 remain the actual build work.
 2. **sk-design v1 boundary is static-only.** Live-render, `chrome-devtools`-driven accessibility/performance checks are explicitly out of scope until a future phase is opened for them.
-3. **Known-deviation list location is not yet decided.** It depends on the 002 decision-record's ruling; this phase defaults to an authority-local file but does not commit to that choice.
+3. **Known-deviation list format is not yet decided.** ADR-005 locks suppression lists as per-authority; this phase defaults to an authority-local file colocated with the adapter, with the exact file format settled at build time.
 <!-- /ANCHOR:limitations -->
 
 ---

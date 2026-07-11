@@ -128,15 +128,15 @@
     ],
     "causal_summary": "This repository defines conformance standards for its own artifacts — `sk-doc`'s document templates and DQI validators, `sk-git`'s commit and branch-naming rules, `sk-design`'s DESIGN.md and token structure, `sk-code`'s per-surface implementation patterns — but nothing checks a given artifact against the named standard it claims to follow, with reality-drift verification, in a repeatable loop",
     "created_at": "2026-07-11T06:09:13.466Z",
-    "last_save_at": "2026-07-11T06:24:18.771Z",
+    "last_save_at": "2026-07-11T06:51:20.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:66d4f919f0879d8ca8a8db01d902c5d32765bf9dfa61114f6ddd8df122f9bdea",
+    "source_fingerprint": "sha256:bf124e6954ed0f8c3a4691b6e5dc02f17614352d69faa8935171200cdfa06217",
     "source_doc_hashes": {
-      "spec.md": "d423f3309261697360fe543c5e1358627a608e2f6d3249341f105ef6ea6bdae1"
+      "spec.md": "1d67b9636c99fcf2a988beb2e21d944c1d9c3a3ccc92eac19846c1bd57c1ad59"
     },
     "last_active_child_id": "system-deep-loop/059-deep-alignment-mode/001-research-and-context",
     "last_active_at": "2026-07-11T06:09:13.466Z"

@@ -123,13 +123,13 @@ Required inventories:
 - [ ] Re-read `.opencode/skills/sk-git/SKILL.md` §"Commit Message Logic" and confirm the type/scope/summary grammar has not changed since this plan was authored.
 - [ ] Re-read `.opencode/skills/sk-design/design-audit/references/audit_contract.md` and `design-md-generator/references/design_md_format.md` and confirm the v1 static rule set is unchanged.
 
-### Phase 2: Core Implementation
+### Phase 2: Core Implementation (future execution pass — not run in this phase)
 - [ ] Implement the sk-git adapter's `discover()`, `standardSource()`, and `check()` per the Architecture section above.
 - [ ] Implement the sk-design adapter's `discover()`, `standardSource()`, and `check()` per the Architecture section above, enforcing the v1 static-only boundary.
-- [ ] Author each adapter's known-deviation/accepted-convention list (location TBD by the 002 decision-record; default to an authority-local JSON/Markdown file colocated with the adapter).
+- [ ] Author each adapter's known-deviation/accepted-convention list (per-authority per ADR-005; default to an authority-local JSON/Markdown file colocated with the adapter, format settled at build time).
 - [ ] Wire each adapter's VERIFY-FIRST re-probe: re-run `git log`/`git show` for sk-git findings, re-read the current `DESIGN.md`/`tokens.json` for sk-design findings, immediately before a finding is written.
 
-### Phase 3: Verification
+### Phase 3: Verification (future execution pass — not run in this phase)
 - [ ] Dry-run the sk-git adapter against a known commit range and confirm it does not flag exempt Git-generated subjects.
 - [ ] Dry-run the sk-design adapter against a repo `DESIGN.md` and confirm findings cite a real rubric dimension, not a generic critique.
 - [ ] Confirm both adapters return the documented "empty scope" result instead of erroring on zero artifacts.

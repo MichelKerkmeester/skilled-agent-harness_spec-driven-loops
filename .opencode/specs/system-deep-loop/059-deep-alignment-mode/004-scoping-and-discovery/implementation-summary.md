@@ -98,7 +98,7 @@ Not delivered. This is a planning stub; the scoping-and-discovery contract will 
 ## Known Limitations
 
 1. **This phase is a plan, not an implementation.** No reference doc, script, or contract file exists yet. The plan cannot be marked executed until 003-scaffold-mode-packet's execution pass has run and a future implementation pass runs Phase 2 and Phase 3 of `tasks.md`.
-2. **The non-interactive lane-arg grammar is genuinely undecided.** It is explicitly deferred to 002-architecture-decision rather than invented here; the interactive path and lane-tuple output shape are specified, the argument syntax is not.
+2. **The non-interactive lane-arg grammar is genuinely undecided.** It is recorded as open ADR-011 in 002-architecture-decision and is this phase's own deliverable: the interactive path and lane-tuple output shape are specified now, and the argument syntax is designed alongside the interactive tree when this phase executes.
 <!-- /ANCHOR:limitations -->
 
 ---

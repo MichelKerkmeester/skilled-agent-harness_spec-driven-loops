@@ -456,7 +456,7 @@ A naive conformance linter would flag intentional repo conventions (repo-wide TO
 <!-- ANCHOR:adr-005-decision -->
 ### Decision
 
-**We chose**: Four first-class mode invariants, enforced by the engine, not left to individual adapters to opt into: (1) verify-first — every reality-drift finding is re-probed against live ground truth before assertion; (2) known-deviation suppression — a per-authority accepted-conventions list so intentional conventions are never flagged; (3) read-only by default; (4) gated remediation — opt-in, operator-approved, verify-first, never auto-`-A`/scoped-stage/worktree-when-diverged/doc-only-skip when concurrent sessions are live.
+**We chose**: Four first-class mode invariants, enforced by the engine, not left to individual adapters to opt into: (1) verify-first — every reality-drift finding is re-probed against live ground truth before assertion; (2) known-deviation suppression — a per-authority accepted-conventions list so intentional conventions are never flagged; (3) read-only by default; (4) gated remediation — opt-in, operator-approved, verify-first, with hard safety discipline: never `git add -A` (scoped staging only), a worktree when the branch has diverged, and doc-only/skip-shared-files restraint when concurrent sessions are live.
 
 **How it works**: The `ITERATE` state's finding-emission path always re-probes before a finding is written to the registry. Each authority adapter's `standardSource` includes its own known-deviation list. `REMEDIATE` is a separate, optional state that never runs as part of the default `REPORT`-terminated loop.
 <!-- /ANCHOR:adr-005-decision -->
@@ -879,7 +879,7 @@ Not applicable — this ADR records an open question with no owning phase yet pr
 <!-- ANCHOR:adr-010-context -->
 ### Context
 
-Phase 001's research confirmed that not every loop primitive lives in the shared `.opencode/skills/system-deep-loop/runtime/scripts/` directory — `reduce-state.cjs` is mode-local at `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs`, not shared runtime. This means "reuse the deep-review runtime engine" is not a single uniform import; some primitives are truly shared (`loop-lock.cjs`, `convergence.cjs`, `verify-iteration.cjs`, `upsert.cjs`) and at least one (`reduce-state.cjs`) is mode-local and would need to be forked or promoted to shared.
+A scaffold-time read (recorded in phase 001's research plan and re-confirmed when that gate executes) shows that not every loop primitive lives in the shared `.opencode/skills/system-deep-loop/runtime/scripts/` directory — `reduce-state.cjs` is mode-local at `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs`, not shared runtime. This means "reuse the deep-review runtime engine" is not a single uniform import; some primitives are truly shared (`loop-lock.cjs`, `convergence.cjs`, `verify-iteration.cjs`, `upsert.cjs`) and at least one (`reduce-state.cjs`) is mode-local and would need to be forked or promoted to shared.
 
 ### Constraints
 
@@ -913,7 +913,7 @@ Not yet scored — the concrete list of mode-local scripts `deep-alignment` actu
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Phase 008 assumes full shared-runtime reuse without checking, then discovers `reduce-state.cjs` is mode-local mid-implementation | M | Phase 001's confirmed finding is cited directly in this ADR so phase 008 starts from the correct fact, not an assumption |
+| Phase 008 assumes full shared-runtime reuse without checking, then discovers `reduce-state.cjs` is mode-local mid-implementation | M | The scaffold-time finding is cited directly in this ADR, and phase 001's research gate re-confirms the script inventory before phase 008 starts, so phase 008 starts from a verified fact, not an assumption |
 <!-- /ANCHOR:adr-010-consequences -->
 
 ---

@@ -77,8 +77,8 @@ Not delivered. This is a planning stub; the scaffold plan will be executed in a 
 | Decision | Why |
 |----------|-----|
 | Model every planned artifact directly on `deep-review`'s real files rather than inventing a new shape | Deep-alignment is designed as a peer packet that maximally reuses the review/runtime engine, so drifting from that shape would create avoidable work for the adapter phases (005-007) |
-| Default `runtimeLoopType` to `"review"` in the plan, flagged pending 002 | `convergence.cjs` validates `runtimeLoopType` against exactly `research\|review\|council`; reusing `"review"` needs no runtime change, matching the reuse-first design intent |
-| Leave the `scripts/` directory decision open | Whether adapters need authority-specific scripts is a 002-architecture-decision call, not something this scaffold phase should preempt |
+| Default `runtimeLoopType` to `"review"` in the plan, flagged pending the ADR-010 reuse-boundary resolution (phase 008) | `convergence.cjs` validates `runtimeLoopType` against exactly `research\|review\|council`; reusing `"review"` needs no runtime change, matching the reuse-first design intent |
+| Leave the `scripts/` directory decision open | Whether adapters need authority-specific scripts is the ADR-010 reuse-boundary call (owned by phase 008), not something this scaffold phase should preempt |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -98,7 +98,7 @@ Not delivered. This is a planning stub; the scaffold plan will be executed in a 
 ## Known Limitations
 
 1. **This phase is a plan, not an implementation.** No SKILL.md, mode-registry.json edit, hub-router.json edit, directory skeleton, or changelog entry exists yet. The plan cannot be marked executed until 002-architecture-decision is approved and a future implementation pass runs Phase 2 and Phase 3 of `tasks.md`.
-2. **Two fields remain genuinely undecided.** `runtimeLoopType`/`backendKind` final values and the `scripts/` directory question are explicitly deferred to 002-architecture-decision; this phase does not fabricate answers for them.
+2. **Two fields remain genuinely undecided.** `runtimeLoopType`/`backendKind` final values and the `scripts/` directory question follow the reuse-boundary resolution recorded as open ADR-010 in 002-architecture-decision and owned by phase 008; this phase does not fabricate answers for them.
 <!-- /ANCHOR:limitations -->
 
 ---

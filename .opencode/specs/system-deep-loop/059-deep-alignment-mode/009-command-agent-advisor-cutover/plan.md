@@ -64,7 +64,7 @@ This phase plans, not builds, the five outward-facing artifacts that make `deep-
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 003's mode-packet skeleton plan (out of this agent's scope) names where the command and agent files will physically live.
+- [ ] Phase 003's mode-packet skeleton plan names where the command and agent files will physically live.
 - [ ] Phases 006-008's adapter and runtime-wiring plans are available so the agent contract's per-lane findings shape is concrete.
 - [ ] `/deep:review` and `@deep-review`'s current shape is confirmed unchanged since this plan was authored.
 
@@ -125,14 +125,14 @@ Required inventories:
 - [ ] Re-read `.opencode/commands/deep/review.md` and `.claude/agents/deep-review.md` for currency.
 - [ ] Re-read `.opencode/skills/system-deep-loop/mode-registry.json`'s discriminator/advisorRoutingContract documentation for currency.
 
-### Phase 2: Core Implementation
+### Phase 2: Core Implementation (future execution pass — not run in this phase)
 - [ ] Author `/deep:alignment` command and its `:auto`/`:confirm` asset YAMLs, once phase 003's skeleton exists.
 - [ ] Author `@deep-alignment` leaf agent, translating the per-dimension deep-review contract to the per-lane alignment contract per the Architecture section above.
 - [ ] Add the `mode-registry.json` entry.
 - [ ] Add the advisor projection-map entries and confirm the drift-guard test passes.
 - [ ] Author the behavior benchmark folder and its three minimum scenarios.
 
-### Phase 3: Verification
+### Phase 3: Verification (future execution pass — not run in this phase)
 - [ ] Run `parent-skill-check.cjs` in STRICT mode against the real `deep-alignment` skill directory.
 - [ ] Run `validate.sh .opencode/specs/system-deep-loop/059-deep-alignment-mode --recursive --strict` across the full packet.
 - [ ] Run the behavior benchmark and confirm all three minimum scenarios behave as expected.
@@ -158,8 +158,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 003 mode-packet skeleton | Internal, sibling phase (out of this agent's scope) | Not yet built | Command/agent files have no confirmed home until this lands. |
-| Phases 006-008 adapters + runtime wiring (this agent's own prior work) | Internal | Planned, not yet built | The agent's per-lane findings contract cannot be finalized in code until these are real. |
+| Phase 003 mode-packet skeleton | Internal, sibling phase | Not yet built | Command/agent files have no confirmed home until this lands. |
+| Phases 006-008 adapters + runtime wiring | Internal | Planned, not yet built | The agent's per-lane findings contract cannot be finalized in code until these are real. |
 | Advisor drift-guard test | Internal CI gate | Existing, live | If the new registry entry and both projection maps are not added together, this test fails and blocks cutover. |
 <!-- /ANCHOR:dependencies -->
 

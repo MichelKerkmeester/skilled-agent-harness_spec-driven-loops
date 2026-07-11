@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Draft phase 008 iterate/converge/report implementation plan"
-    next_safe_action: "Await 002 decision-record ruling on loopType reuse"
+    next_safe_action: "Close ADR-010 loopType call at this phase's execution"
     blockers: []
     key_files:
       - ".opencode/specs/system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report/spec.md"
@@ -55,7 +55,7 @@ FAILURE MODES:
 | **Testing** | None runnable in this phase - reducer/convergence unit tests are planned build-out work for whichever phase actually implements the code |
 
 ### Overview
-This phase plans, not builds, the wiring between `deep-alignment` and the existing deep-loop runtime. The central open item is `convergence.cjs`'s hard-validated loopType enum (`research`/`review`/`council`/`context` only, at lines 659-660) - this plan names both reuse paths and their tradeoffs so the 002 decision-record can rule without re-deriving the constraint. Everything else (locking, reducer shape, corpus partitioning, state layout) is planned concretely enough to build once that one decision lands.
+This phase plans, not builds, the wiring between `deep-alignment` and the existing deep-loop runtime. The central open item is `convergence.cjs`'s hard-validated loopType enum (`research`/`review`/`council`/`context` only, at lines 659-660) - this plan names both reuse paths and their tradeoffs so this phase's execution pass can close open ADR-010 (002's decision-record) without re-deriving the constraint. Everything else (locking, reducer shape, corpus partitioning, state layout) is planned concretely enough to build once that one decision lands.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -69,7 +69,7 @@ This phase plans, not builds, the wiring between `deep-alignment` and the existi
 - [ ] The real `review/` state-layout precedent is confirmed current.
 
 ### Definition of Done
-- [ ] The convergence reuse-vs-extend tradeoff is documented well enough for the 002 decision-record to rule without further research.
+- [ ] The convergence reuse-vs-extend tradeoff is documented well enough to close open ADR-010 without further research.
 - [ ] The alignment-report reducer's per-lane shape is concrete enough to code from.
 - [ ] `checklist.md` items are reviewed and either checked with evidence or explicitly deferred.
 <!-- /ANCHOR:quality-gates -->
@@ -89,9 +89,10 @@ Thin specialization over the existing deep-loop runtime, per the design brief: "
 - **Alignment-report reducer**: a new `reduce-state.cjs`-pattern script mirroring `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs` lines 21-24 - replace `REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability']` with a `REQUIRED_LANES` list resolved from phase 004's scoping output, keep the `SEVERITY_WEIGHTS = { P0: 10.0, P1: 5.0, P2: 1.0 }` pattern for per-lane composite scoring, and emit a per-lane verdict (PASS/CONDITIONAL/FAIL, mirroring the deep-review verdict table) rolled into one `alignment-report.md`.
 - **`verify-iteration.cjs` extension**: add `alignment: 'deep-alignment'` to `LEAF_BY_LOOP` and `alignment: 'deep-alignment-state.jsonl'` to `STATE_LOG_BY_LOOP` at `.opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` lines 17-24, so the after-dispatch leaf-reliability check covers the new loop type instead of silently passing it through unchecked.
 - **Corpus partitioning**: distribute discovered artifacts across iterations lane-by-lane (each iteration covers one lane's next unaudited slice, rotating lanes round-robin), distinct from deep-review's fixed four-dimension rotation, because deep-alignment's "dimensions" are lanes of variable artifact count rather than four fixed named categories.
+- **REMEDIATE hook (optional, gated)**: the default loop is read-only and terminates at REPORT; an operator-gated remediation pass (ADR-005 invariant 4) attaches after REPORT as a separate opt-in state transition planned here, inheriting the alignment contract's safety discipline (scoped staging only — never `git add -A` — worktree-when-diverged, doc-only/skip-shared-files when concurrent sessions are live).
 
 ### Data Flow
-The loop acquires the lock, resolves the next corpus slice from the partitioning plan, dispatches a leaf iteration against that slice (adapter `discover()`/`check()` already ran or run inline), appends findings to the JSONL state log, the reducer refreshes the per-lane registry and `alignment-report.md`, `convergence.cjs` (or its option-B equivalent) computes the composite convergence score, and the loop either continues, stops on convergence, or stops on max-iterations.
+The loop acquires the lock, resolves the next corpus slice from the partitioning plan, dispatches a leaf iteration against that slice (adapter `discover()`/`check()` already ran or run inline), appends findings to the JSONL state log, the reducer refreshes the per-lane registry and `alignment-report.md`, `convergence.cjs` (or its option-B equivalent) computes the composite convergence score, and the loop either continues, stops on convergence, or stops on max-iterations. The optional gated REMEDIATE pass, when the operator explicitly invokes it, attaches only after a REPORT-terminated run — never as part of the default read-only loop.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -124,14 +125,14 @@ Required inventories:
 - [ ] Re-read `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` lines 640-780 and confirm the loopType constraint and `computeCompositeScore` branching are unchanged.
 - [ ] Re-read `.opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` lines 1-40 and confirm `LEAF_BY_LOOP`/`STATE_LOG_BY_LOOP` shape is unchanged.
 
-### Phase 2: Core Implementation
-- [ ] Escalate the convergence reuse-vs-extend decision to the 002 decision-record (this phase only prepares the tradeoff writeup; the decision-record adjudicates it).
+### Phase 2: Core Implementation (future execution pass — not run in this phase)
+- [ ] Decide the convergence reuse-vs-extend option and record it by closing/amending open ADR-010 in 002's decision-record (the scaffold prepared the tradeoff writeup; this phase's execution makes the call).
 - [ ] Implement the alignment-report reducer per the Architecture section above, once the loopType decision lands.
 - [ ] Add the `verify-iteration.cjs` map entries per the Architecture section above.
 - [ ] Implement corpus partitioning (lane round-robin) for iteration dispatch.
 - [ ] Stand up the `alignment/` state-file layout mirroring the real `review/` precedent: state log, findings registry, strategy doc, config, `iterations/`, `deltas/`, `prompts/`, `dispatch-receipts/`, lock file.
 
-### Phase 3: Verification
+### Phase 3: Verification (future execution pass — not run in this phase)
 - [ ] Dry-run the lock acquire/status/refresh/release cycle against a scratch `alignment/` directory.
 - [ ] Dry-run the reducer against a synthetic multi-lane findings set and confirm a FAIL lane is not averaged away by converged lanes.
 - [ ] Confirm the loop reports "nothing to converge" cleanly when zero lanes resolve.
@@ -156,9 +157,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 002 decision-record ruling on loopType reuse | Internal | Not yet ruled | Reducer and convergence wiring cannot be finalized in code until this lands; this phase's plan stays valid either way. |
+| ADR-010 closure (loopType reuse-vs-extend, owned by this phase's execution pass) | Internal | Open | Reducer and convergence wiring cannot be finalized in code until this phase's execution closes ADR-010; this phase's plan stays valid either way. |
 | Phases 005-007 adapter `check()` output shape | Internal | Planned in parallel | If the shape shifts, the reducer plan needs reconciliation before build. |
-| Phase 004 scoping/discovery lane list | Internal | Owned by a sibling phase, not this agent | Corpus partitioning needs a concrete lane list to round-robin over; the plan here is shape-only until that lands. |
+| Phase 004 scoping/discovery lane list | Internal | Owned by phase 004 | Corpus partitioning needs a concrete lane list to round-robin over; the plan here is shape-only until that lands. |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -166,7 +167,7 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: The 002 decision-record picks a convergence reuse option that materially conflicts with this plan's assumptions, or the `review/` state-layout precedent has since changed shape.
+- **Trigger**: The ADR-010 closure picks a convergence reuse option that materially conflicts with this plan's assumptions, or the `review/` state-layout precedent has since changed shape.
 - **Procedure**: Re-open this phase's plan, re-cite the current runtime scripts and the current precedent layout, and update `spec.md`/`plan.md` before resuming implementation.
 <!-- /ANCHOR:rollback -->
 
@@ -184,7 +185,7 @@ Phase 1.5 (n/a) ──────┘
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
 | Setup | Adapter output shape available | Core |
-| Core | Setup, 002 decision-record ruling | Verify |
+| Core | Setup, ADR-010 closure (this phase's execution) | Verify |
 | Verify | Core | Phase 009 (command/agent/advisor/cutover) |
 <!-- /ANCHOR:phase-deps -->
 
@@ -196,9 +197,9 @@ Phase 1.5 (n/a) ──────┘
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
 | Setup | Low | Re-read 3 runtime scripts |
-| Core Implementation | High | New reducer + partitioning + one runtime touch-point, gated on an external decision |
+| Core Implementation | High | New reducer + partitioning + one runtime touch-point, gated on closing ADR-010 first |
 | Verification | Medium | Lock cycle + reducer dry-run + zero-lane edge case |
-| **Total** | | **High (gated on the 002 decision-record before code can land)** |
+| **Total** | | **High (gated on closing open ADR-010 before code can land)** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -207,7 +208,7 @@ Phase 1.5 (n/a) ──────┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] 002 decision-record ruling captured before core implementation starts.
+- [ ] ADR-010 closure recorded in 002's decision-record before core implementation starts.
 - [ ] Reducer output format agreed before first convergence run ships.
 
 ### Rollback Procedure

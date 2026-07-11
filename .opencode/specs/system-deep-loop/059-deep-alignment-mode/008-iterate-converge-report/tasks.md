@@ -14,8 +14,9 @@ _memory:
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Draft phase 008 task list"
-    next_safe_action: "Start T004 loop-lock dry-run"
-    blockers: []
+    next_safe_action: "Start T001 once adapter phases land"
+    blockers:
+      - "005-007 adapter phases not yet executed"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -60,11 +61,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [B] Escalate the convergence reuse-vs-extend tradeoff to the 002 decision-record (blocked on that packet ruling)
+<!-- These tasks belong to a future execution pass, gated behind the 005-007 adapter phases. -->
+
+- [ ] T004 [B] Decide the convergence reuse-vs-extend option and close/amend open ADR-010 in 002's decision-record (owned by this phase's execution pass)
 - [ ] T005 [B] Implement the alignment-report reducer per the reduce-state.cjs-mirrored plan (blocked on T004)
-- [ ] T006 [P] Add `LEAF_BY_LOOP`/`STATE_LOG_BY_LOOP` entries for `alignment` in verify-iteration.cjs
-- [ ] T007 Implement lane-round-robin corpus partitioning for iteration dispatch
-- [ ] T008 Stand up the `alignment/` state-file layout mirroring the real `review/` precedent
+- [ ] T006 [B] Add `LEAF_BY_LOOP`/`STATE_LOG_BY_LOOP` entries for `alignment` in verify-iteration.cjs
+- [ ] T007 [B] Implement lane-round-robin corpus partitioning for iteration dispatch
+- [ ] T008 [B] Stand up the `alignment/` state-file layout mirroring the real `review/` precedent
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,10 +75,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Dry-run the loop-lock acquire/status/refresh/release cycle against a scratch `alignment/` directory
-- [ ] T010 Dry-run the reducer against a synthetic multi-lane findings set; confirm a FAIL lane is not averaged away
-- [ ] T011 Confirm "nothing to converge" reporting when zero lanes resolve
-- [ ] T012 Update `checklist.md` with evidence for each verified item
+<!-- These tasks belong to a future execution pass, gated behind the 005-007 adapter phases. -->
+
+- [ ] T009 [B] Dry-run the loop-lock acquire/status/refresh/release cycle against a scratch `alignment/` directory
+- [ ] T010 [B] Dry-run the reducer against a synthetic multi-lane findings set; confirm a FAIL lane is not averaged away
+- [ ] T011 [B] Confirm "nothing to converge" reporting when zero lanes resolve
+- [ ] T012 [B] Update `checklist.md` with evidence for each verified item
 <!-- /ANCHOR:phase-3 -->
 
 ---

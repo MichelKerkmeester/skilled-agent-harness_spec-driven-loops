@@ -14,8 +14,9 @@ _memory:
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Draft phase 007 task list"
-    next_safe_action: "Start T004 discover surface-router integration"
-    blockers: []
+    next_safe_action: "Start T001 once 006 adapters land"
+    blockers:
+      - "006-adapter-sk-git-and-sk-design not yet executed"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -60,13 +61,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Implement `discover(scope)` calling the shared sk-code surface router (adapters/sk-code-adapter)
-- [ ] T005 Implement `standardSource(authority)` loading surface-appropriate reference sets (adapters/sk-code-adapter)
-- [ ] T006 Implement `check()` layer 1 deterministic pass invoking `verify_alignment_drift.py` for OPENCODE surface (adapters/sk-code-adapter)
-- [ ] T007 [P] Implement `check()` layer 1 deterministic pass invoking the Webflow minification/verification script chain for WEBFLOW surface (adapters/sk-code-adapter)
-- [ ] T008 Implement `check()` layer 2 reasoning-agent pass with evidence citation and layer tagging (adapters/sk-code-adapter)
-- [ ] T009 Author the accepted-deviation set seeded from `verify_alignment_drift.py`'s skip-path allowlist functions
-- [ ] T010 Write the honest automatability-limits statement into adapter documentation
+<!-- These tasks belong to a future execution pass, gated behind 006's adapter shapes. -->
+
+- [ ] T004 [B] Implement `discover(scope)` calling the shared sk-code surface router (adapters/sk-code-adapter)
+- [ ] T005 [B] Implement `standardSource(authority)` loading surface-appropriate reference sets (adapters/sk-code-adapter)
+- [ ] T006 [B] Implement `check()` layer 1 deterministic pass invoking `verify_alignment_drift.py` for OPENCODE surface (adapters/sk-code-adapter)
+- [ ] T007 [B] Implement `check()` layer 1 deterministic pass invoking the Webflow minification/verification script chain for WEBFLOW surface (adapters/sk-code-adapter)
+- [ ] T008 [B] Implement `check()` layer 2 reasoning-agent pass with evidence citation and layer tagging (adapters/sk-code-adapter)
+- [ ] T009 [B] Author the accepted-deviation set seeded from `verify_alignment_drift.py`'s skip-path allowlist functions
+- [ ] T010 [B] Write the honest automatability-limits statement into adapter documentation (closing or amending open ADR-008 with evidence)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,10 +77,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Dry-run layer 1 against a known OPENCODE-surface file; confirm findings translate with `layer: deterministic`
-- [ ] T012 Dry-run layer 2 against a file with an intentional pattern deviation; confirm file:line evidence and `layer: reasoning-agent` tag
-- [ ] T013 Confirm `surface-undetected` reporting on `UNKNOWN` detection instead of a guessed surface
-- [ ] T014 Update `checklist.md` with evidence for each verified item
+<!-- These tasks belong to a future execution pass, gated behind 006's adapter shapes. -->
+
+- [ ] T011 [B] Dry-run layer 1 against a known OPENCODE-surface file; confirm findings translate with `layer: deterministic`
+- [ ] T012 [B] Dry-run layer 2 against a file with an intentional pattern deviation; confirm file:line evidence and `layer: reasoning-agent` tag
+- [ ] T013 [B] Confirm `surface-undetected` reporting on `UNKNOWN` detection instead of a guessed surface
+- [ ] T014 [B] Update `checklist.md` with evidence for each verified item
 <!-- /ANCHOR:phase-3 -->
 
 ---

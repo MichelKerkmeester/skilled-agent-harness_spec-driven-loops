@@ -28,7 +28,7 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "Whether the suppression list ships as a static reference doc or a queryable rules file (pending 002-architecture-decision)"
+      - "Whether the suppression list ships as a static reference doc or a queryable rules file (phase-local build detail; ADR-005 only requires a per-authority list)"
     answered_questions: []
 status: "planned"
 ---
@@ -69,7 +69,7 @@ FAILURE MODES:
 
 This is **Phase 5** of the `deep-alignment` deep-loop mode specification (`.opencode/specs/system-deep-loop/059-deep-alignment-mode/`).
 
-**Scope Boundary**: this phase plans the sk-doc adapter — the first, reference implementation of the pluggable adapter contract from phase 004 (`{ discover(scope)->artifacts, standardSource(authority)->templates+rules, check(artifact,rules)->findings }`). It is sequenced first, ahead of sk-git/sk-design (006) and sk-code (007), because sk-doc conformance checking is already fully deterministic and machine-scannable: a real 10-iteration manual run of this exact check (`.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/`) already proved the approach against `cli-external` and `mcp-tooling`. This phase productizes that proven manual process into the adapter contract; it does not repeat the manual review.
+**Scope Boundary**: this phase plans the sk-doc adapter — the first, reference implementation of the pluggable adapter contract (`{ discover(scope)->artifacts, standardSource(authority)->templates+rules, check(artifact,rules)->findings }`, frozen in phase 002 as ADR-003 and detailed for discovery in phase 004). It is sequenced first, ahead of sk-git/sk-design (006) and sk-code (007), because sk-doc conformance checking is already fully deterministic and machine-scannable: a real 10-iteration manual run of this exact check (`.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/`) already proved the approach against `cli-external` and `mcp-tooling`. This phase productizes that proven manual process into the adapter contract; it does not repeat the manual review.
 
 **Dependencies**:
 - Phase 004's `discover(scope)->artifacts` contract must be locked before this adapter's `discover()` half can be specified against it.
@@ -123,7 +123,7 @@ Specify the sk-doc adapter so a future implementation pass can wrap the existing
 |-----------|-------------|-------------|
 | `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md` | Create (future) | The `standardSource`/`check`/`discover` specification for sk-doc, deferred to the implementation pass |
 | `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md` | Create (future) | The seeded known-deviation suppression list, deferred to the implementation pass |
-| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs` (or equivalent) | Create (future) | The adapter's executable wiring to `validate_document.py`/`extract_structure.py`, deferred to the implementation pass and to 002's `scripts/` directory decision |
+| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs` (or equivalent) | Create (future) | The adapter's executable wiring to `validate_document.py`/`extract_structure.py`, deferred to the implementation pass and to the reuse-boundary resolution (open ADR-010, phase 008) that settles the `scripts/` directory question |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -222,7 +222,7 @@ Specify the sk-doc adapter so a future implementation pass can wrap the existing
 
 ## 10. OPEN QUESTIONS
 
-- Whether the suppression list ships as a static reference doc or a queryable rules file the adapter loads programmatically — resolved in 002-architecture-decision.
+- Whether the suppression list ships as a static reference doc or a queryable rules file the adapter loads programmatically — a phase-local design detail settled at this phase's execution pass; ADR-005 locks only that a per-authority list exists, not its file format.
 <!-- /ANCHOR:questions -->
 
 ---

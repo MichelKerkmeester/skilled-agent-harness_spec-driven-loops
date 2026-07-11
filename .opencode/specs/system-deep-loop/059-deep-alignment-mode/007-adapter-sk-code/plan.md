@@ -55,7 +55,7 @@ FAILURE MODES:
 | **Testing** | None runnable in this phase - adapter unit tests are planned build-out work for whichever phase actually implements the code |
 
 ### Overview
-This phase plans, not builds, the sk-code authority adapter against the phase-005 contract. The plan's central decision is layering: reuse the sk-code hub's own shared surface router for detection, run the surface's existing deterministic pattern-drift checker first, and only add reasoning-agent judgment for what that checker does not cover - with every finding tagged by producing layer so the automatability limits stay honest rather than implied-away.
+This phase plans, not builds, the sk-code authority adapter against the ADR-003 adapter contract (phase-005 reference shape). The plan's central decision is layering: reuse the sk-code hub's own shared surface router for detection, run the surface's existing deterministic pattern-drift checker first, and only add reasoning-agent judgment for what that checker does not cover - with every finding tagged by producing layer so the automatability limits stay honest rather than implied-away.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -80,7 +80,7 @@ This phase plans, not builds, the sk-code authority adapter against the phase-00
 ## 3. ARCHITECTURE
 
 ### Pattern
-Pluggable adapter over the phase-005 contract, with an internal two-layer `check()`: a deterministic pass (existing tooling) followed by a bounded reasoning-agent pass (evidence-cited, layer-tagged).
+Pluggable adapter over the ADR-003 contract (phase-005 reference shape), with an internal two-layer `check()`: a deterministic pass (existing tooling) followed by a bounded reasoning-agent pass (evidence-cited, layer-tagged).
 
 ### Key Components
 - **`discover()`**: resolves a lane's scope into code artifact paths, then calls the sk-code hub's shared surface router (`.opencode/skills/sk-code/shared/references/stack_detection.md`) to classify each artifact `WEBFLOW`, `OPENCODE`, `UNKNOWN`, with `MOTION_DEV` recorded as a supplemental overlay signal per `.opencode/skills/sk-code/shared/references/smart_routing.md` line 60's marker table. This reuses detection rather than reimplementing it, per `.opencode/skills/sk-code/SKILL.md` lines 52-122 (the router discriminator and routing rule).
@@ -123,14 +123,14 @@ Required inventories:
 - [ ] Re-read `.opencode/skills/sk-code/shared/references/smart_routing.md` and `stack_detection.md` and confirm surface-detection precedence has not changed.
 - [ ] Re-read `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py` and confirm its `--root` CLI contract and `Finding` shape are current.
 
-### Phase 2: Core Implementation
+### Phase 2: Core Implementation (future execution pass — not run in this phase)
 - [ ] Implement `discover()` calling the shared surface router per the Architecture section above.
 - [ ] Implement `standardSource()` loading the surface-appropriate reference set.
 - [ ] Implement `check()` layer 1 (deterministic) invoking `verify_alignment_drift.py` for OPENCODE and the Webflow script chain for WEBFLOW, translating outputs into layer-tagged findings.
 - [ ] Implement `check()` layer 2 (reasoning-agent) covering conformance dimensions layer 1 does not, with evidence citation and layer tagging on every finding.
 - [ ] Author the accepted-deviation set, seeded from `verify_alignment_drift.py`'s existing skip-path allowlist functions.
 
-### Phase 3: Verification
+### Phase 3: Verification (future execution pass — not run in this phase)
 - [ ] Dry-run layer 1 against a known OPENCODE-surface file and confirm findings translate correctly with `layer: deterministic`.
 - [ ] Dry-run layer 2 against a file with an intentional pattern deviation and confirm the finding cites file:line evidence with `layer: reasoning-agent`.
 - [ ] Confirm the adapter reports `surface-undetected` rather than guessing when detection returns `UNKNOWN`.

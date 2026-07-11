@@ -88,8 +88,8 @@ Thin mode-packet, peer of `deep-review` under the `system-deep-loop` parent hub.
 
 **mode-registry.json entry** — modeled on the `"review"` mode block at `.opencode/skills/system-deep-loop/mode-registry.json:55-73`:
 - `workflowMode: "alignment"`.
-- `runtimeLoopType`: planned default `"review"` (reuse, per the registry's own discriminator note at `.opencode/skills/system-deep-loop/mode-registry.json:5` that this field is "Validated against exactly research|review|council"); final value confirmed in 002.
-- `backendKind`: planned default `"runtime-loop-type"` (reuse the runtime engine, not `improvement-host` or `external-adapter`); final value confirmed in 002.
+- `runtimeLoopType`: planned default `"review"` (reuse, per the registry's own discriminator note at `.opencode/skills/system-deep-loop/mode-registry.json:5` that this field is "Validated against exactly research|review|council"); final value follows the reuse-boundary resolution (open ADR-010, owned by phase 008).
+- `backendKind`: planned default `"runtime-loop-type"` (reuse the runtime engine, not `improvement-host` or `external-adapter`); final value follows the reuse-boundary resolution (open ADR-010, owned by phase 008).
 - `packetKind: "workflow"`, `packet: "deep-alignment"`, `command: "/deep:alignment"`, `agent: "deep-alignment"`, `artifactRoot: "alignment/"`.
 - `toolSurface`: read-only allowed set for the default (non-remediation) run, per the alignment contract.
 - `aliases`: alignment-conformance vocabulary (e.g. "alignment lane", "conformance review", "standard authority check") distinct from deep-review's review-aliases class, to avoid router collision.
@@ -101,7 +101,7 @@ Thin mode-packet, peer of `deep-review` under the `system-deep-loop` parent hub.
 
 **Prompt-pack reuse** — `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts` renders iteration prompts for research/review/council today; the plan is to pass an alignment-specific section set (lane authority, artifact-class, known-deviation suppression list, verify-first instruction) through the same renderer rather than forking a parallel template file.
 
-**Directory skeleton** — modeled on the real `.opencode/skills/system-deep-loop/deep-review/` tree: `assets/` (mode-specific config/dashboard assets), `references/` (protocol/state/convergence docs), `changelog/` (per-version entries). A `scripts/` directory is deferred until 002 resolves whether adapters get authority-specific scripts or stay data-only.
+**Directory skeleton** — modeled on the real `.opencode/skills/system-deep-loop/deep-review/` tree: `assets/` (mode-specific config/dashboard assets), `references/` (protocol/state/convergence docs), `changelog/` (per-version entries). A `scripts/` directory is deferred until the reuse boundary is resolved (open ADR-010, owned by phase 008) — that resolution decides whether adapters get authority-specific scripts or stay data-only.
 
 **Changelog entry** — `deep-alignment/changelog/v1.0.0.0.md`, plain-H2, no TOC, matching `.opencode/skills/system-deep-loop/deep-review/changelog/v1.0.0.0.md:1-10`.
 
@@ -160,7 +160,7 @@ Not applicable. This phase is not a bug fix and touches zero production surfaces
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 002-architecture-decision | Internal | Pending | Mode-registry field values and the scripts/ directory question stay unresolved |
+| 002-architecture-decision | Internal | Pending | The frozen packet shape is unavailable; the loopType/scripts questions additionally track open ADR-010 (phase 008) |
 | `.opencode/skills/system-deep-loop/deep-review/` (structural precedent) | Internal | Green | Without it, the scaffold plan would have no grounded shape to model |
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts` | Internal | Green | Without it, alignment iterations would need a forked prompt renderer |
 <!-- /ANCHOR:dependencies -->
