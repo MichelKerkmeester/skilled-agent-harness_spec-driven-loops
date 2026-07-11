@@ -23,6 +23,9 @@ function pathExists(filePath: string): boolean {
 
 function walk(startPath: string, predicate: (filePath: string) => boolean, results: string[] = []): string[] {
   if (!pathExists(startPath)) return results;
+  // Scanner-scope guard: never descend into vendored node_modules. Those trees are gitignored
+  // dependency code, not our public surface, and otherwise yield spurious dependency-README hits.
+  if (startPath.split(/[\\/]/u).includes('node_modules')) return results;
   const stat = fs.statSync(startPath);
   if (stat.isFile()) {
     if (predicate(startPath)) results.push(startPath);
@@ -91,18 +94,55 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   if (rel.endsWith('.opencode/skills/system-spec-kit/templates/README.md')) return true;
   if (/mcp_server\/lib\/config\/capability-flags\.ts|lib\/config\/capability-flags\.ts|\bcapability-flags\.ts\b|from ['"][^'"]*capability-flags['"]|require\(['"][^'"]*capability-flags(?:\.js)?['"]\)/iu.test(hit.text)) return true;
   if (!isExtra && isLegacyPhaseCleanupDebt(filePath)) return true;
-  // 013 phases 004+005 — /doctor router consolidation legitimately uses "manifest" vocabulary
-  // (route manifest + manifest-driven dispatch). Council + deep-loop graph surface docs likewise
-  // reference "manifest"/"kind" vocab in their canonical descriptions.
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/maintenance/03-doctor-router-and-manifest-dispatch.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/governance/07-council-graph-upsert-status-query.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/governance/09-deep-loop-graph-upsert-status-query.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/doctor-commands/01-category-overview.md')) return true;
-  if (rel.includes('.opencode/skills/system-spec-kit/manual_testing_playbook/governance/274-council-graph-')) return true;
-  if (rel.includes('.opencode/skills/system-spec-kit/manual_testing_playbook/governance/276-deep-loop-graph-')) return true;
+  // --- Concrete technical identifiers that are never private taxonomy (schema fields, real
+  // filenames/modules, MCP protocol) — allowed by the specific token they match, not by whole
+  // surface, so an unrelated banned word on another line still fails. ---
+  // Provenance schema: `source_kind` column / `source-kind` provenance attribute (schema v35).
+  if (/source[_ -]kind/iu.test(hit.text)) return true;
+  // Real manifest artifacts: `manifest.json`/`.tsv`/`.ts` files (incl. `*-manifest.json`), embedder
+  // `manifest.{backend,dim,name}` fields, and the CHECKPOINT_MANIFEST / getManifest identifiers.
+  if (/\bmanifest\.(?:json|tsv|ts|backend|dim|name)\b|\bgetManifest\b|\bCHECKPOINT_MANIFEST\b/u.test(hit.text)) return true;
+  // Roadmap capability-flags config module/type + doc, the `mk-goal-capabilities` test, and the
+  // `capabilities` JSON-RPC / config field — MCP protocol + config surface, not workflow taxonomy.
+  if (/capability-flags|MemoryRoadmapCapabilityFlags|roadmap capability flags|mk-goal-capabilities|"capabilities"\s*:|capabilities\s*:\s*\{/iu.test(hit.text)) return true;
+  // /doctor router consolidation feature docs legitimately use "manifest" vocabulary (route
+  // manifest + manifest-driven dispatch) — a real command surface, not private taxonomy.
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/maintenance/doctor-router-and-manifest-dispatch.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/doctor-commands/category-overview.md')) return true;
   if (rel.startsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/411-causal-graph-link-quality.md')) return true;
+  // Causal-graph edge records document a "kind" schema field (edge kind, e.g. "semantic") in their
+  // JSON shape — a data-schema field name, not workflow taxonomy.
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/causal-graph-link-quality.md')) return true;
   if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md')) return true;
+  // Feature-catalog / playbook docs that legitimately describe real "manifest" artifacts in prose:
+  // the CLI-manifest modules (code-index / skill-advisor / spec-memory), the checkpoint manifest,
+  // the embedder registry manifest, the `templates/manifest/` source-template dir, per-document
+  // "manifest anchors" (validator output), and cross-reference links to the doctor-router doc.
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/lifecycle/checkpoint-restore-checkpointrestore.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/maintenance/memory-retention-sweep.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/maintenance/startup-runtime-compatibility-guards.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/code-index-cli-daemon-backed-surface.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/embedder-list-registry-inventory.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/checkpoint-v2-file-snapshot-roundtrip.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/cli-list-tools-parity.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/embedder-set-dry-run-and-validation.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/review-packet-type-marker-gated-validation.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/examples/README.md')) return true;
+  // Docs that use "kind" as a JSON/YAML schema-enum field (verified values: document / code /
+  // structured_data / startup / unresolved), a CLI grouping label, or incidental plain English.
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/context-preservation/session-resume.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/context-preservation/session-start-startup.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/encoding-intent-capture-at-index-time-r16.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/memory-maintenance-and-migration-clis.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/dist-freshness-guard.md')) return true;
+  // Docs describing real "capabilities" surfaces: the MCP server public-API barrel exposes MCP
+  // server capabilities, and the spec-memory plugin status tool reports its capability boundaries.
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/mcp-server-public-api-barrel.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-memory-plugin.md')) return true;
   return false;
 }
 

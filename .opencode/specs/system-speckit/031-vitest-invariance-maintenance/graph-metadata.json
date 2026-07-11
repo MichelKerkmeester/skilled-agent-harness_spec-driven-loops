@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/031-vitest-invariance-maintenance",
+  "spec_folder": "system-speckit/031-vitest-invariance-maintenance",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "vitest",
+      "invariance",
+      "allowlist maintenance",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "adr-006 exclusion assumption superseded",
+      "system-spec-kit de-numbered 5149f3abe5"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "vitest",
+      "invariance",
+      "allowlist",
+      "maintenance",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "adr-006"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts",
+      "scripts/tests/outsourced-agent-handback-docs.vitest.ts",
+      "mcp_server/tests/feature-flag-reference-docs.vitest.ts",
+      "scripts/tests/workflow-invariance.vitest.ts",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "outsourced-agent-handback-docs.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feature-flag-reference-docs.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-invariance.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Commit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Return",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Downstream",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Commit `5149f3abe5` (\"refactor(system-spec-kit): de-number 699 catalog+playbook snippet files\") renamed 699 system-spec-kit catalog and playbook snippet files, stripping the `NNN-` numeric prefixes",
+    "created_at": "2026-07-11T20:32:10.199Z",
+    "last_save_at": "2026-07-11T20:39:46.935Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f47c864b3223c44c24061bdc86d97989dba8fcc341df75f83fb7c2449a7f1953",
+    "source_doc_hashes": {
+      "spec.md": "7b9d10694408b766469beab53ed3c9cd3104b0431a26a308fb4d396ed10c1548",
+      "plan.md": "6864bf50250792a77642e53a1563c33ee7428dfcb28a4982976328d926d4adc5",
+      "tasks.md": "edf5472ce737d27b7f81c40ff73cd850dd688ae857acfa6f16d2ef7803848dfe",
+      "checklist.md": "6fd4ecb3f429aed7d09b557ae6742af72bed8f9429aedc85ff2914c28eccdb1f",
+      "decision-record.md": "15269f217a46b074cb5674d1e766d0c7c0c6249425170482c20f31c886ac74bd",
+      "implementation-summary.md": "3ea80c582d96eab7d15295b698235e510ce84474398ff9ba6f12cafe5122fc5a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

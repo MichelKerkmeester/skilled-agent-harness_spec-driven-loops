@@ -464,6 +464,12 @@ At the end of your response, include a structured handback inside delimiters:
   "user_prompts": ["<verbatim caller prompt>"],
   "observations": ["<key finding 1>", "<key finding 2>"],
   "recent_context": ["<recent change 1>", "<recent change 2>"],
+  "recentContext": [
+    {
+      "request": "<compatibility alias for callers still emitting camelCase>",
+      "learning": "<same semantics as recent_context>"
+    }
+  ],
   "FILES": [
     {
       "path": "<absolute or repo-rooted path>",
@@ -483,6 +489,10 @@ The calling AI extracts this block via regex
 /<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/
 and feeds it to generate-context.js.
 ```
+
+Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
+
+Minimum viable payload: a specific `sessionSummary`, at least one meaningful `recent_context` / `recentContext` entry or equivalent observation, and `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known.
 
 ---
 
