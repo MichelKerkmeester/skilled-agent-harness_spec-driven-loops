@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Phase 5: adapter-sk-doc"
-description: "Verification Date: pending — this phase has not been executed."
+description: "Verification Date: 2026-07-11 — build complete, every applicable item verified with real evidence."
 trigger_phrases:
   - "sk-doc adapter checklist"
   - "alignment reference adapter checklist"
@@ -9,18 +9,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/005-adapter-sk-doc"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T14:16:14Z"
     last_updated_by: "claude"
-    recent_action: "Drafted verification checklist, nothing verified yet"
-    next_safe_action: "Verify CHK-001 once planning items land"
-    blockers:
-      - "004-scoping-and-discovery not yet executed"
-    key_files: []
+    recent_action: "All P0/P1 items verified with real evidence; build complete"
+    next_safe_action: "None; phase closed"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-005-adapter-sk-doc"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,7 +57,7 @@ FAILURE MODES:
 
 - [x] CHK-001 [P0] Requirements documented in spec.md — Evidence: `spec.md` §4 REQ-001 through REQ-005, `[File: spec.md]`.
 - [x] CHK-002 [P0] Technical approach defined in plan.md — Evidence: `plan.md` §3 Architecture, `[File: plan.md]`.
-- [ ] CHK-003 [P1] Dependencies identified and available [Deferred: identified in plan.md §6, but 004-scoping-and-discovery has not executed, so they are not yet available]
+- [x] CHK-003 [P1] Dependencies identified and available — Evidence: `plan.md` §6 Dependencies table; 004-scoping-and-discovery executed concurrently during this phase's own build and its real contract files were used (with one in-flight correction), `[File: plan.md]`.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -63,10 +65,10 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks [Deferred: no code exists yet — this phase is planning-only]
-- [ ] CHK-011 [P0] No console errors or warnings [Deferred: no runtime exists yet — this phase is planning-only]
-- [ ] CHK-012 [P1] Error handling implemented [Deferred: implemented in the future execution pass, per plan.md §4 Phase 2]
-- [ ] CHK-013 [P1] Code follows project patterns [Deferred: implemented in the future execution pass]
+- [x] CHK-010 [P0] Code passes lint/format checks — Evidence: `node --check .../scripts/adapters/sk-doc.cjs` exits clean, `[File: sk-doc.cjs]`.
+- [x] CHK-011 [P0] No console errors or warnings — Evidence: live `discover`/`check`/`standard-source` CLI runs and `require()`-based module calls produced clean JSON, no uncaught exceptions, `[File: sk-doc.cjs]`.
+- [x] CHK-012 [P1] Error handling implemented — Evidence: `runValidateDocument()`/`runExtractStructure()` catch `spawnSync` launch failures and unparseable output distinctly from artifact-level findings (`adapter-error` type); `normalizeArtifact()` throws on a malformed artifact input; `discover()` throws on a malformed `scope`, `[File: sk-doc.cjs]`.
+- [x] CHK-013 [P1] Code follows project patterns — Evidence: `spawnSync('python3', ...)` pattern mirrors `deep-improvement/scripts/skill-benchmark/advisor-probe.cjs`; `SKILLS_DIR` path computation mirrors the same file; numbered-section banner comments match repo convention, `[File: sk-doc.cjs]`.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -74,10 +76,10 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met [Deferred: acceptance criteria in spec.md §4 apply to the future execution pass, not this planning phase]
-- [ ] CHK-021 [P0] Manual testing complete [Deferred: no runnable artifact exists yet]
-- [ ] CHK-022 [P1] Edge cases tested [Deferred: edge cases are documented in spec.md §L2 Edge Cases; testing happens in the future execution pass]
-- [ ] CHK-023 [P1] Error scenarios validated [Deferred: validated in the future execution pass]
+- [x] CHK-020 [P0] All acceptance criteria met — Evidence: REQ-001 through REQ-005 (`spec.md` §4) each satisfied with cited real-file evidence in `sk_doc_adapter.md`/`sk_doc_known_deviations.md`, `[File: spec.md]`.
+- [x] CHK-021 [P0] Manual testing complete — Evidence: `discover`/`check`/`standard-source` CLI subcommands and the module `require()` interface all exercised live against real repo files, `[File: sk-doc.cjs]`.
+- [x] CHK-022 [P1] Edge cases tested — Evidence: empty/non-existent scope path (silent zero-coverage), malformed scope object (throws), `branchRange` scope (empty result, no throw), unknown `standardSource()` authority (throws), glob negation (`!pattern`), `[File: sk-doc.cjs]`.
+- [x] CHK-023 [P1] Error scenarios validated — Evidence: `validate_document.py` exit-2 path live-reproduced and correctly surfaced as `P1 could-not-validate` rather than a crash; reality-alignment claims without `reprobeEvidence` correctly produce zero findings, `[File: sk-doc.cjs]`.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -99,8 +101,8 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets — Evidence: no code file exists under this phase; only markdown spec docs were authored, `[File: spec.md]`.
-- [ ] CHK-031 [P0] Input validation implemented [Deferred: the adapter's own artifact-path handling, when it wraps `validate_document.py`, is a future execution-pass item]
+- [x] CHK-030 [P0] No hardcoded secrets — Evidence: `sk-doc.cjs` contains no credentials, tokens, or hardcoded secrets; all paths are computed relative to `__dirname`, `[File: sk-doc.cjs]`.
+- [x] CHK-031 [P0] Input validation implemented — Evidence: `isInsideRepoRoot()` guards every discovered path against escaping the repo root (NFR-S01, defense-in-depth behind `scripts/scoping.cjs`'s own primary enforcement); `discover()` throws on a malformed `scope`; `normalizeArtifact()` throws on a malformed `check()` artifact input, `[File: sk-doc.cjs]`.
 - [ ] CHK-032 [P1] Auth/authz working correctly [N/A: this phase adds no auth surface]
 <!-- /ANCHOR:security -->
 
@@ -109,9 +111,9 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized — Evidence: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` authored together in this phase and cross-reference each other, `[File: tasks.md]`.
-- [ ] CHK-041 [P1] Code comments adequate [N/A: no code in scope]
-- [ ] CHK-042 [P2] README updated (if applicable) [Deferred: no README exists for the not-yet-scaffolded deep-alignment packet]
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized — Evidence: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` updated together at build completion and cross-reference each other and `sk_doc_adapter.md`, `[File: tasks.md]`.
+- [x] CHK-041 [P1] Code comments adequate — Evidence: every non-trivial function in `sk-doc.cjs` carries a JSDoc block; the classifier, subprocess wrappers, and reality-alignment pass-through each cite the exact source lines they port or wrap, `[File: sk-doc.cjs]`.
+- [ ] CHK-042 [P2] README updated (if applicable) [N/A: `deep-alignment` has no top-level README — its SKILL.md is the equivalent entry point, and this phase's own scope-lock (`spec.md` §3 Files to Change) does not name it]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -119,8 +121,8 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Temp files in scratch/ only — Evidence: zero temp files created; only the five canonical spec-kit docs exist in this phase folder, `[File: spec.md]`.
-- [x] CHK-051 [P1] scratch/ cleaned before completion — Evidence: no `scratch/` directory was created by this phase, `[File: tasks.md]`.
+- [x] CHK-050 [P1] Temp files in scratch/ only — Evidence: the only throwaway verification file (`verify-suppression-logic.cjs`, a fixture reproducing the suppression-matching logic against 6 cases) was written to the session scratchpad, not this phase folder or the skill packet, `[File: spec.md]`.
+- [x] CHK-051 [P1] scratch/ cleaned before completion — Evidence: no `scratch/` directory was created inside this phase folder or the skill packet; the scratchpad fixture lives outside both, `[File: tasks.md]`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -130,11 +132,11 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 3/12 |
-| P1 Items | 13 | 3/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 8/8 applicable (100%); 4 N/A (CHK-FIX-001 to 004 — not a fix packet) |
+| P1 Items | 13 | 9/9 applicable (100%); 4 N/A (CHK-FIX-005 to 007 — not a fix packet; CHK-032 — no auth surface) |
+| P2 Items | 1 | 0/0 applicable; 1 N/A (CHK-042 — no README in scope) |
 
-**Verification Date**: 2026-07-11 (planning-phase items only; execution-pass items remain deferred pending 004-scoping-and-discovery)
+**Verification Date**: 2026-07-11 — full build complete; every applicable item verified with real, cited evidence. CHK-FIX-* items stay N/A because this phase is a new-feature build, not a bug fix (no finding class, no producer/consumer inventory applies).
 <!-- /ANCHOR:summary -->
 
 ---

@@ -39,18 +39,25 @@
       "dry-run"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/state_machine_wiring.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
-      ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machine-wiring.test.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/assets/deep_alignment_config_template.json",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      ".claude/agents/deep-review.md",
       "checklist.md",
+      "implementation-summary.md",
+      ".claude/agents/deep-review.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,15 +67,57 @@
         "source": "derived"
       },
       {
+        "name": "reduce-alignment-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "state_machine_wiring.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/state_machine_wiring.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
         "name": "verify-iteration.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
         "source": "derived"
       },
       {
-        "name": "reduce-state.cjs",
+        "name": "partition-corpus.cjs",
         "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "remediate-hook.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "state-machine-wiring.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machine-wiring.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_alignment_config_template.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/assets/deep_alignment_config_template.json",
         "source": "derived"
       },
       {
@@ -84,9 +133,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -96,21 +151,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "loop-lock.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -154,53 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Thin",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`deep-alignment` is specified to MAXIMALLY reuse the deep-review/runtime engine rather than rebuild a loop from scratch, but the runtime's convergence entrypoint hard-validates its loop type: `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` lines 659-660 accept only `\"research\"`, `\"review\"`, `\"council\"`, or `\"context\"` and throw an input error otherwise",
     "created_at": "2026-07-11T06:20:25.587Z",
-    "last_save_at": "2026-07-11T09:57:49.770Z",
+    "last_save_at": "2026-07-11T16:32:39.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +217,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82f4ca30936a76bfda47825f55ba4524893b258efb1cd63676430499a16de998",
+    "source_fingerprint": "sha256:8fd12bf2dedafffc052bf715eedc8a501728eb22b46fa15211551adbb4a76051",
     "source_doc_hashes": {
-      "spec.md": "8e7199472a2e1dd184ff930c65c4c9c1fc4cf6baf4188e0a0bd41fb75aad42ef",
-      "plan.md": "670c0d1b7b29339082c7b15594821b9b87e98e0ab3468568ae8301b78e0f93f0",
-      "tasks.md": "cda5d807d80afda29b5d275789157cdd7688295c424515776762fcc5f8ba4f29",
-      "checklist.md": "23ada3b46ad61bd06c9d901a9513e1b9110cacd097a080a93f0e8d278f99d7ea",
-      "implementation-summary.md": "c5a50a50f10645f38e34df1d1d1d8aca17d77a6cdf2210d1fc30aa483593730b"
+      "spec.md": "d61ddd70e3a232cdcd25be834a23cbb4452b9ce45283cd0e910cc7fc8b1d8627",
+      "plan.md": "f3bdfdc030135fe1681c5aed5b4130a7c2af86f21be1de866a0c171c6378ce6e",
+      "tasks.md": "00de93b88a72355224462ee0770362c2ad84adf40fe32f207ee38975dd06552c",
+      "checklist.md": "15d400ed2d81d22447f820be4295df9a3db28e4aff31bad0643a7730528c90a8",
+      "implementation-summary.md": "bea80f39a80475a6e9d16e2b37cf5fb4c01e5aec55b0c67e310cae07ca22519f"
     },
     "last_active_child_id": null,
     "last_active_at": null

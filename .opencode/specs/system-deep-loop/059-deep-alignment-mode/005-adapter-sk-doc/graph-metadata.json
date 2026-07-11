@@ -39,17 +39,22 @@
       "verify-first"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-doc/scripts/validate_document.py",
       ".opencode/skills/sk-doc/scripts/extract_structure.py",
       ".opencode/skills/sk-doc/shared/references/core_standards.md",
       ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/iterations/iteration-001.md",
-      "tasks.md",
-      "spec.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md",
       "plan.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-cli/README.md",
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -77,15 +82,27 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "sk_doc_adapter.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "sk_doc_known_deviations.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "discover_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md",
         "source": "derived"
       },
       {
@@ -95,15 +112,33 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-cli/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -165,41 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Document Quality Index",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`deep-alignment` has no reference adapter yet",
     "created_at": "2026-07-11T06:22:12.777Z",
-    "last_save_at": "2026-07-11T09:57:48.911Z",
+    "last_save_at": "2026-07-11T14:16:57.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da17fa46cb8ada6895bb1a262d40dc9faffde4f4d2fe0bde124321dc85651a52",
+    "source_fingerprint": "sha256:548419090fc19f50a688d3e87409ea76be53917a59e91753dfba364495b68df6",
     "source_doc_hashes": {
-      "spec.md": "a85b515226caa4254ad23e76de86e5689f4323eb1df5503f983ffd7b77461e94",
-      "plan.md": "298b16289fa6ba23193fa2b18c38d6c3851085838235e979861c877924a59d22",
-      "tasks.md": "44b04675b752f3894e1d3ae8d655ba9c88f687fae783c794bca72576f74594a9",
-      "checklist.md": "0a8677b2af020055f6c2c484e4344a9456aa4079f3cb014b144f856d41a04aae",
-      "implementation-summary.md": "d0af548bce261f57dcd9005e60d703004c793444ece91b9a790affeba39caa95"
+      "spec.md": "c6a06c505b9140279d640ec147d4d018f9b90028384035e03890de2dffec0ff2",
+      "plan.md": "d36eb96b4d2d6a15a06ceae17334c0971f6fe69ce27ee859dc28c6183e0d64f4",
+      "tasks.md": "7a66935b9e144baffa03a37af545060d4da9a32129aa538c9115baa3ff5b831c",
+      "checklist.md": "ddcedbc91650cd9850539081d76a5c466d76e89a7950b3cccf9dff8463e1d4eb",
+      "implementation-summary.md": "641d45ef1ff14ffffad7e37a6aa794b4f89534ce340c82ecbc0c280fa7cf46c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

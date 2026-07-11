@@ -8,25 +8,28 @@ trigger_phrases:
   - "adapter contract sk-git sk-design"
 importance_tier: "normal"
 contextType: "general"
-status: "planned"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/006-adapter-sk-git-and-sk-design"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T14:51:52Z"
     last_updated_by: "claude"
-    recent_action: "Draft phase 006 adapter implementation plan"
-    next_safe_action: "Reconcile against phase 005 adapter contract once it lands"
+    recent_action: "Executed Phase 2-3: built and dry-verified both adapters"
+    next_safe_action: "Hand off to phase 007 sk-code adapter build"
     blockers: []
     key_files:
-      - ".opencode/specs/system-deep-loop/059-deep-alignment-mode/006-adapter-sk-git-and-sk-design/spec.md"
-      - ".opencode/specs/system-deep-loop/059-deep-alignment-mode/006-adapter-sk-git-and-sk-design/tasks.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-git.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_git_adapter.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_adapter.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-059-006"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Phase 005 contract signature confirmed compatible: both new adapters export discover/standardSource/check matching sk-doc.cjs's exact shape"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 6: adapter-sk-git-and-sk-design
@@ -64,14 +67,14 @@ This phase plans, not builds, two `deep-alignment` authority adapters against th
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 005's adapter contract shape is stated (even if not yet built) and this phase's two adapter plans match its signature.
-- [ ] sk-git's commit-message grammar and branch-naming rule are cited by real path and line range.
-- [ ] sk-design's v1 static boundary (no live-render) is explicit in both `spec.md` and this plan.
+- [x] Phase 005's adapter contract shape is stated (even if not yet built) and this phase's two adapter plans match its signature. Evidence: `sk-git.cjs`/`sk-design.cjs` both export `{discover, standardSource, check, ...}`, matching `sk-doc.cjs`'s exact module shape (`module.exports` block in each file).
+- [x] sk-git's commit-message grammar and branch-naming rule are cited by real path and line range. Evidence: `.opencode/skills/sk-git/SKILL.md:310-457` (grammar), `:298` (branch naming), `:319-326` (exemption list) — re-verified by direct Read, cited in `sk_git_adapter.md` Section 1 and `sk-git.cjs`'s `standardSource()`.
+- [x] sk-design's v1 static boundary (no live-render) is explicit in both `spec.md` and this plan. Evidence: `sk_design_adapter.md` Section 1 "Static-Only v1 Boundary — HARD SCOPE LIMIT"; `sk-design.cjs`'s `standardSource()` returns `scopeBoundary: 'static-only-v1'`.
 
 ### Definition of Done
-- [ ] Both adapter plans name `discover()`, `standardSource()`, and `check()` behavior concretely enough to code from.
-- [ ] Both adapter plans name their known-deviation list location.
-- [ ] `checklist.md` items are reviewed and either checked with evidence or explicitly deferred.
+- [x] Both adapter plans name `discover()`, `standardSource()`, and `check()` behavior concretely enough to code from. Superseded: both are coded and dry-verified, not merely named.
+- [x] Both adapter plans name their known-deviation list location. Evidence: `sk_git_known_deviations.md`, `sk_design_known_deviations.md`, both under `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/`, both parsed live by each adapter's `loadKnownDeviations()`.
+- [x] `checklist.md` items are reviewed and either checked with evidence or explicitly deferred. See `checklist.md` for the item-by-item evidence.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -119,20 +122,20 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm phase 005's adapter contract signature is available (or use the design brief's locked contract if 005 has not yet landed).
-- [ ] Re-read `.opencode/skills/sk-git/SKILL.md` §"Commit Message Logic" and confirm the type/scope/summary grammar has not changed since this plan was authored.
-- [ ] Re-read `.opencode/skills/sk-design/design-audit/references/audit_contract.md` and `design-md-generator/references/design_md_format.md` and confirm the v1 static rule set is unchanged.
+- [x] Confirm phase 005's adapter contract signature is available (or use the design brief's locked contract if 005 has not yet landed). Evidence: `sk-doc.cjs` read in full; both new adapters copy its exact module shape.
+- [x] Re-read `.opencode/skills/sk-git/SKILL.md` §"Commit Message Logic" and confirm the type/scope/summary grammar has not changed since this plan was authored. Evidence: re-read 2026-07-11, grammar at lines 310-457 confirmed current, cross-checked against `.opencode/scripts/git-hooks/commit-msg`'s live regex.
+- [x] Re-read `.opencode/skills/sk-design/design-audit/references/audit_contract.md` and `design-md-generator/references/design_md_format.md` and confirm the v1 static rule set is unchanged. Evidence: both re-read 2026-07-11 in full; `accessibility_performance.md` and `anti_patterns_production.md` also read (not originally named here, added as additional real static rubric inputs).
 
-### Phase 2: Core Implementation (future execution pass — not run in this phase)
-- [ ] Implement the sk-git adapter's `discover()`, `standardSource()`, and `check()` per the Architecture section above.
-- [ ] Implement the sk-design adapter's `discover()`, `standardSource()`, and `check()` per the Architecture section above, enforcing the v1 static-only boundary.
-- [ ] Author each adapter's known-deviation/accepted-convention list (per-authority per ADR-005; default to an authority-local JSON/Markdown file colocated with the adapter, format settled at build time).
-- [ ] Wire each adapter's VERIFY-FIRST re-probe: re-run `git log`/`git show` for sk-git findings, re-read the current `DESIGN.md`/`tokens.json` for sk-design findings, immediately before a finding is written.
+### Phase 2: Core Implementation
+- [x] Implement the sk-git adapter's `discover()`, `standardSource()`, and `check()` per the Architecture section above. Evidence: `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-git.cjs`, `node --check` clean.
+- [x] Implement the sk-design adapter's `discover()`, `standardSource()`, and `check()` per the Architecture section above, enforcing the v1 static-only boundary. Evidence: `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs`, `node --check` clean, `scopeBoundary: 'static-only-v1'` in `standardSource()` output.
+- [x] Author each adapter's known-deviation/accepted-convention list (per-authority per ADR-005; default to an authority-local JSON/Markdown file colocated with the adapter, format settled at build time). Evidence: `sk_git_known_deviations.md` (4 entries), `sk_design_known_deviations.md` (3 entries), both Markdown-with-fenced-json, matching phase 005's `sk_doc_known_deviations.md` shape.
+- [x] Wire each adapter's VERIFY-FIRST re-probe: re-run `git log`/`git show` for sk-git findings, re-read the current `DESIGN.md`/`tokens.json` for sk-design findings, immediately before a finding is written. Evidence: `sk-git.cjs`'s `checkCommit()`/`checkBranch()` open with a live existence re-confirmation before reading any content; `sk-design.cjs`'s `checkDesignDoc()` reads file content fresh on every call (no discover-time cache exists to go stale).
 
-### Phase 3: Verification (future execution pass — not run in this phase)
-- [ ] Dry-run the sk-git adapter against a known commit range and confirm it does not flag exempt Git-generated subjects.
-- [ ] Dry-run the sk-design adapter against a repo `DESIGN.md` and confirm findings cite a real rubric dimension, not a generic critique.
-- [ ] Confirm both adapters return the documented "empty scope" result instead of erroring on zero artifacts.
+### Phase 3: Verification
+- [x] Dry-run the sk-git adapter against a known commit range and confirm it does not flag exempt Git-generated subjects. Evidence: `node sk-git.cjs discover HEAD~15 HEAD` enumerated real commits; `isExemptSubject("Merge remote-tracking branch origin/main")` returns `true`; `check --commit fd9fc599be...` (a real pre-hook legacy-scope commit) correctly suppressed to `[]`.
+- [x] Dry-run the sk-design adapter against a repo `DESIGN.md` and confirm findings cite a real rubric dimension, not a generic critique. Evidence: all 4 real example `DESIGN.md` fixtures pass clean after two real bugs found via this exact dry-run were fixed (see `sk_design_adapter.md` Section 7); `checkAuditRubric()` unit-verified to reject an uncited finding and accept a cited one.
+- [x] Confirm both adapters return the documented "empty scope" result instead of erroring on zero artifacts. Evidence: `sk-git.cjs discover({type:'paths', ...})` (off-label scope for this authority) returns `{artifacts:[], nodes:[]}`; `sk-design.cjs discover({type:'branchRange', ...})` (off-label scope) returns the same empty shape.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -140,11 +143,11 @@ Required inventories:
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | `discover()`/`check()` per adapter | vitest (matching `system-deep-loop/deep-review/scripts/tests/` convention) |
-| Integration | Adapter output feeding the phase-008 alignment-report reducer | Manual dry-run against a real commit range and a real `DESIGN.md` |
-| Manual | Known-deviation suppression behaves as documented | Review adapter output against a deliberately non-conventional but exempted commit |
+| Test Type | Scope | Tools | Status |
+|-----------|-------|-------|--------|
+| Unit | `discover()`/`check()` per adapter | vitest (matching `system-deep-loop/deep-review/scripts/tests/` convention) | **Not built.** No committed vitest suite exists for either adapter — an accepted, named limitation, not a silent gap. This phase's scope lock (`spec.md` Files to Change) names exactly 6 files, none of them a test file; extensive manual/CLI dry-run verification substitutes for it in this phase (see Manual row). A future phase adding a vitest suite can lift the exact fixture cases already exercised below directly. |
+| Integration | Adapter output feeding the phase-008 alignment-report reducer | Manual dry-run against a real commit range and a real `DESIGN.md` | **Not applicable yet** — the phase-008 reducer does not exist. Both adapters' output shape was verified structurally against `discover_contract.md` §4 instead. |
+| Manual | Known-deviation suppression behaves as documented | Review adapter output against a deliberately non-conventional but exempted commit | **Done.** `check --commit fd9fc599be...` (real, pre-hook-installation, legacy packet-path scope) correctly suppressed to `[]`; `check --branch work/021-graph-preservation` and 8 real `work/opencode/*` branches correctly exempt. Plus 2 real bugs found and fixed via this same dry-run discipline — see `sk_git_adapter.md` Section 4.2 and `sk_design_adapter.md` Section 7. |
 <!-- /ANCHOR:testing -->
 
 ---

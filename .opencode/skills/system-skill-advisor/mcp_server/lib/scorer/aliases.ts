@@ -20,7 +20,7 @@ export const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Ob
 
 // BEGIN GENERATED DEEP ROUTING PROJECTION
 /** Hash of the generated deep-loop routing projection embedded below. */
-export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:3247c68909c8f2510ca34af7ce0e02d2a91654f175b583469b225dca6cd6a6a3';
+export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:56e8cceee4c9c7a1eadcdb024e9ac48c9215323bafa96e851abc610dc5a583f0';
 
 const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   'deep-ai-council': [
@@ -31,6 +31,13 @@ const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> =
     'planning council',
     'council deliberation',
     'multi-ai-council',
+  ],
+  'deep-alignment': [
+    'command-spec-kit-deep-alignment',
+    '/deep:alignment',
+    'spec_kit:deep-alignment',
+    'deep-alignment',
+    'sk-deep-alignment',
   ],
   'deep-improvement': [
     'command-spec-kit-deep-agent-improvement',
@@ -56,6 +63,7 @@ const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> =
 
 export const DEEP_MODE_BY_CANONICAL: Readonly<Record<string, string>> = Object.freeze({
   'deep-ai-council': 'ai-council',
+  'deep-alignment': 'alignment',
   'deep-improvement': 'agent-improvement',
   'deep-research': 'research',
   'deep-review': 'review',

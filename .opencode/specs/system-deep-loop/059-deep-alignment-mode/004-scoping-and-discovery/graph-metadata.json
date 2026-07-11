@@ -39,28 +39,43 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/spec.md",
-      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      "tasks.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/scoping_protocol.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/lane_config_schema.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
       "spec.md",
+      "tasks.md",
       "plan.md",
-      ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "scoping_protocol.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/scoping_protocol.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "discover_contract.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane_config_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/lane_config_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoping.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
         "source": "derived"
       },
       {
@@ -70,15 +85,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "upsert.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -94,7 +109,25 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "upsert.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -124,12 +157,6 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Specify",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -137,6 +164,12 @@
       },
       {
         "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,45 +193,15 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Operator",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`deep-alignment` needs to resolve \"what to check, against which standard, and where\" before it can discover any artifact",
     "created_at": "2026-07-11T06:18:37.255Z",
-    "last_save_at": "2026-07-11T09:57:48.624Z",
+    "last_save_at": "2026-07-11T14:24:25.017Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97c18141aba127099b7db0e720b216ee4baaee88e09d2082231bc47381b5f9b9",
+    "source_fingerprint": "sha256:2d252c6fc78029f8a133c10509f913d36b232a78201cda9eeccc098fb15ea28b",
     "source_doc_hashes": {
-      "spec.md": "20e3a2d5a58e14645ec861c72057ad0e082d50903d5864ee1e9d8678aecd8b23",
-      "plan.md": "0e9391af8ed9c510c5a336c1eee38a5416f76a56af235494ee0805a2eabdef83",
-      "tasks.md": "f18923ce0d24740ce7468bd4f9dde34c4ffc230c278ba29d79d154c20817b6a3",
-      "checklist.md": "522322181e01b5f130e07272b7e9a48dd59e75cda78086abc1cc85d0a3656e7f",
-      "implementation-summary.md": "c4271464adfc1edc6127f7c74d3bad1a131a538c70ac85a1db4151b91e83d110"
+      "spec.md": "e2af03ba1b8fe7a2da96e572d64eaa0dc4d8e4c3fac912dbeeb3342e7afe33f8",
+      "plan.md": "ceff0c9fc5b2990a1365ebf69a894c7e32ab934677448573fe67444af545990a",
+      "tasks.md": "7a43fb9b9dd2d13043cb41f35e9a68707cbe991a9038397c950d02c260e43139",
+      "checklist.md": "04ae9f33a42d5254624b2cb803220ba63fb1960695a6c588874e59bd76654dff",
+      "implementation-summary.md": "0af451382b23e57ff8786632078e230770547f11c6acf58f0630cb70b7d9097e"
     },
     "last_active_child_id": null,
     "last_active_at": null

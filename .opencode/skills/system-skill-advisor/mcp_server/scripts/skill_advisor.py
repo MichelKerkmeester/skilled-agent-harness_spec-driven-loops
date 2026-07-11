@@ -281,6 +281,13 @@ SKILL_ALIAS_GROUPS = {
         "deep-council",
         "sk-ai-council",
     },
+    "deep-alignment": {
+        "command-spec-kit-deep-alignment",
+        "/deep:alignment",
+        "deep:alignment",
+        "deep-alignment",
+        "sk-deep-alignment",
+    },
 }
 SKILL_ALIAS_TO_CANONICAL = {
     alias: canonical
@@ -288,7 +295,7 @@ SKILL_ALIAS_TO_CANONICAL = {
     for alias in {canonical, *aliases}
 }
 # BEGIN GENERATED DEEP ROUTING PROJECTION HASH
-DEEP_ROUTING_PROJECTION_HASH = "sha256:3247c68909c8f2510ca34af7ce0e02d2a91654f175b583469b225dca6cd6a6a3"
+DEEP_ROUTING_PROJECTION_HASH = "sha256:56e8cceee4c9c7a1eadcdb024e9ac48c9215323bafa96e851abc610dc5a583f0"
 # END GENERATED DEEP ROUTING PROJECTION HASH
 STRICT_TOPOLOGY_HEADERS = (
     ("DEPENDENCY CYCLE ERRORS", "dependency cycles"),
@@ -2571,15 +2578,18 @@ DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
 # artifact/agent names still present across the live agent and artifact surfaces;
 # DEEP_ROUTING_MODE_BY_KEY projects each onto the merged skill's workflowMode so
 # the routing contract emits {skill: system-deep-loop, mode}. The removed
-# standalone context route is intentionally not a Candidate-3 discriminator, so
-# DEEP_ROUTING_SKILLS stays 3.
+# standalone context route is intentionally not a Candidate-3 discriminator.
+# DEEP_ROUTING_SKILLS grows only when a new mode registers routingClass "lexical"
+# in mode-registry.json and the projection generator (--emit-routing-projection)
+# re-derives this tuple from that registry; it is never hand-edited independently.
 MERGED_DEEP_SKILL_ID = "system-deep-loop"
 # BEGIN GENERATED DEEP ROUTING LEXICAL PROJECTION
-DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
+DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council", "deep-alignment")
 DEEP_ROUTING_MODE_BY_KEY = {
     "deep-review": "review",
     "deep-research": "research",
     "deep-ai-council": "ai-council",
+    "deep-alignment": "alignment",
 }
 # END GENERATED DEEP ROUTING LEXICAL PROJECTION
 

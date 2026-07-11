@@ -9,30 +9,30 @@ trigger_phrases:
   - "coverage dry-run convergence threshold"
 importance_tier: "normal"
 contextType: "general"
-status: "planned"
+status: "implemented"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T16:09:46Z"
     last_updated_by: "claude"
-    recent_action: "Draft phase 008 iterate/converge/report spec"
-    next_safe_action: "ADR-010 LOCKED: relocate reduce-state.cjs to shared runtime; decide loopType call"
-    blockers:
-      - "005-007 adapter phases not yet executed"
+    recent_action: "Built and tested deep-alignment CONVERGE/ITERATE/REMEDIATE wiring scripts"
+    next_safe_action: "Phase 009 builds the command YAML and LEAF agent"
+    blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs"
-      - ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
-      - ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs"
+      - ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/state_machine_wiring.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-059-008"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether convergence.cjs gains a fourth loopType value or deep-alignment reuses review loopType under a distinct artifactRoot (independent of ADR-010, not governed by it)"
-      - "AND vs OR combination of coverage and dry-run-stability convergence signals"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "ADR-010 LOCKED: promote reduce-state.cjs (and any other mode-local primitive this phase needs) from deep-review/scripts/ to shared runtime/scripts/, behavior-preserving relocation"
+      - "ADR-010 PERFORMED: reduce-state.cjs relocated, regression-proven behavior-preserving"
+      - "loopType: recommend Option A for a future phase; ship NFR-R01 fallback now (see state_machine_wiring.md S5)"
+      - "AND/OR: AND; max-iterations independent hard stop (see state_machine_wiring.md S4)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 8: iterate-converge-report
@@ -55,7 +55,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-11 |
 | **Branch** | `system-deep-loop/059-deep-alignment-mode` |
 | **Parent Spec** | ../spec.md |
@@ -86,7 +86,7 @@ Produce an evidence-grounded plan for wiring deep-alignment onto the existing ru
 
 This is **Phase 8** of the `system-deep-loop/059-deep-alignment-mode` mode-packet specification.
 
-**Scope Boundary**: Plan only. No runtime code changes, no mode-packet `SKILL.md`, no scripts ship in this phase. ADR-010 in 002's decision-record is now ACCEPTED: `reduce-state.cjs` (and any other mode-local primitive this phase needs) promotes to shared `runtime/scripts/`, with `deep-review`'s import repointed as a behavior-preserving relocation. The separate `convergence.cjs` loopType enum question (extend the enum vs. reuse `review` under a distinct `artifactRoot`) is NOT governed by ADR-010 — it is this phase's own still-open, build-time implementation call; the scaffold only names its tradeoff.
+**Scope Boundary**: Gate-flipped to executed (operator approval 2026-07-11). No mode-packet `SKILL.md` edits and no command/agent cutover ship in this phase — those stay phase 009's scope. ADR-010 in 002's decision-record is ACCEPTED and PERFORMED: `reduce-state.cjs` promoted to shared `runtime/scripts/`, `deep-review`'s import repointed, behavior-preservation regression-proven (byte-identical pass/fail counts before and after, see `implementation-summary.md`). The separate `convergence.cjs` loopType enum question (extend the enum vs. reuse `review` under a distinct `artifactRoot`) is NOT governed by ADR-010 and remains a recommendation, not an edit, in this phase — `convergence.cjs` itself stays read-only (plan.md's Affected Surfaces table); the actual convergence computation this phase ships is `deep-alignment/scripts/check-convergence.cjs`, spec.md NFR-R01's own sanctioned "documented manual coverage check" fallback. See `references/state_machine_wiring.md` §5 for the full reasoning.
 
 **Dependencies**: Phases 005-007 supply the adapters whose `check()` output this phase's reducer consumes. Phase 004 (scoping-and-discovery) supplies the lane list this phase iterates over.
 
@@ -106,20 +106,19 @@ This is **Phase 8** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 - Plan the optional, operator-gated REMEDIATE hook: the default loop is read-only and terminates at REPORT; a separate opt-in remediation pass (alignment contract invariant 4, ADR-005) attaches after REPORT as a loop-side state transition planned here, inheriting the contract's safety discipline (scoped staging only — never `git add -A` — worktree-when-diverged, doc-only/skip-shared-files when concurrent sessions are live).
 
 ### Out of Scope
-- Implementing any runtime code change - future phase, not this scaffold.
-- The four v1 adapters - owned by phases 005-007.
-- Scoping/discovery (lane resolution) - owned by phase 004.
+- The four v1 adapters - owned by phases 005-007 and 010 (all complete).
+- Scoping/discovery (lane resolution) - owned by phase 004 (complete).
 - Command, agent, and advisor cutover work - owned by phase 009.
-- Resolving the loopType enum extension decision in the scaffold - an independent phase-008 execution-time call, not governed by ADR-010; the scaffold only names the tradeoff.
-- Actually performing the `reduce-state.cjs` relocation - ADR-010 is LOCKED as a decision, but the file move and `deep-review` import repoint are future execution-pass work, not done in this scaffold.
 
-### Files to Change
+### Files to Change (gate opened per operator approval 2026-07-11; all rows below DONE)
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs` (future move target) | Plan only | ADR-010 LOCKED: this phase plans its relocation to `runtime/scripts/reduce-state.cjs`; no move happens here. |
-| `.opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs` (future, not yet created) | Plan only | This phase documents the alignment-report reducer plan as a shared-runtime sibling of the relocated `reduce-state.cjs`; no file is created. |
-| `.opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` (future edit target) | Plan only | This phase names the exact map entries a future phase must add; no edit happens here. |
+| File Path | Change Type | Description | Evidence |
+|-----------|-------------|-------------|----------|
+| `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Move (from `deep-review/scripts/`) | ADR-010 LOCKED, behavior-preserving relocation. `deep-review`'s own imports repointed to the new path. | Diff vs `git show HEAD:.../deep-review/scripts/reduce-state.cjs` is a single-line usage-string change (`reduce-state.cjs:2166`); all 6 consumer files (config, both YAML workflows, both agent copies, cross-package vitest test) already repointed. See `implementation-summary.md` §Verification for the full before/after test-count proof. |
+| `.opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs` | Create | The alignment-report reducer, sibling to the relocated `reduce-state.cjs`, keyed by lane instead of review dimension | 489 lines; `REQUIRED_LANES`-equivalent `resolveRequiredLanes()`, `SEVERITY_WEIGHTS` (identical to `reduce-state.cjs`), `VERDICT_SEVERITY_RANK` (worst-lane-wins rollup). Smoke-tested directly (FAIL lane not averaged away) plus 4/4 wiring tests in `deep-alignment/scripts/tests/state-machine-wiring.test.cjs`. |
+| `.opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` | Modify | Add the `deep-alignment`/`alignment` entry to `LEAF_BY_LOOP`/`STATE_LOG_BY_LOOP` | `LEAF_BY_LOOP` (lines 18-22) and `STATE_LOG_BY_LOOP` (lines 24-28) both carry `alignment: 'deep-alignment'` / `alignment: 'deep-alignment-state.jsonl'`; CLI `--help` usage string also lists `alignment` as an accepted `--loop-type`. |
+| `.opencode/skills/system-deep-loop/deep-alignment/scripts/{check-convergence,partition-corpus,remediate-hook}.cjs` | Create | Single-shot CONVERGE decision, ITERATE corpus-partitioning, and the gated REMEDIATE hook point (state-machine wiring, this phase's own scope per `deep-alignment/scripts/` write authority) | 3 scripts, each with `--help`/`--json`/exit-code CLI surfaces matching this hub's other runtime scripts; exercised via `deep-alignment/scripts/tests/state-machine-wiring.test.cjs` (4/4 passing) plus direct CLI smoke tests. |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/state_machine_wiring.md`, `.opencode/skills/system-deep-loop/deep-alignment/assets/deep_alignment_config_template.json` | Create | State-file layout scaffolding (`alignment/` directory shape mirroring `review/`'s real precedent) and the resolved loopType/AND-OR decisions with full reasoning | See `references/state_machine_wiring.md` Sections 4-5. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -183,7 +182,7 @@ This is **Phase 8** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 - **NFR-S01**: The lock file and state files under `alignment/` resolve only inside the bound spec folder root, mirroring `loop-lock.cjs`'s path-safety guards; no path traversal outside the packet.
 
 ### Reliability
-- **NFR-R01**: If `convergence.cjs` cannot be reused as-is (loopType rejected), the plan's fallback is graceful degradation to a documented manual coverage check, not a silent skip of convergence detection.
+- **NFR-R01**: If `convergence.cjs` cannot be reused as-is (loopType rejected), the plan's fallback is graceful degradation to a documented manual coverage check, not a silent skip of convergence detection. **INVOKED**: this phase's execution pass confirmed `convergence.cjs`'s enum still rejects `"alignment"` (lines 659-660) and that this phase's scope keeps that file read-only; `deep-alignment/scripts/check-convergence.cjs` is the documented manual coverage check this NFR names, not a silent skip.
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -219,11 +218,11 @@ This is **Phase 8** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 
 ## 10. OPEN QUESTIONS
 
-ADR-010 (the mode-local-primitive reuse boundary — `reduce-state.cjs`) is now LOCKED: promote to shared `runtime/scripts/`, `deep-review`'s import repointed, behavior-preserving. The items below remain genuinely open — they are this phase's own build-time implementation calls, not governed by ADR-010:
+All three items below are now RESOLVED by this phase's execution pass. ADR-010 (the mode-local-primitive reuse boundary — `reduce-state.cjs`) was already LOCKED and is now also PERFORMED (promoted to shared `runtime/scripts/`, `deep-review`'s import repointed, behavior-preservation regression-proven).
 
-- Whether `convergence.cjs` gains a fourth loopType value (`"alignment"`) or deep-alignment reuses `"review"` under a distinct `artifactRoot` - TBD, resolved at this phase's execution pass as an independent implementation decision.
-- Whether coverage and dry-run-stability convergence signals combine with AND or OR - TBD, resolve alongside the loopType decision since both affect the same convergence computation.
-- Whether corpus partitioning is lane-round-robin (one lane's artifacts per iteration) or artifact-count-bounded across all lanes - TBD.
+- **loopType (RESOLVED)**: `convergence.cjs` is NOT edited in this phase (plan.md's own Affected Surfaces table marks it read-only analysis here; this phase's write scope does not include it). Option A (extend the enum to add `"alignment"`) is recommended as the architecturally correct follow-up for whichever future phase touches that file — reasoning: `loopType` is part of the coverage-graph's namespace key, so Option B ("reuse `review`") risks colliding with a live `deep-review` run on the same packet without an artificial workaround; and `buildReviewSignals()` depends on `DIMENSION`/`FINDING`/`COVERS`/`RESOLVES` graph conventions with no natural analog to deep-alignment's lane model, so reusing `review` unchanged would silently produce near-zero/garbage composite scores. For THIS phase, spec.md's own NFR-R01 fallback ("a documented manual coverage check") is implemented directly: `deep-alignment/scripts/check-convergence.cjs`. Full reasoning: `references/state_machine_wiring.md` §5.
+- **AND vs OR (RESOLVED)**: AND. Coverage and dry-run-stability must both hold before CONVERGED; max-iterations is an independent hard stop regardless of that pair's state. Reasoning: `references/state_machine_wiring.md` §4.
+- **Corpus partitioning (RESOLVED)**: lane-round-robin, one lane's next unaudited slice per call (bounded by `--batch-size`, default 5), wrapping across lanes in declaration order. Implemented in `deep-alignment/scripts/partition-corpus.cjs`, tested in `deep-alignment/scripts/tests/state-machine-wiring.test.cjs`.
 <!-- /ANCHOR:questions -->
 
 ---

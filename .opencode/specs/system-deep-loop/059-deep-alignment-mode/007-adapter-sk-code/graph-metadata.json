@@ -39,41 +39,44 @@
       "limits"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/SKILL.md",
-      ".opencode/skills/sk-code/shared/references/smart_routing.md",
-      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
-      "spec.md",
-      "plan.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_code_adapter.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_code_known_deviations.md",
       "tasks.md",
+      "plan.md",
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      "spec.md",
       "checklist.md",
       ".opencode/skills/sk-code/shared/references/stack_detection.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "smart_routing.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
-        "source": "derived"
-      },
-      {
-        "name": "verify_alignment_drift.py",
+        "name": "sk-code.cjs",
         "kind": "file",
-        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "sk_code_adapter.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_code_adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk_code_known_deviations.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_code_known_deviations.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -83,9 +86,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "smart_routing.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -98,6 +107,18 @@
         "name": "stack_detection.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/shared/references/stack_detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
         "source": "derived"
       },
       {
@@ -149,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Executed Core",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -161,45 +188,21 @@
         "source": "derived"
       },
       {
+        "name": "Detection Order",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Pattern Pluggable",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`deep-alignment` sequences its v1 authorities by determinism (sk-doc, sk-git, sk-design, then sk-code last) because sk-code conformance is the hardest to automate: \"does this code follow the surface's stack patterns\" is a judgment call, not a fixed grammar",
     "created_at": "2026-07-11T06:17:04.546Z",
-    "last_save_at": "2026-07-11T09:29:08.550Z",
+    "last_save_at": "2026-07-11T14:57:13.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d4ddb112efe1d47a5dbbbd857d307480893dabe0cf06b7f780217f1cd09d350",
+    "source_fingerprint": "sha256:a2aa3fa5a3256d3f3a30232b60d834adbf85609cd1eabaeaebfe1612b000530c",
     "source_doc_hashes": {
-      "spec.md": "cb7b6958b796b7146d0e3e8a3f4f0645b9c7124c415263cd4a2137e1cb5bcb5d",
-      "plan.md": "775483ae23288b8d428e35f24542e184524812a8ca8eb54544a5e44155048117",
-      "tasks.md": "871881236450603cc82067e38a6afb88fc810511ca6a3ca86b9259b7c8975319",
-      "checklist.md": "d8870ac360b47f72f6df9e35433b434120f8cbb5cc4a538477ece637a929e599",
-      "implementation-summary.md": "a6e844119653cb7d6a1220261862f7b4d7b4bfbf99d2dfbf069b503bb71efd70"
+      "spec.md": "4d9cfe6035211a4f97eab81dd6cdd63731a773a331d072138c196de876159da8",
+      "plan.md": "69eeb15541bac3d3d69cf7cf50220a331b7dcf961c63651f5e4f765d6b65e764",
+      "tasks.md": "15a32291fe059c2cc459afb7c856ff69712f0c75bb3e80982a84093e6cf5ea73",
+      "checklist.md": "82c0ab62a815f46e63954fb7d8b30666bb0edbea12d6f8c91c8a3b5aabf4e1c0",
+      "implementation-summary.md": "41e9fd9b199100ff5202264c1c413b120c1170196f050df1d8b71ee9a56a7be6"
     },
     "last_active_child_id": null,
     "last_active_at": null

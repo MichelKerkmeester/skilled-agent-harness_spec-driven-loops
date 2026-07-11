@@ -39,13 +39,19 @@
       "rubric"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
       ".opencode/skills/sk-design/design-md-generator/references/design_md_format.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-git.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_git_adapter.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_git_known_deviations.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_adapter.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_known_deviations.md",
       "spec.md",
       "plan.md",
+      ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
       "tasks.md",
       "checklist.md",
       ".opencode/skills/sk-design/shared/design_token_vocabulary.md",
@@ -60,15 +66,45 @@
         "source": "derived"
       },
       {
-        "name": "audit_contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
-        "source": "derived"
-      },
-      {
         "name": "design_md_format.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/design-md-generator/references/design_md_format.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-git.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-git.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-design.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk_git_adapter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_git_adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk_git_known_deviations.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_git_known_deviations.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk_design_adapter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk_design_known_deviations.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_known_deviations.md",
         "source": "derived"
       },
       {
@@ -81,6 +117,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/audit_contract.md",
         "source": "derived"
       },
       {
@@ -156,51 +198,15 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Executed Phase",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Pluggable",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Open Questions",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`deep-alignment` needs one adapter per standard authority so a lane scoped to `authority=sk-git` or `authority=sk-design` can run",
     "created_at": "2026-07-11T06:10:54.136Z",
-    "last_save_at": "2026-07-11T09:28:09.170Z",
+    "last_save_at": "2026-07-11T15:01:20.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +216,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89f91da7f9ee72af574ad420f7680bf58d517cc9c9e027244a13ba982f680002",
+    "source_fingerprint": "sha256:3f37355974eb225f0183dcf60e99af00f9b857c32e23d431df6a661284bc07e3",
     "source_doc_hashes": {
-      "spec.md": "c3f3ee4f0d76fb3f0099b6adc2482e4019c0df2dc3590baa459d798b36c1adb2",
-      "plan.md": "f06230d9a9ec06dbe5b1e8229aa638699ddf26e8d871b09f52a4cf2446caa425",
-      "tasks.md": "3107191e86d11cc3d9f965622683d32586786af5f40898072957dde188b0718a",
-      "checklist.md": "25d467e1182baa0e1fc01f81c14e1929e20ae0e469d58654e45da8ce2ad83cf4",
-      "implementation-summary.md": "0d2a80d0b3093be81114a414548dcd9eaa8fb19a45ecaba6d09bf16d4e8bc5a5"
+      "spec.md": "eb32f737b452c7523da8133b71b5a5cbce541e8c7ee87c64b662c33728767ad9",
+      "plan.md": "e5666d3cf51395de2c68ee2e7b4cfff92396f51eab39fd3d3922a8f82e16a492",
+      "tasks.md": "4661c81cc30ae5996d8f08c4ad551a5fed312048d2651d5807a22fb0017b2e58",
+      "checklist.md": "5dcc240ddb99dda7c75b5cd05b463aa083962d7dc4f21f21061b4565b8291175",
+      "implementation-summary.md": "7c9d726b474ddb1799d1981faec632fba564785876be982373e0118b5ba78a92"
     },
     "last_active_child_id": null,
     "last_active_at": null

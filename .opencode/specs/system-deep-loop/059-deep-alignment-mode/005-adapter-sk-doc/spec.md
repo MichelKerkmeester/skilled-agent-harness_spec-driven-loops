@@ -11,26 +11,30 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/005-adapter-sk-doc"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T14:16:14Z"
     last_updated_by: "claude"
-    recent_action: "Authored sk-doc reference adapter plan"
-    next_safe_action: "Await 004 gate before execution"
-    blockers:
-      - "004-scoping-and-discovery not yet executed"
+    recent_action: "Built and verified the sk-doc reference adapter; found a live validate_document.py bug"
+    next_safe_action: "Phase complete; 006 can start; validate_document.py bug needs separate operator triage"
+    blockers: []
     key_files:
       - ".opencode/skills/sk-doc/scripts/validate_document.py"
       - ".opencode/skills/sk-doc/scripts/extract_structure.py"
       - ".opencode/skills/sk-doc/shared/references/core_standards.md"
       - ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/iterations/iteration-001.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-005-adapter-sk-doc"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the suppression list ships as a static reference doc or a queryable rules file (phase-local build detail; ADR-005 only requires a per-authority list)"
-    answered_questions: []
-status: "planned"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Suppression list ships as a structured reference doc (sk_doc_known_deviations.md) whose embedded fenced json block IS the queryable rules file sk-doc.cjs's loadKnownDeviations() parses at runtime -- one file, one source of truth, no hand-synced duplicate."
+      - "Phase 004's discover(scope)->artifacts contract landed concurrently during this build (discover_contract.md, lane_config_schema.md, scoping_protocol.md, scripts/scoping.cjs); this adapter's discover() was re-diffed and corrected against the real, live shape (scope is {type,values|from/to}, output is {artifacts,nodes})."
+status: "complete"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 5: adapter-sk-doc
@@ -53,7 +57,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Branch** | `deep-alignment/005-adapter-sk-doc` |
 | **Parent Spec** | ../spec.md |
@@ -69,11 +73,11 @@ FAILURE MODES:
 
 This is **Phase 5** of the `deep-alignment` deep-loop mode specification (`.opencode/specs/system-deep-loop/059-deep-alignment-mode/`).
 
-**Scope Boundary**: this phase plans the sk-doc adapter — the first, reference implementation of the pluggable adapter contract (`{ discover(scope)->artifacts, standardSource(authority)->templates+rules, check(artifact,rules)->findings }`, frozen in phase 002 as ADR-003 and detailed for discovery in phase 004). It is sequenced first, ahead of sk-git/sk-design (006) and sk-code (007), because sk-doc conformance checking is already fully deterministic and machine-scannable: a real 10-iteration manual run of this exact check (`.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/`) already proved the approach against `cli-external` and `mcp-tooling`. This phase productizes that proven manual process into the adapter contract; it does not repeat the manual review.
+**Scope Boundary**: this phase builds the sk-doc adapter — the first, reference implementation of the pluggable adapter contract (`{ discover(scope)->artifacts, standardSource(authority)->templates+rules, check(artifact,rules)->findings }`, frozen in phase 002 as ADR-003 and detailed for discovery in phase 004). It is sequenced first, ahead of sk-git/sk-design (006) and sk-code (007), because sk-doc conformance checking is already fully deterministic and machine-scannable: a real 10-iteration manual run of this exact check (`.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/`) already proved the approach against `cli-external` and `mcp-tooling`. This phase productizes that proven manual process into the adapter contract, as **the template every other adapter follows**; it does not repeat the manual review.
 
 **Dependencies**:
-- Phase 004's `discover(scope)->artifacts` contract must be locked before this adapter's `discover()` half can be specified against it.
-- `.opencode/skills/sk-doc/scripts/validate_document.py` and `.opencode/skills/sk-doc/scripts/extract_structure.py` are the real, currently-shipping standard-authority tools this adapter's `check()` half wraps, not reimplements.
+- Phase 004's `discover(scope)->artifacts` contract executed **concurrently, during this phase's own build** — `discover_contract.md`, `lane_config_schema.md`, `scoping_protocol.md`, and `scripts/scoping.cjs` landed as real files partway through. This adapter's `discover()` was written first against phase 004's approved spec/plan prose, then re-diffed and corrected in place once the real contract landed (see `references/adapters/sk_doc_adapter.md` Section 1's dependency note for the exact reconciliation).
+- `.opencode/skills/sk-doc/scripts/validate_document.py` and `.opencode/skills/sk-doc/scripts/extract_structure.py` are the real, currently-shipping standard-authority tools this adapter's `check()` half wraps, not reimplements. Building and dry-running this adapter surfaced a live, currently-blocking bug in `validate_document.py`'s own `template_rules.json` path resolution (unrelated to this phase's own scope — see `sk_doc_adapter.md` Section 8), which this adapter surfaces honestly as an adapter-error finding rather than papering over.
 - The alignment contract's four invariants (VERIFY-FIRST, KNOWN-DEVIATION SUPPRESSION, READ-ONLY default, GATED remediation) apply to every adapter; this phase is where the sk-doc-specific instance of each invariant gets specified concretely, as the template the later adapters (006, 007) follow.
 
 **Deliverables**:
@@ -111,7 +115,6 @@ Specify the sk-doc adapter so a future implementation pass can wrap the existing
 - Plan `discover(scope)` for the `docs` artifact-class under the `sk-doc` authority: given a scope (paths/globs), enumerate markdown files, classify each by `core_standards.md`'s document-type-detection priority order, and emit the artifact corpus the phase-004 contract expects.
 
 ### Out of Scope
-- Actually building any script, adapter module, or reference doc under `.opencode/skills/system-deep-loop/deep-alignment/` — a future implementation pass owns that, gated behind 004's execution.
 - Any other authority's adapter (sk-git, sk-design in 006; sk-code in 007) — this phase only produces the template they follow.
 - Iteration, convergence, or report generation — phase 008 owns those.
 - Command/agent/advisor cutover — phase 009 owns that.
@@ -121,9 +124,9 @@ Specify the sk-doc adapter so a future implementation pass can wrap the existing
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md` | Create (future) | The `standardSource`/`check`/`discover` specification for sk-doc, deferred to the implementation pass |
-| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md` | Create (future) | The seeded known-deviation suppression list, deferred to the implementation pass |
-| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs` (or equivalent) | Create (future) | The adapter's executable wiring to `validate_document.py`/`extract_structure.py`, deferred to the implementation pass and to the reuse-boundary resolution (open ADR-010, phase 008) that settles the `scripts/` directory question |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md` | Create | The `standardSource`/`check`/`discover` specification for sk-doc |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md` | Create | The seeded known-deviation suppression list |
+| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs` | Create | The adapter's executable wiring to `validate_document.py`/`extract_structure.py` (mode-local for now; phase 008's ADR-010 relocation may move it later, behavior-preserving) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -152,9 +155,9 @@ Specify the sk-doc adapter so a future implementation pass can wrap the existing
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A future implementation pass can wire `validate_document.py` and `extract_structure.py` into the adapter's `check()` without inventing new validation logic — the plan reuses, it does not reimplement.
-- **SC-002**: The known-deviation suppression list, once implemented, prevents the four seeded deviations from ever being raised as findings again, matching the real 130-packet outcome.
-- **SC-003**: No live file under `.opencode/skills/system-deep-loop/deep-alignment/` exists at the close of this phase.
+- **SC-001**: `validate_document.py` and `extract_structure.py` are wired into the adapter's `check()` without inventing new validation logic — confirmed by direct code inspection (`sk-doc.cjs`'s `runValidateDocument`/`runExtractStructure` shell out to the real scripts unmodified) and by live dry-run (`sk-doc.cjs check <path>` against real repo files).
+- **SC-002**: The known-deviation suppression list is implemented and prevents its matched deviations from ever being raised as findings again: the four iteration-001-sourced deviations (TOC ban, compact pointer-card, kebab-case legacy references, cli-family `hard_rules` frontmatter) plus the changelog plain-H2 convention — five entries total, each evidence-cited in `sk_doc_known_deviations.md`. Suppression logic verified against 6 fixture cases (see `implementation-summary.md` Verification), including the boundary the 130-packet review itself drew (compact-pointer-card DQI suppression applies only when the structural gate passed).
+- **SC-003**: The three specified files (`sk_doc_adapter.md`, `sk_doc_known_deviations.md`, `sk-doc.cjs`) exist under `.opencode/skills/system-deep-loop/deep-alignment/`, are syntactically valid (`node --check` clean), and are independently exercisable via CLI dry-run (`discover`/`check`/`standard-source` subcommands) with no phase-008 engine wiring required.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -164,10 +167,10 @@ Specify the sk-doc adapter so a future implementation pass can wrap the existing
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 004's `discover(scope)->artifacts` contract not yet executed | This adapter's `discover()` plan could drift from the final signature | Restate the contract exactly as phase 004 specifies it; do not add sk-doc-specific parameters |
-| Risk | Suppression list becomes a dumping ground for every future false positive instead of staying evidence-seeded | Findings quality erodes over time, the mode stops proving real drift | Require every suppression-list entry to cite a real prior finding or an explicit repo-wide convention, per REQ-003's acceptance criteria |
-| Risk | `check()` treats validator warnings and errors identically, over- or under-weighting severity | Findings severity (P0/P1/P2) would misrepresent real risk | Plan `check()` to map `validate_document.py`'s own exit codes (0/1/2) and warning/error distinctions directly onto P0/P1/P2, not a re-derived scale |
-| Dependency | `validate_document.py`/`extract_structure.py` API stability | If their CLI flags or exit codes change, the adapter wiring plan needs revision | Cite the exact current usage block (`validate_document.py:11-27`) as the contract surface this phase plans against |
+| Dependency | Phase 004's `discover(scope)->artifacts` contract executed concurrently during this phase's build | This adapter's `discover()` was first written against `plan.md`'s prose, which did drift from the final signature (`scope` is an object, not a bare path array; output is `{artifacts,nodes}`, not a bare array) | **Realized and resolved**: re-diffed against the real `discover_contract.md` once it landed, corrected `sk-doc.cjs` in place, re-ran `node --check` and live CLI dry-runs to confirm — see `sk_doc_adapter.md` Section 1 |
+| Risk | Suppression list becomes a dumping ground for every future false positive instead of staying evidence-seeded | Findings quality erodes over time, the mode stops proving real drift | Every suppression-list entry cites a real prior finding or an explicit repo-wide convention, per REQ-003's acceptance criteria — verified: all 5 entries in `sk_doc_known_deviations.md` carry citable evidence, 3 of 5 additionally re-verified as currently "dormant" against live tool behavior rather than asserted from the 130-packet alone |
+| Risk | `check()` treats validator warnings and errors identically, over- or under-weighting severity | Findings severity (P0/P1/P2) would misrepresent real risk | `check()` maps `validate_document.py`'s own exit codes (0/1/2) and warning/error distinctions directly onto P0/P1/P2 — implemented in `checkTemplateConformance()`, per `sk_doc_adapter.md` Section 7's severity table |
+| Dependency | `validate_document.py`/`extract_structure.py` API stability | If their CLI flags or exit codes change, the adapter wiring needs revision | Cited the exact current usage block (`validate_document.py:11-27`) as the contract surface this phase built against — and separately **discovered** `validate_document.py`'s own `template_rules.json` path is currently stale (broken by commit `ee5b348fd1`, unrelated to this phase), documented as a live finding in `sk_doc_adapter.md` Section 8 rather than silently worked around |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -222,7 +225,9 @@ Specify the sk-doc adapter so a future implementation pass can wrap the existing
 
 ## 10. OPEN QUESTIONS
 
-- Whether the suppression list ships as a static reference doc or a queryable rules file the adapter loads programmatically — a phase-local design detail settled at this phase's execution pass; ADR-005 locks only that a per-authority list exists, not its file format.
+None remaining from this phase's own scope. Resolved: the suppression list ships as a structured reference doc (`sk_doc_known_deviations.md`) whose embedded fenced `json` block is the queryable rules file `sk-doc.cjs`'s `loadKnownDeviations()` parses directly at runtime — one file, one source of truth, satisfying ADR-005's per-authority-list requirement without a hand-synced duplicate.
+
+**Follow-up for the operator, not this phase**: `validate_document.py`'s `template_rules.json` path is currently stale (`sk_doc_adapter.md` Section 8) and blocks its own standalone CLI use repo-wide, not just for this adapter. Fixing it is outside this phase's Files to Change (`.opencode/skills/sk-doc/` scripts are not in scope) and is recorded here as a live, actionable finding for a separate packet.
 <!-- /ANCHOR:questions -->
 
 ---

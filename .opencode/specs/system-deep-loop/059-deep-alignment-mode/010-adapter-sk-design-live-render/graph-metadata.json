@@ -39,22 +39,37 @@
       "accessibility"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_live_render_adapter.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs",
       ".opencode/skills/sk-design/shared/design_dispatch_boundary.md",
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+      ".opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md",
       "spec.md",
       "plan.md",
-      ".opencode/skills/sk-design/design-audit/references/accessibility_performance.md",
-      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
+      ".opencode/skills/sk-design/design-audit/references/accessibility_performance.md",
       ".opencode/skills/sk-design/design-audit/references/anti_patterns_production.md",
       ".opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md",
       "checklist.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md",
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "sk_design_live_render_adapter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_live_render_adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-design-live-render.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs",
+        "source": "derived"
+      },
       {
         "name": "design_dispatch_boundary.md",
         "kind": "doc",
@@ -62,9 +77,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "tool_surface.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
+        "path": ".opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md",
         "source": "derived"
       },
       {
@@ -80,15 +95,21 @@
         "source": "derived"
       },
       {
-        "name": "accessibility_performance.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-audit/references/accessibility_performance.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "accessibility_performance.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/accessibility_performance.md",
         "source": "derived"
       },
       {
@@ -110,13 +131,25 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "sk_doc_adapter.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -146,12 +179,6 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Produce",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -170,39 +197,15 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Pluggable",
+        "name": "Code Mode",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "ADR-004 locked `sk-design`'s v1 adapter (phase 006) to static `DESIGN.md`/token checks only — live-render (chrome-devtools-driven) accessibility/performance/responsive audits were explicitly out of that phase's scope",
     "created_at": "2026-07-11T09:41:59.522Z",
-    "last_save_at": "2026-07-11T09:41:59.522Z",
+    "last_save_at": "2026-07-11T14:57:45.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f4fb92f2a1fc3b8f9470cdaa41a42abd708593956cd356d613902c6844c3941",
+    "source_fingerprint": "sha256:40c2438eee186fce5c62984a49053b4e4e18660fb3066c7719a594260ca8c973",
     "source_doc_hashes": {
-      "spec.md": "af9d22f560e1d269285fc66b3d020db948f5d24a9d1e1a56dec0e435b262e9b8",
-      "plan.md": "0c864fb8126529eba35f671b93f02e938288c1e6cb92eab5ba0c9530681ab1a1",
-      "tasks.md": "5370f811549554c73f8dcb58008d01eb23cadb705d0c75dad2f9294020a6d2ef",
-      "checklist.md": "92550922758301e819b4afcf0a6d997a3eb39b83b596a6b2ae843a1a3afe720d",
-      "implementation-summary.md": "e1285bf4f9b604184a2841e2488582bcb39ac8a73ee66c49c4f6a467aa791399"
+      "spec.md": "8deafe942b6ec21cfd9e16953c620981c65fcd8c3d495603a94e09544885736a",
+      "plan.md": "0d98fec9011c56a33bee16dec9361d94767f48ac66e4a9f76ef8fcb1384566c3",
+      "tasks.md": "bc044b47a2fba881acf731afabeb015bfce73da8419334b49e757d46cb0851ed",
+      "checklist.md": "ac10fb13bab021256a18348e7773a37bbcbc9b979efa4bce7afd118dee89db1a",
+      "implementation-summary.md": "7f975f391419f20e5fd1cdf9a08694a1215c7562ee65374ad4392cb574dade4e"
     },
     "last_active_child_id": null,
     "last_active_at": null

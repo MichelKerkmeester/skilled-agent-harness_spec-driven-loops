@@ -9,30 +9,30 @@ trigger_phrases:
   - "static DESIGN.md conformance"
 importance_tier: "normal"
 contextType: "general"
-status: "planned"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/006-adapter-sk-git-and-sk-design"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T14:51:52Z"
     last_updated_by: "claude"
-    recent_action: "Draft phase 006 adapter spec"
-    next_safe_action: "Await 005 reference-adapter shape before execution"
-    blockers:
-      - "005-adapter-sk-doc not yet executed"
+    recent_action: "Built and dry-verified both adapters against live data"
+    next_safe_action: "Hand off to phase 007 sk-code adapter build"
+    blockers: []
     key_files:
       - ".opencode/skills/sk-git/SKILL.md"
-      - ".opencode/skills/sk-design/design-audit/references/audit_contract.md"
       - ".opencode/skills/sk-design/design-md-generator/references/design_md_format.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-git.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-059-006"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "sk-git discover() scope grammar: commit range vs branch-diff vs path glob"
-      - "sk-design known-deviation list storage format (authority-local per ADR-005; file format TBD at build time)"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "sk-design live-render scope: ADR-009 LOCKED, split into peer phase 010-adapter-sk-design-live-render"
+      - "sk-git discover() scope grammar: branchRange for commits, unconditional git branch --list for branch names"
+      - "sk-design known-deviation list storage format: Markdown doc with a fenced json block, same shape as phase 005"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 6: adapter-sk-git-and-sk-design
@@ -55,7 +55,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Branch** | `system-deep-loop/059-deep-alignment-mode` |
 | **Parent Spec** | ../spec.md |
@@ -102,7 +102,7 @@ This is **Phase 6** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 - Document each adapter's VERIFY-FIRST re-probe step (alignment contract invariant 1).
 
 ### Out of Scope
-- Implementing either adapter in code - future phase, not this scaffold.
+- (gate opened per operator approval 2026-07-11; all 6 Files-to-Change rows below built and dry-verified the same day - see Success Criteria for evidence)
 - The sk-doc reference adapter - owned by phase 005.
 - The sk-code adapter - owned by phase 007.
 - Wiring these adapters into the iterate/converge loop - owned by phase 008.
@@ -113,8 +113,12 @@ This is **Phase 6** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-deep-loop/deep-alignment/adapters/sk-git-adapter.*` (future, not yet created) | Plan only | This phase documents the discover/standardSource/check plan; no file is created. |
-| `.opencode/skills/system-deep-loop/deep-alignment/adapters/sk-design-adapter.*` (future, not yet created) | Plan only | This phase documents the discover/standardSource/check plan; no file is created. |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_git_adapter.md` | Create | standardSource/check/discover specification for sk-git, following phase 005's proven template |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_git_known_deviations.md` | Create | sk-git known-deviation suppression list |
+| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-git.cjs` | Create | The real, working sk-git adapter (discover/standardSource/check + CLI) |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_adapter.md` | Create | standardSource/check/discover specification for sk-design (static-only, v1) |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_known_deviations.md` | Create | sk-design known-deviation suppression list |
+| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs` | Create | The real, working sk-design static adapter (discover/standardSource/check + CLI) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -143,9 +147,10 @@ This is **Phase 6** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A future implementer can build the sk-git adapter's `check()` directly from this phase's plan without re-reading `sk-git/SKILL.md` commit rules from scratch.
-- **SC-002**: A future implementer can build the sk-design adapter's `check()` against the phase-005 contract with no ambiguity about the v1 static-only boundary.
-- **SC-003**: Both adapter plans name a known-deviation list location and a verify-first re-probe step.
+- **SC-001**: A future implementer can build the sk-git adapter's `check()` directly from this phase's plan without re-reading `sk-git/SKILL.md` commit rules from scratch. Superseded by an actual build: `scripts/adapters/sk-git.cjs`'s `checkCommitGrammar()` ports `.opencode/scripts/git-hooks/commit-msg`'s structural rules line-for-line (cited inline in code), verified live against real HEAD-range commits (`node sk-git.cjs discover HEAD~15 HEAD`; `check --commit d3ccce15d2` correctly found a genuine 85-char `subject-long` P2) and five synthetic grammar cases (bad subject, vague summary, numeric scope, missing breaking footer, clean message), each producing exactly the expected result.
+- **SC-002**: A future implementer can build the sk-design adapter's `check()` against the phase-005 contract with no ambiguity about the v1 static-only boundary. Superseded by an actual build: `scripts/adapters/sk-design.cjs` reads `DESIGN.md`/`tokens.json` only (NFR-S01, no Playwright/chrome-devtools invocation anywhere in the module), verified clean against all 4 real example fixtures under `.opencode/skills/sk-design/design-md-generator/references/examples/` (`vercel`, `linear`, `stripe`, `supabase`) after two real bugs surfaced by that same dry-run were fixed (`sk_design_adapter.md` Section 7: an `extractSection()` multiline-`$` lookahead bug, and an over-broad frequency-dump regex false-positiving on legitimate CSS-value prose).
+- **SC-003**: Both adapter plans name a known-deviation list location and a verify-first re-probe step. Superseded by an actual build: `sk_git_known_deviations.md` (4 entries, one evidence-cited to a real hook-installation commit `7ea5cfb7c1` plus two real pre-hook legacy-scope commits) and `sk_design_known_deviations.md` (3 entries, all cited to `design_md_format.md` line ranges) both exist under `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/`, and are parsed live by each adapter's `loadKnownDeviations()` (confirmed via `standard-source` CLI output echoing the parsed list back). All 6 files pass `node --check`; both `.cjs` files expose `discover`/`check`/`standard-source` CLI subcommands independently exercisable with no phase-008 engine wiring, matching phase 005's own precedent.
+- **SC-004 (new)**: A genuine false-positive found in `sk-git.cjs` during dry-run (the main checkout's own branch, `skilled/v4.0.0.0`, would have been flagged as a worktree-created branch missing the `wt/` namespace, because `git worktree list --porcelain`'s first block is indistinguishable in shape from a linked worktree) was caught before shipping and fixed by excluding the block whose `worktree` path equals `REPO_ROOT` — re-verified live: `check --branch skilled/v4.0.0.0` and `check --branch main` both return `[]`, with no regression on `check --branch wt/0001-mcp-front-proxy` or `check --branch work/021-graph-preservation`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -212,9 +217,11 @@ This is **Phase 6** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 
 ## 10. OPEN QUESTIONS
 
-- Exact `discover()` scope grammar for sk-git (commit range vs branch-diff vs path glob) - resolve once the non-interactive lane-arg schema (open ADR-011, owned by phase 004) is frozen.
-- The sk-design known-deviation list's storage format - ADR-005 already locks suppression lists as per-authority (each adapter's `standardSource` carries its own); only the authority-local file format remains TBD at build time.
-- Whether the sk-git adapter should shell out to the actual `commit-msg` hook script for parity, or independently re-read its grammar - TBD.
+All three resolved at build time (2026-07-11):
+
+- ~~Exact `discover()` scope grammar for sk-git (commit range vs branch-diff vs path glob)~~ - RESOLVED: `branchRange` (`{from, to}`) for commit enumeration via bounded `git log`; branch enumeration is unconditional (`git branch --list`, not range-scoped, since a branch name has no commit-range-bounded identity) — see `sk_git_adapter.md` Section 3 "Branch Discovery Is Not Range-Scoped."
+- ~~The sk-design known-deviation list's storage format~~ - RESOLVED: a Markdown doc with a fenced `json` block, the same shape phase 005's `sk_doc_known_deviations.md` uses (`sk_design_known_deviations.md` Section 6).
+- ~~Whether the sk-git adapter should shell out to the actual `commit-msg` hook script for parity, or independently re-read its grammar~~ - RESOLVED: line-cited port, not a shell-out, because the hook's own body-required rule reads the *live* staging index (`git diff --cached`), which is meaningless for an already-made historical commit — shelling out naively would silently mis-score it. See `sk_git_adapter.md` Section 4.1 "Historical vs. Live File-Count Discrepancy."
 <!-- /ANCHOR:questions -->
 
 ---

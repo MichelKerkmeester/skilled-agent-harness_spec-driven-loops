@@ -1,0 +1,57 @@
+{
+  "alignmentTarget": "",
+  "sessionId": "",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "createdAt": "",
+  "status": "initialized",
+  "maxIterations": 10,
+  "convergence": {
+    "coverageThreshold": 1.0,
+    "stabilityWindow": 2,
+    "combination": "AND"
+  },
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "alignment",
+  "lanes": [],
+  "batchSize": 5,
+  "fileProtection": {
+    "deep-alignment-config.json": "immutable",
+    "deep-alignment-corpus.json": "auto-generated",
+    "deep-alignment-state.jsonl": "append-only",
+    "deep-alignment-findings-registry.json": "auto-generated",
+    "alignment-report.md": "auto-generated",
+    ".deep-alignment.lock": "operator-controlled"
+  },
+  "reducer": {
+    "enabled": true,
+    "scriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+    "inputs": [
+      "latestJSONLDelta",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "alignmentReport"
+    ],
+    "metrics": [
+      "laneCount",
+      "applicableLaneCount",
+      "findingsBySeverity",
+      "compositeScore",
+      "verdict"
+    ]
+  },
+  "convergenceScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+  "partitionScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+  "remediateHookScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs"
+}

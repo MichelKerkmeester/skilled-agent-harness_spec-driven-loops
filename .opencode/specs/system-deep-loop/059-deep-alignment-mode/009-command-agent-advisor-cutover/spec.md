@@ -9,28 +9,31 @@ trigger_phrases:
   - "deep-alignment cutover gates"
 importance_tier: "normal"
 contextType: "general"
-status: "planned"
+status: "implemented"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/009-command-agent-advisor-cutover"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T17:12:19Z"
     last_updated_by: "claude"
-    recent_action: "Draft phase 009 command/agent/advisor/cutover spec"
-    next_safe_action: "Confirm mode-registry.json discriminator fields for a new alignment entry"
+    recent_action: "Built command, agent mirrors, advisor wiring, benchmark scenario; ran cutover gates"
+    next_safe_action: "Optional: register deep/alignment in compile-command-contracts.cjs"
     blockers: []
     key_files:
-      - ".opencode/commands/deep/review.md"
-      - ".claude/agents/deep-review.md"
+      - ".opencode/commands/deep/alignment.md"
+      - ".claude/agents/deep-alignment.md"
+      - ".opencode/agents/deep-alignment.md"
       - ".opencode/skills/system-deep-loop/mode-registry.json"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-059-009"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether @deep-alignment is one leaf agent covering all lanes or one per adapter authority"
-      - "Whether the behavior benchmark reuses deep-review's scenario format or needs a lane-aware variant"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Whether @deep-alignment is one leaf agent covering all lanes or one per adapter authority -- RESOLVED: one leaf agent (.claude/agents/deep-alignment.md, .opencode/agents/deep-alignment.md), matching deep-review's single-agent-per-iteration shape. The 5 adapters share one discover/standardSource/check interface, so the loop never needs a per-authority agent."
+      - "Whether the behavior benchmark reuses deep-review's scenario format or needs a lane-aware variant -- RESOLVED: reuses deep-review's DAB-prefixed scenario-contract format verbatim (behavior_benchmark.md + scenarios/ + baselines/, matching .opencode/skills/system-deep-loop/deep-review/behavior_benchmark/'s real shape); 11 real scenarios ship, including an added DAB-011 clean-pass/zero-findings cell alongside the pre-existing 10."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 9: command-agent-advisor-cutover
@@ -53,7 +56,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-11 |
 | **Branch** | `system-deep-loop/059-deep-alignment-mode` |
 | **Parent Spec** | ../spec.md |
@@ -101,17 +104,24 @@ This is **Phase 9**, the final phase, of the `system-deep-loop/059-deep-alignmen
 - Plan the cutover-gate sequence: `parent-skill-check.cjs` STRICT plus `validate.sh --strict --recursive` across the full 059 packet (now 10 phase children, including peer adapter phase 010), run only after phases 001-008 and 010 land as real code, not just specs.
 
 ### Out of Scope
-- Writing the actual command file, agent file, `mode-registry.json` edit, advisor script edits, benchmark files, or the real `deep-alignment` `SKILL.md` - future implementation work, not this scaffold.
-- Running the cutover gates now - they require phases 001-008 to be built first; this phase only names the sequence.
-- Resolving the exact `workflowMode` key name - that is a 002/003 decision this phase assumes will land before build.
+- The real `deep-alignment` `SKILL.md` beyond what phase 003 already built.
 
-### Files to Change
+### Files to Change (DONE - gate opened per operator approval 2026-07-11; phases 001-008+010 verified as real code)
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `.opencode/commands/deep/alignment.md` (future, not yet created) | Plan only | This phase documents the command plan; no file is created. |
-| `.claude/agents/deep-alignment.md` (future, not yet created) | Plan only | This phase documents the agent plan; no file is created. |
-| `.opencode/skills/system-deep-loop/mode-registry.json` (future edit target) | Plan only | This phase documents the exact entry shape; no edit happens here. |
+| File Path | Change Type | Evidence |
+|-----------|-------------|----------|
+| `.opencode/commands/deep/alignment.md` | Created | 9-line thin router, single `render-command-contract.cjs --command deep/alignment` dispatch line, byte-for-byte pattern match of `.opencode/commands/deep/review.md:1-9` |
+| `.opencode/commands/deep/assets/legacy/deep_alignment.body.md` | Created | 109 lines; the router body `render-command-contract.cjs` returns in `fallback` mode, mirroring `deep_review.body.md`'s structure |
+| `.opencode/commands/deep/assets/compiled/deep_alignment.contract.md` | Created (placeholder) | 7-line honest placeholder - `deep/alignment` is not yet registered in `compile-command-contracts.cjs`, so this file is not machine-generated; it exists only so `render-command-contract.cjs`'s manifest-hashing step has a real file to read in `fallback` mode |
+| `.opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs` | Modified (minimal, outside literal scope-lock, necessary) | `render-command-contract.cjs:34-38` - added the `'deep/alignment'` entry to the `COMMANDS` registry; without it `/deep:alignment` throws `Unsupported command` immediately. Verified: `node .opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs --command deep/alignment -- 'test args'` renders the legacy body with `mode":"fallback"` in the manifest row. |
+| `.opencode/commands/deep/assets/deep_alignment_auto.yaml` | Created | 414 lines; `:auto` workflow wiring `scripts/scoping.cjs`, each authority adapter's `discover`/`check` CLI, `scripts/partition-corpus.cjs`, `scripts/check-convergence.cjs`, `runtime/scripts/reduce-alignment-state.cjs`, `runtime/scripts/loop-lock.cjs`; parses clean with PyYAML `safe_load` |
+| `.opencode/commands/deep/assets/deep_alignment_confirm.yaml` | Created | 418 lines; `:confirm` workflow, same script wiring plus `gate_init_approval` and `gate_synthesis_review` approval gates and interactive resume/restart/cancel lineage resolution; parses clean with PyYAML `safe_load` |
+| `.claude/agents/deep-alignment.md` | Created | 537 lines; ONE leaf agent covering all 5 lanes/authorities (adapters share one discover/standardSource/check interface, mirrors `@deep-review`'s single-agent shape, not one-per-authority); per-lane findings classification, Bash-only write-safety (no Write/Edit tool - mode-registry.json's toolSurface forbids both) |
+| `.opencode/agents/deep-alignment.md` | Created | 554 lines; `diff .claude/agents/deep-alignment.md .opencode/agents/deep-alignment.md` shows exactly 2 hunks - frontmatter (tools: line vs permission: block) and the single Path Convention line - matching the exact diff shape of `.claude/agents/deep-review.md` vs `.opencode/agents/deep-review.md` |
+| `.opencode/skills/system-deep-loop/mode-registry.json` | Verified, not modified | `mode-registry.json:198-221` - the `workflowMode: "alignment"` entry already existed complete from phase 003 (packetKind, toolSurface, advisorRouting all present and schema-correct); not duplicated or touched |
+| `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py` | Modified | `skill_advisor.py:284-290` added `"deep-alignment"` to the hand-maintained `SKILL_ALIAS_GROUPS` dict (required by the drift-guard's alias-surface test); ran `--emit-routing-projection` which regenerated `skill_advisor.py:2585-2592` (`DEEP_ROUTING_SKILLS` now 4-tuple, `DEEP_ROUTING_MODE_BY_KEY["deep-alignment"] = "alignment"`) and the projection hash from the registry, closing the phase-003 T011 deferral |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts` | Modified | Regenerated by the same `--emit-routing-projection` run: `aliases.ts:35-41` (`GENERATED_DEEP_ALIAS_GROUPS['deep-alignment']`) and `aliases.ts:66` (`DEEP_MODE_BY_CANONICAL['deep-alignment'] = 'alignment'`) |
+| `.opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/` | Extended (10 scenarios pre-existing, 1 added) | `scenarios/DAB-011-clean-pass-zero-findings.md` created (the missing "lane with zero findings, not via suppression" cell); `behavior_benchmark.md` and `baselines/claude-baseline.md` updated for the 11-scenario count; DAB-005/DAB-006 (real-findings-adjacent) and DAB-008 (multi-lane) already covered the other two required categories |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -208,9 +218,13 @@ This is **Phase 9**, the final phase, of the `system-deep-loop/059-deep-alignmen
 
 ## 10. OPEN QUESTIONS
 
-- Whether `@deep-alignment` is one leaf agent covering all lanes/authorities or one per adapter authority - TBD, resolve once phases 006-008 land as real code and the per-lane dispatch shape is concrete.
-- Whether the behavior benchmark reuses deep-review's scenario format as-is or needs a lane-aware variant - TBD.
-- Exact `workflowMode` key name for the new mode (`"alignment"` assumed throughout this plan) - depends on the 002/003 decisions, not resolved here.
+None remaining. All three questions this phase carried are resolved:
+
+- `@deep-alignment` is ONE leaf agent covering all lanes/authorities, not one per adapter authority - built at `.claude/agents/deep-alignment.md` / `.opencode/agents/deep-alignment.md`.
+- The behavior benchmark reuses deep-review's DAB-scenario-contract format as-is, extended to 11 scenarios (`.opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/`).
+- The `workflowMode` key name is confirmed `"alignment"` (`mode-registry.json:199`), matching what this plan assumed throughout.
+
+One deliberate scope-limitation carried forward, not an open question: `deep/alignment` runs in `command-injection-rollout.json`'s default `"fallback"` mode (no compiled-contract pipeline registration in `compile-command-contracts.cjs`, no `deep_alignment_presentation.txt`), matching `deep/ai-council`'s current rollout state. Upgrading to `"fix"` mode (matching `/deep:review`/`/deep:research`) is optional future work, named in `implementation-summary.md`'s Known Limitations.
 <!-- /ANCHOR:questions -->
 
 ---

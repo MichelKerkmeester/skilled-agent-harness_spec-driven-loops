@@ -8,25 +8,26 @@ trigger_phrases:
   - "deterministic reasoning agent layering"
 importance_tier: "normal"
 contextType: "general"
-status: "planned"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/007-adapter-sk-code"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T14:56:54Z"
     last_updated_by: "claude"
-    recent_action: "Draft phase 007 sk-code adapter implementation plan"
-    next_safe_action: "Confirm verify_alignment_drift.py exit-code contract before wiring"
+    recent_action: "Executed Core+Verify phases; adapter built and CLI-verified"
+    next_safe_action: "Wire adapter into phase 008 ITERATE/CONVERGE loop"
     blockers: []
     key_files:
-      - ".opencode/specs/system-deep-loop/059-deep-alignment-mode/007-adapter-sk-code/spec.md"
-      - ".opencode/specs/system-deep-loop/059-deep-alignment-mode/007-adapter-sk-code/tasks.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_code_adapter.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-059-007"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "verify_alignment_drift.py's --root/exit-code/Finding-shape contract confirmed current via live dry-run (Section 2 Definition of Ready)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 7: adapter-sk-code
@@ -64,14 +65,14 @@ This phase plans, not builds, the sk-code authority adapter against the ADR-003 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 005's adapter contract shape is available (or the design-brief-locked contract is used as fallback).
-- [ ] The sk-code shared surface router's detection precedence (`OPENCODE` over `WEBFLOW`, `MOTION_DEV` as overlay) is confirmed current.
-- [ ] `verify_alignment_drift.py`'s supported-extensions list and skip-path allowlist are confirmed current.
+- [x] Phase 005's adapter contract shape is available. Evidence: read `sk_doc_adapter.md` + `sk-doc.cjs` in full before building; `sk-code.cjs` matches its exact file-section shape (imports → constants → classifier → discover → suppression → standardSource → subprocess wrappers → check → CLI → exports).
+- [x] The sk-code shared surface router's detection precedence (`OPENCODE` over `WEBFLOW`, `MOTION_DEV` as overlay) is confirmed current. Evidence: read `stack_detection.md` + `smart_routing.md` in full 2026-07-11; `classifySurface()` ports §2's Detection Order line-for-line.
+- [x] `verify_alignment_drift.py`'s supported-extensions list and skip-path allowlist are confirmed current. Evidence: read the full script 2026-07-11; `SUPPORTED_EXTENSIONS` (11 extensions/7 languages, including Rust — one more than this phase's own REQ-002 prose named) and all 4 skip-path/downgrade functions ported into `sk_code_known_deviations.md`.
 
 ### Definition of Done
-- [ ] The adapter plan names `discover()`, `standardSource()`, and `check()` behavior concretely enough to code from.
-- [ ] The deterministic-first, reasoning-agent-second layering rule is unambiguous, with finding-tagging specified.
-- [ ] `checklist.md` items are reviewed and either checked with evidence or explicitly deferred.
+- [x] The adapter plan names `discover()`, `standardSource()`, and `check()` behavior concretely enough to code from — and the code now exists. Evidence: `scripts/adapters/sk-code.cjs`, `node --check` passes, all 3 methods CLI-exercised against real repo files.
+- [x] The deterministic-first, reasoning-agent-second layering rule is unambiguous, with finding-tagging specified. Evidence: `check()` calls `checkDeterministic()` then `checkPatternConformance()` in fixed order; every finding carries a `layer` field.
+- [x] `checklist.md` items are reviewed and either checked with evidence or explicitly deferred. Evidence: `checklist.md` updated in this same pass with real evidence per item.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -119,21 +120,21 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm phase 005's adapter contract signature is available (or use the design-brief-locked contract).
-- [ ] Re-read `.opencode/skills/sk-code/shared/references/smart_routing.md` and `stack_detection.md` and confirm surface-detection precedence has not changed.
-- [ ] Re-read `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py` and confirm its `--root` CLI contract and `Finding` shape are current.
+- [x] Confirm phase 005's adapter contract signature is available. `sk_doc_adapter.md`/`sk-doc.cjs` read in full; contract confirmed (`discover(scope)->artifacts`, `standardSource(authority)->rules`, `check(artifact,rules)->findings`).
+- [x] Re-read `smart_routing.md` and `stack_detection.md` and confirm surface-detection precedence has not changed. Both read in full 2026-07-11; Detection Order (stack_detection.md §2) ported into `classifySurface()`.
+- [x] Re-read `verify_alignment_drift.py` and confirm its `--root` CLI contract and `Finding` shape are current. Read in full; confirmed `--root` is directory-only (`os.walk` yields nothing for a file path — load-bearing for `checkOpencodeDeterministic()`'s design), no `--json` flag, fixed text print format at lines 534-537.
 
-### Phase 2: Core Implementation (future execution pass — not run in this phase)
-- [ ] Implement `discover()` calling the shared surface router per the Architecture section above.
-- [ ] Implement `standardSource()` loading the surface-appropriate reference set.
-- [ ] Implement `check()` layer 1 (deterministic) invoking `verify_alignment_drift.py` for OPENCODE and the Webflow script chain for WEBFLOW, translating outputs into layer-tagged findings.
-- [ ] Implement `check()` layer 2 (reasoning-agent) covering conformance dimensions layer 1 does not, with evidence citation and layer tagging on every finding.
-- [ ] Author the accepted-deviation set, seeded from `verify_alignment_drift.py`'s existing skip-path allowlist functions.
+### Phase 2: Core Implementation
+- [x] Implement `discover()` calling the shared surface router per the Architecture section above. `scripts/adapters/sk-code.cjs` Section 4; CLI-verified against `code-opencode/assets/scripts` and `code-webflow/assets/scripts`.
+- [x] Implement `standardSource()` loading the surface-appropriate reference set. `sk-code.cjs` Section 6; CLI-verified (`standard-source` subcommand output in `sk_code_adapter.md` §2).
+- [x] Implement `check()` layer 1 (deterministic) invoking `verify_alignment_drift.py` for OPENCODE and the Webflow script chain for WEBFLOW, translating outputs into layer-tagged findings. `sk-code.cjs` Sections 7-8. Real subprocess pattern confirmed live for OPENCODE (6 dry-runs, `sk_code_adapter.md` §8.4); WEBFLOW path confirmed via a synthetic scope value since no live Webflow project root exists in this repo (§8.1) — the invocation code path is real and correct, only its live-fire precondition is absent here.
+- [x] Implement `check()` layer 2 (reasoning-agent) covering conformance dimensions layer 1 does not, with evidence citation and layer tagging on every finding. `sk-code.cjs` Section 9 — `buildReasoningLayerDispatch()` (CLI-verified, `reasoning-dispatch` subcommand) plus `checkPatternConformance()` (verify-first pass-through, mirrors `sk-doc.cjs`'s `checkRealityAlignment()`).
+- [x] Author the accepted-deviation set, seeded from `verify_alignment_drift.py`'s existing skip-path allowlist functions. `sk_code_known_deviations.md`, 6 entries (4 from the tool's real functions, 2 from this build's own live findings) — DEVIATION from the plan's literal 4-function scope, recorded honestly (Section §6-7 of that doc name real, reproduced findings this build surfaced, not invented).
 
-### Phase 3: Verification (future execution pass — not run in this phase)
-- [ ] Dry-run layer 1 against a known OPENCODE-surface file and confirm findings translate correctly with `layer: deterministic`.
-- [ ] Dry-run layer 2 against a file with an intentional pattern deviation and confirm the finding cites file:line evidence with `layer: reasoning-agent`.
-- [ ] Confirm the adapter reports `surface-undetected` rather than guessing when detection returns `UNKNOWN`.
+### Phase 3: Verification
+- [x] Dry-run layer 1 against a known OPENCODE-surface file and confirm findings translate correctly with `layer: deterministic`. `node scripts/adapters/sk-code.cjs check .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs` → `[]` (clean, consistent with a standalone `verify_alignment_drift.py` dry-run of the same directory — `sk_code_adapter.md` §8.4).
+- [x] Dry-run layer 2 against a file with an intentional pattern deviation and confirm the finding cites file:line evidence with `layer: reasoning-agent`. Deviated from "intentional pattern deviation" (layer 2 cannot self-judge one — that is the whole point of ADR-008): instead confirmed the pass-through contract with 3 live `node -e` calls against `check()` — (1) a `verifiedFindings` entry with `matchesStandard:false` + `evidence:"sk-code.cjs:1"` produced exactly one `layer:"reasoning-agent"` finding; (2) the identical entry with `evidence` omitted produced zero findings (VERIFY-FIRST enforced, Section 5); (3) `matchesStandard:true` (not a contradiction) also produced zero findings. All three ran clean.
+- [x] Confirm the adapter reports `surface-undetected` rather than guessing when detection returns `UNKNOWN`. `node scripts/adapters/sk-code.cjs check somewhere/generic/file.ts` → one `P1 surface-undetected` finding, `artifactSurface:"UNKNOWN"` (full transcript in `sk_code_adapter.md`, cross-referenced from spec.md's Edge Cases evidence).
 <!-- /ANCHOR:phases -->
 
 ---

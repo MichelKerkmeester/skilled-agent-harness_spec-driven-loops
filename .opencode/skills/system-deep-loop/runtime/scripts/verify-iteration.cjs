@@ -18,11 +18,13 @@ const path = require('node:path');
 const LEAF_BY_LOOP = {
   review: 'deep-review',
   research: 'deep-research',
+  alignment: 'deep-alignment',
 };
 
 const STATE_LOG_BY_LOOP = {
   review: 'deep-review-state.jsonl',
   research: 'deep-research-state.jsonl',
+  alignment: 'deep-alignment-state.jsonl',
 };
 
 const REASONS = {
@@ -173,11 +175,11 @@ function verify(loopType, artifactDir, iteration) {
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   if (args.help) {
-    process.stdout.write('Usage: verify-iteration.cjs --loop-type review|research|context --artifact-dir <dir> --iteration <N> [--json]\n');
+    process.stdout.write('Usage: verify-iteration.cjs --loop-type review|research|context|alignment --artifact-dir <dir> --iteration <N> [--json]\n');
     return 0;
   }
   if (args.error) { process.stderr.write(`${args.error}\n`); return 2; }
-  if (!args.loopType || !LEAF_BY_LOOP[args.loopType]) { process.stderr.write('--loop-type must be one of review|research\n'); return 2; }
+  if (!args.loopType || !LEAF_BY_LOOP[args.loopType]) { process.stderr.write(`--loop-type must be one of ${Object.keys(LEAF_BY_LOOP).join('|')}\n`); return 2; }
   if (!args.artifactDir) { process.stderr.write('--artifact-dir is required\n'); return 2; }
   if (!Number.isInteger(args.iteration) || args.iteration < 1) { process.stderr.write('--iteration must be a positive integer\n'); return 2; }
 

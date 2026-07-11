@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 10: adapter-sk-design-live-render"
-description: "Phase 010 plans the sk-design live-render deep-alignment adapter: a chrome-devtools-driven audit dimension that renders the target UI and checks it against sk-design's live rubric (accessibility, performance, responsive, anti-slop), dispatched only through the design-mcp-open-design boundary. This is a planning-only pass against the phase-005 adapter contract and ADR-009's LOCKED decision; no adapter code ships here."
+description: "Phase 010 builds the sk-design live-render deep-alignment adapter as a pure-function dispatch wrapper: discover() classifies URL/component-entry targets, standardSource() names the live rubric, check() never renders itself and instead consumes caller-supplied render evidence dispatched through design-mcp-open-design (ADR-009 LOCKED, zero direct chrome-devtools calls, grep-verified). A real, disclosed integration gap remains: design-mcp-open-design's live MCP tool surface has no tool that renders an arbitrary external URL/route, so live-render findings require the ITERATE-state driving agent to supply renderResult evidence out-of-band; see implementation-summary.md Known Limitations."
 trigger_phrases:
   - "deep-alignment sk-design live-render adapter"
   - "chrome-devtools design audit alignment"
@@ -8,31 +8,33 @@ trigger_phrases:
   - "live-render accessibility performance audit"
 importance_tier: "normal"
 contextType: "general"
-status: "planned"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/010-adapter-sk-design-live-render"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T14:57:13Z"
     last_updated_by: "claude"
-    recent_action: "Draft phase 010 live-render adapter spec"
-    next_safe_action: "Await 006-008 shapes before execution"
-    blockers:
-      - "006-adapter-sk-git-and-sk-design not yet executed"
-      - "008-iterate-converge-report not yet executed"
+    recent_action: "Built+dry-ran adapter; check() is verified pure-fn wrapper, no chrome-devtools calls"
+    next_safe_action: "Phase 008 wires module-selection + lane-key; see spec Section 1 gap"
+    blockers: []
     key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_live_render_adapter.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs"
       - ".opencode/skills/sk-design/shared/design_dispatch_boundary.md"
-      - ".opencode/skills/sk-design/SKILL.md"
-      - ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md"
+      - ".opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-059-010"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
-      - "Exact chrome-devtools render harness invocation shape through design-mcp-open-design"
-      - "Whether live-render findings merge into 006's sk-design lane or form their own peer lane"
+      - "Phase 008: which adapter module a sk-design lane dispatches to (this one vs phase 006's static one)"
+      - "Phase 008: whether live-render findings merge into 006's sk-design lane or form their own peer lane"
     answered_questions:
       - "ADR-009 LOCKED: live-render joins as this peer phase, routed only through design-mcp-open-design"
+      - "design_dispatch_boundary.md is a child-agent/small-model routing-proof envelope, not a render interface -- check() cannot invoke it as a function (adapter spec Section 8)"
+      - "design-mcp-open-design's real ~18-tool MCP surface has no tool that renders an arbitrary external URL/route -- confirmed by full enumeration (tool_surface.md:42-90)"
+      - "check() is therefore a pure function over caller-supplied options.renderResult, never a renderer itself -- verified via 7 live CLI dry-runs, all passing as designed"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 10: adapter-sk-design-live-render
@@ -55,14 +57,16 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Branch** | `system-deep-loop/059-deep-alignment-mode` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 10 of 10 — peer adapter phase; DAG position parallels 006/007, feeding phase 008 (see Phase Context) |
 | **Predecessor** | 007-adapter-sk-code (folder-order predecessor only; not a strict DAG dependency) |
 | **Successor** | 008-iterate-converge-report consumes this adapter's findings; 009-command-agent-advisor-cutover's gates run after this phase too |
-| **Handoff Criteria** | A future executor can begin coding this adapter directly from this plan: the phase-005 `{discover, standardSource, check}` contract signature, the `design-mcp-open-design` dispatch boundary, the chrome-devtools render harness, and the live rubric sources are all named with real paths. |
+| **Handoff Criteria** | Met: the two Files-to-Change deliverables exist, are `node --check`-clean, and were verified via 7 live CLI dry-runs (discover with url/componentEntry/filtered-glob/filtered-route targets; check with no-renderResult, wrong-boundary, auth-blocked, dispatch-rejected, and full-measurements+judgmentFindings render results; standard-source). |
+
+**"Complete" scope, stated precisely** (per this program's own honesty discipline, ADR-005/ADR-008): the **adapter contract** — `discover()`, `standardSource()`, `check()` as a pure-function dispatch wrapper, known-deviation suppression, ADR-009 boundary enforcement — is complete and verified. The **live-render capability itself** remains gated on a real, disclosed integration gap: `design-mcp-open-design`'s live MCP tool surface has no tool that renders an arbitrary external URL/route (confirmed by full ~18-tool enumeration), so `check()` cannot render standalone and requires the ITERATE-state driving agent to supply render evidence out-of-band. See `implementation-summary.md` Known Limitations and the adapter spec's Section 8.
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -103,7 +107,7 @@ This is **Phase 10** of the `system-deep-loop/059-deep-alignment-mode` mode-pack
 - Document this adapter's VERIFY-FIRST re-probe step (alignment contract invariant 1): a live-render finding is re-probed by re-rendering, not cached from an earlier discover pass.
 
 ### Out of Scope
-- Implementing the adapter in code - future phase, not this scaffold.
+- (gate opened per operator approval 2026-07-11, executed same day — see updated Files to Change below and `implementation-summary.md` for the real build)
 - The sk-doc reference adapter - owned by phase 005.
 - The sk-git adapter and the sk-design STATIC adapter - owned by phase 006.
 - The sk-code adapter - owned by phase 007.
@@ -115,7 +119,8 @@ This is **Phase 10** of the `system-deep-loop/059-deep-alignment-mode` mode-pack
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-deep-loop/deep-alignment/adapters/sk-design-live-render-adapter.*` (future, not yet created) | Plan only | This phase documents the discover/standardSource/check plan; no file is created. |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_live_render_adapter.md` | Create | The live-render check specification, dispatched only through design-mcp-open-design (ADR-009 LOCKED) |
+| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs` | Create | The real adapter wiring discover/standardSource/check to the design-mcp-open-design dispatch boundary |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -137,6 +142,16 @@ This is **Phase 10** of the `system-deep-loop/059-deep-alignment-mode` mode-pack
 | REQ-003 | Define this adapter's known-deviation list location, distinct from phase 006's static adapter. | `plan.md` Architecture section names where this adapter's accepted-convention list lives (authority-local per ADR-005, sibling to but distinct from phase 006's list). |
 | REQ-004 | Define this adapter's VERIFY-FIRST re-probe behavior. | `plan.md` states that a live-render finding is re-probed by a fresh render immediately before assertion, never cached from an earlier discover pass. |
 | REQ-005 | State how this adapter's findings roll up alongside phase 006's static sk-design findings in phase 008's reducer. | `plan.md` names whether live-render findings merge into 006's `sk-design` lane key or form their own peer lane key (e.g. `sk-design-live-render`), consistent with phase 008's per-lane reducer shape. |
+
+### Requirement Evidence (Post-Build, 2026-07-11)
+
+| ID | Evidence |
+|----|----------|
+| REQ-001 | `sk-design/SKILL.md:30` citation confirmed byte-accurate on re-read (the line does read "a read-only bridge, always paired with a design-judgment mode that owns the taste"). `sk-design-live-render.cjs` contains zero direct `mcp-chrome-devtools`/`mcp__*chrome*` call sites, confirmed by `rg -n "mcp-chrome-devtools\|mcp__.*chrome"` against both new files returning only prose explanations (adapter spec Section 9, command output in `implementation-summary.md`). `check()` additionally hard-rejects any `renderResult` whose `dispatchedThrough !== 'design-mcp-open-design'` with a P0 `dispatch-boundary-violation` finding — live-verified via CLI dry-run. |
+| REQ-002 | `standardSource('sk-design')` returns real, `fs.readFileSync`-reachable paths to `accessibility_performance.md`, `anti_patterns_production.md`, and `ai_fingerprint_tells.md` (the third named in this spec's own In Scope bullet) — confirmed by live CLI `standard-source` output. |
+| REQ-003 | Located at `references/adapters/sk_design_live_render_known_deviations.md` (sibling to the spec, matching `sk-doc`'s pattern) — **not yet created**, honestly: no real live-render run has produced a finding to seed it with (adapter spec Section 6). `loadKnownDeviations()` degrades to `[]` on the missing file, verified live. |
+| REQ-004 | `check()` requires `renderResult.renderedAt`; when absent or unparseable, every derived finding is tagged `evidenceLabel: 'inferred'` rather than `'confirmed'` (reusing `evidence_capture.md`'s own vocabulary), live-verified. The freshness guarantee itself is documented as a caller contract this stateless function cannot mechanically prove (adapter spec Section 5) — stated honestly, not claimed as enforced. |
+| REQ-005 | Not resolved by this build (correctly out of scope — owned by phase 008). This build adds a sharper, second finding on top of the one `plan.md` already named: a **module-selection** gap (which adapter file phase 008 even `require()`s for a `sk-design` lane) exists upstream of the already-known **lane-key** gap (adapter spec Section 1, "Peer Relationship to Phase 006's Static Adapter"). |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -144,9 +159,9 @@ This is **Phase 10** of the `system-deep-loop/059-deep-alignment-mode` mode-pack
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A future implementer can build this adapter's `discover()`/`standardSource()`/`check()` directly from this plan without re-deriving the dispatch-boundary constraint.
-- **SC-002**: The plan proves, by citation, that no parallel chrome-devtools path is designed into this adapter.
-- **SC-003**: The plan names a known-deviation list location and a verify-first re-probe step, consistent with phases 005-007's precedent.
+- **SC-001**: MET. `discover()`/`standardSource()`/`check()` were built directly from the plan and verified live (7 CLI dry-runs: 2 `discover`, 4 `check` short-circuits/full-run, 1 `standard-source`) without needing to re-derive the dispatch-boundary constraint mid-build — though the build *did* sharpen it (adapter spec Section 8's finding that `design_dispatch_boundary.md` is not itself a render interface).
+- **SC-002**: MET. `rg -n "mcp-chrome-devtools\|mcp__.*chrome"` against both new files returns only prose explaining why the tool is *not* called — zero call sites (Section 9 of the adapter spec; command output in `implementation-summary.md`).
+- **SC-003**: MET. Known-deviation list location named (`references/adapters/sk_design_live_render_known_deviations.md`, not yet seeded — REQ-003 evidence above) and a verify-first evidence-labeling step built (`confirmed`/`inferred` per `renderedAt` presence, REQ-004 evidence above), consistent with phase 005's precedent while honestly naming where this phase's mechanism is a caller-contract rather than a mechanically-enforced re-probe (adapter spec Section 5).
 <!-- /ANCHOR:success-criteria -->
 
 ---
