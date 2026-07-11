@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-code/018-rust-standards-for-code-opencode/001-research",
+  "description": "Adding a language to `code-opencode` is not free-form authoring: the surface has a fixed trio+checklist+playbook shape, a machine-readable SMART",
+  "keywords": [
+    "language",
+    "code-opencode",
+    "free-form",
+    "authoring",
+    "surface",
+    "trio",
+    "checklist",
+    "playbook",
+    "shape",
+    "machine-readable",
+    "smart"
+  ],
+  "lastUpdated": "2026-07-11T07:12:39.461Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "sk-code",
+    "018-rust-standards-for-code-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

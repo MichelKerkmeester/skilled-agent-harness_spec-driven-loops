@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/018-rust-standards-for-code-opencode/001-research",
+  "spec_folder": "sk-code/018-rust-standards-for-code-opencode/001-research",
+  "parent_id": "sk-code/018-rust-standards-for-code-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rust standards research",
+      "018 rust research code-opencode",
+      "rust best practices deep research",
+      "napi-rs wasm interop standards research",
+      "rust language standard for sk-code",
+      "018 rust research plan",
+      "rust standards research plan",
+      "10 round rust research allocation",
+      "018 rust research tasks",
+      "rust standards research checklist"
+    ],
+    "key_topics": [
+      "rust",
+      "standards",
+      "research",
+      "code-opencode",
+      "best",
+      "practices",
+      "deep",
+      "napi-rs",
+      "wasm",
+      "interop",
+      "language",
+      "standard"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-fanout-config.json",
+      "scripts/spec/validate.sh",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-fanout-config.json",
+        "kind": "config",
+        "path": "research/deep-research-fanout-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust Standards Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Does Rust",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Rust",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "citations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Adding a language to `code-opencode` is not free-form authoring: the surface has a fixed trio+checklist+playbook shape, a machine-readable SMART ROUTING block, and a parent-hub `RESOURCEMAP` union enforced by a drift guard and a skill-benchmark router-replay",
+    "created_at": "2026-07-11T07:13:20.590Z",
+    "last_save_at": "2026-07-11T07:13:20.590Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:bc6545a6b007a476fb00d7fffdc2fa31cc6d7ad1157fb30fb3ad24da01114df7",
+    "source_doc_hashes": {
+      "spec.md": "78be49b9f0732bb581639ec6fdad897b7b739c5faa4ef1d418d49e656941cc3d",
+      "plan.md": "eb9e5fd7543c6b5ee4601da35b2fa2cbca75ee923c4d9edf56942d0607d522c8",
+      "tasks.md": "6203d792a7d01e8e1b0123fb88f3d368c6b6c6275ec0854a83e9e1613dccccba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

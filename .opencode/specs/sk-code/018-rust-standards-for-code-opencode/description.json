@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-code/018-rust-standards-for-code-opencode",
+  "description": "`sk-code`'s `code-opencode` surface encodes per-language standards (TypeScript, Python, shell, JavaScript, config) as a",
+  "keywords": [
+    "sk-code",
+    "code-opencode",
+    "surface",
+    "encodes",
+    "per-language",
+    "standards",
+    "typescript",
+    "python",
+    "shell",
+    "javascript",
+    "config"
+  ],
+  "lastUpdated": "2026-07-11T07:09:39.301Z",
+  "specId": "018",
+  "folderSlug": "rust-standards-for-code-opencode",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
