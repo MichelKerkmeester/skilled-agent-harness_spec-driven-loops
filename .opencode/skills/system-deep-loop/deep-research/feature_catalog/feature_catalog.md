@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.0.13
+version: 1.14.0.14
 ---
 
 # deep-research: Feature Catalog
@@ -18,7 +18,7 @@ Use this catalog as the canonical inventory for the live `deep-research` feature
 |---|---:|---|
 | Loop lifecycle | 9 features | `.opencode/commands/deep/research.md`, auto and confirm YAML workflows, fan-out runtime primitives, operator controls |
 | State management | 8 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy and dashboard surfaces |
-| Convergence | 5 features | `references/convergence/convergence.md`, workflow legal-stop gates, graph convergence hooks, minimum-iteration floor |
+| Convergence | 6 features | `references/convergence/convergence.md`, workflow legal-stop gates, graph convergence hooks, minimum-iteration floor, divergent pivots |
 | Research output | 2 features | `research/research.md`, iteration files, reducer-backed negative knowledge surfaces |
 
 ---
@@ -392,6 +392,22 @@ When `graphEvents` are present, the workflow calls the graph convergence tool, a
 #### Source Files
 
 See [`03--convergence/graph-convergence.md`](03--convergence/graph-convergence.md) for full implementation and test file listings.
+
+---
+
+### Divergent convergence mode
+
+#### Description
+
+Turns an eligible, legally converged research direction into a bounded scope-expansion pivot instead of immediate synthesis.
+
+#### How It Works
+
+`convergenceMode: "divergent"` preserves the existing convergence computation and legal-stop gates. Only `composite_converged` and `all_questions_answered` STOP reasons enter a native one-round, three-seat Council transaction. The selected state-grounded candidate becomes the next focus; hard terminal reasons remain terminal, and pivot artifacts are isolated under the loop artifact root.
+
+#### Source Files
+
+See [`03--convergence/divergent-convergence-mode.md`](03--convergence/divergent-convergence-mode.md) for full implementation and validation file listings.
 
 ---
 
