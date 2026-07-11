@@ -1266,6 +1266,27 @@ function computeDivergence({ scenarioId, routerObserved, liveObserved }) {
  * @param {Array} [params.divergence] - A↔B divergence rows to attach.
  * @returns {Object} Skill-benchmark report object.
  */
+// Advisor visibility mirrors the advisor's own projection rule: a directory is a
+// routing candidate only when it carries graph-metadata.json. A bundled packet
+// (e.g. a read-only surface) has none, so the advisor ranks its owning parent
+// identity, never the packet itself — D1-inter is therefore not measurable
+// against it and is reported excluded-by-design rather than as a missing score.
+function resolveAdvisorOwner(skillRoot) {
+  if (!skillRoot) return { visible: true, owner: null };
+  if (fs.existsSync(path.join(skillRoot, 'graph-metadata.json'))) {
+    return { visible: true, owner: path.basename(skillRoot) };
+  }
+  let dir = path.dirname(skillRoot);
+  for (let hops = 0; hops < 6 && dir && dir !== path.dirname(dir); hops += 1) {
+    if (fs.existsSync(path.join(dir, 'graph-metadata.json'))) {
+      return { visible: false, owner: path.basename(dir) };
+    }
+    if (path.basename(dir) === 'skills') break;
+    dir = path.dirname(dir);
+  }
+  return { visible: false, owner: null };
+}
+
 function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, lintFindings, divergence }) {
   const rows = scenarioRows.filter(Boolean).map((row) => applyAggregateToolSurface(row, skillRoot));
   const avg = (sel) => {
@@ -1318,6 +1339,34 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   // carried a numeric D1-inter score, so the dimension self-reports its coverage.
   const d1interAvg = avg((r) => (r.dims && r.dims.d1inter && typeof r.dims.d1inter.score === 'number'
     ? Math.round(r.dims.d1inter.score * 100) : null));
+  // Distinguish excluded-by-design (advisor-invisible target, structurally N/A)
+  // from runnable-but-unscored (advisor-visible, no probe ran). D1-inter is the
+  // only dimension that flips: weighted D4 stays unscored harness-wide because no
+  // live weighted-D4 scorer is wired. The aggregate is unaffected either way —
+  // modeAScore already drops D1-inter/D4 when null.
+  const advisorTopology = resolveAdvisorOwner(skillRoot);
+  const excludedDimensions = [];
+  let d1interDim;
+  if (!advisorTopology.visible) {
+    d1interDim = {
+      points: WEIGHTS.d1inter,
+      score: null,
+      applicable: false,
+      status: 'excluded-by-design',
+      reason: advisorTopology.owner
+        ? `advisor-invisible surface bundled by advisor identity ${advisorTopology.owner}`
+        : 'advisor-invisible skill (no graph-metadata.json); not an advisor routing target',
+      delegatedMeasure: advisorTopology.owner ? { targetSkill: advisorTopology.owner } : null,
+    };
+    excludedDimensions.push('D1inter');
+  } else {
+    d1interDim = d1interAvg === null
+      ? { points: WEIGHTS.d1inter, score: null, status: 'unscored-mode-a' }
+      : { points: WEIGHTS.d1inter, score: d1interAvg };
+  }
+  const unscoredDimensions = [];
+  if (advisorTopology.visible && d1interAvg === null) unscoredDimensions.push('D1inter');
+  unscoredDimensions.push('D4');
   // Advisory signals — surfaced but NOT folded into the weighted aggregate (so
   // the v1 dimension weights/verdict are unchanged). D4_task_outcome is attached
   // to rows by the orchestrator's opt-in D4-R ablation pass; assetRecall comes
@@ -1386,16 +1435,15 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       toolSurface: toolSurfaceGate,
     },
     dimensionScores: {
-      D1inter: d1interAvg === null
-        ? { points: WEIGHTS.d1inter, score: null, status: 'unscored-mode-a' }
-        : { points: WEIGHTS.d1inter, score: d1interAvg },
+      D1inter: d1interDim,
       D1intra: { points: WEIGHTS.d1intra, score: avg((r) => (r.dims && r.dims.d1intra ? Math.round(r.dims.d1intra.score * 100) : null)) },
       D2: { points: WEIGHTS.d2, score: avg((r) => (r.dims && r.dims.d2 ? Math.round(r.dims.d2.score * 100) : null)) },
       D3: { points: WEIGHTS.d3, score: avg((r) => (r.dims && r.dims.d3 && typeof r.dims.d3.score === 'number' ? Math.round(r.dims.d3.score * 100) : null)) },
       D4: { points: WEIGHTS.d4, score: null, status: 'unscored-mode-a' },
       D5: { points: WEIGHTS.d5, score: d5, hardGate: true },
     },
-    unscoredDimensions: d1interAvg === null ? ['D1inter', 'D4'] : ['D4'],
+    unscoredDimensions,
+    excludedDimensions,
     advisorySignals: {
       D4_task_outcome: d4TaskAvg === null
         ? { score: null, status: 'unscored (run --d4 in live mode)', note: 'task-outcome usefulness delta; separate from D4 hallucination, never summed into it' }
