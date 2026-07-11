@@ -18,9 +18,9 @@
       "touchpoints multilang plan rust",
       "018 phase 005 tasks",
       "touchpoints multilang tasks rust",
-      "018 rust touchpoints partial summary",
+      "018 rust touchpoints complete summary",
       "rust registration touchpoints outcome",
-      "router-replay rust deferred"
+      "router-replay rust touched-language set landed"
     ],
     "key_topics": [
       "phase",
@@ -37,7 +37,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-code/shared/references/stack_detection.md",
       ".opencode/skills/sk-code/hub-router.json",
@@ -137,12 +137,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -150,6 +144,12 @@
       },
       {
         "name": "Problem Statement Beyond",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Teach",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Beyond the surface router and parent union, several tools independently classify languages (stack detection, the hub router, two Python verifiers, and the skill-benchmark router-replay)",
     "created_at": "2026-07-11T08:51:44.754Z",
-    "last_save_at": "2026-07-11T10:20:34.284Z",
+    "last_save_at": "2026-07-11T11:28:24.383Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02b37c2f4757e7640a117bfb20ceeada50b1ea2e920a359fd829a8c68b5f5e61",
+    "source_fingerprint": "sha256:c444286a9d0e269a3f8aa87e20926bff02b7468b6234a17452cce6f02e99ec5c",
     "source_doc_hashes": {
-      "spec.md": "741f3c627129e373f6bdb9a6794ce4170499a484265a314c7577a6c299cca147",
+      "spec.md": "df2d50a740f2606eed98aa828fcc1ac83d7f35819915b17fbae88eda5b8c672c",
       "plan.md": "fdbc538ec38fb8c72645941a1f9278c67b9c97266846127def7cee0fe916212e",
-      "tasks.md": "10b07a3473bac851fa9ebcc0a227b4df9e676e05c1e6d8207041cb281751460e",
-      "implementation-summary.md": "16af6b4339a1a668998c991fe6be81a0e6eccbd8f477e8902e352c17bd308f15"
+      "tasks.md": "89fb005c11b3bbfc5c7e79af3968aeacd6b531d7db69f2808bc08f7df214d5fd",
+      "implementation-summary.md": "47d566adafe71685a25ec22e080a1fdc6591e7d36b2a3c8d9c9d85283261d125"
     },
     "last_active_child_id": null,
     "last_active_at": null
