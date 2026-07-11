@@ -1,0 +1,15 @@
+{
+  "executors": [
+    {
+      "label": "gpt56solxhigh",
+      "kind": "cli-codex",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "fast",
+      "iterations": 16,
+      "count": 1,
+      "timeoutSeconds": 5400
+    }
+  ],
+  "concurrency": 1
+}
