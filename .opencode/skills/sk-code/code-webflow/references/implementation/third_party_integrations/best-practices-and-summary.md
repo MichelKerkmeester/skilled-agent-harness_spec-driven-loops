@@ -1,0 +1,151 @@
+---
+title: Best Practices, Library Summary & Related
+description: Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — Best Practices, Library Summary & Related.
+importance_tier: normal
+contextType: implementation
+version: 3.5.0.4
+---
+
+# Best Practices, Library Summary & Related
+
+## 7. BEST PRACTICES
+
+### CDN Loading Pattern
+
+```javascript
+// ✅ Good: Version pinned, async, error handled
+const CDN_URL = 'https://cdn.jsdelivr.net/npm/library@{version}';
+
+async function load_with_timeout(url, timeout_ms = 10000) {
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => resolve(false), timeout_ms);
+    
+    const script = document.createElement('script');
+    script.src = url;
+    script.async = true;
+    script.onload = () => { clearTimeout(timer); resolve(true); };
+    script.onerror = () => { clearTimeout(timer); resolve(false); };
+    document.head.appendChild(script);
+  });
+}
+
+// ❌ Bad: No version, no error handling
+document.write('<script src="https://cdn.example.com/lib.js"></script>');
+```
+
+### Version Pinning
+
+```javascript
+// ✅ Pinned to specific version (check HTML source for current versions)
+'https://cdn.jsdelivr.net/npm/hls.js@{major.minor.patch}'
+
+// ✅ Pinned to specific minor version
+'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@{major.minor}'
+
+// ❌ Avoid: Latest tag can break unexpectedly
+'https://cdn.jsdelivr.net/npm/library@latest'
+
+// ❌ Avoid: Unpinned versions
+'https://cdn.jsdelivr.net/npm/library'
+```
+
+### Fallback Strategies
+
+```javascript
+// Pattern: Retry loader for race conditions
+const MAX_RETRIES = 10;
+const RETRY_DELAY_MS = 120;
+let retry_count = 0;
+
+function init_with_library() {
+  if (typeof Library === 'undefined') {
+    if (++retry_count < MAX_RETRIES) {
+      console.warn(`Library not ready, retry ${retry_count}/${MAX_RETRIES}`);
+      setTimeout(init_with_library, RETRY_DELAY_MS);
+      return;
+    }
+    console.error('Library failed to load');
+    return;
+  }
+  
+  retry_count = 0;
+  // ... initialization code
+}
+```
+
+### Error Boundaries
+
+```javascript
+// Wrap third-party calls in try-catch
+function safe_library_call(action) {
+  try {
+    return action();
+  } catch (error) {
+    console.warn('Library error:', error);
+    return null;
+  }
+}
+
+// Usage
+safe_library_call(() => {
+  window.lenis?.scrollTo(target);
+});
+```
+
+### Preload Critical Libraries
+
+```html
+<!-- In <head> for critical path libraries -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/hls.js@{version}" as="script">
+
+<!-- Then load with defer in body -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@{version}" defer></script>
+```
+
+### Cleanup on Destroy
+
+```javascript
+// Always provide cleanup for dynamically loaded libraries
+function destroy_player(player) {
+  // 1. Stop any pending operations
+  if (player._abort_controller) {
+    player._abort_controller.abort();
+  }
+  
+  // 2. Remove event listeners
+  if (player._cleanup_handlers) {
+    player._cleanup_handlers.forEach(fn => fn());
+  }
+  
+  // 3. Destroy library instances
+  if (player._hls) {
+    try { player._hls.destroy(); } catch (_) {}
+    player._hls = null;
+  }
+  
+  // 4. Clear element references
+  player._video = null;
+  player._container = null;
+}
+```
+
+---
+
+## 8. LIBRARY SUMMARY
+
+| Library | CDN | Version | Purpose |
+|---------|-----|---------|---------|
+| HLS.js | jsdelivr | 1.6.11 | Adaptive video streaming |
+| Lenis | jsdelivr | latest | Smooth scrolling |
+| Botpoison | unpkg | latest | Form spam protection |
+| Finsweet | jsdelivr | 1.x | Webflow enhancements (CMS, consent) |
+| FilePond | unpkg | latest | File upload with R2 integration |
+
+---
+
+## 9. RELATED RESOURCES
+
+### Reference Files
+- [code_quality_standards.md](../javascript/quality_standards.md) - CDN-safe initialization pattern for all library integrations
+- [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting patterns for library loading
+- [performance_patterns.md](./performance_patterns.md) - Lazy loading and code splitting strategies

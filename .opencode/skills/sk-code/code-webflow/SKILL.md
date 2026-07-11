@@ -81,12 +81,21 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "IMPLEMENTATION": [
-        "references/implementation/implementation_workflows.md",
-        "references/implementation/async_patterns.md",
-        "references/implementation/observer_patterns.md",
-        "references/implementation/security_patterns.md",
-        "references/implementation/third_party_integrations.md",
-        "references/implementation/webflow_patterns.md",
+        "references/implementation/implementation_workflows/condition-based-waiting.md",
+        "references/implementation/implementation_workflows/validation-minification-and-cdn.md",
+        "references/implementation/async_patterns/raf-ric-microtask-and-posttask.md",
+        "references/implementation/async_patterns/timing-compat-and-webflow.md",
+        "references/implementation/observer_patterns/mutation-and-intersection.md",
+        "references/implementation/observer_patterns/resize-best-practices-and-shared.md",
+        "references/implementation/security_patterns/overview-and-checklist.md",
+        "references/implementation/security_patterns/owasp-prototype-and-safe-access.md",
+        "references/implementation/third_party_integrations/overview-hls-and-lenis.md",
+        "references/implementation/third_party_integrations/botpoison-and-finsweet.md",
+        "references/implementation/third_party_integrations/filepond.md",
+        "references/implementation/third_party_integrations/best-practices-and-summary.md",
+        "references/implementation/webflow_patterns/overview-limits-and-collection-lists.md",
+        "references/implementation/webflow_patterns/development-and-production.md",
+        "references/implementation/webflow_patterns/finsweet-custom-select-bridge.md",
         "references/shared/dev_workflow.md",
         "assets/integrations/README.md",
         "assets/patterns/README.md",
@@ -121,12 +130,18 @@ RESOURCE_MAP = {
         "references/performance/third_party.md",
         "references/performance/webflow_constraints.md",
         "references/verification/performance_checklist.md",
-        "references/implementation/performance_patterns.md",
+        "references/implementation/performance_patterns/overview-and-checklist.md",
+        "references/implementation/performance_patterns/budgets-and-anti-patterns.md",
         "references/animation/performance_and_pitfalls.md"
     ],
     "ANIMATION": [
-        "references/implementation/animation_workflows.md",
-        "references/implementation/swiper_patterns.md"
+        "references/implementation/animation_workflows/overview-decision-tree-and-css.md",
+        "references/implementation/animation_workflows/motion-dev-and-performance.md",
+        "references/implementation/animation_workflows/testing-and-common-issues.md",
+        "references/implementation/animation_workflows/motion-dev-advanced.md",
+        "references/implementation/swiper_patterns/overview-timeline-and-marquee.md"
+        "references/implementation/swiper_patterns/autoplay-accessibility-and-naming.md"
+        "references/implementation/swiper_patterns/initialization-and-troubleshooting.md"
     ],
     "MOTION_DEV": [
         "references/animation/quick_start.md",
@@ -142,15 +157,24 @@ RESOURCE_MAP = {
     ],
     "ACCESSIBILITY": [
         "references/animation/performance_and_pitfalls.md",
-        "references/implementation/animation_workflows.md",
+        "references/implementation/animation_workflows/overview-decision-tree-and-css.md",
+        "references/implementation/animation_workflows/motion-dev-and-performance.md",
+        "references/implementation/animation_workflows/testing-and-common-issues.md",
+        "references/implementation/animation_workflows/motion-dev-advanced.md",
         "references/verification/verification_workflows.md"
     ],
     "FORMS": [
-        "references/implementation/form_upload_workflows.md",
-        "references/implementation/focus_management.md"
+        "references/implementation/form_upload_workflows/overview-architecture-and-filepond.md",
+        "references/implementation/form_upload_workflows/state-machine-worker-and-forms.md",
+        "references/implementation/form_upload_workflows/mime-troubleshooting-and-deployment.md",
+        "references/implementation/focus_management/selector-and-focus-trap.md"
+        "references/implementation/focus_management/restoration-touch-and-anti-patterns.md"
     ],
     "VIDEO": [
-        "references/implementation/third_party_integrations.md"
+        "references/implementation/third_party_integrations/overview-hls-and-lenis.md"
+        "references/implementation/third_party_integrations/botpoison-and-finsweet.md"
+        "references/implementation/third_party_integrations/filepond.md"
+        "references/implementation/third_party_integrations/best-practices-and-summary.md"
     ],
     "LANGUAGE_STANDARDS": [
         "references/css/style_guide.md",
@@ -169,9 +193,9 @@ RESOURCE_MAP = {
 ## 3. SURFACE STANDARDS (the non-negotiables)
 
 - **CDN runtime reality.** Client scripts ship over a CDN with cache lag; treat every deploy as versioned and verify the minified runtime, not just the source. See `references/deployment/minification_guide.md` and `references/verification/verification_workflows.md`.
-- **Interaction-gated loading.** Heavy vendors (HLS.js, FilePond, Swiper) load on interaction/visibility, never eagerly. See `references/performance/interaction_gated_loading.md` and `references/implementation/observer_patterns.md`.
+- **Interaction-gated loading.** Heavy vendors (HLS.js, FilePond, Swiper) load on interaction/visibility, never eagerly. See `references/performance/interaction_gated_loading.md` and `references/implementation/observer_patterns/mutation-and-intersection.md`.
 - **Core Web Vitals are a gate, not a report.** LCP/CLS/INP regressions block; remediate against `references/performance/cwv_remediation.md` and `references/performance/webflow_constraints.md`.
-- **Focus and forms are accessibility-load-bearing.** Focus traps and upload flows follow `references/implementation/focus_management.md` and `references/implementation/form_upload_workflows.md`.
+- **Focus and forms are accessibility-load-bearing.** Focus traps and upload flows follow `references/implementation/focus_management/selector-and-focus-trap.md` and `references/implementation/form_upload_workflows/overview-architecture-and-filepond.md`.
 
 ## 4. ASSETS (on-demand, deferred from the first slice)
 

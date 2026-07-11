@@ -36,9 +36,9 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `references/stack_detection.md`
 - `references/smart_routing.md`
 - `references/smart_routing.md`
-- `code-webflow/references/implementation/animation_workflows.md`
-- `code-webflow/references/implementation/observer_patterns.md`
-- `code-webflow/references/implementation/third_party_integrations.md`
+- `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`
+- `code-webflow/references/implementation/observer_patterns/mutation-and-intersection.md`
+- `code-webflow/references/implementation/third_party_integrations/overview-hls-and-lenis.md`
 - `code-webflow/references/verification/verification_workflows.md`
 - `code-webflow/references/animation/quick_start.md`
 - `code-webflow/references/animation/integration_patterns.md`

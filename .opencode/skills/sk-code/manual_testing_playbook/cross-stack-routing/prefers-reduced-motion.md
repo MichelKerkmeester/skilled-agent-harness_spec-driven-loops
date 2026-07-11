@@ -36,7 +36,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `references/stack_detection.md`
 - `references/smart_routing.md`
 - `references/smart_routing.md`
-- `code-webflow/references/implementation/animation_workflows.md`
+- `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`
 - `code-webflow/references/javascript/quality_standards.md`
 - `code-webflow/references/verification/verification_workflows.md`
 - `code-webflow/references/animation/performance_and_pitfalls.md`
@@ -74,7 +74,7 @@ Evidence files:
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/code-webflow/references/animation/performance_and_pitfalls.md` - Motion reduced-motion guidance.
-- `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows.md` - Webflow animation accessibility guidance.
+- `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md` - Webflow animation accessibility guidance.
 - `.opencode/skills/sk-code/code-webflow/references/verification/verification_workflows.md` - Browser evidence expectations.
 - `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/hover_gesture.js` - Reduced-motion snippet pattern.
 

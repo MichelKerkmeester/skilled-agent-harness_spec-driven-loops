@@ -4,8 +4,13 @@ category: performance-animation
 title: 'Animation routing'
 expected_intent: ANIMATION
 expected_resources:
-  - references/implementation/animation_workflows.md
-  - references/implementation/swiper_patterns.md
+  - references/implementation/animation_workflows/overview-decision-tree-and-css.md
+  - references/implementation/animation_workflows/motion-dev-and-performance.md
+  - references/implementation/animation_workflows/testing-and-common-issues.md
+  - references/implementation/animation_workflows/motion-dev-advanced.md
+  - references/implementation/swiper_patterns/overview-timeline-and-marquee.md
+  - references/implementation/swiper_patterns/autoplay-accessibility-and-naming.md
+  - references/implementation/swiper_patterns/initialization-and-troubleshooting.md
 version: 1.0.0.0
 ---
 

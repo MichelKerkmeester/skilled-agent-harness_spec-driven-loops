@@ -39,7 +39,7 @@ This reference gives sk-code a decision path for choosing CSS, Motion.dev, GSAP,
 - Official: https://motion.dev/docs/quick-start
 - Official: https://motion.dev/docs/gsap-vs-motion
 - Official: https://motion.dev/docs/improvements-to-the-web-animations-api-dx
-- In-repo: `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows.md`
+- In-repo: `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`
 
 ---
 
@@ -61,7 +61,7 @@ Need animation?
         -> Direct WAAPI can be enough.
 ```
 
-This matches the existing local rule: CSS first for simple states; Motion when programmatic control is needed (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows.md`). Motion docs support the programmatic side via `animate()`, sequences, `scroll()`, and `inView()` (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview).
+This matches the existing local rule: CSS first for simple states; Motion when programmatic control is needed (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`). Motion docs support the programmatic side via `animate()`, sequences, `scroll()`, and `inView()` (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview).
 
 ## 3. MOTION.DEV vs GSAP
 
@@ -110,7 +110,7 @@ Use these examples when checking future router drift. They are routing contracts
 | Query | Expected Surface | Expected References |
 |-------|------------------|---------------------|
 | `Should I use motion.dev or pure CSS for hover states?` | N/A or UNKNOWN | `references/animation/decision_matrix.md`, `references/animation/quick_start.md`; cite the decision tree in this file |
-| `For a Webflow page, should scroll reveal use Motion.dev or CSS?` | WEBFLOW | `references/implementation/animation_workflows.md`, `references/implementation/performance_patterns.md`, `references/animation/decision_matrix.md`, `references/animation/scroll_and_gestures.md` |
+| `For a Webflow page, should scroll reveal use Motion.dev or CSS?` | WEBFLOW | `references/implementation/animation_workflows/overview-decision-tree-and-css.md`, `references/implementation/performance_patterns/overview-and-checklist.md`, `references/animation/decision_matrix.md`, `references/animation/scroll_and_gestures.md` |
 | `I'm building vanilla HTML/CSS/JS only, NOT Webflow, and deciding between Motion.dev and WAAPI.` | UNKNOWN or N/A | `references/animation/decision_matrix.md`, `references/animation/performance_and_pitfalls.md`; no `references/*` surface resources for a non-Webflow task |
 
 Expected response shape: give the smallest-tool recommendation first, then name the trade-off. Do not emit directory placeholders such as `references/animation/`.
@@ -125,5 +125,5 @@ Expected response shape: give the smallest-tool recommendation first, then name 
 - Motion spring: https://motion.dev/docs/spring
 - Motion vs GSAP: https://motion.dev/docs/gsap-vs-motion
 - Motion vs WAAPI / improvements: https://motion.dev/docs/improvements-to-the-web-animations-api-dx
-- Local Webflow animation decision rule: `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows.md`
+- Local Webflow animation decision rule: `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`
 - Local Motion usage anchors: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`

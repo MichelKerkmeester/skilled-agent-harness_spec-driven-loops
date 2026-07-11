@@ -46,7 +46,7 @@ Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion de
 - `code-webflow/assets/animation/snippets/es_module_bootstrap.js`
 
 **Expected NOT loaded as authoritative surface guidance**:
-- `code-webflow/references/implementation/webflow_patterns.md`
+- `code-webflow/references/implementation/webflow_patterns/overview-limits-and-collection-lists.md`
 - `code-webflow/assets/checklists/verification_checklist.md`
 
 **Expected agent dispatch**: none.

@@ -117,7 +117,7 @@ WEBFLOW loads from `code-webflow/references/` and `code-webflow/assets/`. The pe
 
 | Intent | Resources |
 | --- | --- |
-| IMPLEMENTATION | MUST load the implementation trio: `code-webflow/references/implementation/animation_workflows.md`, `code-webflow/references/implementation/implementation_workflows.md`, `code-webflow/references/implementation/performance_patterns.md`; then add per-language style guides (`code-webflow/references/javascript/style_guide.md`, `code-webflow/references/css/style_guide.md`) and focused guides such as forms/vendor refs as needed |
+| IMPLEMENTATION | MUST load the implementation trio: `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`, `code-webflow/references/implementation/implementation_workflows/condition-based-waiting.md`, `code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`; then add per-language style guides (`code-webflow/references/javascript/style_guide.md`, `code-webflow/references/css/style_guide.md`) and focused guides such as forms/vendor refs as needed |
 | CODE_QUALITY | `code-review/assets/code_quality_checklist.md`, `code-webflow/references/javascript/quality_standards.md`, `code-webflow/references/css/quality_standards.md`, `code-webflow/references/shared/enforcement.md` |
 | DEBUGGING | `code-webflow/references/debugging/*`, `code-webflow/references/shared/dev_workflow.md`, universal debugging checklist |
 | VERIFICATION | `code-webflow/references/verification/verification_workflows.md`, `code-webflow/references/shared/enforcement.md`, verification checklist |
@@ -128,9 +128,9 @@ WEBFLOW loads from `code-webflow/references/` and `code-webflow/assets/`. The pe
 
 Any WEBFLOW surface detection MUST load the implementation trio before intent-specific expansion:
 
-- `code-webflow/references/implementation/animation_workflows.md`
-- `code-webflow/references/implementation/implementation_workflows.md`
-- `code-webflow/references/implementation/performance_patterns.md`
+- `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`
+- `code-webflow/references/implementation/implementation_workflows/condition-based-waiting.md`
+- `code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`
 
 This is a contract, not a guideline. It prevents SD-001-style partial coverage where the surface is correct but implementation guidance falls below the expected threshold.
 
@@ -185,8 +185,8 @@ PERFORMANCE intent with Motion.dev or Webflow animation MUST name these canonica
 DECISION intent MUST name:
 
 - `code-webflow/references/animation/decision_matrix.md`
-- `code-webflow/references/implementation/animation_workflows.md` when comparing Motion.dev against Webflow-owned animation patterns
-- `code-webflow/references/implementation/performance_patterns.md` when the decision depends on performance constraints
+- `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md` when comparing Motion.dev against Webflow-owned animation patterns
+- `code-webflow/references/implementation/performance_patterns/overview-and-checklist.md` when the decision depends on performance constraints
 
 ---
 
@@ -343,12 +343,21 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "IMPLEMENTATION": [
         "references/universal/multi_agent_research.md",
-        "code-webflow/references/implementation/implementation_workflows.md",
-        "code-webflow/references/implementation/async_patterns.md",
-        "code-webflow/references/implementation/observer_patterns.md",
-        "code-webflow/references/implementation/security_patterns.md",
-        "code-webflow/references/implementation/third_party_integrations.md",
-        "code-webflow/references/implementation/webflow_patterns.md",
+        "code-webflow/references/implementation/implementation_workflows/condition-based-waiting.md",
+        "code-webflow/references/implementation/implementation_workflows/validation-minification-and-cdn.md",
+        "code-webflow/references/implementation/async_patterns/raf-ric-microtask-and-posttask.md",
+        "code-webflow/references/implementation/async_patterns/timing-compat-and-webflow.md",
+        "code-webflow/references/implementation/observer_patterns/mutation-and-intersection.md",
+        "code-webflow/references/implementation/observer_patterns/resize-best-practices-and-shared.md",
+        "code-webflow/references/implementation/security_patterns/overview-and-checklist.md",
+        "code-webflow/references/implementation/security_patterns/owasp-prototype-and-safe-access.md",
+        "code-webflow/references/implementation/third_party_integrations/overview-hls-and-lenis.md",
+        "code-webflow/references/implementation/third_party_integrations/botpoison-and-finsweet.md",
+        "code-webflow/references/implementation/third_party_integrations/filepond.md",
+        "code-webflow/references/implementation/third_party_integrations/best-practices-and-summary.md",
+        "code-webflow/references/implementation/webflow_patterns/overview-limits-and-collection-lists.md",
+        "code-webflow/references/implementation/webflow_patterns/development-and-production.md",
+        "code-webflow/references/implementation/webflow_patterns/finsweet-custom-select-bridge.md",
         "code-webflow/references/shared/dev_workflow.md",
         "code-opencode/references/shared/universal_patterns/naming-and-commenting.md",
         "code-opencode/references/shared/universal_patterns/organization-security-and-examples.md",
@@ -410,13 +419,19 @@ RESOURCE_MAP = {
         "code-webflow/references/performance/third_party.md",
         "code-webflow/references/performance/webflow_constraints.md",
         "code-webflow/references/verification/performance_checklist.md",
-        "code-webflow/references/implementation/performance_patterns.md",
+        "code-webflow/references/implementation/performance_patterns/overview-and-checklist.md",
+        "code-webflow/references/implementation/performance_patterns/budgets-and-anti-patterns.md",
         "code-webflow/references/animation/performance_and_pitfalls.md",
         "references/performance_loading_checklist.md"
     ],
     "ANIMATION": [
-        "code-webflow/references/implementation/animation_workflows.md",
-        "code-webflow/references/implementation/swiper_patterns.md"
+        "code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md",
+        "code-webflow/references/implementation/animation_workflows/motion-dev-and-performance.md",
+        "code-webflow/references/implementation/animation_workflows/testing-and-common-issues.md",
+        "code-webflow/references/implementation/animation_workflows/motion-dev-advanced.md",
+        "code-webflow/references/implementation/swiper_patterns/overview-timeline-and-marquee.md"
+        "code-webflow/references/implementation/swiper_patterns/autoplay-accessibility-and-naming.md"
+        "code-webflow/references/implementation/swiper_patterns/initialization-and-troubleshooting.md"
     ],
     "MOTION_DEV": [
         "code-webflow/references/animation/quick_start.md",
@@ -432,15 +447,24 @@ RESOURCE_MAP = {
     ],
     "ACCESSIBILITY": [
         "code-webflow/references/animation/performance_and_pitfalls.md",
-        "code-webflow/references/implementation/animation_workflows.md",
+        "code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md",
+        "code-webflow/references/implementation/animation_workflows/motion-dev-and-performance.md",
+        "code-webflow/references/implementation/animation_workflows/testing-and-common-issues.md",
+        "code-webflow/references/implementation/animation_workflows/motion-dev-advanced.md",
         "code-webflow/references/verification/verification_workflows.md"
     ],
     "FORMS": [
-        "code-webflow/references/implementation/form_upload_workflows.md",
-        "code-webflow/references/implementation/focus_management.md"
+        "code-webflow/references/implementation/form_upload_workflows/overview-architecture-and-filepond.md",
+        "code-webflow/references/implementation/form_upload_workflows/state-machine-worker-and-forms.md",
+        "code-webflow/references/implementation/form_upload_workflows/mime-troubleshooting-and-deployment.md",
+        "code-webflow/references/implementation/focus_management/selector-and-focus-trap.md"
+        "code-webflow/references/implementation/focus_management/restoration-touch-and-anti-patterns.md"
     ],
     "VIDEO": [
-        "code-webflow/references/implementation/third_party_integrations.md"
+        "code-webflow/references/implementation/third_party_integrations/overview-hls-and-lenis.md"
+        "code-webflow/references/implementation/third_party_integrations/botpoison-and-finsweet.md"
+        "code-webflow/references/implementation/third_party_integrations/filepond.md"
+        "code-webflow/references/implementation/third_party_integrations/best-practices-and-summary.md"
     ],
     "HOOKS": [
         "code-opencode/references/shared/hooks.md"

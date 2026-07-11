@@ -98,7 +98,7 @@ The current repo also uses a dynamic CDN ESM fallback in `testimonial.js`, impor
 
 Use Motion when the current task needs programmatic control, interruptible animations, sequence timing, scroll-linked animation, viewport-triggered behavior, or JS-owned motion values (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview).
 
-Prefer CSS first for simple hover/focus states, one-off transitions, and static keyframes that do not need JS state or sequencing. Existing Webflow guidance already encodes this as "CSS first; Motion.dev when you need programmatic control" (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows.md`).
+Prefer CSS first for simple hover/focus states, one-off transitions, and static keyframes that do not need JS state or sequencing. Existing Webflow guidance already encodes this as "CSS first; Motion.dev when you need programmatic control" (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`).
 
 ## 5. CROSS-STACK NOTES
 

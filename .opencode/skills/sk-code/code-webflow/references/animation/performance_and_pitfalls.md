@@ -41,7 +41,7 @@ This reference keeps Motion-specific performance choices aligned with local Webf
 - Official: https://motion.dev/docs/quick-start
 - Official: https://motion.dev/docs/animate
 - Official: https://motion.dev/docs/scroll
-- In-repo: `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns.md`
+- In-repo: `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`
 
 ---
 
@@ -53,11 +53,11 @@ Prefer `transform` and `opacity` for high-frequency or visible movement. Motion 
 animate(".card", { opacity: [0, 1], transform: ["translateY(12px)", "translateY(0px)"] });
 ```
 
-Existing sk-code Webflow guidance gives the same local rule: animate `transform` and `opacity` first, and manage `will-change` dynamically around active animations (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns.md`).
+Existing sk-code Webflow guidance gives the same local rule: animate `transform` and `opacity` first, and manage `will-change` dynamically around active animations (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`).
 
 ## 3. LAYOUT-THRASHING ANTI-PATTERNS
 
-Avoid animating layout properties like `top`, `left`, `width`, and `height` unless the UX requires measured layout transitions. These properties can cause layout recalculation and Core Web Vitals/INP risk in the local performance guide (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns.md`).
+Avoid animating layout properties like `top`, `left`, `width`, and `height` unless the UX requires measured layout transitions. These properties can cause layout recalculation and Core Web Vitals/INP risk in the local performance guide (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`).
 
 When height is required, use measured-height patterns and cleanup, as local dropdowns do:
 - measure natural height,
@@ -102,7 +102,7 @@ Animation can affect Core Web Vitals indirectly:
 
 Mitigations:
 - Keep critical content visible or ensure fallbacks set final state when Motion is missing (Repo: `a_nobel_en_zn/2_javascript/hero/hero_general.js`, `a_nobel_en_zn/2_javascript/hero/hero_cards.js`).
-- Prefer transform/opacity and pre-measured layout changes (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns.md`).
+- Prefer transform/opacity and pre-measured layout changes (Repo: `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`).
 - Use `requestAnimationFrame` for render scheduling and avoid unnecessary per-frame DOM reads (Repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 - For scroll-linked animation, use `scroll()` where supported so the browser can use ScrollTimeline for supported animations (Source: https://motion.dev/docs/scroll).
 
@@ -138,7 +138,7 @@ Do not vendor external recording scripts into sk-code for this workflow. Prefer 
 - Motion React accessibility/reduced-motion guidance: https://motion.dev/docs/react-accessibility, https://motion.dev/docs/react-use-reduced-motion
 - Motion Vue reduced-motion config: https://motion.dev/docs/vue-motion-config
 - Mined frame/contact-sheet workflow: `Schmandarine/web-motion-skill` (MIT), `SKILL.md`, `README.md`, and `scripts/contact-sheet.sh`
-- Local Webflow performance guide: `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns.md`
+- Local Webflow performance guide: `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`
 - Local dropdown measured-height examples: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/navigation/nav_language_selector.js`
 - Local drag/rAF/reduced-motion example: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
 - Local video reduced-motion/mobile guard: `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`

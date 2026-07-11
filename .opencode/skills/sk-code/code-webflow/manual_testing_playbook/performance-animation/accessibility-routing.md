@@ -5,7 +5,10 @@ title: 'Accessibility routing'
 expected_intent: ACCESSIBILITY
 expected_resources:
   - references/animation/performance_and_pitfalls.md
-  - references/implementation/animation_workflows.md
+  - references/implementation/animation_workflows/overview-decision-tree-and-css.md
+  - references/implementation/animation_workflows/motion-dev-and-performance.md
+  - references/implementation/animation_workflows/testing-and-common-issues.md
+  - references/implementation/animation_workflows/motion-dev-advanced.md
   - references/verification/verification_workflows.md
 version: 1.0.0.0
 ---

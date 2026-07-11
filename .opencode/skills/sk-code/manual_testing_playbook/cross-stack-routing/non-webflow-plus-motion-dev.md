@@ -41,7 +41,7 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 - `code-webflow/assets/animation/install_card.md`
 
 **Expected NOT loaded**:
-- `code-webflow/references/implementation/webflow_patterns.md`
+- `code-webflow/references/implementation/webflow_patterns/overview-limits-and-collection-lists.md`
 - `code-webflow/assets/checklists/code_quality_checklist.md`
 
 **Expected agent dispatch**: none.
