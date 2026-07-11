@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang",
+  "spec_folder": "sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang",
+  "parent_id": "sk-code/018-rust-standards-for-code-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 phase 005 touchpoints multilang",
+      "rust known_languages router-replay fixtures",
+      "touched language set rust typescript",
+      "018 phase 005 plan",
+      "touchpoints multilang plan rust",
+      "018 phase 005 tasks",
+      "touchpoints multilang tasks rust"
+    ],
+    "key_topics": [
+      "phase",
+      "touchpoints",
+      "multilang",
+      "rust",
+      "router-replay",
+      "fixtures",
+      "touched",
+      "language",
+      "set",
+      "typescript",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-code/shared/references/stack_detection.md",
+      ".opencode/skills/sk-code/hub-router.json",
+      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
+      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns.md",
+      ".opencode/skills/sk-code/code-opencode/references/shared/code_organization.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "stack_detection.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/stack_detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "verify_stack_folders.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "universal_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "code_organization.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Registration Touchpoints",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Language Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Beyond",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Teach",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive Rust",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Beyond the surface router and parent union, several tools independently classify languages (stack detection, the hub router, two Python verifiers, and the skill-benchmark router-replay)",
+    "created_at": "2026-07-11T08:51:44.754Z",
+    "last_save_at": "2026-07-11T08:53:42.352Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:f12ef65d59e8366920b2a07e040cfe3ed10f09f8b311d9b04ee1559208c010d7",
+    "source_doc_hashes": {
+      "spec.md": "ac8615c6ffda5c8f79143ef1b0655904c7638cefb1aa9960ca06849dd1fb5464",
+      "plan.md": "0a6f1a05ef6b597d795c80dc03f51b6fe196a7fb940867c708c48a1c4bb089e3",
+      "tasks.md": "bf4af56cc950eedfd61145d0d290332c034278de19fa8e59ebd0cb4146c64a13"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

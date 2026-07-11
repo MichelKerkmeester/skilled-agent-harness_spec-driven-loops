@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-code/018-rust-standards-for-code-opencode/002-standard-docs",
+  "description": "The research produced a complete Rust standard (section skeletons, consolidated rules, the four repo non-negotiables) but nothing is authored yet",
+  "keywords": [
+    "research",
+    "produced",
+    "complete",
+    "rust",
+    "standard",
+    "section",
+    "skeletons",
+    "consolidated",
+    "rules",
+    "four",
+    "repo",
+    "non-negotiables",
+    "nothing",
+    "authored"
+  ],
+  "lastUpdated": "2026-07-11T08:53:41.290Z",
+  "specId": "002",
+  "folderSlug": "standard-docs",
+  "parentChain": [
+    "sk-code",
+    "018-rust-standards-for-code-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

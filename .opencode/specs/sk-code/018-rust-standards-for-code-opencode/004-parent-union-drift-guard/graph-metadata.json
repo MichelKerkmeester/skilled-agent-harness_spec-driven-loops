@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard",
+  "spec_folder": "sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard",
+  "parent_id": "sk-code/018-rust-standards-for-code-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 phase 004 parent union drift guard",
+      "smart_routing.md rust union",
+      "sk-code-router-sync drift guard rust",
+      "018 phase 004 plan",
+      "parent union drift guard plan",
+      "018 phase 004 tasks",
+      "parent union drift guard tasks"
+    ],
+    "key_topics": [
+      "phase",
+      "parent",
+      "union",
+      "drift",
+      "guard",
+      "rust",
+      "sk-code-router-sync",
+      "plan",
+      "tasks",
+      "hub",
+      "keeps",
+      "projection"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Union",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent hub keeps a union projection of every child's routing map, enforced by a drift-guard vitest",
+    "created_at": "2026-07-11T08:51:44.490Z",
+    "last_save_at": "2026-07-11T08:53:42.070Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:91a02f43353ac79141f0a2bf94f03c2e72e6097ce011dfef97019dccb764a473",
+    "source_doc_hashes": {
+      "spec.md": "e80b995f730d9411e4d52d5ad11a4063e22427a6932b20cd7d485109c6340a7d",
+      "plan.md": "acb81fc10bd043edca2360b933243062eb1209e7d2816b3de6bc65800c6011d4",
+      "tasks.md": "ea1f47904a3b0266052cca1b5f7c3421987d5efe22d11d9e2f93d6d8deccd766"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

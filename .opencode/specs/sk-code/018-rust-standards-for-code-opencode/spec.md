@@ -12,15 +12,15 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T08:53:41Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase parent + the 001-research charter (10-round GPT-5.6-sol deep-research pass) and stubbed the 002-upgrade phase"
-    next_safe_action: "Smoke-test the cli-opencode executor at 1 round, then launch the 10-round loop; then execute 002-upgrade from research.md"
+    recent_action: "Scaffolded implementation phases 002-006 from the research manifest"
+    next_safe_action: "Execute phase 002 (author the Rust standard docs) from research.md"
     blockers: []
     key_files:
       - "spec.md"
-      - "001-research/spec.md"
-      - "002-upgrade/spec.md"
+      - "001-research/research/research.md"
+      - "002-standard-docs/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-11-sk-code-018-rust-standards-parent"
@@ -87,8 +87,12 @@ Produce, from evidence, a Rust standard that (1) matches idiomatic Rust and the 
 | `spec.md` | Create | parent | Root purpose and child map |
 | `description.json` | Create | parent | Search metadata for the parent |
 | `graph-metadata.json` | Create | parent | Child identity and parent graph metadata |
-| `001-research/**` | Create | 001 | 10-round GPT-5.6-sol deep-research charter + loop artifacts |
-| `002-upgrade/**` | Create | 002 | Implementation of the Rust standards/assets + SKILL/parent-hub/drift-guard edits |
+| `001-research/**` | Create | 001 | 10-round GPT-5.6-sol deep-research charter + loop artifacts (complete) |
+| `002-standard-docs/**` | Create | 002 | Author the Rust trio + checklist + playbook |
+| `003-surface-routing/**` | Create | 003 | code-opencode/SKILL.md detection + RUST intent/resource |
+| `004-parent-union-drift-guard/**` | Create | 004 | smart_routing.md parent union + drift guard green |
+| `005-touchpoints-and-multilang/**` | Create | 005 | Six registration touchpoints + touched-language-set change |
+| `006-gate-verification-rollup/**` | Create | 006 | Run the gate plan + roll up the parent |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -98,22 +102,29 @@ Produce, from evidence, a Rust standard that (1) matches idiomatic Rust and the 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-research/` | 10-round deep-research pass (GPT-5.6-sol, high, fast, via `cli-opencode`) over three thrusts — external Rust best practices (weighted to napi-rs/WASM interop + determinism parity), our own skill/standard conventions, and how code-opencode encodes its other languages — producing `research.md` with a concrete Rust standards synthesis and an exact upgrade file/edit manifest | Not Started |
-| 002 | `002-upgrade/` | Implement the manifest: `references/rust/*`, `assets/checklists/rust_checklist.md`, `manual_testing_playbook/language-standards/004-rust-standards.md`, `code-opencode/SKILL.md` detection + SMART-ROUTING edits, and the parent `sk-code` hub union + drift-guard update; gate on drift guard + skill-benchmark router-replay + `validate.sh --strict` | Planned |
+| 001 | `001-research/` | 10-round deep-research pass (GPT-5.6-sol, high, fast, via `cli-opencode`) producing `research.md` with the Rust standard synthesis and an exact upgrade file/edit manifest | Complete |
+| 002 | `002-standard-docs/` | Author the Rust standard docs: `references/rust/{style_guide,quality_standards,quick_reference}.md`, `assets/checklists/rust_checklist.md`, and `manual_testing_playbook/language-standards/004-rust-standards.md` (content from research.md Deliverables 1 + 3) | Not Started |
+| 003 | `003-surface-routing/` | `code-opencode/SKILL.md`: `.rs`/Cargo detection, RUST `INTENT_SIGNALS` + `RESOURCE_MAP`, `CODE_QUALITY` registration, surface non-negotiable (Deliverable 2B) | Not Started |
+| 004 | `004-parent-union-drift-guard/` | `shared/references/smart_routing.md` parent RUST union + `CODE_QUALITY`; make `sk-code-router-sync.vitest.ts` pass (Deliverable 2C). NOTE: the union is here, not in `sk-code/SKILL.md` | Not Started |
+| 005 | `005-touchpoints-and-multilang/` | Six registration touchpoints (stack_detection, hub-router.json, two Python verifiers, router-replay.cjs, shared trio) + the touched-language-set behavior change (Deliverable 2D) | Not Started |
+| 006 | `006-gate-verification-rollup/` | Run the Deliverable 4 gate plan (drift guard, fail-closed router-replay, verifiers, `validate.sh --strict`) and roll up the parent | Not Started |
 
 ### Phase Transition Rules
 
-- 001 is research-only: it writes findings under `001-research/research/` and touches no skill source.
-- 002 begins only after 001 converges; its plan/tasks are derived from `research.md`'s upgrade manifest.
-- The upgrade in 002 is not "done" until the drift guard, the skill-benchmark router-replay, and strict validation are all green (the parent-hub union equality is a hard gate).
+- 001 is research-only (complete): it wrote findings under `001-research/research/` and touched no skill source.
+- 002–005 run in dependency order (docs → surface routing → parent union → touchpoints); each phase's plan/tasks derive from `research.md`'s upgrade manifest.
+- The upgrade is not "done" until phase 006's gates — the drift guard, the skill-benchmark router-replay (asserted fail-closed), and strict validation — are all green (the parent-hub union equality is a hard gate).
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| root | 001-research | Research charter authored with predefined angles + runnable executor config | `001-research/spec.md` §7 lists the angles; `deep-research-fanout-config.json` uses `cli-opencode` |
-| 001-research | 002-upgrade | Loop converged or hit the 10-round cap with a decision-ready manifest | `001-research/research/research.md` exists with a Rust standard + file/edit manifest |
-| 002-upgrade | done | Rust standards shipped and gates green | drift guard + router-replay + `validate.sh --strict` all pass |
+| 001-research | 002-standard-docs | Loop hit the 10-round cap with a decision-ready manifest | `001-research/research/research.md` exists with a Rust standard + file/edit manifest (done) |
+| 002 | 003 | Rust trio + checklist + playbook authored | The five `references/rust/*` + checklist + playbook files exist |
+| 003 | 004 | code-opencode/SKILL.md routes RUST | Detection + RUST intent/resource + CODE_QUALITY registration present |
+| 004 | 005 | Parent union mirrors the child map | `sk-code-router-sync.vitest.ts` passes |
+| 005 | 006 | Every touchpoint recognizes Rust; touched-language set works | Verifiers + router-replay fixtures green |
+| 006 | done | All gates green and parent rolled up | drift guard + fail-closed router-replay + verifiers + `validate.sh --strict` all pass |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -128,8 +139,8 @@ Produce, from evidence, a Rust standard that (1) matches idiomatic Rust and the 
 
 ## RELATED DOCUMENTS
 
-- **Research child**: `001-research/`
-- **Upgrade child**: `002-upgrade/`
+- **Research child**: `001-research/` (complete)
+- **Implementation children**: `002-standard-docs/`, `003-surface-routing/`, `004-parent-union-drift-guard/`, `005-touchpoints-and-multilang/`, `006-gate-verification-rollup/`
 - **Upgrade target**: `../../../skills/sk-code/code-opencode/` (and parent hub `../../../skills/sk-code/`)
 - **Motivating precedent**: `../../system-code-graph/011-rust-backend-rewrite-research/`, `../../system-skill-advisor/013-rust-backend-rewrite-research/`, `../../system-speckit/030-rust-backend-rewrite-research/`
 - **Graph metadata**: `graph-metadata.json`

@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-code/018-rust-standards-for-code-opencode/003-surface-routing",
+  "description": "The `code-opencode/SKILL.md` surface router does not detect Rust files or route a RUST intent, so even with the Rust docs authored (phase 002) nothing",
+  "keywords": [
+    "code-opencode",
+    "skill",
+    "surface",
+    "router",
+    "detect",
+    "rust",
+    "files",
+    "route",
+    "intent",
+    "even",
+    "docs",
+    "authored",
+    "phase",
+    "nothing"
+  ],
+  "lastUpdated": "2026-07-11T08:53:41.290Z",
+  "specId": "003",
+  "folderSlug": "surface-routing",
+  "parentChain": [
+    "sk-code",
+    "018-rust-standards-for-code-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -4,7 +4,12 @@
   "spec_folder": "sk-code/018-rust-standards-for-code-opencode",
   "parent_id": null,
   "children_ids": [
-    "sk-code/018-rust-standards-for-code-opencode/001-research"
+    "sk-code/018-rust-standards-for-code-opencode/001-research",
+    "sk-code/018-rust-standards-for-code-opencode/002-standard-docs",
+    "sk-code/018-rust-standards-for-code-opencode/003-surface-routing",
+    "sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard",
+    "sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang",
+    "sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup"
   ],
   "manual": {
     "depends_on": [],
@@ -37,8 +42,9 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "001-research/spec.md",
-      "001-research/research/research.md"
+      "001-research/research/research.md",
+      "002-standard-docs/spec.md",
+      "001-research/spec.md"
     ],
     "entities": [
       {
@@ -86,15 +92,15 @@
     ],
     "causal_summary": "`sk-code`'s `code-opencode` surface encodes per-language standards (TypeScript, Python, shell, JavaScript, config) as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio plus an `assets/checklists/<lang>checklist.md` and a `manualtestingplaybook/language-standards/` entry, wired into a machine-readable SMART ROUTING block whose `RESOURCEMAP` the parent hub mirrors under a drift guard",
     "created_at": "2026-07-11T07:13:21.076Z",
-    "last_save_at": "2026-07-11T08:30:22.278Z",
+    "last_save_at": "2026-07-11T08:53:42.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:19a167edf753621510fab1c311f56310fae7d3b3c862cc6a5d34f364168d8eb7",
+    "source_fingerprint": "sha256:a5ff8f8630fd553a672fe23daa7a7d3422f79921d7c5a13b82f8c8db70704fad",
     "source_doc_hashes": {
-      "spec.md": "76b03039f21b95f259de7a69b533740610b017ca3e04a9ebf2c69bd6123f482a"
+      "spec.md": "b939adc0eeebd6d26a3be3dbe453a7ba920cd101f707db8e187a32557c15c6fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,22 @@
+{
+  "specFolder": "sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup",
+  "description": "The Rust upgrade is not \"done\" until every gate is green",
+  "keywords": [
+    "rust",
+    "upgrade",
+    "done",
+    "until",
+    "every",
+    "gate",
+    "green"
+  ],
+  "lastUpdated": "2026-07-11T08:53:41.291Z",
+  "specId": "006",
+  "folderSlug": "gate-verification-rollup",
+  "parentChain": [
+    "sk-code",
+    "018-rust-standards-for-code-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

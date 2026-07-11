@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang",
+  "description": "Beyond the surface router and parent union, several tools independently classify languages (stack detection, the hub router, two Python verifiers, and",
+  "keywords": [
+    "beyond",
+    "surface",
+    "router",
+    "parent",
+    "union",
+    "several",
+    "tools",
+    "independently",
+    "classify",
+    "languages",
+    "stack",
+    "detection",
+    "hub",
+    "two",
+    "python",
+    "verifiers"
+  ],
+  "lastUpdated": "2026-07-11T08:53:41.291Z",
+  "specId": "005",
+  "folderSlug": "touchpoints-and-multilang",
+  "parentChain": [
+    "sk-code",
+    "018-rust-standards-for-code-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
