@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard"
-    last_updated_at: "2026-07-11T08:53:41Z"
+    last_updated_at: "2026-07-11T09:56:28Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded this phase spec from the 018 research manifest"
-    next_safe_action: "Plan and apply the smart_routing.md union edits, then run the drift guard"
+    recent_action: "Mirrored RUST into the smart_routing.md parent union; drift guard green"
+    next_safe_action: "Wire the six registration touchpoints (phase 005)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 4 — Parent-Hub Union & Drift Guard
@@ -29,7 +29,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Not Started |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 003-surface-routing |
