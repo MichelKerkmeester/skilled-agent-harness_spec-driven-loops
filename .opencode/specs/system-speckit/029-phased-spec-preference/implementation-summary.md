@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/029-phased-spec-preference"
-    last_updated_at: "2026-07-11T13:44:07.775Z"
+    last_updated_at: "2026-07-11T14:17:29.840Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Initialized Level 2 template"
     next_safe_action: "Replace continuity placeholders"
@@ -103,7 +103,11 @@ Operator feedback: "Skip" should always sort last among a command's option lette
 1. **The Gate-3 "Spec Folder A-E" list** (`D) Skip, E) Phase folder` → `D) Extend phased packet, E) Skip`) — found duplicated in 10 places beyond the framework docs already touched in Round 3: the live spec-gate hook source (`runtime/lib/spec-gate/spec-gate-core.mjs` — the actual runtime string behind every "SPEC FOLDER QUESTION" message this session), and 9 command asset files across `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/create:skill`, `/create:feature-catalog`, `/create:skill-parent`, `/create:manual-testing-playbook` that duplicate the same list independently of AGENTS.md.
 2. **The "Session Goal" list** (`B) Skip, C) Set goal: <objective>` → `B) Set goal: <objective>, C) Skip`) — found in 4 speckit presentation files (`resume`, `implement`, `complete`, `plan`).
 
-Deliberately left alone: `doctor_update_presentation.txt`'s `2) Skip` before `X) Cancel`, and `doctor_skill-advisor.yaml`'s `C) Skip verification` before `D) Rollback all changes` — treated `Cancel`/`Rollback` as abort/escape actions in a different category from a peer processing choice, not something Skip needs to precede. Also left `speckit_resume_presentation.txt`'s Q0 line alone (`A) List and select B) Start new... C) Cancel E) Phase folder` — a pre-existing, unrelated bug (missing `D)`, no literal "Skip" wording) outside this fix's scope. The `manual_testing_playbook/plugins-and-hooks/spec-mutation-gate-enforce.md` fixture still shows the old captured hook output (an honest historical transcript, not a living spec) — now stale relative to the source fix; flagged for the operator to refresh by re-running that playbook rather than hand-edited to avoid fabricating a "captured" result that wasn't re-executed.
+Deliberately left alone: `doctor_update_presentation.txt`'s `2) Skip` before `X) Cancel`, and `doctor_skill-advisor.yaml`'s `C) Skip verification` before `D) Rollback all changes` — treated `Cancel`/`Rollback` as abort/escape actions in a different category from a peer processing choice, not something Skip needs to precede. The `manual_testing_playbook/plugins-and-hooks/spec-mutation-gate-enforce.md` fixture still shows the old captured hook output (an honest historical transcript, not a living spec) — now stale relative to the source fix; flagged for the operator to refresh by re-running that playbook rather than hand-edited to avoid fabricating a "captured" result that wasn't re-executed.
+
+### Round 5: speckit presentation-asset re-sweep (operator follow-up)
+
+Operator flagged not to forget speckit's own presentation assets. Re-audited every `.txt`/`.yaml` under `.opencode/commands/speckit/assets/` and `.opencode/commands/create/assets/` against both patterns — all 4 speckit presentation files (`complete`, `plan`, `implement`, `resume`) and the confirm/auto yaml pair now carry the fixed wording, and no `create:*` asset was missed. This pass also fixed the pre-existing letter-sequence bug flagged (but left alone) in Round 4: `speckit_resume_presentation.txt`'s Q0 line jumped straight from `C)` to `E)` with no `D)` — relettered to `D) Phase folder`. This line has no literal "Skip" option, so it's a distinct fix from the Skip-reorder, done here only because it was directly adjacent and now confirmed as the last remaining inconsistency in the speckit asset family.
 <!-- /ANCHOR:what-built -->
 
 ---
