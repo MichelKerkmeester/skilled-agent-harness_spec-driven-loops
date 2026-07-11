@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/061-stage-aware-scorer"
-    last_updated_at: "2026-07-11T21:10:00Z"
+    last_updated_at: "2026-07-11T21:40:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded ADR-001 for the stage-split scoring semantics"
-    next_safe_action: "Implement the stage split under the score-preserving invariant"
+    next_safe_action: "Complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/061-stage-aware-scorer"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted (scaffolded — implementation pending) |
+| **Status** | Accepted |
 | **Date** | 2026-07-11 |
 | **Deciders** | Operator + Claude (this session) |
 | **Supersedes** | n/a (first ADR for this packet) |
@@ -54,7 +54,7 @@ The Lane C skill-benchmark has a `stage` axis (`routing` | `holdout` | `negative
 
 That leaves two capabilities unwired: **decontaminated holdout** evaluation (a generalization check that must NOT inflate or deflate the headline score) and **stage-declared negatives** (suppression tests routed through the existing inversion machinery). It is the wiring gap behind the benchmark-validity/circularity concern.
 
-A pristine Mode-A router-replay baseline was captured across every playbook corpus BEFORE any edit (33 corpora produced reports; 25 have scored scenarios). None of the shipped corpora declares a `stage`, so the refactor's correctness is anchored to a hard property: it must reproduce every baseline `aggregateScore` exactly.
+A pristine Mode-A router-replay baseline was captured across every playbook corpus BEFORE any edit (33 corpora produced reports; 25 have scored scenarios). Seven corpora already ship staged fixtures (14 `stage: holdout` + 5 `stage: negative` across the tree); the other 28 are holdout-free. The refactor's correctness is therefore anchored to two hard properties: holdout-free corpora must reproduce their baseline `aggregateScore` exactly, and holdout-bearing corpora must change ONLY by excluding holdout from the fitted aggregate (revealing, not hiding, the generalization gap).
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -70,7 +70,7 @@ A pristine Mode-A router-replay baseline was captured across every playbook corp
 
 3. **Negatives use the existing inversion lane.** `negativeActivation` continues to drive the D1-intra/D2/D3 inversion and `scoreD1Inter({ negative })`; the aggregate only *counts* negatives for coverage, it does not re-score them.
 
-4. **Score-preserving invariant.** Because every shipped corpus declares no stage, `fittedRows == rows`, so `aggregateScore` is byte-identical to the pristine baseline everywhere. The split is inert until a fixture declares a stage — verified by a before/after re-baseline diff (0 deltas) and a unit assertion.
+4. **Score-preserving invariant (holdout-free corpora).** For any corpus with no holdout fixture, `fittedRows == rows`, so `aggregateScore` is byte-identical to the pristine baseline — verified by a before/after re-baseline diff (0 deltas on all 28 holdout-free corpora) and a unit assertion. Holdout-bearing corpora change deterministically: fitted excludes holdout, and the gap is reported (e.g. cli-opencode fitted 100 / holdout 31 / gap 69).
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -93,7 +93,7 @@ A pristine Mode-A router-replay baseline was captured across every playbook corp
 - Holdout evaluation is now expressible: a fixture tagged `stage: holdout` is scored but excluded from the fitted aggregate, and its score + the generalization gap are reported separately.
 - `stage: negative` fixtures are honored end-to-end (loader → inversion lane), closing the hardcoded-`false` bug.
 - The report gains a stage column and a generalization/circularity section, making the fitted-vs-holdout distinction legible.
-- No shipped corpus's headline moves; the machinery is dormant until fixtures declare stages. A future fixture-authoring packet can populate holdout/negative stages and the numbers will then diverge intentionally.
+- 28 holdout-free corpora keep their exact headline; the 7 holdout-bearing corpora now separate fitted from holdout, immediately surfacing real generalization gaps (cli-opencode and mcp-click-up show a 69-point gap the old averaged headline masked). The gap is a measurement the harness now reports — diagnosing or closing it (is the router overfit, or are the holdout fixtures mis-decontaminated?) is a follow-on, out of this packet's scope.
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---

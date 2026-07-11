@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/061-stage-aware-scorer"
-    last_updated_at: "2026-07-11T21:10:00Z"
+    last_updated_at: "2026-07-11T21:40:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded Level 2 spec + captured pristine baseline"
     next_safe_action: "Implement the loader + scorer + report + generator wiring under the score-preserving invariant"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/061-stage-aware-scorer"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +50,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Branch** | `skilled/v4.0.0.0` (no dedicated branch — `--skip-branch`) |
 <!-- /ANCHOR:metadata -->
@@ -75,7 +75,7 @@ Wire the **consume** side of stages so the machinery the generator already emits
 2. Thread `stage` into `scoreScenario` rows and split `aggregate()` into a **fitted** aggregate (holdout excluded), a **separate holdout score**, and a **generalization gap** (fitted − holdout), plus **holdout/negative coverage** buckets.
 3. Report the split in `build-report.cjs` (stage column + a generalization/circularity section).
 
-The refactor MUST be **score-preserving**: any corpus that declares no `stage` produces a byte-identical `aggregateScore` versus the captured baseline.
+The refactor MUST be **score-preserving for holdout-free corpora**: any corpus with no `stage: holdout` fixture produces a byte-identical `aggregateScore` versus the captured baseline. Corpora that DO carry holdout fixtures (7 of them already ship — 14 `holdout` + 5 `negative` fixtures exist across the tree) change intentionally: their fitted aggregate now excludes holdout, surfacing the generalization gap the old averaged headline masked.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -89,7 +89,7 @@ The refactor MUST be **score-preserving**: any corpus that declares no `stage` p
 - **Report** (`build-report.cjs`): add a `Stage` column to the scenario table and a generalization/circularity section (fitted vs holdout, gap, negative coverage).
 - **Generator** (`playbook-generator.cjs`): thread a per-spec `stage` through to `renderScenarioMarkdown` so authored fixtures can carry a non-default stage (currently the call omits it and always defaults to `routing`).
 - **Tests** (`tests/skill-benchmark.vitest.ts` + loader test): stage-aware unit tests + an adversarial staged-fixture proof (holdout excluded, gap computed, `stage: negative` routes through inversion) + a score-preserving assertion.
-- **Live re-baseline**: re-run Mode-A router-replay across every playbook corpus; assert the fitted `aggregateScore` matches the captured pristine baseline everywhere (no corpus declares a stage yet).
+- **Live re-baseline**: re-run Mode-A router-replay across every playbook corpus; assert holdout-free corpora match the captured pristine baseline byte-for-byte, and confirm holdout-bearing corpora change only by excluding holdout from the fitted aggregate (with the generalization gap now reported).
 
 ### Out of Scope
 - Authoring real `holdout`/`negative` fixtures into the shipped corpora — that is fixture-authoring, a separate follow-on. This packet only makes the harness *honor* stages when present.
@@ -118,7 +118,7 @@ The refactor MUST be **score-preserving**: any corpus that declares no `stage` p
 |----|-------------|---------------------|
 | REQ-001 | Stages are honored on the load side | A sk-doc fixture with `stage: negative` yields `negativeActivation: true` (routed through the D1-intra/D2/D3 + advisor inversion lane); the sk-code loader emits a `stage` field on every scenario (`negative` iff its heuristic `negativeActivation`, else `routing`) |
 | REQ-002 | The aggregate is stage-split and additive | `aggregate()` computes `aggregateScore` over non-holdout rows, a separate `holdoutScore` over holdout rows (null when none), and `generalizationGap = fitted − holdout` (null when either is null); all new fields are additive |
-| REQ-003 | Score-preserving invariant holds | Every playbook corpus that declares no stage produces a `aggregateScore` byte-identical to the captured pristine baseline (Mode-A router-replay) |
+| REQ-003 | Score-preserving invariant holds for holdout-free corpora | Every playbook corpus with no `stage: holdout` fixture produces a `aggregateScore` byte-identical to the captured pristine baseline (Mode-A router-replay); holdout-bearing corpora change only by excluding holdout from the fitted aggregate |
 | REQ-004 | Coverage reflects stages | `coverage` gains `holdout` and `negative` counts; a `generalization` block reports `{ fittedScore, holdoutScore, generalizationGap, fittedCount, holdoutCount, negativeCount }` |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -178,7 +178,7 @@ The refactor MUST be **score-preserving**: any corpus that declares no `stage` p
 
 ### Data Boundaries
 - A corpus with only holdout rows: fitted aggregate is `null` (NO-SCENARIOS-like), `holdoutScore` non-null; the gap is `null` (no fitted side).
-- A corpus with zero holdout rows (all shipped corpora today): `holdoutScore` and `generalizationGap` are `null`; fitted == prior aggregate.
+- A corpus with zero holdout rows (28 of the 35 shipped corpora): `holdoutScore` and `generalizationGap` are `null`; fitted == prior aggregate (score-preserving).
 - A `stage: negative` row that also names a positive should-load set: the existing negative D1-intra recall-with-forbidden-leak-cap path applies unchanged.
 
 ### Error Scenarios

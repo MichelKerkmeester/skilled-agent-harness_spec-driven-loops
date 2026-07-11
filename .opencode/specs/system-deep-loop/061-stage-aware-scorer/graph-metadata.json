@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
@@ -133,12 +133,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The Lane",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -152,6 +146,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Mode",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The Lane C skill-benchmark harness has a benchmark scenario `stage` axis (`routing` | `holdout` | `negative`) that is only half-wired:",
     "created_at": "2026-07-11T20:55:10.283Z",
-    "last_save_at": "2026-07-11T20:55:10.283Z",
+    "last_save_at": "2026-07-11T21:14:00.325Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a75316d562a757d73936d12146ae6afe562c850e5eb78cc3ba2c86e4034d1278",
+    "source_fingerprint": "sha256:b7f552489c9e74e469d42fb70d73d89c7813f6beb86fc8c4e91659443b5c0154",
     "source_doc_hashes": {
-      "spec.md": "e83230d50df29479f141aebc5a87aee443e404a5d1a8a45e8b9a1a08bd099b1b",
-      "plan.md": "75ffa8d8d85cdab34ffbe09739a073e675d0fc47869437d31c006b7a46efb837",
-      "tasks.md": "f2013a01b28bc7ff6786b5359559286d89744bd20c7940b02212cf0679f9568b",
-      "checklist.md": "27203f69e7dd2eb7b121b77e608a219784a317e1a6dd1f61ccb3c570e44da388",
-      "decision-record.md": "71f0cd80a160c72dc629c54dea9352d35b0d8b73a38fa7a58fb8af20c26f3c16",
-      "implementation-summary.md": "0a0a5bb66564e6b7f874a043e4ff59e9734bf03186040f78b546424fa0f9bd58"
+      "spec.md": "8db208eb1758ddb89bf384ebbe7a4c7637c56a611d7c39ac94be614f97992ec8",
+      "plan.md": "5a0364b829f3b3ac881efb9583c764e40850f027bce674df020d68a258a30164",
+      "tasks.md": "6a86222e1fd78de8946023fd3eaedd9510ec6ad923993680068705cc3d52bf3f",
+      "checklist.md": "8b38cf9878c0c7d4a3d407cd72f7af685f9264704bf6090c6e53c10187419e82",
+      "decision-record.md": "2b69d33e4d3e754b27ea3ac87e27f0f438b8cb2ed2f3c179034c8f2135ae9523",
+      "implementation-summary.md": "0382666b8f6f7e80ed5d0dd5b9db8d7d1a2cc18c6b93948dbca27600f85f38b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

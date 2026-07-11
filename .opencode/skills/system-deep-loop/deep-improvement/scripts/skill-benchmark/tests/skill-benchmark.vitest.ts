@@ -30,6 +30,7 @@ const {
   RECIPE_INVALID_CAP,
 } = require(join(SB, 'score-skill-benchmark.cjs'));
 const { renderReport } = require(join(SB, 'build-report.cjs'));
+const { loadPlaybookScenarios } = require(join(SB, 'load-playbook-scenarios.cjs'));
 const { scoreD1Inter, probeAdvisor } = require(join(SB, 'advisor-probe.cjs'));
 const loopHost = require(join(SKILL_ROOT, 'scripts', 'shared', 'loop-host.cjs'));
 
@@ -479,6 +480,91 @@ describe('Lane C — negative-activation scoring', () => {
     const routerResult = { parseable: true, intents: ['X'], resources: ['references/universal/a.md'], missingResources: [], scores: [] };
     const row = scoreScenario({ scenarioId: 'neg2', tier: 'T3', routerResult, expected: { negativeActivation: true, resources: ['references/universal/a.md'], forbiddenResources: ['references/webflow/'] } });
     expect(row.dims.d1intra.score).toBe(1); // full recall of the required ref, nothing forbidden leaked
+  });
+});
+
+describe('Lane C — stage-aware scoring (fitted/holdout split)', () => {
+  const conn = { score: 90, gateFailed: false, findings: [] };
+  const routing = (id: string, resources: string[]) => scoreScenario({
+    scenarioId: id, tier: 'T2',
+    routerResult: { parseable: true, intents: ['REVIEW'], resources, missingResources: [], scores: [] },
+    expected: { intentKeys: ['REVIEW'], resources },
+  });
+  // scenario+observed shape is the only way a benchmark stage reaches the scorer.
+  const staged = (id: string, stage: string, opts: any = {}) => scoreScenario({
+    scenario: {
+      scenarioId: id, stage, classKind: 'routing',
+      expectedResources: opts.expectedResources || ['references/a.md'],
+      expectedIntent: 'REVIEW',
+      negativeActivation: opts.negativeActivation === true,
+      forbiddenResources: opts.forbiddenResources || [],
+    },
+    observed: {
+      mode: 'router', parseable: true,
+      observedIntents: opts.observedIntents || ['REVIEW'],
+      observedResources: opts.observedResources || opts.expectedResources || ['references/a.md'],
+      observedSurface: null, raw: {},
+    },
+  });
+
+  it('attaches row.stage — routing by default (legacy shape), holdout/negative from the scenario', () => {
+    expect(routing('r', ['references/a.md']).stage).toBe('routing');
+    expect(staged('h', 'holdout').stage).toBe('holdout');
+    expect(staged('n', 'negative', { negativeActivation: true }).stage).toBe('negative');
+  });
+
+  it('excludes holdout from the fitted aggregate and reports a separate holdout score + gap', () => {
+    const fitted = routing('f', ['references/a.md']);
+    // a holdout row that generalizes worse (wrong resources, no intent recall)
+    const holdout = staged('h', 'holdout', { observedResources: ['references/wrong.md'], observedIntents: [] });
+    const withHoldout = aggregate({ skillId: 'x', skillRoot: '/x', scenarioRows: [fitted, holdout], connectivity: conn, traceMode: 'router' });
+    const fittedOnly = aggregate({ skillId: 'x', skillRoot: '/x', scenarioRows: [fitted], connectivity: conn, traceMode: 'router' });
+    // The headline aggregate is identical whether or not the holdout row is present.
+    expect(withHoldout.aggregateScore).toBe(fittedOnly.aggregateScore);
+    expect(withHoldout.generalization.holdoutCount).toBe(1);
+    expect(withHoldout.generalization.holdoutScore).toBe(holdout.modeAScore);
+    expect(withHoldout.generalization.generalizationGap).toBe(withHoldout.aggregateScore - holdout.modeAScore);
+    expect(withHoldout.coverage.holdout).toBe(1);
+  });
+
+  it('is score-preserving — a stage-less row set yields the plain mean and a null holdout score', () => {
+    const r1 = routing('a', ['references/a.md']);
+    const r2 = routing('b', ['references/b.md']);
+    const rep = aggregate({ skillId: 'x', skillRoot: '/x', scenarioRows: [r1, r2], connectivity: conn, traceMode: 'router' });
+    expect(rep.aggregateScore).toBe(Math.round((r1.modeAScore + r2.modeAScore) / 2));
+    expect(rep.generalization.holdoutScore).toBeNull();
+    expect(rep.generalization.generalizationGap).toBeNull();
+    expect(rep.coverage.holdout).toBe(0);
+  });
+
+  it('routes a stage:negative scenario through the inversion lane and counts it in coverage.negative', () => {
+    const neg = staged('neg', 'negative', {
+      negativeActivation: true,
+      expectedResources: [],
+      forbiddenResources: ['references/webflow/'],
+      observedResources: ['references/webflow/leak.md'],
+    });
+    expect(neg.dims.d1intra.negative).toBe(true);
+    expect(neg.dims.d1intra.score).toBe(0); // leaked a forbidden (suppressed) resource
+    const rep = aggregate({ skillId: 'x', skillRoot: '/x', scenarioRows: [neg], connectivity: conn, traceMode: 'router' });
+    expect(rep.coverage.negative).toBe(1);
+    expect(rep.generalization.negativeCount).toBe(1);
+  });
+
+  it('loader honors stage: stage:negative sets negativeActivation, stage:holdout stays positive', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'lc-stage-'));
+    const catDir = join(dir, 'cat');
+    mkdirSync(catDir, { recursive: true });
+    writeFileSync(join(catDir, 'neg.md'), '---\nid: NEG-001\nexpected_intent: review\nstage: negative\nexpected_resources:\n  - references/a.md\n---\nPrompt: exercise a suppression path\n');
+    writeFileSync(join(catDir, 'hold.md'), '---\nid: HOLD-001\nexpected_intent: review\nstage: holdout\nexpected_resources:\n  - references/b.md\n---\nPrompt: exercise a holdout path\n');
+    const { scenarios } = loadPlaybookScenarios({ playbookDir: dir });
+    const neg = scenarios.find((s: any) => s.scenarioId === 'NEG-001');
+    const hold = scenarios.find((s: any) => s.scenarioId === 'HOLD-001');
+    expect(neg.stage).toBe('negative');
+    expect(neg.negativeActivation).toBe(true);
+    expect(hold.stage).toBe('holdout');
+    expect(hold.negativeActivation).toBe(false);
+    rmSync(dir, { recursive: true, force: true });
   });
 });
 

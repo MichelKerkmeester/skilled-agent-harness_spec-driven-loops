@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/061-stage-aware-scorer"
-    last_updated_at: "2026-07-11T21:10:00Z"
+    last_updated_at: "2026-07-11T21:40:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded Level 2 plan from ground-truth read + pristine baseline"
-    next_safe_action: "Phase 1 — loader stage wiring"
+    next_safe_action: "Complete"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/061-stage-aware-scorer"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,7 +56,7 @@ The `stage` axis is already produced (generator emits `stage:`, loader parses it
 ## 2. QUALITY GATES
 
 - `skill-benchmark.vitest.ts` runs green including the new stage-aware, adversarial, and score-preserving tests.
-- Re-baseline diff across every scored corpus shows 0 deltas on fitted `aggregateScore`.
+- Re-baseline diff: holdout-free corpora show 0 deltas on fitted `aggregateScore`; holdout-bearing corpora change only by excluding holdout (gap reported).
 - The adversarial staged-fixture test proves holdout exclusion + gap + `stage: negative` inversion.
 - No dimension weight, D5 gate, or verdict threshold changed (grep-confirmed on the diff).
 <!-- /ANCHOR:quality-gates -->
@@ -95,7 +95,7 @@ sk-doc path: `negativeActivation = stage === 'negative'`. sk-code path: add `sta
 `scoreScenario` attaches `row.stage`. `aggregate()` partitions fitted/holdout, computes `holdoutScore` + `generalizationGap`, adds `holdout`/`negative` coverage + a `generalization` block. `build-report.cjs` renders the stage column + generalization section. `playbook-generator.cjs` threads `stage`.
 
 ### Phase 3 — Tests + re-baseline
-Add stage-aware, adversarial staged-fixture, and score-preserving unit tests. Re-run Mode-A across every corpus; diff fitted `aggregateScore` against the pristine baseline (must be 0 deltas).
+Add stage-aware, adversarial staged-fixture, and score-preserving unit tests. Re-run Mode-A across every corpus; holdout-free corpora must diff 0 against the pristine baseline, holdout-bearing corpora must change only by excluding holdout (gap reported).
 <!-- /ANCHOR:phases -->
 
 ---
