@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 003 of the numbered-snippet-filename deprecation. Author one deterministic rename engine, denumber-snippet-filenames.mjs, adapted from the proven 108 denumber-snippets.cjs: enumerate exactly the 111 in-scope per-scenario snippet files across 9 skill packets (excluding the 20 legitimate system-spec-kit single-digit files), abort on any collision before writing, derive and inject a stage: routing|holdout|negative frontmatter field for the 63 files that encode that grouping in their filename, and sweep the 3 hub-routing root-index tables that cite the old filenames.",
     "created_at": "2026-07-11T14:47:54.428Z",
-    "last_save_at": "2026-07-11T17:39:12.553Z",
+    "last_save_at": "2026-07-12T12:16:23.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d2f518152195696f92348a8ea6b017f4414a0c2ddb3ddbb2511e1b8a3fc87d4",
+    "source_fingerprint": "sha256:4903fd012e0801bbb780e5b327eab4352c2cc90246c093ff340c4470d12beee3",
     "source_doc_hashes": {
-      "spec.md": "55b8d928a04265d37ec71fe7800881d5a20e2a89798a99db621e3d1e83a4ca30",
-      "plan.md": "d65d700f6e15f740353a5ac09de323242d04bf8e401545419bbf64e65d798b67",
-      "tasks.md": "a888c3902974dbd2b5543a5a638cf74e6036ec6c5ff30132058d994eb196971c",
-      "checklist.md": "991241fe0ce49234a68adf0b6a50c685f895d361d4808e945704c24330e3a58e",
-      "implementation-summary.md": "618ee3d26d932a4643a241dbab52ca5151869dae6705646af792d39c67917ba8"
+      "spec.md": "c6fcb25dd2c6ec0872c4b0d0268fb633da15d547bf2ca5b4adacc7089e2fadd2",
+      "plan.md": "a31e7c4e45f77daa8dbb23026cd51fbdbf3e7ec770c1a880d2d5013844491080",
+      "tasks.md": "c674aef2fa454a1f845984cf23148e3e204cdfecfeccf1611e3c5278658fd11b",
+      "checklist.md": "d140c91f655be31ebf2261f73682e2f8c0d297d4d8da1b822b2d77be7267629f",
+      "implementation-summary.md": "31a91854f7fe0154290065fc0a36dbcf7584b62f5197447168cda2fe2389d273"
     },
     "last_active_child_id": null,
     "last_active_at": null

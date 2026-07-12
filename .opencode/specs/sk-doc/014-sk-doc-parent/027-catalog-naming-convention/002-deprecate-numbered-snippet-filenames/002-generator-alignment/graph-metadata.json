@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Phase 002 of the numbered-snippet-filename deprecation. Fix playbook-generator.cjs so it emits descriptive-slug scenario filenames (with an optional stage: frontmatter field) instead of AG-NNN.md, and re-verify that the sk-doc convention docs (create-feature-catalog, create-manual-testing-playbook), their templates, and the four /create:* generator YAMLs already forbid numbered per-feature filenames. Small foundation phase — no folders renamed, no existing files touched here.",
     "created_at": "2026-07-11T14:47:54.283Z",
-    "last_save_at": "2026-07-11T17:39:12.427Z",
+    "last_save_at": "2026-07-12T12:16:23.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe5614ba93b0432510f1abfa71c712c64f7e1f5b904cb9a5f86ed2236acfc727",
+    "source_fingerprint": "sha256:720221097ec2ab2f0d1788fd3155ad0de83bf09994caf5726953d9c0aa54d905",
     "source_doc_hashes": {
-      "spec.md": "b9c8e737d994c344794b8383eb07f6139caf59f7492d74b31f891a0df290884b",
-      "plan.md": "66dda28f3a9a51dbf78d075beca5f48f2063dc1e0323d51310280c37e2b26365",
-      "tasks.md": "a359446dbec2eee99570412386a9bdf095f287b9018c0df29f23ab829c4cae34",
-      "checklist.md": "3a41b33802c397760ccc9bf974829f6fc6a12d3dc6d5b88773228a8e9a475d4a",
-      "implementation-summary.md": "98637b5fb9500649cc345b1a314fe0bad83a9193558e7c25e3e6730cdf6b2065"
+      "spec.md": "bd70eb3b4f0b7259a5024a66c596a68ad0a282943efc94ecd70fb722dc5f0019",
+      "plan.md": "b3576b74ed54a5feb70ceecb09c5822b2a226212e21cd8afc55e3d98e8fc0c04",
+      "tasks.md": "c879d292e57501fc2e6da95cb4e308df21bbd2d963209cd01a9ec905bb43f5a1",
+      "checklist.md": "075f42d5fb8b8c3cfb6e0c2a10b73836d72155f9405725b51c0d59f750f249de",
+      "implementation-summary.md": "ae2d9fa9f16bac434b2140b71a7d95fb5dc2ea7c1bbb3bec8cbeff845bdb1cda"
     },
     "last_active_child_id": null,
     "last_active_at": null

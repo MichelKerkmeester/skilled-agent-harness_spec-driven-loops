@@ -22,6 +22,8 @@ _memory:
 ---
 # Spec: Deterministic, Dry-Runnable Migration Tooling
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `002-validator-and-guard`; successor `004-execute-migration`.
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
@@ -70,16 +72,16 @@ the tolerant validator + no-new-numbers guard (Phase 002); the recursive re-vali
 
 ## 4. REQUIREMENTS
 <!-- ANCHOR:requirements -->
-- **R1:** In dry-run (the default) the script mutates nothing and prints a **complete rename map** plus a
+- **REQ-001:** In dry-run (the default) the script mutates nothing and prints a **complete rename map** plus a
   **per-file reference-change diff** for every file it would touch.
-- **R2:** A **deny-list** excludes any path segment `z_archive/`, files named `CHANGELOG*` / `changelog*`,
+- **REQ-002:** A **deny-list** excludes any path segment `z_archive/`, files named `CHANGELOG*` / `changelog*`,
   spec-folder history / `implementation-summary.md` narrative, and this packet's `research.md` /
   `decision-record.md` (they cite numbered paths as evidence) — per ADR-004.
-- **R3:** A **collision check** aborts the run if any two stripped names would collide within a parent
+- **REQ-003:** A **collision check** aborts the run if any two stripped names would collide within a parent
   (expected zero per research.md, A); the check is reported explicitly, not assumed.
-- **R4:** All **five reference classes (a–e)** are covered, and the rename map is **computed from the live
+- **REQ-004:** All **five reference classes (a–e)** are covered, and the rename map is **computed from the live
   tree**, not a hardcoded list, so it edits only references to real in-scope category folders.
-- **R5:** The script is **re-runnable / idempotent** (a second run after a partial run does the right thing —
+- **REQ-005:** The script is **re-runnable / idempotent** (a second run after a partial run does the right thing —
   already-renamed folders and already-rewritten references are no-ops) and **reversible via git**.
 <!-- /ANCHOR:requirements -->
 

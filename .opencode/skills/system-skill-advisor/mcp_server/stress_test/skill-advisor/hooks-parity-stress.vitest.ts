@@ -8,7 +8,6 @@ import { resolve } from 'node:path';
 
 const REPO_ROOT = resolve(import.meta.dirname, '../../../../../../');
 const CLAUDE_SETTINGS = resolve(REPO_ROOT, '.claude/settings.json');
-const COPILOT_SETTINGS = resolve(REPO_ROOT, '.github/hooks/superset-notify.json');
 const OPENCODE_PLUGIN = resolve(REPO_ROOT, '.opencode/plugins/mk-skill-advisor.js');
 
 function readJson(path: string): Record<string, unknown> {
@@ -22,13 +21,11 @@ function readSource(path: string): string {
 }
 
 describe('sa-030 / sa-031 / sa-032 / sa-033 — hooks parity layer', () => {
-  it('settings-driven invocation points each script-based runtime at its own compiled adapter', () => {
+  it('settings-driven invocation points the Claude runtime at its own compiled adapter', () => {
     const claude = readJson(CLAUDE_SETTINGS);
-    const copilot = readJson(COPILOT_SETTINGS);
 
     expect(JSON.stringify(claude)).toContain('dist/hooks/claude/user-prompt-submit.js');
     expect(JSON.stringify(claude)).not.toContain('dist/hooks/copilot/user-prompt-submit.js');
-    expect(JSON.stringify(copilot)).toContain('copilot-hook.sh userPromptSubmitted');
   });
 
   it('OpenCode wires the same prompt-submit and session-start equivalents through its plugin, not a settings/dist script pair', () => {

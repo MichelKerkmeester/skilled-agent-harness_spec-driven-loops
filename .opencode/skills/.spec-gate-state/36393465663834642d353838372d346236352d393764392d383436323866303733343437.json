@@ -1,9 +1,0 @@
-{
-  "status": "satisfied",
-  "boundSpecFolder": {
-    "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/",
-    "source": "prior_answer"
-  },
-  "validatedResolvedPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup",
-  "answeredAtMs": 1783782708822
-}

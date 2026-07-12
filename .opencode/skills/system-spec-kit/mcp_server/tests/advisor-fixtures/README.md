@@ -71,4 +71,3 @@ The consumer test is gated behind `copilotHooksAvailable` and is currently skipp
 
 - [Parent: Tests](../README.md)
 - [Skill README](../../README.md)
-- [Copilot Hook Wiring Test](../copilot-hook-wiring.vitest.ts)

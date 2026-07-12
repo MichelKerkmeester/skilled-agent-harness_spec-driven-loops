@@ -28,52 +28,52 @@ Every item carries a grep, dry-run, or fresh-reader evidence line.
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] Enumerated every `AG-NNN` id/filename use site in `playbook-generator.cjs` (not just the two known line
+- [x] CHK-001 [P0] Enumerated every `AG-NNN` id/filename use site in `playbook-generator.cjs` (not just the two known line
       numbers).
-- [x] Baseline grep of the convention docs, templates, and `/create:*` generators for numbered per-feature
+- [x] CHK-002 [P0] Baseline grep of the convention docs, templates, and `/create:*` generators for numbered per-feature
       filename mandates recorded.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [x] Slug derivation in `playbook-generator.cjs` is deterministic and readable; no leftover ordinal-based logic
+- [x] CHK-003 [P0] Slug derivation in `playbook-generator.cjs` is deterministic and readable; no leftover ordinal-based logic
       in the id/filename path.
-- [x] The `stage:` field addition does not disturb the existing `id:` identity semantics.
+- [x] CHK-004 [P0] The `stage:` field addition does not disturb the existing `id:` identity semantics.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [x] Generator dry-run (`node playbook-generator.cjs`) produces slug filenames (sample output listing).
-- [x] Generator output loads cleanly through the number-agnostic `load-playbook-scenarios.cjs` loader (load run,
+- [x] CHK-005 [P0] Generator dry-run (`node playbook-generator.cjs`) produces slug filenames (sample output listing).
+- [x] CHK-006 [P0] Generator output loads cleanly through the number-agnostic `load-playbook-scenarios.cjs` loader (load run,
       error-free).
-- [x] `rg '^[0-9]{3}-'` over the verified/edited convention surfaces: zero surviving numbered per-feature
+- [x] CHK-007 [P0] `rg '^[0-9]{3}-'` over the verified/edited convention surfaces: zero surviving numbered per-feature
       mandate/example.
-- [x] `validate.sh --strict` Errors 0 on this phase folder.
+- [x] CHK-008 [P0] `validate.sh --strict` Errors 0 on this phase folder.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [x] `playbook-generator.cjs` confirmed as the only code emitter of `AG-NNN` filenames, now fixed; no other
+- [x] CHK-009 [P0] `playbook-generator.cjs` confirmed as the only code emitter of `AG-NNN` filenames, now fixed; no other
       generator found emitting the anti-pattern.
-- [x] Convention docs, templates, and `/create:*` generators confirmed already compliant, or fixed if a gap was
+- [x] CHK-010 [P0] Convention docs, templates, and `/create:*` generators confirmed already compliant, or fixed if a gap was
       found.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [x] No executable/config behavior changed beyond the id/filename derivation in `playbook-generator.cjs`; no
+- [x] CHK-011 [P0] No executable/config behavior changed beyond the id/filename derivation in `playbook-generator.cjs`; no
       new file-system write outside the existing staging directory.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] The `stage:` field is documented as optional, default `routing`, consistent with the parent packet's
+- [x] CHK-012 [P1] The `stage:` field is documented as optional, default `routing`, consistent with the parent packet's
       decision record.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] Edits confined to `playbook-generator.cjs` and, only if a gap was found, the affected sk-doc convention
+- [x] CHK-013 [P1] Edits confined to `playbook-generator.cjs` and, only if a gap was found, the affected sk-doc convention
       SKILL.md / template / generator file(s).
 <!-- /ANCHOR:file-org -->
 

@@ -28,38 +28,38 @@ Each item carries per-family validate output or a repo-wide find/grep as evidenc
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] Dry-run report reconciled against research.md counts; 0 collisions; Phase 002 landed.
+- [x] CHK-001 [P2] Dry-run report reconciled against research.md counts; 0 collisions; Phase 002 landed.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [x] Renames via `git mv` (history preserved); reference rewrites confined to in-scope surfaces.
+- [x] CHK-002 [P0] Renames via `git mv` (history preserved); reference rewrites confined to in-scope surfaces.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [x] Each migrated family `validate.sh --strict` Errors 0 before commit.
-- [x] Repo-wide find: zero in-scope `NN--` category folders remain.
+- [x] CHK-003 [P0] Each migrated family `validate.sh --strict` Errors 0 before commit.
+- [x] CHK-004 [P0] Repo-wide find: zero in-scope `NN--` category folders remain.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [x] All 34 skills migrated; all four reference classes + both router-prefix blocks + 115 categories rewritten.
+- [x] CHK-005 [P2] All 34 skills migrated; all four reference classes + both router-prefix blocks + 115 categories rewritten.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [x] Path-scoped commits exclude concurrent-session dirt; no unrelated files swept in.
+- [x] CHK-006 [P2] Path-scoped commits exclude concurrent-session dirt; no unrelated files swept in.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] Excluded surfaces (z_archive/CHANGELOG/history/this-packet evidence) confirmed byte-unchanged.
+- [x] CHK-007 [P2] Excluded surfaces (z_archive/CHANGELOG/history/this-packet evidence) confirmed byte-unchanged.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] Folder tree now uses bare descriptive slugs under feature_catalog/ and manual_testing_playbook/.
+- [x] CHK-008 [P2] Folder tree now uses bare descriptive slugs under feature_catalog/ and manual_testing_playbook/.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

@@ -387,7 +387,7 @@ node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-co
    - Compatibility requires explicit user direction.
 
 4. **ESCALATE IF a caller asks the council agent itself to mutate graph storage**
-   - Graph updates belong to caller-owned `runtime/` CLI reducers, not council-seat deliberation.
+   - Graph updates belong to caller-owned `runtime/` CLI reducers, not seat deliberation.
 
 ---
 
@@ -413,7 +413,7 @@ Ordered by load priority — most-loaded intent first.
 - `assets/deep_ai_council_strategy.md` - operator-maintained round strategy template.
 - `assets/deep_ai_council_dashboard.md` - council status dashboard template.
 - `assets/deep_ai_council_config.json` - run-config template for council sessions.
-- `assets/prompt_pack_round.md` - council-seat prompt-pack template.
+- `assets/prompt_pack_round.md` - council seat prompt-pack template.
 - `assets/runtime_capabilities.json` - runtime parity and validation matrix.
 - `manual_testing_playbook/manual_testing_playbook.md` - operator validation scenarios.
 - `README.md` - human-facing overview.
@@ -464,7 +464,7 @@ The council is a planning LEAF. It hands recommendations, risk analysis, and pac
 
 - `Read`, `Glob`, and `Grep` gather evidence and verify paths.
 - `Write` and `Edit` are allowed only for the planning LEAF's packet-local `ai-council/**` artifacts.
-- `Bash` is for caller-owned helper invocation and validation, not for council-seat implementation.
+- `Bash` is for caller-owned helper invocation and validation, not for seat implementation.
 
 ### Knowledge Base Dependencies
 

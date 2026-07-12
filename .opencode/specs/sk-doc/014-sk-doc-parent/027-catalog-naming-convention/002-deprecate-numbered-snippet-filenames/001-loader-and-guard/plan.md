@@ -64,18 +64,18 @@ folder name itself.
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Read `load-playbook-scenarios.cjs` in full (both `parseRootIndex()` and `loadYamlFrontmatterScenarios()`)
+### Phase 1: Read `load-playbook-scenarios.cjs` in full (both `parseRootIndex()` and `loadYamlFrontmatterScenarios()`)
    and `code-opencode-playbook-ids.vitest.ts` to confirm the two `^\d{3}-.*\.md$` sites and every caller of
    `loadYamlFrontmatterScenarios()` / `loadPlaybookScenarios()`.
-2. Replace the basename gate at `load-playbook-scenarios.cjs:302` with the structural-plus-frontmatter content
+### Phase 2: Replace the basename gate at `load-playbook-scenarios.cjs:302` with the structural-plus-frontmatter content
    gate; keep the walk's directory-push logic unchanged so recursion behavior is preserved.
-3. Add `stage:` frontmatter parsing next to the existing `id:` / `expected_intent:` / `expected_resources:`
+### Phase 3: Add `stage:` frontmatter parsing next to the existing `id:` / `expected_intent:` / `expected_resources:`
    extraction; default to `routing`; attach to the returned scenario object.
-4. Re-base `countFeatureFiles()` in `code-opencode-playbook-ids.vitest.ts` onto the same content-gate
+### Phase 4: Re-base `countFeatureFiles()` in `code-opencode-playbook-ids.vitest.ts` onto the same content-gate
    condition as the loader.
-5. Author the no-new-numbered-snippet guard script, mirroring `check_no_numbered_categories.py`'s
+### Phase 5: Author the no-new-numbered-snippet guard script, mirroring `check_no_numbered_categories.py`'s
    `CATEGORY_ROOTS` / exit-code / `--json` shape, scoped to per-scenario filenames.
-6. Add fixtures (numbered scenario, de-numbered scenario, root index file, scenario with `stage:`, scenario
+### Phase 6: Add fixtures (numbered scenario, de-numbered scenario, root index file, scenario with `stage:`, scenario
    without `stage:`, non-scenario file in a category subfolder, newly created numbered snippet file) and
    verify each; run the existing skill-benchmark vitest suite; `validate.sh --strict` on this phase folder.
 <!-- /ANCHOR:phases -->

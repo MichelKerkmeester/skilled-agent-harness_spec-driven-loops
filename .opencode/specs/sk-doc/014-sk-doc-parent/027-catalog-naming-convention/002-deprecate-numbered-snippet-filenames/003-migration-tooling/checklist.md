@@ -28,40 +28,40 @@ Every item carries a dry-run-output or `git status` evidence line.
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] Rename map built from the scoped 9-packet enumeration and reconciled against `research.md` §A (111 files; 88 R/H/N-category, operator-amended from 63).
+- [x] CHK-001 [P0] Rename map built from the scoped 9-packet enumeration and reconciled against `research.md` §A (111 files; 88 R/H/N-category, operator-amended from 63).
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [x] Enumeration is scoped to exactly the 9 named packet paths (not a generic tree walk); deny-list references the current `sk-doc/014-sk-doc-parent` path, not the stale 108 `999-sk-doc-parent` path; script comments keep durable WHY only (no spec/packet ids).
+- [x] CHK-002 [P0] Enumeration is scoped to exactly the 9 named packet paths (not a generic tree walk); deny-list references the current `sk-doc/014-sk-doc-parent` path, not the stale 108 `999-sk-doc-parent` path; script comments keep durable WHY only (no spec/packet ids).
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [x] Dry-run mutates nothing: `git status` clean afterward (R1).
-- [x] Collision check reports `0 collisions` and aborts on a synthetic colliding pair (R3).
-- [x] Deny-list regression test passes: stale `999-sk-doc-parent` path excluded/not-matched, current `sk-doc/014-sk-doc-parent` path correctly matched.
-- [x] Re-run is byte-identical (idempotent, R6); `validate.sh --strict` Errors 0 on this phase folder.
+- [x] CHK-003 [P0] Dry-run mutates nothing: `git status` clean afterward (R1).
+- [x] CHK-004 [P0] Collision check reports `0 collisions` and aborts on a synthetic colliding pair (R3).
+- [x] CHK-005 [P0] Deny-list regression test passes: stale `999-sk-doc-parent` path excluded/not-matched, current `sk-doc/014-sk-doc-parent` path correctly matched.
+- [x] CHK-006 [P0] Re-run is byte-identical (idempotent, R6); `validate.sh --strict` Errors 0 on this phase folder.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [x] All in-scope surfaces covered: 111-file rename, 88-file `stage:` injection (14 holdout / 5 negative / 69 routing), 3 hub-routing root-index table rewrites — none missed (R2, R4, R5).
+- [x] CHK-007 [P0] All in-scope surfaces covered: 111-file rename, 88-file `stage:` injection (14 holdout / 5 negative / 69 routing), 3 hub-routing root-index table rewrites — none missed (R2, R4, R5).
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [x] Dry-run is the default; `--apply` gates mutation; no network/out-of-band state; reversible via git.
+- [x] CHK-008 [P0] Dry-run is the default; `--apply` gates mutation; no network/out-of-band state; reversible via git.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] Dry-run report format documented (`denumber-snippet-filenames.mjs` output): rename map + per-file diff + stage-injection preview + collision + excluded-surface summary.
+- [x] CHK-009 [P1] Dry-run report format documented (`denumber-snippet-filenames.mjs` output): rename map + per-file diff + stage-injection preview + collision + excluded-surface summary.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] Script confined to its planned packet-local `scripts/` location; touches no tree file in dry-run.
+- [x] CHK-010 [P1] Script confined to its planned packet-local `scripts/` location; touches no tree file in dry-run.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

@@ -21,6 +21,8 @@ _memory:
 ---
 # Spec: Execute the De-numbering Migration
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `003-migration-tooling`; successor `005-validate-and-rebenchmark`.
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
@@ -57,14 +59,14 @@ rewritten; 115 frontmatter `category:` values updated.
 
 ## 4. REQUIREMENTS
 <!-- ANCHOR:requirements -->
-- **R1:** Zero `feature_catalog/NN--*/` or `manual_testing_playbook/NN--*/` folders remain outside the excluded
+- **REQ-001:** Zero `feature_catalog/NN--*/` or `manual_testing_playbook/NN--*/` folders remain outside the excluded
   changelog/history surface after execution.
-- **R2:** Each migrated skill family passes `validate.sh --strict` (Errors 0) before its commit; a family that
+- **REQ-002:** Each migrated skill family passes `validate.sh --strict` (Errors 0) before its commit; a family that
   fails is fixed or reverted, not committed.
-- **R3:** The excluded surfaces (`z_archive/`, `CHANGELOG*`, history/implementation-summary narrative, this
+- **REQ-003:** The excluded surfaces (`z_archive/`, `CHANGELOG*`, history/implementation-summary narrative, this
   packet's evidence docs) are byte-unchanged.
-- **R4:** The two SKILL.md router-prefix blocks resolve to renamed, on-disk folders (no dead prefixes).
-- **R5:** All 115 numbered `category:` frontmatter values are updated to the de-numbered form.
+- **REQ-004:** The two SKILL.md router-prefix blocks resolve to renamed, on-disk folders (no dead prefixes).
+- **REQ-005:** All 115 numbered `category:` frontmatter values are updated to the de-numbered form.
 <!-- /ANCHOR:requirements -->
 
 ## 5. SUCCESS CRITERIA

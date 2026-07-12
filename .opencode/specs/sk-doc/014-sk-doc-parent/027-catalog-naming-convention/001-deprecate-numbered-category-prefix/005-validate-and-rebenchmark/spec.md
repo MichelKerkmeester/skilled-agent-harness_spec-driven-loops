@@ -21,6 +21,8 @@ _memory:
 ---
 # Spec: End-to-End Validation & Benchmark Regression Proof
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `004-execute-migration`; successor none (final phase).
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
@@ -57,13 +59,13 @@ the owning phase, not invented here.
 
 ## 4. REQUIREMENTS
 <!-- ANCHOR:requirements -->
-- **R1:** Recursive `validate.sh --strict` is Errors 0 across the parent packet and every touched skill surface.
-- **R2:** Every catalog/playbook leaf is still classified as `feature_catalog` / `playbook_feature` (not
+- **REQ-001:** Recursive `validate.sh --strict` is Errors 0 across the parent packet and every touched skill surface.
+- **REQ-002:** Every catalog/playbook leaf is still classified as `feature_catalog` / `playbook_feature` (not
   downgraded to `readme`) — spot-checked per skill family.
-- **R3:** The whole-workspace markdown-link guard passes (no dangling links from the rename).
-- **R4:** The Lane C benchmark on affected skills shows no scoring regression versus the pre-migration baseline;
+- **REQ-003:** The whole-workspace markdown-link guard passes (no dangling links from the rename).
+- **REQ-004:** The Lane C benchmark on affected skills shows no scoring regression versus the pre-migration baseline;
   any delta is explained.
-- **R5:** The no-new-numbers guard FAILS on a freshly-created `NN--` category folder and PASSES once removed.
+- **REQ-005:** The no-new-numbers guard FAILS on a freshly-created `NN--` category folder and PASSES once removed.
 <!-- /ANCHOR:requirements -->
 
 ## 5. SUCCESS CRITERIA

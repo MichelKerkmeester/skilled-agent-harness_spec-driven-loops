@@ -29,53 +29,53 @@ Deferred fold-in items are left unchecked with the reason, not falsely marked co
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] Phase 001 (number-agnostic loader, `stage:` parsing) and Phase 002 (generator alignment) confirmed landed.
-- [x] Dry-run report reconciled against the live tree (111 files / 9 packets / 88 `stage:` injections under
+- [x] CHK-001 [P0] Phase 001 (number-agnostic loader, `stage:` parsing) and Phase 002 (generator alignment) confirmed landed.
+- [x] CHK-002 [P0] Dry-run report reconciled against the live tree (111 files / 9 packets / 88 `stage:` injections under
       `--stage-scope=all` / 3 hub-routing index rewrites / 0 collisions). The 63 figure was an initial estimate;
       the live tree has 88 stage-eligible files (operator "all 88", `decision-record.md` ADR-004).
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [x] Renames via `git mv` (history preserved); reference rewrites confined to the 3 hub-routing root-index
+- [x] CHK-003 [P0] Renames via `git mv` (history preserved); reference rewrites confined to the 3 hub-routing root-index
       tables and the 111 in-scope files.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [x] Each migrated family `validate.sh --strict` Errors 0.
-- [x] Repo-wide find: zero in-scope `^\d{3}-` snippet filenames remain outside the excluded surfaces.
-- [x] Benchmark corpus intact: loader discovers every renamed file; `playbook-mode` + `skill-benchmark` vitest
+- [x] CHK-004 [P0] Each migrated family `validate.sh --strict` Errors 0.
+- [x] CHK-005 [P0] Repo-wide find: zero in-scope `^\d{3}-` snippet filenames remain outside the excluded surfaces.
+- [x] CHK-006 [P0] Benchmark corpus intact: loader discovers every renamed file; `playbook-mode` + `skill-benchmark` vitest
       byte-identical to the pre-migration baseline (no scenario dropped).
-- [ ] DEFERRED (ADR-007) — `feature-flag-reference-docs.vitest.ts` / `outsourced-agent-handback-docs.vitest.ts`:
+- [ ] CHK-007 [P0] DEFERRED (ADR-007) — `feature-flag-reference-docs.vitest.ts` / `outsourced-agent-handback-docs.vitest.ts`:
       they target system-spec-kit's own numbered docs and fail on content assertions beyond de-numbering; carried
       to a system-spec-kit maintenance pass, outside the 111-file scope.
-- [ ] DEFERRED (ADR-007) — `workflow-invariance.vitest.ts` allowlist: the "7 dead entries" premise proved
+- [ ] CHK-008 [P0] DEFERRED (ADR-007) — `workflow-invariance.vitest.ts` allowlist: the "7 dead entries" premise proved
       inaccurate (three files were renamed, not deleted, and still need allowlisting under new names); same pass.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [x] All 111 files migrated across the 9 packets; all 88 stage-eligible files carry `stage:` (14 holdout / 5
+- [x] CHK-009 [P0] All 111 files migrated across the 9 packets; all 88 stage-eligible files carry `stage:` (14 holdout / 5
       negative / 69 routing); all 3 hub-routing root-index tables rewritten (11 rows). The ADR-007 vitest/allowlist
       fold-in is deferred (see Testing above).
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [x] Path-scoped commits exclude concurrent-session dirt; no unrelated files swept in (verified: 0 `stage:`
+- [x] CHK-010 [P0] Path-scoped commits exclude concurrent-session dirt; no unrelated files swept in (verified: 0 `stage:`
       additions in the concurrent-session feature_catalog files, staged only the 111 renames + 3 index tables).
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] Excluded surfaces (20 system-spec-kit single-digit files, `z_archive/`, changelog/history) confirmed
+- [x] CHK-011 [P1] Excluded surfaces (20 system-spec-kit single-digit files, `z_archive/`, changelog/history) confirmed
       byte-unchanged (identical blobs).
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] Snippet files under `feature_catalog/` and `manual_testing_playbook/` now use bare descriptive slugs across
+- [x] CHK-012 [P1] Snippet files under `feature_catalog/` and `manual_testing_playbook/` now use bare descriptive slugs across
       the 9 in-scope packets.
 <!-- /ANCHOR:file-org -->
 

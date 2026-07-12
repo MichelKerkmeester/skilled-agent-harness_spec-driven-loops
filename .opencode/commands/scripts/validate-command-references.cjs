@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: validate-command-references                                   ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Referential-integrity checker for command-asset references.     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 // Command-reference referential-integrity checker.
@@ -19,9 +24,15 @@
 // resolved), and the legitimate .codex runtime-mirror tokens. Resolving those would
 // false-positive on correct, intentionally-templated values.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 const fs = require('fs');
 const path = require('path');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..');
 
 // Command families whose assets declare live agent/skill/runtime references.
@@ -40,6 +51,9 @@ const AGENT_REF = /\[runtime_agent_path\]\/([A-Za-z0-9][A-Za-z0-9._-]*\.md)/g;
 const BARE_PHANTOM_AGENTS_DIR = /\.agents\//g;
 const SCOPED_AGENTS_DIR = /(\.[a-z][a-z0-9_-]*)\/agents\//g;
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 function agentExists(fileName) {
   return AGENT_DIRS.some((d) => fs.existsSync(path.join(REPO_ROOT, d, fileName)));
 }
@@ -54,6 +68,9 @@ function normalizeSkillToken(raw) {
   return t;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 function extractViolations(file) {
   const rel = path.relative(REPO_ROOT, file);
   const lines = fs.readFileSync(file, 'utf8').split('\n');

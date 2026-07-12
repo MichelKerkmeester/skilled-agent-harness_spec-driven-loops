@@ -28,39 +28,39 @@ Every item carries a dry-run-output or `git status` evidence line.
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] Rename map built from the live tree and reconciled against research.md (390 = 123 + 267 / 34 skills).
+- [x] CHK-001 [P2] Rename map built from the live tree and reconciled against research.md (390 = 123 + 267 / 34 skills).
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [x] Rename map computed from the filesystem, not hardcoded; script comments keep durable WHY only (no spec/packet ids).
+- [x] CHK-002 [P2] Rename map computed from the filesystem, not hardcoded; script comments keep durable WHY only (no spec/packet ids).
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [x] Dry-run mutates nothing: `git status` clean afterward (R1).
-- [x] Collision check reports 0 and aborts on a synthetic colliding pair (R3).
-- [x] Re-run is byte-identical (idempotent, R5); `validate.sh --strict` Errors 0 on this phase folder.
+- [x] CHK-003 [P0] Dry-run mutates nothing: `git status` clean afterward (R1).
+- [x] CHK-004 [P2] Collision check reports 0 and aborts on a synthetic colliding pair (R3).
+- [x] CHK-005 [P0] Re-run is byte-identical (idempotent, R5); `validate.sh --strict` Errors 0 on this phase folder.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [x] All five reference classes covered (a git mv, b frontmatter, c index rows, d nav links, e router blocks) — none missed (R4).
+- [x] CHK-006 [P2] All five reference classes covered (a git mv, b frontmatter, c index rows, d nav links, e router blocks) — none missed (R4).
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [x] Dry-run is the default; `--apply` gates mutation; no network/out-of-band state; reversible via git.
+- [x] CHK-007 [P0] Dry-run is the default; `--apply` gates mutation; no network/out-of-band state; reversible via git.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] Dry-run report format documented: rename map + per-file diff + collision + excluded-surface summary.
+- [x] CHK-008 [P2] Dry-run report format documented: rename map + per-file diff + collision + excluded-surface summary.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] Script confined to its planned packet-local `scripts/` location; touches no tree file in dry-run.
+- [x] CHK-009 [P1] Script confined to its planned packet-local `scripts/` location; touches no tree file in dry-run.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

@@ -48,15 +48,15 @@ Phase 001 no-new-numbered-snippet guard for the rejection proof, and the vitest 
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. BEFORE Phase 004 runs: capture the Lane C baseline (discovered scenario count + D1-D5 scores) on the 9
+### Phase 1: BEFORE Phase 004 runs: capture the Lane C baseline (discovered scenario count + D1-D5 scores) on the 9
    skill packets that Phase 004 will touch, against the Phase 001 tolerant loader.
-2. AFTER Phase 004 lands: recursive `validate.sh --strict` across the parent and every touched skill.
-3. Run the whole-workspace markdown-link guard, including the 3 rewritten hub-routing root-index docs.
-4. Re-run Lane C on the same 9 packets; compute and explain the before/after delta on scenario count and
+### Phase 2: AFTER Phase 004 lands: recursive `validate.sh --strict` across the parent and every touched skill.
+### Phase 3: Run the whole-workspace markdown-link guard, including the 3 rewritten hub-routing root-index docs.
+### Phase 4: Re-run Lane C on the same 9 packets; compute and explain the before/after delta on scenario count and
    D1-D5 scores.
-5. Guard-fire proof: create a throwaway `feature_catalog|manual_testing_playbook/<cat>/NNN-*.md` file →
+### Phase 5: Guard-fire proof: create a throwaway `feature_catalog|manual_testing_playbook/<cat>/NNN-*.md` file →
    expect the Phase 001 guard to FAIL → remove it → expect PASS.
-6. Run `feature-flag-reference-docs.vitest.ts` and `outsourced-agent-handback-docs.vitest.ts`; confirm both
+### Phase 6: Run `feature-flag-reference-docs.vitest.ts` and `outsourced-agent-handback-docs.vitest.ts`; confirm both
    pass, and confirm the 7 dead `workflow-invariance.vitest.ts:97-104` allowlist entries remain swept.
 <!-- /ANCHOR:phases -->
 

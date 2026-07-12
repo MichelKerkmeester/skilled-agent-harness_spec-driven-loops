@@ -21,6 +21,8 @@ _memory:
 ---
 # Spec: Make the Lane C Playbook Loader Number-Agnostic + Add a No-New-Numbered-Snippet Guard
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor none (first phase); successor `002-generator-alignment`.
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
@@ -93,18 +95,18 @@ change.
 
 ## 4. REQUIREMENTS
 <!-- ANCHOR:requirements -->
-- **R1:** `loadYamlFrontmatterScenarios()` loads a scenario from BOTH a numbered `NNN-slug.md` file and a
+- **REQ-001:** `loadYamlFrontmatterScenarios()` loads a scenario from BOTH a numbered `NNN-slug.md` file and a
   de-numbered `slug.md` file — tolerate-both during the transition (ADR-002/ADR-003).
-- **R2:** The root `feature_catalog.md` / `manual_testing_playbook.md` index file stays excluded from
+- **REQ-002:** The root `feature_catalog.md` / `manual_testing_playbook.md` index file stays excluded from
   scenario loading (its containing directory is the playbook root itself, not a category subfolder).
-- **R3:** The loader parses an optional `stage: routing|holdout|negative` frontmatter field and attaches it
+- **REQ-003:** The loader parses an optional `stage: routing|holdout|negative` frontmatter field and attaches it
   to the scenario object; a scenario file with no `stage:` field defaults to `routing` (ADR-004).
-- **R4:** `code-opencode-playbook-ids.vitest.ts`'s `countFeatureFiles()` oracle is updated to the same content
+- **REQ-004:** `code-opencode-playbook-ids.vitest.ts`'s `countFeatureFiles()` oracle is updated to the same content
   gate as the loader, and the existing skill-benchmark test suite passes with no regression.
-- **R5:** The no-new-numbered-snippet guard FAILS on a freshly created numbered snippet file under
+- **REQ-005:** The no-new-numbered-snippet guard FAILS on a freshly created numbered snippet file under
   `feature_catalog/<category>/` or `manual_testing_playbook/<category>/` and PASSES on a de-numbered one
   (ADR-005; grandfather nothing after Phase 004).
-- **R6:** The 10+ live playbooks the current `^\d{3}-` gate silently drops (single-digit-prefixed or
+- **REQ-006:** The 10+ live playbooks the current `^\d{3}-` gate silently drops (single-digit-prefixed or
   generator-output filenames) now load through the content gate — closing the latent pre-existing bug as a
   side effect.
 <!-- /ANCHOR:requirements -->

@@ -42,11 +42,11 @@ rejection proof. No new tooling — this phase is measurement, not change.
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. BEFORE Phase 004: capture the Lane C baseline on the skills that will be touched.
-2. AFTER Phase 004: recursive `validate.sh --strict`; leaf-classification spot-check per family.
-3. Run the markdown-link guard + the hard-coded-path tests.
-4. Re-run Lane C on affected skills; compute + explain the before/after delta.
-5. Guard proof: create a throwaway `NN--` folder → expect FAIL → remove it → expect PASS.
+### Phase 1: BEFORE Phase 004: capture the Lane C baseline on the skills that will be touched.
+### Phase 2: AFTER Phase 004: recursive `validate.sh --strict`; leaf-classification spot-check per family.
+### Phase 3: Run the markdown-link guard + the hard-coded-path tests.
+### Phase 4: Re-run Lane C on affected skills; compute + explain the before/after delta.
+### Phase 5: Guard proof: create a throwaway `NN--` folder → expect FAIL → remove it → expect PASS.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

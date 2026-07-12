@@ -28,40 +28,40 @@ Every item carries command output (validate/benchmark/guard) as evidence; the be
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] Lane C baseline captured on the to-be-touched skills before Phase 004.
+- [x] CHK-001 [P2] Lane C baseline captured on the to-be-touched skills before Phase 004.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [x] Measurement-only phase; no source changes introduced here.
+- [x] CHK-002 [P2] Measurement-only phase; no source changes introduced here.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [x] Recursive `validate.sh --strict` Errors 0 across parent + touched skills.
-- [x] Catalog/playbook leaf classification intact (spot-checked per family).
-- [x] Markdown-link guard green; hard-coded-path tests green.
-- [x] Lane C before/after delta non-regressing.
+- [x] CHK-003 [P0] Recursive `validate.sh --strict` Errors 0 across parent + touched skills.
+- [x] CHK-004 [P2] Catalog/playbook leaf classification intact (spot-checked per family).
+- [x] CHK-005 [P2] Markdown-link guard green; hard-coded-path tests green.
+- [x] CHK-006 [P2] Lane C before/after delta non-regressing.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [x] Every touched skill family covered by the strict recursion + benchmark re-run.
+- [x] CHK-007 [P2] Every touched skill family covered by the strict recursion + benchmark re-run.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [x] The no-new-numbers guard FAILS on a fresh `NN--` folder and PASSES once removed (proof captured).
+- [x] CHK-008 [P0] The no-new-numbers guard FAILS on a fresh `NN--` folder and PASSES once removed (proof captured).
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] Benchmark delta + any explained movement recorded in the implementation summary.
+- [x] CHK-009 [P2] Benchmark delta + any explained movement recorded in the implementation summary.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] Benchmark run artifacts stored under each affected skill's benchmark run dir (add-only).
+- [x] CHK-010 [P2] Benchmark run artifacts stored under each affected skill's benchmark run dir (add-only).
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

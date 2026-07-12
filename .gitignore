@@ -98,12 +98,27 @@ node_modules/
 code-graph.sqlite
 
 # ───────────────────────────────────────────
-# Advisor state (global)
+# Runtime state folders (plugin / tooling state)
 # ───────────────────────────────────────────
-.opencode/skills/.advisor-state/
-.opencode/skills/.smart-router-telemetry/
-**/.advisor-state/
+# Publish each folder and its README to external users, but ignore the
+# machine-specific runtime data inside. The contents-glob (…/**) ignores the data
+# WITHOUT excluding the directory, so the README negations below are honored. A
+# bare directory-exclude (trailing slash) would block descent and hide the README.
+# The **/ prefix also covers nested runtime-mirror copies of these folders.
 **/.advisor-state/**
+**/.smart-router-telemetry/**
+**/.completion-sentinel-state/**
+**/.goal-state/**
+**/.loop-guard-state/**
+**/.spec-gate-state/**
+**/.code-graph-freshness-state/**
+!.opencode/skills/.advisor-state/README.md
+!.opencode/skills/.smart-router-telemetry/README.md
+!.opencode/skills/.completion-sentinel-state/README.md
+!.opencode/skills/.goal-state/README.md
+!.opencode/skills/.loop-guard-state/README.md
+!.opencode/skills/.spec-gate-state/README.md
+!.opencode/skills/.code-graph-freshness-state/README.md
 
 # ───────────────────────────────────────────
 # Database: system-spec-kit

@@ -21,6 +21,8 @@ _memory:
 ---
 # Spec: Make validate_document.py Number-Agnostic + Add a No-New-Numbers Guard
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `001-convention-docs`; successor `003-migration-tooling`.
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
@@ -74,16 +76,16 @@ the migration script (Phase 003); any non-sk-doc skill.
 
 ## 4. REQUIREMENTS
 <!-- ANCHOR:requirements -->
-- **R1:** Both `validate_document.py` copies classify a **de-numbered** catalog/playbook leaf as its typed
+- **REQ-001:** Both `validate_document.py` copies classify a **de-numbered** catalog/playbook leaf as its typed
   document (`feature_catalog` / `playbook_feature`), not the generic `readme`.
-- **R2:** Both copies STILL classify the **numbered** `NN--slug` leaf as its typed document — tolerate-both
+- **REQ-002:** Both copies STILL classify the **numbered** `NN--slug` leaf as its typed document — tolerate-both
   during the transition (ADR-002/ADR-003).
-- **R3:** The root `feature_catalog.md` / `manual_testing_playbook.md` index file stays **excluded** from leaf
+- **REQ-003:** The root `feature_catalog.md` / `manual_testing_playbook.md` index file stays **excluded** from leaf
   classification (its parent is the catalog/playbook root itself, not a subfolder).
-- **R4:** The no-new-numbers guard **FAILS** on a freshly created `NN--` category folder and **PASSES** on a
+- **REQ-004:** The no-new-numbers guard **FAILS** on a freshly created `NN--` category folder and **PASSES** on a
   de-numbered one (ADR-005; grandfather nothing).
-- **R5:** Existing sk-doc validator tests still pass — no regression in the current suite.
-- **R6:** The two copies stay byte-identical in the changed region so no drift is introduced between
+- **REQ-005:** Existing sk-doc validator tests still pass — no regression in the current suite.
+- **REQ-006:** The two copies stay byte-identical in the changed region so no drift is introduced between
   `scripts/` and `shared/scripts/`.
 <!-- /ANCHOR:requirements -->
 

@@ -379,7 +379,7 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 - Cite which council seat contributed each element of the final plan.
 - Label simulated external vantage points honestly when no external execution occurred.
 - **Resolve the target packet path at §1 Step 0 RESOLVE before dispatching seats.** No deliberation runs without a known persistence target.
-- Graph updates belong to caller-owned `runtime/` CLI reducers, not council-seat deliberation.
+- Graph updates belong to caller-owned `runtime/` CLI reducers, not seat deliberation.
 - **Persist `ai-council/**` artifacts directly via the `lib/persist-artifacts.cjs` named exports BEFORE claiming completion.** The minimum required artifact set is: `ai-council-config.json`, `ai-council-state.jsonl` (with at least `round_start` + `seat_returned` x N + `deliberation_synthesized` + `round_end` + `council_complete` events), `ai-council-strategy.md`, `seats/round-NNN/seat-MMM-*.md` for each dispatched seat, `deliberations/round-NNN.md`, and `council-report.md`.
 
 ### NEVER

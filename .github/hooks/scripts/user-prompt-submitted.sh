@@ -22,7 +22,3 @@ Active Advisor Brief: Copilot wrapper fallback active. Use `session_bootstrap()`
 EOF
   printf '{}\n'
 fi
-
-if [ -x "/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh" ]; then
-  /Users/michelkerkmeester/.superset/hooks/copilot-hook.sh userPromptSubmitted < "$INPUT_FILE" >/dev/null 2>/dev/null || true
-fi

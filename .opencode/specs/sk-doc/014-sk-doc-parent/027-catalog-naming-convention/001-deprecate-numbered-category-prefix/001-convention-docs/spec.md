@@ -21,6 +21,8 @@ _memory:
 ---
 # Spec: Drop the NN-- Category-Name Mandate
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor none (first phase); successor `002-validator-and-guard`.
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
@@ -61,13 +63,13 @@ root index table**, not the folder name.
 
 ## 4. REQUIREMENTS
 <!-- ANCHOR:requirements -->
-- **R1:** Neither convention SKILL.md instructs authors to prefix category folders with `NN--`; the documented
+- **REQ-001:** Neither convention SKILL.md instructs authors to prefix category folders with `NN--`; the documented
   form is the bare descriptive slug.
-- **R2:** Every worked example / template snippet in those skills shows the de-numbered form.
-- **R3:** Ordering guidance explicitly states the root index table (`feature_catalog.md` /
+- **REQ-002:** Every worked example / template snippet in those skills shows the de-numbered form.
+- **REQ-003:** Ordering guidance explicitly states the root index table (`feature_catalog.md` /
   `manual_testing_playbook.md`) is the ordering authority.
-- **R4:** The `/create:*` generators produce de-numbered folders and index rows.
-- **R5:** No behavioral claim in the docs contradicts the Phase 002 guard (which rejects new numbered folders).
+- **REQ-004:** The `/create:*` generators produce de-numbered folders and index rows.
+- **REQ-005:** No behavioral claim in the docs contradicts the Phase 002 guard (which rejects new numbered folders).
 <!-- /ANCHOR:requirements -->
 
 ## 5. SUCCESS CRITERIA

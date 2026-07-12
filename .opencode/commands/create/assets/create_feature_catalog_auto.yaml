@@ -132,14 +132,14 @@ operation_router:
     requires_existing_catalog: false
     output_scope:
       - feature_catalog/feature_catalog.md
-      - feature_catalog/category-name/
-      - feature_catalog/category-name/feature-name.md
+      - feature_catalog/category_name/
+      - feature_catalog/category_name/feature_name.md
   update:
     requires_existing_catalog: true
     output_scope:
       - feature_catalog/feature_catalog.md
-      - feature_catalog/category-name/
-      - feature_catalog/category-name/feature-name.md
+      - feature_catalog/category_name/
+      - feature_catalog/category_name/feature_name.md
 
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/create-feature-catalog/references/README.md

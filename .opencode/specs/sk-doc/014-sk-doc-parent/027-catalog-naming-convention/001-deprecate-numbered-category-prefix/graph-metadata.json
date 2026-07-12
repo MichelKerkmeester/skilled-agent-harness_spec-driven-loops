@@ -38,7 +38,7 @@
       "name"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "research.md",
       "decision-record.md",
@@ -150,7 +150,7 @@
     ],
     "causal_summary": "Every skill's feature_catalog/NN--<name>/ and manual_testing_playbook/NN--<name>/ category folders carry a two-digit NN-- ordinal prefix. No runtime consumer parses that number — ordering already lives in the root index tables — yet the prefix is load-bearing in exactly one place (the sk-doc validator classifies a catalog/playbook leaf only when its parent matches ^\\\\d{2}--).",
     "created_at": "2026-07-10T18:51:12.523Z",
-    "last_save_at": "2026-07-11T04:21:39.454Z",
+    "last_save_at": "2026-07-12T11:46:06.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -158,11 +158,11 @@
       "decision-record.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:13e94edd157f9e61c71fcfb25091d98bfc180ae97d829c3614628aa2e0e6c456",
+    "source_fingerprint": "sha256:94525853133f70d0cb90c6ff0648334a2dce6aec143142fa7a4fd5e4b33baa21",
     "source_doc_hashes": {
-      "spec.md": "1c09b029148b78e4e926cf65bd5f9791a25ff95aac27bfa9db4c7ce5a9ae003f",
-      "decision-record.md": "f13255f533718d099a633c6417101b763abfe1870f10ff7a1f55270731a6ec50",
-      "research.md": "ccac7f223a5a5c02abe47c397c67c9f81dd7948595e00244e4e24f517acd0544"
+      "spec.md": "997b78646e446e6768c9cedd7fbbdbe2b1b345ed26b03d8ac8e0d0724c310e8d",
+      "decision-record.md": "33e8e214d529c73a57eb38312ba696c4966dc3b0d413e5a3b71000e0048f6899",
+      "research.md": "0f3bd778387a0d5ed35814e0ebb1d7e16824b039aa015769c07784f203152036"
     },
     "last_active_child_id": null,
     "last_active_at": null

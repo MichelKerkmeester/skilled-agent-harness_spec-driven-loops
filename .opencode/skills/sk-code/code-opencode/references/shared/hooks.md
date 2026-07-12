@@ -57,7 +57,7 @@ Static `import` analysis (e.g. `tsc --noUnusedLocals`, `ts-prune`, `knip`) walks
 |---|---|---|
 | Claude Code | `.claude/settings.json` | Nested `hooks.<Event>[].hooks[]` array; each entry has `type: "command"` + `command` string |
 | OpenCode | `.opencode/plugins/*.js` and user/workspace OpenCode runtime config | Plugin objects exposing `experimental.chat.system.transform`, `event`, and/or tools |
-| GitHub/Copilot side | `.github/hooks/superset-notify.json` plus supporting scripts under `.github/hooks/scripts/` | Checked-in wrapper/scripts for GitHub-supported hook surfaces |
+| GitHub/Copilot side | lifecycle scripts under `.github/hooks/scripts/` | Copilot session-priming scripts; no checked-in wrapper config |
 
 KEEP hook sources unless the wiring is verifiably gone from every runtime registration surface.
 
@@ -125,7 +125,7 @@ Deprecated/stale references to `system-spec-kit/mcp_server/hooks/opencode/*` sho
 
 ## 5. GITHUB / COPILOT SIDE
 
-The removed `system-spec-kit/mcp_server/hooks/copilot/` suite is not present in this checkout. The current checked-in GitHub hook wrapper named by `hook_system.md` is `.github/hooks/superset-notify.json`; supporting shell scripts live under `.github/hooks/scripts/`.
+The removed `system-spec-kit/mcp_server/hooks/copilot/` suite is not present in this checkout. There is no longer a checked-in Copilot bridge wrapper; the `.github/hooks/scripts/` lifecycle scripts remain and run the spec-kit Copilot session-priming.
 
 Do not copy the Claude nested hook block into GitHub/Copilot-facing files. `hook_system.md` describes Copilot freshness as NEXT-PROMPT: the current prompt sees the prior turn's refreshed instructions or wrapper output.
 
@@ -194,7 +194,6 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 
 - `.claude/settings.json`
 - OpenCode plugin files under `.opencode/plugins/`
-- `.github/hooks/superset-notify.json`
 
 ### Framework Context
 

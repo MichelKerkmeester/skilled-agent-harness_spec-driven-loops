@@ -132,14 +132,14 @@ operation_router:
     requires_existing_playbook: false
     output_scope:
       - manual_testing_playbook/manual_testing_playbook.md
-      - manual_testing_playbook/category-name/
-      - manual_testing_playbook/category-name/feature-name.md
+      - manual_testing_playbook/category_name/
+      - manual_testing_playbook/category_name/feature_name.md
   update:
     requires_existing_playbook: true
     output_scope:
       - manual_testing_playbook/manual_testing_playbook.md
-      - manual_testing_playbook/category-name/
-      - manual_testing_playbook/category-name/feature-name.md
+      - manual_testing_playbook/category_name/
+      - manual_testing_playbook/category_name/feature_name.md
 
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/create-manual-testing-playbook/references/README.md

@@ -21,6 +21,8 @@ _memory:
 ---
 # Spec: Validate, Re-Benchmark Lane C, Prove Zero Corpus Loss
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `004-execute-migration`; successor none (final phase).
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
@@ -76,18 +78,18 @@ single-digit files (untouched by the migration, so not part of this phase's delt
 
 ## 4. REQUIREMENTS
 <!-- ANCHOR:requirements -->
-- **R1:** Recursive `validate.sh --strict` is Errors 0 across the parent packet and every one of the 9
+- **REQ-001:** Recursive `validate.sh --strict` is Errors 0 across the parent packet and every one of the 9
   touched skill surfaces.
-- **R2:** The whole-workspace markdown-link guard passes — no dangling links, with particular attention to
+- **REQ-002:** The whole-workspace markdown-link guard passes — no dangling links, with particular attention to
   the 3 hub-routing root-index docs (cli-external, mcp-tooling) that Phase 004 rewrites in lockstep.
-- **R3:** The Lane C benchmark re-run on the 9 affected skills shows the discovered scenario count UNCHANGED
+- **REQ-003:** The Lane C benchmark re-run on the 9 affected skills shows the discovered scenario count UNCHANGED
   versus the pre-Phase-004 baseline (the rename must not drop any of the 111 files, and the tolerant loader
   from Phase 001 must still surface the previously-dropped 10+ playbooks), and no D1-D5 scoring regression;
   any non-zero delta is explained.
-- **R4:** The no-new-numbered-snippet guard (Phase 001 / ADR-005) FAILS on a freshly created
+- **REQ-004:** The no-new-numbered-snippet guard (Phase 001 / ADR-005) FAILS on a freshly created
   `feature_catalog|manual_testing_playbook/<cat>/NNN-*.md` file and PASSES once that file is removed —
   demonstrated live, not merely asserted.
-- **R5:** `feature-flag-reference-docs.vitest.ts` and `outsourced-agent-handback-docs.vitest.ts` (the 2
+- **REQ-005:** `feature-flag-reference-docs.vitest.ts` and `outsourced-agent-handback-docs.vitest.ts` (the 2
   suites folded in under decision B / ADR-007) both pass; the 7 dead allowlist entries in
   `workflow-invariance.vitest.ts:97-104` remain swept.
 <!-- /ANCHOR:requirements -->

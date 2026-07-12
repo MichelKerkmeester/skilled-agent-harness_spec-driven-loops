@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Phase 005, the gate. After the migration executes, prove nothing regressed: recursive validate.sh --strict across every touched skill (with catalog/playbook leaves still classified as their typed documents), the whole-workspace markdown-link CI guard, any hard-coded-path tests, and a re-run of the Lane C smart-routing benchmark on affected skills compared against a pre-migration baseline captured before Phase 004. Finally prove the no-new-numbers guard fires by attempting a fresh numbered folder.",
     "created_at": "2026-07-10T18:51:13.165Z",
-    "last_save_at": "2026-07-11T19:48:29.101Z",
+    "last_save_at": "2026-07-12T12:16:23.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +195,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:018fa14e74af6a689689a9ef62dd98166cd01f0a7b789470c25e4cea6befb04f",
+    "source_fingerprint": "sha256:f58743f6734f9d47e3cbba70044d8bdc7686f52a62a95683318e81251f122415",
     "source_doc_hashes": {
-      "spec.md": "77b79e3c48307a7aaf8eff8a2b001d53baf61e7308014b9943c8fa5eb68329c2",
-      "plan.md": "db12a7a125f917e9d04f94cbcf0e9aaf6da6eb2c4c97202608982cc4f0d050b3",
-      "tasks.md": "30382b2166945232dbb0ade2ae60a9f69e8f07dcab9080c09e996c42d76bd297",
-      "checklist.md": "a33f675c4b17f51d6aa94a3cff143d3357f9c2fd88674f18962cf592241f4205",
-      "implementation-summary.md": "9d137f9a0435b54242c8dbb864ab4d2983648de20a53cc4ed462707e62015fb6"
+      "spec.md": "c1d42f906805880144a763035204397eaa8d54c63dbf793a5feab040fa361790",
+      "plan.md": "0e548bdc442fce2719af6b77f8c8533825ca089cbd87e17c7606cb8877374a51",
+      "tasks.md": "3f1c2b36647209a499ef95bb2fad1da9372a3df2674a5bb7dd10638c809d29a4",
+      "checklist.md": "aff60177c6106df2a0b91385fb9e49bdd2ee5ca5c977fa48866496da8091db1c",
+      "implementation-summary.md": "872bc1580333269af1ae06ee91f8028d6faabf9f5c1c521f187667db06cacbdc"
     },
     "last_active_child_id": null,
     "last_active_at": null

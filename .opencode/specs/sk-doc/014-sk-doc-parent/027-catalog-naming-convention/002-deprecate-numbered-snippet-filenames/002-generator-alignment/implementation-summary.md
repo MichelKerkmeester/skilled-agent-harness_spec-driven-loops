@@ -7,7 +7,7 @@ parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-nu
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment"
-    last_updated_at: "2026-07-11T17:41:00Z"
+    last_updated_at: "2026-07-12T12:16:22Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Generator emits slug filenames + stage default; commit 69638f96a4"
     next_safe_action: "Complete"

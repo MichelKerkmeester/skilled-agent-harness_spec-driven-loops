@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: restyle catalog/playbook content folders and files to underscore_case"
-description: "Every surviving hyphenated category folder and per-feature file under feature_catalog/ and manual_testing_playbook/ (plus references/, assets/, benchmark/ content subfolders) is renamed from hyphen-case to underscore_case, repo-wide across all skills. ~510 content subfolders + ~1,959 per-feature .md files. Unlike sibling de-numbering packets 001/002, no runtime gate keys on hyphen-vs-underscore (the validator classifies leaves by the feature_catalog/manual_testing_playbook parent-dir NAME, and the Lane C loader selects by frontmatter), so the load-bearing risk is low; the work is a rename + path-scoped reference sweep + convention-doc rewrite + a no-new-hyphen guard. Skill/agent/command/phase-folder names stay hyphenated."
+description: "Every hyphenated category folder and per-feature file under feature_catalog/ and manual_testing_playbook/ (plus references/, assets/, benchmark/ content subfolders) renamed from hyphen-case to underscore_case, repo-wide across all skills. Unlike sibling de-numbering packets 001/002, no runtime gate keys on hyphen-vs-underscore (the validator classifies leaves by the feature_catalog/manual_testing_playbook parent-dir NAME, and the Lane C loader selects by frontmatter), so load-bearing risk was low. Shipped as one merged change via three parallel agent branches; skill/agent/command/phase-folder names stay hyphenated. Verified end-state: 0 tracked hyphenated content folders/files remain (excl z_archive), 2,032 tracked underscore .md content files present."
 trigger_phrases:
   - "underscore content folders"
   - "hyphen to underscore catalog"
@@ -13,26 +13,29 @@ parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files"
-    last_updated_at: "2026-07-12T00:00:00Z"
+    last_updated_at: "2026-07-12T11:31:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase spec authored (scaffold)"
-    next_safe_action: "Terra: author phase children, then implement 001-convention-docs"
+    recent_action: "Reconciled 003 to a completed Level-2 leaf reflecting the shipped underscore migration"
+    next_safe_action: "Commit path-scoped after strict validate"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Validator classifies catalog/playbook leaves by parent.parent dir NAME (feature_catalog/manual_testing_playbook), not the slug (validate_document.py:129,137) -> underscore slugs validate unchanged"
+      - "Validator classifies catalog/playbook leaves by the feature_catalog/manual_testing_playbook parent-dir NAME, not the slug (validate_document.py:129,137) -> underscore slugs validate unchanged"
       - "Lane C loader selects scenario files by frontmatter, not filename shape (load-playbook-scenarios.cjs:306) -> underscore filenames load unchanged"
-      - "Measured surface: ~510 hyphenated content subfolders + ~1,959 hyphenated per-feature .md files (excl z_archive)"
+      - "Shipped as one merged change (merge commits 0659149d08 + b5afa1206c, each merging parallel agent branches), not the 5 planned sub-phase folders"
+      - "Verified end-state: git ls-files finds 0 tracked hyphenated content folders/files under catalog/playbook (excl z_archive); 2,032 tracked underscore .md content files present"
+      - "50 untracked hyphenated .md files under system-deep-loop/deep-alignment/ are a concurrent live session's working files, not migration residue -> out of scope"
 ---
 
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
-<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; full evidence in research.md, decisions in decision-record.md, mechanics in each child's plan.md. -->
 
 # Feature Specification: Underscore Restyle of Catalog/Playbook Content
+
+> Phase adjacency under the 027 parent (grouping order, not a runtime dependency): predecessor `002-deprecate-numbered-snippet-filenames`, successor `004-remove-superset-copilot-hook-bridge`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -40,116 +43,147 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files |
-| **Level** | phase parent (Level 3) |
+| **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-12 |
 | **Owner skill** | sk-doc (owns the `create-feature-catalog` + `create-manual-testing-playbook` conventions, templates, `/create:*` generators, and the `validate_document.py` classifier) |
-| **Origin** | Operator: "make sure all folders in feature catalog, playbook, benchmarks, skill references, assets, etc use underscores (folder_name not folder-name)" — scope confirmed as all content folders AND all per-feature files |
+| **Origin** | Operator: "make sure all folders in feature catalog, playbook, benchmarks, skill references, assets, etc use underscores (folder_name not folder-name)" — confirmed as all content folders AND all per-feature files |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Catalog/playbook content is named in hyphen-case: category folders (`feature_catalog/mcp-tool-surface/`),
+### Problem Statement
+Catalog/playbook content was named in hyphen-case: category folders (`feature_catalog/mcp-tool-surface/`),
 per-feature files (`read-path-freshness.md`), and content subfolders under `references/`, `assets/`, and
 `benchmark/`. The operator's canonical form is `underscore_case`, so `feature_catalog/mcp-tool-surface/read-path-freshness.md`
-becomes `feature_catalog/mcp_tool_surface/read_path_freshness.md`.
+became `feature_catalog/mcp_tool_surface/read_path_freshness.md`.
 
-Unlike the sibling de-numbering packets (001/002), **no runtime consumer keys on hyphen-vs-underscore**:
-- The sk-doc validator classifies a catalog/playbook leaf by its `feature_catalog` / `manual_testing_playbook`
-  parent-directory NAME, not by the category slug (`validate_document.py:129,137`) — so underscore slugs validate
-  identically.
-- The Lane C skill-benchmark loader selects scenario files by frontmatter content, not by filename shape
-  (`load-playbook-scenarios.cjs:306`) — so underscore filenames load identically.
+Unlike the sibling de-numbering packets (001/002), **no runtime consumer keys on hyphen-vs-underscore**: the sk-doc
+validator classifies a catalog/playbook leaf by its `feature_catalog` / `manual_testing_playbook` parent-directory NAME
+(`validate_document.py:129,137`), and the Lane C benchmark loader selects scenario files by frontmatter content, not by
+filename shape (`load-playbook-scenarios.cjs:306`). So the work was a mechanical rename + path-scoped reference sweep,
+not a gate-neutralization problem.
 
-So this is a mechanical rename + path-scoped reference sweep, not a gate-neutralization problem. It still costs a
-convention-doc rewrite (the `create-*` SKILLs and templates currently mandate the hyphenated `category-name` /
-`feature-name.md` form) and a guard so the underscore form is self-enforcing.
-
-**Purpose:** make `underscore_case` the sole canonical form for all in-scope catalog/playbook content folders and
-files, repo-wide, without regressing validation, the Lane C benchmark corpus, or CI.
+### Purpose
+Make `underscore_case` the sole canonical form for all in-scope catalog/playbook content folders and files, repo-wide,
+without regressing validation, the Lane C benchmark corpus, or CI; and rewrite the convention docs/generators so new
+content is emitted in the underscore form.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-**In scope (measured — see `research.md` for the full inventory):**
-- **~510 hyphenated content subfolders**: `feature_catalog/<category>/` (101) + `manual_testing_playbook/<category>/`
-  (255) + hyphenated subfolders under `references/` (3), `assets/` (17), and `benchmark/` (31), across all skills.
-- **~1,959 hyphenated per-feature `.md` files** under `feature_catalog/<category>/` and
-  `manual_testing_playbook/<category>/`.
-- **Reference surface**: root index tables (`feature_catalog.md` / `manual_testing_playbook.md` path rows),
-  `category:` frontmatter values, markdown nav / cross-reference links that point at in-scope paths, and any
-  hub-routing index rows that cite these filenames.
-- **Convention docs**: `create-feature-catalog` + `create-manual-testing-playbook` SKILL.md, their templates, and the
-  `/create:*` generators — rewrite the documented canonical form from `category-name` / `feature-name.md` to
-  `category_name` / `feature_name.md`.
-- **Guard**: a check that FAILS when a NEW hyphenated content folder or file is introduced under the in-scope
-  surfaces (mirrors the 001/002 no-new-numbers guards).
+### In Scope
+- **All hyphenated content folders** + **all hyphenated per-feature `.md` files** under `feature_catalog/<category>/`
+  and `manual_testing_playbook/<category>/` (plus hyphenated subfolders under `references/`, `assets/`, `benchmark/`),
+  across all skills — renamed hyphen→underscore on path segments only.
+- **Reference sweep**: root index tables (`feature_catalog.md` / `manual_testing_playbook.md` rows), `category:`
+  frontmatter values, and markdown cross-reference links pointing at in-scope paths.
+- **Convention docs**: `create-feature-catalog` + `create-manual-testing-playbook` generators rewritten from
+  `category-name` / `feature-name.md` to `category_name` / `feature_name.md` (shipped separately as 027 parent commit
+  `7cc369f2ed`).
 
-**Out of scope (deliberate):**
-- **Skill / agent / command directory names** (`sk-doc`, `create-feature-catalog`, `code-review`, ...) and **spec
-  phase-folder names** (`^[0-9]{3}-[a-z0-9-]+$`) — hyphen-only by hard convention; never underscored. The reference
-  sweep is path-scoped and word-boundary-safe so hyphenated skill/tool names appearing INSIDE prose or as reference
-  targets are not touched.
-- **Changelogs, `z_archive/`, completed spec-folder history/narrative** — frozen.
-- **Category-folder / snippet-file DE-NUMBERING** — that is siblings 001/002, already complete.
-- Any digit-bearing topic name whose hyphens are structural (e.g. `4-stage-pipeline-architecture`) is reviewed for
-  collision safety before restyle; the script computes the rename map from the live tree and hard-aborts on collision.
+### Out of Scope (deliberate)
+- **Skill / agent / command directory names** and **spec phase-folder names** (`^[0-9]{3}-[a-z0-9-]+$`) — hyphen-only
+  by hard convention; never underscored. The sweep is path-scoped and word-boundary-safe.
+- **Changelogs, `z_archive/`, completed spec history** — frozen.
+- The **de-numbering** work (siblings 001/002, already complete).
+- The 5 non-`.md` files (`superset-notify.json`, `409-fixture.json`, 3× `setup-cp-sandbox.sh`) — left hyphenated
+  (renaming would break tests/hooks/frozen history).
+- **Untracked concurrent-session working files** — e.g. the 50 hyphenated `.md` files under
+  `system-deep-loop/deep-alignment/feature_catalog|manual_testing_playbook/` are a live session's uncommitted new
+  files (0 tracked), not migration residue; a no-new-hyphen guard would catch them if/when they are committed.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `feature_catalog/<category>/**` + `manual_testing_playbook/<category>/**` | Renamed | hyphen→underscore on folder + `.md` basenames, all skills |
+| `create-feature-catalog` + `create-manual-testing-playbook` generators | Modified | underscore canonical form (027 parent commit `7cc369f2ed`) |
 <!-- /ANCHOR:scope -->
 
-<!-- ANCHOR:phases -->
-## 4. PHASES
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
 
-Ordered so the repo is internally consistent at every commit (guard/tolerance first, then rename).
+### P0 - Blockers (MUST complete)
 
-| Phase | Child | Outcome |
-|-------|-------|---------|
-| **001** | `001-convention-docs` | Rewrite the `create-feature-catalog` + `create-manual-testing-playbook` SKILL.md, templates, and `/create:*` generators so `category_name` / `feature_name.md` (underscore) is the documented canonical form; the descriptive slug stays, only the separator changes. |
-| **002** | `002-validator-and-guard` | Confirm `validate_document.py` (both copies) classifies underscore leaves unchanged (it keys on the parent-dir name); add a regression guard that FAILS when a NEW hyphenated content folder/file is introduced under the in-scope surfaces. |
-| **003** | `003-migration-tooling` | A deterministic, dry-run-default rename engine adapted from the 001/002 de-numbering engine: enumerate the ~510 folders + ~1,959 files, compute the hyphen->underscore rename map on path segments only, hard-abort on collision, rewrite root index tables + `category:` frontmatter + nav/cross-ref links, honor the deny-list (skill/agent/command names, phase folders, z_archive, changelogs, spec history). Emits a diff + safety/collision report; no mutation without `--apply`. |
-| **004** | `004-execute-migration` | Run the migration fanned out by skill family, validating each family as it lands. All in-scope folders + files renamed + every live reference rewritten in lockstep. |
-| **005** | `005-validate-and-rebenchmark` | Recursive `validate.sh --strict` on touched skills; whole-workspace markdown-link guard; re-run the Lane C smart-routing benchmark on affected skills and prove no scoring regression vs a pre-migration baseline captured at phase start; prove the no-new-hyphen guard fires. |
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | All in-scope tracked content folders/files use underscore_case | `git ls-files` finds zero hyphenated category folders / per-feature files under the in-scope surfaces (excl z_archive) |
+| REQ-002 | Every live reference rewritten in lockstep | Root index tables, `category:` frontmatter, and cross-ref links resolve; no dangling hyphenated path refs |
+| REQ-003 | No validation regression | Catalog/playbook leaves still classify as their typed document (validator keys on parent-dir name) |
+| REQ-004 | No skill/agent/command/phase-folder name underscored | The rename touched only content path segments |
 
-**Sequencing invariant:** 001 (convention docs) + 002 (guard/tolerance) land before 003 authors against them; the
-migration (004) lands before the gate (005). Because no runtime gate keys on the separator, there is no
-silent-downgrade risk of the kind 001/002 faced — validation is unaffected mid-flight.
-<!-- /ANCHOR:phases -->
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-005 | Convention generators emit underscore form | `create-*` generators use `category_name` / `feature_name.md` (027 commit `7cc369f2ed`) |
+| REQ-006 | Lane C benchmark corpus unchanged | Discovered-scenario count unchanged; no D1-D5 scoring regression (loader is separator-agnostic) |
+<!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-1. Zero hyphenated category folders or per-feature files remain under the in-scope surfaces outside the excluded
-   changelog/archive/history surface; all are `underscore_case`.
-2. `validate.sh --strict` is Errors 0 recursively across every touched skill, and every catalog/playbook leaf is
-   still classified as its typed document (not downgraded to `readme`).
-3. The Lane C smart-routing benchmark shows no scoring regression on affected skills vs the pre-migration baseline
-   captured in 005; the discovered-scenario count is unchanged.
-4. The no-new-hyphen guard rejects a freshly-created hyphenated content folder/file and accepts an underscore one.
-5. Convention docs, templates, and `/create:*` generators emit only `underscore_case` content folder/file names.
-6. No skill/agent/command/phase-folder name was underscored; the whole-workspace markdown-link guard is clean.
+- **SC-001**: Zero tracked hyphenated category folders or per-feature files remain under the in-scope surfaces
+  (excl. frozen `z_archive`).
+- **SC-002**: `validate.sh --strict` Errors 0 on the 027 parent recursively; every catalog/playbook leaf still typed
+  correctly (validator keys on `feature_catalog`/`manual_testing_playbook` parent-dir name).
+- **SC-003**: The Lane C smart-routing benchmark shows no scoring regression; scenario count unchanged (loader selects
+  by frontmatter, not filename shape).
+- **SC-004**: Convention generators emit only `underscore_case`.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Over-broad sweep touching hyphenated skill/tool names in prose** (the central risk) — mitigated by a path-scoped,
-  word-boundary-safe reference sweep that only rewrites in-scope path segments, plus a deny-list; 005 runs the
-  whole-workspace markdown-link guard to catch any broken reference.
-- **Rename collisions** — a hyphen->underscore rename could collide with an existing sibling; the script computes the
-  map from the live tree and hard-aborts on any collision before writing.
-- **Broken relative links / CI failure** — the migration rewrites links in the same pass as the rename; 005 runs the
-  markdown-link guard whole-workspace.
-- **Concurrent-session churn** — the migration is built and executed in an isolated git worktree; commits are
-  path-scoped.
-- **Dependency:** the Lane C harness (unchanged) for the 005 regression check; the spec-kit validator (rebuilt in the
-  worktree). This packet's final tree consistency depends on the sibling re-nest (parent 001/002) landing.
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Risk | Over-broad sweep touching hyphenated skill/tool names in prose | Broken references | Path-scoped, word-boundary-safe sweep + deny-list; markdown-link guard |
+| Risk | Rename collisions | Lost files | Rename map computed from live tree; hard-abort on collision before writing |
+| Risk | Concurrent-session churn | Entangled diff | Built + executed in isolated worktrees; commits path-scoped; untracked live-session files left untouched |
+| Dependency | Lane C harness (unchanged) | Regression check | Separator-agnostic loader; baseline captured before execution |
 <!-- /ANCHOR:risks -->
 
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
-None blocking. The collision/deny-list boundary is enumerated in `decision-record.md` (to be authored) and encoded as
-the migration script's deny-list in Phase 003.
+### Determinism
+- **NFR-D01**: The rename is a pure `-`→`_` transform on path segments only, so each agent could rewrite cross-skill
+  references independently with no coordination.
+
+### Safety
+- **NFR-S01**: Dry-run + collision hard-abort before any `git mv`; disjoint file-ownership partitioning across the
+  parallel agent branches; untracked concurrent-session files never staged.
+<!-- /ANCHOR:nfr -->
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+- **Digit-bearing topic names** (e.g. `4-stage-pipeline-architecture`): same `-`→`_` treatment, hard-abort on any
+  resulting name collision.
+- **Non-`.md` content files** entangled with tests/hooks/frozen history: left hyphenated (out of scope).
+- **`.github/` dotdirs and stray `.opencode/node_modules/` trees under content surfaces**: not content; never targeted
+  by the sweep.
+- **Concurrent-session untracked files**: hyphenated `.md` files created after the migration by a live session are not
+  migration residue; they are out of scope and left for the no-new-hyphen guard / that session's own commit.
+<!-- /ANCHOR:edge-cases -->
+
+<!-- ANCHOR:questions -->
+## 9. OPEN QUESTIONS
+
+None. Shipped as one merged change (merge commits `0659149d08` + `b5afa1206c`, each merging parallel agent branches),
+verified and merged onto `skilled/v4.0.0.0`; the nominal 5-phase decomposition was not materialized as folders because
+the deterministic transform made a single fanned-out pass safe.
 <!-- /ANCHOR:questions -->
+
+<!-- ANCHOR:related-docs -->
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `checklist.md`
+- **Implementation Summary**: See `implementation-summary.md`
+<!-- /ANCHOR:related-docs -->

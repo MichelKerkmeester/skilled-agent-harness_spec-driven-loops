@@ -28,56 +28,56 @@ Every item carries a fixture result, test-run, or grep evidence line.
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] Confirmed the `^\d{3}-.*\.md$` gate at `load-playbook-scenarios.cjs:302` and the oracle's identical
+- [x] CHK-001 [P0] Confirmed the `^\d{3}-.*\.md$` gate at `load-playbook-scenarios.cjs:302` and the oracle's identical
   test at `code-opencode-playbook-ids.vitest.ts:28` are the only two sites re-implementing the filename
   ordinal rule.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [x] Loader and oracle changed onto the same content-gate condition — `load-playbook-scenarios.cjs` and
+- [x] CHK-002 [P0] Loader and oracle changed onto the same content-gate condition — `load-playbook-scenarios.cjs` and
   `code-opencode-playbook-ids.vitest.ts` share one predicate (no drift between the two).
-- [x] No ephemeral spec/ADR/phase ids embedded in code comments (`grep` of the changed files clean); comments
+- [x] CHK-003 [P0] No ephemeral spec/ADR/phase ids embedded in code comments (`grep` of the changed files clean); comments
   keep the durable WHY.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [x] De-numbered scenario file → loaded by `loadYamlFrontmatterScenarios()`.
-- [x] Numbered `NNN-slug.md` scenario file → still loaded.
-- [x] Root `manual_testing_playbook.md` / `feature_catalog.md` index file → NOT loaded as a scenario.
-- [x] Non-scenario `.md` file with no parseable frontmatter in a category subfolder → NOT loaded by
+- [x] CHK-004 [P0] De-numbered scenario file → loaded by `loadYamlFrontmatterScenarios()`.
+- [x] CHK-005 [P0] Numbered `NNN-slug.md` scenario file → still loaded.
+- [x] CHK-006 [P0] Root `manual_testing_playbook.md` / `feature_catalog.md` index file → NOT loaded as a scenario.
+- [x] CHK-007 [P2] Non-scenario `.md` file with no parseable frontmatter in a category subfolder → NOT loaded by
   `loadYamlFrontmatterScenarios()` (negative case).
-- [x] Scenario with `stage: holdout` (or `negative`) → surfaces that value; scenario with no `stage:` field →
+- [x] CHK-008 [P0] Scenario with `stage: holdout` (or `negative`) → surfaces that value; scenario with no `stage:` field →
   surfaces `routing`.
-- [x] `countFeatureFiles()` oracle count agrees with the loader's parsed count on the live `code-opencode`
+- [x] CHK-009 [P0] `countFeatureFiles()` oracle count agrees with the loader's parsed count on the live `code-opencode`
   playbook tree.
-- [x] New numbered snippet file → `check_no_numbered_snippet_files.py` FAILS (`exit 1`); de-numbered file →
+- [x] CHK-010 [P0] New numbered snippet file → `check_no_numbered_snippet_files.py` FAILS (`exit 1`); de-numbered file →
   guard PASSES (`exit 0`).
-- [x] Existing skill-benchmark vitest suite passes (no regression).
-- [x] `validate.sh --strict` Errors 0 on this phase folder.
+- [x] CHK-011 [P0] Existing skill-benchmark vitest suite passes (no regression).
+- [x] CHK-012 [P0] `validate.sh --strict` Errors 0 on this phase folder.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [x] Loader, vitest oracle, and the new guard script + its fixtures all updated — no surface missed.
+- [x] CHK-013 [P0] Loader, vitest oracle, and the new guard script + its fixtures all updated — no surface missed.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [x] Change only widens what the loader accepts (`isFile` + frontmatter content-gate) and adds a fail-closed
+- [x] CHK-014 [P0] Change only widens what the loader accepts (`isFile` + frontmatter content-gate) and adds a fail-closed
   guard; no gate, allowlist, or execution-path behavior weakened.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] No documentation changes required in this phase (convention docs live in Phase 002); `grep` confirms none
+- [x] CHK-015 [P1] No documentation changes required in this phase (convention docs live in Phase 002); `grep` confirms none
   of this phase's code comments reference a stale filename-ordinal rule.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] Edits confined to `load-playbook-scenarios.cjs`, `code-opencode-playbook-ids.vitest.ts`, and the new
+- [x] CHK-016 [P1] Edits confined to `load-playbook-scenarios.cjs`, `code-opencode-playbook-ids.vitest.ts`, and the new
   guard script + its fixtures.
 <!-- /ANCHOR:file-org -->
 

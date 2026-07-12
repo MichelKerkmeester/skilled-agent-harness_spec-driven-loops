@@ -42,10 +42,10 @@ scoped. Sequenced after Phase 002 so the classifier already tolerates both forms
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Full dry-run; confirm the report matches research.md counts (390 / 115 / ~1,052 / ~5,298 / 2 / 0 collisions).
-2. Execute family-by-family (fan out with the GPT-terra + Sonnet fleet on disjoint families); validate each.
-3. Path-scoped commit per family (exclude branch WIP + concurrent-session dirt).
-4. Final repo-wide find: zero in-scope numbered category folders.
+### Phase 1: Full dry-run; confirm the report matches research.md counts (390 / 115 / ~1,052 / ~5,298 / 2 / 0 collisions).
+### Phase 2: Execute family-by-family (fan out with the GPT-terra + Sonnet fleet on disjoint families); validate each.
+### Phase 3: Path-scoped commit per family (exclude branch WIP + concurrent-session dirt).
+### Phase 4: Final repo-wide find: zero in-scope numbered category folders.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

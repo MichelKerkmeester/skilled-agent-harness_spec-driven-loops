@@ -22,6 +22,8 @@ _memory:
 ---
 # Spec: Deterministic Dry-Run Rename Engine for Numbered Snippet Filenames
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `002-generator-alignment`; successor `004-execute-migration`.
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
@@ -102,21 +104,21 @@ recursive re-validation and Lane C re-benchmark (Phase 005).
 
 ## 4. REQUIREMENTS
 <!-- ANCHOR:requirements -->
-- **R1:** In dry-run (the default) the script mutates nothing and prints a **complete rename map** plus a
+- **REQ-001:** In dry-run (the default) the script mutates nothing and prints a **complete rename map** plus a
   **per-file reference-change diff** for every file it would touch.
-- **R2:** Enumeration is **scoped to exactly the 111 in-scope files** across the 9 named packet paths — not a
+- **REQ-002:** Enumeration is **scoped to exactly the 111 in-scope files** across the 9 named packet paths — not a
   generic tree walk — so the 20 legitimate system-spec-kit single-digit files are structurally excluded, and the
   deny-list references the **current `sk-doc/014-sk-doc-parent`** packet path, not the stale, nonexistent
   `999-sk-doc-parent` path the 108 script's self-exclusion carried.
-- **R3:** A **collision check** aborts the run if any two stripped names would collide within a parent category
+- **REQ-003:** A **collision check** aborts the run if any two stripped names would collide within a parent category
   folder (expected zero per research.md, A); the check is reported explicitly, not assumed.
-- **R4:** For the **88 routing-recall / hub-routing files** (operator-amended from an initial 63 estimate; see
+- **REQ-004:** For the **88 routing-recall / hub-routing files** (operator-amended from an initial 63 estimate; see
   `decision-record.md` ADR-004), the script derives and previews a `stage: holdout|negative|routing` frontmatter
   injection from the filename token or category (14 holdout, 5 negative, 69 routing); the 23 feature-oriented
   files outside those categories receive no `stage:` field.
-- **R5:** The **reference sweep** rewrites the **3 hub-routing root-index tables** (`cli-external`, `mcp-tooling`,
+- **REQ-005:** The **reference sweep** rewrites the **3 hub-routing root-index tables** (`cli-external`, `mcp-tooling`,
   `sk-prompt`) in the same pass, word-boundary safe, so it does not false-positive on substrings.
-- **R6:** The script is **re-runnable / idempotent** (a second dry-run after a partial run reflects only the
+- **REQ-006:** The script is **re-runnable / idempotent** (a second dry-run after a partial run reflects only the
   remaining work — no double-stripping, no duplicate `stage:` injection) and **reversible via git**.
 <!-- /ANCHOR:requirements -->
 

@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Phase 003 of the numbered-prefix deprecation. Author one deterministic migration script that performs the whole de-numbering — git mv the 390 numbered category folders to bare slugs, rewrite the 115 frontmatter category: values, the ~1,052 root index-table path rows, the ~5,298 nav/cross-ref links across ~1,841 files, and the two SKILL.md router-prefix blocks — with a DRY-RUN mode that mutates nothing and emits a rename map, per-file diff, and safety/collision report. Honors the ADR-004 deny-list (z_archive, CHANGELOG, history, this packet's evidence). Tooling-only phase — Phase 004 runs it.",
     "created_at": "2026-07-10T18:51:12.903Z",
-    "last_save_at": "2026-07-11T19:48:28.574Z",
+    "last_save_at": "2026-07-12T12:16:23.294Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a73fdd99c50338efd92113112c9f3030b08c46cc1e70236636ebea5881eb820a",
+    "source_fingerprint": "sha256:0cce5768f269b7a66fa7b5ef4c5fa9056b650c77dd0ddee43457a8f75c60ec33",
     "source_doc_hashes": {
-      "spec.md": "317c1f50b63f230bcfaa4634a73dcb739e05d26b2ced68384b1a0dcea4809561",
-      "plan.md": "a9a4ea8baf36ea5203610154836454d94e53ec5c955834a05fc5cf3192e33df6",
-      "tasks.md": "ec6b437026e95cdf20eb837e5c5f8d4e4a203df958e926f781d7f83c886288d6",
-      "checklist.md": "749090a76c745494430bb40790326030d5f038e62bf91923b12d2e060e9e465a",
-      "implementation-summary.md": "f580bb956664d3ce249209cee081e3f5c78e63879c6ae7ebd905df1db1bf546e"
+      "spec.md": "a5375d3f5bdf8f14a4ba74e9d879a84c102c5981bbb902b4332b32c378e18115",
+      "plan.md": "fecc80e527bd7199301216d8b237fde2cc87222ddd8e7d70ccfefcefdfbe640f",
+      "tasks.md": "47b935682eced21649b6c2ccb24263eaad19a3f30c1717911f8cd4b532d55ec1",
+      "checklist.md": "2ee8cb4e1d389c1ceb8fe523f945eabb16e87254475bf4e35cc1ffe4703c68ed",
+      "implementation-summary.md": "3b8a80eac57a9561d79a2be1e79cb991be5902404cb672541a035dd4783202b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

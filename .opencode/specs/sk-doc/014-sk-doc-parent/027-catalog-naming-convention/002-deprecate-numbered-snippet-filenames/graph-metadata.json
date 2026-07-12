@@ -38,7 +38,7 @@
       "catalog"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "research.md",
       "decision-record.md",
@@ -118,7 +118,7 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "completed",
         "kind": "key_phrase",
         "path": "decision-record.md",
         "source": "derived"
@@ -150,7 +150,7 @@
     ],
     "causal_summary": "111 per-scenario snippet FILENAMES under feature_catalog/<category>/ and manual_testing_playbook/<category>/ across 9 skill packets carry a zero-padded 3-digit NNN- ordinal prefix. The prefix is load-bearing in exactly one place — the deep-improvement Lane C skill-benchmark loader ingests a sk-doc-shape scenario only when its basename is 3-digit-prefixed — so stripping it blind would silently drop all 111 scenarios from the benchmark corpus.",
     "created_at": "2026-07-11T14:47:54.002Z",
-    "last_save_at": "2026-07-11T17:35:46.370Z",
+    "last_save_at": "2026-07-12T11:46:06.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -158,11 +158,11 @@
       "decision-record.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:d7858b3fa40eff2d85f6163021756625ac22e1af16fdd7406e40eed25a00c4d6",
+    "source_fingerprint": "sha256:580f64f87d108c9c72a68713a5dcc541a7f26e5416f3fd6863eaa3e8f3f1a9aa",
     "source_doc_hashes": {
-      "spec.md": "56de0311fd99e6d32b45d0bd4ff37cb7c498731a0663a166a0271cb14dab15a8",
-      "decision-record.md": "f0f919c88a1d6385309c0b595576e651034cc438ba2c686a4bc5f5ff523c69ec",
-      "research.md": "011151e72328e73fdd8e00430e9ba745a10c0f2c703919550ec916bb0af69b07"
+      "spec.md": "a0b632eb925c85dfeab81667d57eda4a92e8c5da3f78f61657063889e2f7adfb",
+      "decision-record.md": "c004ad4db22f8120df1ce9525693c9bec7d7ebc081466e20e48eb795bb5322cb",
+      "research.md": "c73d749a6598393eed79881a857d9d469cd9612eb10932a6e68865fd8a128802"
     },
     "last_active_child_id": null,
     "last_active_at": null
