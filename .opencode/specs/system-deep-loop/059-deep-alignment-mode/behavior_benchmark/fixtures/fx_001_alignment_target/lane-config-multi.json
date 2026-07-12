@@ -1,0 +1,22 @@
+[
+  {
+    "authority": "sk-doc",
+    "artifactClass": "docs",
+    "scope": {
+      "type": "paths",
+      "values": [
+        ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx_001_alignment_target/docs"
+      ]
+    }
+  },
+  {
+    "authority": "sk-code",
+    "artifactClass": "code",
+    "scope": {
+      "type": "globs",
+      "values": [
+        ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx_001_alignment_target/src/**"
+      ]
+    }
+  }
+]
