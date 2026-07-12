@@ -2,7 +2,7 @@
 name: create-command
 description: Scaffold OpenCode slash commands with explicit argument hints, allowed tools, and router/presentation separation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 <!-- Keywords: create-command, slash command, opencode command, argument-hint, allowed-tools, command router, presentation contract, thin router, command scaffold -->
@@ -17,7 +17,7 @@ This packet is lean and self-contained. The advisor identity lives at the `sk-do
 
 ---
 
-## 1. WHEN TO USE + SMART_ROUTING
+## 1. WHEN TO USE
 
 Use this packet when the request involves:
 
@@ -28,8 +28,6 @@ Use this packet when the request involves:
 - Authoring a namespace command such as `/namespace:action`.
 - Separating visible prompts, dashboards, result templates, or next-step wording into a presentation contract.
 - Checking whether a workflow should be a command instead of a skill, agent, or one-off task.
-
-Keyword triggers: `create command`, `slash command`, `opencode command`, `argument-hint`, `allowed-tools`, `command template`, `router presentation split`, `thin router`, `presentation contract`, `$ARGUMENTS`, `:auto`, `:confirm`.
 
 Do not use this packet when:
 
@@ -42,7 +40,15 @@ Do not use this packet when:
 
 ---
 
-## 2. HOW IT WORKS: CREATION WORKFLOW
+## 2. SMART ROUTING
+
+Keyword triggers: `create command`, `slash command`, `opencode command`, `argument-hint`, `allowed-tools`, `command template`, `router presentation split`, `thin router`, `presentation contract`, `$ARGUMENTS`, `:auto`, `:confirm`.
+
+These triggers route a request into this command-authoring packet. When the true surface is a skill, an agent, or non-command reference documentation, hand off to the sibling `sk-doc` packet named in the "Do not use this packet when" list above instead of proceeding here. When the surface is a slash command, stay in this packet and continue to the creation workflow below.
+
+---
+
+## 3. HOW IT WORKS: CREATION WORKFLOW
 
 Follow these steps in order.
 
@@ -343,7 +349,7 @@ Exit code `0` from `validate_document.py` is required before stating that the co
 
 ---
 
-## 3. RULES
+## 4. RULES
 
 Always:
 
@@ -382,7 +388,20 @@ Escalate if:
 
 ---
 
-## 4. DEEP DETAIL REFERENCES
+## 5. SUCCESS CRITERIA
+
+A command produced through this packet is complete when:
+
+- The correct component type was chosen: the workflow genuinely warrants a slash command rather than a skill, agent, or one-off task.
+- Frontmatter is well-formed: a single-line, action-oriented `description`, an `argument-hint` whenever user input is expected, and a least-privilege `allowed-tools` list using fully qualified MCP tool IDs.
+- Every required `<argument>` has a mandatory input gate immediately after frontmatter that forbids inference and waits for explicit input.
+- The body is executable and instruction-oriented, with full-integer `## N. SECTION-NAME` headings, actionable steps, two or three example invocations, and structured status output.
+- Router commands keep the blocking core (`OWNED ASSETS` plus `PRESENTATION BOUNDARY`), use the canonical numbered vocabulary, and hold no presentation templates when a presentation asset exists.
+- Shared validation was run: `validate_document.py` exits `0`, or its absence is stated explicitly rather than assumed.
+
+---
+
+## 6. DEEP DETAIL REFERENCES
 
 Use these only for overflow detail, long examples, and exact skeletons:
 

@@ -2,7 +2,7 @@
 name: create-changelog
 description: Author global or packet-local changelogs with topology detection, versions, and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 <!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->
@@ -15,7 +15,7 @@ The executable contract lives here: resolve the work source, detect global vs pa
 
 ---
 
-## 1. WHEN TO USE + SMART_ROUTING
+## 1. WHEN TO USE
 
 ### Activation Triggers
 
@@ -42,13 +42,26 @@ Skip this workflow when:
 
 Use `sk-git` for Git workflow ownership. This packet may prepare release notes when `/create:changelog --release` is requested, but release mechanics are only present in the source as an optional command route and body-format contract.
 
+---
+
+## 2. SMART ROUTING
+
 ### Family Boundary
 
 This is a nested workflow packet under `sk-doc`. It owns changelog authoring only. The single advisor identity lives at the `sk-doc` hub root; never add packet-local `graph-metadata.json`.
 
+### Output-Mode Routing
+
+Route the resolved work source to one of two output modes before generating content:
+
+1. **Global component mode** -- write to `.opencode/changelog/{component}/v{VERSION}.md` with four-part semantic versioning when the source resolves to a component hint, git history, or a non-phased spec folder without an existing `changelog/`.
+2. **Packet-local nested mode** -- write through the spec-kit nested generator into the packet `changelog/` folder when `--nested` is set, or when the spec folder is a phase child, has direct child phase folders, or already has a `changelog/` folder.
+
+The full detection and target-resolution logic lives in HOW IT WORKS and TOPOLOGY AND TARGET RESOLUTION below.
+
 ---
 
-## 2. REQUIRED INPUTS
+## 3. REQUIRED INPUTS
 
 At least one source input is required:
 
@@ -78,7 +91,7 @@ Confidence rules from the source workflow:
 
 ---
 
-## 3. HOW IT WORKS (HOW_IT_WORKS): CHANGELOG OUTPUT MODES
+## 4. HOW IT WORKS (HOW_IT_WORKS): CHANGELOG OUTPUT MODES
 
 ### Global Component Changelog
 
@@ -130,7 +143,7 @@ Canonical nested templates are `.opencode/skills/system-spec-kit/templates/chang
 
 ---
 
-## 4. CHANGELOG FORMAT CONTRACT
+## 5. CHANGELOG FORMAT CONTRACT
 
 Read `../shared/assets/changelog_template.md` before generating global changelog content. It defines compact and expanded formats.
 
@@ -279,7 +292,7 @@ The auto workflow contains older validation snippets that require `# v{VERSION}`
 
 ---
 
-## 5. TOPOLOGY AND TARGET RESOLUTION
+## 6. TOPOLOGY AND TARGET RESOLUTION
 
 ### Mode Detection
 
@@ -328,7 +341,7 @@ Component selection rules:
 
 ---
 
-## 6. CREATION WORKFLOW
+## 7. CREATION WORKFLOW
 
 Complete these seven steps in order. The SKILL.md is the primary workflow contract.
 
@@ -356,7 +369,7 @@ Pause conditions:
 
 ---
 
-## 7. NOTATION AND FORMAT RULES
+## 8. NOTATION AND FORMAT RULES
 
 ### Voice
 
@@ -392,7 +405,7 @@ The source router exposes `--release` as an optional path, but the exact GitHub 
 
 ---
 
-## 8. VALIDATION
+## 9. VALIDATION
 
 Before delivery, validate target, version, and content.
 
@@ -429,7 +442,7 @@ If validation fails, fix blocking issues before delivery or report the exact blo
 
 ---
 
-## 9. RULES
+## 10. RULES
 
 ### ALWAYS
 
@@ -467,7 +480,9 @@ If validation fails, fix blocking issues before delivery or report the exact blo
 5. The user requests a GitHub release action but no Git release workflow or command context is available.
 6. Validation fails after safe local fixes.
 
-### OVERFLOW REFERENCES
+---
+
+## 11. REFERENCES
 
 Use these only when the core path above is not enough:
 
@@ -478,7 +493,7 @@ Use these only when the core path above is not enough:
 
 ---
 
-## 10. SUCCESS CRITERIA
+## 12. SUCCESS CRITERIA
 
 The workflow is successful when:
 

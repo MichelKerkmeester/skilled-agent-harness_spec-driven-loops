@@ -2,7 +2,7 @@
 name: create-manual-testing-playbook
 description: Author manual testing playbook packages with deterministic scenarios, structured evidence collection, and multi-agent execution planning.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 <!-- Keywords: manual testing playbook, testing playbook, deterministic scenario, evidence collection, operator validation, multi-agent execution, release readiness, create:manual-testing-playbook -->
@@ -15,7 +15,9 @@ Core principle: keep shared rules in the root playbook, keep execution truth in 
 
 ---
 
-## 1. WHEN TO USE + SMART_ROUTING
+## 1. WHEN TO USE
+
+Keyword triggers: manual testing playbook, testing playbook, deterministic scenario, evidence collection, operator validation, multi-agent execution, release readiness, `/create:manual-testing-playbook`.
 
 ### Activation Triggers
 
@@ -48,6 +50,12 @@ Use a lighter alternative when:
 - The user asks for a feature catalog rather than executable validation scenarios.
 - The task is generic markdown cleanup or DQI scoring without creating a playbook package.
 
+---
+
+## 2. SMART ROUTING
+
+### Decision Rule
+
 Decision rule:
 
 ```text
@@ -62,7 +70,7 @@ This packet owns manual testing playbook packages only. It consumes shared `sk-d
 
 ---
 
-## 2. OUTPUT PACKAGE CONTRACT
+## 3. OUTPUT PACKAGE CONTRACT
 
 ### Canonical Package Shape
 
@@ -147,7 +155,7 @@ Each per-feature file must include:
 
 ---
 
-## 3. HOW IT WORKS - AUTHORING WORKFLOW
+## 4. HOW IT WORKS - AUTHORING WORKFLOW
 
 Follow this sequence:
 
@@ -179,7 +187,7 @@ Authoring sequence matters:
 
 ---
 
-## 4. SCENARIO DESIGN RULES
+## 5. SCENARIO DESIGN RULES
 
 ### Determinism
 
@@ -251,7 +259,7 @@ Do not ship unsynchronized prompt fields.
 
 ---
 
-## 5. VALIDATION AND RELEASE GATES
+## 6. VALIDATION AND RELEASE GATES
 
 ### Automated Checks
 
@@ -288,7 +296,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 
 ---
 
-## 6. RULES
+## 7. RULES
 
 ### ALWAYS
 
@@ -325,7 +333,20 @@ Document any remaining manual scope honestly in the generated playbook docs.
 
 ---
 
-## 7. RESOURCES FOR DEEP DETAIL
+## 8. SUCCESS CRITERIA
+
+A `create-manual-testing-playbook` run is done when:
+
+- The package uses the canonical shape: root `manual_testing_playbook.md` plus `underscore_case` category folders of per-feature files, with no `snippets/` subtree and no separate `review_protocol.md` or `subagent_utilization_ledger.md`.
+- Every feature ID maps to exactly one per-feature file, and no packet-local `graph-metadata.json` was added.
+- Every scenario is deterministic: exact prompt, exact command sequence, observable expected signals, captured evidence, and binary `PASS`/`FAIL`/`SKIP` verdicts.
+- Prompt fields are synchronized across the scenario contract, the execution table, and any root summary.
+- Destructive scenarios are marked and isolated with safe recovery expectations.
+- The root playbook passes shared `validate_document.py`, per-feature files are manually spot-checked, and any remaining manual scope is documented honestly.
+
+---
+
+## 9. RESOURCES FOR DEEP DETAIL & REFERENCES
 
 The core executable workflow lives in this `SKILL.md`. Use these only for overflow detail, exhaustive examples, or template text:
 

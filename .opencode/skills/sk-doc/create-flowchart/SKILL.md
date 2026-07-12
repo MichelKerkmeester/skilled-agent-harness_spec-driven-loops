@@ -2,7 +2,7 @@
 name: create-flowchart
 description: Generate and validate ASCII flowcharts using packet-local patterns plus the flowchart validator gate.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 <!-- Keywords: create-flowchart, ascii flowchart, diagram, decision tree, workflow diagram, swimlane, parallel execution, approval loop, validate_flowchart -->
@@ -288,5 +288,9 @@ The task is successful when:
 - `scripts/validate_flowchart.sh` exits `0` for the flowchart target, or the validator failure is explicitly reported.
 - Shared sk-doc validation is run when the surrounding markdown document is edited and in scope.
 - No packet-local advisor metadata is created.
+
+---
+
+## 11. References
 
 For long examples and visual pattern details, use `assets/flowcharts/*`. For deeper creation guidance — a worked decision-tree example, validator mechanics and notation, pattern selection, and common pitfalls — use the reference route-map at `references/README.md`, which maps each concern to a focused single-concern file. For shared markdown standards and document-level validation behavior, use `../shared/`.

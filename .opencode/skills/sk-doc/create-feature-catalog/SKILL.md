@@ -2,8 +2,10 @@
 name: create-feature-catalog
 description: Author sk-doc feature-catalog inventory packages with a root catalog, category folders, per-feature files, and auditable source anchors.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
+
+<!-- Keywords: create-feature-catalog, feature catalog, feature inventory, catalog package, per-feature files, source anchors, root catalog, capability inventory, /create:feature-catalog -->
 
 # Create Feature Catalog
 
@@ -17,7 +19,7 @@ This packet owns `/create:feature-catalog`, its `references/` set (indexed by `r
 
 ---
 
-## 1. WHEN TO USE + SMART_ROUTING
+## 1. WHEN TO USE
 
 ### Activation Triggers
 
@@ -32,6 +34,20 @@ Use this workflow when the request involves:
 - Linking manual testing playbooks, README summaries, or operator docs back to a stable feature reference.
 
 Keyword triggers: `feature catalog`, `feature inventory`, `catalog package`, `per-feature files`, `source anchors`, `root catalog`, `capability inventory`, `/create:feature-catalog`.
+
+### When NOT to Use
+
+Skip this workflow when:
+
+- The system has only a small feature list that fits accurately in a README.
+- The user needs manual validation scenarios. Use `create-manual-testing-playbook`.
+- The user needs a README, install guide, changelog, benchmark report, command, agent, or skill scaffold.
+- The requested catalog would describe planned behavior rather than current shipped behavior.
+- The task is only document quality review of an existing catalog. Use `create-quality-control`.
+
+---
+
+## 2. SMART ROUTING
 
 ### Creation Decision
 
@@ -58,23 +74,13 @@ Need a stable, reviewable current-state inventory?
   NO  -> Keep capability summary in README or install guide
 ```
 
-### When NOT to Use
-
-Skip this workflow when:
-
-- The system has only a small feature list that fits accurately in a README.
-- The user needs manual validation scenarios. Use `create-manual-testing-playbook`.
-- The user needs a README, install guide, changelog, benchmark report, command, agent, or skill scaffold.
-- The requested catalog would describe planned behavior rather than current shipped behavior.
-- The task is only document quality review of an existing catalog. Use `create-quality-control`.
-
 ### Family Boundary
 
 This is a nested workflow packet under `sk-doc`. It carries its own `SKILL.md`, `README.md`, `references/`, `assets/`, and `changelog/`, but it must not define a packet-local `graph-metadata.json`; advisor identity lives at the `sk-doc` hub root.
 
 ---
 
-## 2. PACKAGE CONTRACT
+## 3. PACKAGE CONTRACT
 
 ### Canonical Shape
 
@@ -110,7 +116,7 @@ Use these packet resources while authoring:
 
 ---
 
-## 3. HOW IT WORKS: CREATION WORKFLOW
+## 4. HOW IT WORKS: CREATION WORKFLOW
 
 Follow this workflow in order.
 
@@ -126,7 +132,7 @@ Follow this workflow in order.
 10. Use plain prose for short `HOW IT WORKS` sections and H3 subheadings for sections longer than three paragraphs.
 11. Fill implementation source tables and validation or test anchor tables for every feature claim.
 12. Fill `## 4. SOURCE METADATA`, including group, canonical file path, and related references.
-13. Validate the root catalog and each per-feature leaf file with shared validation (see §6).
+13. Validate the root catalog and each per-feature leaf file with shared validation (see §7).
 14. Manually verify feature-file links, root-entry parity, source anchors, and current-state wording.
 
 Authoring order matters:
@@ -137,7 +143,7 @@ Authoring order matters:
 
 ---
 
-## 4. ROOT CATALOG REQUIREMENTS
+## 5. ROOT CATALOG REQUIREMENTS
 
 The root catalog is the top-level inventory and navigation layer.
 
@@ -177,7 +183,7 @@ That information belongs in per-feature files, playbooks, or specs.
 
 ---
 
-## 5. PER-FEATURE FILE REQUIREMENTS
+## 6. PER-FEATURE FILE REQUIREMENTS
 
 Each per-feature file is the detailed reference entry for one catalog item.
 
@@ -214,7 +220,7 @@ Content rule:
 
 ---
 
-## 6. PLAYBOOK AND VALIDATION BOUNDARY
+## 7. PLAYBOOK AND VALIDATION BOUNDARY
 
 Feature catalogs and manual testing playbooks serve different purposes.
 
@@ -258,7 +264,7 @@ Validator boundary:
 
 ---
 
-## 7. RULES
+## 8. RULES
 
 ### ALWAYS
 
@@ -303,7 +309,7 @@ Validator boundary:
 
 ---
 
-## 8. COMMON MISTAKES
+## 9. COMMON MISTAKES
 
 | Mistake | Why It Breaks | Correct Fix |
 |---|---|---|
@@ -314,3 +320,31 @@ Validator boundary:
 | Playbook cross-references drifting from catalog names | Inventory and validation no longer match | Update catalog and playbook links together when a feature name changes |
 | Wall of prose in `HOW IT WORKS` | Long unbroken sections lose scannability and navigation anchors | Add H3 subheadings whenever the section exceeds three paragraphs |
 | Missing `trigger_phrases` in frontmatter | Feature is invisible to doc-trigger routing | Add at least three trigger phrases matching the H3 heading in the root catalog |
+
+---
+
+## 10. SUCCESS CRITERIA
+
+The catalog package is complete when:
+
+- The root catalog exists at `feature_catalog/feature_catalog.md` and was built from the packet template.
+- Category folders use descriptive `underscore_case` slugs with no numeric prefixes, and display order is owned by the root catalog index.
+- Every root entry links to exactly one per-feature file, and every per-feature file is represented in the root catalog.
+- Each per-feature file carries frontmatter with a stable title, description, at least three `trigger_phrases`, and a four-part version, plus source-file and validation or test anchors for every feature claim.
+- Prose describes current shipped behavior from the caller or operator perspective, with any rollout or compatibility layer labeled explicitly.
+- Shared validation ran clean on the root catalog and each per-feature leaf, and cross-file links, source anchors, and root-entry-to-feature-file parity were verified by hand.
+
+---
+
+## 11. REFERENCES
+
+The primary contract is this `SKILL.md`. Load the resources below only for overflow depth, worked examples, or schema checks beyond the inline workflow.
+
+- `references/README.md` - route map for the packet reference set.
+- `references/examples.md` - annotated walkthrough of a shipped feature-catalog package.
+- `references/common_pitfalls.md` - deep-dive pitfalls with before/after fixes and the template-versus-reference split.
+- `assets/feature_catalog/feature_catalog_template.md` - root catalog scaffold.
+- `assets/feature_catalog/feature_catalog_snippet_template.md` - per-feature file scaffold.
+- `../shared/references/quick_reference.md` - condensed commands and file locations.
+- `../shared/references/validation.md` - shared validation and quality-scoring workflow.
+- `../shared/references/frontmatter_versioning.md` - four-part version field rules.

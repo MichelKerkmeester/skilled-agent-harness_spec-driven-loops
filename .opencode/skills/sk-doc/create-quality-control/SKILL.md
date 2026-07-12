@@ -2,7 +2,7 @@
 name: create-quality-control
 description: Validate, score, and optionally improve existing markdown via structure extraction, DQI scoring, HVR review, and validation gates.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Doc Quality (quality)
@@ -13,7 +13,7 @@ This packet is invoked by `/doc:quality`. The command is report-only by default.
 
 ---
 
-## 1. WHEN TO USE + SMART_ROUTING
+## 1. WHEN TO USE
 
 ### Activation Triggers
 
@@ -37,13 +37,17 @@ Skip this workflow when:
 - The user only needs a tiny typo fix and did not ask for validation or scoring.
 - The request is a formal PR-style findings review rather than author-side document improvement.
 
+---
+
+## 2. SMART ROUTING
+
 ### Family Boundary
 
 This is an independently invokable nested workflow packet under `sk-doc`. It owns existing-document validation and optimization, not artifact scaffolding. It has no packet-local `graph-metadata.json`; the advisor identity lives at the `sk-doc` hub root.
 
 ---
 
-## 2. HOW IT WORKS: CORE WORKFLOW
+## 3. HOW IT WORKS: CORE WORKFLOW
 
 Follow this workflow from the `SKILL.md` alone. Use references only for overflow examples and exhaustive detail.
 
@@ -157,7 +161,7 @@ For batch snapshot mode:
 
 ---
 
-## 3. CONTENT OPTIMIZATION WORKFLOW
+## 4. CONTENT OPTIMIZATION WORKFLOW
 
 Use this path only when the user explicitly asks to improve the existing document.
 
@@ -267,7 +271,7 @@ Do not claim readiness until validation has been run and its result has been rea
 
 ---
 
-## 4. ENFORCEMENT FIXES
+## 5. ENFORCEMENT FIXES
 
 When validation identifies common structural failures, apply these fixes only if edits are in scope.
 
@@ -305,7 +309,7 @@ Escalate instead of guessing when required content needs source evidence that is
 
 ---
 
-## 5. RULES
+## 6. RULES
 
 ### ALWAYS
 
@@ -340,7 +344,7 @@ Escalate instead of guessing when required content needs source evidence that is
 
 ---
 
-## 6. SUCCESS CRITERIA
+## 7. SUCCESS CRITERIA
 
 A successful `create-quality-control` run produces:
 - Target document type and file path.
@@ -361,7 +365,7 @@ Edited documents must also satisfy:
 
 ---
 
-## 7. REFERENCES
+## 8. REFERENCES
 
 Use these only for deep overflow detail, edge cases, exhaustive templates and long examples. Start at the route map, then open the single-concern file the task needs:
 - `references/README.md` - Route map over the reference set.

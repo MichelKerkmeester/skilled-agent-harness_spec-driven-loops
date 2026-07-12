@@ -2,7 +2,7 @@
 name: create-agent
 description: Scaffold OpenCode agents with runtime-aware placement, permission frontmatter, authority boundaries, workflow sections, and validation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 <!-- Keywords: create-agent, /create:agent, opencode agent, agent frontmatter, permission object, authority boundary, agent template, runtime agent directory -->
@@ -15,7 +15,9 @@ Use `references/README.md` (the overflow route map) and `assets/agent_template.m
 
 ---
 
-## 1. WHEN TO USE + SMART_ROUTING
+## 1. WHEN TO USE
+
+Keyword triggers: create-agent, /create:agent, opencode agent, claude code agent, agent frontmatter, permission object, authority boundary, agent template, runtime agent directory.
 
 Use this workflow when the request involves:
 
@@ -26,6 +28,10 @@ Use this workflow when the request involves:
 5. Running or supporting `/create:agent`.
 
 Create an agent only when the system needs a stable named persona with explicit tool permissions, denied capabilities, behavioral constraints, orchestration authority, or reusable execution posture.
+
+---
+
+## 2. SMART ROUTING
 
 Use a different `sk-doc` workflow when:
 
@@ -44,7 +50,7 @@ Need a named runtime persona with authority and tool policy?
 
 ---
 
-## 2. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Component Choice
 
@@ -180,7 +186,7 @@ Required checks: frontmatter parses, filename stem matches `name`, required sect
 
 ---
 
-## 3. RULES
+## 4. RULES
 
 ### ALWAYS
 
@@ -216,7 +222,21 @@ Required checks: frontmatter parses, filename stem matches `name`, required sect
 5. The user asks for a component that mixes agent, skill, and command responsibilities without a clear owner.
 6. Validation fails with blocking frontmatter, section, or markdown errors.
 
-### OVERFLOW REFERENCES
+---
+
+## 5. SUCCESS CRITERIA
+
+The agent file is done only when all of the following hold:
+
+1. The file lives in the active runtime agent directory, and the filename stem matches frontmatter `name`.
+2. Frontmatter uses the runtime-correct schema — `permission:` object for `.opencode/agents/`, `tools:` allow-list for `.claude/agents/` — with explicit least-authority choices, and `task`/`Task` granted only when orchestration is the agent's explicit authority.
+3. The body carries every required section: hard boundary, core workflow, capability scan, output verification, anti-patterns, and related resources.
+4. Deep domain knowledge is linked to skills or references rather than pasted into the agent body, and no template placeholders remain.
+5. `validate_document.py` and `extract_structure.py` run clean, and completion is claimed only after they pass or the exact blocker is reported.
+
+---
+
+## 6. REFERENCES
 
 Use these only when the core path above is not enough:
 
