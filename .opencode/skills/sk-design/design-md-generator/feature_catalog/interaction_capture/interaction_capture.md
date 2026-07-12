@@ -77,7 +77,7 @@ In the v3 Style Reference there is no numbered §11 State Matrix — interaction
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/interaction/interaction-state-matrix.md` | Manual playbook | Interaction capture end-to-end scenario — confirms default-on capture folds interaction diffs into the tokens.json component variants the v3 writer turns into the Components interaction states |
+| `../../manual_testing_playbook/interaction/interaction_state_matrix.md` | Manual playbook | Interaction capture end-to-end scenario — confirms default-on capture folds interaction diffs into the tokens.json component variants the v3 writer turns into the Components interaction states |
 | (no automated test) | Automated test | Covered by the manual playbook scenario |
 
 ---
@@ -90,4 +90,4 @@ In the v3 Style Reference there is no numbered §11 State Matrix — interaction
 
 Related references:
 - [extract.md](../extract/extract.md) -- the extraction orchestrator that runs interaction capture by default (opt out with --fast-no-interaction / --no-interaction)
-- [feature-extractors.md](../feature-extractors/feature-extractors.md) -- the six per-feature detectors that run alongside interaction capture during extraction
+- [feature-extractors.md](../feature_extractors/feature_extractors.md) -- the six per-feature detectors that run alongside interaction capture during extraction

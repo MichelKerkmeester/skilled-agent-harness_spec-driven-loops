@@ -53,5 +53,5 @@ Before substantial design direction, build-ready guidance, implementation handof
 - Feature file path: `manager-shell/context-first-intake-and-visible-plan.md`
 
 Related references:
-- [proof-gates-and-verifier-cadence.md](proof-gates-and-verifier-cadence.md) - Proof required before ready claims.
-- [transport-vs-taste-separation.md](transport-vs-taste-separation.md) - Transport boundary for evidence and artifacts.
+- [proof-gates-and-verifier-cadence.md](../manager_shell/proof_gates_and_verifier_cadence.md) - Proof required before ready claims.
+- [transport-vs-taste-separation.md](../manager_shell/transport_vs_taste_separation.md) - Transport boundary for evidence and artifacts.

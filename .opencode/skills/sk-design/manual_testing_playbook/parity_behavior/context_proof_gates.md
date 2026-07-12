@@ -81,4 +81,4 @@ Review the supplied dashboard screenshot description for hierarchy and spacing r
 - **Critical path**: Yes
 - **Destructive**: No
 - **Concurrent-safe**: Yes
-- **Last validated**: Router replay passed in `benchmark/after-009/report.json`; live/manual operator execution is required before READY.
+- **Last validated**: Router replay passed in `benchmark/after_009/report.json`; live/manual operator execution is required before READY.

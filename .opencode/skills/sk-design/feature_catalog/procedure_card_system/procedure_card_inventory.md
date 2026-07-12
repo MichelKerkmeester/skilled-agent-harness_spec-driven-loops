@@ -57,5 +57,5 @@ Motion owns `interaction_states_pass.md`. Audit owns `accessibility_audit.md` an
 - Feature file path: `procedure-card-system/procedure-card-inventory.md`
 
 Related references:
-- [procedure-card-schema-and-selection.md](procedure-card-schema-and-selection.md) - Schema and route-after-mode selection rules.
-- [../manager-shell/proof-gates-and-verifier-cadence.md](../manager-shell/proof-gates-and-verifier-cadence.md) - Proof line where selected cards are cited.
+- [procedure-card-schema-and-selection.md](../procedure_card_system/procedure_card_schema_and_selection.md) - Schema and route-after-mode selection rules.
+- [../manager-shell/proof-gates-and-verifier-cadence.md](../manager_shell/proof_gates_and_verifier_cadence.md) - Proof line where selected cards are cited.

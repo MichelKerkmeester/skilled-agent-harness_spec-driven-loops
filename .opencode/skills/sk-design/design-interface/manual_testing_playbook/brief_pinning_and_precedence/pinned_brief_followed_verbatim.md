@@ -5,9 +5,9 @@ version: 1.5.0.3
 id: ID-002
 expected_intent: DESIGN_PRINCIPLES
 expected_resources:
-  - references/design-process/design_principles.md
+  - references/design_process/design_principles.md
   - ../shared/register.md
-  - references/design-process/ux_quality_reference.md
+  - references/design_process/ux_quality_reference.md
 ---
 
 # ID-002 -- Pinned brief is followed verbatim
@@ -58,7 +58,7 @@ Operators run the exact prompt and command sequence for `ID-002` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ID-002 | Pinned brief is followed verbatim | Confirm the skill follows a pinned brief verbatim and does not apply deviation guidance to the pinned axes, even when the brief asks for an AI-default look. | `Build the hero using exactly this direction: cream #F4F1EA background, a high-contrast serif display, and a terracotta accent. Do not change the palette.` | bash: rg -n "brief's own words always win" references/design-process/design_principles.md -> agent: produce the plan following the pinned direction -> bash: rg -n "NEVER override a brief that pins" SKILL.md | Step 1: brief detected as direction-pinned; Step 2: plan uses cream #F4F1EA, serif display, and terracotta accent unchanged; Step 3: no deviation argument is applied to the pinned axes | Terminal transcript, the design plan text, and confirmation the pinned palette was kept | PASS if the plan keeps the pinned palette and type verbatim per SKILL.md NEVER rule 4; FAIL if the skill substitutes a different palette or argues the user out of the pinned direction | 1. Re-read SKILL.md Section 2 direction-pinned routing; 2. Confirm references/design-process/design_principles.md "brief's own words always win" was loaded; 3. Re-detect the pinned axes and rerun without deviation |
+| ID-002 | Pinned brief is followed verbatim | Confirm the skill follows a pinned brief verbatim and does not apply deviation guidance to the pinned axes, even when the brief asks for an AI-default look. | `Build the hero using exactly this direction: cream #F4F1EA background, a high-contrast serif display, and a terracotta accent. Do not change the palette.` | bash: rg -n "brief's own words always win" references/design_process/design_principles.md -> agent: produce the plan following the pinned direction -> bash: rg -n "NEVER override a brief that pins" SKILL.md | Step 1: brief detected as direction-pinned; Step 2: plan uses cream #F4F1EA, serif display, and terracotta accent unchanged; Step 3: no deviation argument is applied to the pinned axes | Terminal transcript, the design plan text, and confirmation the pinned palette was kept | PASS if the plan keeps the pinned palette and type verbatim per SKILL.md NEVER rule 4; FAIL if the skill substitutes a different palette or argues the user out of the pinned direction | 1. Re-read SKILL.md Section 2 direction-pinned routing; 2. Confirm references/design_process/design_principles.md "brief's own words always win" was loaded; 3. Re-detect the pinned axes and rerun without deviation |
 
 ### Optional Supplemental Checks
 
@@ -80,7 +80,7 @@ If the primary run passes, repeat with a brief that pins only one axis (for exam
 | File | Role |
 |---|---|
 | `../../SKILL.md` | Section 2 direction-pinned routing and the NEVER-override-a-pinned-brief rule |
-| `../../references/design-process/design_principles.md` | The calibration note that the brief's own words always win |
+| `../../references/design_process/design_principles.md` | The calibration note that the brief's own words always win |
 
 ---
 

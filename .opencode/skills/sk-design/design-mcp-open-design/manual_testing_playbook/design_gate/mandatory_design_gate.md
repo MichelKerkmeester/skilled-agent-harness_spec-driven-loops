@@ -70,14 +70,14 @@ Confirm the block is a refusal and not a silent skip: the unloaded design RUN mu
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/grounding/design-system-grounding.md` | Feature-catalog source describing the mandatory precondition |
+| `../../feature_catalog/grounding/design_system_grounding.md` | Feature-catalog source describing the mandatory precondition |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
 | `../../references/design_parity_transport.md` | The Open Design transport for the real-UI loop, applied with `sk-design`'s judgment |
-| `../../../design-interface/references/design-process/real_ui_loop.md` | The real-UI loop and the design judgment the gate enforces |
+| `../../../design-interface/references/design_process/real_ui_loop.md` | The real-UI loop and the design judgment the gate enforces |
 
 ---
 

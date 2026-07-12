@@ -36,8 +36,8 @@ The fill-in preflight card converts these checks into binary PASS or FAIL boxes.
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/sk-design/design-interface/README.md` | Shared | Summarizes the mechanical delivery gates. |
-| `.opencode/skills/sk-design/design-interface/references/design-process/mechanical_defaults.md` | Shared | Defines layout checks. |
-| `.opencode/skills/sk-design/design-interface/references/design-process/copy_and_mock_data.md` | Shared | Defines content and mock-data checks. |
+| `.opencode/skills/sk-design/design-interface/references/design_process/mechanical_defaults.md` | Shared | Defines layout checks. |
+| `.opencode/skills/sk-design/design-interface/references/design_process/copy_and_mock_data.md` | Shared | Defines content and mock-data checks. |
 | `.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md` | Shared | Provides the binary pre-flight card. |
 
 ### Validation And Tests
@@ -55,5 +55,5 @@ The fill-in preflight card converts these checks into binary PASS or FAIL boxes.
 - Feature file path: `delivery-gates/mechanical-delivery-gates.md`
 
 Related references:
-- [interface-writing-rules.md](interface-writing-rules.md) - Copy rules included in delivery checks.
-- [../aesthetic-direction-process/two-pass-grounding-and-critique.md](../aesthetic-direction-process/two-pass-grounding-and-critique.md) - Direction process verified by the gates.
+- [interface-writing-rules.md](../delivery_gates/interface_writing_rules.md) - Copy rules included in delivery checks.
+- [../aesthetic-direction-process/two-pass-grounding-and-critique.md](../aesthetic_direction_process/two_pass_grounding_and_critique.md) - Direction process verified by the gates.

@@ -55,5 +55,5 @@ A choice that survives frequency and input still needs one named purpose: feedba
 - Feature file path: `restraint-gate-and-choreography/motion-restraint-gate.md`
 
 Related references:
-- [choreography-and-reduced-motion.md](choreography-and-reduced-motion.md) - Choreography for choices that survive the gate.
-- [../build-cards/motion-fill-in-cards.md](../build-cards/motion-fill-in-cards.md) - Fill-in cards that spec a gate-approved pattern.
+- [choreography-and-reduced-motion.md](../restraint_gate_and_choreography/choreography_and_reduced_motion.md) - Choreography for choices that survive the gate.
+- [../build-cards/motion-fill-in-cards.md](../build_cards/motion_fill_in_cards.md) - Fill-in cards that spec a gate-approved pattern.

@@ -94,7 +94,7 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/fidelity/verbatim-value-fidelity.md` | Manual playbook | Cardinal verbatim-value rule enforcement — confirms every value is copied verbatim with no estimation |
+| `../../manual_testing_playbook/fidelity/verbatim_value_fidelity.md` | Manual playbook | Cardinal verbatim-value rule enforcement — confirms every value is copied verbatim with no estimation |
 | `backend/tests/formatters-v3.test.ts` | Automated test | v3 emitter unit tests: colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start rendering |
 | `backend/tests/build-write-prompt.test.ts` | Automated test | v3 pre-render and FACTS-block / prose-only prompt unit tests |
 
@@ -109,5 +109,5 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 Related references:
 - [references/writing_style_guide.md](../../references/writing_style_guide.md) — voice, tone, tense, and section-composition rules
 - [references/anti_patterns.md](../../references/anti_patterns.md) — common DESIGN.md authoring mistakes
-- [cluster-classify.md](../cluster-classify/cluster-classify.md) — the stability classes that gate token inclusion
+- [cluster-classify.md](../cluster_classify/cluster_classify.md) — the stability classes that gate token inclusion
 - [validate.md](../validate/validate.md) — the hex-and-section validator that confirms fidelity

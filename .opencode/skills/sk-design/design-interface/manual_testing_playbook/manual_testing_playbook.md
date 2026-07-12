@@ -74,7 +74,7 @@ Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critiqu
 - Command transcript, including exit status where a command is executed
 - Design plan, gate result, or routing decision produced
 - The expected-default pattern named when a scenario critiques against the data
-- Source-reference mapping to `SKILL.md`, `references/design-process/design_principles.md`, `references/design-process/ux_quality_reference.md`, or `references/design-grounding/design_inventory.md`
+- Source-reference mapping to `SKILL.md`, `references/design_process/design_principles.md`, `references/design_process/ux_quality_reference.md`, or `references/design_grounding/design_inventory.md`
 - Routing notes when the workflow hands off to `sk-code` or `sk-doc`
 - Final scenario verdict with rationale: PASS, PARTIAL, FAIL, or SKIP
 
@@ -95,7 +95,7 @@ Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critiqu
 ### Inputs Required
 
 1. `manual_testing_playbook.md`
-2. Referenced per-feature files under `manual_testing_playbook/NN--category-name/`
+2. Referenced per-feature files under `manual_testing_playbook/NN__category_name/`
 3. Scenario execution evidence from section 3
 4. Feature-to-scenario coverage map from section 20
 5. Triage notes for every PARTIAL, FAIL, or SKIP verdict
@@ -224,7 +224,7 @@ Desired user-visible outcome: A grounded design plan with a named token system w
 
 #### Test Execution
 
-> **Feature File:** [ID-001](direction-freedom-and-deviation/free-axis-brainstorm-and-deviation.md)
+> **Feature File:** [ID-001](direction_freedom_and_deviation/free_axis_brainstorm_and_deviation.md)
 
 ---
 
@@ -246,7 +246,7 @@ Desired user-visible outcome: A design plan that follows the pinned cream-serif-
 
 #### Test Execution
 
-> **Feature File:** [ID-002](brief-pinning-and-precedence/pinned-brief-followed-verbatim.md)
+> **Feature File:** [ID-002](brief_pinning_and_precedence/pinned_brief_followed_verbatim.md)
 
 ---
 
@@ -268,7 +268,7 @@ Desired user-visible outcome: A pass/fail gate report keyed to the `ux_quality_r
 
 #### Test Execution
 
-> **Feature File:** [ID-003](quality-floor-gate/quality-floor-gate-on-built-ui.md)
+> **Feature File:** [ID-003](quality_floor_gate/quality_floor_gate_on_built_ui.md)
 
 ---
 
@@ -290,7 +290,7 @@ Desired user-visible outcome: A named expected-default look from a real system, 
 
 #### Test Execution
 
-> **Feature File:** [ID-004](system-as-critique-against/query-default-then-deviate.md)
+> **Feature File:** [ID-004](system_as_critique_against/query_default_then_deviate.md)
 
 ---
 
@@ -312,7 +312,7 @@ Desired user-visible outcome: A clear routing decision that this is non-visual w
 
 #### Test Execution
 
-> **Feature File:** [ID-005](abstention-and-routing/pure-logic-routes-to-sk-code.md)
+> **Feature File:** [ID-005](abstention_and_routing/pure_logic_routes_to_sk_code.md)
 
 ### ID-006 | Documentation task routes away to sk-doc
 
@@ -328,7 +328,7 @@ Desired user-visible outcome: A clear routing decision that this is documentatio
 
 #### Test Execution
 
-> **Feature File:** [ID-006](abstention-and-routing/docs-task-routes-to-sk-doc.md)
+> **Feature File:** [ID-006](abstention_and_routing/docs_task_routes_to_sk_doc.md)
 
 ---
 
@@ -350,7 +350,7 @@ Desired user-visible outcome: A provenance report confirming `design_principles.
 
 #### Test Execution
 
-> **Feature File:** [ID-007](licensing-and-provenance/licensing-and-provenance-integrity.md)
+> **Feature File:** [ID-007](licensing_and_provenance/licensing_and_provenance_integrity.md)
 
 ---
 
@@ -372,7 +372,7 @@ Desired user-visible outcome: A result that reuses the system's components and t
 
 #### Test Execution
 
-> **Feature File:** [ID-008](real-ui-loop/reuse-before-generate-with-design-system.md)
+> **Feature File:** [ID-008](real_ui_loop/reuse_before_generate_with_design_system.md)
 
 ### ID-009 | Render fidelity check gated on the quality floor and anti-default critique
 
@@ -388,7 +388,7 @@ Desired user-visible outcome: A fidelity verdict over the real render that names
 
 #### Test Execution
 
-> **Feature File:** [ID-009](real-ui-loop/render-fidelity-check.md)
+> **Feature File:** [ID-009](real_ui_loop/render_fidelity_check.md)
 
 ### ID-017 | Guarded native-image visual-direction branch
 
@@ -404,7 +404,7 @@ Desired user-visible outcome: A compact visual-direction packet with guarded-con
 
 #### Test Execution
 
-> **Feature File:** [ID-017](real-ui-loop/native-image-visual-direction-branch.md)
+> **Feature File:** [ID-017](real_ui_loop/native_image_visual_direction_branch.md)
 
 ---
 
@@ -426,7 +426,7 @@ Desired user-visible outcome: A single named real-world default with its cited U
 
 #### Test Execution
 
-> **Feature File:** [ID-010](design-references-routing/initiative-ask-fallback-routing.md)
+> **Feature File:** [ID-010](design_references_routing/initiative_ask_fallback_routing.md)
 
 ---
 
@@ -448,7 +448,7 @@ Desired user-visible outcome: A filled pre-flight card with a binary mark on eve
 
 #### Test Execution
 
-> **Feature File:** [ID-011](mechanical-preflight-card/preflight-card-on-built-ui.md)
+> **Feature File:** [ID-011](mechanical_preflight_card/preflight_card_on_built_ui.md)
 
 ---
 
@@ -460,7 +460,7 @@ This category covers 1 scenario while the linked feature file remains the canoni
 
 #### Description
 
-A built UI is graded against the countable layout rules in `references/design-process/mechanical_defaults.md` across the hero line count, gapless bento math, the eyebrow ceiling, button contrast, and section spacing, where each check is binary and counted rather than estimated.
+A built UI is graded against the countable layout rules in `references/design_process/mechanical_defaults.md` across the hero line count, gapless bento math, the eyebrow ceiling, button contrast, and section spacing, where each check is binary and counted rather than estimated.
 
 #### Scenario Contract
 
@@ -470,7 +470,7 @@ Desired user-visible outcome: A pass/fail layout report keyed to the `mechanical
 
 #### Test Execution
 
-> **Feature File:** [ID-012](mechanical-layout-gate/mechanical-layout-gate-on-built-ui.md)
+> **Feature File:** [ID-012](mechanical_layout_gate/mechanical_layout_gate_on_built_ui.md)
 
 ---
 
@@ -482,7 +482,7 @@ This category covers 1 scenario while the linked feature file remains the canoni
 
 #### Description
 
-A built UI is swept against `references/design-process/copy_and_mock_data.md` across no lorem, no AI-tell phrasing, plausible names and numbers, one copy register matched to the posture, and descriptive unique image seeds, where each check is a pass or fail sweep run over the real strings rather than from memory.
+A built UI is swept against `references/design_process/copy_and_mock_data.md` across no lorem, no AI-tell phrasing, plausible names and numbers, one copy register matched to the posture, and descriptive unique image seeds, where each check is a pass or fail sweep run over the real strings rather than from memory.
 
 #### Scenario Contract
 
@@ -492,7 +492,7 @@ Desired user-visible outcome: A pass/fail content report keyed to the `copy_and_
 
 #### Test Execution
 
-> **Feature File:** [ID-013](content-and-mock-data-gate/content-and-mock-data-gate-on-built-ui.md)
+> **Feature File:** [ID-013](content_and_mock_data_gate/content_and_mock_data_gate_on_built_ui.md)
 
 ---
 
@@ -514,7 +514,7 @@ Desired user-visible outcome: A one-line Design Read that names the subject, the
 
 #### Test Execution
 
-> **Feature File:** [ID-014](brief-to-dials-intake/brief-read-into-dials.md)
+> **Feature File:** [ID-014](brief_to_dials_intake/brief_read_into_dials.md)
 
 ### ID-016 | Register-first context gate on a UI build
 
@@ -530,7 +530,7 @@ Desired user-visible outcome: A context-loaded card that sets Product register f
 
 #### Test Execution
 
-> **Feature File:** [ID-016](brief-to-dials-intake/register-first-context-gate.md)
+> **Feature File:** [ID-016](brief_to_dials_intake/register_first_context_gate.md)
 
 ---
 
@@ -552,7 +552,7 @@ Desired user-visible outcome: A compact redesign intake that names the lane, app
 
 #### Test Execution
 
-> **Feature File:** [ID-015](redesign-intake/redesign-intake-classification.md)
+> **Feature File:** [ID-015](redesign_intake/redesign_intake_classification.md)
 
 ---
 
@@ -574,7 +574,7 @@ Desired user-visible outcome: A card-selection matrix covering `discovery_questi
 
 #### Test Execution
 
-> **Feature File:** [ID-018](procedure-card-contract/card-selection-proof.md)
+> **Feature File:** [ID-018](procedure_card_contract/card_selection_proof.md)
 
 ### ID-019 | Interface no-card fallback
 
@@ -590,7 +590,7 @@ Desired user-visible outcome: Narrow baseline interface advice with the exact no
 
 #### Test Execution
 
-> **Feature File:** [ID-019](procedure-card-contract/no-card-fallback.md)
+> **Feature File:** [ID-019](procedure_card_contract/no_card_fallback.md)
 
 ### ID-020 | Interface direct fallback without subagents
 
@@ -606,7 +606,7 @@ Desired user-visible outcome: Direct current-session execution with selected car
 
 #### Test Execution
 
-> **Feature File:** [ID-020](procedure-card-contract/direct-fallback-without-subagents.md)
+> **Feature File:** [ID-020](procedure_card_contract/direct_fallback_without_subagents.md)
 
 ---
 
@@ -616,17 +616,17 @@ The current repository has no dedicated automated test module for `interface/man
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `references/design-grounding/design_inventory.md` | The reuse-ground and critique-against framing over a live design system; the no-chooser and no-cache hard rules | ID-004 |
-| `references/design-process/ux_quality_reference.md` | Objective quality-floor rule set used as the pass/fail gate | ID-003, ID-009 |
-| `references/design-process/real_ui_loop.md` | The shared real-UI loop: reuse-before-generate, the fidelity check, the guarded native-image branch, and the no-style-presets guardrail | ID-008, ID-009, ID-017 |
-| `references/design-grounding/design_references_mcp.md` | The design-references initiative/ask/fall-back gate, the Mobbin-vs-Refero source pick, and the no-chooser, read-live, never-copied hard rules | ID-010 |
+| `references/design_grounding/design_inventory.md` | The reuse-ground and critique-against framing over a live design system; the no-chooser and no-cache hard rules | ID-004 |
+| `references/design_process/ux_quality_reference.md` | Objective quality-floor rule set used as the pass/fail gate | ID-003, ID-009 |
+| `references/design_process/real_ui_loop.md` | The shared real-UI loop: reuse-before-generate, the fidelity check, the guarded native-image branch, and the no-style-presets guardrail | ID-008, ID-009, ID-017 |
+| `references/design_grounding/design_references_mcp.md` | The design-references initiative/ask/fall-back gate, the Mobbin-vs-Refero source pick, and the no-chooser, read-live, never-copied hard rules | ID-010 |
 | `assets/interface_preflight_card.md` | The binary fill-in pre-flight card walked box by box as the last filter, with the SHIP-only-when-all-pass verdict | ID-011 |
-| `references/design-process/mechanical_defaults.md` | The mechanical layout gate: counted hero lines, gapless bento math, the eyebrow ceiling, button contrast, and section spacing | ID-012 |
-| `references/design-process/copy_and_mock_data.md` | The content gate: lorem and filler sweep, AI-tell phrasing, fake-precision rules, one copy register, and image-seed discipline | ID-013 |
+| `references/design_process/mechanical_defaults.md` | The mechanical layout gate: counted hero lines, gapless bento math, the eyebrow ceiling, button contrast, and section spacing | ID-012 |
+| `references/design_process/copy_and_mock_data.md` | The content gate: lorem and filler sweep, AI-tell phrasing, fake-precision rules, one copy register, and image-seed discipline | ID-013 |
 | `../shared/context_loading_contract.md` | The shared context manifest and register/dials gate that blocks design decisions before loaded-file proof exists | ID-016 |
 | `../shared/register.md` | The Brand-vs-Product operating posture that must be set before color, type, layout, motion, copy, or audit severity decisions | ID-016 |
-| `references/design-process/brief_to_dials.md` | The Design Read intake that reads a brief into the variance, motion, and density dials with the no-chooser guard | ID-014, ID-016 |
-| `references/design-process/redesign_intake.md` | The redesign classification gate and never-silently-change list for existing surfaces | ID-015 |
+| `references/design_process/brief_to_dials.md` | The Design Read intake that reads a brief into the variance, motion, and density dials with the no-chooser guard | ID-014, ID-016 |
+| `references/design_process/redesign_intake.md` | The redesign classification gate and never-silently-change list for existing surfaces | ID-015 |
 | `SKILL.md` | Procedure Card Selection and Context, Proof, And Direct Fallback contracts | ID-018, ID-019, ID-020 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
@@ -637,23 +637,23 @@ Validator limitation: per-feature file completeness requires the structural swee
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
-| ID-001 | Free-axis brainstorm critique and deliberate deviation | DIRECTION FREEDOM AND DEVIATION | [ID-001](direction-freedom-and-deviation/free-axis-brainstorm-and-deviation.md) |
-| ID-002 | Pinned brief is followed verbatim | BRIEF PINNING AND PRECEDENCE | [ID-002](brief-pinning-and-precedence/pinned-brief-followed-verbatim.md) |
-| ID-003 | Quality-floor gate on a built UI | QUALITY FLOOR GATE | [ID-003](quality-floor-gate/quality-floor-gate-on-built-ui.md) |
-| ID-004 | Read a design system as the default, then deviate | SYSTEM AS CRITIQUE-AGAINST | [ID-004](system-as-critique-against/query-default-then-deviate.md) |
-| ID-005 | Pure-logic task routes away to sk-code | ABSTENTION AND ROUTING | [ID-005](abstention-and-routing/pure-logic-routes-to-sk-code.md) |
-| ID-006 | Documentation task routes away to sk-doc | ABSTENTION AND ROUTING | [ID-006](abstention-and-routing/docs-task-routes-to-sk-doc.md) |
-| ID-007 | Licensing and provenance integrity | LICENSING AND PROVENANCE | [ID-007](licensing-and-provenance/licensing-and-provenance-integrity.md) |
-| ID-008 | Reuse before generate when a design system is present | REAL-UI LOOP | [ID-008](real-ui-loop/reuse-before-generate-with-design-system.md) |
-| ID-009 | Render fidelity check gated on the quality floor and anti-default critique | REAL-UI LOOP | [ID-009](real-ui-loop/render-fidelity-check.md) |
-| ID-017 | Guarded native-image visual-direction branch | REAL-UI LOOP | [ID-017](real-ui-loop/native-image-visual-direction-branch.md) |
-| ID-010 | Design-references initiative/ask routing for Mobbin and Refero | DESIGN-REFERENCES ROUTING | [ID-010](design-references-routing/initiative-ask-fallback-routing.md) |
-| ID-011 | Mechanical pre-flight card on a built UI | MECHANICAL PRE-FLIGHT CARD | [ID-011](mechanical-preflight-card/preflight-card-on-built-ui.md) |
-| ID-012 | Mechanical layout gate on a built UI | MECHANICAL LAYOUT GATE | [ID-012](mechanical-layout-gate/mechanical-layout-gate-on-built-ui.md) |
-| ID-013 | Content and mock-data gate on a built UI | CONTENT AND MOCK-DATA GATE | [ID-013](content-and-mock-data-gate/content-and-mock-data-gate-on-built-ui.md) |
-| ID-014 | Brief read into the variance, motion, and density dials | BRIEF-TO-DIALS INTAKE | [ID-014](brief-to-dials-intake/brief-read-into-dials.md) |
-| ID-015 | Redesign intake classification | REDESIGN INTAKE | [ID-015](redesign-intake/redesign-intake-classification.md) |
-| ID-016 | Register-first context gate on a UI build | BRIEF-TO-DIALS INTAKE | [ID-016](brief-to-dials-intake/register-first-context-gate.md) |
-| ID-018 | Interface procedure-card selection proof | PROCEDURE CARD CONTRACT | [ID-018](procedure-card-contract/card-selection-proof.md) |
-| ID-019 | Interface no-card fallback | PROCEDURE CARD CONTRACT | [ID-019](procedure-card-contract/no-card-fallback.md) |
-| ID-020 | Interface direct fallback without subagents | PROCEDURE CARD CONTRACT | [ID-020](procedure-card-contract/direct-fallback-without-subagents.md) |
+| ID-001 | Free-axis brainstorm critique and deliberate deviation | DIRECTION FREEDOM AND DEVIATION | [ID-001](direction_freedom_and_deviation/free_axis_brainstorm_and_deviation.md) |
+| ID-002 | Pinned brief is followed verbatim | BRIEF PINNING AND PRECEDENCE | [ID-002](brief_pinning_and_precedence/pinned_brief_followed_verbatim.md) |
+| ID-003 | Quality-floor gate on a built UI | QUALITY FLOOR GATE | [ID-003](quality_floor_gate/quality_floor_gate_on_built_ui.md) |
+| ID-004 | Read a design system as the default, then deviate | SYSTEM AS CRITIQUE-AGAINST | [ID-004](system_as_critique_against/query_default_then_deviate.md) |
+| ID-005 | Pure-logic task routes away to sk-code | ABSTENTION AND ROUTING | [ID-005](abstention_and_routing/pure_logic_routes_to_sk_code.md) |
+| ID-006 | Documentation task routes away to sk-doc | ABSTENTION AND ROUTING | [ID-006](abstention_and_routing/docs_task_routes_to_sk_doc.md) |
+| ID-007 | Licensing and provenance integrity | LICENSING AND PROVENANCE | [ID-007](licensing_and_provenance/licensing_and_provenance_integrity.md) |
+| ID-008 | Reuse before generate when a design system is present | REAL-UI LOOP | [ID-008](real_ui_loop/reuse_before_generate_with_design_system.md) |
+| ID-009 | Render fidelity check gated on the quality floor and anti-default critique | REAL-UI LOOP | [ID-009](real_ui_loop/render_fidelity_check.md) |
+| ID-017 | Guarded native-image visual-direction branch | REAL-UI LOOP | [ID-017](real_ui_loop/native_image_visual_direction_branch.md) |
+| ID-010 | Design-references initiative/ask routing for Mobbin and Refero | DESIGN-REFERENCES ROUTING | [ID-010](design_references_routing/initiative_ask_fallback_routing.md) |
+| ID-011 | Mechanical pre-flight card on a built UI | MECHANICAL PRE-FLIGHT CARD | [ID-011](mechanical_preflight_card/preflight_card_on_built_ui.md) |
+| ID-012 | Mechanical layout gate on a built UI | MECHANICAL LAYOUT GATE | [ID-012](mechanical_layout_gate/mechanical_layout_gate_on_built_ui.md) |
+| ID-013 | Content and mock-data gate on a built UI | CONTENT AND MOCK-DATA GATE | [ID-013](content_and_mock_data_gate/content_and_mock_data_gate_on_built_ui.md) |
+| ID-014 | Brief read into the variance, motion, and density dials | BRIEF-TO-DIALS INTAKE | [ID-014](brief_to_dials_intake/brief_read_into_dials.md) |
+| ID-015 | Redesign intake classification | REDESIGN INTAKE | [ID-015](redesign_intake/redesign_intake_classification.md) |
+| ID-016 | Register-first context gate on a UI build | BRIEF-TO-DIALS INTAKE | [ID-016](brief_to_dials_intake/register_first_context_gate.md) |
+| ID-018 | Interface procedure-card selection proof | PROCEDURE CARD CONTRACT | [ID-018](procedure_card_contract/card_selection_proof.md) |
+| ID-019 | Interface no-card fallback | PROCEDURE CARD CONTRACT | [ID-019](procedure_card_contract/no_card_fallback.md) |
+| ID-020 | Interface direct fallback without subagents | PROCEDURE CARD CONTRACT | [ID-020](procedure_card_contract/direct_fallback_without_subagents.md) |

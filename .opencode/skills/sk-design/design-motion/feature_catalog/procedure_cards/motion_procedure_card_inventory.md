@@ -53,5 +53,5 @@ When the request is primarily an accessibility release claim, `design-audit/proc
 - Feature file path: `procedure-cards/motion-procedure-card-inventory.md`
 
 Related references:
-- [../build-cards/motion-fill-in-cards.md](../build-cards/motion-fill-in-cards.md) - Build cards the interaction-states-pass card feeds evidence into.
-- [../restraint-gate-and-choreography/motion-restraint-gate.md](../restraint-gate-and-choreography/motion-restraint-gate.md) - Gate the card's findings are choreographed against.
+- [../build-cards/motion-fill-in-cards.md](../build_cards/motion_fill_in_cards.md) - Build cards the interaction-states-pass card feeds evidence into.
+- [../restraint-gate-and-choreography/motion-restraint-gate.md](../restraint_gate_and_choreography/motion_restraint_gate.md) - Gate the card's findings are choreographed against.

@@ -74,7 +74,7 @@ All three scripts resolve their output directory through the shared output-polic
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/report/report-generation.md` | Manual playbook | Report and preview generation scenario (REPORT-001) — runs report-gen, preview-gen, and proof and confirms each emits its artifact |
+| `../../manual_testing_playbook/report/report_generation.md` | Manual playbook | Report and preview generation scenario (REPORT-001) — runs report-gen, preview-gen, and proof and confirms each emits its artifact |
 | `backend/tests/report-preview-overwrite.test.ts` | Automated test | Overwrite-guard behavior (refuses without `--force`, succeeds with it) and a CSS-value-injection integration check for both report-gen and preview-gen |
 | `backend/tests/render-safety.test.ts` | Automated test | Unit coverage for the CSS-value sanitizers (`safeColor`/`safeLength`/`safeShadow`/etc.) both scripts route source-derived style values through |
 

@@ -54,5 +54,5 @@ The card files are `discovery_question_round.md`, `aesthetic_direction.md`, `wir
 - Feature file path: `procedure-cards/interface-procedure-card-inventory.md`
 
 Related references:
-- [../aesthetic-direction-process/two-pass-grounding-and-critique.md](../aesthetic-direction-process/two-pass-grounding-and-critique.md) - Baseline interface workflow cards support.
-- [../delivery-gates/mechanical-delivery-gates.md](../delivery-gates/mechanical-delivery-gates.md) - Delivery proof after card use.
+- [../aesthetic-direction-process/two-pass-grounding-and-critique.md](../aesthetic_direction_process/two_pass_grounding_and_critique.md) - Baseline interface workflow cards support.
+- [../delivery-gates/mechanical-delivery-gates.md](../delivery_gates/mechanical_delivery_gates.md) - Delivery proof after card use.

@@ -67,7 +67,7 @@ Start a standalone `node "$OD_BIN" --no-open` daemon and confirm the same read t
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/transport/daemon-and-verification.md` | Feature-catalog source describing the daemon model |
+| `../../feature_catalog/transport/daemon_and_verification.md` | Feature-catalog source describing the daemon model |
 
 ### Implementation And Test Anchors
 

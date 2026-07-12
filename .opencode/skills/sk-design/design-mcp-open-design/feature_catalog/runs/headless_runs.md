@@ -48,7 +48,7 @@ Mutating verbs are surfaced but gated: each requires explicit user confirmation,
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/gated-runs/gated-verb-confirm.md` | Manual playbook | A gated verb requires confirmation, with an unconfirmed negative control |
+| `manual_testing_playbook/gated_runs/gated_verb_confirm.md` | Manual playbook | A gated verb requires confirmation, with an unconfirmed negative control |
 
 ---
 
@@ -59,5 +59,5 @@ Mutating verbs are surfaced but gated: each requires explicit user confirmation,
 - Feature file path: `runs/headless-runs.md`
 
 Related references:
-- [design-system-grounding.md](../grounding/design-system-grounding.md) covers grounding a run in a resolved system
-- [daemon-and-verification.md](../transport/daemon-and-verification.md) covers verifying a verb exists and its mutation class
+- [design-system-grounding.md](../grounding/design_system_grounding.md) covers grounding a run in a resolved system
+- [daemon-and-verification.md](../transport/daemon_and_verification.md) covers verifying a verb exists and its mutation class

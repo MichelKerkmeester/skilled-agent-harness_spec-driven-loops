@@ -127,5 +127,5 @@ Use this branch only under the guarded conditions above. For lower-fidelity, non
 
 - [design_principles.md](./design_principles.md) sets the look and owns the anti-default mandate.
 - [ux_quality_reference.md](./ux_quality_reference.md) is the objective floor the fidelity check gates on.
-- [design_inventory.md](../design-grounding/design_inventory.md) frames how to use a real design system as reuse-ground or critique-against, never a generator.
-- [design_references_mcp.md](../design-grounding/design_references_mcp.md) frames real-world shipped UI as a critique-against reference (Mobbin, Refero via Code Mode).
+- [design_inventory.md](../design_grounding/design_inventory.md) frames how to use a real design system as reuse-ground or critique-against, never a generator.
+- [design_references_mcp.md](../design_grounding/design_references_mcp.md) frames real-world shipped UI as a critique-against reference (Mobbin, Refero via Code Mode).

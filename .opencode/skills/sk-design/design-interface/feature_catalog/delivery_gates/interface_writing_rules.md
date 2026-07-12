@@ -37,8 +37,8 @@ The content gate reinforces the rule by checking for placeholder text, AI-tell p
 |---|---|---|
 | `.opencode/skills/sk-design/design-interface/README.md` | Shared | Documents copy as design material. |
 | `.opencode/skills/sk-design/design-interface/SKILL.md` | Shared | Requires active, consistent interface copy. |
-| `.opencode/skills/sk-design/design-interface/references/design-process/design_principles.md` | Shared | Contains full interface-writing guidance. |
-| `.opencode/skills/sk-design/design-interface/references/design-process/copy_and_mock_data.md` | Shared | Defines the content gate and mock-data discipline. |
+| `.opencode/skills/sk-design/design-interface/references/design_process/design_principles.md` | Shared | Contains full interface-writing guidance. |
+| `.opencode/skills/sk-design/design-interface/references/design_process/copy_and_mock_data.md` | Shared | Defines the content gate and mock-data discipline. |
 
 ### Validation And Tests
 
@@ -55,5 +55,5 @@ The content gate reinforces the rule by checking for placeholder text, AI-tell p
 - Feature file path: `delivery-gates/interface-writing-rules.md`
 
 Related references:
-- [mechanical-delivery-gates.md](mechanical-delivery-gates.md) - Binary gates that include copy checks.
-- [../aesthetic-direction-process/two-pass-grounding-and-critique.md](../aesthetic-direction-process/two-pass-grounding-and-critique.md) - Direction process copy supports.
+- [mechanical-delivery-gates.md](../delivery_gates/mechanical_delivery_gates.md) - Binary gates that include copy checks.
+- [../aesthetic-direction-process/two-pass-grounding-and-critique.md](../aesthetic_direction_process/two_pass_grounding_and_critique.md) - Direction process copy supports.

@@ -59,5 +59,5 @@ Core functionality stays available in every context, one information architectur
 - Feature file path: `adaptation-and-data/context-adaptation-matrix.md`
 
 Related references:
-- [data-visualization-discipline.md](data-visualization-discipline.md) - Chart and table adaptation for small screens and assistive technology.
-- [../token-system/typography-and-spacing-scale.md](../token-system/typography-and-spacing-scale.md) - Spacing scale the matrix rethinks per context.
+- [data-visualization-discipline.md](../adaptation_and_data/data_visualization_discipline.md) - Chart and table adaptation for small screens and assistive technology.
+- [../token-system/typography-and-spacing-scale.md](../token_system/typography_and_spacing_scale.md) - Spacing scale the matrix rethinks per context.

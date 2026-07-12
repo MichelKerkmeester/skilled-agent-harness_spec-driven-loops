@@ -53,5 +53,5 @@ When transport output conflicts with the proof plan, the mode contract decides t
 - Feature file path: `manager-shell/transport-vs-taste-separation.md`
 
 Related references:
-- [context-first-intake-and-visible-plan.md](context-first-intake-and-visible-plan.md) - Hub intake before transport use.
-- [proof-gates-and-verifier-cadence.md](proof-gates-and-verifier-cadence.md) - Proof required after transport evidence returns.
+- [context-first-intake-and-visible-plan.md](../manager_shell/context_first_intake_and_visible_plan.md) - Hub intake before transport use.
+- [proof-gates-and-verifier-cadence.md](../manager_shell/proof_gates_and_verifier_cadence.md) - Proof required after transport evidence returns.

@@ -61,5 +61,5 @@ Animation stays on the compositor (`transform`, `opacity`) by default; layout pr
 - Feature file path: `restraint-gate-and-choreography/choreography-and-reduced-motion.md`
 
 Related references:
-- [motion-restraint-gate.md](motion-restraint-gate.md) - The gate that decides whether choreography is needed at all.
-- [../build-cards/motion-fill-in-cards.md](../build-cards/motion-fill-in-cards.md) - Fill-in cards that cite these timing and reduced-motion rules.
+- [motion-restraint-gate.md](../restraint_gate_and_choreography/motion_restraint_gate.md) - The gate that decides whether choreography is needed at all.
+- [../build-cards/motion-fill-in-cards.md](../build_cards/motion_fill_in_cards.md) - Fill-in cards that cite these timing and reduced-motion rules.

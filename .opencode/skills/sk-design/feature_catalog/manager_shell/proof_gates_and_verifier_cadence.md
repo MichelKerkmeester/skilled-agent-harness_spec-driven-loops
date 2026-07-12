@@ -53,5 +53,5 @@ Taste proof cites the mode's rationale and concrete decisions. Accessibility pro
 - Feature file path: `manager-shell/proof-gates-and-verifier-cadence.md`
 
 Related references:
-- [context-first-intake-and-visible-plan.md](context-first-intake-and-visible-plan.md) - Intake and plan contract.
-- [transport-vs-taste-separation.md](transport-vs-taste-separation.md) - Transport proof boundary.
+- [context-first-intake-and-visible-plan.md](../manager_shell/context_first_intake_and_visible_plan.md) - Intake and plan contract.
+- [transport-vs-taste-separation.md](../manager_shell/transport_vs_taste_separation.md) - Transport proof boundary.

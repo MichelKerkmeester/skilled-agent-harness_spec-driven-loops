@@ -25,7 +25,7 @@ The shared register decides whether design is the product or serves the product.
 
 `../shared/register.md` sets the Brand-vs-Product posture, which gates density, motion budget, color dosage, copy register, anti-slop strictness, and audit severity.
 
-`references/design-process/brief_to_dials.md` reads the brief into three internal values. The mode may state a one-line Design Read, but it does not surface the dials as a pick-a-vibe menu.
+`references/design_process/brief_to_dials.md` reads the brief into three internal values. The mode may state a one-line Design Read, but it does not surface the dials as a pick-a-vibe menu.
 
 ---
 
@@ -37,7 +37,7 @@ The shared register decides whether design is the product or serves the product.
 |---|---|---|
 | `.opencode/skills/sk-design/design-interface/SKILL.md` | Shared | Requires the register and dials before substantial interface work. |
 | `.opencode/skills/sk-design/shared/register.md` | Shared | Defines Brand-vs-Product posture. |
-| `.opencode/skills/sk-design/design-interface/references/design-process/brief_to_dials.md` | Shared | Maps briefs into variance, motion, and density. |
+| `.opencode/skills/sk-design/design-interface/references/design_process/brief_to_dials.md` | Shared | Maps briefs into variance, motion, and density. |
 
 ### Validation And Tests
 
@@ -54,5 +54,5 @@ The shared register decides whether design is the product or serves the product.
 - Feature file path: `aesthetic-direction-process/register-and-dials-intake.md`
 
 Related references:
-- [two-pass-grounding-and-critique.md](two-pass-grounding-and-critique.md) - Direction process that consumes the intake.
-- [../delivery-gates/mechanical-delivery-gates.md](../delivery-gates/mechanical-delivery-gates.md) - Pre-flight card closes the loop.
+- [two-pass-grounding-and-critique.md](../aesthetic_direction_process/two_pass_grounding_and_critique.md) - Direction process that consumes the intake.
+- [../delivery-gates/mechanical-delivery-gates.md](../delivery_gates/mechanical_delivery_gates.md) - Pre-flight card closes the loop.

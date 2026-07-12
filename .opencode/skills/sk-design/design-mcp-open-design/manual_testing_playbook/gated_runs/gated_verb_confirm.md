@@ -70,7 +70,7 @@ Repeat the negative control with a destructive verb (`delete_file` or `delete_pr
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/runs/headless-runs.md` | Feature-catalog source describing the gating policy |
+| `../../feature_catalog/runs/headless_runs.md` | Feature-catalog source describing the gating policy |
 
 ### Implementation And Test Anchors
 

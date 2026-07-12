@@ -5,9 +5,9 @@ version: 1.5.0.5
 id: ID-003
 expected_intent: UX_QUALITY
 expected_resources:
-  - references/design-process/design_principles.md
+  - references/design_process/design_principles.md
   - ../shared/register.md
-  - references/design-process/ux_quality_reference.md
+  - references/design_process/ux_quality_reference.md
 ---
 
 # ID-003 -- Quality-floor gate on a built UI
@@ -39,10 +39,10 @@ Operators run the exact prompt and command sequence for `ID-003` and confirm the
 - Objective: Confirm a built UI is graded against the `ux_quality_reference.md` floor across contrast, focus, reduced motion, touch targets, responsive behavior, interactive states, first-value onboarding, and compact product-flow quality.
 - Real user request: `Before I ship this landing page, tell me what accessibility or quality issues it has.`
 - Prompt: `Check this finished landing page against the accessibility and quality floor and tell me what fails before I ship.`
-- Expected execution process: Supply a real built UI as the fixture (any rendered HTML page the operator provides, such as a built landing page) so the gate has something concrete to grade. Load `references/design-process/ux_quality_reference.md`, apply it as the pass/fail gate after the direction is set, and report each failing rule across the floor areas with a concrete fix, including `:focus-visible` with outline offset and 3:1 ring contrast, the full interactive state table, forms, search, navigation, feedback/error proximity, and first-run or empty states when present.
+- Expected execution process: Supply a real built UI as the fixture (any rendered HTML page the operator provides, such as a built landing page) so the gate has something concrete to grade. Load `references/design_process/ux_quality_reference.md`, apply it as the pass/fail gate after the direction is set, and report each failing rule across the floor areas with a concrete fix, including `:focus-visible` with outline offset and 3:1 ring contrast, the full interactive state table, forms, search, navigation, feedback/error proximity, and first-run or empty states when present.
 - Expected signals: Step 1: the floor areas (contrast, focus, reduced motion, touch targets, responsive, full interactive state table, first-value onboarding, and compact product-flow quality) are each evaluated; Step 2: each failure names the broken rule; Step 3: each failure includes a specific fix
 - Desired user-visible outcome: a pass/fail gate report keyed to the `ux_quality_reference.md` rules, naming each failing rule with the specific floor it breaks and how to fix it.
-- Pass/fail: PASS if the report evaluates all floor areas and cites `references/design-process/ux_quality_reference.md` for each finding, including compact product-flow checks for forms, search, navigation, nearby feedback/errors, and first-run or empty states when relevant; FAIL if any floor area is skipped or a finding is given with no rule citation
+- Pass/fail: PASS if the report evaluates all floor areas and cites `references/design_process/ux_quality_reference.md` for each finding, including compact product-flow checks for forms, search, navigation, nearby feedback/errors, and first-run or empty states when relevant; FAIL if any floor area is skipped or a finding is given with no rule citation
 
 ---
 
@@ -58,7 +58,7 @@ Operators run the exact prompt and command sequence for `ID-003` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ID-003 | Quality-floor gate on a built UI | Confirm a built UI is graded against the ux_quality_reference.md floor across contrast, focus, reduced motion, touch targets, responsive behavior, the full interactive state table, first-value onboarding, and compact product-flow quality. | `Check this finished landing page against the accessibility and quality floor and tell me what fails before I ship.` | bash: rg -n "Interactive State Table" references/design-process/ux_quality_reference.md -> agent: grade the built UI against the floor, including first-value onboarding and `:focus-visible` rings -> bash: rg -n "quality floor" SKILL.md | Step 1: the floor areas are each evaluated, including default, hover, focus, active, disabled, loading, error, and success states; Step 2: first-run prompts are checked for skip/dismissal, contextual teaching, and first-value path; Step 3: each failure names the broken rule and a specific fix | Terminal transcript, the gate report, and the per-area pass/fail list | PASS if the report evaluates all relevant floor areas, checks `:focus-visible` plus outline offset plus 3:1 ring contrast, covers all eight routine interactive states, and cites references/design-process/ux_quality_reference.md for each finding; FAIL if any floor area is skipped or a finding lacks a rule citation | 1. Re-read references/design-process/ux_quality_reference.md Sections 1-6; 2. Confirm SKILL.md Quality Floor note was loaded; 3. Re-run the gate covering all relevant floor areas |
+| ID-003 | Quality-floor gate on a built UI | Confirm a built UI is graded against the ux_quality_reference.md floor across contrast, focus, reduced motion, touch targets, responsive behavior, the full interactive state table, first-value onboarding, and compact product-flow quality. | `Check this finished landing page against the accessibility and quality floor and tell me what fails before I ship.` | bash: rg -n "Interactive State Table" references/design_process/ux_quality_reference.md -> agent: grade the built UI against the floor, including first-value onboarding and `:focus-visible` rings -> bash: rg -n "quality floor" SKILL.md | Step 1: the floor areas are each evaluated, including default, hover, focus, active, disabled, loading, error, and success states; Step 2: first-run prompts are checked for skip/dismissal, contextual teaching, and first-value path; Step 3: each failure names the broken rule and a specific fix | Terminal transcript, the gate report, and the per-area pass/fail list | PASS if the report evaluates all relevant floor areas, checks `:focus-visible` plus outline offset plus 3:1 ring contrast, covers all eight routine interactive states, and cites references/design_process/ux_quality_reference.md for each finding; FAIL if any floor area is skipped or a finding lacks a rule citation | 1. Re-read references/design_process/ux_quality_reference.md Sections 1-6; 2. Confirm SKILL.md Quality Floor note was loaded; 3. Re-run the gate covering all relevant floor areas |
 
 ### Optional Supplemental Checks
 
@@ -80,7 +80,7 @@ If the UI under test includes charts, also apply the data-visualization rules fr
 | File | Role |
 |---|---|
 | `../../SKILL.md` | The Quality Floor note and ALWAYS rule 5 |
-| `../../references/design-process/ux_quality_reference.md` | The objective quality floor: accessibility, motion, touch, responsive, forms, charts |
+| `../../references/design_process/ux_quality_reference.md` | The objective quality floor: accessibility, motion, touch, responsive, forms, charts |
 
 ---
 

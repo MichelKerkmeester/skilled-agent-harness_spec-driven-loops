@@ -7,7 +7,7 @@ id: ID-019
 expected_intent: PROCEDURE_CARD_FALLBACK
 expected_resources:
   - SKILL.md
-  - references/design-process/brief_to_dials.md
+  - references/design_process/brief_to_dials.md
   - assets/interface_preflight_card.md
 ---
 
@@ -59,7 +59,7 @@ The fallback prevents over-loading every card for narrow advice while still requ
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
 | `../../SKILL.md` | Exact no-card fallback and baseline interface workflow |
-| `../../references/design-process/brief_to_dials.md` | Baseline dial calibration |
+| `../../references/design_process/brief_to_dials.md` | Baseline dial calibration |
 | `../../assets/interface_preflight_card.md` | Baseline delivery gate |
 
 ---

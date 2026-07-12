@@ -59,5 +59,5 @@ Content drives breakpoints rather than fixed device sizes, and hierarchy is buil
 - Feature file path: `token-system/typography-and-spacing-scale.md`
 
 Related references:
-- [oklch-color-and-token-system.md](oklch-color-and-token-system.md) - Color token system built alongside type and spacing.
-- [../adaptation-and-data/data-visualization-discipline.md](../adaptation-and-data/data-visualization-discipline.md) - Tabular-numeral and alignment rules extended for data tables.
+- [oklch-color-and-token-system.md](../token_system/oklch_color_and_token_system.md) - Color token system built alongside type and spacing.
+- [../adaptation-and-data/data-visualization-discipline.md](../adaptation_and_data/data_visualization_discipline.md) - Tabular-numeral and alignment rules extended for data tables.

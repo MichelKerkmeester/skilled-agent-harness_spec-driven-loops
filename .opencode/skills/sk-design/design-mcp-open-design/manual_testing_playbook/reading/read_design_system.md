@@ -67,7 +67,7 @@ Read `components.html` for the same system when present, and confirm it is treat
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/reading/read-only-content.md` | Feature-catalog source describing the read contract |
+| `../../feature_catalog/reading/read_only_content.md` | Feature-catalog source describing the read contract |
 
 ### Implementation And Test Anchors
 

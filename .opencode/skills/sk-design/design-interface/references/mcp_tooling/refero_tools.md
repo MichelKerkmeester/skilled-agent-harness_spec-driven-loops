@@ -108,5 +108,5 @@ With `response_format: "json"` (recommended for programmatic use), searches retu
 
 ## 8. RELATED RESOURCES
 
-- [`design_references_mcp.md`](../design-grounding/design_references_mcp.md) - the critique-against discipline that governs WHEN and HOW to use these tools (one reference, read live, never copy, grounding stays upstream).
+- [`design_references_mcp.md`](../design_grounding/design_references_mcp.md) - the critique-against discipline that governs WHEN and HOW to use these tools (one reference, read live, never copy, grounding stays upstream).
 - [`mobbin_tools.md`](./mobbin_tools.md) - the sibling real-world reference MCP (screens, flows).

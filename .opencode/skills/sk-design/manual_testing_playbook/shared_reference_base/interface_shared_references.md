@@ -23,7 +23,7 @@ Make this landing page look less generic and state the register before recommend
 
 **Why**:
 - `hub-router.json` maps `less generic` and `visual direction` under `interface-taste` to `interface`.
-- `design-interface/SKILL.md` requires `../shared/register.md`, `../shared/context_loading_contract.md`, and `design-interface/references/design-process/brief_to_dials.md` before decisions.
+- `design-interface/SKILL.md` requires `../shared/register.md`, `../shared/context_loading_contract.md`, and `design-interface/references/design_process/brief_to_dials.md` before decisions.
 - `SKILL.md` describes the shared base as anti-slop principles, cognitive laws, and design-token vocabulary used by modes, not copied into the hub.
 
 **Expected packet loaded**:
@@ -37,8 +37,8 @@ Make this landing page look less generic and state the register before recommend
 - `shared/design_token_vocabulary.md` when token naming is discussed
 
 **Expected mode resources loaded or cited**:
-- `design-interface/references/design-process/design_principles.md`
-- `design-interface/references/design-process/brief_to_dials.md`
+- `design-interface/references/design_process/design_principles.md`
+- `design-interface/references/design_process/brief_to_dials.md`
 - `design-interface/assets/interface_preflight_card.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.

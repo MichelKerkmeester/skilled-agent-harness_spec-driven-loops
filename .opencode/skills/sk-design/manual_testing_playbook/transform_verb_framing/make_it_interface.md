@@ -39,8 +39,8 @@ This scenario verifies the interface side of `transformVerbRouting`: commands fr
 - `shared/context_loading_contract.md`
 
 **Expected mode resources loaded or cited**:
-- `design-interface/references/design-process/design_principles.md`
-- `design-interface/references/design-process/brief_to_dials.md`
+- `design-interface/references/design_process/design_principles.md`
+- `design-interface/references/design_process/brief_to_dials.md`
 - `design-interface/assets/interface_preflight_card.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.

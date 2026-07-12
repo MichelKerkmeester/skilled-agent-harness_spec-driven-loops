@@ -36,7 +36,7 @@ The routing shell reads `mode-registry.json`, chooses the smallest useful design
 
 #### Source Files
 
-See [`manager-shell/context-first-intake-and-visible-plan.md`](manager-shell/context-first-intake-and-visible-plan.md) for source anchors and routing details.
+See [`manager-shell/context-first-intake-and-visible-plan.md`](manager_shell/context_first_intake_and_visible_plan.md) for source anchors and routing details.
 
 ---
 
@@ -52,7 +52,7 @@ The verifier cadence is intake before routing, visible plan before substantial o
 
 #### Source Files
 
-See [`manager-shell/proof-gates-and-verifier-cadence.md`](manager-shell/proof-gates-and-verifier-cadence.md) for proof fields and verifier cadence.
+See [`manager-shell/proof-gates-and-verifier-cadence.md`](manager_shell/proof_gates_and_verifier_cadence.md) for proof fields and verifier cadence.
 
 ---
 
@@ -68,7 +68,7 @@ The hub treats Figma, Open Design, browser, and extraction transports as evidenc
 
 #### Source Files
 
-See [`manager-shell/transport-vs-taste-separation.md`](manager-shell/transport-vs-taste-separation.md) for the boundary and integration points.
+See [`manager-shell/transport-vs-taste-separation.md`](manager_shell/transport_vs_taste_separation.md) for the boundary and integration points.
 
 ---
 
@@ -86,7 +86,7 @@ Cards live under mode-local `procedures/` folders or `shared/procedures/` for cr
 
 #### Source Files
 
-See [`procedure-card-system/procedure-card-schema-and-selection.md`](procedure-card-system/procedure-card-schema-and-selection.md) for schema and selection rules.
+See [`procedure-card-system/procedure-card-schema-and-selection.md`](procedure_card_system/procedure_card_schema_and_selection.md) for schema and selection rules.
 
 ---
 
@@ -102,4 +102,4 @@ The cards support narrower workflows after public mode routing: discovery, aesth
 
 #### Source Files
 
-See [`procedure-card-system/procedure-card-inventory.md`](procedure-card-system/procedure-card-inventory.md) for the complete card list and ownership boundaries.
+See [`procedure-card-system/procedure-card-inventory.md`](procedure_card_system/procedure_card_inventory.md) for the complete card list and ownership boundaries.

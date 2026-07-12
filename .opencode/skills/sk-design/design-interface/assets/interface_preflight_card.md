@@ -33,7 +33,7 @@ Set the surface context, then walk each section top-to-bottom against the real r
 |---|---|
 | Surface (page / route / file) | `__________` |
 | Register (from `../../shared/register.md`) | [ ] Brand (design IS the product) [ ] Product (design SERVES the product) |
-| Dials (from `../references/design-process/brief_to_dials.md`) | VARIANCE `___` / MOTION `___` / DENSITY `___` |
+| Dials (from `../references/design_process/brief_to_dials.md`) | VARIANCE `___` / MOTION `___` / DENSITY `___` |
 | Section count (for the eyebrow math) | `___` |
 | Narrowest target width tested | `__________` |
 

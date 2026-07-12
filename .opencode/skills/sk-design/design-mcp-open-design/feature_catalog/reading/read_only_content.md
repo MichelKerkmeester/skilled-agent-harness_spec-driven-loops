@@ -47,7 +47,7 @@ A design system is a `DESIGN.md` (9-section prose), a paste-ready `tokens.css` (
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/reading/read-design-system.md` | Manual playbook | Read a design system's DESIGN.md and tokens.css |
+| `manual_testing_playbook/reading/read_design_system.md` | Manual playbook | Read a design system's DESIGN.md and tokens.css |
 
 ---
 
@@ -58,5 +58,5 @@ A design system is a `DESIGN.md` (9-section prose), a paste-ready `tokens.css` (
 - Feature file path: `reading/read-only-content.md`
 
 Related references:
-- [od-mcp-install.md](../wiring/od-mcp-install.md) covers the wiring that exposes these tools
-- [design-system-grounding.md](../grounding/design-system-grounding.md) covers turning a read into a grounded design decision
+- [od-mcp-install.md](../wiring/od_mcp_install.md) covers the wiring that exposes these tools
+- [design-system-grounding.md](../grounding/design_system_grounding.md) covers turning a read into a grounded design decision

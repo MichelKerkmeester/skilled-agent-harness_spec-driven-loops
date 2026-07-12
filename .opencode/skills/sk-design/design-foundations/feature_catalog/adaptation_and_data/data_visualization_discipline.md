@@ -59,5 +59,5 @@ Numeric table columns right-align with tabular numerals and consistent decimal p
 - Feature file path: `adaptation-and-data/data-visualization-discipline.md`
 
 Related references:
-- [context-adaptation-matrix.md](context-adaptation-matrix.md) - Responsive and accessible chart adaptation per context.
-- [../procedure-cards/foundations-procedure-card-inventory.md](../procedure-cards/foundations-procedure-card-inventory.md) - Private cards that review token, hierarchy, and control decisions after data work.
+- [context-adaptation-matrix.md](../adaptation_and_data/context_adaptation_matrix.md) - Responsive and accessible chart adaptation per context.
+- [../procedure-cards/foundations-procedure-card-inventory.md](../procedure_cards/foundations_procedure_card_inventory.md) - Private cards that review token, hierarchy, and control decisions after data work.

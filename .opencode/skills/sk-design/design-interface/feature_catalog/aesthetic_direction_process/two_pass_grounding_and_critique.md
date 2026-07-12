@@ -37,7 +37,7 @@ The critique pass checks each free axis against the common default clusters. Any
 |---|---|---|
 | `.opencode/skills/sk-design/design-interface/README.md` | Shared | Summarizes the two-pass process, restraint mechanism, and non-generic direction goals. |
 | `.opencode/skills/sk-design/design-interface/SKILL.md` | Shared | Defines activation, phase detection, routing, and success criteria for grounded interface direction. |
-| `.opencode/skills/sk-design/design-interface/references/design-process/design_principles.md` | Shared | Holds the detailed design-principles process used by the mode. |
+| `.opencode/skills/sk-design/design-interface/references/design_process/design_principles.md` | Shared | Holds the detailed design-principles process used by the mode. |
 
 ### Validation And Tests
 
@@ -54,5 +54,5 @@ The critique pass checks each free axis against the common default clusters. Any
 - Feature file path: `aesthetic-direction-process/two-pass-grounding-and-critique.md`
 
 Related references:
-- [register-and-dials-intake.md](register-and-dials-intake.md) - Register and dial calibration before direction.
-- [../delivery-gates/mechanical-delivery-gates.md](../delivery-gates/mechanical-delivery-gates.md) - Binary delivery gates after direction.
+- [register-and-dials-intake.md](../aesthetic_direction_process/register_and_dials_intake.md) - Register and dial calibration before direction.
+- [../delivery-gates/mechanical-delivery-gates.md](../delivery_gates/mechanical_delivery_gates.md) - Binary delivery gates after direction.

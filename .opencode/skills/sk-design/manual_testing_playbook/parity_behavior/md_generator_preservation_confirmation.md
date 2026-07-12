@@ -82,4 +82,4 @@ Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md
 - **Destructive**: Potentially writes sandbox artifacts only when executed
 - **Sandbox**: `/tmp/skd-PB003/`
 - **Concurrent-safe**: No
-- **Last validated**: Router replay passed in `benchmark/after-009/report.json`; live extraction under `/tmp/skd-PB003/` is required before READY unless the repository owner records an accepted-risk decision.
+- **Last validated**: Router replay passed in `benchmark/after_009/report.json`; live extraction under `/tmp/skd-PB003/` is required before READY unless the repository owner records an accepted-risk decision.

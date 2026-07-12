@@ -71,7 +71,7 @@ Every detector that finds no data records a minimal "not detected" result in its
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/dark-mode/dark-mode-gate.md` | Manual playbook | Dark-mode gate scenario — confirms section 2.5 appears only when a dark palette is detected and is never fabricated |
+| `../../manual_testing_playbook/dark_mode/dark_mode_gate.md` | Manual playbook | Dark-mode gate scenario — confirms section 2.5 appears only when a dark palette is detected and is never fabricated |
 | (no automated test) | Automated test | Covered by the manual playbook scenario |
 
 ---
@@ -84,5 +84,5 @@ Every detector that finds no data records a minimal "not detected" result in its
 
 Related references:
 - [extract.md](../extract/extract.md) — the extraction phase where these detectors run inline
-- [cluster-classify.md](../cluster-classify/cluster-classify.md) — the stability classification that consumes design-boundary output
-- [write-design-md.md](../write-design-md/write-design-md.md) — the write phase that gates sections on detector output (dark mode, a11y, icons, motion)
+- [cluster-classify.md](../cluster_classify/cluster_classify.md) — the stability classification that consumes design-boundary output
+- [write-design-md.md](../write_design_md/write_design_md.md) — the write phase that gates sections on detector output (dark mode, a11y, icons, motion)

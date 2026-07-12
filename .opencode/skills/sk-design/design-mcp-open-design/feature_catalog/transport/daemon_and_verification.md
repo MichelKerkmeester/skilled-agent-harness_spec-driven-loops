@@ -57,7 +57,7 @@ The `od mcp --help` text lists only a documentation subset of about 8 tools, but
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/failure-paths/daemon-not-running.md` | Manual playbook | The daemon-not-running and app-closed failure path |
+| `manual_testing_playbook/failure_paths/daemon_not_running.md` | Manual playbook | The daemon-not-running and app-closed failure path |
 
 ---
 
@@ -68,5 +68,5 @@ The `od mcp --help` text lists only a documentation subset of about 8 tools, but
 - Feature file path: `transport/daemon-and-verification.md`
 
 Related references:
-- [od-mcp-install.md](../wiring/od-mcp-install.md) covers the wiring that points at this daemon socket
-- [headless-runs.md](../runs/headless-runs.md) covers gating the mutating verbs this verification surfaces
+- [od-mcp-install.md](../wiring/od_mcp_install.md) covers the wiring that points at this daemon socket
+- [headless-runs.md](../runs/headless_runs.md) covers gating the mutating verbs this verification surfaces

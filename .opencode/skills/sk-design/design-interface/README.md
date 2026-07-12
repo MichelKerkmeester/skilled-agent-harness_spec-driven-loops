@@ -37,7 +37,7 @@ AI-generated UI clusters around a handful of default looks that appear regardles
 
 The skill owns aesthetic direction, not implementation. It routes a design task through a two-pass process: ground the subject, brainstorm a compact token system (4-6 named colors, a display and body face, a layout concept, one signature element), then critique that plan against the known AI-default looks and revise anything generic with a stated reason. Only then does code get written, deriving every choice from the revised plan. It also carries interface-writing rules, because copy can make a design feel as templated as the visuals. Implementation is handed to `sk-code`, which builds and verifies against the detected web surface.
 
-This is vendored from Anthropic's `frontend-design` skill (Apache-2.0). The full design guidance lives verbatim in `references/design-process/design_principles.md`, and the `SKILL.md` is a lean house-template router over it.
+This is vendored from Anthropic's `frontend-design` skill (Apache-2.0). The full design guidance lives verbatim in `references/design_process/design_principles.md`, and the `SKILL.md` is a lean house-template router over it.
 
 ---
 
@@ -69,7 +69,7 @@ If yes, it is a default, not a choice. Revise it and say what changed and why.
 Then build from the revised plan and hand implementation to sk-code.
 ```
 
-Full guidance: [`references/design-process/design_principles.md`](./references/design-process/design_principles.md).
+Full guidance: [`references/design_process/design_principles.md`](./references/design_process/design_principles.md).
 
 ---
 
@@ -77,7 +77,7 @@ Full guidance: [`references/design-process/design_principles.md`](./references/d
 
 ### Register And Dials First
 
-Before the token system, the skill sets one posture and reads the brief into three working values. The shared [`../shared/register.md`](../shared/register.md) decides whether the surface is a Brand surface (design IS the product) or a Product surface (design SERVES the product), which gates density, motion budget, color dosage, copy register, anti-slop strictness, and audit severity. Then [`references/design-process/brief_to_dials.md`](./references/design-process/brief_to_dials.md) reads the brief into the VARIANCE, MOTION, and DENSITY dials within that posture. The dials are the agent's internal calibration stated in a one-line Design Read, never a pick-a-vibe menu surfaced to the user.
+Before the token system, the skill sets one posture and reads the brief into three working values. The shared [`../shared/register.md`](../shared/register.md) decides whether the surface is a Brand surface (design IS the product) or a Product surface (design SERVES the product), which gates density, motion budget, color dosage, copy register, anti-slop strictness, and audit severity. Then [`references/design_process/brief_to_dials.md`](./references/design_process/brief_to_dials.md) reads the brief into the VARIANCE, MOTION, and DENSITY dials within that posture. The dials are the agent's internal calibration stated in a one-line Design Read, never a pick-a-vibe menu surfaced to the user.
 
 ### The Two-Pass Process
 
@@ -93,15 +93,15 @@ Words exist to make an interface easier to use. The skill writes from the end us
 
 ### Producing Real UI
 
-When the work moves past a plan into a real render, on a recreated repo, a generation run, or code, the skill follows the real-UI loop: ground in the design system, reuse components and tokens before generating, check the real render against the quality floor and the anti-default critique, then hand off cleanly. It stays a loop, not a product, and never adds a style-preset menu. The loop lives in [`references/design-process/real_ui_loop.md`](./references/design-process/real_ui_loop.md).
+When the work moves past a plan into a real render, on a recreated repo, a generation run, or code, the skill follows the real-UI loop: ground in the design system, reuse components and tokens before generating, check the real render against the quality floor and the anti-default critique, then hand off cleanly. It stays a loop, not a product, and never adds a style-preset menu. The loop lives in [`references/design_process/real_ui_loop.md`](./references/design_process/real_ui_loop.md).
 
 ### Mechanical Delivery Gates
 
-A taste read does not catch a four-line hero, a button the same color as its label, "Jane Doe" in a testimonial, or a visible em-dash. Two binary gates close that gap before delivery. The layout gate in [`references/design-process/mechanical_defaults.md`](./references/design-process/mechanical_defaults.md) counts the hero lines, the bento cells against content, and the eyebrows against a `ceil(sectionCount / 3)` ceiling, and computes button contrast against the real background. The content gate in [`references/design-process/copy_and_mock_data.md`](./references/design-process/copy_and_mock_data.md) sweeps for lorem, AI-tell phrasing, fake-precise numbers, a mixed copy register, and lazy image seeds. The checkable form of both, plus the dial calibration, is the fill-in [`assets/interface_preflight_card.md`](./assets/interface_preflight_card.md): every box is binary and a single fail means the surface is not done.
+A taste read does not catch a four-line hero, a button the same color as its label, "Jane Doe" in a testimonial, or a visible em-dash. Two binary gates close that gap before delivery. The layout gate in [`references/design_process/mechanical_defaults.md`](./references/design_process/mechanical_defaults.md) counts the hero lines, the bento cells against content, and the eyebrows against a `ceil(sectionCount / 3)` ceiling, and computes button contrast against the real background. The content gate in [`references/design_process/copy_and_mock_data.md`](./references/design_process/copy_and_mock_data.md) sweeps for lorem, AI-tell phrasing, fake-precise numbers, a mixed copy register, and lazy image seeds. The checkable form of both, plus the dial calibration, is the fill-in [`assets/interface_preflight_card.md`](./assets/interface_preflight_card.md): every box is binary and a single fail means the surface is not done.
 
 ### Where The Detail Lives
 
-`references/design-process/design_principles.md` holds the verbatim guidance: grounding, the full design principles, the two-pass process with the AI-default calibration, restraint and self-critique, and interface writing.
+`references/design_process/design_principles.md` holds the verbatim guidance: grounding, the full design principles, the two-pass process with the AI-default calibration, restraint and self-critique, and interface writing.
 
 ### Private Procedure Cards
 
@@ -153,7 +153,7 @@ A: The brief wins, verbatim, even when it asks for one of the default looks. Def
 
 **Q: Where did this come from?**
 
-A: It is vendored from Anthropic's official `frontend-design` skill under Apache-2.0. `LICENSE.txt` carries the full terms and attribution, and the guidance is preserved verbatim in `references/design-process/design_principles.md`.
+A: It is vendored from Anthropic's official `frontend-design` skill under Apache-2.0. `LICENSE.txt` carries the full terms and attribution, and the guidance is preserved verbatim in `references/design_process/design_principles.md`.
 
 ---
 
@@ -163,7 +163,7 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 |---|---|
 | Skill structure | `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-design/design-interface/ --check` reports the skill valid (validation only; omit `--check` to also build a zip) |
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-interface/README.md --type readme` reports zero issues |
-| Reference structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-interface/references/design-process/design_principles.md --type reference` reports zero issues |
+| Reference structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-interface/references/design_process/design_principles.md --type reference` reports zero issues |
 | Advisor discovery | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"make this landing page look distinctive"}' --warm-only --format json` lists `interface` |
 
 ---
@@ -173,18 +173,18 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (house template) |
-| [`references/design-process/design_principles.md`](./references/design-process/design_principles.md) | Full verbatim guidance: grounding, design principles, two-pass process, restraint, interface writing |
+| [`references/design_process/design_principles.md`](./references/design_process/design_principles.md) | Full verbatim guidance: grounding, design principles, two-pass process, restraint, interface writing |
 | [`../shared/register.md`](../shared/register.md) | The shared Brand-vs-Product operating register, set first: it gates density, motion budget, color dosage, copy register, anti-slop strictness, and audit severity |
-| [`references/design-process/brief_to_dials.md`](./references/design-process/brief_to_dials.md) | The Design Read intake that reads a brief into the VARIANCE, MOTION, and DENSITY dials within the posture: internal calibration, never a chooser |
-| [`references/design-process/mechanical_defaults.md`](./references/design-process/mechanical_defaults.md) | The mechanical layout gate: counted hero lines, gapless bento math, the eyebrow ceiling, button contrast, and section spacing |
-| [`references/design-process/copy_and_mock_data.md`](./references/design-process/copy_and_mock_data.md) | The content gate: no lorem, no AI-tell phrasing, plausible names and numbers, one copy register, and image-seed discipline |
+| [`references/design_process/brief_to_dials.md`](./references/design_process/brief_to_dials.md) | The Design Read intake that reads a brief into the VARIANCE, MOTION, and DENSITY dials within the posture: internal calibration, never a chooser |
+| [`references/design_process/mechanical_defaults.md`](./references/design_process/mechanical_defaults.md) | The mechanical layout gate: counted hero lines, gapless bento math, the eyebrow ceiling, button contrast, and section spacing |
+| [`references/design_process/copy_and_mock_data.md`](./references/design_process/copy_and_mock_data.md) | The content gate: no lorem, no AI-tell phrasing, plausible names and numbers, one copy register, and image-seed discipline |
 | [`assets/interface_preflight_card.md`](./assets/interface_preflight_card.md) | The binary fill-in PASS or FAIL pre-flight card: the checkable form of the layout gate, content gate, and dials, run as the last filter before delivery |
 | [`procedures/`](./procedures/) | Six maintainer-facing procedure cards for aesthetic direction, deck direction, discovery questions, prototype flow, variation sets and wireframe exploration |
-| [`references/design-process/ux_quality_reference.md`](./references/design-process/ux_quality_reference.md) | The objective quality floor (accessibility, motion, touch, responsive, forms, charts): the pass/fail gate after the direction is set |
-| [`references/design-process/real_ui_loop.md`](./references/design-process/real_ui_loop.md) | The real-UI loop: ground in a system, reuse before generating, fidelity check, handoff |
-| [`references/design-process/variation_diversity.md`](./references/design-process/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
-| [`references/design-grounding/design_inventory.md`](./references/design-grounding/design_inventory.md) | A real design system you own, read live, as either reuse-ground or the named default to critique against. One system, never a chooser |
-| [`references/design-grounding/design_references_mcp.md`](./references/design-grounding/design_references_mcp.md) | Real-world critique-against references (Mobbin, Refero via Code Mode through `mcp-code-mode`): name the category's real-world default, then deviate. One reference, read live, never copied. Tool catalogs in `references/mcp-tooling/` |
+| [`references/design_process/ux_quality_reference.md`](./references/design_process/ux_quality_reference.md) | The objective quality floor (accessibility, motion, touch, responsive, forms, charts): the pass/fail gate after the direction is set |
+| [`references/design_process/real_ui_loop.md`](./references/design_process/real_ui_loop.md) | The real-UI loop: ground in a system, reuse before generating, fidelity check, handoff |
+| [`references/design_process/variation_diversity.md`](./references/design_process/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
+| [`references/design_grounding/design_inventory.md`](./references/design_grounding/design_inventory.md) | A real design system you own, read live, as either reuse-ground or the named default to critique against. One system, never a chooser |
+| [`references/design_grounding/design_references_mcp.md`](./references/design_grounding/design_references_mcp.md) | Real-world critique-against references (Mobbin, Refero via Code Mode through `mcp-code-mode`): name the category's real-world default, then deviate. One reference, read live, never copied. Tool catalogs in `references/mcp_tooling/` |
 | [`LICENSE.txt`](./LICENSE.txt) | Apache-2.0 license and attribution for the vendored Anthropic content |
 | [`sk-code`](../../sk-code/README.md) | Implementation partner: builds and verifies the design for the target web surface |
 | [`mcp-figma`](../../mcp-tooling/mcp-figma/README.md) | Sibling transport (Figma Desktop). This skill judges the design decisions its reads and exports feed |

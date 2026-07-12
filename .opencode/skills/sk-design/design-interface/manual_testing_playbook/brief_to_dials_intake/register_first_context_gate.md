@@ -6,11 +6,11 @@ version: 1.0.0.0
 id: ID-016
 expected_intent: REGISTER_DIALS
 expected_resources:
-  - references/design-process/design_principles.md
+  - references/design_process/design_principles.md
   - ../shared/register.md
   - ../shared/context_loading_contract.md
   - ../shared/assets/context_loaded_card.md
-  - references/design-process/brief_to_dials.md
+  - references/design_process/brief_to_dials.md
   - assets/interface_preflight_card.md
 ---
 
@@ -43,7 +43,7 @@ Operators run the exact prompt and command sequence for `ID-016` and confirm the
 - Objective: Confirm an interface build request emits the context manifest, sets `REGISTER: Product` with WHY and DIALS, stages the downstream-effect proof, and blocks any visual or delivery decision until those fields exist.
 - Real user request: `Design a dense operations dashboard for incident commanders. I need the visual direction, but do not skip the design context checks.`
 - Prompt: `Design a dense operations dashboard for incident commanders and show the register, dials, and loaded context before any visual choices.`
-- Expected execution process: Load `../../../shared/context_loading_contract.md`, `../../../shared/register.md`, `../../references/design-process/brief_to_dials.md`, and `../../assets/interface_preflight_card.md`; fill a Context Loaded card first; set Product register with WHY and variance, motion, and density dials; only then produce palette, layout, motion, copy, or pre-flight work.
+- Expected execution process: Load `../../../shared/context_loading_contract.md`, `../../../shared/register.md`, `../../references/design_process/brief_to_dials.md`, and `../../assets/interface_preflight_card.md`; fill a Context Loaded card first; set Product register with WHY and variance, motion, and density dials; only then produce palette, layout, motion, copy, or pre-flight work.
 - Expected signals: Step 1: context manifest names the loaded shared and interface files; Step 2: `REGISTER: Product`, WHY, DIALS, and DOWNSTREAM EFFECT appear before visual choices; Step 3: palette, layout, motion, and copy choices explicitly inherit the Product posture; Step 4: missing register proof returns BLOCKED or FIX instead of continuing.
 - Desired user-visible outcome: A context-loaded card followed by a calibrated Product design direction, with no palette, layout, motion, copy, or ready claim emitted before register and dials proof.
 - Pass/fail: PASS if the register and dials proof appears first and gates every downstream visual choice per `../../../shared/context_loading_contract.md`; FAIL if the response starts with palette, layout, motion, copy, anti-slop, audit severity, or delivery language before setting register and dials.
@@ -62,7 +62,7 @@ Operators run the exact prompt and command sequence for `ID-016` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ID-016 | Register-first context gate on a UI build | Confirm register and dials are set before palette, layout, motion, copy, or delivery choices for a realistic Product UI build | `Design a dense operations dashboard for incident commanders and show the register, dials, and loaded context before any visual choices.` | bash: rg -n "REGISTER: Brand \\| Product|Context Loaded|Register/Dials" ../../../shared/context_loading_contract.md -> bash: rg -n "first design decision|Set the register" ../../../shared/register.md -> bash: rg -n "Set the register first|Design Read" ../../references/design-process/brief_to_dials.md -> agent: produce the context-loaded card, then the first design direction paragraph | Step 1: manifest names context_loading_contract.md, register.md, brief_to_dials.md, and interface_preflight_card.md; Step 2: Product register, WHY, DIALS, and DOWNSTREAM EFFECT precede any visual decision; Step 3: missing proof blocks work instead of continuing | Terminal transcript, context-loaded card, first design-direction paragraph, and final PASS or FAIL verdict | PASS if the guard fires before visual choices and the first design direction inherits Product register and dials; FAIL if palette, layout, motion, copy, audit severity, or ready language appears before register proof | 1. Re-read ../../../shared/context_loading_contract.md Sections 1 through 5; 2. Re-read ../../../shared/register.md Sections 1 through 4; 3. Re-run with the same prompt and inspect the first non-procedural paragraph for pre-register visual choices |
+| ID-016 | Register-first context gate on a UI build | Confirm register and dials are set before palette, layout, motion, copy, or delivery choices for a realistic Product UI build | `Design a dense operations dashboard for incident commanders and show the register, dials, and loaded context before any visual choices.` | bash: rg -n "REGISTER: Brand \\| Product|Context Loaded|Register/Dials" ../../../shared/context_loading_contract.md -> bash: rg -n "first design decision|Set the register" ../../../shared/register.md -> bash: rg -n "Set the register first|Design Read" ../../references/design_process/brief_to_dials.md -> agent: produce the context-loaded card, then the first design direction paragraph | Step 1: manifest names context_loading_contract.md, register.md, brief_to_dials.md, and interface_preflight_card.md; Step 2: Product register, WHY, DIALS, and DOWNSTREAM EFFECT precede any visual decision; Step 3: missing proof blocks work instead of continuing | Terminal transcript, context-loaded card, first design-direction paragraph, and final PASS or FAIL verdict | PASS if the guard fires before visual choices and the first design direction inherits Product register and dials; FAIL if palette, layout, motion, copy, audit severity, or ready language appears before register proof | 1. Re-read ../../../shared/context_loading_contract.md Sections 1 through 5; 2. Re-read ../../../shared/register.md Sections 1 through 4; 3. Re-run with the same prompt and inspect the first non-procedural paragraph for pre-register visual choices |
 
 ### Optional Supplemental Checks
 
@@ -86,7 +86,7 @@ Repeat with a Brand surface prompt such as a film-festival landing page. The exp
 | `../../../shared/context_loading_contract.md` | Shared context manifest, register/dials proof fields, and hard gates that block design decisions before context proof exists |
 | `../../../shared/register.md` | Brand-vs-Product register and downstream dials that must be set first |
 | `../../../shared/assets/context_loaded_card.md` | Fill-in card proving the loaded files and staged proof fields before design work |
-| `../../references/design-process/brief_to_dials.md` | Design Read intake that sets variance, motion, and density after the register posture |
+| `../../references/design_process/brief_to_dials.md` | Design Read intake that sets variance, motion, and density after the register posture |
 | `../../assets/interface_preflight_card.md` | Final pre-flight card whose context table also requires register and dials |
 | `../../SKILL.md` | Resource-loading table and workflow rule requiring register plus brief-to-dials before decisions |
 

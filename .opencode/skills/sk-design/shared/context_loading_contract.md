@@ -24,7 +24,7 @@ This file is shared vocabulary, not a workflow and not a sixth mode. The mode pa
 Required first files:
 
 - `register.md`
-- `../design-interface/references/design-process/brief_to_dials.md`
+- `../design-interface/references/design_process/brief_to_dials.md`
 
 ---
 
@@ -34,7 +34,7 @@ For narrow advice, the parent hub's smallest-useful-mode rule still applies. For
 
 - `interface` for direction, surface read, and pre-flight.
 - `foundations` for palette, type, layout, responsive, token, and contrast decisions.
-- `register.md` plus `../design-interface/references/design-process/brief_to_dials.md` for register and dials.
+- `register.md` plus `../design-interface/references/design_process/brief_to_dials.md` for register and dials.
 - `../design-interface/assets/interface_preflight_card.md` before delivery.
 - Matching `foundations` axis references when color, type, layout, data, responsive, or token work is in scope.
 - `../design-audit/references/audit_contract.md`, `../design-audit/references/accessibility_performance.md`, `../design-audit/references/evidence_capture.md`, and `../design-audit/assets/audit_evidence_worksheet.md` before audit, score, accessibility, release-ready, or production-ready claims.

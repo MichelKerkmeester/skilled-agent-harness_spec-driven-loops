@@ -5,7 +5,7 @@ version: 1.5.0.2
 id: ID-005
 expected_intent: DESIGN_PRINCIPLES
 expected_resources:
-  - references/design-process/design_principles.md
+  - references/design_process/design_principles.md
   - ../shared/register.md
 ---
 
@@ -79,7 +79,7 @@ If the primary run passes, repeat with a borderline request that mentions a UI i
 | File | Role |
 |---|---|
 | `../../SKILL.md` | Section 1 When NOT to Use and the integration boundary with sk-code |
-| `../../references/design-process/design_principles.md` | Confirms the skill owns the look, not the build mechanics |
+| `../../references/design_process/design_principles.md` | Confirms the skill owns the look, not the build mechanics |
 
 ---
 

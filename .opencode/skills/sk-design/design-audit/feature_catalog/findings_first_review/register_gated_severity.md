@@ -55,5 +55,5 @@ Register posture also shapes which AI-tell findings matter most: a Product surfa
 - Feature file path: `findings-first-review/register-gated-severity.md`
 
 Related references:
-- [findings-first-report-and-scoring.md](findings-first-report-and-scoring.md) - The scoring contract this register call gates.
-- [../ai-tell-catalog/ai-fingerprint-tell-catalog.md](../ai-tell-catalog/ai-fingerprint-tell-catalog.md) - Tells that read differently depending on posture.
+- [findings-first-report-and-scoring.md](../findings_first_review/findings_first_report_and_scoring.md) - The scoring contract this register call gates.
+- [../ai-tell-catalog/ai-fingerprint-tell-catalog.md](../ai_tell_catalog/ai_fingerprint_tell_catalog.md) - Tells that read differently depending on posture.

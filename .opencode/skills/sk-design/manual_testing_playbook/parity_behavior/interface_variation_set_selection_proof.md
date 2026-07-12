@@ -26,8 +26,8 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 **Why**:
 - `mode-registry.json` keeps `design variations` among the `interface` mode's aliases, and the `interface` registry entry allows `Read`, `Glob`, `Grep` only, forbidding `Write`, `Edit`, `Bash`.
 - `design-interface/SKILL.md` section `Procedure Card Selection` maps "Multiple high-fidelity directions or alternatives" to `procedures/variation_set.md`, distinct from the "Greenfield direction without a stronger brand/system" row that maps to `procedures/aesthetic_direction.md`.
-- `design-interface/SKILL.md` ALWAYS rule 6 requires debiasing multiple directions with the seed of thought from `references/design-process/variation_diversity.md` whenever a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, never surfaced as a style chooser.
-- The machine-parseable `RESOURCE_MAP` router maps intent `VARIATION_DIVERSITY` (weight 4, keywords including "several directions", "three directions", "diverse", "seed of thought", "debias") to that same `references/design-process/variation_diversity.md` file.
+- `design-interface/SKILL.md` ALWAYS rule 6 requires debiasing multiple directions with the seed of thought from `references/design_process/variation_diversity.md` whenever a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, never surfaced as a style chooser.
+- The machine-parseable `RESOURCE_MAP` router maps intent `VARIATION_DIVERSITY` (weight 4, keywords including "several directions", "three directions", "diverse", "seed of thought", "debias") to that same `references/design_process/variation_diversity.md` file.
 
 **Expected packet loaded**:
 - `design-interface/SKILL.md`
@@ -38,8 +38,8 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 
 **Expected mode resources loaded or cited**:
 - `design-interface/procedures/variation_set.md`
-- `design-interface/references/design-process/variation_diversity.md`
-- `design-interface/references/design-process/brief_to_dials.md`
+- `design-interface/references/design_process/variation_diversity.md`
+- `design-interface/references/design_process/brief_to_dials.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80` for this positive multi-direction design prompt.
 
@@ -51,7 +51,7 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 
 1. `mode-registry.json` contains `workflowMode: interface` with `design variations` in its `aliases` list and a read-only `toolSurface`.
 2. `design-interface/procedures/variation_set.md` and `design-interface/procedures/aesthetic_direction.md` both exist and are distinct cards in the `Procedure Card Selection` table.
-3. `design-interface/references/design-process/variation_diversity.md` exists and is reachable from `RESOURCE_MAP["VARIATION_DIVERSITY"]`.
+3. `design-interface/references/design_process/variation_diversity.md` exists and is reachable from `RESOURCE_MAP["VARIATION_DIVERSITY"]`.
 
 ### Exact Command Sequence
 
@@ -78,7 +78,7 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
 - `.opencode/skills/sk-design/design-interface/procedures/variation_set.md`
 - `.opencode/skills/sk-design/design-interface/procedures/aesthetic_direction.md`
-- `.opencode/skills/sk-design/design-interface/references/design-process/variation_diversity.md`
+- `.opencode/skills/sk-design/design-interface/references/design_process/variation_diversity.md`
 
 ## 5. SOURCE METADATA
 

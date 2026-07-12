@@ -37,7 +37,7 @@ Make this fintech dashboard feel premium and less generic. Before giving directi
 
 **Expected mode resources loaded or cited**:
 - `design-interface/procedures/aesthetic_direction.md`
-- `design-interface/references/design-process/brief_to_dials.md`
+- `design-interface/references/design_process/brief_to_dials.md`
 - `design-interface/assets/interface_preflight_card.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80` for this positive design-direction prompt.
@@ -80,4 +80,4 @@ Make this fintech dashboard feel premium and less generic. Before giving directi
 - **Critical path**: Yes
 - **Destructive**: No
 - **Concurrent-safe**: Yes
-- **Last validated**: Router replay passed in `benchmark/after-009/report.json`; live/manual operator execution is required before READY.
+- **Last validated**: Router replay passed in `benchmark/after_009/report.json`; live/manual operator execution is required before READY.

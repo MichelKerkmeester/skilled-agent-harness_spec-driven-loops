@@ -77,7 +77,7 @@ If a brief explicitly pins the direction, the brief wins (NEVER override a pinne
 
 ## 5. RELATED RESOURCES
 
-- [design_principles.md](../design-process/design_principles.md) sets the aesthetic direction this inventory grounds in or helps you deviate from, and stays the authority.
-- [ux_quality_reference.md](../design-process/ux_quality_reference.md) holds the quality floor every reuse and every deviation must still clear.
-- [real_ui_loop.md](../design-process/real_ui_loop.md) is the loop where reuse-before-generate from a real system happens, and it owns the no-chooser guardrail.
+- [design_principles.md](../design_process/design_principles.md) sets the aesthetic direction this inventory grounds in or helps you deviate from, and stays the authority.
+- [ux_quality_reference.md](../design_process/ux_quality_reference.md) holds the quality floor every reuse and every deviation must still clear.
+- [real_ui_loop.md](../design_process/real_ui_loop.md) is the loop where reuse-before-generate from a real system happens, and it owns the no-chooser guardrail.
 - [design_references_mcp.md](./design_references_mcp.md) is the sibling critique-against path for real-world shipped UI (Mobbin and Refero via Code Mode). When the default to name and deviate from is a real-world category convention rather than a design system, resolve it there, under the same one-reference, no-chooser, read-live discipline.

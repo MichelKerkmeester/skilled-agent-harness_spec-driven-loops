@@ -57,5 +57,5 @@ The feedback, hover, and focus cards check for a visible active/hover/focus-visi
 - Feature file path: `build-cards/motion-fill-in-cards.md`
 
 Related references:
-- [../restraint-gate-and-choreography/choreography-and-reduced-motion.md](../restraint-gate-and-choreography/choreography-and-reduced-motion.md) - Timing, easing, and reduced-motion rules cards cite.
-- [../procedure-cards/motion-procedure-card-inventory.md](../procedure-cards/motion-procedure-card-inventory.md) - Private card for interaction-state evidence gathering before card selection.
+- [../restraint-gate-and-choreography/choreography-and-reduced-motion.md](../restraint_gate_and_choreography/choreography_and_reduced_motion.md) - Timing, easing, and reduced-motion rules cards cite.
+- [../procedure-cards/motion-procedure-card-inventory.md](../procedure_cards/motion_procedure_card_inventory.md) - Private card for interaction-state evidence gathering before card selection.

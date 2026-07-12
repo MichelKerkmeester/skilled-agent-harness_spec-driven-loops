@@ -84,4 +84,4 @@ The classification drives the write-phase gating:
 Related references:
 - [references/color_role_taxonomy.md](../../references/color_role_taxonomy.md) — color role naming conventions and hierarchy
 - [extract.md](../extract/extract.md) — the extraction phase that produces tokens consumed by the cluster
-- [write-design-md.md](../write-design-md/write-design-md.md) — the write phase that applies stability gating
+- [write-design-md.md](../write_design_md/write_design_md.md) — the write phase that applies stability gating

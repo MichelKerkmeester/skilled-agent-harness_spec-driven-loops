@@ -68,7 +68,7 @@ Repeat step 1 for `claude` to confirm the Claude Code path delegates to `claude 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/wiring/od-mcp-install.md` | Feature-catalog source describing the install contract |
+| `../../feature_catalog/wiring/od_mcp_install.md` | Feature-catalog source describing the install contract |
 
 ### Implementation And Test Anchors
 

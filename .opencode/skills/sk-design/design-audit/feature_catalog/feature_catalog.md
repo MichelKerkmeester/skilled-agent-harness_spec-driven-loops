@@ -36,7 +36,7 @@ Findings use a fixed schema (Observation, Evidence, Category, Accessibility cove
 
 #### Source Files
 
-See [`findings-first-review/findings-first-report-and-scoring.md`](findings-first-review/findings-first-report-and-scoring.md) for the severity model, scoring bands, and findings schema.
+See [`findings-first-review/findings-first-report-and-scoring.md`](findings_first_review/findings_first_report_and_scoring.md) for the severity model, scoring bands, and findings schema.
 
 ---
 
@@ -52,7 +52,7 @@ On a Brand surface, generic-but-functional results score against Anti-Patterns a
 
 #### Source Files
 
-See [`findings-first-review/register-gated-severity.md`](findings-first-review/register-gated-severity.md) for the register-to-severity mapping and worked examples.
+See [`findings-first-review/register-gated-severity.md`](findings_first_review/register_gated_severity.md) for the register-to-severity mapping and worked examples.
 
 ---
 
@@ -70,7 +70,7 @@ Each tell names a concrete check (for example a border-plus-shadow combination, 
 
 #### Source Files
 
-See [`ai-tell-catalog/ai-fingerprint-tell-catalog.md`](ai-tell-catalog/ai-fingerprint-tell-catalog.md) for the full tell catalog, checks, and owner routing.
+See [`ai-tell-catalog/ai-fingerprint-tell-catalog.md`](ai_tell_catalog/ai_fingerprint_tell_catalog.md) for the full tell catalog, checks, and owner routing.
 
 ---
 
@@ -88,4 +88,4 @@ The mode chooses at most one primary card when a trigger matches, cites it in th
 
 #### Source Files
 
-See [`procedure-cards/audit-procedure-card-inventory.md`](procedure-cards/audit-procedure-card-inventory.md) for the card list and boundaries.
+See [`procedure-cards/audit-procedure-card-inventory.md`](procedure_cards/audit_procedure_card_inventory.md) for the card list and boundaries.

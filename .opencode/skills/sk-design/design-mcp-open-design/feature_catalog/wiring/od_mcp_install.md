@@ -56,7 +56,7 @@ The installed entry is a local MCP server whose command launches the bundled Ele
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/wiring/install-and-verify.md` | Manual playbook | Wire opencode then verify the live tools/list |
+| `manual_testing_playbook/wiring/install_and_verify.md` | Manual playbook | Wire opencode then verify the live tools/list |
 
 ---
 
@@ -67,5 +67,5 @@ The installed entry is a local MCP server whose command launches the bundled Ele
 - Feature file path: `wiring/od-mcp-install.md`
 
 Related references:
-- [read-only-content.md](../reading/read-only-content.md) covers the read-only tools that appear after wiring
-- [daemon-and-verification.md](../transport/daemon-and-verification.md) covers confirming the live tool set after install
+- [read-only-content.md](../reading/read_only_content.md) covers the read-only tools that appear after wiring
+- [daemon-and-verification.md](../transport/daemon_and_verification.md) covers confirming the live tool set after install

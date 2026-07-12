@@ -53,5 +53,5 @@ Selection happens after the public hub picks a mode. The selected mode checks it
 - Feature file path: `procedure-card-system/procedure-card-schema-and-selection.md`
 
 Related references:
-- [procedure-card-inventory.md](procedure-card-inventory.md) - Current inventory of mode-local and shared cards.
-- [../manager-shell/context-first-intake-and-visible-plan.md](../manager-shell/context-first-intake-and-visible-plan.md) - Public hub route precedes card selection.
+- [procedure-card-inventory.md](../procedure_card_system/procedure_card_inventory.md) - Current inventory of mode-local and shared cards.
+- [../manager-shell/context-first-intake-and-visible-plan.md](../manager_shell/context_first_intake_and_visible_plan.md) - Public hub route precedes card selection.

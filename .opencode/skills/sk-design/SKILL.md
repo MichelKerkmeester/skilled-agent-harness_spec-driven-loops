@@ -165,7 +165,7 @@ For quick, narrow advice, the plan can be one sentence. For UI build or redesign
 
 ### Bundle Rule for Build/UI Work
 
-For UI build work, page or component generation, and redesign implementation, auto-load the build bundle before design or implementation decisions: `interface`, `foundations`, `design-interface/assets/interface_preflight_card.md`, `shared/register.md`, `design-interface/references/design-process/brief_to_dials.md`, and the matching foundations axis references. Require a context manifest per `shared/context_loading_contract.md`, with `shared/assets/context_loaded_card.md` before recommendations and `shared/assets/proof_of_application_card.md` before any ready claim. Keep the smallest-useful-mode rule for narrow advice that does not produce, evaluate, or hand off a UI surface.
+For UI build work, page or component generation, and redesign implementation, auto-load the build bundle before design or implementation decisions: `interface`, `foundations`, `design-interface/assets/interface_preflight_card.md`, `shared/register.md`, `design-interface/references/design_process/brief_to_dials.md`, and the matching foundations axis references. Require a context manifest per `shared/context_loading_contract.md`, with `shared/assets/context_loaded_card.md` before recommendations and `shared/assets/proof_of_application_card.md` before any ready claim. Keep the smallest-useful-mode rule for narrow advice that does not produce, evaluate, or hand off a UI surface.
 
 This bundle is declared machine-readably as the `ui-build-bundle` entry in `hub-router.json` `routerPolicy.bundleRules` (`whenAll: interface + foundations → orderedBundle`); the prose above remains the behavioral elaboration (resource specifics and manifest requirements).
 

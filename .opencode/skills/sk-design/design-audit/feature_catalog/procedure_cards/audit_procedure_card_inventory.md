@@ -54,5 +54,5 @@ Each card names related cards for handoff: the accessibility card cites `design-
 - Feature file path: `procedure-cards/audit-procedure-card-inventory.md`
 
 Related references:
-- [../ai-tell-catalog/ai-fingerprint-tell-catalog.md](../ai-tell-catalog/ai-fingerprint-tell-catalog.md) - Tell catalog the AI-slop-check card applies.
-- [../findings-first-review/findings-first-report-and-scoring.md](../findings-first-review/findings-first-report-and-scoring.md) - Findings schema both cards' output feeds into.
+- [../ai-tell-catalog/ai-fingerprint-tell-catalog.md](../ai_tell_catalog/ai_fingerprint_tell_catalog.md) - Tell catalog the AI-slop-check card applies.
+- [../findings-first-review/findings-first-report-and-scoring.md](../findings_first_review/findings_first_report_and_scoring.md) - Findings schema both cards' output feeds into.

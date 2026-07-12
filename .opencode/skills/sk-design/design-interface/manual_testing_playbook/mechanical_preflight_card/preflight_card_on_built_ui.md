@@ -6,11 +6,11 @@ version: 1.0.0.0
 id: ID-011
 expected_intent: MECHANICAL_PREFLIGHT
 expected_resources:
-  - references/design-process/design_principles.md
+  - references/design_process/design_principles.md
   - ../shared/register.md
-  - references/design-process/mechanical_defaults.md
-  - references/design-process/copy_and_mock_data.md
-  - references/design-process/brief_to_dials.md
+  - references/design_process/mechanical_defaults.md
+  - references/design_process/copy_and_mock_data.md
+  - references/design_process/brief_to_dials.md
   - assets/interface_preflight_card.md
 ---
 
@@ -85,8 +85,8 @@ If the primary run passes, repeat with a surface set to a loud register (Brand) 
 |---|---|
 | `../../assets/interface_preflight_card.md` | The binary fill-in pre-flight card: context table, the layout, content, motion, and AI-tell boxes, and the SHIP or FIX verdict |
 | `../../SKILL.md` | Section 2 loads the card as the final mechanical pass before shipping, and Section 5 lists it as a core reference |
-| `../../references/design-process/mechanical_defaults.md` | The layout boxes on the card derive from this gate |
-| `../../references/design-process/copy_and_mock_data.md` | The content boxes on the card derive from this gate |
+| `../../references/design_process/mechanical_defaults.md` | The layout boxes on the card derive from this gate |
+| `../../references/design_process/copy_and_mock_data.md` | The content boxes on the card derive from this gate |
 
 ---
 

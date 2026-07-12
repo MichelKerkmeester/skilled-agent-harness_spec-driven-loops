@@ -60,5 +60,5 @@ High-chroma OKLCH values that leave sRGB are clamped to the maximum chroma for t
 - Feature file path: `token-system/oklch-color-and-token-system.md`
 
 Related references:
-- [typography-and-spacing-scale.md](typography-and-spacing-scale.md) - Type and spacing scale built alongside the color system.
-- [../adaptation-and-data/context-adaptation-matrix.md](../adaptation-and-data/context-adaptation-matrix.md) - Adaptation dimensions the token system must survive.
+- [typography-and-spacing-scale.md](../token_system/typography_and_spacing_scale.md) - Type and spacing scale built alongside the color system.
+- [../adaptation-and-data/context-adaptation-matrix.md](../adaptation_and_data/context_adaptation_matrix.md) - Adaptation dimensions the token system must survive.

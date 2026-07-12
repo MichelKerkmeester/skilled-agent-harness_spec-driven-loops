@@ -5,7 +5,7 @@ version: 1.5.0.2
 id: ID-006
 expected_intent: DESIGN_PRINCIPLES
 expected_resources:
-  - references/design-process/design_principles.md
+  - references/design_process/design_principles.md
   - ../shared/register.md
 ---
 
@@ -79,7 +79,7 @@ If the primary run passes, repeat with a request that asks to "make the docs loo
 | File | Role |
 |---|---|
 | `../../SKILL.md` | Section 1 When NOT to Use routing documentation work to sk-doc |
-| `../../references/design-process/design_principles.md` | Confirms the skill scope is interface look, not prose authoring |
+| `../../references/design_process/design_principles.md` | Confirms the skill scope is interface look, not prose authoring |
 
 ---
 

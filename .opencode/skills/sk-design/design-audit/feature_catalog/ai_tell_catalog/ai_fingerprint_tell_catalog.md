@@ -57,5 +57,5 @@ A single isolated tell with a clean rest-of-surface is P3 polish; a tell that de
 - Feature file path: `ai-tell-catalog/ai-fingerprint-tell-catalog.md`
 
 Related references:
-- [../findings-first-review/findings-first-report-and-scoring.md](../findings-first-review/findings-first-report-and-scoring.md) - Findings schema and severity model tells are filed against.
-- [../procedure-cards/audit-procedure-card-inventory.md](../procedure-cards/audit-procedure-card-inventory.md) - AI-slop-check card that applies this catalog during review.
+- [../findings-first-review/findings-first-report-and-scoring.md](../findings_first_review/findings_first_report_and_scoring.md) - Findings schema and severity model tells are filed against.
+- [../procedure-cards/audit-procedure-card-inventory.md](../procedure_cards/audit_procedure_card_inventory.md) - AI-slop-check card that applies this catalog during review.

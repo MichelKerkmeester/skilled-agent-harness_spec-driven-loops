@@ -59,5 +59,5 @@ The output always runs: findings by severity, the Audit Health Score table, the 
 - Feature file path: `findings-first-review/findings-first-report-and-scoring.md`
 
 Related references:
-- [register-gated-severity.md](register-gated-severity.md) - Register call resolved before dimensions are scored.
-- [../ai-tell-catalog/ai-fingerprint-tell-catalog.md](../ai-tell-catalog/ai-fingerprint-tell-catalog.md) - Tell catalog that feeds Anti-Patterns findings.
+- [register-gated-severity.md](../findings_first_review/register_gated_severity.md) - Register call resolved before dimensions are scored.
+- [../ai-tell-catalog/ai-fingerprint-tell-catalog.md](../ai_tell_catalog/ai_fingerprint_tell_catalog.md) - Tell catalog that feeds Anti-Patterns findings.

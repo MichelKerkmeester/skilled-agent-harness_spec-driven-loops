@@ -55,5 +55,5 @@ Each card names a conflict rule that routes elsewhere when the request does not 
 - Feature file path: `procedure-cards/foundations-procedure-card-inventory.md`
 
 Related references:
-- [../token-system/oklch-color-and-token-system.md](../token-system/oklch-color-and-token-system.md) - Token decisions the component-inventory card traces to.
-- [../adaptation-and-data/context-adaptation-matrix.md](../adaptation-and-data/context-adaptation-matrix.md) - Adaptation work the hierarchy/rhythm card can review.
+- [../token-system/oklch-color-and-token-system.md](../token_system/oklch_color_and_token_system.md) - Token decisions the component-inventory card traces to.
+- [../adaptation-and-data/context-adaptation-matrix.md](../adaptation_and_data/context_adaptation_matrix.md) - Adaptation work the hierarchy/rhythm card can review.
