@@ -108,7 +108,7 @@ node .opencode/plugins/tests/mk-goal-capabilities.test.cjs
 
 ## 4. SOURCE FILES
 
-- Feature [`hooks-and-plugin/goal-opencode-plugin.md`](../../feature_catalog/hooks-and-plugin/goal-opencode-plugin.md)
+- Feature [`hooks-and-plugin/goal-opencode-plugin.md`](../../feature_catalog/hooks_and_plugin/goal_opencode_plugin.md)
 - Source: `.opencode/plugins/mk-goal.js`
 - Source: `.opencode/commands/goal_opencode.md`
 - Tests: `.opencode/plugins/tests/mk-goal-*.test.cjs`

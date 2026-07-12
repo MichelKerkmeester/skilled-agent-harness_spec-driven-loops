@@ -61,9 +61,9 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 
 ## 4. SOURCE FILES
 
-- Scenario [PC-005](./bench-runner.md), bench runner.
-- Scenario [NC-003](../native-mcp-tools/native-validate-slices.md), native validate.
-- Feature [`python-compat/regression-suite.md`](../../feature_catalog/python-compat/regression-suite.md).
+- Scenario [PC-005](../python_compat/bench_runner.md), bench runner.
+- Scenario [NC-003](../native_mcp_tools/native_validate_slices.md), native validate.
+- Feature [`python-compat/regression-suite.md`](../../feature_catalog/python_compat/regression_suite.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py` and `scripts/fixtures/skill_advisor_regression_cases.jsonl`.
 
 ---

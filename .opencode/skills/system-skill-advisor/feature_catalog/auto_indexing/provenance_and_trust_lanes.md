@@ -54,7 +54,7 @@ Skill-graph edge propagation also records write provenance. The guarded apply pa
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | lane assignment and fingerprint stability |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts` | Automated test | `source_kind`, manual protection, trusted update and legacy tolerance |
-| `Playbook scenario [AI-003](../../manual_testing_playbook/auto-indexing/provenance-and-trust-lanes.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AI-003](../../manual_testing_playbook/auto_indexing/provenance_and_trust_lanes.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -64,6 +64,6 @@ Skill-graph edge propagation also records write provenance. The guarded apply pa
 
 Related references:
 
-- [01-derived-extraction.md](./derived-extraction.md).
-- [`scorer-fusion/five-lane-fusion.md`](../scorer-fusion/five-lane-fusion.md).
-- [`scorer-fusion/attribution.md`](../scorer-fusion/attribution.md).
+- [01-derived-extraction.md](../auto_indexing/derived_extraction.md).
+- [`scorer-fusion/five-lane-fusion.md`](../scorer_fusion/five_lane_fusion.md).
+- [`scorer-fusion/attribution.md`](../scorer_fusion/attribution.md).

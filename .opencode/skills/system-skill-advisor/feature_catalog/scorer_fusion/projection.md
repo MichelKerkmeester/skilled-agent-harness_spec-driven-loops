@@ -50,7 +50,7 @@ Expose the scorer projection data the advisor needs, including the generated dee
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | graph-causal lane behavior |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts` | Automated test | Registry hash freshness and projection drift guard |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | workflowMode publication on generated deep-loop aliases |
-| `Playbook scenario [SC-002](../../manual_testing_playbook/scorer-fusion/projection.md).` | Manual playbook | Source reference |
+| `Playbook scenario [SC-002](../../manual_testing_playbook/scorer_fusion/projection.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -60,6 +60,6 @@ Expose the scorer projection data the advisor needs, including the generated dee
 
 Related references:
 
-- [01-five-lane-fusion.md](./five-lane-fusion.md).
+- [01-five-lane-fusion.md](../scorer_fusion/five_lane_fusion.md).
 - [04-attribution.md](./attribution.md).
-- [`mcp-surface/advisor-validate.md`](../mcp-surface/advisor-validate.md).
+- [`mcp-surface/advisor-validate.md`](../mcp_surface/advisor_validate.md).

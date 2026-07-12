@@ -44,7 +44,7 @@ Unsanitized labels never leak to readers.
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts` | Automated test | boundary sanitization |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | envelope sanitization |
-| `Playbook scenario [AI-002](../../manual_testing_playbook/auto-indexing/sanitizer-boundaries.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AI-002](../../manual_testing_playbook/auto_indexing/sanitizer_boundaries.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -54,6 +54,6 @@ Unsanitized labels never leak to readers.
 
 Related references:
 
-- [01-derived-extraction.md](./derived-extraction.md).
-- [05-anti-stuffing.md](./anti-stuffing.md).
-- [`mcp-surface/advisor-recommend.md`](../mcp-surface/advisor-recommend.md).
+- [01-derived-extraction.md](../auto_indexing/derived_extraction.md).
+- [05-anti-stuffing.md](../auto_indexing/anti_stuffing.md).
+- [`mcp-surface/advisor-recommend.md`](../mcp_surface/advisor_recommend.md).

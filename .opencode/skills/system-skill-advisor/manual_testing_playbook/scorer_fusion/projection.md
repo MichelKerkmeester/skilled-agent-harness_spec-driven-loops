@@ -79,9 +79,9 @@ advisor_recommend({"prompt":"run a deep review loop","options":{"includeAttribut
 
 ## 4. SOURCE FILES
 
-- Scenario [SC-001](./five-lane-fusion.md), fusion weights.
-- Scenario [NC-003](../native-mcp-tools/native-validate-slices.md), validate slices.
-- Feature [`scorer-fusion/projection.md`](../../feature_catalog/scorer-fusion/projection.md).
+- Scenario [SC-001](../scorer_fusion/five_lane_fusion.md), fusion weights.
+- Scenario [NC-003](../native_mcp_tools/native_validate_slices.md), validate slices.
+- Feature [`scorer-fusion/projection.md`](../../feature_catalog/scorer_fusion/projection.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts`.
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts`.
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts`.

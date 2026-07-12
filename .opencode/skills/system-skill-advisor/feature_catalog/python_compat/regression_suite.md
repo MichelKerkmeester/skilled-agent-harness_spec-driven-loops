@@ -35,7 +35,7 @@ Guarantee the Python compatibility surface does not regress on hand-curated P0 c
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/` | Automated test | Python/TS parity harness consuming the same corpus |
-| `Playbook scenario [PC-004](../../manual_testing_playbook/python-compat/regression-suite.md).` | Manual playbook | Source reference |
+| `Playbook scenario [PC-004](../../manual_testing_playbook/python_compat/regression_suite.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -45,6 +45,6 @@ Guarantee the Python compatibility surface does not regress on hand-curated P0 c
 
 Related references:
 
-- [01-cli-shim.md](./cli-shim.md).
-- [03-bench-runner.md](./bench-runner.md).
-- [`mcp-surface/advisor-validate.md`](../mcp-surface/advisor-validate.md).
+- [01-cli-shim.md](../python_compat/cli_shim.md).
+- [03-bench-runner.md](../python_compat/bench_runner.md).
+- [`mcp-surface/advisor-validate.md`](../mcp_surface/advisor_validate.md).

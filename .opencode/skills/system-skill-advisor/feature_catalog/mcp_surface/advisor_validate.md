@@ -77,7 +77,7 @@ Default-off feedback calibration is available only when `SPECKIT_ADVISOR_FEEDBAC
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-validate.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-feedback-calibration.vitest.ts` | Automated test | reducer guardrails and byte-identical live scoring |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/` | Automated test | Python/TS parity harness |
-| `Playbook scenario [NC-003](../../manual_testing_playbook/native-mcp-tools/native-validate-slices.md).` | Manual playbook | Source reference |
+| `Playbook scenario [NC-003](../../manual_testing_playbook/native_mcp_tools/native_validate_slices.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -87,5 +87,5 @@ Default-off feedback calibration is available only when `SPECKIT_ADVISOR_FEEDBAC
 
 Related references:
 
-- [01-advisor-recommend.md](./advisor-recommend.md).
-- [`scorer-fusion/ablation.md`](../scorer-fusion/ablation.md).
+- [01-advisor-recommend.md](../mcp_surface/advisor_recommend.md).
+- [`scorer-fusion/ablation.md`](../scorer_fusion/ablation.md).

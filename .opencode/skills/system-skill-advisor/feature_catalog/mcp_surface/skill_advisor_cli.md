@@ -61,6 +61,6 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `mcp-surface/skill-advisor-cli.md`
 Related references:
-- [compat-entrypoint.md](compat-entrypoint.md) — Stable compat entrypoint
+- [compat-entrypoint.md](../mcp_surface/compat_entrypoint.md) — Stable compat entrypoint
 - `../python-compat/cli-shim.md` — Python facade (`skill_advisor.py`), untouched by 028
 - Playbook counterparts: scenario CL-006 in `../../manual_testing_playbook/manual_testing_playbook.md` plus spec-kit playbook scenarios 427, 431, 432, and 438

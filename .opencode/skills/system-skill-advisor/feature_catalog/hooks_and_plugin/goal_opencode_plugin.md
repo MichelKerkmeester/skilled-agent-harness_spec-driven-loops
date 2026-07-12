@@ -66,7 +66,7 @@ Live verification: the plugin is registered and driven end-to-end in a real Open
 | `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | Automated test | Supervisor verdict mapping, injected precedence, default verifier safety matrix, LLM verifier mode and provenance |
 | `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | Automated test | Default-off autonomy gates, smoke mode, active promptAsync dispatch and caps |
 | `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Automated test | Usage accounting, lifecycle suppression and budget limits |
-| `manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | Manual playbook | Operator scenario for `/goal` command and plugin behavior |
+| `manual_testing_playbook/cli_hooks_and_plugin/goal_opencode_plugin.md` | Manual playbook | Operator scenario for `/goal` command and plugin behavior |
 
 ## 4. SOURCE METADATA
 
@@ -75,5 +75,5 @@ Live verification: the plugin is registered and driven end-to-end in a real Open
 - Feature file path: `hooks-and-plugin/goal-opencode-plugin.md`
 
 Related references:
-- [opencode-plugin-bridge.md](opencode-plugin-bridge.md)
-- [`mcp-surface/skill-advisor-cli.md`](../mcp-surface/skill-advisor-cli.md)
+- [opencode-plugin-bridge.md](../hooks_and_plugin/opencode_plugin_bridge.md)
+- [`mcp-surface/skill-advisor-cli.md`](../mcp_surface/skill_advisor_cli.md)

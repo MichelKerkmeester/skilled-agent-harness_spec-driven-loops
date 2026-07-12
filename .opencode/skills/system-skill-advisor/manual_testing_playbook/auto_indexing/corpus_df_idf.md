@@ -145,7 +145,7 @@ touch .opencode/skills/sk-doc/SKILL.md
 touch .opencode/skills/system-spec-kit/SKILL.md
 ```
 
-Reason: the session-level allowed write path is only `.opencode/skills/system-skill-advisor/manual_testing_playbook/auto-indexing/corpus-df-idf.md`; the scenario commands would modify `.opencode/skills/sk-git/SKILL.md`, `.opencode/skills/sk-doc/SKILL.md`, and `.opencode/skills/system-spec-kit/SKILL.md` mtimes outside the allowed write path. The archived-skill touch step would also require modifying a file under `.opencode/skills/z_archive/`, which is outside the allowed write path.
+Reason: the session-level allowed write path is only `.opencode/skills/system-skill-advisor/manual_testing_playbook/auto_indexing/corpus_df_idf.md`; the scenario commands would modify `.opencode/skills/sk-git/SKILL.md`, `.opencode/skills/sk-doc/SKILL.md`, and `.opencode/skills/system-spec-kit/SKILL.md` mtimes outside the allowed write path. The archived-skill touch step would also require modifying a file under `.opencode/skills/z_archive/`, which is outside the allowed write path.
 
 ### Pass/Fail
 
@@ -155,9 +155,9 @@ BLOCKED - The scenario cannot be executed under the provided write restrictions 
 
 ## 4. SOURCE FILES
 
-- Scenario [LC-003](../lifecycle-routing/archive-handling.md), archive indexing but not routing.
-- Scenario [SC-002](../scorer-fusion/projection.md), projection input for scorer.
-- Feature [`auto-indexing/df-idf-corpus.md`](../../feature_catalog/auto-indexing/df-idf-corpus.md).
+- Scenario [LC-003](../lifecycle_routing/archive_handling.md), archive indexing but not routing.
+- Scenario [SC-002](../scorer_fusion/projection.md), projection input for scorer.
+- Feature [`auto-indexing/df-idf-corpus.md`](../../feature_catalog/auto_indexing/df_idf_corpus.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/corpus/df-idf.ts`.
 
 ---

@@ -43,7 +43,7 @@ When callers pass `includeSemanticHealth` or `debug`, the status envelope also i
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts` | Automated test | compact status, semantic health fields and degraded-vector reason coverage |
-| `Playbook scenario [NC-002](../../manual_testing_playbook/native-mcp-tools/native-status-transitions.md).` | Manual playbook | Source reference |
+| `Playbook scenario [NC-002](../../manual_testing_playbook/native_mcp_tools/native_status_transitions.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -53,7 +53,7 @@ When callers pass `includeSemanticHealth` or `debug`, the status envelope also i
 
 Related references:
 
-- [01-advisor-recommend.md](./advisor-recommend.md).
-- [05-advisor-rebuild.md](./advisor-rebuild.md).
-- [`daemon-and-freshness/trust-state.md`](../daemon-and-freshness/trust-state.md).
-- [`scorer-fusion/weights-config.md`](../scorer-fusion/weights-config.md).
+- [01-advisor-recommend.md](../mcp_surface/advisor_recommend.md).
+- [05-advisor-rebuild.md](../mcp_surface/advisor_rebuild.md).
+- [`daemon-and-freshness/trust-state.md`](../daemon_and_freshness/trust_state.md).
+- [`scorer-fusion/weights-config.md`](../scorer_fusion/weights_config.md).

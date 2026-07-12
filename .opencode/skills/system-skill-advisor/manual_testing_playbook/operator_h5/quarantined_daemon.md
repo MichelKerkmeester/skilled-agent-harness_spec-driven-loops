@@ -106,7 +106,7 @@ Do NOT modify, create, or delete any file OTHER than the single scenario file na
 - The scenario's own execution step 1 requires creating a temporary workspace, and steps 2 and 6 require modifying a copied `SKILL.md`; those writes are outside the only allowed write path:
 
 ```text
-.opencode/skills/system-skill-advisor/manual_testing_playbook/operator-h5/quarantined-daemon.md (this file only)
+.opencode/skills/system-skill-advisor/manual_testing_playbook/operator_h5/quarantined_daemon.md (this file only)
 ```
 
 ## 7. PASS/FAIL

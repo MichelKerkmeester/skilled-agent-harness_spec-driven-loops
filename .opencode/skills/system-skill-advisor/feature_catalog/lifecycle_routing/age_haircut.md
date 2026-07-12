@@ -35,7 +35,7 @@ Keep routing sensitive to currency without discounting author-declared signals. 
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | derived-lane decay application |
-| `Playbook scenario [LC-001](../../manual_testing_playbook/lifecycle-routing/age-haircut.md).` | Manual playbook | Source reference |
+| `Playbook scenario [LC-001](../../manual_testing_playbook/lifecycle_routing/age_haircut.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -45,6 +45,6 @@ Keep routing sensitive to currency without discounting author-declared signals. 
 
 Related references:
 
-- [`scorer-fusion/five-lane-fusion.md`](../scorer-fusion/five-lane-fusion.md).
-- [`scorer-fusion/attribution.md`](../scorer-fusion/attribution.md).
+- [`scorer-fusion/five-lane-fusion.md`](../scorer_fusion/five_lane_fusion.md).
+- [`scorer-fusion/attribution.md`](../scorer_fusion/attribution.md).
 - [02-supersession.md](./supersession.md).

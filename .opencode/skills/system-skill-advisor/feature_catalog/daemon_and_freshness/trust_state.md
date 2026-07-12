@@ -44,7 +44,7 @@ All consumers fail open: a `stale`, `absent` or `unavailable` state never crashe
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-freshness.vitest.ts` | Automated test | state transitions |
-| `Playbook scenarios [NC-002](../../manual_testing_playbook/native-mcp-tools/native-status-transitions.md) and [OP-001..OP-003](../../manual_testing_playbook/operator-h5/).` | Manual playbook | Source reference |
+| `Playbook scenarios [NC-002](../../manual_testing_playbook/native_mcp_tools/native_status_transitions.md) and [OP-001..OP-003](../../manual_testing_playbook/operator_h5/).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -55,5 +55,5 @@ All consumers fail open: a `stale`, `absent` or `unavailable` state never crashe
 Related references:
 
 - [04-generation.md](./generation.md).
-- [06-rebuild-from-source.md](./rebuild-from-source.md).
-- [07-cache-invalidation.md](./cache-invalidation.md).
+- [06-rebuild-from-source.md](../daemon_and_freshness/rebuild_from_source.md).
+- [07-cache-invalidation.md](../daemon_and_freshness/cache_invalidation.md).

@@ -116,9 +116,9 @@ BLOCKED - `/tmp/path-to-copy` does not exist, and `advisor_status({"workspaceRoo
 
 ## 4. SOURCE FILES
 
-- Scenario [AU-002](./lease-single-writer.md), single-writer lease reclaim.
-- Scenario [OP-001](../operator-h5/degraded-daemon.md), degraded state detection.
-- Feature [`daemon-and-freshness/lifecycle.md`](../../feature_catalog/daemon-and-freshness/lifecycle.md).
+- Scenario [AU-002](../auto_update_daemon/lease_single_writer.md), single-writer lease reclaim.
+- Scenario [OP-001](../operator_h5/degraded_daemon.md), degraded state detection.
+- Feature [`daemon-and-freshness/lifecycle.md`](../../feature_catalog/daemon_and_freshness/lifecycle.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lifecycle.ts`.
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/ipc/launcher-idle-timeout.ts`.
 

@@ -41,7 +41,7 @@ The same opt-in response also includes `why_recommended`, a prompt-safe explanat
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | attribution shape and prompt-safe `why_recommended` gating |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts` | Automated test | no prompt leakage |
-| `Playbook scenario [SC-004](../../manual_testing_playbook/scorer-fusion/lane-attribution.md).` | Manual playbook | Source reference |
+| `Playbook scenario [SC-004](../../manual_testing_playbook/scorer_fusion/lane_attribution.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -51,6 +51,6 @@ The same opt-in response also includes `why_recommended`, a prompt-safe explanat
 
 Related references:
 
-- [01-five-lane-fusion.md](./five-lane-fusion.md).
+- [01-five-lane-fusion.md](../scorer_fusion/five_lane_fusion.md).
 - [05-ablation.md](./ablation.md).
-- [`mcp-surface/advisor-recommend.md`](../mcp-surface/advisor-recommend.md).
+- [`mcp-surface/advisor-recommend.md`](../mcp_surface/advisor_recommend.md).

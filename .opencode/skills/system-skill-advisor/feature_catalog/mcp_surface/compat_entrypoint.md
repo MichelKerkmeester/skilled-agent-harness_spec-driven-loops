@@ -48,7 +48,7 @@ The OpenCode plugin bridge imports the compiled equivalent at `dist/mcp_server/c
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge.vitest.ts` | Automated test | Validation reference |
-| `Playbook scenarios [CL-005](../../manual_testing_playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md) and [CP-001..CP-004](../../manual_testing_playbook/compat-and-disable/).` | Manual playbook | Source reference |
+| `Playbook scenarios [CL-005](../../manual_testing_playbook/cli_hooks_and_plugin/opencode_plugin_bridge.md) and [CP-001..CP-004](../../manual_testing_playbook/compat_and_disable/).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -58,6 +58,6 @@ The OpenCode plugin bridge imports the compiled equivalent at `dist/mcp_server/c
 
 Related references:
 
-- [01-advisor-recommend.md](./advisor-recommend.md).
-- [`hooks-and-plugin/opencode-plugin-bridge.md`](../hooks-and-plugin/opencode-plugin-bridge.md).
-- [`python-compat/cli-shim.md`](../python-compat/cli-shim.md).
+- [01-advisor-recommend.md](../mcp_surface/advisor_recommend.md).
+- [`hooks-and-plugin/opencode-plugin-bridge.md`](../hooks_and_plugin/opencode_plugin_bridge.md).
+- [`python-compat/cli-shim.md`](../python_compat/cli_shim.md).

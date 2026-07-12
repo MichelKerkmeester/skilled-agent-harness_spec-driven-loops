@@ -38,5 +38,5 @@ Current runtime behavior is documented in the source files below.
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `mcp-surface/skill-graph-query.md`
 Related references:
-- [skill-graph-scan.md](skill-graph-scan.md) — Skill graph scan
-- [skill-graph-status.md](skill-graph-status.md) — Skill graph status
+- [skill-graph-scan.md](../mcp_surface/skill_graph_scan.md) — Skill graph scan
+- [skill-graph-status.md](../mcp_surface/skill_graph_status.md) — Skill graph status

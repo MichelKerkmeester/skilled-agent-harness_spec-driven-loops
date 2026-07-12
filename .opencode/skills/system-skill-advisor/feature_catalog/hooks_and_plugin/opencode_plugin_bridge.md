@@ -36,7 +36,7 @@ Give OpenCode a first-class plugin that surfaces advisor output at prompt time w
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge.vitest.ts` | Automated test | Validation reference |
-| `Playbook scenario [CL-005](../../manual_testing_playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md).` | Manual playbook | Source reference |
+| `Playbook scenario [CL-005](../../manual_testing_playbook/cli_hooks_and_plugin/opencode_plugin_bridge.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -46,6 +46,6 @@ Give OpenCode a first-class plugin that surfaces advisor output at prompt time w
 
 Related references:
 
-- [`mcp-surface/compat-entrypoint.md`](../mcp-surface/compat-entrypoint.md).
-- [01-claude-hook.md](./claude-hook.md).
-- [`python-compat/cli-shim.md`](../python-compat/cli-shim.md).
+- [`mcp-surface/compat-entrypoint.md`](../mcp_surface/compat_entrypoint.md).
+- [01-claude-hook.md](../hooks_and_plugin/claude_hook.md).
+- [`python-compat/cli-shim.md`](../python_compat/cli_shim.md).

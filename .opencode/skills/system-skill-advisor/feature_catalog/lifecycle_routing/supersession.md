@@ -36,7 +36,7 @@ Let the advisor forward queries from a superseded skill to its successor without
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/redirect-metadata.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | Validation reference |
-| `Playbook scenarios [LC-002](../../manual_testing_playbook/lifecycle-routing/supersession.md) and [NC-005](../../manual_testing_playbook/native-mcp-tools/lifecycle-redirect-metadata.md).` | Manual playbook | Source reference |
+| `Playbook scenarios [LC-002](../../manual_testing_playbook/lifecycle_routing/supersession.md) and [NC-005](../../manual_testing_playbook/native_mcp_tools/lifecycle_redirect_metadata.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -46,6 +46,6 @@ Let the advisor forward queries from a superseded skill to its successor without
 
 Related references:
 
-- [01-age-haircut.md](./age-haircut.md).
+- [01-age-haircut.md](../lifecycle_routing/age_haircut.md).
 - [05-rollback.md](./rollback.md).
-- [`mcp-surface/advisor-recommend.md`](../mcp-surface/advisor-recommend.md).
+- [`mcp-surface/advisor-recommend.md`](../mcp_surface/advisor_recommend.md).

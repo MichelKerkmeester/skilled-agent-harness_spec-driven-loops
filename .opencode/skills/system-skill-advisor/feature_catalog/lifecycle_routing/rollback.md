@@ -36,7 +36,7 @@ Keep lifecycle mutations reversible so operators can experiment with supersessio
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | rollback invariants |
-| `Playbook scenario [LC-005](../../manual_testing_playbook/lifecycle-routing/rollback-lifecycle.md).` | Manual playbook | Source reference |
+| `Playbook scenario [LC-005](../../manual_testing_playbook/lifecycle_routing/rollback_lifecycle.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -46,5 +46,5 @@ Keep lifecycle mutations reversible so operators can experiment with supersessio
 
 Related references:
 
-- [04-schema-migration.md](./schema-migration.md).
+- [04-schema-migration.md](../lifecycle_routing/schema_migration.md).
 - [02-supersession.md](./supersession.md).

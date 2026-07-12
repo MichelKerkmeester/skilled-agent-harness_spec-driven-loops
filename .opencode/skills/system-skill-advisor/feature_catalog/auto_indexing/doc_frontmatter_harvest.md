@@ -41,7 +41,7 @@ When `SPECKIT_ADVISOR_DOC_TRIGGERS=true`, `skill_graph_scan` walks every skill's
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-doc-harvest.vitest.ts` | Automated test | Parser, walker, flag-gated lifecycle, capping, invariance, sanitization (11 cases) |
-| `Playbook scenario [AI-006](../../manual_testing_playbook/auto-indexing/doc-frontmatter-harvest.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AI-006](../../manual_testing_playbook/auto_indexing/doc_frontmatter_harvest.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -51,6 +51,6 @@ When `SPECKIT_ADVISOR_DOC_TRIGGERS=true`, `skill_graph_scan` walks every skill's
 
 Related references:
 
-- [derived-extraction.md](./derived-extraction.md).
-- [anti-stuffing.md](./anti-stuffing.md).
-- [`scorer-fusion/five-lane-fusion.md`](../scorer-fusion/five-lane-fusion.md).
+- [derived-extraction.md](../auto_indexing/derived_extraction.md).
+- [anti-stuffing.md](../auto_indexing/anti_stuffing.md).
+- [`scorer-fusion/five-lane-fusion.md`](../scorer_fusion/five_lane_fusion.md).

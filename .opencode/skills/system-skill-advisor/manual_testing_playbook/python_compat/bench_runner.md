@@ -67,9 +67,9 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_b
 
 ## 4. SOURCE FILES
 
-- Scenario [PC-004](./regression-suite.md), regression suite.
-- Scenario [NC-003](../native-mcp-tools/native-validate-slices.md), native validate latency slice.
-- Feature [`python-compat/bench-runner.md`](../../feature_catalog/python-compat/bench-runner.md).
+- Scenario [PC-004](../python_compat/regression_suite.md), regression suite.
+- Scenario [NC-003](../native_mcp_tools/native_validate_slices.md), native validate latency slice.
+- Feature [`python-compat/bench-runner.md`](../../feature_catalog/python_compat/bench_runner.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_bench.py`.
 
 ---

@@ -219,15 +219,15 @@ touch .opencode/skills/sk-doc/SKILL.md
 
 ### Pass/Fail
 
-BLOCKED. The scenario requires `touch .opencode/skills/sk-doc/SKILL.md` to force reindexing, but the execution request allowed writes only to `.opencode/skills/system-skill-advisor/manual_testing_playbook/auto-indexing/provenance-and-trust-lanes.md`. Read-only evidence also showed `provenance_fingerprint: null` and `trust_lane: null` in the current derived block, so the expected provenance/trust fields were not observable before the blocked reindex step.
+BLOCKED. The scenario requires `touch .opencode/skills/sk-doc/SKILL.md` to force reindexing, but the execution request allowed writes only to `.opencode/skills/system-skill-advisor/manual_testing_playbook/auto_indexing/provenance_and_trust_lanes.md`. Read-only evidence also showed `provenance_fingerprint: null` and `trust_lane: null` in the current derived block, so the expected provenance/trust fields were not observable before the blocked reindex step.
 
 ---
 
 ## 4. SOURCE FILES
 
-- Scenario [AI-001](./derived-extraction.md), deterministic extraction.
-- Scenario [SC-004](../scorer-fusion/lane-attribution.md), lane attribution on the read side.
-- Feature [`auto-indexing/provenance-and-trust-lanes.md`](../../feature_catalog/auto-indexing/provenance-and-trust-lanes.md).
+- Scenario [AI-001](../auto_indexing/derived_extraction.md), deterministic extraction.
+- Scenario [SC-004](../scorer_fusion/lane_attribution.md), lane attribution on the read side.
+- Feature [`auto-indexing/provenance-and-trust-lanes.md`](../../feature_catalog/auto_indexing/provenance_and_trust_lanes.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/provenance.ts` and `lib/derived/trust-lanes.ts`.
 
 ---

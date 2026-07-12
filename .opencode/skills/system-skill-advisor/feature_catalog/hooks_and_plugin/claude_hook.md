@@ -36,7 +36,7 @@ Hook diagnostics are prompt-safe rollups handled by `lib/metrics.ts`. The `spec_
 
 | File | Type | Role |
 |---|---|---|
-| `Playbook scenario [CL-001](../../manual_testing_playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md).` | Manual playbook | Source reference |
+| `Playbook scenario [CL-001](../../manual_testing_playbook/cli_hooks_and_plugin/claude_user_prompt_submit.md).` | Manual playbook | Source reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-runtime-parity.vitest.ts` | Automated test | parity across hooks |
 
 ## 4. SOURCE METADATA
@@ -47,4 +47,4 @@ Hook diagnostics are prompt-safe rollups handled by `lib/metrics.ts`. The `spec_
 
 Related references:
 
-- [`mcp-surface/compat-entrypoint.md`](../mcp-surface/compat-entrypoint.md).
+- [`mcp-surface/compat-entrypoint.md`](../mcp_surface/compat_entrypoint.md).

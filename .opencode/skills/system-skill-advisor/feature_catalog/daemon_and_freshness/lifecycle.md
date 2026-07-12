@@ -40,7 +40,7 @@ The `mk_skill_advisor` MCP server also participates in the shared launcher idle-
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts` | Automated test | status envelope assertions |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | boot and shutdown sequence |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/launcher-idle-timeout.vitest.ts` | Automated test | idle timeout parsing and shutdown behavior |
-| `Playbook scenario [AU-003](../../manual_testing_playbook/auto-update-daemon/daemon-lifecycle-shutdown.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AU-003](../../manual_testing_playbook/auto_update_daemon/daemon_lifecycle_shutdown.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -51,5 +51,5 @@ The `mk_skill_advisor` MCP server also participates in the shared launcher idle-
 Related references:
 
 - [02-lease.md](./lease.md).
-- [05-trust-state.md](./trust-state.md).
-- [07-cache-invalidation.md](./cache-invalidation.md).
+- [05-trust-state.md](../daemon_and_freshness/trust_state.md).
+- [07-cache-invalidation.md](../daemon_and_freshness/cache_invalidation.md).

@@ -19,7 +19,7 @@ Automatically generate routing-ready derived entries for every skill without han
 
 ## 2. HOW IT WORKS
 
-`lib/derived/extract.ts` reads frontmatter, SKILL.md body, fenced examples, `references/**`, `assets/**`, `intent_signals`, `source_docs` and declared `derived.key_files`. It emits n-grams and triggered patterns with stable sort order. `lib/derived/sync.ts` writes the result into `graph-metadata.json.derived` only. SKILL.md is never mutated. The extraction pipeline is the same path consumed by rebuild-from-source (see [`daemon-and-freshness/rebuild-from-source.md`](../daemon-and-freshness/rebuild-from-source.md)).
+`lib/derived/extract.ts` reads frontmatter, SKILL.md body, fenced examples, `references/**`, `assets/**`, `intent_signals`, `source_docs` and declared `derived.key_files`. It emits n-grams and triggered patterns with stable sort order. `lib/derived/sync.ts` writes the result into `graph-metadata.json.derived` only. SKILL.md is never mutated. The extraction pipeline is the same path consumed by rebuild-from-source (see [`daemon-and-freshness/rebuild-from-source.md`](../daemon_and_freshness/rebuild_from_source.md)).
 
 ## 3. SOURCE FILES
 
@@ -35,7 +35,7 @@ Automatically generate routing-ready derived entries for every skill without han
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | derived-sync correctness |
-| `Playbook scenario [AI-001](../../manual_testing_playbook/auto-indexing/derived-extraction.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AI-001](../../manual_testing_playbook/auto_indexing/derived_extraction.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -46,5 +46,5 @@ Automatically generate routing-ready derived entries for every skill without han
 Related references:
 
 - [02-sanitizer.md](./sanitizer.md).
-- [03-provenance-and-trust-lanes.md](./provenance-and-trust-lanes.md).
-- [05-anti-stuffing.md](./anti-stuffing.md).
+- [03-provenance-and-trust-lanes.md](../auto_indexing/provenance_and_trust_lanes.md).
+- [05-anti-stuffing.md](../auto_indexing/anti_stuffing.md).

@@ -38,5 +38,5 @@ Current runtime behavior is documented in the source files below.
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `mcp-surface/skill-graph-scan.md`
 Related references:
-- [advisor-rebuild.md](advisor-rebuild.md) — advisor_rebuild MCP Tool
-- [skill-graph-query.md](skill-graph-query.md) — Skill graph query
+- [advisor-rebuild.md](../mcp_surface/advisor_rebuild.md) — advisor_rebuild MCP Tool
+- [skill-graph-query.md](../mcp_surface/skill_graph_query.md) — Skill graph query

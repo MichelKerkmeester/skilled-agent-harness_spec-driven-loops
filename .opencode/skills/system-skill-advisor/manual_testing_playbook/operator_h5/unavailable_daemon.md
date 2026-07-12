@@ -116,7 +116,7 @@ Do NOT modify, create, or delete any file OTHER than the single scenario file na
 - The scenario's own execution step 1 requires creating and corrupting a copied `skill-graph.sqlite`, and step 5 may require deleting the corrupt copied database; those writes are outside the only allowed write path:
 
 ```text
-.opencode/skills/system-skill-advisor/manual_testing_playbook/operator-h5/unavailable-daemon.md (this file only)
+.opencode/skills/system-skill-advisor/manual_testing_playbook/operator_h5/unavailable_daemon.md (this file only)
 ```
 
 ## 7. PASS/FAIL

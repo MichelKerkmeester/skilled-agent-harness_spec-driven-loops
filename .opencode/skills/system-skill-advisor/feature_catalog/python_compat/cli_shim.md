@@ -47,7 +47,7 @@ Keep pre-Phase-027 Python consumers working while moving routing to the native a
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/shim.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/python/` | Automated test | Python unit test |
-| `Playbook scenarios [PC-001](../../manual_testing_playbook/python-compat/stdin-mode.md), [PC-002](../../manual_testing_playbook/python-compat/force-native-force-local.md), [PC-003](../../manual_testing_playbook/python-compat/threshold-flag.md) and [CP-001..CP-004](../../manual_testing_playbook/compat-and-disable/).` | Manual playbook | Source reference |
+| `Playbook scenarios [PC-001](../../manual_testing_playbook/python_compat/stdin_mode.md), [PC-002](../../manual_testing_playbook/python_compat/force_native_force_local.md), [PC-003](../../manual_testing_playbook/python_compat/threshold_flag.md) and [CP-001..CP-004](../../manual_testing_playbook/compat_and_disable/).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -57,6 +57,6 @@ Keep pre-Phase-027 Python consumers working while moving routing to the native a
 
 Related references:
 
-- [02-regression-suite.md](./regression-suite.md).
-- [03-bench-runner.md](./bench-runner.md).
-- [`mcp-surface/compat-entrypoint.md`](../mcp-surface/compat-entrypoint.md).
+- [02-regression-suite.md](../python_compat/regression_suite.md).
+- [03-bench-runner.md](../python_compat/bench_runner.md).
+- [`mcp-surface/compat-entrypoint.md`](../mcp_surface/compat_entrypoint.md).

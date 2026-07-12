@@ -19,7 +19,7 @@ Expose the native scoring pipeline as an MCP tool that any runtime can call, wit
 
 ## 2. HOW IT WORKS
 
-`handlers/advisor-recommend.ts` implements the tool. Input is validated by `schemas/advisor-tool-schemas.ts` (Zod strict). The public response always includes the resolved `workspaceRoot` plus `effectiveThresholds`, where `effectiveThresholds` publishes the active `confidenceThreshold`, `uncertaintyThreshold` and `confidenceOnly` mode after request overrides are merged with defaults. Output also carries prompt-safe `recommendations[]`, optional `laneBreakdown[]` when `includeAttribution: true`, lifecycle redirect metadata (`redirectFrom`, `redirectTo`, `status`), `freshness`, `trustState`, `generatedAt`, `cache`, optional `warnings` and optional `abstainReasons`. Fail-open states such as disabled or absent freshness still preserve `workspaceRoot` and `effectiveThresholds` in the envelope so callers can inspect the resolved repository scope and active routing thresholds even when no recommendations are returned. The handler enforces sanitization at the envelope boundary (see `lib/derived/sanitizer.ts`) and never echoes prompt text into response metadata. Cache behavior is tied to generation (see [`daemon-and-freshness/cache-invalidation.md`](../daemon-and-freshness/cache-invalidation.md)).
+`handlers/advisor-recommend.ts` implements the tool. Input is validated by `schemas/advisor-tool-schemas.ts` (Zod strict). The public response always includes the resolved `workspaceRoot` plus `effectiveThresholds`, where `effectiveThresholds` publishes the active `confidenceThreshold`, `uncertaintyThreshold` and `confidenceOnly` mode after request overrides are merged with defaults. Output also carries prompt-safe `recommendations[]`, optional `laneBreakdown[]` when `includeAttribution: true`, lifecycle redirect metadata (`redirectFrom`, `redirectTo`, `status`), `freshness`, `trustState`, `generatedAt`, `cache`, optional `warnings` and optional `abstainReasons`. Fail-open states such as disabled or absent freshness still preserve `workspaceRoot` and `effectiveThresholds` in the envelope so callers can inspect the resolved repository scope and active routing thresholds even when no recommendations are returned. The handler enforces sanitization at the envelope boundary (see `lib/derived/sanitizer.ts`) and never echoes prompt text into response metadata. Cache behavior is tied to generation (see [`daemon-and-freshness/cache-invalidation.md`](../daemon_and_freshness/cache_invalidation.md)).
 
 Shadow comparison is response-visible but durable recording is default-off. The handler calls the shadow-delta sink only when `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` is set or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` / `true`; otherwise `advisor_recommend` writes no shadow delta file.
 
@@ -41,7 +41,7 @@ The caller-supplied `workspaceRoot` is bounded by `schemas/advisor-tool-schemas.
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts` | Automated test | Validation reference |
-| `Playbook scenarios [NC-001](../../manual_testing_playbook/native-mcp-tools/native-recommend-happy-path.md), [NC-004](../../manual_testing_playbook/native-mcp-tools/ambiguous-brief-rendering.md), [NC-005](../../manual_testing_playbook/native-mcp-tools/lifecycle-redirect-metadata.md).` | Manual playbook | Source reference |
+| `Playbook scenarios [NC-001](../../manual_testing_playbook/native_mcp_tools/native_recommend_happy_path.md), [NC-004](../../manual_testing_playbook/native_mcp_tools/ambiguous_brief_rendering.md), [NC-005](../../manual_testing_playbook/native_mcp_tools/lifecycle_redirect_metadata.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -51,6 +51,6 @@ The caller-supplied `workspaceRoot` is bounded by `schemas/advisor-tool-schemas.
 
 Related references:
 
-- [02-advisor-status.md](./advisor-status.md).
-- [03-advisor-validate.md](./advisor-validate.md).
-- [04-compat-entrypoint.md](./compat-entrypoint.md).
+- [02-advisor-status.md](../mcp_surface/advisor_status.md).
+- [03-advisor-validate.md](../mcp_surface/advisor_validate.md).
+- [04-compat-entrypoint.md](../mcp_surface/compat_entrypoint.md).

@@ -219,8 +219,8 @@ BLOCKED - The trusted scan prerequisite failed with `skill_id "cli-codex" does n
 
 ## 4. SOURCE FILES
 
-- Scenario [AI-001](./derived-extraction.md), derived extraction baseline.
-- Feature [`auto-indexing/doc-frontmatter-harvest.md`](../../feature_catalog/auto-indexing/doc-frontmatter-harvest.md).
+- Scenario [AI-001](../auto_indexing/derived_extraction.md), derived extraction baseline.
+- Feature [`auto-indexing/doc-frontmatter-harvest.md`](../../feature_catalog/auto_indexing/doc_frontmatter_harvest.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/doc-frontmatter.ts`.
 - Tests: `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-doc-harvest.vitest.ts`.
 

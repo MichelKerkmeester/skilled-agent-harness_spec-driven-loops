@@ -111,20 +111,20 @@ touch .opencode/skills/sk-git/SKILL.md
 Allowed write paths for this run only permitted:
 
 ```text
-.opencode/skills/system-skill-advisor/manual_testing_playbook/auto-update-daemon/generation-publication.md
+.opencode/skills/system-skill-advisor/manual_testing_playbook/auto_update_daemon/generation_publication.md
 ```
 
 ### Pass/Fail
 
-BLOCKED - Step 2 requires modifying `.opencode/skills/sk-git/SKILL.md`, but this run explicitly allowed writes only to `.opencode/skills/system-skill-advisor/manual_testing_playbook/auto-update-daemon/generation-publication.md`; the daemon was also not live at baseline (`freshness`: `unavailable`, `trustState.state`: `stale`, `trustState.reason`: `SIGTERM`).
+BLOCKED - Step 2 requires modifying `.opencode/skills/sk-git/SKILL.md`, but this run explicitly allowed writes only to `.opencode/skills/system-skill-advisor/manual_testing_playbook/auto_update_daemon/generation_publication.md`; the daemon was also not live at baseline (`freshness`: `unavailable`, `trustState.state`: `stale`, `trustState.reason`: `SIGTERM`).
 
 ---
 
 ## 4. SOURCE FILES
 
-- Scenario [AU-001](./watcher-narrow-scope.md), watcher scope.
-- Scenario [AU-005](./rebuild-from-source.md), recovery when snapshot unreadable.
-- Feature [`daemon-and-freshness/generation.md`](../../feature_catalog/daemon-and-freshness/generation.md).
+- Scenario [AU-001](../auto_update_daemon/watcher_narrow_scope.md), watcher scope.
+- Scenario [AU-005](../auto_update_daemon/rebuild_from_source.md), recovery when snapshot unreadable.
+- Feature [`daemon-and-freshness/generation.md`](../../feature_catalog/daemon_and_freshness/generation.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/freshness/generation.ts`.
 
 ---

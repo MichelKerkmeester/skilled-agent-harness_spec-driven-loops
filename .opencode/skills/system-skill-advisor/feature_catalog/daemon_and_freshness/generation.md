@@ -36,7 +36,7 @@ Make reindex transitions observable and atomic. Every snapshot is tagged with a 
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | generation bump atomicity |
-| `Playbook scenario [AU-004](../../manual_testing_playbook/auto-update-daemon/generation-publication.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AU-004](../../manual_testing_playbook/auto_update_daemon/generation_publication.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -47,5 +47,5 @@ Make reindex transitions observable and atomic. Every snapshot is tagged with a 
 Related references:
 
 - [01-watcher.md](./watcher.md).
-- [05-trust-state.md](./trust-state.md).
-- [07-cache-invalidation.md](./cache-invalidation.md).
+- [05-trust-state.md](../daemon_and_freshness/trust_state.md).
+- [07-cache-invalidation.md](../daemon_and_freshness/cache_invalidation.md).

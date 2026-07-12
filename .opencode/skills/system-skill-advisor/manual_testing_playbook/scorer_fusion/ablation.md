@@ -84,8 +84,8 @@ BLOCKED — `advisor_validate({"skillSlug":null})` did not return the baseline o
 
 ## 4. SOURCE FILES
 
-- Scenario [SC-001](./five-lane-fusion.md), fusion baseline.
-- Feature [`scorer-fusion/ablation.md`](../../feature_catalog/scorer-fusion/ablation.md).
+- Scenario [SC-001](../scorer_fusion/five_lane_fusion.md), fusion baseline.
+- Feature [`scorer-fusion/ablation.md`](../../feature_catalog/scorer_fusion/ablation.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/ablation.ts`.
 
 ---

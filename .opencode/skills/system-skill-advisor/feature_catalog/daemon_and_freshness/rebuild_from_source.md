@@ -35,7 +35,7 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | rebuild trigger paths |
-| `Playbook scenario [AU-005](../../manual_testing_playbook/auto-update-daemon/rebuild-from-source.md) and [OP-003](../../manual_testing_playbook/operator-h5/unavailable-daemon.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AU-005](../../manual_testing_playbook/auto_update_daemon/rebuild_from_source.md) and [OP-003](../../manual_testing_playbook/operator_h5/unavailable_daemon.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -45,6 +45,6 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 
 Related references:
 
-- [05-trust-state.md](./trust-state.md).
-- [07-cache-invalidation.md](./cache-invalidation.md).
-- [`auto-indexing/derived-extraction.md`](../auto-indexing/derived-extraction.md), source extraction pipeline consumed during rebuild.
+- [05-trust-state.md](../daemon_and_freshness/trust_state.md).
+- [07-cache-invalidation.md](../daemon_and_freshness/cache_invalidation.md).
+- [`auto-indexing/derived-extraction.md`](../auto_indexing/derived_extraction.md), source extraction pipeline consumed during rebuild.

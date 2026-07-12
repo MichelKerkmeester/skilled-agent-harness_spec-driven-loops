@@ -56,7 +56,7 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 
 ### Evidence
 
-- Read scenario file in full: `.opencode/skills/system-skill-advisor/manual_testing_playbook/lifecycle-routing/rollback-lifecycle.md` lines 1-72.
+- Read scenario file in full: `.opencode/skills/system-skill-advisor/manual_testing_playbook/lifecycle_routing/rollback_lifecycle.md` lines 1-72.
 - MCP/file glob check for built server output:
   ```text
   No files found
@@ -104,8 +104,8 @@ BLOCKED - Missing built MCP server output (`dist/**` returned `No files found`),
 
 ## 4. SOURCE FILES
 
-- Scenario [LC-004](./schema-migration.md), schema migration rollback.
-- Feature [`lifecycle-routing/rollback.md`](../../feature_catalog/lifecycle-routing/rollback.md).
+- Scenario [LC-004](../lifecycle_routing/schema_migration.md), schema migration rollback.
+- Feature [`lifecycle-routing/rollback.md`](../../feature_catalog/lifecycle_routing/rollback.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/lifecycle/rollback.ts`.
 
 ---

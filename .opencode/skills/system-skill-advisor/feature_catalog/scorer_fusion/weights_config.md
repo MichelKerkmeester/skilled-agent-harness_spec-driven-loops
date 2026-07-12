@@ -38,7 +38,7 @@ Keep the canonical lane weights in exactly one place and expose them to callers 
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | weight consumption |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts` | Automated test | weight exposure |
-| `Playbook scenario [SC-001](../../manual_testing_playbook/scorer-fusion/five-lane-fusion.md).` | Manual playbook | Source reference |
+| `Playbook scenario [SC-001](../../manual_testing_playbook/scorer_fusion/five_lane_fusion.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -48,4 +48,4 @@ Keep the canonical lane weights in exactly one place and expose them to callers 
 
 Related references:
 
-- [01-five-lane-fusion.md](./five-lane-fusion.md).
+- [01-five-lane-fusion.md](../scorer_fusion/five_lane_fusion.md).

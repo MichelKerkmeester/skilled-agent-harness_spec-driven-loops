@@ -34,7 +34,7 @@ Keep latency visible from the Python surface so routing performance regressions 
 
 | File | Type | Role |
 |---|---|---|
-| `Playbook scenario [PC-005](../../manual_testing_playbook/python-compat/bench-runner.md).` | Manual playbook | Source reference |
+| `Playbook scenario [PC-005](../../manual_testing_playbook/python_compat/bench_runner.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -44,6 +44,6 @@ Keep latency visible from the Python surface so routing performance regressions 
 
 Related references:
 
-- [01-cli-shim.md](./cli-shim.md).
-- [02-regression-suite.md](./regression-suite.md).
-- [`mcp-surface/advisor-validate.md`](../mcp-surface/advisor-validate.md).
+- [01-cli-shim.md](../python_compat/cli_shim.md).
+- [02-regression-suite.md](../python_compat/regression_suite.md).
+- [`mcp-surface/advisor-validate.md`](../mcp_surface/advisor_validate.md).

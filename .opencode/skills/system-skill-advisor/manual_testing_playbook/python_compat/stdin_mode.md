@@ -59,9 +59,9 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 
 ## 4. SOURCE FILES
 
-- Scenario [CP-001](../compat-and-disable/python-shim-stdin.md), original shim stdin scenario.
-- Scenario [PC-002](./force-native-force-local.md), force toggles.
-- Feature [`python-compat/cli-shim.md`](../../feature_catalog/python-compat/cli-shim.md).
+- Scenario [CP-001](../compat_and_disable/python_shim_stdin.md), original shim stdin scenario.
+- Scenario [PC-002](../python_compat/force_native_force_local.md), force toggles.
+- Feature [`python-compat/cli-shim.md`](../../feature_catalog/python_compat/cli_shim.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 
 ---

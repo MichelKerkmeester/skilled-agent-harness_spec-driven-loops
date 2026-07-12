@@ -61,9 +61,9 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 ## 4. SOURCE FILES
 
-- Scenario [AI-004](../auto-indexing/corpus-df-idf.md), active-only corpus.
+- Scenario [AI-004](../auto_indexing/corpus_df_idf.md), active-only corpus.
 - Scenario [LC-002](./supersession.md), supersession routing.
-- Feature [`lifecycle-routing/archive-handling.md`](../../feature_catalog/lifecycle-routing/archive-handling.md).
+- Feature [`lifecycle-routing/archive-handling.md`](../../feature_catalog/lifecycle_routing/archive_handling.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/lifecycle/archive-handling.ts`.
 
 ---

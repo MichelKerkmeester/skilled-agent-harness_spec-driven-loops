@@ -62,6 +62,6 @@ The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor
 
 Related references:
 
-- [02-advisor-status.md](./advisor-status.md).
-- [`daemon-and-freshness/rebuild-from-source.md`](../daemon-and-freshness/rebuild-from-source.md).
-- [`auto-indexing/sync.md`](../auto-indexing/sync.md).
+- [02-advisor-status.md](../mcp_surface/advisor_status.md).
+- [`daemon-and-freshness/rebuild-from-source.md`](../daemon_and_freshness/rebuild_from_source.md).
+- [`auto-indexing/sync.md`](../auto_indexing/sync.md).

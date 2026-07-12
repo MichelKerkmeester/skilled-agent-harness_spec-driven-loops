@@ -60,7 +60,7 @@ On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPen
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | fusion arithmetic and lane weights |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts` | Automated test | `laneWeights` exposure |
-| `Playbook scenario [SC-001](../../manual_testing_playbook/scorer-fusion/five-lane-fusion.md).` | Manual playbook | Source reference |
+| `Playbook scenario [SC-001](../../manual_testing_playbook/scorer_fusion/five_lane_fusion.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

@@ -75,7 +75,7 @@ cd .opencode/skills/system-skill-advisor/mcp_server && npm exec -- vitest run te
 
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/shadow/shadow-sink.ts`
 - `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts`
-- Feature [`mcp-surface/advisor-recommend.md`](../../feature_catalog/mcp-surface/advisor-recommend.md).
+- Feature [`mcp-surface/advisor-recommend.md`](../../feature_catalog/mcp_surface/advisor_recommend.md).
 
 ---
 

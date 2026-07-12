@@ -130,7 +130,7 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 
 Step 2 could not inspect `laneBreakdown` because the `advisor_recommend` envelope did not include `laneBreakdown`; it returned `recommendations: []`, `freshness: "unavailable"`, `trustState.reason: "advisor_unavailable"`, and `warnings: ["advisor_unavailable"]`.
 
-Step 3 could not be executed because it requires injecting a fixture skill with control characters or unsafe path segments in a disposable copy, but this run's allowed write paths permit editing only `.opencode/skills/system-skill-advisor/manual_testing_playbook/auto-indexing/sanitizer-boundaries.md` and explicitly ban modifying, creating, or deleting any other file.
+Step 3 could not be executed because it requires injecting a fixture skill with control characters or unsafe path segments in a disposable copy, but this run's allowed write paths permit editing only `.opencode/skills/system-skill-advisor/manual_testing_playbook/auto_indexing/sanitizer_boundaries.md` and explicitly ban modifying, creating, or deleting any other file.
 
 Step 5 could not be executed because no injected fixture could be created under the allowed write path constraint, so there was no injected fixture `graph-metadata.json.derived` block to read.
 
@@ -142,9 +142,9 @@ BLOCKED - The advisor was unavailable (`freshness: "unavailable"`, `trustState.r
 
 ## 4. SOURCE FILES
 
-- Scenario [AI-001](./derived-extraction.md), derived extraction correctness.
-- Scenario [AI-005](./anti-stuffing.md), repetition-density and adversarial rejection.
-- Feature [`auto-indexing/sanitizer.md`](../../feature_catalog/auto-indexing/sanitizer.md).
+- Scenario [AI-001](../auto_indexing/derived_extraction.md), derived extraction correctness.
+- Scenario [AI-005](../auto_indexing/anti_stuffing.md), repetition-density and adversarial rejection.
+- Feature [`auto-indexing/sanitizer.md`](../../feature_catalog/auto_indexing/sanitizer.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/sanitizer.ts`.
 
 ---

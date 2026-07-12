@@ -79,9 +79,9 @@ BLOCKED - missing disposable workspace copy at `/tmp/path-to-copy`; scenario com
 
 ## 4. SOURCE FILES
 
-- Scenario [AU-003](./daemon-lifecycle-shutdown.md), graceful shutdown and SIGTERM.
-- Scenario [OP-003](../operator-h5/unavailable-daemon.md), recovery from unreadable DB.
-- Feature [`daemon-and-freshness/lease.md`](../../feature_catalog/daemon-and-freshness/lease.md).
+- Scenario [AU-003](../auto_update_daemon/daemon_lifecycle_shutdown.md), graceful shutdown and SIGTERM.
+- Scenario [OP-003](../operator_h5/unavailable_daemon.md), recovery from unreadable DB.
+- Feature [`daemon-and-freshness/lease.md`](../../feature_catalog/daemon_and_freshness/lease.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts`.
 
 ---

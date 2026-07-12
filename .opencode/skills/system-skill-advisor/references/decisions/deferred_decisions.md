@@ -219,7 +219,7 @@ Both options are worse than the current explanatory-note approach. Leave as-is.
 
 ### Current state
 
-Directory `feature_catalog/hooks-and-plugin/` contains files 01, 03, 04, 05 (missing 02).
+Directory `feature_catalog/hooks_and_plugin/` contains files 01, 03, 04, 05 (missing 02).
 
 ### Recommended action
 

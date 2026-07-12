@@ -35,7 +35,7 @@ Prevent duplicate daemon writers from corrupting the advisor graph by ensuring e
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | lease acquire, heartbeat and reclaim paths |
-| `Playbook scenario [AU-002](../../manual_testing_playbook/auto-update-daemon/lease-single-writer.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AU-002](../../manual_testing_playbook/auto_update_daemon/lease_single_writer.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -47,4 +47,4 @@ Related references:
 
 - [01-watcher.md](./watcher.md), scope of the writer's work.
 - [03-lifecycle.md](./lifecycle.md), lifecycle coordination.
-- [05-trust-state.md](./trust-state.md), reader-visible trust semantics.
+- [05-trust-state.md](../daemon_and_freshness/trust_state.md), reader-visible trust semantics.

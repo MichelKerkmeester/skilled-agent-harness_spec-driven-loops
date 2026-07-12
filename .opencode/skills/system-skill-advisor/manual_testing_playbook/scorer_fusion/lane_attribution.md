@@ -190,9 +190,9 @@ BLOCKED - The required precondition "Any prompt that routes to a known skill" is
 
 ## 4. SOURCE FILES
 
-- Scenario [SC-001](./five-lane-fusion.md), fusion weights sanity.
+- Scenario [SC-001](../scorer_fusion/five_lane_fusion.md), fusion weights sanity.
 - Scenario [SC-005](./ablation.md), ablation protocol.
-- Feature [`scorer-fusion/attribution.md`](../../feature_catalog/scorer-fusion/attribution.md).
+- Feature [`scorer-fusion/attribution.md`](../../feature_catalog/scorer_fusion/attribution.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/attribution.ts`.
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts`.
 

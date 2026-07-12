@@ -62,9 +62,9 @@ advisor_recommend({"prompt":"<prompt mapping to superseded skill>","options":{"t
 
 ## 4. SOURCE FILES
 
-- Scenario [NC-005](../native-mcp-tools/lifecycle-redirect-metadata.md), native MCP redirect metadata.
-- Scenario [LC-005](./rollback-lifecycle.md), lifecycle-level rollback.
-- Feature [`lifecycle-routing/supersession.md`](../../feature_catalog/lifecycle-routing/supersession.md).
+- Scenario [NC-005](../native_mcp_tools/lifecycle_redirect_metadata.md), native MCP redirect metadata.
+- Scenario [LC-005](../lifecycle_routing/rollback_lifecycle.md), lifecycle-level rollback.
+- Feature [`lifecycle-routing/supersession.md`](../../feature_catalog/lifecycle_routing/supersession.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/lifecycle/supersession.ts`.
 
 ---

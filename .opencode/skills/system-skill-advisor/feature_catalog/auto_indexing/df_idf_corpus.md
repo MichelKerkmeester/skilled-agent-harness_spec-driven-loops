@@ -35,7 +35,7 @@ Feed the lexical lane with corpus-aware statistics so common tokens are discount
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | lexical lane scoring against IDF |
-| `Playbook scenario [AI-004](../../manual_testing_playbook/auto-indexing/corpus-df-idf.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AI-004](../../manual_testing_playbook/auto_indexing/corpus_df_idf.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -45,6 +45,6 @@ Feed the lexical lane with corpus-aware statistics so common tokens are discount
 
 Related references:
 
-- [`lifecycle-routing/archive-handling.md`](../lifecycle-routing/archive-handling.md), archive exclusion.
-- [`scorer-fusion/five-lane-fusion.md`](../scorer-fusion/five-lane-fusion.md).
-- [01-derived-extraction.md](./derived-extraction.md).
+- [`lifecycle-routing/archive-handling.md`](../lifecycle_routing/archive_handling.md), archive exclusion.
+- [`scorer-fusion/five-lane-fusion.md`](../scorer_fusion/five_lane_fusion.md).
+- [01-derived-extraction.md](../auto_indexing/derived_extraction.md).

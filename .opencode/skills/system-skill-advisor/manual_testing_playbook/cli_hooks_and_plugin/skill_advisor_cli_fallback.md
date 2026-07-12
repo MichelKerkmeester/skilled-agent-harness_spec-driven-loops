@@ -81,7 +81,7 @@ Count drift means the manifest no longer tracks `TOOL_DEFINITIONS` — run the p
 | `mcp_server/tests/skill-advisor-cli-parity.vitest.ts` | Parity fixture (local real-python3 vs native) |
 | `mcp_server/tests/skill-advisor-cli-dual-client.vitest.ts` | Dual-client MCP + CLI coverage |
 | `mcp_server/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate enforcement |
-| `../../feature_catalog/mcp-surface/skill-advisor-cli.md` | Feature-catalog source for this surface |
+| `../../feature_catalog/mcp_surface/skill_advisor_cli.md` | Feature-catalog source for this surface |
 
 ## 5. SOURCE METADATA
 

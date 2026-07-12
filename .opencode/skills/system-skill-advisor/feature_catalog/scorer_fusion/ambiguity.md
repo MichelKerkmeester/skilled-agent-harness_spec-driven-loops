@@ -41,7 +41,7 @@ If either gap is within margin, the response carries an ambiguity signal that th
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | ambiguity window behavior |
-| `Playbook scenarios [SC-003](../../manual_testing_playbook/scorer-fusion/ambiguity.md) and [NC-004](../../manual_testing_playbook/native-mcp-tools/ambiguous-brief-rendering.md).` | Manual playbook | Source reference |
+| `Playbook scenarios [SC-003](../../manual_testing_playbook/scorer_fusion/ambiguity.md) and [NC-004](../../manual_testing_playbook/native_mcp_tools/ambiguous_brief_rendering.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 
@@ -51,6 +51,6 @@ If either gap is within margin, the response carries an ambiguity signal that th
 
 Related references:
 
-- [01-five-lane-fusion.md](./five-lane-fusion.md).
+- [01-five-lane-fusion.md](../scorer_fusion/five_lane_fusion.md).
 - [04-attribution.md](./attribution.md).
-- [`mcp-surface/advisor-recommend.md`](../mcp-surface/advisor-recommend.md).
+- [`mcp-surface/advisor-recommend.md`](../mcp_surface/advisor_recommend.md).

@@ -81,7 +81,7 @@ printf 'corrupt' > /tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp_s
 The task-level allowed write path is only:
 
 ```text
-.opencode/skills/system-skill-advisor/manual_testing_playbook/auto-update-daemon/rebuild-from-source.md
+.opencode/skills/system-skill-advisor/manual_testing_playbook/auto_update_daemon/rebuild_from_source.md
 ```
 
 No disposable workspace copy path or database backup path was provided, and creating or corrupting `/tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite` would modify a file outside the allowed write path. Therefore Step 1, Step 2, Step 3, and Step 4 were not executed.
@@ -102,9 +102,9 @@ BLOCKED - Missing disposable workspace copy and backup required by the scenario 
 
 ## 4. SOURCE FILES
 
-- Scenario [OP-003](../operator-h5/unavailable-daemon.md), operator recovery flow.
-- Scenario [AU-004](./generation-publication.md), generation publication after rebuild.
-- Feature [`daemon-and-freshness/rebuild-from-source.md`](../../feature_catalog/daemon-and-freshness/rebuild-from-source.md).
+- Scenario [OP-003](../operator_h5/unavailable_daemon.md), operator recovery flow.
+- Scenario [AU-004](../auto_update_daemon/generation_publication.md), generation publication after rebuild.
+- Feature [`daemon-and-freshness/rebuild-from-source.md`](../../feature_catalog/daemon_and_freshness/rebuild_from_source.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/freshness/rebuild-from-source.ts`.
 
 ---
