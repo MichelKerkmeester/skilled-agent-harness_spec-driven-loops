@@ -1,0 +1,72 @@
+---
+title: "026 -- Classification-based decay (TM-03)"
+description: "This scenario validates Classification-based decay (TM-03) for `026`. It focuses on Confirm class+tier decay matrix."
+audited_post_018: true
+version: 3.6.0.17
+---
+
+# 026 -- Classification-based decay (TM-03)
+
+## 1. OVERVIEW
+
+This scenario validates Classification-based decay (TM-03) for `026`. It focuses on Confirm class+tier decay matrix.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Confirm class+tier decay matrix and zero-half-life rejection.
+- Real user request: `Please validate Classification-based decay (TM-03) against halfLifeDays: 0 and tell me whether the expected signals are present: Decay multipliers differ by classification and tier; matrix values match documented configuration; zero half-life config is rejected with the positive-number-or-null error.`
+- Prompt: `Validate classification-based decay, including tier multipliers and rejection of zero half-life config.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: Decay multipliers differ by classification and tier; matrix values match documented configuration; zero half-life config is rejected with the positive-number-or-null error
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS: Each class+tier combination produces distinct documented multiplier, and zero half-life config is rejected up front; FAIL: Multipliers missing, mismatch the matrix, or halfLifeDays:0 passes validation
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate classification-based decay, including tier multipliers and rejection of zero half-life config.
+```
+
+### Commands
+
+1. Load the documented class/tier decay matrix
+2. Validate representative class+tier outputs against the matrix
+3. Submit a config with `halfLifeDays: 0`
+4. Confirm validation rejects it with the positive-number-or-null error
+
+### Expected
+
+Decay multipliers differ by classification and tier; matrix values match documented configuration; zero half-life config is rejected with the positive-number-or-null error
+
+### Evidence
+
+Scoring path output with per-class/tier decay multipliers + config-validation output for `halfLifeDays: 0`
+
+### Pass / Fail
+
+- **Pass**: Each class+tier combination produces the documented multiplier, and zero half-life config is rejected up front
+- **Fail**: Multipliers missing, mismatch the matrix, or `halfLifeDays: 0` passes validation
+
+### Failure Triage
+
+Verify decay matrix configuration → Check classification assignment → Inspect `validateHalfLifeConfig()` in `memory-types.ts` → Confirm the positive-number-or-null guard
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [scoring_and_calibration/classification_based_decay.md](../../feature_catalog/scoring_and_calibration/classification_based_decay.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Scoring and Calibration
+- Playbook ID: 026
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `scoring_and_calibration/classification_based_decay_tm_03.md`

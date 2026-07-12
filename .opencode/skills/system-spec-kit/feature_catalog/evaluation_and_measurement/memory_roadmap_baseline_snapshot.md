@@ -1,0 +1,63 @@
+---
+title: "Memory roadmap baseline snapshot"
+description: "Describes the Phase 1 readiness baseline snapshot that captures retrieval-volume and isolation/schema metrics from eval and context databases for memory-roadmap rollout gating."
+trigger_phrases:
+  - "memory roadmap baseline snapshot"
+  - "phase 1 readiness baseline"
+  - "capturememorystatebaselinesnapshot"
+  - "retrieval volume baseline metrics"
+  - "memory roadmap rollout gating"
+version: 3.6.0.14
+---
+
+# Memory roadmap baseline snapshot
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Describes the Phase 1 readiness baseline snapshot that captures retrieval-volume and isolation/schema metrics from eval and context databases for memory-roadmap rollout gating.
+
+Before rolling out a big upgrade, you want to take a "before" photo so you can compare it with the "after." This feature captures a snapshot of how the indexed-continuity store is performing right now, including how many searches are happening and whether the storage is set up correctly. That snapshot becomes the baseline you measure progress against during the rollout.
+
+---
+
+## 2. HOW IT WORKS
+
+`captureMemoryStateBaselineSnapshot()` records a small Phase 1 readiness baseline for the spec-doc record-roadmap rollout slice. It reads retrieval-volume metrics from the eval database (`eval_queries`, `eval_channel_results`, `eval_final_results`) and isolation/schema metrics from the target context database (`memory_index`, `schema_version`), then returns a single snapshot with timestamp, eval run ID, metrics map and metadata.
+
+When `persist: true`, every metric is written into `eval_metric_snapshots` with `channel = 'memory-state-baseline'`. The metadata attached to each persisted row includes the resolved spec-doc record-roadmap phase, the compatibility-supported roadmap flags, `scopeDimensionsTracked` and the resolved `contextDbPath`. Missing or unreadable context databases are non-fatal: retrieval metrics still record and context-backed metrics fall back to zero.
+
+The baseline path now initializes the eval database beside the context database under test instead of silently writing to the default eval location. That keeps ad-hoc migration and rollout checks scoped to the database actually being evaluated. The path switch is also wrapped in `try/finally`, so even if `initEvalDb()` fails after closing the previous singleton, the prior eval DB handle is restored instead of leaving global eval state clobbered for later calls.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp_server/lib/eval/memory-state-baseline.ts` | Lib | Baseline metric capture and optional persistence |
+| `mcp_server/lib/eval/eval-db.ts` | Lib | Eval DB initialization and schema support for persisted snapshots |
+| `mcp_server/lib/config/capability-flags.ts` | Lib | Memory-roadmap phase and flag metadata snapshot |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp_server/tests/memory-state-baseline.vitest.ts` | Automated test | Snapshot capture, persistence path selection, and missing-DB fallbacks |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Evaluation And Measurement
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `evaluation_and_measurement/memory_roadmap_baseline_snapshot.md`
+Related references:
+- [int8-quantization-evaluation.md](int8_quantization_evaluation.md) — INT8 quantization evaluation
+
+---
+## 5. PLAYBOOK COVERAGE
+
+- Mapped to manual testing playbook scenario 126

@@ -58,7 +58,7 @@ The 1/10 mismatch (Q1) is a boundary effect: the query targets "documentation ve
 
 ### Fixture
 
-The cat-24/409 fixture at `manual_testing_playbook/local-llm-query-intelligence/409-fixture.json` was regenerated this session. Each query retains its original phrasing and `paraphrase_difficulty` rating, but `expected_source_memory_id` was updated to point at the current corpus's canonical answer (verified by `expected_title_substring` matching the query intent). The original fixture pinned IDs from the May 17 corpus and was no longer scoreable: 3 of 10 IDs were above `MAX(memory_index.id)=8434`, and the other 7 had shifted from this session's folder renames, scan cleanups, orphan deletes, and the 016/002/019 graph-metadata plus lineage repair runner.
+The cat-24/409 fixture at `manual_testing_playbook/local_llm_query_intelligence/409_fixture.json` was regenerated this session. Each query retains its original phrasing and `paraphrase_difficulty` rating, but `expected_source_memory_id` was updated to point at the current corpus's canonical answer (verified by `expected_title_substring` matching the query intent). The original fixture pinned IDs from the May 17 corpus and was no longer scoreable: 3 of 10 IDs were above `MAX(memory_index.id)=8434`, and the other 7 had shifted from this session's folder renames, scan cleanups, orphan deletes, and the 016/002/019 graph-metadata plus lineage repair runner.
 
 ### Run procedure
 
@@ -216,4 +216,4 @@ node -e "const D=require('better-sqlite3'); const db=new D('.opencode/skills/sys
 | File | Change |
 |---|---|
 | `mcp_server/lib/search/evidence-gap-detector.ts` | `Z_SCORE_THRESHOLD: 1.5 → 1.3` with calibration history comment |
-| `manual_testing_playbook/local-llm-query-intelligence/409-fixture.json` | All 10 `expected_source_memory_id` values regenerated against current corpus; `expected_title_substring` added for future-proof identity checks |
+| `manual_testing_playbook/local_llm_query_intelligence/409_fixture.json` | All 10 `expected_source_memory_id` values regenerated against current corpus; `expected_title_substring` added for future-proof identity checks |

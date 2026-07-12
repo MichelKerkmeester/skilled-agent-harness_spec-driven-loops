@@ -5,7 +5,7 @@ allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 3.7.1.0
 ---
 
-<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, mk-spec-memory, mk-goal, goal-plugin, active_goal, session-goal, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
+<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context_preservation, progressive-documentation, validation, mk-spec-memory, mk-goal, goal-plugin, active_goal, session-goal, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
 
 # Spec Kit - Mandatory Conversation Documentation
 

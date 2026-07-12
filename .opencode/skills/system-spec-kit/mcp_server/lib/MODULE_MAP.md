@@ -378,7 +378,7 @@ Notes:
 
 ## 3. FEATURE CATALOG MAPPING
 
-Feature-catalog categories referenced here are the 25 top-level directories under `feature_catalog/` (numbered through 24; note the duplicate `14--` prefix on `pipeline-architecture` and `stress-testing`):
+Feature-catalog categories referenced here are the 25 top-level directories under `feature_catalog/` (numbered through 24; note the duplicate `14--` prefix on `pipeline_architecture` and `stress_testing`):
 
 - `retrieval`
 - `mutation`
@@ -387,57 +387,57 @@ Feature-catalog categories referenced here are the 25 top-level directories unde
 - `lifecycle`
 - `analysis`
 - `evaluation`
-- `bug-fixes-and-data-integrity`
-- `evaluation-and-measurement`
-- `graph-signal-activation`
-- `scoring-and-calibration`
-- `query-intelligence`
-- `memory-quality-and-indexing`
-- `pipeline-architecture`
-- `stress-testing`
-- `retrieval-enhancements`
-- `tooling-and-scripts`
+- `bug_fixes_and_data_integrity`
+- `evaluation_and_measurement`
+- `graph_signal_activation`
+- `scoring_and_calibration`
+- `query_intelligence`
+- `memory_quality_and_indexing`
+- `pipeline_architecture`
+- `stress_testing`
+- `retrieval_enhancements`
+- `tooling_and_scripts`
 - `governance`
-- `ux-hooks`
-- `feature-flag-reference`
-- `remediation-revalidation`
-- `implement-and-remove-deprecated-features`
-- `context-preservation`
-- `doctor-commands`
-- `local-llm-query-intelligence`
+- `ux_hooks`
+- `feature_flag_reference`
+- `remediation_revalidation`
+- `implement_and_remove_deprecated_features`
+- `context_preservation`
+- `doctor_commands`
+- `local_llm_query_intelligence`
 
 ### 3.1 `lib/` Directory -> Feature Categories
 
 | `lib/` directory | Feature-catalog categories |
 |------------------|----------------------------|
-| `architecture` | `pipeline-architecture` |
-| `cache` | `retrieval`, `memory-quality-and-indexing`, `retrieval-enhancements` |
-| `chunking` | `memory-quality-and-indexing`, `retrieval-enhancements` |
-| `cognitive` | `lifecycle`, `scoring-and-calibration`, `retrieval-enhancements`, `feature-flag-reference` |
+| `architecture` | `pipeline_architecture` |
+| `cache` | `retrieval`, `memory_quality_and_indexing`, `retrieval_enhancements` |
+| `chunking` | `memory_quality_and_indexing`, `retrieval_enhancements` |
+| `cognitive` | `lifecycle`, `scoring_and_calibration`, `retrieval_enhancements`, `feature_flag_reference` |
 | `collab` | `governance` |
-| `config` | `scoring-and-calibration`, `governance`, `feature-flag-reference` |
-| `contracts` | `pipeline-architecture` |
-| `errors` | `bug-fixes-and-data-integrity`, `ux-hooks` |
-| `eval` | `evaluation`, `evaluation-and-measurement` |
-| `extraction` | `mutation`, `memory-quality-and-indexing`, `governance` |
-| `feedback` | `scoring-and-calibration`, `memory-quality-and-indexing`, `feature-flag-reference` |
+| `config` | `scoring_and_calibration`, `governance`, `feature_flag_reference` |
+| `contracts` | `pipeline_architecture` |
+| `errors` | `bug_fixes_and_data_integrity`, `ux_hooks` |
+| `eval` | `evaluation`, `evaluation_and_measurement` |
+| `extraction` | `mutation`, `memory_quality_and_indexing`, `governance` |
+| `feedback` | `scoring_and_calibration`, `memory_quality_and_indexing`, `feature_flag_reference` |
 | `governance` | `governance` |
-| `graph` | `analysis`, `graph-signal-activation`, `retrieval-enhancements` |
-| `interfaces` | `pipeline-architecture` |
-| `learning` | `lifecycle`, `scoring-and-calibration` |
-| `manage` | `maintenance`, `graph-signal-activation`, `scoring-and-calibration` |
-| `ops` | `maintenance`, `memory-quality-and-indexing`, `tooling-and-scripts` |
-| `parsing` | `retrieval`, `query-intelligence`, `memory-quality-and-indexing` |
-| `providers` | `retrieval`, `memory-quality-and-indexing`, `retrieval-enhancements` |
-| `response` | `pipeline-architecture`, `ux-hooks` |
-| `scoring` | `graph-signal-activation`, `scoring-and-calibration`, `retrieval-enhancements` |
-| `search` | `retrieval`, `discovery`, `analysis`, `graph-signal-activation`, `scoring-and-calibration`, `query-intelligence`, `pipeline-architecture`, `retrieval-enhancements`, `feature-flag-reference` |
-| `session` | `lifecycle`, `retrieval-enhancements` |
-| `spec` | `pipeline-architecture` |
-| `storage` | `mutation`, `maintenance`, `lifecycle`, `bug-fixes-and-data-integrity`, `graph-signal-activation`, `memory-quality-and-indexing`, `governance` |
-| `telemetry` | `evaluation-and-measurement`, `scoring-and-calibration`, `governance`, `ux-hooks` |
-| `utils` | `bug-fixes-and-data-integrity`, `tooling-and-scripts`, `ux-hooks` |
-| `validation` | `mutation`, `bug-fixes-and-data-integrity`, `memory-quality-and-indexing` |
+| `graph` | `analysis`, `graph_signal_activation`, `retrieval_enhancements` |
+| `interfaces` | `pipeline_architecture` |
+| `learning` | `lifecycle`, `scoring_and_calibration` |
+| `manage` | `maintenance`, `graph_signal_activation`, `scoring_and_calibration` |
+| `ops` | `maintenance`, `memory_quality_and_indexing`, `tooling_and_scripts` |
+| `parsing` | `retrieval`, `query_intelligence`, `memory_quality_and_indexing` |
+| `providers` | `retrieval`, `memory_quality_and_indexing`, `retrieval_enhancements` |
+| `response` | `pipeline_architecture`, `ux_hooks` |
+| `scoring` | `graph_signal_activation`, `scoring_and_calibration`, `retrieval_enhancements` |
+| `search` | `retrieval`, `discovery`, `analysis`, `graph_signal_activation`, `scoring_and_calibration`, `query_intelligence`, `pipeline_architecture`, `retrieval_enhancements`, `feature_flag_reference` |
+| `session` | `lifecycle`, `retrieval_enhancements` |
+| `spec` | `pipeline_architecture` |
+| `storage` | `mutation`, `maintenance`, `lifecycle`, `bug_fixes_and_data_integrity`, `graph_signal_activation`, `memory_quality_and_indexing`, `governance` |
+| `telemetry` | `evaluation_and_measurement`, `scoring_and_calibration`, `governance`, `ux_hooks` |
+| `utils` | `bug_fixes_and_data_integrity`, `tooling_and_scripts`, `ux_hooks` |
+| `validation` | `mutation`, `bug_fixes_and_data_integrity`, `memory_quality_and_indexing` |
 
 ### 3.2 Feature Categories -> Main `lib/` Directories
 
@@ -450,18 +450,18 @@ Feature-catalog categories referenced here are the 25 top-level directories unde
 | `lifecycle` | `cognitive`, `learning`, `session`, `storage` |
 | `analysis` | `graph`, `search` |
 | `evaluation` | `eval` |
-| `bug-fixes-and-data-integrity` | `errors`, `storage`, `utils`, `validation` |
-| `evaluation-and-measurement` | `eval`, `telemetry` |
-| `graph-signal-activation` | `graph`, `manage`, `scoring`, `search`, `storage` |
-| `scoring-and-calibration` | `cognitive`, `config`, `feedback`, `learning`, `manage`, `scoring`, `search`, `telemetry` |
-| `query-intelligence` | `parsing`, `search` |
-| `memory-quality-and-indexing` | `cache`, `chunking`, `extraction`, `feedback`, `ops`, `parsing`, `providers`, `storage`, `validation` |
-| `pipeline-architecture` | `architecture`, `contracts`, `interfaces`, `response`, `search`, `spec` |
-| `retrieval-enhancements` | `cache`, `chunking`, `cognitive`, `graph`, `providers`, `scoring`, `search`, `session` |
-| `tooling-and-scripts` | `ops`, `utils` |
+| `bug_fixes_and_data_integrity` | `errors`, `storage`, `utils`, `validation` |
+| `evaluation_and_measurement` | `eval`, `telemetry` |
+| `graph_signal_activation` | `graph`, `manage`, `scoring`, `search`, `storage` |
+| `scoring_and_calibration` | `cognitive`, `config`, `feedback`, `learning`, `manage`, `scoring`, `search`, `telemetry` |
+| `query_intelligence` | `parsing`, `search` |
+| `memory_quality_and_indexing` | `cache`, `chunking`, `extraction`, `feedback`, `ops`, `parsing`, `providers`, `storage`, `validation` |
+| `pipeline_architecture` | `architecture`, `contracts`, `interfaces`, `response`, `search`, `spec` |
+| `retrieval_enhancements` | `cache`, `chunking`, `cognitive`, `graph`, `providers`, `scoring`, `search`, `session` |
+| `tooling_and_scripts` | `ops`, `utils` |
 | `governance` | `collab`, `config`, `extraction`, `governance`, `storage`, `telemetry` |
-| `ux-hooks` | `errors`, `response`, `telemetry`, `utils` |
-| `feature-flag-reference` | `cognitive`, `config`, `feedback`, `search` |
+| `ux_hooks` | `errors`, `response`, `telemetry`, `utils` |
+| `feature_flag_reference` | `cognitive`, `config`, `feedback`, `search` |
 
 ---
 

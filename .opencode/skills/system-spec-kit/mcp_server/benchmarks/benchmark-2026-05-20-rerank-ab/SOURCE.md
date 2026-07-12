@@ -46,7 +46,7 @@ The fixture contains 50 probes:
 
 | Source | Probe IDs | Count | Notes |
 |---|---:|---:|---|
-| cat-24/409 fixture | `fixture-001` to `fixture-010` | 10 | Imported from `manual_testing_playbook/local-llm-query-intelligence/409-fixture.json`; all 10 `expected_source_memory_id` values resolve in the current `memory_index`. |
+| cat-24/409 fixture | `fixture-001` to `fixture-010` | 10 | Imported from `manual_testing_playbook/local_llm_query_intelligence/409_fixture.json`; all 10 `expected_source_memory_id` values resolve in the current `memory_index`. |
 | cat-13/416 playbook | `fixture-011` to `fixture-014` | 4 | Queries target vec_memories KNN dual-write and factory shard fallback packets. |
 | cat-13/417 playbook | `fixture-015` to `fixture-017` | 3 | Queries target constitutional sufficiency-gate exemption packets. |
 | cat-13/418 playbook | `fixture-018` to `fixture-022` | 5 | Queries target graph-metadata and lineage repair-runner packets. |
