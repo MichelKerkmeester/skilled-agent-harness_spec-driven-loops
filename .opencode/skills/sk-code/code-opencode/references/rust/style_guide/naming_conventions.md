@@ -1,6 +1,10 @@
 ---
 title: Naming Conventions
 description: Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment. — Naming Conventions.
+trigger_phrases:
+  - "naming conventions"
+  - "rust naming conventions"
+  - "rust style guidance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Naming Conventions
 
-## 5. NAMING CONVENTIONS
+Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for naming conventions in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. NAMING CONVENTIONS
 
 ### Types and Traits
 

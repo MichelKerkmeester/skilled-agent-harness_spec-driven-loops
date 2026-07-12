@@ -1,6 +1,10 @@
 ---
 title: Determinism, Parity & Common Recipes
 description: Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode. — Determinism, Parity & Common Recipes.
+trigger_phrases:
+  - "determinism parity common recipes"
+  - "rust determinism parity and related"
+  - "rust quick reference"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Determinism, Parity & Common Recipes
 
-## 11. DETERMINISM, PARITY, AND COMMON RECIPES
+Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for determinism, parity & common recipes in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. DETERMINISM, PARITY, AND COMMON RECIPES
 
 ### Finite Score and Signed-Zero Policy
 
@@ -377,7 +399,7 @@ The test must fail if the native addon loads successfully or if the fallback sil
 
 ---
 
-## 12. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
-- [style_guide.md](../style_guide/overview-and-file-header.md) - Detailed formatting, naming, module, and interop rules
-- [quality_standards.md](../quality_standards/overview-and-data-ownership.md) - Safety, boundary, determinism, and verification requirements
+- [style_guide.md](../style_guide/overview_and_file_header.md) - Detailed formatting, naming, module, and interop rules
+- [quality_standards.md](../quality_standards/overview_and_data_ownership.md) - Safety, boundary, determinism, and verification requirements

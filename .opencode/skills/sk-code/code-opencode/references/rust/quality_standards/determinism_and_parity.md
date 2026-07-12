@@ -1,6 +1,10 @@
 ---
 title: Byte-for-Byte Determinism & Parity
 description: Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment. — Byte-for-Byte Determinism & Parity.
+trigger_phrases:
+  - "byte for byte determinism parity"
+  - "rust determinism and parity"
+  - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Byte-for-Byte Determinism & Parity
 
-## 12. BYTE-FOR-BYTE DETERMINISM AND PARITY
+Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for byte-for-byte determinism & parity in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. BYTE-FOR-BYTE DETERMINISM AND PARITY
 
 ### Acceptance Standard
 
@@ -223,7 +245,7 @@ Every parity failure is a compatibility defect until the TypeScript contract is 
 
 ---
 
-## 13. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
-- [style_guide.md](../style_guide/overview-and-file-header.md) - Formatting, naming, ownership, and Rust/TypeScript coexistence conventions
-- [quick_reference.md](../quick_reference/overview-and-boundary-template.md) - Copy-paste Rust boundary templates, Cargo commands, and deterministic recipes
+- [style_guide.md](../style_guide/overview_and_file_header.md) - Formatting, naming, ownership, and Rust/TypeScript coexistence conventions
+- [quick_reference.md](../quick_reference/overview_and_boundary_template.md) - Copy-paste Rust boundary templates, Cargo commands, and deterministic recipes

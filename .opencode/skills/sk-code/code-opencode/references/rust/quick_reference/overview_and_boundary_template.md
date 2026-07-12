@@ -23,10 +23,16 @@ Copy-paste templates, naming conventions, deterministic recipes, and Cargo comma
 
 Quick-access reference card for Rust compute kernels and their JavaScript boundaries. For detailed explanations, see:
 
-- [style_guide.md](../style_guide/overview-and-file-header.md) - Full Rust style and interop documentation
-- [quality_standards.md](../quality_standards/overview-and-data-ownership.md) - Safety, parity, and verification requirements
+- [style_guide.md](../style_guide/overview_and_file_header.md) - Full Rust style and interop documentation
+- [quality_standards.md](../quality_standards/overview_and_data_ownership.md) - Safety, parity, and verification requirements
 
 Rust supplements the existing TypeScript/Node MCP backend. Keep MCP transport, public tool schemas, daemon and CLI wiring, feature flags, and fallback selection in TypeScript. Move only measured compute kernels behind narrow napi-rs, WASM/WASI, or sidecar adapters.
+
+### When to Use
+
+- Implementing Rust compute kernels behind JavaScript or TypeScript boundaries
+- Looking up copy-paste templates for native, WASM, or sidecar adapters
+- Verifying deterministic behavior, ownership, and Cargo commands
 
 ### Repository Non-Negotiables
 
@@ -461,4 +467,3 @@ fn js_error(code: &str, message: &str) -> JsValue {
 Keep serializer configuration explicit. `Serializer::json_compatible()` produces JavaScript-compatible values, but exact field order, omission behavior, integer representation, and number spelling still require golden tests against the TypeScript oracle.
 
 ---
-

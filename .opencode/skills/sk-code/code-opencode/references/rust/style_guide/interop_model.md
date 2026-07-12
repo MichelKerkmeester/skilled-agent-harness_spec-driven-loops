@@ -1,6 +1,10 @@
 ---
 title: Rust/TypeScript Interop — Model & Boundary Types
 description: Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment. — Rust/TypeScript Interop — Model & Boundary Types.
+trigger_phrases:
+  - "rust typescript interop model boundary types"
+  - "rust interop model"
+  - "rust style guidance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Rust/TypeScript Interop — Model & Boundary Types
 
-## 9. RUST/TYPESCRIPT INTEROP AND COEXISTENCE
+Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for rust/typescript interop — model & boundary types in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. RUST/TYPESCRIPT INTEROP AND COEXISTENCE
 
 Rust supplements the existing TypeScript/Node backend. It does not replace transport ownership or redefine public MCP behavior.
 

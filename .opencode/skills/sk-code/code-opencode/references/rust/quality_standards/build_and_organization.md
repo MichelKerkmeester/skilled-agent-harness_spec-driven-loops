@@ -1,6 +1,10 @@
 ---
 title: Cargo/Build Baseline & Module Organization
 description: Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment. — Cargo/Build Baseline & Module Organization.
+trigger_phrases:
+  - "cargo build baseline module organization"
+  - "rust build and organization"
+  - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Cargo/Build Baseline & Module Organization
 
-## 10. CARGO, BUILD, AND VERIFICATION BASELINE
+Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for cargo/build baseline & module organization in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. CARGO, BUILD, AND VERIFICATION BASELINE
 
 ### Edition, Toolchain, and MSRV
 
@@ -200,7 +222,7 @@ cargo vet --locked
 
 ---
 
-## 11. MODULE AND BOUNDARY ORGANIZATION
+## 3. MODULE AND BOUNDARY ORGANIZATION
 
 ### Workspace Layout
 

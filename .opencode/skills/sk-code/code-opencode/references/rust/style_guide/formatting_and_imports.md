@@ -1,6 +1,10 @@
 ---
 title: Formatting Rules & Import/Module Ordering
 description: Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment. — Formatting Rules & Import/Module Ordering.
+trigger_phrases:
+  - "formatting rules import module ordering"
+  - "rust formatting and imports"
+  - "rust style guidance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Formatting Rules & Import/Module Ordering
 
-## 6. FORMATTING RULES
+Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for formatting rules & import/module ordering in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. FORMATTING RULES
 
 ### rustfmt Is Authoritative
 
@@ -261,7 +283,7 @@ Never substitute one of the following without fixture evidence:
 
 ---
 
-## 7. IMPORT AND MODULE ORDERING
+## 3. IMPORT AND MODULE ORDERING
 
 ### Import Group Order
 

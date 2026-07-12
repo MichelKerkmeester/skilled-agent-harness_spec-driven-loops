@@ -1,12 +1,20 @@
 ---
 title: Rust/TypeScript Interop — Errors, Parity & Related Resources
 description: Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment. — Rust/TypeScript Interop — Errors, Parity & Related Resources.
+trigger_phrases:
+  - "rust typescript interop errors parity related resources"
+  - "rust interop errors and parity"
+  - "rust style guidance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
 ---
 
 # Rust/TypeScript Interop — Errors, Parity & Related Resources
+
+Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+
+---
 
 ### Error Style
 
@@ -293,7 +301,21 @@ Parity fixtures cover:
 
 ---
 
-## 10. RELATED RESOURCES
+## 1. OVERVIEW
 
-- [quality_standards.md](../quality_standards/overview-and-data-ownership.md) - Ownership, safety, ABI contracts, error translation, concurrency, Cargo, and parity gates
-- [quick_reference.md](../quick_reference/overview-and-boundary-template.md) - Copy-paste Rust boundary templates, deterministic recipes, and build commands
+### Purpose
+
+Provides focused Rust guidance for rust/typescript interop — errors, parity & related resources in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. RELATED RESOURCES
+
+- [quality_standards.md](../quality_standards/overview_and_data_ownership.md) - Ownership, safety, ABI contracts, error translation, concurrency, Cargo, and parity gates
+- [quick_reference.md](../quick_reference/overview_and_boundary_template.md) - Copy-paste Rust boundary templates, deterministic recipes, and build commands

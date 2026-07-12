@@ -1,6 +1,10 @@
 ---
 title: Rustdoc Template & Cargo/Build Quick Reference
 description: Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode. — Rustdoc Template & Cargo/Build Quick Reference.
+trigger_phrases:
+  - "rustdoc template cargo build quick reference"
+  - "rust rustdoc and cargo"
+  - "rust quick reference"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Rustdoc Template & Cargo/Build Quick Reference
 
-## 9. RUSTDOC TEMPLATE
+Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for rustdoc template & cargo/build quick reference in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. RUSTDOC TEMPLATE
 
 ```rust
 /// Canonicalizes records for JavaScript serialization.
@@ -78,7 +100,7 @@ Public boundary documentation states:
 
 ---
 
-## 10. CARGO AND BUILD QUICK REFERENCE
+## 3. CARGO AND BUILD QUICK REFERENCE
 
 ### Workspace Baseline
 

@@ -1,6 +1,10 @@
 ---
 title: Rustdoc, Error/Panic Translation & Async Patterns
 description: Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment. — Rustdoc, Error/Panic Translation & Async Patterns.
+trigger_phrases:
+  - "rustdoc error panic translation async patterns"
+  - "rust docs errors and async"
+  - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Rustdoc, Error/Panic Translation & Async Patterns
 
-## 7. RUSTDOC AND BOUNDARY DOCUMENTATION
+Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for rustdoc, error/panic translation & async patterns in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. RUSTDOC AND BOUNDARY DOCUMENTATION
 
 ### Public Documentation Policy
 
@@ -98,7 +120,7 @@ pub fn rank_candidates(
 
 ---
 
-## 8. ERROR AND PANIC TRANSLATION
+## 3. ERROR AND PANIC TRANSLATION
 
 ### Typed Core Errors
 
@@ -194,7 +216,7 @@ pub fn candidate_at(
 
 ---
 
-## 9. ASYNC, THREADING, AND RUNTIME PATTERNS
+## 4. ASYNC, THREADING, AND RUNTIME PATTERNS
 
 ### Default Execution Model
 

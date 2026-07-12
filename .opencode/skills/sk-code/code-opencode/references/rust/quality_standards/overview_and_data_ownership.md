@@ -36,6 +36,17 @@ assert_eq!(
 
 Semantic JSON equality is diagnostic only. Acceptance requires byte-for-byte equality wherever output is observable.
 
+### When to Use
+
+- Writing or reviewing Rust core modules
+- Adding napi-rs, wasm-bindgen, WASI, or sidecar adapters
+- Migrating a TypeScript compute path to Rust
+- Defining Rust DTOs, errors, serialization, or public exports
+- Configuring Cargo, Clippy, rustfmt, MSRV, or supply-chain gates
+- Testing native, WASM, or WASI artifacts against the TypeScript oracle
+- Evaluating async, threading, zero-copy, or unsafe optimizations
+
+
 ### Severity Levels
 
 | Level | Meaning | Enforcement |
@@ -51,16 +62,6 @@ Semantic JSON equality is diagnostic only. Acceptance requires byte-for-byte equ
 - **[P0] No `unsafe` is permitted without a documented invariant and tests.** The pure core forbids unsafe code. Every permitted boundary unsafe block requires an adjacent `// SAFETY:` explanation, an exercising test, and a precondition-challenge test. This protects **FFI memory safety and boundary integrity**.
 - **[P0] Panics are not boundary errors.** JavaScript-controlled input must not reach `unwrap`, `expect`, unchecked indexing, explicit `panic!`, or assertion-dependent validation. This protects **Node process survival, WASM trap avoidance, and JavaScript error-shape parity**.
 - **[P0] TypeScript remains the behavior authority.** MCP transport, public tool schemas, daemon and CLI wiring, feature flags, and fallback selection remain in TypeScript. Rust adapters expose only narrow, measured kernels. This protects **transport compatibility and fallback behavior**.
-
-### When to Use
-
-- Writing or reviewing Rust core modules
-- Adding napi-rs, wasm-bindgen, WASI, or sidecar adapters
-- Migrating a TypeScript compute path to Rust
-- Defining Rust DTOs, errors, serialization, or public exports
-- Configuring Cargo, Clippy, rustfmt, MSRV, or supply-chain gates
-- Testing native, WASM, or WASI artifacts against the TypeScript oracle
-- Evaluating async, threading, zero-copy, or unsafe optimizations
 
 ---
 

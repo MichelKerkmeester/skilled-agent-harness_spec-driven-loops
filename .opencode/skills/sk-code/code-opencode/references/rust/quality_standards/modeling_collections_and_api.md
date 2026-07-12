@@ -1,6 +1,10 @@
 ---
 title: Domain Modeling, Collections & Public API/ABI Contracts
 description: Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment. — Domain Modeling, Collections & Public API/ABI Contracts.
+trigger_phrases:
+  - "domain modeling collections public api abi contracts"
+  - "rust modeling collections and api"
+  - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Domain Modeling, Collections & Public API/ABI Contracts
 
-## 4. DOMAIN AND STATE MODELING
+Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for domain modeling, collections & public api/abi contracts in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. DOMAIN AND STATE MODELING
 
 ### Newtypes for Parity-Sensitive Values
 
@@ -113,7 +135,7 @@ pub fn connection_summary(state: &ConnectionState) -> String {
 
 ---
 
-## 5. STANDARD COLLECTION AND SERIALIZATION TYPES
+## 3. STANDARD COLLECTION AND SERIALIZATION TYPES
 
 ### Collection Selection
 
@@ -215,7 +237,7 @@ The helper above is acceptable only after fixtures establish that its exact outp
 
 ---
 
-## 6. PUBLIC API AND ABI CONTRACTS
+## 4. PUBLIC API AND ABI CONTRACTS
 
 ### Explicit Public Signatures
 

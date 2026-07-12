@@ -1,6 +1,10 @@
 ---
 title: Naming, Section Ordering & Signature Patterns
 description: Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode. — Naming, Section Ordering & Signature Patterns.
+trigger_phrases:
+  - "naming section ordering signature patterns"
+  - "rust naming ordering and signatures"
+  - "rust quick reference"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Naming, Section Ordering & Signature Patterns
 
-## 3. NAMING CHEAT SHEET
+Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for naming, section ordering & signature patterns in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. NAMING CHEAT SHEET
 
 | Element | Convention | Example |
 |---|---|---|
@@ -49,7 +71,7 @@ Keep core naming idiomatic. Preserve existing JavaScript names through boundary 
 
 ---
 
-## 4. SECTION ORDERING
+## 3. SECTION ORDERING
 
 ```text
 1. CRATE ATTRIBUTES       (unsafe and lint policy)
@@ -76,7 +98,7 @@ Adapters must not duplicate scoring, sorting, hashing, rounding, deterministic-I
 
 ---
 
-## 5. BOUNDARY TYPE AND SIGNATURE PATTERNS
+## 4. BOUNDARY TYPE AND SIGNATURE PATTERNS
 
 ### Owned Boundary DTOs
 

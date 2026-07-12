@@ -1,6 +1,10 @@
 ---
 title: Toolchain, Compilation Baseline & Project Structure
 description: Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment. — Toolchain, Compilation Baseline & Project Structure.
+trigger_phrases:
+  - "toolchain compilation baseline project structure"
+  - "rust toolchain and project structure"
+  - "rust style guidance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Toolchain, Compilation Baseline & Project Structure
 
-## 3. EDITION, TOOLCHAIN, AND COMPILATION BASELINE
+Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for toolchain, compilation baseline & project structure in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. EDITION, TOOLCHAIN, AND COMPILATION BASELINE
 
 ### Workspace Configuration Is Authoritative
 
@@ -139,7 +161,7 @@ Explicit checked behavior protects parity across development, release, native, a
 
 ---
 
-## 4. SECTION ORGANIZATION
+## 3. SECTION ORGANIZATION
 
 Large Rust files use numbered section dividers. Small modules do not need dividers when ordinary Rust structure is clearer.
 

@@ -1,6 +1,10 @@
 ---
 title: Collections, Imports/Exports & Error Mapping
 description: Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode. — Collections, Imports/Exports & Error Mapping.
+trigger_phrases:
+  - "collections imports exports error mapping"
+  - "rust collections imports and errors"
+  - "rust quick reference"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Collections, Imports/Exports & Error Mapping
 
-## 6. COLLECTION AND CONVERSION PATTERNS
+Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for collections, imports/exports & error mapping in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. COLLECTION AND CONVERSION PATTERNS
 
 ### Canonical Map
 
@@ -103,7 +125,7 @@ Use `IndexMap` only when deterministic insertion order is itself the documented 
 
 ---
 
-## 7. IMPORT, MODULE, AND EXPORT TEMPLATES
+## 3. IMPORT, MODULE, AND EXPORT TEMPLATES
 
 ### Import Ordering
 
@@ -181,7 +203,7 @@ Native and WASM features must compile independently. Do not make boundary runtim
 
 ---
 
-## 8. ERROR AND PANIC MAPPING
+## 4. ERROR AND PANIC MAPPING
 
 ### Domain Error
 

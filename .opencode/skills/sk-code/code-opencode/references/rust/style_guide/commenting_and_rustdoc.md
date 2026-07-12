@@ -1,6 +1,10 @@
 ---
 title: Commenting & Rustdoc Rules
 description: Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment. — Commenting & Rustdoc Rules.
+trigger_phrases:
+  - "commenting rustdoc rules"
+  - "rust commenting and rustdoc"
+  - "rust style guidance"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,25 @@ version: 1.0.0.0
 
 # Commenting & Rustdoc Rules
 
-## 8. COMMENTING AND RUSTDOC RULES
+Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for commenting & rustdoc rules in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+---
+
+## 2. COMMENTING AND RUSTDOC RULES
 
 ### Comment Principles
 
