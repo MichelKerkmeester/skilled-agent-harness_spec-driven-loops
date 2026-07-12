@@ -6,7 +6,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/061-stage-aware-scorer"
-    last_updated_at: "2026-07-11T21:40:00Z"
+    last_updated_at: "2026-07-11T23:57:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Stage-split wired + re-baselined; 28 holdout-free 0-delta, 7 holdout-bearing surface gaps"
     next_safe_action: "Complete"
@@ -70,10 +70,12 @@ Unit: the `skill-benchmark.vitest.ts` suite runs 45 passed / 7 failed — the 7 
 relocation + router-content + D5/commandRecipe fixture issues, unrelated to stages). The full deep-improvement suite
 went from 421 passed / 22 failed (pristine) to 426 passed / 22 failed (mine) — a clean +5 with the same 22
 pre-existing failures, i.e. zero regressions. Re-baseline: all 28 holdout-free corpora reproduce their baseline
-`aggregateScore` byte-for-byte (0 deltas); the 7 holdout-bearing corpora change only by excluding holdout from the
-fitted aggregate, and the harness now surfaces real generalization gaps the old averaged headline masked — notably
-cli-opencode (fitted 100 / holdout 31 / gap 69) and mcp-click-up (fitted 100 / holdout 31 / gap 69), while
-mcp-figma and mcp-tooling show gap 0 (perfect generalization).
+`aggregateScore` byte-for-byte (0 deltas); the 7 holdout-bearing corpora change by two intended effects —
+excluding holdout from the fitted aggregate, and re-scoring the 5 stage-declared negatives through the
+advisor-inversion lane (84 → 100 via the `negativeActivation` flip, which is why a corpus whose holdout rows
+already score 100, e.g. mcp-figma, still moves) — and the harness now surfaces real generalization gaps the old
+averaged headline masked — notably cli-opencode (fitted 100 / holdout 31 / gap 69) and mcp-click-up
+(fitted 100 / holdout 31 / gap 69), while mcp-figma and mcp-tooling show gap 0 (perfect generalization).
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Commit `5149f3abe5` (\"refactor(system-spec-kit): de-number 699 catalog+playbook snippet files\") renamed 699 system-spec-kit catalog and playbook snippet files, stripping the `NNN-` numeric prefixes",
     "created_at": "2026-07-11T20:32:10.199Z",
-    "last_save_at": "2026-07-11T20:39:46.935Z",
+    "last_save_at": "2026-07-11T23:58:51.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f47c864b3223c44c24061bdc86d97989dba8fcc341df75f83fb7c2449a7f1953",
+    "source_fingerprint": "sha256:ec25057f44ab1cf62d6a291699225336535bb0d0b04966f8db79afbf7b74a0dd",
     "source_doc_hashes": {
-      "spec.md": "7b9d10694408b766469beab53ed3c9cd3104b0431a26a308fb4d396ed10c1548",
-      "plan.md": "6864bf50250792a77642e53a1563c33ee7428dfcb28a4982976328d926d4adc5",
-      "tasks.md": "edf5472ce737d27b7f81c40ff73cd850dd688ae857acfa6f16d2ef7803848dfe",
-      "checklist.md": "6fd4ecb3f429aed7d09b557ae6742af72bed8f9429aedc85ff2914c28eccdb1f",
-      "decision-record.md": "15269f217a46b074cb5674d1e766d0c7c0c6249425170482c20f31c886ac74bd",
-      "implementation-summary.md": "3ea80c582d96eab7d15295b698235e510ce84474398ff9ba6f12cafe5122fc5a"
+      "spec.md": "b9f4d48ad5dc0d6a03eb6ffde3d8509b8babe2ba406d3970d0bfb1773a6776f9",
+      "plan.md": "a392824ab5a4c8385076d0650b8a7b9ef80727d07e865267c5763c6501bb65d5",
+      "tasks.md": "086d1b5b8a1717d21d98640a593cff2be63a6b8694365e6bb681fa928455b51d",
+      "checklist.md": "a54737dabd6bb74528d02bb0772dbaf32755ac0487eddd641a7fc71908f07a17",
+      "decision-record.md": "03d4f9f98137004d9df2afbb44e6c321ae67e5657486df1ca10bf1ff7b2a07f3",
+      "implementation-summary.md": "1a42e2c23847aff1ff9c2e19850fe0f3d91b4fb1caa833d997d8d208bcc27b78"
     },
     "last_active_child_id": null,
     "last_active_at": null

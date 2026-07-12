@@ -626,7 +626,7 @@ export HF_EMBEDDINGS_DTYPE=q8  # Default (also: fp32, fp16, q4, int8, uint8, bnb
 export OLLAMA_EMBEDDINGS_MODEL=nomic-embed-text-v1.5  # Default
 
 # Database directory (optional - default: .opencode/skills/system-spec-kit/mcp_server/database/)
-export MEMORY_DB_DIR=/path/to/database
+export SPEC_KIT_DB_DIR=/path/to/database  # (or SPECKIT_DB_DIR)
 ```
 
 **Note on per-profile DB:**

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The stage-aware scorer (packet 061) added a fitted-vs-holdout split and a `generalizationGap`",
     "created_at": "2026-07-11T21:53:32.572Z",
-    "last_save_at": "2026-07-11T21:55:11.179Z",
+    "last_save_at": "2026-07-11T23:58:54.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f830ec5164288e3640a1ce6c9624fba172d866885bfad5c94fdf28eec5de8570",
+    "source_fingerprint": "sha256:b729a0c6affe4195a1660c0a5d6be43c049fdf4a6a698f99b727c4873f7a82ba",
     "source_doc_hashes": {
-      "spec.md": "2c5f0d529164bfca211d0dbca0e30a2ca95cb4ac43ca57122f3b6adcb248751c",
-      "plan.md": "52c6535fce207c31895f052d8b7999aba991f8dee0434a0897469ef54d5b534b",
-      "tasks.md": "f192947f1d1cb74a1cdb40ce46c6ebf6c03112229c87fa369856fdcba31aac25",
-      "checklist.md": "c542ca2fd3e172fc22e6888567cf5bb4ac6ee125d40c221921606931341ea06d",
-      "decision-record.md": "67791ed12d48216be52856f44f7052ffec0e48cef92371a4ce45fcbe5976dc86",
-      "implementation-summary.md": "b8ed15b3d3201ec7fbc1da61bf8ea0de4ccefa723eb7223613889386c163f522"
+      "spec.md": "7a27d08d77cdb0b24de2a2e359b40a6af09384f1a6f5cec39d8706ed903e8089",
+      "plan.md": "8ad753ea0100ec75b9f4e6bb264f9986f2f675551e13609d866408955b9e3460",
+      "tasks.md": "a0503f3ad4dca9eb7d94f8927479e2124842f9141a06faea02ee77f933dc45b9",
+      "checklist.md": "d08f332d8487eb1f4dc2656a0a251b0ba9df6b977052cf0437b839304c593a3b",
+      "decision-record.md": "a0867cdf285d9df804cad50052a36bc8ee291fcd6ab2c380523bc56338d8fb6e",
+      "implementation-summary.md": "cd5341e6fcc5c71b1ad2d718c8da6af64400feac296f903cf334c8839f69ea32"
     },
     "last_active_child_id": null,
     "last_active_at": null

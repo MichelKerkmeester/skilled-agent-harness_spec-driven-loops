@@ -6,7 +6,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-vitest-invariance-maintenance"
-    last_updated_at: "2026-07-11T20:45:00Z"
+    last_updated_at: "2026-07-11T23:57:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All 3 suites green (my own re-run); MEMORY_DB_DIR dead mapping removed + doc drift corrected"
     next_safe_action: "Complete"
@@ -69,7 +69,7 @@ commit `5149f3abe5` de-numbered 699 of its files. The foreign-lane `it.fails.ski
 Independently re-ran all three suites from the skill root: `feature-flag-reference-docs` 14 passed / 0 failed;
 `outsourced-agent-handback-docs` 2 passed / 1 skipped (the foreign-lane test); `workflow-invariance` 2 passed / 0
 failed. Injected-leak tripwire re-proven (planted `capability`/`preset` leak → suite FAILS → removed → green), so
-the `BANNED` regex is byte-identical and still catches a real leak. No regression elsewhere: only 2 self-contained
+the `BANNED` regex is byte-identical and still catches a real leak. No regression elsewhere: only 3 self-contained
 test files and 2 docs changed (no runtime code); no other test reads the edited docs' content, and the DB-path
 tests exercise the unchanged env vars. `git diff` confirms the `it.fails.skip` line is untouched and no scratch
 artifact remains.

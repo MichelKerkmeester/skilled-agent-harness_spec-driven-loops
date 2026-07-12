@@ -6,7 +6,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/062-routed-nothing-efficiency-na"
-    last_updated_at: "2026-07-11T22:20:00Z"
+    last_updated_at: "2026-07-11T23:57:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "scoreD3 salvage removed + re-baselined; fitted 0/33 changed, holdout honest"
     next_safe_action: "Complete"
@@ -65,9 +65,9 @@ Unit: the new test asserts a positive scenario with an empty router result score
 `d3.proxy === 'no-routing'`, and `modeAScore === 0`. The stage-aware describe runs 6/6; the full deep-improvement
 suite is 427 passed / 22 failed / 15 skipped — the same 22 pre-existing failures as before, +1 new passing test
 (0 regressions). Re-baseline: 0 fitted-aggregate changes across all 33 corpora (after vs after2), so no verdict
-moves and 061's shipped numbers stand. Holdout numbers are now honest — routed-nothing holdouts drop 31 → 0
-(cli-opencode / mcp-click-up gap 69 → 100; cli-claude-code 34 → 50), while routed-something holdouts are unchanged
-(cli-external 84, mcp-figma 100, mcp-tooling 92).
+moves and 061's shipped numbers stand. Holdout numbers are now honest — the routed-nothing holdouts drop 31 → 0
+(cli-opencode / mcp-click-up, gap 69 → 100), and cli-claude-code's holdout drops 66 → 50 (gap 34 → 50), while
+routed-something holdouts are unchanged (cli-external 84, mcp-figma 100, mcp-tooling 92).
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
