@@ -1,6 +1,11 @@
 ---
 title: Designer Mode, Component State & Performance Patterns
 description: Comprehensive CSS patterns for Webflow development including state machines, validation architecture, accessibility, and design token systems. — Designer Mode, Component State & Performance Patterns.
+trigger_phrases:
+  - "webflow designer preview mode"
+  - "css component state patterns"
+  - "content visibility performance"
+  - "webflow conditional visibility"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,25 @@ version: 3.5.0.4
 
 # Designer Mode, Component State & Performance Patterns
 
-## 10. WEBFLOW DESIGNER MODE SUPPORT
+Comprehensive CSS patterns for Webflow Designer previews, component states, and rendering performance.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Document Designer-mode previews, declarative component-state styling, and performance-oriented rendering patterns.
+
+### When to Use
+
+- Previewing interaction states inside Webflow Designer.
+- Styling open, disabled, selected, or visibility states.
+- Applying content containment or transition performance safeguards.
+
+---
+
+## 2. WEBFLOW DESIGNER MODE SUPPORT
 
 ### Designer Mode Detection
 
@@ -68,7 +91,7 @@ Webflow generates `.w-condition-invisible` for conditional visibility:
 
 ---
 
-## 11. COMPONENT STATE PATTERNS
+## 3. COMPONENT STATE PATTERNS
 
 ### Open/Closed State (Dropdown)
 
@@ -153,7 +176,7 @@ Webflow generates `.w-condition-invisible` for conditional visibility:
 
 ---
 
-## 12. PERFORMANCE PATTERNS
+## 4. PERFORMANCE PATTERNS
 
 ### Content Visibility
 
@@ -223,4 +246,3 @@ Webflow generates `.w-condition-invisible` for conditional visibility:
 **Why:** `transition: all` is inefficient and can cause unexpected animations.
 
 ---
-

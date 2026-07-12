@@ -1,6 +1,11 @@
 ---
 title: Fluid Typography, Autofill, Color-Mix & Content-Visibility
 description: "CSS quality patterns for Webflow: will-change management (set in JS, cleanup after), GPU-accelerated properties (transform/opacity only), Motion.dev-aligned easing, fluid typography. Includes CSS enforcement: custom property naming (--font-/--vw-/--component-/--state-/--global-), attribute selector case-insensitivity (i flag), BEM naming, animation property restrictions." — Fluid Typography, Autofill, Color-Mix & Content-Visibility.
+trigger_phrases:
+  - "fluid typography deep dive"
+  - "css autofill override patterns"
+  - "color mix state interpolation"
+  - "content visibility optimization"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.2
@@ -8,7 +13,25 @@ version: 3.5.0.2
 
 # Fluid Typography, Autofill, Color-Mix & Content-Visibility
 
-## 7. FLUID TYPOGRAPHY DEEP-DIVE
+Quality patterns for fluid typography, browser autofill, color interpolation, and off-screen rendering in Webflow CSS.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Document advanced CSS quality patterns for responsive type, branded form autofill, derived state colors, and rendering optimization.
+
+### When to Use
+
+- Tuning root typography across viewport breakpoints.
+- Preserving branded input styles during browser autofill.
+- Deriving state colors or deferring below-fold rendering safely.
+
+---
+
+## 2. FLUID TYPOGRAPHY DEEP-DIVE
 
 The fluid-type formula in §2 (`calc(var(--base) * 1rem + var(--coefficient) * 1vw)`) is the entry-point. Production usage requires per-breakpoint tuning to prevent type from going unboundedly large on ultra-wide displays or unbounded-small on narrow phones.
 
@@ -84,7 +107,7 @@ Now ALL typography scales fluidly with viewport width via the cascade, controlle
 
 ---
 
-## 8. AUTOFILL OVERRIDE PATTERNS
+## 3. AUTOFILL OVERRIDE PATTERNS
 
 Browser autofill inserts a yellow background and dark text into form fields, breaking dark-themed forms or branded inputs. Webflow Designer can't control this — needs Custom CSS panel rules.
 
@@ -129,7 +152,7 @@ input:-webkit-autofill:active {
 
 ---
 
-## 9. COLOR-MIX FOR STATE INTERPOLATION
+## 4. COLOR-MIX FOR STATE INTERPOLATION
 
 `color-mix()` (CSS Color Module 5, supported in Chrome 111+, Firefox 113+, Safari 16.2+) interpolates between two colors at a specified ratio. Use it for hover/focus state tints without defining a separate color token per state.
 
@@ -199,7 +222,7 @@ The cascade naturally selects the modern declaration when supported, fallback wh
 
 ---
 
-## 10. CONTENT-VISIBILITY OPTIMIZATION
+## 5. CONTENT-VISIBILITY OPTIMIZATION
 
 `content-visibility: auto` lets the browser skip rendering work for off-screen elements, dramatically improving LCP on long pages. Underused in Webflow projects.
 
@@ -254,4 +277,3 @@ Use a data attribute to opt-in per element:
 > **Check:** Are below-fold sections (long pages, infinite scrolling, content lists) using `content-visibility: auto` with paired `contain-intrinsic-size`? Are above-the-fold sections explicitly excluded?
 
 ---
-

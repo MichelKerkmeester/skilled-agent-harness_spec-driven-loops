@@ -1,6 +1,11 @@
 ---
 title: Quick Reference & Related
 description: Comprehensive CSS patterns for Webflow development including state machines, validation architecture, accessibility, and design token systems. — Quick Reference & Related.
+trigger_phrases:
+  - "webflow css pattern quick reference"
+  - "css state trigger table"
+  - "form validation class reference"
+  - "css accessibility checklist"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,25 @@ version: 3.5.0.4
 
 # Quick Reference & Related
 
-## 13. QUICK REFERENCE
+Quick-reference tables and checklists for Webflow CSS state machines, validation classes, focus handling, and accessibility.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provide a compact lookup for the state, validation, focus, and accessibility patterns used across the Webflow CSS references.
+
+### When to Use
+
+- Looking up state attributes or validation classes quickly.
+- Checking focus-handling snippets during implementation.
+- Running the compact CSS accessibility checklist.
+
+---
+
+## 2. QUICK REFERENCE
 
 ### State Machine Setup
 
@@ -80,12 +103,12 @@ body.using-keyboard .element:focus { outline: 4px solid var(--state--focused); }
 
 ---
 
-## 14. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 ### Reference Files
 
 - [animation_workflows.md](../../implementation/animation_workflows/overview-decision-tree-and-css.md) - Animation implementation patterns
-- [quality_standards.md](../quality_standards/patterns-and-naming-enforcement.md) - General coding standards
+- [quality_standards.md](../quality_standards/patterns_and_naming_enforcement.md) - General coding standards
 - [webflow_patterns.md](../../implementation/webflow_patterns/overview-limits-and-collection-lists.md) - Webflow platform constraints
 
 ### Source Files

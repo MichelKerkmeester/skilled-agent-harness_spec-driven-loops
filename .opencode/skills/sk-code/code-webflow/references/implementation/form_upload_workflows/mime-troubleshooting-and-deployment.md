@@ -249,7 +249,7 @@ window.cleanupFilepondInstances();
 
 ### Reference Files
 
-- [`../../css/quality_standards/patterns-and-naming-enforcement.md`](../../css/quality_standards/patterns-and-naming-enforcement.md) - CSS quality patterns relevant to form-field state styling (BEM enforcement, custom property prefixes, attribute selector i flag)
+- [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) - CSS quality patterns relevant to form-field state styling (BEM enforcement, custom property prefixes, attribute selector i flag)
 
 - **[implementation_workflows.md](../implementation_workflows/condition-based-waiting.md)** — Condition-based waiting, validation patterns used by the upload connector
 - **[security_patterns.md](../security_patterns/overview-and-checklist.md)** — XSS prevention relevant to file upload handling

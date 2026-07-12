@@ -1,6 +1,11 @@
 ---
 title: Focus Detection, Accessibility & Mobile/Browser Patterns
 description: Comprehensive CSS patterns for Webflow development including state machines, validation architecture, accessibility, and design token systems. — Focus Detection, Accessibility & Mobile/Browser Patterns.
+trigger_phrases:
+  - "keyboard mouse focus detection"
+  - "css accessibility patterns"
+  - "reduced motion support"
+  - "mobile browser css patterns"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,25 @@ version: 3.5.0.4
 
 # Focus Detection, Accessibility & Mobile/Browser Patterns
 
-## 7. KEYBOARD VS MOUSE FOCUS DETECTION
+Comprehensive CSS patterns for focus detection, accessibility, and mobile/browser behavior in Webflow development.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Document keyboard-versus-mouse focus handling, reduced-motion support, and mobile/browser-specific CSS patterns.
+
+### When to Use
+
+- Implementing keyboard-visible focus states without distracting mouse users.
+- Adding reduced-motion and screen-reader-safe CSS behavior.
+- Addressing touch, iOS zoom, Safari hover, or browser autofill behavior.
+
+---
+
+## 2. KEYBOARD VS MOUSE FOCUS DETECTION
 
 ### The Problem
 
@@ -98,7 +121,7 @@ body.using-keyboard [data-select="input"]:focus {
 
 ---
 
-## 8. ACCESSIBILITY PATTERNS
+## 3. ACCESSIBILITY PATTERNS
 
 ### Reduced Motion Support
 
@@ -180,7 +203,7 @@ Validation states use semantic color tokens with sufficient contrast:
 
 ---
 
-## 9. MOBILE AND BROWSER-SPECIFIC PATTERNS
+## 4. MOBILE AND BROWSER-SPECIFIC PATTERNS
 
 ### Hover Media Query
 
@@ -272,4 +295,3 @@ input:autofill {
 ```
 
 ---
-

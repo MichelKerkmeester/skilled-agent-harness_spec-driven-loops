@@ -28,7 +28,7 @@ This reference documents CSS patterns used in example.com's Webflow implementati
 Follow code quality standards for all CSS implementations:
 - **Naming:** Use existing conventions documented in this file
 - **Accessibility:** Include `prefers-reduced-motion` for all animations
-- See [quality_standards.md](../quality_standards/patterns-and-naming-enforcement.md) for complete requirements
+- See [quality_standards.md](../quality_standards/patterns_and_naming_enforcement.md) for complete requirements
 
 ### When to Use This Reference
 
@@ -447,4 +447,3 @@ For color transitions, use `color-mix()` with state percentage:
 **Important:** Remove "preview" before publishing to production.
 
 ---
-

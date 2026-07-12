@@ -133,7 +133,7 @@ Use prefixes to indicate scope and purpose:
 }
 ```
 
-> **Note:** The dynamic-set pattern (setting `will-change` via JavaScript before animation, resetting after) is detailed in [`quality_standards/patterns-and-naming-enforcement.md`](quality_standards/patterns-and-naming-enforcement.md).
+> **Note:** The dynamic-set pattern (setting `will-change` via JavaScript before animation, resetting after) is detailed in [`quality_standards/patterns_and_naming_enforcement.md`](quality_standards/patterns_and_naming_enforcement.md).
 
 ### Easing Standards (Aligned with Motion.dev)
 
@@ -292,9 +292,9 @@ Production has drift between 2-space and 4-space indentation across files. **Sta
 
 ## RELATED RESOURCES
 
-- [`patterns/tokens-state-machine-and-triggers.md`](patterns/tokens-state-machine-and-triggers.md) — comprehensive CSS patterns: Webflow token system, state machines, hover/focus/form triggers, accessibility, mobile/browser-specific patterns
+- [`patterns/tokens_state_machine_and_triggers.md`](patterns/tokens_state_machine_and_triggers.md) — comprehensive CSS patterns: Webflow token system, state machines, hover/focus/form triggers, accessibility, mobile/browser-specific patterns
 - [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) — file naming, comment principles, file-header banner shape
-- [`quality_standards/patterns-and-naming-enforcement.md`](quality_standards/patterns-and-naming-enforcement.md) — CSS quality patterns (will-change management, GPU-accelerated properties, easing standards, fluid typography) and CSS enforcement (custom property naming enforcement, attribute selector enforcement, BEM naming enforcement, animation property enforcement)
+- [`quality_standards/patterns_and_naming_enforcement.md`](quality_standards/patterns_and_naming_enforcement.md) — CSS quality patterns (will-change management, GPU-accelerated properties, easing standards, fluid typography) and CSS enforcement (custom property naming enforcement, attribute selector enforcement, BEM naming enforcement, animation property enforcement)
 - [`./quick_reference.md`](./quick_reference.md) — Webflow tokens (read-only reference), form validation classes, reduced motion (MANDATORY), focus detection
 - [`../shared/enforcement.md`](../shared/enforcement.md) — pre-completion gate workflow
 

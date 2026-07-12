@@ -1,6 +1,11 @@
 ---
 title: Data Attribute Selectors & Form Validation State
 description: Comprehensive CSS patterns for Webflow development including state machines, validation architecture, accessibility, and design token systems. — Data Attribute Selectors & Form Validation State.
+trigger_phrases:
+  - "css data attribute selectors"
+  - "webflow form validation state"
+  - "validation class patterns"
+  - "autofill validation override"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,25 @@ version: 3.5.0.4
 
 # Data Attribute Selectors & Form Validation State
 
-## 5. DATA ATTRIBUTE SELECTOR PATTERNS
+Comprehensive CSS patterns for data-attribute selectors and form-validation states in Webflow development.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Document selector forms and validation-state styling for Webflow components, forms, custom selects, uploads, and choice controls.
+
+### When to Use
+
+- Selecting Webflow component roles or states through `data-*` attributes.
+- Styling invalid and valid form-field containers.
+- Overriding autofill or third-party component validation states.
+
+---
+
+## 2. DATA ATTRIBUTE SELECTOR PATTERNS
 
 ### Attribute Presence Selector
 
@@ -108,7 +131,7 @@ version: 3.5.0.4
 
 ---
 
-## 6. FORM VALIDATION STATE ARCHITECTURE
+## 3. FORM VALIDATION STATE ARCHITECTURE
 
 ### Validation Class Pattern
 
@@ -257,4 +280,3 @@ Browser autofill adds its own styling that must be overridden to show validation
 ```
 
 ---
-

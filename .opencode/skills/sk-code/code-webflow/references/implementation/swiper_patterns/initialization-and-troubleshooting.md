@@ -209,7 +209,7 @@ clone.setAttribute("aria-hidden", "true");
 - [performance_patterns.md](../performance_patterns/overview-and-checklist.md) - CPU optimization patterns
 - [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md) - Webflow class conventions
 - [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Scroll-triggered animations
-- [`../../css/quality_standards/patterns-and-naming-enforcement.md`](../../css/quality_standards/patterns-and-naming-enforcement.md) - CSS quality patterns relevant to Swiper class styling (BEM, animation properties, custom properties)
+- [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) - CSS quality patterns relevant to Swiper class styling (BEM, animation properties, custom properties)
 
 ### Source Files
 - `/src/javascript/swiper/timeline.js` - Carousel reference implementation

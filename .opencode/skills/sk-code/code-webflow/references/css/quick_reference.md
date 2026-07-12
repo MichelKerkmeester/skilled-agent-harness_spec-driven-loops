@@ -15,7 +15,7 @@ version: 3.5.0.2
 
 # Webflow CSS Quick Reference
 
-> See [`./style_guide.md`](./style_guide.md) for CSS conventions and [`quality_standards/patterns-and-naming-enforcement.md`](quality_standards/patterns-and-naming-enforcement.md) for CSS quality patterns + enforcement. See [`../shared/dev_workflow/overview-nav-and-logging.md`](../shared/dev_workflow/overview-nav-and-logging.md) for cross-language commands and decision matrix.
+> See [`./style_guide.md`](./style_guide.md) for CSS conventions and [`quality_standards/patterns_and_naming_enforcement.md`](quality_standards/patterns_and_naming_enforcement.md) for CSS quality patterns + enforcement. See [`../shared/dev_workflow/overview-nav-and-logging.md`](../shared/dev_workflow/overview-nav-and-logging.md) for cross-language commands and decision matrix.
 
 ---
 
@@ -188,6 +188,6 @@ document.addEventListener('mousedown', () => {
 ## RELATED RESOURCES
 
 - [`./style_guide.md`](./style_guide.md) — CSS naming, custom property prefixes, attribute selectors, animation CSS, file organization
-- [`quality_standards/patterns-and-naming-enforcement.md`](quality_standards/patterns-and-naming-enforcement.md) — will-change, GPU props, easing, fluid typography, all 4 CSS enforcement subsections
+- [`quality_standards/patterns_and_naming_enforcement.md`](quality_standards/patterns_and_naming_enforcement.md) — will-change, GPU props, easing, fluid typography, all 4 CSS enforcement subsections
 - [`../javascript/quick_reference.md`](../javascript/quick_reference.md) — JS snippets and one-liners
 - [`../shared/dev_workflow/overview-nav-and-logging.md`](../shared/dev_workflow/overview-nav-and-logging.md) — cross-language commands, decision matrix, debugging checklist

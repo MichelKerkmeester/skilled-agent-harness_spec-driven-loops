@@ -213,12 +213,12 @@ animate(element, {
 ## 9. RELATED RESOURCES
 
 ### Reference Files
-- [`../../css/patterns/tokens-state-machine-and-triggers.md`](../../css/patterns/tokens-state-machine-and-triggers.md) — CSS animation-relevant patterns (state machine pattern, color-mix interpolation, GPU-accelerated state triggers)
+- [`../../css/patterns/tokens_state_machine_and_triggers.md`](../../css/patterns/tokens_state_machine_and_triggers.md) — CSS animation-relevant patterns (state machine pattern, color-mix interpolation, GPU-accelerated state triggers)
 - [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Implementation phase guidance
 - [debugging_workflows.md](../../debugging/debugging_workflows/systematic-four-phases.md) - Animation debugging techniques
 - [verification_workflows.md](../../verification/verification_workflows/gate-and-automated-options.md) - Animation verification procedures
 - [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) - CDN-safe initialization patterns
-- [`../../css/quality_standards/patterns-and-naming-enforcement.md`](../../css/quality_standards/patterns-and-naming-enforcement.md) - CSS animation quality patterns (will-change management, GPU-accelerated properties, easing standards aligned with Motion.dev, fluid typography)
+- [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) - CSS animation quality patterns (will-change management, GPU-accelerated properties, easing standards aligned with Motion.dev, fluid typography)
 
 ### Related Skills
 - `mcp-chrome-devtools` - CLI-based performance profiling and animation testing

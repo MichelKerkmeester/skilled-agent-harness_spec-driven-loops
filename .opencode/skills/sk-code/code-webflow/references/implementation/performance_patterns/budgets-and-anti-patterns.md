@@ -208,7 +208,7 @@ This file is the high-level checklist + budgets + anti-patterns index. For deep-
 
 ### Per-language quality patterns
 - [`../../javascript/quality_standards/init-dom-error-and-async.md`](../../javascript/quality_standards/init-dom-error-and-async.md) — JS-side performance patterns (RequestAnimationFrame, GPU acceleration hints, debounced resize, event delegation)
-- [`../../css/quality_standards/patterns-and-naming-enforcement.md`](../../css/quality_standards/patterns-and-naming-enforcement.md) — CSS-side performance patterns (will-change management, GPU-accelerated properties, easing standards, fluid typography)
+- [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) — CSS-side performance patterns (will-change management, GPU-accelerated properties, easing standards, fluid typography)
 
 ### Cross-stack
 - [`../../animation/performance_and_pitfalls.md`](../../animation/performance_and_pitfalls.md) — Motion.dev performance and pitfalls (will-change cleanup, GPU acceleration, frame-rate gotchas)

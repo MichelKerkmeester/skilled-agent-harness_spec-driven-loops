@@ -1,6 +1,11 @@
 ---
 title: Focus-Visible, :has(), Print & Quick Reference
 description: "CSS quality patterns for Webflow: will-change management (set in JS, cleanup after), GPU-accelerated properties (transform/opacity only), Motion.dev-aligned easing, fluid typography. Includes CSS enforcement: custom property naming (--font-/--vw-/--component-/--state-/--global-), attribute selector case-insensitivity (i flag), BEM naming, animation property restrictions." — Focus-Visible, :has(), Print & Quick Reference.
+trigger_phrases:
+  - "focus visible discipline"
+  - "css has parent selector"
+  - "webflow print stylesheet"
+  - "css deployment checklist"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.2
@@ -8,7 +13,25 @@ version: 3.5.0.2
 
 # Focus-Visible, :has(), Print & Quick Reference
 
-## 11. :FOCUS-VISIBLE VS :FOCUS DISCIPLINE
+Quality and enforcement guidance for focus visibility, parent-state selectors, print stylesheets, and final CSS checks.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Document modern focus indicators, `:has()` parent-state patterns, print behavior, and a compact deployment checklist.
+
+### When to Use
+
+- Migrating focus styling from `:focus` to `:focus-visible`.
+- Replacing parent-state class toggles with `:has()` where appropriate.
+- Adding print support or performing final CSS quality checks.
+
+---
+
+## 2. :FOCUS-VISIBLE VS :FOCUS DISCIPLINE
 
 The `:focus` pseudo-class fires for ALL focus events — keyboard tab, mouse click, programmatic focus. The `:focus-visible` pseudo-class fires ONLY when the browser determines the user needs visible focus indication (typically keyboard tab, NOT mouse click). Use `:focus-visible` for outline rings to avoid showing them on every mouse click.
 
@@ -68,7 +91,7 @@ Both rules can coexist during migration. After all consumers update, remove the 
 
 ---
 
-## 12. :HAS() PARENT-STATE PATTERNS
+## 3. :HAS() PARENT-STATE PATTERNS
 
 `:has()` (Chrome 105+, Firefox 121+, Safari 15.4+) is the long-awaited "parent selector" — a CSS rule can target an element based on its descendants' state. Eliminates many JavaScript-driven class toggles.
 
@@ -129,7 +152,7 @@ The JS class-toggle pattern still has its place (when validation timing must be 
 
 ---
 
-## 13. PRINT STYLESHEET PATTERNS
+## 4. PRINT STYLESHEET PATTERNS
 
 Webflow doesn't generate print stylesheets. If users print pages (common for invoices, contracts, technical specs), add `@media print` rules in the Custom CSS panel.
 
@@ -197,7 +220,7 @@ Webflow doesn't generate print stylesheets. If users print pages (common for inv
 
 ---
 
-## 14. CSS QUICK REFERENCE CHECKLIST
+## 5. CSS QUICK REFERENCE CHECKLIST
 
 Before deploying any component:
 
@@ -212,7 +235,7 @@ Before deploying any component:
 
 ## RELATED RESOURCES
 
-- [`../patterns/tokens-state-machine-and-triggers.md`](../patterns/tokens-state-machine-and-triggers.md) — Webflow CSS patterns reference: token system, state machines, focus detection, form validation, mobile patterns
+- [`../patterns/tokens_state_machine_and_triggers.md`](../patterns/tokens_state_machine_and_triggers.md) — Webflow CSS patterns reference: token system, state machines, focus detection, form validation, mobile patterns
 - [`../style_guide.md`](../style_guide.md) — CSS naming (BEM), custom property prefixes, attribute selectors, animation CSS, file organization
 - [`../quick_reference.md`](../quick_reference.md) — Webflow tokens, form validation classes, reduced motion, focus detection
 - [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) — cross-language conventions

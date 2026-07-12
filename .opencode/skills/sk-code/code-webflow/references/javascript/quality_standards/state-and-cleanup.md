@@ -33,7 +33,7 @@ Need animation?
 - Standardized easing: `[0.22, 1, 0.36, 1]` (ease-out), `[0.16, 1, 0.3, 1]` (expo-out)
 - Performance: Remove `will-change` in `onComplete`
 
-> **Note:** CSS-side animation quality (will-change management, GPU-accelerated property rules, easing standards, fluid typography) is in [`../../css/quality_standards/patterns-and-naming-enforcement.md`](../../css/quality_standards/patterns-and-naming-enforcement.md).
+> **Note:** CSS-side animation quality (will-change management, GPU-accelerated property rules, easing standards, fluid typography) is in [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md).
 
 ### Complete Animation Guide
 
@@ -205,4 +205,3 @@ if (window.Webflow) {
 ```
 
 ---
-
