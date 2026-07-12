@@ -1,6 +1,6 @@
 ---
 id: MT-004
-category: hub-routing
+category: hub_routing
 stage: routing
 title: "Genuinely ambiguous tool request defers rather than silently defaulting"
 expected_intent: defer

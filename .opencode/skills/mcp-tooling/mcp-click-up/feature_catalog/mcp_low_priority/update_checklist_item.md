@@ -56,5 +56,5 @@ Use `resolved: true` to check off a checklist item, `resolved: false` to uncheck
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/update-checklist-item.md`
 Related references:
-- [create-checklist-item.md](create-checklist-item.md) — clickup_create_checklist_item
-- [delete-checklist-item.md](delete-checklist-item.md) — clickup_delete_checklist_item
+- [create-checklist-item.md](../mcp_low_priority/create_checklist_item.md) — clickup_create_checklist_item
+- [delete-checklist-item.md](../mcp_low_priority/delete_checklist_item.md) — clickup_delete_checklist_item

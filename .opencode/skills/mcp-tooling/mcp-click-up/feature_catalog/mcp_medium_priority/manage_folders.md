@@ -54,5 +54,5 @@ Folders organize lists within a space. Creating a folder does not create lists i
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/manage-folders.md`
 Related references:
-- [manage-spaces.md](manage-spaces.md) — clickup_manage_spaces
-- [custom-fields.md](custom-fields.md) — clickup_manage_custom_fields
+- [manage-spaces.md](../mcp_medium_priority/manage_spaces.md) — clickup_manage_spaces
+- [custom-fields.md](../mcp_medium_priority/custom_fields.md) — clickup_manage_custom_fields

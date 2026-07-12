@@ -50,4 +50,4 @@ Used for agent handoff messages, progress notes, and audit trails. Text is passe
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-notes-comments/add-comment.md`
 Related references:
-- [list-comments.md](list-comments.md) — List Comments
+- [list-comments.md](../cupt_notes_comments/list_comments.md) — List Comments

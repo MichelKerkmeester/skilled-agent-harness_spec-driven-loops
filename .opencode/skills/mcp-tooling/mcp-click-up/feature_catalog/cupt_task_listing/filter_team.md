@@ -50,5 +50,5 @@ Slow on large workspaces (5-20s) because it walks all paginated results. Always 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/filter-team.md`
 Related references:
-- [exclude-tag.md](exclude-tag.md) — Exclude by Tag
-- [all-tasks.md](all-tasks.md) — All Tasks
+- [exclude-tag.md](../cupt_task_listing/exclude_tag.md) — Exclude by Tag
+- [all-tasks.md](../cupt_task_listing/all_tasks.md) — All Tasks

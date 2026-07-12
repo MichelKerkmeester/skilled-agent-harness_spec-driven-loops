@@ -1,6 +1,6 @@
 ---
 id: FG-R03
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'Inspect/export routing'
 expected_intent: INSPECT_EXPORT

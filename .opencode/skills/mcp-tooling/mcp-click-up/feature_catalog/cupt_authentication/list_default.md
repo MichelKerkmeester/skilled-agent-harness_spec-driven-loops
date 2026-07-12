@@ -50,5 +50,5 @@ Stored in `~/.cupt/config.yaml`. Used by commands that accept a list context whe
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-authentication/list-default.md`
 Related references:
-- [workspace-default.md](workspace-default.md) — Workspace Default
-- [show-config.md](show-config.md) — Show Config
+- [workspace-default.md](../cupt_authentication/workspace_default.md) — Workspace Default
+- [show-config.md](../cupt_authentication/show_config.md) — Show Config

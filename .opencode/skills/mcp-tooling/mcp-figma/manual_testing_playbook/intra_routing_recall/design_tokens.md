@@ -1,6 +1,6 @@
 ---
 id: FG-R02
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'Design system tokens routing'
 expected_intent: DESIGN_SYSTEM_TOKENS

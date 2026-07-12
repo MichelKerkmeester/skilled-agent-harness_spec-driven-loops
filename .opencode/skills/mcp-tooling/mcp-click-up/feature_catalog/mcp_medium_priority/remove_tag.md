@@ -54,5 +54,5 @@ Functionally equivalent to `cupt tag remove`. Use when already in an MCP workflo
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/remove-tag.md`
 Related references:
-- [add-tag.md](add-tag.md) — clickup_add_tag_to_task
-- [space-tags.md](space-tags.md) — clickup_manage_space_tags
+- [add-tag.md](../mcp_medium_priority/add_tag.md) — clickup_add_tag_to_task
+- [space-tags.md](../mcp_medium_priority/space_tags.md) — clickup_manage_space_tags

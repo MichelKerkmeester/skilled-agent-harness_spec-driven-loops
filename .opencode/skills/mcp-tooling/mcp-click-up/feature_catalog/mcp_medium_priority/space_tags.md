@@ -54,5 +54,5 @@ Tags must be created at the space level before they can be applied to tasks. Use
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/space-tags.md`
 Related references:
-- [remove-tag.md](remove-tag.md) — clickup_remove_tag_from_task
-- [get-views.md](get-views.md) — clickup_get_views
+- [remove-tag.md](../mcp_medium_priority/remove_tag.md) — clickup_remove_tag_from_task
+- [get-views.md](../mcp_medium_priority/get_views.md) — clickup_get_views

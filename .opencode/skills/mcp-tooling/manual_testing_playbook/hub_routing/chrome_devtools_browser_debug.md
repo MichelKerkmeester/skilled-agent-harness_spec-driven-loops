@@ -1,6 +1,6 @@
 ---
 id: MT-001
-category: hub-routing
+category: hub_routing
 stage: routing
 title: "Browser debugging request routes to mcp-chrome-devtools"
 expected_intent: mcp-chrome-devtools

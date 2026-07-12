@@ -50,5 +50,5 @@ Exit 0 on success, non-zero on 401/network error. Pattern: `cupt status && cupt 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-authentication/auth-status.md`
 Related references:
-- [clear-cache.md](clear-cache.md) — Clear Cache
+- [clear-cache.md](../cupt_authentication/clear_cache.md) — Clear Cache
 - [logout.md](logout.md) — Logout

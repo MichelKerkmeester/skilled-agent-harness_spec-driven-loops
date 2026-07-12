@@ -67,7 +67,7 @@ If the user explicitly asks for yolo connect, confirm the agent gates it behind 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/connect-and-daemon/connect-and-daemon.md` | Feature-catalog source describing the safe-vs-yolo gate |
+| `../../feature_catalog/connect_and_daemon/connect_and_daemon.md` | Feature-catalog source describing the safe-vs-yolo gate |
 
 ### Implementation And Test Anchors
 

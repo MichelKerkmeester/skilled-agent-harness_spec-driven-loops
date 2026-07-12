@@ -54,5 +54,5 @@ Custom field definitions apply to all tasks in the list. To set values on indivi
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/custom-fields.md`
 Related references:
-- [manage-folders.md](manage-folders.md) — clickup_manage_folders
-- [add-tag.md](add-tag.md) — clickup_add_tag_to_task
+- [manage-folders.md](../mcp_medium_priority/manage_folders.md) — clickup_manage_folders
+- [add-tag.md](../mcp_medium_priority/add_tag.md) — clickup_add_tag_to_task

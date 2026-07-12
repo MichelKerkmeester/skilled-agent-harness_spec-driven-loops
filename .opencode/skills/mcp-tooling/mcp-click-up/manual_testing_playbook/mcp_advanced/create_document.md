@@ -51,7 +51,7 @@ PRE: MCP configured with valid CLICKUP_API_KEY and CLICKUP_TEAM_ID.
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/mcp-medium-priority/create-document.md` | Feature catalog source |
+| `../feature_catalog/mcp_medium_priority/create_document.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

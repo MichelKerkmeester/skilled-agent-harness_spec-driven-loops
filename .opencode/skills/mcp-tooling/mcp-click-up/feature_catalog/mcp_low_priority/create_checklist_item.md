@@ -56,5 +56,5 @@ Items are appended to the end of the checklist by default. Returns `checklist_it
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/create-checklist-item.md`
 Related references:
-- [delete-checklist.md](delete-checklist.md) — clickup_delete_checklist
-- [update-checklist-item.md](update-checklist-item.md) — clickup_update_checklist_item
+- [delete-checklist.md](../mcp_low_priority/delete_checklist.md) — clickup_delete_checklist
+- [update-checklist-item.md](../mcp_low_priority/update_checklist_item.md) — clickup_update_checklist_item

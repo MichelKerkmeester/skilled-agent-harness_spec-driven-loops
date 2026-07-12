@@ -50,7 +50,7 @@ Verify `clickup_create_document_page` adds a page and `clickup_get_document_page
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/mcp-low-priority/get-doc-pages.md`](../../feature_catalog/mcp-low-priority/get-doc-pages.md) | Feature catalog source |
+| [`../../feature_catalog/mcp_low_priority/get_doc_pages.md`](../../feature_catalog/mcp_low_priority/get_doc_pages.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

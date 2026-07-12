@@ -54,4 +54,4 @@ Use for batch status changes, bulk reassignment, or mass due-date updates. More 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/update-bulk-tasks.md`
 Related references:
-- [create-subtask.md](create-subtask.md) — clickup_create_subtask
+- [create-subtask.md](../mcp_medium_priority/create_subtask.md) — clickup_create_subtask

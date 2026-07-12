@@ -50,4 +50,4 @@ Returns all assigned open tasks across all lists. Paginates transparently. Empty
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/list-assigned.md`
 Related references:
-- [filter-today.md](filter-today.md) — Filter Today
+- [filter-today.md](../cupt_task_listing/filter_today.md) — Filter Today

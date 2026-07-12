@@ -54,5 +54,5 @@ Use for project or sprint setup. Deleting a list archives all contained tasks.
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/manage-lists.md`
 Related references:
-- [task-attachments.md](task-attachments.md) — clickup_manage_task_attachments
-- [manage-spaces.md](manage-spaces.md) — clickup_manage_spaces
+- [task-attachments.md](../mcp_medium_priority/task_attachments.md) — clickup_manage_task_attachments
+- [manage-spaces.md](../mcp_medium_priority/manage_spaces.md) — clickup_manage_spaces

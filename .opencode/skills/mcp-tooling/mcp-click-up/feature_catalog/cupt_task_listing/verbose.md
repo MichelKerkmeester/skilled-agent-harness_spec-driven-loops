@@ -50,5 +50,5 @@ Human-readable only — `--verbose` does not affect `--json` output (JSON always
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/verbose.md`
 Related references:
-- [cap-results.md](cap-results.md) — Cap Results
-- [json-output.md](json-output.md) — JSON Output
+- [cap-results.md](../cupt_task_listing/cap_results.md) — Cap Results
+- [json-output.md](../cupt_task_listing/json_output.md) — JSON Output

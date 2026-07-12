@@ -50,5 +50,5 @@ Stored as plaintext YAML in `~/.cupt/config.yaml`, protected by owner-only file 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-authentication/direct-token.md`
 Related references:
-- [interactive-auth.md](interactive-auth.md) — Interactive Auth
-- [workspace-default.md](workspace-default.md) — Workspace Default
+- [interactive-auth.md](../cupt_authentication/interactive_auth.md) — Interactive Auth
+- [workspace-default.md](../cupt_authentication/workspace_default.md) — Workspace Default

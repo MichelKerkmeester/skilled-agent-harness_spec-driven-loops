@@ -54,4 +54,4 @@ Read-only. Use to understand task sequencing before modifying dependencies. Resu
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/get-dependencies.md`
 Related references:
-- [use-template.md](use-template.md) — clickup_use_task_template
+- [use-template.md](../mcp_low_priority/use_template.md) — clickup_use_task_template

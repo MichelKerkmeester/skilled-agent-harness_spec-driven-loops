@@ -1,6 +1,6 @@
 ---
 id: MT-002
-category: hub-routing
+category: hub_routing
 stage: routing
 title: "ClickUp task request routes to mcp-click-up"
 expected_intent: mcp-click-up

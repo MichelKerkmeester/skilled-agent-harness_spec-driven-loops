@@ -48,7 +48,7 @@ Verify `cupt list --verbose` adds assignee and time columns to the output is req
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/cupt-task-listing/verbose.md`](../../feature_catalog/cupt-task-listing/verbose.md) | Feature catalog source |
+| [`../../feature_catalog/cupt_task_listing/verbose.md`](../../feature_catalog/cupt_task_listing/verbose.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

@@ -52,7 +52,7 @@ PRE: Run against a non-production workspace; have credentials ready to re-enter.
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/cupt-authentication/logout.md`](../../feature_catalog/cupt-authentication/logout.md) | Feature catalog source |
+| [`../../feature_catalog/cupt_authentication/logout.md`](../../feature_catalog/cupt_authentication/logout.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

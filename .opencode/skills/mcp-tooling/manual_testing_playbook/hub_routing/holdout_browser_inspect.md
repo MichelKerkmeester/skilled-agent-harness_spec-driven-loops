@@ -1,6 +1,6 @@
 ---
 id: MT-H01
-category: hub-routing
+category: hub_routing
 stage: holdout
 title: "Blind holdout: browser inspection routes to mcp-chrome-devtools"
 expected_intent: mcp-chrome-devtools

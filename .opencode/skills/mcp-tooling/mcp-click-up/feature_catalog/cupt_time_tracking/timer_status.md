@@ -50,4 +50,4 @@ Use as cleanup verification after `cupt time stop`. Pattern: always check `cupt 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-time-tracking/timer-status.md`
 Related references:
-- [log-manual.md](log-manual.md) — Log Time Manually
+- [log-manual.md](../cupt_time_tracking/log_manual.md) — Log Time Manually

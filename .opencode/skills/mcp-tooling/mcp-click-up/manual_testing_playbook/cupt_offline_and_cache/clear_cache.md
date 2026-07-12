@@ -50,7 +50,7 @@ Verify `cupt config --clear-cache` removes cached data, forcing fresh API fetch 
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/cupt-authentication/clear-cache.md`](../../feature_catalog/cupt-authentication/clear-cache.md) | Feature catalog source |
+| [`../../feature_catalog/cupt_authentication/clear_cache.md`](../../feature_catalog/cupt_authentication/clear_cache.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

@@ -54,5 +54,5 @@ Functionally equivalent to `cupt tag add`. Use when already in an MCP workflow. 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/add-tag.md`
 Related references:
-- [custom-fields.md](custom-fields.md) — clickup_manage_custom_fields
-- [remove-tag.md](remove-tag.md) — clickup_remove_tag_from_task
+- [custom-fields.md](../mcp_medium_priority/custom_fields.md) — clickup_manage_custom_fields
+- [remove-tag.md](../mcp_medium_priority/remove_tag.md) — clickup_remove_tag_from_task

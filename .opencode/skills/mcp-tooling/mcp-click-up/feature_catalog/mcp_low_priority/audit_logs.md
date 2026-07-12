@@ -56,5 +56,5 @@ Used for compliance reporting and security investigation. Logs cover the last 90
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/audit-logs.md`
 Related references:
-- [manage-guests.md](manage-guests.md) — clickup_manage_guests
+- [manage-guests.md](../mcp_low_priority/manage_guests.md) — clickup_manage_guests
 - [feedback.md](feedback.md) — clickup_provide_feedback

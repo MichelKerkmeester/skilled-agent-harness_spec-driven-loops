@@ -52,8 +52,8 @@ The daemon is a local HTTP server on `127.0.0.1:3456` (not a Unix socket), authe
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/detection-setup/safe-connect.md` | Manual playbook | Safe connect runs the plugin bridge with no patch |
-| `manual_testing_playbook/daemon-health/daemon-status-diagnose.md` | Manual playbook | Daemon health is read-only and the token stays private |
+| `manual_testing_playbook/detection_setup/safe_connect.md` | Manual playbook | Safe connect runs the plugin bridge with no patch |
+| `manual_testing_playbook/daemon_health/daemon_status_diagnose.md` | Manual playbook | Daemon health is read-only and the token stays private |
 
 ---
 
@@ -65,4 +65,4 @@ The daemon is a local HTTP server on `127.0.0.1:3456` (not a Unix socket), authe
 
 Related references:
 - [inspect.md](../inspect/inspect.md) covers the read-only verbs that run after a connection is up
-- [optional-mcp-context.md](../optional-mcp/optional-mcp-context.md) covers the opt-in Code Mode path that does not depend on the CLI daemon
+- [optional-mcp-context.md](../optional_mcp/optional_mcp_context.md) covers the opt-in Code Mode path that does not depend on the CLI daemon

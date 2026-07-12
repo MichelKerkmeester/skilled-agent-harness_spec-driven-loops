@@ -50,5 +50,5 @@ Files are uploaded via multipart form data to the ClickUp attachments API. Large
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-attachments/upload-file.md`
 Related references:
-- [list-attachments.md](list-attachments.md) — List Attachments
-- [download-file.md](download-file.md) — Download File
+- [list-attachments.md](../cupt_attachments/list_attachments.md) — List Attachments
+- [download-file.md](../cupt_attachments/download_file.md) — Download File

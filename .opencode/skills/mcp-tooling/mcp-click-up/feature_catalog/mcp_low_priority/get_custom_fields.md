@@ -54,5 +54,5 @@ Use to discover field IDs before calling `clickup_set_custom_field_value`. Field
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/get-custom-fields.md`
 Related references:
-- [update-doc-page.md](update-doc-page.md) — clickup_update_document_page
-- [set-custom-field.md](set-custom-field.md) — clickup_set_custom_field_value
+- [update-doc-page.md](../mcp_low_priority/update_doc_page.md) — clickup_update_document_page
+- [set-custom-field.md](../mcp_low_priority/set_custom_field.md) — clickup_set_custom_field_value

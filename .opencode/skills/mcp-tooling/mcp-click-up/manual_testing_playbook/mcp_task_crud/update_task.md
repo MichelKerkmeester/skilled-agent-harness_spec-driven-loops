@@ -49,7 +49,7 @@ Verify `clickup_update_task` changes a task field and the change is reflected in
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/mcp-high-priority/update-task.md`](../../feature_catalog/mcp-high-priority/update-task.md) | Feature catalog source |
+| [`../../feature_catalog/mcp_high_priority/update_task.md`](../../feature_catalog/mcp_high_priority/update_task.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

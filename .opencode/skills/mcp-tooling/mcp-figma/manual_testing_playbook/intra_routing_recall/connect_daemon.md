@@ -1,6 +1,6 @@
 ---
 id: FG-R04
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'Connect/setup daemon routing'
 expected_intent: CONNECT_SETUP_DAEMON

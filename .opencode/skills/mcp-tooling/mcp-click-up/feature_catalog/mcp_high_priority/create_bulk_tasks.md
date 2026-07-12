@@ -56,4 +56,4 @@ Use for sprint setup, project initialization, or any scenario requiring 5+ tasks
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-high-priority/create-bulk-tasks.md`
 Related references:
-- [manage-comments.md](manage-comments.md) — clickup_manage_comments
+- [manage-comments.md](../mcp_high_priority/manage_comments.md) — clickup_manage_comments

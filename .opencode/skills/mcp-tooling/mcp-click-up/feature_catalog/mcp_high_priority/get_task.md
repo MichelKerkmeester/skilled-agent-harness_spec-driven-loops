@@ -54,5 +54,5 @@ Read-only. More comprehensive than `cupt show` — includes custom fields and su
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-high-priority/get-task.md`
 Related references:
-- [create-task.md](create-task.md) — clickup_create_task
-- [update-task.md](update-task.md) — clickup_update_task
+- [create-task.md](../mcp_high_priority/create_task.md) — clickup_create_task
+- [update-task.md](../mcp_high_priority/update_task.md) — clickup_update_task

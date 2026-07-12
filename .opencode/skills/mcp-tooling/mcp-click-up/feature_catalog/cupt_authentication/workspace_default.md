@@ -50,5 +50,5 @@ Stored in `~/.cupt/config.yaml`. All commands that need a workspace use this val
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-authentication/workspace-default.md`
 Related references:
-- [direct-token.md](direct-token.md) — Direct API Token
-- [list-default.md](list-default.md) — List Default
+- [direct-token.md](../cupt_authentication/direct_token.md) — Direct API Token
+- [list-default.md](../cupt_authentication/list_default.md) — List Default

@@ -54,5 +54,5 @@ Use only on confirmed test or duplicate tasks. Verify task ID before calling. Co
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-high-priority/delete-task.md`
 Related references:
-- [update-task.md](update-task.md) — clickup_update_task
-- [search-tasks.md](search-tasks.md) — clickup_search_tasks
+- [update-task.md](../mcp_high_priority/update_task.md) — clickup_update_task
+- [search-tasks.md](../mcp_high_priority/search_tasks.md) — clickup_search_tasks

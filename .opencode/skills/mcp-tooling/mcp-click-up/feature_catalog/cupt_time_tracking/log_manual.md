@@ -50,5 +50,5 @@ Duration is parsed and converted to milliseconds for the ClickUp API. The time e
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-time-tracking/log-manual.md`
 Related references:
-- [stop-timer.md](stop-timer.md) — Stop Timer
-- [timer-status.md](timer-status.md) — Timer Status
+- [stop-timer.md](../cupt_time_tracking/stop_timer.md) — Stop Timer
+- [timer-status.md](../cupt_time_tracking/timer_status.md) — Timer Status

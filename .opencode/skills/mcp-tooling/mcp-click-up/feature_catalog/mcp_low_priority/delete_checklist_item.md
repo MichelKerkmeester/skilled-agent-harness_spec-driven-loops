@@ -56,5 +56,5 @@ Use when removing a specific completed or unnecessary checklist item while keepi
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/delete-checklist-item.md`
 Related references:
-- [update-checklist-item.md](update-checklist-item.md) — clickup_update_checklist_item
-- [get-doc-pages.md](get-doc-pages.md) — clickup_get_document_pages
+- [update-checklist-item.md](../mcp_low_priority/update_checklist_item.md) — clickup_update_checklist_item
+- [get-doc-pages.md](../mcp_low_priority/get_doc_pages.md) — clickup_get_document_pages

@@ -57,4 +57,4 @@ A task can have multiple checklists. Items are added separately via `clickup_cre
 - Feature file path: `mcp-low-priority/create-checklist.md`
 Related references:
 - [feedback.md](feedback.md) — clickup_provide_feedback
-- [update-checklist.md](update-checklist.md) — clickup_update_checklist
+- [update-checklist.md](../mcp_low_priority/update_checklist.md) — clickup_update_checklist

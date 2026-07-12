@@ -52,7 +52,7 @@ PRE: A text-type custom field must exist on the task's list (discover FIELD_ID v
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/mcp-low-priority/set-custom-field.md`](../../feature_catalog/mcp-low-priority/set-custom-field.md) | Feature catalog source |
+| [`../../feature_catalog/mcp_low_priority/set_custom_field.md`](../../feature_catalog/mcp_low_priority/set_custom_field.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

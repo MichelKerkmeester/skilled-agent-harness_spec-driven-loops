@@ -54,5 +54,5 @@ Primary use: discovering user IDs for `assignees` fields, confirming workspace i
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-high-priority/get-workspace.md`
 Related references:
-- [search-tasks.md](search-tasks.md) — clickup_search_tasks
-- [manage-comments.md](manage-comments.md) — clickup_manage_comments
+- [search-tasks.md](../mcp_high_priority/search_tasks.md) — clickup_search_tasks
+- [manage-comments.md](../mcp_high_priority/manage_comments.md) — clickup_manage_comments

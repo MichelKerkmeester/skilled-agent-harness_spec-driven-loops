@@ -67,7 +67,7 @@ Repeat the negative control with a bulk destructive verb (`figma-ds-cli var dele
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/tokens-and-variables/tokens-and-variables.md` | Feature-catalog source for the destructive token deletes |
+| `../../feature_catalog/tokens_and_variables/tokens_and_variables.md` | Feature-catalog source for the destructive token deletes |
 
 ### Implementation And Test Anchors
 

@@ -50,4 +50,4 @@ Requires local AI configuration (see cupt docs). Falls back to no note if AI is 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-completion/auto-note.md`
 Related references:
-- [complete-with-note.md](complete-with-note.md) — Complete with Note
+- [complete-with-note.md](../cupt_task_completion/complete_with_note.md) — Complete with Note

@@ -50,4 +50,4 @@ Used in agent handoff patterns to clean up processing tags: `cupt tag remove $id
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-tag-management/remove-tag.md`
 Related references:
-- [add-tag.md](add-tag.md) — Add Tag
+- [add-tag.md](../cupt_tag_management/add_tag.md) — Add Tag

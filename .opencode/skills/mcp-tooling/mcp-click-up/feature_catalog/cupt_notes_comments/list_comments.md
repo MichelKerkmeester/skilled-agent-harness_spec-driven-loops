@@ -50,4 +50,4 @@ Use before acting on a task to understand its history and any human instructions
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-notes-comments/list-comments.md`
 Related references:
-- [add-comment.md](add-comment.md) — Add Comment
+- [add-comment.md](../cupt_notes_comments/add_comment.md) — Add Comment

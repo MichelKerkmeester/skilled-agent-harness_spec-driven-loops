@@ -50,4 +50,4 @@ Credentials stored as plaintext YAML in `~/.cupt/config.yaml`, protected by owne
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-authentication/interactive-auth.md`
 Related references:
-- [direct-token.md](direct-token.md) — Direct API Token
+- [direct-token.md](../cupt_authentication/direct_token.md) — Direct API Token

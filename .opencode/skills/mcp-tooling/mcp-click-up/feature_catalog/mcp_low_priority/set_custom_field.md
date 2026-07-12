@@ -54,4 +54,4 @@ Get `field_id` from `clickup_get_custom_fields`. Value format depends on field t
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/set-custom-field.md`
 Related references:
-- [get-custom-fields.md](get-custom-fields.md) — clickup_get_custom_fields
+- [get-custom-fields.md](../mcp_low_priority/get_custom_fields.md) — clickup_get_custom_fields

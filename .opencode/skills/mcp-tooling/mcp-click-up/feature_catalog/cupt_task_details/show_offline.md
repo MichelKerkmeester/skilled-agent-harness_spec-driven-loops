@@ -50,5 +50,5 @@ Stale risk: cache may be hours old. Use `cupt config --clear-cache` followed by 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-details/show-offline.md`
 Related references:
-- [show-notes.md](show-notes.md) — Show with Notes
-- [task-context.md](task-context.md) — Task Context
+- [show-notes.md](../cupt_task_details/show_notes.md) — Show with Notes
+- [task-context.md](../cupt_task_details/task_context.md) — Task Context

@@ -54,5 +54,5 @@ Returns the created document object with `doc_id`. Documents are the ONLY featur
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/create-document.md`
 Related references:
-- [get-views.md](get-views.md) — clickup_get_views
-- [get-document.md](get-document.md) — clickup_get_document
+- [get-views.md](../mcp_medium_priority/get_views.md) — clickup_get_views
+- [get-document.md](../mcp_medium_priority/get_document.md) — clickup_get_document

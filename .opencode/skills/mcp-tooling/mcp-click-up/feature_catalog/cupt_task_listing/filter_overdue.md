@@ -50,5 +50,5 @@ Use in triage workflows to surface backlog debt. Combine with `--all` to include
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/filter-overdue.md`
 Related references:
-- [filter-week.md](filter-week.md) — Filter Week
-- [filter-tag.md](filter-tag.md) — Filter by Tag
+- [filter-week.md](../cupt_task_listing/filter_week.md) — Filter Week
+- [filter-tag.md](../cupt_task_listing/filter_tag.md) — Filter by Tag

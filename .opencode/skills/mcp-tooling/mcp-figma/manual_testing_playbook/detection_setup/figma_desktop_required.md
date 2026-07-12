@@ -67,7 +67,7 @@ Confirm the recovery instruction is consistent with the connect path: the recomm
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/connect-and-daemon/connect-and-daemon.md` | Feature-catalog source describing the connection prerequisite |
+| `../../feature_catalog/connect_and_daemon/connect_and_daemon.md` | Feature-catalog source describing the connection prerequisite |
 
 ### Implementation And Test Anchors
 

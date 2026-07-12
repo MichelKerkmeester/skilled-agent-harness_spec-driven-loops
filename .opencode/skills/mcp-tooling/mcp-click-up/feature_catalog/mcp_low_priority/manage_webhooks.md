@@ -56,5 +56,5 @@ Webhooks fire to the specified endpoint URL when the subscribed events occur. Th
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/manage-webhooks.md`
 Related references:
-- [manage-chat.md](manage-chat.md) — clickup_manage_chat
-- [user-groups.md](user-groups.md) — clickup_get_user_groups
+- [manage-chat.md](../mcp_low_priority/manage_chat.md) — clickup_manage_chat
+- [user-groups.md](../mcp_low_priority/user_groups.md) — clickup_get_user_groups

@@ -50,4 +50,4 @@ Output is human-readable by default. Add `--json` for structured output. Add `--
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-details/show-task.md`
 Related references:
-- [show-notes.md](show-notes.md) — Show with Notes
+- [show-notes.md](../cupt_task_details/show_notes.md) — Show with Notes

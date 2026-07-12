@@ -50,4 +50,4 @@ Always run `cupt --version` as the first step in an install verification sequenc
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-global-flags/version-flag.md`
 Related references:
-- [debug-flag.md](debug-flag.md) — Debug Logging Flag
+- [debug-flag.md](../cupt_global_flags/debug_flag.md) — Debug Logging Flag

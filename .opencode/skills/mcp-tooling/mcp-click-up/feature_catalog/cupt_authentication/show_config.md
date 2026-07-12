@@ -50,5 +50,5 @@ Human-readable output only. Used to confirm defaults are set correctly before ru
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-authentication/show-config.md`
 Related references:
-- [list-default.md](list-default.md) — List Default
-- [clear-cache.md](clear-cache.md) — Clear Cache
+- [list-default.md](../cupt_authentication/list_default.md) — List Default
+- [clear-cache.md](../cupt_authentication/clear_cache.md) — Clear Cache

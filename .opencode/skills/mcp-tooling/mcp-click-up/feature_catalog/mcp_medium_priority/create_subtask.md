@@ -54,5 +54,5 @@ The subtask inherits the list from its parent. Subtasks appear in `clickup_get_t
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/create-subtask.md`
 Related references:
-- [update-bulk-tasks.md](update-bulk-tasks.md) — clickup_update_bulk_tasks
-- [task-dependencies.md](task-dependencies.md) — clickup_manage_task_dependencies
+- [update-bulk-tasks.md](../mcp_medium_priority/update_bulk_tasks.md) — clickup_update_bulk_tasks
+- [task-dependencies.md](../mcp_medium_priority/task_dependencies.md) — clickup_manage_task_dependencies

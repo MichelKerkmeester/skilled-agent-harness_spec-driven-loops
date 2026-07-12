@@ -50,5 +50,5 @@ CRITICAL for agents: always call `cupt statuses <id>` before `cupt done <id>`. S
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-details/status-schema.md`
 Related references:
-- [task-context.md](task-context.md) — Task Context
-- [status-by-list.md](status-by-list.md) — Status Schema by List
+- [task-context.md](../cupt_task_details/task_context.md) — Task Context
+- [status-by-list.md](../cupt_task_details/status_by_list.md) — Status Schema by List

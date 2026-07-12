@@ -54,5 +54,5 @@ Appears in ClickUp UI as a related task reference. Does not affect task ordering
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/create-task-link.md`
 Related references:
-- [task-dependencies.md](task-dependencies.md) — clickup_manage_task_dependencies
-- [multi-list.md](multi-list.md) — clickup_add_task_to_multiple_lists
+- [task-dependencies.md](../mcp_medium_priority/task_dependencies.md) — clickup_manage_task_dependencies
+- [multi-list.md](../mcp_medium_priority/multi_list.md) — clickup_add_task_to_multiple_lists

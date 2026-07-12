@@ -54,5 +54,5 @@ MCP alternative to `cupt time add`. Use when start/end timestamps are known (vs 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/time-tracking.md`
 Related references:
-- [update-document.md](update-document.md) — clickup_update_document
-- [manage-goals.md](manage-goals.md) — clickup_manage_goals
+- [update-document.md](../mcp_medium_priority/update_document.md) — clickup_update_document
+- [manage-goals.md](../mcp_medium_priority/manage_goals.md) — clickup_manage_goals

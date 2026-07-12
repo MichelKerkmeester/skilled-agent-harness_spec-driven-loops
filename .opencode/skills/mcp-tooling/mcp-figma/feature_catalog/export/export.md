@@ -41,7 +41,7 @@ A typical caller names an output path and runs an export. Everything in this are
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/read-only/read-only-export.md` | Manual playbook | Export targets an explicit path and never silently overwrites |
+| `manual_testing_playbook/read_only/read_only_export.md` | Manual playbook | Export targets an explicit path and never silently overwrites |
 
 ---
 
@@ -53,4 +53,4 @@ A typical caller names an output path and runs an export. Everything in this are
 
 Related references:
 - [inspect.md](../inspect/inspect.md) covers the read-only inspect verbs that precede an export
-- [a11y-and-analysis.md](../a11y-and-analysis/a11y-and-analysis.md) covers the other always-safe read-only area
+- [a11y-and-analysis.md](../a11y_and_analysis/a11y_and_analysis.md) covers the other always-safe read-only area

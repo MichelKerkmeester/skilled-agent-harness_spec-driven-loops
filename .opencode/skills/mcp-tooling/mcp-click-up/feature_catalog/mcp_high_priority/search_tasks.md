@@ -54,5 +54,5 @@ Server-side full-text search. More powerful than `cupt list --tag` for keyword-b
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-high-priority/search-tasks.md`
 Related references:
-- [delete-task.md](delete-task.md) — clickup_delete_task
-- [get-workspace.md](get-workspace.md) — clickup_get_workspace
+- [delete-task.md](../mcp_high_priority/delete_task.md) — clickup_delete_task
+- [get-workspace.md](../mcp_high_priority/get_workspace.md) — clickup_get_workspace

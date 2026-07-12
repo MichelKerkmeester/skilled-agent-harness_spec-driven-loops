@@ -50,5 +50,5 @@ Stale risk: data may be minutes to hours old. Check cache age with `cupt config 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-global-flags/offline-flag.md`
 Related references:
-- [json-flag.md](json-flag.md) — JSON Output Flag
-- [debug-flag.md](debug-flag.md) — Debug Logging Flag
+- [json-flag.md](../cupt_global_flags/json_flag.md) — JSON Output Flag
+- [debug-flag.md](../cupt_global_flags/debug_flag.md) — Debug Logging Flag

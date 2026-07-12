@@ -56,5 +56,5 @@ Does not affect checklist items — only the checklist container itself.
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/update-checklist.md`
 Related references:
-- [create-checklist.md](create-checklist.md) — clickup_create_checklist
-- [delete-checklist.md](delete-checklist.md) — clickup_delete_checklist
+- [create-checklist.md](../mcp_low_priority/create_checklist.md) — clickup_create_checklist
+- [delete-checklist.md](../mcp_low_priority/delete_checklist.md) — clickup_delete_checklist

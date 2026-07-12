@@ -50,4 +50,4 @@ After logout, any cupt command requiring API access returns AuthError until `cup
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-authentication/logout.md`
 Related references:
-- [auth-status.md](auth-status.md) — Auth Status
+- [auth-status.md](../cupt_authentication/auth_status.md) — Auth Status

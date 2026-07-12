@@ -1,6 +1,6 @@
 ---
 id: FG-N01
-category: intra-routing-recall
+category: intra_routing_recall
 stage: negative
 title: 'Negative: out of domain'
 expected_intent: none

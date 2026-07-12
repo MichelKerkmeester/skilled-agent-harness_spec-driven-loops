@@ -54,5 +54,5 @@ Use for sprint sequencing and blocked-task workflows. Dependencies are visible i
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/task-dependencies.md`
 Related references:
-- [create-subtask.md](create-subtask.md) — clickup_create_subtask
-- [create-task-link.md](create-task-link.md) — clickup_create_task_link
+- [create-subtask.md](../mcp_medium_priority/create_subtask.md) — clickup_create_subtask
+- [create-task-link.md](../mcp_medium_priority/create_task_link.md) — clickup_create_task_link

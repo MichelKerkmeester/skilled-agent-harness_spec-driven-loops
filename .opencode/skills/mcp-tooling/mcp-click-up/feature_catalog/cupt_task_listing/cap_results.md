@@ -50,5 +50,5 @@ Applied after other filters. Combine with sort (default: due date ascending) to 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/cap-results.md`
 Related references:
-- [mine-only.md](mine-only.md) — Mine Only
+- [mine-only.md](../cupt_task_listing/mine_only.md) — Mine Only
 - [verbose.md](verbose.md) — Verbose Output

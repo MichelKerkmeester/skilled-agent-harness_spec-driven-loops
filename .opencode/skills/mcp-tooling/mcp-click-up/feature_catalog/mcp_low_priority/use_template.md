@@ -54,5 +54,5 @@ Templates are created in the ClickUp UI. Template IDs are workspace-specific and
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/use-template.md`
 Related references:
-- [get-dependencies.md](get-dependencies.md) — clickup_get_task_dependencies
-- [manage-chat.md](manage-chat.md) — clickup_manage_chat
+- [get-dependencies.md](../mcp_low_priority/get_dependencies.md) — clickup_get_task_dependencies
+- [manage-chat.md](../mcp_low_priority/manage_chat.md) — clickup_manage_chat

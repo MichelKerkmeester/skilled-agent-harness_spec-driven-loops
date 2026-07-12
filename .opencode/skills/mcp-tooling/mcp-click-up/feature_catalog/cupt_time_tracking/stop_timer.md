@@ -50,5 +50,5 @@ Exit 0 with duration confirmation. Error if no timer is running. Follow with `cu
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-time-tracking/stop-timer.md`
 Related references:
-- [start-timer.md](start-timer.md) — Start Timer
-- [log-manual.md](log-manual.md) — Log Time Manually
+- [start-timer.md](../cupt_time_tracking/start_timer.md) — Start Timer
+- [log-manual.md](../cupt_time_tracking/log_manual.md) — Log Time Manually

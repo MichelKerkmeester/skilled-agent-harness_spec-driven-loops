@@ -1,6 +1,6 @@
 ---
 id: FG-R05
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'MCP context routing'
 expected_intent: MCP_CONTEXT

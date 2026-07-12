@@ -50,5 +50,5 @@ Output is human-readable. Useful for situational awareness at the start of an ag
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-workspace/task-summary.md`
 Related references:
-- [list-teams.md](list-teams.md) — List Teams
+- [list-teams.md](../cupt_workspace/list_teams.md) — List Teams
 - [prefetch.md](prefetch.md) — Prefetch Cache

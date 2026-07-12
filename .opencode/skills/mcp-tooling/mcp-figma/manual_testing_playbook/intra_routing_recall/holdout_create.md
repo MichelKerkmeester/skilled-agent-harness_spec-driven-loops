@@ -1,6 +1,6 @@
 ---
 id: FG-H01
-category: intra-routing-recall
+category: intra_routing_recall
 stage: holdout
 title: 'Blind holdout: build a screen'
 expected_intent: CREATE_RENDER

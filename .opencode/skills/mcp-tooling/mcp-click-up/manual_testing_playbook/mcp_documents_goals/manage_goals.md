@@ -53,7 +53,7 @@ PRE: Workspace must have Goals feature (premium plan).
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/mcp-medium-priority/manage-goals.md`](../../feature_catalog/mcp-medium-priority/manage-goals.md) | Feature catalog source |
+| [`../../feature_catalog/mcp_medium_priority/manage_goals.md`](../../feature_catalog/mcp_medium_priority/manage_goals.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

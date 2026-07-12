@@ -56,5 +56,5 @@ Use for contractor or client access provisioning. Requires admin-level API token
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/manage-guests.md`
 Related references:
-- [user-groups.md](user-groups.md) — clickup_get_user_groups
-- [audit-logs.md](audit-logs.md) — clickup_get_audit_logs
+- [user-groups.md](../mcp_low_priority/user_groups.md) — clickup_get_user_groups
+- [audit-logs.md](../mcp_low_priority/audit_logs.md) — clickup_get_audit_logs

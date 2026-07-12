@@ -54,5 +54,5 @@ Use after `clickup_create_document` to verify pages or before `clickup_update_do
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/get-doc-pages.md`
 Related references:
-- [delete-checklist-item.md](delete-checklist-item.md) — clickup_delete_checklist_item
-- [create-doc-page.md](create-doc-page.md) — clickup_create_document_page
+- [delete-checklist-item.md](../mcp_low_priority/delete_checklist_item.md) — clickup_delete_checklist_item
+- [create-doc-page.md](../mcp_low_priority/create_doc_page.md) — clickup_create_document_page

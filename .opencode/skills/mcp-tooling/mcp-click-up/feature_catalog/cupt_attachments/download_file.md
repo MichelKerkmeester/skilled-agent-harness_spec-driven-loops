@@ -50,4 +50,4 @@ Downloaded file is saved with its original name in the current working directory
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-attachments/download-file.md`
 Related references:
-- [upload-file.md](upload-file.md) — Upload File
+- [upload-file.md](../cupt_attachments/upload_file.md) — Upload File

@@ -50,5 +50,5 @@ Always run `cupt context <id>` before completing or reassigning a task to avoid 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-details/task-context.md`
 Related references:
-- [show-offline.md](show-offline.md) — Show Offline
-- [status-schema.md](status-schema.md) — Status Schema by Task
+- [show-offline.md](../cupt_task_details/show_offline.md) — Show Offline
+- [status-schema.md](../cupt_task_details/status_schema.md) — Status Schema by Task

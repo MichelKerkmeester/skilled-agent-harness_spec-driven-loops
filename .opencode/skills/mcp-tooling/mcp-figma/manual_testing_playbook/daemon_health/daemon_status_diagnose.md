@@ -67,7 +67,7 @@ If the daemon is idle past ~60 minutes or after a reboot it will not be present 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/connect-and-daemon/connect-and-daemon.md` | Feature-catalog source describing the daemon model and token handling |
+| `../../feature_catalog/connect_and_daemon/connect_and_daemon.md` | Feature-catalog source describing the daemon model and token handling |
 
 ### Implementation And Test Anchors
 

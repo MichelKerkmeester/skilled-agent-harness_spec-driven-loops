@@ -68,7 +68,7 @@ If `figma-ds-cli@1.0.0` resolves from npm, note the version trap: the published 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/connect-and-daemon/connect-and-daemon.md` | Feature-catalog source for the connect/daemon foundation this unblocks |
+| `../../feature_catalog/connect_and_daemon/connect_and_daemon.md` | Feature-catalog source for the connect/daemon foundation this unblocks |
 
 ### Implementation And Test Anchors
 

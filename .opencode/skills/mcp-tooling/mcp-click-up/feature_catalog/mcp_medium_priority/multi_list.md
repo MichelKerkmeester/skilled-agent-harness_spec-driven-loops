@@ -54,5 +54,5 @@ The task exists in multiple lists but is a single entity — changes in one list
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/multi-list.md`
 Related references:
-- [create-task-link.md](create-task-link.md) — clickup_create_task_link
-- [task-attachments.md](task-attachments.md) — clickup_manage_task_attachments
+- [create-task-link.md](../mcp_medium_priority/create_task_link.md) — clickup_create_task_link
+- [task-attachments.md](../mcp_medium_priority/task_attachments.md) — clickup_manage_task_attachments

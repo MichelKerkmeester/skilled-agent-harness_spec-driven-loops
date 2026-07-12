@@ -50,4 +50,4 @@ Use to discover valid team names before using `cupt list --team <name>`. Team na
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-workspace/list-teams.md`
 Related references:
-- [task-summary.md](task-summary.md) — Task Summary
+- [task-summary.md](../cupt_workspace/task_summary.md) — Task Summary

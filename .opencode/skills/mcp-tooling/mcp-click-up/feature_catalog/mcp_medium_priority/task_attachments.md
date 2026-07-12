@@ -54,5 +54,5 @@ Use when already in an MCP workflow context. For CLI-first workflows, `cupt atta
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/task-attachments.md`
 Related references:
-- [multi-list.md](multi-list.md) — clickup_add_task_to_multiple_lists
-- [manage-lists.md](manage-lists.md) — clickup_manage_lists
+- [multi-list.md](../mcp_medium_priority/multi_list.md) — clickup_add_task_to_multiple_lists
+- [manage-lists.md](../mcp_medium_priority/manage_lists.md) — clickup_manage_lists

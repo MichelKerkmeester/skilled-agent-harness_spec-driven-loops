@@ -54,5 +54,5 @@ Spaces are the top-level organizational unit. Creating a space sets up a new pro
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/manage-spaces.md`
 Related references:
-- [manage-lists.md](manage-lists.md) — clickup_manage_lists
-- [manage-folders.md](manage-folders.md) — clickup_manage_folders
+- [manage-lists.md](../mcp_medium_priority/manage_lists.md) — clickup_manage_lists
+- [manage-folders.md](../mcp_medium_priority/manage_folders.md) — clickup_manage_folders

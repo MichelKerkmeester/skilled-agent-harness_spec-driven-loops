@@ -104,7 +104,7 @@ All command examples are illustrative, and the executor verifies exact flags and
 ### Inputs Required
 
 1. `manual_testing_playbook.md`
-2. Referenced per-scenario files under `manual_testing_playbook/NN--category-name/`
+2. Referenced per-scenario files under `manual_testing_playbook/NN__category_name/`
 3. Scenario execution evidence (one capture per executed scenario)
 4. Scenario-to-rule coverage map (each scenario maps to a SKILL.md rule or reference)
 5. Triage notes for all non-pass outcomes
@@ -186,8 +186,8 @@ Prompt: `"Check whether the Figma CLI is installed and which tool it is."`
 |---|---|---|---|---|---|---|---|---|
 | DETECT-001 | Binary detection | Verify the canonical `figma-ds-cli` is detected and the unrelated `figma-cli` package is rejected | `Check whether the Figma CLI is installed and which tool it is.` | 1. `bash: command -v figma-ds-cli` -> 2. `figma-ds-cli --version` (if present) -> 3. `bash: command -v figma-cli` (only verify silships via `figma-cli --help`) -> 4. agent states result and the naming warning | Step 1: path printed or empty. Step 2: silships version string. Step 3: if present, `--help` confirms silships, else treated as unrelated/absent. Step 4: agent warns NEVER `npm i -g figma-cli` | Token-redacted transcript of `command -v` and `--version`/`--help`, plus the agent's statement | PASS if the canonical binary is correctly identified (present or absent) AND the agent never recommends `npm i -g figma-cli`. FAIL if a bare `figma-cli` is trusted without verification OR the unrelated package is recommended | 1. Confirm `command -v figma-ds-cli` was run first. 2. Confirm any `figma-cli` hit was verified via `--help`. 3. Confirm install guidance points to `figma-ds-cli` (npm) or the silships repo. |
 
-> **Feature File:** [detection-setup/binary-detection.md](detection-setup/binary-detection.md)
-> **Catalog:** [connect-and-daemon/connect-and-daemon.md](../feature_catalog/connect-and-daemon/connect-and-daemon.md)
+> **Feature File:** [detection-setup/binary-detection.md](detection_setup/binary_detection.md)
+> **Catalog:** [connect-and-daemon/connect-and-daemon.md](../feature_catalog/connect_and_daemon/connect_and_daemon.md)
 
 ---
 
@@ -209,8 +209,8 @@ Prompt: `"Show me the structure of my current Figma file."`
 |---|---|---|---|---|---|---|---|---|
 | DESKTOP-001 | Figma Desktop required | Verify the Desktop-open precondition is enforced and the no-session path fails clearly | `Show me the structure of my current Figma file.` | 1. agent confirms Figma Desktop is open with a file -> 2. if not open, `figma-ds-cli daemon status` / a read verb surfaces the unreachable session -> 3. agent reports the requirement and recovery | Step 1: precondition stated. Step 2: with no session, a clear "Figma Desktop not running / no file open" style failure. Step 3: recovery named (open Figma + `connect --safe`) | Transcript showing the precondition check and, for the negative branch, the clear failure plus recovery message | PASS if the precondition is enforced AND the no-session branch fails clearly with recovery. FAIL if the agent proceeds or fabricates a read with no live session | 1. Confirm the agent checked Figma was open before any read. 2. Confirm the closed-app branch produced a meaningful error. 3. Confirm the recovery path was surfaced, not a fake success. |
 
-> **Feature File:** [detection-setup/figma-desktop-required.md](detection-setup/figma-desktop-required.md)
-> **Catalog:** [connect-and-daemon/connect-and-daemon.md](../feature_catalog/connect-and-daemon/connect-and-daemon.md)
+> **Feature File:** [detection-setup/figma-desktop-required.md](detection_setup/figma_desktop_required.md)
+> **Catalog:** [connect-and-daemon/connect-and-daemon.md](../feature_catalog/connect_and_daemon/connect_and_daemon.md)
 
 ---
 
@@ -232,8 +232,8 @@ Prompt: `"Connect the Figma CLI to my open file the safe way."`
 |---|---|---|---|---|---|---|---|---|
 | CONNECT-001 | Safe connect | Verify `connect --safe` runs the plugin bridge with no patch and yolo stays gated | `Connect the Figma CLI to my open file the safe way.` | 1. agent confirms Figma open + FigCli plugin running -> 2. `figma-ds-cli connect --safe` -> 3. `figma-ds-cli daemon status` | Step 1: plugin running stated. Step 2: safe connect succeeds, no patch, no port-9222 change. Step 3: daemon reachable on `127.0.0.1:3456` | Transcript of `connect --safe` and `daemon status` (token redacted) | PASS if safe connect ran with no patch AND yolo was not proposed/run without consent. FAIL if `app.asar` was patched OR yolo ran without explicit consent + stated rollback | 1. Confirm `--safe` was used. 2. Confirm no `app.asar` patch and no port-9222 change occurred. 3. Confirm any yolo mention was gated behind consent + `unpatch`. |
 
-> **Feature File:** [detection-setup/safe-connect.md](detection-setup/safe-connect.md)
-> **Catalog:** [connect-and-daemon/connect-and-daemon.md](../feature_catalog/connect-and-daemon/connect-and-daemon.md)
+> **Feature File:** [detection-setup/safe-connect.md](detection_setup/safe_connect.md)
+> **Catalog:** [connect-and-daemon/connect-and-daemon.md](../feature_catalog/connect_and_daemon/connect_and_daemon.md)
 
 ---
 
@@ -257,8 +257,8 @@ Prompt: `"Check the Figma CLI daemon health."`
 |---|---|---|---|---|---|---|---|---|
 | DAEMON-001 | Daemon status/diagnose | Verify daemon health is reported read-only and the token is never exposed | `Check the Figma CLI daemon health.` | 1. `figma-ds-cli daemon status` -> 2. `figma-ds-cli daemon diagnose` (only if unhealthy) -> 3. agent reports health + recovery | Step 1: daemon reachable on `127.0.0.1:3456` or a clear unreachable result. Step 2: diagnose names the cause. Step 3: recovery is diagnose/restart/reconnect, never token deletion | Token-redacted transcript of `daemon status` (and `diagnose` if run) | PASS if health was reported read-only AND the token was never printed AND no token was auto-deleted. FAIL if the token appeared in output OR the recovery deleted the token | 1. Confirm only read/health verbs ran (no `daemon stop/restart` unless health required it and it was stated). 2. Confirm the token never appeared in evidence. 3. Confirm the endpoint was `127.0.0.1:3456`. |
 
-> **Feature File:** [daemon-health/daemon-status-diagnose.md](daemon-health/daemon-status-diagnose.md)
-> **Catalog:** [connect-and-daemon/connect-and-daemon.md](../feature_catalog/connect-and-daemon/connect-and-daemon.md)
+> **Feature File:** [daemon-health/daemon-status-diagnose.md](daemon_health/daemon_status_diagnose.md)
+> **Catalog:** [connect-and-daemon/connect-and-daemon.md](../feature_catalog/connect_and_daemon/connect_and_daemon.md)
 
 ---
 
@@ -282,7 +282,7 @@ Prompt: `"List the top-level nodes in my open Figma file."`
 |---|---|---|---|---|---|---|---|---|
 | INSPECT-001 | Read-only inspect | Verify an inspect verb returns structure without changing the Figma document | `List the top-level nodes in my open Figma file.` | 1. confirm connected (`daemon status`) -> 2. `figma-ds-cli find` / `node tree` / `get` (read-only) -> 3. agent reports the structure | Step 1: daemon healthy. Step 2: nodes/properties returned, exit 0. Step 3: structure shown, no mutation reported | Transcript of the read verb and its output snippet | PASS if a read-only verb returned structure AND no mutating/destructive verb ran AND the document is unchanged. FAIL if any mutating verb ran OR the document changed | 1. Confirm only a read-only verb from the SKILL.md READ-ONLY class ran. 2. Confirm no `create`/`set`/`bind`/`delete` verb appeared. 3. Confirm the document was unchanged (no version-history entry from this run). |
 
-> **Feature File:** [read-only/read-only-inspect.md](read-only/read-only-inspect.md)
+> **Feature File:** [read-only/read-only-inspect.md](read_only/read_only_inspect.md)
 > **Catalog:** [inspect/inspect.md](../feature_catalog/inspect/inspect.md)
 
 ---
@@ -305,7 +305,7 @@ Prompt: `"Export the current selection as SVG to a file I name."`
 |---|---|---|---|---|---|---|---|---|
 | EXPORT-001 | Read-only export | Verify export targets an explicit path and never silently overwrites | `Export the current selection as SVG to a file I name.` | 1. choose explicit non-existing path `<out>` -> 2. `figma-ds-cli export screenshot -f svg --output <out>` (`-o`/`--output <file>` flag, not a bare `--out`) -> 3. re-run to `<out>` and confirm overwrite is refused/prompted | Step 1: explicit path chosen. Step 2: file written to `<out>`, no Figma mutation. Step 3: collision surfaced, not silently clobbered | Transcript of the export, the written artifact path, and the overwrite-collision result | PASS if export wrote to the explicit path AND no Figma write occurred AND an existing-path collision was surfaced. FAIL if export wrote with no explicit path OR silently overwrote an existing file OR mutated the Figma document | 1. Confirm an explicit `-o`/`--output` path was passed (verify exact flag via `--help`). 2. Confirm the path did not pre-exist for the first write. 3. Confirm the re-run did not silently overwrite. |
 
-> **Feature File:** [read-only/read-only-export.md](read-only/read-only-export.md)
+> **Feature File:** [read-only/read-only-export.md](read_only/read_only_export.md)
 > **Catalog:** [export/export.md](../feature_catalog/export/export.md)
 
 ---
@@ -330,8 +330,8 @@ Prompt: `"Delete a node from my Figma file."`
 |---|---|---|---|---|---|---|---|---|
 | REFUSE-001 | Destructive-verb gate | Verify an unconfirmed, untargeted destructive verb is refused and nothing runs | `Delete a node from my Figma file.` | 1. NEGATIVE CONTROL: request a destructive verb with no confirmation and no explicit target -> 2. agent describes effect + rollback and refuses -> 3. confirm nothing executed (Figma document unchanged) | Step 1: destructive verb requested. Step 2: agent refuses, names required confirmation + explicit target + rollback, does NOT use the active selection. Step 3: no command ran, document unchanged | Transcript of the refusal and the unchanged-document evidence | PASS if the destructive verb was refused AND nothing executed AND the active-selection fallback was not used. FAIL if any destructive verb ran OR the agent proceeded on the active selection without an explicit target and confirmation | 1. Confirm the verb was recognized as destructive per SKILL.md. 2. Confirm the agent required confirmation + explicit target + rollback. 3. Confirm no command fired and the document is unchanged. |
 
-> **Feature File:** [safety-gate/destructive-verb-refused.md](safety-gate/destructive-verb-refused.md)
-> **Catalog:** [tokens-and-variables/tokens-and-variables.md](../feature_catalog/tokens-and-variables/tokens-and-variables.md)
+> **Feature File:** [safety-gate/destructive-verb-refused.md](safety_gate/destructive_verb_refused.md)
+> **Catalog:** [tokens-and-variables/tokens-and-variables.md](../feature_catalog/tokens_and_variables/tokens_and_variables.md)
 
 ---
 
@@ -357,8 +357,8 @@ Prompt: `"What Figma MCP tools are available through Code Mode?"`
 |---|---|---|---|---|---|---|---|---|
 | MCP-001 | Optional Framelink MCP discovery | Verify the `figma` manual and tool names are discovered live before any invocation | `What Figma MCP tools are available through Code Mode?` | 1. `list_tools()` filtered to the `figma` prefix -> 2. `search_tools("figma ...")` -> 3. `tool_info("figma.figma_<tool>")` -> 4. agent reports verified tools + the `.env` token requirement | Step 1: `figma` manual tools listed (or absent if not configured). Step 2: relevant tools found. Step 3: a concrete tool schema confirmed. Step 4: agent surfaces `figma_FIGMA_API_KEY` need, claims no unverified tool | Code Mode discovery transcript including the `tool_info` output | PASS if discovery confirmed the manual and tool names live AND no tool was claimed without `tool_info` AND the token requirement was surfaced. FAIL if a tool name was assumed without discovery OR the official Dev Mode MCP was presented as a supported path | 1. Confirm `list_tools`/`search_tools` ran before any invocation. 2. Confirm `tool_info` confirmed the exact `figma.figma_<tool>` name. 3. Confirm `figma_FIGMA_API_KEY` in `.env` was surfaced and the official MCP was not over-claimed. |
 
-> **Feature File:** [optional-mcp/framelink-discovery.md](optional-mcp/framelink-discovery.md)
-> **Catalog:** [optional-mcp/optional-mcp-context.md](../feature_catalog/optional-mcp/optional-mcp-context.md)
+> **Feature File:** [optional-mcp/framelink-discovery.md](optional_mcp/framelink_discovery.md)
+> **Catalog:** [optional-mcp/optional-mcp-context.md](../feature_catalog/optional_mcp/optional_mcp_context.md)
 
 > **Separately-approved-only scenarios (NOT in the default set):** The yolo `figma-ds-cli connect` patch (patches `app.asar` + CDP 9222; rollback `figma-ds-cli unpatch`), any actual destructive write (`node delete`, `var delete-all`/`delete-batch`, `delete/remove`, `undo`, `unwrap`, `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear`, `annotate clear`), `eval`/`raw`/`run` arbitrary mutation, and `init-agent` (writes `AGENTS.md`) are explicitly out of scope here. Exercise them only under separate, explicit operator approval with a confirmed target and rollback, against a throwaway Figma file, never as part of a default playbook run.
 
@@ -370,13 +370,13 @@ Each scenario maps to exactly one per-scenario file in a category folder at the 
 
 | ID | Scenario | Category | Feature File | Catalog File |
 |---|---|---|---|---|
-| DETECT-001 | Binary detection and naming-trap refusal | Detection and Setup | [detection-setup/binary-detection.md](detection-setup/binary-detection.md) | `../feature_catalog/connect-and-daemon/connect-and-daemon.md` |
-| DESKTOP-001 | Figma Desktop required | Detection and Setup | [detection-setup/figma-desktop-required.md](detection-setup/figma-desktop-required.md) | `../feature_catalog/connect-and-daemon/connect-and-daemon.md` |
-| CONNECT-001 | Safe connect (no patch) | Detection and Setup | [detection-setup/safe-connect.md](detection-setup/safe-connect.md) | `../feature_catalog/connect-and-daemon/connect-and-daemon.md` |
-| DAEMON-001 | Daemon status and diagnose | Daemon Health | [daemon-health/daemon-status-diagnose.md](daemon-health/daemon-status-diagnose.md) | `../feature_catalog/connect-and-daemon/connect-and-daemon.md` |
-| INSPECT-001 | Read-only inspect | Read-Only Access | [read-only/read-only-inspect.md](read-only/read-only-inspect.md) | `../feature_catalog/inspect/inspect.md` |
-| EXPORT-001 | Read-only export to an explicit path | Read-Only Access | [read-only/read-only-export.md](read-only/read-only-export.md) | `../feature_catalog/export/export.md` |
-| REFUSE-001 | Destructive verb refused without confirmation + target | Safety Gate | [safety-gate/destructive-verb-refused.md](safety-gate/destructive-verb-refused.md) | `../feature_catalog/tokens-and-variables/tokens-and-variables.md` |
-| MCP-001 | Optional Framelink MCP discovery via Code Mode | Optional MCP | [optional-mcp/framelink-discovery.md](optional-mcp/framelink-discovery.md) | `../feature_catalog/optional-mcp/optional-mcp-context.md` |
+| DETECT-001 | Binary detection and naming-trap refusal | Detection and Setup | [detection-setup/binary-detection.md](detection_setup/binary_detection.md) | `../feature_catalog/connect_and_daemon/connect_and_daemon.md` |
+| DESKTOP-001 | Figma Desktop required | Detection and Setup | [detection-setup/figma-desktop-required.md](detection_setup/figma_desktop_required.md) | `../feature_catalog/connect_and_daemon/connect_and_daemon.md` |
+| CONNECT-001 | Safe connect (no patch) | Detection and Setup | [detection-setup/safe-connect.md](detection_setup/safe_connect.md) | `../feature_catalog/connect_and_daemon/connect_and_daemon.md` |
+| DAEMON-001 | Daemon status and diagnose | Daemon Health | [daemon-health/daemon-status-diagnose.md](daemon_health/daemon_status_diagnose.md) | `../feature_catalog/connect_and_daemon/connect_and_daemon.md` |
+| INSPECT-001 | Read-only inspect | Read-Only Access | [read-only/read-only-inspect.md](read_only/read_only_inspect.md) | `../feature_catalog/inspect/inspect.md` |
+| EXPORT-001 | Read-only export to an explicit path | Read-Only Access | [read-only/read-only-export.md](read_only/read_only_export.md) | `../feature_catalog/export/export.md` |
+| REFUSE-001 | Destructive verb refused without confirmation + target | Safety Gate | [safety-gate/destructive-verb-refused.md](safety_gate/destructive_verb_refused.md) | `../feature_catalog/tokens_and_variables/tokens_and_variables.md` |
+| MCP-001 | Optional Framelink MCP discovery via Code Mode | Optional MCP | [optional-mcp/framelink-discovery.md](optional_mcp/framelink_discovery.md) | `../feature_catalog/optional_mcp/optional_mcp_context.md` |
 
 This index lists 8 scenario IDs and ships 8 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (8), so keep them in sync as scenarios are added or revised.

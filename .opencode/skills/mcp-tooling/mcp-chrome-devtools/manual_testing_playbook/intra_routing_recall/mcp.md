@@ -1,6 +1,6 @@
 ---
 id: CD-R02
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'MCP routing'
 expected_intent: MCP

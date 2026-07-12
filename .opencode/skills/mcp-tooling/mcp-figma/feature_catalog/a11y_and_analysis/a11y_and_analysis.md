@@ -41,7 +41,7 @@ A typical caller runs an a11y audit or analysis to learn about the document befo
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/read-only/read-only-inspect.md` | Manual playbook | The read-only verb contract that a11y and analysis share |
+| `manual_testing_playbook/read_only/read_only_inspect.md` | Manual playbook | The read-only verb contract that a11y and analysis share |
 
 ---
 
@@ -53,4 +53,4 @@ A typical caller runs an a11y audit or analysis to learn about the document befo
 
 Related references:
 - [inspect.md](../inspect/inspect.md) covers the read-only structure verbs a11y and analysis build on
-- [render-and-create.md](../render-and-create/render-and-create.md) covers the applied gradient path, which is mutating
+- [render-and-create.md](../render_and_create/render_and_create.md) covers the applied gradient path, which is mutating

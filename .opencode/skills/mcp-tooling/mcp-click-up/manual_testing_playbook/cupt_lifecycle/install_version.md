@@ -52,7 +52,7 @@ Operators run the exact prompt and command sequence for `CU-001` and confirm the
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/cupt-global-flags/version-flag.md`](../../feature_catalog/cupt-global-flags/version-flag.md) | Feature catalog source |
+| [`../../feature_catalog/cupt_global_flags/version_flag.md`](../../feature_catalog/cupt_global_flags/version_flag.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

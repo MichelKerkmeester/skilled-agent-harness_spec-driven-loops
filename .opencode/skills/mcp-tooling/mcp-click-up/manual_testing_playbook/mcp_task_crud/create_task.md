@@ -51,7 +51,7 @@ PRE: MCP configured. Use a throwaway test list.
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/mcp-high-priority/create-task.md`](../../feature_catalog/mcp-high-priority/create-task.md) | Feature catalog source |
+| [`../../feature_catalog/mcp_high_priority/create_task.md`](../../feature_catalog/mcp_high_priority/create_task.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

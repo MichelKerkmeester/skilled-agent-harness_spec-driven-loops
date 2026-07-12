@@ -50,5 +50,5 @@ Useful in network-restricted environments or for fast repeated reads. Stale cach
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/offline.md`
 Related references:
-- [json-output.md](json-output.md) — JSON Output
-- [stacked-filters.md](stacked-filters.md) — Stacked Filters
+- [json-output.md](../cupt_task_listing/json_output.md) — JSON Output
+- [stacked-filters.md](../cupt_task_listing/stacked_filters.md) — Stacked Filters

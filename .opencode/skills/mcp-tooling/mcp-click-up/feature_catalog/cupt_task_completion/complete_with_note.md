@@ -50,5 +50,5 @@ Used in agent handoff patterns: `cupt done $id --note 'Processed by AI agent. Re
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-completion/complete-with-note.md`
 Related references:
-- [dry-run.md](dry-run.md) — Dry-Run Preview
-- [auto-note.md](auto-note.md) — Auto-Note
+- [dry-run.md](../cupt_task_completion/dry_run.md) — Dry-Run Preview
+- [auto-note.md](../cupt_task_completion/auto_note.md) — Auto-Note

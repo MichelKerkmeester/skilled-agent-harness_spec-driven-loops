@@ -1,6 +1,6 @@
 ---
 id: CD-R05
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'Automation routing'
 expected_intent: AUTOMATION

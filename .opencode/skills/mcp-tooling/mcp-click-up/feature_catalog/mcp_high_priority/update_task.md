@@ -54,5 +54,5 @@ The ONLY MCP tool that changes task status. Unlike cupt done, status names must 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-high-priority/update-task.md`
 Related references:
-- [get-task.md](get-task.md) — clickup_get_task
-- [delete-task.md](delete-task.md) — clickup_delete_task
+- [get-task.md](../mcp_high_priority/get_task.md) — clickup_get_task
+- [delete-task.md](../mcp_high_priority/delete_task.md) — clickup_delete_task

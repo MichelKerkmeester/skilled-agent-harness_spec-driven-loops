@@ -50,5 +50,5 @@ Runs client-side. Combine with server-side `--tag` to narrow before filtering: `
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/exclude-tag.md`
 Related references:
-- [filter-tag.md](filter-tag.md) — Filter by Tag
-- [filter-team.md](filter-team.md) — Filter by Team
+- [filter-tag.md](../cupt_task_listing/filter_tag.md) — Filter by Tag
+- [filter-team.md](../cupt_task_listing/filter_team.md) — Filter by Team

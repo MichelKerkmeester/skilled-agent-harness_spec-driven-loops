@@ -54,5 +54,5 @@ Rarely called in agent workflows. Documented for completeness.
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/feedback.md`
 Related references:
-- [audit-logs.md](audit-logs.md) — clickup_get_audit_logs
-- [create-checklist.md](create-checklist.md) — clickup_create_checklist
+- [audit-logs.md](../mcp_low_priority/audit_logs.md) — clickup_get_audit_logs
+- [create-checklist.md](../mcp_low_priority/create_checklist.md) — clickup_create_checklist

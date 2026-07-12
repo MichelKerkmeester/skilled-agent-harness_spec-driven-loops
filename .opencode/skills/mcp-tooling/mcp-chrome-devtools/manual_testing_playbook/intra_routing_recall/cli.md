@@ -1,6 +1,6 @@
 ---
 id: CD-R01
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'CLI routing'
 expected_intent: CLI

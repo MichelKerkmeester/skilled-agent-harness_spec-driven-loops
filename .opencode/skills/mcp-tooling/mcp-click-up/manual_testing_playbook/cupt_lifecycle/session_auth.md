@@ -53,7 +53,7 @@ Operators run the exact prompt and command sequence for `CU-002` and confirm the
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/cupt-authentication/interactive-auth.md`](../../feature_catalog/cupt-authentication/interactive-auth.md) | Feature catalog source |
+| [`../../feature_catalog/cupt_authentication/interactive_auth.md`](../../feature_catalog/cupt_authentication/interactive_auth.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

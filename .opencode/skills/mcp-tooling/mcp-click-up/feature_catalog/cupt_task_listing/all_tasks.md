@@ -50,5 +50,5 @@ Use when processing team-wide queues. Significantly larger result set than defau
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/all-tasks.md`
 Related references:
-- [filter-team.md](filter-team.md) — Filter by Team
-- [mine-only.md](mine-only.md) — Mine Only
+- [filter-team.md](../cupt_task_listing/filter_team.md) — Filter by Team
+- [mine-only.md](../cupt_task_listing/mine_only.md) — Mine Only

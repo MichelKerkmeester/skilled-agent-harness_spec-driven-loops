@@ -56,5 +56,5 @@ Returns document metadata. To get page content, use `clickup_get_document_pages`
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/get-document.md`
 Related references:
-- [create-document.md](create-document.md) — clickup_create_document
-- [update-document.md](update-document.md) — clickup_update_document
+- [create-document.md](../mcp_medium_priority/create_document.md) — clickup_create_document
+- [update-document.md](../mcp_medium_priority/update_document.md) — clickup_update_document

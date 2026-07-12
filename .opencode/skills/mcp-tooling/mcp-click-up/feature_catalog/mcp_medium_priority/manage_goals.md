@@ -56,4 +56,4 @@ Goals are a ClickUp premium feature. Creating a goal does not create key results
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/manage-goals.md`
 Related references:
-- [time-tracking.md](time-tracking.md) — clickup_manage_time_tracking
+- [time-tracking.md](../mcp_medium_priority/time_tracking.md) — clickup_manage_time_tracking

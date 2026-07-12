@@ -68,7 +68,7 @@ Confirm the live-confirmed tools resolve as `figma.figma_get_figma_data` and `fi
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/optional-mcp/optional-mcp-context.md` | Feature-catalog source describing the Code Mode discovery-first contract |
+| `../../feature_catalog/optional_mcp/optional_mcp_context.md` | Feature-catalog source describing the Code Mode discovery-first contract |
 
 ### Implementation And Test Anchors
 

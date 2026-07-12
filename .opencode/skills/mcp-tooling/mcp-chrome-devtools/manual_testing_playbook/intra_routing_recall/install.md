@@ -1,6 +1,6 @@
 ---
 id: CD-R03
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'Install routing'
 expected_intent: INSTALL

@@ -50,4 +50,4 @@ Output is human-readable. Use to discover available attachments before downloadi
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-attachments/list-attachments.md`
 Related references:
-- [upload-file.md](upload-file.md) — Upload File
+- [upload-file.md](../cupt_attachments/upload_file.md) — Upload File

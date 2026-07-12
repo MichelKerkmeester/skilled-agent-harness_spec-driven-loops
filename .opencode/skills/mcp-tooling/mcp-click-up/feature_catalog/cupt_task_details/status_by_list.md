@@ -50,4 +50,4 @@ Same output as `cupt statuses <task-id>` but resolves via list ID instead of tas
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-details/status-by-list.md`
 Related references:
-- [status-schema.md](status-schema.md) — Status Schema by Task
+- [status-schema.md](../cupt_task_details/status_schema.md) — Status Schema by Task

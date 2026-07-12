@@ -50,7 +50,7 @@ Verify `cupt list --tag nonexistent_xyz --json` returns `[]` with exit 0 — not
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/cupt-task-listing/list-assigned.md`](../../feature_catalog/cupt-task-listing/list-assigned.md) | Feature catalog source |
+| [`../../feature_catalog/cupt_task_listing/list_assigned.md`](../../feature_catalog/cupt_task_listing/list_assigned.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

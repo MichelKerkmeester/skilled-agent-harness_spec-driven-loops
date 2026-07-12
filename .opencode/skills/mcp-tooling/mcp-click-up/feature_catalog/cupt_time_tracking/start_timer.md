@@ -50,4 +50,4 @@ Exit 0 and confirmation message on success. Error if a timer is already running.
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-time-tracking/start-timer.md`
 Related references:
-- [stop-timer.md](stop-timer.md) — Stop Timer
+- [stop-timer.md](../cupt_time_tracking/stop_timer.md) — Stop Timer

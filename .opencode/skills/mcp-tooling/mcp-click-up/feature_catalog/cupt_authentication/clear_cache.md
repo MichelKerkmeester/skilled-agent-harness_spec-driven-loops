@@ -50,5 +50,5 @@ Does not affect credentials — only the data cache is cleared. Use after prolon
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-authentication/clear-cache.md`
 Related references:
-- [show-config.md](show-config.md) — Show Config
-- [auth-status.md](auth-status.md) — Auth Status
+- [show-config.md](../cupt_authentication/show_config.md) — Show Config
+- [auth-status.md](../cupt_authentication/auth_status.md) — Auth Status

@@ -1,6 +1,6 @@
 ---
 id: CU-H01
-category: intra-routing-recall
+category: intra_routing_recall
 stage: holdout
 title: 'Blind holdout — daily task op'
 expected_intent: CUPT_DAILY

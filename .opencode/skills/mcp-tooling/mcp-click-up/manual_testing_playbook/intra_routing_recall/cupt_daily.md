@@ -1,6 +1,6 @@
 ---
 id: CU-R01
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'CUPT daily routing'
 expected_intent: CUPT_DAILY

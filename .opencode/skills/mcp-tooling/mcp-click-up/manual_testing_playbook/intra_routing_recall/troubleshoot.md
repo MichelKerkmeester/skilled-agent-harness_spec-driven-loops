@@ -1,6 +1,6 @@
 ---
 id: CU-R04
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'Troubleshoot routing'
 expected_intent: TROUBLESHOOT

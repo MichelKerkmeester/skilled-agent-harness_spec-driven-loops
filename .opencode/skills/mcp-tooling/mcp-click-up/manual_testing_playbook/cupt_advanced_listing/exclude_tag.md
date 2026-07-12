@@ -50,7 +50,7 @@ Verify `cupt list --no-tag <name> --json` excludes tasks with that tag is requir
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/cupt-task-listing/exclude-tag.md`](../../feature_catalog/cupt-task-listing/exclude-tag.md) | Feature catalog source |
+| [`../../feature_catalog/cupt_task_listing/exclude_tag.md`](../../feature_catalog/cupt_task_listing/exclude_tag.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

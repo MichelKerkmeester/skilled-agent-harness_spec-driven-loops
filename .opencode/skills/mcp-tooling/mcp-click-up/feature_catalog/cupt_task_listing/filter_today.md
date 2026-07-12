@@ -50,5 +50,5 @@ Combines with tag and team filters. Use `cupt list --today --json` as the standa
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/filter-today.md`
 Related references:
-- [list-assigned.md](list-assigned.md) — List Assigned
-- [filter-week.md](filter-week.md) — Filter Week
+- [list-assigned.md](../cupt_task_listing/list_assigned.md) — List Assigned
+- [filter-week.md](../cupt_task_listing/filter_week.md) — Filter Week

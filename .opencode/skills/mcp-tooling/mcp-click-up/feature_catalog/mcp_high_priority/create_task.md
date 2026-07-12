@@ -56,4 +56,4 @@ Returns the created task object including the generated `task_id`. Priority valu
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-high-priority/create-task.md`
 Related references:
-- [get-task.md](get-task.md) — clickup_get_task
+- [get-task.md](../mcp_high_priority/get_task.md) — clickup_get_task

@@ -51,7 +51,7 @@ Verify `clickup_manage_webhooks` creates a webhook and returns a webhook_id is r
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/mcp-low-priority/manage-webhooks.md`](../../feature_catalog/mcp-low-priority/manage-webhooks.md) | Feature catalog source |
+| [`../../feature_catalog/mcp_low_priority/manage_webhooks.md`](../../feature_catalog/mcp_low_priority/manage_webhooks.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

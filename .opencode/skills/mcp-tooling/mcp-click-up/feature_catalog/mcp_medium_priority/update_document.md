@@ -56,5 +56,5 @@ Content replacement is non-incremental — the full new content must be provided
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/update-document.md`
 Related references:
-- [get-document.md](get-document.md) — clickup_get_document
-- [time-tracking.md](time-tracking.md) — clickup_manage_time_tracking
+- [get-document.md](../mcp_medium_priority/get_document.md) — clickup_get_document
+- [time-tracking.md](../mcp_medium_priority/time_tracking.md) — clickup_manage_time_tracking

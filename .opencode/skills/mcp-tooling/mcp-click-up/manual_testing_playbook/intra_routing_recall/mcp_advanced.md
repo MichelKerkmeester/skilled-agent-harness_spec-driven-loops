@@ -1,6 +1,6 @@
 ---
 id: CU-R02
-category: intra-routing-recall
+category: intra_routing_recall
 stage: routing
 title: 'MCP advanced routing'
 expected_intent: MCP_ADVANCED

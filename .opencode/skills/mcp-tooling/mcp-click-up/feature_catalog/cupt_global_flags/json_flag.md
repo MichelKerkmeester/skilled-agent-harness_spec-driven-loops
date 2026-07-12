@@ -50,4 +50,4 @@ Use `--json` in agent code on the four commands that support it. Never parse hum
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-global-flags/json-flag.md`
 Related references:
-- [offline-flag.md](offline-flag.md) — Offline Mode Flag
+- [offline-flag.md](../cupt_global_flags/offline_flag.md) — Offline Mode Flag

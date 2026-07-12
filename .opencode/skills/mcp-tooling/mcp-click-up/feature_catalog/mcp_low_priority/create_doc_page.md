@@ -54,5 +54,5 @@ Pages are sub-sections of a document. Use to organize long documents into naviga
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/create-doc-page.md`
 Related references:
-- [get-doc-pages.md](get-doc-pages.md) — clickup_get_document_pages
-- [update-doc-page.md](update-doc-page.md) — clickup_update_document_page
+- [get-doc-pages.md](../mcp_low_priority/get_doc_pages.md) — clickup_get_document_pages
+- [update-doc-page.md](../mcp_low_priority/update_doc_page.md) — clickup_update_document_page

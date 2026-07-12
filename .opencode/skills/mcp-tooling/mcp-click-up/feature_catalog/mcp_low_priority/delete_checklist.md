@@ -56,5 +56,5 @@ Use only when removing an entire checklist and all items. To remove individual i
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/delete-checklist.md`
 Related references:
-- [update-checklist.md](update-checklist.md) — clickup_update_checklist
-- [create-checklist-item.md](create-checklist-item.md) — clickup_create_checklist_item
+- [update-checklist.md](../mcp_low_priority/update_checklist.md) — clickup_update_checklist
+- [create-checklist-item.md](../mcp_low_priority/create_checklist_item.md) — clickup_create_checklist_item

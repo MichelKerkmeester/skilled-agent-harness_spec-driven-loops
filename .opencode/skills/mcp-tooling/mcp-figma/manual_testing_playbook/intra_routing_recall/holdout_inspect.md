@@ -1,6 +1,6 @@
 ---
 id: FG-H02
-category: intra-routing-recall
+category: intra_routing_recall
 stage: holdout
 title: 'Blind holdout: measurements'
 expected_intent: INSPECT_EXPORT

@@ -54,5 +54,5 @@ Use to discover available views before rendering or filtering. View IDs can be u
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-medium-priority/get-views.md`
 Related references:
-- [space-tags.md](space-tags.md) — clickup_manage_space_tags
-- [create-document.md](create-document.md) — clickup_create_document
+- [space-tags.md](../mcp_medium_priority/space_tags.md) — clickup_manage_space_tags
+- [create-document.md](../mcp_medium_priority/create_document.md) — clickup_create_document

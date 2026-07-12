@@ -50,4 +50,4 @@ Useful before entering a low-connectivity environment or for batch processing wh
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-workspace/prefetch.md`
 Related references:
-- [task-summary.md](task-summary.md) — Task Summary
+- [task-summary.md](../cupt_workspace/task_summary.md) — Task Summary

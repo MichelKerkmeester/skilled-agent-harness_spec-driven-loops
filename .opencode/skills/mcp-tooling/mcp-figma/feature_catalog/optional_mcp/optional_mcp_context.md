@@ -41,7 +41,7 @@ The Framelink `figma` manual needs a Figma personal token in `.env` as `figma_FI
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/optional-mcp/framelink-discovery.md` | Manual playbook | Discovers the `figma` manual and tool names live before any invocation |
+| `manual_testing_playbook/optional_mcp/framelink_discovery.md` | Manual playbook | Discovers the `figma` manual and tool names live before any invocation |
 
 ---
 
@@ -52,5 +52,5 @@ The Framelink `figma` manual needs a Figma personal token in `.env` as `figma_FI
 - Feature file path: `optional-mcp/optional-mcp-context.md`
 
 Related references:
-- [connect-and-daemon.md](../connect-and-daemon/connect-and-daemon.md) covers the primary CLI transport this path is an optional alternative to
+- [connect-and-daemon.md](../connect_and_daemon/connect_and_daemon.md) covers the primary CLI transport this path is an optional alternative to
 - [inspect.md](../inspect/inspect.md) covers the CLI read-only inspect verbs that cover most read needs

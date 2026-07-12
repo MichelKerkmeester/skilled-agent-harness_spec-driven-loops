@@ -50,5 +50,5 @@ Useful for sprint planning and weekly triage. Combine with `--tag` for focused t
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/filter-week.md`
 Related references:
-- [filter-today.md](filter-today.md) — Filter Today
-- [filter-overdue.md](filter-overdue.md) — Filter Overdue
+- [filter-today.md](../cupt_task_listing/filter_today.md) — Filter Today
+- [filter-overdue.md](../cupt_task_listing/filter_overdue.md) — Filter Overdue

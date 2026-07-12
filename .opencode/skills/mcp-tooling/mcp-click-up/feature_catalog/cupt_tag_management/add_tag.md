@@ -50,4 +50,4 @@ Used in agent queue management: add tags like `needs_review`, `processed`, or `b
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-tag-management/add-tag.md`
 Related references:
-- [remove-tag.md](remove-tag.md) — Remove Tag
+- [remove-tag.md](../cupt_tag_management/remove_tag.md) — Remove Tag

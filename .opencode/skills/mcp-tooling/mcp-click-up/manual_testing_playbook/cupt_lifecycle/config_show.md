@@ -54,7 +54,7 @@ Operators run the exact prompt and command sequence for `CU-006` and confirm the
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/cupt-authentication/show-config.md`](../../feature_catalog/cupt-authentication/show-config.md) | Feature catalog source |
+| [`../../feature_catalog/cupt_authentication/show_config.md`](../../feature_catalog/cupt_authentication/show_config.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

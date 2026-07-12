@@ -50,5 +50,5 @@ Tag filtering combines a fast server-side OR prefetch with client-side AND enfor
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/filter-tag.md`
 Related references:
-- [filter-overdue.md](filter-overdue.md) — Filter Overdue
-- [exclude-tag.md](exclude-tag.md) — Exclude by Tag
+- [filter-overdue.md](../cupt_task_listing/filter_overdue.md) — Filter Overdue
+- [exclude-tag.md](../cupt_task_listing/exclude_tag.md) — Exclude by Tag

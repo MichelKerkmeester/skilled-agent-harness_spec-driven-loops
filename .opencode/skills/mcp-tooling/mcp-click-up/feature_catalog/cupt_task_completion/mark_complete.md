@@ -50,4 +50,4 @@ Exit 0 on success with a confirmation message. Exit non-zero if no closed status
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-completion/mark-complete.md`
 Related references:
-- [dry-run.md](dry-run.md) — Dry-Run Preview
+- [dry-run.md](../cupt_task_completion/dry_run.md) — Dry-Run Preview

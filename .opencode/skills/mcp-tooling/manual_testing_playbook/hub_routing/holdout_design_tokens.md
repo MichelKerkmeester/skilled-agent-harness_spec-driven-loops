@@ -1,6 +1,6 @@
 ---
 id: MT-H02
-category: hub-routing
+category: hub_routing
 stage: holdout
 title: "Blind holdout: design-token extraction routes to mcp-figma"
 expected_intent: mcp-figma

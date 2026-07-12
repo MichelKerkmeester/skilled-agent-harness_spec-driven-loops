@@ -52,7 +52,7 @@ Every verb in this area changes the Figma document and is MUTATING (with an ARBI
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/safety-gate/destructive-verb-refused.md` | Manual playbook | The gate that authoring and destructive verbs share, proven via negative control |
+| `manual_testing_playbook/safety_gate/destructive_verb_refused.md` | Manual playbook | The gate that authoring and destructive verbs share, proven via negative control |
 
 ---
 
@@ -63,5 +63,5 @@ Every verb in this area changes the Figma document and is MUTATING (with an ARBI
 - Feature file path: `render-and-create/render-and-create.md`
 
 Related references:
-- [design-system-extract-and-import.md](../design-system-extract-and-import/design-system-extract-and-import.md) covers import, the other gated write verb
-- [tokens-and-variables.md](../tokens-and-variables/tokens-and-variables.md) covers token authoring and the destructive bulk deletes
+- [design-system-extract-and-import.md](../design_system_extract_and_import/design_system_extract_and_import.md) covers import, the other gated write verb
+- [tokens-and-variables.md](../tokens_and_variables/tokens_and_variables.md) covers token authoring and the destructive bulk deletes

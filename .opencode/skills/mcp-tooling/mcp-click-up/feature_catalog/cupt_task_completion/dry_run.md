@@ -50,5 +50,5 @@ REQUIRED before any batch completion loop. Cost: one API read (status discovery)
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-completion/dry-run.md`
 Related references:
-- [mark-complete.md](mark-complete.md) — Mark Complete
-- [complete-with-note.md](complete-with-note.md) — Complete with Note
+- [mark-complete.md](../cupt_task_completion/mark_complete.md) — Mark Complete
+- [complete-with-note.md](../cupt_task_completion/complete_with_note.md) — Complete with Note

@@ -54,5 +54,5 @@ Functionally equivalent to `cupt note` (add) and `cupt notes` (list) but via MCP
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-high-priority/manage-comments.md`
 Related references:
-- [get-workspace.md](get-workspace.md) — clickup_get_workspace
-- [create-bulk-tasks.md](create-bulk-tasks.md) — clickup_create_bulk_tasks
+- [get-workspace.md](../mcp_high_priority/get_workspace.md) — clickup_get_workspace
+- [create-bulk-tasks.md](../mcp_high_priority/create_bulk_tasks.md) — clickup_create_bulk_tasks

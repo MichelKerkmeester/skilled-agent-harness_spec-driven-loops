@@ -56,5 +56,5 @@ Use to discover user IDs for bulk assignee operations. Requires admin-level API 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/user-groups.md`
 Related references:
-- [manage-webhooks.md](manage-webhooks.md) — clickup_manage_webhooks
-- [manage-guests.md](manage-guests.md) — clickup_manage_guests
+- [manage-webhooks.md](../mcp_low_priority/manage_webhooks.md) — clickup_manage_webhooks
+- [manage-guests.md](../mcp_low_priority/manage_guests.md) — clickup_manage_guests

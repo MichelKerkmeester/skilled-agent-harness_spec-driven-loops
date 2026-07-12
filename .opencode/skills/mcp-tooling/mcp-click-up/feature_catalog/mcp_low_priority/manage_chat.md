@@ -54,5 +54,5 @@ ClickUp Chat is a premium feature. Channel IDs are opaque strings not easily dis
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/manage-chat.md`
 Related references:
-- [use-template.md](use-template.md) — clickup_use_task_template
-- [manage-webhooks.md](manage-webhooks.md) — clickup_manage_webhooks
+- [use-template.md](../mcp_low_priority/use_template.md) — clickup_use_task_template
+- [manage-webhooks.md](../mcp_low_priority/manage_webhooks.md) — clickup_manage_webhooks

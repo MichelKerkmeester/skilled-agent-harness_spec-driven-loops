@@ -51,7 +51,7 @@ A typical caller lists variables read-only, then creates or binds tokens behind 
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/safety-gate/destructive-verb-refused.md` | Manual playbook | Proves an unconfirmed destructive verb (e.g. `var delete-all`) is refused |
+| `manual_testing_playbook/safety_gate/destructive_verb_refused.md` | Manual playbook | Proves an unconfirmed destructive verb (e.g. `var delete-all`) is refused |
 
 ---
 
@@ -62,5 +62,5 @@ A typical caller lists variables read-only, then creates or binds tokens behind 
 - Feature file path: `tokens-and-variables/tokens-and-variables.md`
 
 Related references:
-- [render-and-create.md](../render-and-create/render-and-create.md) covers the authoring verbs tokens are bound into
+- [render-and-create.md](../render_and_create/render_and_create.md) covers the authoring verbs tokens are bound into
 - [export.md](../export/export.md) covers exporting token styles as CSS or Tailwind

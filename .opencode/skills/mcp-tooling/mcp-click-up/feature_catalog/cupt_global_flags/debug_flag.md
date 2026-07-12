@@ -50,5 +50,5 @@ Use when diagnosing auth failures, slow responses, or unexpected empty results. 
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-global-flags/debug-flag.md`
 Related references:
-- [offline-flag.md](offline-flag.md) — Offline Mode Flag
-- [version-flag.md](version-flag.md) — Version Flag
+- [offline-flag.md](../cupt_global_flags/offline_flag.md) — Offline Mode Flag
+- [version-flag.md](../cupt_global_flags/version_flag.md) — Version Flag

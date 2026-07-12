@@ -47,7 +47,7 @@ Extract is read-only against the Figma document but still writes a file, so it c
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/read-only/read-only-export.md` | Manual playbook | The explicit-output, no-overwrite rule that also governs extract |
+| `manual_testing_playbook/read_only/read_only_export.md` | Manual playbook | The explicit-output, no-overwrite rule that also governs extract |
 
 ---
 
@@ -59,4 +59,4 @@ Extract is read-only against the Figma document but still writes a file, so it c
 
 Related references:
 - [inspect.md](../inspect/inspect.md) covers the read-only inspect verbs that precede extract
-- [render-and-create.md](../render-and-create/render-and-create.md) covers the gated authoring verbs that import joins
+- [render-and-create.md](../render_and_create/render_and_create.md) covers the gated authoring verbs that import joins

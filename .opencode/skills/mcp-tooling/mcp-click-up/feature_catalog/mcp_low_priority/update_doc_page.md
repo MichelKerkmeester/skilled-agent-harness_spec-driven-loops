@@ -54,5 +54,5 @@ Always retrieve the current content with `clickup_get_document_pages` before ove
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `mcp-low-priority/update-doc-page.md`
 Related references:
-- [create-doc-page.md](create-doc-page.md) — clickup_create_document_page
-- [get-custom-fields.md](get-custom-fields.md) — clickup_get_custom_fields
+- [create-doc-page.md](../mcp_low_priority/create_doc_page.md) — clickup_create_document_page
+- [get-custom-fields.md](../mcp_low_priority/get_custom_fields.md) — clickup_get_custom_fields

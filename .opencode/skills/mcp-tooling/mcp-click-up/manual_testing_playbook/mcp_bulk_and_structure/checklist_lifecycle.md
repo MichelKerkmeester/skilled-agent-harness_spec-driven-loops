@@ -54,7 +54,7 @@ Verify full checklist CRUD: create checklist, add item, resolve item, delete che
 | File | Role |
 |------|------|
 | [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
-| [`../../feature_catalog/mcp-low-priority/create-checklist.md`](../../feature_catalog/mcp-low-priority/create-checklist.md) | Feature catalog source |
+| [`../../feature_catalog/mcp_low_priority/create_checklist.md`](../../feature_catalog/mcp_low_priority/create_checklist.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 

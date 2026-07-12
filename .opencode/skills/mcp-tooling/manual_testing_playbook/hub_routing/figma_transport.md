@@ -1,6 +1,6 @@
 ---
 id: MT-003
-category: hub-routing
+category: hub_routing
 stage: routing
 title: "Figma render/export request routes to the mcp-figma transport"
 expected_intent: mcp-figma

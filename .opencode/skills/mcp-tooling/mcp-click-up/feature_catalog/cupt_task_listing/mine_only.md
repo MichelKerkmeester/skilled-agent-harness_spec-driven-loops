@@ -50,5 +50,5 @@ Explicit equivalent of the default self-assigned scope. Does NOT override `--all
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-listing/mine-only.md`
 Related references:
-- [all-tasks.md](all-tasks.md) — All Tasks
-- [cap-results.md](cap-results.md) — Cap Results
+- [all-tasks.md](../cupt_task_listing/all_tasks.md) — All Tasks
+- [cap-results.md](../cupt_task_listing/cap_results.md) — Cap Results

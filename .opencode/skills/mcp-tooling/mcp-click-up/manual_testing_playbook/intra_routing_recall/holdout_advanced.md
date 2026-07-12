@@ -1,6 +1,6 @@
 ---
 id: CU-H02
-category: intra-routing-recall
+category: intra_routing_recall
 stage: holdout
 title: 'Blind holdout — advanced feature'
 expected_intent: MCP_ADVANCED

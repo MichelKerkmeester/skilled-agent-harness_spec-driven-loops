@@ -50,5 +50,5 @@ Useful for understanding task history before acting. Equivalent to running `cupt
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `cupt-task-details/show-notes.md`
 Related references:
-- [show-task.md](show-task.md) — Show Task
-- [show-offline.md](show-offline.md) — Show Offline
+- [show-task.md](../cupt_task_details/show_task.md) — Show Task
+- [show-offline.md](../cupt_task_details/show_offline.md) — Show Offline

@@ -1,6 +1,6 @@
 ---
 id: CD-H01
-category: intra-routing-recall
+category: intra_routing_recall
 stage: holdout
 title: 'Blind holdout: session drop'
 expected_intent: TROUBLESHOOT
