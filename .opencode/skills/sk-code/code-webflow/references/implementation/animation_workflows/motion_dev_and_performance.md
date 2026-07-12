@@ -1,6 +1,11 @@
 ---
 title: Motion.dev Integration & Performance Optimization
 description: CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Motion.dev Integration & Performance Optimization.
+trigger_phrases:
+  - "motion dev integration"
+  - "integration performance optimization"
+  - "motion dev patterns"
+  - "webflow motion dev"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.9
@@ -8,7 +13,23 @@ version: 3.5.0.9
 
 # Motion.dev Integration & Performance Optimization
 
-## 4. MOTION.DEV INTEGRATION
+CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Motion.dev Integration & Performance Optimization.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Motion.dev Integration & Performance Optimization.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting motion.dev integration & performance optimization.
+
+---
+
+## 2. MOTION.DEV INTEGRATION
 
 > **Cross-stack motion.dev reference**: The full Motion.dev knowledge base lives at [`../animation/`](../animation/). Load by topic:
 >
@@ -202,7 +223,7 @@ animate(element, { opacity: [0, 1] }, {
 
 ---
 
-## 5. PERFORMANCE OPTIMIZATION
+## 3. PERFORMANCE OPTIMIZATION
 
 ### Set Initial States (Prevent Flicker)
 

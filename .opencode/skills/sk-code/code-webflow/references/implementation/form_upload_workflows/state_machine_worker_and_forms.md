@@ -1,6 +1,11 @@
 ---
 title: State Machine, Cloudflare Worker Proxy & Form Integration
 description: Complete architecture reference for the FilePond-to-R2 file upload pipeline, including Cloudflare Worker proxy, state management, and Webflow integration. — State Machine, Cloudflare Worker Proxy & Form Integration.
+trigger_phrases:
+  - "state machine cloudflare"
+  - "proxy form integration"
+  - "state machine patterns"
+  - "webflow state machine"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,23 @@ version: 3.5.0.4
 
 # State Machine, Cloudflare Worker Proxy & Form Integration
 
-## 5. STATE MACHINE
+Complete architecture reference for the FilePond-to-R2 file upload pipeline, including Cloudflare Worker proxy, state management, and Webflow integration. — State Machine, Cloudflare Worker Proxy & Form Integration.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Complete architecture reference for the FilePond-to-R2 file upload pipeline, including Cloudflare Worker proxy, state management, and Webflow integration. — State Machine, Cloudflare Worker Proxy & Form Integration.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting state machine, cloudflare worker proxy & form integration.
+
+---
+
+## 2. STATE MACHINE
 
 ### States
 
@@ -77,7 +98,7 @@ State transitions always remove all state classes first, then add the appropriat
 
 ---
 
-## 6. CLOUDFLARE WORKER PROXY
+## 3. CLOUDFLARE WORKER PROXY
 
 ### Endpoint and Purpose
 
@@ -128,7 +149,7 @@ FormData:
 
 ---
 
-## 7. FORM INTEGRATION
+## 4. FORM INTEGRATION
 
 ### Upload URL to Formspark
 

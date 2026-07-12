@@ -1,6 +1,11 @@
 ---
 title: Performance Budgets, Anti-Patterns & Related
 description: Performance optimization checklist covering animations, assets, requests, and Core Web Vitals budgets. — Performance Budgets, Anti-Patterns & Related.
+trigger_phrases:
+  - "performance budgets anti"
+  - "budgets anti patterns"
+  - "performance budgets patterns"
+  - "webflow performance budgets"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.17
@@ -8,7 +13,23 @@ version: 3.5.0.17
 
 # Performance Budgets, Anti-Patterns & Related
 
-## 3. PERFORMANCE BUDGETS
+Performance optimization checklist covering animations, assets, requests, and Core Web Vitals budgets. — Performance Budgets, Anti-Patterns & Related.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Performance optimization checklist covering animations, assets, requests, and Core Web Vitals budgets. — Performance Budgets, Anti-Patterns & Related.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting performance budgets, anti-patterns & related.
+
+---
+
+## 2. PERFORMANCE BUDGETS
 
 **Target metrics:**
 - First Contentful Paint (FCP): <1.8s
@@ -176,7 +197,7 @@ echo "✅ PASS: Animation performance budgets met"
 
 ---
 
-## 4. ANTI-PATTERNS
+## 3. ANTI-PATTERNS
 
 **Never:**
 - ❌ Animate width/height/top/left (triggers layout)
@@ -188,7 +209,7 @@ echo "✅ PASS: Animation performance budgets met"
 
 ---
 
-## 5. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 ### Topical performance deep-dives (`webflow/performance/`)
 
@@ -203,8 +224,8 @@ This file is the high-level checklist + budgets + anti-patterns index. For deep-
 ### Reference Files (sibling implementation patterns)
 - [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md) - Performance debugging workflows for identifying bottlenecks
 - [verification_workflows.md](../../verification/verification_workflows/gate_and_automated_options.md) - Browser testing and verification workflows
-- [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Animation performance patterns for GPU-accelerated properties
-- [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md) - Webflow-specific performance considerations for collection lists
+- [animation_workflows.md](../animation_workflows/overview_decision_tree_and_css.md) - Animation performance patterns for GPU-accelerated properties
+- [webflow_patterns.md](../webflow_patterns/overview_limits_and_collection_lists.md) - Webflow-specific performance considerations for collection lists
 
 ### Per-language quality patterns
 - [`../../javascript/quality_standards/init_dom_error_and_async.md`](../../javascript/quality_standards/init_dom_error_and_async.md) — JS-side performance patterns (RequestAnimationFrame, GPU acceleration hints, debounced resize, event delegation)

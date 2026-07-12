@@ -240,4 +240,4 @@ Before deploying any component:
 - [`../quick_reference.md`](../quick_reference.md) — Webflow tokens, form validation classes, reduced motion, focus detection
 - [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) — cross-language conventions
 - [`../../shared/enforcement.md`](../../shared/enforcement.md) — cross-language pre-completion gate (file headers, section organization, comment quality)
-- [`../../implementation/animation_workflows/overview-decision-tree-and-css.md`](../../implementation/animation_workflows/overview-decision-tree-and-css.md) — complete CSS + Motion.dev animation guide
+- [`../../implementation/animation_workflows/overview_decision_tree_and_css.md`](../../implementation/animation_workflows/overview_decision_tree_and_css.md) — complete CSS + Motion.dev animation guide

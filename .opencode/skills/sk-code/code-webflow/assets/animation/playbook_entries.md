@@ -130,7 +130,7 @@ Use these examples to prevent snippet and caveat drift in cross-stack routing ch
 | Query | Expected Surface | Expected Outputs |
 |-------|------------------|------------------|
 | `Show me a motion.dev animate-on-scroll example for any stack.` | N/A or UNKNOWN | `assets/animation/snippets/animate_on_scroll.js`, `references/animation/scroll_and_gestures.md`, `references/animation/quick_start.md` |
-| `Give me a Webflow-safe Motion.dev in-view reveal snippet.` | WEBFLOW | `assets/animation/snippets/in_view_reveal.js`, `references/implementation/animation_workflows/overview-decision-tree-and-css.md`, `references/animation/scroll_and_gestures.md`, plus the Webflow `snake_case` naming caveat |
+| `Give me a Webflow-safe Motion.dev in-view reveal snippet.` | WEBFLOW | `assets/animation/snippets/in_view_reveal.js`, `references/implementation/animation_workflows/overview_decision_tree_and_css.md`, `references/animation/scroll_and_gestures.md`, plus the Webflow `snake_case` naming caveat |
 | `Reuse the Motion.dev stagger snippet in a stack-agnostic example, not Webflow.` | UNKNOWN or N/A | `assets/animation/snippets/stagger_animation.js`, `references/animation/animate_and_timelines.md`; no `references/*` surface resources for a non-Webflow task |
 
 Expected response shape: name the exact snippet asset, include the relevant Motion.dev reference file, and only add the Webflow `snake_case` caveat when the prompt is Webflow-owned.

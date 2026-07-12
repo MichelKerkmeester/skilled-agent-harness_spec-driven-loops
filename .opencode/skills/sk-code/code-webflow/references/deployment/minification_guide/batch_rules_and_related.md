@@ -104,7 +104,7 @@ bdg stop
 ### Reference Files
 
 - [cdn_deployment.md](../cdn_deployment.md) - Deploying minified files to Cloudflare R2
-- [implementation_workflows.md](../../implementation/implementation_workflows/condition-based-waiting.md) - General implementation patterns
+- [implementation_workflows.md](../../implementation/implementation_workflows/condition_based_waiting.md) - General implementation patterns
 - [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md) - Debugging workflows
 
 ### Scripts

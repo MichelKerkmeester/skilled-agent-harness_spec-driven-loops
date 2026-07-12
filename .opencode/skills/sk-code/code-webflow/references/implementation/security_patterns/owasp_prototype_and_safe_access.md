@@ -1,6 +1,11 @@
 ---
 title: OWASP Coverage, Prototype Pollution, Secure IDs & Safe Access
 description: Security hardening patterns covering XSS prevention, CSRF protection, and input validation. — OWASP Coverage, Prototype Pollution, Secure IDs & Safe Access.
+trigger_phrases:
+  - "owasp coverage prototype"
+  - "ids safe access"
+  - "owasp coverage patterns"
+  - "webflow owasp coverage"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.3
@@ -8,7 +13,23 @@ version: 3.5.0.3
 
 # OWASP Coverage, Prototype Pollution, Secure IDs & Safe Access
 
-## 3. OWASP TOP 10 COVERAGE
+Security hardening patterns covering XSS prevention, CSRF protection, and input validation. — OWASP Coverage, Prototype Pollution, Secure IDs & Safe Access.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Security hardening patterns covering XSS prevention, CSRF protection, and input validation. — OWASP Coverage, Prototype Pollution, Secure IDs & Safe Access.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting owasp coverage, prototype pollution, secure ids & safe access.
+
+---
+
+## 2. OWASP TOP 10 COVERAGE
 
 1. **Broken Access Control** → Access Control checklist
 2. **Cryptographic Failures** → Data Storage Security
@@ -23,7 +44,7 @@ version: 3.5.0.3
 
 ---
 
-## 4. PROTOTYPE POLLUTION PREVENTION
+## 3. PROTOTYPE POLLUTION PREVENTION
 
 Prototype pollution (CWE-1321) occurs when attackers inject properties into JavaScript object prototypes, potentially enabling property injection, denial of service, or remote code execution.
 
@@ -113,7 +134,7 @@ const isValidModalId = (id) => {
 
 ---
 
-## 5. SECURE ID GENERATION
+## 4. SECURE ID GENERATION
 
 Using `Math.random()` for security-sensitive operations (CWE-330) can lead to predictable values. Use `crypto.getRandomValues()` for cryptographically secure randomness.
 
@@ -205,7 +226,7 @@ function badGenerateId() {
 
 ---
 
-## 6. SAFE PROPERTY ACCESS (Object.hasOwn)
+## 5. SAFE PROPERTY ACCESS (Object.hasOwn)
 
 The `in` operator and `hasOwnProperty()` method have security and reliability issues. Use `Object.hasOwn()` for safe property checking.
 
@@ -291,7 +312,7 @@ open(id, reason) {
 
 ---
 
-## 7. ANTI-PATTERNS
+## 6. ANTI-PATTERNS
 
 **Never:**
 - ❌ Use innerHTML with unsanitized user input
@@ -309,10 +330,10 @@ open(id, reason) {
 
 ---
 
-## 8. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Reference Files
-- [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Defense-in-depth validation
+- [implementation_workflows.md](../implementation_workflows/condition_based_waiting.md) - Defense-in-depth validation
 - [verification_workflows.md](../../verification/verification_workflows/gate_and_automated_options.md) - Security testing
 - See `mcp-chrome-devtools` skill for DevTools security audits
 

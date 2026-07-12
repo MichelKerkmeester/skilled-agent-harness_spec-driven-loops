@@ -10,8 +10,8 @@ expected_resources:
   - references/performance/third_party.md
   - references/performance/webflow_constraints.md
   - references/verification/performance_checklist.md
-  - references/implementation/performance_patterns/overview-and-checklist.md
-  - references/implementation/performance_patterns/budgets-and-anti-patterns.md
+  - references/implementation/performance_patterns/overview_and_checklist.md
+  - references/implementation/performance_patterns/budgets_and_anti_patterns.md
   - references/animation/performance_and_pitfalls.md
 version: 1.0.0.0
 ---

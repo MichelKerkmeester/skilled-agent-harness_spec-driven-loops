@@ -1,6 +1,11 @@
 ---
 title: MIME Types, Troubleshooting, Deployment & Related
 description: Complete architecture reference for the FilePond-to-R2 file upload pipeline, including Cloudflare Worker proxy, state management, and Webflow integration. — MIME Types, Troubleshooting, Deployment & Related.
+trigger_phrases:
+  - "mime types troubleshooting"
+  - "types troubleshooting deployment"
+  - "mime types patterns"
+  - "webflow mime types"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,23 @@ version: 3.5.0.4
 
 # MIME Types, Troubleshooting, Deployment & Related
 
-## 8. MIME TYPE REFERENCE
+Complete architecture reference for the FilePond-to-R2 file upload pipeline, including Cloudflare Worker proxy, state management, and Webflow integration. — MIME Types, Troubleshooting, Deployment & Related.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Complete architecture reference for the FilePond-to-R2 file upload pipeline, including Cloudflare Worker proxy, state management, and Webflow integration. — MIME Types, Troubleshooting, Deployment & Related.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting mime types, troubleshooting, deployment & related.
+
+---
+
+## 2. MIME TYPE REFERENCE
 
 ### Accepted Types Table
 
@@ -124,7 +145,7 @@ To accept additional file types:
 
 ---
 
-## 9. TROUBLESHOOTING
+## 3. TROUBLESHOOTING
 
 ### "Invalid file type" Error
 
@@ -189,7 +210,7 @@ To accept additional file types:
 
 ---
 
-## 10. PAGES AND DEPLOYMENT
+## 4. PAGES AND DEPLOYMENT
 
 ### Pages Using Upload
 
@@ -245,14 +266,14 @@ window.cleanupFilepondInstances();
 
 ---
 
-## 11. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Reference Files
 
 - [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) - CSS quality patterns relevant to form-field state styling (BEM enforcement, custom property prefixes, attribute selector i flag)
 
-- **[implementation_workflows.md](../implementation_workflows/condition-based-waiting.md)** — Condition-based waiting, validation patterns used by the upload connector
-- **[security_patterns.md](../security_patterns/overview-and-checklist.md)** — XSS prevention relevant to file upload handling
+- **[implementation_workflows.md](../implementation_workflows/condition_based_waiting.md)** — Condition-based waiting, validation patterns used by the upload connector
+- **[security_patterns.md](../security_patterns/overview_and_checklist.md)** — XSS prevention relevant to file upload handling
 - **[code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md)** — Naming conventions and initialization patterns
 - **CDN Deployment**: See [cdn_deployment.md](../../deployment/cdn_deployment.md) for R2 upload workflow
 - **Minification**: See [minification_guide.md](../../deployment/minification_guide/overview_terser_and_patterns.md) for terser configuration

@@ -70,7 +70,7 @@ text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 ### Performance Patterns
 
-See: [performance_patterns.md](../../implementation/performance_patterns/overview-and-checklist.md)
+See: [performance_patterns.md](../../implementation/performance_patterns/overview_and_checklist.md)
 
 > **Cross-stack motion.dev reference**: For deeper Motion API, performance, and decision guidance beyond this Webflow quick reference, see [`../../animation/quick_start.md`](../../animation/quick_start.md), [`../../animation/performance_and_pitfalls.md`](../../animation/performance_and_pitfalls.md), and [`../../animation/decision_matrix.md`](../../animation/decision_matrix.md).
 
@@ -100,7 +100,7 @@ const debounce = (func, wait) => {
 
 ### Security Patterns
 
-See: [security_patterns.md](../../implementation/security_patterns/overview-and-checklist.md)
+See: [security_patterns.md](../../implementation/security_patterns/overview_and_checklist.md)
 
 ```javascript
 // ✅ Sanitize user input

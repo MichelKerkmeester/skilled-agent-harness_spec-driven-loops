@@ -1,6 +1,11 @@
 ---
 title: Best Practices, Library Summary & Related
 description: Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — Best Practices, Library Summary & Related.
+trigger_phrases:
+  - "best practices library"
+  - "practices library summary"
+  - "best practices patterns"
+  - "webflow best practices"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,23 @@ version: 3.5.0.4
 
 # Best Practices, Library Summary & Related
 
-## 7. BEST PRACTICES
+Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — Best Practices, Library Summary & Related.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — Best Practices, Library Summary & Related.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting best practices, library summary & related.
+
+---
+
+## 2. BEST PRACTICES
 
 ### CDN Loading Pattern
 
@@ -131,7 +152,7 @@ function destroy_player(player) {
 
 ---
 
-## 8. LIBRARY SUMMARY
+## 3. LIBRARY SUMMARY
 
 | Library | CDN | Version | Purpose |
 |---------|-----|---------|---------|
@@ -143,9 +164,9 @@ function destroy_player(player) {
 
 ---
 
-## 9. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 ### Reference Files
 - [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) - CDN-safe initialization pattern for all library integrations
-- [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Condition-based waiting patterns for library loading
-- [performance_patterns.md](../performance_patterns/overview-and-checklist.md) - Lazy loading and code splitting strategies
+- [implementation_workflows.md](../implementation_workflows/condition_based_waiting.md) - Condition-based waiting patterns for library loading
+- [performance_patterns.md](../performance_patterns/overview_and_checklist.md) - Lazy loading and code splitting strategies

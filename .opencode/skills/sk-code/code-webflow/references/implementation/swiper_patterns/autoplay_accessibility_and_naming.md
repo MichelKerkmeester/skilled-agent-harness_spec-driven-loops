@@ -1,6 +1,11 @@
 ---
 title: IntersectionObserver Autoplay, Accessibility & Class Naming
 description: Production-tested Swiper.js configurations for carousels and marquees with IntersectionObserver autoplay control, accessibility, and Webflow integration. — IntersectionObserver Autoplay, Accessibility & Class Naming.
+trigger_phrases:
+  - "intersectionobserver autoplay accessibility"
+  - "accessibility class naming"
+  - "intersectionobserver autoplay patterns"
+  - "webflow intersectionobserver autoplay"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,23 @@ version: 3.5.0.4
 
 # IntersectionObserver Autoplay, Accessibility & Class Naming
 
-## 4. INTERSECTIONOBSERVER AUTOPLAY CONTROL
+Production-tested Swiper.js configurations for carousels and marquees with IntersectionObserver autoplay control, accessibility, and Webflow integration. — IntersectionObserver Autoplay, Accessibility & Class Naming.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Production-tested Swiper.js configurations for carousels and marquees with IntersectionObserver autoplay control, accessibility, and Webflow integration. — IntersectionObserver Autoplay, Accessibility & Class Naming.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting intersectionobserver autoplay, accessibility & class naming.
+
+---
+
+## 2. INTERSECTIONOBSERVER AUTOPLAY CONTROL
 
 ### Core Pattern
 
@@ -94,7 +115,7 @@ const visibilityObserver = createAutoplayVisibilityObserver(swiper, container);
 
 ---
 
-## 5. ACCESSIBILITY CONFIGURATION
+## 3. ACCESSIBILITY CONFIGURATION
 
 ### Interactive Carousels (a11y: enabled)
 
@@ -166,7 +187,7 @@ a11y: false,
 
 ---
 
-## 6. WEBFLOW CLASS NAMING
+## 4. WEBFLOW CLASS NAMING
 
 ### Custom Class Configuration
 

@@ -1,6 +1,11 @@
 ---
 title: Motion.dev Advanced Patterns & Related
 description: CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Motion.dev Advanced Patterns & Related.
+trigger_phrases:
+  - "motion dev advanced"
+  - "dev advanced patterns"
+  - "motion dev patterns"
+  - "webflow motion dev"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.9
@@ -8,7 +13,23 @@ version: 3.5.0.9
 
 # Motion.dev Advanced Patterns & Related
 
-## 8. MOTION.DEV ADVANCED PATTERNS
+CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Motion.dev Advanced Patterns & Related.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Motion.dev Advanced Patterns & Related.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting motion.dev advanced patterns & related.
+
+---
+
+## 2. MOTION.DEV ADVANCED PATTERNS
 
 ### Timeline Sequences
 
@@ -210,11 +231,11 @@ animate(element, {
 
 ---
 
-## 9. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 ### Reference Files
 - [`../../css/patterns/tokens_state_machine_and_triggers.md`](../../css/patterns/tokens_state_machine_and_triggers.md) — CSS animation-relevant patterns (state machine pattern, color-mix interpolation, GPU-accelerated state triggers)
-- [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Implementation phase guidance
+- [implementation_workflows.md](../implementation_workflows/condition_based_waiting.md) - Implementation phase guidance
 - [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md) - Animation debugging techniques
 - [verification_workflows.md](../../verification/verification_workflows/gate_and_automated_options.md) - Animation verification procedures
 - [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) - CDN-safe initialization patterns

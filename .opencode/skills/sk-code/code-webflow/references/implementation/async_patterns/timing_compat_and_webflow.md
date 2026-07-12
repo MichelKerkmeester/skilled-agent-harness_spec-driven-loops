@@ -1,6 +1,11 @@
 ---
 title: Priority/Timing Decision Tree, Compatibility & Webflow Timing
 description: Browser scheduling APIs and patterns for non-blocking code execution. — Priority/Timing Decision Tree, Compatibility & Webflow Timing.
+trigger_phrases:
+  - "priority timing decision"
+  - "compatibility webflow timing"
+  - "priority timing patterns"
+  - "webflow priority timing"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.3
@@ -8,7 +13,23 @@ version: 3.5.0.3
 
 # Priority/Timing Decision Tree, Compatibility & Webflow Timing
 
-## 6. PRIORITY & TIMING DECISION TREE
+Browser scheduling APIs and patterns for non-blocking code execution. — Priority/Timing Decision Tree, Compatibility & Webflow Timing.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Browser scheduling APIs and patterns for non-blocking code execution. — Priority/Timing Decision Tree, Compatibility & Webflow Timing.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting priority/timing decision tree, compatibility & webflow timing.
+
+---
+
+## 2. PRIORITY & TIMING DECISION TREE
 
 ### Quick Reference Table
 
@@ -45,7 +66,7 @@ Is it a visual/animation update?
 
 ---
 
-## 7. BROWSER COMPATIBILITY
+## 3. BROWSER COMPATIBILITY
 
 ### Support Matrix
 
@@ -88,7 +109,7 @@ const async_scheduler = {
 
 ---
 
-## 8. WEBFLOW-SPECIFIC TIMING PATTERNS
+## 4. WEBFLOW-SPECIFIC TIMING PATTERNS
 
 ### Wait for Collection List Render
 
@@ -163,7 +184,7 @@ window.Webflow.push(function() {
 
 ---
 
-## 9. REAL EXAMPLE: GTM DELAY
+## 5. REAL EXAMPLE: GTM DELAY
 
 ```javascript
 (function() {
@@ -184,12 +205,12 @@ window.Webflow.push(function() {
 
 ---
 
-## 10. RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 ### Internal References
 
-- [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Condition-based waiting patterns
-- [performance_patterns.md](../performance_patterns/overview-and-checklist.md) - Throttle/debounce and performance optimization
+- [implementation_workflows.md](../implementation_workflows/condition_based_waiting.md) - Condition-based waiting patterns
+- [performance_patterns.md](../performance_patterns/overview_and_checklist.md) - Throttle/debounce and performance optimization
 - [../performance/third_party.md](../../performance/third_party.md) - Third-party script loading optimization
 
 ### External References

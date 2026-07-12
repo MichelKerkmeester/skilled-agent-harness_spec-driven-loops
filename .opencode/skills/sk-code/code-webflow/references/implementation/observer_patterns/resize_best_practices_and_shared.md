@@ -1,6 +1,11 @@
 ---
 title: ResizeObserver, Best Practices, Quick Reference & SharedObservers
 description: Browser observer APIs for reactive DOM watching, visibility detection, and scroll-triggered behaviors. — ResizeObserver, Best Practices, Quick Reference & SharedObservers.
+trigger_phrases:
+  - "resizeobserver best practices"
+  - "quick reference sharedobservers"
+  - "resizeobserver best patterns"
+  - "webflow resizeobserver best"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,23 @@ version: 3.5.0.4
 
 # ResizeObserver, Best Practices, Quick Reference & SharedObservers
 
-## 4. RESIZEOBSERVER
+Browser observer APIs for reactive DOM watching, visibility detection, and scroll-triggered behaviors. — ResizeObserver, Best Practices, Quick Reference & SharedObservers.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Browser observer APIs for reactive DOM watching, visibility detection, and scroll-triggered behaviors. — ResizeObserver, Best Practices, Quick Reference & SharedObservers.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting resizeobserver, best practices, quick reference & sharedobservers.
+
+---
+
+## 2. RESIZEOBSERVER
 
 > **Note:** Not currently used in this codebase. Documented for reference.
 
@@ -48,7 +69,7 @@ const cleanup = observe_resize(container, debouncedResize);
 
 ---
 
-## 5. BEST PRACTICES
+## 3. BEST PRACTICES
 
 ### Always Disconnect
 
@@ -171,7 +192,7 @@ function setup_combined_observers(container) {
 
 ---
 
-## 6. QUICK REFERENCE
+## 4. QUICK REFERENCE
 
 | Observer | Events | Common Options |
 |----------|--------|----------------|
@@ -189,7 +210,7 @@ function setup_combined_observers(container) {
 
 ---
 
-## 7. SHAREDOBSERVERS CONSOLIDATION PATTERN
+## 5. SHAREDOBSERVERS CONSOLIDATION PATTERN
 
 ### Overview
 
@@ -307,11 +328,11 @@ function create_observer() {
 
 ---
 
-## 8. RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 ### Reference Files
-- [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Condition-based waiting patterns using observers
-- [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md) - Collection list patterns that use MutationObserver
-- [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - IntersectionObserver for scroll-triggered animations
-- [performance_patterns.md](../performance_patterns/overview-and-checklist.md) - Lazy loading with IntersectionObserver
+- [implementation_workflows.md](../implementation_workflows/condition_based_waiting.md) - Condition-based waiting patterns using observers
+- [webflow_patterns.md](../webflow_patterns/overview_limits_and_collection_lists.md) - Collection list patterns that use MutationObserver
+- [animation_workflows.md](../animation_workflows/overview_decision_tree_and_css.md) - IntersectionObserver for scroll-triggered animations
+- [performance_patterns.md](../performance_patterns/overview_and_checklist.md) - Lazy loading with IntersectionObserver
 - `shared_observers.js` (global) - SharedObservers registry implementation

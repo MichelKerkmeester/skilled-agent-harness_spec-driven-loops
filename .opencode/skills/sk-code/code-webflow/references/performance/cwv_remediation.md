@@ -442,7 +442,7 @@ See `wait_patterns.js` → `wait_for_image_with_timeout()` for a reusable implem
 
 ### Related Reference Files
 
-- [`../implementation/performance_patterns/overview-and-checklist.md`](../implementation/performance_patterns/overview-and-checklist.md) - Umbrella performance checklist + budgets + anti-patterns (high-level entry point)
+- [`../implementation/performance_patterns/overview_and_checklist.md`](../implementation/performance_patterns/overview_and_checklist.md) - Umbrella performance checklist + budgets + anti-patterns (high-level entry point)
 - [resource_loading.md](./resource_loading.md) - Preconnect, preload, async patterns
 - [third_party.md](./third_party.md) - GTM delay, analytics optimization
 - [webflow_constraints.md](./webflow_constraints.md) - Platform limitations

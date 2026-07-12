@@ -245,5 +245,5 @@ Before deploying any component:
 - [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) — file naming, comment principles
 - [`../../shared/enforcement.md`](../../shared/enforcement.md) — cross-language pre-completion gate
 - [`../../shared/dev_workflow/overview_nav_and_logging.md`](../../shared/dev_workflow/overview_nav_and_logging.md) — DevTools, logging, testing patterns
-- [`../../implementation/animation_workflows/overview-decision-tree-and-css.md`](../../implementation/animation_workflows/overview-decision-tree-and-css.md) — full animation guide (CSS + Motion.dev)
-- [`../../implementation/webflow_patterns/overview-limits-and-collection-lists.md`](../../implementation/webflow_patterns/overview-limits-and-collection-lists.md) — Webflow-specific patterns
+- [`../../implementation/animation_workflows/overview_decision_tree_and_css.md`](../../implementation/animation_workflows/overview_decision_tree_and_css.md) — full animation guide (CSS + Motion.dev)
+- [`../../implementation/webflow_patterns/overview_limits_and_collection_lists.md`](../../implementation/webflow_patterns/overview_limits_and_collection_lists.md) — Webflow-specific patterns

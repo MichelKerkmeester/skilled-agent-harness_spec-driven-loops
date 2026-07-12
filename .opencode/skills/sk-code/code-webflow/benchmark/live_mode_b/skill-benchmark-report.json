@@ -684,7 +684,7 @@
           "code-webflow/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"WEBFLOW\", \"subLanguage\": \"javascript\", \"resources\": [\"references/implementation/implementation_workflows/condition-based-waiting.md\", \"references/implementation/implementation_workflows/validation-minification-and-cdn.md\", \"references/implementation/async_patterns/raf-ric-microt"
+        "responseHead": "```json\n{\"surface\": \"WEBFLOW\", \"subLanguage\": \"javascript\", \"resources\": [\"references/implementation/implementation_workflows/condition_based_waiting.md\", \"references/implementation/implementation_workflows/validation_minification_and_cdn.md\", \"references/implementation/async_patterns/raf-ric-microt"
       },
       "routeTelemetry": null
     },
@@ -1154,7 +1154,7 @@
           "code-webflow/references/implementation/third_party_integrations"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\n  \"surface\": \"WEBFLOW\",\n  \"subLanguage\": \"javascript\",\n  \"resources\": [\n    \"references/implementation/third_party_integrations/overview-hls-and-lenis.md\",\n    \"references/implementation/third_party_integrations/botpoison-and-finsweet.md\",\n    \"references/implementation/third_party_integra"
+        "responseHead": "```json\n{\n  \"surface\": \"WEBFLOW\",\n  \"subLanguage\": \"javascript\",\n  \"resources\": [\n    \"references/implementation/third_party_integrations/overview_hls_and_lenis.md\",\n    \"references/implementation/third_party_integrations/botpoison_and_finsweet.md\",\n    \"references/implementation/third_party_integra"
       },
       "routeTelemetry": null
     }

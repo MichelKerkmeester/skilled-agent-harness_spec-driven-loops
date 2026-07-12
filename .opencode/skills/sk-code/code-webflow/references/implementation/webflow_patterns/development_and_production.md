@@ -1,6 +1,11 @@
 ---
 title: Development Best Practices, Production Config, Testing & Integration
 description: Complete platform constraints and collection list patterns for Webflow development. — Development Best Practices, Production Config, Testing & Integration.
+trigger_phrases:
+  - "development best practices"
+  - "config testing integration"
+  - "development best patterns"
+  - "webflow development best"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.14
@@ -8,7 +13,23 @@ version: 3.5.0.14
 
 # Development Best Practices, Production Config, Testing & Integration
 
-## 4. DEVELOPMENT BEST PRACTICES
+Complete platform constraints and collection list patterns for Webflow development. — Development Best Practices, Production Config, Testing & Integration.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Complete platform constraints and collection list patterns for Webflow development. — Development Best Practices, Production Config, Testing & Integration.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting development best practices, production config, testing & integration.
+
+---
+
+## 2. DEVELOPMENT BEST PRACTICES
 
 ### Architectural Guidance
 
@@ -99,7 +120,7 @@ version: 3.5.0.14
 
 ---
 
-## 5. PRODUCTION CONFIGURATION CONSTRAINTS
+## 3. PRODUCTION CONFIGURATION CONSTRAINTS
 
 ### JavaScript Loading (Synchronous)
 
@@ -197,7 +218,7 @@ const handlers = {
 
 ---
 
-## 6. TESTING CHECKLIST
+## 4. TESTING CHECKLIST
 
 ### Collection List Testing
 
@@ -246,7 +267,7 @@ Test across all Webflow breakpoints:
 
 ---
 
-## 7. INTEGRATION WITH WORKFLOWS-CODE
+## 5. INTEGRATION WITH WORKFLOWS-CODE
 
 ### Phase 1: Implementation
 

@@ -1,6 +1,11 @@
 ---
 title: Focus Restoration, Touch Detection, Anti-Patterns & Checklist
 description: Focus trap implementation, focus restoration, and touch detection patterns for accessible modal dialogs. — Focus Restoration, Touch Detection, Anti-Patterns & Checklist.
+trigger_phrases:
+  - "focus restoration touch"
+  - "anti patterns checklist"
+  - "focus restoration patterns"
+  - "webflow focus restoration"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,23 @@ version: 3.5.0.4
 
 # Focus Restoration, Touch Detection, Anti-Patterns & Checklist
 
-## 4. FOCUS RESTORATION
+Focus trap implementation, focus restoration, and touch detection patterns for accessible modal dialogs. — Focus Restoration, Touch Detection, Anti-Patterns & Checklist.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Focus trap implementation, focus restoration, and touch detection patterns for accessible modal dialogs. — Focus Restoration, Touch Detection, Anti-Patterns & Checklist.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting focus restoration, touch detection, anti-patterns & checklist.
+
+---
+
+## 2. FOCUS RESTORATION
 
 ### Save Focus on Modal Open
 
@@ -115,7 +136,7 @@ FOCUS RESTORATION VALIDATION:
 
 ---
 
-## 5. TOUCH DETECTION
+## 3. TOUCH DETECTION
 
 ### Purpose
 
@@ -278,7 +299,7 @@ Detect Input Method
 
 ---
 
-## 6. ANTI-PATTERNS
+## 4. ANTI-PATTERNS
 
 ### Focus Trap Anti-Patterns
 
@@ -342,7 +363,7 @@ function restore_focus() {
 
 ---
 
-## 7. INTEGRATION CHECKLIST
+## 5. INTEGRATION CHECKLIST
 
 ### Before Modal Implementation
 
@@ -370,14 +391,14 @@ FOCUS MANAGEMENT CHECKLIST:
 
 ---
 
-## 8. RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 ### Reference Files
 
 - [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) - CSS quality patterns relevant to focus styling (custom property prefixes, attribute selector i flag, BEM)
-- [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md) - Modal component patterns
-- [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Focus during transitions
-- [security_patterns.md](../security_patterns/overview-and-checklist.md) - Input validation for forms
+- [webflow_patterns.md](../webflow_patterns/overview_limits_and_collection_lists.md) - Modal component patterns
+- [animation_workflows.md](../animation_workflows/overview_decision_tree_and_css.md) - Focus during transitions
+- [security_patterns.md](../security_patterns/overview_and_checklist.md) - Input validation for forms
 
 ### Source Files
 

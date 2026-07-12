@@ -26,8 +26,8 @@ Specialized workflows for writing robust frontend code with proper timing, valid
 Follow code quality standards for all implementations:
 - **Naming:** Use `snake_case` for functions/variables, semantic prefixes (`is_`, `has_`, `get_`, etc.)
 - **Initialization:** Use CDN-safe pattern with guard flags and delays
-- **Animation:** CSS first, Motion.dev for complexity - see [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md)
-- **Webflow:** Collection list patterns, async rendering - see [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md)
+- **Animation:** CSS first, Motion.dev for complexity - see [animation_workflows.md](../animation_workflows/overview_decision_tree_and_css.md)
+- **Webflow:** Collection list patterns, async rendering - see [webflow_patterns.md](../webflow_patterns/overview_limits_and_collection_lists.md)
 - See [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) for complete standards
 
 > **Cross-stack motion.dev reference**: For Motion API and integration guidance that is not Webflow-specific, see [`../../animation/quick_start.md`](../../animation/quick_start.md) and [`../../animation/integration_patterns.md`](../../animation/integration_patterns.md). Webflow lifecycle, CDN timing, and Designer constraints remain covered by the Webflow implementation guides linked here.
@@ -182,7 +182,7 @@ await wait_for_transition_end(element, 'opacity');
 element.remove(); // Animation guaranteed complete
 ```
 
-**See also:** [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Complete animation implementation guide including CSS patterns, Motion.dev integration, and performance optimization.
+**See also:** [animation_workflows.md](../animation_workflows/overview_decision_tree_and_css.md) - Complete animation implementation guide including CSS patterns, Motion.dev integration, and performance optimization.
 
 #### Pattern 5: DOM Content Ready
 

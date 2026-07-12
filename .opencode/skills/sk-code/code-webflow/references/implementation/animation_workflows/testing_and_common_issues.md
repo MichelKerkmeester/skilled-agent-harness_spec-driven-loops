@@ -1,6 +1,11 @@
 ---
 title: Testing/Debugging Procedures & Common Issues
 description: CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Testing/Debugging Procedures & Common Issues.
+trigger_phrases:
+  - "testing debugging procedures"
+  - "procedures common issues"
+  - "testing debugging patterns"
+  - "webflow testing debugging"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.9
@@ -8,7 +13,23 @@ version: 3.5.0.9
 
 # Testing/Debugging Procedures & Common Issues
 
-## 6. TESTING AND DEBUGGING PROCEDURES
+CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Testing/Debugging Procedures & Common Issues.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Testing/Debugging Procedures & Common Issues.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting testing/debugging procedures & common issues.
+
+---
+
+## 2. TESTING AND DEBUGGING PROCEDURES
 
 ### Pre-Deployment Checklist
 
@@ -282,7 +303,7 @@ bdg stop 2>&1
 
 ---
 
-## 7. COMMON ISSUES AND SOLUTIONS
+## 3. COMMON ISSUES AND SOLUTIONS
 
 ### Layout Jump on Height Animation
 

@@ -33,9 +33,9 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - `references/smart_routing.md`
 - `references/phase_detection.md`
 - `references/universal/code_quality_standards.md`
-- `code-webflow/references/implementation/webflow_patterns/overview-limits-and-collection-lists.md`
-- `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`
-- `code-webflow/references/implementation/observer_patterns/mutation-and-intersection.md`
+- `code-webflow/references/implementation/webflow_patterns/overview_limits_and_collection_lists.md`
+- `code-webflow/references/implementation/animation_workflows/overview_decision_tree_and_css.md`
+- `code-webflow/references/implementation/observer_patterns/mutation_and_intersection.md`
 - `code-webflow/references/javascript/quality_standards/init_dom_error_and_async.md`
 - `code-webflow/references/javascript/style_guide/overview_naming_and_structure.md`
 - `code-webflow/references/css/style_guide.md`
@@ -104,7 +104,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - `.opencode/skills/sk-code/SKILL.md` — Smart router pseudocode (lines 53-68).
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` — WEBFLOW marker definitions (lines 30-37).
 - `.opencode/skills/sk-code/shared/references/smart_routing.md` — Intent → resource-loading mapping.
-- `.opencode/skills/sk-code/code-webflow/references/implementation/webflow_patterns/overview-limits-and-collection-lists.md` — Expected-loaded reference.
+- `.opencode/skills/sk-code/code-webflow/references/implementation/webflow_patterns/overview_limits_and_collection_lists.md` — Expected-loaded reference.
 - `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json` — sk-code signals + adjacency.
 
 ## 5. SOURCE METADATA

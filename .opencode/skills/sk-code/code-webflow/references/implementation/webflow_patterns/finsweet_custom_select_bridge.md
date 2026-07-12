@@ -1,6 +1,11 @@
 ---
 title: Finsweet Custom Select Bridge Pattern & Related
 description: Complete platform constraints and collection list patterns for Webflow development. — Finsweet Custom Select Bridge Pattern & Related.
+trigger_phrases:
+  - "finsweet custom select"
+  - "select bridge pattern"
+  - "finsweet custom patterns"
+  - "webflow finsweet custom"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.14
@@ -8,7 +13,23 @@ version: 3.5.0.14
 
 # Finsweet Custom Select Bridge Pattern & Related
 
-## 8. FINSWEET CUSTOM SELECT BRIDGE PATTERN
+Complete platform constraints and collection list patterns for Webflow development. — Finsweet Custom Select Bridge Pattern & Related.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Complete platform constraints and collection list patterns for Webflow development. — Finsweet Custom Select Bridge Pattern & Related.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting finsweet custom select bridge pattern & related.
+
+---
+
+## 2. FINSWEET CUSTOM SELECT BRIDGE PATTERN
 
 ### Problem: Custom Select + Native Form Submission
 
@@ -323,14 +344,14 @@ document.querySelectorAll('.fs-sort-select--hidden').forEach(sel => {
 
 ---
 
-## 9. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 ### Reference Files
 - [`../../css/patterns/tokens_state_machine_and_triggers.md`](../../css/patterns/tokens_state_machine_and_triggers.md) — CSS-specific Webflow patterns (token system, state machines, BEM hover/focus, form validation, accessibility, mobile)
-- [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Condition-based waiting patterns complement async rendering solutions
+- [implementation_workflows.md](../implementation_workflows/condition_based_waiting.md) - Condition-based waiting patterns complement async rendering solutions
 - [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) - CDN-safe initialization pattern for Webflow platform
 - [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) - CSS quality patterns for Webflow Designer styling layer + 4 CSS enforcement subsections
-- [performance_patterns.md](../performance_patterns/overview-and-checklist.md) - Performance optimization for collection lists with many items
+- [performance_patterns.md](../performance_patterns/overview_and_checklist.md) - Performance optimization for collection lists with many items
 
 ### Source Files (Evidence)
 - `src/javascript/form/input_select.js` - Base CustomSelect implementation with ARIA support

@@ -1,6 +1,10 @@
 ---
 title: FilePond File Upload
 description: Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — FilePond File Upload.
+trigger_phrases:
+  - "filepond file upload"
+  - "filepond file patterns"
+  - "webflow filepond file"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +12,23 @@ version: 3.5.0.4
 
 # FilePond File Upload
 
-## 6. FILEPOND (FILE UPLOAD)
+Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — FilePond File Upload.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — FilePond File Upload.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting filepond file upload.
+
+---
+
+## 2. FILEPOND (FILE UPLOAD)
 
 FilePond is a flexible file upload library with drag-and-drop and progress indicators. The connector bridges FilePond (invisible) to a Webflow-designed UI with custom state management.
 
@@ -346,7 +366,7 @@ window.cleanupFilepondInstances = function () { /* destroys all instances */ };
 
 - `src/2_javascript/form/input_upload.js` — Full FilePond connector (948 lines)
 - `src/2_javascript/z_minified/form/input_upload.min.js` — Minified CDN version
-- See **[form_upload_workflows.md](../form_upload_workflows/overview-architecture-and-filepond.md)** for complete architecture reference, including:
+- See **[form_upload_workflows.md](../form_upload_workflows/overview_architecture_and_filepond.md)** for complete architecture reference, including:
   - Full pipeline: browser → FilePond → Worker → R2 → Formspark
   - Upload URL validation guards (connector-level and form-level)
   - Extension alias fallback mechanism

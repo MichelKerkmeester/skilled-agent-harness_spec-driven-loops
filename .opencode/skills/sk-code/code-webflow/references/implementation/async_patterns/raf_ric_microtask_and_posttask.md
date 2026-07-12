@@ -19,6 +19,14 @@ Browser scheduling APIs and patterns for non-blocking code execution.
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Browser scheduling APIs and patterns for non-blocking code execution.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting async patterns.
+
 Modern browsers provide APIs for scheduling work efficiently without blocking the main thread. This guide covers `requestIdleCallback`, `requestAnimationFrame`, `queueMicrotask`, `scheduler.postTask`, and related patterns for optimizing JavaScript execution timing.
 
 ### Key APIs

@@ -1,6 +1,11 @@
 ---
 title: Botpoison Spam Protection & Finsweet Attributes
 description: Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — Botpoison Spam Protection & Finsweet Attributes.
+trigger_phrases:
+  - "botpoison spam protection"
+  - "protection finsweet attributes"
+  - "botpoison spam patterns"
+  - "webflow botpoison spam"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +13,23 @@ version: 3.5.0.4
 
 # Botpoison Spam Protection & Finsweet Attributes
 
-## 4. BOTPOISON (SPAM PROTECTION)
+Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — Botpoison Spam Protection & Finsweet Attributes.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — Botpoison Spam Protection & Finsweet Attributes.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting botpoison spam protection & finsweet attributes.
+
+---
+
+## 2. BOTPOISON (SPAM PROTECTION)
 
 Invisible captcha alternative for form spam protection without user friction.
 
@@ -184,7 +205,7 @@ try {
 
 ---
 
-## 5. FINSWEET ATTRIBUTES
+## 3. FINSWEET ATTRIBUTES
 
 Webflow enhancement library providing CMS filtering, sorting, cookie consent, and other utilities.
 

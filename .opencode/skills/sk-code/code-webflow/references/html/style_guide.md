@@ -127,7 +127,7 @@ When a styled `<div>`-based select must integrate with native form submission or
 | `data-value`              | The actual value synced to the hidden native `<select>` |
 | `data-select-initialized` | State marker set after bridge attaches                  |
 
-See [`../implementation/webflow_patterns/overview-limits-and-collection-lists.md`](../implementation/webflow_patterns/overview-limits-and-collection-lists.md) §8 for the complete bridge pattern.
+See [`../implementation/webflow_patterns/overview_limits_and_collection_lists.md`](../implementation/webflow_patterns/overview_limits_and_collection_lists.md) §8 for the complete bridge pattern.
 
 ### Per-item data attributes in collection lists
 
@@ -394,6 +394,6 @@ Compare your panel content against `anobel.com/src/0_html/global.html` — the c
 - [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) — file naming, comment principles, file-header banner format
 - [`../javascript/style_guide/overview_naming_and_structure.md`](../javascript/style_guide/overview_naming_and_structure.md) — JS conventions for code that targets HTML
 - [`../css/style_guide.md`](../css/style_guide.md) — CSS conventions for styling Webflow output
-- [`../implementation/webflow_patterns/overview-limits-and-collection-lists.md`](../implementation/webflow_patterns/overview-limits-and-collection-lists.md) — Webflow-specific implementation patterns (collection lists, async rendering, page transitions)
+- [`../implementation/webflow_patterns/overview_limits_and_collection_lists.md`](../implementation/webflow_patterns/overview_limits_and_collection_lists.md) — Webflow-specific implementation patterns (collection lists, async rendering, page transitions)
 - [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md) — action routing pattern and event delegation
 - [`../javascript/quick_reference.md`](../javascript/quick_reference.md) — form validation class reference

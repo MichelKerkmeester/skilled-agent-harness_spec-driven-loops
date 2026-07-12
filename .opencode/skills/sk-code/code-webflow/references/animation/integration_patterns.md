@@ -76,8 +76,8 @@ Local anchor: `a_nobel_en_zn/2_javascript/slider/testimonial.js` uses a dynamic 
 ## 4. WEBFLOW-CDN-SPECIFIC NOTES
 
 For Webflow, link to the existing Webflow references rather than duplicating all Webflow operational detail here:
-- `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`
-- `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`
+- `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows/overview_decision_tree_and_css.md`
+- `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns/overview_and_checklist.md`
 - `.opencode/skills/sk-code/code-webflow/references/javascript/quality_standards/init_dom_error_and_async.md`
 
 Webflow patterns in this repo include:

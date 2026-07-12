@@ -1,6 +1,11 @@
 ---
 title: Defense-in-Depth Validation, Minification & CDN Deployment
 description: Three specialized workflows for writing robust frontend code with proper timing, validation, and cache management. — Defense-in-Depth Validation, Minification & CDN Deployment.
+trigger_phrases:
+  - "defense in depth"
+  - "minification cdn deployment"
+  - "defense in patterns"
+  - "webflow defense in"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.10
@@ -8,7 +13,23 @@ version: 3.5.0.10
 
 # Defense-in-Depth Validation, Minification & CDN Deployment
 
-## 3. DEFENSE-IN-DEPTH VALIDATION
+Three specialized workflows for writing robust frontend code with proper timing, validation, and cache management. — Defense-in-Depth Validation, Minification & CDN Deployment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Three specialized workflows for writing robust frontend code with proper timing, validation, and cache management. — Defense-in-Depth Validation, Minification & CDN Deployment.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting defense-in-depth validation, minification & cdn deployment.
+
+---
+
+## 2. DEFENSE-IN-DEPTH VALIDATION
 
 **When to use**: Form handling, API calls, DOM manipulation, user input, third-party data integration
 
@@ -205,7 +226,7 @@ See [validation_patterns.js](../../assets/patterns/validation_patterns.js) for f
 
 ---
 
-## 4. MINIFICATION & CDN DEPLOYMENT
+## 3. MINIFICATION & CDN DEPLOYMENT
 
 For JavaScript minification and CDN deployment workflows, see dedicated references:
 
@@ -240,7 +261,7 @@ node .opencode/skills/sk-code/code-webflow/assets/scripts/test-minified-runtime.
 
 ---
 
-## 5. QUICK REFERENCE
+## 4. QUICK REFERENCE
 
 ### Condition-Based Waiting Templates
 
@@ -284,13 +305,13 @@ function sanitizeText(text) {
 
 ---
 
-## 6. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Reference Files
 - [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md) - Debug timing and validation issues with systematic approach
 - [verification_workflows.md](../../verification/verification_workflows/gate_and_automated_options.md) - Verify implementations work correctly across browsers and viewports
 - [dev_workflow.md](../../shared/dev_workflow/overview_nav_and_logging.md) - Common DevTools and logging patterns for all workflows
-- [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Complete animation implementation guide including waitForTransitionEnd pattern
+- [animation_workflows.md](../animation_workflows/overview_decision_tree_and_css.md) - Complete animation implementation guide including waitForTransitionEnd pattern
 - [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) - CDN-safe initialization pattern and naming conventions
 
 ### Templates

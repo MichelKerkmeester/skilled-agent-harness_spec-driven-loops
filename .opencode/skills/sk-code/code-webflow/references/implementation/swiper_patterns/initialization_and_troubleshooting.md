@@ -1,6 +1,10 @@
 ---
 title: Initialization, Common Patterns, Troubleshooting & Related
 description: Production-tested Swiper.js configurations for carousels and marquees with IntersectionObserver autoplay control, accessibility, and Webflow integration. — Initialization, Common Patterns, Troubleshooting & Related.
+trigger_phrases:
+  - "initialization common patterns"
+  - "common patterns troubleshooting"
+  - "webflow initialization common"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.4
@@ -8,7 +12,23 @@ version: 3.5.0.4
 
 # Initialization, Common Patterns, Troubleshooting & Related
 
-## 7. INITIALIZATION PATTERNS
+Production-tested Swiper.js configurations for carousels and marquees with IntersectionObserver autoplay control, accessibility, and Webflow integration. — Initialization, Common Patterns, Troubleshooting & Related.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Production-tested Swiper.js configurations for carousels and marquees with IntersectionObserver autoplay control, accessibility, and Webflow integration. — Initialization, Common Patterns, Troubleshooting & Related.
+
+### When to Use
+
+Use this reference when implementing or troubleshooting initialization, common patterns, troubleshooting & related.
+
+---
+
+## 2. INITIALIZATION PATTERNS
 
 ### CDN Initialization Guard
 
@@ -84,7 +104,7 @@ if (window.Webflow?.push) {
 
 ---
 
-## 8. COMMON PATTERNS SUMMARY
+## 3. COMMON PATTERNS SUMMARY
 
 ### Configuration Templates
 
@@ -137,7 +157,7 @@ const marqueeConfig = {
 
 ---
 
-## 9. TROUBLESHOOTING
+## 4. TROUBLESHOOTING
 
 ### Swiper Not Initializing
 
@@ -202,13 +222,13 @@ clone.setAttribute("aria-hidden", "true");
 
 ---
 
-## 10. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Reference Files
-- [observer_patterns.md](../observer_patterns/mutation-and-intersection.md) - IntersectionObserver deep dive
-- [performance_patterns.md](../performance_patterns/overview-and-checklist.md) - CPU optimization patterns
-- [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md) - Webflow class conventions
-- [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Scroll-triggered animations
+- [observer_patterns.md](../observer_patterns/mutation_and_intersection.md) - IntersectionObserver deep dive
+- [performance_patterns.md](../performance_patterns/overview_and_checklist.md) - CPU optimization patterns
+- [webflow_patterns.md](../webflow_patterns/overview_limits_and_collection_lists.md) - Webflow class conventions
+- [animation_workflows.md](../animation_workflows/overview_decision_tree_and_css.md) - Scroll-triggered animations
 - [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) - CSS quality patterns relevant to Swiper class styling (BEM, animation properties, custom properties)
 
 ### Source Files

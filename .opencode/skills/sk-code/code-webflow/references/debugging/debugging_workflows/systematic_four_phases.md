@@ -30,8 +30,8 @@ Evidence-based debugging workflows for frontend issues using browser DevTools, c
 - Performance bottlenecks
 
 ### Platform-Specific Guides
-- **Animation issues:** See [animation_workflows.md Section 7](../../implementation/animation_workflows/overview-decision-tree-and-css.md#7-🐛-common-issues-and-solutions)
-- **Webflow issues:** See [webflow_patterns.md Section 3](../../implementation/webflow_patterns/overview-limits-and-collection-lists.md#3-📚-collection-list-patterns)
+- **Animation issues:** See [animation_workflows.md Section 7](../../implementation/animation_workflows/overview_decision_tree_and_css.md#7-🐛-common-issues-and-solutions)
+- **Webflow issues:** See [webflow_patterns.md Section 3](../../implementation/webflow_patterns/overview_limits_and_collection_lists.md#3-📚-collection-list-patterns)
 
 ### Core Principle
 ALWAYS find root cause before attempting fixes. Symptom fixes are failure.
