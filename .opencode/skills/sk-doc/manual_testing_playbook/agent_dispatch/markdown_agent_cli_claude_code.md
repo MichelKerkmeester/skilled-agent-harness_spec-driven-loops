@@ -1,6 +1,6 @@
 ---
 id: SD-018
-category: agent-dispatch
+category: agent_dispatch
 title: '@markdown agent dispatch via cli-claude-code'
 execution_mode: dispatch_real
 expected_intent: CHANGELOG
@@ -93,5 +93,5 @@ This scenario is fixed to `cli-claude-code`. Equivalent dispatches for cli-openc
 - Group: Agent Dispatch
 - Playbook ID: SD-018
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `agent-dispatch/markdown-agent-cli-claude-code.md`
+- Feature file path: `agent_dispatch/markdown_agent_cli_claude_code.md`
 - Introduced by: `<spec-folder>`

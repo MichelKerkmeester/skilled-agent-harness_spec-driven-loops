@@ -42,7 +42,7 @@ Each feature file is the canonical home for full scenario execution detail. The 
 
 ## 2. TEMPLATE SCAFFOLD
 
-Copy this into `manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md`:
+Copy this into `manual_testing_playbook/{CATEGORY_DIR}/{feature_name}.md`:
 
 ```markdown
 ---
@@ -139,14 +139,14 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 - Group: {CATEGORY_NAME}
 - Playbook ID: {FEATURE_ID}
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
+- Feature file path: `{CATEGORY_DIR}/{feature_name}.md`
 ```
 
 ### Authoring Notes
 
 - Keep the feature file aligned with the matching root summary block and feature-catalog entry.
 - Preserve stable feature IDs and file paths once published.
-- The per-feature filename is the bare descriptive slug with no numeric prefix (e.g. `full-runtime-dispatch.md`, not `001-full-runtime-dispatch.md`). Ordering and benchmark tier are owned by the root index and the `stage:` frontmatter field, not the filename — the scenario loader discovers files by their frontmatter, so a numbered filename buys nothing and forces a renumber-on-insert cascade.
+- The per-feature filename is a descriptive `underscore_case` slug with no numeric prefix (e.g. `full_runtime_dispatch.md`, not `001_full_runtime_dispatch.md`). Ordering and benchmark tier are owned by the root index and the `stage:` frontmatter field, not the filename — the scenario loader discovers files by their frontmatter, so a numbered filename buys nothing and forces a renumber-on-insert cascade.
 - Set `stage:` to mark the scenario's benchmark tier: `routing` (default — a positive in-domain recall scenario), `holdout` (a generalization scenario held out of the primary set), or `negative` (an out-of-domain scenario the skill must NOT route to). This is what a numbered/holdout/negative filename token used to signal implicitly.
 - When a feature needs extra checks, add them beneath the main row instead of creating a second primary scenario row by default.
 - Put feature-specific review caveats, routing notes, and isolation constraints here instead of inventing separate sidecar docs.

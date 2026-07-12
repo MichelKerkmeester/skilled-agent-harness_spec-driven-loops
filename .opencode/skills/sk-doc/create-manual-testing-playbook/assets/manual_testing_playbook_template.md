@@ -40,14 +40,14 @@ Canonical layout:
 ```text
 manual_testing_playbook/
 ├── manual_testing_playbook.md          # Root directory page, review rules, and orchestration guidance
-├── category-name/                      # Required per-feature files for category 1
-│   ├── feature-name.md
-│   └── another-feature-name.md
-└── another-category/                   # Required per-feature files for category 2
-    └── feature-name.md
+├── category_name/                      # Required per-feature files for category 1
+│   ├── feature_name.md
+│   └── another_feature_name.md
+└── another_category/                   # Required per-feature files for category 2
+    └── feature_name.md
 ```
 
-Category folders use the bare descriptive slug; the root `manual_testing_playbook.md` index owns display order, not the folder name.
+Category folders use descriptive `underscore_case` names; the root `manual_testing_playbook.md` index owns display order, not the folder name.
 
 **Existing Examples**:
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/` (integrated root playbook + 195 per-feature files)
@@ -107,7 +107,7 @@ ID format:
 Per-feature file path:
 
 ```text
-manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md
+manual_testing_playbook/{CATEGORY_DIR}/{feature_name}.md
 ```
 
 Per-feature file shape:
@@ -358,7 +358,7 @@ Desired user-visible outcome: {DESIRED_USER_OUTCOME_2}
 
 ## 6. PER-FEATURE FILE SCAFFOLD
 
-Copy this scaffold to create `manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md`:
+Copy this scaffold to create `manual_testing_playbook/{CATEGORY_DIR}/{feature_name}.md`:
 
 ```markdown
 ---
@@ -440,7 +440,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 - Group: {CATEGORY_NAME}
 - Playbook ID: {FEATURE_ID}
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
+- Feature file path: `{CATEGORY_DIR}/{feature_name}.md`
 ```
 
 Validator note: the current validator does not recurse into the category folders, so per-feature file completeness must be checked manually. Cross-file link resolution is now guarded in CI by `check-markdown-links.cjs` (broken markdown links fail the PR); per-feature completeness and source-anchor quality remain manual.

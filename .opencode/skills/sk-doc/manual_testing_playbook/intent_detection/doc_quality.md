@@ -1,6 +1,6 @@
 ---
 id: SD-001
-category: intent-detection
+category: intent_detection
 title: 'DOC_QUALITY intent: validate documentation quality for a skill'
 expected_intent: DOC_QUALITY
 expected_resources:
@@ -80,4 +80,4 @@ Validate documentation quality for skill X and report which sections fail sk-doc
 - Group: Intent Detection
 - Playbook ID: SD-001
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `intent-detection/create-quality-control.md`
+- Feature file path: `intent_detection/doc_quality.md`

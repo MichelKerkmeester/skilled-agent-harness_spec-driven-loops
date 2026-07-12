@@ -1,6 +1,6 @@
 ---
 id: SD-014
-category: token-cost-baseline
+category: token_cost_baseline
 title: 'Median token cost: SKILL_CREATION query, 4 resources'
 expected_intent: SKILL_CREATION
 expected_resources:
@@ -78,4 +78,4 @@ Create sk-graph-rag with index/query intents, a SKILL.md scaffold, and a starter
 - Group: Token Cost Baseline
 - Playbook ID: SD-014
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `token-cost-baseline/medium-load.md`
+- Feature file path: `token_cost_baseline/medium_load.md`

@@ -1,6 +1,6 @@
 ---
 id: SD-013
-category: token-cost-baseline
+category: token_cost_baseline
 title: 'Floor token cost: minimal-keyword query, 1 reference load'
 expected_intent: HVR
 expected_resources:
@@ -75,4 +75,4 @@ Apply HVR to this sentence: The system was designed by us to be modular.
 - Group: Token Cost Baseline
 - Playbook ID: SD-013
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `token-cost-baseline/minimal-load.md`
+- Feature file path: `token_cost_baseline/minimal_load.md`

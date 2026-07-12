@@ -71,19 +71,19 @@ Author this layout:
 ```text
 manual_testing_playbook/
 |-- manual_testing_playbook.md
-|-- category-name/
-|   |-- feature-name.md
-|   `-- another-feature-name.md
-`-- another-category/
-    `-- feature-name.md
+|-- category_name/
+|   |-- feature_name.md
+|   `-- another_feature_name.md
+`-- another_category/
+    `-- feature_name.md
 ```
 
 Package invariants:
 
 - The root file is always `manual_testing_playbook.md`.
 - Per-feature files live in root-level category folders.
-- Category directories use the bare descriptive slug `category-name` (no numeric prefix).
-- Per-feature files use stable slugs such as `feature-name.md`; no numeric file prefix.
+- Category directories use descriptive `underscore_case` names such as `category_name` (no numeric prefix).
+- Per-feature files use stable `underscore_case` slugs such as `feature_name.md`; no numeric file prefix.
 - Per-feature snippet order is defined by the root playbook listing order.
 - Display order is owned by the root playbook index (`manual_testing_playbook.md`), not the folder name.
 - Benchmark tier is owned by the per-feature file's optional `stage:` frontmatter field (`routing` default, or `holdout`/`negative`), not by a filename token.
@@ -153,7 +153,7 @@ Follow this sequence:
 
 1. Confirm the target skill or system, package owner, feature set, and whether a feature catalog already exists.
 2. Decide whether a manual testing playbook is appropriate using the decision rule in this skill.
-3. Define category directories using the bare descriptive slug `category-name`.
+3. Define category directories using a descriptive `underscore_case` slug such as `category_name`.
 4. Define stable feature IDs using a consistent `{PREFIX}-{NNN}` pattern.
 5. Create the root `manual_testing_playbook/` directory.
 6. Create `manual_testing_playbook/manual_testing_playbook.md` from `assets/testing_playbook/manual_testing_playbook_template.md`.
@@ -312,6 +312,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 6. Ship unsynchronized prompt fields.
 7. Add packet-local `graph-metadata.json`.
 8. Add numeric prefixes to category folder names or per-feature filenames; the root playbook index owns display order and the per-feature `stage:` field owns benchmark tier.
+9. Use hyphens in category folder or per-feature filename path segments.
 
 ### ESCALATE IF
 

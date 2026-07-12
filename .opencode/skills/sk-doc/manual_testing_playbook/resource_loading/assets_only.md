@@ -1,6 +1,6 @@
 ---
 id: SD-005
-category: resource-loading
+category: resource_loading
 title: 'FLOWCHART intent loads only assets/flowcharts/*'
 expected_intent: FLOWCHART
 expected_resources:
@@ -77,4 +77,4 @@ Generate an ASCII deploy-pipeline flowchart covering build, test, staging, prod,
 - Group: Resource Loading
 - Playbook ID: SD-005
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `resource-loading/assets-only.md`
+- Feature file path: `resource_loading/assets_only.md`

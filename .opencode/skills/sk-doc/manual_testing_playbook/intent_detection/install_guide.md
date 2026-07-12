@@ -1,6 +1,6 @@
 ---
 id: SD-017
-category: intent-detection
+category: intent_detection
 title: 'INSTALL_GUIDE intent: scaffold an install guide for a new MCP server'
 expected_intent: INSTALL_GUIDE
 expected_resources:
@@ -76,5 +76,5 @@ Create an MCP-Postgres install guide with prerequisites, npm setup, env config, 
 - Group: Intent Detection
 - Playbook ID: SD-017
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `intent-detection/install-guide.md`
+- Feature file path: `intent_detection/install_guide.md`
 - response mentions canonical install-guide sections (prerequisites, configuration, verification, troubleshooting) — validates intent semantics

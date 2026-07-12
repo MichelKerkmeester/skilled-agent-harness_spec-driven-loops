@@ -1,6 +1,6 @@
 ---
 id: SD-015
-category: token-cost-baseline
+category: token_cost_baseline
 title: 'Ceiling token cost: ON_DEMAND_KEYWORDS load all RESOURCE_MAP'
 expected_intent: ON_DEMAND_ALL
 expected_resources:
@@ -95,4 +95,4 @@ Show the full sk-doc toolkit: all templates, frameworks, format guide, reference
 - Group: Token Cost Baseline
 - Playbook ID: SD-015
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `token-cost-baseline/max-load.md`
+- Feature file path: `token_cost_baseline/max_load.md`

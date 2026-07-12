@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files",
+  "description": "Migrate catalog and playbook category folders and per-feature Markdown filenames from hyphen-case to underscore_case without changing the enclosing content-root names.",
+  "keywords": [
+    "underscore content folders",
+    "hyphen to underscore",
+    "feature catalog",
+    "manual testing playbook",
+    "path migration"
+  ],
+  "lastUpdated": "2026-07-12T00:00:00.000Z",
+  "specId": "003",
+  "folderSlug": "underscore-content-folders-and-files",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent",
+    "027-catalog-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

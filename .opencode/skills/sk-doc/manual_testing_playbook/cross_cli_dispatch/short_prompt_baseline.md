@@ -1,6 +1,6 @@
 ---
 id: SD-010
-category: cross-cli-dispatch
+category: cross_cli_dispatch
 title: 'Short-prompt baseline: CHANGELOG intent across all 3 CLIs'
 expected_intent: CHANGELOG
 expected_resources:
@@ -77,4 +77,4 @@ Draft a v2.3.0 changelog with added, changed, fixed, and removed sections.
 - Group: Cross-CLI Dispatch
 - Playbook ID: SD-010
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `cross-cli-dispatch/short-prompt-baseline.md`
+- Feature file path: `cross_cli_dispatch/short_prompt_baseline.md`

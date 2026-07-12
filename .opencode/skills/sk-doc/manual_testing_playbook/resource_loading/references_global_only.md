@@ -1,6 +1,6 @@
 ---
 id: SD-004
-category: resource-loading
+category: resource_loading
 title: 'HVR intent loads only references/hvr_rules.md'
 expected_intent: HVR
 expected_resources:
@@ -74,4 +74,4 @@ Apply HVR voice rules to specs/123-example/implementation-summary.md without cha
 - Group: Resource Loading
 - Playbook ID: SD-004
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `resource-loading/references-global-only.md`
+- Feature file path: `resource_loading/references_global_only.md`

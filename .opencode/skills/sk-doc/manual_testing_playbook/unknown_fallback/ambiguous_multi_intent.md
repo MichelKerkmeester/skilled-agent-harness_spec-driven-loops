@@ -1,6 +1,6 @@
 ---
 id: SD-007
-category: unknown-fallback
+category: unknown_fallback
 title: 'Ambiguous prompt scores DOC_QUALITY and FLOWCHART within delta'
 expected_intent: DOC_QUALITY+FLOWCHART
 expected_resources:
@@ -76,4 +76,4 @@ Improve doc quality and add flowcharts for the new feature docs.
 - Group: Unknown Fallback
 - Playbook ID: SD-007
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `unknown-fallback/ambiguous-multi-intent.md`
+- Feature file path: `unknown_fallback/ambiguous_multi_intent.md`

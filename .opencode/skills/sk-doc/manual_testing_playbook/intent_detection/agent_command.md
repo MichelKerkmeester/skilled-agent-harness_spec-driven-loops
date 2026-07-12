@@ -1,6 +1,6 @@
 ---
 id: SD-003
-category: intent-detection
+category: intent_detection
 title: 'AGENT_COMMAND intent: author paired @agent and /create command'
 expected_intent: AGENT_COMMAND
 expected_resources:
@@ -78,4 +78,4 @@ Author an @analyze agent and paired /create:analyze command using the standard t
 - Group: Intent Detection
 - Playbook ID: SD-003
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `intent-detection/agent-command.md`
+- Feature file path: `intent_detection/agent_command.md`

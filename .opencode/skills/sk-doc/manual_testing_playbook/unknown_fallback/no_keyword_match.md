@@ -1,6 +1,6 @@
 ---
 id: SD-008
-category: unknown-fallback
+category: unknown_fallback
 title: 'No-keyword prompt triggers UNKNOWN_FALLBACK_CHECKLIST'
 expected_intent: UNKNOWN
 expected_resources: []
@@ -72,4 +72,4 @@ Tell me about the weather.
 - Group: Unknown Fallback
 - Playbook ID: SD-008
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `unknown-fallback/no-keyword-match.md`
+- Feature file path: `unknown_fallback/no_keyword_match.md`

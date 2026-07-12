@@ -1,6 +1,6 @@
 ---
 id: SD-020
-category: agent-dispatch
+category: agent_dispatch
 title: '@markdown agent dispatch via cli-opencode (DeepSeek v4 Pro direct API)'
 execution_mode: dispatch_real
 expected_intent: CHANGELOG
@@ -112,5 +112,5 @@ This scenario is fixed to `cli-opencode` with the DeepSeek v4 Pro DIRECT API pro
 - Group: Agent Dispatch
 - Playbook ID: SD-020
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `agent-dispatch/markdown-agent-cli-opencode.md`
+- Feature file path: `agent_dispatch/markdown_agent_cli_opencode.md`
 - Introduced by: `<spec-folder>`

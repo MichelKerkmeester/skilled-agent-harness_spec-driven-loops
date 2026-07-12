@@ -1,6 +1,6 @@
 ---
 id: SD-012
-category: cross-cli-dispatch
+category: cross_cli_dispatch
 title: 'Multi-step dispatch: 3 sequential sk-doc invocations'
 expected_intent: SKILL_CREATION → DOC_QUALITY → CHANGELOG
 expected_resources:
@@ -78,4 +78,4 @@ Trace routing for three sequential sk-doc turns: create sk-foo, add validation r
 - Group: Cross-CLI Dispatch
 - Playbook ID: SD-012
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `cross-cli-dispatch/multi-step-dispatch.md`
+- Feature file path: `cross_cli_dispatch/multi_step_dispatch.md`

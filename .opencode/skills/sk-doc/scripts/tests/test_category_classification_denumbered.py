@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Regression tests for number-agnostic catalog/playbook leaf classification + the no-new-numbers guard.
+"""Regression tests for separator-agnostic catalog/playbook leaf classification and the content-name guard.
 
 Catalog and playbook leaves are classified by their structural position (a subfolder of the
 catalog/playbook root), not by an ordinal folder-name prefix. Both the legacy `NN--slug` form
-and the canonical bare `slug` form must classify as the typed document; the root index file must
-not; and the guard must flag any numbered category folder.
+hyphenated and underscore forms must classify as typed documents; the root index file must not; and the
+guard must flag any hyphenated content path.
 """
 import subprocess
 import sys
@@ -16,7 +16,7 @@ sys.path.insert(0, str(SCRIPTS_DIR))
 
 from validate_document import detect_document_type  # noqa: E402
 
-GUARD = SCRIPTS_DIR / 'check_no_numbered_categories.py'
+GUARD = SCRIPTS_DIR.parent / 'shared' / 'scripts' / 'check_no_hyphenated_catalog_content.py'
 SKILL = '.opencode/skills/sk-x'
 
 
@@ -26,9 +26,11 @@ def run() -> int:
     classification_cases = [
         (f'{SKILL}/feature_catalog/06--mcp-tool-surface/x.md', 'feature_catalog', 'numbered catalog leaf'),
         (f'{SKILL}/feature_catalog/mcp-tool-surface/x.md', 'feature_catalog', 'de-numbered catalog leaf'),
+        (f'{SKILL}/feature_catalog/mcp_tool_surface/x.md', 'feature_catalog', 'underscore catalog leaf'),
         (f'{SKILL}/feature_catalog/feature_catalog.md', 'readme', 'catalog root index excluded'),
         (f'{SKILL}/manual_testing_playbook/01--read-path/x.md', 'playbook_feature', 'numbered playbook leaf'),
         (f'{SKILL}/manual_testing_playbook/read-path/x.md', 'playbook_feature', 'de-numbered playbook leaf'),
+        (f'{SKILL}/manual_testing_playbook/read_path/x.md', 'playbook_feature', 'underscore playbook leaf'),
         (f'{SKILL}/manual_testing_playbook/manual_testing_playbook.md', 'readme', 'playbook root index excluded'),
         (f'{SKILL}/feature_catalog/06--x/sub/deep.md', 'readme', 'deeper nesting not a leaf'),
     ]
@@ -42,21 +44,30 @@ def run() -> int:
 
     with tempfile.TemporaryDirectory() as tmp:
         root = Path(tmp)
-        (root / 'feature_catalog' / 'mcp-tool-surface').mkdir(parents=True)
-        (root / 'manual_testing_playbook' / 'read-path').mkdir(parents=True)
+        (root / 'feature_catalog' / 'mcp_tool_surface').mkdir(parents=True)
+        (root / 'manual_testing_playbook' / 'read_path').mkdir(parents=True)
         clean = subprocess.run([sys.executable, str(GUARD), str(root)], capture_output=True, text=True)
         if clean.returncode == 0:
-            print('PASS guard passes on a de-numbered tree')
+            print('PASS guard passes on an underscore tree')
         else:
             print(f'FAIL guard should pass on clean tree (exit {clean.returncode})')
             failures += 1
 
-        (root / 'feature_catalog' / '07--new-numbered').mkdir()
+        (root / 'feature_catalog' / 'new-category').mkdir()
         dirty = subprocess.run([sys.executable, str(GUARD), str(root)], capture_output=True, text=True)
         if dirty.returncode == 1:
-            print('PASS guard fails on a freshly-created numbered category folder')
+            print('PASS guard fails on a freshly-created hyphenated category folder')
         else:
-            print(f'FAIL guard should fail on numbered tree (exit {dirty.returncode})')
+            print(f'FAIL guard should fail on hyphenated tree (exit {dirty.returncode})')
+            failures += 1
+
+        (root / 'feature_catalog' / 'new-category').rmdir()
+        (root / 'feature_catalog' / 'mcp_tool_surface' / 'new-file.md').touch()
+        dirty = subprocess.run([sys.executable, str(GUARD), str(root)], capture_output=True, text=True)
+        if dirty.returncode == 1:
+            print('PASS guard fails on a freshly-created hyphenated Markdown file')
+        else:
+            print(f'FAIL guard should fail on hyphenated Markdown file (exit {dirty.returncode})')
             failures += 1
 
     print('\nALL PASS' if failures == 0 else f'\n{failures} FAILED')

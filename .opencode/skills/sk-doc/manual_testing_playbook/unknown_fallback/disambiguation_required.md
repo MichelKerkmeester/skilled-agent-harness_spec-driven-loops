@@ -1,6 +1,6 @@
 ---
 id: SD-009
-category: unknown-fallback
+category: unknown_fallback
 title: 'FEATURE_CATALOG vs PLAYBOOK tie within delta=1'
 expected_intent: FEATURE_CATALOG+PLAYBOOK
 expected_resources:
@@ -74,4 +74,4 @@ Build a feature catalog for the playbook system and document each scenario as a 
 - Group: Unknown Fallback
 - Playbook ID: SD-009
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `unknown-fallback/disambiguation-required.md`
+- Feature file path: `unknown_fallback/disambiguation_required.md`

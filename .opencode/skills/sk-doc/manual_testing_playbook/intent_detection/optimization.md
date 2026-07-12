@@ -1,6 +1,6 @@
 ---
 id: SD-016
-category: intent-detection
+category: intent_detection
 title: 'OPTIMIZATION intent: rewrite a doc for token efficiency / llms.txt generation'
 expected_intent: OPTIMIZATION
 expected_resources:
@@ -76,5 +76,5 @@ Optimize this long SKILL.md for token efficiency and generate an llms.txt summar
 - Group: Intent Detection
 - Playbook ID: SD-016
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `intent-detection/optimization.md`
+- Feature file path: `intent_detection/optimization.md`
 - response mentions both "token compression" and "llms.txt" themes (validates intent semantics)

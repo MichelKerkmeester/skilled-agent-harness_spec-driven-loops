@@ -1,6 +1,6 @@
 ---
 id: SD-011
-category: cross-cli-dispatch
+category: cross_cli_dispatch
 title: 'Large-prompt stress: cli-opencode stdin-redirection mitigation'
 expected_intent: SKILL_CREATION
 expected_resources:
@@ -79,4 +79,4 @@ sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against
 - Group: Cross-CLI Dispatch
 - Playbook ID: SD-011
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `cross-cli-dispatch/large-prompt-stress.md`
+- Feature file path: `cross_cli_dispatch/large_prompt_stress.md`

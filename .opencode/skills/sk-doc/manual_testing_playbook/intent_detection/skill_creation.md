@@ -1,6 +1,6 @@
 ---
 id: SD-002
-category: intent-detection
+category: intent_detection
 title: 'SKILL_CREATION intent: author a new sk-skill'
 expected_intent: SKILL_CREATION
 expected_resources:
@@ -80,4 +80,4 @@ Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffold
 - Group: Intent Detection
 - Playbook ID: SD-002
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `intent-detection/skill-creation.md`
+- Feature file path: `intent_detection/skill_creation.md`

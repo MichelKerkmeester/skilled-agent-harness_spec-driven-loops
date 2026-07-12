@@ -39,11 +39,11 @@ Canonical layout:
 ```text
 feature_catalog/
 ├── feature_catalog.md                 # Root inventory and summary catalog
-├── category-name/                     # Required per-feature files for category 1
-│   ├── feature-name.md
-│   └── another-feature-name.md
-└── another-category/                  # Required per-feature files for category 2
-    └── feature-name.md
+├── category_name/                     # Required per-feature files for category 1
+│   ├── feature_name.md
+│   └── another_feature_name.md
+└── another_category/                  # Required per-feature files for category 2
+    └── feature_name.md
 ```
 
 **Existing Example**:
@@ -68,13 +68,13 @@ Each category groups related features under its own directory.
 
 | Category Purpose | Example Directory | Example File |
 |---|---|---|
-| Retrieval | `retrieval` | `unified-context-retrieval-memorycontext.md` |
+| Retrieval | `retrieval` | `unified_context_retrieval_memorycontext.md` |
 | Mutation | `mutation` | `memory-indexing-memorysave.md` |
-| Tooling and scripts | `tooling-and-scripts` | `admin-cli-bootstrap.md` |
+| Tooling and scripts | `tooling_and_scripts` | `admin_cli_bootstrap.md` |
 
 Directory and file rules:
-- Category directories use the bare descriptive slug `category-name` (no numeric prefix).
-- Per-feature files use `feature-name.md` (no numeric prefix).
+- Category directories use descriptive `underscore_case` names such as `category_name` (no numeric prefix).
+- Per-feature files use `feature_name.md` (no numeric prefix).
 - Per-feature snippet order is defined by the root catalog listing order; filenames do not encode order. Display order is owned by the root catalog index (`feature_catalog.md`), not the folder name.
 - Published slugs should remain stable unless the feature is intentionally renamed.
 
@@ -169,7 +169,7 @@ See [`{CAT2_DIR}/{FEATURE_FILE_3}`]({CAT2_DIR}/{FEATURE_FILE_3}) for full implem
 
 ## 5. PER-FEATURE FILE SCAFFOLD
 
-Copy this scaffold to create `feature_catalog/{CATEGORY_DIR}/{feature-name}.md`:
+Copy this scaffold to create `feature_catalog/{CATEGORY_DIR}/{feature_name}.md`:
 
 ```markdown
 ---
@@ -236,7 +236,7 @@ version: 1.0.0.0
 
 - Group: {CATEGORY_NAME}
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
+- Feature file path: `{CATEGORY_DIR}/{feature_name}.md`
 
 Related references:
 - [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
@@ -267,7 +267,7 @@ Before publishing a feature catalog, verify:
 Structure:
 - [ ] `feature_catalog.md` exists with frontmatter and H1 intro paragraph
 - [ ] Root catalog uses numbered all-caps H2 section headers (no Table of Contents)
-- [ ] Category directories use the bare descriptive slug `category-name` (no numeric prefix)
+- [ ] Category directories use descriptive `underscore_case` names such as `category_name` (no numeric prefix)
 - [ ] Per-feature snippet order matches root catalog listing order (filenames do not encode order)
 - [ ] Every root catalog entry links to exactly one per-feature file
 - [ ] Every per-feature file includes frontmatter with `title` and `description`

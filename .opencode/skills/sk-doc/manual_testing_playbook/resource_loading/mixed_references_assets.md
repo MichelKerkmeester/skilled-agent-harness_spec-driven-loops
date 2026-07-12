@@ -1,6 +1,6 @@
 ---
 id: SD-006
-category: resource-loading
+category: resource_loading
 title: 'README_CREATION intent loads mixed references + assets'
 expected_intent: README_CREATION
 expected_resources:
@@ -76,4 +76,4 @@ Create a README for packages/auth/ covering purpose, install, usage, configurati
 - Group: Resource Loading
 - Playbook ID: SD-006
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `resource-loading/mixed-references-assets.md`
+- Feature file path: `resource_loading/mixed_references_assets.md`
