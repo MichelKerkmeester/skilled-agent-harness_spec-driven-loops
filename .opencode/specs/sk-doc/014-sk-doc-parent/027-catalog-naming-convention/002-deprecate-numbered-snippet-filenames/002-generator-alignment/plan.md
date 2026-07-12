@@ -51,17 +51,17 @@ files.
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Read `playbook-generator.cjs` in full (not just the two known line numbers) to find every place `spec.id` or
+### Phase 1: Read `playbook-generator.cjs` in full (not just the two known line numbers) to find every place `spec.id` or
    the `AG-` pattern is produced or consumed, including any downstream use inside the same file.
-2. Replace the ordinal id/filename derivation with a descriptive-slug derivation from the scenario's intent
+### Phase 2: Replace the ordinal id/filename derivation with a descriptive-slug derivation from the scenario's intent
    text, keeping the `id:` frontmatter field for identity; add an optional `stage:` frontmatter field (default
    `routing`) to generated output.
-3. Add a minimal same-directory collision check for the generator's own output, with a deterministic
+### Phase 3: Add a minimal same-directory collision check for the generator's own output, with a deterministic
    disambiguator fallback if two intents slugify to the same string.
-4. Grep the two sk-doc convention SKILL.md files, their templates, and the four `/create:*` generator YAMLs for
+### Phase 4: Grep the two sk-doc convention SKILL.md files, their templates, and the four `/create:*` generator YAMLs for
    any surviving numbered per-feature filename mandate or example; fix it if found, otherwise record the
    verification as a pass.
-5. Dry-run the generator against a sample skill; confirm the output loads cleanly through the number-agnostic
+### Phase 5: Dry-run the generator against a sample skill; confirm the output loads cleanly through the number-agnostic
    benchmark loader; run `validate.sh --strict`.
 <!-- /ANCHOR:phases -->
 

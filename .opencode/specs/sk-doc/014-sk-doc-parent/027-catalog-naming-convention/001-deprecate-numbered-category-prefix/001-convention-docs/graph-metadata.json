@@ -137,12 +137,6 @@
         "source": "derived"
       },
       {
-        "name": "5. TESTING STRATEGY",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -183,11 +177,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 of the numbered-prefix deprecation. Update the two authoritative sk-doc convention skills (create-feature-catalog, create-manual-testing-playbook), their asset templates, and the /create:* command generators so the documented canonical category-folder name is the bare descriptive slug, not NN--slug. Ordering is documented as owned by the root index table. Docs-only phase — no folders are renamed here; it removes the mandate that would otherwise re-introduce numbers.",
     "created_at": "2026-07-10T18:51:12.648Z",
-    "last_save_at": "2026-07-12T11:46:06.880Z",
+    "last_save_at": "2026-07-12T12:16:23.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1af4d66639c6966cd527b05a969e555469a8b3bf27beb28812575036fdcd4a7",
+    "source_fingerprint": "sha256:c4e4bd65fae52a722cd9e47c8fa4fdc02ccaaf76dabc0429cbed3f628723c5e1",
     "source_doc_hashes": {
-      "spec.md": "83d2bfdd4487c64cef9c4b1ddb90f9162c507e49443b2ee329044adc3a13eb9b",
-      "plan.md": "a94c9831efb6dd8b21c0d5c063c7e2968e3ce7a2b386028f7502bfb1553106ac",
+      "spec.md": "57de85a7d1fbf17ea4b951b207f72383b25ea419c48ffb29f02aa47df6309f6c",
+      "plan.md": "65f2f118955a1e1811fb958aea1dbcfba05a68c6eff1f31f7fed56c06a972d73",
       "tasks.md": "3664b2b45678855aebc9f33259b784d752a6e79975314e91bb4f20d309dc4afd",
-      "checklist.md": "e4dde02fc0ce828b5fe0547a5bacbe78b6d342288c99039c3964899a84b82233",
-      "implementation-summary.md": "f43b2fa35343cda784e441e9abf9a72b7dc6ecd24c642d8fb59e6837a9b673b4"
+      "checklist.md": "e0c3164e1360c7235477d3234c8bff8a213fe398f217f68def5b33891b499bbc",
+      "implementation-summary.md": "c39b95f8e66723878b40e2ea9287df3aaca7a39b55b4115ff9fbdd02f5a6181c"
     },
     "last_active_child_id": null,
     "last_active_at": null

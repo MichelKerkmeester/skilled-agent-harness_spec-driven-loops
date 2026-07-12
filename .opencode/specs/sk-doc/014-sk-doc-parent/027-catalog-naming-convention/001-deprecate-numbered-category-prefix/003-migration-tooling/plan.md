@@ -59,13 +59,13 @@ each a pure function over the tree:
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Discover + build the rename map from the live tree; assert it against research.md's 390 (123 + 267 / 34).
-2. Implement the collision check and the ADR-004 deny-list predicate; unit-cover both.
-3. Implement the five reference-class rewriters (a git mv, b frontmatter, c index rows, d nav links, e router
+### Phase 1: Discover + build the rename map from the live tree; assert it against research.md's 390 (123 + 267 / 34).
+### Phase 2: Implement the collision check and the ADR-004 deny-list predicate; unit-cover both.
+### Phase 3: Implement the five reference-class rewriters (a git mv, b frontmatter, c index rows, d nav links, e router
    blocks), each driven by the rename map.
-4. Implement the dry-run report (rename map + per-file diff + collision + excluded-surface summary) and the
+### Phase 4: Implement the dry-run report (rename map + per-file diff + collision + excluded-surface summary) and the
    `--apply` gate; assert idempotency (a second dry-run after a hypothetical partial is a no-op).
-5. Run the dry-run; reconcile the reported counts against research.md; validate --strict.
+### Phase 5: Run the dry-run; reconcile the reported counts against research.md; validate --strict.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

@@ -52,13 +52,13 @@ accuracy, not behavior. The no-new-numbers guard is a distinct check that scans 
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Read both `validate_document.py` copies; confirm the `:129,135` `^\d{2}--` tests and the surrounding
+### Phase 1: Read both `validate_document.py` copies; confirm the `:129,135` `^\d{2}--` tests and the surrounding
    path-segment checks are identical.
-2. Replace each number-anchored test with the structural subfolder test (parent is not the catalog/playbook root
+### Phase 2: Replace each number-anchored test with the structural subfolder test (parent is not the catalog/playbook root
    file); apply identically to both copies.
-3. Correct any stale `NN--category` prose in `template_rules.json` descriptions (accuracy only).
-4. Add the no-new-numbers guard (validator/CI check) that FAILS on a new `NN--` category folder.
-5. Add fixtures (de-numbered leaf, numbered leaf, root index, new numbered folder) and verify; run the existing
+### Phase 3: Correct any stale `NN--category` prose in `template_rules.json` descriptions (accuracy only).
+### Phase 4: Add the no-new-numbers guard (validator/CI check) that FAILS on a new `NN--` category folder.
+### Phase 5: Add fixtures (de-numbered leaf, numbered leaf, root index, new numbered folder) and verify; run the existing
    sk-doc validator tests; `validate.sh --strict` on this phase folder.
 <!-- /ANCHOR:phases -->
 

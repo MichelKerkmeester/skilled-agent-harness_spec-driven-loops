@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Phase 005, the gate. After the migration executes, prove nothing regressed: recursive validate.sh --strict across every touched skill (with catalog/playbook leaves still classified as their typed documents), the whole-workspace markdown-link CI guard, any hard-coded-path tests, and a re-run of the Lane C smart-routing benchmark on affected skills compared against a pre-migration baseline captured before Phase 004. Finally prove the no-new-numbers guard fires by attempting a fresh numbered folder.",
     "created_at": "2026-07-10T18:51:13.165Z",
-    "last_save_at": "2026-07-12T11:46:06.912Z",
+    "last_save_at": "2026-07-12T12:16:23.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +195,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:607309f75adb780286f4bbe86b378563a68f51b602eb5381be8c453b6904f65e",
+    "source_fingerprint": "sha256:f58743f6734f9d47e3cbba70044d8bdc7686f52a62a95683318e81251f122415",
     "source_doc_hashes": {
-      "spec.md": "697ad650255150a361c3c33247ddf852ea9666a81b84ad4e68f7fdc551a549f6",
-      "plan.md": "1d4bf2d458662d43573e8266d5956a264ab5ea2c3665fc823b5730d469602b13",
+      "spec.md": "c1d42f906805880144a763035204397eaa8d54c63dbf793a5feab040fa361790",
+      "plan.md": "0e548bdc442fce2719af6b77f8c8533825ca089cbd87e17c7606cb8877374a51",
       "tasks.md": "3f1c2b36647209a499ef95bb2fad1da9372a3df2674a5bb7dd10638c809d29a4",
-      "checklist.md": "33856c0ff995d589dd89cf10b55e74df142b0e123d689574e45db2e67e8e342c",
-      "implementation-summary.md": "101707e56a0e926b96d8f8d6bbd417755a21ff833c0a13aef225c2268011b10d"
+      "checklist.md": "aff60177c6106df2a0b91385fb9e49bdd2ee5ca5c977fa48866496da8091db1c",
+      "implementation-summary.md": "872bc1580333269af1ae06ee91f8028d6faabf9f5c1c521f187667db06cacbdc"
     },
     "last_active_child_id": null,
     "last_active_at": null

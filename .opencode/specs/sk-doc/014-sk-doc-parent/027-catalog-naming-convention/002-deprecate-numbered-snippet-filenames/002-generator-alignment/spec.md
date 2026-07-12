@@ -74,19 +74,19 @@ re-benchmark and no-new-numbered-snippet guard proof (later verification phase).
 
 ## 4. REQUIREMENTS
 <!-- ANCHOR:requirements -->
-- **R1:** `playbook-generator.cjs` no longer derives the staged scenario filename from an `AG-NNN` ordinal; the
+- **REQ-001:** `playbook-generator.cjs` no longer derives the staged scenario filename from an `AG-NNN` ordinal; the
   filename is a descriptive slug derived from the scenario's intent.
-- **R2:** The generator continues to emit an `id:` frontmatter field on each scenario (the identity key the
+- **REQ-002:** The generator continues to emit an `id:` frontmatter field on each scenario (the identity key the
   loader and downstream tooling key off of) — the filename change does not disturb that identity semantics.
-- **R3:** The generator optionally emits a `stage:` frontmatter field (default `routing`) on generated
+- **REQ-003:** The generator optionally emits a `stage:` frontmatter field (default `routing`) on generated
   scenarios, matching the field the tolerant loader is expected to read.
-- **R4:** Grep of the two convention SKILL.md files, their templates, and the four `/create:*` generator YAMLs
+- **REQ-004:** Grep of the two convention SKILL.md files, their templates, and the four `/create:*` generator YAMLs
   shows zero mandate or example that names a per-feature scenario file with a numeric ordinal prefix (excluding
   historical or changelog text).
-- **R5:** The generator performs a basic same-directory collision check on its own slug output, with a
+- **REQ-005:** The generator performs a basic same-directory collision check on its own slug output, with a
   deterministic disambiguator fallback (not the full migration-engine collision logic — just enough that the
   generator itself cannot silently overwrite a sibling file).
-- **R6:** Generator output remains loadable by the number-agnostic benchmark loader — no new incompatibility is
+- **REQ-006:** Generator output remains loadable by the number-agnostic benchmark loader — no new incompatibility is
   introduced between the generator's output shape and the loader's expected input shape.
 <!-- /ANCHOR:requirements -->
 

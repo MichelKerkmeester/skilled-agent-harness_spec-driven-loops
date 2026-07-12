@@ -80,22 +80,22 @@ history/narrative — frozen, records what files were named at the time.
 
 ## 4. REQUIREMENTS
 <!-- ANCHOR:requirements -->
-- **R1:** All 111 in-scope files across the 9 packets are renamed to their bare descriptive slug; a repo-wide
+- **REQ-001:** All 111 in-scope files across the 9 packets are renamed to their bare descriptive slug; a repo-wide
   find for the in-scope `^\d{3}-` snippet filenames (excluding the 20 out-of-scope system-spec-kit files and the
   changelog/`z_archive/` deny-list) returns zero.
-- **R2:** Each of the 63/111 files that encoded routing/holdout/negative grouping in its filename token carries
+- **REQ-002:** Each of the 63/111 files that encoded routing/holdout/negative grouping in its filename token carries
   an explicit `stage: routing`, `stage: holdout`, or `stage: negative` frontmatter field after migration; the
   remaining 48 files default to `stage: routing`.
-- **R3:** The 3 hub-routing root-index tables (`cli-external`, `mcp-tooling`, `sk-prompt`) are rewritten in
+- **REQ-003:** The 3 hub-routing root-index tables (`cli-external`, `mcp-tooling`, `sk-prompt`) are rewritten in
   lockstep with their owning family's rename so every index row cites a file that exists on disk under its new
   name.
-- **R4:** Each migrated skill family passes `validate.sh --strict` (Errors 0) before its commit; a family that
+- **REQ-004:** Each migrated skill family passes `validate.sh --strict` (Errors 0) before its commit; a family that
   fails is fixed or reverted, not committed.
-- **R5:** The excluded surfaces (the 20 system-spec-kit single-digit files, `z_archive/`, changelog/history
+- **REQ-005:** The excluded surfaces (the 20 system-spec-kit single-digit files, `z_archive/`, changelog/history
   narrative) are byte-unchanged.
-- **R6:** The 2 previously-failing vitest suites (`feature-flag-reference-docs.vitest.ts`,
+- **REQ-006:** The 2 previously-failing vitest suites (`feature-flag-reference-docs.vitest.ts`,
   `outsourced-agent-handback-docs.vitest.ts`) pass after their stale numbered-name references are corrected.
-- **R7:** The 7 dead allowlist entries in `workflow-invariance.vitest.ts:97-104` are removed once the files they
+- **REQ-007:** The 7 dead allowlist entries in `workflow-invariance.vitest.ts:97-104` are removed once the files they
   allowlisted no longer carry numbered names.
 <!-- /ANCHOR:requirements -->
 

@@ -28,38 +28,38 @@ Every item carries a grep or fresh-reader evidence line.
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] Enumerated every `NN--` mandate/example in the two skills + templates + generators.
+- [x] CHK-001 [P0] Enumerated every `NN--` mandate/example in the two skills + templates + generators.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [x] Docs-only; no code touched; edits read coherently as de-numbered.
+- [x] CHK-002 [P2] Docs-only; no code touched; edits read coherently as de-numbered.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [x] Grep: zero surviving numbered mandate/example in edited surfaces (historical prose excluded).
-- [x] `validate.sh --strict` Errors 0 on this phase folder.
+- [x] CHK-003 [P2] Grep: zero surviving numbered mandate/example in edited surfaces (historical prose excluded).
+- [x] CHK-004 [P0] `validate.sh --strict` Errors 0 on this phase folder.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [x] Both convention skills, their templates, and both `/create:*` generators edited (no surface missed).
+- [x] CHK-005 [P0] Both convention skills, their templates, and both `/create:*` generators edited (no surface missed).
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [x] No executable/config behavior changed; docs-only edit with no gate or allowlist impact.
+- [x] CHK-006 [P2] No executable/config behavior changed; docs-only edit with no gate or allowlist impact.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] Ordering documented as owned by the root index table (both skills).
+- [x] CHK-007 [P2] Ordering documented as owned by the root index table (both skills).
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] Edits confined to sk-doc convention skills, templates, and `/create:*` generators.
+- [x] CHK-008 [P1] Edits confined to sk-doc convention skills, templates, and `/create:*` generators.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

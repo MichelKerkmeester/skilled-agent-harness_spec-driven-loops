@@ -29,53 +29,53 @@ deferred rather than run, it is left unchecked with the reason, not falsely mark
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] Pre-migration benchmark-corpus baseline captured (`playbook-mode` + `skill-benchmark` vitest: 10
+- [x] CHK-001 [P0] Pre-migration benchmark-corpus baseline captured (`playbook-mode` + `skill-benchmark` vitest: 10
       pre-existing failures / 74 passing) so corpus preservation could be proven by delta.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [x] Measurement-only phase; no source or spec-doc content changed here beyond this phase's own docs and the
+- [x] CHK-002 [P2] Measurement-only phase; no source or spec-doc content changed here beyond this phase's own docs and the
       two review-driven doc corrections (`sk-code/code-review/SKILL.md`, `create-feature-catalog/references/examples.md`).
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [x] Recursive `validate.sh --strict` Errors 0 across the 026 parent + all five children.
-- [x] Reference integrity green: repo-wide `grep` sweep of the old numbered names found 0 broken references to
+- [x] CHK-003 [P0] Recursive `validate.sh --strict` Errors 0 across the 026 parent + all five children.
+- [x] CHK-004 [P0] Reference integrity green: repo-wide `grep` sweep of the old numbered names found 0 broken references to
       any renamed snippet across all skills; the 3 rewritten hub-routing index docs resolve to existing files.
-- [x] Corpus preservation proven: the loader discovers every renamed file and the `playbook-mode` +
+- [x] CHK-005 [P0] Corpus preservation proven: the loader discovers every renamed file and the `playbook-mode` +
       `skill-benchmark` vitest result is byte-identical to the pre-migration baseline (no scenario dropped).
-- [ ] DEFERRED — formal Lane C D1-D5 re-benchmark not re-run; the `/deep:review` contract is mid-refactor by a
+- [ ] CHK-006 [P0] DEFERRED — formal Lane C D1-D5 re-benchmark not re-run; the `/deep:review` contract is mid-refactor by a
       concurrent session. Corpus-count preservation is proven above by the byte-identical vitest baseline.
-- [ ] DEFERRED — `feature-flag-reference-docs.vitest.ts` / `outsourced-agent-handback-docs.vitest.ts` (ADR-007
+- [ ] CHK-007 [P0] DEFERRED — `feature-flag-reference-docs.vitest.ts` / `outsourced-agent-handback-docs.vitest.ts` (ADR-007
       fold-in): they target system-spec-kit's own numbered docs and fail on content assertions beyond
       de-numbering; deferred to a system-spec-kit maintenance pass.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [x] Independent 6-dimension adversarial review (findings verified against `HEAD~2`) run over the change across
+- [x] CHK-008 [P0] Independent 6-dimension adversarial review (findings verified against `HEAD~2`) run over the change across
       all skills; every finding triaged, the two real doc inconsistencies fixed, all P0s verified pre-existing.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [x] The no-new-numbered-snippet guard FAILS pre-migration (`111 offenders`, exit 1) and PASSES post-migration
+- [x] CHK-009 [P0] The no-new-numbered-snippet guard FAILS pre-migration (`111 offenders`, exit 1) and PASSES post-migration
       (`0 offenders`, exit 0) — captured live.
-- [ ] DEFERRED — `workflow-invariance.vitest.ts` allowlist sweep (ADR-007): investigation found the "7 dead
+- [ ] CHK-010 [P0] DEFERRED — `workflow-invariance.vitest.ts` allowlist sweep (ADR-007): investigation found the "7 dead
       entries" premise inaccurate (three files were renamed, not deleted, and still need allowlisting under new
       names); deferred to the same system-spec-kit maintenance pass.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] Verification evidence and the deferred items recorded in this phase's `implementation-summary.md`.
+- [x] CHK-011 [P1] Verification evidence and the deferred items recorded in this phase's `implementation-summary.md`.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] No benchmark run artifacts written (formal Lane C re-run deferred); no prior `runs/` overwritten.
+- [x] CHK-012 [P1] No benchmark run artifacts written (formal Lane C re-run deferred); no prior `runs/` overwritten.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

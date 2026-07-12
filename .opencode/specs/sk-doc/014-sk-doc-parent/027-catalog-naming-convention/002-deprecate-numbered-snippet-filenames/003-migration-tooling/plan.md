@@ -76,15 +76,15 @@ digit. Pipeline stages, each a pure function over the scoped file list:
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Enumerate the 111 in-scope files from the 9 named packet paths; assert the count against research.md.
-2. Implement the collision check and the corrected deny-list predicate (`014-sk-doc-parent`, not the stale
+### Phase 1: Enumerate the 111 in-scope files from the 9 named packet paths; assert the count against research.md.
+### Phase 2: Implement the collision check and the corrected deny-list predicate (`014-sk-doc-parent`, not the stale
    `999-sk-doc-parent`); unit-cover both, including a regression case for the 108 bug.
-3. Implement stage derivation for the routing-recall/hub-routing files (holdout/negative token detection,
+### Phase 3: Implement stage derivation for the routing-recall/hub-routing files (holdout/negative token detection,
    `routing` by category), stamping all 88 under `--stage-scope=all`, and the frontmatter-injection edit plan.
-4. Implement the reference sweep for the 3 hub-routing root-index tables, word-boundary safe.
-5. Implement the dry-run report (rename map + per-file diff + stage preview + collision + excluded-surface
+### Phase 4: Implement the reference sweep for the 3 hub-routing root-index tables, word-boundary safe.
+### Phase 5: Implement the dry-run report (rename map + per-file diff + stage preview + collision + excluded-surface
    summary) and the `--apply` gate; assert idempotency.
-6. Run the dry-run; reconcile the reported counts (111 / 88 / 14 / 5 / 3 / 0) against research.md; validate
+### Phase 6: Run the dry-run; reconcile the reported counts (111 / 88 / 14 / 5 / 3 / 0) against research.md; validate
    `--strict`.
 <!-- /ANCHOR:phases -->
 

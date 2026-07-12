@@ -52,15 +52,15 @@ batches, since they live in `system-spec-kit` rather than the 9 renamed packets.
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Confirm Phase 001 (number-agnostic loader, `stage:` parsing) and Phase 002 (generator emits slugs) have
+### Phase 1: Confirm Phase 001 (number-agnostic loader, `stage:` parsing) and Phase 002 (generator emits slugs) have
    landed; full dry-run; reconcile the report against research.md counts (111 files / 9 packets / 63 `stage:`
    injections / 3 hub-routing index rewrites / 0 collisions).
-2. Execute family-by-family (fan out across the 9 packets on disjoint families); inject `stage:` frontmatter;
+### Phase 2: Execute family-by-family (fan out across the 9 packets on disjoint families); inject `stage:` frontmatter;
    rewrite the owning hub-routing root-index rows in the same pass; validate each family.
-3. Path-scoped commit per family (exclude branch WIP and any concurrent-session dirt).
-4. Fix the 2 failing vitest suites and sweep the 7 dead allowlist entries in
+### Phase 3: Path-scoped commit per family (exclude branch WIP and any concurrent-session dirt).
+### Phase 4: Fix the 2 failing vitest suites and sweep the 7 dead allowlist entries in
    `workflow-invariance.vitest.ts:97-104` (decision B fold-in).
-5. Final repo-wide find: zero in-scope `^\d{3}-` snippet filenames outside the excluded surfaces.
+### Phase 5: Final repo-wide find: zero in-scope `^\d{3}-` snippet filenames outside the excluded surfaces.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

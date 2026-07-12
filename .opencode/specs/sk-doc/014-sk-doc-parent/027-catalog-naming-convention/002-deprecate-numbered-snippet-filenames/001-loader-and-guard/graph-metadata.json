@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 001 of the numbered-snippet-filename deprecation program (026).",
     "created_at": "2026-07-11T14:47:54.151Z",
-    "last_save_at": "2026-07-12T11:46:06.920Z",
+    "last_save_at": "2026-07-12T12:16:23.317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7098b848b5c7c923e35fb69de7f32a26e4502c0a7c20164fed4771280d90dbb",
+    "source_fingerprint": "sha256:132f336b9672631ec0246717bc133c4560f88638631ade307c101ddf8bcea8dc",
     "source_doc_hashes": {
-      "spec.md": "99dc58a8406e6a2e2710df97bdc662810d4650e5e5bdfe399e0d46589e8e54d0",
-      "plan.md": "4b4e42da01a71697fac3e9b2d8b0a4f1eddb80c25256565cfd26db1cbd329a96",
+      "spec.md": "a73c8aed79b47d44b0127aebfcca44f5188611b256cbf623a3a80a4db71c9149",
+      "plan.md": "bdfeee5b67ca3e58d430dd1e3a8e4f3e5a6a81fb90089e4d9da1b522ae570726",
       "tasks.md": "eb6745a0cfbda58fa26ec11fba1910114b4af8bc427ea9f5ac1039f56846fa47",
-      "checklist.md": "ec9e1c30e7ee9095e26b89b32f94562229142baca4eaff50fe59dc2e20c0ca7a",
-      "implementation-summary.md": "69c032842554b71b6a1c2379b670ce0d68acc07009bfd45d367fe097722d7f97"
+      "checklist.md": "5b23a388a13e6a020363fedd8d469df4b2c5080cc56b1f4a0a11348264434cc4",
+      "implementation-summary.md": "f0155d98e35638cf26ac810e746c3ed74e19b1e20a54ce0ec968031ed0116370"
     },
     "last_active_child_id": null,
     "last_active_at": null

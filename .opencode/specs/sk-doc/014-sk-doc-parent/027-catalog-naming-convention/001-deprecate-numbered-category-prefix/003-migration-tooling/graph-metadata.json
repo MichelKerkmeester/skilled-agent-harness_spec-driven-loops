@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Phase 003 of the numbered-prefix deprecation. Author one deterministic migration script that performs the whole de-numbering — git mv the 390 numbered category folders to bare slugs, rewrite the 115 frontmatter category: values, the ~1,052 root index-table path rows, the ~5,298 nav/cross-ref links across ~1,841 files, and the two SKILL.md router-prefix blocks — with a DRY-RUN mode that mutates nothing and emits a rename map, per-file diff, and safety/collision report. Honors the ADR-004 deny-list (z_archive, CHANGELOG, history, this packet's evidence). Tooling-only phase — Phase 004 runs it.",
     "created_at": "2026-07-10T18:51:12.903Z",
-    "last_save_at": "2026-07-12T11:46:06.897Z",
+    "last_save_at": "2026-07-12T12:16:23.294Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c158eebe21ef3c176621a091ac9e44c3732ef2f23e628eb0ca6134624d199bb",
+    "source_fingerprint": "sha256:0cce5768f269b7a66fa7b5ef4c5fa9056b650c77dd0ddee43457a8f75c60ec33",
     "source_doc_hashes": {
-      "spec.md": "beb7b9b401222d6397b1366131abac2bea03e14b9669636fe28406b86a9b4721",
-      "plan.md": "52eb6283f9aba219b4cbe114072db9c04f131bbe8a5acbad0bcfcbf3ecec3d9e",
+      "spec.md": "a5375d3f5bdf8f14a4ba74e9d879a84c102c5981bbb902b4332b32c378e18115",
+      "plan.md": "fecc80e527bd7199301216d8b237fde2cc87222ddd8e7d70ccfefcefdfbe640f",
       "tasks.md": "47b935682eced21649b6c2ccb24263eaad19a3f30c1717911f8cd4b532d55ec1",
-      "checklist.md": "f65db91434f0bf9aa09e203c62dd4a4355f5453886a38ab28955aec8866eb8bf",
-      "implementation-summary.md": "3a6a413b93c43fd0402a262565c85bd893d745feea47552022f6126b929d359f"
+      "checklist.md": "2ee8cb4e1d389c1ceb8fe523f945eabb16e87254475bf4e35cc1ffe4703c68ed",
+      "implementation-summary.md": "3b8a80eac57a9561d79a2be1e79cb991be5902404cb672541a035dd4783202b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

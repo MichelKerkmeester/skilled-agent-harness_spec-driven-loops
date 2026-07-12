@@ -42,10 +42,10 @@ three layers so an author reading any of them produces a de-numbered folder.
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Locate every `NN--` mandate, example, and template snippet in the two skills + templates + generators (grep).
-2. Rewrite the naming rule → bare slug; rewrite examples; add the "ordering is index-owned" note.
-3. Update the `/create:*` generators to emit de-numbered folders + index rows.
-4. Grep-verify no numbered mandate survives; validate --strict.
+### Phase 1: Locate every `NN--` mandate, example, and template snippet in the two skills + templates + generators (grep).
+### Phase 2: Rewrite the naming rule → bare slug; rewrite examples; add the "ordering is index-owned" note.
+### Phase 3: Update the `/create:*` generators to emit de-numbered folders + index rows.
+### Phase 4: Grep-verify no numbered mandate survives; validate --strict.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
