@@ -4,6 +4,9 @@ description: "Code-facing README for .opencode/skills/sk-code/code-opencode/asse
 trigger_phrases:
   - "sk-code assets/scripts"
   - "code README"
+  - "opencode script maintenance"
+importance_tier: normal
+contextType: implementation
 version: 1.0.0.8
 ---
 
@@ -103,7 +106,7 @@ Expected output: Findings recorded in the current refinement and release-alignme
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 8. RELATED RESOURCES
 
 | Document | Purpose |
 |---|---|

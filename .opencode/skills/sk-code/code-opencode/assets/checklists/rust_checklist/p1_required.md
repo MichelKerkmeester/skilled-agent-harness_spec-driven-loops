@@ -1,6 +1,10 @@
 ---
 title: P1 — Required
 description: Quality validation checklist for Rust interop code in the OpenCode development environment. — P1 — Required.
+trigger_phrases:
+  - "rust p1 required checks"
+  - "rust boundary dto review"
+  - "rust interop quality gate"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,21 @@ version: 1.0.0.0
 
 # P1 — Required
 
-## 3. P1 - REQUIRED
+Required Rust interop checks for boundary contracts, compatibility, deterministic behavior, and release quality.
+
+## 1. OVERVIEW
+
+### Purpose
+
+This split checklist defines the required Rust quality checks that must pass or receive explicit approval to defer.
+
+### Usage
+
+Apply this file after both P0 Rust checklist files and record evidence for every applicable check.
+
+---
+
+## 2. P1 - REQUIRED
 
 These must be addressed or receive explicit approval to defer.
 
@@ -325,4 +343,3 @@ Do not add `cxx` merely to bridge TypeScript and Rust. napi-rs, WASM/WASI, or a 
 Use wrapping only when modulo arithmetic is the named algorithm. Use saturation only when clamping is the TypeScript contract.
 
 ---
-

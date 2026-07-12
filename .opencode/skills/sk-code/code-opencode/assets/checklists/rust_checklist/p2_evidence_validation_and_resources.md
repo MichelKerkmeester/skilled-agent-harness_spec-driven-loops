@@ -1,6 +1,10 @@
 ---
 title: P2, Review Evidence, Validation Commands & Resources
 description: Quality validation checklist for Rust interop code in the OpenCode development environment. — P2, Review Evidence, Validation Commands & Resources.
+trigger_phrases:
+  - "rust p2 review evidence"
+  - "rust validation commands"
+  - "rust review resources"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -8,7 +12,21 @@ version: 1.0.0.0
 
 # P2, Review Evidence, Validation Commands & Resources
 
-## 4. P2 - RECOMMENDED
+Recommended Rust checks, review evidence, validation commands, and related resources for completing an interop review.
+
+## 1. OVERVIEW
+
+### Purpose
+
+This split checklist closes the Rust review with recommended checks, an evidence template, executable validation commands, and resource links.
+
+### Usage
+
+Apply this file after the P1 checklist, record review evidence, run the applicable commands, and consult the related resources as needed.
+
+---
+
+## 2. P2 - RECOMMENDED
 
 These improve quality but can be deferred with justification.
 
@@ -102,7 +120,7 @@ Use `twiggy` before WASM allocator or size-specific optimization changes. Parall
 
 ---
 
-## 5. REVIEW EVIDENCE TEMPLATE
+## 3. REVIEW EVIDENCE TEMPLATE
 
 For formal findings-first review output, use `sk-code`'s code-review mode as the baseline and treat this file as Rust surface evidence.
 
@@ -135,7 +153,7 @@ For formal findings-first review output, use `sk-code`'s code-review mode as the
 
 ---
 
-## 6. VALIDATION COMMANDS
+## 4. VALIDATION COMMANDS
 
 ```bash
 # Verify formatting
@@ -210,7 +228,7 @@ Run repository-specific native platform, WASI target, sidecar, package clean-ins
 
 ---
 
-## 7. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Checklists
 - [universal_checklist.md](../universal_checklist.md) - Language-agnostic checks

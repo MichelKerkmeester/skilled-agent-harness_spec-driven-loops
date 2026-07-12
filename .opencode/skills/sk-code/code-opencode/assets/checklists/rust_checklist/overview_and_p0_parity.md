@@ -25,6 +25,10 @@ Specific quality checks for Rust files in the OpenCode development environment. 
 
 This checklist treats the TypeScript implementation as the compatibility oracle. Semantic equivalence is insufficient where Rust output crosses an existing JavaScript boundary: serialized bytes, six-decimal numeric behavior, sort order, deterministic identifiers, DTO declarations, and error behavior must match the established TypeScript contract exactly.
 
+### Usage
+
+Apply this first split checklist with the universal checklist, then continue through the remaining Rust checklist files in order.
+
 ### Scope
 
 Apply this checklist to:
@@ -293,4 +297,3 @@ Struct field declaration order and `serde` attributes are contract-relevant. A g
 **Evidence**: List every shipped boundary and platform target with its artifact-level replay command and clean byte comparison.
 
 Core-only parity is insufficient. Packaging, adapter conversion, serializer configuration, and runtime-specific error handling can alter observable output.
-

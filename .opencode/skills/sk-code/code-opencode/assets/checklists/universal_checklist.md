@@ -23,6 +23,10 @@ Language-agnostic quality checks that apply to all code files in the OpenCode de
 
 Provides baseline quality requirements that apply across all languages (JavaScript, TypeScript, Python, Shell, Config). Use this checklist alongside language-specific checklists.
 
+### Usage
+
+Run this checklist for every code change before applying the relevant language-specific checklist and validation commands.
+
 ### Priority Levels
 
 | Level | Meaning | Enforcement |

@@ -23,6 +23,10 @@ Quality validation checklist for TypeScript code in the OpenCode development env
 
 Specific quality checks for TypeScript files. Use alongside the [universal_checklist.md](./universal_checklist.md) for complete validation.
 
+### Usage
+
+Apply these checks to TypeScript changes after completing the universal checklist, then use the priority levels below to determine which findings block completion.
+
 ### Priority Levels
 
 | Level | Meaning       | Enforcement                        |

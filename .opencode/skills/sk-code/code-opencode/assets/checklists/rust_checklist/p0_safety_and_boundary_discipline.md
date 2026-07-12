@@ -1,12 +1,32 @@
 ---
 title: P0 — Safety & Boundary Discipline
 description: Quality validation checklist for Rust interop code in the OpenCode development environment. — P0 — Safety & Boundary Discipline.
+trigger_phrases:
+  - "rust safety boundary discipline"
+  - "rust interop panic safety"
+  - "rust adapter boundary review"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
 ---
 
 # P0 — Safety & Boundary Discipline
+
+Hard-blocking Rust safety and boundary checks for JavaScript-facing interop code.
+
+## 1. OVERVIEW
+
+### Purpose
+
+This split checklist protects DTO, error, panic, unsafe-code, adapter, and golden-fixture boundaries in Rust interop implementations.
+
+### Usage
+
+Apply this file after the Rust parity P0 checklist and resolve every item before proceeding to P1 checks.
+
+---
+
+## 2. P0 - SAFETY & BOUNDARY DISCIPLINE
 
 ### DTO and ABI Parity
 
@@ -187,4 +207,3 @@ Any changed golden requires deliberate oracle regeneration and review. A Rust im
 Comments explain the parity, ownership, safety, or interop contract that makes a choice necessary. They do not narrate obvious mechanics or include temporary planning identifiers.
 
 ---
-
