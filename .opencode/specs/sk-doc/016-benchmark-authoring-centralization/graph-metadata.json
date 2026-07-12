@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Make sk-doc/create-benchmark the single home for benchmark-DOCUMENT templates and authoring standards across all repo benchmark families. Author skill-benchmark storage/README templates and model-benchmark fixture/profile templates plus guides, add a complete family-disambiguation table (Lane A/D marked code-owned), and rewire deep-improvement consumer docs to point at create-benchmark for authoring while run/scoring logic stays in the deep-loop lanes. The Lane C report .md stays renderer-owned.",
     "created_at": "2026-07-12T10:58:43.605Z",
-    "last_save_at": "2026-07-12T11:02:08.784Z",
+    "last_save_at": "2026-07-12T11:38:54.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a39b8b54ec2abe44ba38b696d9fbdd851e2fb86fd04dd36c3cec24df0ac6ec2",
+    "source_fingerprint": "sha256:2c20bcb626d52ebbb5882e0aec846806bda1a76b1a0dd935706cacb742036611",
     "source_doc_hashes": {
-      "spec.md": "409dac8f536104df4dfa045403d14b0439effd7c8443de8694d49a184be50926",
-      "plan.md": "070d0d38b9727d2f6df2116d7d390d95875767b502b83fb56ccd5bf0361e62ec",
-      "tasks.md": "9b047c7d59039d42a00da85777a0208e001dd3130b2af795ce31f56f79d68162",
-      "checklist.md": "27dd8e767db35b1734a3f4e2cad15db883ee0551a122034d59d7d1ff3496924b",
-      "decision-record.md": "a0e7f0a2f61c4567a4b4a956f7d7dfd51ee7d31a46bce89d9d415ffbe16cd348",
-      "implementation-summary.md": "24806c27311bc00c4f2813f5945f021828169c33761cfdf5d8d0ff9eb8987ae2"
+      "spec.md": "a80820a8bb8293980a49f5a967c3bf4bd3bad5019a8119fae21e22b0229dba42",
+      "plan.md": "1bc303e4d4c3a00226a1cc641e1546a3deed2ef97ed740be14abe04739e67966",
+      "tasks.md": "be65a06461782483df9357814e110f03b884258734c0069435eab66c03c2186b",
+      "checklist.md": "20eb024c13e52d7e0f83a274628eee5cc5837cc06bd02ae70d804790df91ffb3",
+      "decision-record.md": "c83fa4e2ef512279ca8a5566809fdc17f0ee06663b54cedf4a28fe876388066b",
+      "implementation-summary.md": "b7f3c4da42f7fbda4862e8d34954f44f4ee4086a95a03f36c45bb03994c11096"
     },
     "last_active_child_id": null,
     "last_active_at": null

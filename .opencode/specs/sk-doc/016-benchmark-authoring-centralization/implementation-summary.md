@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/016-benchmark-authoring-centralization"
-    last_updated_at: "2026-07-12T11:02:08Z"
+    last_updated_at: "2026-07-12T11:38:53Z"
     last_updated_by: "claude-code"
     recent_action: "Templates + integration + rewire complete and independently verified"
     next_safe_action: "Terminal gates + push the goal branch"
@@ -91,6 +91,14 @@ Recorded as ADR-001..004 in `./decision-record.md`: templates+standards centrali
 
 ---
 
+## Deep Review Outcome (GPT-5.6-sol-fast, 10 iterations, 2026-07-12)
+Verdict CONDITIONAL (no P0/security). Adjudication:
+- **F001 (P1) — FIXED.** The model-benchmark profile template + fixture guide taught a `reviewer` mode/scorer, but the lane validator's `KNOWN_MODES` (6 sweep modes) and `KNOWN_SCORERS` (`pattern`, `5dim`) reject both. Removed `reviewer` from the scorer enum and the mode list, listed the real `KNOWN_MODES`, and marked reviewer-prompt regression as a separate gated lane family not validated by `profile-validator.cjs`.
+- **F004 (P2) — FIXED.** The code-task fixture scaffold shipped 2 visible-test rows against a stated "at least 5" minimum; expanded the scaffold to 5 visible rows.
+- **F002 (P1) — PRE-EXISTING, not this packet's regression.** `reviewer_regression.json` points `fixtureDir` at the old hyphenated `benchmark-fixtures` (the concurrent underscore-migration renamed the dir to `benchmark_fixtures` without updating this profile); the file is outside this branch's changed set. Flagged for the deep-improvement owners.
+- **F003 (P1) — REFUTED (false positive).** The rewire touched 8 consumer docs (verified: all 8 carry a create-benchmark pointer) = 6 under `system-deep-loop` + 2 hub benchmark READMEs (`sk-code`, `sk-design`). The reviewer's repo search was scoped to `system-deep-loop` and missed the 2 hub READMEs; the count of 8 is correct.
+
 ## Post-Completion Follow-Up
 - Merge `wt/0033-benchmark-authoring` into the base branch after review.
+- Flag for deep-improvement owners: fix `reviewer_regression.json` fixtureDir (`benchmark-fixtures` → `benchmark_fixtures`) and reconcile its `mode: reviewer` against the lane validator (pre-existing, F002).
 - Optional: wire `package_skill.py --check` into CI (shared with 015's follow-up) so packet conformance cannot silently regress.

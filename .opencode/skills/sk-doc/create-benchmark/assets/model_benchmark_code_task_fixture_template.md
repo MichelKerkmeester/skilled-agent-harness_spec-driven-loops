@@ -74,7 +74,10 @@ accepts), because raw computational difficulty saturates for frontier models. Bi
   "scope": "{{SCOPE_CONSTRAINTS}}",
   "tests": [
     { "name": "{{VISIBLE_CASE_1_NAME}}", "args": [{{VISIBLE_CASE_1_ARGS}}], "expect": {{VISIBLE_CASE_1_EXPECT}} },
-    { "name": "{{VISIBLE_CASE_2_NAME}}", "args": [{{VISIBLE_CASE_2_ARGS}}], "expect": {{VISIBLE_CASE_2_EXPECT}} }
+    { "name": "{{VISIBLE_CASE_2_NAME}}", "args": [{{VISIBLE_CASE_2_ARGS}}], "expect": {{VISIBLE_CASE_2_EXPECT}} },
+    { "name": "{{VISIBLE_CASE_3_NAME}}", "args": [{{VISIBLE_CASE_3_ARGS}}], "expect": {{VISIBLE_CASE_3_EXPECT}} },
+    { "name": "{{VISIBLE_CASE_4_NAME}}", "args": [{{VISIBLE_CASE_4_ARGS}}], "expect": {{VISIBLE_CASE_4_EXPECT}} },
+    { "name": "{{VISIBLE_CASE_5_NAME}}", "args": [{{VISIBLE_CASE_5_ARGS}}], "expect": {{VISIBLE_CASE_5_EXPECT}} }
   ],
   "hidden_tests": [
     { "name": "{{HIDDEN_CASE_1_NAME}}", "args": [{{HIDDEN_CASE_1_ARGS}}], "expect": {{HIDDEN_CASE_1_EXPECT}} },

@@ -185,7 +185,7 @@ sweep profiles — the matrix of frameworks and models to run.
 | `outputsDir` | All | Where run outputs land; carries the `{spec_folder}` run-time token |
 | `metrics` | All | Metric columns to report |
 | `benchmark` | All | Gate thresholds (aggregate score, per-fixture floor, repeatability tolerance) |
-| `mode` | Sweep | `framework-bakeoff`, `model-vs-model`, or `reviewer` |
+| `mode` | Sweep | one of the validated `KNOWN_MODES`: `framework-bakeoff`, `model-vs-model`, `reasoning-ablation`, `prompt-vs-prompt`, `regression`, `capability-profile` |
 | `fixtureSelection` | Sweep | Explicit `include` plus tier `filters` |
 | `frameworks` | Sweep | Prompt frameworks to run (for example `rcaf`, `race`, `costar`) |
 | `models` | Sweep | Model cells, each naming an executor, a model identity, and a variant |
@@ -201,7 +201,9 @@ Profile shapes vary by intent:
   over the code-task fixtures.
 - **`model-vs-model`** (and capability sweeps): holds one framework fixed and sweeps
   several model cells. Groups the leaderboard by model.
-- **`reviewer`**: scores the reviewer-prompt fixtures through the reviewer scorer.
+- **`reasoning-ablation`**, **`prompt-vs-prompt`**, **`regression`**, **`capability-profile`**: the remaining validated `KNOWN_MODES`; see `MODES.md` for each swept axis.
+
+> **Reviewer-prompt regression is a SEPARATE gated lane family, not a standard profile mode.** It is not one of the validated `KNOWN_MODES` and its profiles are not accepted by `profile-validator.cjs`. Author it through the lane (`scripts/model-benchmark/`), not with this fixture/profile scaffold. This guide covers the standard model-benchmark fixtures and profiles only.
 
 The `benchmark` gate keys and `thresholdDelta` are inputs to the lane's gate
 semantics; their meaning (what counts as a pass, how repeatability tolerance is read)

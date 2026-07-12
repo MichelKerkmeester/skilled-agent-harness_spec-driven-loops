@@ -129,8 +129,11 @@ Field guidance (the enums and hard rules are authoritative in MODES.md and profi
                         for model-vs-model.
   variants            : OPTIONAL top-level array (e.g. ["high","medium","low"]) — the swept axis ONLY for reasoning-ablation.
                         When present, drop per-model "variant" and give models exactly one cell. OMIT this key for every other mode.
-  scoring.scorer      : "5dim" (opt-in five-dimension scorer) | "pattern" (default heading/pattern matcher) | "reviewer"
-                        (reviewer-prompt regression, gated). OMIT the whole scoring block to use the legacy default pattern path.
+  scoring.scorer      : "5dim" (opt-in five-dimension scorer) | "pattern" (default heading/pattern matcher) — the ONLY two
+                        scorers profile-validator.cjs accepts (KNOWN_SCORERS). OMIT the whole scoring block for the legacy
+                        default pattern path. NOTE: the reviewer-prompt regression is a SEPARATE gated lane family, not a
+                        standard profile scorer or one of the validated modes (KNOWN_MODES); it is not validated by
+                        profile-validator.cjs — author it through the lane, not this profile scaffold.
   correctnessGate     : threshold in [0,1] (default 1.0). Correctness is a GATE, not a rank — a saturated fixture never crowns a winner.
   dimensions          : five weighted dims required by the 5dim scorer; the weights MUST sum to exactly 1.0. Canonical split is
                         D1 0.25, D2 0.30, D3 0.20, D4 0.15, D5 0.10. OMIT this block when scorer is not 5dim.
@@ -139,7 +142,7 @@ Field guidance (the enums and hard rules are authoritative in MODES.md and profi
   reporting.leaderboard / history : booleans. leaderboard:false for regression (a delta, not a ranking); history:true keeps snapshots.
   outputsDir          : where reports land. Use the "{spec_folder}" (and/or "{run_label}") token — the runtime expands it at
                         dispatch time. Never hard-code a spec-folder path here.
-  metrics             : the metric ids reported (e.g. score | delta | pass_rate; reviewer profiles use correctness | verdict_match | finding_match).
+  metrics             : the metric ids reported (e.g. score | delta | pass_rate).
   thresholdDelta      : OPTIONAL score-fraction below which a delta is a tie, not an improvement.
   benchmark           : the promotion gate. requiredAggregateScore and minimumFixtureScore are 0–100 score thresholds;
                         repeatabilityTolerance is the noise floor (0 asserts perfectly repeatable scoring). An optional
