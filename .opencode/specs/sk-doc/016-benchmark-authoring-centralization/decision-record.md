@@ -8,7 +8,7 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "sk-doc/016-benchmark-authoring-centralization"
-    last_updated_at: "2026-07-12T11:02:08Z"
+    last_updated_at: "2026-07-12T11:38:53Z"
     last_updated_by: "claude-code"
     recent_action: "ADRs recorded for the centralization boundaries"
     next_safe_action: "Implement per ADRs; run terminal gates"
