@@ -21,7 +21,7 @@ Scenario-ready entries for Packet 1's motion.dev and animation regression playbo
 
 ### Purpose
 
-These entries can be lifted into `.opencode/skills/sk-code/manual_testing_playbook/motion-dev-and-animation-regression/` or used standalone. They expand Packet 1's MR-001 through MR-004 scenarios with API context from `references/animation/`.
+These entries can be lifted into `.opencode/skills/sk-code/manual_testing_playbook/motion_dev_and_animation_regression/` or used standalone. They expand Packet 1's MR-001 through MR-004 scenarios with API context from `references/animation/`.
 
 ### Usage
 
@@ -138,7 +138,7 @@ Expected response shape: name the exact snippet asset, include the relevant Moti
 ## 4. CROSS-LINKS
 
 - Packet 1 root playbook: `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md`
-- Packet 1 MR category: `.opencode/skills/sk-code/manual_testing_playbook/motion-dev-and-animation-regression/`
+- Packet 1 MR category: `.opencode/skills/sk-code/manual_testing_playbook/motion_dev_and_animation_regression/`
 - Motion quick start: `references/animation/quick_start.md`
 - Motion integration patterns: `references/animation/integration_patterns.md`
 - Motion performance guidance: `references/animation/performance_and_pitfalls.md`

@@ -25,7 +25,7 @@ description: "Findings rubric and report templates for the system-spec-kit stres
 
 ## 1. OVERVIEW
 
-`templates/stress_test/` owns the reusable report and rubric files copied during a stress-test cycle. The templates support the manual playbook in `manual_testing_playbook/stress-testing/`.
+`templates/stress_test/` owns the reusable report and rubric files copied during a stress-test cycle. The templates support the manual playbook in `manual_testing_playbook/stress_testing/`.
 
 Use this pack when creating packet-local stress-test evidence. The template files define the report shape, rubric schema and JSON starter data, while the manual playbook owns execution steps.
 
@@ -65,7 +65,7 @@ stress_test/
 | Boundary | Rule |
 |---|---|
 | Ownership | Store stress-test report templates here. |
-| Execution | Keep operator steps in `manual_testing_playbook/stress-testing/run-stress-cycle.md`. |
+| Execution | Keep operator steps in `manual_testing_playbook/stress_testing/run_stress_cycle.md`. |
 | Scope | Do not use this pack for unrelated review or findings reports. |
 | Packet output | Copy templates into the active packet before adding run-specific results. |
 
@@ -89,5 +89,5 @@ Expected result: validation exits `0`, reports no HVR violations and DQI is `goo
 
 ## 8. RELATED
 
-- [Stress testing manual playbook](../../manual_testing_playbook/stress-testing/README.md)
-- [Run stress cycle](../../manual_testing_playbook/stress-testing/run-stress-cycle.md)
+- [Stress testing manual playbook](../../manual_testing_playbook/stress_testing/README.md)
+- [Run stress cycle](../../manual_testing_playbook/stress_testing/run_stress_cycle.md)

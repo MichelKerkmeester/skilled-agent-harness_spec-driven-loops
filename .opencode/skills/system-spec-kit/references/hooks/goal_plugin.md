@@ -116,6 +116,6 @@ For documentation-only changes under `system-spec-kit`, also run the relevant `s
 ## 8. Related References
 
 - `references/config/hook_system.md` - cross-runtime hook and plugin transport map.
-- `feature_catalog/ux-hooks/goal-opencode-plugin.md` - current feature catalog entry.
-- `manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` - operator validation scenario.
+- `feature_catalog/ux_hooks/goal_opencode_plugin.md` - current feature catalog entry.
+- `manual_testing_playbook/ux_hooks/goal_opencode_plugin.md` - operator validation scenario.
 - `.opencode/specs/deep-loops/032-goal-opencode-plugin/` - implementation packet for `/goal`.

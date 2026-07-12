@@ -328,7 +328,7 @@ embedder_list()
 
 # 4. Run cat-24/409 with the rescue layer on (default).
 #    The 10-query fixture is at:
-#    manual_testing_playbook/local-llm-query-intelligence/409-fixture.json
+#    manual_testing_playbook/local_llm_query_intelligence/409_fixture.json
 #    Each query goes through memory_search with limit=3 includeTrace=true bypassCache=true.
 ```
 

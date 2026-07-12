@@ -202,7 +202,7 @@ A: sk-prompt owns the framework definitions, the DEPTH methodology and the CLEAR
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/prompt-improve/README.md --type readme` reports zero issues |
 | Manual testing playbook | Scenarios under `manual_testing_playbook/` cover mode detection, smart routing, the DEPTH-CLEAR loop, CLEAR scoring, framework selection, escalation tiers and format modes |
-| Agent contract | The `@prompt-improver` output block contract lives in `SKILL.md` Section 7. Validate with the playbook scenarios under `manual_testing_playbook/escalation-tiers/` |
+| Agent contract | The `@prompt-improver` output block contract lives in `SKILL.md` Section 7. Validate with the playbook scenarios under `manual_testing_playbook/escalation_tiers/` |
 
 ---
 

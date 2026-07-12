@@ -51,7 +51,7 @@ Router mode (deterministic, no network):
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-code \
-  --outputs-dir=.opencode/skills/sk-code/benchmark/router-final \
+  --outputs-dir=.opencode/skills/sk-code/benchmark/router_final \
   --trace-mode=router
 ```
 
@@ -61,7 +61,7 @@ Live mode (dispatches through cli-opencode, needs a configured provider):
 SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high \
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-code \
-  --outputs-dir=.opencode/skills/sk-code/benchmark/live-final \
+  --outputs-dir=.opencode/skills/sk-code/benchmark/live_final \
   --trace-mode=live --advisor-mode=python \
   --scenarios=SD-001,LS-001,CS-001,RD-002,MR-001
 ```

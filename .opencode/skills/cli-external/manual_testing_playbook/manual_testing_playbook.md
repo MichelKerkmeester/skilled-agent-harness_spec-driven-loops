@@ -26,9 +26,9 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (th
 
 | ID | File | Expected `workflowMode` |
 |----|------|--------------------------|
-| CE-001 | `hub-routing/opencode-full-runtime-dispatch.md` | `cli-opencode` (opencode run / full-runtime dispatch signal) |
-| CE-002 | `hub-routing/claude-code-second-opinion.md` | `cli-claude-code` (Anthropic-backed / deep-reasoning signal) |
-| CE-003 | `hub-routing/ambiguous-defer.md` | `defer` (no strong executor signal — router asks, does not silently default) |
+| CE-001 | `hub_routing/opencode_full_runtime_dispatch.md` | `cli-opencode` (opencode run / full-runtime dispatch signal) |
+| CE-002 | `hub_routing/claude_code_second_opinion.md` | `cli-claude-code` (Anthropic-backed / deep-reasoning signal) |
+| CE-003 | `hub_routing/ambiguous_defer.md` | `defer` (no strong executor signal — router asks, does not silently default) |
 
 A separate, non-scored functional check: the executor-delegation scorer (`system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts`) must resolve a direct-alias or orchestrator-cue delegation prompt to the executor-kind string `cli-opencode` or `cli-claude-code`, never to the non-executor hub identity `cli-external` — verified by `tests/scorer/executor-delegation.vitest.ts` and `tests/parity/fixtures/executor-delegation-cases.json`, not part of this scored corpus.
 
@@ -38,7 +38,7 @@ Unscored, directly-run manual scenarios validating shared `cli-external` plugin/
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| cli-dispatch-audit-trail | CLI Dispatch Audit Trail | [cli-dispatch-audit-trail.md](./plugins-and-hooks/cli-dispatch-audit-trail.md) |
+| cli-dispatch-audit-trail | CLI Dispatch Audit Trail | [cli-dispatch-audit-trail.md](plugins_and_hooks/cli_dispatch_audit_trail.md) |
 
 ---
 

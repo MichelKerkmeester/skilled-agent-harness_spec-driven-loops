@@ -192,7 +192,7 @@ DECISION intent MUST name:
 
 ## 6. OPENCODE MAP
 
-OPENCODE loads from `code-opencode/references/` and `assets/code-opencode/`.
+OPENCODE loads from `code-opencode/references/` and `assets/code_opencode/`.
 
 ### Always-load (every OPENCODE invocation)
 

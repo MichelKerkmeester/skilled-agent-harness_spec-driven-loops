@@ -125,7 +125,7 @@ Delete it. Git history preserves it. Commented code is cognitive load with no pa
 
 Never name a specific instance of an ephemeral tracking artifact in a comment. Keep the durable WHY; drop the perishable label. This is the canonical rule for both the OPENCODE and WEBFLOW surfaces — surface guides point here rather than restating it.
 
-An *ephemeral artifact* is anything that gets renamed, renumbered, archived, or deleted on its own schedule while the code lives on: a spec folder or its number (`specs/042-foo`, `Spec 031`), a packet / phase / task / checklist / requirement number (`Packet 117`, `Phase 005`, `T043`, `CHK-160`, `REQ-005`), a feature-catalog entry (`feature_catalog/scorer-fusion/...`), an ADR id (`ADR-004`), or a ticket / issue id (`#1234`, `CU-8abc`). When the artifact moves, the comment becomes a dangling pointer that sends the next reader chasing a dead reference — worse than no comment.
+An *ephemeral artifact* is anything that gets renamed, renumbered, archived, or deleted on its own schedule while the code lives on: a spec folder or its number (`specs/042-foo`, `Spec 031`), a packet / phase / task / checklist / requirement number (`Packet 117`, `Phase 005`, `T043`, `CHK-160`, `REQ-005`), a feature-catalog entry (`feature_catalog/scorer_fusion/...`), an ADR id (`ADR-004`), or a ticket / issue id (`#1234`, `CU-8abc`). When the artifact moves, the comment becomes a dangling pointer that sends the next reader chasing a dead reference — worse than no comment.
 
 | Reference in a comment | Allowed? | Why |
 |------------------------|----------|-----|

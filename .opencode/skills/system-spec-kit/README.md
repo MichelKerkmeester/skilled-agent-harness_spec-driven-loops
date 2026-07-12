@@ -610,7 +610,7 @@ Template changes flow through the manifest source, Level contract resolver and i
 | [`scripts/spec/validate.sh`](./scripts/spec/validate.sh)                     | Run 38-rule validation on any spec folder                                                            |
 | `scripts/dist/memory/generate-context.js`                                    | Primary workflow for updating packet continuity state from structured JSON                            |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Complete catalog of implemented features                                    |
-| [`feature_catalog/lifecycle/speckit-autopilot-lifecycle.md`](./feature_catalog/lifecycle/speckit-autopilot-lifecycle.md) | Branch-preserved unattended Speckit lifecycle for plan, implement and complete |
+| [`feature_catalog/lifecycle/speckit_autopilot_lifecycle.md`](./feature_catalog/lifecycle/speckit_autopilot_lifecycle.md) | Branch-preserved unattended Speckit lifecycle for plan, implement and complete |
 
 ### How the Pieces Connect
 

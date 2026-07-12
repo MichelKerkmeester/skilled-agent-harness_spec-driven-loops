@@ -146,7 +146,7 @@ Implement `persist-artifacts.cjs` as a parse-and-write helper under `system-spec
 ## Cross-References
 
 - `.opencode/agents/ai-council.md` §8
-- `.opencode/skills/system-spec-kit/references/ai-council/output-schema.md`
+- `.opencode/skills/system-spec-kit/references/ai_council/output-schema.md`
 
 ## Dropped Alternatives
 

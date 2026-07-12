@@ -23,24 +23,24 @@ Canonical source artifacts:
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/analysis/`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/evaluation/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/bug-fixes-and-data-integrity/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/evaluation-and-measurement/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/graph-signal-activation/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/scoring-and-calibration/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/query-intelligence/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/retrieval-enhancements/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/bug_fixes_and_data_integrity/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/evaluation_and_measurement/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/graph_signal_activation/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/scoring_and_calibration/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/query_intelligence/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/memory_quality_and_indexing/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/pipeline_architecture/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/retrieval_enhancements/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling_and_scripts/`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/governance/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/feature-flag-reference/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/remediation-revalidation/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/implement-and-remove-deprecated-features/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/context-preservation/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/` — local-LLM memory substrate (query intelligence + causal graph + drift detection + cross-AI handoff + concurrent multi-AI safety)
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/` — live-validation scenarios for the system-spec-kit-owned plugins/hooks (completion sentinel, spec mutation gate, speckit completion exposer, spec-memory, dist freshness, session cleanup). Scenarios for plugins whose core lives elsewhere are hosted by their owning skill: cli-external (dispatch audit), system-code-graph (freshness guard, code-graph plugin), sk-code (post-edit quality), mcp-code-mode (MCP route guard)
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/ux_hooks/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/feature_flag_reference/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/remediation_revalidation/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/implement_and_remove_deprecated_features/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/context_preservation/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor_commands/`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local_llm_query_intelligence/` — local-LLM memory substrate (query intelligence + causal graph + drift detection + cross-AI handoff + concurrent multi-AI safety)
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins_and_hooks/` — live-validation scenarios for the system-spec-kit-owned plugins/hooks (completion sentinel, spec mutation gate, speckit completion exposer, spec-memory, dist freshness, session cleanup). Scenarios for plugins whose core lives elsewhere are hosted by their owning skill: cli-external (dispatch audit), system-code-graph (freshness guard, code-graph plugin), sk-code (post-edit quality), mcp-code-mode (MCP route guard)
 
 ---
 
@@ -103,7 +103,7 @@ These manual tests should mimic real user behavior, not just isolated command ex
 ### Inputs Required
 
 1. `manual_testing_playbook.md`
-2. Referenced per-feature files under `manual_testing_playbook/NN--category-name/`
+2. Referenced per-feature files under `manual_testing_playbook/NN__category_name/`
 3. Scenario execution evidence (logs, tool outputs, artifacts)
 4. Feature-to-scenario coverage map
 5. Triage notes for all non-pass outcomes
@@ -265,8 +265,8 @@ Prompt: `Validate memory_context recovery via /speckit:resume specs/<target-spec
 Relevant bounded context returned; auto-resume context stays within budget
 
 #### Test Execution
-> **Feature File:** [EX-001](retrieval/unified-context-retrieval-memory-context.md)
-> **Catalog:** [retrieval/unified-context-retrieval-memorycontext.md](../feature_catalog/retrieval/unified-context-retrieval-memorycontext.md)
+> **Feature File:** [EX-001](retrieval/unified_context_retrieval_memory_context.md)
+> **Catalog:** [retrieval/unified_context_retrieval_memorycontext.md](../feature_catalog/retrieval/unified_context_retrieval_memorycontext.md)
 
 ### EX-002 | Semantic and lexical search (memory_search)
 
@@ -283,8 +283,8 @@ Additional audit scenario: `Run memory_search against a fixture set that contain
 Expired rows excluded from multi-concept search; constitutional injection respects caller limit; malformed embeddings fail with clear validation errors
 
 #### Test Execution
-> **Feature File:** [EX-002](retrieval/semantic-and-lexical-search-memory-search.md)
-> **Catalog:** [retrieval/semantic-and-lexical-search-memorysearch.md](../feature_catalog/retrieval/semantic-and-lexical-search-memorysearch.md)
+> **Feature File:** [EX-002](retrieval/semantic_and_lexical_search_memory_search.md)
+> **Catalog:** [retrieval/semantic_and_lexical_search_memorysearch.md](../feature_catalog/retrieval/semantic_and_lexical_search_memorysearch.md)
 
 ### EX-003 | Trigger phrase matching (memory_match_triggers)
 
@@ -297,8 +297,8 @@ Prompt: `Validate memory_match_triggers with cognitive enrichment and confirm tr
 Fast in-scope trigger hits + cognitive enrichment; out-of-scope matches filtered
 
 #### Test Execution
-> **Feature File:** [EX-003](retrieval/trigger-phrase-matching-memory-match-triggers.md)
-> **Catalog:** [retrieval/trigger-phrase-matching-memorymatchtriggers.md](../feature_catalog/retrieval/trigger-phrase-matching-memorymatchtriggers.md)
+> **Feature File:** [EX-003](retrieval/trigger_phrase_matching_memory_match_triggers.md)
+> **Catalog:** [retrieval/trigger_phrase_matching_memorymatchtriggers.md](../feature_catalog/retrieval/trigger_phrase_matching_memorymatchtriggers.md)
 
 ### EX-004 | Hybrid search pipeline
 
@@ -311,8 +311,8 @@ Prompt: `Validate hybrid search trace behavior and confirm fusion, score aliases
 Non-empty result set with trace evidence of multi-channel contribution; aligned boosted scores across the exposed score aliases; `useGraph:false` suppresses both graph and degree contributions even during fallback; lexical fallback only uses still-allowed lexical channels
 
 #### Test Execution
-> **Feature File:** [EX-004](retrieval/hybrid-search-pipeline.md)
-> **Catalog:** [retrieval/hybrid-search-pipeline.md](../feature_catalog/retrieval/hybrid-search-pipeline.md)
+> **Feature File:** [EX-004](retrieval/hybrid_search_pipeline.md)
+> **Catalog:** [retrieval/hybrid_search_pipeline.md](../feature_catalog/retrieval/hybrid_search_pipeline.md)
 
 ### EX-005 | 4-stage pipeline architecture
 
@@ -325,8 +325,8 @@ Prompt: `Validate the 4-stage memory_search pipeline and confirm invariant-free 
 Deep-mode reformulation and HyDE candidates pass the same scope, tier, contextType and qualityThreshold filters before merge; constitutional injection obeys shouldApplyScopeFiltering; chunk reassembly accepts both snake_case and camelCase chunk metadata
 
 #### Test Execution
-> **Feature File:** [EX-005](retrieval/4-stage-pipeline-architecture.md)
-> **Catalog:** [retrieval/4-stage-pipeline-architecture.md](../feature_catalog/retrieval/4-stage-pipeline-architecture.md)
+> **Feature File:** [EX-005](retrieval/4_stage_pipeline_architecture.md)
+> **Catalog:** [retrieval/4_stage_pipeline_architecture.md](../feature_catalog/retrieval/4_stage_pipeline_architecture.md)
 
 ### EX-006 | Memory indexing (memory_save)
 
@@ -339,8 +339,8 @@ Prompt: `As a mutation validation operator, validate Memory indexing (memory_sav
 Correct route or safe refusal reported; spec-doc continuity updated for merged saves; searchable result appears; no template-contract or insufficiency rejection
 
 #### Test Execution
-> **Feature File:** [EX-006](mutation/memory-indexing-memory-save.md)
-> **Catalog:** [mutation/memory-indexing-memorysave.md](../feature_catalog/mutation/memory-indexing-memorysave.md)
+> **Feature File:** [EX-006](mutation/memory_indexing_memory_save.md)
+> **Catalog:** [mutation/memory_indexing_memorysave.md](../feature_catalog/mutation/memory_indexing_memorysave.md)
 
 ### EX-007 | Memory metadata update (memory_update)
 
@@ -357,8 +357,8 @@ Additional audit scenario: `Update a spec-doc record with new title, trigger phr
 Pending-until-written embedding status; no false-success state; post-update cached search refreshes immediately
 
 #### Test Execution
-> **Feature File:** [EX-007](mutation/memory-metadata-update-memory-update.md)
-> **Catalog:** [mutation/memory-metadata-update-memoryupdate.md](../feature_catalog/mutation/memory-metadata-update-memoryupdate.md)
+> **Feature File:** [EX-007](mutation/memory_metadata_update_memory_update.md)
+> **Catalog:** [mutation/memory_metadata_update_memoryupdate.md](../feature_catalog/mutation/memory_metadata_update_memoryupdate.md)
 
 ### EX-008 | Single and folder delete (memory_delete)
 
@@ -371,8 +371,8 @@ Prompt: `As a mutation validation operator, validate Single and folder delete (m
 Deleted item absent from retrieval
 
 #### Test Execution
-> **Feature File:** [EX-008](mutation/single-and-folder-delete-memory-delete.md)
-> **Catalog:** [mutation/single-and-folder-delete-memorydelete.md](../feature_catalog/mutation/single-and-folder-delete-memorydelete.md)
+> **Feature File:** [EX-008](mutation/single_and_folder_delete_memory_delete.md)
+> **Catalog:** [mutation/single_and_folder_delete_memorydelete.md](../feature_catalog/mutation/single_and_folder_delete_memorydelete.md)
 
 ### EX-009 | Tier-based bulk deletion (memory_bulk_delete)
 
@@ -385,8 +385,8 @@ Prompt: `As a mutation validation operator, validate Tier-based bulk deletion (m
 Scoped deletion count + checkpoint created
 
 #### Test Execution
-> **Feature File:** [EX-009](mutation/tier-based-bulk-deletion-memory-bulk-delete.md)
-> **Catalog:** [mutation/tier-based-bulk-deletion-memorybulkdelete.md](../feature_catalog/mutation/tier-based-bulk-deletion-memorybulkdelete.md)
+> **Feature File:** [EX-009](mutation/tier_based_bulk_deletion_memory_bulk_delete.md)
+> **Catalog:** [mutation/tier_based_bulk_deletion_memorybulkdelete.md](../feature_catalog/mutation/tier_based_bulk_deletion_memorybulkdelete.md)
 
 ### EX-010 | Validation feedback (memory_validate)
 
@@ -399,8 +399,8 @@ Prompt: `As a mutation validation operator, validate Validation feedback (memory
 Confidence/promotion metadata updates
 
 #### Test Execution
-> **Feature File:** [EX-010](mutation/validation-feedback-memory-validate.md)
-> **Catalog:** [mutation/validation-feedback-memoryvalidate.md](../feature_catalog/mutation/validation-feedback-memoryvalidate.md)
+> **Feature File:** [EX-010](mutation/validation_feedback_memory_validate.md)
+> **Catalog:** [mutation/validation_feedback_memoryvalidate.md](../feature_catalog/mutation/validation_feedback_memoryvalidate.md)
 
 ### EX-011 | Memory browser (memory_list)
 
@@ -413,8 +413,8 @@ Prompt: `Validate memory_list folder inventory and confirm paginated results and
 Paginated list and totals
 
 #### Test Execution
-> **Feature File:** [EX-011](discovery/memory-browser-memory-list.md)
-> **Catalog:** [discovery/memory-browser-memorylist.md](../feature_catalog/discovery/memory-browser-memorylist.md)
+> **Feature File:** [EX-011](discovery/memory_browser_memory_list.md)
+> **Catalog:** [discovery/memory_browser_memorylist.md](../feature_catalog/discovery/memory_browser_memorylist.md)
 
 ### EX-012 | System statistics (memory_stats)
 
@@ -431,8 +431,8 @@ Additional audit scenario: `Return memory_stats from a fixture set that includes
 Partial bucket present and included in totals
 
 #### Test Execution
-> **Feature File:** [EX-012](discovery/system-statistics-memory-stats.md)
-> **Catalog:** [discovery/system-statistics-memorystats.md](../feature_catalog/discovery/system-statistics-memorystats.md)
+> **Feature File:** [EX-012](discovery/system_statistics_memory_stats.md)
+> **Catalog:** [discovery/system_statistics_memorystats.md](../feature_catalog/discovery/system_statistics_memorystats.md)
 
 ### EX-013 | Health diagnostics (memory_health)
 
@@ -449,8 +449,8 @@ Additional contract (026 index block): `Run memory_health and confirm the respon
 index.summary is one of the documented enum values; index.indexed, index.pending and index.failed are all present as numeric fields
 
 #### Test Execution
-> **Feature File:** [EX-013](discovery/health-diagnostics-memory-health.md)
-> **Catalog:** [discovery/health-diagnostics-memoryhealth.md](../feature_catalog/discovery/health-diagnostics-memoryhealth.md)
+> **Feature File:** [EX-013](discovery/health_diagnostics_memory_health.md)
+> **Catalog:** [discovery/health_diagnostics_memoryhealth.md](../feature_catalog/discovery/health_diagnostics_memoryhealth.md)
 
 ### EX-014 | Workspace scanning and indexing (memory_index_scan)
 
@@ -467,8 +467,8 @@ Additional contract (026 self-maintaining behavior): `Run two overlapping memory
 Overlapping scan returns coalesced:true success envelope instead of E429; renamed spec folder healed by packet identity without re-embedding; complete_with_pending_vectors status present with non-zero pendingVectors when vectors are still draining; BM25/FTS rows are searchable while vectors drain (lexical-first commit confirmed)
 
 #### Test Execution
-> **Feature File:** [EX-014](maintenance/workspace-scanning-and-indexing-memory-index-scan.md)
-> **Catalog:** [maintenance/workspace-scanning-and-indexing-memoryindexscan.md](../feature_catalog/maintenance/workspace-scanning-and-indexing-memoryindexscan.md)
+> **Feature File:** [EX-014](maintenance/workspace_scanning_and_indexing_memory_index_scan.md)
+> **Catalog:** [maintenance/workspace_scanning_and_indexing_memoryindexscan.md](../feature_catalog/maintenance/workspace_scanning_and_indexing_memoryindexscan.md)
 
 ### EX-015 | Checkpoint creation (checkpoint_create)
 
@@ -481,8 +481,8 @@ Prompt: `Validate Checkpoint creation with checkpoint_create(name,specFolder), v
 New checkpoint listed
 
 #### Test Execution
-> **Feature File:** [EX-015](lifecycle/checkpoint-creation-checkpoint-create.md)
-> **Catalog:** [lifecycle/checkpoint-creation-checkpointcreate.md](../feature_catalog/lifecycle/checkpoint-creation-checkpointcreate.md)
+> **Feature File:** [EX-015](lifecycle/checkpoint_creation_checkpoint_create.md)
+> **Catalog:** [lifecycle/checkpoint_creation_checkpointcreate.md](../feature_catalog/lifecycle/checkpoint_creation_checkpointcreate.md)
 
 ### EX-016 | Checkpoint listing (checkpoint_list)
 
@@ -495,8 +495,8 @@ Prompt: `Validate Checkpoint listing with checkpoint_list(specFolder,limit), ver
 Available restore points displayed
 
 #### Test Execution
-> **Feature File:** [EX-016](lifecycle/checkpoint-listing-checkpoint-list.md)
-> **Catalog:** [lifecycle/checkpoint-listing-checkpointlist.md](../feature_catalog/lifecycle/checkpoint-listing-checkpointlist.md)
+> **Feature File:** [EX-016](lifecycle/checkpoint_listing_checkpoint_list.md)
+> **Catalog:** [lifecycle/checkpoint_listing_checkpointlist.md](../feature_catalog/lifecycle/checkpoint_listing_checkpointlist.md)
 
 ### EX-017 | Checkpoint restore (checkpoint_restore)
 
@@ -509,8 +509,8 @@ Prompt: `Validate Checkpoint restore with checkpoint_restore(name,clearExisting:
 Restored data + healthy state
 
 #### Test Execution
-> **Feature File:** [EX-017](lifecycle/checkpoint-restore-checkpoint-restore.md)
-> **Catalog:** [lifecycle/checkpoint-restore-checkpointrestore.md](../feature_catalog/lifecycle/checkpoint-restore-checkpointrestore.md)
+> **Feature File:** [EX-017](lifecycle/checkpoint_restore_checkpoint_restore.md)
+> **Catalog:** [lifecycle/checkpoint_restore_checkpointrestore.md](../feature_catalog/lifecycle/checkpoint_restore_checkpointrestore.md)
 
 ### EX-018 | Checkpoint deletion (checkpoint_delete)
 
@@ -523,8 +523,8 @@ Prompt: `Validate Checkpoint deletion in the sandbox list, verify the removed ch
 Removed checkpoint absent from list
 
 #### Test Execution
-> **Feature File:** [EX-018](lifecycle/checkpoint-deletion-checkpoint-delete.md)
-> **Catalog:** [lifecycle/checkpoint-deletion-checkpointdelete.md](../feature_catalog/lifecycle/checkpoint-deletion-checkpointdelete.md)
+> **Feature File:** [EX-018](lifecycle/checkpoint_deletion_checkpoint_delete.md)
+> **Catalog:** [lifecycle/checkpoint_deletion_checkpointdelete.md](../feature_catalog/lifecycle/checkpoint_deletion_checkpointdelete.md)
 
 ### EX-019 | Causal edge creation (memory_causal_link)
 
@@ -537,8 +537,8 @@ Prompt: `Validate memory_causal_link causal provenance and exact-first batch ref
 Edge appears in chain trace
 
 #### Test Execution
-> **Feature File:** [EX-019](analysis/causal-edge-creation-memory-causal-link.md)
-> **Catalog:** [analysis/causal-edge-creation-memorycausallink.md](../feature_catalog/analysis/causal-edge-creation-memorycausallink.md)
+> **Feature File:** [EX-019](analysis/causal_edge_creation_memory_causal_link.md)
+> **Catalog:** [analysis/causal_edge_creation_memorycausallink.md](../feature_catalog/analysis/causal_edge_creation_memorycausallink.md)
 
 ### EX-020 | Causal graph statistics (memory_causal_stats)
 
@@ -551,8 +551,8 @@ Prompt: `Validate memory_causal_stats per-window metrics across balanced, skewed
 Coverage and edge metrics present
 
 #### Test Execution
-> **Feature File:** [EX-020](analysis/causal-graph-statistics-memory-causal-stats.md)
-> **Catalog:** [analysis/causal-graph-statistics-memorycausalstats.md](../feature_catalog/analysis/causal-graph-statistics-memorycausalstats.md)
+> **Feature File:** [EX-020](analysis/causal_graph_statistics_memory_causal_stats.md)
+> **Catalog:** [analysis/causal_graph_statistics_memorycausalstats.md](../feature_catalog/analysis/causal_graph_statistics_memorycausalstats.md)
 
 ### EX-021 | Causal edge deletion (memory_causal_unlink)
 
@@ -565,8 +565,8 @@ Prompt: `Validate memory_causal_unlink removes the target edge after checkpoint 
 Removed edge absent in trace
 
 #### Test Execution
-> **Feature File:** [EX-021](analysis/causal-edge-deletion-memory-causal-unlink.md)
-> **Catalog:** [analysis/causal-edge-deletion-memorycausalunlink.md](../feature_catalog/analysis/causal-edge-deletion-memorycausalunlink.md)
+> **Feature File:** [EX-021](analysis/causal_edge_deletion_memory_causal_unlink.md)
+> **Catalog:** [analysis/causal_edge_deletion_memorycausalunlink.md](../feature_catalog/analysis/causal_edge_deletion_memorycausalunlink.md)
 
 ### EX-022 | Causal chain tracing (memory_drift_why)
 
@@ -579,8 +579,8 @@ Prompt: `Validate memory_drift_why returns the expected causal chain relations; 
 Chain includes expected relations
 
 #### Test Execution
-> **Feature File:** [EX-022](analysis/causal-chain-tracing-memory-drift-why.md)
-> **Catalog:** [analysis/causal-chain-tracing-memorydriftwhy.md](../feature_catalog/analysis/causal-chain-tracing-memorydriftwhy.md)
+> **Feature File:** [EX-022](analysis/causal_chain_tracing_memory_drift_why.md)
+> **Catalog:** [analysis/causal_chain_tracing_memorydriftwhy.md](../feature_catalog/analysis/causal_chain_tracing_memorydriftwhy.md)
 
 ### EX-023 | Epistemic baseline capture (task_preflight)
 
@@ -593,8 +593,8 @@ Prompt: `Validate task_preflight persists the epistemic baseline record; return 
 Baseline record created
 
 #### Test Execution
-> **Feature File:** [EX-023](analysis/epistemic-baseline-capture-task-preflight.md)
-> **Catalog:** [analysis/epistemic-baseline-capture-taskpreflight.md](../feature_catalog/analysis/epistemic-baseline-capture-taskpreflight.md)
+> **Feature File:** [EX-023](analysis/epistemic_baseline_capture_task_preflight.md)
+> **Catalog:** [analysis/epistemic_baseline_capture_taskpreflight.md](../feature_catalog/analysis/epistemic_baseline_capture_taskpreflight.md)
 
 ### EX-024 | Post-task learning measurement (task_postflight)
 
@@ -607,8 +607,8 @@ Prompt: `Validate task_postflight saves the learning delta record; return pass/f
 Delta/learning record saved
 
 #### Test Execution
-> **Feature File:** [EX-024](analysis/post-task-learning-measurement-task-postflight.md)
-> **Catalog:** [analysis/post-task-learning-measurement-taskpostflight.md](../feature_catalog/analysis/post-task-learning-measurement-taskpostflight.md)
+> **Feature File:** [EX-024](analysis/post_task_learning_measurement_task_postflight.md)
+> **Catalog:** [analysis/post_task_learning_measurement_taskpostflight.md](../feature_catalog/analysis/post_task_learning_measurement_taskpostflight.md)
 
 ### EX-025 | Learning history (memory_get_learning_history)
 
@@ -621,8 +621,8 @@ Prompt: `Validate memory_get_learning_history returns completed learning cycles 
 Historical entries returned; fresh DB init succeeds; NaN rejected
 
 #### Test Execution
-> **Feature File:** [EX-025](analysis/learning-history-memory-get-learning-history.md)
-> **Catalog:** [analysis/learning-history-memorygetlearninghistory.md](../feature_catalog/analysis/learning-history-memorygetlearninghistory.md)
+> **Feature File:** [EX-025](analysis/learning_history_memory_get_learning_history.md)
+> **Catalog:** [analysis/learning_history_memorygetlearninghistory.md](../feature_catalog/analysis/learning_history_memorygetlearninghistory.md)
 
 ### EX-026 | Ablation studies (eval_run_ablation)
 
@@ -635,8 +635,8 @@ Prompt: `Validate eval_run_ablation ablation reporting, including baseline recal
 Baseline recall, per-channel deltas, focused fts5 verdict, and provenance/truncation status are all explicit
 
 #### Test Execution
-> **Feature File:** [EX-026](evaluation/ablation-studies-eval-run-ablation.md)
-> **Catalog:** [evaluation/ablation-studies-evalrunablation.md](../feature_catalog/evaluation/ablation-studies-evalrunablation.md)
+> **Feature File:** [EX-026](evaluation/ablation_studies_eval_run_ablation.md)
+> **Catalog:** [evaluation/ablation_studies_evalrunablation.md](../feature_catalog/evaluation/ablation_studies_evalrunablation.md)
 
 ### EX-027 | Reporting dashboard (eval_reporting_dashboard)
 
@@ -649,8 +649,8 @@ Prompt: `Validate eval_reporting_dashboard text and JSON reporting, including sp
 Trend/channel/summary data present in supported runtime formats; active eval DB remains selected; request limit trims sprint groups rather than raw runs; chunk-backed rows aggregate to parent memory IDs
 
 #### Test Execution
-> **Feature File:** [EX-027](evaluation/reporting-dashboard-eval-reporting-dashboard.md)
-> **Catalog:** [evaluation/reporting-dashboard-evalreportingdashboard.md](../feature_catalog/evaluation/reporting-dashboard-evalreportingdashboard.md)
+> **Feature File:** [EX-027](evaluation/reporting_dashboard_eval_reporting_dashboard.md)
+> **Catalog:** [evaluation/reporting_dashboard_evalreportingdashboard.md](../feature_catalog/evaluation/reporting_dashboard_evalreportingdashboard.md)
 
 ### EX-028 | 1. Search Pipeline Features (SPECKIT_*)
 
@@ -663,8 +663,8 @@ Prompt: `Validate 1. Search Pipeline Features (SPECKIT_*) against memory_search(
 Accurate active/inert/retired classification; retired topics absent from active manual-test guidance
 
 #### Test Execution
-> **Feature File:** [EX-028](feature-flag-reference/1-search-pipeline-features-speckit.md)
-> **Catalog:** [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature_catalog/feature-flag-reference/1-search-pipeline-features-speckit.md)
+> **Feature File:** [EX-028](feature_flag_reference/1_search_pipeline_features_speckit.md)
+> **Catalog:** [feature_flag_reference/1_search_pipeline_features_speckit.md](../feature_catalog/feature_flag_reference/1_search_pipeline_features_speckit.md)
 
 ### EX-029 | 2. Session and Cache
 
@@ -677,8 +677,8 @@ Prompt: `Validate 2. Session and Cache against memory_search({ query:"DISABLE_SE
 Session/cache controls found
 
 #### Test Execution
-> **Feature File:** [EX-029](feature-flag-reference/2-session-and-cache.md)
-> **Catalog:** [feature-flag-reference/2-session-and-cache.md](../feature_catalog/feature-flag-reference/2-session-and-cache.md)
+> **Feature File:** [EX-029](feature_flag_reference/2_session_and_cache.md)
+> **Catalog:** [feature_flag_reference/2_session_and_cache.md](../feature_catalog/feature_flag_reference/2_session_and_cache.md)
 
 ### EX-030 | 3. MCP Configuration
 
@@ -691,8 +691,8 @@ Prompt: `Validate 3. MCP Configuration against memory_search({ query:"MCP_MAX_ME
 MCP guardrails returned
 
 #### Test Execution
-> **Feature File:** [EX-030](feature-flag-reference/3-mcp-configuration.md)
-> **Catalog:** [feature-flag-reference/3-mcp-configuration.md](../feature_catalog/feature-flag-reference/3-mcp-configuration.md)
+> **Feature File:** [EX-030](feature_flag_reference/3_mcp_configuration.md)
+> **Catalog:** [feature_flag_reference/3_mcp_configuration.md](../feature_catalog/feature_flag_reference/3_mcp_configuration.md)
 
 ### EX-031 | 4. Memory and Storage
 
@@ -705,8 +705,8 @@ Prompt: `Validate 4. Memory and Storage against memory_search({ query: "SPEC_KIT
 Precedence chain identified
 
 #### Test Execution
-> **Feature File:** [EX-031](feature-flag-reference/4-memory-and-storage.md)
-> **Catalog:** [feature-flag-reference/4-memory-and-storage.md](../feature_catalog/feature-flag-reference/4-memory-and-storage.md)
+> **Feature File:** [EX-031](feature_flag_reference/4_memory_and_storage.md)
+> **Catalog:** [feature_flag_reference/4_memory_and_storage.md](../feature_catalog/feature_flag_reference/4_memory_and_storage.md)
 
 ### EX-032 | 5. Embedding and API
 
@@ -719,8 +719,8 @@ Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS
 Provider rules show explicit provider override, local-first auto mode (`ollama` before `hf-local`), cloud providers selected only by explicit `EMBEDDINGS_PROVIDER` or later fallback, and current `nomic-embed-text-v1.5` local default/fallback model IDs.
 
 #### Test Execution
-> **Feature File:** [EX-032](feature-flag-reference/5-embedding-and-api.md)
-> **Catalog:** [feature-flag-reference/5-embedding-and-api.md](../feature_catalog/feature-flag-reference/5-embedding-and-api.md)
+> **Feature File:** [EX-032](feature_flag_reference/5_embedding_and_api.md)
+> **Catalog:** [feature_flag_reference/5_embedding_and_api.md](../feature_catalog/feature_flag_reference/5_embedding_and_api.md)
 
 ### EX-033 | 6. Debug and Telemetry
 
@@ -733,8 +733,8 @@ Prompt: `Validate 6. Debug and Telemetry against memory_search({ query:"DEBUG_TR
 Debug/telemetry controls identified
 
 #### Test Execution
-> **Feature File:** [EX-033](feature-flag-reference/6-debug-and-telemetry.md)
-> **Catalog:** [feature-flag-reference/6-debug-and-telemetry.md](../feature_catalog/feature-flag-reference/6-debug-and-telemetry.md)
+> **Feature File:** [EX-033](feature_flag_reference/6_debug_and_telemetry.md)
+> **Catalog:** [feature_flag_reference/6_debug_and_telemetry.md](../feature_catalog/feature_flag_reference/6_debug_and_telemetry.md)
 
 ### EX-034 | 7. CI and Build (informational)
 
@@ -747,8 +747,8 @@ Prompt: `Validate 7. CI and Build (informational) against memory_search({ query:
 Branch source vars surfaced
 
 #### Test Execution
-> **Feature File:** [EX-034](feature-flag-reference/7-ci-and-build-informational.md)
-> **Catalog:** [feature-flag-reference/7-ci-and-build-informational.md](../feature_catalog/feature-flag-reference/7-ci-and-build-informational.md)
+> **Feature File:** [EX-034](feature_flag_reference/7_ci_and_build_informational.md)
+> **Catalog:** [feature_flag_reference/7_ci_and_build_informational.md](../feature_catalog/feature_flag_reference/7_ci_and_build_informational.md)
 
 ### EX-035 | Startup runtime compatibility guards
 
@@ -761,8 +761,8 @@ Prompt: `Validate startup runtime compatibility guards and confirm the targeted 
 Targeted suite passes; runtime mismatch, marker creation, and SQLite diagnostics coverage are visible in the transcript
 
 #### Test Execution
-> **Feature File:** [EX-035](maintenance/startup-runtime-compatibility-guards.md)
-> **Catalog:** [maintenance/startup-runtime-compatibility-guards.md](../feature_catalog/maintenance/startup-runtime-compatibility-guards.md)
+> **Feature File:** [EX-035](maintenance/startup_runtime_compatibility_guards.md)
+> **Catalog:** [maintenance/startup_runtime_compatibility_guards.md](../feature_catalog/maintenance/startup_runtime_compatibility_guards.md)
 
 
 ### EX-037 | Checkpoint v2 file-snapshot round-trip (checkpoint_create / checkpoint_restore)
@@ -776,7 +776,7 @@ Prompt: `Validate the v2 full-DB checkpoint path: create an unscoped checkpoint 
 snapshot_format='v2' with a populated snapshot_path and manifest.json; restore round-trip restores main plus the active_vec shard; memory_health reports rowsTotal == ftsRowsTotal == vecRowsTotal; restore-journal (swap-pending -> swap-done) gives crash-safe recovery
 
 #### Test Execution
-> **Feature File:** [EX-037](lifecycle/checkpoint-v2-file-snapshot-roundtrip.md)
+> **Feature File:** [EX-037](lifecycle/checkpoint_v2_file_snapshot_roundtrip.md)
 
 ### EX-038 | Post-insert enrichment lifecycle (schema v30)
 
@@ -789,7 +789,7 @@ Prompt: `Validate the schema v30 post-insert enrichment lifecycle: after memory_
 post_insert_enrichment_status converges to complete for a healthy save; incomplete (pending/partial/failed) markers are re-run by repairEnrichmentOnReplay; repairIncompleteMarkers backfills incomplete markers during a leased scan and reports a repaired count; complete/deferred markers are left untouched
 
 #### Test Execution
-> **Feature File:** [EX-038](maintenance/post-insert-enrichment-lifecycle-v30.md)
+> **Feature File:** [EX-038](maintenance/post_insert_enrichment_lifecycle_v30.md)
 
 ### EX-039 | index_scan phased-async refinements (move reconciliation, active-row uniqueness, repair counts)
 
@@ -802,7 +802,7 @@ Prompt: `Validate the index_scan phased-async refinements: confirm lexical rows 
 status complete_with_pending_vectors with non-zero pendingVectors while vectors drain; BM25/FTS rows searchable before vectors finish; moveReconciled > 0 when a tracked file moved; no duplicate active logical-key rows (mig 28); response carries moveReconciled, staleDeleted, orphan-sweep, and checkpointRepair counts
 
 #### Test Execution
-> **Feature File:** [EX-039](maintenance/index-scan-phased-async-refinements.md)
+> **Feature File:** [EX-039](maintenance/index_scan_phased_async_refinements.md)
 
 ### EX-040 | MCP front-proxy reconnect, SPECKIT_BACKEND_ONLY, and -32002 vs -32001
 
@@ -815,7 +815,7 @@ Prompt: `Validate the front-proxy reconnect contract: confirm a backend recycle 
 a backend recycle reattaches transparently (-32001 RETRYABLE_RECYCLE_ERROR, retryable:true; LIVE, not removed); SPECKIT_BACKEND_ONLY=1 makes the server skip its own stdio transport; a protocol-version mismatch surfaces -32002 PROTOCOL_MISMATCH_ERROR (retryable:false) and the proxy goes terminal CLOSED
 
 #### Test Execution
-> **Feature File:** [EX-040](pipeline-architecture/front-proxy-reconnect-and-backend-only.md)
+> **Feature File:** [EX-040](pipeline_architecture/front_proxy_reconnect_and_backend_only.md)
 
 ### EX-041 | sk-git worktree convention (wt/{NNNN}-{name} under .worktrees/)
 
@@ -828,7 +828,7 @@ Prompt: `Validate the sk-git worktree convention: create a wt/{NNNN}-{name} work
 new branch named wt/{NNNN}-{name}; worktree directory .worktrees/{NNNN}-{name}; {NNNN} equals max(existing NNNN under .worktrees/) + 1 (or 0001 when none), 4-digit zero-padded; no commit/push/merge performed
 
 #### Test Execution
-> **Feature File:** [EX-041](tooling-and-scripts/sk-git-worktree-convention.md)
+> **Feature File:** [EX-041](tooling_and_scripts/sk_git_worktree_convention.md)
 
 ### EX-042 | Checkpoint v2 .needs-rebuild self-heal (boot / scan-lease)
 
@@ -841,7 +841,7 @@ Prompt: `Validate the .needs-rebuild self-heal: confirm the sentinel is repaired
 repairNeedsRebuildSentinel reports sentinelPresent, attempted, completed, failed, skipped, cleared; the sentinel is repaired and cleared at boot (runCheckpointNeedsRebuildRepair) and during a leased scan (runCheckpointNeedsRebuildRepairForScan, after acquireIndexScanLease); the scan response surfaces the repair counts
 
 #### Test Execution
-> **Feature File:** [EX-042](lifecycle/checkpoint-v2-needs-rebuild-self-heal.md)
+> **Feature File:** [EX-042](lifecycle/checkpoint_v2_needs_rebuild_self_heal.md)
 
 ---
 
@@ -860,8 +860,8 @@ Prompt: `Validate Graph channel ID fix (G1) and confirm graph hits are non-zero 
 Graph channel returns >0 hits when causal edges exist
 
 #### Test Execution
-> **Feature File:** [001](bug-fixes-and-data-integrity/graph-channel-id-fix-g1.md)
-> **Catalog:** [bug-fixes-and-data-integrity/graph-channel-id-fix.md](../feature_catalog/bug-fixes-and-data-integrity/graph-channel-id-fix.md)
+> **Feature File:** [001](bug_fixes_and_data_integrity/graph_channel_id_fix_g1.md)
+> **Catalog:** [bug_fixes_and_data_integrity/graph_channel_id_fix.md](../feature_catalog/bug_fixes_and_data_integrity/graph_channel_id_fix.md)
 
 ### 002 | Chunk collapse deduplication (G3)
 
@@ -874,8 +874,8 @@ Prompt: `Validate chunk collapse deduplication (G3) for memory_search(includeCon
 No duplicate memory IDs in results; collapsed chunks yield unique parents only
 
 #### Test Execution
-> **Feature File:** [002](bug-fixes-and-data-integrity/chunk-collapse-deduplication-g3.md)
-> **Catalog:** [bug-fixes-and-data-integrity/chunk-collapse-deduplication.md](../feature_catalog/bug-fixes-and-data-integrity/chunk-collapse-deduplication.md)
+> **Feature File:** [002](bug_fixes_and_data_integrity/chunk_collapse_deduplication_g3.md)
+> **Catalog:** [bug_fixes_and_data_integrity/chunk_collapse_deduplication.md](../feature_catalog/bug_fixes_and_data_integrity/chunk_collapse_deduplication.md)
 
 ### 003 | Co-activation fan-effect divisor (R17)
 
@@ -888,8 +888,8 @@ Prompt: `Validate co-activation fan-effect divisor (R17) and confirm hub scores 
 Hub node score dampened proportionally to fan-out degree; non-hub scores unaffected
 
 #### Test Execution
-> **Feature File:** [003](bug-fixes-and-data-integrity/co-activation-fan-effect-divisor-r17.md)
-> **Catalog:** [bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md](../feature_catalog/bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md)
+> **Feature File:** [003](bug_fixes_and_data_integrity/co_activation_fan_effect_divisor_r17.md)
+> **Catalog:** [bug_fixes_and_data_integrity/co_activation_fan_effect_divisor.md](../feature_catalog/bug_fixes_and_data_integrity/co_activation_fan_effect_divisor.md)
 
 ### 004 | SHA-256 content-hash deduplication (TM-02)
 
@@ -902,8 +902,8 @@ Prompt: `Validate SHA-256 content-hash deduplication (TM-02) and confirm identic
 Second save returns skip/no-op status; no new embedding row created; content hash matches
 
 #### Test Execution
-> **Feature File:** [004](bug-fixes-and-data-integrity/sha-256-content-hash-deduplication-tm-02.md)
-> **Catalog:** [bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md](../feature_catalog/bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md)
+> **Feature File:** [004](bug_fixes_and_data_integrity/sha_256_content_hash_deduplication_tm_02.md)
+> **Catalog:** [bug_fixes_and_data_integrity/sha_256_content_hash_deduplication.md](../feature_catalog/bug_fixes_and_data_integrity/sha_256_content_hash_deduplication.md)
 
 ### 005 | Evaluation database and schema (R13-S1)
 
@@ -916,8 +916,8 @@ Prompt: `Validate evaluation database isolation and cite whether eval tables sta
 Eval tables created in separate DB/schema; retrieval events logged without affecting main memory DB
 
 #### Test Execution
-> **Feature File:** [005](evaluation-and-measurement/evaluation-database-and-schema-r13-s1.md)
-> **Catalog:** [evaluation-and-measurement/evaluation-database-and-schema.md](../feature_catalog/evaluation-and-measurement/evaluation-database-and-schema.md)
+> **Feature File:** [005](evaluation_and_measurement/evaluation_database_and_schema_r13_s1.md)
+> **Catalog:** [evaluation_and_measurement/evaluation_database_and_schema.md](../feature_catalog/evaluation_and_measurement/evaluation_database_and_schema.md)
 
 ### 006 | Core metric computation (R13-S1)
 
@@ -930,8 +930,8 @@ Prompt: `Validate core metric computation and cite whether precision, recall, MR
 Metric battery returns precision, recall, MRR, NDCG, and MAP values; contiguous top-K positions drive rank-based metrics; all outputs stay within valid ranges
 
 #### Test Execution
-> **Feature File:** [006](evaluation-and-measurement/core-metric-computation-r13-s1.md)
-> **Catalog:** [evaluation-and-measurement/core-metric-computation.md](../feature_catalog/evaluation-and-measurement/core-metric-computation.md)
+> **Feature File:** [006](evaluation_and_measurement/core_metric_computation_r13_s1.md)
+> **Catalog:** [evaluation_and_measurement/core_metric_computation.md](../feature_catalog/evaluation_and_measurement/core_metric_computation.md)
 
 ### 007 | Observer effect mitigation (D4)
 
@@ -944,8 +944,8 @@ Prompt: `Validate observer-effect mitigation and cite whether search still works
 Search returns normal results even when eval logging throws; no latency spike from logging failure
 
 #### Test Execution
-> **Feature File:** [007](evaluation-and-measurement/observer-effect-mitigation-d4.md)
-> **Catalog:** [evaluation-and-measurement/observer-effect-mitigation.md](../feature_catalog/evaluation-and-measurement/observer-effect-mitigation.md)
+> **Feature File:** [007](evaluation_and_measurement/observer_effect_mitigation_d4.md)
+> **Catalog:** [evaluation_and_measurement/observer_effect_mitigation.md](../feature_catalog/evaluation_and_measurement/observer_effect_mitigation.md)
 
 ### 009 | Quality proxy formula (B7)
 
@@ -958,8 +958,8 @@ Prompt: `Validate the quality proxy formula and cite whether the stored value ma
 Computed proxy value matches manual formula calculation within tolerance; formula components are all present
 
 #### Test Execution
-> **Feature File:** [009](evaluation-and-measurement/quality-proxy-formula-b7.md)
-> **Catalog:** [evaluation-and-measurement/quality-proxy-formula.md](../feature_catalog/evaluation-and-measurement/quality-proxy-formula.md)
+> **Feature File:** [009](evaluation_and_measurement/quality_proxy_formula_b7.md)
+> **Catalog:** [evaluation_and_measurement/quality_proxy_formula.md](../feature_catalog/evaluation_and_measurement/quality_proxy_formula.md)
 
 ### 010 | Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A)
 
@@ -972,8 +972,8 @@ Prompt: `Validate the synthetic ground-truth corpus and cite coverage for intent
 Corpus covers all intent categories; hard negatives present; non-trigger prompts included; tier distribution balanced
 
 #### Test Execution
-> **Feature File:** [010](evaluation-and-measurement/synthetic-ground-truth-corpus-g-new-1-g-new-3-phase-a.md)
-> **Catalog:** [evaluation-and-measurement/synthetic-ground-truth-corpus.md](../feature_catalog/evaluation-and-measurement/synthetic-ground-truth-corpus.md)
+> **Feature File:** [010](evaluation_and_measurement/synthetic_ground_truth_corpus_g_new_1_g_new_3_phase_a.md)
+> **Catalog:** [evaluation_and_measurement/synthetic_ground_truth_corpus.md](../feature_catalog/evaluation_and_measurement/synthetic_ground_truth_corpus.md)
 
 ### 011 | BM25-only baseline (G-NEW-1)
 
@@ -986,8 +986,8 @@ Prompt: `Validate the BM25-only baseline and cite whether ENABLE_BM25 produces r
 BM25-only run produces reproducible MRR@5; no non-BM25 channel contributions in trace
 
 #### Test Execution
-> **Feature File:** [011](evaluation-and-measurement/bm25-only-baseline-g-new-1.md)
-> **Catalog:** [evaluation-and-measurement/bm25-only-baseline.md](../feature_catalog/evaluation-and-measurement/bm25-only-baseline.md)
+> **Feature File:** [011](evaluation_and_measurement/bm25_only_baseline_g_new_1.md)
+> **Catalog:** [evaluation_and_measurement/bm25_only_baseline.md](../feature_catalog/evaluation_and_measurement/bm25_only_baseline.md)
 
 ### 012 | Agent consumption instrumentation (G-NEW-2)
 
@@ -1000,8 +1000,8 @@ Prompt: `Validate agent consumption instrumentation and cite whether the logger 
 Logger gate is closed (inert); telemetry handlers are wired but produce no output; no runtime errors
 
 #### Test Execution
-> **Feature File:** [012](evaluation-and-measurement/agent-consumption-instrumentation-g-new-2.md)
-> **Catalog:** [evaluation-and-measurement/agent-consumption-instrumentation.md](../feature_catalog/evaluation-and-measurement/agent-consumption-instrumentation.md)
+> **Feature File:** [012](evaluation_and_measurement/agent_consumption_instrumentation_g_new_2.md)
+> **Catalog:** [evaluation_and_measurement/agent_consumption_instrumentation.md](../feature_catalog/evaluation_and_measurement/agent_consumption_instrumentation.md)
 
 ### 013 | Scoring observability (T010)
 
@@ -1014,8 +1014,8 @@ Prompt: `Validate scoring observability and cite whether sampled rows are logged
 Sampled scoring rows appear in observability log; write error does not crash search; sample rate respected
 
 #### Test Execution
-> **Feature File:** [013](evaluation-and-measurement/scoring-observability-t010.md)
-> **Catalog:** [evaluation-and-measurement/scoring-observability.md](../feature_catalog/evaluation-and-measurement/scoring-observability.md)
+> **Feature File:** [013](evaluation_and_measurement/scoring_observability_t010.md)
+> **Catalog:** [evaluation_and_measurement/scoring_observability.md](../feature_catalog/evaluation_and_measurement/scoring_observability.md)
 
 ### 014 | Full reporting and ablation study framework (R13-S3)
 
@@ -1028,8 +1028,8 @@ Prompt: `Validate reporting and ablation output and cite whether each channel ha
 Ablation run produces per-channel delta snapshots without synthetic zero-only token usage; dashboard renders with trend data from the active eval DB; sprint-group limit behavior is correct
 
 #### Test Execution
-> **Feature File:** [014](evaluation-and-measurement/full-reporting-and-ablation-study-framework-r13-s3.md)
-> **Catalog:** [evaluation-and-measurement/full-reporting-and-ablation-study-framework.md](../feature_catalog/evaluation-and-measurement/full-reporting-and-ablation-study-framework.md)
+> **Feature File:** [014](evaluation_and_measurement/full_reporting_and_ablation_study_framework_r13_s3.md)
+> **Catalog:** [evaluation_and_measurement/full_reporting_and_ablation_study_framework.md](../feature_catalog/evaluation_and_measurement/full_reporting_and_ablation_study_framework.md)
 
 ### 016 | Typed-weighted degree channel (R4)
 
@@ -1042,8 +1042,8 @@ Prompt: `Validate typed-weighted degree scoring and cite caps, batched cold-cach
 Typed-degree boost bounded within configured cap; per-database cache isolation and explicit invalidation work; fallback activates when edge types missing; varied types produce different scores
 
 #### Test Execution
-> **Feature File:** [016](graph-signal-activation/typed-weighted-degree-channel-r4.md)
-> **Catalog:** [graph-signal-activation/typed-weighted-degree-channel.md](../feature_catalog/graph-signal-activation/typed-weighted-degree-channel.md)
+> **Feature File:** [016](graph_signal_activation/typed_weighted_degree_channel_r4.md)
+> **Catalog:** [graph_signal_activation/typed_weighted_degree_channel.md](../feature_catalog/graph_signal_activation/typed_weighted_degree_channel.md)
 
 ### 017 | Co-activation boost strength increase (A7)
 
@@ -1056,8 +1056,8 @@ Prompt: `Validate co-activation boost strength and cite contribution delta, batc
 Increased co-activation strength produces measurably higher contribution delta vs baseline
 
 #### Test Execution
-> **Feature File:** [017](graph-signal-activation/co-activation-boost-strength-increase-a7.md)
-> **Catalog:** [graph-signal-activation/co-activation-boost-strength-increase.md](../feature_catalog/graph-signal-activation/co-activation-boost-strength-increase.md)
+> **Feature File:** [017](graph_signal_activation/co_activation_boost_strength_increase_a7.md)
+> **Catalog:** [graph_signal_activation/co_activation_boost_strength_increase.md](../feature_catalog/graph_signal_activation/co_activation_boost_strength_increase.md)
 
 ### 018 | Edge density measurement
 
@@ -1070,8 +1070,8 @@ Prompt: `Validate edge density measurement and cite whether edges/nodes ratio an
 Edge density ratio computed correctly (edges/nodes); threshold gate activates/deactivates at boundary
 
 #### Test Execution
-> **Feature File:** [018](graph-signal-activation/edge-density-measurement.md)
-> **Catalog:** [graph-signal-activation/edge-density-measurement.md](../feature_catalog/graph-signal-activation/edge-density-measurement.md)
+> **Feature File:** [018](graph_signal_activation/edge_density_measurement.md)
+> **Catalog:** [graph_signal_activation/edge_density_measurement.md](../feature_catalog/graph_signal_activation/edge_density_measurement.md)
 
 ### 019 | Weight history audit tracking
 
@@ -1084,8 +1084,8 @@ Prompt: `Validate weight history audit tracking and cite audit rows, rollback re
 Audit rows logged for each edge strength mutation; rollback restores previous weights; audit history is append-only
 
 #### Test Execution
-> **Feature File:** [019](graph-signal-activation/weight-history-audit-tracking.md)
-> **Catalog:** [graph-signal-activation/weight-history-audit-tracking.md](../feature_catalog/graph-signal-activation/weight-history-audit-tracking.md)
+> **Feature File:** [019](graph_signal_activation/weight_history_audit_tracking.md)
+> **Catalog:** [graph_signal_activation/weight_history_audit_tracking.md](../feature_catalog/graph_signal_activation/weight_history_audit_tracking.md)
 
 ### 020 | Graph momentum scoring (N2a)
 
@@ -1098,8 +1098,8 @@ Prompt: `Validate graph momentum scoring and cite capped 7-day momentum bonus pl
 7-day momentum delta bonus applied and capped; nodes with no history get zero bonus; cap enforced
 
 #### Test Execution
-> **Feature File:** [020](graph-signal-activation/graph-momentum-scoring-n2a.md)
-> **Catalog:** [graph-signal-activation/graph-momentum-scoring.md](../feature_catalog/graph-signal-activation/graph-momentum-scoring.md)
+> **Feature File:** [020](graph_signal_activation/graph_momentum_scoring_n2a.md)
+> **Catalog:** [graph_signal_activation/graph_momentum_scoring.md](../feature_catalog/graph_signal_activation/graph_momentum_scoring.md)
 
 ### 021 | Causal depth signal (N2b)
 
@@ -1112,8 +1112,8 @@ Prompt: `Validate causal depth scoring and cite normalization, longer-chain rank
 Depth score normalized to [0,1]; deeper chains produce higher normalized values; shortcut edges do not reduce longest-path depth; cycle members share one bounded depth layer
 
 #### Test Execution
-> **Feature File:** [021](graph-signal-activation/causal-depth-signal-n2b.md)
-> **Catalog:** [graph-signal-activation/causal-depth-signal.md](../feature_catalog/graph-signal-activation/causal-depth-signal.md)
+> **Feature File:** [021](graph_signal_activation/causal_depth_signal_n2b.md)
+> **Catalog:** [graph_signal_activation/causal_depth_signal.md](../feature_catalog/graph_signal_activation/causal_depth_signal.md)
 
 ### 022 | Community detection (N2c)
 
@@ -1126,8 +1126,8 @@ Prompt: `Validate community detection and cite cluster assignment, co-member boo
 Community detection assigns cluster IDs; co-member boost injected; boost capped at configured maximum
 
 #### Test Execution
-> **Feature File:** [022](graph-signal-activation/community-detection-n2c.md)
-> **Catalog:** [graph-signal-activation/community-detection.md](../feature_catalog/graph-signal-activation/community-detection.md)
+> **Feature File:** [022](graph_signal_activation/community_detection_n2c.md)
+> **Catalog:** [graph_signal_activation/community_detection.md](../feature_catalog/graph_signal_activation/community_detection.md)
 
 ### 023 | Score normalization
 
@@ -1140,8 +1140,8 @@ Prompt: `Validate Score normalization with range, min-max, equal-score, and sing
 Normalized scores in [0,1] range; min-max normalization correct; equal-score and single-result edge cases handled
 
 #### Test Execution
-> **Feature File:** [023](scoring-and-calibration/score-normalization.md)
-> **Catalog:** [scoring-and-calibration/score-normalization.md](../feature_catalog/scoring-and-calibration/score-normalization.md)
+> **Feature File:** [023](scoring_and_calibration/score_normalization.md)
+> **Catalog:** [scoring_and_calibration/score_normalization.md](../feature_catalog/scoring_and_calibration/score_normalization.md)
 
 
 ### 025 | Interference scoring (TM-01)
@@ -1155,8 +1155,8 @@ Prompt: `Validate interference scoring penalties for near duplicates, non-duplic
 Near-duplicate cluster receives penalty; penalty reduces effective score; non-duplicates unaffected
 
 #### Test Execution
-> **Feature File:** [025](scoring-and-calibration/interference-scoring-tm-01.md)
-> **Catalog:** [scoring-and-calibration/interference-scoring.md](../feature_catalog/scoring-and-calibration/interference-scoring.md)
+> **Feature File:** [025](scoring_and_calibration/interference_scoring_tm_01.md)
+> **Catalog:** [scoring_and_calibration/interference_scoring.md](../feature_catalog/scoring_and_calibration/interference_scoring.md)
 
 ### 026 | Classification-based decay (TM-03)
 
@@ -1169,8 +1169,8 @@ Prompt: `Validate classification-based decay, including tier multipliers and rej
 Decay multipliers differ by classification and tier; matrix values match documented configuration; zero half-life config is rejected with the positive-number-or-null error
 
 #### Test Execution
-> **Feature File:** [026](scoring-and-calibration/classification-based-decay-tm-03.md)
-> **Catalog:** [scoring-and-calibration/classification-based-decay.md](../feature_catalog/scoring-and-calibration/classification-based-decay.md)
+> **Feature File:** [026](scoring_and_calibration/classification_based_decay_tm_03.md)
+> **Catalog:** [scoring_and_calibration/classification_based_decay.md](../feature_catalog/scoring_and_calibration/classification_based_decay.md)
 
 ### 027 | Folder-level relevance scoring (PI-A1)
 
@@ -1183,8 +1183,8 @@ Prompt: `Validate folder-level relevance scoring and confirm folder results rank
 Folder pre-ranking scores computed; folder-level results appear before individual spec-doc results in ranking
 
 #### Test Execution
-> **Feature File:** [027](scoring-and-calibration/folder-level-relevance-scoring-pi-a1.md)
-> **Catalog:** [scoring-and-calibration/folder-level-relevance-scoring.md](../feature_catalog/scoring-and-calibration/folder-level-relevance-scoring.md)
+> **Feature File:** [027](scoring_and_calibration/folder_level_relevance_scoring_pi_a1.md)
+> **Catalog:** [scoring_and_calibration/folder_level_relevance_scoring.md](../feature_catalog/scoring_and_calibration/folder_level_relevance_scoring.md)
 
 ### 028 | Embedding cache (R18)
 
@@ -1197,8 +1197,8 @@ Prompt: `Validate embedding cache hits, misses, and hit timestamp updates.`
 Cache hit returns instantly without embedding API call; cache miss triggers embedding; metadata timestamps updated on hit
 
 #### Test Execution
-> **Feature File:** [028](scoring-and-calibration/embedding-cache-r18.md)
-> **Catalog:** [scoring-and-calibration/embedding-cache.md](../feature_catalog/scoring-and-calibration/embedding-cache.md)
+> **Feature File:** [028](scoring_and_calibration/embedding_cache_r18.md)
+> **Catalog:** [scoring_and_calibration/embedding_cache.md](../feature_catalog/scoring_and_calibration/embedding_cache.md)
 
 ### 029 | Double intent weighting investigation (G2)
 
@@ -1211,8 +1211,8 @@ Prompt: `Validate double intent weighting handling for hybrid and non-hybrid que
 Stage-2 intent weighting skipped for hybrid queries; no double-weight detected in trace; non-hybrid queries apply intent normally
 
 #### Test Execution
-> **Feature File:** [029](scoring-and-calibration/double-intent-weighting-investigation-g2.md)
-> **Catalog:** [scoring-and-calibration/double-intent-weighting-investigation.md](../feature_catalog/scoring-and-calibration/double-intent-weighting-investigation.md)
+> **Feature File:** [029](scoring_and_calibration/double_intent_weighting_investigation_g2.md)
+> **Catalog:** [scoring_and_calibration/double_intent_weighting_investigation.md](../feature_catalog/scoring_and_calibration/double_intent_weighting_investigation.md)
 
 ### 030 | RRF K-value sensitivity analysis (FUT-5)
 
@@ -1225,8 +1225,8 @@ Prompt: `Validate RRF K-value sensitivity analysis and identify the optimal K wi
 K-value grid produces per-K metric comparisons; optimal K identified with rationale; sensitivity curve shows diminishing returns
 
 #### Test Execution
-> **Feature File:** [030](scoring-and-calibration/rrf-k-value-sensitivity-analysis-fut-5.md)
-> **Catalog:** [scoring-and-calibration/rrf-k-value-sensitivity-analysis.md](../feature_catalog/scoring-and-calibration/rrf-k-value-sensitivity-analysis.md)
+> **Feature File:** [030](scoring_and_calibration/rrf_k_value_sensitivity_analysis_fut_5.md)
+> **Catalog:** [scoring_and_calibration/rrf_k_value_sensitivity_analysis.md](../feature_catalog/scoring_and_calibration/rrf_k_value_sensitivity_analysis.md)
 
 ### 031 | Negative feedback confidence signal (A4)
 
@@ -1239,8 +1239,8 @@ Prompt: `Validate the negative feedback confidence signal, including floor enfor
 Negative feedback reduces confidence multiplier; floor enforced (never reaches 0); half-life recovery observed over time
 
 #### Test Execution
-> **Feature File:** [031](scoring-and-calibration/negative-feedback-confidence-signal-a4.md)
-> **Catalog:** [scoring-and-calibration/negative-feedback-confidence-signal.md](../feature_catalog/scoring-and-calibration/negative-feedback-confidence-signal.md)
+> **Feature File:** [031](scoring_and_calibration/negative_feedback_confidence_signal_a4.md)
+> **Catalog:** [scoring_and_calibration/negative_feedback_confidence_signal.md](../feature_catalog/scoring_and_calibration/negative_feedback_confidence_signal.md)
 
 ### 032 | Auto-promotion on validation (T002a)
 
@@ -1253,8 +1253,8 @@ Prompt: `Validate auto-promotion on validation, including threshold promotion, t
 Positive validations promote tier at configured threshold; throttle prevents rapid re-promotion; audit trail logged
 
 #### Test Execution
-> **Feature File:** [032](scoring-and-calibration/auto-promotion-on-validation-t002a.md)
-> **Catalog:** [scoring-and-calibration/auto-promotion-on-validation.md](../feature_catalog/scoring-and-calibration/auto-promotion-on-validation.md)
+> **Feature File:** [032](scoring_and_calibration/auto_promotion_on_validation_t002a.md)
+> **Catalog:** [scoring_and_calibration/auto_promotion_on_validation.md](../feature_catalog/scoring_and_calibration/auto_promotion_on_validation.md)
 
 ### 033 | Query complexity router (R15)
 
@@ -1267,8 +1267,8 @@ Prompt: `As a query-intelligence validation operator, validate Query complexity 
 Simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing
 
 #### Test Execution
-> **Feature File:** [033](query-intelligence/query-complexity-router-r15.md)
-> **Catalog:** [query-intelligence/query-complexity-router.md](../feature_catalog/query-intelligence/query-complexity-router.md)
+> **Feature File:** [033](query_intelligence/query_complexity_router_r15.md)
+> **Catalog:** [query_intelligence/query_complexity_router.md](../feature_catalog/query_intelligence/query_complexity_router.md)
 
 
 ### 035 | Channel min-representation (R2)
@@ -1282,8 +1282,8 @@ Prompt: `As a query-intelligence validation operator, validate Channel min-repre
 Each channel represented in top-k results even when one channel dominates; quality floor prevents low-relevance injection
 
 #### Test Execution
-> **Feature File:** [035](query-intelligence/channel-min-representation-r2.md)
-> **Catalog:** [query-intelligence/channel-min-representation.md](../feature_catalog/query-intelligence/channel-min-representation.md)
+> **Feature File:** [035](query_intelligence/channel_min_representation_r2.md)
+> **Catalog:** [query_intelligence/channel_min_representation.md](../feature_catalog/query_intelligence/channel_min_representation.md)
 
 ### 036 | Confidence-based result truncation (R15-ext)
 
@@ -1296,8 +1296,8 @@ Prompt: `As a query-intelligence validation operator, validate Confidence-based 
 Results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace
 
 #### Test Execution
-> **Feature File:** [036](query-intelligence/confidence-based-result-truncation-r15-ext.md)
-> **Catalog:** [query-intelligence/confidence-based-result-truncation.md](../feature_catalog/query-intelligence/confidence-based-result-truncation.md)
+> **Feature File:** [036](query_intelligence/confidence_based_result_truncation_r15_ext.md)
+> **Catalog:** [query_intelligence/confidence_based_result_truncation.md](../feature_catalog/query_intelligence/confidence_based_result_truncation.md)
 
 ### 037 | Dynamic token budget allocation (FUT-7)
 
@@ -1310,8 +1310,8 @@ Prompt: `As a query-intelligence validation operator, validate Dynamic token bud
 Token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget
 
 #### Test Execution
-> **Feature File:** [037](query-intelligence/dynamic-token-budget-allocation-fut-7.md)
-> **Catalog:** [query-intelligence/dynamic-token-budget-allocation.md](../feature_catalog/query-intelligence/dynamic-token-budget-allocation.md)
+> **Feature File:** [037](query_intelligence/dynamic_token_budget_allocation_fut_7.md)
+> **Catalog:** [query_intelligence/dynamic_token_budget_allocation.md](../feature_catalog/query_intelligence/dynamic_token_budget_allocation.md)
 
 ### 038 | Query expansion (R12)
 
@@ -1324,8 +1324,8 @@ Prompt: `As a query-intelligence validation operator, validate Query expansion (
 Complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion
 
 #### Test Execution
-> **Feature File:** [038](query-intelligence/query-expansion-r12.md)
-> **Catalog:** [query-intelligence/query-expansion.md](../feature_catalog/query-intelligence/query-expansion.md)
+> **Feature File:** [038](query_intelligence/query_expansion_r12.md)
+> **Catalog:** [query_intelligence/query_expansion.md](../feature_catalog/query_intelligence/query_expansion.md)
 
 ### 039 | Verify-fix-verify memory quality loop (PI-A5)
 
@@ -1338,8 +1338,8 @@ Prompt: `Validate the verify-fix-verify memory quality loop.`
 Low-quality memory triggers retry cycle; final reject after max retries; rejection reason logged
 
 #### Test Execution
-> **Feature File:** [039](memory-quality-and-indexing/verify-fix-verify-memory-quality-loop-pi-a5.md)
-> **Catalog:** [memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md](../feature_catalog/memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md)
+> **Feature File:** [039](memory_quality_and_indexing/verify_fix_verify_memory_quality_loop_pi_a5.md)
+> **Catalog:** [memory_quality_and_indexing/verify_fix_verify_memory_quality_loop.md](../feature_catalog/memory_quality_and_indexing/verify_fix_verify_memory_quality_loop.md)
 
 ### 040 | Signal vocabulary expansion (TM-08)
 
@@ -1352,8 +1352,8 @@ Prompt: `Validate signal vocabulary expansion for correction, preference, and re
 Signal categories (correction, preference, reinforcement) detected from prompt analysis; trigger matching reflects expanded vocabulary
 
 #### Test Execution
-> **Feature File:** [040](memory-quality-and-indexing/signal-vocabulary-expansion-tm-08.md)
-> **Catalog:** [memory-quality-and-indexing/signal-vocabulary-expansion.md](../feature_catalog/memory-quality-and-indexing/signal-vocabulary-expansion.md)
+> **Feature File:** [040](memory_quality_and_indexing/signal_vocabulary_expansion_tm_08.md)
+> **Catalog:** [memory_quality_and_indexing/signal_vocabulary_expansion.md](../feature_catalog/memory_quality_and_indexing/signal_vocabulary_expansion.md)
 
 ### 041 | Pre-flight token budget validation (PI-A3)
 
@@ -1366,8 +1366,8 @@ Prompt: `Validate pre-flight token budget handling in memory_save dry-run.`
 Token estimate is computed before embedding/database writes; near-limit input emits `PF021` warning; over-limit input emits `PF020` failure; behavior follows `MCP_CHARS_PER_TOKEN`, `MCP_MAX_MEMORY_TOKENS`, and `MCP_TOKEN_WARNING_THRESHOLD`
 
 #### Test Execution
-> **Feature File:** [041](memory-quality-and-indexing/pre-flight-token-budget-validation-pi-a3.md)
-> **Catalog:** [memory-quality-and-indexing/pre-flight-token-budget-validation.md](../feature_catalog/memory-quality-and-indexing/pre-flight-token-budget-validation.md)
+> **Feature File:** [041](memory_quality_and_indexing/pre_flight_token_budget_validation_pi_a3.md)
+> **Catalog:** [memory_quality_and_indexing/pre_flight_token_budget_validation.md](../feature_catalog/memory_quality_and_indexing/pre_flight_token_budget_validation.md)
 
 ### 042 | Spec folder description discovery (PI-B3)
 
@@ -1380,8 +1380,8 @@ Prompt: `Validate spec folder description discovery and description.json fallbac
 description.json exists after create.sh; stale detection triggers on spec.md edit; per-folder files preferred over spec.md fallback; mixed-mode aggregation works; invalid JSON or schema-invalid description.json files are ignored, spec.md fallback is used, and existing files are repaired in place; missing description.json falls back cleanly without implicit backfill; out-of-base or prefix-bypass paths are rejected by realpath containment checks; YAML frontmatter is stripped before description extraction, including CRLF-heavy frontmatter cases; memory_context uses folder routing; regeneration leaves valid JSON on disk with no leftover temp files
 
 #### Test Execution
-> **Feature File:** [042](memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md)
-> **Catalog:** [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature_catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
+> **Feature File:** [042](memory_quality_and_indexing/spec_folder_description_discovery_pi_b3.md)
+> **Catalog:** [memory_quality_and_indexing/spec_folder_description_discovery.md](../feature_catalog/memory_quality_and_indexing/spec_folder_description_discovery.md)
 
 ### 043 | Pre-storage quality gate (TM-04)
 
@@ -1394,8 +1394,8 @@ Prompt: `Validate the pre-storage quality gate for structural, semantic, and dup
 3-layer gate: structural check, semantic check, duplication check; each layer can warn or reject; decision log captures all gate evaluations
 
 #### Test Execution
-> **Feature File:** [043](memory-quality-and-indexing/pre-storage-quality-gate-tm-04.md)
-> **Catalog:** [memory-quality-and-indexing/pre-storage-quality-gate.md](../feature_catalog/memory-quality-and-indexing/pre-storage-quality-gate.md)
+> **Feature File:** [043](memory_quality_and_indexing/pre_storage_quality_gate_tm_04.md)
+> **Catalog:** [memory_quality_and_indexing/pre_storage_quality_gate.md](../feature_catalog/memory_quality_and_indexing/pre_storage_quality_gate.md)
 
 ### 044 | Reconsolidation-on-save (TM-06)
 
@@ -1408,8 +1408,8 @@ Prompt: `Validate reconsolidation-on-save thresholds and repair debt.`
 Similarity >=0.88 triggers merge; 0.75-0.88 triggers supersede/deprecate; below 0.75 saves independently; thresholds documented in output
 
 #### Test Execution
-> **Feature File:** [044](memory-quality-and-indexing/reconsolidation-on-save-tm-06.md)
-> **Catalog:** [memory-quality-and-indexing/reconsolidation-on-save.md](../feature_catalog/memory-quality-and-indexing/reconsolidation-on-save.md)
+> **Feature File:** [044](memory_quality_and_indexing/reconsolidation_on_save_tm_06.md)
+> **Catalog:** [memory_quality_and_indexing/reconsolidation_on_save.md](../feature_catalog/memory_quality_and_indexing/reconsolidation_on_save.md)
 
 ### 045 | Smarter memory content generation (S1)
 
@@ -1422,8 +1422,8 @@ Prompt: `Validate smarter memory content generation preserves structure and cohe
 Generated content retains structural elements (headings, lists, code blocks); output is concise; coherence maintained across sections; multiple pathless batch inputs keep distinct inference results
 
 #### Test Execution
-> **Feature File:** [045](memory-quality-and-indexing/smarter-memory-content-generation-s1.md)
-> **Catalog:** [memory-quality-and-indexing/smarter-memory-content-generation.md](../feature_catalog/memory-quality-and-indexing/smarter-memory-content-generation.md)
+> **Feature File:** [045](memory_quality_and_indexing/smarter_memory_content_generation_s1.md)
+> **Catalog:** [memory_quality_and_indexing/smarter_memory_content_generation.md](../feature_catalog/memory_quality_and_indexing/smarter_memory_content_generation.md)
 
 ### 046 | Anchor-aware chunk thinning (R7)
 
@@ -1436,8 +1436,8 @@ Prompt: `Validate anchor-aware chunk thinning preserves anchor chunks.`
 Anchor chunks retained; filler chunks thinned; retained set is non-empty; anchor priority respected in thinning order
 
 #### Test Execution
-> **Feature File:** [046](memory-quality-and-indexing/anchor-aware-chunk-thinning-r7.md)
-> **Catalog:** [memory-quality-and-indexing/anchor-aware-chunk-thinning.md](../feature_catalog/memory-quality-and-indexing/anchor-aware-chunk-thinning.md)
+> **Feature File:** [046](memory_quality_and_indexing/anchor_aware_chunk_thinning_r7.md)
+> **Catalog:** [memory_quality_and_indexing/anchor_aware_chunk_thinning.md](../feature_catalog/memory_quality_and_indexing/anchor_aware_chunk_thinning.md)
 
 ### 047 | Encoding-intent capture at index time (R16)
 
@@ -1450,8 +1450,8 @@ Prompt: `Validate encoding-intent capture at index time.`
 Intent labels (doc/code/structured) persisted in metadata; labels read-only after indexing; varied content types produce correct labels
 
 #### Test Execution
-> **Feature File:** [047](memory-quality-and-indexing/encoding-intent-capture-at-index-time-r16.md)
-> **Catalog:** [memory-quality-and-indexing/encoding-intent-capture-at-index-time.md](../feature_catalog/memory-quality-and-indexing/encoding-intent-capture-at-index-time.md)
+> **Feature File:** [047](memory_quality_and_indexing/encoding_intent_capture_at_index_time_r16.md)
+> **Catalog:** [memory_quality_and_indexing/encoding_intent_capture_at_index_time.md](../feature_catalog/memory_quality_and_indexing/encoding_intent_capture_at_index_time.md)
 
 ### 048 | Auto entity extraction (R10)
 
@@ -1464,8 +1464,8 @@ Prompt: `Validate auto entity extraction persistence, normalization, and denylis
 Entities extracted and persisted in entity tables; normalization applied (case, aliases); denylist entities excluded
 
 #### Test Execution
-> **Feature File:** [048](memory-quality-and-indexing/auto-entity-extraction-r10.md)
-> **Catalog:** [memory-quality-and-indexing/auto-entity-extraction.md](../feature_catalog/memory-quality-and-indexing/auto-entity-extraction.md)
+> **Feature File:** [048](memory_quality_and_indexing/auto_entity_extraction_r10.md)
+> **Catalog:** [memory_quality_and_indexing/auto_entity_extraction.md](../feature_catalog/memory_quality_and_indexing/auto_entity_extraction.md)
 
 ### 049 | 4-stage pipeline refactor (R6)
 
@@ -1478,8 +1478,8 @@ Prompt: `Validate 4-stage pipeline refactor (R6) against the documented validati
 Query traverses all 4 stages in order; stage transitions visible in verbose metadata; stage-4 scores immutable after final stage
 
 #### Test Execution
-> **Feature File:** [049](pipeline-architecture/4-stage-pipeline-refactor-r6.md)
-> **Catalog:** [pipeline-architecture/4-stage-pipeline-refactor.md](../feature_catalog/pipeline-architecture/4-stage-pipeline-refactor.md)
+> **Feature File:** [049](pipeline_architecture/4_stage_pipeline_refactor_r6.md)
+> **Catalog:** [pipeline_architecture/4_stage_pipeline_refactor.md](../feature_catalog/pipeline_architecture/4_stage_pipeline_refactor.md)
 
 ### 050 | MPAB chunk-to-memory aggregation (R1)
 
@@ -1492,8 +1492,8 @@ Prompt: `Validate MPAB chunk-to-memory aggregation (R1) against the documented v
 MPAB aggregation formula produces correct parent score from child chunks; manual formula matches computed value
 
 #### Test Execution
-> **Feature File:** [050](pipeline-architecture/mpab-chunk-to-memory-aggregation-r1.md)
-> **Catalog:** [pipeline-architecture/mpab-chunk-to-memory-aggregation.md](../feature_catalog/pipeline-architecture/mpab-chunk-to-memory-aggregation.md)
+> **Feature File:** [050](pipeline_architecture/mpab_chunk_to_memory_aggregation_r1.md)
+> **Catalog:** [pipeline_architecture/mpab_chunk_to_memory_aggregation.md](../feature_catalog/pipeline_architecture/mpab_chunk_to_memory_aggregation.md)
 
 ### 051 | Chunk ordering preservation (B2)
 
@@ -1506,8 +1506,8 @@ Prompt: `Validate chunk ordering preservation (B2) against the documented valida
 Collapsed chunks reassemble in original document order; marker sequence preserved; snake_case and camelCase chunk metadata trigger the same collapse path; no reordering or silent passthrough artifacts remain
 
 #### Test Execution
-> **Feature File:** [051](pipeline-architecture/chunk-ordering-preservation-b2.md)
-> **Catalog:** [pipeline-architecture/chunk-ordering-preservation.md](../feature_catalog/pipeline-architecture/chunk-ordering-preservation.md)
+> **Feature File:** [051](pipeline_architecture/chunk_ordering_preservation_b2.md)
+> **Catalog:** [pipeline_architecture/chunk_ordering_preservation.md](../feature_catalog/pipeline_architecture/chunk_ordering_preservation.md)
 
 ### 052 | Template anchor optimization (S2)
 
@@ -1520,8 +1520,8 @@ Prompt: `Validate template anchor optimization (S2) against the documented valid
 Anchor metadata enriched in pipeline; anchor tags visible in query metadata; no score mutation from anchor presence
 
 #### Test Execution
-> **Feature File:** [052](pipeline-architecture/template-anchor-optimization-s2.md)
-> **Catalog:** [pipeline-architecture/template-anchor-optimization.md](../feature_catalog/pipeline-architecture/template-anchor-optimization.md)
+> **Feature File:** [052](pipeline_architecture/template_anchor_optimization_s2.md)
+> **Catalog:** [pipeline_architecture/template_anchor_optimization.md](../feature_catalog/pipeline_architecture/template_anchor_optimization.md)
 
 ### 053 | Validation signals as retrieval metadata (S3)
 
@@ -1534,8 +1534,8 @@ Prompt: `Validate validation signals as retrieval metadata (S3) against the docu
 Validation signal multiplier bounded to [0.8, 1.2]; highly validated docs score higher; zero-validation docs use 1.0 multiplier
 
 #### Test Execution
-> **Feature File:** [053](pipeline-architecture/validation-signals-as-retrieval-metadata-s3.md)
-> **Catalog:** [pipeline-architecture/validation-signals-as-retrieval-metadata.md](../feature_catalog/pipeline-architecture/validation-signals-as-retrieval-metadata.md)
+> **Feature File:** [053](pipeline_architecture/validation_signals_as_retrieval_metadata_s3.md)
+> **Catalog:** [pipeline_architecture/validation_signals_as_retrieval_metadata.md](../feature_catalog/pipeline_architecture/validation_signals_as_retrieval_metadata.md)
 
 ### 054 | Learned relevance feedback (R11)
 
@@ -1548,8 +1548,8 @@ Prompt: `Validate learned relevance feedback (R11) against the documented valida
 Learned triggers added from helpful validations; safeguards prevent trigger flooding; queryId required for trigger learning
 
 #### Test Execution
-> **Feature File:** [054](pipeline-architecture/learned-relevance-feedback-r11.md)
-> **Catalog:** [pipeline-architecture/learned-relevance-feedback.md](../feature_catalog/pipeline-architecture/learned-relevance-feedback.md)
+> **Feature File:** [054](pipeline_architecture/learned_relevance_feedback_r11.md)
+> **Catalog:** [pipeline_architecture/learned_relevance_feedback.md](../feature_catalog/pipeline_architecture/learned_relevance_feedback.md)
 
 ### 055 | Dual-scope memory auto-surface (TM-05)
 
@@ -1562,8 +1562,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Dual-scope mem
 Non-memory-aware tool path triggers auto-surface hook; compaction event surfaces relevant spec-doc records; surfaced spec-doc records match current context
 
 #### Test Execution
-> **Feature File:** [055](retrieval-enhancements/dual-scope-memory-auto-surface-tm-05.md)
-> **Catalog:** [retrieval-enhancements/dual-scope-memory-auto-surface.md](../feature_catalog/retrieval-enhancements/dual-scope-memory-auto-surface.md)
+> **Feature File:** [055](retrieval_enhancements/dual_scope_memory_auto_surface_tm_05.md)
+> **Catalog:** [retrieval_enhancements/dual_scope_memory_auto_surface.md](../feature_catalog/retrieval_enhancements/dual_scope_memory_auto_surface.md)
 
 ### 056 | Constitutional memory as expert knowledge injection (PI-A4)
 
@@ -1576,8 +1576,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Constitutional
 Directive metadata appears in retrieval results; constitutional tier classification applied; enrichment fields populated; injected constitutional rows obey shouldApplyScopeFiltering and stay inside enforced scope boundaries
 
 #### Test Execution
-> **Feature File:** [056](retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection-pi-a4.md)
-> **Catalog:** [retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md](../feature_catalog/retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md)
+> **Feature File:** [056](retrieval_enhancements/constitutional_memory_as_expert_knowledge_injection_pi_a4.md)
+> **Catalog:** [retrieval_enhancements/constitutional_memory_as_expert_knowledge_injection.md](../feature_catalog/retrieval_enhancements/constitutional_memory_as_expert_knowledge_injection.md)
 
 ### 057 | Spec folder hierarchy as retrieval structure (S4)
 
@@ -1590,8 +1590,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Spec folder hi
 Self-folder results ranked highest; parent and sibling folders contribute scored results; hierarchy depth reflected in ranking
 
 #### Test Execution
-> **Feature File:** [057](retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure-s4.md)
-> **Catalog:** [retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md](../feature_catalog/retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md)
+> **Feature File:** [057](retrieval_enhancements/spec_folder_hierarchy_as_retrieval_structure_s4.md)
+> **Catalog:** [retrieval_enhancements/spec_folder_hierarchy_as_retrieval_structure.md](../feature_catalog/retrieval_enhancements/spec_folder_hierarchy_as_retrieval_structure.md)
 
 ### 058 | Lightweight consolidation (N3-lite)
 
@@ -1604,8 +1604,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Lightweight co
 Consolidation cycle completes; contradiction detection, hebbian strengthening, and staleness decay all produce output; no runtime errors in logs
 
 #### Test Execution
-> **Feature File:** [058](retrieval-enhancements/lightweight-consolidation-n3-lite.md)
-> **Catalog:** [retrieval-enhancements/lightweight-consolidation.md](../feature_catalog/retrieval-enhancements/lightweight-consolidation.md)
+> **Feature File:** [058](retrieval_enhancements/lightweight_consolidation_n3_lite.md)
+> **Catalog:** [retrieval_enhancements/lightweight_consolidation.md](../feature_catalog/retrieval_enhancements/lightweight_consolidation.md)
 
 ### 059 | Memory summary search channel (R8)
 
@@ -1618,8 +1618,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Memory summary
 Summary channel activates only above corpus size threshold; channel contributes to fusion when active; channel is inert below threshold
 
 #### Test Execution
-> **Feature File:** [059](retrieval-enhancements/memory-summary-search-channel-r8.md)
-> **Catalog:** [retrieval-enhancements/memory-summary-search-channel.md](../feature_catalog/retrieval-enhancements/memory-summary-search-channel.md)
+> **Feature File:** [059](retrieval_enhancements/memory_summary_search_channel_r8.md)
+> **Catalog:** [retrieval_enhancements/memory_summary_search_channel.md](../feature_catalog/retrieval_enhancements/memory_summary_search_channel.md)
 
 ### 060 | Cross-document entity linking (S5)
 
@@ -1632,8 +1632,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Cross-document
 Supports-edges created between documents sharing entities; density guard prevents excessive edges; entity normalization applied
 
 #### Test Execution
-> **Feature File:** [060](retrieval-enhancements/cross-document-entity-linking-s5.md)
-> **Catalog:** [retrieval-enhancements/cross-document-entity-linking.md](../feature_catalog/retrieval-enhancements/cross-document-entity-linking.md)
+> **Feature File:** [060](retrieval_enhancements/cross_document_entity_linking_s5.md)
+> **Catalog:** [retrieval_enhancements/cross_document_entity_linking.md](../feature_catalog/retrieval_enhancements/cross_document_entity_linking.md)
 
 ### 061 | Tree thinning for spec folder consolidation (PI-B1)
 
@@ -1646,8 +1646,8 @@ Prompt: `Validate Tree thinning for spec folder consolidation (PI-B1) against th
 Files below the 150-token small-file threshold merge into consolidated output; no merged parent absorbs more than 3 children; overflow files are kept instead of over-merged; token count is reduced; large files are left untouched; merge preserves content integrity
 
 #### Test Execution
-> **Feature File:** [061](tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md)
-> **Catalog:** [tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md](../feature_catalog/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md)
+> **Feature File:** [061](tooling_and_scripts/tree_thinning_for_spec_folder_consolidation_pi_b1.md)
+> **Catalog:** [tooling_and_scripts/tree_thinning_for_spec_folder_consolidation.md](../feature_catalog/tooling_and_scripts/tree_thinning_for_spec_folder_consolidation.md)
 
 ### 062 | Progressive validation for spec documents (PI-B2)
 
@@ -1660,8 +1660,8 @@ Prompt: `Validate Progressive validation for spec documents (PI-B2) against the 
 Each validation level produces appropriate checks; level progression increases strictness; exit codes reflect severity; auto-fix diffs applied at permitted levels
 
 #### Test Execution
-> **Feature File:** [062](tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md)
-> **Catalog:** [tooling-and-scripts/progressive-validation-for-spec-documents.md](../feature_catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)
+> **Feature File:** [062](tooling_and_scripts/progressive_validation_for_spec_documents_pi_b2.md)
+> **Catalog:** [tooling_and_scripts/progressive_validation_for_spec_documents.md](../feature_catalog/tooling_and_scripts/progressive_validation_for_spec_documents.md)
 
 ### 063 | Feature flag governance
 
@@ -1674,8 +1674,8 @@ Prompt: `Validate Feature flag governance against the documented validation surf
 All flags enumerated with age and review cadence; compliance gaps identified; no undocumented flags found
 
 #### Test Execution
-> **Feature File:** [063](governance/feature-flag-governance.md)
-> **Catalog:** [governance/feature-flag-governance.md](../feature_catalog/governance/feature-flag-governance.md)
+> **Feature File:** [063](governance/feature_flag_governance.md)
+> **Catalog:** [governance/feature_flag_governance.md](../feature_catalog/governance/feature_flag_governance.md)
 
 ### 064 | Feature flag sunset audit
 
@@ -1706,8 +1706,8 @@ Additional audit scenario: `Open the default vector store, then initialize a sec
 Per-path DB isolation holds; close_db cleans up all handles; archived cache scoping does not leak across options
 
 #### Test Execution
-> **Feature File:** [065](bug-fixes-and-data-integrity/database-and-schema-safety.md)
-> **Catalog:** [bug-fixes-and-data-integrity/database-and-schema-safety.md](../feature_catalog/bug-fixes-and-data-integrity/database-and-schema-safety.md)
+> **Feature File:** [065](bug_fixes_and_data_integrity/database_and_schema_safety.md)
+> **Catalog:** [bug_fixes_and_data_integrity/database_and_schema_safety.md](../feature_catalog/bug_fixes_and_data_integrity/database_and_schema_safety.md)
 
 ### 066 | Scoring and ranking corrections
 
@@ -1720,8 +1720,8 @@ Prompt: `Validate scoring and ranking corrections for score ranges, relevance or
 Score values fall within expected ranges; ranking order matches relevance; no score inversions or NaN values; ablation token_usage metrics omit synthetic zero-only samples
 
 #### Test Execution
-> **Feature File:** [066](scoring-and-calibration/scoring-and-ranking-corrections.md)
-> **Catalog:** [scoring-and-calibration/scoring-and-ranking-corrections.md](../feature_catalog/scoring-and-calibration/scoring-and-ranking-corrections.md)
+> **Feature File:** [066](scoring_and_calibration/scoring_and_ranking_corrections.md)
+> **Catalog:** [scoring_and_calibration/scoring_and_ranking_corrections.md](../feature_catalog/scoring_and_calibration/scoring_and_ranking_corrections.md)
 
 ### 067 | Search pipeline safety
 
@@ -1734,8 +1734,8 @@ Prompt: `Validate search pipeline safety against the documented validation surfa
 Pipeline handles heavy queries without crash; filters apply correctly; tokenization produces valid tokens; no unguarded exceptions
 
 #### Test Execution
-> **Feature File:** [067](pipeline-architecture/search-pipeline-safety.md)
-> **Catalog:** [pipeline-architecture/search-pipeline-safety.md](../feature_catalog/pipeline-architecture/search-pipeline-safety.md)
+> **Feature File:** [067](pipeline_architecture/search_pipeline_safety.md)
+> **Catalog:** [pipeline_architecture/search_pipeline_safety.md](../feature_catalog/pipeline_architecture/search_pipeline_safety.md)
 
 ### 068 | Guards and edge cases
 
@@ -1752,8 +1752,8 @@ Additional audit scenario: `Validate retrieval guard fixes with a sandbox corpus
 Expired rows excluded; result limits respected; invalid embeddings rejected cleanly; partial state counted
 
 #### Test Execution
-> **Feature File:** [068](bug-fixes-and-data-integrity/guards-and-edge-cases.md)
-> **Catalog:** [bug-fixes-and-data-integrity/guards-and-edge-cases.md](../feature_catalog/bug-fixes-and-data-integrity/guards-and-edge-cases.md)
+> **Feature File:** [068](bug_fixes_and_data_integrity/guards_and_edge_cases.md)
+> **Catalog:** [bug_fixes_and_data_integrity/guards_and_edge_cases.md](../feature_catalog/bug_fixes_and_data_integrity/guards_and_edge_cases.md)
 
 ### 069 | Entity normalization consolidation
 
@@ -1766,8 +1766,8 @@ Prompt: `Validate entity normalization consolidation across extraction and linki
 Extractor and linker produce identical normalized forms for same input; unicode entities handled consistently; no normalization divergence
 
 #### Test Execution
-> **Feature File:** [069](memory-quality-and-indexing/entity-normalization-consolidation.md)
-> **Catalog:** [memory-quality-and-indexing/entity-normalization-consolidation.md](../feature_catalog/memory-quality-and-indexing/entity-normalization-consolidation.md)
+> **Feature File:** [069](memory_quality_and_indexing/entity_normalization_consolidation.md)
+> **Catalog:** [memory_quality_and_indexing/entity_normalization_consolidation.md](../feature_catalog/memory_quality_and_indexing/entity_normalization_consolidation.md)
 
 ### 070 | Dead code removal
 
@@ -1780,8 +1780,8 @@ Prompt: `Validate Dead code removal against isShadowScoringEnabled and report ci
 Removed hybrid-search branches absent; retired helpers absent; dead module state and exports absent; representative flows execute without missing-reference errors
 
 #### Test Execution
-> **Feature File:** [070](tooling-and-scripts/dead-code-removal.md)
-> **Catalog:** [tooling-and-scripts/dead-code-removal.md](../feature_catalog/tooling-and-scripts/dead-code-removal.md)
+> **Feature File:** [070](tooling_and_scripts/dead_code_removal.md)
+> **Catalog:** [tooling_and_scripts/dead_code_removal.md](../feature_catalog/tooling_and_scripts/dead_code_removal.md)
 
 ### 071 | Performance improvements
 
@@ -1794,8 +1794,8 @@ Prompt: `Validate performance improvements against hybrid-search.ts and return p
 Optimized code paths are active (not bypassed); heavy queries complete within acceptable time; no performance regressions
 
 #### Test Execution
-> **Feature File:** [071](pipeline-architecture/performance-improvements.md)
-> **Catalog:** [pipeline-architecture/performance-improvements.md](../feature_catalog/pipeline-architecture/performance-improvements.md)
+> **Feature File:** [071](pipeline_architecture/performance_improvements.md)
+> **Catalog:** [pipeline_architecture/performance_improvements.md](../feature_catalog/pipeline_architecture/performance_improvements.md)
 
 ### 072 | Test quality improvements
 
@@ -1808,8 +1808,8 @@ Prompt: `Validate the test quality improvements and cite teardown, assertion spe
 Tests use proper teardown; assertions are specific (not generic truthy checks); no flaky timing-dependent patterns; test isolation maintained
 
 #### Test Execution
-> **Feature File:** [072](evaluation-and-measurement/test-quality-improvements.md)
-> **Catalog:** [evaluation-and-measurement/test-quality-improvements.md](../feature_catalog/evaluation-and-measurement/test-quality-improvements.md)
+> **Feature File:** [072](evaluation_and_measurement/test_quality_improvements.md)
+> **Catalog:** [evaluation_and_measurement/test_quality_improvements.md](../feature_catalog/evaluation_and_measurement/test_quality_improvements.md)
 
 ### 073 | Quality gate timer persistence
 
@@ -1822,8 +1822,8 @@ Prompt: `Validate quality gate timer persistence across service restart.`
 Activation timestamp survives service restart; quality gate respects persisted timer; no timer reset on restart
 
 #### Test Execution
-> **Feature File:** [073](memory-quality-and-indexing/quality-gate-timer-persistence.md)
-> **Catalog:** [memory-quality-and-indexing/quality-gate-timer-persistence.md](../feature_catalog/memory-quality-and-indexing/quality-gate-timer-persistence.md)
+> **Feature File:** [073](memory_quality_and_indexing/quality_gate_timer_persistence.md)
+> **Catalog:** [memory_quality_and_indexing/quality_gate_timer_persistence.md](../feature_catalog/memory_quality_and_indexing/quality_gate_timer_persistence.md)
 
 ### 074 | Stage 3 effectiveScore fallback chain
 
@@ -1836,8 +1836,8 @@ Prompt: `Validate the Stage 3 effectiveScore fallback chain and confirm each fal
 Fallback chain follows defined priority order; missing score fields trigger next fallback; final fallback produces valid score
 
 #### Test Execution
-> **Feature File:** [074](scoring-and-calibration/stage-3-effectivescore-fallback-chain.md)
-> **Catalog:** [scoring-and-calibration/stage-3-effectivescore-fallback-chain.md](../feature_catalog/scoring-and-calibration/stage-3-effectivescore-fallback-chain.md)
+> **Feature File:** [074](scoring_and_calibration/stage_3_effectivescore_fallback_chain.md)
+> **Catalog:** [scoring_and_calibration/stage_3_effectivescore_fallback_chain.md](../feature_catalog/scoring_and_calibration/stage_3_effectivescore_fallback_chain.md)
 
 ### 075 | Canonical ID dedup hardening
 
@@ -1850,8 +1850,8 @@ Prompt: `Validate canonical ID dedup hardening and confirm mixed-format IDs dedu
 Mixed-format IDs (numeric, string, prefixed) resolve to single canonical form; dedup produces exactly one result per logical entity
 
 #### Test Execution
-> **Feature File:** [075](bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md)
-> **Catalog:** [bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md](../feature_catalog/bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md)
+> **Feature File:** [075](bug_fixes_and_data_integrity/canonical_id_dedup_hardening.md)
+> **Catalog:** [bug_fixes_and_data_integrity/canonical_id_dedup_hardening.md](../feature_catalog/bug_fixes_and_data_integrity/canonical_id_dedup_hardening.md)
 
 
 ### 077 | Tier-2 fallback channel forcing
@@ -1865,8 +1865,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Tier-2 fallbac
 Tier-2 fallback activates all search channels; channel options show forceAllChannels=true; results include contributions from all channels
 
 #### Test Execution
-> **Feature File:** [077](retrieval-enhancements/tier-2-fallback-channel-forcing.md)
-> **Catalog:** [retrieval-enhancements/tier-2-fallback-channel-forcing.md](../feature_catalog/retrieval-enhancements/tier-2-fallback-channel-forcing.md)
+> **Feature File:** [077](retrieval_enhancements/tier_2_fallback_channel_forcing.md)
+> **Catalog:** [retrieval_enhancements/tier_2_fallback_channel_forcing.md](../feature_catalog/retrieval_enhancements/tier_2_fallback_channel_forcing.md)
 
 ### 078 | Legacy V1 pipeline removal
 
@@ -1879,8 +1879,8 @@ Prompt: `Validate legacy V1 pipeline removal against the documented validation s
 V1 pipeline symbols absent from codebase; all queries route through V2 pipeline; no V1 fallback paths remain
 
 #### Test Execution
-> **Feature File:** [078](pipeline-architecture/legacy-v1-pipeline-removal.md)
-> **Catalog:** [pipeline-architecture/legacy-v1-pipeline-removal.md](../feature_catalog/pipeline-architecture/legacy-v1-pipeline-removal.md)
+> **Feature File:** [078](pipeline_architecture/legacy_v1_pipeline_removal.md)
+> **Catalog:** [pipeline_architecture/legacy_v1_pipeline_removal.md](../feature_catalog/pipeline_architecture/legacy_v1_pipeline_removal.md)
 
 ### 079 | Scoring and fusion corrections
 
@@ -1893,8 +1893,8 @@ Prompt: `Validate the scoring and fusion correction bundle with executable sourc
 Scoring math produces correct values; normalization stays within bounds; fusion formula applies corrected weights
 
 #### Test Execution
-> **Feature File:** [079](scoring-and-calibration/scoring-and-fusion-corrections.md)
-> **Catalog:** [scoring-and-calibration/scoring-and-fusion-corrections.md](../feature_catalog/scoring-and-calibration/scoring-and-fusion-corrections.md)
+> **Feature File:** [079](scoring_and_calibration/scoring_and_fusion_corrections.md)
+> **Catalog:** [scoring_and_calibration/scoring_and_fusion_corrections.md](../feature_catalog/scoring_and_calibration/scoring_and_fusion_corrections.md)
 
 ### 080 | Pipeline and mutation hardening
 
@@ -1907,8 +1907,8 @@ Prompt: `Validate pipeline and mutation hardening against the documented validat
 CRUD mutations are atomic (all-or-nothing); error handling cleans up partial state; no orphaned records on failure; deep-mode reformulation and HyDE candidates re-enter scope/context/quality filtering before merge; constitutional injection obeys global scope enforcement; chunk reassembly accepts camelCase metadata aliases
 
 #### Test Execution
-> **Feature File:** [080](pipeline-architecture/pipeline-and-mutation-hardening.md)
-> **Catalog:** [pipeline-architecture/pipeline-and-mutation-hardening.md](../feature_catalog/pipeline-architecture/pipeline-and-mutation-hardening.md)
+> **Feature File:** [080](pipeline_architecture/pipeline_and_mutation_hardening.md)
+> **Catalog:** [pipeline_architecture/pipeline_and_mutation_hardening.md](../feature_catalog/pipeline_architecture/pipeline_and_mutation_hardening.md)
 
 ### 081 | Graph and cognitive memory fixes
 
@@ -1921,8 +1921,8 @@ Prompt: `Validate graph and cognitive memory fixes and cite self-loop prevention
 Self-loops prevented; depth clamps enforced; cache invalidation triggers on mutation; no stale cognitive data returned
 
 #### Test Execution
-> **Feature File:** [081](graph-signal-activation/graph-and-cognitive-memory-fixes.md)
-> **Catalog:** [graph-signal-activation/graph-and-cognitive-memory-fixes.md](../feature_catalog/graph-signal-activation/graph-and-cognitive-memory-fixes.md)
+> **Feature File:** [081](graph_signal_activation/graph_and_cognitive_memory_fixes.md)
+> **Catalog:** [graph_signal_activation/graph_and_cognitive_memory_fixes.md](../feature_catalog/graph_signal_activation/graph_and_cognitive_memory_fixes.md)
 
 ### 082 | Evaluation and housekeeping fixes
 
@@ -1935,8 +1935,8 @@ Prompt: `Validate evaluation housekeeping and cite unique run IDs, idempotent up
 Run-IDs are unique across restarts; upserts are idempotent; boundary guards prevent out-of-range values; housekeeping completes cleanly
 
 #### Test Execution
-> **Feature File:** [082](evaluation-and-measurement/evaluation-and-housekeeping-fixes.md)
-> **Catalog:** [evaluation-and-measurement/evaluation-and-housekeeping-fixes.md](../feature_catalog/evaluation-and-measurement/evaluation-and-housekeeping-fixes.md)
+> **Feature File:** [082](evaluation_and_measurement/evaluation_and_housekeeping_fixes.md)
+> **Catalog:** [evaluation_and_measurement/evaluation_and_housekeeping_fixes.md](../feature_catalog/evaluation_and_measurement/evaluation_and_housekeeping_fixes.md)
 
 ### 083 | Math.max/min stack overflow elimination
 
@@ -1949,8 +1949,8 @@ Prompt: `Validate Math.max/min stack overflow elimination and confirm large arra
 Large arrays (10k+ elements) processed without RangeError; numeric outputs match expected min/max values; no stack overflow in any code path
 
 #### Test Execution
-> **Feature File:** [083](bug-fixes-and-data-integrity/math-max-min-stack-overflow-elimination.md)
-> **Catalog:** [bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md](../feature_catalog/bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md)
+> **Feature File:** [083](bug_fixes_and_data_integrity/math_max_min_stack_overflow_elimination.md)
+> **Catalog:** [bug_fixes_and_data_integrity/mathmax_min_stack_overflow_elimination.md](../feature_catalog/bug_fixes_and_data_integrity/mathmax_min_stack_overflow_elimination.md)
 
 ### 084 | Session-manager transaction gap fixes
 
@@ -1963,8 +1963,8 @@ Prompt: `Validate session-manager transaction gap fixes and confirm concurrent w
 Concurrent writes are serialized via transactions; session limits enforced; no data corruption from concurrent access
 
 #### Test Execution
-> **Feature File:** [084](bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md)
-> **Catalog:** [bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md](../feature_catalog/bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md)
+> **Feature File:** [084](bug_fixes_and_data_integrity/session_manager_transaction_gap_fixes.md)
+> **Catalog:** [bug_fixes_and_data_integrity/session_manager_transaction_gap_fixes.md](../feature_catalog/bug_fixes_and_data_integrity/session_manager_transaction_gap_fixes.md)
 
 ### 085 | Transaction wrappers on mutation handlers
 
@@ -1977,8 +1977,8 @@ Prompt: `As a mutation validation operator, validate Transaction wrappers on mut
 Mid-step fault triggers automatic rollback; DB state remains consistent after rollback; no partial writes persist
 
 #### Test Execution
-> **Feature File:** [085](mutation/transaction-wrappers-on-mutation-handlers.md)
-> **Catalog:** [mutation/transaction-wrappers-on-mutation-handlers.md](../feature_catalog/mutation/transaction-wrappers-on-mutation-handlers.md)
+> **Feature File:** [085](mutation/transaction_wrappers_on_mutation_handlers.md)
+> **Catalog:** [mutation/transaction_wrappers_on_mutation_handlers.md](../feature_catalog/mutation/transaction_wrappers_on_mutation_handlers.md)
 
 ### 086 | BM25 trigger phrase re-index gate
 
@@ -1991,8 +1991,8 @@ Prompt: `Validate the BM25 trigger phrase re-index gate and confirm edited trigg
 Trigger phrase edit triggers BM25 re-index; new trigger is searchable after re-index; old trigger phrase still works if not removed
 
 #### Test Execution
-> **Feature File:** [086](retrieval/bm25-trigger-phrase-re-index-gate.md)
-> **Catalog:** [retrieval/bm25-trigger-phrase-re-index-gate.md](../feature_catalog/retrieval/bm25-trigger-phrase-re-index-gate.md)
+> **Feature File:** [086](retrieval/bm25_trigger_phrase_re_index_gate.md)
+> **Catalog:** [retrieval/bm25_trigger_phrase_re_index_gate.md](../feature_catalog/retrieval/bm25_trigger_phrase_re_index_gate.md)
 
 ### 087 | DB_PATH extraction and import standardization
 
@@ -2005,8 +2005,8 @@ Prompt: `Validate DB_PATH extraction and import standardization against the docu
 All scripts/tools resolve to the same DB path for identical env vars; precedence chain is respected; no hardcoded fallbacks diverge
 
 #### Test Execution
-> **Feature File:** [087](pipeline-architecture/db-path-extraction-and-import-standardization.md)
-> **Catalog:** [pipeline-architecture/dbpath-extraction-and-import-standardization.md](../feature_catalog/pipeline-architecture/dbpath-extraction-and-import-standardization.md)
+> **Feature File:** [087](pipeline_architecture/db_path_extraction_and_import_standardization.md)
+> **Catalog:** [pipeline_architecture/dbpath_extraction_and_import_standardization.md](../feature_catalog/pipeline_architecture/dbpath_extraction_and_import_standardization.md)
 
 ### 088 | Cross-AI validation fixes (Tier 4)
 
@@ -2019,8 +2019,8 @@ Prompt: `Validate the Tier 4 cross-AI fixes and cite corrected behavior, represe
 Each tier-4 fix location shows corrected behavior; representative flows produce expected outputs; no regressions in adjacent functionality
 
 #### Test Execution
-> **Feature File:** [088](evaluation-and-measurement/cross-ai-validation-fixes-tier-4.md)
-> **Catalog:** [evaluation-and-measurement/cross-ai-validation-fixes.md](../feature_catalog/evaluation-and-measurement/cross-ai-validation-fixes.md)
+> **Feature File:** [088](evaluation_and_measurement/cross_ai_validation_fixes_tier_4.md)
+> **Catalog:** [evaluation_and_measurement/cross_ai_validation_fixes.md](../feature_catalog/evaluation_and_measurement/cross_ai_validation_fixes.md)
 
 ### 089 | Code standards alignment
 
@@ -2033,8 +2033,8 @@ Prompt: `Validate Code standards alignment against the documented validation sur
 Affected files follow naming conventions; comments are meaningful (not boilerplate); import order matches standard; no mismatches found
 
 #### Test Execution
-> **Feature File:** [089](tooling-and-scripts/code-standards-alignment.md)
-> **Catalog:** [tooling-and-scripts/code-standards-alignment.md](../feature_catalog/tooling-and-scripts/code-standards-alignment.md)
+> **Feature File:** [089](tooling_and_scripts/code_standards_alignment.md)
+> **Catalog:** [tooling_and_scripts/code_standards_alignment.md](../feature_catalog/tooling_and_scripts/code_standards_alignment.md)
 
 ### 090 | INT8 quantization evaluation (R5)
 
@@ -2047,8 +2047,8 @@ Prompt: `Validate the INT8 quantization no-go decision and cite current degradat
 Quality degradation metrics exceed acceptable threshold; no-go criteria still met; decision rationale documented with current data
 
 #### Test Execution
-> **Feature File:** [090](evaluation-and-measurement/int8-quantization-evaluation-r5.md)
-> **Catalog:** [evaluation-and-measurement/int8-quantization-evaluation.md](../feature_catalog/evaluation-and-measurement/int8-quantization-evaluation.md)
+> **Feature File:** [090](evaluation_and_measurement/int8_quantization_evaluation_r5.md)
+> **Catalog:** [evaluation_and_measurement/int8_quantization_evaluation.md](../feature_catalog/evaluation_and_measurement/int8_quantization_evaluation.md)
 
 ### 091 | Implemented: graph centrality and community detection (N2)
 
@@ -2061,8 +2061,8 @@ Prompt: `Validate graph centrality and community detection and cite N2 tables, a
 N2 tables exist with data; feature flags show active status; graph queries include centrality/community contributions in scores
 
 #### Test Execution
-> **Feature File:** [091](graph-signal-activation/implemented-graph-centrality-and-community-detection-n2.md)
-> **Catalog:** [graph-signal-activation/community-detection.md](../feature_catalog/graph-signal-activation/community-detection.md)
+> **Feature File:** [091](graph_signal_activation/implemented_graph_centrality_and_community_detection_n2.md)
+> **Catalog:** [graph_signal_activation/community_detection.md](../feature_catalog/graph_signal_activation/community_detection.md)
 
 ### 092 | Implemented: auto entity extraction (R10)
 
@@ -2075,8 +2075,8 @@ Prompt: `Validate implemented auto entity extraction defaults and output types.`
 Entities automatically extracted on save; entity outputs contain expected entity types; default extraction settings are applied
 
 #### Test Execution
-> **Feature File:** [092](memory-quality-and-indexing/implemented-auto-entity-extraction-r10.md)
-> **Catalog:** [memory-quality-and-indexing/auto-entity-extraction.md](../feature_catalog/memory-quality-and-indexing/auto-entity-extraction.md)
+> **Feature File:** [092](memory_quality_and_indexing/implemented_auto_entity_extraction_r10.md)
+> **Catalog:** [memory_quality_and_indexing/auto_entity_extraction.md](../feature_catalog/memory_quality_and_indexing/auto_entity_extraction.md)
 
 ### 093 | Implemented: memory summary generation (R8)
 
@@ -2089,8 +2089,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Implemented: m
 Summary generated for long memories; summary persisted in DB; scale gate prevents summary generation below corpus threshold
 
 #### Test Execution
-> **Feature File:** [093](retrieval-enhancements/implemented-memory-summary-generation-r8.md)
-> **Catalog:** [retrieval-enhancements/memory-summary-search-channel.md](../feature_catalog/retrieval-enhancements/memory-summary-search-channel.md)
+> **Feature File:** [093](retrieval_enhancements/implemented_memory_summary_generation_r8.md)
+> **Catalog:** [retrieval_enhancements/memory_summary_search_channel.md](../feature_catalog/retrieval_enhancements/memory_summary_search_channel.md)
 
 ### 094 | Implemented: cross-document entity linking (S5)
 
@@ -2103,8 +2103,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Implemented: c
 Entity linker creates supports-edges between related documents; density guards cap edge creation; edge types are correctly classified
 
 #### Test Execution
-> **Feature File:** [094](retrieval-enhancements/implemented-cross-document-entity-linking-s5.md)
-> **Catalog:** [retrieval-enhancements/cross-document-entity-linking.md](../feature_catalog/retrieval-enhancements/cross-document-entity-linking.md)
+> **Feature File:** [094](retrieval_enhancements/implemented_cross_document_entity_linking_s5.md)
+> **Catalog:** [retrieval_enhancements/cross_document_entity_linking.md](../feature_catalog/retrieval_enhancements/cross_document_entity_linking.md)
 
 ### 095 | Strict Zod schema validation (P0-1)
 
@@ -2117,8 +2117,8 @@ Prompt: `Validate strict Zod schema validation (P0-1) against memory_search({que
 Zod strict error returned for unknown params in strict mode; extra params pass through in permissive mode; validation occurs per-tool in handler layer
 
 #### Test Execution
-> **Feature File:** [095](pipeline-architecture/strict-zod-schema-validation-p0-1.md)
-> **Catalog:** [pipeline-architecture/strict-zod-schema-validation.md](../feature_catalog/pipeline-architecture/strict-zod-schema-validation.md)
+> **Feature File:** [095](pipeline_architecture/strict_zod_schema_validation_p0_1.md)
+> **Catalog:** [pipeline_architecture/strict_zod_schema_validation.md](../feature_catalog/pipeline_architecture/strict_zod_schema_validation.md)
 
 ### 096 | Provenance-rich response envelopes (P0-2)
 
@@ -2131,8 +2131,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Provenance-ric
 Trace objects (scores, source, trace) present when includeTrace=true or env override active; absent when neither is set; score fields include all 7 expected sub-fields
 
 #### Test Execution
-> **Feature File:** [096](retrieval-enhancements/provenance-rich-response-envelopes-p0-2.md)
-> **Catalog:** [retrieval-enhancements/provenance-rich-response-envelopes.md](../feature_catalog/retrieval-enhancements/provenance-rich-response-envelopes.md)
+> **Feature File:** [096](retrieval_enhancements/provenance_rich_response_envelopes_p0_2.md)
+> **Catalog:** [retrieval_enhancements/provenance_rich_response_envelopes.md](../feature_catalog/retrieval_enhancements/provenance_rich_response_envelopes.md)
 
 ### 097 | Async ingestion job lifecycle (P0-3)
 
@@ -2145,8 +2145,8 @@ Prompt: `Validate async ingestion job lifecycle, including state order, duplicat
 Job state transitions through queued→parsing→embedding→indexing→complete in order; cancel sets state to cancelled; job IDs match nanoid format; incomplete jobs re-enqueue after restart
 
 #### Test Execution
-> **Feature File:** [097](lifecycle/async-ingestion-job-lifecycle-p0-3.md)
-> **Catalog:** [lifecycle/async-ingestion-job-lifecycle.md](../feature_catalog/lifecycle/async-ingestion-job-lifecycle.md)
+> **Feature File:** [097](lifecycle/async_ingestion_job_lifecycle_p0_3.md)
+> **Catalog:** [lifecycle/async_ingestion_job_lifecycle.md](../feature_catalog/lifecycle/async_ingestion_job_lifecycle.md)
 
 ### 099 | Real-time filesystem watching 
 
@@ -2159,8 +2159,8 @@ Prompt: `Validate Real-time filesystem watching (P1-7) against SPECKIT_FILE_WATC
 File add seeds hash cache; modifications trigger reindex after 2s debounce; identical-content modifications produce no reindex; rapid create-delete produces no ENOENT crash
 
 #### Test Execution
-> **Feature File:** [099](tooling-and-scripts/real-time-filesystem-watching-p1-7.md)
-> **Catalog:** [tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md](../feature_catalog/tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md)
+> **Feature File:** [099](tooling_and_scripts/real_time_filesystem_watching_p1_7.md)
+> **Catalog:** [tooling_and_scripts/real_time_filesystem_watching_with_chokidar.md](../feature_catalog/tooling_and_scripts/real_time_filesystem_watching_with_chokidar.md)
 
 
 ### 101 | memory_delete confirm schema tightening
@@ -2174,7 +2174,7 @@ Prompt: `As a mutation validation operator, validate memory_delete confirm schem
 confirm:true accepted; confirm:false rejected with Zod literal error; bulk delete requires confirm:true; missing confirm field rejected for bulk path
 
 #### Test Execution
-> **Feature File:** [101](mutation/memory-delete-confirm-schema-tightening.md)
+> **Feature File:** [101](mutation/memory_delete_confirm_schema_tightening.md)
 > **Catalog:** *(memory_delete confirm schema — covered by `mutation/03`)*
 
 ### 102 | Ollama runtime optionalDependencies
@@ -2202,8 +2202,8 @@ Prompt: `Validate UX hook module coverage for mutation-feedback and response-hin
 Test output shows suite pass, including latency/cache-clear booleans and finalized hint payload assertions
 
 #### Test Execution
-> **Feature File:** [103](ux-hooks/ux-hook-module-coverage-mutation-feedback-response-hints.md)
-> **Catalog:** [ux-hooks/dedicated-ux-hook-modules.md](../feature_catalog/ux-hooks/dedicated-ux-hook-modules.md)
+> **Feature File:** [103](ux_hooks/ux_hook_module_coverage_mutation_feedback_response_hints.md)
+> **Catalog:** [ux_hooks/dedicated_ux_hook_modules.md](../feature_catalog/ux_hooks/dedicated_ux_hook_modules.md)
 
 ### 104 | Mutation save-path UX parity and no-op hardening
 
@@ -2216,8 +2216,8 @@ Prompt: `Validate mutation save-path UX parity and no-op hardening against tests
 Suite passes and assertions show no false `postMutationHooks` on no-op saves, cache-left-unchanged messaging, and parity between standard and atomic save responses
 
 #### Test Execution
-> **Feature File:** [104](ux-hooks/mutation-save-path-ux-parity-and-no-op-hardening.md)
-> **Catalog:** [ux-hooks/duplicate-save-no-op-feedback-hardening.md](../feature_catalog/ux-hooks/duplicate-save-no-op-feedback-hardening.md)
+> **Feature File:** [104](ux_hooks/mutation_save_path_ux_parity_and_no_op_hardening.md)
+> **Catalog:** [ux_hooks/duplicate_save_no_op_feedback_hardening.md](../feature_catalog/ux_hooks/duplicate_save_no_op_feedback_hardening.md)
 
 ### 105 | Context-server success-envelope finalization
 
@@ -2230,8 +2230,8 @@ Prompt: `Validate context-server success-envelope finalization against tests/con
 Context-server suite passes with end-to-end assertions for appended hints, preserved `autoSurfacedContext`, and finalized token metadata
 
 #### Test Execution
-> **Feature File:** [105](ux-hooks/context-server-success-envelope-finalization.md)
-> **Catalog:** [ux-hooks/context-server-success-hint-append.md](../feature_catalog/ux-hooks/context-server-success-hint-append.md)
+> **Feature File:** [105](ux_hooks/context_server_success_envelope_finalization.md)
+> **Catalog:** [ux_hooks/context_server_success_hint_append.md](../feature_catalog/ux_hooks/context_server_success_hint_append.md)
 
 ### 106 | Hooks barrel + README synchronization
 
@@ -2245,8 +2245,8 @@ Expected signals: Both barrel (`hooks/index.ts`) and README (`hooks/README.md`) 
 Pass/fail: PASS if both files reference the new modules and contract fields
 
 #### Test Execution
-> **Feature File:** [106](ux-hooks/hooks-barrel-readme-synchronization.md)
-> **Catalog:** [ux-hooks/hooks-readme-and-export-alignment.md](../feature_catalog/ux-hooks/hooks-readme-and-export-alignment.md)
+> **Feature File:** [106](ux_hooks/hooks_barrel_readme_synchronization.md)
+> **Catalog:** [ux_hooks/hooks_readme_and_export_alignment.md](../feature_catalog/ux_hooks/hooks_readme_and_export_alignment.md)
 
 ### 107 | Checkpoint confirmName and schema enforcement
 
@@ -2259,8 +2259,8 @@ Prompt: `Validate checkpoint confirmName and schema enforcement across handler, 
 Validation and handler suites pass with missing-`confirmName` rejection plus successful delete confirmation reporting
 
 #### Test Execution
-> **Feature File:** [107](ux-hooks/checkpoint-confirmname-and-schema-enforcement.md)
-> **Catalog:** [ux-hooks/checkpoint-delete-confirmname-safety.md](../feature_catalog/ux-hooks/checkpoint-delete-confirmname-safety.md)
+> **Feature File:** [107](ux_hooks/checkpoint_confirmname_and_schema_enforcement.md)
+> **Catalog:** [ux_hooks/checkpoint_delete_confirmname_safety.md](../feature_catalog/ux_hooks/checkpoint_delete_confirmname_safety.md)
 
 ### 108 | Spec 007 finalized verification command suite evidence
 
@@ -2273,7 +2273,7 @@ Prompt: `Validate Spec 007 finalized verification command suite evidence against
 `npx tsc -b` PASS, `npm run lint` PASS, UX suite PASS with 7 files / 510 tests, stdio plus embeddings suite PASS with 2 files / 15 tests, and MCP SDK stdio smoke PASS with 28 tools listed
 
 #### Test Execution
-> **Feature File:** [108](tooling-and-scripts/spec-007-finalized-verification-command-suite-evidence.md)
+> **Feature File:** [108](tooling_and_scripts/spec_007_finalized_verification_command_suite_evidence.md)
 > **Catalog:** *(Spec 007 verification suite — no dedicated catalog entry)*
 
 ### 109 | Quality-aware 3-tier search fallback
@@ -2287,8 +2287,8 @@ Prompt: `Validate quality-aware 3-tier search fallback and confirm degradation, 
 Tier 1 low-quality results trigger Tier 2; Tier 2 forces all channels with minSimilarity=0.1; Tier 3 SQL fallback fires when Tier 2 also fails; _degradation property reflects active tier; SPECKIT_SEARCH_FALLBACK=false disables tiered degradation
 
 #### Test Execution
-> **Feature File:** [109](retrieval/quality-aware-3-tier-search-fallback.md)
-> **Catalog:** [retrieval/quality-aware-3-tier-search-fallback.md](../feature_catalog/retrieval/quality-aware-3-tier-search-fallback.md)
+> **Feature File:** [109](retrieval/quality_aware_3_tier_search_fallback.md)
+> **Catalog:** [retrieval/quality_aware_3_tier_search_fallback.md](../feature_catalog/retrieval/quality_aware_3_tier_search_fallback.md)
 
 ### 110 | Prediction-error save arbitration
 
@@ -2301,8 +2301,8 @@ Prompt: `As a mutation validation operator, validate Prediction-error save arbit
 Each similarity band triggers the correct action; memory_conflicts rows are recorded; force:true bypasses arbitration; cross-session PE bleed is blocked
 
 #### Test Execution
-> **Feature File:** [110](mutation/prediction-error-save-arbitration.md)
-> **Catalog:** [mutation/prediction-error-save-arbitration.md](../feature_catalog/mutation/prediction-error-save-arbitration.md)
+> **Feature File:** [110](mutation/prediction_error_save_arbitration.md)
+> **Catalog:** [mutation/prediction_error_save_arbitration.md](../feature_catalog/mutation/prediction_error_save_arbitration.md)
 
 ### 111 | Deferred lexical-only indexing
 
@@ -2315,8 +2315,8 @@ Prompt: `Validate deferred lexical-only indexing after embedding failure.`
 Record saved with embedding_status='pending' on embedding failure; BM25/FTS5 lexical search returns the record; reindex transitions status to 'success'; vector search works after reindex
 
 #### Test Execution
-> **Feature File:** [111](memory-quality-and-indexing/deferred-lexical-only-indexing.md)
-> **Catalog:** [memory-quality-and-indexing/deferred-lexical-only-indexing.md](../feature_catalog/memory-quality-and-indexing/deferred-lexical-only-indexing.md)
+> **Feature File:** [111](memory_quality_and_indexing/deferred_lexical_only_indexing.md)
+> **Catalog:** [memory_quality_and_indexing/deferred_lexical_only_indexing.md](../feature_catalog/memory_quality_and_indexing/deferred_lexical_only_indexing.md)
 
 ### 112 | Cross-process DB hot rebinding
 
@@ -2329,8 +2329,8 @@ Prompt: `Validate cross-process DB hot rebinding against memory_save(filePath) a
 Server detects DB_UPDATED_FILE marker; DB reinitializes without restart; stats reflect post-mutation state (no stale data); health reports healthy after rebind
 
 #### Test Execution
-> **Feature File:** [112](pipeline-architecture/cross-process-db-hot-rebinding.md)
-> **Catalog:** [pipeline-architecture/cross-process-db-hot-rebinding.md](../feature_catalog/pipeline-architecture/cross-process-db-hot-rebinding.md)
+> **Feature File:** [112](pipeline_architecture/cross_process_db_hot_rebinding.md)
+> **Catalog:** [pipeline_architecture/cross_process_db_hot_rebinding.md](../feature_catalog/pipeline_architecture/cross_process_db_hot_rebinding.md)
 
 
 ### 114 | Path traversal validation (P0-4)
@@ -2344,8 +2344,8 @@ Prompt: `Validate memory_ingest_start path traversal checks, including traversal
 Traversal paths (../) rejected with E_VALIDATION error; absolute paths outside allowed base rejected; valid paths within allowed directories accepted and job created
 
 #### Test Execution
-> **Feature File:** [114](lifecycle/path-traversal-validation-p0-4.md)
-> **Catalog:** [lifecycle/async-ingestion-job-lifecycle.md](../feature_catalog/lifecycle/async-ingestion-job-lifecycle.md)
+> **Feature File:** [114](lifecycle/path_traversal_validation_p0_4.md)
+> **Catalog:** [lifecycle/async_ingestion_job_lifecycle.md](../feature_catalog/lifecycle/async_ingestion_job_lifecycle.md)
 
 ### 115 | Transaction atomicity on rename failure (P0-5)
 
@@ -2358,8 +2358,8 @@ Prompt: `Validate transaction atomicity on rename failure (P0-5) against execute
 Rename failure returns {success:false, dbCommitted:true}; pending file preserved on disk after failure; recoverAllPendingFiles discovers and recovers the pending file
 
 #### Test Execution
-> **Feature File:** [115](pipeline-architecture/transaction-atomicity-on-rename-failure-p0-5.md)
-> **Catalog:** [pipeline-architecture/atomic-pending-file-recovery.md](../feature_catalog/pipeline-architecture/atomic-pending-file-recovery.md)
+> **Feature File:** [115](pipeline_architecture/transaction_atomicity_on_rename_failure_p0_5.md)
+> **Catalog:** [pipeline_architecture/atomic_pending_file_recovery.md](../feature_catalog/pipeline_architecture/atomic_pending_file_recovery.md)
 
 ### 116 | Chunking safe swap atomicity (P0-6)
 
@@ -2372,8 +2372,8 @@ Prompt: `Validate chunking safe swap atomicity (P0-6) and confirm staged re-chun
 New chunks indexed in staged state before old deletion; old chunks deleted only after successful new indexing; embedding failure preserves old children; handler returns error status on failure
 
 #### Test Execution
-> **Feature File:** [116](bug-fixes-and-data-integrity/chunking-safe-swap-atomicity-p0-6.md)
-> **Catalog:** [bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md](../feature_catalog/bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md)
+> **Feature File:** [116](bug_fixes_and_data_integrity/chunking_safe_swap_atomicity_p0_6.md)
+> **Catalog:** [bug_fixes_and_data_integrity/chunking_orchestrator_safe_swap.md](../feature_catalog/bug_fixes_and_data_integrity/chunking_orchestrator_safe_swap.md)
 
 ### 117 | SQLite datetime session cleanup (P0-7)
 
@@ -2386,8 +2386,8 @@ Prompt: `Validate SQLite datetime session cleanup (P0-7) and confirm expired ses
 Expired session (45min old) deleted; active session (5min old) preserved; cleanup works with both YYYY-MM-DD HH:MM:SS and ISO timestamp formats
 
 #### Test Execution
-> **Feature File:** [117](bug-fixes-and-data-integrity/sqlite-datetime-session-cleanup-p0-7.md)
-> **Catalog:** [bug-fixes-and-data-integrity/working-memory-timestamp-fix.md](../feature_catalog/bug-fixes-and-data-integrity/working-memory-timestamp-fix.md)
+> **Feature File:** [117](bug_fixes_and_data_integrity/sqlite_datetime_session_cleanup_p0_7.md)
+> **Catalog:** [bug_fixes_and_data_integrity/working_memory_timestamp_fix.md](../feature_catalog/bug_fixes_and_data_integrity/working_memory_timestamp_fix.md)
 
 ### 118 | Stage-2 score field synchronization (P0-8)
 
@@ -2400,8 +2400,8 @@ Prompt: `Validate Stage-2 score field synchronization with includeTrace evidence
 intentAdjustedScore set at Step 4 in trace; downstream signals modify score field; final intentAdjustedScore >= score (Math.max sync); resolveEffectiveScore returns synchronized value
 
 #### Test Execution
-> **Feature File:** [118](scoring-and-calibration/stage-2-score-field-synchronization-p0-8.md)
-> **Catalog:** [scoring-and-calibration/scoring-and-fusion-corrections.md](../feature_catalog/scoring-and-calibration/scoring-and-fusion-corrections.md)
+> **Feature File:** [118](scoring_and_calibration/stage_2_score_field_synchronization_p0_8.md)
+> **Catalog:** [scoring_and_calibration/scoring_and_fusion_corrections.md](../feature_catalog/scoring_and_calibration/scoring_and_fusion_corrections.md)
 
 ### 119 | Memory filename uniqueness (ensureUniqueMemoryFilename)
 
@@ -2414,8 +2414,8 @@ Prompt: `Validate memory filename uniqueness and collision fallback behavior.`
 Second save produces filename with `-1` suffix; both files exist with distinct names; exhausting `-1` through `-100` collisions triggers a random 12-hex fallback suffix from `crypto.randomBytes(6).toString('hex')`, not SHA1; repeated fallback saves still reserve distinct filenames; `memorySequence` increments through the hardened `Number(existing.memorySequence) | 0` coercion; and `memoryNameHistory` is updated.
 
 #### Test Execution
-> **Feature File:** [119](memory-quality-and-indexing/memory-filename-uniqueness-ensureuniquememoryfilename.md)
-> **Catalog:** [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature_catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
+> **Feature File:** [119](memory_quality_and_indexing/memory_filename_uniqueness_ensureuniquememoryfilename.md)
+> **Catalog:** [memory_quality_and_indexing/spec_folder_description_discovery.md](../feature_catalog/memory_quality_and_indexing/spec_folder_description_discovery.md)
 
 ### 120 | Unified graph rollback and explainability (Phase 3)
 
@@ -2428,8 +2428,8 @@ Prompt: `Validate graph rollback and explainability and cite kill-switch behavio
 When enabled, trace includes graph contribution summary and repeated identical inputs return identical order; when disabled, graph-side effects are absent and baseline ordering remains deterministic
 
 #### Test Execution
-> **Feature File:** [120](graph-signal-activation/unified-graph-rollback-and-explainability-phase-3.md)
-> **Catalog:** [graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md](../feature_catalog/graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md)
+> **Feature File:** [120](graph_signal_activation/unified_graph_rollback_and_explainability_phase_3.md)
+> **Catalog:** [graph_signal_activation/unified_graph_retrieval_deterministic_ranking_explainability_and_rollback.md](../feature_catalog/graph_signal_activation/unified_graph_retrieval_deterministic_ranking_explainability_and_rollback.md)
 
 ### 121 | Adaptive shadow proposal and rollback (Phase 4)
 
@@ -2442,8 +2442,8 @@ Prompt: `Validate adaptive shadow proposal and rollback with SPECKIT_MEMORY_ADAP
 Adaptive proposal is present in shadow mode, proposal deltas are bounded, production ordering is unchanged by the shadow run, and disabling the flag removes adaptive proposal output
 
 #### Test Execution
-> **Feature File:** [121](scoring-and-calibration/adaptive-shadow-proposal-and-rollback-phase-4.md)
-> **Catalog:** [scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md](../feature_catalog/scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md)
+> **Feature File:** [121](scoring_and_calibration/adaptive_shadow_proposal_and_rollback_phase_4.md)
+> **Catalog:** [scoring_and_calibration/adaptive_shadow_ranking_bounded_proposals_and_rollback.md](../feature_catalog/scoring_and_calibration/adaptive_shadow_ranking_bounded_proposals_and_rollback.md)
 
 ### 122 | Governed ingest and scope isolation (Phase 5)
 
@@ -2456,8 +2456,8 @@ Prompt: `Validate governed ingest and scope isolation against memory_save(), inc
 Governed save requires provenance; ephemeral save requires deleteAfter; scope mismatches are filtered; governance audit recorded; no orphaned ungoverned row remains after failure
 
 #### Test Execution
-> **Feature File:** [122](governance/governed-ingest-and-scope-isolation-phase-5.md)
-> **Catalog:** [governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md](../feature_catalog/governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md)
+> **Feature File:** [122](governance/governed_ingest_and_scope_isolation_phase_5.md)
+> **Catalog:** [governance/hierarchical_scope_governance_governed_ingest_retention_and_audit.md](../feature_catalog/governance/hierarchical_scope_governance_governed_ingest_retention_and_audit.md)
 
 ### 125 | Memory roadmap flags
 
@@ -2473,7 +2473,7 @@ Adaptive-ranking roadmap metadata now stays default-off until explicitly enabled
 
 #### Test Execution
 > **Feature File:** 125 memory roadmap flags
-> **Catalog:** [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature_catalog/feature-flag-reference/1-search-pipeline-features-speckit.md)
+> **Catalog:** [feature_flag_reference/1_search_pipeline_features_speckit.md](../feature_catalog/feature_flag_reference/1_search_pipeline_features_speckit.md)
 
 ### 126 | Memory roadmap baseline snapshot
 
@@ -2486,8 +2486,8 @@ Prompt: `Validate the memory roadmap baseline snapshot and cite persisted metric
 Targeted suite passes; transcript shows persisted snapshot rows, missing-context DB zero fallback coverage, and prior eval DB handle restoration after forced init failure
 
 #### Test Execution
-> **Feature File:** [126](evaluation-and-measurement/memory-roadmap-baseline-snapshot.md)
-> **Catalog:** [evaluation-and-measurement/memory-roadmap-baseline-snapshot.md](../feature_catalog/evaluation-and-measurement/memory-roadmap-baseline-snapshot.md)
+> **Feature File:** [126](evaluation_and_measurement/memory_roadmap_baseline_snapshot.md)
+> **Catalog:** [evaluation_and_measurement/memory_roadmap_baseline_snapshot.md](../feature_catalog/evaluation_and_measurement/memory_roadmap_baseline_snapshot.md)
 
 ### 127 | Migration checkpoint scripts
 
@@ -2500,8 +2500,8 @@ Prompt: `Validate Migration checkpoint scripts against cd .opencode/skills/syste
 Targeted suite passes; transcript shows checkpoint sidecar creation, restore success, and pre-restore backup coverage
 
 #### Test Execution
-> **Feature File:** [127](tooling-and-scripts/migration-checkpoint-scripts.md)
-> **Catalog:** [tooling-and-scripts/migration-checkpoint-scripts.md](../feature_catalog/tooling-and-scripts/migration-checkpoint-scripts.md)
+> **Feature File:** [127](tooling_and_scripts/migration_checkpoint_scripts.md)
+> **Catalog:** [tooling_and_scripts/migration_checkpoint_scripts.md](../feature_catalog/tooling_and_scripts/migration_checkpoint_scripts.md)
 
 ### 128 | Schema compatibility validation
 
@@ -2514,8 +2514,8 @@ Prompt: `Validate Schema compatibility validation against cd .opencode/skills/sy
 Targeted suite passes; transcript shows missing-table reporting and minimal-compatible schema success coverage
 
 #### Test Execution
-> **Feature File:** [128](tooling-and-scripts/schema-compatibility-validation.md)
-> **Catalog:** [tooling-and-scripts/schema-compatibility-validation.md](../feature_catalog/tooling-and-scripts/schema-compatibility-validation.md)
+> **Feature File:** [128](tooling_and_scripts/schema_compatibility_validation.md)
+> **Catalog:** [tooling_and_scripts/schema_compatibility_validation.md](../feature_catalog/tooling_and_scripts/schema_compatibility_validation.md)
 
 ### 129 | Lineage state active projection and asOf resolution
 
@@ -2528,8 +2528,8 @@ Prompt: `Validate lineage state active projection and asOf resolution in the MCP
 Targeted suite passes; transcript shows active projection selection, deterministic `asOf` resolution, malformed-chain detection, and timestamp-order coverage for non-ISO or timezone variants
 
 #### Test Execution
-> **Feature File:** [129](pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md)
-> **Catalog:** [pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../feature_catalog/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md)
+> **Feature File:** [129](pipeline_architecture/lineage_state_active_projection_and_asof_resolution.md)
+> **Catalog:** [pipeline_architecture/lineage_state_active_projection_and_asof_resolution.md](../feature_catalog/pipeline_architecture/lineage_state_active_projection_and_asof_resolution.md)
 
 ### 130 | Lineage backfill rollback drill
 
@@ -2542,8 +2542,8 @@ Prompt: `Validate the lineage backfill rollback drill in the MCP server and retu
 Targeted suite passes; transcript shows dry-run plan counts, successful backfill application, idempotent rerun, and checkpoint restore rollback
 
 #### Test Execution
-> **Feature File:** [130](pipeline-architecture/lineage-backfill-rollback-drill.md)
-> **Catalog:** [pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../feature_catalog/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md)
+> **Feature File:** [130](pipeline_architecture/lineage_backfill_rollback_drill.md)
+> **Catalog:** [pipeline_architecture/lineage_state_active_projection_and_asof_resolution.md](../feature_catalog/pipeline_architecture/lineage_state_active_projection_and_asof_resolution.md)
 
 ### 131 | Description.json batch backfill validation (PI-B3)
 
@@ -2556,8 +2556,8 @@ Prompt: `Validate description.json batch backfill schema coverage.`
 Description.json coverage stays in parity with the current active spec inventory; all JSON files parse without syntax errors; C1 field-type checks pass with `specId` string, `parentChain` array of strings, and `memorySequence` number; schema fields are present at varying depths; per-folder files preferred over spec.md fallback
 
 #### Test Execution
-> **Feature File:** [131](memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md)
-> **Catalog:** [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature_catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
+> **Feature File:** [131](memory_quality_and_indexing/description_json_batch_backfill_validation_pi_b3.md)
+> **Catalog:** [memory_quality_and_indexing/spec_folder_description_discovery.md](../feature_catalog/memory_quality_and_indexing/spec_folder_description_discovery.md)
 
 ### 132 | description.json schema field validation
 
@@ -2570,8 +2570,8 @@ Prompt: `Validate description.json schema field validation and repair behavior.`
 description.json generated on folder creation with all 9 required fields; field types match contract with strings for `specId`, `folderSlug`, `specFolder`, `description`, and `lastUpdated`, arrays of strings for `parentChain`, `memoryNameHistory`, and `keywords`, and number for `memorySequence`; `memorySequence` and `memoryNameHistory` update on save; corrupted fields repaired on regeneration
 
 #### Test Execution
-> **Feature File:** [132](memory-quality-and-indexing/description-json-schema-field-validation.md)
-> **Catalog:** [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature_catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
+> **Feature File:** [132](memory_quality_and_indexing/description_json_schema_field_validation.md)
+> **Catalog:** [memory_quality_and_indexing/spec_folder_description_discovery.md](../feature_catalog/memory_quality_and_indexing/spec_folder_description_discovery.md)
 
 ### 133 | Dry-run preflight for memory_save
 
@@ -2584,8 +2584,8 @@ Prompt: `Validate dry-run preflight for memory_save without indexing side effect
 Dry-run returns preflight plus quality-loop and sufficiency payloads; thin memories report `INSUFFICIENT_CONTEXT_ABORT` without indexing/database mutation; `force:true` does not bypass insufficiency; rich non-dry-run save indexes the same file
 
 #### Test Execution
-> **Feature File:** [133](memory-quality-and-indexing/dry-run-preflight-for-memory-save.md)
-> **Catalog:** [memory-quality-and-indexing/dry-run-preflight-for-memory-save.md](../feature_catalog/memory-quality-and-indexing/dry-run-preflight-for-memory-save.md)
+> **Feature File:** [133](memory_quality_and_indexing/dry_run_preflight_for_memory_save.md)
+> **Catalog:** [memory_quality_and_indexing/dry_run_preflight_for_memory_save.md](../feature_catalog/memory_quality_and_indexing/dry_run_preflight_for_memory_save.md)
 
 
 ### 135 | Grep traceability for feature catalog code references
@@ -2599,8 +2599,8 @@ Prompt: `Validate feature-source traceability for feature catalog code reference
 Feature catalog docs and the catalog code-reference index identify the expected handler and lib source anchors; all referenced files exist
 
 #### Test Execution
-> **Feature File:** [135](tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md)
-> **Catalog:** [tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/tooling-and-scripts/feature-catalog-code-references.md)
+> **Feature File:** [135](tooling_and_scripts/grep_traceability_for_feature_catalog_code_references.md)
+> **Catalog:** [tooling_and_scripts/feature_catalog_code_references.md](../feature_catalog/tooling_and_scripts/feature_catalog_code_references.md)
 
 ### 136 | Feature catalog annotation name validity
 
@@ -2613,8 +2613,8 @@ Prompt: `Validate Feature catalog annotation name validity against the documente
 Expected signals: verify_alignment_drift.py or grep output shows 0 annotation names that fail to match an H3 heading in feature_catalog.md.
 
 #### Test Execution
-> **Feature File:** [136](tooling-and-scripts/feature-catalog-annotation-name-validity.md)
-> **Catalog:** [tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/tooling-and-scripts/feature-catalog-code-references.md)
+> **Feature File:** [136](tooling_and_scripts/feature_catalog_annotation_name_validity.md)
+> **Catalog:** [tooling_and_scripts/feature_catalog_code_references.md](../feature_catalog/tooling_and_scripts/feature_catalog_code_references.md)
 
 ### 137 | Multi-feature annotation coverage
 
@@ -2627,8 +2627,8 @@ Prompt: `Validate Multi-feature annotation coverage against handlers/memory-save
 All known multi-feature files carry >= 2 annotations; annotations are semantically appropriate
 
 #### Test Execution
-> **Feature File:** [137](tooling-and-scripts/multi-feature-annotation-coverage.md)
-> **Catalog:** [tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/tooling-and-scripts/feature-catalog-code-references.md)
+> **Feature File:** [137](tooling_and_scripts/multi_feature_annotation_coverage.md)
+> **Catalog:** [tooling_and_scripts/feature_catalog_code_references.md](../feature_catalog/tooling_and_scripts/feature_catalog_code_references.md)
 
 ### 138 | MODULE: header compliance via verify_alignment_drift.py
 
@@ -2641,8 +2641,8 @@ Prompt: `Validate MODULE: header compliance via verify_alignment_drift.py agains
 verify_alignment_drift.py reports PASS with 0 TS-MODULE-HEADER findings
 
 #### Test Execution
-> **Feature File:** [138](tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md)
-> **Catalog:** [tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/tooling-and-scripts/feature-catalog-code-references.md)
+> **Feature File:** [138](tooling_and_scripts/module_header_compliance_via_verify_alignment_drift_py.md)
+> **Catalog:** [tooling_and_scripts/feature_catalog_code_references.md](../feature_catalog/tooling_and_scripts/feature_catalog_code_references.md)
 
 ### 139 | Session capturing pipeline quality
 
@@ -2659,8 +2659,8 @@ Current claim boundary:
 - Retained live artifacts are still required before claiming flawless current coverage across every supported CLI and save mode.
 
 #### Test Execution
-> **Feature File:** [139](tooling-and-scripts/session-capturing-pipeline-quality-coverage.md)
-> **Catalog:** [tooling-and-scripts/session-capturing-pipeline-quality.md](../feature_catalog/tooling-and-scripts/session-capturing-pipeline-quality.md)
+> **Feature File:** [139](tooling_and_scripts/session_capturing_pipeline_quality_coverage.md)
+> **Catalog:** [tooling_and_scripts/session_capturing_pipeline_quality.md](../feature_catalog/tooling_and_scripts/session_capturing_pipeline_quality.md)
 
 ### 142 | Session transition trace contract
 
@@ -2673,8 +2673,8 @@ Prompt: `Validate session transition tracing and confirm trace-only sessionTrans
 Trace-enabled responses include spec-shaped `sessionTransition`; non-trace responses omit it entirely; no top-level metadata leak appears when trace is disabled
 
 #### Test Execution
-> **Feature File:** [142](retrieval/session-transition-trace-contract.md)
-> **Catalog:** [retrieval/unified-context-retrieval-memorycontext.md](../feature_catalog/retrieval/unified-context-retrieval-memorycontext.md)
+> **Feature File:** [142](retrieval/session_transition_trace_contract.md)
+> **Catalog:** [retrieval/unified_context_retrieval_memorycontext.md](../feature_catalog/retrieval/unified_context_retrieval_memorycontext.md)
 
 ### 143 | Bounded graph-walk rollout and diagnostics
 
@@ -2687,8 +2687,8 @@ Prompt: `Validate bounded graph diagnostics and confirm live trace fields and de
 Rollout states switch cleanly between `trace_only`, `bounded_runtime`, and `off`; trace diagnostics expose raw/normalized metrics; bounded runtime never exceeds the Stage 2 cap; `off` disables only the graph-walk bonus ladder, not the broader graph-signal feature flag; repeated identical runs preserve deterministic ordering
 
 #### Test Execution
-> **Feature File:** [143](retrieval/bounded-graph-walk-rollout-and-diagnostics.md)
-> **Catalog:** [retrieval/semantic-and-lexical-search-memorysearch.md](../feature_catalog/retrieval/semantic-and-lexical-search-memorysearch.md)
+> **Feature File:** [143](retrieval/bounded_graph_walk_rollout_and_diagnostics.md)
+> **Catalog:** [retrieval/semantic_and_lexical_search_memorysearch.md](../feature_catalog/retrieval/semantic_and_lexical_search_memorysearch.md)
 
 ### 144 | Advisory ingest lifecycle forecast
 
@@ -2701,8 +2701,8 @@ Prompt: `Validate advisory ingest lifecycle forecasts, including forecast fields
 Status payloads always include a `forecast` object; sparse progress yields null or low-confidence fields plus caveat text; progressing jobs update ETA/risk fields without breaking the handler contract; optional telemetry remains additive
 
 #### Test Execution
-> **Feature File:** [144](lifecycle/advisory-ingest-lifecycle-forecast.md)
-> **Catalog:** [lifecycle/async-ingestion-job-lifecycle.md](../feature_catalog/lifecycle/async-ingestion-job-lifecycle.md)
+> **Feature File:** [144](lifecycle/advisory_ingest_lifecycle_forecast.md)
+> **Catalog:** [lifecycle/async_ingestion_job_lifecycle.md](../feature_catalog/lifecycle/async_ingestion_job_lifecycle.md)
 
 ### 145 | Contextual tree injection 
 
@@ -2715,8 +2715,8 @@ Prompt: `As a retrieval-enhancement validation operator, validate Contextual tre
 Enabled: results with spec-folder paths have `[parent > child — description]` headers prepended, truncated at 100 chars; Disabled: no headers injected, content unchanged
 
 #### Test Execution
-> **Feature File:** [145](retrieval-enhancements/contextual-tree-injection-p1-4.md)
-> **Catalog:** [retrieval-enhancements/contextual-tree-injection.md](../feature_catalog/retrieval-enhancements/contextual-tree-injection.md)
+> **Feature File:** [145](retrieval_enhancements/contextual_tree_injection_p1_4.md)
+> **Catalog:** [retrieval_enhancements/contextual_tree_injection.md](../feature_catalog/retrieval_enhancements/contextual_tree_injection.md)
 
 ### 146 | Dynamic server instructions 
 
@@ -2729,8 +2729,8 @@ Prompt: `Validate dynamic server instructions (P1-6) against setInstructions() a
 Startup instructions include memory system overview with counts and channels; stale warning appears only above threshold; disabled flag yields empty instructions
 
 #### Test Execution
-> **Feature File:** [146](pipeline-architecture/dynamic-server-instructions-p1-6.md)
-> **Catalog:** [pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md](../feature_catalog/pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md)
+> **Feature File:** [146](pipeline_architecture/dynamic_server_instructions_p1_6.md)
+> **Catalog:** [pipeline_architecture/dynamic_server_instructions_at_mcp_initialization.md](../feature_catalog/pipeline_architecture/dynamic_server_instructions_at_mcp_initialization.md)
 
 ### 147 | Constitutional memory manager command
 
@@ -2743,8 +2743,8 @@ Prompt: `Validate Constitutional memory manager command against /memory:learn an
 Constitutional memory manager
 
 #### Test Execution
-> **Feature File:** [147](tooling-and-scripts/constitutional-memory-manager-command.md)
-> **Catalog:** [tooling-and-scripts/constitutional-memory-manager-command.md](../feature_catalog/tooling-and-scripts/constitutional-memory-manager-command.md)
+> **Feature File:** [147](tooling_and_scripts/constitutional_memory_manager_command.md)
+> **Catalog:** [tooling_and_scripts/constitutional_memory_manager_command.md](../feature_catalog/tooling_and_scripts/constitutional_memory_manager_command.md)
 
 ### 149 | Rendered spec-doc record template contract
 
@@ -2757,8 +2757,8 @@ Prompt: `Validate Rendered spec-doc record template contract against memory_save
 Dry-run surfaces template-contract violations; non-dry-run rejects malformed files before index side effects; valid rendered output remains validator-clean
 
 #### Test Execution
-> **Feature File:** [149](tooling-and-scripts/rendered-memory-template-contract.md)
-> **Catalog:** [tooling-and-scripts/session-capturing-pipeline-quality.md](../feature_catalog/tooling-and-scripts/session-capturing-pipeline-quality.md)
+> **Feature File:** [149](tooling_and_scripts/rendered_memory_template_contract.md)
+> **Catalog:** [tooling_and_scripts/session_capturing_pipeline_quality.md](../feature_catalog/tooling_and_scripts/session_capturing_pipeline_quality.md)
 
 ### 150 | Source-dist alignment validation
 
@@ -2771,8 +2771,8 @@ Prompt: `Validate Source-dist alignment validation against cd .opencode/skills/s
 0 violations, all dist files aligned, exit code 0
 
 #### Test Execution
-> **Feature File:** [150](tooling-and-scripts/source-dist-alignment-validation.md)
-> **Catalog:** [tooling-and-scripts/source-dist-alignment-enforcement.md](../feature_catalog/tooling-and-scripts/source-dist-alignment-enforcement.md)
+> **Feature File:** [150](tooling_and_scripts/source_dist_alignment_validation.md)
+> **Catalog:** [tooling_and_scripts/source_dist_alignment_enforcement.md](../feature_catalog/tooling_and_scripts/source_dist_alignment_enforcement.md)
 
 ### 151 | MODULE_MAP.md accuracy validation
 
@@ -2785,8 +2785,8 @@ Prompt: `Validate MODULE_MAP.md accuracy validation against cd .opencode/skills/
 All 5 sampled modules have accurate file lists and consumer mappings
 
 #### Test Execution
-> **Feature File:** [151](tooling-and-scripts/module-map-accuracy.md)
-> **Catalog:** [tooling-and-scripts/module-boundary-map.md](../feature_catalog/tooling-and-scripts/module-boundary-map.md)
+> **Feature File:** [151](tooling_and_scripts/module_map_accuracy.md)
+> **Catalog:** [tooling_and_scripts/module_boundary_map.md](../feature_catalog/tooling_and_scripts/module_boundary_map.md)
 
 ### 152 | No symlinks in lib/ tree
 
@@ -2799,8 +2799,8 @@ Prompt: `Validate No symlinks in lib/ tree against cd .opencode/skills/system-sp
 Zero symlinks found
 
 #### Test Execution
-> **Feature File:** [152](tooling-and-scripts/no-symlinks-in-lib-tree.md)
-> **Catalog:** [tooling-and-scripts/module-boundary-map.md](../feature_catalog/tooling-and-scripts/module-boundary-map.md)
+> **Feature File:** [152](tooling_and_scripts/no_symlinks_in_lib_tree.md)
+> **Catalog:** [tooling_and_scripts/module_boundary_map.md](../feature_catalog/tooling_and_scripts/module_boundary_map.md)
 
 ### 153 | JSON mode structured summary hardening
 
@@ -2813,8 +2813,8 @@ Prompt: `Validate JSON mode structured summary hardening against toolCalls and r
 Structured fields preserved in rendered output, counts match explicit input, file-backed JSON stays on the structured path
 
 #### Test Execution
-> **Feature File:** [153](tooling-and-scripts/json-mode-hybrid-enrichment.md)
-> **Catalog:** [tooling-and-scripts/json-mode-hybrid-enrichment.md](../feature_catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md)
+> **Feature File:** [153](tooling_and_scripts/json_mode_hybrid_enrichment.md)
+> **Catalog:** [tooling_and_scripts/json_mode_hybrid_enrichment.md](../feature_catalog/tooling_and_scripts/json_mode_hybrid_enrichment.md)
 
 ### 154 | JSON-primary deprecation posture
 
@@ -2827,8 +2827,8 @@ Prompt: `Validate JSON-primary deprecation posture against the documented valida
 Path 1 exits 0, Path 2 exits non-zero with guidance text
 
 #### Test Execution
-> **Feature File:** [154](tooling-and-scripts/json-primary-deprecation-posture.md)
-> **Catalog:** [tooling-and-scripts/json-primary-deprecation-posture.md](../feature_catalog/tooling-and-scripts/json-primary-deprecation-posture.md)
+> **Feature File:** [154](tooling_and_scripts/json_primary_deprecation_posture.md)
+> **Catalog:** [tooling_and_scripts/json_primary_deprecation_posture.md](../feature_catalog/tooling_and_scripts/json_primary_deprecation_posture.md)
 
 ### 155 | Post-save quality review
 
@@ -2841,8 +2841,8 @@ Prompt: `Validate post-save quality review issue detection and remediation guida
 REVIEW block present in stdout; issue count and severity match the scenario; fix instructions are actionable
 
 #### Test Execution
-> **Feature File:** [155](memory-quality-and-indexing/post-save-quality-review.md)
-> **Catalog:** [memory-quality-and-indexing/post-save-quality-review.md](../feature_catalog/memory-quality-and-indexing/post-save-quality-review.md)
+> **Feature File:** [155](memory_quality_and_indexing/post_save_quality_review.md)
+> **Catalog:** [memory_quality_and_indexing/post_save_quality_review.md](../feature_catalog/memory_quality_and_indexing/post_save_quality_review.md)
 
 ### 156 | Graph refresh mode (SPECKIT_GRAPH_REFRESH_MODE)
 
@@ -2855,8 +2855,8 @@ Prompt: `Validate graph refresh write-local mode and cite dirty-node tracking, l
 markDirty() populates dirty-node set; onWrite() returns localRecomputed=true and skipped=false; component size estimation runs; dirty nodes cleared after local recompute
 
 #### Test Execution
-> **Feature File:** [156](graph-signal-activation/graph-refresh-mode-speckit-graph-refresh-mode.md)
-> **Catalog:** [graph-signal-activation/graph-lifecycle-refresh.md](../feature_catalog/graph-signal-activation/graph-lifecycle-refresh.md)
+> **Feature File:** [156](graph_signal_activation/graph_refresh_mode_speckit_graph_refresh_mode.md)
+> **Catalog:** [graph_signal_activation/graph_lifecycle_refresh.md](../feature_catalog/graph_signal_activation/graph_lifecycle_refresh.md)
 
 ### 157 | LLM graph backfill (SPECKIT_LLM_GRAPH_BACKFILL)
 
@@ -2869,8 +2869,8 @@ Prompt: `Validate LLM graph backfill and cite hook registration, high-value sche
 onIndex() returns llmBackfillScheduled=true when qualityScore >= threshold; backfill callback is invoked via setImmediate; low-value docs (qualityScore < 0.7) do not trigger backfill
 
 #### Test Execution
-> **Feature File:** [157](graph-signal-activation/llm-graph-backfill-speckit-llm-graph-backfill.md)
-> **Catalog:** [graph-signal-activation/llm-graph-backfill.md](../feature_catalog/graph-signal-activation/llm-graph-backfill.md)
+> **Feature File:** [157](graph_signal_activation/llm_graph_backfill_speckit_llm_graph_backfill.md)
+> **Catalog:** [graph_signal_activation/llm_graph_backfill.md](../feature_catalog/graph_signal_activation/llm_graph_backfill.md)
 
 ### 158 | Graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PROFILE)
 
@@ -2883,8 +2883,8 @@ Prompt: `Validate graph calibration profile and cite graph weight caps, communit
 applyGraphWeightCap() clamps values to [0, 0.05]; applyCommunityScoring() caps boost at 0.03; shouldActivateLouvain() returns activate=false when density or size below thresholds; calibrateGraphWeight() enforces N2a/N2b caps
 
 #### Test Execution
-> **Feature File:** [158](graph-signal-activation/graph-calibration-profile-speckit-graph-calibration-profile.md)
-> **Catalog:** [graph-signal-activation/graph-calibration-profiles.md](../feature_catalog/graph-signal-activation/graph-calibration-profiles.md)
+> **Feature File:** [158](graph_signal_activation/graph_calibration_profile_speckit_graph_calibration_profile.md)
+> **Catalog:** [graph_signal_activation/graph_calibration_profiles.md](../feature_catalog/graph_signal_activation/graph_calibration_profiles.md)
 
 ### 159 | Learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINER)
 
@@ -2897,8 +2897,8 @@ Prompt: `Validate Learned Stage 2 combiner shadow comparisons with SPECKIT_LEARN
 shadowScore() returns ShadowResult with learnedScore in [0,1], manualScore matching input, and delta = |learned - manual|; trainRegularizedLinearRanker() produces valid weights; predict() clamps output to [0,1]; flag OFF returns null (no overhead)
 
 #### Test Execution
-> **Feature File:** [159](scoring-and-calibration/learned-stage2-combiner-speckit-learned-stage2-combiner.md)
-> **Catalog:** [scoring-and-calibration/learned-stage2-weight-combiner.md](../feature_catalog/scoring-and-calibration/learned-stage2-weight-combiner.md)
+> **Feature File:** [159](scoring_and_calibration/learned_stage2_combiner_speckit_learned_stage2_combiner.md)
+> **Catalog:** [scoring_and_calibration/learned_stage2_weight_combiner.md](../feature_catalog/scoring_and_calibration/learned_stage2_weight_combiner.md)
 
 ### 160 | Shadow feedback (SPECKIT_SHADOW_FEEDBACK)
 
@@ -2911,8 +2911,8 @@ Prompt: `Validate Shadow feedback logging and holdout evaluation with SPECKIT_SH
 shadow_scoring_log table has rows with query_id, result_id, live_rank, shadow_rank, delta, direction; compareRanks() produces RankComparisonResult with kendallTau and ndcgDelta; evaluatePromotionGate() returns ready/wait/rollback; no live ranking columns mutated
 
 #### Test Execution
-> **Feature File:** [160](scoring-and-calibration/shadow-feedback-speckit-shadow-feedback.md)
-> **Catalog:** [scoring-and-calibration/shadow-feedback-holdout-evaluation.md](../feature_catalog/scoring-and-calibration/shadow-feedback-holdout-evaluation.md)
+> **Feature File:** [160](scoring_and_calibration/shadow_feedback_speckit_shadow_feedback.md)
+> **Catalog:** [scoring_and_calibration/shadow_feedback_holdout_evaluation.md](../feature_catalog/scoring_and_calibration/shadow_feedback_holdout_evaluation.md)
 
 ### 161 | LLM reformulation (SPECKIT_LLM_REFORMULATION)
 
@@ -2925,8 +2925,8 @@ Prompt: `As a query-intelligence validation operator, validate LLM reformulation
 cheapSeedRetrieve() returns up to 3 seed results from FTS5; ReformulationResult contains abstract (>= 5 chars) and variants array (max 2 entries); LLM cache hit on repeated query; reformulated hits respect scope, contextType and qualityThreshold before merge; pipeline is no-op when mode != deep
 
 #### Test Execution
-> **Feature File:** [161](query-intelligence/llm-reformulation-speckit-llm-reformulation.md)
-> **Catalog:** [query-intelligence/llm-query-reformulation.md](../feature_catalog/query-intelligence/llm-query-reformulation.md)
+> **Feature File:** [161](query_intelligence/llm_reformulation_speckit_llm_reformulation.md)
+> **Catalog:** [query_intelligence/llm_query_reformulation.md](../feature_catalog/query_intelligence/llm_query_reformulation.md)
 
 ### 162 | HyDE (SPECKIT_HYDE)
 
@@ -2939,8 +2939,8 @@ Prompt: `As a query-intelligence validation operator, validate HyDE (SPECKIT_HYD
 HyDEResult contains pseudoDocument (non-empty) and embedding (Float32Array); low-confidence detection uses the max score across the full baseline set; LLM cache shared with reformulation; HyDE hits respect scope, contextType and qualityThreshold before merge; setting `SPECKIT_HYDE_ACTIVE=false` switches to shadow-only logging without merge
 
 #### Test Execution
-> **Feature File:** [162](query-intelligence/hyde-speckit-hyde.md)
-> **Catalog:** [query-intelligence/hyde-hypothetical-document-embeddings.md](../feature_catalog/query-intelligence/hyde-hypothetical-document-embeddings.md)
+> **Feature File:** [162](query_intelligence/hyde_speckit_hyde.md)
+> **Catalog:** [query_intelligence/hyde_hypothetical_document_embeddings.md](../feature_catalog/query_intelligence/hyde_hypothetical_document_embeddings.md)
 
 ### 163 | Query surrogates (SPECKIT_QUERY_SURROGATES)
 
@@ -2953,8 +2953,8 @@ Prompt: `As a query-intelligence validation operator, validate Query surrogates 
 SurrogateMetadata contains aliases (from parenthetical abbreviations), headings, summary (max 200 chars), and surrogateQuestions (2-5 entries); query-time matching produces SurrogateMatchResult with score in [0,1] and matchedSurrogates list; no LLM calls on the default path
 
 #### Test Execution
-> **Feature File:** [163](query-intelligence/query-surrogates-speckit-query-surrogates.md)
-> **Catalog:** [query-intelligence/index-time-query-surrogates.md](../feature_catalog/query-intelligence/index-time-query-surrogates.md)
+> **Feature File:** [163](query_intelligence/query_surrogates_speckit_query_surrogates.md)
+> **Catalog:** [query_intelligence/index_time_query_surrogates.md](../feature_catalog/query_intelligence/index_time_query_surrogates.md)
 
 
 ### 165 | Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION)
@@ -2968,8 +2968,8 @@ Prompt: `Validate assistive reconsolidation merge and recommendation behavior.`
 similarity >= 0.96 returns 'auto_merge'; 0.88 <= similarity < 0.96 returns 'review' with AssistiveRecommendation logged; similarity < 0.88 returns 'keep_separate'; review tier produces classification (supersede/complement/keep_separate) without destructive action
 
 #### Test Execution
-> **Feature File:** [165](memory-quality-and-indexing/assistive-reconsolidation-speckit-assistive-reconsolidation.md)
-> **Catalog:** [memory-quality-and-indexing/assistive-reconsolidation.md](../feature_catalog/memory-quality-and-indexing/assistive-reconsolidation.md)
+> **Feature File:** [165](memory_quality_and_indexing/assistive_reconsolidation_speckit_assistive_reconsolidation.md)
+> **Catalog:** [memory_quality_and_indexing/assistive_reconsolidation.md](../feature_catalog/memory_quality_and_indexing/assistive_reconsolidation.md)
 
 ### 166 | Result explain v1 (SPECKIT_RESULT_EXPLAIN)
 
@@ -2982,8 +2982,8 @@ Prompt: `Validate result explain v1 behavior with SPECKIT_RESULT_EXPLAIN enabled
 Each result has why.summary string (non-empty); why.topSignals array with SignalLabel entries (e.g., 'semantic_match', 'graph_boosted', 'anchor:decisions'); channelContribution with vector/fts/graph numbers only in debug mode; no why field when flag OFF
 
 #### Test Execution
-> **Feature File:** [166](ux-hooks/result-explain-v1-speckit-result-explain-v1.md)
-> **Catalog:** [ux-hooks/result-explainability.md](../feature_catalog/ux-hooks/result-explainability.md)
+> **Feature File:** [166](ux_hooks/result_explain_v1_speckit_result_explain_v1.md)
+> **Catalog:** [ux_hooks/result_explainability.md](../feature_catalog/ux_hooks/result_explainability.md)
 
 ### 167 | Response profile v1 (SPECKIT_RESPONSE_PROFILE)
 
@@ -2996,8 +2996,8 @@ Prompt: `Validate response profile v1 quick-mode response routing with SPECKIT_R
 quick profile returns QuickProfile with topResult, oneLineWhy, omittedCount, and tokenReduction.savingsPercent; research profile returns results[], evidenceDigest, followUps[]; resume profile returns state, nextSteps[], blockers[]; original full response when flag OFF or profile omitted
 
 #### Test Execution
-> **Feature File:** [167](ux-hooks/response-profile-v1-speckit-response-profile-v1.md)
-> **Catalog:** [ux-hooks/mode-aware-response-profiles.md](../feature_catalog/ux-hooks/mode-aware-response-profiles.md)
+> **Feature File:** [167](ux_hooks/response_profile_v1_speckit_response_profile_v1.md)
+> **Catalog:** [ux_hooks/mode_aware_response_profiles.md](../feature_catalog/ux_hooks/mode_aware_response_profiles.md)
 
 ### 168 | Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE)
 
@@ -3010,8 +3010,8 @@ Prompt: `Validate progressive disclosure v1 metadata and cursor pagination for b
 data.results remains present; data.progressiveDisclosure.summaryLayer with count and digest; data.progressiveDisclosure.results as Snippet[] with snippet (max 100 chars), detailAvailable, resultId; continuation cursor with remainingCount; cursor expiry at DEFAULT_CURSOR_TTL_MS (5 min); page size DEFAULT_PAGE_SIZE (5)
 
 #### Test Execution
-> **Feature File:** [168](ux-hooks/progressive-disclosure-v1-speckit-progressive-disclosure-v1.md)
-> **Catalog:** [ux-hooks/progressive-disclosure.md](../feature_catalog/ux-hooks/progressive-disclosure.md)
+> **Feature File:** [168](ux_hooks/progressive_disclosure_v1_speckit_progressive_disclosure_v1.md)
+> **Catalog:** [ux_hooks/progressive_disclosure.md](../feature_catalog/ux_hooks/progressive_disclosure.md)
 
 ### 169 | Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE)
 
@@ -3024,8 +3024,8 @@ Prompt: `Validate session retrieval state metadata and goal refinement for sessi
 data.sessionState includes activeGoal, seenResultIds, openQuestions, preferredAnchors; data.goalRefinement includes activeGoal and applied status; follow-up search in same session can deprioritize seen results (score * 0.3 fallback path); session expires after SESSION_TTL_MS (30 min); LRU eviction at MAX_SESSIONS (100)
 
 #### Test Execution
-> **Feature File:** [169](ux-hooks/session-retrieval-state-v1-speckit-session-retrieval-state-v1.md)
-> **Catalog:** [ux-hooks/retrieval-session-state.md](../feature_catalog/ux-hooks/retrieval-session-state.md)
+> **Feature File:** [169](ux_hooks/session_retrieval_state_v1_speckit_session_retrieval_state_v1.md)
+> **Catalog:** [ux_hooks/retrieval_session_state.md](../feature_catalog/ux_hooks/retrieval_session_state.md)
 
 ### 171 | Calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS)
 
@@ -3038,8 +3038,8 @@ Prompt: `Validate calibrated overlap bonus replacement of the flat convergence b
 Calibrated bonus computed using CALIBRATED_OVERLAP_BETA=0.15 and mean normalized top score; bonus clamped to CALIBRATED_OVERLAP_MAX=0.06; flat CONVERGENCE_BONUS=0.10 not applied when flag ON
 
 #### Test Execution
-> **Feature File:** [171](scoring-and-calibration/calibrated-overlap-bonus-speckit-calibrated-overlap-bonus.md)
-> **Catalog:** [scoring-and-calibration/calibrated-overlap-bonus.md](../feature_catalog/scoring-and-calibration/calibrated-overlap-bonus.md)
+> **Feature File:** [171](scoring_and_calibration/calibrated_overlap_bonus_speckit_calibrated_overlap_bonus.md)
+> **Catalog:** [scoring_and_calibration/calibrated_overlap_bonus.md](../feature_catalog/scoring_and_calibration/calibrated_overlap_bonus.md)
 
 ### 172 | RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL)
 
@@ -3052,8 +3052,8 @@ Prompt: `Validate RRF K experimental per-intent optimization across the sweep gr
 perIntentKSweep() groups queries by intent and sweeps JUDGED_K_SWEEP_VALUES; argmaxNdcg10() selects K maximizing NDCG@10 with ties broken by lower K; falls back to DEFAULT_K=40 when OFF
 
 #### Test Execution
-> **Feature File:** [172](scoring-and-calibration/rrf-k-experimental-speckit-rrf-k-experimental.md)
-> **Catalog:** [scoring-and-calibration/rrf-k-experimental.md](../feature_catalog/scoring-and-calibration/rrf-k-experimental.md)
+> **Feature File:** [172](scoring_and_calibration/rrf_k_experimental_speckit_rrf_k_experimental.md)
+> **Catalog:** [scoring_and_calibration/rrf_k_experimental.md](../feature_catalog/scoring_and_calibration/rrf_k_experimental.md)
 
 ### 173 | Query decomposition (SPECKIT_QUERY_DECOMPOSITION)
 
@@ -3066,8 +3066,8 @@ Prompt: `As a query-intelligence validation operator, validate Query decompositi
 Conjunction splitting on "and"/"or"/"also"/"plus"/"as well as"/"along with"; multiple wh-question word detection; MAX_FACETS=3 cap enforced; no LLM calls; deep-mode only activation; graceful fallback returns original query on error
 
 #### Test Execution
-> **Feature File:** [173](query-intelligence/query-decomposition-speckit-query-decomposition.md)
-> **Catalog:** [query-intelligence/query-decomposition.md](../feature_catalog/query-intelligence/query-decomposition.md)
+> **Feature File:** [173](query_intelligence/query_decomposition_speckit_query_decomposition.md)
+> **Catalog:** [query_intelligence/query_decomposition.md](../feature_catalog/query_intelligence/query_decomposition.md)
 
 ### 174 | Graph concept routing (SPECKIT_GRAPH_CONCEPT_ROUTING)
 
@@ -3080,8 +3080,8 @@ Prompt: `Validate graph concept routing and cite alias matching, canonical conce
 Noun phrases extracted from query; concept alias table matched in SQLite; canonical concept names returned; graph channel activated in stage1-candidate-gen for matched concepts; isGraphConceptRoutingEnabled() returns true by default
 
 #### Test Execution
-> **Feature File:** [174](graph-signal-activation/graph-concept-routing-speckit-graph-concept-routing.md)
-> **Catalog:** [query-intelligence/graph-concept-routing.md](../feature_catalog/query-intelligence/graph-concept-routing.md)
+> **Feature File:** [174](graph_signal_activation/graph_concept_routing_speckit_graph_concept_routing.md)
+> **Catalog:** [query_intelligence/graph_concept_routing.md](../feature_catalog/query_intelligence/graph_concept_routing.md)
 
 ### 175 | Typed traversal (SPECKIT_TYPED_TRAVERSAL)
 
@@ -3094,8 +3094,8 @@ Prompt: `Validate typed traversal and cite sparse-first gating, hop limits, inte
 SPARSE_DENSITY_THRESHOLD=0.5 gates sparse-first policy; SPARSE_MAX_HOPS=1 constrains traversal in sparse graphs; INTENT_EDGE_PRIORITY maps intents to edge-type orderings; scoring formula = seedScore * edgePrior * hopDecay * freshness; edge prior tiers: first=1.0, second=0.75, remaining=0.5
 
 #### Test Execution
-> **Feature File:** [175](graph-signal-activation/typed-traversal-speckit-typed-traversal.md)
-> **Catalog:** [graph-signal-activation/typed-traversal.md](../feature_catalog/graph-signal-activation/typed-traversal.md)
+> **Feature File:** [175](graph_signal_activation/typed_traversal_speckit_typed_traversal.md)
+> **Catalog:** [graph_signal_activation/typed_traversal.md](../feature_catalog/graph_signal_activation/typed_traversal.md)
 
 
 ### 177 | Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY)
@@ -3109,8 +3109,8 @@ Prompt: `Validate hybrid decay policy for no-decay memory types.`
 classifyHybridDecay() maps decision/constitutional/critical to no_decay class; applyHybridDecayPolicy() returns Infinity stability for no_decay types; standard FSRS v4 power-law decay for all other types; separate from TM-03
 
 #### Test Execution
-> **Feature File:** [177](memory-quality-and-indexing/hybrid-decay-policy-speckit-hybrid-decay-policy.md)
-> **Catalog:** [memory-quality-and-indexing/hybrid-decay-policy.md](../feature_catalog/memory-quality-and-indexing/hybrid-decay-policy.md)
+> **Feature File:** [177](memory_quality_and_indexing/hybrid_decay_policy_speckit_hybrid_decay_policy.md)
+> **Catalog:** [memory_quality_and_indexing/hybrid_decay_policy.md](../feature_catalog/memory_quality_and_indexing/hybrid_decay_policy.md)
 
 ### 178 | Save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS)
 
@@ -3123,8 +3123,8 @@ Prompt: `Validate save quality gate exceptions for short decision documents.`
 context_type=decision required; SHORT_CRITICAL_MIN_STRUCTURAL_SIGNALS=2 threshold; bypasses MIN_CONTENT_LENGTH=50 in Layer 1; non-decision types still rejected
 
 #### Test Execution
-> **Feature File:** [178](memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md)
-> **Catalog:** [memory-quality-and-indexing/save-quality-gate-exceptions.md](../feature_catalog/memory-quality-and-indexing/save-quality-gate-exceptions.md)
+> **Feature File:** [178](memory_quality_and_indexing/save_quality_gate_exceptions_speckit_save_quality_gate_exceptions.md)
+> **Catalog:** [memory_quality_and_indexing/save_quality_gate_exceptions.md](../feature_catalog/memory_quality_and_indexing/save_quality_gate_exceptions.md)
 
 ### 179 | Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY)
 
@@ -3137,8 +3137,8 @@ Prompt: `Validate empty result recovery payloads for empty and weak memory_searc
 3 statuses: no_results, low_confidence, partial; root cause reasons: spec_filter_too_narrow, low_signal_query, knowledge_gap; suggested actions: retry_broader, switch_mode, save_memory, ask_user; DEFAULT_LOW_CONFIDENCE_THRESHOLD=0.4; PARTIAL_RESULT_MIN=3
 
 #### Test Execution
-> **Feature File:** [179](ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md)
-> **Catalog:** [ux-hooks/empty-result-recovery.md](../feature_catalog/ux-hooks/empty-result-recovery.md)
+> **Feature File:** [179](ux_hooks/empty_result_recovery_speckit_empty_result_recovery_v1.md)
+> **Catalog:** [ux_hooks/empty_result_recovery.md](../feature_catalog/ux_hooks/empty_result_recovery.md)
 
 ### 180 | Result confidence (SPECKIT_RESULT_CONFIDENCE)
 
@@ -3151,8 +3151,8 @@ Prompt: `Validate result confidence scoring factors, thresholds, labels, drivers
 3 factors: margin 0.35, channel agreement 0.30, anchor density 0.15; HIGH_THRESHOLD=0.7; LOW_THRESHOLD=0.4; labels: high/medium/low; confidence drivers reported per result; heuristic only (no LLM)
 
 #### Test Execution
-> **Feature File:** [180](ux-hooks/result-confidence-speckit-result-confidence-v1.md)
-> **Catalog:** [ux-hooks/result-confidence.md](../feature_catalog/ux-hooks/result-confidence.md)
+> **Feature File:** [180](ux_hooks/result_confidence_speckit_result_confidence_v1.md)
+> **Catalog:** [ux_hooks/result_confidence.md](../feature_catalog/ux_hooks/result_confidence.md)
 
 ### 181 | Template Compliance Contract Enforcement
 
@@ -3165,8 +3165,8 @@ Prompt: `Validate Template Compliance Contract Enforcement against bash .opencod
 All 5 Level 2 files pass `validate.sh --strict` with exit code 0 and require no post-hoc fixes
 
 #### Test Execution
-> **Feature File:** [181](tooling-and-scripts/template-compliance-contract-enforcement-produces-compliant.md)
-> **Catalog:** [tooling-and-scripts/template-compliance-contract-enforcement.md](../feature_catalog/tooling-and-scripts/template-compliance-contract-enforcement.md)
+> **Feature File:** [181](tooling_and_scripts/template_compliance_contract_enforcement_produces_compliant.md)
+> **Catalog:** [tooling_and_scripts/template_compliance_contract_enforcement.md](../feature_catalog/tooling_and_scripts/template_compliance_contract_enforcement.md)
 
 ---
 
@@ -3181,8 +3181,8 @@ Prompt: `Validate the post-insert retry budget, including three allowed retries,
 First three retries allowed; fourth skipped; successful completion clears the budget
 
 #### Test Execution
-> **Feature File:** [268](lifecycle/post-insert-retry-budget.md)
-> **Catalog:** [lifecycle/post-insert-retry-budget.md](../feature_catalog/lifecycle/post-insert-retry-budget.md)
+> **Feature File:** [268](lifecycle/post_insert_retry_budget.md)
+> **Catalog:** [lifecycle/post_insert_retry_budget.md](../feature_catalog/lifecycle/post_insert_retry_budget.md)
 
 ### 269 | Scope normalizer canonicalization and lint
 
@@ -3195,8 +3195,8 @@ Prompt: `Validate scope normalizer canonicalization and lint and confirm canonic
 Canonical imports visible at the documented call sites; parity matrix still passes; synthetic duplicate helper fails the lint rule
 
 #### Test Execution
-> **Feature File:** [269](bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md)
-> **Catalog:** [bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md](../feature_catalog/bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md)
+> **Feature File:** [269](bug_fixes_and_data_integrity/scope_normalizer_canonicalization_and_lint.md)
+> **Catalog:** [bug_fixes_and_data_integrity/scope_normalizer_canonicalization_and_lint.md](../feature_catalog/bug_fixes_and_data_integrity/scope_normalizer_canonicalization_and_lint.md)
 
 ### 270 | maintainability extracts
 
@@ -3209,8 +3209,8 @@ Prompt: `Validate Phase 017 maintainability extracts against the documented help
 Helper-based code paths are active; tests for the extracted helpers pass; routing metadata uses advisoryPreset
 
 #### Test Execution
-> **Feature File:** [270](pipeline-architecture/phase-017-maintainability-extracts.md)
-> **Catalog:** [pipeline-architecture/phase-017-maintainability-extracts.md](../feature_catalog/pipeline-architecture/phase-017-maintainability-extracts.md)
+> **Feature File:** [270](pipeline_architecture/phase_017_maintainability_extracts.md)
+> **Catalog:** [pipeline_architecture/phase_017_maintainability_extracts.md](../feature_catalog/pipeline_architecture/phase_017_maintainability_extracts.md)
 
 ### 271 | Research metadata backfill
 
@@ -3223,8 +3223,8 @@ Prompt: `Validate Research metadata backfill against scripts/memory/backfill-res
 Missing metadata files created; complete folders unchanged; output identifies only the folders that needed repair
 
 #### Test Execution
-> **Feature File:** [271](tooling-and-scripts/research-metadata-backfill.md)
-> **Catalog:** [tooling-and-scripts/research-metadata-backfill.md](../feature_catalog/tooling-and-scripts/research-metadata-backfill.md)
+> **Feature File:** [271](tooling_and_scripts/research_metadata_backfill.md)
+> **Catalog:** [tooling_and_scripts/research_metadata_backfill.md](../feature_catalog/tooling_and_scripts/research_metadata_backfill.md)
 
 ### 272 | Strict validation add-ons: continuity freshness and evidence markers
 
@@ -3237,8 +3237,8 @@ Prompt: `Validate Strict validation add-ons: continuity freshness and evidence m
 Strict validation surfaces the continuity, evidence-marker, and duplicate-normalizer failures; the audit script reports marker issues for repair use
 
 #### Test Execution
-> **Feature File:** [272](tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md)
-> **Catalog:** [tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md](../feature_catalog/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md)
+> **Feature File:** [272](tooling_and_scripts/strict_validation_addons_continuity_freshness_and_evidence_markers.md)
+> **Catalog:** [tooling_and_scripts/strict_validation_addons_continuity_freshness_and_evidence_markers.md](../feature_catalog/tooling_and_scripts/strict_validation_addons_continuity_freshness_and_evidence_markers.md)
 
 ### 273 | Session-resume caller binding and Unicode sanitization
 
@@ -3251,8 +3251,8 @@ Prompt: `Validate session-resume caller binding and Unicode sanitization against
 Strict mismatch rejected; permissive mismatch allowed with warning; Unicode confusables normalized in both sanitizers
 
 #### Test Execution
-> **Feature File:** [273](governance/session-resume-caller-binding-and-unicode-sanitization.md)
-> **Catalog:** [governance/session-resume-caller-binding-and-unicode-sanitization.md](../feature_catalog/governance/session-resume-caller-binding-and-unicode-sanitization.md)
+> **Feature File:** [273](governance/session_resume_caller_binding_and_unicode_sanitization.md)
+> **Catalog:** [governance/session_resume_caller_binding_and_unicode_sanitization.md](../feature_catalog/governance/session_resume_caller_binding_and_unicode_sanitization.md)
 
 
 
@@ -3267,8 +3267,8 @@ Prompt: `As a mutation validation operator, validate Reconsolidation conflict tr
 Both conflict branches reuse one atomic transaction envelope and preserve rollback behavior on failure
 
 #### Test Execution
-> **Feature File:** [276](mutation/reconsolidation-conflict-transaction-helper.md)
-> **Catalog:** [mutation/reconsolidation-conflict-transaction-helper.md](../feature_catalog/mutation/reconsolidation-conflict-transaction-helper.md)
+> **Feature File:** [276](mutation/reconsolidation_conflict_transaction_helper.md)
+> **Catalog:** [mutation/reconsolidation_conflict_transaction_helper.md](../feature_catalog/mutation/reconsolidation_conflict_transaction_helper.md)
 
 ---
 
@@ -3285,7 +3285,7 @@ Prompt: `Validate Phase detection scoring against bash .opencode/skills/system-s
 JSON output contains `recommended_phases` (boolean), `phase_score` (number), `suggested_phase_count` (number), and 4 dimension scores: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%); simple specs score low
 
 #### Test Execution
-> **Feature File:** [PHASE-001](tooling-and-scripts/phase-detection-scoring.md)
+> **Feature File:** [PHASE-001](tooling_and_scripts/phase_detection_scoring.md)
 
 ### PHASE-002 | Phase folder creation
 
@@ -3298,7 +3298,7 @@ Prompt: `Validate Phase folder creation against bash .opencode/skills/system-spe
 Parent folder with Phase Documentation Map in spec.md; 3 child folders with correct naming; back-references and predecessor/successor links in child spec.md files; Level 3 template files in all folders
 
 #### Test Execution
-> **Feature File:** [PHASE-002](tooling-and-scripts/phase-folder-creation.md)
+> **Feature File:** [PHASE-002](tooling_and_scripts/phase_folder_creation.md)
 
 ### PHASE-003 | Recursive phase validation
 
@@ -3311,7 +3311,7 @@ Prompt: `Validate Recursive phase validation against create.sh "Validate Test" -
 Per-phase pass/fail in output; JSON `phases` array; combined exit code reflects worst child; error propagation works
 
 #### Test Execution
-> **Feature File:** [PHASE-003](tooling-and-scripts/recursive-phase-validation.md)
+> **Feature File:** [PHASE-003](tooling_and_scripts/recursive_phase_validation.md)
 
 ### PHASE-004 | Phase link validation
 
@@ -3324,7 +3324,7 @@ Prompt: `Validate Phase link validation against bash .opencode/skills/system-spe
 4 link check types reported; well-formed folder produces exit 0; missing child produces warn on Phase Documentation Map; corrupted back-reference produces warn; all issues at warn severity
 
 #### Test Execution
-> **Feature File:** [PHASE-004](tooling-and-scripts/phase-link-validation.md)
+> **Feature File:** [PHASE-004](tooling_and_scripts/phase_link_validation.md)
 
 ### PHASE-005 | Phase command workflow
 
@@ -3337,7 +3337,7 @@ Prompt: `Validate Phase command workflow against /speckit:plan :with-phases and 
 All 7 steps execute in sequence; scoring output visible; folders created with correct structure; link validation passes; recursive validation passes; success summary with paths
 
 #### Test Execution
-> **Feature File:** [PHASE-005](tooling-and-scripts/phase-command-workflow.md)
+> **Feature File:** [PHASE-005](tooling_and_scripts/phase_command_workflow.md)
 
 ### PHASE-006 | Spec-folder literal naming (create.sh fallback)
 
@@ -3350,7 +3350,7 @@ Prompt: `Validate create.sh literal-naming fallback by running create.sh "litera
 3 child folders ending with `-PROVIDE-DESCRIPTIVE-SLUG`; 3 `[speckit] Warning:` lines on stderr; create.sh exit 0 (warn-only, not fail-hard)
 
 #### Test Execution
-> **Feature File:** [PHASE-006](tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md)
+> **Feature File:** [PHASE-006](tooling_and_scripts/spec_folder_literal_naming_create_sh_fallback.md)
 
 ### PHASE-008 | Spec-folder literal naming (CLI-driven slug proposal)
 
@@ -3363,7 +3363,7 @@ Prompt: `An operator gives a deliberately ambiguous task to an external CLI agen
 All 3 proposed slugs contain a specific subject token naming the concrete component or behavior; no slug matches the generic stoplist (phase-1, phase-2, phase-3, cleanup, remediation, fix, refactor, setup); aggregate PASS requires 2 or more CLIs to report PASS
 
 #### Test Execution
-> **Feature File:** [PHASE-008](tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md)
+> **Feature File:** [PHASE-008](tooling_and_scripts/spec_folder_literal_naming_cli_driven_slug.md)
 
 ### PHASE-009 | Spec-folder literal naming (remediation rule via SKILL.md rule 20)
 
@@ -3376,7 +3376,7 @@ Prompt: `An operator gives a CLI agent a deep-review FAIL verdict and asks for t
 `proposed_slug` contains both a source token (origin of findings) and a target token (component being fixed); slug does not match the bare stoplist (remediation, cleanup, fix, phase-N, round-N, review-remediation); `rule_20_self_audit` field cites both portions; aggregate PASS requires 2 or more CLIs to report PASS
 
 #### Test Execution
-> **Feature File:** [PHASE-009](tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md)
+> **Feature File:** [PHASE-009](tooling_and_scripts/spec_folder_literal_naming_remediation_rule.md)
 
 ### Catalog Coverage Notes for Phases 001-018
 
@@ -3384,35 +3384,35 @@ These 30 catalog entries are explicitly documented here even when validation is 
 
 | Catalog Entry | Coverage Status | Coverage Path / Notes |
 |---|---|---|
-| `retrieval/ast-level-section-retrieval-tool.md` | Deferred | Not yet implemented |
-| `retrieval/tool-result-extraction-to-working-memory.md` | Automated only | Covered by `working-memory.vitest.ts`, `working-memory-event-decay.vitest.ts`, and `checkpoint-working-memory.vitest.ts` |
+| `retrieval/ast_level_section_retrieval_tool.md` | Deferred | Not yet implemented |
+| `retrieval/tool_result_extraction_to_working_memory.md` | Automated only | Covered by `working-memory.vitest.ts`, `working-memory-event-decay.vitest.ts`, and `checkpoint-working-memory.vitest.ts` |
 | `mutation/07-namespace-management-crud-tools.md` | Deferred | Not yet implemented |
-| `mutation/correction-tracking-with-undo.md` | Automated only | Covered by mutation regression tests; no dedicated operator scenario yet |
+| `mutation/correction_tracking_with_undo.md` | Automated only | Covered by mutation regression tests; no dedicated operator scenario yet |
 | `mutation/10-per-record-history-log.md` | Manual + automated | Covered by mutation/history suites and dedicated direct manual scenario M-008 |
 | `graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md` | Deprecated archival | Retained only as a historical deprecation record; anchor markers stay metadata-only |
-| `scoring-and-calibration/tool-level-ttl-cache.md` | Automated only | Cache policy behavior is exercised in scoring/cache tests |
-| `scoring-and-calibration/access-driven-popularity-scoring.md` | Automated only | Popularity heuristics are validated by ranking tests |
-| `scoring-and-calibration/temporal-structural-coherence-scoring.md` | Automated only | Temporal/structural scoring logic is covered by scoring suites |
-| `memory-quality-and-indexing/content-aware-memory-filename-generation.md` | Indirect scenario coverage | Covered implicitly via 045 (smarter content generation) |
-| `memory-quality-and-indexing/outsourced-agent-memory-capture.md` | Manual + automated | Dedicated memory workflow coverage exists in M-005 |
-| `pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md` | Automated only | Startup concern; validated implicitly by startup/runtime coverage |
+| `scoring_and_calibration/tool_level_ttl_cache.md` | Automated only | Cache policy behavior is exercised in scoring/cache tests |
+| `scoring_and_calibration/access_driven_popularity_scoring.md` | Automated only | Popularity heuristics are validated by ranking tests |
+| `scoring_and_calibration/temporal_structural_coherence_scoring.md` | Automated only | Temporal/structural scoring logic is covered by scoring suites |
+| `memory_quality_and_indexing/content_aware_memory_filename_generation.md` | Indirect scenario coverage | Covered implicitly via 045 (smarter content generation) |
+| `memory_quality_and_indexing/outsourced_agent_memory_capture.md` | Manual + automated | Dedicated memory workflow coverage exists in M-005 |
+| `pipeline_architecture/dynamic_server_instructions_at_mcp_initialization.md` | Automated only | Startup concern; validated implicitly by startup/runtime coverage |
 | `pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md` | Deprecated archival | Retained only as a historical deprecation record; live transport remains stdio |
-| `pipeline-architecture/backend-storage-adapter-abstraction.md` | Automated only | Covered by `interfaces.vitest.ts`, `pipeline-architecture-remediation.vitest.ts`, and `vector-index-impl.vitest.ts`; no operator-facing manual step is required today |
-| `pipeline-architecture/atomic-write-then-index-api.md` | Indirect scenario coverage | Covered by 104 and atomic-save failure-injection tests |
-| `pipeline-architecture/embedding-retry-orchestrator.md` | Automated only | Covered by `retry-manager.vitest.ts` and `index-refresh.vitest.ts` |
-| `pipeline-architecture/7-layer-tool-architecture-metadata.md` | Automated only | Dispatch behavior is covered by context-server and dispatch-matrix tests |
-| `retrieval-enhancements/contextual-tree-injection.md` | Manual + automated | Covered directly by 145 and `hybrid-search-context-headers.vitest.ts` |
-| `tooling-and-scripts/architecture-boundary-enforcement.md` | Build-time only | Enforced by build/test tooling rather than runtime playbook steps |
-| `tooling-and-scripts/watcher-delete-rename-cleanup.md` | Automated only | Covered by `mcp_server/tests/file-watcher.vitest.ts`; no dedicated manual operator scenario yet |
+| `pipeline_architecture/backend_storage_adapter_abstraction.md` | Automated only | Covered by `interfaces.vitest.ts`, `pipeline-architecture-remediation.vitest.ts`, and `vector-index-impl.vitest.ts`; no operator-facing manual step is required today |
+| `pipeline_architecture/atomic_write_then_index_api.md` | Indirect scenario coverage | Covered by 104 and atomic-save failure-injection tests |
+| `pipeline_architecture/embedding_retry_orchestrator.md` | Automated only | Covered by `retry-manager.vitest.ts` and `index-refresh.vitest.ts` |
+| `pipeline_architecture/7_layer_tool_architecture_metadata.md` | Automated only | Dispatch behavior is covered by context-server and dispatch-matrix tests |
+| `retrieval_enhancements/contextual_tree_injection.md` | Manual + automated | Covered directly by 145 and `hybrid-search-context-headers.vitest.ts` |
+| `tooling_and_scripts/architecture_boundary_enforcement.md` | Build-time only | Enforced by build/test tooling rather than runtime playbook steps |
+| `tooling_and_scripts/watcher_delete_rename_cleanup.md` | Automated only | Covered by `mcp_server/tests/file-watcher.vitest.ts`; no dedicated manual operator scenario yet |
 | Shared post-mutation hook wiring | Indirect scenario coverage | Covered by 085, 103, and 104 |
-| `ux-hooks/memory-health-autorepair-metadata.md` | Automated only | Covered by `handler-memory-health-edge.vitest.ts` and `memory-crud-extended.vitest.ts` (autoRepair, confirmation-only, partialSuccess). EX-013 covers basic health diagnostics only |
-| `ux-hooks/schema-and-type-contract-synchronization.md` | Indirect scenario coverage | Covered by 107 (confirmName enforcement) and hook-contract tests. 095 covers strict-param rejection only |
-| `ux-hooks/mutation-hook-result-contract-expansion.md` | Indirect scenario coverage | Covered by 103 |
-| `ux-hooks/mutation-response-ux-payload-exposure.md` | Indirect scenario coverage | Covered by 104 |
-| `ux-hooks/atomic-save-parity-and-partial-indexing-hints.md` | Indirect scenario coverage | Covered by 104 |
-| `ux-hooks/final-token-metadata-recomputation.md` | Indirect scenario coverage | Covered by 105 |
-| `ux-hooks/end-to-end-success-envelope-verification.md` | Indirect scenario coverage | Covered by 105 |
-| `tooling-and-scripts/session-capturing-pipeline-quality.md` | Manual + automated | Absorbs phases 002 (contamination-detection), 004 (type-consolidation), 005 (confidence-calibration), 007 (phase-classification), 008 (signal-extraction), and 014 (spec-descriptions). Covered by M-007 compound scenario, build/typecheck, and automated extractor/loader suites |
+| `ux_hooks/memory_health_autorepair_metadata.md` | Automated only | Covered by `handler-memory-health-edge.vitest.ts` and `memory-crud-extended.vitest.ts` (autoRepair, confirmation-only, partialSuccess). EX-013 covers basic health diagnostics only |
+| `ux_hooks/schema_and_type_contract_synchronization.md` | Indirect scenario coverage | Covered by 107 (confirmName enforcement) and hook-contract tests. 095 covers strict-param rejection only |
+| `ux_hooks/mutation_hook_result_contract_expansion.md` | Indirect scenario coverage | Covered by 103 |
+| `ux_hooks/mutation_response_ux_payload_exposure.md` | Indirect scenario coverage | Covered by 104 |
+| `ux_hooks/atomic_save_parity_and_partial_indexing_hints.md` | Indirect scenario coverage | Covered by 104 |
+| `ux_hooks/final_token_metadata_recomputation.md` | Indirect scenario coverage | Covered by 105 |
+| `ux_hooks/end_to_end_success_envelope_verification.md` | Indirect scenario coverage | Covered by 105 |
+| `tooling_and_scripts/session_capturing_pipeline_quality.md` | Manual + automated | Absorbs phases 002 (contamination-detection), 004 (type-consolidation), 005 (confidence-calibration), 007 (phase-classification), 008 (signal-extraction), and 014 (spec-descriptions). Covered by M-007 compound scenario, build/typecheck, and automated extractor/loader suites |
 
 ---
 
@@ -3429,7 +3429,7 @@ Prompt: `Validate context recovery with /speckit:resume specs/<target-spec> and 
 Expected signals: Resume-ready state summary and next steps via `/speckit:resume` and the canonical packet ladder.
 
 #### Test Execution
-> **Feature File:** [M-001](retrieval/context-recovery-and-continuation.md)
+> **Feature File:** [M-001](retrieval/context_recovery_and_continuation.md)
 
 ### M-002 | Targeted Memory Lookup
 
@@ -3442,7 +3442,7 @@ Prompt: `Validate targeted memory_search lookup for decision rationale and confi
 Expected signals: precise fact-level retrieval.
 
 #### Test Execution
-> **Feature File:** [M-002](retrieval/targeted-memory-lookup.md)
+> **Feature File:** [M-002](retrieval/targeted_memory_lookup.md)
 
 ### M-003 | Context Save + Index Update
 
@@ -3455,7 +3455,7 @@ Prompt: `Validate Context Save + Index Update against generate-context.js and me
 Expected signals: saved context artifacts are discoverable.
 
 #### Test Execution
-> **Feature File:** [M-003](memory-quality-and-indexing/context-save-index-update.md)
+> **Feature File:** [M-003](memory_quality_and_indexing/context_save_index_update.md)
 
 ### M-004 | Main-Agent Review and Verdict Handoff
 
@@ -3468,7 +3468,7 @@ Prompt: `As a tooling validation operator, validate Main-Agent Review and Verdic
 Expected signals: severity-ranked findings and final verdict.
 
 #### Test Execution
-> **Feature File:** [M-004](tooling-and-scripts/main-agent-review-and-verdict-handoff.md)
+> **Feature File:** [M-004](tooling_and_scripts/main_agent_review_and_verdict_handoff.md)
 
 ### M-005 | Outsourced Agent Memory Capture Round-Trip
 
@@ -3481,7 +3481,7 @@ Prompt: `Validate outsourced agent memory capture round-trip against cli-opencod
 Expected signals: Agent output contains structured memory section; saved context is discoverable via search.
 
 #### Test Execution
-> **Feature File:** [M-005](memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md)
+> **Feature File:** [M-005](memory_quality_and_indexing/outsourced_agent_memory_capture_round_trip.md)
 
 ### M-006 | Stateless Enrichment and Alignment Guardrails
 
@@ -3494,7 +3494,7 @@ Prompt: `Validate session enrichment and alignment guardrails against memory_sea
 Expected signals: the save resolves through `handover.md` first, then `_memory.continuity`, then spec docs; spec-folder and git enrichment remain supporting-only; and it does not raise `ALIGNMENT_BLOCK` when captured files match the spec's files-to-change table.
 
 #### Test Execution
-> **Feature File:** [M-006](memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md)
+> **Feature File:** [M-006](memory_quality_and_indexing/session_enrichment_and_alignment_guardrails.md)
 
 ### M-007 | Session Capturing Pipeline Quality
 
@@ -3515,7 +3515,7 @@ Proof rule:
 - Only claim “flawless across every CLI” when the current verification run captures fresh live artifacts for each supported CLI and each supported save mode covered by the current contract.
 
 #### Test Execution
-> **Feature File:** [M-007](tooling-and-scripts/session-capturing-pipeline-quality.md)
+> **Feature File:** [M-007](tooling_and_scripts/session_capturing_pipeline_quality.md)
 
 ### M-008 | Feature 09 Direct Manual Scenario (Per-memory History Log)
 
@@ -3528,7 +3528,7 @@ Prompt: `As a mutation validation operator, validate Feature 09 Direct Manual Sc
 Expected signals: repeated save/update activity is observable via retrieval output and packet metadata remains coherent for the same saved document lineage.
 
 #### Test Execution
-> **Feature File:** [M-008](mutation/feature-09-direct-manual-scenario-per-memory-history-log.md)
+> **Feature File:** [M-008](mutation/feature_09_direct_manual_scenario_per_memory_history_log.md)
 
 ---
 
@@ -3545,338 +3545,338 @@ This split playbook keeps automated coverage references in three places:
 
 | Playbook ID | Category | Feature Name | Snippet | Catalog Entry |
 |---|---|---|---|---|
-| EX-001 | Existing Features | Unified context retrieval (memory_context) | [EX-001](retrieval/unified-context-retrieval-memory-context.md) | [retrieval/unified-context-retrieval-memorycontext.md](../feature_catalog/retrieval/unified-context-retrieval-memorycontext.md) |
-| EX-002 | Existing Features | Semantic and lexical search (memory_search) | [EX-002](retrieval/semantic-and-lexical-search-memory-search.md) | [retrieval/semantic-and-lexical-search-memorysearch.md](../feature_catalog/retrieval/semantic-and-lexical-search-memorysearch.md) |
-| EX-003 | Existing Features | Trigger phrase matching (memory_match_triggers) | [EX-003](retrieval/trigger-phrase-matching-memory-match-triggers.md) | [retrieval/trigger-phrase-matching-memorymatchtriggers.md](../feature_catalog/retrieval/trigger-phrase-matching-memorymatchtriggers.md) |
-| EX-004 | Existing Features | Hybrid search pipeline | [EX-004](retrieval/hybrid-search-pipeline.md) | [retrieval/hybrid-search-pipeline.md](../feature_catalog/retrieval/hybrid-search-pipeline.md) |
-| EX-005 | Existing Features | 4-stage pipeline architecture | [EX-005](retrieval/4-stage-pipeline-architecture.md) | [retrieval/4-stage-pipeline-architecture.md](../feature_catalog/retrieval/4-stage-pipeline-architecture.md) |
-| EX-006 | Existing Features | Memory indexing (memory_save) | [EX-006](mutation/memory-indexing-memory-save.md) | [mutation/memory-indexing-memorysave.md](../feature_catalog/mutation/memory-indexing-memorysave.md) |
-| EX-007 | Existing Features | Memory metadata update (memory_update) | [EX-007](mutation/memory-metadata-update-memory-update.md) | [mutation/memory-metadata-update-memoryupdate.md](../feature_catalog/mutation/memory-metadata-update-memoryupdate.md) |
-| EX-008 | Existing Features | Single and folder delete (memory_delete) | [EX-008](mutation/single-and-folder-delete-memory-delete.md) | [mutation/single-and-folder-delete-memorydelete.md](../feature_catalog/mutation/single-and-folder-delete-memorydelete.md) |
-| EX-009 | Existing Features | Tier-based bulk deletion (memory_bulk_delete) | [EX-009](mutation/tier-based-bulk-deletion-memory-bulk-delete.md) | [mutation/tier-based-bulk-deletion-memorybulkdelete.md](../feature_catalog/mutation/tier-based-bulk-deletion-memorybulkdelete.md) |
-| EX-010 | Existing Features | Validation feedback (memory_validate) | [EX-010](mutation/validation-feedback-memory-validate.md) | [mutation/validation-feedback-memoryvalidate.md](../feature_catalog/mutation/validation-feedback-memoryvalidate.md) |
-| EX-011 | Existing Features | Memory browser (memory_list) | [EX-011](discovery/memory-browser-memory-list.md) | [discovery/memory-browser-memorylist.md](../feature_catalog/discovery/memory-browser-memorylist.md) |
-| EX-012 | Existing Features | System statistics (memory_stats) | [EX-012](discovery/system-statistics-memory-stats.md) | [discovery/system-statistics-memorystats.md](../feature_catalog/discovery/system-statistics-memorystats.md) |
-| EX-013 | Existing Features | Health diagnostics (memory_health) | [EX-013](discovery/health-diagnostics-memory-health.md) | [discovery/health-diagnostics-memoryhealth.md](../feature_catalog/discovery/health-diagnostics-memoryhealth.md) |
-| EX-014 | Existing Features | Workspace scanning and indexing (memory_index_scan) | [EX-014](maintenance/workspace-scanning-and-indexing-memory-index-scan.md) | [maintenance/workspace-scanning-and-indexing-memoryindexscan.md](../feature_catalog/maintenance/workspace-scanning-and-indexing-memoryindexscan.md) |
-| EX-015 | Existing Features | Checkpoint creation (checkpoint_create) | [EX-015](lifecycle/checkpoint-creation-checkpoint-create.md) | [lifecycle/checkpoint-creation-checkpointcreate.md](../feature_catalog/lifecycle/checkpoint-creation-checkpointcreate.md) |
-| EX-016 | Existing Features | Checkpoint listing (checkpoint_list) | [EX-016](lifecycle/checkpoint-listing-checkpoint-list.md) | [lifecycle/checkpoint-listing-checkpointlist.md](../feature_catalog/lifecycle/checkpoint-listing-checkpointlist.md) |
-| EX-017 | Existing Features | Checkpoint restore (checkpoint_restore) | [EX-017](lifecycle/checkpoint-restore-checkpoint-restore.md) | [lifecycle/checkpoint-restore-checkpointrestore.md](../feature_catalog/lifecycle/checkpoint-restore-checkpointrestore.md) |
-| EX-018 | Existing Features | Checkpoint deletion (checkpoint_delete) | [EX-018](lifecycle/checkpoint-deletion-checkpoint-delete.md) | [lifecycle/checkpoint-deletion-checkpointdelete.md](../feature_catalog/lifecycle/checkpoint-deletion-checkpointdelete.md) |
-| EX-019 | Existing Features | Causal edge creation (memory_causal_link) | [EX-019](analysis/causal-edge-creation-memory-causal-link.md) | [analysis/causal-edge-creation-memorycausallink.md](../feature_catalog/analysis/causal-edge-creation-memorycausallink.md) |
-| EX-020 | Existing Features | Causal graph statistics (memory_causal_stats) | [EX-020](analysis/causal-graph-statistics-memory-causal-stats.md) | [analysis/causal-graph-statistics-memorycausalstats.md](../feature_catalog/analysis/causal-graph-statistics-memorycausalstats.md) |
-| EX-021 | Existing Features | Causal edge deletion (memory_causal_unlink) | [EX-021](analysis/causal-edge-deletion-memory-causal-unlink.md) | [analysis/causal-edge-deletion-memorycausalunlink.md](../feature_catalog/analysis/causal-edge-deletion-memorycausalunlink.md) |
-| EX-022 | Existing Features | Causal chain tracing (memory_drift_why) | [EX-022](analysis/causal-chain-tracing-memory-drift-why.md) | [analysis/causal-chain-tracing-memorydriftwhy.md](../feature_catalog/analysis/causal-chain-tracing-memorydriftwhy.md) |
-| EX-023 | Existing Features | Epistemic baseline capture (task_preflight) | [EX-023](analysis/epistemic-baseline-capture-task-preflight.md) | [analysis/epistemic-baseline-capture-taskpreflight.md](../feature_catalog/analysis/epistemic-baseline-capture-taskpreflight.md) |
-| EX-024 | Existing Features | Post-task learning measurement (task_postflight) | [EX-024](analysis/post-task-learning-measurement-task-postflight.md) | [analysis/post-task-learning-measurement-taskpostflight.md](../feature_catalog/analysis/post-task-learning-measurement-taskpostflight.md) |
-| EX-025 | Existing Features | Learning history (memory_get_learning_history) | [EX-025](analysis/learning-history-memory-get-learning-history.md) | [analysis/learning-history-memorygetlearninghistory.md](../feature_catalog/analysis/learning-history-memorygetlearninghistory.md) |
-| EX-026 | Existing Features | Ablation studies (eval_run_ablation) | [EX-026](evaluation/ablation-studies-eval-run-ablation.md) | [evaluation/ablation-studies-evalrunablation.md](../feature_catalog/evaluation/ablation-studies-evalrunablation.md) |
-| EX-027 | Existing Features | Reporting dashboard (eval_reporting_dashboard) | [EX-027](evaluation/reporting-dashboard-eval-reporting-dashboard.md) | [evaluation/reporting-dashboard-evalreportingdashboard.md](../feature_catalog/evaluation/reporting-dashboard-evalreportingdashboard.md) |
-| EX-028 | Existing Features | 1. Search Pipeline Features (SPECKIT_*) | [EX-028](feature-flag-reference/1-search-pipeline-features-speckit.md) | [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature_catalog/feature-flag-reference/1-search-pipeline-features-speckit.md) |
-| EX-029 | Existing Features | 2. Session and Cache | [EX-029](feature-flag-reference/2-session-and-cache.md) | [feature-flag-reference/2-session-and-cache.md](../feature_catalog/feature-flag-reference/2-session-and-cache.md) |
-| EX-030 | Existing Features | 3. MCP Configuration | [EX-030](feature-flag-reference/3-mcp-configuration.md) | [feature-flag-reference/3-mcp-configuration.md](../feature_catalog/feature-flag-reference/3-mcp-configuration.md) |
-| EX-031 | Existing Features | 4. Memory and Storage | [EX-031](feature-flag-reference/4-memory-and-storage.md) | [feature-flag-reference/4-memory-and-storage.md](../feature_catalog/feature-flag-reference/4-memory-and-storage.md) |
-| EX-032 | Existing Features | 5. Embedding and API | [EX-032](feature-flag-reference/5-embedding-and-api.md) | [feature-flag-reference/5-embedding-and-api.md](../feature_catalog/feature-flag-reference/5-embedding-and-api.md) |
-| EX-033 | Existing Features | 6. Debug and Telemetry | [EX-033](feature-flag-reference/6-debug-and-telemetry.md) | [feature-flag-reference/6-debug-and-telemetry.md](../feature_catalog/feature-flag-reference/6-debug-and-telemetry.md) |
-| EX-034 | Existing Features | 7. CI and Build (informational) | [EX-034](feature-flag-reference/7-ci-and-build-informational.md) | [feature-flag-reference/7-ci-and-build-informational.md](../feature_catalog/feature-flag-reference/7-ci-and-build-informational.md) |
-| EX-035 | Existing Features | Startup runtime compatibility guards | [EX-035](maintenance/startup-runtime-compatibility-guards.md) | [maintenance/startup-runtime-compatibility-guards.md](../feature_catalog/maintenance/startup-runtime-compatibility-guards.md) |
-| 001 | Features | Graph channel ID fix (G1) | [001](bug-fixes-and-data-integrity/graph-channel-id-fix-g1.md) | [bug-fixes-and-data-integrity/graph-channel-id-fix.md](../feature_catalog/bug-fixes-and-data-integrity/graph-channel-id-fix.md) |
-| 002 | Features | Chunk collapse deduplication (G3) | [002](bug-fixes-and-data-integrity/chunk-collapse-deduplication-g3.md) | [bug-fixes-and-data-integrity/chunk-collapse-deduplication.md](../feature_catalog/bug-fixes-and-data-integrity/chunk-collapse-deduplication.md) |
-| 003 | Features | Co-activation fan-effect divisor (R17) | [003](bug-fixes-and-data-integrity/co-activation-fan-effect-divisor-r17.md) | [bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md](../feature_catalog/bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md) |
-| 004 | Features | SHA-256 content-hash deduplication (TM-02) | [004](bug-fixes-and-data-integrity/sha-256-content-hash-deduplication-tm-02.md) | [bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md](../feature_catalog/bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md) |
-| 005 | Features | Evaluation database and schema (R13-S1) | [005](evaluation-and-measurement/evaluation-database-and-schema-r13-s1.md) | [evaluation-and-measurement/evaluation-database-and-schema.md](../feature_catalog/evaluation-and-measurement/evaluation-database-and-schema.md) |
-| 006 | Features | Core metric computation (R13-S1) | [006](evaluation-and-measurement/core-metric-computation-r13-s1.md) | [evaluation-and-measurement/core-metric-computation.md](../feature_catalog/evaluation-and-measurement/core-metric-computation.md) |
-| 007 | Features | Observer effect mitigation (D4) | [007](evaluation-and-measurement/observer-effect-mitigation-d4.md) | [evaluation-and-measurement/observer-effect-mitigation.md](../feature_catalog/evaluation-and-measurement/observer-effect-mitigation.md) |
-| 009 | Features | Quality proxy formula (B7) | [009](evaluation-and-measurement/quality-proxy-formula-b7.md) | [evaluation-and-measurement/quality-proxy-formula.md](../feature_catalog/evaluation-and-measurement/quality-proxy-formula.md) |
-| 010 | Features | Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A) | [010](evaluation-and-measurement/synthetic-ground-truth-corpus-g-new-1-g-new-3-phase-a.md) | [evaluation-and-measurement/synthetic-ground-truth-corpus.md](../feature_catalog/evaluation-and-measurement/synthetic-ground-truth-corpus.md) |
-| 011 | Features | BM25-only baseline (G-NEW-1) | [011](evaluation-and-measurement/bm25-only-baseline-g-new-1.md) | [evaluation-and-measurement/bm25-only-baseline.md](../feature_catalog/evaluation-and-measurement/bm25-only-baseline.md) |
-| 012 | Features | Agent consumption instrumentation (G-NEW-2) | [012](evaluation-and-measurement/agent-consumption-instrumentation-g-new-2.md) | [evaluation-and-measurement/agent-consumption-instrumentation.md](../feature_catalog/evaluation-and-measurement/agent-consumption-instrumentation.md) |
-| 013 | Features | Scoring observability (T010) | [013](evaluation-and-measurement/scoring-observability-t010.md) | [evaluation-and-measurement/scoring-observability.md](../feature_catalog/evaluation-and-measurement/scoring-observability.md) |
-| 014 | Features | Full reporting and ablation study framework (R13-S3) | [014](evaluation-and-measurement/full-reporting-and-ablation-study-framework-r13-s3.md) | [evaluation-and-measurement/full-reporting-and-ablation-study-framework.md](../feature_catalog/evaluation-and-measurement/full-reporting-and-ablation-study-framework.md) |
-| 016 | Features | Typed-weighted degree channel (R4) | [016](graph-signal-activation/typed-weighted-degree-channel-r4.md) | [graph-signal-activation/typed-weighted-degree-channel.md](../feature_catalog/graph-signal-activation/typed-weighted-degree-channel.md) |
-| 017 | Features | Co-activation boost strength increase (A7) | [017](graph-signal-activation/co-activation-boost-strength-increase-a7.md) | [graph-signal-activation/co-activation-boost-strength-increase.md](../feature_catalog/graph-signal-activation/co-activation-boost-strength-increase.md) |
-| 018 | Features | Edge density measurement | [018](graph-signal-activation/edge-density-measurement.md) | [graph-signal-activation/edge-density-measurement.md](../feature_catalog/graph-signal-activation/edge-density-measurement.md) |
-| 019 | Features | Weight history audit tracking | [019](graph-signal-activation/weight-history-audit-tracking.md) | [graph-signal-activation/weight-history-audit-tracking.md](../feature_catalog/graph-signal-activation/weight-history-audit-tracking.md) |
-| 020 | Features | Graph momentum scoring (N2a) | [020](graph-signal-activation/graph-momentum-scoring-n2a.md) | [graph-signal-activation/graph-momentum-scoring.md](../feature_catalog/graph-signal-activation/graph-momentum-scoring.md) |
-| 021 | Features | Causal depth signal (N2b) | [021](graph-signal-activation/causal-depth-signal-n2b.md) | [graph-signal-activation/causal-depth-signal.md](../feature_catalog/graph-signal-activation/causal-depth-signal.md) |
-| 022 | Features | Community detection (N2c) | [022](graph-signal-activation/community-detection-n2c.md) | [graph-signal-activation/community-detection.md](../feature_catalog/graph-signal-activation/community-detection.md) |
-| 023 | Features | Score normalization | [023](scoring-and-calibration/score-normalization.md) | [scoring-and-calibration/score-normalization.md](../feature_catalog/scoring-and-calibration/score-normalization.md) |
-| 025 | Features | Interference scoring (TM-01) | [025](scoring-and-calibration/interference-scoring-tm-01.md) | [scoring-and-calibration/interference-scoring.md](../feature_catalog/scoring-and-calibration/interference-scoring.md) |
-| 026 | Features | Classification-based decay (TM-03) | [026](scoring-and-calibration/classification-based-decay-tm-03.md) | [scoring-and-calibration/classification-based-decay.md](../feature_catalog/scoring-and-calibration/classification-based-decay.md) |
-| 027 | Features | Folder-level relevance scoring (PI-A1) | [027](scoring-and-calibration/folder-level-relevance-scoring-pi-a1.md) | [scoring-and-calibration/folder-level-relevance-scoring.md](../feature_catalog/scoring-and-calibration/folder-level-relevance-scoring.md) |
-| 028 | Features | Embedding cache (R18) | [028](scoring-and-calibration/embedding-cache-r18.md) | [scoring-and-calibration/embedding-cache.md](../feature_catalog/scoring-and-calibration/embedding-cache.md) |
-| 029 | Features | Double intent weighting investigation (G2) | [029](scoring-and-calibration/double-intent-weighting-investigation-g2.md) | [scoring-and-calibration/double-intent-weighting-investigation.md](../feature_catalog/scoring-and-calibration/double-intent-weighting-investigation.md) |
-| 030 | Features | RRF K-value sensitivity analysis (FUT-5) | [030](scoring-and-calibration/rrf-k-value-sensitivity-analysis-fut-5.md) | [scoring-and-calibration/rrf-k-value-sensitivity-analysis.md](../feature_catalog/scoring-and-calibration/rrf-k-value-sensitivity-analysis.md) |
-| 031 | Features | Negative feedback confidence signal (A4) | [031](scoring-and-calibration/negative-feedback-confidence-signal-a4.md) | [scoring-and-calibration/negative-feedback-confidence-signal.md](../feature_catalog/scoring-and-calibration/negative-feedback-confidence-signal.md) |
-| 032 | Features | Auto-promotion on validation (T002a) | [032](scoring-and-calibration/auto-promotion-on-validation-t002a.md) | [scoring-and-calibration/auto-promotion-on-validation.md](../feature_catalog/scoring-and-calibration/auto-promotion-on-validation.md) |
-| 033 | Features | Query complexity router (R15) | [033](query-intelligence/query-complexity-router-r15.md) | [query-intelligence/query-complexity-router.md](../feature_catalog/query-intelligence/query-complexity-router.md) |
-| 035 | Features | Channel min-representation (R2) | [035](query-intelligence/channel-min-representation-r2.md) | [query-intelligence/channel-min-representation.md](../feature_catalog/query-intelligence/channel-min-representation.md) |
-| 036 | Features | Confidence-based result truncation (R15-ext) | [036](query-intelligence/confidence-based-result-truncation-r15-ext.md) | [query-intelligence/confidence-based-result-truncation.md](../feature_catalog/query-intelligence/confidence-based-result-truncation.md) |
-| 037 | Features | Dynamic token budget allocation (FUT-7) | [037](query-intelligence/dynamic-token-budget-allocation-fut-7.md) | [query-intelligence/dynamic-token-budget-allocation.md](../feature_catalog/query-intelligence/dynamic-token-budget-allocation.md) |
-| 038 | Features | Query expansion (R12) | [038](query-intelligence/query-expansion-r12.md) | [query-intelligence/query-expansion.md](../feature_catalog/query-intelligence/query-expansion.md) |
-| 039 | Features | Verify-fix-verify memory quality loop (PI-A5) | [039](memory-quality-and-indexing/verify-fix-verify-memory-quality-loop-pi-a5.md) | [memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md](../feature_catalog/memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md) |
-| 040 | Features | Signal vocabulary expansion (TM-08) | [040](memory-quality-and-indexing/signal-vocabulary-expansion-tm-08.md) | [memory-quality-and-indexing/signal-vocabulary-expansion.md](../feature_catalog/memory-quality-and-indexing/signal-vocabulary-expansion.md) |
-| 041 | Features | Pre-flight token budget validation (PI-A3) | [041](memory-quality-and-indexing/pre-flight-token-budget-validation-pi-a3.md) | [memory-quality-and-indexing/pre-flight-token-budget-validation.md](../feature_catalog/memory-quality-and-indexing/pre-flight-token-budget-validation.md) |
-| 042 | Features | Spec folder description discovery (PI-B3) | [042](memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md) | [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature_catalog/memory-quality-and-indexing/spec-folder-description-discovery.md) |
-| 043 | Features | Pre-storage quality gate (TM-04) | [043](memory-quality-and-indexing/pre-storage-quality-gate-tm-04.md) | [memory-quality-and-indexing/pre-storage-quality-gate.md](../feature_catalog/memory-quality-and-indexing/pre-storage-quality-gate.md) |
-| 044 | Features | Reconsolidation-on-save (TM-06) | [044](memory-quality-and-indexing/reconsolidation-on-save-tm-06.md) | [memory-quality-and-indexing/reconsolidation-on-save.md](../feature_catalog/memory-quality-and-indexing/reconsolidation-on-save.md) |
-| 045 | Features | Smarter memory content generation (S1) | [045](memory-quality-and-indexing/smarter-memory-content-generation-s1.md) | [memory-quality-and-indexing/smarter-memory-content-generation.md](../feature_catalog/memory-quality-and-indexing/smarter-memory-content-generation.md) |
-| 046 | Features | Anchor-aware chunk thinning (R7) | [046](memory-quality-and-indexing/anchor-aware-chunk-thinning-r7.md) | [memory-quality-and-indexing/anchor-aware-chunk-thinning.md](../feature_catalog/memory-quality-and-indexing/anchor-aware-chunk-thinning.md) |
-| 047 | Features | Encoding-intent capture at index time (R16) | [047](memory-quality-and-indexing/encoding-intent-capture-at-index-time-r16.md) | [memory-quality-and-indexing/encoding-intent-capture-at-index-time.md](../feature_catalog/memory-quality-and-indexing/encoding-intent-capture-at-index-time.md) |
-| 048 | Features | Auto entity extraction (R10) | [048](memory-quality-and-indexing/auto-entity-extraction-r10.md) | [memory-quality-and-indexing/auto-entity-extraction.md](../feature_catalog/memory-quality-and-indexing/auto-entity-extraction.md) |
-| 049 | Features | 4-stage pipeline refactor (R6) | [049](pipeline-architecture/4-stage-pipeline-refactor-r6.md) | [pipeline-architecture/4-stage-pipeline-refactor.md](../feature_catalog/pipeline-architecture/4-stage-pipeline-refactor.md) |
-| 050 | Features | MPAB chunk-to-memory aggregation (R1) | [050](pipeline-architecture/mpab-chunk-to-memory-aggregation-r1.md) | [pipeline-architecture/mpab-chunk-to-memory-aggregation.md](../feature_catalog/pipeline-architecture/mpab-chunk-to-memory-aggregation.md) |
-| 051 | Features | Chunk ordering preservation (B2) | [051](pipeline-architecture/chunk-ordering-preservation-b2.md) | [pipeline-architecture/chunk-ordering-preservation.md](../feature_catalog/pipeline-architecture/chunk-ordering-preservation.md) |
-| 052 | Features | Template anchor optimization (S2) | [052](pipeline-architecture/template-anchor-optimization-s2.md) | [pipeline-architecture/template-anchor-optimization.md](../feature_catalog/pipeline-architecture/template-anchor-optimization.md) |
-| 053 | Features | Validation signals as retrieval metadata (S3) | [053](pipeline-architecture/validation-signals-as-retrieval-metadata-s3.md) | [pipeline-architecture/validation-signals-as-retrieval-metadata.md](../feature_catalog/pipeline-architecture/validation-signals-as-retrieval-metadata.md) |
-| 054 | Features | Learned relevance feedback (R11) | [054](pipeline-architecture/learned-relevance-feedback-r11.md) | [pipeline-architecture/learned-relevance-feedback.md](../feature_catalog/pipeline-architecture/learned-relevance-feedback.md) |
-| 055 | Features | Dual-scope memory auto-surface (TM-05) | [055](retrieval-enhancements/dual-scope-memory-auto-surface-tm-05.md) | [retrieval-enhancements/dual-scope-memory-auto-surface.md](../feature_catalog/retrieval-enhancements/dual-scope-memory-auto-surface.md) |
-| 056 | Features | Constitutional memory as expert knowledge injection (PI-A4) | [056](retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection-pi-a4.md) | [retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md](../feature_catalog/retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md) |
-| 057 | Features | Spec folder hierarchy as retrieval structure (S4) | [057](retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure-s4.md) | [retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md](../feature_catalog/retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md) |
-| 058 | Features | Lightweight consolidation (N3-lite) | [058](retrieval-enhancements/lightweight-consolidation-n3-lite.md) | [retrieval-enhancements/lightweight-consolidation.md](../feature_catalog/retrieval-enhancements/lightweight-consolidation.md) |
-| 059 | Features | Memory summary search channel (R8) | [059](retrieval-enhancements/memory-summary-search-channel-r8.md) | [retrieval-enhancements/memory-summary-search-channel.md](../feature_catalog/retrieval-enhancements/memory-summary-search-channel.md) |
-| 060 | Features | Cross-document entity linking (S5) | [060](retrieval-enhancements/cross-document-entity-linking-s5.md) | [retrieval-enhancements/cross-document-entity-linking.md](../feature_catalog/retrieval-enhancements/cross-document-entity-linking.md) |
-| 061 | Features | Tree thinning for spec folder consolidation (PI-B1) | [061](tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md) | [tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md](../feature_catalog/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md) |
-| 062 | Features | Progressive validation for spec documents (PI-B2) | [062](tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md) | [tooling-and-scripts/progressive-validation-for-spec-documents.md](../feature_catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md) |
-| 063 | Features | Feature flag governance | [063](governance/feature-flag-governance.md) | [governance/feature-flag-governance.md](../feature_catalog/governance/feature-flag-governance.md) |
+| EX-001 | Existing Features | Unified context retrieval (memory_context) | [EX-001](retrieval/unified_context_retrieval_memory_context.md) | [retrieval/unified_context_retrieval_memorycontext.md](../feature_catalog/retrieval/unified_context_retrieval_memorycontext.md) |
+| EX-002 | Existing Features | Semantic and lexical search (memory_search) | [EX-002](retrieval/semantic_and_lexical_search_memory_search.md) | [retrieval/semantic_and_lexical_search_memorysearch.md](../feature_catalog/retrieval/semantic_and_lexical_search_memorysearch.md) |
+| EX-003 | Existing Features | Trigger phrase matching (memory_match_triggers) | [EX-003](retrieval/trigger_phrase_matching_memory_match_triggers.md) | [retrieval/trigger_phrase_matching_memorymatchtriggers.md](../feature_catalog/retrieval/trigger_phrase_matching_memorymatchtriggers.md) |
+| EX-004 | Existing Features | Hybrid search pipeline | [EX-004](retrieval/hybrid_search_pipeline.md) | [retrieval/hybrid_search_pipeline.md](../feature_catalog/retrieval/hybrid_search_pipeline.md) |
+| EX-005 | Existing Features | 4-stage pipeline architecture | [EX-005](retrieval/4_stage_pipeline_architecture.md) | [retrieval/4_stage_pipeline_architecture.md](../feature_catalog/retrieval/4_stage_pipeline_architecture.md) |
+| EX-006 | Existing Features | Memory indexing (memory_save) | [EX-006](mutation/memory_indexing_memory_save.md) | [mutation/memory_indexing_memorysave.md](../feature_catalog/mutation/memory_indexing_memorysave.md) |
+| EX-007 | Existing Features | Memory metadata update (memory_update) | [EX-007](mutation/memory_metadata_update_memory_update.md) | [mutation/memory_metadata_update_memoryupdate.md](../feature_catalog/mutation/memory_metadata_update_memoryupdate.md) |
+| EX-008 | Existing Features | Single and folder delete (memory_delete) | [EX-008](mutation/single_and_folder_delete_memory_delete.md) | [mutation/single_and_folder_delete_memorydelete.md](../feature_catalog/mutation/single_and_folder_delete_memorydelete.md) |
+| EX-009 | Existing Features | Tier-based bulk deletion (memory_bulk_delete) | [EX-009](mutation/tier_based_bulk_deletion_memory_bulk_delete.md) | [mutation/tier_based_bulk_deletion_memorybulkdelete.md](../feature_catalog/mutation/tier_based_bulk_deletion_memorybulkdelete.md) |
+| EX-010 | Existing Features | Validation feedback (memory_validate) | [EX-010](mutation/validation_feedback_memory_validate.md) | [mutation/validation_feedback_memoryvalidate.md](../feature_catalog/mutation/validation_feedback_memoryvalidate.md) |
+| EX-011 | Existing Features | Memory browser (memory_list) | [EX-011](discovery/memory_browser_memory_list.md) | [discovery/memory_browser_memorylist.md](../feature_catalog/discovery/memory_browser_memorylist.md) |
+| EX-012 | Existing Features | System statistics (memory_stats) | [EX-012](discovery/system_statistics_memory_stats.md) | [discovery/system_statistics_memorystats.md](../feature_catalog/discovery/system_statistics_memorystats.md) |
+| EX-013 | Existing Features | Health diagnostics (memory_health) | [EX-013](discovery/health_diagnostics_memory_health.md) | [discovery/health_diagnostics_memoryhealth.md](../feature_catalog/discovery/health_diagnostics_memoryhealth.md) |
+| EX-014 | Existing Features | Workspace scanning and indexing (memory_index_scan) | [EX-014](maintenance/workspace_scanning_and_indexing_memory_index_scan.md) | [maintenance/workspace_scanning_and_indexing_memoryindexscan.md](../feature_catalog/maintenance/workspace_scanning_and_indexing_memoryindexscan.md) |
+| EX-015 | Existing Features | Checkpoint creation (checkpoint_create) | [EX-015](lifecycle/checkpoint_creation_checkpoint_create.md) | [lifecycle/checkpoint_creation_checkpointcreate.md](../feature_catalog/lifecycle/checkpoint_creation_checkpointcreate.md) |
+| EX-016 | Existing Features | Checkpoint listing (checkpoint_list) | [EX-016](lifecycle/checkpoint_listing_checkpoint_list.md) | [lifecycle/checkpoint_listing_checkpointlist.md](../feature_catalog/lifecycle/checkpoint_listing_checkpointlist.md) |
+| EX-017 | Existing Features | Checkpoint restore (checkpoint_restore) | [EX-017](lifecycle/checkpoint_restore_checkpoint_restore.md) | [lifecycle/checkpoint_restore_checkpointrestore.md](../feature_catalog/lifecycle/checkpoint_restore_checkpointrestore.md) |
+| EX-018 | Existing Features | Checkpoint deletion (checkpoint_delete) | [EX-018](lifecycle/checkpoint_deletion_checkpoint_delete.md) | [lifecycle/checkpoint_deletion_checkpointdelete.md](../feature_catalog/lifecycle/checkpoint_deletion_checkpointdelete.md) |
+| EX-019 | Existing Features | Causal edge creation (memory_causal_link) | [EX-019](analysis/causal_edge_creation_memory_causal_link.md) | [analysis/causal_edge_creation_memorycausallink.md](../feature_catalog/analysis/causal_edge_creation_memorycausallink.md) |
+| EX-020 | Existing Features | Causal graph statistics (memory_causal_stats) | [EX-020](analysis/causal_graph_statistics_memory_causal_stats.md) | [analysis/causal_graph_statistics_memorycausalstats.md](../feature_catalog/analysis/causal_graph_statistics_memorycausalstats.md) |
+| EX-021 | Existing Features | Causal edge deletion (memory_causal_unlink) | [EX-021](analysis/causal_edge_deletion_memory_causal_unlink.md) | [analysis/causal_edge_deletion_memorycausalunlink.md](../feature_catalog/analysis/causal_edge_deletion_memorycausalunlink.md) |
+| EX-022 | Existing Features | Causal chain tracing (memory_drift_why) | [EX-022](analysis/causal_chain_tracing_memory_drift_why.md) | [analysis/causal_chain_tracing_memorydriftwhy.md](../feature_catalog/analysis/causal_chain_tracing_memorydriftwhy.md) |
+| EX-023 | Existing Features | Epistemic baseline capture (task_preflight) | [EX-023](analysis/epistemic_baseline_capture_task_preflight.md) | [analysis/epistemic_baseline_capture_taskpreflight.md](../feature_catalog/analysis/epistemic_baseline_capture_taskpreflight.md) |
+| EX-024 | Existing Features | Post-task learning measurement (task_postflight) | [EX-024](analysis/post_task_learning_measurement_task_postflight.md) | [analysis/post_task_learning_measurement_taskpostflight.md](../feature_catalog/analysis/post_task_learning_measurement_taskpostflight.md) |
+| EX-025 | Existing Features | Learning history (memory_get_learning_history) | [EX-025](analysis/learning_history_memory_get_learning_history.md) | [analysis/learning_history_memorygetlearninghistory.md](../feature_catalog/analysis/learning_history_memorygetlearninghistory.md) |
+| EX-026 | Existing Features | Ablation studies (eval_run_ablation) | [EX-026](evaluation/ablation_studies_eval_run_ablation.md) | [evaluation/ablation_studies_evalrunablation.md](../feature_catalog/evaluation/ablation_studies_evalrunablation.md) |
+| EX-027 | Existing Features | Reporting dashboard (eval_reporting_dashboard) | [EX-027](evaluation/reporting_dashboard_eval_reporting_dashboard.md) | [evaluation/reporting_dashboard_evalreportingdashboard.md](../feature_catalog/evaluation/reporting_dashboard_evalreportingdashboard.md) |
+| EX-028 | Existing Features | 1. Search Pipeline Features (SPECKIT_*) | [EX-028](feature_flag_reference/1_search_pipeline_features_speckit.md) | [feature_flag_reference/1_search_pipeline_features_speckit.md](../feature_catalog/feature_flag_reference/1_search_pipeline_features_speckit.md) |
+| EX-029 | Existing Features | 2. Session and Cache | [EX-029](feature_flag_reference/2_session_and_cache.md) | [feature_flag_reference/2_session_and_cache.md](../feature_catalog/feature_flag_reference/2_session_and_cache.md) |
+| EX-030 | Existing Features | 3. MCP Configuration | [EX-030](feature_flag_reference/3_mcp_configuration.md) | [feature_flag_reference/3_mcp_configuration.md](../feature_catalog/feature_flag_reference/3_mcp_configuration.md) |
+| EX-031 | Existing Features | 4. Memory and Storage | [EX-031](feature_flag_reference/4_memory_and_storage.md) | [feature_flag_reference/4_memory_and_storage.md](../feature_catalog/feature_flag_reference/4_memory_and_storage.md) |
+| EX-032 | Existing Features | 5. Embedding and API | [EX-032](feature_flag_reference/5_embedding_and_api.md) | [feature_flag_reference/5_embedding_and_api.md](../feature_catalog/feature_flag_reference/5_embedding_and_api.md) |
+| EX-033 | Existing Features | 6. Debug and Telemetry | [EX-033](feature_flag_reference/6_debug_and_telemetry.md) | [feature_flag_reference/6_debug_and_telemetry.md](../feature_catalog/feature_flag_reference/6_debug_and_telemetry.md) |
+| EX-034 | Existing Features | 7. CI and Build (informational) | [EX-034](feature_flag_reference/7_ci_and_build_informational.md) | [feature_flag_reference/7_ci_and_build_informational.md](../feature_catalog/feature_flag_reference/7_ci_and_build_informational.md) |
+| EX-035 | Existing Features | Startup runtime compatibility guards | [EX-035](maintenance/startup_runtime_compatibility_guards.md) | [maintenance/startup_runtime_compatibility_guards.md](../feature_catalog/maintenance/startup_runtime_compatibility_guards.md) |
+| 001 | Features | Graph channel ID fix (G1) | [001](bug_fixes_and_data_integrity/graph_channel_id_fix_g1.md) | [bug_fixes_and_data_integrity/graph_channel_id_fix.md](../feature_catalog/bug_fixes_and_data_integrity/graph_channel_id_fix.md) |
+| 002 | Features | Chunk collapse deduplication (G3) | [002](bug_fixes_and_data_integrity/chunk_collapse_deduplication_g3.md) | [bug_fixes_and_data_integrity/chunk_collapse_deduplication.md](../feature_catalog/bug_fixes_and_data_integrity/chunk_collapse_deduplication.md) |
+| 003 | Features | Co-activation fan-effect divisor (R17) | [003](bug_fixes_and_data_integrity/co_activation_fan_effect_divisor_r17.md) | [bug_fixes_and_data_integrity/co_activation_fan_effect_divisor.md](../feature_catalog/bug_fixes_and_data_integrity/co_activation_fan_effect_divisor.md) |
+| 004 | Features | SHA-256 content-hash deduplication (TM-02) | [004](bug_fixes_and_data_integrity/sha_256_content_hash_deduplication_tm_02.md) | [bug_fixes_and_data_integrity/sha_256_content_hash_deduplication.md](../feature_catalog/bug_fixes_and_data_integrity/sha_256_content_hash_deduplication.md) |
+| 005 | Features | Evaluation database and schema (R13-S1) | [005](evaluation_and_measurement/evaluation_database_and_schema_r13_s1.md) | [evaluation_and_measurement/evaluation_database_and_schema.md](../feature_catalog/evaluation_and_measurement/evaluation_database_and_schema.md) |
+| 006 | Features | Core metric computation (R13-S1) | [006](evaluation_and_measurement/core_metric_computation_r13_s1.md) | [evaluation_and_measurement/core_metric_computation.md](../feature_catalog/evaluation_and_measurement/core_metric_computation.md) |
+| 007 | Features | Observer effect mitigation (D4) | [007](evaluation_and_measurement/observer_effect_mitigation_d4.md) | [evaluation_and_measurement/observer_effect_mitigation.md](../feature_catalog/evaluation_and_measurement/observer_effect_mitigation.md) |
+| 009 | Features | Quality proxy formula (B7) | [009](evaluation_and_measurement/quality_proxy_formula_b7.md) | [evaluation_and_measurement/quality_proxy_formula.md](../feature_catalog/evaluation_and_measurement/quality_proxy_formula.md) |
+| 010 | Features | Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A) | [010](evaluation_and_measurement/synthetic_ground_truth_corpus_g_new_1_g_new_3_phase_a.md) | [evaluation_and_measurement/synthetic_ground_truth_corpus.md](../feature_catalog/evaluation_and_measurement/synthetic_ground_truth_corpus.md) |
+| 011 | Features | BM25-only baseline (G-NEW-1) | [011](evaluation_and_measurement/bm25_only_baseline_g_new_1.md) | [evaluation_and_measurement/bm25_only_baseline.md](../feature_catalog/evaluation_and_measurement/bm25_only_baseline.md) |
+| 012 | Features | Agent consumption instrumentation (G-NEW-2) | [012](evaluation_and_measurement/agent_consumption_instrumentation_g_new_2.md) | [evaluation_and_measurement/agent_consumption_instrumentation.md](../feature_catalog/evaluation_and_measurement/agent_consumption_instrumentation.md) |
+| 013 | Features | Scoring observability (T010) | [013](evaluation_and_measurement/scoring_observability_t010.md) | [evaluation_and_measurement/scoring_observability.md](../feature_catalog/evaluation_and_measurement/scoring_observability.md) |
+| 014 | Features | Full reporting and ablation study framework (R13-S3) | [014](evaluation_and_measurement/full_reporting_and_ablation_study_framework_r13_s3.md) | [evaluation_and_measurement/full_reporting_and_ablation_study_framework.md](../feature_catalog/evaluation_and_measurement/full_reporting_and_ablation_study_framework.md) |
+| 016 | Features | Typed-weighted degree channel (R4) | [016](graph_signal_activation/typed_weighted_degree_channel_r4.md) | [graph_signal_activation/typed_weighted_degree_channel.md](../feature_catalog/graph_signal_activation/typed_weighted_degree_channel.md) |
+| 017 | Features | Co-activation boost strength increase (A7) | [017](graph_signal_activation/co_activation_boost_strength_increase_a7.md) | [graph_signal_activation/co_activation_boost_strength_increase.md](../feature_catalog/graph_signal_activation/co_activation_boost_strength_increase.md) |
+| 018 | Features | Edge density measurement | [018](graph_signal_activation/edge_density_measurement.md) | [graph_signal_activation/edge_density_measurement.md](../feature_catalog/graph_signal_activation/edge_density_measurement.md) |
+| 019 | Features | Weight history audit tracking | [019](graph_signal_activation/weight_history_audit_tracking.md) | [graph_signal_activation/weight_history_audit_tracking.md](../feature_catalog/graph_signal_activation/weight_history_audit_tracking.md) |
+| 020 | Features | Graph momentum scoring (N2a) | [020](graph_signal_activation/graph_momentum_scoring_n2a.md) | [graph_signal_activation/graph_momentum_scoring.md](../feature_catalog/graph_signal_activation/graph_momentum_scoring.md) |
+| 021 | Features | Causal depth signal (N2b) | [021](graph_signal_activation/causal_depth_signal_n2b.md) | [graph_signal_activation/causal_depth_signal.md](../feature_catalog/graph_signal_activation/causal_depth_signal.md) |
+| 022 | Features | Community detection (N2c) | [022](graph_signal_activation/community_detection_n2c.md) | [graph_signal_activation/community_detection.md](../feature_catalog/graph_signal_activation/community_detection.md) |
+| 023 | Features | Score normalization | [023](scoring_and_calibration/score_normalization.md) | [scoring_and_calibration/score_normalization.md](../feature_catalog/scoring_and_calibration/score_normalization.md) |
+| 025 | Features | Interference scoring (TM-01) | [025](scoring_and_calibration/interference_scoring_tm_01.md) | [scoring_and_calibration/interference_scoring.md](../feature_catalog/scoring_and_calibration/interference_scoring.md) |
+| 026 | Features | Classification-based decay (TM-03) | [026](scoring_and_calibration/classification_based_decay_tm_03.md) | [scoring_and_calibration/classification_based_decay.md](../feature_catalog/scoring_and_calibration/classification_based_decay.md) |
+| 027 | Features | Folder-level relevance scoring (PI-A1) | [027](scoring_and_calibration/folder_level_relevance_scoring_pi_a1.md) | [scoring_and_calibration/folder_level_relevance_scoring.md](../feature_catalog/scoring_and_calibration/folder_level_relevance_scoring.md) |
+| 028 | Features | Embedding cache (R18) | [028](scoring_and_calibration/embedding_cache_r18.md) | [scoring_and_calibration/embedding_cache.md](../feature_catalog/scoring_and_calibration/embedding_cache.md) |
+| 029 | Features | Double intent weighting investigation (G2) | [029](scoring_and_calibration/double_intent_weighting_investigation_g2.md) | [scoring_and_calibration/double_intent_weighting_investigation.md](../feature_catalog/scoring_and_calibration/double_intent_weighting_investigation.md) |
+| 030 | Features | RRF K-value sensitivity analysis (FUT-5) | [030](scoring_and_calibration/rrf_k_value_sensitivity_analysis_fut_5.md) | [scoring_and_calibration/rrf_k_value_sensitivity_analysis.md](../feature_catalog/scoring_and_calibration/rrf_k_value_sensitivity_analysis.md) |
+| 031 | Features | Negative feedback confidence signal (A4) | [031](scoring_and_calibration/negative_feedback_confidence_signal_a4.md) | [scoring_and_calibration/negative_feedback_confidence_signal.md](../feature_catalog/scoring_and_calibration/negative_feedback_confidence_signal.md) |
+| 032 | Features | Auto-promotion on validation (T002a) | [032](scoring_and_calibration/auto_promotion_on_validation_t002a.md) | [scoring_and_calibration/auto_promotion_on_validation.md](../feature_catalog/scoring_and_calibration/auto_promotion_on_validation.md) |
+| 033 | Features | Query complexity router (R15) | [033](query_intelligence/query_complexity_router_r15.md) | [query_intelligence/query_complexity_router.md](../feature_catalog/query_intelligence/query_complexity_router.md) |
+| 035 | Features | Channel min-representation (R2) | [035](query_intelligence/channel_min_representation_r2.md) | [query_intelligence/channel_min_representation.md](../feature_catalog/query_intelligence/channel_min_representation.md) |
+| 036 | Features | Confidence-based result truncation (R15-ext) | [036](query_intelligence/confidence_based_result_truncation_r15_ext.md) | [query_intelligence/confidence_based_result_truncation.md](../feature_catalog/query_intelligence/confidence_based_result_truncation.md) |
+| 037 | Features | Dynamic token budget allocation (FUT-7) | [037](query_intelligence/dynamic_token_budget_allocation_fut_7.md) | [query_intelligence/dynamic_token_budget_allocation.md](../feature_catalog/query_intelligence/dynamic_token_budget_allocation.md) |
+| 038 | Features | Query expansion (R12) | [038](query_intelligence/query_expansion_r12.md) | [query_intelligence/query_expansion.md](../feature_catalog/query_intelligence/query_expansion.md) |
+| 039 | Features | Verify-fix-verify memory quality loop (PI-A5) | [039](memory_quality_and_indexing/verify_fix_verify_memory_quality_loop_pi_a5.md) | [memory_quality_and_indexing/verify_fix_verify_memory_quality_loop.md](../feature_catalog/memory_quality_and_indexing/verify_fix_verify_memory_quality_loop.md) |
+| 040 | Features | Signal vocabulary expansion (TM-08) | [040](memory_quality_and_indexing/signal_vocabulary_expansion_tm_08.md) | [memory_quality_and_indexing/signal_vocabulary_expansion.md](../feature_catalog/memory_quality_and_indexing/signal_vocabulary_expansion.md) |
+| 041 | Features | Pre-flight token budget validation (PI-A3) | [041](memory_quality_and_indexing/pre_flight_token_budget_validation_pi_a3.md) | [memory_quality_and_indexing/pre_flight_token_budget_validation.md](../feature_catalog/memory_quality_and_indexing/pre_flight_token_budget_validation.md) |
+| 042 | Features | Spec folder description discovery (PI-B3) | [042](memory_quality_and_indexing/spec_folder_description_discovery_pi_b3.md) | [memory_quality_and_indexing/spec_folder_description_discovery.md](../feature_catalog/memory_quality_and_indexing/spec_folder_description_discovery.md) |
+| 043 | Features | Pre-storage quality gate (TM-04) | [043](memory_quality_and_indexing/pre_storage_quality_gate_tm_04.md) | [memory_quality_and_indexing/pre_storage_quality_gate.md](../feature_catalog/memory_quality_and_indexing/pre_storage_quality_gate.md) |
+| 044 | Features | Reconsolidation-on-save (TM-06) | [044](memory_quality_and_indexing/reconsolidation_on_save_tm_06.md) | [memory_quality_and_indexing/reconsolidation_on_save.md](../feature_catalog/memory_quality_and_indexing/reconsolidation_on_save.md) |
+| 045 | Features | Smarter memory content generation (S1) | [045](memory_quality_and_indexing/smarter_memory_content_generation_s1.md) | [memory_quality_and_indexing/smarter_memory_content_generation.md](../feature_catalog/memory_quality_and_indexing/smarter_memory_content_generation.md) |
+| 046 | Features | Anchor-aware chunk thinning (R7) | [046](memory_quality_and_indexing/anchor_aware_chunk_thinning_r7.md) | [memory_quality_and_indexing/anchor_aware_chunk_thinning.md](../feature_catalog/memory_quality_and_indexing/anchor_aware_chunk_thinning.md) |
+| 047 | Features | Encoding-intent capture at index time (R16) | [047](memory_quality_and_indexing/encoding_intent_capture_at_index_time_r16.md) | [memory_quality_and_indexing/encoding_intent_capture_at_index_time.md](../feature_catalog/memory_quality_and_indexing/encoding_intent_capture_at_index_time.md) |
+| 048 | Features | Auto entity extraction (R10) | [048](memory_quality_and_indexing/auto_entity_extraction_r10.md) | [memory_quality_and_indexing/auto_entity_extraction.md](../feature_catalog/memory_quality_and_indexing/auto_entity_extraction.md) |
+| 049 | Features | 4-stage pipeline refactor (R6) | [049](pipeline_architecture/4_stage_pipeline_refactor_r6.md) | [pipeline_architecture/4_stage_pipeline_refactor.md](../feature_catalog/pipeline_architecture/4_stage_pipeline_refactor.md) |
+| 050 | Features | MPAB chunk-to-memory aggregation (R1) | [050](pipeline_architecture/mpab_chunk_to_memory_aggregation_r1.md) | [pipeline_architecture/mpab_chunk_to_memory_aggregation.md](../feature_catalog/pipeline_architecture/mpab_chunk_to_memory_aggregation.md) |
+| 051 | Features | Chunk ordering preservation (B2) | [051](pipeline_architecture/chunk_ordering_preservation_b2.md) | [pipeline_architecture/chunk_ordering_preservation.md](../feature_catalog/pipeline_architecture/chunk_ordering_preservation.md) |
+| 052 | Features | Template anchor optimization (S2) | [052](pipeline_architecture/template_anchor_optimization_s2.md) | [pipeline_architecture/template_anchor_optimization.md](../feature_catalog/pipeline_architecture/template_anchor_optimization.md) |
+| 053 | Features | Validation signals as retrieval metadata (S3) | [053](pipeline_architecture/validation_signals_as_retrieval_metadata_s3.md) | [pipeline_architecture/validation_signals_as_retrieval_metadata.md](../feature_catalog/pipeline_architecture/validation_signals_as_retrieval_metadata.md) |
+| 054 | Features | Learned relevance feedback (R11) | [054](pipeline_architecture/learned_relevance_feedback_r11.md) | [pipeline_architecture/learned_relevance_feedback.md](../feature_catalog/pipeline_architecture/learned_relevance_feedback.md) |
+| 055 | Features | Dual-scope memory auto-surface (TM-05) | [055](retrieval_enhancements/dual_scope_memory_auto_surface_tm_05.md) | [retrieval_enhancements/dual_scope_memory_auto_surface.md](../feature_catalog/retrieval_enhancements/dual_scope_memory_auto_surface.md) |
+| 056 | Features | Constitutional memory as expert knowledge injection (PI-A4) | [056](retrieval_enhancements/constitutional_memory_as_expert_knowledge_injection_pi_a4.md) | [retrieval_enhancements/constitutional_memory_as_expert_knowledge_injection.md](../feature_catalog/retrieval_enhancements/constitutional_memory_as_expert_knowledge_injection.md) |
+| 057 | Features | Spec folder hierarchy as retrieval structure (S4) | [057](retrieval_enhancements/spec_folder_hierarchy_as_retrieval_structure_s4.md) | [retrieval_enhancements/spec_folder_hierarchy_as_retrieval_structure.md](../feature_catalog/retrieval_enhancements/spec_folder_hierarchy_as_retrieval_structure.md) |
+| 058 | Features | Lightweight consolidation (N3-lite) | [058](retrieval_enhancements/lightweight_consolidation_n3_lite.md) | [retrieval_enhancements/lightweight_consolidation.md](../feature_catalog/retrieval_enhancements/lightweight_consolidation.md) |
+| 059 | Features | Memory summary search channel (R8) | [059](retrieval_enhancements/memory_summary_search_channel_r8.md) | [retrieval_enhancements/memory_summary_search_channel.md](../feature_catalog/retrieval_enhancements/memory_summary_search_channel.md) |
+| 060 | Features | Cross-document entity linking (S5) | [060](retrieval_enhancements/cross_document_entity_linking_s5.md) | [retrieval_enhancements/cross_document_entity_linking.md](../feature_catalog/retrieval_enhancements/cross_document_entity_linking.md) |
+| 061 | Features | Tree thinning for spec folder consolidation (PI-B1) | [061](tooling_and_scripts/tree_thinning_for_spec_folder_consolidation_pi_b1.md) | [tooling_and_scripts/tree_thinning_for_spec_folder_consolidation.md](../feature_catalog/tooling_and_scripts/tree_thinning_for_spec_folder_consolidation.md) |
+| 062 | Features | Progressive validation for spec documents (PI-B2) | [062](tooling_and_scripts/progressive_validation_for_spec_documents_pi_b2.md) | [tooling_and_scripts/progressive_validation_for_spec_documents.md](../feature_catalog/tooling_and_scripts/progressive_validation_for_spec_documents.md) |
+| 063 | Features | Feature flag governance | [063](governance/feature_flag_governance.md) | [governance/feature_flag_governance.md](../feature_catalog/governance/feature_flag_governance.md) |
 | 064 | Features | Feature flag sunset audit | retired manual record | retired feature-flag sunset audit record |
-| 065 | Features | Database and schema safety | [065](bug-fixes-and-data-integrity/database-and-schema-safety.md) | [bug-fixes-and-data-integrity/database-and-schema-safety.md](../feature_catalog/bug-fixes-and-data-integrity/database-and-schema-safety.md) |
-| 066 | Features | Scoring and ranking corrections | [066](scoring-and-calibration/scoring-and-ranking-corrections.md) | [scoring-and-calibration/scoring-and-ranking-corrections.md](../feature_catalog/scoring-and-calibration/scoring-and-ranking-corrections.md) |
-| 067 | Features | Search pipeline safety | [067](pipeline-architecture/search-pipeline-safety.md) | [pipeline-architecture/search-pipeline-safety.md](../feature_catalog/pipeline-architecture/search-pipeline-safety.md) |
-| 068 | Features | Guards and edge cases | [068](bug-fixes-and-data-integrity/guards-and-edge-cases.md) | [bug-fixes-and-data-integrity/guards-and-edge-cases.md](../feature_catalog/bug-fixes-and-data-integrity/guards-and-edge-cases.md) |
-| 069 | Features | Entity normalization consolidation | [069](memory-quality-and-indexing/entity-normalization-consolidation.md) | [memory-quality-and-indexing/entity-normalization-consolidation.md](../feature_catalog/memory-quality-and-indexing/entity-normalization-consolidation.md) |
-| 070 | Features | Dead code removal | [070](tooling-and-scripts/dead-code-removal.md) | [tooling-and-scripts/dead-code-removal.md](../feature_catalog/tooling-and-scripts/dead-code-removal.md) |
-| 071 | Features | Performance improvements | [071](pipeline-architecture/performance-improvements.md) | [pipeline-architecture/performance-improvements.md](../feature_catalog/pipeline-architecture/performance-improvements.md) |
-| 072 | Features | Test quality improvements | [072](evaluation-and-measurement/test-quality-improvements.md) | [evaluation-and-measurement/test-quality-improvements.md](../feature_catalog/evaluation-and-measurement/test-quality-improvements.md) |
-| 073 | Features | Quality gate timer persistence | [073](memory-quality-and-indexing/quality-gate-timer-persistence.md) | [memory-quality-and-indexing/quality-gate-timer-persistence.md](../feature_catalog/memory-quality-and-indexing/quality-gate-timer-persistence.md) |
-| 074 | Features | Stage 3 effectiveScore fallback chain | [074](scoring-and-calibration/stage-3-effectivescore-fallback-chain.md) | [scoring-and-calibration/stage-3-effectivescore-fallback-chain.md](../feature_catalog/scoring-and-calibration/stage-3-effectivescore-fallback-chain.md) |
-| 075 | Features | Canonical ID dedup hardening | [075](bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md) | [bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md](../feature_catalog/bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md) |
-| 077 | Features | Tier-2 fallback channel forcing | [077](retrieval-enhancements/tier-2-fallback-channel-forcing.md) | [retrieval-enhancements/tier-2-fallback-channel-forcing.md](../feature_catalog/retrieval-enhancements/tier-2-fallback-channel-forcing.md) |
-| 078 | Features | Legacy V1 pipeline removal | [078](pipeline-architecture/legacy-v1-pipeline-removal.md) | [pipeline-architecture/legacy-v1-pipeline-removal.md](../feature_catalog/pipeline-architecture/legacy-v1-pipeline-removal.md) |
-| 079 | Features | Scoring and fusion corrections | [079](scoring-and-calibration/scoring-and-fusion-corrections.md) | [scoring-and-calibration/scoring-and-fusion-corrections.md](../feature_catalog/scoring-and-calibration/scoring-and-fusion-corrections.md) |
-| 080 | Features | Pipeline and mutation hardening | [080](pipeline-architecture/pipeline-and-mutation-hardening.md) | [pipeline-architecture/pipeline-and-mutation-hardening.md](../feature_catalog/pipeline-architecture/pipeline-and-mutation-hardening.md) |
-| 081 | Features | Graph and cognitive memory fixes | [081](graph-signal-activation/graph-and-cognitive-memory-fixes.md) | [graph-signal-activation/graph-and-cognitive-memory-fixes.md](../feature_catalog/graph-signal-activation/graph-and-cognitive-memory-fixes.md) |
-| 082 | Features | Evaluation and housekeeping fixes | [082](evaluation-and-measurement/evaluation-and-housekeeping-fixes.md) | [evaluation-and-measurement/evaluation-and-housekeeping-fixes.md](../feature_catalog/evaluation-and-measurement/evaluation-and-housekeeping-fixes.md) |
-| 083 | Features | Math.max/min stack overflow elimination | [083](bug-fixes-and-data-integrity/math-max-min-stack-overflow-elimination.md) | [bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md](../feature_catalog/bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md) |
-| 084 | Features | Session-manager transaction gap fixes | [084](bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md) | [bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md](../feature_catalog/bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md) |
-| 085 | Features | Transaction wrappers on mutation handlers | [085](mutation/transaction-wrappers-on-mutation-handlers.md) | [mutation/transaction-wrappers-on-mutation-handlers.md](../feature_catalog/mutation/transaction-wrappers-on-mutation-handlers.md) |
-| 086 | Features | BM25 trigger phrase re-index gate | [086](retrieval/bm25-trigger-phrase-re-index-gate.md) | [retrieval/bm25-trigger-phrase-re-index-gate.md](../feature_catalog/retrieval/bm25-trigger-phrase-re-index-gate.md) |
-| 087 | Features | DB_PATH extraction and import standardization | [087](pipeline-architecture/db-path-extraction-and-import-standardization.md) | [pipeline-architecture/dbpath-extraction-and-import-standardization.md](../feature_catalog/pipeline-architecture/dbpath-extraction-and-import-standardization.md) |
-| 088 | Features | Cross-AI validation fixes (Tier 4) | [088](evaluation-and-measurement/cross-ai-validation-fixes-tier-4.md) | [evaluation-and-measurement/cross-ai-validation-fixes.md](../feature_catalog/evaluation-and-measurement/cross-ai-validation-fixes.md) |
-| 089 | Features | Code standards alignment | [089](tooling-and-scripts/code-standards-alignment.md) | [tooling-and-scripts/code-standards-alignment.md](../feature_catalog/tooling-and-scripts/code-standards-alignment.md) |
-| 090 | Features | INT8 quantization evaluation (R5) | [090](evaluation-and-measurement/int8-quantization-evaluation-r5.md) | [evaluation-and-measurement/int8-quantization-evaluation.md](../feature_catalog/evaluation-and-measurement/int8-quantization-evaluation.md) |
-| 091 | Features | Implemented: graph centrality and community detection (N2) | [091](graph-signal-activation/implemented-graph-centrality-and-community-detection-n2.md) | [graph-signal-activation/community-detection.md](../feature_catalog/graph-signal-activation/community-detection.md) |
-| 092 | Features | Implemented: auto entity extraction (R10) | [092](memory-quality-and-indexing/implemented-auto-entity-extraction-r10.md) | [memory-quality-and-indexing/auto-entity-extraction.md](../feature_catalog/memory-quality-and-indexing/auto-entity-extraction.md) |
-| 093 | Features | Implemented: memory summary generation (R8) | [093](retrieval-enhancements/implemented-memory-summary-generation-r8.md) | [retrieval-enhancements/memory-summary-search-channel.md](../feature_catalog/retrieval-enhancements/memory-summary-search-channel.md) |
-| 094 | Features | Implemented: cross-document entity linking (S5) | [094](retrieval-enhancements/implemented-cross-document-entity-linking-s5.md) | [retrieval-enhancements/cross-document-entity-linking.md](../feature_catalog/retrieval-enhancements/cross-document-entity-linking.md) |
-| 095 | Features | Strict Zod schema validation (P0-1) | [095](pipeline-architecture/strict-zod-schema-validation-p0-1.md) | [pipeline-architecture/strict-zod-schema-validation.md](../feature_catalog/pipeline-architecture/strict-zod-schema-validation.md) |
-| 096 | Features | Provenance-rich response envelopes (P0-2) | [096](retrieval-enhancements/provenance-rich-response-envelopes-p0-2.md) | [retrieval-enhancements/provenance-rich-response-envelopes.md](../feature_catalog/retrieval-enhancements/provenance-rich-response-envelopes.md) |
-| 097 | Features | Async ingestion job lifecycle (P0-3) | [097](lifecycle/async-ingestion-job-lifecycle-p0-3.md) | [lifecycle/async-ingestion-job-lifecycle.md](../feature_catalog/lifecycle/async-ingestion-job-lifecycle.md) |
-| 099 | Features | Real-time filesystem watching  | [099](tooling-and-scripts/real-time-filesystem-watching-p1-7.md) | [tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md](../feature_catalog/tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md) |
-| 101 | Features | memory_delete confirm schema tightening | [101](mutation/memory-delete-confirm-schema-tightening.md) | *(memory_delete confirm schema — covered by `mutation/03`)* |
+| 065 | Features | Database and schema safety | [065](bug_fixes_and_data_integrity/database_and_schema_safety.md) | [bug_fixes_and_data_integrity/database_and_schema_safety.md](../feature_catalog/bug_fixes_and_data_integrity/database_and_schema_safety.md) |
+| 066 | Features | Scoring and ranking corrections | [066](scoring_and_calibration/scoring_and_ranking_corrections.md) | [scoring_and_calibration/scoring_and_ranking_corrections.md](../feature_catalog/scoring_and_calibration/scoring_and_ranking_corrections.md) |
+| 067 | Features | Search pipeline safety | [067](pipeline_architecture/search_pipeline_safety.md) | [pipeline_architecture/search_pipeline_safety.md](../feature_catalog/pipeline_architecture/search_pipeline_safety.md) |
+| 068 | Features | Guards and edge cases | [068](bug_fixes_and_data_integrity/guards_and_edge_cases.md) | [bug_fixes_and_data_integrity/guards_and_edge_cases.md](../feature_catalog/bug_fixes_and_data_integrity/guards_and_edge_cases.md) |
+| 069 | Features | Entity normalization consolidation | [069](memory_quality_and_indexing/entity_normalization_consolidation.md) | [memory_quality_and_indexing/entity_normalization_consolidation.md](../feature_catalog/memory_quality_and_indexing/entity_normalization_consolidation.md) |
+| 070 | Features | Dead code removal | [070](tooling_and_scripts/dead_code_removal.md) | [tooling_and_scripts/dead_code_removal.md](../feature_catalog/tooling_and_scripts/dead_code_removal.md) |
+| 071 | Features | Performance improvements | [071](pipeline_architecture/performance_improvements.md) | [pipeline_architecture/performance_improvements.md](../feature_catalog/pipeline_architecture/performance_improvements.md) |
+| 072 | Features | Test quality improvements | [072](evaluation_and_measurement/test_quality_improvements.md) | [evaluation_and_measurement/test_quality_improvements.md](../feature_catalog/evaluation_and_measurement/test_quality_improvements.md) |
+| 073 | Features | Quality gate timer persistence | [073](memory_quality_and_indexing/quality_gate_timer_persistence.md) | [memory_quality_and_indexing/quality_gate_timer_persistence.md](../feature_catalog/memory_quality_and_indexing/quality_gate_timer_persistence.md) |
+| 074 | Features | Stage 3 effectiveScore fallback chain | [074](scoring_and_calibration/stage_3_effectivescore_fallback_chain.md) | [scoring_and_calibration/stage_3_effectivescore_fallback_chain.md](../feature_catalog/scoring_and_calibration/stage_3_effectivescore_fallback_chain.md) |
+| 075 | Features | Canonical ID dedup hardening | [075](bug_fixes_and_data_integrity/canonical_id_dedup_hardening.md) | [bug_fixes_and_data_integrity/canonical_id_dedup_hardening.md](../feature_catalog/bug_fixes_and_data_integrity/canonical_id_dedup_hardening.md) |
+| 077 | Features | Tier-2 fallback channel forcing | [077](retrieval_enhancements/tier_2_fallback_channel_forcing.md) | [retrieval_enhancements/tier_2_fallback_channel_forcing.md](../feature_catalog/retrieval_enhancements/tier_2_fallback_channel_forcing.md) |
+| 078 | Features | Legacy V1 pipeline removal | [078](pipeline_architecture/legacy_v1_pipeline_removal.md) | [pipeline_architecture/legacy_v1_pipeline_removal.md](../feature_catalog/pipeline_architecture/legacy_v1_pipeline_removal.md) |
+| 079 | Features | Scoring and fusion corrections | [079](scoring_and_calibration/scoring_and_fusion_corrections.md) | [scoring_and_calibration/scoring_and_fusion_corrections.md](../feature_catalog/scoring_and_calibration/scoring_and_fusion_corrections.md) |
+| 080 | Features | Pipeline and mutation hardening | [080](pipeline_architecture/pipeline_and_mutation_hardening.md) | [pipeline_architecture/pipeline_and_mutation_hardening.md](../feature_catalog/pipeline_architecture/pipeline_and_mutation_hardening.md) |
+| 081 | Features | Graph and cognitive memory fixes | [081](graph_signal_activation/graph_and_cognitive_memory_fixes.md) | [graph_signal_activation/graph_and_cognitive_memory_fixes.md](../feature_catalog/graph_signal_activation/graph_and_cognitive_memory_fixes.md) |
+| 082 | Features | Evaluation and housekeeping fixes | [082](evaluation_and_measurement/evaluation_and_housekeeping_fixes.md) | [evaluation_and_measurement/evaluation_and_housekeeping_fixes.md](../feature_catalog/evaluation_and_measurement/evaluation_and_housekeeping_fixes.md) |
+| 083 | Features | Math.max/min stack overflow elimination | [083](bug_fixes_and_data_integrity/math_max_min_stack_overflow_elimination.md) | [bug_fixes_and_data_integrity/mathmax_min_stack_overflow_elimination.md](../feature_catalog/bug_fixes_and_data_integrity/mathmax_min_stack_overflow_elimination.md) |
+| 084 | Features | Session-manager transaction gap fixes | [084](bug_fixes_and_data_integrity/session_manager_transaction_gap_fixes.md) | [bug_fixes_and_data_integrity/session_manager_transaction_gap_fixes.md](../feature_catalog/bug_fixes_and_data_integrity/session_manager_transaction_gap_fixes.md) |
+| 085 | Features | Transaction wrappers on mutation handlers | [085](mutation/transaction_wrappers_on_mutation_handlers.md) | [mutation/transaction_wrappers_on_mutation_handlers.md](../feature_catalog/mutation/transaction_wrappers_on_mutation_handlers.md) |
+| 086 | Features | BM25 trigger phrase re-index gate | [086](retrieval/bm25_trigger_phrase_re_index_gate.md) | [retrieval/bm25_trigger_phrase_re_index_gate.md](../feature_catalog/retrieval/bm25_trigger_phrase_re_index_gate.md) |
+| 087 | Features | DB_PATH extraction and import standardization | [087](pipeline_architecture/db_path_extraction_and_import_standardization.md) | [pipeline_architecture/dbpath_extraction_and_import_standardization.md](../feature_catalog/pipeline_architecture/dbpath_extraction_and_import_standardization.md) |
+| 088 | Features | Cross-AI validation fixes (Tier 4) | [088](evaluation_and_measurement/cross_ai_validation_fixes_tier_4.md) | [evaluation_and_measurement/cross_ai_validation_fixes.md](../feature_catalog/evaluation_and_measurement/cross_ai_validation_fixes.md) |
+| 089 | Features | Code standards alignment | [089](tooling_and_scripts/code_standards_alignment.md) | [tooling_and_scripts/code_standards_alignment.md](../feature_catalog/tooling_and_scripts/code_standards_alignment.md) |
+| 090 | Features | INT8 quantization evaluation (R5) | [090](evaluation_and_measurement/int8_quantization_evaluation_r5.md) | [evaluation_and_measurement/int8_quantization_evaluation.md](../feature_catalog/evaluation_and_measurement/int8_quantization_evaluation.md) |
+| 091 | Features | Implemented: graph centrality and community detection (N2) | [091](graph_signal_activation/implemented_graph_centrality_and_community_detection_n2.md) | [graph_signal_activation/community_detection.md](../feature_catalog/graph_signal_activation/community_detection.md) |
+| 092 | Features | Implemented: auto entity extraction (R10) | [092](memory_quality_and_indexing/implemented_auto_entity_extraction_r10.md) | [memory_quality_and_indexing/auto_entity_extraction.md](../feature_catalog/memory_quality_and_indexing/auto_entity_extraction.md) |
+| 093 | Features | Implemented: memory summary generation (R8) | [093](retrieval_enhancements/implemented_memory_summary_generation_r8.md) | [retrieval_enhancements/memory_summary_search_channel.md](../feature_catalog/retrieval_enhancements/memory_summary_search_channel.md) |
+| 094 | Features | Implemented: cross-document entity linking (S5) | [094](retrieval_enhancements/implemented_cross_document_entity_linking_s5.md) | [retrieval_enhancements/cross_document_entity_linking.md](../feature_catalog/retrieval_enhancements/cross_document_entity_linking.md) |
+| 095 | Features | Strict Zod schema validation (P0-1) | [095](pipeline_architecture/strict_zod_schema_validation_p0_1.md) | [pipeline_architecture/strict_zod_schema_validation.md](../feature_catalog/pipeline_architecture/strict_zod_schema_validation.md) |
+| 096 | Features | Provenance-rich response envelopes (P0-2) | [096](retrieval_enhancements/provenance_rich_response_envelopes_p0_2.md) | [retrieval_enhancements/provenance_rich_response_envelopes.md](../feature_catalog/retrieval_enhancements/provenance_rich_response_envelopes.md) |
+| 097 | Features | Async ingestion job lifecycle (P0-3) | [097](lifecycle/async_ingestion_job_lifecycle_p0_3.md) | [lifecycle/async_ingestion_job_lifecycle.md](../feature_catalog/lifecycle/async_ingestion_job_lifecycle.md) |
+| 099 | Features | Real-time filesystem watching  | [099](tooling_and_scripts/real_time_filesystem_watching_p1_7.md) | [tooling_and_scripts/real_time_filesystem_watching_with_chokidar.md](../feature_catalog/tooling_and_scripts/real_time_filesystem_watching_with_chokidar.md) |
+| 101 | Features | memory_delete confirm schema tightening | [101](mutation/memory_delete_confirm_schema_tightening.md) | *(memory_delete confirm schema — covered by `mutation/03`)* |
 | 102 | Features | Ollama runtime optionalDependencies | *(consolidated — no standalone file)* | *(Ollama runtime optionalDependencies — covered within `scoring-and-calibration`)* |
-| 103 | Features | UX hook module coverage (`mutation-feedback`, `response-hints`) | [103](ux-hooks/ux-hook-module-coverage-mutation-feedback-response-hints.md) | [ux-hooks/dedicated-ux-hook-modules.md](../feature_catalog/ux-hooks/dedicated-ux-hook-modules.md) |
-| 104 | Features | Mutation save-path UX parity and no-op hardening | [104](ux-hooks/mutation-save-path-ux-parity-and-no-op-hardening.md) | [ux-hooks/duplicate-save-no-op-feedback-hardening.md](../feature_catalog/ux-hooks/duplicate-save-no-op-feedback-hardening.md) |
-| 105 | Features | Context-server success-envelope finalization | [105](ux-hooks/context-server-success-envelope-finalization.md) | [ux-hooks/context-server-success-hint-append.md](../feature_catalog/ux-hooks/context-server-success-hint-append.md) |
-| 106 | Features | Hooks barrel + README synchronization | [106](ux-hooks/hooks-barrel-readme-synchronization.md) | [ux-hooks/hooks-readme-and-export-alignment.md](../feature_catalog/ux-hooks/hooks-readme-and-export-alignment.md) |
-| 107 | Features | Checkpoint confirmName and schema enforcement | [107](ux-hooks/checkpoint-confirmname-and-schema-enforcement.md) | [ux-hooks/checkpoint-delete-confirmname-safety.md](../feature_catalog/ux-hooks/checkpoint-delete-confirmname-safety.md) |
-| 108 | Features | Spec 007 finalized verification command suite evidence | [108](tooling-and-scripts/spec-007-finalized-verification-command-suite-evidence.md) | *(Spec 007 verification suite — no dedicated catalog entry)* |
-| 109 | Features | Quality-aware 3-tier search fallback | [109](retrieval/quality-aware-3-tier-search-fallback.md) | [retrieval/quality-aware-3-tier-search-fallback.md](../feature_catalog/retrieval/quality-aware-3-tier-search-fallback.md) |
-| 110 | Features | Prediction-error save arbitration | [110](mutation/prediction-error-save-arbitration.md) | [mutation/prediction-error-save-arbitration.md](../feature_catalog/mutation/prediction-error-save-arbitration.md) |
-| 111 | Features | Deferred lexical-only indexing | [111](memory-quality-and-indexing/deferred-lexical-only-indexing.md) | [memory-quality-and-indexing/deferred-lexical-only-indexing.md](../feature_catalog/memory-quality-and-indexing/deferred-lexical-only-indexing.md) |
-| 112 | Features | Cross-process DB hot rebinding | [112](pipeline-architecture/cross-process-db-hot-rebinding.md) | [pipeline-architecture/cross-process-db-hot-rebinding.md](../feature_catalog/pipeline-architecture/cross-process-db-hot-rebinding.md) |
-| 114 | Features | Path traversal validation (P0-4) | [114](lifecycle/path-traversal-validation-p0-4.md) | [lifecycle/async-ingestion-job-lifecycle.md](../feature_catalog/lifecycle/async-ingestion-job-lifecycle.md) |
-| 115 | Features | Transaction atomicity on rename failure (P0-5) | [115](pipeline-architecture/transaction-atomicity-on-rename-failure-p0-5.md) | [pipeline-architecture/atomic-pending-file-recovery.md](../feature_catalog/pipeline-architecture/atomic-pending-file-recovery.md) |
-| 116 | Features | Chunking safe swap atomicity (P0-6) | [116](bug-fixes-and-data-integrity/chunking-safe-swap-atomicity-p0-6.md) | [bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md](../feature_catalog/bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md) |
-| 117 | Features | SQLite datetime session cleanup (P0-7) | [117](bug-fixes-and-data-integrity/sqlite-datetime-session-cleanup-p0-7.md) | [bug-fixes-and-data-integrity/working-memory-timestamp-fix.md](../feature_catalog/bug-fixes-and-data-integrity/working-memory-timestamp-fix.md) |
-| 118 | Features | Stage-2 score field synchronization (P0-8) | [118](scoring-and-calibration/stage-2-score-field-synchronization-p0-8.md) | [scoring-and-calibration/scoring-and-fusion-corrections.md](../feature_catalog/scoring-and-calibration/scoring-and-fusion-corrections.md) |
-| 119 | Features | Memory filename uniqueness (ensureUniqueMemoryFilename) | [119](memory-quality-and-indexing/memory-filename-uniqueness-ensureuniquememoryfilename.md) | [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature_catalog/memory-quality-and-indexing/spec-folder-description-discovery.md) |
-| 120 | Features | Unified graph rollback and explainability (Phase 3) | [120](graph-signal-activation/unified-graph-rollback-and-explainability-phase-3.md) | [graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md](../feature_catalog/graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md) |
-| 121 | Features | Adaptive shadow proposal and rollback (Phase 4) | [121](scoring-and-calibration/adaptive-shadow-proposal-and-rollback-phase-4.md) | [scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md](../feature_catalog/scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md) |
-| 122 | Features | Governed ingest and scope isolation (Phase 5) | [122](governance/governed-ingest-and-scope-isolation-phase-5.md) | [governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md](../feature_catalog/governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md) |
-| 125 | Features | Memory roadmap flags | 125 memory roadmap flags | [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature_catalog/feature-flag-reference/1-search-pipeline-features-speckit.md) <br> Cross-cutting roadmap test - maps to umbrella flag reference. |
-| 126 | Features | Memory roadmap baseline snapshot | [126](evaluation-and-measurement/memory-roadmap-baseline-snapshot.md) | [evaluation-and-measurement/memory-roadmap-baseline-snapshot.md](../feature_catalog/evaluation-and-measurement/memory-roadmap-baseline-snapshot.md) |
-| 127 | Features | Migration checkpoint scripts | [127](tooling-and-scripts/migration-checkpoint-scripts.md) | [tooling-and-scripts/migration-checkpoint-scripts.md](../feature_catalog/tooling-and-scripts/migration-checkpoint-scripts.md) |
-| 128 | Features | Schema compatibility validation | [128](tooling-and-scripts/schema-compatibility-validation.md) | [tooling-and-scripts/schema-compatibility-validation.md](../feature_catalog/tooling-and-scripts/schema-compatibility-validation.md) |
-| 129 | Features | Lineage state active projection and asOf resolution | [129](pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md) | [pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../feature_catalog/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md) |
-| 130 | Features | Lineage backfill rollback drill | [130](pipeline-architecture/lineage-backfill-rollback-drill.md) | [pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../feature_catalog/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md) |
-| 131 | Features | Description.json batch backfill validation (PI-B3) | [131](memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md) | [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature_catalog/memory-quality-and-indexing/spec-folder-description-discovery.md) |
-| 132 | Features | description.json schema field validation | [132](memory-quality-and-indexing/description-json-schema-field-validation.md) | [memory-quality-and-indexing/spec-folder-description-discovery.md](../feature_catalog/memory-quality-and-indexing/spec-folder-description-discovery.md) |
-| 133 | Features | Dry-run preflight for memory_save | [133](memory-quality-and-indexing/dry-run-preflight-for-memory-save.md) | [memory-quality-and-indexing/dry-run-preflight-for-memory-save.md](../feature_catalog/memory-quality-and-indexing/dry-run-preflight-for-memory-save.md) |
-| 135 | Features | Grep traceability for feature catalog code references | [135](tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md) | [tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/tooling-and-scripts/feature-catalog-code-references.md) |
-| 136 | Features | Feature catalog annotation name validity | [136](tooling-and-scripts/feature-catalog-annotation-name-validity.md) | [tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/tooling-and-scripts/feature-catalog-code-references.md) |
-| 137 | Features | Multi-feature annotation coverage | [137](tooling-and-scripts/multi-feature-annotation-coverage.md) | [tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/tooling-and-scripts/feature-catalog-code-references.md) |
-| 138 | Features | MODULE: header compliance via verify_alignment_drift.py | [138](tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md) | [tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/tooling-and-scripts/feature-catalog-code-references.md) |
-| 139 | Features | Session capturing pipeline quality | [139](tooling-and-scripts/session-capturing-pipeline-quality-coverage.md) | [tooling-and-scripts/session-capturing-pipeline-quality.md](../feature_catalog/tooling-and-scripts/session-capturing-pipeline-quality.md) |
-| 142 | Features | Session transition trace contract | [142](retrieval/session-transition-trace-contract.md) | [retrieval/unified-context-retrieval-memorycontext.md](../feature_catalog/retrieval/unified-context-retrieval-memorycontext.md) |
-| 143 | Features | Bounded graph-walk rollout and diagnostics | [143](retrieval/bounded-graph-walk-rollout-and-diagnostics.md) | [retrieval/semantic-and-lexical-search-memorysearch.md](../feature_catalog/retrieval/semantic-and-lexical-search-memorysearch.md) |
-| 144 | Features | Advisory ingest lifecycle forecast | [144](lifecycle/advisory-ingest-lifecycle-forecast.md) | [lifecycle/async-ingestion-job-lifecycle.md](../feature_catalog/lifecycle/async-ingestion-job-lifecycle.md) |
-| 145 | Features | Contextual tree injection  | [145](retrieval-enhancements/contextual-tree-injection-p1-4.md) | [retrieval-enhancements/contextual-tree-injection.md](../feature_catalog/retrieval-enhancements/contextual-tree-injection.md) |
-| 146 | Features | Dynamic server instructions  | [146](pipeline-architecture/dynamic-server-instructions-p1-6.md) | [pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md](../feature_catalog/pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md) |
-| 147 | Features | Constitutional memory manager command | [147](tooling-and-scripts/constitutional-memory-manager-command.md) | [tooling-and-scripts/constitutional-memory-manager-command.md](../feature_catalog/tooling-and-scripts/constitutional-memory-manager-command.md) |
-| 149 | Features | Rendered spec-doc record template contract | [149](tooling-and-scripts/rendered-memory-template-contract.md) | [tooling-and-scripts/session-capturing-pipeline-quality.md](../feature_catalog/tooling-and-scripts/session-capturing-pipeline-quality.md) |
-| 150 | Features | Source-dist alignment validation | [150](tooling-and-scripts/source-dist-alignment-validation.md) | [tooling-and-scripts/source-dist-alignment-enforcement.md](../feature_catalog/tooling-and-scripts/source-dist-alignment-enforcement.md) |
-| 151 | Features | MODULE_MAP.md accuracy validation | [151](tooling-and-scripts/module-map-accuracy.md) | [tooling-and-scripts/module-boundary-map.md](../feature_catalog/tooling-and-scripts/module-boundary-map.md) |
-| 152 | Features | No symlinks in lib/ tree | [152](tooling-and-scripts/no-symlinks-in-lib-tree.md) | [tooling-and-scripts/module-boundary-map.md](../feature_catalog/tooling-and-scripts/module-boundary-map.md) |
-| 153 | Features | JSON mode structured summary hardening | [153](tooling-and-scripts/json-mode-hybrid-enrichment.md) | [tooling-and-scripts/json-mode-hybrid-enrichment.md](../feature_catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md) |
-| 154 | Features | JSON-primary deprecation posture | [154](tooling-and-scripts/json-primary-deprecation-posture.md) | [tooling-and-scripts/json-primary-deprecation-posture.md](../feature_catalog/tooling-and-scripts/json-primary-deprecation-posture.md) |
-| 181 | Features | Template Compliance Contract Enforcement | [181](tooling-and-scripts/template-compliance-contract-enforcement-produces-compliant.md) | [tooling-and-scripts/template-compliance-contract-enforcement.md](../feature_catalog/tooling-and-scripts/template-compliance-contract-enforcement.md) |
-| M-009 | Dedicated Memory/Spec-Kit Scenarios | Runtime Family Count Census | [M-009](tooling-and-scripts/runtime-family-count-census.md) | *(test-only, no catalog entry)* |
-| M-010 | Dedicated Memory/Spec-Kit Scenarios | Runtime Lineage Naming Parity | [M-010](tooling-and-scripts/runtime-lineage-naming-parity.md) | *(test-only, no catalog entry)* |
-| M-011 | Dedicated Memory/Spec-Kit Scenarios | Review packet type marker-gated validation | [M-011](tooling-and-scripts/review-packet-type-marker-gated-validation.md) | *(test-only, no catalog entry)* |
-| 185 | Features | /memory:search command routing | [185](retrieval/memory-search-command-routing.md) | [feature_catalog.md#command-surface-contract](../feature_catalog/feature_catalog.md#command-surface-contract) |
-| 186 | Features | /memory:manage command routing | [186](tooling-and-scripts/memory-manage-command-routing.md) | [feature_catalog.md#command-surface-contract](../feature_catalog/feature_catalog.md#command-surface-contract) |
-| 187 | Features | Quick search (memory_quick_search) | [187](retrieval/quick-search-memory-quick-search.md) | [retrieval/fast-delegated-search-memory-quick-search.md](../feature_catalog/retrieval/fast-delegated-search-memory-quick-search.md) |
-| 155 | Features | Post-save quality review | [155](memory-quality-and-indexing/post-save-quality-review.md) | [memory-quality-and-indexing/post-save-quality-review.md](../feature_catalog/memory-quality-and-indexing/post-save-quality-review.md) |
-| 156 | Features | Graph refresh mode (SPECKIT_GRAPH_REFRESH_MODE) | [156](graph-signal-activation/graph-refresh-mode-speckit-graph-refresh-mode.md) | [graph-signal-activation/graph-lifecycle-refresh.md](../feature_catalog/graph-signal-activation/graph-lifecycle-refresh.md) |
-| 157 | Features | LLM graph backfill (SPECKIT_LLM_GRAPH_BACKFILL) | [157](graph-signal-activation/llm-graph-backfill-speckit-llm-graph-backfill.md) | [graph-signal-activation/llm-graph-backfill.md](../feature_catalog/graph-signal-activation/llm-graph-backfill.md) |
-| 158 | Features | Graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PROFILE) | [158](graph-signal-activation/graph-calibration-profile-speckit-graph-calibration-profile.md) | [graph-signal-activation/graph-calibration-profiles.md](../feature_catalog/graph-signal-activation/graph-calibration-profiles.md) |
-| 159 | Features | Learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINER) | [159](scoring-and-calibration/learned-stage2-combiner-speckit-learned-stage2-combiner.md) | [scoring-and-calibration/learned-stage2-weight-combiner.md](../feature_catalog/scoring-and-calibration/learned-stage2-weight-combiner.md) |
-| 160 | Features | Shadow feedback (SPECKIT_SHADOW_FEEDBACK) | [160](scoring-and-calibration/shadow-feedback-speckit-shadow-feedback.md) | [scoring-and-calibration/shadow-feedback-holdout-evaluation.md](../feature_catalog/scoring-and-calibration/shadow-feedback-holdout-evaluation.md) |
-| 161 | Features | LLM reformulation (SPECKIT_LLM_REFORMULATION) | [161](query-intelligence/llm-reformulation-speckit-llm-reformulation.md) | [query-intelligence/llm-query-reformulation.md](../feature_catalog/query-intelligence/llm-query-reformulation.md) |
-| 162 | Features | HyDE (SPECKIT_HYDE) | [162](query-intelligence/hyde-speckit-hyde.md) | [query-intelligence/hyde-hypothetical-document-embeddings.md](../feature_catalog/query-intelligence/hyde-hypothetical-document-embeddings.md) |
-| 163 | Features | Query surrogates (SPECKIT_QUERY_SURROGATES) | [163](query-intelligence/query-surrogates-speckit-query-surrogates.md) | [query-intelligence/index-time-query-surrogates.md](../feature_catalog/query-intelligence/index-time-query-surrogates.md) |
-| 165 | Features | Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION) | [165](memory-quality-and-indexing/assistive-reconsolidation-speckit-assistive-reconsolidation.md) | [memory-quality-and-indexing/assistive-reconsolidation.md](../feature_catalog/memory-quality-and-indexing/assistive-reconsolidation.md) |
-| 166 | Features | Result explain v1 (SPECKIT_RESULT_EXPLAIN) | [166](ux-hooks/result-explain-v1-speckit-result-explain-v1.md) | [ux-hooks/result-explainability.md](../feature_catalog/ux-hooks/result-explainability.md) |
-| 167 | Features | Response profile v1 (SPECKIT_RESPONSE_PROFILE) | [167](ux-hooks/response-profile-v1-speckit-response-profile-v1.md) | [ux-hooks/mode-aware-response-profiles.md](../feature_catalog/ux-hooks/mode-aware-response-profiles.md) |
-| 168 | Features | Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE) | [168](ux-hooks/progressive-disclosure-v1-speckit-progressive-disclosure-v1.md) | [ux-hooks/progressive-disclosure.md](../feature_catalog/ux-hooks/progressive-disclosure.md) |
-| 169 | Features | Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE) | [169](ux-hooks/session-retrieval-state-v1-speckit-session-retrieval-state-v1.md) | [ux-hooks/retrieval-session-state.md](../feature_catalog/ux-hooks/retrieval-session-state.md) |
-| 171 | Features | Calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS) | [171](scoring-and-calibration/calibrated-overlap-bonus-speckit-calibrated-overlap-bonus.md) | [scoring-and-calibration/calibrated-overlap-bonus.md](../feature_catalog/scoring-and-calibration/calibrated-overlap-bonus.md) |
-| 172 | Features | RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL) | [172](scoring-and-calibration/rrf-k-experimental-speckit-rrf-k-experimental.md) | [scoring-and-calibration/rrf-k-experimental.md](../feature_catalog/scoring-and-calibration/rrf-k-experimental.md) |
-| 173 | Features | Query decomposition (SPECKIT_QUERY_DECOMPOSITION) | [173](query-intelligence/query-decomposition-speckit-query-decomposition.md) | [query-intelligence/query-decomposition.md](../feature_catalog/query-intelligence/query-decomposition.md) |
-| 174 | Features | Graph concept routing (SPECKIT_GRAPH_CONCEPT_ROUTING) | [174](graph-signal-activation/graph-concept-routing-speckit-graph-concept-routing.md) | [query-intelligence/graph-concept-routing.md](../feature_catalog/query-intelligence/graph-concept-routing.md) |
-| 175 | Features | Typed traversal (SPECKIT_TYPED_TRAVERSAL) | [175](graph-signal-activation/typed-traversal-speckit-typed-traversal.md) | [graph-signal-activation/typed-traversal.md](../feature_catalog/graph-signal-activation/typed-traversal.md) |
-| 177 | Features | Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) | [177](memory-quality-and-indexing/hybrid-decay-policy-speckit-hybrid-decay-policy.md) | [memory-quality-and-indexing/hybrid-decay-policy.md](../feature_catalog/memory-quality-and-indexing/hybrid-decay-policy.md) |
-| 178 | Features | Save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS) | [178](memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md) | [memory-quality-and-indexing/save-quality-gate-exceptions.md](../feature_catalog/memory-quality-and-indexing/save-quality-gate-exceptions.md) |
-| 179 | Features | Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY) | [179](ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md) | [ux-hooks/empty-result-recovery.md](../feature_catalog/ux-hooks/empty-result-recovery.md) |
-| 180 | Features | Result confidence (SPECKIT_RESULT_CONFIDENCE) | [180](ux-hooks/result-confidence-speckit-result-confidence-v1.md) | [ux-hooks/result-confidence.md](../feature_catalog/ux-hooks/result-confidence.md) |
-| PHASE-001 | Phase System Features | Phase detection scoring | [PHASE-001](tooling-and-scripts/phase-detection-scoring.md) | *(test-only, no catalog entry)* |
-| PHASE-002 | Phase System Features | Phase folder creation | [PHASE-002](tooling-and-scripts/phase-folder-creation.md) | *(test-only, no catalog entry)* |
-| PHASE-003 | Phase System Features | Recursive phase validation | [PHASE-003](tooling-and-scripts/recursive-phase-validation.md) | *(test-only, no catalog entry)* |
-| PHASE-004 | Phase System Features | Phase link validation | [PHASE-004](tooling-and-scripts/phase-link-validation.md) | *(test-only, no catalog entry)* |
-| PHASE-005 | Phase System Features | Phase command workflow | [PHASE-005](tooling-and-scripts/phase-command-workflow.md) | *(test-only, no catalog entry)* |
-| PHASE-006 | Phase System Features | Spec-folder literal naming (create.sh fallback) | [PHASE-006](tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md) | *(test-only, no catalog entry)* |
-| PHASE-008 | Phase System Features | Spec-folder literal naming (CLI-driven slug proposal) | [PHASE-008](tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md) | *(test-only, no catalog entry)* |
-| PHASE-009 | Phase System Features | Spec-folder literal naming (remediation rule via SKILL.md rule 20) | [PHASE-009](tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md) | *(test-only, no catalog entry)* |
-| M-001 | Dedicated Memory/Spec-Kit Scenarios | Context Recovery and Continuation | [M-001](retrieval/context-recovery-and-continuation.md) | *(test-only, no catalog entry)* |
-| M-002 | Dedicated Memory/Spec-Kit Scenarios | Targeted Memory Lookup | [M-002](retrieval/targeted-memory-lookup.md) | *(test-only, no catalog entry)* |
-| M-003 | Dedicated Memory/Spec-Kit Scenarios | Context Save + Index Update | [M-003](memory-quality-and-indexing/context-save-index-update.md) | *(test-only, no catalog entry)* |
-| M-004 | Dedicated Memory/Spec-Kit Scenarios | Main-Agent Review and Verdict Handoff | [M-004](tooling-and-scripts/main-agent-review-and-verdict-handoff.md) | *(test-only, no catalog entry)* |
-| M-005 | Dedicated Memory/Spec-Kit Scenarios | Outsourced Agent Memory Capture Round-Trip | [M-005](memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md) | [memory-quality-and-indexing/outsourced-agent-memory-capture.md](../feature_catalog/memory-quality-and-indexing/outsourced-agent-memory-capture.md) |
-| M-006 | Dedicated Memory/Spec-Kit Scenarios | Session Enrichment and Alignment Guardrails | [M-006](memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md) | [memory-quality-and-indexing/session-enrichment-and-alignment-guards.md](../feature_catalog/memory-quality-and-indexing/session-enrichment-and-alignment-guards.md) |
-| M-007 | Dedicated Memory/Spec-Kit Scenarios | Session Capturing Pipeline Quality | [M-007](tooling-and-scripts/session-capturing-pipeline-quality.md) | [tooling-and-scripts/session-capturing-pipeline-quality.md](../feature_catalog/tooling-and-scripts/session-capturing-pipeline-quality.md) |
-| M-008 | Dedicated Memory/Spec-Kit Scenarios | Feature 09 Direct Manual Scenario (Per-memory History Log) | [M-008](mutation/feature-09-direct-manual-scenario-per-memory-history-log.md) | [mutation/per-memory-history-log.md](../feature_catalog/mutation/per-memory-history-log.md) |
-| 190 | Features | Session recovery via /speckit:resume | [190](retrieval/session-recovery-spec-kit-resume.md) | [retrieval/session-recovery-spec-kit-resume.md](../feature_catalog/retrieval/session-recovery-spec-kit-resume.md) |
-| 125-map | Features | Audit phase mapping note (020) | — | [feature-flag-reference/audit-phase-020-mapping-note.md](../feature_catalog/feature-flag-reference/audit-phase-020-mapping-note.md) |
-| 020-stub | Features | Remediation and revalidation (stub) | — | [remediation-revalidation/category-stub.md](../feature_catalog/remediation-revalidation/category-stub.md) |
-| 021-stub | Features | Implement and remove deprecated (stub) | — | [implement-and-remove-deprecated-features/category-stub.md](../feature_catalog/implement-and-remove-deprecated-features/category-stub.md) |
-| 188 | Features | AST-level section retrieval tool | [188](retrieval/ast-level-section-retrieval-tool.md) | [retrieval/ast-level-section-retrieval-tool.md](../feature_catalog/retrieval/ast-level-section-retrieval-tool.md) |
-| 189 | Features | Tool-result extraction to working memory | [189](retrieval/tool-result-extraction-to-working-memory.md) | [retrieval/tool-result-extraction-to-working-memory.md](../feature_catalog/retrieval/tool-result-extraction-to-working-memory.md) |
-| 192 | Features | Correction tracking with undo | [192](mutation/correction-tracking-with-undo.md) | [mutation/correction-tracking-with-undo.md](../feature_catalog/mutation/correction-tracking-with-undo.md) |
-| 194 | Features | Causal neighbor boost and injection | [194](graph-signal-activation/causal-neighbor-boost-and-injection.md) | [graph-signal-activation/causal-neighbor-boost-and-injection.md](../feature_catalog/graph-signal-activation/causal-neighbor-boost-and-injection.md) |
-| 195 | Features | Temporal contiguity layer | [195](graph-signal-activation/temporal-contiguity-layer.md) | [graph-signal-activation/temporal-contiguity-layer.md](../feature_catalog/graph-signal-activation/temporal-contiguity-layer.md) |
-| 196 | Features | Tool-level TTL cache | [196](scoring-and-calibration/tool-level-ttl-cache.md) | [scoring-and-calibration/tool-level-ttl-cache.md](../feature_catalog/scoring-and-calibration/tool-level-ttl-cache.md) |
-| 197 | Features | Access-driven popularity scoring | [197](scoring-and-calibration/access-driven-popularity-scoring.md) | [scoring-and-calibration/access-driven-popularity-scoring.md](../feature_catalog/scoring-and-calibration/access-driven-popularity-scoring.md) |
-| 198 | Features | Temporal-structural coherence scoring | [198](scoring-and-calibration/temporal-structural-coherence-scoring.md) | [scoring-and-calibration/temporal-structural-coherence-scoring.md](../feature_catalog/scoring-and-calibration/temporal-structural-coherence-scoring.md) |
-| 199 | Features | Content-aware memory filename generation | [199](memory-quality-and-indexing/content-aware-memory-filename-generation.md) | [memory-quality-and-indexing/content-aware-memory-filename-generation.md](../feature_catalog/memory-quality-and-indexing/content-aware-memory-filename-generation.md) |
-| 202 | Features | Backend storage adapter abstraction | [202](pipeline-architecture/backend-storage-adapter-abstraction.md) | [pipeline-architecture/backend-storage-adapter-abstraction.md](../feature_catalog/pipeline-architecture/backend-storage-adapter-abstraction.md) |
-| 203 | Features | Atomic write-then-index API | [203](pipeline-architecture/atomic-write-then-index-api.md) | [pipeline-architecture/atomic-write-then-index-api.md](../feature_catalog/pipeline-architecture/atomic-write-then-index-api.md) |
-| 204 | Features | Embedding retry orchestrator | [204](pipeline-architecture/embedding-retry-orchestrator.md) | [pipeline-architecture/embedding-retry-orchestrator.md](../feature_catalog/pipeline-architecture/embedding-retry-orchestrator.md) |
-| 205 | Features | 7-layer tool architecture metadata | [205](pipeline-architecture/7-layer-tool-architecture-metadata.md) | [pipeline-architecture/7-layer-tool-architecture-metadata.md](../feature_catalog/pipeline-architecture/7-layer-tool-architecture-metadata.md) |
-| 206 | Features | Architecture boundary enforcement | [206](tooling-and-scripts/architecture-boundary-enforcement.md) | [tooling-and-scripts/architecture-boundary-enforcement.md](../feature_catalog/tooling-and-scripts/architecture-boundary-enforcement.md) |
-| 207 | Features | Watcher delete/rename cleanup | [207](tooling-and-scripts/watcher-delete-rename-cleanup.md) | [tooling-and-scripts/watcher-delete-rename-cleanup.md](../feature_catalog/tooling-and-scripts/watcher-delete-rename-cleanup.md) |
-| 208 | Features | Template compliance contract enforcement | [208](tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md) | [tooling-and-scripts/template-compliance-contract-enforcement.md](../feature_catalog/tooling-and-scripts/template-compliance-contract-enforcement.md) |
+| 103 | Features | UX hook module coverage (`mutation-feedback`, `response-hints`) | [103](ux_hooks/ux_hook_module_coverage_mutation_feedback_response_hints.md) | [ux_hooks/dedicated_ux_hook_modules.md](../feature_catalog/ux_hooks/dedicated_ux_hook_modules.md) |
+| 104 | Features | Mutation save-path UX parity and no-op hardening | [104](ux_hooks/mutation_save_path_ux_parity_and_no_op_hardening.md) | [ux_hooks/duplicate_save_no_op_feedback_hardening.md](../feature_catalog/ux_hooks/duplicate_save_no_op_feedback_hardening.md) |
+| 105 | Features | Context-server success-envelope finalization | [105](ux_hooks/context_server_success_envelope_finalization.md) | [ux_hooks/context_server_success_hint_append.md](../feature_catalog/ux_hooks/context_server_success_hint_append.md) |
+| 106 | Features | Hooks barrel + README synchronization | [106](ux_hooks/hooks_barrel_readme_synchronization.md) | [ux_hooks/hooks_readme_and_export_alignment.md](../feature_catalog/ux_hooks/hooks_readme_and_export_alignment.md) |
+| 107 | Features | Checkpoint confirmName and schema enforcement | [107](ux_hooks/checkpoint_confirmname_and_schema_enforcement.md) | [ux_hooks/checkpoint_delete_confirmname_safety.md](../feature_catalog/ux_hooks/checkpoint_delete_confirmname_safety.md) |
+| 108 | Features | Spec 007 finalized verification command suite evidence | [108](tooling_and_scripts/spec_007_finalized_verification_command_suite_evidence.md) | *(Spec 007 verification suite — no dedicated catalog entry)* |
+| 109 | Features | Quality-aware 3-tier search fallback | [109](retrieval/quality_aware_3_tier_search_fallback.md) | [retrieval/quality_aware_3_tier_search_fallback.md](../feature_catalog/retrieval/quality_aware_3_tier_search_fallback.md) |
+| 110 | Features | Prediction-error save arbitration | [110](mutation/prediction_error_save_arbitration.md) | [mutation/prediction_error_save_arbitration.md](../feature_catalog/mutation/prediction_error_save_arbitration.md) |
+| 111 | Features | Deferred lexical-only indexing | [111](memory_quality_and_indexing/deferred_lexical_only_indexing.md) | [memory_quality_and_indexing/deferred_lexical_only_indexing.md](../feature_catalog/memory_quality_and_indexing/deferred_lexical_only_indexing.md) |
+| 112 | Features | Cross-process DB hot rebinding | [112](pipeline_architecture/cross_process_db_hot_rebinding.md) | [pipeline_architecture/cross_process_db_hot_rebinding.md](../feature_catalog/pipeline_architecture/cross_process_db_hot_rebinding.md) |
+| 114 | Features | Path traversal validation (P0-4) | [114](lifecycle/path_traversal_validation_p0_4.md) | [lifecycle/async_ingestion_job_lifecycle.md](../feature_catalog/lifecycle/async_ingestion_job_lifecycle.md) |
+| 115 | Features | Transaction atomicity on rename failure (P0-5) | [115](pipeline_architecture/transaction_atomicity_on_rename_failure_p0_5.md) | [pipeline_architecture/atomic_pending_file_recovery.md](../feature_catalog/pipeline_architecture/atomic_pending_file_recovery.md) |
+| 116 | Features | Chunking safe swap atomicity (P0-6) | [116](bug_fixes_and_data_integrity/chunking_safe_swap_atomicity_p0_6.md) | [bug_fixes_and_data_integrity/chunking_orchestrator_safe_swap.md](../feature_catalog/bug_fixes_and_data_integrity/chunking_orchestrator_safe_swap.md) |
+| 117 | Features | SQLite datetime session cleanup (P0-7) | [117](bug_fixes_and_data_integrity/sqlite_datetime_session_cleanup_p0_7.md) | [bug_fixes_and_data_integrity/working_memory_timestamp_fix.md](../feature_catalog/bug_fixes_and_data_integrity/working_memory_timestamp_fix.md) |
+| 118 | Features | Stage-2 score field synchronization (P0-8) | [118](scoring_and_calibration/stage_2_score_field_synchronization_p0_8.md) | [scoring_and_calibration/scoring_and_fusion_corrections.md](../feature_catalog/scoring_and_calibration/scoring_and_fusion_corrections.md) |
+| 119 | Features | Memory filename uniqueness (ensureUniqueMemoryFilename) | [119](memory_quality_and_indexing/memory_filename_uniqueness_ensureuniquememoryfilename.md) | [memory_quality_and_indexing/spec_folder_description_discovery.md](../feature_catalog/memory_quality_and_indexing/spec_folder_description_discovery.md) |
+| 120 | Features | Unified graph rollback and explainability (Phase 3) | [120](graph_signal_activation/unified_graph_rollback_and_explainability_phase_3.md) | [graph_signal_activation/unified_graph_retrieval_deterministic_ranking_explainability_and_rollback.md](../feature_catalog/graph_signal_activation/unified_graph_retrieval_deterministic_ranking_explainability_and_rollback.md) |
+| 121 | Features | Adaptive shadow proposal and rollback (Phase 4) | [121](scoring_and_calibration/adaptive_shadow_proposal_and_rollback_phase_4.md) | [scoring_and_calibration/adaptive_shadow_ranking_bounded_proposals_and_rollback.md](../feature_catalog/scoring_and_calibration/adaptive_shadow_ranking_bounded_proposals_and_rollback.md) |
+| 122 | Features | Governed ingest and scope isolation (Phase 5) | [122](governance/governed_ingest_and_scope_isolation_phase_5.md) | [governance/hierarchical_scope_governance_governed_ingest_retention_and_audit.md](../feature_catalog/governance/hierarchical_scope_governance_governed_ingest_retention_and_audit.md) |
+| 125 | Features | Memory roadmap flags | 125 memory roadmap flags | [feature_flag_reference/1_search_pipeline_features_speckit.md](../feature_catalog/feature_flag_reference/1_search_pipeline_features_speckit.md) <br> Cross-cutting roadmap test - maps to umbrella flag reference. |
+| 126 | Features | Memory roadmap baseline snapshot | [126](evaluation_and_measurement/memory_roadmap_baseline_snapshot.md) | [evaluation_and_measurement/memory_roadmap_baseline_snapshot.md](../feature_catalog/evaluation_and_measurement/memory_roadmap_baseline_snapshot.md) |
+| 127 | Features | Migration checkpoint scripts | [127](tooling_and_scripts/migration_checkpoint_scripts.md) | [tooling_and_scripts/migration_checkpoint_scripts.md](../feature_catalog/tooling_and_scripts/migration_checkpoint_scripts.md) |
+| 128 | Features | Schema compatibility validation | [128](tooling_and_scripts/schema_compatibility_validation.md) | [tooling_and_scripts/schema_compatibility_validation.md](../feature_catalog/tooling_and_scripts/schema_compatibility_validation.md) |
+| 129 | Features | Lineage state active projection and asOf resolution | [129](pipeline_architecture/lineage_state_active_projection_and_asof_resolution.md) | [pipeline_architecture/lineage_state_active_projection_and_asof_resolution.md](../feature_catalog/pipeline_architecture/lineage_state_active_projection_and_asof_resolution.md) |
+| 130 | Features | Lineage backfill rollback drill | [130](pipeline_architecture/lineage_backfill_rollback_drill.md) | [pipeline_architecture/lineage_state_active_projection_and_asof_resolution.md](../feature_catalog/pipeline_architecture/lineage_state_active_projection_and_asof_resolution.md) |
+| 131 | Features | Description.json batch backfill validation (PI-B3) | [131](memory_quality_and_indexing/description_json_batch_backfill_validation_pi_b3.md) | [memory_quality_and_indexing/spec_folder_description_discovery.md](../feature_catalog/memory_quality_and_indexing/spec_folder_description_discovery.md) |
+| 132 | Features | description.json schema field validation | [132](memory_quality_and_indexing/description_json_schema_field_validation.md) | [memory_quality_and_indexing/spec_folder_description_discovery.md](../feature_catalog/memory_quality_and_indexing/spec_folder_description_discovery.md) |
+| 133 | Features | Dry-run preflight for memory_save | [133](memory_quality_and_indexing/dry_run_preflight_for_memory_save.md) | [memory_quality_and_indexing/dry_run_preflight_for_memory_save.md](../feature_catalog/memory_quality_and_indexing/dry_run_preflight_for_memory_save.md) |
+| 135 | Features | Grep traceability for feature catalog code references | [135](tooling_and_scripts/grep_traceability_for_feature_catalog_code_references.md) | [tooling_and_scripts/feature_catalog_code_references.md](../feature_catalog/tooling_and_scripts/feature_catalog_code_references.md) |
+| 136 | Features | Feature catalog annotation name validity | [136](tooling_and_scripts/feature_catalog_annotation_name_validity.md) | [tooling_and_scripts/feature_catalog_code_references.md](../feature_catalog/tooling_and_scripts/feature_catalog_code_references.md) |
+| 137 | Features | Multi-feature annotation coverage | [137](tooling_and_scripts/multi_feature_annotation_coverage.md) | [tooling_and_scripts/feature_catalog_code_references.md](../feature_catalog/tooling_and_scripts/feature_catalog_code_references.md) |
+| 138 | Features | MODULE: header compliance via verify_alignment_drift.py | [138](tooling_and_scripts/module_header_compliance_via_verify_alignment_drift_py.md) | [tooling_and_scripts/feature_catalog_code_references.md](../feature_catalog/tooling_and_scripts/feature_catalog_code_references.md) |
+| 139 | Features | Session capturing pipeline quality | [139](tooling_and_scripts/session_capturing_pipeline_quality_coverage.md) | [tooling_and_scripts/session_capturing_pipeline_quality.md](../feature_catalog/tooling_and_scripts/session_capturing_pipeline_quality.md) |
+| 142 | Features | Session transition trace contract | [142](retrieval/session_transition_trace_contract.md) | [retrieval/unified_context_retrieval_memorycontext.md](../feature_catalog/retrieval/unified_context_retrieval_memorycontext.md) |
+| 143 | Features | Bounded graph-walk rollout and diagnostics | [143](retrieval/bounded_graph_walk_rollout_and_diagnostics.md) | [retrieval/semantic_and_lexical_search_memorysearch.md](../feature_catalog/retrieval/semantic_and_lexical_search_memorysearch.md) |
+| 144 | Features | Advisory ingest lifecycle forecast | [144](lifecycle/advisory_ingest_lifecycle_forecast.md) | [lifecycle/async_ingestion_job_lifecycle.md](../feature_catalog/lifecycle/async_ingestion_job_lifecycle.md) |
+| 145 | Features | Contextual tree injection  | [145](retrieval_enhancements/contextual_tree_injection_p1_4.md) | [retrieval_enhancements/contextual_tree_injection.md](../feature_catalog/retrieval_enhancements/contextual_tree_injection.md) |
+| 146 | Features | Dynamic server instructions  | [146](pipeline_architecture/dynamic_server_instructions_p1_6.md) | [pipeline_architecture/dynamic_server_instructions_at_mcp_initialization.md](../feature_catalog/pipeline_architecture/dynamic_server_instructions_at_mcp_initialization.md) |
+| 147 | Features | Constitutional memory manager command | [147](tooling_and_scripts/constitutional_memory_manager_command.md) | [tooling_and_scripts/constitutional_memory_manager_command.md](../feature_catalog/tooling_and_scripts/constitutional_memory_manager_command.md) |
+| 149 | Features | Rendered spec-doc record template contract | [149](tooling_and_scripts/rendered_memory_template_contract.md) | [tooling_and_scripts/session_capturing_pipeline_quality.md](../feature_catalog/tooling_and_scripts/session_capturing_pipeline_quality.md) |
+| 150 | Features | Source-dist alignment validation | [150](tooling_and_scripts/source_dist_alignment_validation.md) | [tooling_and_scripts/source_dist_alignment_enforcement.md](../feature_catalog/tooling_and_scripts/source_dist_alignment_enforcement.md) |
+| 151 | Features | MODULE_MAP.md accuracy validation | [151](tooling_and_scripts/module_map_accuracy.md) | [tooling_and_scripts/module_boundary_map.md](../feature_catalog/tooling_and_scripts/module_boundary_map.md) |
+| 152 | Features | No symlinks in lib/ tree | [152](tooling_and_scripts/no_symlinks_in_lib_tree.md) | [tooling_and_scripts/module_boundary_map.md](../feature_catalog/tooling_and_scripts/module_boundary_map.md) |
+| 153 | Features | JSON mode structured summary hardening | [153](tooling_and_scripts/json_mode_hybrid_enrichment.md) | [tooling_and_scripts/json_mode_hybrid_enrichment.md](../feature_catalog/tooling_and_scripts/json_mode_hybrid_enrichment.md) |
+| 154 | Features | JSON-primary deprecation posture | [154](tooling_and_scripts/json_primary_deprecation_posture.md) | [tooling_and_scripts/json_primary_deprecation_posture.md](../feature_catalog/tooling_and_scripts/json_primary_deprecation_posture.md) |
+| 181 | Features | Template Compliance Contract Enforcement | [181](tooling_and_scripts/template_compliance_contract_enforcement_produces_compliant.md) | [tooling_and_scripts/template_compliance_contract_enforcement.md](../feature_catalog/tooling_and_scripts/template_compliance_contract_enforcement.md) |
+| M-009 | Dedicated Memory/Spec-Kit Scenarios | Runtime Family Count Census | [M-009](tooling_and_scripts/runtime_family_count_census.md) | *(test-only, no catalog entry)* |
+| M-010 | Dedicated Memory/Spec-Kit Scenarios | Runtime Lineage Naming Parity | [M-010](tooling_and_scripts/runtime_lineage_naming_parity.md) | *(test-only, no catalog entry)* |
+| M-011 | Dedicated Memory/Spec-Kit Scenarios | Review packet type marker-gated validation | [M-011](tooling_and_scripts/review_packet_type_marker_gated_validation.md) | *(test-only, no catalog entry)* |
+| 185 | Features | /memory:search command routing | [185](retrieval/memory_search_command_routing.md) | [feature_catalog.md#command-surface-contract](../feature_catalog/feature_catalog.md#command-surface-contract) |
+| 186 | Features | /memory:manage command routing | [186](tooling_and_scripts/memory_manage_command_routing.md) | [feature_catalog.md#command-surface-contract](../feature_catalog/feature_catalog.md#command-surface-contract) |
+| 187 | Features | Quick search (memory_quick_search) | [187](retrieval/quick_search_memory_quick_search.md) | [retrieval/fast_delegated_search_memory_quick_search.md](../feature_catalog/retrieval/fast_delegated_search_memory_quick_search.md) |
+| 155 | Features | Post-save quality review | [155](memory_quality_and_indexing/post_save_quality_review.md) | [memory_quality_and_indexing/post_save_quality_review.md](../feature_catalog/memory_quality_and_indexing/post_save_quality_review.md) |
+| 156 | Features | Graph refresh mode (SPECKIT_GRAPH_REFRESH_MODE) | [156](graph_signal_activation/graph_refresh_mode_speckit_graph_refresh_mode.md) | [graph_signal_activation/graph_lifecycle_refresh.md](../feature_catalog/graph_signal_activation/graph_lifecycle_refresh.md) |
+| 157 | Features | LLM graph backfill (SPECKIT_LLM_GRAPH_BACKFILL) | [157](graph_signal_activation/llm_graph_backfill_speckit_llm_graph_backfill.md) | [graph_signal_activation/llm_graph_backfill.md](../feature_catalog/graph_signal_activation/llm_graph_backfill.md) |
+| 158 | Features | Graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PROFILE) | [158](graph_signal_activation/graph_calibration_profile_speckit_graph_calibration_profile.md) | [graph_signal_activation/graph_calibration_profiles.md](../feature_catalog/graph_signal_activation/graph_calibration_profiles.md) |
+| 159 | Features | Learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINER) | [159](scoring_and_calibration/learned_stage2_combiner_speckit_learned_stage2_combiner.md) | [scoring_and_calibration/learned_stage2_weight_combiner.md](../feature_catalog/scoring_and_calibration/learned_stage2_weight_combiner.md) |
+| 160 | Features | Shadow feedback (SPECKIT_SHADOW_FEEDBACK) | [160](scoring_and_calibration/shadow_feedback_speckit_shadow_feedback.md) | [scoring_and_calibration/shadow_feedback_holdout_evaluation.md](../feature_catalog/scoring_and_calibration/shadow_feedback_holdout_evaluation.md) |
+| 161 | Features | LLM reformulation (SPECKIT_LLM_REFORMULATION) | [161](query_intelligence/llm_reformulation_speckit_llm_reformulation.md) | [query_intelligence/llm_query_reformulation.md](../feature_catalog/query_intelligence/llm_query_reformulation.md) |
+| 162 | Features | HyDE (SPECKIT_HYDE) | [162](query_intelligence/hyde_speckit_hyde.md) | [query_intelligence/hyde_hypothetical_document_embeddings.md](../feature_catalog/query_intelligence/hyde_hypothetical_document_embeddings.md) |
+| 163 | Features | Query surrogates (SPECKIT_QUERY_SURROGATES) | [163](query_intelligence/query_surrogates_speckit_query_surrogates.md) | [query_intelligence/index_time_query_surrogates.md](../feature_catalog/query_intelligence/index_time_query_surrogates.md) |
+| 165 | Features | Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION) | [165](memory_quality_and_indexing/assistive_reconsolidation_speckit_assistive_reconsolidation.md) | [memory_quality_and_indexing/assistive_reconsolidation.md](../feature_catalog/memory_quality_and_indexing/assistive_reconsolidation.md) |
+| 166 | Features | Result explain v1 (SPECKIT_RESULT_EXPLAIN) | [166](ux_hooks/result_explain_v1_speckit_result_explain_v1.md) | [ux_hooks/result_explainability.md](../feature_catalog/ux_hooks/result_explainability.md) |
+| 167 | Features | Response profile v1 (SPECKIT_RESPONSE_PROFILE) | [167](ux_hooks/response_profile_v1_speckit_response_profile_v1.md) | [ux_hooks/mode_aware_response_profiles.md](../feature_catalog/ux_hooks/mode_aware_response_profiles.md) |
+| 168 | Features | Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE) | [168](ux_hooks/progressive_disclosure_v1_speckit_progressive_disclosure_v1.md) | [ux_hooks/progressive_disclosure.md](../feature_catalog/ux_hooks/progressive_disclosure.md) |
+| 169 | Features | Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE) | [169](ux_hooks/session_retrieval_state_v1_speckit_session_retrieval_state_v1.md) | [ux_hooks/retrieval_session_state.md](../feature_catalog/ux_hooks/retrieval_session_state.md) |
+| 171 | Features | Calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS) | [171](scoring_and_calibration/calibrated_overlap_bonus_speckit_calibrated_overlap_bonus.md) | [scoring_and_calibration/calibrated_overlap_bonus.md](../feature_catalog/scoring_and_calibration/calibrated_overlap_bonus.md) |
+| 172 | Features | RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL) | [172](scoring_and_calibration/rrf_k_experimental_speckit_rrf_k_experimental.md) | [scoring_and_calibration/rrf_k_experimental.md](../feature_catalog/scoring_and_calibration/rrf_k_experimental.md) |
+| 173 | Features | Query decomposition (SPECKIT_QUERY_DECOMPOSITION) | [173](query_intelligence/query_decomposition_speckit_query_decomposition.md) | [query_intelligence/query_decomposition.md](../feature_catalog/query_intelligence/query_decomposition.md) |
+| 174 | Features | Graph concept routing (SPECKIT_GRAPH_CONCEPT_ROUTING) | [174](graph_signal_activation/graph_concept_routing_speckit_graph_concept_routing.md) | [query_intelligence/graph_concept_routing.md](../feature_catalog/query_intelligence/graph_concept_routing.md) |
+| 175 | Features | Typed traversal (SPECKIT_TYPED_TRAVERSAL) | [175](graph_signal_activation/typed_traversal_speckit_typed_traversal.md) | [graph_signal_activation/typed_traversal.md](../feature_catalog/graph_signal_activation/typed_traversal.md) |
+| 177 | Features | Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) | [177](memory_quality_and_indexing/hybrid_decay_policy_speckit_hybrid_decay_policy.md) | [memory_quality_and_indexing/hybrid_decay_policy.md](../feature_catalog/memory_quality_and_indexing/hybrid_decay_policy.md) |
+| 178 | Features | Save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS) | [178](memory_quality_and_indexing/save_quality_gate_exceptions_speckit_save_quality_gate_exceptions.md) | [memory_quality_and_indexing/save_quality_gate_exceptions.md](../feature_catalog/memory_quality_and_indexing/save_quality_gate_exceptions.md) |
+| 179 | Features | Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY) | [179](ux_hooks/empty_result_recovery_speckit_empty_result_recovery_v1.md) | [ux_hooks/empty_result_recovery.md](../feature_catalog/ux_hooks/empty_result_recovery.md) |
+| 180 | Features | Result confidence (SPECKIT_RESULT_CONFIDENCE) | [180](ux_hooks/result_confidence_speckit_result_confidence_v1.md) | [ux_hooks/result_confidence.md](../feature_catalog/ux_hooks/result_confidence.md) |
+| PHASE-001 | Phase System Features | Phase detection scoring | [PHASE-001](tooling_and_scripts/phase_detection_scoring.md) | *(test-only, no catalog entry)* |
+| PHASE-002 | Phase System Features | Phase folder creation | [PHASE-002](tooling_and_scripts/phase_folder_creation.md) | *(test-only, no catalog entry)* |
+| PHASE-003 | Phase System Features | Recursive phase validation | [PHASE-003](tooling_and_scripts/recursive_phase_validation.md) | *(test-only, no catalog entry)* |
+| PHASE-004 | Phase System Features | Phase link validation | [PHASE-004](tooling_and_scripts/phase_link_validation.md) | *(test-only, no catalog entry)* |
+| PHASE-005 | Phase System Features | Phase command workflow | [PHASE-005](tooling_and_scripts/phase_command_workflow.md) | *(test-only, no catalog entry)* |
+| PHASE-006 | Phase System Features | Spec-folder literal naming (create.sh fallback) | [PHASE-006](tooling_and_scripts/spec_folder_literal_naming_create_sh_fallback.md) | *(test-only, no catalog entry)* |
+| PHASE-008 | Phase System Features | Spec-folder literal naming (CLI-driven slug proposal) | [PHASE-008](tooling_and_scripts/spec_folder_literal_naming_cli_driven_slug.md) | *(test-only, no catalog entry)* |
+| PHASE-009 | Phase System Features | Spec-folder literal naming (remediation rule via SKILL.md rule 20) | [PHASE-009](tooling_and_scripts/spec_folder_literal_naming_remediation_rule.md) | *(test-only, no catalog entry)* |
+| M-001 | Dedicated Memory/Spec-Kit Scenarios | Context Recovery and Continuation | [M-001](retrieval/context_recovery_and_continuation.md) | *(test-only, no catalog entry)* |
+| M-002 | Dedicated Memory/Spec-Kit Scenarios | Targeted Memory Lookup | [M-002](retrieval/targeted_memory_lookup.md) | *(test-only, no catalog entry)* |
+| M-003 | Dedicated Memory/Spec-Kit Scenarios | Context Save + Index Update | [M-003](memory_quality_and_indexing/context_save_index_update.md) | *(test-only, no catalog entry)* |
+| M-004 | Dedicated Memory/Spec-Kit Scenarios | Main-Agent Review and Verdict Handoff | [M-004](tooling_and_scripts/main_agent_review_and_verdict_handoff.md) | *(test-only, no catalog entry)* |
+| M-005 | Dedicated Memory/Spec-Kit Scenarios | Outsourced Agent Memory Capture Round-Trip | [M-005](memory_quality_and_indexing/outsourced_agent_memory_capture_round_trip.md) | [memory_quality_and_indexing/outsourced_agent_memory_capture.md](../feature_catalog/memory_quality_and_indexing/outsourced_agent_memory_capture.md) |
+| M-006 | Dedicated Memory/Spec-Kit Scenarios | Session Enrichment and Alignment Guardrails | [M-006](memory_quality_and_indexing/session_enrichment_and_alignment_guardrails.md) | [memory_quality_and_indexing/session_enrichment_and_alignment_guards.md](../feature_catalog/memory_quality_and_indexing/session_enrichment_and_alignment_guards.md) |
+| M-007 | Dedicated Memory/Spec-Kit Scenarios | Session Capturing Pipeline Quality | [M-007](tooling_and_scripts/session_capturing_pipeline_quality.md) | [tooling_and_scripts/session_capturing_pipeline_quality.md](../feature_catalog/tooling_and_scripts/session_capturing_pipeline_quality.md) |
+| M-008 | Dedicated Memory/Spec-Kit Scenarios | Feature 09 Direct Manual Scenario (Per-memory History Log) | [M-008](mutation/feature_09_direct_manual_scenario_per_memory_history_log.md) | [mutation/per_memory_history_log.md](../feature_catalog/mutation/per_memory_history_log.md) |
+| 190 | Features | Session recovery via /speckit:resume | [190](retrieval/session_recovery_spec_kit_resume.md) | [retrieval/session_recovery_spec_kit_resume.md](../feature_catalog/retrieval/session_recovery_spec_kit_resume.md) |
+| 125-map | Features | Audit phase mapping note (020) | — | [feature_flag_reference/audit_phase_020_mapping_note.md](../feature_catalog/feature_flag_reference/audit_phase_020_mapping_note.md) |
+| 020-stub | Features | Remediation and revalidation (stub) | — | [remediation_revalidation/category_stub.md](../feature_catalog/remediation_revalidation/category_stub.md) |
+| 021-stub | Features | Implement and remove deprecated (stub) | — | [implement_and_remove_deprecated_features/category_stub.md](../feature_catalog/implement_and_remove_deprecated_features/category_stub.md) |
+| 188 | Features | AST-level section retrieval tool | [188](retrieval/ast_level_section_retrieval_tool.md) | [retrieval/ast_level_section_retrieval_tool.md](../feature_catalog/retrieval/ast_level_section_retrieval_tool.md) |
+| 189 | Features | Tool-result extraction to working memory | [189](retrieval/tool_result_extraction_to_working_memory.md) | [retrieval/tool_result_extraction_to_working_memory.md](../feature_catalog/retrieval/tool_result_extraction_to_working_memory.md) |
+| 192 | Features | Correction tracking with undo | [192](mutation/correction_tracking_with_undo.md) | [mutation/correction_tracking_with_undo.md](../feature_catalog/mutation/correction_tracking_with_undo.md) |
+| 194 | Features | Causal neighbor boost and injection | [194](graph_signal_activation/causal_neighbor_boost_and_injection.md) | [graph_signal_activation/causal_neighbor_boost_and_injection.md](../feature_catalog/graph_signal_activation/causal_neighbor_boost_and_injection.md) |
+| 195 | Features | Temporal contiguity layer | [195](graph_signal_activation/temporal_contiguity_layer.md) | [graph_signal_activation/temporal_contiguity_layer.md](../feature_catalog/graph_signal_activation/temporal_contiguity_layer.md) |
+| 196 | Features | Tool-level TTL cache | [196](scoring_and_calibration/tool_level_ttl_cache.md) | [scoring_and_calibration/tool_level_ttl_cache.md](../feature_catalog/scoring_and_calibration/tool_level_ttl_cache.md) |
+| 197 | Features | Access-driven popularity scoring | [197](scoring_and_calibration/access_driven_popularity_scoring.md) | [scoring_and_calibration/access_driven_popularity_scoring.md](../feature_catalog/scoring_and_calibration/access_driven_popularity_scoring.md) |
+| 198 | Features | Temporal-structural coherence scoring | [198](scoring_and_calibration/temporal_structural_coherence_scoring.md) | [scoring_and_calibration/temporal_structural_coherence_scoring.md](../feature_catalog/scoring_and_calibration/temporal_structural_coherence_scoring.md) |
+| 199 | Features | Content-aware memory filename generation | [199](memory_quality_and_indexing/content_aware_memory_filename_generation.md) | [memory_quality_and_indexing/content_aware_memory_filename_generation.md](../feature_catalog/memory_quality_and_indexing/content_aware_memory_filename_generation.md) |
+| 202 | Features | Backend storage adapter abstraction | [202](pipeline_architecture/backend_storage_adapter_abstraction.md) | [pipeline_architecture/backend_storage_adapter_abstraction.md](../feature_catalog/pipeline_architecture/backend_storage_adapter_abstraction.md) |
+| 203 | Features | Atomic write-then-index API | [203](pipeline_architecture/atomic_write_then_index_api.md) | [pipeline_architecture/atomic_write_then_index_api.md](../feature_catalog/pipeline_architecture/atomic_write_then_index_api.md) |
+| 204 | Features | Embedding retry orchestrator | [204](pipeline_architecture/embedding_retry_orchestrator.md) | [pipeline_architecture/embedding_retry_orchestrator.md](../feature_catalog/pipeline_architecture/embedding_retry_orchestrator.md) |
+| 205 | Features | 7-layer tool architecture metadata | [205](pipeline_architecture/7_layer_tool_architecture_metadata.md) | [pipeline_architecture/7_layer_tool_architecture_metadata.md](../feature_catalog/pipeline_architecture/7_layer_tool_architecture_metadata.md) |
+| 206 | Features | Architecture boundary enforcement | [206](tooling_and_scripts/architecture_boundary_enforcement.md) | [tooling_and_scripts/architecture_boundary_enforcement.md](../feature_catalog/tooling_and_scripts/architecture_boundary_enforcement.md) |
+| 207 | Features | Watcher delete/rename cleanup | [207](tooling_and_scripts/watcher_delete_rename_cleanup.md) | [tooling_and_scripts/watcher_delete_rename_cleanup.md](../feature_catalog/tooling_and_scripts/watcher_delete_rename_cleanup.md) |
+| 208 | Features | Template compliance contract enforcement | [208](tooling_and_scripts/template_compliance_contract_enforcement_blocks_non_compliant.md) | [tooling_and_scripts/template_compliance_contract_enforcement.md](../feature_catalog/tooling_and_scripts/template_compliance_contract_enforcement.md) |
 | 209 | Features | Shared post-mutation hook wiring | consolidated manual record | consolidated into successor UX hook records |
-| 210 | Features | Memory health autoRepair metadata | [210](ux-hooks/memory-health-autorepair-metadata.md) | [ux-hooks/memory-health-autorepair-metadata.md](../feature_catalog/ux-hooks/memory-health-autorepair-metadata.md) |
-| 211 | Features | Schema and type contract sync | [211](ux-hooks/schema-and-type-contract-synchronization.md) | [ux-hooks/schema-and-type-contract-synchronization.md](../feature_catalog/ux-hooks/schema-and-type-contract-synchronization.md) |
-| 212 | Features | Mutation hook result contract expansion | [212](ux-hooks/mutation-hook-result-contract-expansion.md) | [ux-hooks/mutation-hook-result-contract-expansion.md](../feature_catalog/ux-hooks/mutation-hook-result-contract-expansion.md) |
-| 213 | Features | Mutation response UX payload exposure | [213](ux-hooks/mutation-response-ux-payload-exposure.md) | [ux-hooks/mutation-response-ux-payload-exposure.md](../feature_catalog/ux-hooks/mutation-response-ux-payload-exposure.md) |
-| 214 | Features | Atomic-save parity and indexing hints | [214](ux-hooks/atomic-save-parity-and-partial-indexing-hints.md) | [ux-hooks/atomic-save-parity-and-partial-indexing-hints.md](../feature_catalog/ux-hooks/atomic-save-parity-and-partial-indexing-hints.md) |
-| 215 | Features | Final token metadata recomputation | [215](ux-hooks/final-token-metadata-recomputation.md) | [ux-hooks/final-token-metadata-recomputation.md](../feature_catalog/ux-hooks/final-token-metadata-recomputation.md) |
-| 216 | Features | End-to-end success-envelope verification | [216](ux-hooks/end-to-end-success-envelope-verification.md) | [ux-hooks/end-to-end-success-envelope-verification.md](../feature_catalog/ux-hooks/end-to-end-success-envelope-verification.md) |
-| 248 | Context Preservation | PreCompact hook | [248](context-preservation/precompact-hook.md) | [context-preservation/precompact-hook.md](../feature_catalog/context-preservation/precompact-hook.md) |
-| 249 | Context Preservation | SessionStart compact | [249](context-preservation/session-start-compact.md) | [context-preservation/session-start-priming.md](../feature_catalog/context-preservation/session-start-priming.md) |
-| 250 | Context Preservation | SessionStart startup | [250](context-preservation/session-start-startup.md) | [context-preservation/session-start-priming.md](../feature_catalog/context-preservation/session-start-priming.md) |
-| 251 | Context Preservation | Stop hook saves | [251](context-preservation/stop-hook-saves.md) | [context-preservation/stop-token-tracking.md](../feature_catalog/context-preservation/stop-token-tracking.md) |
-| 252 | Context Preservation | Cross-runtime fallback | [252](context-preservation/cross-runtime-fallback.md) | [context-preservation/cross-runtime-fallback.md](../feature_catalog/context-preservation/cross-runtime-fallback.md) |
-| 253 | Context Preservation | Runtime detection | [253](context-preservation/runtime-detection.md) | [context-preservation/runtime-detection.md](../feature_catalog/context-preservation/runtime-detection.md) |
-| 256 | Context Preservation | Budget allocator | [256](context-preservation/budget-allocator.md) | [context-preservation/budget-allocator.md](../feature_catalog/context-preservation/budget-allocator.md) |
-| 257 | Context Preservation | Working-set compaction | [257](context-preservation/working-set-compaction.md) | [context-preservation/working-set-tracker.md](../feature_catalog/context-preservation/working-set-tracker.md) |
-| 258 | Context Preservation | 3-source compact merger within budget | [258](context-preservation/compact-merger-assembly.md) | [context-preservation/compact-merger.md](../feature_catalog/context-preservation/compact-merger.md) |
-| 261 | Context Preservation | MCP auto-priming Prime Package delivery | [261](context-preservation/mcp-auto-priming.md) | [context-preservation/mcp-auto-priming.md](../feature_catalog/context-preservation/mcp-auto-priming.md) |
-| 262 | Context Preservation | Session health ok/warning/stale status | [262](context-preservation/session-health.md) | [context-preservation/session-health-tool.md](../feature_catalog/context-preservation/session-health-tool.md) |
-| 263 | Context Preservation | Session resume merged result | [263](context-preservation/session-resume.md) | [context-preservation/session-resume-tool.md](../feature_catalog/context-preservation/session-resume-tool.md) |
-| 264 | Context Preservation | Query-intent routing in memory_context | [264](context-preservation/query-intent-routing.md) | [context-preservation/query-intent-routing.md](../feature_catalog/context-preservation/query-intent-routing.md) |
-| 266 | Context Preservation | Context preservation metrics quality score | [266](context-preservation/context-preservation-metrics.md) | [context-preservation/context-preservation-metrics.md](../feature_catalog/context-preservation/context-preservation-metrics.md) |
-| 267 | Context Preservation | Tool routing enforcement | [267](context-preservation/tool-routing-enforcement.md) | [context-preservation/tool-routing-enforcement.md](../feature_catalog/context-preservation/tool-routing-enforcement.md) |
-| 268 | Features | Post-insert retry budget | [268](lifecycle/post-insert-retry-budget.md) | [lifecycle/post-insert-retry-budget.md](../feature_catalog/lifecycle/post-insert-retry-budget.md) |
-| 269 | Features | Scope normalizer canonicalization and lint | [269](bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md) | [bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md](../feature_catalog/bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md) |
-| 270 | Features | maintainability extracts | [270](pipeline-architecture/phase-017-maintainability-extracts.md) | [pipeline-architecture/phase-017-maintainability-extracts.md](../feature_catalog/pipeline-architecture/phase-017-maintainability-extracts.md) |
-| 271 | Features | Research metadata backfill | [271](tooling-and-scripts/research-metadata-backfill.md) | [tooling-and-scripts/research-metadata-backfill.md](../feature_catalog/tooling-and-scripts/research-metadata-backfill.md) |
-| 272 | Features | Strict validation add-ons: continuity freshness and evidence markers | [272](tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) | [tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md](../feature_catalog/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) |
-| 273 | Features | Session-resume caller binding and Unicode sanitization | [273](governance/session-resume-caller-binding-and-unicode-sanitization.md) | [governance/session-resume-caller-binding-and-unicode-sanitization.md](../feature_catalog/governance/session-resume-caller-binding-and-unicode-sanitization.md) |
-| 276 | Features | Reconsolidation conflict transaction helper | [276](mutation/reconsolidation-conflict-transaction-helper.md) | [mutation/reconsolidation-conflict-transaction-helper.md](../feature_catalog/mutation/reconsolidation-conflict-transaction-helper.md) |
-| 278 | Features | Memory retention sweep basic flow | [278](maintenance/memory-retention-sweep-basic-flow.md) | [maintenance/memory-retention-sweep.md](../feature_catalog/maintenance/memory-retention-sweep.md) |
-| 280 | Features | CLI matrix adapter runner smoke | [280](tooling-and-scripts/cli-matrix-adapter-runner-smoke.md) | [tooling-and-scripts/cli-matrix-adapter-runners.md](../feature_catalog/tooling-and-scripts/cli-matrix-adapter-runners.md) |
+| 210 | Features | Memory health autoRepair metadata | [210](ux_hooks/memory_health_autorepair_metadata.md) | [ux_hooks/memory_health_autorepair_metadata.md](../feature_catalog/ux_hooks/memory_health_autorepair_metadata.md) |
+| 211 | Features | Schema and type contract sync | [211](ux_hooks/schema_and_type_contract_synchronization.md) | [ux_hooks/schema_and_type_contract_synchronization.md](../feature_catalog/ux_hooks/schema_and_type_contract_synchronization.md) |
+| 212 | Features | Mutation hook result contract expansion | [212](ux_hooks/mutation_hook_result_contract_expansion.md) | [ux_hooks/mutation_hook_result_contract_expansion.md](../feature_catalog/ux_hooks/mutation_hook_result_contract_expansion.md) |
+| 213 | Features | Mutation response UX payload exposure | [213](ux_hooks/mutation_response_ux_payload_exposure.md) | [ux_hooks/mutation_response_ux_payload_exposure.md](../feature_catalog/ux_hooks/mutation_response_ux_payload_exposure.md) |
+| 214 | Features | Atomic-save parity and indexing hints | [214](ux_hooks/atomic_save_parity_and_partial_indexing_hints.md) | [ux_hooks/atomic_save_parity_and_partial_indexing_hints.md](../feature_catalog/ux_hooks/atomic_save_parity_and_partial_indexing_hints.md) |
+| 215 | Features | Final token metadata recomputation | [215](ux_hooks/final_token_metadata_recomputation.md) | [ux_hooks/final_token_metadata_recomputation.md](../feature_catalog/ux_hooks/final_token_metadata_recomputation.md) |
+| 216 | Features | End-to-end success-envelope verification | [216](ux_hooks/end_to_end_success_envelope_verification.md) | [ux_hooks/end_to_end_success_envelope_verification.md](../feature_catalog/ux_hooks/end_to_end_success_envelope_verification.md) |
+| 248 | Context Preservation | PreCompact hook | [248](context_preservation/precompact_hook.md) | [context_preservation/precompact_hook.md](../feature_catalog/context_preservation/precompact_hook.md) |
+| 249 | Context Preservation | SessionStart compact | [249](context_preservation/session_start_compact.md) | [context_preservation/session_start_priming.md](../feature_catalog/context_preservation/session_start_priming.md) |
+| 250 | Context Preservation | SessionStart startup | [250](context_preservation/session_start_startup.md) | [context_preservation/session_start_priming.md](../feature_catalog/context_preservation/session_start_priming.md) |
+| 251 | Context Preservation | Stop hook saves | [251](context_preservation/stop_hook_saves.md) | [context_preservation/stop_token_tracking.md](../feature_catalog/context_preservation/stop_token_tracking.md) |
+| 252 | Context Preservation | Cross-runtime fallback | [252](context_preservation/cross_runtime_fallback.md) | [context_preservation/cross_runtime_fallback.md](../feature_catalog/context_preservation/cross_runtime_fallback.md) |
+| 253 | Context Preservation | Runtime detection | [253](context_preservation/runtime_detection.md) | [context_preservation/runtime_detection.md](../feature_catalog/context_preservation/runtime_detection.md) |
+| 256 | Context Preservation | Budget allocator | [256](context_preservation/budget_allocator.md) | [context_preservation/budget_allocator.md](../feature_catalog/context_preservation/budget_allocator.md) |
+| 257 | Context Preservation | Working-set compaction | [257](context_preservation/working_set_compaction.md) | [context_preservation/working_set_tracker.md](../feature_catalog/context_preservation/working_set_tracker.md) |
+| 258 | Context Preservation | 3-source compact merger within budget | [258](context_preservation/compact_merger_assembly.md) | [context_preservation/compact_merger.md](../feature_catalog/context_preservation/compact_merger.md) |
+| 261 | Context Preservation | MCP auto-priming Prime Package delivery | [261](context_preservation/mcp_auto_priming.md) | [context_preservation/mcp_auto_priming.md](../feature_catalog/context_preservation/mcp_auto_priming.md) |
+| 262 | Context Preservation | Session health ok/warning/stale status | [262](context_preservation/session_health.md) | [context_preservation/session_health_tool.md](../feature_catalog/context_preservation/session_health_tool.md) |
+| 263 | Context Preservation | Session resume merged result | [263](context_preservation/session_resume.md) | [context_preservation/session_resume_tool.md](../feature_catalog/context_preservation/session_resume_tool.md) |
+| 264 | Context Preservation | Query-intent routing in memory_context | [264](context_preservation/query_intent_routing.md) | [context_preservation/query_intent_routing.md](../feature_catalog/context_preservation/query_intent_routing.md) |
+| 266 | Context Preservation | Context preservation metrics quality score | [266](context_preservation/context_preservation_metrics.md) | [context_preservation/context_preservation_metrics.md](../feature_catalog/context_preservation/context_preservation_metrics.md) |
+| 267 | Context Preservation | Tool routing enforcement | [267](context_preservation/tool_routing_enforcement.md) | [context_preservation/tool_routing_enforcement.md](../feature_catalog/context_preservation/tool_routing_enforcement.md) |
+| 268 | Features | Post-insert retry budget | [268](lifecycle/post_insert_retry_budget.md) | [lifecycle/post_insert_retry_budget.md](../feature_catalog/lifecycle/post_insert_retry_budget.md) |
+| 269 | Features | Scope normalizer canonicalization and lint | [269](bug_fixes_and_data_integrity/scope_normalizer_canonicalization_and_lint.md) | [bug_fixes_and_data_integrity/scope_normalizer_canonicalization_and_lint.md](../feature_catalog/bug_fixes_and_data_integrity/scope_normalizer_canonicalization_and_lint.md) |
+| 270 | Features | maintainability extracts | [270](pipeline_architecture/phase_017_maintainability_extracts.md) | [pipeline_architecture/phase_017_maintainability_extracts.md](../feature_catalog/pipeline_architecture/phase_017_maintainability_extracts.md) |
+| 271 | Features | Research metadata backfill | [271](tooling_and_scripts/research_metadata_backfill.md) | [tooling_and_scripts/research_metadata_backfill.md](../feature_catalog/tooling_and_scripts/research_metadata_backfill.md) |
+| 272 | Features | Strict validation add-ons: continuity freshness and evidence markers | [272](tooling_and_scripts/strict_validation_addons_continuity_freshness_and_evidence_markers.md) | [tooling_and_scripts/strict_validation_addons_continuity_freshness_and_evidence_markers.md](../feature_catalog/tooling_and_scripts/strict_validation_addons_continuity_freshness_and_evidence_markers.md) |
+| 273 | Features | Session-resume caller binding and Unicode sanitization | [273](governance/session_resume_caller_binding_and_unicode_sanitization.md) | [governance/session_resume_caller_binding_and_unicode_sanitization.md](../feature_catalog/governance/session_resume_caller_binding_and_unicode_sanitization.md) |
+| 276 | Features | Reconsolidation conflict transaction helper | [276](mutation/reconsolidation_conflict_transaction_helper.md) | [mutation/reconsolidation_conflict_transaction_helper.md](../feature_catalog/mutation/reconsolidation_conflict_transaction_helper.md) |
+| 278 | Features | Memory retention sweep basic flow | [278](maintenance/memory_retention_sweep_basic_flow.md) | [maintenance/memory_retention_sweep.md](../feature_catalog/maintenance/memory_retention_sweep.md) |
+| 280 | Features | CLI matrix adapter runner smoke | [280](tooling_and_scripts/cli_matrix_adapter_runner_smoke.md) | [tooling_and_scripts/cli_matrix_adapter_runners.md](../feature_catalog/tooling_and_scripts/cli_matrix_adapter_runners.md) |
 
 ---
-| 323 | Doctor Commands | /doctor memory fresh-install bootstrap | [323](doctor-commands/doctor-memory-fresh-install.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 324 | Doctor Commands | /doctor memory drift detection on modified spec docs | [324](doctor-commands/doctor-memory-drift-detection.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 325 | Doctor Commands | /doctor memory long-pole rebuild with snapshot + ETA prompt | [325](doctor-commands/doctor-memory-long-pole-rebuild.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 326 | Doctor Commands | /doctor memory SIGINT mid-rebuild graceful cancel + restore | [326](doctor-commands/doctor-memory-sigint-cancellation.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 327 | Doctor Commands | /doctor memory disk-pressure pre-flight refusal | [327](doctor-commands/doctor-memory-disk-pressure.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 328 | Doctor Commands | /doctor causal-graph low-coverage drift report (<60%) | [328](doctor-commands/doctor-causal-graph-low-coverage.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 329 | Doctor Commands | /doctor causal-graph confidence threshold ≥0.7 enforcement | [329](doctor-commands/doctor-causal-graph-confidence-threshold.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 330 | Doctor Commands | /doctor causal-graph add-only mutation boundary | [330](doctor-commands/doctor-causal-graph-add-only.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 331 | Doctor Commands | /doctor deep-loop lazy-init from iteration folders | [331](doctor-commands/doctor-deep-loop-lazy-init.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 332 | Doctor Commands | /doctor deep-loop empty graph + no iteration source | [332](doctor-commands/doctor-deep-loop-empty-no-source.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 333 | Doctor Commands | /doctor deep-loop convergence gold-battery ≥3 iterations | [333](doctor-commands/doctor-deep-loop-convergence.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 338 | Doctor Commands | /doctor:update G5 failure injection mid-rebuild | [338](doctor-commands/doctor-update-G5-confirm-failure-injection.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 339 | Doctor Commands | /doctor:update G6 concurrent dispatch refusal via flock | [339](doctor-commands/doctor-update-G6-concurrent.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 340 | Doctor Commands | /doctor:update G7 SIGINT mid-rebuild + snapshot restore | [340](doctor-commands/doctor-update-G7-sigint.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 341 | Doctor Commands | /doctor:update G8 migration manifest gap detection | [341](doctor-commands/doctor-update-G8-migration-gap.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 342 | Doctor Commands | /doctor:update G9 cross-subsystem dashboard render | [342](doctor-commands/doctor-update-G9-dashboard.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 344 | Doctor Commands | /doctor:update tier-aware single interactive flow | [344](doctor-commands/doctor-update-tier-aware-default.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 345 | Doctor Commands | Version migration 3.3.0.0 → 3.4.1.0 end-to-end | [345](doctor-commands/version-migration-3.3.0.0-to-3.4.1.0.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
-| 346 | Doctor Commands | Version migration cleanup-legacy with per-file prompts | [346](doctor-commands/version-migration-cleanup-legacy.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
-| 347 | Doctor Commands | Version migration no-op (already-current) | [347](doctor-commands/version-migration-no-op.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
-| 416 | Memory Quality And Indexing | vec_memories KNN dual-write and factory shard fallback | [416](memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md) | [memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md](../feature_catalog/memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md) |
-| 417 | Memory Quality And Indexing | Constitutional sufficiency-gate exemption | [417](memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md) | [memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md](../feature_catalog/memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md) |
-| 418 | Memory Quality And Indexing | Graph-metadata and lineage repair runner | [418](memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md) | [memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md](../feature_catalog/memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md) |
-| 419 | Features | Orphan MCP runtime lifecycle guardrails | [419](tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md) | [tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md](../feature_catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md), [feature-flag-reference/launcher-idle-timeout.md](../feature_catalog/feature-flag-reference/launcher-idle-timeout.md) |
-| 420 | Tooling And Scripts | Markdown link integrity guard | [420](tooling-and-scripts/markdown-link-integrity-guard.md) | [tooling-and-scripts/markdown-link-integrity-guard.md](../feature_catalog/tooling-and-scripts/markdown-link-integrity-guard.md) |
-| 421 | Pipeline Architecture | MCP launcher owner-disposal relaunch gate | [421](pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md) | [pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md](../feature_catalog/pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md) |
-| 422 | Pipeline Architecture | MCP launcher persistent log | [422](pipeline-architecture/mcp-launcher-persistent-log.md) | [pipeline-architecture/mcp-launcher-persistent-log.md](../feature_catalog/pipeline-architecture/mcp-launcher-persistent-log.md) |
-| 423 | Pipeline Architecture | Lease-probe retry reap hardening | [423](pipeline-architecture/lease-probe-retry-reap-hardening.md) | [pipeline-architecture/lease-probe-retry-reap-hardening.md](../feature_catalog/pipeline-architecture/lease-probe-retry-reap-hardening.md) |
-| 424 | Pipeline Architecture | MCP code-index reconnecting proxy | [424](pipeline-architecture/mcp-code-index-reconnecting-proxy.md) | [pipeline-architecture/mcp-code-index-reconnecting-proxy.md](../feature_catalog/pipeline-architecture/mcp-code-index-reconnecting-proxy.md) |
-| 425 | Tooling And Scripts | Orphan-sweep Stop-hook activation | [425](tooling-and-scripts/orphan-sweep-stop-hook-activation.md) | [tooling-and-scripts/orphan-sweep-stop-hook-activation.md](../feature_catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md) |
-| 426 | Pipeline Architecture | Daemon ownership re-election (default-on, reap-before-respawn, live two-session validation) | [426](pipeline-architecture/daemon-ownership-reelection.md) | [pipeline-architecture/daemon-ownership-reelection.md](../feature_catalog/pipeline-architecture/daemon-ownership-reelection.md) |
-| 427 | Tooling And Scripts | CLI list-tools parity per system (spec-memory 39 / code-index 8 / skill-advisor 9) | [427](tooling-and-scripts/cli-list-tools-parity.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
-| 428 | Tooling And Scripts | CLI warm-only no-spawn behavior (exit 75) | [428](tooling-and-scripts/cli-warm-only-no-spawn.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
-| 429 | Tooling And Scripts | CLI dist-freshness guard trip (exit 69, dev overrides) | [429](tooling-and-scripts/cli-dist-freshness-guard.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
-| 430 | Tooling And Scripts | code-index CLI blocked-read rendering (exit 0, requiredAction surfaced) | [430](tooling-and-scripts/cli-blocked-read-rendering.md) | [mcp-tool-surface/code-index-cli.md](../../system-code-graph/feature_catalog/mcp-tool-surface/code-index-cli.md) |
-| 431 | Tooling And Scripts | skill-advisor CLI trusted-gate refusal (exit 64, fail-closed) | [431](tooling-and-scripts/cli-trusted-gate-refusal.md) | [mcp-surface/skill-advisor-cli.md](../../system-skill-advisor/feature_catalog/mcp-surface/skill-advisor-cli.md) |
-| 432 | Pipeline Architecture | Tri-daemon spawn drill invocation (028 program gate, SPECKIT_RUN_TRI_DAEMON_DRILL=1) | [432](pipeline-architecture/tri-daemon-spawn-drill.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
-| 433 | UX Hooks | CLI hook transport-down fail-open (warm-only, no prompt-time spawn) | [433](ux-hooks/cli-hook-transport-down-fail-open.md) | [tooling-and-scripts/cli-runtime-warm-only-fallbacks.md](../feature_catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md) |
-| 434 | Tooling And Scripts | 028 CLI stress: concurrent dual-CLI+MCP load | [434](tooling-and-scripts/cli-stress-concurrent-dual-client-load.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
-| 435 | Tooling And Scripts | 028 CLI stress: repeated warm-only probes under daemon churn | [435](tooling-and-scripts/cli-stress-warm-only-probe-churn.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
-| 436 | Tooling And Scripts | 028 CLI stress: large-payload (>64KB) pipe integrity | [436](tooling-and-scripts/cli-stress-large-payload-pipe-integrity.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
-| 437 | Tooling And Scripts | 028 CLI stress: numeric-coercion edge args | [437](tooling-and-scripts/cli-stress-numeric-coercion-edge-args.md) | [mcp-tool-surface/code-index-cli.md](../../system-code-graph/feature_catalog/mcp-tool-surface/code-index-cli.md) |
-| 438 | Tooling And Scripts | 028 CLI stress: trust-gate fuzz (untrusted mutations all exit 64) | [438](tooling-and-scripts/cli-stress-trust-gate-fuzz.md) | [mcp-surface/skill-advisor-cli.md](../../system-skill-advisor/feature_catalog/mcp-surface/skill-advisor-cli.md) |
-| 439 | Feature Flag Reference | Semantic trigger shadow and union modes | [439](feature-flag-reference/semantic-trigger-shadow-and-union.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
-| 440 | Feature Flag Reference | Memory idempotency replay and conflict | [440](feature-flag-reference/memory-idempotency-replay-and-conflict.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
-| 441 | Feature Flag Reference | Soft-delete tombstones | [441](feature-flag-reference/soft-delete-tombstones.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
-| 442 | Feature Flag Reference | Session-trace causal inference | [442](feature-flag-reference/session-trace-causal-inference.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
-| 443 | Feature Flag Reference | Feedback retention learning modes | [443](feature-flag-reference/feedback-retention-learning-modes.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
-| 444 | Feature Flag Reference | Authored continuity snapshot | [444](feature-flag-reference/authored-continuity-snapshot.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
-| 445 | Feature Flag Reference | Completion freshness validator | [445](feature-flag-reference/completion-freshness-validator.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
-| 446 | Retrieval Enhancements | Retrieval observability trace and health | [446](retrieval-enhancements/retrieval-observability-trace-and-health.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
-| 447 | Governance | Source kind provenance guard | [447](governance/source-kind-provenance-guard.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
-| 448 | Governance | Stale-exclusion audit and tool-ownership lint | [448](governance/stale-exclusion-audit-and-tool-ownership-lint.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
-| 449 | Tooling And Scripts | CLI compact list-tools and completion generation | [449](tooling-and-scripts/cli-compact-and-completion.md) | [tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
-| 450 | Bug Fixes And Data Integrity | Graceful embedder-degrade to lexical | [450](bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md) | [bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md](../feature_catalog/bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md) |
-| 451 | Governance | Constitutional self-edit and compare-and-swap guard | [451](governance/constitutional-self-edit-and-cas-guard.md) | [governance/constitutional-self-edit-and-cas-guard.md](../feature_catalog/governance/constitutional-self-edit-and-cas-guard.md) |
-| 452 | Memory Quality And Indexing | Background enrichment pending and failed gauges | [452](memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md) | [memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md](../feature_catalog/memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md) |
-| 453 | Lifecycle | Speckit autopilot lifecycle | [453](lifecycle/speckit-autopilot-lifecycle.md) | [lifecycle/speckit-autopilot-lifecycle.md](../feature_catalog/lifecycle/speckit-autopilot-lifecycle.md) |
-| 454 | UX Hooks | Goal OpenCode plugin active-goal injection and status | [454](ux-hooks/goal-opencode-plugin.md) | [ux-hooks/goal-opencode-plugin.md](../feature_catalog/ux-hooks/goal-opencode-plugin.md) |
-| 455 | Tooling And Scripts | validate.sh dist-freshness backstop (compiled validation orchestrator, exit 3) | [455](tooling-and-scripts/validate-sh-dist-freshness-backstop.md) | [tooling-and-scripts/dist-freshness-enforcement.md](../feature_catalog/tooling-and-scripts/dist-freshness-enforcement.md) |
+| 323 | Doctor Commands | /doctor memory fresh-install bootstrap | [323](doctor_commands/doctor_memory_fresh_install.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 324 | Doctor Commands | /doctor memory drift detection on modified spec docs | [324](doctor_commands/doctor_memory_drift_detection.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 325 | Doctor Commands | /doctor memory long-pole rebuild with snapshot + ETA prompt | [325](doctor_commands/doctor_memory_long_pole_rebuild.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 326 | Doctor Commands | /doctor memory SIGINT mid-rebuild graceful cancel + restore | [326](doctor_commands/doctor_memory_sigint_cancellation.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 327 | Doctor Commands | /doctor memory disk-pressure pre-flight refusal | [327](doctor_commands/doctor_memory_disk_pressure.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 328 | Doctor Commands | /doctor causal-graph low-coverage drift report (<60%) | [328](doctor_commands/doctor_causal_graph_low_coverage.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 329 | Doctor Commands | /doctor causal-graph confidence threshold ≥0.7 enforcement | [329](doctor_commands/doctor_causal_graph_confidence_threshold.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 330 | Doctor Commands | /doctor causal-graph add-only mutation boundary | [330](doctor_commands/doctor_causal_graph_add_only.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 331 | Doctor Commands | /doctor deep-loop lazy-init from iteration folders | [331](doctor_commands/doctor_deep_loop_lazy_init.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 332 | Doctor Commands | /doctor deep-loop empty graph + no iteration source | [332](doctor_commands/doctor_deep_loop_empty_no_source.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 333 | Doctor Commands | /doctor deep-loop convergence gold-battery ≥3 iterations | [333](doctor_commands/doctor_deep_loop_convergence.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
+| 338 | Doctor Commands | /doctor:update G5 failure injection mid-rebuild | [338](doctor_commands/doctor_update_G5_confirm_failure_injection.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 339 | Doctor Commands | /doctor:update G6 concurrent dispatch refusal via flock | [339](doctor_commands/doctor_update_G6_concurrent.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 340 | Doctor Commands | /doctor:update G7 SIGINT mid-rebuild + snapshot restore | [340](doctor_commands/doctor_update_G7_sigint.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 341 | Doctor Commands | /doctor:update G8 migration manifest gap detection | [341](doctor_commands/doctor_update_G8_migration_gap.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 342 | Doctor Commands | /doctor:update G9 cross-subsystem dashboard render | [342](doctor_commands/doctor_update_G9_dashboard.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 344 | Doctor Commands | /doctor:update tier-aware single interactive flow | [344](doctor_commands/doctor_update_tier_aware_default.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 345 | Doctor Commands | Version migration 3.3.0.0 → 3.4.1.0 end-to-end | [345](doctor_commands/version_migration_3.3.0.0_to_3.4.1.0.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
+| 346 | Doctor Commands | Version migration cleanup-legacy with per-file prompts | [346](doctor_commands/version_migration_cleanup_legacy.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
+| 347 | Doctor Commands | Version migration no-op (already-current) | [347](doctor_commands/version_migration_no_op.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
+| 416 | Memory Quality And Indexing | vec_memories KNN dual-write and factory shard fallback | [416](memory_quality_and_indexing/vec_memories_knn_and_factory_shard_fallback.md) | [memory_quality_and_indexing/vec_memories_knn_and_factory_shard_fallback.md](../feature_catalog/memory_quality_and_indexing/vec_memories_knn_and_factory_shard_fallback.md) |
+| 417 | Memory Quality And Indexing | Constitutional sufficiency-gate exemption | [417](memory_quality_and_indexing/constitutional_sufficiency_gate_exemption.md) | [memory_quality_and_indexing/constitutional_sufficiency_gate_exemption.md](../feature_catalog/memory_quality_and_indexing/constitutional_sufficiency_gate_exemption.md) |
+| 418 | Memory Quality And Indexing | Graph-metadata and lineage repair runner | [418](memory_quality_and_indexing/graph_metadata_and_lineage_repair_runner.md) | [memory_quality_and_indexing/graph_metadata_and_lineage_repair_runner.md](../feature_catalog/memory_quality_and_indexing/graph_metadata_and_lineage_repair_runner.md) |
+| 419 | Features | Orphan MCP runtime lifecycle guardrails | [419](tooling_and_scripts/orphan_mcp_runtime_lifecycle_guardrails.md) | [tooling_and_scripts/orphan_mcp_sweeper_and_launchagent_template.md](../feature_catalog/tooling_and_scripts/orphan_mcp_sweeper_and_launchagent_template.md), [feature_flag_reference/launcher_idle_timeout.md](../feature_catalog/feature_flag_reference/launcher_idle_timeout.md) |
+| 420 | Tooling And Scripts | Markdown link integrity guard | [420](tooling_and_scripts/markdown_link_integrity_guard.md) | [tooling_and_scripts/markdown_link_integrity_guard.md](../feature_catalog/tooling_and_scripts/markdown_link_integrity_guard.md) |
+| 421 | Pipeline Architecture | MCP launcher owner-disposal relaunch gate | [421](pipeline_architecture/mcp_launcher_owner_disposal_relaunch_gate.md) | [pipeline_architecture/mcp_launcher_owner_disposal_relaunch_gate.md](../feature_catalog/pipeline_architecture/mcp_launcher_owner_disposal_relaunch_gate.md) |
+| 422 | Pipeline Architecture | MCP launcher persistent log | [422](pipeline_architecture/mcp_launcher_persistent_log.md) | [pipeline_architecture/mcp_launcher_persistent_log.md](../feature_catalog/pipeline_architecture/mcp_launcher_persistent_log.md) |
+| 423 | Pipeline Architecture | Lease-probe retry reap hardening | [423](pipeline_architecture/lease_probe_retry_reap_hardening.md) | [pipeline_architecture/lease_probe_retry_reap_hardening.md](../feature_catalog/pipeline_architecture/lease_probe_retry_reap_hardening.md) |
+| 424 | Pipeline Architecture | MCP code-index reconnecting proxy | [424](pipeline_architecture/mcp_code_index_reconnecting_proxy.md) | [pipeline_architecture/mcp_code_index_reconnecting_proxy.md](../feature_catalog/pipeline_architecture/mcp_code_index_reconnecting_proxy.md) |
+| 425 | Tooling And Scripts | Orphan-sweep Stop-hook activation | [425](tooling_and_scripts/orphan_sweep_stop_hook_activation.md) | [tooling_and_scripts/orphan_sweep_stop_hook_activation.md](../feature_catalog/tooling_and_scripts/orphan_sweep_stop_hook_activation.md) |
+| 426 | Pipeline Architecture | Daemon ownership re-election (default-on, reap-before-respawn, live two-session validation) | [426](pipeline_architecture/daemon_ownership_reelection.md) | [pipeline_architecture/daemon_ownership_reelection.md](../feature_catalog/pipeline_architecture/daemon_ownership_reelection.md) |
+| 427 | Tooling And Scripts | CLI list-tools parity per system (spec-memory 39 / code-index 8 / skill-advisor 9) | [427](tooling_and_scripts/cli_list_tools_parity.md) | [tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md](../feature_catalog/tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md) |
+| 428 | Tooling And Scripts | CLI warm-only no-spawn behavior (exit 75) | [428](tooling_and_scripts/cli_warm_only_no_spawn.md) | [tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md](../feature_catalog/tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md) |
+| 429 | Tooling And Scripts | CLI dist-freshness guard trip (exit 69, dev overrides) | [429](tooling_and_scripts/cli_dist_freshness_guard.md) | [tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md](../feature_catalog/tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md) |
+| 430 | Tooling And Scripts | code-index CLI blocked-read rendering (exit 0, requiredAction surfaced) | [430](tooling_and_scripts/cli_blocked_read_rendering.md) | [mcp-tool-surface/code-index-cli.md](../../system-code-graph/feature_catalog/mcp_tool_surface/code_index_cli.md) |
+| 431 | Tooling And Scripts | skill-advisor CLI trusted-gate refusal (exit 64, fail-closed) | [431](tooling_and_scripts/cli_trusted_gate_refusal.md) | [mcp-surface/skill-advisor-cli.md](../../system-skill-advisor/feature_catalog/mcp_surface/skill_advisor_cli.md) |
+| 432 | Pipeline Architecture | Tri-daemon spawn drill invocation (028 program gate, SPECKIT_RUN_TRI_DAEMON_DRILL=1) | [432](pipeline_architecture/tri_daemon_spawn_drill.md) | [tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md](../feature_catalog/tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md) |
+| 433 | UX Hooks | CLI hook transport-down fail-open (warm-only, no prompt-time spawn) | [433](ux_hooks/cli_hook_transport_down_fail_open.md) | [tooling_and_scripts/cli_runtime_warm_only_fallbacks.md](../feature_catalog/tooling_and_scripts/cli_runtime_warm_only_fallbacks.md) |
+| 434 | Tooling And Scripts | 028 CLI stress: concurrent dual-CLI+MCP load | [434](tooling_and_scripts/cli_stress_concurrent_dual_client_load.md) | [tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md](../feature_catalog/tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md) |
+| 435 | Tooling And Scripts | 028 CLI stress: repeated warm-only probes under daemon churn | [435](tooling_and_scripts/cli_stress_warm_only_probe_churn.md) | [tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md](../feature_catalog/tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md) |
+| 436 | Tooling And Scripts | 028 CLI stress: large-payload (>64KB) pipe integrity | [436](tooling_and_scripts/cli_stress_large_payload_pipe_integrity.md) | [tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md](../feature_catalog/tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md) |
+| 437 | Tooling And Scripts | 028 CLI stress: numeric-coercion edge args | [437](tooling_and_scripts/cli_stress_numeric_coercion_edge_args.md) | [mcp-tool-surface/code-index-cli.md](../../system-code-graph/feature_catalog/mcp_tool_surface/code_index_cli.md) |
+| 438 | Tooling And Scripts | 028 CLI stress: trust-gate fuzz (untrusted mutations all exit 64) | [438](tooling_and_scripts/cli_stress_trust_gate_fuzz.md) | [mcp-surface/skill-advisor-cli.md](../../system-skill-advisor/feature_catalog/mcp_surface/skill_advisor_cli.md) |
+| 439 | Feature Flag Reference | Semantic trigger shadow and union modes | [439](feature_flag_reference/semantic_trigger_shadow_and_union.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 440 | Feature Flag Reference | Memory idempotency replay and conflict | [440](feature_flag_reference/memory_idempotency_replay_and_conflict.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 441 | Feature Flag Reference | Soft-delete tombstones | [441](feature_flag_reference/soft_delete_tombstones.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 442 | Feature Flag Reference | Session-trace causal inference | [442](feature_flag_reference/session_trace_causal_inference.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 443 | Feature Flag Reference | Feedback retention learning modes | [443](feature_flag_reference/feedback_retention_learning_modes.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 444 | Feature Flag Reference | Authored continuity snapshot | [444](feature_flag_reference/authored_continuity_snapshot.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 445 | Feature Flag Reference | Completion freshness validator | [445](feature_flag_reference/completion_freshness_validator.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 446 | Retrieval Enhancements | Retrieval observability trace and health | [446](retrieval_enhancements/retrieval_observability_trace_and_health.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 447 | Governance | Source kind provenance guard | [447](governance/source_kind_provenance_guard.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 448 | Governance | Stale-exclusion audit and tool-ownership lint | [448](governance/stale_exclusion_audit_and_tool_ownership_lint.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 449 | Tooling And Scripts | CLI compact list-tools and completion generation | [449](tooling_and_scripts/cli_compact_and_completion.md) | [tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md](../feature_catalog/tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md) |
+| 450 | Bug Fixes And Data Integrity | Graceful embedder-degrade to lexical | [450](bug_fixes_and_data_integrity/graceful_embedder_degrade_to_lexical.md) | [bug_fixes_and_data_integrity/graceful_embedder_degrade_to_lexical.md](../feature_catalog/bug_fixes_and_data_integrity/graceful_embedder_degrade_to_lexical.md) |
+| 451 | Governance | Constitutional self-edit and compare-and-swap guard | [451](governance/constitutional_self_edit_and_cas_guard.md) | [governance/constitutional_self_edit_and_cas_guard.md](../feature_catalog/governance/constitutional_self_edit_and_cas_guard.md) |
+| 452 | Memory Quality And Indexing | Background enrichment pending and failed gauges | [452](memory_quality_and_indexing/background_enrichment_pending_and_failed_gauges.md) | [memory_quality_and_indexing/background_enrichment_pending_and_failed_gauges.md](../feature_catalog/memory_quality_and_indexing/background_enrichment_pending_and_failed_gauges.md) |
+| 453 | Lifecycle | Speckit autopilot lifecycle | [453](lifecycle/speckit_autopilot_lifecycle.md) | [lifecycle/speckit_autopilot_lifecycle.md](../feature_catalog/lifecycle/speckit_autopilot_lifecycle.md) |
+| 454 | UX Hooks | Goal OpenCode plugin active-goal injection and status | [454](ux_hooks/goal_opencode_plugin.md) | [ux_hooks/goal_opencode_plugin.md](../feature_catalog/ux_hooks/goal_opencode_plugin.md) |
+| 455 | Tooling And Scripts | validate.sh dist-freshness backstop (compiled validation orchestrator, exit 3) | [455](tooling_and_scripts/validate_sh_dist_freshness_backstop.md) | [tooling_and_scripts/dist_freshness_enforcement.md](../feature_catalog/tooling_and_scripts/dist_freshness_enforcement.md) |
