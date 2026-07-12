@@ -23,7 +23,7 @@ Copy-paste templates, naming cheat sheet, and common patterns for JavaScript dev
 
 Quick-access reference card for JavaScript patterns. For detailed explanations, see:
 - [style_guide.md](./style_guide.md) - Full style documentation
-- [quality_standards.md](quality_standards/overview-modules-and-docs.md) - Quality requirements
+- [quality_standards.md](quality_standards/overview_modules_and_docs.md) - Quality requirements
 
 ### When to Use
 
@@ -291,4 +291,4 @@ async function safeFetch() {
 ## 11. RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed formatting rules
-- [quality_standards.md](quality_standards/overview-modules-and-docs.md) - Error handling, JSDoc, security
+- [quality_standards.md](quality_standards/overview_modules_and_docs.md) - Error handling, JSDoc, security

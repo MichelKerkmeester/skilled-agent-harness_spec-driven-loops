@@ -1,6 +1,11 @@
 ---
 title: Security, Testing, Async & Exemption Tiers
 description: Module organization, error handling, documentation, and security patterns for JavaScript files. — Security, Testing, Async & Exemption Tiers.
+trigger_phrases:
+  - "javascript security patterns"
+  - "javascript testing patterns"
+  - "javascript async patterns"
+  - "javascript exemption tiers"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.15
@@ -8,7 +13,25 @@ version: 1.0.0.15
 
 # Security, Testing, Async & Exemption Tiers
 
-## 6. SECURITY PATTERNS
+Security, testing, async, and exemption guidance for JavaScript files in the OpenCode development environment.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines security, testing, async, and narrowly scoped exemption patterns for JavaScript files.
+
+### When to Use
+
+- Implementing security controls or async workflows in JavaScript
+- Writing JavaScript tests and direct-execution test runners
+- Determining whether plugin or test-file exemptions apply
+
+---
+
+## 2. SECURITY PATTERNS
 
 ### CWE-22: Path Traversal Prevention
 
@@ -82,7 +105,7 @@ function sanitizeString(input) {
 
 ---
 
-## 7. TESTING PATTERNS
+## 3. TESTING PATTERNS
 
 ### Using Node.js Assert
 
@@ -131,7 +154,7 @@ describe('Config Module', () => {
 
 ---
 
-## 8. ASYNC PATTERNS
+## 4. ASYNC PATTERNS
 
 ### Async/Await Style
 
@@ -174,7 +197,7 @@ const posts = await fetchUserPosts(user.id);
 
 ---
 
-## 9. TEST FILE EXEMPTION TIER
+## 5. TEST FILE EXEMPTION TIER
 
 CLI-only test runners, setup scripts, and similar utilities are exempt from certain quality standards because they are executed directly (not imported as modules) and serve a different purpose than library code.
 
@@ -223,7 +246,7 @@ console.log('PASS: All config tests passed');
 
 ---
 
-## 10. OPENCODE PLUGIN EXEMPTION TIER
+## 6. OPENCODE PLUGIN EXEMPTION TIER
 
 OpenCode plugin entrypoints and helper modules are exempt from the CommonJS export standard because the OpenCode plugin loader requires ESM default exports. This exemption is narrow and does not relax other JavaScript quality standards.
 
@@ -312,7 +335,7 @@ export default async function ExamplePlugin(ctx, options = {}) {
 
 ---
 
-## 11. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 - [style_guide.md](../style_guide.md) - Formatting and naming conventions
 - [quick_reference.md](../quick_reference.md) - Copy-paste templates and cheat sheets

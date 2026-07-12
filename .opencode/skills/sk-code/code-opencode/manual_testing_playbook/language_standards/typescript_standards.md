@@ -4,13 +4,13 @@ category: language_standards
 title: 'TypeScript standards routing'
 expected_intent: TYPESCRIPT
 expected_resources:
-  - references/typescript/style_guide/overview-strict-and-naming.md
-  - references/typescript/style_guide/formatting-imports-and-coexistence.md
-  - references/typescript/quality_standards/overview-and-type-system.md
-  - references/typescript/quality_standards/tsdoc-errors-and-async.md
-  - references/typescript/quality_standards/tsconfig-and-modules.md
-  - references/typescript/quick_reference/template-naming-and-types.md
-  - references/typescript/quick_reference/imports-errors-and-tsconfig.md
+  - references/typescript/style_guide/overview_strict_and_naming.md
+  - references/typescript/style_guide/formatting_imports_and_coexistence.md
+  - references/typescript/quality_standards/overview_and_type_system.md
+  - references/typescript/quality_standards/tsdoc_errors_and_async.md
+  - references/typescript/quality_standards/tsconfig_and_modules.md
+  - references/typescript/quick_reference/template_naming_and_types.md
+  - references/typescript/quick_reference/imports_errors_and_tsconfig.md
 version: 1.0.0.0
 ---
 

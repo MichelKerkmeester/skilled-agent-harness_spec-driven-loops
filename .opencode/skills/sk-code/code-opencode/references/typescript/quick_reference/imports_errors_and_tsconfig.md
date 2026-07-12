@@ -1,6 +1,11 @@
 ---
 title: Imports/Exports, Errors, TSDoc, tsconfig & One-Liners
 description: Copy-paste templates, naming cheat sheet, and common patterns for TypeScript development in OpenCode. — Imports/Exports, Errors, TSDoc, tsconfig & One-Liners.
+trigger_phrases:
+  - "typescript import templates"
+  - "typescript error patterns"
+  - "tsdoc template"
+  - "tsconfig quick reference"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.11
@@ -8,7 +13,25 @@ version: 1.0.0.11
 
 # Imports/Exports, Errors, TSDoc, tsconfig & One-Liners
 
-## 7. IMPORT / EXPORT TEMPLATES
+Import, error, TSDoc, tsconfig, and one-line TypeScript patterns for fast implementation lookup.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides copy-paste TypeScript patterns for module boundaries, errors, documentation, compiler settings, and common expressions.
+
+### When to Use
+
+- Looking up TypeScript import, export, or error patterns
+- Adding TSDoc or checking tsconfig settings
+- Reusing concise, type-safe TypeScript expressions
+
+---
+
+## 2. IMPORT / EXPORT TEMPLATES
 
 ### Import Ordering
 
@@ -58,7 +81,7 @@ export type * from './types.js';
 
 ---
 
-## 8. ERROR HANDLING PATTERNS
+## 3. ERROR HANDLING PATTERNS
 
 ### Typed catch
 
@@ -162,7 +185,7 @@ async function safeFetch(id: string): Promise<Result<MemoryRecord>> {
 
 ---
 
-## 9. TSDOC TEMPLATE
+## 4. TSDOC TEMPLATE
 
 ```typescript
 /**
@@ -182,7 +205,7 @@ async function safeFetch(id: string): Promise<Result<MemoryRecord>> {
 
 ---
 
-## 10. TSCONFIG QUICK REFERENCE
+## 5. TSCONFIG QUICK REFERENCE
 
 ### Root Fallback Settings for OpenCode
 
@@ -257,7 +280,7 @@ npm run test:cli
 
 ---
 
-## 11. COMMON ONE-LINERS
+## 6. COMMON ONE-LINERS
 
 ```typescript
 // Type narrowing for unknown
@@ -291,7 +314,7 @@ const element = map.get(key)!;
 
 ---
 
-## 12. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
-- [style_guide.md](../style_guide/overview-strict-and-naming.md) - Detailed formatting rules
-- [quality_standards.md](../quality_standards/overview-and-type-system.md) - Type system, TSDoc, error patterns
+- [style_guide.md](../style_guide/overview_strict_and_naming.md) - Detailed formatting rules
+- [quality_standards.md](../quality_standards/overview_and_type_system.md) - Type system, TSDoc, error patterns

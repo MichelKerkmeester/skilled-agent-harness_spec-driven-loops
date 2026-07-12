@@ -4,12 +4,12 @@ category: language_standards
 title: 'Shell standards routing'
 expected_intent: SHELL
 expected_resources:
-  - references/shell/style_guide/overview-structure-and-naming.md
-  - references/shell/style_guide/variables-functions-and-output.md
-  - references/shell/quality_standards/overview-and-priority-blockers.md
-  - references/shell/quality_standards/validation-security-and-shellcheck.md
-  - references/shell/quick_reference/template-variables-and-loops.md
-  - references/shell/quick_reference/functions-strings-and-checklist.md
+  - references/shell/style_guide/overview_structure_and_naming.md
+  - references/shell/style_guide/variables_functions_and_output.md
+  - references/shell/quality_standards/overview_and_priority_blockers.md
+  - references/shell/quality_standards/validation_security_and_shellcheck.md
+  - references/shell/quick_reference/template_variables_and_loops.md
+  - references/shell/quick_reference/functions_strings_and_checklist.md
 version: 1.0.0.0
 ---
 

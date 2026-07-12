@@ -1,6 +1,11 @@
 ---
 title: tsconfig Baseline & Module Organization
 description: Type system patterns, error handling, documentation, async patterns, and tsconfig baseline for TypeScript files in the OpenCode development environment. — tsconfig Baseline & Module Organization.
+trigger_phrases:
+  - "typescript tsconfig baseline"
+  - "typescript module organization"
+  - "package aware typescript build"
+  - "typescript workspace configuration"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.11
@@ -8,7 +13,25 @@ version: 1.0.0.11
 
 # tsconfig Baseline & Module Organization
 
-## 10. TSCONFIG BASELINE
+Package-aware tsconfig, build, and module-organization guidance for TypeScript workspaces.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines TypeScript compiler baselines, workspace build rules, and module organization across package boundaries.
+
+### When to Use
+
+- Configuring TypeScript packages or workspace overrides
+- Rebuilding TypeScript distribution output
+- Organizing ESM source, exports, and barrel files
+
+---
+
+## 2. TSCONFIG BASELINE
 
 ### Current system-spec-kit package baseline
 
@@ -194,7 +217,7 @@ For typecheck-only runs, call `tsc --noEmit --composite false -p tsconfig.build.
 
 ---
 
-## 11. MODULE ORGANIZATION
+## 3. MODULE ORGANIZATION
 
 ### ES Module Source, Package-Aware Output
 
@@ -243,7 +266,7 @@ export type { SearchResult, SearchOptions } from '../types.js';
 
 ---
 
-## 12. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
-- [style_guide.md](../style_guide/overview-strict-and-naming.md) - Formatting and naming conventions
-- [quick_reference.md](../quick_reference/template-naming-and-types.md) - Copy-paste templates and cheat sheets
+- [style_guide.md](../style_guide/overview_strict_and_naming.md) - Formatting and naming conventions
+- [quick_reference.md](../quick_reference/template_naming_and_types.md) - Copy-paste templates and cheat sheets

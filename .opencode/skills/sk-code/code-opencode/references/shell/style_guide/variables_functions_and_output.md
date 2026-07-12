@@ -1,6 +1,11 @@
 ---
 title: Variables, Conditionals, Args, Functions, Errors & Output
 description: Coding conventions and formatting standards for Bash scripts in the OpenCode development environment. — Variables, Conditionals, Args, Functions, Errors & Output.
+trigger_phrases:
+  - "bash variable handling"
+  - "shell conditional expressions"
+  - "bash function conventions"
+  - "shell output formatting"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.14
@@ -8,7 +13,25 @@ version: 1.0.0.14
 
 # Variables, Conditionals, Args, Functions, Errors & Output
 
-## 6. VARIABLE HANDLING
+Variable, conditional, argument, function, error, and output conventions for Bash scripts.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines detailed Bash conventions for data handling, control flow, functions, errors, and output.
+
+### When to Use
+
+- Implementing Bash variables, conditions, or argument parsing
+- Writing reusable shell functions and error handling
+- Standardizing command-line and JSON output
+
+---
+
+## 2. VARIABLE HANDLING
 
 ### Always Quote Variables
 
@@ -61,7 +84,7 @@ This example is illustrative; no current system-spec-kit script uses this exact 
 
 ---
 
-## 7. CONDITIONAL EXPRESSIONS
+## 3. CONDITIONAL EXPRESSIONS
 
 ### Use [[ ]] for Tests
 
@@ -108,7 +131,7 @@ if [[ -x "$path" ]]; then   # Is executable
 
 ---
 
-## 8. ARGUMENT PARSING
+## 4. ARGUMENT PARSING
 
 ### Simple Arguments
 
@@ -174,7 +197,7 @@ done
 
 ---
 
-## 9. FUNCTIONS
+## 5. FUNCTIONS
 
 ### Function Definition
 
@@ -221,7 +244,7 @@ validate() {
 
 ---
 
-## 10. ERROR HANDLING
+## 6. ERROR HANDLING
 
 ### Exit on Error
 
@@ -257,7 +280,7 @@ printf "${RED}ERROR:${NC} %s\n" "$message" >&2
 
 ---
 
-## 11. OUTPUT FORMATTING
+## 7. OUTPUT FORMATTING
 
 ### Printf vs Echo
 
@@ -286,11 +309,11 @@ fi
 
 ---
 
-## 12. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Internal References
-- [quality_standards.md](../quality_standards/overview-and-priority-blockers.md) - Quality requirements
-- [quick_reference.md](../quick_reference/template-variables-and-loops.md) - Quick lookup
+- [quality_standards.md](../quality_standards/overview_and_priority_blockers.md) - Quality requirements
+- [quick_reference.md](../quick_reference/template_variables_and_loops.md) - Quick lookup
 
 ### External Standards
 - [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)

@@ -329,7 +329,7 @@ For formal findings-first review output, use `sk-code`'s code-review mode as the
 
 ### Style Guides
 - [JavaScript Style Guide](../../references/javascript/style_guide.md)
-- [TypeScript Style Guide](../../references/typescript/style_guide/overview-strict-and-naming.md)
+- [TypeScript Style Guide](../../references/typescript/style_guide/overview_strict_and_naming.md)
 - [Python Style Guide](../../references/python/style_guide.md)
-- [Shell Style Guide](../../references/shell/style_guide/overview-structure-and-naming.md)
+- [Shell Style Guide](../../references/shell/style_guide/overview_structure_and_naming.md)
 - [Config Style Guide](../../references/config/style_guide.md)

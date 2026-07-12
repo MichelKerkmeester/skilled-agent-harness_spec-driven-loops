@@ -22,8 +22,14 @@ Fast lookup for Bash scripting patterns, syntax, and common structures in OpenCo
 ### Purpose
 
 Quick-access reference card for Bash patterns. For detailed explanations, see:
-- [style_guide.md](../style_guide/overview-structure-and-naming.md) - Full style documentation
-- [quality_standards.md](../quality_standards/overview-and-priority-blockers.md) - Quality requirements
+- [style_guide.md](../style_guide/overview_structure_and_naming.md) - Full style documentation
+- [quality_standards.md](../quality_standards/overview_and_priority_blockers.md) - Quality requirements
+
+### When to Use
+
+- Starting a Bash script from the standard template
+- Looking up shell naming, variable, conditional, or loop syntax
+- Checking common Bash structures during implementation
 
 ---
 
@@ -286,4 +292,3 @@ done
 ```
 
 ---
-

@@ -23,6 +23,12 @@ Code quality requirements, validation rules, and best practices for Bash scripts
 
 Establishes quality gates and validation criteria that all Bash scripts must meet before being committed or deployed.
 
+### When to Use
+
+- Writing or reviewing Bash scripts
+- Applying shell quality gates before commit
+- Classifying shell quality issues by priority
+
 ### Quality Tiers
 
 | Tier | Requirement Level | Enforcement |
@@ -267,4 +273,3 @@ shellcheck script.sh
 ```
 
 ---
-

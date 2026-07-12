@@ -1,6 +1,11 @@
 ---
 title: Formatting, Imports, Commenting & JS/TS Coexistence
 description: Formatting standards and naming conventions for TypeScript files in the OpenCode development environment. — Formatting, Imports, Commenting & JS/TS Coexistence.
+trigger_phrases:
+  - "typescript formatting rules"
+  - "typescript import ordering"
+  - "typescript commenting rules"
+  - "javascript typescript coexistence"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.17
@@ -8,7 +13,25 @@ version: 1.0.0.17
 
 # Formatting, Imports, Commenting & JS/TS Coexistence
 
-## 6. FORMATTING RULES
+Formatting, import, commenting, and mixed JavaScript/TypeScript guidance for OpenCode packages.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines TypeScript formatting, import, commenting, and JavaScript coexistence conventions.
+
+### When to Use
+
+- Formatting TypeScript or organizing imports
+- Writing durable TypeScript comments and TSDoc
+- Integrating JavaScript modules into TypeScript packages
+
+---
+
+## 2. FORMATTING RULES
 
 ### Indentation
 
@@ -126,7 +149,7 @@ function search(
 
 ---
 
-## 7. IMPORT ORDERING
+## 3. IMPORT ORDERING
 
 ### Four-Group Import Order
 
@@ -185,7 +208,7 @@ export type { SearchResult, SearchOptions } from '../types.js';
 
 ---
 
-## 8. COMMENTING RULES
+## 4. COMMENTING RULES
 
 ### Principles (Same as JavaScript)
 
@@ -250,7 +273,7 @@ function search(query: string): void { }
 
 ---
 
-## 9. MIXED JS/TS COEXISTENCE PATTERNS
+## 5. MIXED JS/TS COEXISTENCE PATTERNS
 
 During the transitional period where the codebase contains both JavaScript and TypeScript files, the following patterns are acceptable.
 
@@ -337,7 +360,7 @@ Set `checkJs: true` only after the majority of JS files have been migrated or ty
 
 ---
 
-## 10. RELATED RESOURCES
+## 6. RELATED RESOURCES
 
-- [quality_standards.md](../quality_standards/overview-and-type-system.md) - Type system, TSDoc, error patterns, tsconfig
-- [quick_reference.md](../quick_reference/template-naming-and-types.md) - Copy-paste templates and cheat sheets
+- [quality_standards.md](../quality_standards/overview_and_type_system.md) - Type system, TSDoc, error patterns, tsconfig
+- [quick_reference.md](../quick_reference/template_naming_and_types.md) - Copy-paste templates and cheat sheets

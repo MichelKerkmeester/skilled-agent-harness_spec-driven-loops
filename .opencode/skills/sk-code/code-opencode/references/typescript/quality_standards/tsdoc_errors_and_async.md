@@ -1,6 +1,11 @@
 ---
 title: TSDoc, Typed Error Classes & Async Patterns
 description: Type system patterns, error handling, documentation, async patterns, and tsconfig baseline for TypeScript files in the OpenCode development environment. — TSDoc, Typed Error Classes & Async Patterns.
+trigger_phrases:
+  - "typescript tsdoc documentation"
+  - "typed error classes"
+  - "typescript async patterns"
+  - "typescript error handling"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.11
@@ -8,7 +13,25 @@ version: 1.0.0.11
 
 # TSDoc, Typed Error Classes & Async Patterns
 
-## 7. TSDOC DOCUMENTATION
+TSDoc, typed-error, and asynchronous programming patterns for TypeScript files.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines TypeScript documentation, typed-error, and async implementation patterns.
+
+### When to Use
+
+- Documenting TypeScript APIs with TSDoc
+- Defining or handling typed errors
+- Implementing concurrent or failure-tolerant async operations
+
+---
+
+## 2. TSDOC DOCUMENTATION
 
 ### TSDoc Format
 
@@ -138,7 +161,7 @@ interface CacheEntry<T> {
 
 ---
 
-## 8. TYPED ERROR CLASSES
+## 3. TYPED ERROR CLASSES
 
 ### Custom Error Pattern
 
@@ -228,7 +251,7 @@ try {
 
 ---
 
-## 9. ASYNC PATTERNS
+## 4. ASYNC PATTERNS
 
 ### Typed Promises
 
@@ -295,4 +318,3 @@ const result = await safeAsync(
 ```
 
 ---
-

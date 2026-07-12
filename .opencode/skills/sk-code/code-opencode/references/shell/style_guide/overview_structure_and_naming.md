@@ -23,6 +23,12 @@ Coding conventions and formatting standards for Bash scripts in the OpenCode dev
 
 Defines consistent styling rules for Bash scripts to ensure reliability, readability, and maintainability across all OpenCode shell scripts.
 
+### When to Use
+
+- Writing or formatting Bash scripts
+- Applying shell structure and naming conventions
+- Reviewing shell comments, logging, and file organization
+
 ### Scope
 
 Applies to all shell files in:
@@ -335,4 +341,3 @@ validate_json() {
 ```
 
 ---
-

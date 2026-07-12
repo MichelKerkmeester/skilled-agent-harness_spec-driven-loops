@@ -263,9 +263,9 @@ readonly MAX_RETRIES=3
 ### Language-Specific References
 
 - `../../javascript/style_guide.md` - JavaScript naming, formatting, headers
-- `../../typescript/style_guide/overview-strict-and-naming.md` - TypeScript naming, types, interfaces, imports
+- `../../typescript/style_guide/overview_strict_and_naming.md` - TypeScript naming, types, interfaces, imports
 - `../../python/style_guide.md` - Python naming, docstrings, imports
-- `../../shell/style_guide/overview-structure-and-naming.md` - Shell shebang, quoting, functions
+- `../../shell/style_guide/overview_structure_and_naming.md` - Shell shebang, quoting, functions
 - `../rust/style_guide/` - Rust naming, boundary API, error style, module layout (split into topic parts)
 - `../../config/style_guide.md` - JSON/JSONC structure, comments
 

@@ -108,18 +108,18 @@ RESOURCE_MAP = {
     ],
     "JAVASCRIPT": [
         "references/javascript/style_guide.md",
-        "references/javascript/quality_standards/overview-modules-and-docs.md",
-        "references/javascript/quality_standards/security-testing-and-exemptions.md",
+        "references/javascript/quality_standards/overview_modules_and_docs.md",
+        "references/javascript/quality_standards/security_testing_and_exemptions.md",
         "references/javascript/quick_reference.md",
     ],
     "TYPESCRIPT": [
-        "references/typescript/style_guide/overview-strict-and-naming.md",
-        "references/typescript/style_guide/formatting-imports-and-coexistence.md",
-        "references/typescript/quality_standards/overview-and-type-system.md",
-        "references/typescript/quality_standards/tsdoc-errors-and-async.md",
-        "references/typescript/quality_standards/tsconfig-and-modules.md",
-        "references/typescript/quick_reference/template-naming-and-types.md",
-        "references/typescript/quick_reference/imports-errors-and-tsconfig.md",
+        "references/typescript/style_guide/overview_strict_and_naming.md",
+        "references/typescript/style_guide/formatting_imports_and_coexistence.md",
+        "references/typescript/quality_standards/overview_and_type_system.md",
+        "references/typescript/quality_standards/tsdoc_errors_and_async.md",
+        "references/typescript/quality_standards/tsconfig_and_modules.md",
+        "references/typescript/quick_reference/template_naming_and_types.md",
+        "references/typescript/quick_reference/imports_errors_and_tsconfig.md",
     ],
     "PYTHON": [
         "references/python/style_guide.md",
@@ -127,12 +127,12 @@ RESOURCE_MAP = {
         "references/python/quick_reference.md",
     ],
     "SHELL": [
-        "references/shell/style_guide/overview-structure-and-naming.md",
-        "references/shell/style_guide/variables-functions-and-output.md",
-        "references/shell/quality_standards/overview-and-priority-blockers.md",
-        "references/shell/quality_standards/validation-security-and-shellcheck.md",
-        "references/shell/quick_reference/template-variables-and-loops.md",
-        "references/shell/quick_reference/functions-strings-and-checklist.md",
+        "references/shell/style_guide/overview_structure_and_naming.md",
+        "references/shell/style_guide/variables_functions_and_output.md",
+        "references/shell/quality_standards/overview_and_priority_blockers.md",
+        "references/shell/quality_standards/validation_security_and_shellcheck.md",
+        "references/shell/quick_reference/template_variables_and_loops.md",
+        "references/shell/quick_reference/functions_strings_and_checklist.md",
     ],
     "RUST": [
         "references/rust/style_guide/overview-and-file-header.md",
@@ -158,7 +158,7 @@ RESOURCE_MAP = {
 
 ## 3. SURFACE STANDARDS (the non-negotiables)
 
-- **Plugins never write to the TUI.** OpenCode plugins must not print to the process stdout/stderr (no overlay on the chat input); user/agent-visible output goes through system-context injection, tools, or append-only log files; DEBUG-gated stderr is allowed only behind an env flag. See `references/javascript/quality_standards/overview-modules-and-docs.md` and the plugin exemption tier.
+- **Plugins never write to the TUI.** OpenCode plugins must not print to the process stdout/stderr (no overlay on the chat input); user/agent-visible output goes through system-context injection, tools, or append-only log files; DEBUG-gated stderr is allowed only behind an env flag. See `references/javascript/quality_standards/overview_modules_and_docs.md` and the plugin exemption tier.
 - **Descriptors are load-bearing.** `graph-metadata.json` / `description.json` shape drives discovery; validate JSON/JSONC against `references/config/quality_standards.md`.
 - **Alignment drift is a verification gate.** System-code changes re-run the alignment verifier (`references/shared/alignment_verification_automation.md`) before any completion claim.
 - **Rust preserves the TypeScript contract.** Rust napi-rs, WASM/WASI, and sidecar modules are compatibility implementations, not independent behavior authorities. JS-visible bytes, six-decimal numeric behavior, comparator tie-breaks, deterministic IDs, collection order, DTOs, and error shapes must remain identical to the TypeScript oracle.

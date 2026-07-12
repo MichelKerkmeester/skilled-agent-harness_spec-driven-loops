@@ -455,5 +455,5 @@ const logger = require('../utils/logger');
 
 ## 9. RELATED RESOURCES
 
-- [quality_standards.md](quality_standards/overview-modules-and-docs.md) - Error handling, JSDoc, security patterns
+- [quality_standards.md](quality_standards/overview_modules_and_docs.md) - Error handling, JSDoc, security patterns
 - [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets

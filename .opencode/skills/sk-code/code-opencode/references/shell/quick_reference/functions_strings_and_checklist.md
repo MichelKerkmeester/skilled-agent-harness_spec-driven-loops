@@ -1,6 +1,11 @@
 ---
 title: Functions, Args, Strings, Common Patterns & Checklist
 description: Fast lookup for Bash scripting patterns, syntax, and common structures in OpenCode. — Functions, Args, Strings, Common Patterns & Checklist.
+trigger_phrases:
+  - "bash function patterns"
+  - "shell argument parsing"
+  - "bash string operations"
+  - "shell quality checklist"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.10
@@ -8,7 +13,25 @@ version: 1.0.0.10
 
 # Functions, Args, Strings, Common Patterns & Checklist
 
-## 7. FUNCTIONS
+Function, argument, string, and checklist patterns for Bash scripting in OpenCode.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides quick-reference patterns for Bash functions, arguments, strings, common operations, and quality checks.
+
+### When to Use
+
+- Implementing Bash functions or argument parsing
+- Looking up shell string and process-substitution syntax
+- Running a concise shell quality check
+
+---
+
+## 2. FUNCTIONS
 
 ### Definition
 
@@ -52,7 +75,7 @@ value=$(get_value)
 
 ---
 
-## 8. ARGUMENT PARSING
+## 3. ARGUMENT PARSING
 
 ### Simple Positional
 
@@ -104,7 +127,7 @@ done
 
 ---
 
-## 9. STRING OPERATIONS
+## 4. STRING OPERATIONS
 
 ### Substitution
 
@@ -139,7 +162,7 @@ echo "${file##*.}"        # txt (extension)
 
 ---
 
-## 10. COMMON PATTERNS
+## 5. COMMON PATTERNS
 
 ### Safe Temp Files
 
@@ -189,7 +212,7 @@ EOF
 
 ---
 
-## 11. QUALITY CHECKLIST
+## 6. QUALITY CHECKLIST
 
 ```markdown
 P0 - Must Fix:
@@ -215,8 +238,8 @@ P2 - Recommended:
 
 ---
 
-## 12. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
-- [style_guide.md](../style_guide/overview-structure-and-naming.md) - Detailed style documentation
-- [quality_standards.md](../quality_standards/overview-and-priority-blockers.md) - Quality requirements
+- [style_guide.md](../style_guide/overview_structure_and_naming.md) - Detailed style documentation
+- [quality_standards.md](../quality_standards/overview_and_priority_blockers.md) - Quality requirements
 - [ShellCheck](https://www.shellcheck.net/) - Static analysis

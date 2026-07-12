@@ -22,12 +22,18 @@ Copy-paste templates, naming cheat sheet, and common patterns for TypeScript dev
 ### Purpose
 
 Quick-access reference card for TypeScript patterns. For detailed explanations, see:
-- [style_guide.md](../style_guide/overview-strict-and-naming.md) - Full style documentation
-- [quality_standards.md](../quality_standards/overview-and-type-system.md) - Quality requirements
+- [style_guide.md](../style_guide/overview_strict_and_naming.md) - Full style documentation
+- [quality_standards.md](../quality_standards/overview_and_type_system.md) - Quality requirements
 
 Current system-spec-kit TypeScript is package-aware: `shared/` and
 `mcp_server/` use NodeNext ESM, `scripts/` uses ES2022 ESM, and root CommonJS
 settings are only fallback defaults for workspaces that do not override them.
+
+### When to Use
+
+- Starting a TypeScript file from the standard template
+- Looking up naming or type-annotation conventions
+- Reusing common TypeScript utility-type patterns
 
 ---
 
@@ -272,4 +278,3 @@ type SearchReturn = ReturnType<typeof searchMemories>;
 ```
 
 ---
-

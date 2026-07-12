@@ -1,6 +1,11 @@
 ---
 title: Validation, Errors, Output, Security, Review & ShellCheck
 description: Code quality requirements, validation rules, and best practices for Bash scripts in the OpenCode development environment. — Validation, Errors, Output, Security, Review & ShellCheck.
+trigger_phrases:
+  - "shell validation patterns"
+  - "bash error handling"
+  - "shell security considerations"
+  - "shellcheck integration"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.15
@@ -8,7 +13,25 @@ version: 1.0.0.15
 
 # Validation, Errors, Output, Security, Review & ShellCheck
 
-## 5. VALIDATION PATTERNS
+Validation, error handling, output, security, review, and ShellCheck guidance for Bash scripts.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines operational validation, error, output, security, review, and static-analysis patterns for shell scripts.
+
+### When to Use
+
+- Validating Bash script inputs and file operations
+- Implementing shell error handling, output, or security controls
+- Preparing shell code for review or ShellCheck
+
+---
+
+## 2. VALIDATION PATTERNS
 
 ### Input Validation Pattern
 
@@ -81,7 +104,7 @@ main "$@"
 
 ---
 
-## 6. ERROR HANDLING
+## 3. ERROR HANDLING
 
 ### Exit Code Standards
 
@@ -126,7 +149,7 @@ TEMP_FILES+=("$TEMP_FILE")
 
 ---
 
-## 7. OUTPUT STANDARDS
+## 4. OUTPUT STANDARDS
 
 ### Message Format
 
@@ -174,7 +197,7 @@ printf "\rProgress: %d%%" "$((i * 100 / total))"
 
 ---
 
-## 8. SECURITY CONSIDERATIONS
+## 5. SECURITY CONSIDERATIONS
 
 ### Avoid eval
 
@@ -215,7 +238,7 @@ fi
 
 ---
 
-## 9. REVIEW HANDOFF (SK-CODE CODE-REVIEW MODE BASELINE)
+## 6. REVIEW HANDOFF (SK-CODE CODE-REVIEW MODE BASELINE)
 
 Use `sk-code`'s code-review mode for formal findings-first review output and severity handling. Keep this file focused on shell technical standards.
 
@@ -227,7 +250,7 @@ For review runs:
 
 ---
 
-## 10. SHELLCHECK INTEGRATION
+## 7. SHELLCHECK INTEGRATION
 
 ### Running ShellCheck
 
@@ -267,11 +290,11 @@ problematic_function() {
 
 ---
 
-## 11. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Internal References
-- [style_guide.md](../style_guide/overview-structure-and-naming.md) - Formatting and conventions
-- [quick_reference.md](../quick_reference/template-variables-and-loops.md) - Quick lookup
+- [style_guide.md](../style_guide/overview_structure_and_naming.md) - Formatting and conventions
+- [quick_reference.md](../quick_reference/template_variables_and_loops.md) - Quick lookup
 
 ### External Tools
 - [ShellCheck](https://www.shellcheck.net/) - Static analysis
