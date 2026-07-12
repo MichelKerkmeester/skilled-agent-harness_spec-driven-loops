@@ -39,7 +39,7 @@ Claude Code hooks are registered in `.claude/settings.local.json`. Under the nor
 }
 ```
 
-Copilot registration is owned by the Copilot-local README at `mcp_server/hooks/copilot/README.md`. Copilot does not use the Claude Code `.claude/settings.local.json` nested hook block and must not add top-level `type`, `bash`, or `timeoutSec` wrapper fields there. The current Copilot path runs Copilot-supported writer scripts, including the checked-in `.github/hooks/superset_notify.json` wrapper where available, and refreshes the managed custom-instructions block for the next prompt. Copilot advisor freshness is NEXT-PROMPT: the current prompt sees the PRIOR turn's brief.
+Copilot registration is owned by the Copilot-local README at `mcp_server/hooks/copilot/README.md`. Copilot does not use the Claude Code `.claude/settings.local.json` nested hook block and must not add top-level `type`, `bash`, or `timeoutSec` wrapper fields there. The current Copilot path runs Copilot-supported writer scripts and refreshes the managed custom-instructions block for the next prompt. Copilot advisor freshness is NEXT-PROMPT: the current prompt sees the PRIOR turn's brief.
 
 OpenCode registration is owned by the user/workspace OpenCode runtime config, not by the repo template alone. The checked-in `.opencode/settings.json` is an example hook template for the project commands. Live native OpenCode readiness requires `[features].opencode_hooks = true` in `~/opencode.json` or an equivalent `--enable opencode_hooks` launch flag, plus `~/.opencode/hooks.json` or workspace `hooks.json` registration for the compiled Spec Kit hooks.
 

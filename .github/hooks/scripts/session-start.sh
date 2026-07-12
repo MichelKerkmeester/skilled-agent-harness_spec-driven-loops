@@ -18,7 +18,3 @@ else
   printf '%s\n' ''
   printf '%s\n' 'Note: this is a startup snapshot; later structural reads may differ if the repo state changed.'
 fi
-
-if [ -x "/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh" ]; then
-  /Users/michelkerkmeester/.superset/hooks/copilot-hook.sh sessionStart < "$INPUT_FILE" >/dev/null 2>/dev/null || true
-fi

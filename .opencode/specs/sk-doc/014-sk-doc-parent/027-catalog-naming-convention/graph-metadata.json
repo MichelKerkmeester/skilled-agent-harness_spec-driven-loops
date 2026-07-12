@@ -6,7 +6,8 @@
   "children_ids": [
     "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix",
     "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames",
-    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files"
+    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files",
+    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge"
   ],
   "manual": {
     "depends_on": [],
@@ -57,7 +58,7 @@
       "spec.md",
       "003-underscore-content-folders-and-files/spec.md"
     ],
-    "last_active_child_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files",
+    "last_active_child_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge",
     "last_active_at": "2026-07-12T00:00:00.000Z"
   }
 }

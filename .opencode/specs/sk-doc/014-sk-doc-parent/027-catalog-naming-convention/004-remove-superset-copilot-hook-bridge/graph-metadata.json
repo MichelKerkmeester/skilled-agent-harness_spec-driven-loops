@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge",
+  "spec_folder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge",
+  "parent_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remove superset hook",
+      "decommission copilot hook bridge",
+      "superset-notify removal",
+      "delete superset subsystem",
+      "copilot hook parity teardown",
+      "superset removal plan",
+      "copilot hook bridge teardown",
+      "remove superset-notify",
+      "decommission superset",
+      "superset removal tasks",
+      "copilot hook bridge tasks",
+      "remove superset-notify tasks"
+    ],
+    "key_topics": [
+      "remove",
+      "superset",
+      "hook",
+      "decommission",
+      "copilot",
+      "bridge",
+      "superset-notify",
+      "removal",
+      "delete",
+      "subsystem",
+      "parity",
+      "teardown"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".github/hooks/scripts/session-start.sh",
+      ".github/hooks/scripts/user-prompt-submitted.sh",
+      ".claude/settings.json",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/stress_test/skill-advisor/hooks-parity-stress.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "session-start.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/session-start.sh",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submitted.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/user-prompt-submitted.sh",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks-parity-stress.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/stress_test/skill-advisor/hooks-parity-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Copilot Hook Bridge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Strip",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Removal Approach The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Component Disposition",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo checks in a bridge that forwards GitHub-Copilot hook lifecycle events (`sessionStart`, `sessionEnd`,",
+    "created_at": "2026-07-12T00:00:00.000Z",
+    "last_save_at": "2026-07-12T11:08:14.520Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d424649fc17ade8ab05cb3a69a4b059e25c1e1a2d213b8bd6190b9a8b4d75906",
+    "source_doc_hashes": {
+      "spec.md": "fcff45cce840ba6f462e65319866d06f2b2cfe46f7cbd918ead7694d519bc8be",
+      "plan.md": "6803985fc239a59190290a1b094ae35fe77cac1794bace26b5108861b6dd0c68",
+      "tasks.md": "afded6fe4e89ddcef88ad0f757497717ff01de674afed299f175c97b88266bde",
+      "checklist.md": "fbd8691aabd53ce8ab3cea55d68d26493822d321ec9187a4b0bac1ff02672586",
+      "implementation-summary.md": "65b14d206345599dde9fb119f97fb46f3463fa50e6a1717ac609c50aa2be9c4d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

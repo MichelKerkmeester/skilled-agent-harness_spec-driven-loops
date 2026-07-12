@@ -92,6 +92,9 @@ the historical record of how the convention got here.
 | **001** | re-nested from top-level 025 | De-numbered category folders (`NN--` prefix removed). COMPLETE; re-nested + metadata reconciled. |
 | **002** | re-nested from top-level 026 | De-numbered snippet filenames (`NNN-` prefix removed). COMPLETE; re-nested + metadata reconciled. |
 | **003** | new | Hyphen->underscore restyle of all in-scope content folders AND per-feature files, with convention docs, guard, migration tooling, execution, and re-benchmark. See `003-underscore-content-folders-and-files/spec.md`. |
+| **004** | folded in (operator directive) | Decommission of the checked-in Superset/Copilot hook bridge — NOT a naming-convention debt; grouped here at operator request. 6 deletes + 6 surgical edits + local-config purge, spec-kit Copilot priming preserved. See `004-remove-superset-copilot-hook-bridge/spec.md`. |
+
+> Note: child 004 is unrelated to catalog/playbook naming; it was folded into this parent solely at operator direction to keep the active workstream together. Its scope, risks, and evidence live entirely in its own docs.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:success-criteria -->
