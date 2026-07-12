@@ -46,7 +46,7 @@ Schema validation rejects malformed tool calls before handler execution for regi
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/mcp-tool-surface/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/mcp_tool_surface/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
 ## 4. SOURCE METADATA
 
@@ -56,5 +56,5 @@ Schema validation rejects malformed tool calls before handler execution for regi
 
 Related references:
 
-- [../read-path-freshness/query-self-heal.md](../read-path-freshness/query-self-heal.md)
-- [../../manual_testing_playbook/mcp-tool-surface/tool-call-shape-validation.md](../../manual_testing_playbook/mcp-tool-surface/tool-call-shape-validation.md)
+- [../read-path-freshness/query-self-heal.md](../read_path_freshness/query_self_heal.md)
+- [../../manual_testing_playbook/mcp_tool_surface/tool_call_shape_validation.md](../../manual_testing_playbook/mcp_tool_surface/tool_call_shape_validation.md)

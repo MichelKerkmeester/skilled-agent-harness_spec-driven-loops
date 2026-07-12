@@ -73,7 +73,7 @@ Count drift means the manifest no longer tracks `CODE_GRAPH_TOOL_SCHEMAS` — ru
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/mcp-tool-surface/code-index-cli.md` | Feature-catalog source for the CLI fallback surface |
+| `../../feature_catalog/mcp_tool_surface/code_index_cli.md` | Feature-catalog source for the CLI fallback surface |
 
 ### Implementation And Test Anchors
 

@@ -46,7 +46,7 @@ Requires `specFolder`, `loopType` and `sessionId`. Reads are session-scoped.
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/coverage-graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/coverage_graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
 ## 4. SOURCE METADATA
 
@@ -56,5 +56,5 @@ Requires `specFolder`, `loopType` and `sessionId`. Reads are session-scoped.
 
 Related references:
 
-- [02-deep-loop-graph-status.md](./deep-loop-graph-status.md)
-- [03-deep-loop-graph-upsert.md](./deep-loop-graph-upsert.md)
+- [02-deep-loop-graph-status.md](../coverage_graph/deep_loop_graph_status.md)
+- [03-deep-loop-graph-upsert.md](../coverage_graph/deep_loop_graph_upsert.md)

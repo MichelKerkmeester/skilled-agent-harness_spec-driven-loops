@@ -20,7 +20,7 @@ The reindex writer is bitemporal. When the default-off `SPECKIT_CODE_GRAPH_EDGE_
 
 Edge storage carries an optional closed-vocabulary guard. The default-off `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB` flag applies the governance-vocabulary edge classification at database init: it backfills any out-of-vocabulary `edge_type` values, then rebuilds the `code_edges` table with a `CHECK` constraint that admits only the known edge-type vocabulary, so a later write of an unrecognized edge type is rejected at the storage layer. With the flag off the constraint is absent and the edge surface accepts any `edge_type`.
 
-The scan response's edge-enrichment summary reads the same default-off `SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION` flag documented for the write path in [`../edge-confidence-and-provenance/edge-confidence-differentiation.md`](../edge-confidence-and-provenance/edge-confidence-differentiation.md). `summarizeGraphEdgeEnrichment()` classifies each scanned `CALLS` edge's `evidenceClass` (treating `AMBIGUOUS` as weak evidence alongside `INFERRED`) and substitutes the legacy uniform `0.8/INFERRED/heuristic` tier for `CALLS` edges specifically while the flag is off, mirroring the same fix applied to `code_graph_query` and `code_graph_context` output. Every other edge type resolves its own constant confidence by construction and is unaffected either way. See [`../edge-confidence-and-provenance/edge-evidence-classification.md`](../edge-confidence-and-provenance/edge-evidence-classification.md) for the full shared read-path contract.
+The scan response's edge-enrichment summary reads the same default-off `SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION` flag documented for the write path in [`../edge-confidence-and-provenance/edge-confidence-differentiation.md`](../edge_confidence_and_provenance/edge_confidence_differentiation.md). `summarizeGraphEdgeEnrichment()` classifies each scanned `CALLS` edge's `evidenceClass` (treating `AMBIGUOUS` as weak evidence alongside `INFERRED`) and substitutes the legacy uniform `0.8/INFERRED/heuristic` tier for `CALLS` edges specifically while the flag is off, mirroring the same fix applied to `code_graph_query` and `code_graph_context` output. Every other edge type resolves its own constant confidence by construction and is unaffected either way. See [`../edge-confidence-and-provenance/edge-evidence-classification.md`](../edge_confidence_and_provenance/edge_evidence_classification.md) for the full shared read-path contract.
 
 ## 2. HOW IT WORKS
 
@@ -54,7 +54,7 @@ Run full scans in a disposable workspace for destructive exclude/prune checks. `
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/manual-scan-verify-status/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/manual_scan_verify_status/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts` | Automated test | AMBIGUOUS-CALLS-edge classified as `inferred_heuristic` in the edge-enrichment summary |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-cross-file-edges.vitest.ts` | Automated test | cross-file `0.75/INFERRED` and `0.3/AMBIGUOUS` confidence-tier writes surfaced by the summary |
 
@@ -66,8 +66,8 @@ Run full scans in a disposable workspace for destructive exclude/prune checks. `
 
 Related references:
 
-- [02-code-graph-verify.md](./code-graph-verify.md)
-- [03-code-graph-status.md](./code-graph-status.md)
-- [../edge-confidence-and-provenance/edge-confidence-differentiation.md](../edge-confidence-and-provenance/edge-confidence-differentiation.md)
-- [../edge-confidence-and-provenance/edge-evidence-classification.md](../edge-confidence-and-provenance/edge-evidence-classification.md)
-- [../../manual_testing_playbook/manual-scan-verify-status/code-graph-scan-incremental.md](../../manual_testing_playbook/manual-scan-verify-status/code-graph-scan-incremental.md)
+- [02-code-graph-verify.md](../manual_scan_verify_status/code_graph_verify.md)
+- [03-code-graph-status.md](../manual_scan_verify_status/code_graph_status.md)
+- [../edge-confidence-and-provenance/edge-confidence-differentiation.md](../edge_confidence_and_provenance/edge_confidence_differentiation.md)
+- [../edge-confidence-and-provenance/edge-evidence-classification.md](../edge_confidence_and_provenance/edge_evidence_classification.md)
+- [../../manual_testing_playbook/manual_scan_verify_status/code_graph_scan_incremental.md](../../manual_testing_playbook/manual_scan_verify_status/code_graph_scan_incremental.md)

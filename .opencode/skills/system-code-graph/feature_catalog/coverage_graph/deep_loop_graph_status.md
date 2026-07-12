@@ -46,7 +46,7 @@ Empty graphs return zero counts and null signals. Use upsert-enabled deep loops 
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/coverage-graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/coverage_graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
 ## 4. SOURCE METADATA
 
@@ -56,5 +56,5 @@ Empty graphs return zero counts and null signals. Use upsert-enabled deep loops 
 
 Related references:
 
-- [01-deep-loop-graph-query.md](./deep-loop-graph-query.md)
-- [04-deep-loop-graph-convergence.md](./deep-loop-graph-convergence.md)
+- [01-deep-loop-graph-query.md](../coverage_graph/deep_loop_graph_query.md)
+- [04-deep-loop-graph-convergence.md](../coverage_graph/deep_loop_graph_convergence.md)

@@ -26,14 +26,14 @@ The catalog covers 18 runtime features across 8 groups. Per-feature files carry 
 
 | Group | Count | Scope |
 | --- | ---: | --- |
-| [read-path-freshness](./read-path-freshness/) | 2 | Read-path freshness |
-| [manual-scan-verify-status](./manual-scan-verify-status/) | 3 | Manual scan / verify / status |
-| [detect-changes](./detect-changes/) | 1 | Detect-changes preflight |
-| [context-retrieval](./context-retrieval/) | 2 | Context retrieval |
-| [coverage-graph](./coverage-graph/) | 4 | Coverage graph |
-| [mcp-tool-surface](./mcp-tool-surface/) | 2 | Tool surface (MCP registration + daemon-backed CLI) |
-| [doctor-code-graph](./doctor-code-graph/) | 1 | Doctor code graph |
-| [edge-confidence-and-provenance](./edge-confidence-and-provenance/) | 3 | Edge confidence and provenance |
+| [read-path-freshness](./read_path_freshness/) | 2 | Read-path freshness |
+| [manual-scan-verify-status](./manual_scan_verify_status/) | 3 | Manual scan / verify / status |
+| [detect-changes](./detect_changes/) | 1 | Detect-changes preflight |
+| [context-retrieval](./context_retrieval/) | 2 | Context retrieval |
+| [coverage-graph](./coverage_graph/) | 4 | Coverage graph |
+| [mcp-tool-surface](./mcp_tool_surface/) | 2 | Tool surface (MCP registration + daemon-backed CLI) |
+| [doctor-code-graph](./doctor_code_graph/) | 1 | Doctor code graph |
+| [edge-confidence-and-provenance](./edge_confidence_and_provenance/) | 3 | Edge confidence and provenance |
 
 Reality classification source: read-path freshness is half-auto because requested reads can run bounded repair, full scan/verify/status are manual, deep-loop convergence runs automatically inside command YAML, deep-loop upsert is conditional and deep-loop query/status are manual. Edge confidence differentiation and edge evidence classification are manual write/read-time flag checks that only run inside a dispatched `code_graph_scan`/`code_graph_query`/`code_graph_context` call; seeded-PPR impact ranking is likewise manual, default-off, and its own benchmark verdict (CUT stands) means catalog presence documents tested code, not a shipping recommendation.
 
@@ -53,7 +53,7 @@ Half-auto (class: half). Code graph freshness checks happen after a read invocat
 
 #### Source Files
 
-See [`read-path-freshness/ensure-code-graph-ready.md`](read-path-freshness/ensure-code-graph-ready.md) for full implementation and source paths.
+See [`read-path-freshness/ensure-code-graph-ready.md`](read_path_freshness/ensure_code_graph_ready.md) for full implementation and source paths.
 
 ---
 
@@ -69,7 +69,7 @@ Half-auto (class: half). Self-heal runs only inside a requested `code_graph_quer
 
 #### Source Files
 
-See [`read-path-freshness/query-self-heal.md`](read-path-freshness/query-self-heal.md) for full implementation and source paths.
+See [`read-path-freshness/query-self-heal.md`](read_path_freshness/query_self_heal.md) for full implementation and source paths.
 
 ---
 
@@ -87,7 +87,7 @@ Manual (class: manual). Read paths may recommend it but do not run a broad full 
 
 #### Source Files
 
-See [`manual-scan-verify-status/code-graph-scan.md`](manual-scan-verify-status/code-graph-scan.md) for full implementation and source paths.
+See [`manual-scan-verify-status/code-graph-scan.md`](manual_scan_verify_status/code_graph_scan.md) for full implementation and source paths.
 
 ---
 
@@ -103,7 +103,7 @@ Manual (class: manual). Runs as an explicit MCP maintenance call or optional ver
 
 #### Source Files
 
-See [`manual-scan-verify-status/code-graph-verify.md`](manual-scan-verify-status/code-graph-verify.md) for full implementation and source paths.
+See [`manual-scan-verify-status/code-graph-verify.md`](manual_scan_verify_status/code_graph_verify.md) for full implementation and source paths.
 
 ---
 
@@ -119,7 +119,7 @@ Manual diagnostic (class: manual). Uses a read-only readiness snapshot so status
 
 #### Source Files
 
-See [`manual-scan-verify-status/code-graph-status.md`](manual-scan-verify-status/code-graph-status.md) for full implementation and source paths.
+See [`manual-scan-verify-status/code-graph-status.md`](manual_scan_verify_status/code_graph_status.md) for full implementation and source paths.
 
 ---
 
@@ -137,7 +137,7 @@ Manual (class: manual). Passes `allowInlineIndex:false` so it never silently ind
 
 #### Source Files
 
-See [`detect-changes/detect-changes-preflight.md`](detect-changes/detect-changes-preflight.md) for full implementation and source paths.
+See [`detect-changes/detect-changes-preflight.md`](detect_changes/detect_changes_preflight.md) for full implementation and source paths.
 
 ---
 
@@ -155,7 +155,7 @@ Half-auto (class: half). The tool self-checks readiness on invocation but no amb
 
 #### Source Files
 
-See [`context-retrieval/code-graph-context.md`](context-retrieval/code-graph-context.md) for full implementation and source paths.
+See [`context-retrieval/code-graph-context.md`](context_retrieval/code_graph_context.md) for full implementation and source paths.
 
 ---
 
@@ -171,7 +171,7 @@ Half-auto (class: half). Only triggered through `code_graph_context` dispatch. C
 
 #### Source Files
 
-See [`context-retrieval/context-handler.md`](context-retrieval/context-handler.md) for full implementation and source paths.
+See [`context-retrieval/context-handler.md`](context_retrieval/context_handler.md) for full implementation and source paths.
 
 ---
 
@@ -191,7 +191,7 @@ Manual (class: manual). Direct `.cjs` invocation: `node .opencode/skills/system-
 
 #### Source Files
 
-See [`coverage-graph/deep-loop-graph-query.md`](coverage-graph/deep-loop-graph-query.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` (replaced MCP tool in arc 118).
+See [`coverage-graph/deep-loop-graph-query.md`](coverage_graph/deep_loop_graph_query.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -207,7 +207,7 @@ Manual (class: manual). Direct `.cjs` invocation: `node .opencode/skills/system-
 
 #### Source Files
 
-See [`coverage-graph/deep-loop-graph-status.md`](coverage-graph/deep-loop-graph-status.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs` (replaced MCP tool in arc 118).
+See [`coverage-graph/deep-loop-graph-status.md`](coverage_graph/deep_loop_graph_status.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -223,7 +223,7 @@ Half-auto (class: half). Command-owned deep-research/deep-review YAML calls `nod
 
 #### Source Files
 
-See [`coverage-graph/deep-loop-graph-upsert.md`](coverage-graph/deep-loop-graph-upsert.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` (replaced MCP tool in arc 118).
+See [`coverage-graph/deep-loop-graph-upsert.md`](coverage_graph/deep_loop_graph_upsert.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -239,7 +239,7 @@ Auto inside command workflows (class: auto). deep-research and deep-review YAML 
 
 #### Source Files
 
-See [`coverage-graph/deep-loop-graph-convergence.md`](coverage-graph/deep-loop-graph-convergence.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` (replaced MCP tool in arc 118).
+See [`coverage-graph/deep-loop-graph-convergence.md`](coverage_graph/deep_loop_graph_convergence.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -257,7 +257,7 @@ Manual (class: manual). Tool registration is availability, not automation. Schem
 
 #### Source Files
 
-See [`mcp-tool-surface/tool-registrations.md`](mcp-tool-surface/tool-registrations.md) for full implementation and source paths.
+See [`mcp-tool-surface/tool-registrations.md`](mcp_tool_surface/tool_registrations.md) for full implementation and source paths.
 
 ---
 
@@ -273,7 +273,7 @@ Manual (class: manual). The shim guards stale dist with exit 69 (`SPECKIT_CODE_I
 
 #### Source Files
 
-See [`mcp-tool-surface/code-index-cli.md`](mcp-tool-surface/code-index-cli.md) for full implementation and source paths.
+See [`mcp-tool-surface/code-index-cli.md`](mcp_tool_surface/code_index_cli.md) for full implementation and source paths.
 
 ---
 
@@ -291,7 +291,7 @@ Manual (class: manual). Triggered by slash command `/doctor code-graph` with fla
 
 #### Source Files
 
-See [`doctor-code-graph/doctor-apply-mode.md`](doctor-code-graph/doctor-apply-mode.md) for full implementation and source paths.
+See [`doctor-code-graph/doctor-apply-mode.md`](doctor_code_graph/doctor_apply_mode.md) for full implementation and source paths.
 
 ---
 
@@ -309,7 +309,7 @@ Manual (class: manual). The flag is a write-time check inside `code_graph_scan`;
 
 #### Source Files
 
-See [`edge-confidence-and-provenance/edge-confidence-differentiation.md`](edge-confidence-and-provenance/edge-confidence-differentiation.md) for full implementation and source paths.
+See [`edge-confidence-and-provenance/edge-confidence-differentiation.md`](edge_confidence_and_provenance/edge_confidence_differentiation.md) for full implementation and source paths.
 
 ---
 
@@ -325,7 +325,7 @@ Manual (class: manual). Classification runs inline inside each handler's respons
 
 #### Source Files
 
-See [`edge-confidence-and-provenance/edge-evidence-classification.md`](edge-confidence-and-provenance/edge-evidence-classification.md) for full implementation and source paths.
+See [`edge-confidence-and-provenance/edge-evidence-classification.md`](edge_confidence_and_provenance/edge_evidence_classification.md) for full implementation and source paths.
 
 ---
 
@@ -341,4 +341,4 @@ Manual (class: manual). Only triggered through `code_graph_context({queryMode: "
 
 #### Source Files
 
-See [`edge-confidence-and-provenance/seeded-ppr-impact-ranking.md`](edge-confidence-and-provenance/seeded-ppr-impact-ranking.md) for full implementation and source paths.
+See [`edge-confidence-and-provenance/seeded-ppr-impact-ranking.md`](edge_confidence_and_provenance/seeded_ppr_impact_ranking.md) for full implementation and source paths.

@@ -108,7 +108,7 @@ Inspect `shouldUseSeededPprRanking`, `seededPprRankingEnabled`, `computeBoundedP
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Impact-mode ranking and edge-chain reconstruction: `mcp_server/lib/code-graph-context.ts`
 - Shared weighted-walk module (lazy-loaded, `predecessor` field): `.opencode/skills/system-spec-kit/mcp_server/lib/graph/bfs-traversal.ts`
-- Catalog counterpart: `../../feature_catalog/edge-confidence-and-provenance/seeded-ppr-impact-ranking.md`
+- Catalog counterpart: `../../feature_catalog/edge_confidence_and_provenance/seeded_ppr_impact_ranking.md`
 - Automated test cross-reference: `mcp_server/tests/code-graph-seeded-ppr-ranking.vitest.ts`, `mcp_server/tests/code-graph-seeded-ppr-flag-on-path.vitest.ts`, `mcp_server/tests/code-graph-context-lazy-weighted-walk.vitest.ts`, `mcp_server/tests/weighted-walk-predecessor.vitest.ts`
 - Benchmark verdict rationale: `decision-record.md` in `.opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit/`
 

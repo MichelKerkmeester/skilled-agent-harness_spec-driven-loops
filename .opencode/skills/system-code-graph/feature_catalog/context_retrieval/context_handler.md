@@ -45,7 +45,7 @@ The handler can return partial output under deadline or budget pressure. Check `
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/context-retrieval/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/context_retrieval/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
 ## 4. SOURCE METADATA
 
@@ -55,5 +55,5 @@ The handler can return partial output under deadline or budget pressure. Check `
 
 Related references:
 
-- [01-code-graph-context.md](./code-graph-context.md)
-- [../mcp-tool-surface/tool-registrations.md](../mcp-tool-surface/tool-registrations.md)
+- [01-code-graph-context.md](../context_retrieval/code_graph_context.md)
+- [../mcp-tool-surface/tool-registrations.md](../mcp_tool_surface/tool_registrations.md)

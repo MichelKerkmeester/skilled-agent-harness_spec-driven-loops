@@ -47,7 +47,7 @@ The route manifest is marked `read-only` today. The current YAML keeps Phase A d
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/doctor-code-graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/doctor_code_graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
 ## 4. SOURCE METADATA
 
@@ -57,5 +57,5 @@ The route manifest is marked `read-only` today. The current YAML keeps Phase A d
 
 Related references:
 
-- [../manual-scan-verify-status/code-graph-verify.md](../manual-scan-verify-status/code-graph-verify.md)
-- [../../manual_testing_playbook/doctor-code-graph/doctor-apply-mode-policy.md](../../manual_testing_playbook/doctor-code-graph/doctor-apply-mode-policy.md)
+- [../manual-scan-verify-status/code-graph-verify.md](../manual_scan_verify_status/code_graph_verify.md)
+- [../../manual_testing_playbook/doctor_code_graph/doctor_apply_mode_policy.md](../../manual_testing_playbook/doctor_code_graph/doctor_apply_mode_policy.md)

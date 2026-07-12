@@ -46,7 +46,7 @@ No `graphEvents` means no upsert. The workflow skip is intentional and should no
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/coverage-graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/coverage_graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
 ## 4. SOURCE METADATA
 
@@ -56,5 +56,5 @@ No `graphEvents` means no upsert. The workflow skip is intentional and should no
 
 Related references:
 
-- [04-deep-loop-graph-convergence.md](./deep-loop-graph-convergence.md)
-- [../../manual_testing_playbook/coverage-graph/deep-loop-graph-upsert-conditional.md](../../manual_testing_playbook/coverage-graph/deep-loop-graph-upsert-conditional.md)
+- [04-deep-loop-graph-convergence.md](../coverage_graph/deep_loop_graph_convergence.md)
+- [../../manual_testing_playbook/coverage_graph/deep_loop_graph_upsert_conditional.md](../../manual_testing_playbook/coverage_graph/deep_loop_graph_upsert_conditional.md)

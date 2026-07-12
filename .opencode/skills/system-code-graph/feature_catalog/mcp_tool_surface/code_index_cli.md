@@ -63,6 +63,6 @@ Flag values arrive as strings, so `coerceArgsToSchema` parses number-typed field
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `mcp-tool-surface/code-index-cli.md`
 Related references:
-- [tool-registrations.md](tool-registrations.md) — MCP registration and dispatch surface
-- `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md` — spec-memory CLI sibling surface
+- [tool-registrations.md](../mcp_tool_surface/tool_registrations.md) — MCP registration and dispatch surface
+- `.opencode/skills/system-spec-kit/feature_catalog/tooling_and_scripts/spec_memory_cli_daemon_backed_surface.md` — spec-memory CLI sibling surface
 - Playbook counterparts: scenario 025 in `../../manual_testing_playbook/manual_testing_playbook.md` plus spec-kit playbook scenarios 427, 430, and 437

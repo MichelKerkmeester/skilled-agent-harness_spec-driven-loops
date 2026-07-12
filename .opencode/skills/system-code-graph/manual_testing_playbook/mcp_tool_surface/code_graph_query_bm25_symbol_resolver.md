@@ -122,7 +122,7 @@ Inspect `querySymbolBm25Suggestions` and `buildUnresolvedSubjectError` in `mcp_s
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Handler: `mcp_server/handlers/query.ts`
 - Resolver: `mcp_server/lib/symbol-bm25-resolver.ts`
-- Catalog counterpart: `../../feature_catalog/read-path-freshness/query-self-heal.md`
+- Catalog counterpart: `../../feature_catalog/read_path_freshness/query_self_heal.md`
 
 ---
 

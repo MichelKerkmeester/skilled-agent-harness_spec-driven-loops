@@ -17,7 +17,7 @@ version: 1.3.0.0
 
 `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` is a default-off ranking mode for `code_graph_context`'s `queryMode: "impact"`. Off (the shipping default), impact mode ranks callers/importers with the existing flat weighted-walk ordering. On, it instead ranks candidates by a bounded seeded Personalized PageRank score computed from the anchor symbol, walking `CALLS`/`IMPORTS` edges up to 3 hops.
 
-**This mode is not intended to ship enabled.** It was recovered from git history (it had already been cut once) specifically to re-run its original benchmark against real per-edge confidence gradients from [edge-confidence-differentiation.md](./edge-confidence-differentiation.md). With a genuine confidence gradient in place, PPR no longer ties the flat walk (as it did in the original cut) -- it loses on every metric: precision@3 down 0.10, precision@5 down 0.04-0.06, precision@8 down 0.03-0.04, recall@3 through recall@8 down 0.01-0.05, nDCG@3 down 0.057, nDCG@5 down 0.04, nDCG@8 down 0.03. The best damping value tested (0.5) only ties flat nDCG@5; every other damping value is worse. The CUT verdict stands, and the gap widened. See `.opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md` and `.opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit/implementation-summary.md` for the full re-benchmark record.
+**This mode is not intended to ship enabled.** It was recovered from git history (it had already been cut once) specifically to re-run its original benchmark against real per-edge confidence gradients from [edge-confidence-differentiation.md](../edge_confidence_and_provenance/edge_confidence_differentiation.md). With a genuine confidence gradient in place, PPR no longer ties the flat walk (as it did in the original cut) -- it loses on every metric: precision@3 down 0.10, precision@5 down 0.04-0.06, precision@8 down 0.03-0.04, recall@3 through recall@8 down 0.01-0.05, nDCG@3 down 0.057, nDCG@5 down 0.04, nDCG@8 down 0.03. The best damping value tested (0.5) only ties flat nDCG@5; every other damping value is worse. The CUT verdict stands, and the gap widened. See `.opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md` and `.opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit/implementation-summary.md` for the full re-benchmark record.
 
 ## 2. HOW IT WORKS
 
@@ -31,7 +31,7 @@ manual. Catalog presence documents that the code exists and is tested, not that 
 
 ### Caveats / Fallback
 
-The bounded PPR walker (`computeBoundedPersonalizedPageRank`, shared with the spec-kit memory graph) is lazy-loaded: `code-graph-context.ts` dynamically imports `system-spec-kit/mcp_server/dist/lib/graph/bfs-traversal.js` on first use inside `impact` mode, so the module is not paid for when the flag is off or when `impact` mode is never requested. When `includeTrace:true` is also passed, `why_included[].edgeChain` reconstructs the full multi-hop path from anchor to each ranked candidate (see [../context-retrieval/code-graph-context.md](../context-retrieval/code-graph-context.md)) using the walker's `predecessor` field, not just a single one-hop edge.
+The bounded PPR walker (`computeBoundedPersonalizedPageRank`, shared with the spec-kit memory graph) is lazy-loaded: `code-graph-context.ts` dynamically imports `system-spec-kit/mcp_server/dist/lib/graph/bfs-traversal.js` on first use inside `impact` mode, so the module is not paid for when the flag is off or when `impact` mode is never requested. When `includeTrace:true` is also passed, `why_included[].edgeChain` reconstructs the full multi-hop path from anchor to each ranked candidate (see [../context-retrieval/code-graph-context.md](../context_retrieval/code_graph_context.md)) using the walker's `predecessor` field, not just a single one-hop edge.
 
 ## 3. SOURCE FILES
 
@@ -50,7 +50,7 @@ The bounded PPR walker (`computeBoundedPersonalizedPageRank`, shared with the sp
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/context-retrieval/` | Manual Playbook | Operator-facing manual scenarios for context retrieval, including `impact` mode |
+| `../../manual_testing_playbook/context_retrieval/` | Manual Playbook | Operator-facing manual scenarios for context retrieval, including `impact` mode |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-seeded-ppr-ranking.vitest.ts` | Automated test | seeded-PPR ranking and scoring behavior |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-seeded-ppr-flag-on-path.vitest.ts` | Automated test | flag-on `impact`-mode dispatch path |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-lazy-weighted-walk.vitest.ts` | Automated test | lazy-load behavior of the shared weighted-walk module |
@@ -66,6 +66,6 @@ The bounded PPR walker (`computeBoundedPersonalizedPageRank`, shared with the sp
 
 Related references:
 
-- [edge-confidence-differentiation.md](./edge-confidence-differentiation.md)
-- [edge-evidence-classification.md](./edge-evidence-classification.md)
-- [../context-retrieval/code-graph-context.md](../context-retrieval/code-graph-context.md)
+- [edge-confidence-differentiation.md](../edge_confidence_and_provenance/edge_confidence_differentiation.md)
+- [edge-evidence-classification.md](../edge_confidence_and_provenance/edge_evidence_classification.md)
+- [../context-retrieval/code-graph-context.md](../context_retrieval/code_graph_context.md)

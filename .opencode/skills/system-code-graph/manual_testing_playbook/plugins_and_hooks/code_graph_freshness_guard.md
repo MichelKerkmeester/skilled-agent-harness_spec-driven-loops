@@ -280,7 +280,7 @@ Given this real, live state (`graphFreshness: "empty"`, daemon heartbeat fresh),
 $ node -e 'const core=require("./.opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.cjs"); console.log(JSON.stringify(core.evaluateEdit({ filePath: "src/example.ts", sessionID: "docs-authoring-check", projectDir: process.cwd(), env: process.env })));'
 {"decision":"defer-empty","reason":"graph-empty","warnings":[],"audits":[]}
 
-$ node -e 'const core=require("./.opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.cjs"); console.log(JSON.stringify(core.evaluateEdit({ filePath: ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/code-graph-freshness-guard.md", sessionID: "docs-authoring-check", projectDir: process.cwd(), env: process.env })));'
+$ node -e 'const core=require("./.opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.cjs"); console.log(JSON.stringify(core.evaluateEdit({ filePath: ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins_and_hooks/code_graph_freshness_guard.md", sessionID: "docs-authoring-check", projectDir: process.cwd(), env: process.env })));'
 {"decision":"skip","reason":"excluded-dir:.opencode/skills","warnings":[],"audits":[]}
 ```
 

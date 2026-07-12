@@ -84,7 +84,7 @@ Command 2: Inspect `.opencode/commands/deep/assets/deep_review_auto.yaml` `step_
 Command 3: Optionally run a minimal deep-loop fixture and capture graph_convergence JSONL event.
 
 ```text
-Not run. The fixture step is optional in this scenario, and the session write constraint allows modifying only .opencode/skills/system-code-graph/manual_testing_playbook/coverage-graph/deep-loop-graph-convergence-yaml-fire.md.
+Not run. The fixture step is optional in this scenario, and the session write constraint allows modifying only .opencode/skills/system-code-graph/manual_testing_playbook/coverage_graph/deep_loop_graph_convergence_yaml_fire.md.
 ```
 
 ---

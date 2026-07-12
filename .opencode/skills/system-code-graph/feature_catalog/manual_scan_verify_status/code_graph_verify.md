@@ -45,7 +45,7 @@ The handler refuses stale graphs. Run `code_graph_scan({ incremental:false })` b
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/manual-scan-verify-status/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/manual_scan_verify_status/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
 ## 4. SOURCE METADATA
 
@@ -55,6 +55,6 @@ The handler refuses stale graphs. Run `code_graph_scan({ incremental:false })` b
 
 Related references:
 
-- [01-code-graph-scan.md](./code-graph-scan.md)
-- [../doctor-code-graph/doctor-apply-mode.md](../doctor-code-graph/doctor-apply-mode.md)
-- [../../manual_testing_playbook/manual-scan-verify-status/code-graph-verify-blocked-on-stale.md](../../manual_testing_playbook/manual-scan-verify-status/code-graph-verify-blocked-on-stale.md)
+- [01-code-graph-scan.md](../manual_scan_verify_status/code_graph_scan.md)
+- [../doctor-code-graph/doctor-apply-mode.md](../doctor_code_graph/doctor_apply_mode.md)
+- [../../manual_testing_playbook/manual_scan_verify_status/code_graph_verify_blocked_on_stale.md](../../manual_testing_playbook/manual_scan_verify_status/code_graph_verify_blocked_on_stale.md)

@@ -75,7 +75,7 @@ BANNED OPERATIONS
 - Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
 
 ALLOWED WRITE PATHS
-- .opencode/skills/system-code-graph/manual_testing_playbook/manual-scan-verify-status/code-graph-verify-blocked-on-stale.md (this file only)
+- .opencode/skills/system-code-graph/manual_testing_playbook/manual_scan_verify_status/code_graph_verify_blocked_on_stale.md (this file only)
 ```
 
 The scenario's command step `2. Modify a tracked source file.` cannot be performed without modifying a file outside the only allowed write path. The cleanup command ``rm -rf "$WORK"`` also cannot be run under the same write/delete restriction unless `$WORK` creation and deletion outside the scenario file are permitted.

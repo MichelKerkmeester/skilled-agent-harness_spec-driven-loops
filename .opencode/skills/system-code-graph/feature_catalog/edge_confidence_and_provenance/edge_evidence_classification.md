@@ -31,7 +31,7 @@ manual. Classification only fires inside a manually dispatched query/scan/contex
 
 Before this fix, only `metadata?.evidenceClass === 'INFERRED'` counted as weak evidence in `query.ts`'s classifier; an `AMBIGUOUS` edge (the tier written for a same-name match against more than one candidate) fell through to `direct_call`, overstating its reliability. All three consumers now check `detectorProvenance === 'heuristic' || evidenceClass === 'INFERRED' || evidenceClass === 'AMBIGUOUS'` before classifying an edge as `inferred_heuristic`.
 
-The flag-off legacy-tier substitution (`confidence: 0.8`, `evidenceClass: 'INFERRED'`, `detectorProvenance: 'heuristic'`) only applies when `edge.edgeType === 'CALLS'`. This matters because a database touched by a prior flag-on scan can carry differentiated confidence on `CALLS` edges specifically; the substitution guarantees flag-off reads see the pre-differentiation constant for exactly the edge type the flag differentiates, without touching any edge type the flag never wrote to. See [edge-confidence-differentiation.md](./edge-confidence-differentiation.md) for the write-side values this substitution normalizes away, and ADR-001 in `011-edge-confidence-review-remediation/decision-record.md` for the full rationale.
+The flag-off legacy-tier substitution (`confidence: 0.8`, `evidenceClass: 'INFERRED'`, `detectorProvenance: 'heuristic'`) only applies when `edge.edgeType === 'CALLS'`. This matters because a database touched by a prior flag-on scan can carry differentiated confidence on `CALLS` edges specifically; the substitution guarantees flag-off reads see the pre-differentiation constant for exactly the edge type the flag differentiates, without touching any edge type the flag never wrote to. See [edge-confidence-differentiation.md](../edge_confidence_and_provenance/edge_confidence_differentiation.md) for the write-side values this substitution normalizes away, and ADR-001 in `011-edge-confidence-review-remediation/decision-record.md` for the full rationale.
 
 ## 3. SOURCE FILES
 
@@ -49,9 +49,9 @@ The flag-off legacy-tier substitution (`confidence: 0.8`, `evidenceClass: 'INFER
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/read-path-freshness/` | Manual Playbook | Operator-facing manual scenarios covering `code_graph_query` output |
-| `../../manual_testing_playbook/manual-scan-verify-status/` | Manual Playbook | Operator-facing manual scenarios covering `code_graph_scan` output |
-| `../../manual_testing_playbook/context-retrieval/` | Manual Playbook | Operator-facing manual scenarios covering `code_graph_context` output |
+| `../../manual_testing_playbook/read_path_freshness/` | Manual Playbook | Operator-facing manual scenarios covering `code_graph_query` output |
+| `../../manual_testing_playbook/manual_scan_verify_status/` | Manual Playbook | Operator-facing manual scenarios covering `code_graph_scan` output |
+| `../../manual_testing_playbook/context_retrieval/` | Manual Playbook | Operator-facing manual scenarios covering `code_graph_context` output |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts` | Automated test | AMBIGUOUS-CALLS-edge classified as `inferred_heuristic` |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts` | Automated test | AMBIGUOUS-CALLS-edge classified as `inferred_heuristic` in the edge-enrichment summary |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts` | Automated test | AMBIGUOUS-edge ambiguity flag, mid-session flag toggle and IMPORTS-edges-unaffected coverage |
@@ -64,8 +64,8 @@ The flag-off legacy-tier substitution (`confidence: 0.8`, `evidenceClass: 'INFER
 
 Related references:
 
-- [edge-confidence-differentiation.md](./edge-confidence-differentiation.md)
-- [seeded-ppr-impact-ranking.md](./seeded-ppr-impact-ranking.md)
-- [../read-path-freshness/query-self-heal.md](../read-path-freshness/query-self-heal.md)
-- [../manual-scan-verify-status/code-graph-scan.md](../manual-scan-verify-status/code-graph-scan.md)
-- [../context-retrieval/code-graph-context.md](../context-retrieval/code-graph-context.md)
+- [edge-confidence-differentiation.md](../edge_confidence_and_provenance/edge_confidence_differentiation.md)
+- [seeded-ppr-impact-ranking.md](../edge_confidence_and_provenance/seeded_ppr_impact_ranking.md)
+- [../read-path-freshness/query-self-heal.md](../read_path_freshness/query_self_heal.md)
+- [../manual-scan-verify-status/code-graph-scan.md](../manual_scan_verify_status/code_graph_scan.md)
+- [../context-retrieval/code-graph-context.md](../context_retrieval/code_graph_context.md)

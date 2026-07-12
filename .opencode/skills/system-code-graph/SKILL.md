@@ -128,47 +128,47 @@ RESOURCE_DOMAINS = {
     "TOOL_SURFACE": {
         "reference_keys": ["runtime"],
         "path_hints": ["tool_surface"],
-        "support_prefixes": ["feature_catalog/mcp-tool-surface/", "manual_testing_playbook/mcp-tool-surface/"],
+        "support_prefixes": ["feature_catalog/mcp_tool_surface/", "manual_testing_playbook/mcp_tool_surface/"],
     },
     "READINESS": {
         "reference_keys": ["readiness"],
         "support_prefixes": [
-            "feature_catalog/read-path-freshness/",
-            "feature_catalog/manual-scan-verify-status/",
-            "manual_testing_playbook/read-path-freshness/",
-            "manual_testing_playbook/manual-scan-verify-status/",
+            "feature_catalog/read_path_freshness/",
+            "feature_catalog/manual_scan_verify_status/",
+            "manual_testing_playbook/read_path_freshness/",
+            "manual_testing_playbook/manual_scan_verify_status/",
         ],
     },
     "QUERY": {
         "reference_keys": ["runtime"],
         "path_hints": ["tool_surface"],
         "support_prefixes": [
-            "feature_catalog/read-path-freshness/",
-            "feature_catalog/context-retrieval/",
-            "manual_testing_playbook/read-path-freshness/",
-            "manual_testing_playbook/context-retrieval/",
-            "manual_testing_playbook/mcp-tool-surface/",
+            "feature_catalog/read_path_freshness/",
+            "feature_catalog/context_retrieval/",
+            "manual_testing_playbook/read_path_freshness/",
+            "manual_testing_playbook/context_retrieval/",
+            "manual_testing_playbook/mcp_tool_surface/",
         ],
     },
     "SCAN_VERIFY": {
         "reference_keys": ["readiness"],
-        "support_prefixes": ["feature_catalog/manual-scan-verify-status/", "manual_testing_playbook/manual-scan-verify-status/"],
+        "support_prefixes": ["feature_catalog/manual_scan_verify_status/", "manual_testing_playbook/manual_scan_verify_status/"],
     },
     "CHANGE_DETECTION": {
         "reference_keys": ["runtime"],
         "path_hints": ["tool_surface"],
-        "support_prefixes": ["feature_catalog/detect-changes/", "manual_testing_playbook/detect-changes/"],
+        "support_prefixes": ["feature_catalog/detect_changes/", "manual_testing_playbook/detect_changes/"],
     },
     "CONFIG": {
         "reference_keys": ["config"],
-        "support_prefixes": ["manual_testing_playbook/post-rename-infrastructure/"],
+        "support_prefixes": ["manual_testing_playbook/post_rename_infrastructure/"],
     },
     "NAMING": {"reference_keys": ["runtime"], "path_hints": ["naming_conventions"]},
     "OWNERSHIP": {"reference_keys": ["runtime"], "path_hints": ["ownership_boundary"]},
     "LAUNCHER": {
         "reference_keys": ["runtime"],
         "path_hints": ["launcher_lease"],
-        "support_prefixes": ["manual_testing_playbook/post-rename-infrastructure/"],
+        "support_prefixes": ["manual_testing_playbook/post_rename_infrastructure/"],
     },
     "FEATURES": {"support_prefixes": ["feature_catalog/"]},
     "PLAYBOOK": {"support_prefixes": ["manual_testing_playbook/"]},
@@ -305,15 +305,15 @@ The router selects from these tool intents. `mcp_server/tool-schemas.ts` `CODE_G
 
 | Intent | Primary Surface | Reference |
 |--------|-----------------|-----------|
-| Index or refresh structural graph state | `mcp__mk_code_index__code_graph_scan` | `feature_catalog/manual-scan-verify-status/code-graph-scan.md` |
-| Query callers, imports, dependencies, symbols or blast radius | `mcp__mk_code_index__code_graph_query` | `feature_catalog/read-path-freshness/query-self-heal.md` |
+| Index or refresh structural graph state | `mcp__mk_code_index__code_graph_scan` | `feature_catalog/manual_scan_verify_status/code_graph_scan.md` |
+| Query callers, imports, dependencies, symbols or blast radius | `mcp__mk_code_index__code_graph_query` | `feature_catalog/read_path_freshness/query_self_heal.md` |
 | Classify natural-language queries into structural/semantic/hybrid intent | `mcp__mk_code_index__code_graph_classify_query_intent` | `mcp_server/lib/query-intent-classifier.ts` |
-| Build compact neighborhood context around seeds | `mcp__mk_code_index__code_graph_context` | `feature_catalog/context-retrieval/code-graph-context.md` |
-| Check readiness, freshness, graph quality or blocked-read state | `mcp__mk_code_index__code_graph_status` | `feature_catalog/manual-scan-verify-status/code-graph-status.md` |
-| Validate graph quality with gold queries | `mcp__mk_code_index__code_graph_verify` | `feature_catalog/manual-scan-verify-status/code-graph-verify.md` |
-| Inspect changed symbols from a diff | `mcp__mk_code_index__detect_changes` | `feature_catalog/detect-changes/detect-changes-preflight.md` |
-| Execute verification-gated apply-mode recovery operations | `mcp__mk_code_index__code_graph_apply` | `feature_catalog/doctor-code-graph/doctor-apply-mode.md` |
-| Review doctor code-graph apply policy | `/doctor code-graph` | `feature_catalog/doctor-code-graph/doctor-apply-mode.md` |
+| Build compact neighborhood context around seeds | `mcp__mk_code_index__code_graph_context` | `feature_catalog/context_retrieval/code_graph_context.md` |
+| Check readiness, freshness, graph quality or blocked-read state | `mcp__mk_code_index__code_graph_status` | `feature_catalog/manual_scan_verify_status/code_graph_status.md` |
+| Validate graph quality with gold queries | `mcp__mk_code_index__code_graph_verify` | `feature_catalog/manual_scan_verify_status/code_graph_verify.md` |
+| Inspect changed symbols from a diff | `mcp__mk_code_index__detect_changes` | `feature_catalog/detect_changes/detect_changes_preflight.md` |
+| Execute verification-gated apply-mode recovery operations | `mcp__mk_code_index__code_graph_apply` | `feature_catalog/doctor_code_graph/doctor_apply_mode.md` |
+| Review doctor code-graph apply policy | `/doctor code-graph` | `feature_catalog/doctor_code_graph/doctor_apply_mode.md` |
 
 The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code_graph_*` and `detect_changes`.
 
@@ -423,6 +423,6 @@ The shared SQLite file at `.opencode/skills/system-code-graph/mcp_server/databas
 
 ### Cross-skill references
 
-- Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/context-preservation/`
+- Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/context_preservation/`
 - Extraction history: internal migration notes
 - Latest uplift context: internal implementation notes

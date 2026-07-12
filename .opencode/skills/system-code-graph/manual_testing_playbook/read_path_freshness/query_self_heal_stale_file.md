@@ -58,10 +58,10 @@ BANNED OPERATIONS
 - Do NOT touch any other manual testing playbook scenario file.
 
 ALLOWED WRITE PATHS
-- .opencode/skills/system-code-graph/manual_testing_playbook/read-path-freshness/query-self-heal-stale-file.md (this file only)
+- .opencode/skills/system-code-graph/manual_testing_playbook/read_path_freshness/query_self_heal_stale_file.md (this file only)
 ```
 
-Because a disposable copy, tracked-file edits, and cleanup would create, modify, and delete files outside `.opencode/skills/system-code-graph/manual_testing_playbook/read-path-freshness/query-self-heal-stale-file.md`, the preconditions for safe execution under the supplied constraints were not met.
+Because a disposable copy, tracked-file edits, and cleanup would create, modify, and delete files outside `.opencode/skills/system-code-graph/manual_testing_playbook/read_path_freshness/query_self_heal_stale_file.md`, the preconditions for safe execution under the supplied constraints were not met.
 
 ### Pass/Fail
 

@@ -98,7 +98,7 @@ BANNED OPERATIONS
 - Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
 
 ALLOWED WRITE PATHS
-- .opencode/skills/system-code-graph/manual_testing_playbook/manual-scan-verify-status/code-graph-scan-full.md (this file only)
+- .opencode/skills/system-code-graph/manual_testing_playbook/manual_scan_verify_status/code_graph_scan_full.md (this file only)
 ```
 
 The scenario's command requires a disposable copy and `persistBaseline:true`, which cannot be performed without creating and mutating scan/database artifacts outside the only allowed write path. The cleanup command ``rm -rf "$WORK"`` also cannot be run under the same write/delete restriction unless `$WORK` creation and deletion outside the scenario file are permitted.

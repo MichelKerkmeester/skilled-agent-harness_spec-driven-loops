@@ -52,7 +52,7 @@ Status can recommend `rg` or `code_graph_scan`. It does not perform either. Trea
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/manual-scan-verify-status/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/manual_scan_verify_status/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-tombstones.vitest.ts` | Automated test | default-off behavior, enabled lineage, retention pruning and query isolation |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts` | Automated test | explicit deletion reasons |
 
@@ -64,6 +64,6 @@ Status can recommend `rg` or `code_graph_scan`. It does not perform either. Trea
 
 Related references:
 
-- [01-code-graph-scan.md](./code-graph-scan.md)
-- [../read-path-freshness/ensure-code-graph-ready.md](../read-path-freshness/ensure-code-graph-ready.md)
-- [../../manual_testing_playbook/manual-scan-verify-status/code-graph-status-readonly.md](../../manual_testing_playbook/manual-scan-verify-status/code-graph-status-readonly.md)
+- [01-code-graph-scan.md](../manual_scan_verify_status/code_graph_scan.md)
+- [../read-path-freshness/ensure-code-graph-ready.md](../read_path_freshness/ensure_code_graph_ready.md)
+- [../../manual_testing_playbook/manual_scan_verify_status/code_graph_status_readonly.md](../../manual_testing_playbook/manual_scan_verify_status/code_graph_status_readonly.md)

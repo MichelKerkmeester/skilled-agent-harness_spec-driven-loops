@@ -31,7 +31,7 @@ manual. The flag only takes effect on the next `code_graph_scan`; existing persi
 
 Same-file resolution (`structural-indexer.ts`) writes `0.75/INFERRED` for a single matching candidate and `0.35/AMBIGUOUS` when more than one candidate matches the called name. Cross-file resolution (`cross-file-edge-resolver.ts`) writes `0.75/INFERRED` for a single same-name candidate and `0.3/AMBIGUOUS` (with an explicit `detectorProvenance: 'heuristic'`) when multiple candidates match. The cross-file single-candidate tier was downgraded from an earlier `0.9/EXTRACTED` value during review remediation: a same-name-only cross-file match is an inference, not a verified ground-truth extraction, so `0.9/EXTRACTED` overstated its reliability.
 
-Flag-off reads do not trust whatever confidence a prior flag-on scan already persisted. `contextEdgeReliability`/`why_included` in `code-graph-context.ts`, the relationship classifiers in `query.ts`, and the enrichment summarizer in `scan.ts` all substitute the legacy uniform tier for any `CALLS` edge while the flag is off, so toggling the flag back off restores byte-identical ranking and output even against a database that has residual differentiated metadata from an earlier flag-on scan (ADR-001, `011-edge-confidence-review-remediation/decision-record.md`). See [edge-evidence-classification.md](./edge-evidence-classification.md) for the read-side normalization contract.
+Flag-off reads do not trust whatever confidence a prior flag-on scan already persisted. `contextEdgeReliability`/`why_included` in `code-graph-context.ts`, the relationship classifiers in `query.ts`, and the enrichment summarizer in `scan.ts` all substitute the legacy uniform tier for any `CALLS` edge while the flag is off, so toggling the flag back off restores byte-identical ranking and output even against a database that has residual differentiated metadata from an earlier flag-on scan (ADR-001, `011-edge-confidence-review-remediation/decision-record.md`). See [edge-evidence-classification.md](../edge_confidence_and_provenance/edge_evidence_classification.md) for the read-side normalization contract.
 
 ## 3. SOURCE FILES
 
@@ -48,7 +48,7 @@ Flag-off reads do not trust whatever confidence a prior flag-on scan already per
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/manual-scan-verify-status/` | Manual Playbook | Operator-facing manual scenarios for scan-time write behavior |
+| `../../manual_testing_playbook/manual_scan_verify_status/` | Manual Playbook | Operator-facing manual scenarios for scan-time write behavior |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-cross-file-edges.vitest.ts` | Automated test | cross-file `0.75/INFERRED` single-candidate and `0.3/AMBIGUOUS` multi-candidate confidence-tier assertions |
 
 ## 4. SOURCE METADATA
@@ -59,6 +59,6 @@ Flag-off reads do not trust whatever confidence a prior flag-on scan already per
 
 Related references:
 
-- [edge-evidence-classification.md](./edge-evidence-classification.md)
-- [seeded-ppr-impact-ranking.md](./seeded-ppr-impact-ranking.md)
-- [../manual-scan-verify-status/code-graph-scan.md](../manual-scan-verify-status/code-graph-scan.md)
+- [edge-evidence-classification.md](../edge_confidence_and_provenance/edge_evidence_classification.md)
+- [seeded-ppr-impact-ranking.md](../edge_confidence_and_provenance/seeded_ppr_impact_ranking.md)
+- [../manual-scan-verify-status/code-graph-scan.md](../manual_scan_verify_status/code_graph_scan.md)

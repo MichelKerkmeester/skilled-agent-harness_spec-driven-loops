@@ -161,7 +161,7 @@ Inspect `normalizedContextEdgeMetadata` and `formatContextEdge` in `mcp_server/l
 - Flag gate: `mcp_server/lib/edge-confidence-flags.ts`
 - Read-path normalization: `mcp_server/lib/code-graph-context.ts`
 - Write-path gradient: `mcp_server/lib/structural-indexer.ts`, `mcp_server/lib/cross-file-edge-resolver.ts`
-- Catalog counterpart: `../../feature_catalog/edge-confidence-and-provenance/edge-confidence-differentiation.md`, `../../feature_catalog/edge-confidence-and-provenance/edge-evidence-classification.md`
+- Catalog counterpart: `../../feature_catalog/edge_confidence_and_provenance/edge_confidence_differentiation.md`, `../../feature_catalog/edge_confidence_and_provenance/edge_evidence_classification.md`
 - Automated test cross-reference: `mcp_server/tests/code-graph-context-handler.vitest.ts` (AMBIGUOUS classification, mid-session toggle, flag-off normalization of a previously-differentiated database, IMPORTS-unaffected checks)
 - Decision rationale: `decision-record.md` ADR-001 in `.opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/011-edge-confidence-review-remediation/`
 

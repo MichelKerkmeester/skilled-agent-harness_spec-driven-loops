@@ -46,7 +46,7 @@ Run `code_graph_scan` first when blocked. Use plain diff review if the graph can
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/detect-changes/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/detect_changes/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
 ## 4. SOURCE METADATA
 
@@ -56,5 +56,5 @@ Run `code_graph_scan` first when blocked. Use plain diff review if the graph can
 
 Related references:
 
-- [../manual-scan-verify-status/code-graph-scan.md](../manual-scan-verify-status/code-graph-scan.md)
-- [../../manual_testing_playbook/detect-changes/detect-changes-no-inline-index.md](../../manual_testing_playbook/detect-changes/detect-changes-no-inline-index.md)
+- [../manual-scan-verify-status/code-graph-scan.md](../manual_scan_verify_status/code_graph_scan.md)
+- [../../manual_testing_playbook/detect_changes/detect_changes_no_inline_index.md](../../manual_testing_playbook/detect_changes/detect_changes_no_inline_index.md)

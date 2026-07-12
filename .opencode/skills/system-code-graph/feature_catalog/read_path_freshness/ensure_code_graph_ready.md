@@ -45,7 +45,7 @@ Full-scan states are refused by query/context when inline full scans are disable
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/read-path-freshness/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/read_path_freshness/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
 ## 4. SOURCE METADATA
 
@@ -55,6 +55,6 @@ Full-scan states are refused by query/context when inline full scans are disable
 
 Related references:
 
-- [02-query-self-heal.md](./query-self-heal.md)
-- [../manual-scan-verify-status/code-graph-scan.md](../manual-scan-verify-status/code-graph-scan.md)
-- [../../manual_testing_playbook/read-path-freshness/ensure-ready-selective-reindex.md](../../manual_testing_playbook/read-path-freshness/ensure-ready-selective-reindex.md)
+- [02-query-self-heal.md](../read_path_freshness/query_self_heal.md)
+- [../manual-scan-verify-status/code-graph-scan.md](../manual_scan_verify_status/code_graph_scan.md)
+- [../../manual_testing_playbook/read_path_freshness/ensure_ready_selective_reindex.md](../../manual_testing_playbook/read_path_freshness/ensure_ready_selective_reindex.md)

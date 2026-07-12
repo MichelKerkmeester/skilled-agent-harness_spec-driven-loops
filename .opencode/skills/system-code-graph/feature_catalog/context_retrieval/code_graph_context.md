@@ -30,7 +30,7 @@ half. The tool self-checks readiness on invocation. No ambient hook calls it aut
 
 Blocked responses omit graph answers. Follow `requiredAction:"code_graph_scan"` or use semantic search plus `rg`.
 
-Debug callers can pass `includeTrace:true` to request `graphContext[].why_included` breadcrumbs. Each breadcrumb now carries `edgeChain`, a sequence of one-or-more call/import/export edge steps (not a single one-hop edge) describing the full inclusion path from anchor to the included file, each step with its own confidence, provenance, evidence class, reason and step label. `confidence` on the breadcrumb itself is the minimum confidence across every step in the chain, and `ambiguous` is set if any step in the chain has an `INFERRED` or `AMBIGUOUS` evidence class. For most anchors/sections `edgeChain` holds a single one-hop step, matching prior behavior. When the default-off `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` flag is on and `queryMode` is `"impact"`, ranked candidates are instead selected by a bounded seeded Personalized PageRank walk (up to 3 hops), and `edgeChain` reconstructs the real multi-hop path back to the anchor using a lazily-loaded weighted-walk traversal (`predecessor` field) shared with the spec-kit memory graph. Default responses omit `why_included` to preserve the compact response shape. See [`../edge-confidence-and-provenance/seeded-ppr-impact-ranking.md`](../edge-confidence-and-provenance/seeded-ppr-impact-ranking.md) for the flag, the lazy-loaded walker and the benchmark verdict (CUT stands, not intended to ship enabled), and [`../edge-confidence-and-provenance/edge-evidence-classification.md`](../edge-confidence-and-provenance/edge-evidence-classification.md) for how each step's confidence/evidence-class is normalized.
+Debug callers can pass `includeTrace:true` to request `graphContext[].why_included` breadcrumbs. Each breadcrumb now carries `edgeChain`, a sequence of one-or-more call/import/export edge steps (not a single one-hop edge) describing the full inclusion path from anchor to the included file, each step with its own confidence, provenance, evidence class, reason and step label. `confidence` on the breadcrumb itself is the minimum confidence across every step in the chain, and `ambiguous` is set if any step in the chain has an `INFERRED` or `AMBIGUOUS` evidence class. For most anchors/sections `edgeChain` holds a single one-hop step, matching prior behavior. When the default-off `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` flag is on and `queryMode` is `"impact"`, ranked candidates are instead selected by a bounded seeded Personalized PageRank walk (up to 3 hops), and `edgeChain` reconstructs the real multi-hop path back to the anchor using a lazily-loaded weighted-walk traversal (`predecessor` field) shared with the spec-kit memory graph. Default responses omit `why_included` to preserve the compact response shape. See [`../edge-confidence-and-provenance/seeded-ppr-impact-ranking.md`](../edge_confidence_and_provenance/seeded_ppr_impact_ranking.md) for the flag, the lazy-loaded walker and the benchmark verdict (CUT stands, not intended to ship enabled), and [`../edge-confidence-and-provenance/edge-evidence-classification.md`](../edge_confidence_and_provenance/edge_evidence_classification.md) for how each step's confidence/evidence-class is normalized.
 
 ## 3. SOURCE FILES
 
@@ -50,7 +50,7 @@ Debug callers can pass `includeTrace:true` to request `graphContext[].why_includ
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/context-retrieval/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/context_retrieval/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts` | Automated test | trace-on and default-off breadcrumb behavior, AMBIGUOUS-class ambiguity flag, mid-session flag toggle, IMPORTS-edges-unaffected coverage |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-lazy-weighted-walk.vitest.ts` | Automated test | lazy-load behavior of the shared weighted-walk module |
 | `.opencode/skills/system-code-graph/mcp_server/tests/weighted-walk-predecessor.vitest.ts` | Automated test | `predecessor` field correctness in the shared walker |
@@ -65,8 +65,8 @@ Debug callers can pass `includeTrace:true` to request `graphContext[].why_includ
 
 Related references:
 
-- [02-context-handler.md](./context-handler.md)
-- [../read-path-freshness/ensure-code-graph-ready.md](../read-path-freshness/ensure-code-graph-ready.md)
-- [../edge-confidence-and-provenance/seeded-ppr-impact-ranking.md](../edge-confidence-and-provenance/seeded-ppr-impact-ranking.md)
-- [../edge-confidence-and-provenance/edge-evidence-classification.md](../edge-confidence-and-provenance/edge-evidence-classification.md)
-- [../../manual_testing_playbook/context-retrieval/code-graph-context-readiness-block.md](../../manual_testing_playbook/context-retrieval/code-graph-context-readiness-block.md)
+- [02-context-handler.md](../context_retrieval/context_handler.md)
+- [../read-path-freshness/ensure-code-graph-ready.md](../read_path_freshness/ensure_code_graph_ready.md)
+- [../edge-confidence-and-provenance/seeded-ppr-impact-ranking.md](../edge_confidence_and_provenance/seeded_ppr_impact_ranking.md)
+- [../edge-confidence-and-provenance/edge-evidence-classification.md](../edge_confidence_and_provenance/edge_evidence_classification.md)
+- [../../manual_testing_playbook/context_retrieval/code_graph_context_readiness_block.md](../../manual_testing_playbook/context_retrieval/code_graph_context_readiness_block.md)

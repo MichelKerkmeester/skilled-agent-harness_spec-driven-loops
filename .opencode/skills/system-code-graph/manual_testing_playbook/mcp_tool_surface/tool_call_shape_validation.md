@@ -72,7 +72,7 @@ Command: `node .opencode/bin/code-index.cjs detect_changes --json '{}' --format 
 }
 ```
 
-Valid routing check command: `node .opencode/bin/code-index.cjs code_graph_query --json '{"operation":"outline","subject":".opencode/skills/system-code-graph/manual_testing_playbook/mcp-tool-surface/tool-call-shape-validation.md"}' --format json --timeout-ms 3000 --warm-only`
+Valid routing check command: `node .opencode/bin/code-index.cjs code_graph_query --json '{"operation":"outline","subject":".opencode/skills/system-code-graph/manual_testing_playbook/mcp_tool_surface/tool_call_shape_validation.md"}' --format json --timeout-ms 3000 --warm-only`
 
 ```json
 {

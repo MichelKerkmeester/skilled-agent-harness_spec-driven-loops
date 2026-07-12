@@ -46,7 +46,7 @@ Auto means "inside the command YAML workflow," not globally scheduled. Empty gra
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/coverage-graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/coverage_graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
 ## 4. SOURCE METADATA
 
@@ -56,5 +56,5 @@ Auto means "inside the command YAML workflow," not globally scheduled. Empty gra
 
 Related references:
 
-- [03-deep-loop-graph-upsert.md](./deep-loop-graph-upsert.md)
-- [../../manual_testing_playbook/coverage-graph/deep-loop-graph-convergence-yaml-fire.md](../../manual_testing_playbook/coverage-graph/deep-loop-graph-convergence-yaml-fire.md)
+- [03-deep-loop-graph-upsert.md](../coverage_graph/deep_loop_graph_upsert.md)
+- [../../manual_testing_playbook/coverage_graph/deep_loop_graph_convergence_yaml_fire.md](../../manual_testing_playbook/coverage_graph/deep_loop_graph_convergence_yaml_fire.md)

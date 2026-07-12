@@ -35,7 +35,7 @@ Unresolved symbol subjects can optionally return BM25 symbol suggestions when `S
 
 Relationship operations (`calls_from`, `calls_to`, `imports_from`, `imports_to`) accept an optional `asOf` graph generation for a time-travel read. With `asOf` omitted the live readers run against the current graph. With `asOf` supplied the as-of readers (`asOfEdgesFrom`, `asOfEdgesTo`) return edges that were valid at that generation, meaning `valid_at <= asOf` and `invalid_at` is either null or greater than `asOf`. The default-off `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS` flag is what surfaces preserved history, so with the flag off the read falls back to the live answer and `asOf` stays inert until edge history is retained.
 
-Relationship output also carries an `edgeEvidenceClass`/`confidence` classification (`classifyEdgeEvidenceClass`/`edgeMetadataOutput`) that recognizes `AMBIGUOUS` evidence as weak evidence alongside `INFERRED`, and substitutes the legacy uniform tier for `CALLS` edges specifically while `SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION` is off. This is readiness-adjacent output formatting, not part of the self-heal repair itself -- see [`../edge-confidence-and-provenance/edge-evidence-classification.md`](../edge-confidence-and-provenance/edge-evidence-classification.md) for the full read-path contract shared with `code_graph_scan` and `code_graph_context`.
+Relationship output also carries an `edgeEvidenceClass`/`confidence` classification (`classifyEdgeEvidenceClass`/`edgeMetadataOutput`) that recognizes `AMBIGUOUS` evidence as weak evidence alongside `INFERRED`, and substitutes the legacy uniform tier for `CALLS` edges specifically while `SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION` is off. This is readiness-adjacent output formatting, not part of the self-heal repair itself -- see [`../edge-confidence-and-provenance/edge-evidence-classification.md`](../edge_confidence_and_provenance/edge_evidence_classification.md) for the full read-path contract shared with `code_graph_scan` and `code_graph_context`.
 
 ## 3. SOURCE FILES
 
@@ -55,7 +55,7 @@ Relationship output also carries an `edgeEvidenceClass`/`confidence` classificat
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/read-path-freshness/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `../../manual_testing_playbook/read_path_freshness/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 | `.opencode/skills/system-code-graph/mcp_server/tests/symbol-bm25-resolver.vitest.ts` | Automated test | field weighting, near-miss scoring, packed postings and flag parsing |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts` | Automated test | exact-match byte identity and fallback-only suggestions |
 
@@ -67,7 +67,7 @@ Relationship output also carries an `edgeEvidenceClass`/`confidence` classificat
 
 Related references:
 
-- [01-ensure-code-graph-ready.md](./ensure-code-graph-ready.md)
-- [../mcp-tool-surface/tool-registrations.md](../mcp-tool-surface/tool-registrations.md)
-- [../edge-confidence-and-provenance/edge-evidence-classification.md](../edge-confidence-and-provenance/edge-evidence-classification.md)
-- [../../manual_testing_playbook/read-path-freshness/query-self-heal-stale-file.md](../../manual_testing_playbook/read-path-freshness/query-self-heal-stale-file.md)
+- [01-ensure-code-graph-ready.md](../read_path_freshness/ensure_code_graph_ready.md)
+- [../mcp-tool-surface/tool-registrations.md](../mcp_tool_surface/tool_registrations.md)
+- [../edge-confidence-and-provenance/edge-evidence-classification.md](../edge_confidence_and_provenance/edge_evidence_classification.md)
+- [../../manual_testing_playbook/read_path_freshness/query_self_heal_stale_file.md](../../manual_testing_playbook/read_path_freshness/query_self_heal_stale_file.md)
