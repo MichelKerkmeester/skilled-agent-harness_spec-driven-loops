@@ -23,7 +23,7 @@ The local-LLM stack must support interactive use. Targets:
 
 - Objective: Confirm interactive-grade latency + throughput.
 - Real user request: `Run 50 mixed queries through Memory MCP and report p50/p95/p99 latency + queries-per-second. Confirm the stack meets interactive targets.`
-- RCAF Prompt: `As a query_intelligence validation operator, fire 50 mixed-load queries through memory_search and report p50/p95/p99 + sustained throughput. Return a pass/fail verdict against the documented interactive targets.`
+- RCAF Prompt: `As a query-intelligence validation operator, fire 50 mixed-load queries through memory_search and report p50/p95/p99 + sustained throughput. Return a pass/fail verdict against the documented interactive targets.`
 - Expected execution process: run the canned 50-query workload, time each call, compute percentiles + throughput.
 - Expected signals: p50 ≤ 200 ms, p95 ≤ 800 ms, p99 ≤ 2 s, throughput ≥ 5 qps.
 - Desired user-visible outcome: `PASS — p50 142 ms / p95 612 ms / p99 1.8 s / 7.2 qps; meets all interactive targets.`

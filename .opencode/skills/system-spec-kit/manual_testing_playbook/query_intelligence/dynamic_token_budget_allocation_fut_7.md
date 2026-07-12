@@ -18,7 +18,7 @@ This scenario validates Dynamic token budget allocation (FUT-7) for `037`. It fo
 
 - Objective: Confirm complexity-tier budgets.
 - Real user request: `Please validate Dynamic token budget allocation (FUT-7) against the documented validation surface and tell me whether the expected signals are present: Token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget.`
-- RCAF Prompt: `As a query_intelligence validation operator, validate Dynamic token budget allocation (FUT-7) against the documented validation surface. Verify token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- RCAF Prompt: `As a query-intelligence validation operator, validate Dynamic token budget allocation (FUT-7) against the documented validation surface. Verify token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,7 +31,7 @@ This scenario validates Dynamic token budget allocation (FUT-7) for `037`. It fo
 ### Prompt
 
 ```
-As a query_intelligence validation operator, confirm complexity-tier budgets against the documented validation surface. Verify token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a query-intelligence validation operator, confirm complexity-tier budgets against the documented validation surface. Verify token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

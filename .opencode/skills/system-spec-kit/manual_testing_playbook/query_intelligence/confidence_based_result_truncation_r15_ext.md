@@ -18,7 +18,7 @@ This scenario validates Confidence-based result truncation (R15-ext) for `036`. 
 
 - Objective: Confirm relevance-cliff cutoff.
 - Real user request: `Please validate Confidence-based result truncation (R15-ext) against the documented validation surface and tell me whether the expected signals are present: Results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace.`
-- RCAF Prompt: `As a query_intelligence validation operator, validate Confidence-based result truncation (R15-ext) against the documented validation surface. Verify results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- RCAF Prompt: `As a query-intelligence validation operator, validate Confidence-based result truncation (R15-ext) against the documented validation surface. Verify results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,7 +31,7 @@ This scenario validates Confidence-based result truncation (R15-ext) for `036`. 
 ### Prompt
 
 ```
-As a query_intelligence validation operator, confirm relevance-cliff cutoff against the documented validation surface. Verify results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a query-intelligence validation operator, confirm relevance-cliff cutoff against the documented validation surface. Verify results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

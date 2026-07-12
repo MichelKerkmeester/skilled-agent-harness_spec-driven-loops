@@ -18,7 +18,7 @@ This scenario validates Query complexity router (R15) for `033`. It focuses on C
 
 - Objective: Confirm query-class routing.
 - Real user request: `Please validate Query complexity router (R15) against the documented validation surface and tell me whether the expected signals are present: Simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing.`
-- RCAF Prompt: `As a query_intelligence validation operator, validate Query complexity router (R15) against the documented validation surface. Verify simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- RCAF Prompt: `As a query-intelligence validation operator, validate Query complexity router (R15) against the documented validation surface. Verify simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,7 +31,7 @@ This scenario validates Query complexity router (R15) for `033`. It focuses on C
 ### Prompt
 
 ```
-As a query_intelligence validation operator, confirm query-class routing against the documented validation surface. Verify simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a query-intelligence validation operator, confirm query-class routing against the documented validation surface. Verify simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

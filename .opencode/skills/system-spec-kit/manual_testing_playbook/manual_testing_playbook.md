@@ -1262,7 +1262,7 @@ Positive validations promote tier at configured threshold; throttle prevents rap
 Confirm query-class routing.
 
 #### Scenario Contract
-Prompt: `As a query_intelligence validation operator, validate Query complexity router (R15) against the documented validation surface. Verify simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing. Return a concise pass/fail verdict with the main reason and cited evidence.`
+Prompt: `As a query-intelligence validation operator, validate Query complexity router (R15) against the documented validation surface. Verify simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing. Return a concise pass/fail verdict with the main reason and cited evidence.`
 
 Simple queries route to fewer channels; complex queries activate all channels; disabled flag falls back to default routing
 
@@ -1277,7 +1277,7 @@ Simple queries route to fewer channels; complex queries activate all channels; d
 Confirm top-k channel diversity rule.
 
 #### Scenario Contract
-Prompt: `As a query_intelligence validation operator, validate Channel min-representation (R2) against the documented validation surface. Verify each channel represented in top-k results even when one channel dominates; quality floor prevents low-relevance injection. Return a concise pass/fail verdict with the main reason and cited evidence.`
+Prompt: `As a query-intelligence validation operator, validate Channel min-representation (R2) against the documented validation surface. Verify each channel represented in top-k results even when one channel dominates; quality floor prevents low-relevance injection. Return a concise pass/fail verdict with the main reason and cited evidence.`
 
 Each channel represented in top-k results even when one channel dominates; quality floor prevents low-relevance injection
 
@@ -1291,7 +1291,7 @@ Each channel represented in top-k results even when one channel dominates; quali
 Confirm relevance-cliff cutoff.
 
 #### Scenario Contract
-Prompt: `As a query_intelligence validation operator, validate Confidence-based result truncation (R15-ext) against the documented validation surface. Verify results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace. Return a concise pass/fail verdict with the main reason and cited evidence.`
+Prompt: `As a query-intelligence validation operator, validate Confidence-based result truncation (R15-ext) against the documented validation surface. Verify results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace. Return a concise pass/fail verdict with the main reason and cited evidence.`
 
 Results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace
 
@@ -1305,7 +1305,7 @@ Results truncated at confidence cliff; minimum result count guaranteed; cutoff t
 Confirm complexity-tier budgets.
 
 #### Scenario Contract
-Prompt: `As a query_intelligence validation operator, validate Dynamic token budget allocation (FUT-7) against the documented validation surface. Verify token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget. Return a concise pass/fail verdict with the main reason and cited evidence.`
+Prompt: `As a query-intelligence validation operator, validate Dynamic token budget allocation (FUT-7) against the documented validation surface. Verify token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget. Return a concise pass/fail verdict with the main reason and cited evidence.`
 
 Token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget
 
@@ -1319,7 +1319,7 @@ Token budget scales with query complexity tier; simple queries get smaller budge
 Confirm parallel expansion + dedup.
 
 #### Scenario Contract
-Prompt: `As a query_intelligence validation operator, validate Query expansion (R12) against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.`
+Prompt: `As a query-intelligence validation operator, validate Query expansion (R12) against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.`
 
 Complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion
 
@@ -2188,7 +2188,7 @@ Prompt: `Validate Ollama runtime optionalDependencies and graceful dynamic-impor
 Ollama runtime listed in optionalDependencies (not dependencies); npm install completes without error on clean env; dynamic import with graceful fallback when module absent
 
 #### Test Execution
-> **Feature File:** *(102 consolidated — no standalone file; coverage lives in the scoring_and_calibration category)*
+> **Feature File:** *(102 consolidated — no standalone file; coverage lives in the scoring-and-calibration category)*
 > **Catalog:** *(Ollama runtime optionalDependencies — covered by `scoring-and-calibration/14`)*
 
 ### 103 | UX hook module coverage (`mutation-feedback`, `response-hints`)
@@ -2920,7 +2920,7 @@ shadow_scoring_log table has rows with query_id, result_id, live_rank, shadow_ra
 Verify reformulation pipeline runs in deep mode with corpus-grounded seeds, producing a step-back abstract and variants.
 
 #### Scenario Contract
-Prompt: `As a query_intelligence validation operator, validate LLM reformulation (SPECKIT_LLM_REFORMULATION) against memory_search({ query: "complex multi-faceted query", mode: "deep" }). Verify reformulation pipeline runs in deep mode with corpus-grounded seeds. Return a concise pass/fail verdict with the main reason and cited evidence.`
+Prompt: `As a query-intelligence validation operator, validate LLM reformulation (SPECKIT_LLM_REFORMULATION) against memory_search({ query: "complex multi-faceted query", mode: "deep" }). Verify reformulation pipeline runs in deep mode with corpus-grounded seeds. Return a concise pass/fail verdict with the main reason and cited evidence.`
 
 cheapSeedRetrieve() returns up to 3 seed results from FTS5; ReformulationResult contains abstract (>= 5 chars) and variants array (max 2 entries); LLM cache hit on repeated query; reformulated hits respect scope, contextType and qualityThreshold before merge; pipeline is no-op when mode != deep
 
@@ -2934,7 +2934,7 @@ cheapSeedRetrieve() returns up to 3 seed results from FTS5; ReformulationResult 
 Verify HyDE pseudo-document generation for low-confidence deep queries with default-active behavior and optional shadow mode.
 
 #### Scenario Contract
-Prompt: `As a query_intelligence validation operator, validate HyDE (SPECKIT_HYDE) against SPECKIT_HYDE=true. Verify hyDE pseudo-document generation for low-confidence deep queries. Return a concise pass/fail verdict with the main reason and cited evidence.`
+Prompt: `As a query-intelligence validation operator, validate HyDE (SPECKIT_HYDE) against SPECKIT_HYDE=true. Verify hyDE pseudo-document generation for low-confidence deep queries. Return a concise pass/fail verdict with the main reason and cited evidence.`
 
 HyDEResult contains pseudoDocument (non-empty) and embedding (Float32Array); low-confidence detection uses the max score across the full baseline set; LLM cache shared with reformulation; HyDE hits respect scope, contextType and qualityThreshold before merge; setting `SPECKIT_HYDE_ACTIVE=false` switches to shadow-only logging without merge
 
@@ -2948,7 +2948,7 @@ HyDEResult contains pseudoDocument (non-empty) and embedding (Float32Array); low
 Verify surrogate metadata generated at index time and matched at query time with boost scores.
 
 #### Scenario Contract
-Prompt: `As a query_intelligence validation operator, validate Query surrogates (SPECKIT_QUERY_SURROGATES) against SPECKIT_QUERY_SURROGATES=true. Verify surrogate metadata generated at index time and matched at query time. Return a concise pass/fail verdict with the main reason and cited evidence.`
+Prompt: `As a query-intelligence validation operator, validate Query surrogates (SPECKIT_QUERY_SURROGATES) against SPECKIT_QUERY_SURROGATES=true. Verify surrogate metadata generated at index time and matched at query time. Return a concise pass/fail verdict with the main reason and cited evidence.`
 
 SurrogateMetadata contains aliases (from parenthetical abbreviations), headings, summary (max 200 chars), and surrogateQuestions (2-5 entries); query-time matching produces SurrogateMatchResult with score in [0,1] and matchedSurrogates list; no LLM calls on the default path
 
@@ -3061,7 +3061,7 @@ perIntentKSweep() groups queries by intent and sweeps JUDGED_K_SWEEP_VALUES; arg
 Verify bounded facet detection decomposes multi-faceted queries into max 3 sub-queries using rule-based heuristics in deep mode.
 
 #### Scenario Contract
-Prompt: `As a query_intelligence validation operator, validate Query decomposition (SPECKIT_QUERY_DECOMPOSITION) against SPECKIT_QUERY_DECOMPOSITION. Verify bounded facet detection decomposes multi-faceted queries into max 3 sub-queries. Return a concise pass/fail verdict with the main reason and cited evidence.`
+Prompt: `As a query-intelligence validation operator, validate Query decomposition (SPECKIT_QUERY_DECOMPOSITION) against SPECKIT_QUERY_DECOMPOSITION. Verify bounded facet detection decomposes multi-faceted queries into max 3 sub-queries. Return a concise pass/fail verdict with the main reason and cited evidence.`
 
 Conjunction splitting on "and"/"or"/"also"/"plus"/"as well as"/"along with"; multiple wh-question word detection; MAX_FACETS=3 cap enforced; no LLM calls; deep-mode only activation; graceful fallback returns original query on error
 
@@ -3674,7 +3674,7 @@ This split playbook keeps automated coverage references in three places:
 | 097 | Features | Async ingestion job lifecycle (P0-3) | [097](lifecycle/async_ingestion_job_lifecycle_p0_3.md) | [lifecycle/async_ingestion_job_lifecycle.md](../feature_catalog/lifecycle/async_ingestion_job_lifecycle.md) |
 | 099 | Features | Real-time filesystem watching  | [099](tooling_and_scripts/real_time_filesystem_watching_p1_7.md) | [tooling_and_scripts/real_time_filesystem_watching_with_chokidar.md](../feature_catalog/tooling_and_scripts/real_time_filesystem_watching_with_chokidar.md) |
 | 101 | Features | memory_delete confirm schema tightening | [101](mutation/memory_delete_confirm_schema_tightening.md) | *(memory_delete confirm schema — covered by `mutation/03`)* |
-| 102 | Features | Ollama runtime optionalDependencies | *(consolidated — no standalone file)* | *(Ollama runtime optionalDependencies — covered within `scoring_and_calibration`)* |
+| 102 | Features | Ollama runtime optionalDependencies | *(consolidated — no standalone file)* | *(Ollama runtime optionalDependencies — covered within `scoring-and-calibration`)* |
 | 103 | Features | UX hook module coverage (`mutation-feedback`, `response-hints`) | [103](ux_hooks/ux_hook_module_coverage_mutation_feedback_response_hints.md) | [ux_hooks/dedicated_ux_hook_modules.md](../feature_catalog/ux_hooks/dedicated_ux_hook_modules.md) |
 | 104 | Features | Mutation save-path UX parity and no-op hardening | [104](ux_hooks/mutation_save_path_ux_parity_and_no_op_hardening.md) | [ux_hooks/duplicate_save_no_op_feedback_hardening.md](../feature_catalog/ux_hooks/duplicate_save_no_op_feedback_hardening.md) |
 | 105 | Features | Context-server success-envelope finalization | [105](ux_hooks/context_server_success_envelope_finalization.md) | [ux_hooks/context_server_success_hint_append.md](../feature_catalog/ux_hooks/context_server_success_hint_append.md) |

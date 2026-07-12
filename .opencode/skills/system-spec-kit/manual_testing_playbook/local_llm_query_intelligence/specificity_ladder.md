@@ -19,7 +19,7 @@ This scenario fires 3 queries about the same topic (BGE local fallback local emb
 
 - Objective: Confirm specificity-aware ranking.
 - Real user request: `Verify that abstract vs specific queries about BGE local fallback return level-appropriate results, not all collapsing to the same most-specific match.`
-- RCAF Prompt: `As a query_intelligence validation operator, fire 3 queries on the same topic at 3 specificity levels, and verify the top-3 of each is calibrated to that level. Return a pass/fail verdict.`
+- RCAF Prompt: `As a query-intelligence validation operator, fire 3 queries on the same topic at 3 specificity levels, and verify the top-3 of each is calibrated to that level. Return a pass/fail verdict.`
 - Expected execution process: fire 3 queries, inspect top-3 of each, classify each result as ABSTRACT / MID / SPECIFIC, verify the top-3 weighted average matches the query level.
 - Expected signals: abstract query's top-3 weighted average is more abstract than the specific query's top-3; the specific query's top-3 includes the exact code reference; the abstract query's top-3 does NOT lead with the exact code reference.
 - Desired user-visible outcome: `PASS — all 3 levels return level-appropriate top-3; ranking is calibrated by specificity.`

@@ -74,7 +74,7 @@ stress_test/
 - Start with `findings.template.md` when the packet needs a human-readable stress-test report.
 - Start with `findings-rubric.template.json` when the packet needs machine-readable scoring input.
 - Read `findings-rubric.schema.md` before changing rubric field names or severity meanings.
-- Use the stress_testing playbook for execution order, evidence capture and operator prompts.
+- Use the stress-testing playbook for execution order, evidence capture and operator prompts.
 
 ## 7. VALIDATION
 

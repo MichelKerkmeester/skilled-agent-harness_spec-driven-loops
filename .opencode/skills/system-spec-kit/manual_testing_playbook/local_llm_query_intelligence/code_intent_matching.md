@@ -19,7 +19,7 @@ The behavior is user-observable: developers asking implementation questions want
 
 - Objective: Confirm implementation-over-docs ranking for code-intent queries.
 - Real user request: `Verify that when I ask "how does X work?" through Code Graph, the implementation file outranks its README.`
-- RCAF Prompt: `As a query_intelligence validation operator, fire 4 question-form code queries through Code Graph and report whether the implementation file ranks above its README in each top-5. Return a pass/fail verdict and a table of rank pairs.`
+- RCAF Prompt: `As a query-intelligence validation operator, fire 4 question-form code queries through Code Graph and report whether the implementation file ranks above its README in each top-5. Return a pass/fail verdict and a table of rank pairs.`
 - Expected execution process: run 4 code-intent queries, identify implementation-file rank and README rank in each top-5, compare.
 - Expected signals: implementation rank < README rank in ≥ 3 of 4 queries; both files are present in top-10.
 - Desired user-visible outcome: `PASS — 3/4 queries rank implementation above README; the 1 inversion was a tied-content tiebreaker.`

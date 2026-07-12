@@ -18,7 +18,7 @@ version: 3.6.0.5
 
 The implementation added the shared `assertNever` helper, helper-driven post-insert extraction, the shared reconsolidation transaction helper, and the `advisoryPreset` rename to keep pipeline contracts explicit.
 
-This is a pipeline_architecture entry because the changes reshape the internal coordination surfaces without changing the public tool count. The goal was to make the save and routing paths easier to reason about while tightening exhaustiveness guarantees around the same typed unions the runtime already depends on.
+This is a pipeline-architecture entry because the changes reshape the internal coordination surfaces without changing the public tool count. The goal was to make the save and routing paths easier to reason about while tightening exhaustiveness guarantees around the same typed unions the runtime already depends on.
 
 ---
 

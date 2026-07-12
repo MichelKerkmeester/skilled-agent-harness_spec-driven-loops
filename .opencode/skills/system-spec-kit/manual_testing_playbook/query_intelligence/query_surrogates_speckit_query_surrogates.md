@@ -18,7 +18,7 @@ This scenario validates query surrogates (SPECKIT_QUERY_SURROGATES) for `163`. I
 
 - Objective: Verify surrogate metadata generated at index time and matched at query time.
 - Real user request: `Please validate Query surrogates (SPECKIT_QUERY_SURROGATES) against SPECKIT_QUERY_SURROGATES=true and tell me whether the expected signals are present: SurrogateMetadata contains aliases (from parenthetical abbreviations), headings, summary (max 200 chars), and surrogateQuestions (2-5 entries); query-time matching produces SurrogateMatchResult with score in [0,1] and matchedSurrogates list; no LLM calls on the default path.`
-- RCAF Prompt: `As a query_intelligence validation operator, validate Query surrogates (SPECKIT_QUERY_SURROGATES) against SPECKIT_QUERY_SURROGATES=true. Verify surrogate metadata generated at index time and matched at query time. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- RCAF Prompt: `As a query-intelligence validation operator, validate Query surrogates (SPECKIT_QUERY_SURROGATES) against SPECKIT_QUERY_SURROGATES=true. Verify surrogate metadata generated at index time and matched at query time. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: SurrogateMetadata contains aliases (from parenthetical abbreviations), headings, summary (max 200 chars), and surrogateQuestions (2-5 entries); query-time matching produces SurrogateMatchResult with score in [0,1] and matchedSurrogates list; no LLM calls on the default path
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,7 +31,7 @@ This scenario validates query surrogates (SPECKIT_QUERY_SURROGATES) for `163`. I
 ### Prompt
 
 ```
-As a query_intelligence validation operator, verify surrogates generated and matched against SPECKIT_QUERY_SURROGATES=true. Verify surrogateMetadata with aliases, headings, summary, surrogateQuestions; query matching returns score > MIN_MATCH_THRESHOLD; no LLM calls. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a query-intelligence validation operator, verify surrogates generated and matched against SPECKIT_QUERY_SURROGATES=true. Verify surrogateMetadata with aliases, headings, summary, surrogateQuestions; query matching returns score > MIN_MATCH_THRESHOLD; no LLM calls. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

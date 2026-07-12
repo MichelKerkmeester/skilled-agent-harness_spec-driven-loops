@@ -18,7 +18,7 @@ This scenario validates LLM reformulation (SPECKIT_LLM_REFORMULATION) for `161`.
 
 - Objective: Verify reformulation pipeline runs in deep mode with corpus-grounded seeds.
 - Real user request: `Please validate LLM reformulation (SPECKIT_LLM_REFORMULATION) against memory_search({ query: "complex multi-faceted query", mode: "deep" }) and tell me whether the expected signals are present: cheapSeedRetrieve() returns up to 3 seed results from FTS5; ReformulationResult contains abstract (>= 5 chars) and variants array (max 2 entries); LLM cache hit on repeated query; pipeline is no-op when mode != deep.`
-- RCAF Prompt: `As a query_intelligence validation operator, validate LLM reformulation (SPECKIT_LLM_REFORMULATION) against memory_search({ query: "complex multi-faceted query", mode: "deep" }). Verify reformulation pipeline runs in deep mode with corpus-grounded seeds. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- RCAF Prompt: `As a query-intelligence validation operator, validate LLM reformulation (SPECKIT_LLM_REFORMULATION) against memory_search({ query: "complex multi-faceted query", mode: "deep" }). Verify reformulation pipeline runs in deep mode with corpus-grounded seeds. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: cheapSeedRetrieve() returns up to 3 seed results from FTS5; ReformulationResult contains abstract (>= 5 chars) and variants array (max 2 entries); LLM cache hit on repeated query; pipeline is no-op when mode != deep
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,7 +31,7 @@ This scenario validates LLM reformulation (SPECKIT_LLM_REFORMULATION) for `161`.
 ### Prompt
 
 ```
-As a query_intelligence validation operator, verify reformulation pipeline runs in deep mode against memory_search({ query: "complex multi-faceted query", mode: "deep" }). Verify cheapSeedRetrieve() returns FTS5/BM25 seeds; abstract >= 5 chars; variants array max 2; LLM cache hit on repeat; no-op in non-deep mode. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a query-intelligence validation operator, verify reformulation pipeline runs in deep mode against memory_search({ query: "complex multi-faceted query", mode: "deep" }). Verify cheapSeedRetrieve() returns FTS5/BM25 seeds; abstract >= 5 chars; variants array max 2; LLM cache hit on repeat; no-op in non-deep mode. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

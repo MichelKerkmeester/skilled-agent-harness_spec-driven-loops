@@ -23,7 +23,7 @@ A good ranker brings these together in top-K so the operator can synthesize. A p
 
 - Objective: Confirm compound-question retrieval surfaces multiple constituent sources.
 - Real user request: `Verify that a compound question whose answer is not in any single file returns the constituent sources in top-3, allowing me to synthesize.`
-- RCAF Prompt: `As a query_intelligence validation operator, fire a compound question requiring multi-source synthesis, and verify top-3 returns ≥ 2 of the 3-4 expected constituent files. Return a pass/fail verdict with the source-set table.`
+- RCAF Prompt: `As a query-intelligence validation operator, fire a compound question requiring multi-source synthesis, and verify top-3 returns ≥ 2 of the 3-4 expected constituent files. Return a pass/fail verdict with the source-set table.`
 - Expected execution process: fire compound query, identify the expected constituent source set, check which constituents appear in top-3 / top-5 / top-10.
 - Expected signals: after deduplicating mirrored runtime paths (`.opencode`, `.opencode`, `.claude`) to one constituent hit, at least 2 of the 4 expected constituents appear in top-3 and at least 3 in top-5.
 - Desired user-visible outcome: `PASS — top-3 includes 3 of 4 expected constituents (the missing one was in rank 6, still close).`

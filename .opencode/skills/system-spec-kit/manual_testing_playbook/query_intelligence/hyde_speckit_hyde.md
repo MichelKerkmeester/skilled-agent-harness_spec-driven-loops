@@ -18,7 +18,7 @@ This scenario validates HyDE (SPECKIT_HYDE) for `162`. It focuses on enabling th
 
 - Objective: Verify HyDE pseudo-document generation for low-confidence deep queries.
 - Real user request: `Please validate HyDE (SPECKIT_HYDE) against SPECKIT_HYDE=true and tell me whether the expected signals are present: HyDEResult contains pseudoDocument (non-empty) and embedding (Float32Array); low-confidence threshold (top score < 0.45) triggers generation; LLM cache shared with reformulation; active mode (default): results merged into candidates; shadow mode (SPECKIT_HYDE_ACTIVE=false): results logged but not merged.`
-- RCAF Prompt: `As a query_intelligence validation operator, validate HyDE (SPECKIT_HYDE) against SPECKIT_HYDE=true. Verify hyDE pseudo-document generation for low-confidence deep queries. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- RCAF Prompt: `As a query-intelligence validation operator, validate HyDE (SPECKIT_HYDE) against SPECKIT_HYDE=true. Verify hyDE pseudo-document generation for low-confidence deep queries. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: HyDEResult contains pseudoDocument (non-empty) and embedding (Float32Array); low-confidence threshold (top score < 0.45) triggers generation; LLM cache shared with reformulation; active mode (default): results merged into candidates; shadow mode (SPECKIT_HYDE_ACTIVE=false): results logged but not merged
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,7 +31,7 @@ This scenario validates HyDE (SPECKIT_HYDE) for `162`. It focuses on enabling th
 ### Prompt
 
 ```
-As a query_intelligence validation operator, verify HyDE pseudo-document generated against SPECKIT_HYDE=true. Verify hyDEResult with pseudoDocument and Float32Array embedding; low-confidence threshold at 0.45; active merge by default (SPECKIT_HYDE_ACTIVE ON); shadow-only when SPECKIT_HYDE_ACTIVE=false; LLM cache shared. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a query-intelligence validation operator, verify HyDE pseudo-document generated against SPECKIT_HYDE=true. Verify hyDEResult with pseudoDocument and Float32Array embedding; low-confidence threshold at 0.45; active merge by default (SPECKIT_HYDE_ACTIVE ON); shadow-only when SPECKIT_HYDE_ACTIVE=false; LLM cache shared. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

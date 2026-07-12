@@ -38,7 +38,7 @@ The user-observable value is session resilience: a backend recycle is invisible 
 ### Prompt
 
 ```
-As a pipeline_architecture validation operator, validate transparent backend recycle against the launcher front-proxy. Verify that when the backend recycles, the proxy reattaches and the client session survives, and that the retryable-recycle path uses -32001 with retryable:true. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a pipeline-architecture validation operator, validate transparent backend recycle against the launcher front-proxy. Verify that when the backend recycles, the proxy reattaches and the client session survives, and that the retryable-recycle path uses -32001 with retryable:true. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
@@ -87,7 +87,7 @@ Inspect `RETRYABLE_RECYCLE_ERROR` and the `reattach()` loop in `.opencode/bin/li
 ### Prompt
 
 ```
-As a pipeline_architecture validation operator, validate SPECKIT_BACKEND_ONLY backend mode against the memory server started with SPECKIT_BACKEND_ONLY=1. Verify the server does not connect its own stdio transport so the front-proxy owns the client-facing transport. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a pipeline-architecture validation operator, validate SPECKIT_BACKEND_ONLY backend mode against the memory server started with SPECKIT_BACKEND_ONLY=1. Verify the server does not connect its own stdio transport so the front-proxy owns the client-facing transport. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
@@ -136,7 +136,7 @@ Inspect the `SPECKIT_BACKEND_ONLY` branch in `mcp_server/context-server.ts` (aro
 ### Prompt
 
 ```
-As a pipeline_architecture validation operator, validate fail-closed protocol-mismatch reconnect against the launcher front-proxy. Verify that a backend protocol-version change surfaces -32002 (retryable:false) and the proxy state goes terminal CLOSED rather than retrying the version-mismatched backend. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a pipeline-architecture validation operator, validate fail-closed protocol-mismatch reconnect against the launcher front-proxy. Verify that a backend protocol-version change surfaces -32002 (retryable:false) and the proxy state goes terminal CLOSED rather than retrying the version-mismatched backend. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

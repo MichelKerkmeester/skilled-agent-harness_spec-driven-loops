@@ -24,7 +24,7 @@ This scenario probes whether the LLM's pretraining recognizes these domain-speci
 
 - Objective: Confirm contextual disambiguation across 3 senses of "save context".
 - Real user request: `Verify that adding context-disambiguating phrases to a polysemous query 'save context' steers Memory MCP and Code Graph to the correct sense.`
-- RCAF Prompt: `As a query_intelligence validation operator, fire 3 variants of a polysemous query 'save context' (each adding a different disambiguator) and verify the top-3 results match the intended sense. Return a pass/fail verdict.`
+- RCAF Prompt: `As a query-intelligence validation operator, fire 3 variants of a polysemous query 'save context' (each adding a different disambiguator) and verify the top-3 results match the intended sense. Return a pass/fail verdict.`
 - Expected execution process: fire 3 query variants, inspect top-3 results for each, mark which sense the top-3 represents.
 - Expected signals: each variant's top-3 is dominated by its intended sense (≥ 2 of 3 results match).
 - Desired user-visible outcome: `PASS — all 3 variants disambiguate correctly; top-3 dominated by intended sense.`

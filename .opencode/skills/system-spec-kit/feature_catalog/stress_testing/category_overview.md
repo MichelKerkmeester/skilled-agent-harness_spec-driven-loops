@@ -28,7 +28,7 @@ The shipped manual surface includes one execution playbook for the full stress-t
 
 The shipped automated harness is independent from the manual cycle. It uses `vitest.stress.config.ts` and six domain folders under `mcp_server/stress_test/`: `durability/`, `matrix/`, `memory/`, `search-quality/`, `session/`, and `substrate/`. Operators run it from `.opencode/skills/system-spec-kit/mcp_server` with the confirmed npm scripts `npm run stress`, `npm run stress:harness`, `npm run stress:matrix`, `npm run stress:substrate`, and `npm run stress:durability`.
 
-The playbook-side viewpoint lives in `manual_testing_playbook/stress_testing/`. The pipeline_architecture catalog peer at `feature_catalog/pipeline_architecture/stress_test_cycle.md` documents the cycle as a pipeline feature; this category overview keeps the stress_testing inventory entry intact so the catalog and playbook stay structurally parallel.
+The playbook-side viewpoint lives in `manual_testing_playbook/stress_testing/`. The pipeline-architecture catalog peer at `feature_catalog/pipeline_architecture/stress_test_cycle.md` documents the cycle as a pipeline feature; this category overview keeps the stress-testing inventory entry intact so the catalog and playbook stay structurally parallel.
 
 ---
 

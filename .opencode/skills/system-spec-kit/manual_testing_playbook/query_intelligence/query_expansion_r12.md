@@ -18,7 +18,7 @@ This scenario validates Query expansion (R12) for `038`. It focuses on Confirm p
 
 - Objective: Confirm parallel expansion + dedup.
 - Real user request: `Please validate Query expansion (R12) against the documented validation surface and tell me whether the expected signals are present: Complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion.`
-- RCAF Prompt: `As a query_intelligence validation operator, validate Query expansion (R12) against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- RCAF Prompt: `As a query-intelligence validation operator, validate Query expansion (R12) against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,7 +31,7 @@ This scenario validates Query expansion (R12) for `038`. It focuses on Confirm p
 ### Prompt
 
 ```
-As a query_intelligence validation operator, confirm parallel expansion + dedup against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a query-intelligence validation operator, confirm parallel expansion + dedup against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
@@ -51,7 +51,7 @@ User request used: `Please validate Query expansion (R12) against the documented
 Orchestrator prompt used:
 
 ```text
-As a query_intelligence validation operator, confirm parallel expansion + dedup against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a query-intelligence validation operator, confirm parallel expansion + dedup against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 Documented validation surface read:

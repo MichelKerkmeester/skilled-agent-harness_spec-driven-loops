@@ -22,7 +22,7 @@ A naive search ranker collapses onto the most-frequent term ("embedding"); a com
 
 - Objective: Confirm multi-aspect representation in top-5.
 - Real user request: `Verify that a 3-concept compound query 'Apple Silicon Metal GPU embedding default' returns top-5 results that collectively cover all three concepts.`
-- RCAF Prompt: `As a query_intelligence validation operator, fire a compound query joining platform + acceleration + feature, and verify that the top-5 results span all three concepts. Return a pass/fail verdict with the per-aspect coverage breakdown.`
+- RCAF Prompt: `As a query-intelligence validation operator, fire a compound query joining platform + acceleration + feature, and verify that the top-5 results span all three concepts. Return a pass/fail verdict with the per-aspect coverage breakdown.`
 - Expected execution process: run the compound query, tag each top-5 result with the aspects it touches (A=Apple Silicon, M=Metal, E=Embedding-default), confirm all three aspects appear at least once in the top-5.
 - Expected signals: each of the 3 aspects appears in at least 1 result; ≥ 2 results touch multiple aspects.
 - Desired user-visible outcome: `PASS — aspects A, M, E all represented in top-5; 3 results touch ≥ 2 aspects.`

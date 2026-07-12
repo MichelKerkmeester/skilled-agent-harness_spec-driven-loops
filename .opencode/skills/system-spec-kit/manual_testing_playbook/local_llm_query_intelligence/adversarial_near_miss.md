@@ -19,7 +19,7 @@ If BGE local fallback's semantic representation is functioning correctly, it pul
 
 - Objective: Confirm semantic > lexical when they disagree.
 - Real user request: `Verify Code Graph's semantic ranking beats lexical decoys: fire 3 adversarial queries and confirm the semantically-correct file ranks above the lexical decoy in each top-5.`
-- RCAF Prompt: `As a query_intelligence validation operator, fire 3 adversarial queries with intentional lexical decoys and verify the semantically-correct file outranks the decoy in each top-5. Return a pass/fail verdict.`
+- RCAF Prompt: `As a query-intelligence validation operator, fire 3 adversarial queries with intentional lexical decoys and verify the semantically-correct file outranks the decoy in each top-5. Return a pass/fail verdict.`
 - Expected execution process: run 3 queries with engineered lexical+semantic mismatch, identify the correct file and the decoy in each result list, check ranks.
 - Expected signals: correct file rank < decoy rank in ≥ 2 of 3 queries.
 - Desired user-visible outcome: `PASS — semantic ranking beats lexical decoy in 3/3 queries.`

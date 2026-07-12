@@ -19,7 +19,7 @@ The behavior is user-observable: a real operator stores knowledge in one form, a
 
 - Objective: Confirm semantic recall across paraphrase boundary.
 - Real user request: `I want to verify that when I search Memory MCP using different words than I stored, the stored memory still surfaces. Test with a stored fact about FSRS and a paraphrased query.`
-- RCAF Prompt: `As a query_intelligence validation operator, store a memory containing one phrasing, query it back with a paraphrase the system never saw, and confirm the stored memory appears in the top-3 results. Return a concise pass/fail verdict with the top-K dump and similarity scores.`
+- RCAF Prompt: `As a query-intelligence validation operator, store a memory containing one phrasing, query it back with a paraphrase the system never saw, and confirm the stored memory appears in the top-3 results. Return a concise pass/fail verdict with the top-K dump and similarity scores.`
 - Expected execution process: store via `memory_save`, search via `memory_search`, inspect top-3 hits and their similarity scores.
 - Expected signals: the stored memory's parent ID appears in `memory_search` top-3 results with score > 0.5; the rank is at most 3.
 - Desired user-visible outcome: `PASS — stored memory ranked #1 (score: 0.82); paraphrase recall confirmed.`

@@ -25,7 +25,7 @@ Use this catalog as the canonical inventory for both current behavior and delive
 
 | Audit phase | Catalog coverage |
 |---|---|
-| `020-feature-flag-reference` | Covered by [`feature-flag-reference/`](feature_flag_reference/1_search_pipeline_features_speckit.md) via slug match (`feature_flag_reference`). See [`feature_flag_reference/audit_phase_020_mapping_note.md`](feature_flag_reference/audit_phase_020_mapping_note.md). |
+| `020-feature-flag-reference` | Covered by [`feature-flag-reference/`](feature_flag_reference/1_search_pipeline_features_speckit.md) via slug match (`feature-flag-reference`). See [`feature_flag_reference/audit_phase_020_mapping_note.md`](feature_flag_reference/audit_phase_020_mapping_note.md). |
 | `021-remediation-revalidation` | Covered as cross-category remediation records (for example: [bug-fixes-and-data-integrity/06](bug_fixes_and_data_integrity/guards_and_edge_cases.md), [pipeline-architecture/07](pipeline_architecture/search_pipeline_safety.md), [tooling-and-scripts/05](tooling_and_scripts/code_standards_alignment.md)). See [`remediation_revalidation/category_stub.md`](remediation_revalidation/category_stub.md). |
 | `022-implement-and-remove-deprecated-features` | Covered by implementation/deprecation closure records ([tooling-and-scripts/04](tooling_and_scripts/dead_code_removal.md), retired feature-flag sunset audit record). See [`implement_and_remove_deprecated_features/category_stub.md`](implement_and_remove_deprecated_features/category_stub.md). |
 
