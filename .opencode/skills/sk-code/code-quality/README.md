@@ -44,7 +44,7 @@ Implementation can produce code that is behaviorally close but still not shippab
 
 **Step 1: Route after implementation.** Use this mode after the surface skill (`code-webflow` / `code-opencode`) has changed files and before the surface's verification workflow (`workflow_verify.md`) collects final evidence.
 
-**Step 2: Load the right checklist.** The mode always loads [`assets/code_quality_checklist.md`](assets/code_quality_checklist/overview-header-and-comments.md). For `.opencode/` targets, it also loads the matching checklist under [`assets/checklists/`](../code-opencode/assets/checklists/).
+**Step 2: Load the right checklist.** The mode always loads [`assets/code_quality_checklist.md`](assets/code_quality_checklist/overview_header_and_comments.md). For `.opencode/` targets, it also loads the matching checklist under [`assets/checklists/`](../code-opencode/assets/checklists/).
 
 **Step 3: Run comment hygiene per modified file.** Use [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) for every modified file that can contain comments.
 
@@ -98,7 +98,7 @@ Use it when a change is already written and needs standards enforcement before f
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime contract for the quality mode |
-| [`assets/code_quality_checklist.md`](assets/code_quality_checklist/overview-header-and-comments.md) | Required quality checklist before implementation completion claims |
+| [`assets/code_quality_checklist.md`](assets/code_quality_checklist/overview_header_and_comments.md) | Required quality checklist before implementation completion claims |
 | [`assets/checklists/`](../code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists |
 | [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) | Per-file comment-hygiene checker |
 | [`scripts/check-dist-staleness.sh`](./scripts/check-dist-staleness.sh) | Generated artifact drift checker |

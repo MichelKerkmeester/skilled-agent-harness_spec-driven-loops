@@ -4,9 +4,9 @@ category: quality_gate
 title: 'Quality gate routes to the code-quality checklist'
 expected_intent: QUALITY
 expected_resources:
-  - assets/code_quality_checklist/overview-header-and-comments.md
-  - assets/code_quality_checklist/naming-init-formatting-and-css.md
-  - assets/code_quality_checklist/verification-quick-reference-and-related.md
+  - assets/code_quality_checklist/overview_header_and_comments.md
+  - assets/code_quality_checklist/naming_init_formatting_and_css.md
+  - assets/code_quality_checklist/verification_quick_reference_and_related.md
 version: 1.0.0.0
 ---
 

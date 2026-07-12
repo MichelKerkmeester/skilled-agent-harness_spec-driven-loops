@@ -15,8 +15,6 @@ version: 3.5.0.17
 
 Validation checklist for JavaScript and CSS code quality and style compliance.
 
----
-
 ## 1. OVERVIEW
 
 ### Purpose
@@ -213,4 +211,3 @@ if (element) { }
 ```
 
 ---
-

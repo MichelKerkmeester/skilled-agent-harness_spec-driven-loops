@@ -64,7 +64,7 @@ QUALITY TASK
     +- Phase lifecycle  -> ../shared/references/phase_detection.md
     +- Resource routing -> ../shared/references/smart_routing.md
     |
-    +- WEBFLOW target     -> assets/code_quality_checklist/overview-header-and-comments.md + shared web standards
+    +- WEBFLOW target     -> assets/code_quality_checklist/overview_header_and_comments.md + shared web standards
     +- OPENCODE target    -> assets/checklists/<target-checklist>.md
     +- Comment hygiene    -> scripts/check-comment-hygiene.sh per modified file
     +- Dist staleness     -> scripts/check-dist-staleness.sh when generated artifacts are involved
@@ -86,7 +86,7 @@ Phase 1 Implementation writes or changes files
 
 ### Resource Domains
 
-- `assets/code_quality_checklist/overview-header-and-comments.md` is the Webflow/frontend quality checklist and the general post-implementation quality gate.
+- `assets/code_quality_checklist/overview_header_and_comments.md` is the Webflow/frontend quality checklist and the general post-implementation quality gate.
 - `assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, spec folders, language files, and config.
 - `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
@@ -98,7 +98,7 @@ Phase 1 Implementation writes or changes files
 | Level | When to Load | Resources |
 | --- | --- | --- |
 | ALWAYS | Any quality-gate invocation | `../shared/references/stack_detection.md`, `../shared/references/smart_routing.md`, `../shared/references/phase_detection.md` |
-| ALWAYS | Before any implementation-done claim | `assets/code_quality_checklist/overview-header-and-comments.md`, `../shared/references/universal/code_quality_standards.md`, `../shared/references/universal/code_style_guide.md` |
+| ALWAYS | Before any implementation-done claim | `assets/code_quality_checklist/overview_header_and_comments.md`, `../shared/references/universal/code_quality_standards.md`, `../shared/references/universal/code_style_guide.md` |
 | ALWAYS | Any modified file with comments or comment-capable syntax | `scripts/check-comment-hygiene.sh` |
 | CONDITIONAL | `.opencode/skills/` target | `assets/checklists/skill_authoring.md` |
 | CONDITIONAL | `.opencode/agents/` target | `assets/checklists/agent_authoring.md` |
@@ -119,7 +119,7 @@ Phase 1 Implementation writes or changes files
 | `.opencode/specs/` | `../../system-spec-kit/references/workflows/spec_folder_authoring_checklist.md` (system-spec-kit) | Check spec-folder structure and packet-document consistency. |
 | MCP server source | `assets/checklists/mcp_server_authoring.md` | Check tool contracts, input/output schemas, transport assumptions, and failure handling. |
 | OpenCode language/config files | language/config checklist in `assets/checklists/` | Check language-specific quality and style expectations. |
-| Webflow/frontend files | `assets/code_quality_checklist/overview-header-and-comments.md` | Check frontend style, maintainability, headers, comments, and platform expectations. |
+| Webflow/frontend files | `assets/code_quality_checklist/overview_header_and_comments.md` | Check frontend style, maintainability, headers, comments, and platform expectations. |
 
 ### Comment-Hygiene Enforcement Gates
 
@@ -145,9 +145,9 @@ code-quality routes primarily by TARGET PATH (the surface + checklist map above)
 # test) and its parent discoverability is the hub quality signal — this block only
 # makes the one asset scoreable by the deterministic router-replay.
 DEFAULT_RESOURCE = [
-    "assets/code_quality_checklist/overview-header-and-comments.md",
-    "assets/code_quality_checklist/naming-init-formatting-and-css.md",
-    "assets/code_quality_checklist/verification-quick-reference-and-related.md",
+    "assets/code_quality_checklist/overview_header_and_comments.md",
+    "assets/code_quality_checklist/naming_init_formatting_and_css.md",
+    "assets/code_quality_checklist/verification_quick_reference_and_related.md",
 ]
 
 INTENT_SIGNALS = {
@@ -155,7 +155,7 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "QUALITY": ["assets/code_quality_checklist/overview-header-and-comments.md"],
+    "QUALITY": ["assets/code_quality_checklist/overview_header_and_comments.md"],
 }
 ```
 
@@ -167,7 +167,7 @@ RESOURCE_MAP = {
 
 1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`code-webflow` / `code-opencode`) unless the user explicitly asked for a standalone quality audit.
 2. Collect the changed-file set from the task context or targeted paths. Read each target before editing.
-3. Load `assets/code_quality_checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `assets/checklists/` when the target is OpenCode-owned.
+3. Load `assets/code_quality_checklist/overview_header_and_comments.md` before any completion claim, then load the target-path checklist from `assets/checklists/` when the target is OpenCode-owned.
 4. Run `scripts/check-comment-hygiene.sh <file>` for every modified comment-capable file.
 5. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
 6. Fix gate failures in place with `Edit` when the correction is limited to already-authored files.
@@ -218,7 +218,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ### ALWAYS
 
 1. Read target files before editing them.
-2. Load `assets/code_quality_checklist/overview-header-and-comments.md` before any implementation-done or quality-pass claim.
+2. Load `assets/code_quality_checklist/overview_header_and_comments.md` before any implementation-done or quality-pass claim.
 3. Resolve surface identity through `../shared/references/stack_detection.md`; do not re-author surface detection in this packet.
 4. Load the correct OpenCode authoring checklist by target path before checking `.opencode/` work.
 5. Run `scripts/check-comment-hygiene.sh <file>` on each modified comment-capable file.
@@ -251,7 +251,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 - The quality gate ran after implementation and before verification.
 - Surface identity came from the shared router, not packet-local detection logic.
-- `assets/code_quality_checklist/overview-header-and-comments.md` was loaded before any quality-pass claim.
+- `assets/code_quality_checklist/overview_header_and_comments.md` was loaded before any quality-pass claim.
 - The correct `assets/checklists/*` authoring checklist was loaded for OpenCode targets.
 - `scripts/check-comment-hygiene.sh` ran for each modified comment-capable file and reported zero violations or a documented escalation.
 - P0 issues are fixed in place or escalated with evidence; P1/P2 handling is explicit.
@@ -281,7 +281,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ### Quality References And Assets
 
-- [`assets/code_quality_checklist/overview-header-and-comments.md`](assets/code_quality_checklist/overview-header-and-comments.md) - Required quality checklist before implementation completion claims.
+- [`assets/code_quality_checklist/overview_header_and_comments.md`](assets/code_quality_checklist/overview_header_and_comments.md) - Required quality checklist before implementation completion claims.
 - [`assets/checklists/universal_checklist.md`](../code-opencode/assets/checklists/universal_checklist.md) - Universal OpenCode quality baseline.
 - [`assets/checklists/skill_authoring.md`](../code-opencode/assets/checklists/skill_authoring.md) - Skill authoring checklist.
 - [`assets/checklists/agent_authoring.md`](../code-opencode/assets/checklists/agent_authoring.md) - Agent authoring checklist.

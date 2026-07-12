@@ -1,6 +1,11 @@
 ---
 title: Verification Summary, Quick Reference & Related
 description: Validation checklist for JavaScript and CSS code quality and style compliance. — Verification Summary, Quick Reference & Related.
+trigger_phrases:
+  - "code quality verification summary"
+  - "javascript pass criteria"
+  - "css pass criteria"
+  - "quality gate resources"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.17
@@ -8,7 +13,21 @@ version: 3.5.0.17
 
 # Verification Summary, Quick Reference & Related
 
-## 9. VERIFICATION SUMMARY TEMPLATE
+Templates, pass criteria, and source links for reporting JavaScript and CSS quality verification.
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provide consistent verification summaries, pass criteria, and related standards for the code-quality gate.
+
+### Usage
+
+Use the matching language template after validation, apply the gate rule, and consult the linked standards when remediation is needed.
+
+---
+
+## 2. VERIFICATION SUMMARY TEMPLATE
 
 After completing validation, document the results using the appropriate template.
 
@@ -67,7 +86,7 @@ After completing validation, document the results using the appropriate template
 
 ---
 
-## 10. QUICK REFERENCE
+## 3. QUICK REFERENCE
 
 ### JavaScript Pass Criteria
 
@@ -96,7 +115,7 @@ After completing validation, document the results using the appropriate template
 
 ---
 
-## 11. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 ### Per-language source standards
 

@@ -1,6 +1,11 @@
 ---
 title: Naming, Initialization, Formatting & CSS Style Checks
 description: Validation checklist for JavaScript and CSS code quality and style compliance. — Naming, Initialization, Formatting & CSS Style Checks.
+trigger_phrases:
+  - "javascript naming checks"
+  - "cdn safe initialization"
+  - "javascript formatting checks"
+  - "css style checks"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.17
@@ -8,7 +13,21 @@ version: 3.5.0.17
 
 # Naming, Initialization, Formatting & CSS Style Checks
 
-## 5. NAMING CONVENTION CHECKS
+Validation checks for naming, initialization, formatting, and CSS style compliance.
+
+## 1. OVERVIEW
+
+### Purpose
+
+Validate JavaScript and CSS implementation details against the required naming, initialization, formatting, and style conventions.
+
+### Usage
+
+Apply each relevant check to the target JavaScript or CSS file before reporting code-quality results.
+
+---
+
+## 2. NAMING CONVENTION CHECKS
 
 **Applies to:** JavaScript (`.js`)
 
@@ -68,7 +87,7 @@ function data(form) { }    // Should be: get_form_data
 
 ---
 
-## 6. INITIALIZATION PATTERN CHECKS
+## 3. INITIALIZATION PATTERN CHECKS
 
 **Applies to:** JavaScript (`.js`)
 
@@ -118,7 +137,7 @@ if (window.Webflow?.push) {
 
 ---
 
-## 7. FORMATTING CHECKS
+## 4. FORMATTING CHECKS
 
 **Applies to:** JavaScript (`.js`)
 
@@ -135,7 +154,7 @@ if (window.Webflow?.push) {
 
 ---
 
-## 8. CSS STYLE CHECKS
+## 5. CSS STYLE CHECKS
 
 **Applies to:** CSS (`.css`)
 
@@ -228,4 +247,3 @@ if (window.Webflow?.push) {
 ```
 
 ---
-
