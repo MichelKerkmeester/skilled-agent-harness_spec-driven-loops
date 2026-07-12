@@ -2,7 +2,7 @@
 name: create-manual-testing-playbook
 description: Author manual testing playbook packages with deterministic scenarios, structured evidence collection, and multi-agent execution planning.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 <!-- Keywords: manual testing playbook, testing playbook, deterministic scenario, evidence collection, operator validation, multi-agent execution, release readiness, create:manual-testing-playbook -->
@@ -67,6 +67,15 @@ NO  -> Keep test steps in spec/checklist docs
 ### Family Boundary
 
 This packet owns manual testing playbook packages only. It consumes shared `sk-doc` standards from `../shared`, but the advisor identity lives at the `sk-doc` hub root. Do not add a packet-local `graph-metadata.json`.
+
+### Router Resilience
+
+This packet routes by whether the target needs reusable manual validation with captured evidence. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
+
+- Load optional markdown resources only after resolving them under this packet and confirming they exist.
+- Treat `references/README.md` as the fallback route map when the validation scope or evidence needs are unclear.
+- Ask for the missing target system, feature set, or evidence requirements instead of silently loading no resources.
+- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
 ---
 

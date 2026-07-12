@@ -2,7 +2,7 @@
 name: create-changelog
 description: Author global or packet-local changelogs with topology detection, versions, and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 <!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->
@@ -58,6 +58,15 @@ Route the resolved work source to one of two output modes before generating cont
 2. **Packet-local nested mode** -- write through the spec-kit nested generator into the packet `changelog/` folder when `--nested` is set, or when the spec folder is a phase child, has direct child phase folders, or already has a `changelog/` folder.
 
 The full detection and target-resolution logic lives in HOW IT WORKS and TOPOLOGY AND TARGET RESOLUTION below.
+
+### Router Resilience
+
+This packet routes by source topology and the resulting global or packet-local output mode. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
+
+- Load optional markdown resources only after resolving them under this packet and confirming they exist.
+- Treat `references/README.md` as the fallback route map when source topology or output mode is unclear.
+- Ask for the missing source type, target component or packet, or version intent instead of silently loading no resources.
+- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
 ---
 

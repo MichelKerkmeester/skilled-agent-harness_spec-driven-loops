@@ -2,7 +2,7 @@
 name: create-feature-catalog
 description: Author sk-doc feature-catalog inventory packages with a root catalog, category folders, per-feature files, and auditable source anchors.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 <!-- Keywords: create-feature-catalog, feature catalog, feature inventory, catalog package, per-feature files, source anchors, root catalog, capability inventory, /create:feature-catalog -->
@@ -77,6 +77,15 @@ Need a stable, reviewable current-state inventory?
 ### Family Boundary
 
 This is a nested workflow packet under `sk-doc`. It carries its own `SKILL.md`, `README.md`, `references/`, `assets/`, and `changelog/`, but it must not define a packet-local `graph-metadata.json`; advisor identity lives at the `sk-doc` hub root.
+
+### Router Resilience
+
+This packet routes by whether the target needs a stable, reviewable current-state feature inventory. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
+
+- Load optional markdown resources only after resolving them under this packet and confirming they exist.
+- Treat `references/README.md` as the fallback route map when catalog necessity or target feature scope is unclear.
+- Ask for the missing target system, feature scope, or inventory requirements instead of silently loading no resources.
+- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
 ---
 

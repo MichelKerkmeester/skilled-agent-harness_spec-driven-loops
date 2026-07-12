@@ -2,7 +2,7 @@
 name: create-command
 description: Scaffold OpenCode slash commands with explicit argument hints, allowed tools, and router/presentation separation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 <!-- Keywords: create-command, slash command, opencode command, argument-hint, allowed-tools, command router, presentation contract, thin router, command scaffold -->
@@ -45,6 +45,15 @@ Do not use this packet when:
 Keyword triggers: `create command`, `slash command`, `opencode command`, `argument-hint`, `allowed-tools`, `command template`, `router presentation split`, `thin router`, `presentation contract`, `$ARGUMENTS`, `:auto`, `:confirm`.
 
 These triggers route a request into this command-authoring packet. When the true surface is a skill, an agent, or non-command reference documentation, hand off to the sibling `sk-doc` packet named in the "Do not use this packet when" list above instead of proceeding here. When the surface is a slash command, stay in this packet and continue to the creation workflow below.
+
+### Router Resilience
+
+This packet routes by command-authoring intent and the requested component surface. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
+
+- Load optional markdown resources only after resolving them under this packet and confirming they exist.
+- Treat `references/README.md` as the fallback route map when command intent or component surface is unclear.
+- Ask for the missing command purpose, invocation shape, or component type instead of silently loading no resources.
+- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
 ---
 

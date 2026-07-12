@@ -2,7 +2,7 @@
 name: create-agent
 description: Scaffold OpenCode agents with runtime-aware placement, permission frontmatter, authority boundaries, workflow sections, and validation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 <!-- Keywords: create-agent, /create:agent, opencode agent, agent frontmatter, permission object, authority boundary, agent template, runtime agent directory -->
@@ -47,6 +47,15 @@ Need a named runtime persona with authority and tool policy?
   YES -> Create an agent
   NO  -> Use or create a skill, template, or command instead
 ```
+
+### Router Resilience
+
+This packet routes by component choice and runtime-persona requirements. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
+
+- Load optional markdown resources only after resolving them under this packet and confirming they exist.
+- Treat `references/README.md` as the fallback route map when the component choice or runtime-persona requirements are unclear.
+- Ask for the missing component type, runtime profile, or authority requirements instead of silently loading no resources.
+- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
 ---
 

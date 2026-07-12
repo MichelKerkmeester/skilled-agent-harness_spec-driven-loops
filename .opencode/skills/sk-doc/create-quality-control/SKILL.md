@@ -2,7 +2,7 @@
 name: create-quality-control
 description: Validate, score, and optionally improve existing markdown via structure extraction, DQI scoring, HVR review, and validation gates.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 # Doc Quality (quality)
@@ -44,6 +44,15 @@ Skip this workflow when:
 ### Family Boundary
 
 This is an independently invokable nested workflow packet under `sk-doc`. It owns existing-document validation and optimization, not artifact scaffolding. It has no packet-local `graph-metadata.json`; the advisor identity lives at the `sk-doc` hub root.
+
+### Router Resilience
+
+This packet routes by target document type and execution mode: report-only audit, structure validation, content optimization, or batch snapshot. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
+
+- Load optional markdown resources only after resolving them under this packet and confirming they exist.
+- Treat `references/README.md` as the fallback route map when document type or execution mode is unclear.
+- Ask for the missing target document, document type, or execution mode instead of silently loading no resources.
+- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
 ---
 
