@@ -226,7 +226,7 @@ Use plain comments that explain reasoning:
 - `// State that must hold after execution`
 - `// SEC: security note tied to a stable standard (CWE-###)`
 - `// Reliability/performance/security risk control`
-- No spec-folder-internal ids (`T###`/`REQ-###`/`CHK-###`/ADR/ticket) in comments — see [`../../shared/universal_patterns/naming-and-commenting.md`](../../shared/universal_patterns/naming-and-commenting.md) §4.
+- No spec-folder-internal ids (`T###`/`REQ-###`/`CHK-###`/ADR/ticket) in comments — see [`../../shared/universal_patterns/naming_and_commenting.md`](../../shared/universal_patterns/naming_and_commenting.md) §4.
 
 ### Capitalization
 

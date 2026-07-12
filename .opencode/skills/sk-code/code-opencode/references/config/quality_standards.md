@@ -84,7 +84,7 @@ Use when implementing, validating, or reviewing JSON/JSONC configuration quality
 
 ## 4. P2 - RECOMMENDED
 
-- Add a durable WHY comment for high-impact rules (never a spec-folder-internal id like `REQ-###`; see `../shared/universal_patterns/naming-and-commenting.md` §4).
+- Add a durable WHY comment for high-impact rules (never a spec-folder-internal id like `REQ-###`; see `../shared/universal_patterns/naming_and_commenting.md` §4).
 - Keep key ordering stable (`$schema`, core flags, behavior config, advanced settings).
 - Include value constraints in comments for opaque numbers.
 
@@ -107,5 +107,5 @@ rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$" .opencode/skills/sk-code/code-opencode/re
 
 - [quick_reference.md](./quick_reference.md)
 - [style_guide.md](./style_guide.md)
-- [code_organization.md](../shared/code_organization/overview-and-module-organization.md)
+- [code_organization.md](../shared/code_organization/overview_and_module_organization.md)
 - [config_checklist.md](../../assets/checklists/config_checklist.md)

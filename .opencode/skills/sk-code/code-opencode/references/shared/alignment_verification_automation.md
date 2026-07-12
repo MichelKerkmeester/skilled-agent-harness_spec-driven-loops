@@ -17,11 +17,15 @@ This document describes the repeatable verifier introduced for recurring alignme
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Defines the operational contract for `verify_alignment_drift.py`, including:
 - what rule categories are enforced;
 - how severities (`ERROR`/`WARN`) are assigned;
 - default vs strict CI failure behavior.
 - which standards remain manual checklist gates.
+
+### When to Use
 
 Use this reference when tuning recurring checks or interpreting verifier output in automation.
 
@@ -84,6 +88,6 @@ Notes:
 
 ## 5. RELATED RESOURCES
 
-- [code_organization.md](code_organization/overview-and-module-organization.md)
-- [universal_patterns.md](universal_patterns/naming-and-commenting.md)
+- [code_organization.md](code_organization/overview_and_module_organization.md)
+- [universal_patterns.md](universal_patterns/naming_and_commenting.md)
 - [hooks.md](./hooks.md)

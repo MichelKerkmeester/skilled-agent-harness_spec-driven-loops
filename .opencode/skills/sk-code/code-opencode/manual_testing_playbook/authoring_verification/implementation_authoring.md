@@ -4,11 +4,11 @@ category: authoring_verification
 title: 'Implementation authoring routing'
 expected_intent: IMPLEMENTATION
 expected_resources:
-  - references/shared/universal_patterns/naming-and-commenting.md
-  - references/shared/universal_patterns/organization-security-and-examples.md
-  - references/shared/code_organization/overview-and-module-organization.md
-  - references/shared/code_organization/imports-and-exports.md
-  - references/shared/code_organization/directory-and-test-conventions.md
+  - references/shared/universal_patterns/naming_and_commenting.md
+  - references/shared/universal_patterns/organization_security_and_examples.md
+  - references/shared/code_organization/overview_and_module_organization.md
+  - references/shared/code_organization/imports_and_exports.md
+  - references/shared/code_organization/directory_and_test_conventions.md
   - assets/checklists/agent_authoring.md
   - assets/checklists/command_authoring.md
   - assets/checklists/skill_authoring.md

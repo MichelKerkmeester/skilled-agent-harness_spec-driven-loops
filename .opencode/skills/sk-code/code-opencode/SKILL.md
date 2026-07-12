@@ -50,11 +50,11 @@ This block is the deterministic projection of code-opencode's own reference/asse
 # (re-prefixed with code-opencode/) and the sibling code-webflow map plus the
 # parent-owned universal/shared tier; a drift guard enforces that equality.
 DEFAULT_RESOURCE = [
-    "references/shared/universal_patterns/naming-and-commenting.md",
-    "references/shared/universal_patterns/organization-security-and-examples.md",
-    "references/shared/code_organization/overview-and-module-organization.md",
-    "references/shared/code_organization/imports-and-exports.md",
-    "references/shared/code_organization/directory-and-test-conventions.md",
+    "references/shared/universal_patterns/naming_and_commenting.md",
+    "references/shared/universal_patterns/organization_security_and_examples.md",
+    "references/shared/code_organization/overview_and_module_organization.md",
+    "references/shared/code_organization/imports_and_exports.md",
+    "references/shared/code_organization/directory_and_test_conventions.md",
 ]
 
 INTENT_SIGNALS = {
@@ -72,11 +72,11 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "IMPLEMENTATION": [
-        "references/shared/universal_patterns/naming-and-commenting.md",
-        "references/shared/universal_patterns/organization-security-and-examples.md",
-        "references/shared/code_organization/overview-and-module-organization.md",
-        "references/shared/code_organization/imports-and-exports.md",
-        "references/shared/code_organization/directory-and-test-conventions.md",
+        "references/shared/universal_patterns/naming_and_commenting.md",
+        "references/shared/universal_patterns/organization_security_and_examples.md",
+        "references/shared/code_organization/overview_and_module_organization.md",
+        "references/shared/code_organization/imports_and_exports.md",
+        "references/shared/code_organization/directory_and_test_conventions.md",
         "assets/checklists/agent_authoring.md",
         "assets/checklists/command_authoring.md",
         "assets/checklists/skill_authoring.md",

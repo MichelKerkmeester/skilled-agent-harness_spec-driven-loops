@@ -1,6 +1,11 @@
 ---
 title: File Organization, Security & Copy-Paste Alignment Examples
 description: Patterns applicable to ALL languages in OpenCode system code including naming principles, commenting philosophy, and reference comment patterns. — File Organization, Security & Copy-Paste Alignment Examples.
+trigger_phrases:
+  - "cross language file organization"
+  - "opencode security patterns"
+  - "copy paste alignment examples"
+  - "path traversal prevention"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.22
@@ -8,7 +13,26 @@ version: 1.0.0.22
 
 # File Organization, Security & Copy-Paste Alignment Examples
 
-## 5. FILE ORGANIZATION
+Cross-language patterns for organizing files, securing input and paths, and keeping contributor examples aligned across OpenCode system code.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provide shared file-organization, security, and copy-paste alignment guidance that applies across supported implementation languages.
+
+### When to Use
+
+- Organizing a new system-code file
+- Validating input, paths, or secret handling
+- Writing equivalent examples across multiple languages
+- Checking cross-language determinism contracts
+
+---
+
+## 2. FILE ORGANIZATION
 
 ### Universal Section Order
 
@@ -91,7 +115,7 @@ The first numbered divider that appears in code starts at `1`. If a file omits i
 
 ---
 
-## 6. SECURITY PATTERNS
+## 3. SECURITY PATTERNS
 
 ### Input Validation (All Languages)
 
@@ -159,7 +183,7 @@ const apiKey = "sk-1234567890abcdef";
 
 ---
 
-## 7. CONTRIBUTOR COPY-PASTE ALIGNMENT EXAMPLES
+## 4. CONTRIBUTOR COPY-PASTE ALIGNMENT EXAMPLES
 
 Use these when you need the same intent across TS, JS, Python, Shell, and JSON/JSONC.
 
@@ -258,7 +282,7 @@ readonly MAX_RETRIES=3
 
 ---
 
-## 8. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Language-Specific References
 

@@ -1,6 +1,11 @@
 ---
 title: Directory & Test File Conventions
 description: File structure principles, module organization concepts, and import ordering standards for OpenCode system code. — Directory & Test File Conventions.
+trigger_phrases:
+  - "directory conventions opencode"
+  - "test file conventions"
+  - "mcp server structure"
+  - "script directory structure"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.17
@@ -8,7 +13,26 @@ version: 1.0.0.17
 
 # Directory & Test File Conventions
 
-## 6. DIRECTORY CONVENTIONS
+Directory and test-file conventions for OpenCode skills, servers, scripts, and supported implementation languages.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Define predictable directory layouts and test-file conventions for OpenCode system-code packages.
+
+### When to Use
+
+- Creating or reorganizing a skill, MCP server, or scripts package
+- Choosing unit and integration test locations
+- Naming test files for a supported language
+- Reviewing a package layout for consistency
+
+---
+
+## 2. DIRECTORY CONVENTIONS
 
 ### OpenCode Skill Structure
 
@@ -259,7 +283,7 @@ scripts/
 
 ---
 
-## 7. TEST FILE CONVENTIONS
+## 3. TEST FILE CONVENTIONS
 
 ### Test File Naming
 
@@ -318,7 +342,7 @@ describe('functionToTest', () => {
 
 ---
 
-## 8. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 ### Universal Patterns
 

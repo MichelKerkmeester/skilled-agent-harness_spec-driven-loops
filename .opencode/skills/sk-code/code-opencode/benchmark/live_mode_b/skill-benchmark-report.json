@@ -273,7 +273,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"python\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"python\", \"resources\": [\"references/shared/universal_patterns/naming_and_commenting.md\", \"references/shared/universal_patterns/organization_security_and_examples.md\", \"references/shared/code_organization/overview_and_module_organization.md\", \"references"
       },
       "routeTelemetry": null
     },
@@ -367,7 +367,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\n  \"surface\": \"OPENCODE\",\n  \"subLanguage\": \"Rust\",\n  \"resources\": [\n    \"references/shared/universal_patterns/naming-and-commenting.md\",\n    \"references/shared/universal_patterns/organization-security-and-examples.md\",\n    \"references/shared/code_organization/overview-and-module-organizatio"
+        "responseHead": "```json\n{\n  \"surface\": \"OPENCODE\",\n  \"subLanguage\": \"Rust\",\n  \"resources\": [\n    \"references/shared/universal_patterns/naming_and_commenting.md\",\n    \"references/shared/universal_patterns/organization_security_and_examples.md\",\n    \"references/shared/code_organization/overview-and-module-organizatio"
       },
       "routeTelemetry": null
     },
@@ -461,7 +461,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"shell\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"shell\", \"resources\": [\"references/shared/universal_patterns/naming_and_commenting.md\", \"references/shared/universal_patterns/organization_security_and_examples.md\", \"references/shared/code_organization/overview_and_module_organization.md\", \"references/"
       },
       "routeTelemetry": null
     },
@@ -555,7 +555,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\n  \"surface\": \"OPENCODE\",\n  \"subLanguage\": \"typescript\",\n  \"resources\": [\n    \"references/shared/universal_patterns/naming-and-commenting.md\",\n    \"references/shared/universal_patterns/organization-security-and-examples.md\",\n    \"references/shared/code_organization/overview-and-module-organ"
+        "responseHead": "```json\n{\n  \"surface\": \"OPENCODE\",\n  \"subLanguage\": \"typescript\",\n  \"resources\": [\n    \"references/shared/universal_patterns/naming_and_commenting.md\",\n    \"references/shared/universal_patterns/organization_security_and_examples.md\",\n    \"references/shared/code_organization/overview-and-module-organ"
       },
       "routeTelemetry": null
     },
@@ -649,7 +649,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\n  \"surface\": \"OPENCODE\",\n  \"subLanguage\": \"config\",\n  \"resources\": [\n    \"references/shared/universal_patterns/naming-and-commenting.md\",\n    \"references/shared/universal_patterns/organization-security-and-examples.md\",\n    \"references/shared/code_organization/overview-and-module-organizat"
+        "responseHead": "```json\n{\n  \"surface\": \"OPENCODE\",\n  \"subLanguage\": \"config\",\n  \"resources\": [\n    \"references/shared/universal_patterns/naming_and_commenting.md\",\n    \"references/shared/universal_patterns/organization_security_and_examples.md\",\n    \"references/shared/code_organization/overview-and-module-organizat"
       },
       "routeTelemetry": null
     },
@@ -743,7 +743,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/s"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns/naming_and_commenting.md\", \"references/shared/universal_patterns/organization_security_and_examples.md\", \"references/shared/code_organization/overview_and_module_organization.md\", \"references/s"
       },
       "routeTelemetry": null
     },
@@ -837,7 +837,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/s"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns/naming_and_commenting.md\", \"references/shared/universal_patterns/organization_security_and_examples.md\", \"references/shared/code_organization/overview_and_module_organization.md\", \"references/s"
       },
       "routeTelemetry": null
     },
@@ -931,7 +931,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"typescript\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"refere"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"typescript\", \"resources\": [\"references/shared/universal_patterns/naming_and_commenting.md\", \"references/shared/universal_patterns/organization_security_and_examples.md\", \"references/shared/code_organization/overview_and_module_organization.md\", \"refere"
       },
       "routeTelemetry": null
     },
@@ -1025,7 +1025,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/alignment_verification_automation.md\", \"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organi"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/alignment_verification_automation.md\", \"references/shared/universal_patterns/naming_and_commenting.md\", \"references/shared/universal_patterns/organization_security_and_examples.md\", \"references/shared/code_organi"
       },
       "routeTelemetry": null
     }

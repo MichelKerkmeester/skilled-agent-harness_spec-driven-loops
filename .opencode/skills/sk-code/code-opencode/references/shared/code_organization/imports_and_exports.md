@@ -1,6 +1,11 @@
 ---
 title: Import Ordering & Export Patterns
 description: File structure principles, module organization concepts, and import ordering standards for OpenCode system code. — Import Ordering & Export Patterns.
+trigger_phrases:
+  - "cross language import ordering"
+  - "opencode export patterns"
+  - "typescript type imports"
+  - "python public api exports"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.17
@@ -8,7 +13,26 @@ version: 1.0.0.17
 
 # Import Ordering & Export Patterns
 
-## 4. IMPORT ORDERING
+Import ordering and export patterns for JavaScript, TypeScript, Python, and Shell code in OpenCode system packages.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Define consistent dependency ordering and public export patterns across supported implementation languages.
+
+### When to Use
+
+- Adding or reorganizing imports in system code
+- Defining a module's public API
+- Choosing between CommonJS and ES module exports
+- Creating TypeScript barrel files or Python `__all__` declarations
+
+---
+
+## 2. IMPORT ORDERING
 
 ### Universal Import Order
 
@@ -106,7 +130,7 @@ source "${SCRIPT_DIR}/lib/output.sh"
 
 ---
 
-## 5. EXPORT PATTERNS
+## 3. EXPORT PATTERNS
 
 ### JavaScript CommonJS Exports
 
@@ -196,4 +220,3 @@ __all__ = [
 ```
 
 ---
-
