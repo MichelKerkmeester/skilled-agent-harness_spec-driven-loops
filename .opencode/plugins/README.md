@@ -1,175 +1,265 @@
 ---
 title: "OpenCode Plugin Entrypoints"
-description: "Seven plugin entrypoint files OpenCode auto-loads at startup. Helper bridge modules live with their owning skills, not in this folder."
+description: "OpenCode plugin entrypoints for context injection, lifecycle handling, policy guards, runtime tools and post-action checks."
+trigger_phrases:
+  - "OpenCode plugins"
+  - "plugin entrypoints"
+  - "OpenCode hook events"
+version: 1.0.0.0
 ---
 
 # OpenCode Plugin Entrypoints
 
-OpenCode 1.3.17+ auto-loads JavaScript files in `.opencode/plugins/` at session start. This folder is intentionally limited to those entrypoint files so helper modules cannot be mistaken for plugins. Helpers and bridges live alongside their owning skills under `.opencode/skills/.../mcp_server/`.
-
----
-
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. CURRENT ENTRYPOINTS](#3--current-entrypoints)
-- [4. BRIDGE MODULES](#4--bridge-modules)
-- [5. CONFIGURATION](#5--configuration)
-- [6. UPGRADE NOTES](#6--upgrade-notes)
-- [7. RELATED](#7--related)
+`.opencode/plugins/` contains the JavaScript entrypoints that OpenCode loads as local plugins. Each entrypoint registers tools, hook handlers or lifecycle handlers with the OpenCode host.
 
 ---
 
 ## 1. OVERVIEW
 
-This folder is OpenCode's local-plugin mounting point. Every `.js` file here is auto-loaded once per session and must export a default plugin factory **and nothing else**.
+OpenCode discovers the `.js` files in this directory and invokes each default-exported plugin factory. The factory receives the OpenCode plugin context and returns an object whose keys register tools or hook handlers.
 
-> **Default-export only — load-bearing.** OpenCode treats *every* export of a plugin module as its own plugin and invokes each one. A stray named export (a helper function, a constant, even a test surface) is loaded as a plugin, throws when invoked, and silently drops the **entire file** — including its real default plugin, which then never registers its tools or hooks. Keep the only `export` the `default`; hang any test surface off the default function as a property (e.g. `MyPlugin.__test = {...}`). Helper code, transports, schemas, and bridges live elsewhere so the auto-loader cannot pick up non-plugin modules.
+Keep plugin files default-export only. OpenCode treats every module export as a plugin candidate. A named helper export can cause the loader to invoke an invalid plugin and drop the file's intended registration. Attach test seams to the default function, such as `Plugin.__test`, or place shared logic under the owning skill.
 
----
+Most entrypoints act as thin runtime adapters. They translate OpenCode inputs into calls to shared cores under [`../skills/`](../skills/), then translate the results back into OpenCode tools, context or lifecycle behavior.
 
-## 2. QUICK START
+Current responsibilities include:
 
-When OpenCode boots, every `.js` file in this folder is invoked once. To add a new plugin:
-
-1. Create the entrypoint here (`my-plugin.js`) with a **default export only** — no named exports (every named export is loaded as its own plugin; see Overview). Attach any test surface as a property on the default function.
-2. Co-locate any bridge / transport / schema modules under the owning skill, not here.
-3. Smoke-test from both the project root and any symlinked workspace before shipping.
-
----
-
-## 3. CURRENT ENTRYPOINTS
-
-| File | Role |
-|---|---|
-| `mk-skill-advisor.js` | Prompt-time Skill Advisor plugin. Surfaces a compact skill recommendation when a user prompt arrives. Routes via `mk-skill-advisor-bridge.mjs`. |
-| `mk-code-graph.js` | Transport-backed code-graph context plugin (OpenCode session integration). Routes context requests via `mk-code-graph-bridge.mjs`. The underlying MCP server name stays `mk-code-index` for stable tool-prefix `mcp__mk_code_index__*`. |
-| `mk-spec-memory.js` | Prompt-time Spec Kit Memory continuity plugin. Injects a continuity brief via `experimental.chat.system.transform` and exposes `mk_spec_memory_status`. Routes via the spec-kit warm CLI bridge. |
-| `mk-goal.js` | The `/goal` plugin. Owns per-session goal state (atomic, hex(sessionID)-keyed, fail-closed), injects the active goal each turn via `experimental.chat.system.transform`, exposes `mk_goal`/`mk_goal_status` tools, accounts usage over the `event()` lifecycle, and (default-off) can drive guarded autonomous continuation. Default-export only; test surface on `MkGoalPlugin.__test`. |
-| `mk-deep-loop-guard.js` | Detection-layer `tool.execute.before` + `event` plugin for Task-tool dispatches targeting deep-loop sub-agents, with two independent checks. Resolves the real target agent from `Deep Route: ... target_agent=@X` / `Agent: @X` prompt text (since `orchestrate` always dispatches with `subagent_type: "general"`), then: (1) flags (default) or blocks (`MK_DEEP_LOOP_GUARD_REJECT=1`) a mismatch against `mode-registry.json`'s entry for that resolved agent; (2) flags (default) or blocks (`MK_DEEP_LOOP_GUARD_REJECT_LOOP=1`) a session-scoped loop-like repeated hand-off to a command-owned loop executor lacking a command-driven iteration marker. Fails open on registry read errors or loop-state write errors. On `session.created`, a throttled sweep also archives (then, past a longer window, prunes) its own `.loop-guard-state` per-session files and rotates `guard-warnings.log`, all synchronous — no mutation queue needed, unlike `mk-goal.js`. |
-| `mk-dist-freshness-guard.js` | Warn-only `tool.execute.before` + `event` + `experimental.chat.system.transform` plugin preventing silent stale-`dist/` bugs. On a `bash` call whose command matches `opencode run` or `validate\.sh`, and once per session on `session.created` (deduped by session ID), it checks all 7 watched dist-producing packages via the shared `checkAllFreshness()` (`system-spec-kit/scripts/lib/dist-freshness.cjs`). Stale packages are surfaced to the agent as a bounded system-context brief each turn and recorded in `.opencode/logs/dist-freshness-guard.log` — never written to stdout/stderr, which OpenCode's TUI would paint over the chat input. Never throws — always fails open; the hard backstop lives in `validate.sh` itself, not here. |
-| `mk-cli-dispatch-audit.js` | Post-execution telemetry `tool.execute.after` plugin (paired Claude PostToolUse `Bash` hook). Appends one redacted, size-rotated JSONL line per completed `opencode run` / `claude -p` dispatch to `.opencode/logs/cli-dispatch-audit.log` via the shared `dispatch-audit.mjs` core. Observe-only, fail-open, never blocks. Kill-switch `MK_CLI_DISPATCH_AUDIT_DISABLED=1`. |
-| `mk-code-graph-freshness.js` | Warm-only `tool.execute.after` + `event` plugin (paired Claude PostToolUse `Write\|Edit` hook). Debounced incremental `code_graph_scan` self-heal via `freshness-core.cjs`; never cold-starts the daemon, never blocks, fail-open. Bootstrap-from-empty default-off (`MK_CODE_GRAPH_FRESHNESS_BOOTSTRAP=1`); kill-switch `MK_CODE_GRAPH_FRESHNESS_DISABLED=1`. |
-| `mk-post-edit-quality.js` | Warn-only post-edit quality router `tool.execute.before` + `tool.execute.after` + `experimental.chat.system.transform` (Claude side rewrites the PostToolUse `Write\|Edit` hook to `claude-posttooluse.cjs`). Maps each edited path to the right existing checker via `post-edit-router.cjs`. Fail-open, deadline-bounded. Kill-switch `MK_POST_EDIT_QUALITY_DISABLED=1`. |
-| `mk-completion-sentinel.js` | Advisory `session.idle` plugin (paired Claude `Stop` hook). When a turn claims completion, verifies recorded completion evidence WITHOUT running any test/build, via `completion-evidence-sentinel.cjs`. Never blocks. Kill-switch `MK_COMPLETION_SENTINEL_DISABLED=1`. |
-| `mk-mcp-route-guard.js` | Warn-only `tool.execute.before` plugin (paired Claude PreToolUse `mcp__claude_ai_.*` hook). Nudges routing native external MCP calls through Code Mode via `mcp-route-guard.cjs`; no deny path anywhere. Kill-switch `MK_MCP_ROUTE_GUARD_DISABLED=1`; advisory-widener `MK_MCP_ROUTE_GUARD_BROAD_MODE=1`. |
-| `mk-spec-gate.js` | Two-surface Gate-3 spec-mutation gate over the ESM `spec-gate-core.mjs`: classify (`experimental.chat.system.transform` / Claude UserPromptSubmit) + enforce (`tool.execute.before` / Claude PreToolUse `Write\|Edit`). Classify+advise by default; deny is opt-in behind `MK_SPEC_GATE_ENFORCE=1`, further narrowed to never fire for a dispatched/child session (`AI_SESSION_CHILD=1` — see §5.4). Every advise/would-deny event writes one structured `session\|tool\|path\|decision` telemetry line via `formatSpecGateEvent`. Fail-open everywhere. Kill-switch `MK_SPEC_GATE_DISABLED=1`. |
-| `mk-speckit-completion.js` | Read-only `tool.register` plugin exposing `mk_speckit_completion` — a spec folder's merged completion state (level, checklist P0/P1/P2 + evidence gaps, placeholder completeness) via `completion-state.cjs`. No hooks; cannot block. Kill-switch `MK_SPECKIT_COMPLETION_DISABLED=1`. |
-| `session-cleanup.js` | Session-end MCP cleanup plugin. OpenCode has no JSON SessionEnd hook, so this listens for the `server.instance.disposed` / `global.disposed` dispose lifecycle events and runs `.opencode/scripts/session-cleanup.sh` to reclaim the session's MCP helper descendants. Best-effort and bounded; never blocks teardown. |
+- Injecting continuity, code graph, skill routing and goal context
+- Registering read-only status and completion tools
+- Observing tool execution before or after a call
+- Reacting to session and host lifecycle events
+- Running advisory policy and quality checks
+- Cleaning up session resources
 
 ---
 
-## 4. BRIDGE MODULES
+## 2. ARCHITECTURE
 
-Helper bridge modules are co-located with their owning skill, not in this folder:
-
-- **mk-skill-advisor** bridge: `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`
-- **mk-code-graph** bridge: `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs`
-- **opencode message schema**: `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs`
-- **mk-dist-freshness-guard** shared checker: `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` — the same module also backs `validate.sh`'s hard staleness backstop and the `sk-code` `claude-posttooluse.sh` PostToolUse hook, so freshness logic has one source of truth across all three consumers.
-
-This keeps plugin entrypoints minimal and lets owning skills own their bridge contracts.
-
-**Naming asymmetry note:** The plugin and bridge are named `mk-code-graph` (matching the `system-code-graph` skill folder). The underlying MCP server name remains `mk-code-index` (tool prefix `mcp__mk_code_index__*`), kept stable to avoid breaking tool consumers.
-
----
-
-## 5. CONFIGURATION
-
-The two config-file-aware plugins (`mk-skill-advisor` and `mk-code-graph`) support a **4-tier configuration precedence** (highest to lowest):
-
-1. **Raw plugin options** (passed programmatically at plugin registration)
-2. **Config file** (`~/.config/opencode/plugin/<plugin-name>.json`)
-3. **Environment variables** (plugin-specific prefix, see tables below)
-4. **Defaults** (hardcoded in each plugin)
-
-### 5.1 mk-skill-advisor config
-
-| Config File Path | `~/.config/opencode/plugin/mk-skill-advisor.json` |
-|---|---|
-
-| Field | Env Var | Default | Description |
-|---|---|---|---|
-| `cacheTTLMs` | `MK_SKILL_ADVISOR_CACHE_TTL_MS` | `300000` (5 min) | Advisor cache TTL in ms |
-| `thresholdConfidence` | `MK_SKILL_ADVISOR_THRESHOLD_CONFIDENCE` | `0.8` | Minimum advisor confidence |
-| `maxTokens` | `MK_SKILL_ADVISOR_MAX_TOKENS` | `80` | Maximum brief tokens |
-| `nodeBinaryOverride` | `MK_SKILL_ADVISOR_NODE_BINARY` | `node` (falls back to `SPEC_KIT_PLUGIN_NODE_BINARY`) | Node binary for bridge subprocess |
-| `bridgeTimeoutMs` | `MK_SKILL_ADVISOR_BRIDGE_TIMEOUT_MS` | `10000` | Bridge subprocess timeout in ms |
-| `maxPromptBytes` | `MK_SKILL_ADVISOR_MAX_PROMPT_BYTES` | `65536` (64 KiB) | Maximum bridge prompt payload bytes |
-| `maxBriefChars` | `MK_SKILL_ADVISOR_MAX_BRIEF_CHARS` | `2048` (2 KiB) | Maximum injected brief character count |
-| `maxCacheEntries` | `MK_SKILL_ADVISOR_MAX_CACHE_ENTRIES` | `1000` | Maximum advisor cache entries |
-| `enabled` | — (use `MK_SKILL_ADVISOR_HOOK_DISABLED=1` / `MK_SKILL_ADVISOR_PLUGIN_DISABLED=1`) | `true` | Plugin enabled state |
-
-Config file fields use the **camelCase** option names shown above. Example:
-
-```json
-{
-  "cacheTTLMs": 600000,
-  "thresholdConfidence": 0.7,
-  "maxTokens": 120
-}
+```text
+OpenCode startup
+      |
+      v
+Discover .opencode/plugins/*.js
+      |
+      v
+Invoke each default export
+      |
+      v
+Plugin returns registrations
+      |
+      +--> tool
+      |      Register callable OpenCode tools
+      |
+      +--> tool.execute.before
+      |      Inspect or guard a tool call before execution
+      |
+      +--> tool.execute.after
+      |      Observe a completed tool call
+      |
+      +--> experimental.chat.system.transform
+      |      Add bounded system context before a model turn
+      |
+      +--> experimental.chat.messages.transform
+      |      Add schema-safe message parts
+      |
+      +--> experimental.session.compacting
+      |      Preserve context during compaction
+      |
+      +--> event
+      |      Handle session, message and host lifecycle events
+      |
+      `--> dispose
+             Run bounded host teardown cleanup
 ```
 
-### 5.2 mk-code-graph config
+The entrypoints may import runtime-neutral cores, bridges and scripts from their owning skills. Shared cores hold policy and reusable behavior. Plugin files own only the OpenCode transport boundary where practical.
 
-| Config File Path | `~/.config/opencode/plugin/mk-code-graph.json` |
-|---|---|
+The plugins use a fail-open posture for advisory checks unless a plugin documents an explicit opt-in rejection mode. They avoid writing warnings to standard output or standard error because terminal output can interfere with the OpenCode interface.
 
-| Field | Env Var | Default | Description |
-|---|---|---|---|
-| `cacheTtlMs` | `MK_CODE_GRAPH_CACHE_TTL_MS` | `5000` | Transport cache TTL in ms |
-| `specFolder` | `MK_CODE_GRAPH_SPEC_FOLDER` | _(auto-detect)_ | Override spec folder |
-| `nodeBinary` | `MK_CODE_GRAPH_NODE_BINARY` | `node` (falls back to `SPEC_KIT_PLUGIN_NODE_BINARY`) | Node binary for bridge subprocess |
-| `bridgeTimeoutMs` | `MK_CODE_GRAPH_BRIDGE_TIMEOUT_MS` | `15000` | Bridge subprocess timeout in ms |
+---
 
-Example config file:
+## 3. HOOK EVENT MODEL
 
-```json
-{
-  "cacheTtlMs": 10000,
-  "specFolder": "my-feature-foldername"
-}
+| Registration | When OpenCode calls it | Typical use |
+|---|---|---|
+| `tool` | When the plugin factory loads | Register a callable tool |
+| `tool.execute.before` | Before a tool executes | Capture arguments, evaluate policy or refresh diagnostics |
+| `tool.execute.after` | After a tool completes | Record telemetry, run post-edit checks or schedule refresh work |
+| `experimental.chat.system.transform` | Before model context is finalized | Inject continuity, routing, goal or warning context |
+| `experimental.chat.messages.transform` | While message context is prepared | Add validated synthetic message parts |
+| `experimental.session.compacting` | During session compaction | Add recovery context |
+| `event` | When OpenCode emits lifecycle or message events | Initialize, invalidate, sweep, account or archive state |
+| `dispose` | When the plugin host disposes the instance | Run bounded teardown cleanup |
+
+Plugins that correlate `tool.execute.before` with `tool.execute.after` use `callID` because the after-hook input may not repeat the original file path.
+
+---
+
+## 4. DIRECTORY TREE
+
+```text
+plugins/
++-- mk-cli-dispatch-audit.js
++-- mk-code-graph-freshness.js
++-- mk-code-graph.js
++-- mk-completion-sentinel.js
++-- mk-deep-loop-guard.js
++-- mk-dist-freshness-guard.js
++-- mk-goal.js
++-- mk-mcp-route-guard.js
++-- mk-post-edit-quality.js
++-- mk-skill-advisor.js
++-- mk-spec-gate.js
++-- mk-spec-memory.js
++-- mk-speckit-completion.js
++-- session-cleanup.js
++-- tests/
+`-- README.md
 ```
 
-### 5.3 Failure Modes
+---
 
-- **No config file**: Behavior is unchanged (env + defaults apply).
-- **Malformed config file** (invalid JSON): Silent fall-through — `loadConfig()` returns `{}` and the plugin proceeds with env + defaults.
-- All disable env vars (`MK_SKILL_ADVISOR_HOOK_DISABLED=1`, `MK_SKILL_ADVISOR_PLUGIN_DISABLED=1`, legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1`, `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1`) are **preserved unchanged**.
+## 5. KEY FILES
 
-### 5.4 mk-spec-gate: who can deny
+| File | Purpose | Hook events and registrations |
+|---|---|---|
+| `mk-cli-dispatch-audit.js` | Records redacted, rotated JSONL telemetry after completed `opencode run` and `claude -p` Bash dispatches. The adapter is observe-only and fail-open. | `tool.execute.after` |
+| `mk-code-graph-freshness.js` | Correlates source edits, debounces edit bursts and requests a warm-only incremental code graph scan when an established graph needs refresh. It also sweeps stale freshness state and clears timers during disposal events. | `tool.execute.before`, `tool.execute.after`, `event` for `session.created`, `server.instance.disposed` and `global.disposed` |
+| `mk-code-graph.js` | Loads transport-backed structural context through a Node bridge, injects system and message context, preserves compaction context and exposes plugin cache status. Session lifecycle events invalidate cached transport plans. | `tool` for `mk_code_graph_status`, `experimental.chat.system.transform`, `experimental.chat.messages.transform`, `experimental.session.compacting`, `event` for `session.created` and `session.deleted` |
+| `mk-completion-sentinel.js` | Detects completion claims at session idle and checks recorded spec evidence without running tests, builds or validation scripts. It logs advisory results and sweeps stale sentinel state. | `event` for `session.created` and `session.idle` |
+| `mk-deep-loop-guard.js` | Checks Task dispatches for deep-loop route mismatches and repeated non-command-driven loop handoffs. It warns by default and supports opt-in rejection. | `tool.execute.before`, `event` for `session.created` |
+| `mk-dist-freshness-guard.js` | Checks watched compiled outputs before risky Bash commands and at session creation. It invalidates cached diagnostics after relevant mutations and injects bounded stale-dist warnings. | `tool.execute.before`, `experimental.chat.system.transform`, `event` for `session.created`, `session.deleted`, `server.instance.disposed` and `global.disposed` |
+| `mk-goal.js` | Persists session goals, injects active goal guidance, tracks lifecycle and usage signals, supervises optional continuation and exposes goal management tools. | `tool` for `mk_goal` and `mk_goal_status`, `experimental.chat.system.transform`, `event` for session, message, permission and question lifecycle events |
+| `mk-mcp-route-guard.js` | Detects native external MCP calls that should route through an available Code Mode manual. It writes advisory logs only and never rejects a call. | `tool.execute.before` |
+| `mk-post-edit-quality.js` | Correlates file mutations with completed edits, runs the matching post-edit checker under a bounded deadline and injects advisory findings on the next turn. | `tool.execute.before`, `tool.execute.after`, `experimental.chat.system.transform` |
+| `mk-skill-advisor.js` | Resolves prompt-time skill recommendations through the advisor bridge, injects a bounded brief, manages per-session caches and exposes prompt-safe plugin status. | `tool` for `spec_kit_skill_advisor_status`, `experimental.chat.system.transform`, `event` for `session.created`, `session.deleted`, `server.instance.disposed` and `global.disposed` |
+| `mk-spec-gate.js` | Classifies file-mutation intent, injects the Gate 3 question and evaluates mutating tool calls against per-session gate state. It advises by default and supports opt-in denial for eligible writes and edits. | `experimental.chat.system.transform`, `tool.execute.before`, `event` for `session.created` and `session.deleted` |
+| `mk-spec-memory.js` | Retrieves warm Spec Kit continuity through a bridge, injects a deduplicated continuity brief, manages lifecycle caches and exposes bridge status. | `tool` for `mk_spec_memory_status`, `experimental.chat.system.transform`, `event` for `session.created`, `session.deleted`, `server.instance.disposed` and `global.disposed` |
+| `mk-speckit-completion.js` | Registers a read-only tool that merges inferred spec level, checklist completion, evidence gaps and placeholder completeness. It has no event or execution hooks. | `tool` for `mk_speckit_completion` |
+| `session-cleanup.js` | Runs bounded worktree and hook safety checks when sessions start, injects any startup warnings and runs the cleanup script when the plugin host disposes the instance. | `event` for `session.created` and `session.deleted`, `experimental.chat.system.transform`, `dispose` |
 
-`evaluateMutation()` in `spec-gate-core.mjs` is the single deterministic deny producer both the OpenCode plugin and the Claude `spec-gate-enforce.mjs` hook read — deny is never decided per-runtime. A Write/Edit is denied only when **every** one of these holds:
-
-1. `MK_SPEC_GATE_DISABLED` is not `1` (the kill-switch always wins first).
-2. `MK_SPEC_GATE_ENFORCE=1` for that process (default-off; scoped to interactive Claude Code first, see `.claude/settings.json`).
-3. The session is **not** a dispatched/child session — `AI_SESSION_CHILD=1` forces `advise`, never `deny`, even with enforce on. A child has no user turn available to answer Gate 3, so denying it would just block autonomous work with no way to resolve the question.
-4. The session's Gate-3 state is `open` (triggered, not yet answered/skipped).
-5. The target file is a real in-repo, non-exempt path (the spec tree itself, `/tmp`, `dist`, `node_modules`, `.git`, and out-of-repo paths are always exempt).
-
-Every other combination resolves to `advise` (the question/telemetry surfaces, nothing is blocked) or `allow`. Both `evaluateMutation()`'s `wouldDeny` field and the structured telemetry line (`session|tool|path|decision`, written by `appendWarningLog`/`formatSpecGateEvent`) exist so an operator can measure the would-be-deny rate from real advise-mode traffic before flipping enforce anywhere.
+The [`tests/`](./tests/) directory contains the Node test runner suites for these entrypoints. Some plugins have multiple focused suites and the directory also includes cross-runtime contract tests.
 
 ---
 
-## 6. UPGRADE NOTES
+## 6. BOUNDARIES AND STATE
 
-When upgrading OpenCode beyond 1.3.17, rerun the 026/007/009 discovery probe:
+| Boundary | Rule |
+|---|---|
+| Exports | Each plugin file exposes one default plugin factory. Test surfaces attach to that function instead of using named exports. |
+| Shared logic | Runtime-neutral policy, bridges and reusable helpers belong under the owning skill in [`../skills/`](../skills/). |
+| Terminal output | Advisory plugins write bounded logs or inject context. They do not write warnings to standard output or standard error. |
+| Enforcement | Most checks fail open. Only explicit policy guards may reject, and rejection remains controlled by their documented environment switches. |
+| State ownership | A plugin or its shared core owns its state directory, retention policy and cleanup behavior. |
+| Tests | Plugin tests stay in [`tests/`](./tests/) rather than beside auto-loaded entrypoints. |
 
-1. Inspect the local plugin glob OpenCode uses.
-2. Add a temporary no-default-export file in this folder.
-3. Confirm the regression guard fails as expected.
-4. Remove the temporary file.
-5. Smoke `opencode` from both the Public root and the Barter symlinked workspace.
+Plugins and their shared cores may write runtime state under these skill-owned folders:
+
+| State folder | Owner |
+|---|---|
+| `../skills/.goal-state/` | `mk-goal.js` stores active, archived and diagnostic goal state. |
+| `../skills/.loop-guard-state/` | `mk-deep-loop-guard.js` and its shared dispatch-guard core store session counters and warning logs. |
+| `../skills/.code-graph-freshness-state/` | `mk-code-graph-freshness.js` and its shared freshness core store pending refresh and scan coordination state. |
+| `../skills/.spec-gate-state/` | `mk-spec-gate.js` and its shared gate core store per-session Gate 3 decisions and telemetry. |
+| `../skills/.completion-sentinel-state/` | `mk-completion-sentinel.js` and its shared sentinel core store advisory deduplication state. |
+
+These folders contain runtime state rather than plugin entrypoints. OpenCode does not auto-load their contents.
 
 ---
 
-## 7. RELATED
+## 7. CONTROL FLOW
 
-- [`tests/README.md`](./tests/README.md) — regression suites covering these entrypoints, one `node:test` file per plugin
-- `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/` — advisor bridge home
-- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` — spec-kit bridge modules
-- `.opencode/skills/system-skill-advisor/mcp_server/hooks/` — sibling hook entrypoints (different runtime contract)
-- `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` — shared dist-staleness checker used by `mk-dist-freshness-guard.js`, `validate.sh`, and the `sk-code` PostToolUse hook
-- `.opencode/bin/README.md` §6 "Dist freshness" — the full watched-package table and CLI-shim consumer detail
-- `.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh` — the Claude Code PostToolUse hook counterpart (warn-only, sibling to this plugin's `tool.execute.before`)
+The main prompt-time flow is:
+
+```text
+User turn
+   |
+   v
+System transform plugins
+   |
+   +--> Spec gate classifies mutation intent
+   +--> Skill advisor injects routing guidance
+   +--> Spec memory injects continuity
+   +--> Code graph injects structural context
+   +--> Goal plugin injects active goal context
+   +--> Quality and freshness guards inject pending warnings
+   |
+   v
+Model receives bounded combined context
+```
+
+The main mutation flow is:
+
+```text
+Mutating tool call
+   |
+   v
+tool.execute.before
+   |
+   +--> Capture file path by callID
+   +--> Evaluate applicable guards
+   +--> Invalidate relevant freshness caches
+   |
+   v
+Tool executes
+   |
+   v
+tool.execute.after
+   |
+   +--> Recover correlated file path
+   +--> Run bounded post-edit checks
+   +--> Schedule warm code graph refresh
+   +--> Record applicable audit telemetry
+```
+
+The main lifecycle flow is:
+
+```text
+session.created
+   |
+   +--> Initialize runtime readiness
+   +--> Sweep stale plugin-owned state
+   +--> Run startup safety checks
+   |
+session.deleted or host disposal
+   |
+   +--> Evict session caches
+   +--> Archive or remove session state
+   +--> Clear timers and volatile locks
+   `--> Run bounded process cleanup
+```
+
+---
+
+## 8. VALIDATION
+
+Run the plugin regression suites from the repository root:
+
+```bash
+node --test .opencode/plugins/tests/*.test.cjs
+```
+
+Expected result: Node discovers the `*.test.cjs` suites and reports the passing and failing test totals. Treat any failing test as a validation failure.
+
+Validate this README with the shared sk-doc validator:
+
+```bash
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/plugins/README.md
+```
+
+Expected result: the validator reports no blocking document errors.
+
+See [`tests/README.md`](./tests/README.md) for the current suite inventory, helper layout and per-plugin coverage.
+
+---
+
+## 9. RELATED
+
+- [`tests/README.md`](./tests/README.md): plugin regression suite documentation
+- [`../skills/system-code-graph/`](../skills/system-code-graph/): code graph bridges and freshness policy
+- [`../skills/system-deep-loop/`](../skills/system-deep-loop/): deep-loop dispatch policy
+- [`../skills/system-skill-advisor/`](../skills/system-skill-advisor/): skill advisor bridge and runtime
+- [`../skills/system-spec-kit/`](../skills/system-spec-kit/): continuity, spec gate, completion and dist freshness logic
+- [`../skills/sk-code/code-quality/`](../skills/sk-code/code-quality/): post-edit quality routing
+- [`../skills/mcp-code-mode/`](../skills/mcp-code-mode/): MCP routing policy
+- [`../skills/cli-external/cli-opencode/`](../skills/cli-external/cli-opencode/): CLI dispatch audit core

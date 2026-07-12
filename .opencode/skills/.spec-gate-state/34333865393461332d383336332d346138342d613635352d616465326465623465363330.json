@@ -1,9 +1,0 @@
-{
-  "status": "satisfied",
-  "boundSpecFolder": {
-    "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping/",
-    "source": "prior_answer"
-  },
-  "validatedResolvedPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping",
-  "answeredAtMs": 1783756754311
-}
