@@ -26,10 +26,10 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (th
 
 | ID | File | Expected `workflowMode` |
 |----|------|--------------------------|
-| SP-001 | `hub-routing/generic-prompt-improve.md` | `prompt-improve` (default mode, no model named) |
-| SP-002 | `hub-routing/named-model-prompt-models.md` | `prompt-models` (DeepSeek-v4-pro named) |
-| SP-003 | `hub-routing/ambiguous-default.md` | `prompt-improve` (model-adjacent vocabulary, no model id) |
-| SP-004 | `hub-routing/second-model-glm.md` | `prompt-models` (GLM-5.2 named — confirms the signal generalizes beyond one example model) |
+| SP-001 | `hub_routing/generic_prompt_improve.md` | `prompt-improve` (default mode, no model named) |
+| SP-002 | `hub_routing/named_model_prompt_models.md` | `prompt-models` (DeepSeek-v4-pro named) |
+| SP-003 | `hub_routing/ambiguous_default.md` | `prompt-improve` (model-adjacent vocabulary, no model id) |
+| SP-004 | `hub_routing/second_model_glm.md` | `prompt-models` (GLM-5.2 named — confirms the signal generalizes beyond one example model) |
 
 A separate, non-scored functional check: `/prompt-improve "Write a blog post about AI"` should read `.opencode/skills/sk-prompt/prompt-improve/SKILL.md` (not the hub's own thin `SKILL.md`) — verified directly in phase 004, not part of this scored corpus.
 
