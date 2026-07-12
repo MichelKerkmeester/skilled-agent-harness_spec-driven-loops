@@ -58,8 +58,13 @@ const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..'); // .opencode
 const REPO_ROOT = path.resolve(SKILLS_DIR, '..', '..'); // repo root
 
 const SK_DOC_DIR = path.join(SKILLS_DIR, 'sk-doc');
-const VALIDATE_DOCUMENT_PY = path.join(SK_DOC_DIR, 'scripts', 'validate_document.py');
-const EXTRACT_STRUCTURE_PY = path.join(SK_DOC_DIR, 'scripts', 'extract_structure.py');
+// Invoke the Python tools via their real shared/scripts/ directory, not the
+// scripts/ symlink: the tools resolve template_rules.json as script_dir.parent/
+// assets/, which is derived from the invoked path. Through the symlink that
+// resolves to the non-existent sk-doc/assets/ (exit 2, "template_rules.json not
+// found"); through the real dir it correctly resolves to sk-doc/shared/assets/.
+const VALIDATE_DOCUMENT_PY = path.join(SK_DOC_DIR, 'shared', 'scripts', 'validate_document.py');
+const EXTRACT_STRUCTURE_PY = path.join(SK_DOC_DIR, 'shared', 'scripts', 'extract_structure.py');
 const CORE_STANDARDS_MD = path.join(SK_DOC_DIR, 'shared', 'references', 'core_standards.md');
 const CREATE_SKILL_ASSETS_DIR = path.join(SK_DOC_DIR, 'create-skill', 'assets');
 const CREATE_SKILL_REFERENCES_DIR = path.join(SK_DOC_DIR, 'create-skill', 'references');

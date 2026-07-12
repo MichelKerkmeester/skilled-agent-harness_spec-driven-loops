@@ -223,10 +223,28 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords) {
     .map((record) => record.finding)
     .filter((finding) => finding && typeof finding === 'object');
 
-  const artifactsChecked = laneIterations.reduce(
-    (sum, record) => sum + (isFiniteNumber(record.artifactsChecked) ? record.artifactsChecked : 0),
-    0,
-  );
+  // An iteration's artifactsChecked may arrive as an array of the artifact paths
+  // audited that iteration (the richer form a live agent naturally reports) or as
+  // a bare numeric count (simpler emitters and unit fixtures). Union the paths
+  // across iterations so a re-audited artifact counts once -- coverage is the
+  // number of UNIQUE artifacts checked, not the sum of per-iteration passes; a
+  // loop that keeps re-checking the same slice must not inflate coverage past the
+  // lane's discovered total. Fall back to summing when only counts are provided.
+  const checkedPaths = new Set();
+  let checkedCountSum = 0;
+  let sawPathArray = false;
+  for (const record of laneIterations) {
+    const value = record.artifactsChecked;
+    if (Array.isArray(value)) {
+      sawPathArray = true;
+      for (const entry of value) {
+        if (typeof entry === 'string' && entry.length > 0) checkedPaths.add(entry);
+      }
+    } else if (isFiniteNumber(value)) {
+      checkedCountSum += value;
+    }
+  }
+  const artifactsChecked = sawPathArray ? checkedPaths.size : checkedCountSum;
 
   // Dedup across iterations (a re-checked artifact that still fails re-emits
   // the same finding; only the first occurrence counts as "open").

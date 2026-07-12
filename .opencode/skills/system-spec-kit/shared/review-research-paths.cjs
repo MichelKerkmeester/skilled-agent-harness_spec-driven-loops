@@ -15,11 +15,13 @@ const path = require('node:path');
 const MODE_CONFIG_FILE = {
   research: 'deep-research-config.json',
   review: 'deep-review-config.json',
+  alignment: 'deep-alignment-config.json',
 };
 
 const MODE_STATE_FILE = {
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
+  alignment: 'deep-alignment-state.jsonl',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -245,7 +247,7 @@ function isWithinApprovedArtifactRoot(resolvedSpecFolder) {
  *   - child phase same-target continuation → reuses prior flat or pt-NN
  *
  * @param {string} specFolder - Absolute or relative path to the target spec folder
- * @param {'review'|'research'|'context'} [mode='review'] - Which artifact type to resolve
+ * @param {'review'|'research'|'context'|'alignment'} [mode='review'] - Which artifact type to resolve
  *
  * @returns {{
  *   rootDir: string,

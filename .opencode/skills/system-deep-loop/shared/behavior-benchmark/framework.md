@@ -19,7 +19,7 @@ contextType: implementation
 
 This document is the single-source measurement contract for the active
 `behavior_benchmark` packages carried by the deep-loop workflow sub-skills
-(`deep-ai-council`, `deep-improvement`, `deep-research`, `deep-review`).
+(`deep-ai-council`, `deep-alignment`, `deep-improvement`, `deep-research`, `deep-review`).
 Each active package measures what an executor **model** actually does
 when its command surface is triggered with a realistic user prompt. The unit of
 measurement is a single run of one scenario against one executor, scored on a
@@ -56,7 +56,7 @@ the same file are ignored by the runner and treated as prose illustrations.
 | --- | --- | --- |
 | `id` | string | Scenario identifier, e.g. `RVB-001`. Prefixes are fixed per package (see PACKAGE CONVENTIONS). |
 | `title` | string | Short human title. |
-| `mode` | enum | `context` \| `research` \| `review` \| `ai-council` \| `improvement`. |
+| `mode` | enum | `context` \| `research` \| `review` \| `ai-council` \| `improvement` \| `alignment`. |
 | `entry_surface` | enum | `E1` \| `E2` \| `E3` \| `E4` (see below). |
 | `clarity` | enum | `C1` \| `C2` \| `C3` (see below). |
 | `prompt` | string | The verbatim user-style text fed to the executor. |
@@ -284,6 +284,7 @@ fixed layout:
 | Prefix | Package |
 | --- | --- |
 | `ACB` | `deep-ai-council` |
+| `DAB` | `deep-alignment` |
 | `IMB` | `deep-improvement` |
 | `RSB` | `deep-research` |
 | `RVB` | `deep-review` |
