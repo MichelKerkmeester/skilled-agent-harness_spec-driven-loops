@@ -402,14 +402,14 @@ RESOURCE_MAP = {
         "code-webflow/references/debugging/debugging_workflows/scroll_interceptor_and_related.md",
         "code-webflow/references/debugging/error_recovery.md",
         "references/universal-debugging_checklist.md",
-        "code-webflow/assets/webflow-debugging_checklist.md"
+        "code-webflow/assets/webflow_debugging_checklist.md"
     ],
     "VERIFICATION": [
         "code-webflow/references/verification/verification_workflows/gate_and_automated_options.md",
         "code-webflow/references/verification/verification_workflows/requirements_rules_and_checklist.md",
         "code-opencode/references/shared/alignment_verification_automation.md",
         "references/universal-verification_checklist.md",
-        "code-webflow/assets/webflow-verification_checklist.md",
+        "code-webflow/assets/webflow_verification_checklist.md",
         "code-opencode/assets/scripts/README.md"
     ],
     "TESTING": [

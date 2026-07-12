@@ -15,8 +15,6 @@ version: 3.5.0.6
 
 Scenario-ready entries for Packet 1's motion.dev and animation regression playbook category.
 
----
-
 ## 1. OVERVIEW
 
 ### Purpose

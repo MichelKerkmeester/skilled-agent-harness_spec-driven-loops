@@ -42,7 +42,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - `code-webflow/references/shared/cross_language_rules.md`
 
 **Expected assets loaded**:
-- `code-webflow/assets/webflow-verification_checklist.md`
+- `code-webflow/assets/webflow_verification_checklist.md`
 - `code-webflow/assets/patterns/interaction_gate_patterns.js` (when intent is implementation gating)
 
 **Expected NOT loaded**: any `code-opencode/references/*` or `code-opencode/assets/*` (would indicate misrouting).
@@ -78,7 +78,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 | 1 | Advisor returns JSON with `top_skill: "sk-code"`, `score: ≥ 0.80`. |
 | 2 | Pass — proceed. |
 | 3 | sk-code SKILL.md is loaded; the AI runs the smart router pseudocode and emits `SURFACE: WEBFLOW`. |
-| 4 | The AI lists `code-webflow/references/implementation/*` as loaded; lists `code-webflow/assets/webflow-verification_checklist.md` as loaded; does NOT list any `code-opencode/references/*`. |
+| 4 | The AI lists `code-webflow/references/implementation/*` as loaded; lists `code-webflow/assets/webflow_verification_checklist.md` as loaded; does NOT list any `code-opencode/references/*`. |
 | 5 | Evidence file contains all of the above. |
 
 ### Pass/Fail Criteria

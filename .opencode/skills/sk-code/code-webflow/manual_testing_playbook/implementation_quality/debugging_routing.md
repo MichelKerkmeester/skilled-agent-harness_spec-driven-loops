@@ -11,7 +11,7 @@ expected_resources:
   - references/debugging/debugging_workflows/sub_agent_verification.md
   - references/debugging/debugging_workflows/scroll_interceptor_and_related.md
   - references/debugging/error_recovery.md
-  - assets/webflow-debugging_checklist.md
+  - assets/webflow_debugging_checklist.md
 version: 1.0.0.0
 ---
 

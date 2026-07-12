@@ -44,7 +44,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Expected assets loaded**:
 - `code-review/assets/code_quality_checklist.md`
-- `code-webflow/assets/webflow-verification_checklist.md`
+- `code-webflow/assets/webflow_verification_checklist.md`
 - `code-webflow/assets/animation/snippets/hover_gesture.js`
 - `code-webflow/assets/animation/snippets/in_view_reveal.js`
 

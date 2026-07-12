@@ -3,15 +3,16 @@ title: "sk code assets motion dev snippets: Code README"
 description: "Code-facing README for .opencode/skills/sk-code/code-webflow/assets/animation/snippets."
 trigger_phrases:
   - "sk-code assets/animation/snippets"
-  - "code README"
+  - "code readme"
+  - "motion animation snippets"
+importance_tier: normal
+contextType: implementation
 version: 3.5.0.6
 ---
 
 # sk code assets motion dev snippets
 
 Executable asset scripts shipped with the skill.
-
----
 
 ## 1. OVERVIEW
 
@@ -110,7 +111,7 @@ Expected output: Findings recorded in the current release-alignment review evide
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 8. RELATED RESOURCES
 
 | Document | Purpose |
 |---|---|

@@ -324,11 +324,11 @@ EVIDENCE:
 - [dev_workflow.md](../../shared/dev_workflow/overview_nav_and_logging.md) - Use standard DevTools verification patterns
 
 ### Templates
-- [verification_checklist.md](../../../assets/webflow-verification_checklist.md) - Printable verification checklist
+- [verification_checklist.md](../../../assets/webflow_verification_checklist.md) - Printable verification checklist
 
 ### Related Skills
 - `mcp-chrome-devtools` - CLI-based browser automation via browser-debugger-cli (bdg)
 
 ---
 
-**See also:** [verification_checklist.md](../../../assets/webflow-verification_checklist.md) for printable checklist
+**See also:** [verification_checklist.md](../../../assets/webflow_verification_checklist.md) for printable checklist

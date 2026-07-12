@@ -15,8 +15,6 @@ version: 3.5.0.4
 
 Step-by-step checklist for investigating frontend technical issues systematically.
 
----
-
 ## 1. OVERVIEW
 
 ### Purpose

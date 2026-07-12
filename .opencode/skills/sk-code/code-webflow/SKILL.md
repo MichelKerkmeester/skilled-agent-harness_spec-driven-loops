@@ -119,12 +119,12 @@ RESOURCE_MAP = {
         "references/debugging/debugging_workflows/sub_agent_verification.md",
         "references/debugging/debugging_workflows/scroll_interceptor_and_related.md",
         "references/debugging/error_recovery.md",
-        "assets/webflow-debugging_checklist.md"
+        "assets/webflow_debugging_checklist.md"
     ],
     "VERIFICATION": [
         "references/verification/verification_workflows/gate_and_automated_options.md",
         "references/verification/verification_workflows/requirements_rules_and_checklist.md",
-        "assets/webflow-verification_checklist.md"
+        "assets/webflow_verification_checklist.md"
     ],
     "TESTING": [
         "assets/animation/playbook_entries.md"
@@ -227,6 +227,6 @@ RESOURCE_MAP = {
 ## 4. ASSETS (on-demand, deferred from the first slice)
 
 - Integrations, patterns, templates, scripts — `assets/integrations/`, `assets/patterns/`, `assets/templates/`, `assets/scripts/`
-- Surface checklists — `assets/webflow-debugging_checklist.md`, `assets/webflow-verification_checklist.md`
+- Surface checklists — `assets/webflow_debugging_checklist.md`, `assets/webflow_verification_checklist.md`
 
 Assets are pulled on demand by the active workflow phase; they are not part of the initial evidence slice.

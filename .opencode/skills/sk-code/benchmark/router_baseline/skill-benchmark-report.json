@@ -367,7 +367,7 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "code-webflow/assets/webflow-verification_checklist.md",
+            "code-webflow/assets/webflow_verification_checklist.md",
             "code-webflow/assets/patterns/interaction_gate_patterns.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
@@ -2130,7 +2130,7 @@
           "deferred": true,
           "expectedAssets": [
             "code-review/assets/code_quality_checklist.md",
-            "code-webflow/assets/webflow-verification_checklist.md",
+            "code-webflow/assets/webflow_verification_checklist.md",
             "code-webflow/assets/animation/snippets/hover_gesture.js",
             "code-webflow/assets/animation/snippets/in_view_reveal.js"
           ],

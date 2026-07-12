@@ -15,8 +15,6 @@ version: 3.5.0.5
 
 Use this checklist BEFORE claiming any work is complete, fixed, or working.
 
----
-
 ## 1. OVERVIEW
 
 ### Purpose

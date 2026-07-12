@@ -362,7 +362,7 @@ bdg stop 2>&1
 
 ### Asset Files
 - [lenis_patterns.js](../../assets/integrations/lenis_patterns.js) - Complete Lenis smooth scroll integration patterns
-- [debugging_checklist.md](../../../assets/webflow-debugging_checklist.md) - Systematic debugging checklist
+- [debugging_checklist.md](../../../assets/webflow_debugging_checklist.md) - Systematic debugging checklist
 
 ### Related Skills
 - `mcp-chrome-devtools` - CLI-based browser automation via browser-debugger-cli (bdg)
@@ -383,5 +383,5 @@ bdg stop 2>&1
 ---
 
 **For complete checklists:**
-- [debugging_checklist.md](../../../assets/webflow-debugging_checklist.md) - Systematic debugging checklist
+- [debugging_checklist.md](../../../assets/webflow_debugging_checklist.md) - Systematic debugging checklist
 - See `mcp-chrome-devtools` skill for comprehensive DevTools reference

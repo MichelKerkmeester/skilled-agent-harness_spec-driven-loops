@@ -3,15 +3,16 @@ title: "sk code assets webflow templates: Code README"
 description: "Code-facing README for .opencode/skills/sk-code/assets/webflow/templates."
 trigger_phrases:
   - "sk-code assets/webflow/templates"
-  - "code README"
+  - "code readme"
+  - "webflow asset templates"
+importance_tier: normal
+contextType: implementation
 version: 3.5.0.5
 ---
 
 # sk code assets webflow templates
 
 Executable asset scripts shipped with the skill.
-
----
 
 ## 1. OVERVIEW
 
@@ -105,7 +106,7 @@ Expected output: Findings recorded in the current refinement and release-alignme
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 8. RELATED RESOURCES
 
 | Document | Purpose |
 |---|---|

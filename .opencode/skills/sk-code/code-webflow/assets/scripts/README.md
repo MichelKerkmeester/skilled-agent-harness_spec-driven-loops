@@ -3,15 +3,16 @@ title: "sk code assets webflow scripts: Code README"
 description: "Code-facing README for .opencode/skills/sk-code/assets/webflow/scripts."
 trigger_phrases:
   - "sk-code assets/webflow/scripts"
-  - "code README"
+  - "code readme"
+  - "webflow maintenance scripts"
+importance_tier: normal
+contextType: implementation
 version: 3.5.0.5
 ---
 
 # sk code assets webflow scripts
 
 Operator and maintenance scripts for this skill.
-
----
 
 ## 1. OVERVIEW
 
@@ -103,7 +104,7 @@ Expected output: Findings recorded in the current refinement and release-alignme
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 8. RELATED RESOURCES
 
 | Document | Purpose |
 |---|---|

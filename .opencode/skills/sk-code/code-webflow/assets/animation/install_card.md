@@ -15,8 +15,6 @@ version: 3.5.0.3
 
 Quick copy-paste install, import, version-pin, and verification reference for Motion.dev.
 
----
-
 ## 1. OVERVIEW
 
 ### Purpose
