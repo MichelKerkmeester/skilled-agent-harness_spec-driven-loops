@@ -59,7 +59,7 @@ Capture grep output and classification notes.
 ### Pass / Fail
 
 - **Pass**: Graph support is derived, scoped, and artifact-authoritative.
-- **Fail**: SKILL.md describes council-seat-owned graph mutation or graph rows as authoritative state.
+- **Fail**: SKILL.md describes seat-owned graph mutation or graph rows as authoritative state.
 
 > **Functional graph coverage:** This scenario is a textual boundary check only. Functional behavior of the `runtime/ --loop-type council` CLI (idempotent upsert, self-loop rejection, empty no-op, hostile metadata redaction, five query modes, three convergence buckets, recovery payload, replay, and MCP-surface removal) is exercised by DAC-019..DAC-026 in `council-graph-integration/`.
 
@@ -69,7 +69,7 @@ Inspect Section 1, Section 4, Section 7, and `references/integration/graph_suppo
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-011 | Graph boundary | Verify graph support is derived and scoped | `As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.` | `bash: rg -n "graph" .opencode/skills/system-deep-loop/deep-ai-council/SKILL.md .opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md` | Derived projection and artifact source-of-truth language | Grep output | PASS if no council-seat-owned graph mutation | Inspect SKILL.md and graph_support.md scope language |
+| DAC-011 | Graph boundary | Verify graph support is derived and scoped | `As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.` | `bash: rg -n "graph" .opencode/skills/system-deep-loop/deep-ai-council/SKILL.md .opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md` | Derived projection and artifact source-of-truth language | Grep output | PASS if no seat-owned graph mutation | Inspect SKILL.md and graph_support.md scope language |
 
 ---
 
