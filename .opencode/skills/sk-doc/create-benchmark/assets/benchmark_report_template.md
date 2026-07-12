@@ -25,7 +25,7 @@ Validate after authoring:
     .opencode/skills/<your-skill>/mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md \
     --type readme
 
-Canonical reference: .opencode/skills/sk-doc/create-benchmark/SKILL.md (report contract in Section 4)
+Canonical reference: .opencode/skills/sk-doc/create-benchmark/SKILL.md (report contract in Section 5)
 -->
 
 # {{SKILL_NAME}} {{BENCHMARK_TOPIC}} -- {{LONG_DATE}}

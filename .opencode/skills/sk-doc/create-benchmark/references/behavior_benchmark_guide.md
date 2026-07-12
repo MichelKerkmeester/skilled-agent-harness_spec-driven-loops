@@ -41,7 +41,7 @@ and the scoring so results stay comparable across modes.
 ### How it differs from an MCP promotion benchmark
 
 The other benchmark family this packet authors — see [`../SKILL.md`](../SKILL.md)
-sections 2 through 7 — promotes a completed MCP retrieval or runtime bake-off into
+sections 3 through 8 — promotes a completed MCP retrieval or runtime bake-off into
 a consuming skill's `mcp_server/benchmarks/` folder with a ten-section
 `benchmark_report.md`. The two families are distinct and must not be conflated:
 

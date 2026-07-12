@@ -130,3 +130,4 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 |---|---|
 | [`smart_routing.md`](../shared/references/smart_routing.md) | The machine-readable router the benchmark replays for a flat skill (a hub replays `hub-router.json`) |
 | [`/deep:skill-benchmark`](../../../commands/deep/skill-benchmark.md) | The command that drives a benchmark run |
+| [`sk-doc/create-benchmark`](../../sk-doc/create-benchmark/SKILL.md) | Authoring templates for this `benchmark/README.md` index + the run-label storage standard (§10: [`skill_benchmark_readme_template.md`](../../sk-doc/create-benchmark/assets/skill_benchmark_readme_template.md), [`skill_benchmark_storage_guide.md`](../../sk-doc/create-benchmark/references/skill_benchmark_storage_guide.md)); the per-run `skill-benchmark-report.md` stays renderer-owned |

@@ -89,3 +89,7 @@ D1-inter is **built and deterministic** but opt-in (`--advisor-mode=python`); th
 ## 6. TARGET ELIGIBILITY
 
 Mode A needs a parseable `INTENT_SIGNALS` + `RESOURCE_MAP` router (e.g. the `cli-*` skills). Skills without that pattern report `router_unparseable` and gate — that is a real signal that the skill is not smart-router-routable, not a harness bug. A skill that routes via a different mechanism is a candidate for live-mode (Mode B) measurement once built.
+
+## 7. AUTHORING THE BENCHMARK FOLDER
+
+Running Lane C is this guide's job; authoring the durable `benchmark/` tree stored beside a skill is `sk-doc/create-benchmark`'s (§10). Author a hub's `benchmark/README.md` run-label index from [`skill_benchmark_readme_template.md`](../../../../sk-doc/create-benchmark/assets/skill_benchmark_readme_template.md), following the storage and run-label convention in [`skill_benchmark_storage_guide.md`](../../../../sk-doc/create-benchmark/references/skill_benchmark_storage_guide.md). The per-run `skill-benchmark-report.md` is an anti-drift render owned by `build-report.cjs` and is **never** templated; the D1-D5 [`scoring_contract.md`](./scoring_contract.md) and this operator guide stay lane-local and are only cross-linked from that packet.

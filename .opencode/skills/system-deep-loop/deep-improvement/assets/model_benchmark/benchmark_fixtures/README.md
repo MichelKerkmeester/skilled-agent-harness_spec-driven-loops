@@ -63,3 +63,9 @@ Current state:
 Reviewer fixtures are detected by shape: `kind: "reviewer-prompt"`, a string `prompt_template`, and an `expectedVerdict` in `pass`/`fail`/`block`. They carry `tests[]` and `hidden_tests[]` just like code-task fixtures, but the oracle is a verdict plus expected finding tokens rather than function return values.
 
 See [`reviewer_schema.md`](./reviewer_schema.md) for the full schema, deterministic replay field, and how-to-add steps.
+
+---
+
+## 4. AUTHORING
+
+New fixtures are authored from the `sk-doc/create-benchmark` §11 templates: [`model_benchmark_code_task_fixture_template.md`](../../../../../sk-doc/create-benchmark/assets/model_benchmark_code_task_fixture_template.md) for code-task oracle fixtures and [`model_benchmark_pattern_fixture_template.md`](../../../../../sk-doc/create-benchmark/assets/model_benchmark_pattern_fixture_template.md) for pattern/capability and reviewer-prompt fixtures, following [`model_benchmark_fixture_guide.md`](../../../../../sk-doc/create-benchmark/references/model_benchmark_fixture_guide.md). Those templates author the fixture *inputs* only. The reviewer-prompt schema ([`reviewer_schema.md`](./reviewer_schema.md)) and every scorer stay lane-local here; they are cross-linked from create-benchmark, never copied into it.

@@ -38,8 +38,10 @@ Load the file that matches the current task:
 | **Common pitfalls** — the recurring mistakes that make a skill-local report drift or break the convention | [pitfalls.md](pitfalls.md) | Reviewing a drafted benchmark folder, or a promoted report no longer matches its spec packet |
 | **Worked example** — the `benchmark_report.md` shape rendered in miniature (sections 1 to 3) plus the conventions the remaining sections follow | [worked_example.md](worked_example.md) | Authoring `benchmark_report.md` and you want to see the section pattern before filling the template |
 | **Behavior benchmark guide** — end-to-end authoring path for a `behavior_benchmark` package: what it measures, how it differs from MCP promotion, package layout, scenario-matrix design, naming, and validation | [behavior_benchmark_guide.md](behavior_benchmark_guide.md) | Authoring or extending a deep-loop mode's behavior_benchmark package (index, scenario contracts, baseline) |
+| **Skill-benchmark storage guide** — where a Lane C skill-benchmark run's artifacts live, how the run-label folders are named, the frozen `baseline/` anchor, and why the report `.md` is renderer-owned | [skill_benchmark_storage_guide.md](skill_benchmark_storage_guide.md) | Authoring or updating a hub `benchmark/` tree or its `benchmark/README.md` index (skill-benchmark) |
+| **Model-benchmark fixture guide** — the Lane B fixture families (code-task oracle, pattern/capability, reviewer-prompt), the run-profile shape, and what stays lane-local in deep-improvement | [model_benchmark_fixture_guide.md](model_benchmark_fixture_guide.md) | Authoring a Lane B input fixture or run profile (model-benchmark) |
 
-The case studies, pitfalls, and worked example cover the **MCP promotion** family; the behavior benchmark guide covers the **behavior benchmark** family. `../SKILL.md` sections 2 through 7 and 8 respectively hold the authoritative contracts.
+The case studies, pitfalls, and worked example cover the **MCP promotion** family (`../SKILL.md` sections 3 through 8); the behavior benchmark guide covers the **behavior benchmark** family (section 9); the skill-benchmark storage guide covers **skill-benchmark** (Lane C, section 10); and the model-benchmark fixture guide covers **model-benchmark** (Lane B, section 11). `../SKILL.md` holds the authoritative contracts.
 
 ---
 
@@ -54,6 +56,10 @@ The case studies, pitfalls, and worked example cover the **MCP promotion** famil
 | [`behavior_benchmark_index_template.md`](../assets/behavior_benchmark_index_template.md) | Fillable scaffold for a `behavior_benchmark.md` package index (behavior benchmark) |
 | [`behavior_benchmark_scenario_template.md`](../assets/behavior_benchmark_scenario_template.md) | Fillable scaffold for one `<PREFIX>-NNN-<slug>.md` scenario contract (behavior benchmark) |
 | [`behavior_benchmark_baseline_template.md`](../assets/behavior_benchmark_baseline_template.md) | Fillable scaffold for `baselines/claude-baseline.md` (behavior benchmark) |
+| [`skill_benchmark_readme_template.md`](../assets/skill_benchmark_readme_template.md) | Fillable scaffold for a hub `benchmark/README.md` run-label index (skill-benchmark) |
+| [`model_benchmark_code_task_fixture_template.md`](../assets/model_benchmark_code_task_fixture_template.md) | Fillable scaffold for one code-task oracle fixture (model-benchmark) |
+| [`model_benchmark_pattern_fixture_template.md`](../assets/model_benchmark_pattern_fixture_template.md) | Fillable scaffold for a pattern/capability or reviewer-prompt fixture (model-benchmark) |
+| [`model_benchmark_profile_template.md`](../assets/model_benchmark_profile_template.md) | Fillable scaffold for a Lane B run profile (model-benchmark) |
 
 ### Validation
 
