@@ -11,7 +11,7 @@ parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-super
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge"
-    last_updated_at: "2026-07-12T11:02:00Z"
+    last_updated_at: "2026-07-12T11:46:10Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed the bridge removal: 6 deletes + 6 edits + local purge; parity test 2/2; grep gate 0"
     next_safe_action: "Commit path-scoped after strict validate"

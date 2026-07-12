@@ -18,22 +18,30 @@
     "trigger_phrases": [
       "catalog naming convention",
       "playbook naming convention",
-      "underscore content folders",
-      "feature catalog folder naming",
-      "manual testing playbook folder naming"
+      "feature_catalog folder naming",
+      "manual_testing_playbook folder naming",
+      "naming convention program"
     ],
     "key_topics": [
       "catalog",
+      "naming",
+      "convention",
       "playbook",
-      "naming convention",
-      "underscore",
-      "migration"
+      "folder",
+      "program",
+      "parent",
+      "grouping",
+      "naming-convention",
+      "governance",
+      "content",
+      "across"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "003-underscore-content-folders-and-files/spec.md"
+      "003-underscore-content-folders-and-files/spec.md",
+      "004-remove-superset-copilot-hook-bridge/spec.md"
     ],
     "entities": [
       {
@@ -43,21 +51,54 @@
         "source": "derived"
       },
       {
-        "name": "underscore content folders and files",
-        "kind": "phase",
-        "path": "003-underscore-content-folders-and-files/spec.md",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Naming",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convention Program",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "convention",
+        "kind": "key_phrase",
+        "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "One program keeps category and per-feature path naming consistent while preserving completed de-numbering evidence and coordinating the active underscore migration.",
+    "causal_summary": "Program parent grouping all naming-convention governance for feature_catalog / manual_testing_playbook content across every skill. Holds three children: the two completed de-numbering packets (former top-level 025 category folders, 026 snippet filenames, re-nested here as 001/002) and the new hyphen->underscore restyle of content folders and files (003). Root purpose only; the re-nest mechanics live in context-index.md and each child's own docs.",
     "created_at": "2026-07-12T00:00:00.000Z",
-    "last_save_at": "2026-07-12T00:00:00.000Z",
+    "last_save_at": "2026-07-12T11:46:06.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "003-underscore-content-folders-and-files/spec.md"
+      "spec.md"
     ],
+    "source_fingerprint": "sha256:1ed168c8e09ecc11a38707d08637c32a64e4c2d3ddb6584b08af90f0cd20f4a1",
+    "source_doc_hashes": {
+      "spec.md": "ff119d4a6ab58e53e3848cfc4199483603d5153021e937cfdf004c010dd84a04"
+    },
     "last_active_child_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge",
     "last_active_at": "2026-07-12T00:00:00.000Z"
   }

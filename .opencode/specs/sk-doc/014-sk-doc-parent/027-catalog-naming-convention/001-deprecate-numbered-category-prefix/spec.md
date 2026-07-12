@@ -33,6 +33,8 @@ _memory:
 
 # Feature Specification: Deprecate the Numbered Category-Folder Prefix
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor none (first phase); successor `002-deprecate-numbered-snippet-filenames`.
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
@@ -139,3 +141,16 @@ classifier must land before 004 renames (so nothing loses validation mid-flight)
 None blocking. The migration's changelog/history exclusion boundary is enumerated in `decision-record.md`
 and encoded as the script's deny-list in 003.
 <!-- /ANCHOR:questions -->
+
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+| Phase | Child | Status |
+|-------|-------|--------|
+| 001 | `001-convention-docs` | Complete |
+| 002 | `002-validator-and-guard` | Complete |
+| 003 | `003-migration-tooling` | Complete |
+| 004 | `004-execute-migration` | Complete |
+| 005 | `005-validate-and-rebenchmark` | Complete |
+<!-- /ANCHOR:phase-map -->

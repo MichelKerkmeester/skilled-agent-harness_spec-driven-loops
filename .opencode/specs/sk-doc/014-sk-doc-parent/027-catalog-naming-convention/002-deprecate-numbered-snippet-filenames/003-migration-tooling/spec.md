@@ -22,6 +22,8 @@ _memory:
 ---
 # Spec: Deterministic Dry-Run Rename Engine for Numbered Snippet Filenames
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `002-generator-alignment`; successor `004-execute-migration`.
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->

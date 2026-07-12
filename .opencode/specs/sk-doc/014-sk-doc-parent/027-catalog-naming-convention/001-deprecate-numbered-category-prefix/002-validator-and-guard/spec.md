@@ -21,6 +21,8 @@ _memory:
 ---
 # Spec: Make validate_document.py Number-Agnostic + Add a No-New-Numbers Guard
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `001-convention-docs`; successor `003-migration-tooling`.
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->

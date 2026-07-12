@@ -124,3 +124,15 @@ the historical record of how the convention got here.
 None blocking. The renumber-vs-preserve choice for 025/026 was decided in favor of renumber (001/002) for a clean
 program; the operator may override before the re-nest lands.
 <!-- /ANCHOR:questions -->
+
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+| Phase | Child | Status |
+|-------|-------|--------|
+| 001 | `001-deprecate-numbered-category-prefix` | Complete |
+| 002 | `002-deprecate-numbered-snippet-filenames` | Complete |
+| 003 | `003-underscore-content-folders-and-files` | Complete |
+| 004 | `004-remove-superset-copilot-hook-bridge` | Complete |
+<!-- /ANCHOR:phase-map -->

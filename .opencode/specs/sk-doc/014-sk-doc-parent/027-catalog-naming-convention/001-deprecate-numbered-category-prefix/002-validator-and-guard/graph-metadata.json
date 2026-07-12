@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Phase 002 of the numbered-prefix deprecation. Re-base the sk-doc catalog/playbook leaf classifier in validate_document.py (both copies) from the number-anchored `^\\\\d{2}--` parent test to a structural test — the file sits in a SUBfolder of feature_catalog/ (resp. manual_testing_playbook/), so both the numbered NN--slug form and the de-numbered slug form validate during the transition while the root index file stays excluded.",
     "created_at": "2026-07-10T18:51:12.779Z",
-    "last_save_at": "2026-07-11T19:48:28.317Z",
+    "last_save_at": "2026-07-12T11:46:06.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af9239a0e3200173654f70258514ff9f9a13d1541f1744362fe5329e215b04fd",
+    "source_fingerprint": "sha256:17efcdb165102be8a9eebb3f16fe751cd3b5407430bdbea5aecb65bb19120c70",
     "source_doc_hashes": {
-      "spec.md": "b6f578fd111d42a3ee8f0f90402260465c612d03866e538cae78577eb5e82299",
-      "plan.md": "bb71368f45d89468f8a7d4c058b23439dd69f61b9c68c90b112825c5c5e255a7",
-      "tasks.md": "694b24848283109fc6d9a9982cad851dac9851246c70f404f05b8be596645b65",
-      "checklist.md": "d0c170f7cbabac4b6dbf833478bc012e034ff5e2f1712a9283dfc3f2ed95b941",
-      "implementation-summary.md": "3f25ecc58be39df0a813d3fd3c513773811badbb5dd41aa8ae1fc3511c7ae866"
+      "spec.md": "4e6a6f87ef2be42b57844eb6a5357a920cb5f86993170c06111198dd7beeee68",
+      "plan.md": "040182b1a5b61b416545fcb0acb16e1bc681c8e1e84ffbda3d1a9d1022d7d4b4",
+      "tasks.md": "83d1af126e347dcd977cc59cbd76c8ff12166e24bdb90ce3cb30849ab4843008",
+      "checklist.md": "56c57f199740670ee6d193c1b237b5120c53396365be3a29854e5f4bd7f99c12",
+      "implementation-summary.md": "5dd9911b111ac8c577604e12bfbbe3c76320cf8caa91a62bcc1f3912def5a00a"
     },
     "last_active_child_id": null,
     "last_active_at": null

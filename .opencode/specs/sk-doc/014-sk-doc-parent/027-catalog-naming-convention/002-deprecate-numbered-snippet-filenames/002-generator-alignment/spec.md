@@ -21,6 +21,8 @@ _memory:
 ---
 # Spec: Align the Playbook Generator + Confirm Convention Docs Emit Only Slug Filenames
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `001-loader-and-guard`; successor `003-migration-tooling`.
+
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->

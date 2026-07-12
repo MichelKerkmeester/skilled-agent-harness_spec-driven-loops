@@ -8,7 +8,7 @@ _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
     last_updated_at: "2026-07-12T00:00:00Z"
-    last_updated_by: "openai/gpt-5.6-terra-fast"
+    last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded decisions retained with completed migration evidence"
     next_safe_action: "Reference this completed child for future naming migrations"
     blockers: []

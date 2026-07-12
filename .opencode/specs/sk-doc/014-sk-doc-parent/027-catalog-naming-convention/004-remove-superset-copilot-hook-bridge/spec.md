@@ -34,6 +34,8 @@ _memory:
 
 # Feature Specification: Remove the Superset/Copilot Hook Bridge
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `003-underscore-content-folders-and-files`; successor none (final phase).
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 

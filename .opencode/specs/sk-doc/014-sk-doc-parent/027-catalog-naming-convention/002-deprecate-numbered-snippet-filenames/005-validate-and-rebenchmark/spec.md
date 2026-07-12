@@ -21,6 +21,8 @@ _memory:
 ---
 # Spec: Validate, Re-Benchmark Lane C, Prove Zero Corpus Loss
 
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `004-execute-migration`; successor none (final phase).
+
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->

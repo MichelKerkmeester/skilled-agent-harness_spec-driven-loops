@@ -14,7 +14,7 @@ _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
     last_updated_at: "2026-07-12T00:00:00Z"
-    last_updated_by: "openai/gpt-5.6-terra-fast"
+    last_updated_by: "claude-opus-4-8"
     recent_action: "All five phases shipped and were re-nested as program child 002"
     next_safe_action: "Use this completed child as historical context for the underscore migration"
     blockers: []
@@ -32,6 +32,8 @@ _memory:
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; the full evidence lives in research.md, the decisions in decision-record.md, and the mechanics in each child's plan.md. -->
 
 # Feature Specification: Deprecate the Numbered Snippet-Filename Prefix
+
+> **Phase adjacency** (grouping order under the parent, not a runtime dependency): predecessor `001-deprecate-numbered-category-prefix`; successor `003-underscore-content-folders-and-files`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -180,3 +182,16 @@ None blocking. The scope boundary between the 111 in-scope files and the 20 out-
 single-digit files, and the changelog/history exclusion, are enumerated in `decision-record.md` and encoded as
 the migration script's deny-list in Phase 003.
 <!-- /ANCHOR:questions -->
+
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+| Phase | Child | Status |
+|-------|-------|--------|
+| 001 | `001-loader-and-guard` | Complete |
+| 002 | `002-generator-alignment` | Complete |
+| 003 | `003-migration-tooling` | Complete |
+| 004 | `004-execute-migration` | Complete |
+| 005 | `005-validate-and-rebenchmark` | Complete |
+<!-- /ANCHOR:phase-map -->
