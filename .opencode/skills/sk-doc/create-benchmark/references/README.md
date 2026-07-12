@@ -37,6 +37,9 @@ Load the file that matches the current task:
 | **Case studies** — two real adoptions (one promoted, one deliberately archived) and what each teaches | [case_studies.md](case_studies.md) | Modeling a new adoption on a proven one, or deciding whether a provisional run is ready to promote |
 | **Common pitfalls** — the recurring mistakes that make a skill-local report drift or break the convention | [pitfalls.md](pitfalls.md) | Reviewing a drafted benchmark folder, or a promoted report no longer matches its spec packet |
 | **Worked example** — the `benchmark_report.md` shape rendered in miniature (sections 1 to 3) plus the conventions the remaining sections follow | [worked_example.md](worked_example.md) | Authoring `benchmark_report.md` and you want to see the section pattern before filling the template |
+| **Behavior benchmark guide** — end-to-end authoring path for a `behavior_benchmark` package: what it measures, how it differs from MCP promotion, package layout, scenario-matrix design, naming, and validation | [behavior_benchmark_guide.md](behavior_benchmark_guide.md) | Authoring or extending a deep-loop mode's behavior_benchmark package (index, scenario contracts, baseline) |
+
+The case studies, pitfalls, and worked example cover the **MCP promotion** family; the behavior benchmark guide covers the **behavior benchmark** family. `../SKILL.md` sections 2 through 7 and 8 respectively hold the authoritative contracts.
 
 ---
 
@@ -46,8 +49,11 @@ Load the file that matches the current task:
 
 | File | Purpose |
 | --- | --- |
-| [`benchmark_report_template.md`](../assets/benchmark/benchmark_report_template.md) | Fillable ten-section scaffold for `benchmark_report.md` files |
-| [`source_template.md`](../assets/benchmark/source_template.md) | Fillable `SOURCE.md` scaffold |
+| [`benchmark_report_template.md`](../assets/benchmark_report_template.md) | Fillable ten-section scaffold for `benchmark_report.md` files (MCP promotion) |
+| [`source_template.md`](../assets/source_template.md) | Fillable `SOURCE.md` scaffold (MCP promotion) |
+| [`behavior_benchmark_index_template.md`](../assets/behavior_benchmark_index_template.md) | Fillable scaffold for a `behavior_benchmark.md` package index (behavior benchmark) |
+| [`behavior_benchmark_scenario_template.md`](../assets/behavior_benchmark_scenario_template.md) | Fillable scaffold for one `<PREFIX>-NNN-<slug>.md` scenario contract (behavior benchmark) |
+| [`behavior_benchmark_baseline_template.md`](../assets/behavior_benchmark_baseline_template.md) | Fillable scaffold for `baselines/claude-baseline.md` (behavior benchmark) |
 
 ### Validation
 

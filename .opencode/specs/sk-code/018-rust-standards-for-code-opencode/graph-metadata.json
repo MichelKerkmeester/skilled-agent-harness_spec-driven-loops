@@ -15,7 +15,8 @@
     "sk-code/018-rust-standards-for-code-opencode/009-code-webflow-implementation-references",
     "sk-code/018-rust-standards-for-code-opencode/010-code-webflow-other-references",
     "sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged",
-    "sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup"
+    "sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup",
+    "sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates"
   ],
   "manual": {
     "depends_on": [],
@@ -106,7 +107,7 @@
     "source_doc_hashes": {
       "spec.md": "855aa83d5addbfc5518c7f13fc35b2057c84727c0555b6f27b6bc2f7bbfa020b"
     },
-    "last_active_child_id": "sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup",
-    "last_active_at": "2026-07-11T16:10:00Z"
+    "last_active_child_id": "sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates",
+    "last_active_at": "2026-07-12T09:00:00Z"
   }
 }

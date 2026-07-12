@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates",
+  "description": "Add first-class sk-doc authoring support for the behavior_benchmark family: three fillable templates (index, scenario contract, baseline), an",
+  "keywords": [
+    "first-class",
+    "sk-doc",
+    "authoring",
+    "support",
+    "family",
+    "three",
+    "fillable",
+    "templates",
+    "index",
+    "scenario",
+    "contract",
+    "baseline"
+  ],
+  "lastUpdated": "2026-07-12T08:54:19.020Z",
+  "specId": "013",
+  "folderSlug": "behavior-benchmark-templates",
+  "parentChain": [
+    "sk-code",
+    "018-rust-standards-for-code-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates",
+  "spec_folder": "sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates",
+  "parent_id": "sk-code/018-rust-standards-for-code-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 phase 013 behavior benchmark templates",
+      "sk-doc behavior benchmark authoring",
+      "create-benchmark behavior family",
+      "018 phase 013 plan behavior benchmark",
+      "018 phase 013 tasks behavior benchmark",
+      "018 phase 013 summary behavior benchmark"
+    ],
+    "key_topics": [
+      "phase",
+      "behavior",
+      "benchmark",
+      "templates",
+      "sk-doc",
+      "authoring",
+      "create-benchmark",
+      "family",
+      "plan",
+      "tasks",
+      "summary",
+      "first-class"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Behavior Benchmark Templates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Creation Guide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Families",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Family Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready Shipped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Baseline Table",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Capture Provenance",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built First",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Read",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add first-class sk-doc authoring support for the behavior_benchmark family: three fillable templates (index, scenario contract, baseline), an end-to-end creation guide, and a create-benchmark SKILL/README extension, so a deep-loop mode's behavior_benchmark package can be authored the way MCP promotion benchmarks already are. Templates mirror the shipped deep-alignment package and sk-doc conventions; the shared framework stays the single measurement contract.",
+    "created_at": "2026-07-12T08:52:23.170Z",
+    "last_save_at": "2026-07-12T08:54:33.013Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:601429d90f0bd6b4f72d9383a3cd1c38015727b61fd8c0757dd8f010e74c52d4",
+    "source_doc_hashes": {
+      "spec.md": "700717060770dadb855d94a971b23ca0505f26d393f350601eb58e40f723345a",
+      "plan.md": "46faabfaace3cfb218db0d17a8ad3f7f207e4e951454c765943a060797ff79b7",
+      "tasks.md": "995c45ea20b1c6b7e1d33db205d68315655dddfdcad6fe241df7c5e164a2cf23",
+      "implementation-summary.md": "4f35883ca1d631e3f6ec25cd4905fccb16e5c45b9c50d89749a5612e4b449611"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
