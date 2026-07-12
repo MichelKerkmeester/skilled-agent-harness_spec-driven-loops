@@ -253,6 +253,6 @@ window.cleanupFilepondInstances();
 
 - **[implementation_workflows.md](../implementation_workflows/condition-based-waiting.md)** — Condition-based waiting, validation patterns used by the upload connector
 - **[security_patterns.md](../security_patterns/overview-and-checklist.md)** — XSS prevention relevant to file upload handling
-- **[code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md)** — Naming conventions and initialization patterns
+- **[code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md)** — Naming conventions and initialization patterns
 - **CDN Deployment**: See [cdn_deployment.md](../../deployment/cdn_deployment.md) for R2 upload workflow
 - **Minification**: See [minification_guide.md](../../deployment/minification_guide/overview_terser_and_patterns.md) for terser configuration

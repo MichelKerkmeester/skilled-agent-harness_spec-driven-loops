@@ -358,7 +358,7 @@ bdg stop 2>&1
 ### Reference Files
 - [implementation_workflows.md](../../implementation/implementation_workflows/condition-based-waiting.md) - Debug timing and validation issues
 - [verification_workflows.md](../../verification/verification_workflows/gate_and_automated_options.md) - Verify fixes work correctly
-- [dev_workflow.md](../../shared/dev_workflow/overview-nav-and-logging.md) - Use common DevTools and logging patterns
+- [dev_workflow.md](../../shared/dev_workflow/overview_nav_and_logging.md) - Use common DevTools and logging patterns
 
 ### Asset Files
 - [lenis_patterns.js](../../assets/integrations/lenis_patterns.js) - Complete Lenis smooth scroll integration patterns

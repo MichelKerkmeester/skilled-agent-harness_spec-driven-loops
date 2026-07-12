@@ -1,6 +1,11 @@
 ---
 title: State Management & Cleanup/Destroy Patterns
-description: "Defensive code patterns for Webflow JS: CDN-safe initialization (MANDATORY), DOM safety, error handling, async, observers, validation, performance, animation quality, state management, cleanup/destroy, shared document listeners, WeakMap/WeakSet caching. Includes JS naming and initialization-pattern enforcement." — State Management & Cleanup/Destroy Patterns.
+description: "Animation quality, state management, and cleanup or destroy patterns for reliable Webflow JavaScript components."
+trigger_phrases:
+  - "webflow state management"
+  - "javascript cleanup destroy"
+  - "webflow animation quality"
+  - "component cleanup pattern"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.7
@@ -8,7 +13,25 @@ version: 3.5.0.7
 
 # State Management & Cleanup/Destroy Patterns
 
-## 9. ANIMATION QUALITY PATTERNS (JS SIDE)
+State, animation-quality, and resource-cleanup patterns for Webflow JavaScript components.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines how components manage runtime state, animation choices, and comprehensive cleanup for safe reinitialization.
+
+### When to Use
+
+- Choosing CSS or Motion.dev for component animation
+- Managing mutable component state and public APIs
+- Implementing cleanup, destroy, or reinitialization behavior
+
+---
+
+## 2. ANIMATION QUALITY PATTERNS (JS SIDE)
 
 ### Quick Decision Tree
 
@@ -43,7 +66,7 @@ Need animation?
 
 ---
 
-## 10. STATE MANAGEMENT PATTERNS
+## 3. STATE MANAGEMENT PATTERNS
 
 ### Module-Level State with Cleanup
 
@@ -99,7 +122,7 @@ window.ComponentName = {
 
 ---
 
-## 11. CLEANUP/DESTROY PATTERNS
+## 4. CLEANUP/DESTROY PATTERNS
 
 Proper resource cleanup prevents memory leaks and ensures components can be safely reinitialized.
 

@@ -48,10 +48,10 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 ### Source Standards (per-language tree)
 
 - [shared/cross_language_rules.md](../../../code-webflow/references/shared/cross_language_rules.md) - Cross-language rules (file naming, comment WHY-not-WHAT, banner format, platform prefixes)
-- [javascript/style_guide.md](../../../code-webflow/references/javascript/style_guide/overview-naming-and-structure.md) - JS naming (`snake_case`), file structure, formatting, JSDoc, debug logging
-- [javascript/quality_standards.md](../../../code-webflow/references/javascript/quality_standards/init-dom-error-and-async.md) - JS defensive patterns + JS naming/init enforcement
+- [javascript/style_guide.md](../../../code-webflow/references/javascript/style_guide/overview_naming_and_structure.md) - JS naming (`snake_case`), file structure, formatting, JSDoc, debug logging
+- [javascript/quality_standards.md](../../../code-webflow/references/javascript/quality_standards/init_dom_error_and_async.md) - JS defensive patterns + JS naming/init enforcement
 - [css/style_guide.md](../../../code-webflow/references/css/style_guide.md) - CSS naming (BEM), custom properties, attribute selectors, animation CSS, file org
-- [css/quality_standards.md](../../../code-webflow/references/css/quality_standards/patterns-and-naming-enforcement.md) - CSS quality patterns + CSS enforcement subsections
+- [css/quality_standards.md](../../../code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md) - CSS quality patterns + CSS enforcement subsections
 
 ---
 
@@ -59,7 +59,7 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 3](../../../code-webflow/references/javascript/style_guide/overview-naming-and-structure.md)
+**Reference:** [code_style_guide.md Section 3](../../../code-webflow/references/javascript/style_guide/overview_naming_and_structure.md)
 
 ### File Header Format
 
@@ -102,7 +102,7 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 3](../../../code-webflow/references/javascript/style_guide/overview-naming-and-structure.md)
+**Reference:** [code_style_guide.md Section 3](../../../code-webflow/references/javascript/style_guide/overview_naming_and_structure.md)
 
 ### Section Headers
 
@@ -163,7 +163,7 @@ const INIT_FLAG = '__componentNameInit';
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 5](../../../code-webflow/references/javascript/style_guide/overview-naming-and-structure.md)
+**Reference:** [code_style_guide.md Section 5](../../../code-webflow/references/javascript/style_guide/overview_naming_and_structure.md)
 
 ### Comment Principles
 

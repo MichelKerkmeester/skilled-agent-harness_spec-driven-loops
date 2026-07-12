@@ -99,7 +99,7 @@ version: 3.5.0.9
 - Retry logic handles variable CDN loading times
 - `window.Motion || {}` safely destructures even if undefined
 
-**See:** [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) Section 4 for complete CDN-safe pattern documentation.
+**See:** [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) Section 4 for complete CDN-safe pattern documentation.
 
 ### Standardized Animation Parameters
 
@@ -281,4 +281,3 @@ await animate(element, properties, {
 - Static elements (no animation planned)
 
 ---
-

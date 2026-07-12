@@ -321,7 +321,7 @@ EVIDENCE:
 ### Reference Files
 - [implementation_workflows.md](../../implementation/implementation_workflows/condition-based-waiting.md) - Verify implementations work correctly
 - [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md) - Verify fixes work after debugging
-- [dev_workflow.md](../../shared/dev_workflow/overview-nav-and-logging.md) - Use standard DevTools verification patterns
+- [dev_workflow.md](../../shared/dev_workflow/overview_nav_and_logging.md) - Use standard DevTools verification patterns
 
 ### Templates
 - [verification_checklist.md](../../../assets/webflow-verification_checklist.md) - Printable verification checklist

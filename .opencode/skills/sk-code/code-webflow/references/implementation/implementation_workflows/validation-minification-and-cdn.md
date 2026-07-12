@@ -289,9 +289,9 @@ function sanitizeText(text) {
 ### Reference Files
 - [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md) - Debug timing and validation issues with systematic approach
 - [verification_workflows.md](../../verification/verification_workflows/gate_and_automated_options.md) - Verify implementations work correctly across browsers and viewports
-- [dev_workflow.md](../../shared/dev_workflow/overview-nav-and-logging.md) - Common DevTools and logging patterns for all workflows
+- [dev_workflow.md](../../shared/dev_workflow/overview_nav_and_logging.md) - Common DevTools and logging patterns for all workflows
 - [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Complete animation implementation guide including waitForTransitionEnd pattern
-- [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) - CDN-safe initialization pattern and naming conventions
+- [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) - CDN-safe initialization pattern and naming conventions
 
 ### Templates
 - [wait_patterns.js](../../assets/patterns/wait_patterns.js) - Production-ready condition-based waiting templates with error handling

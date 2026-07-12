@@ -28,7 +28,7 @@ Follow code quality standards for all implementations:
 - **Initialization:** Use CDN-safe pattern with guard flags and delays
 - **Animation:** CSS first, Motion.dev for complexity - see [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md)
 - **Webflow:** Collection list patterns, async rendering - see [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md)
-- See [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) for complete standards
+- See [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) for complete standards
 
 > **Cross-stack motion.dev reference**: For Motion API and integration guidance that is not Webflow-specific, see [`../../animation/quick_start.md`](../../animation/quick_start.md) and [`../../animation/integration_patterns.md`](../../animation/integration_patterns.md). Webflow lifecycle, CDN timing, and Designer constraints remain covered by the Webflow implementation guides linked here.
 
@@ -299,4 +299,3 @@ See [performance_patterns.js](../../assets/patterns/performance_patterns.js) for
 **See also:** [wait_patterns.js](../../assets/patterns/wait_patterns.js) for production-ready code templates
 
 ---
-

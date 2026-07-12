@@ -26,7 +26,7 @@ metadata:
 Language standards (load the detected language's trio; a frontend task legitimately spans all three):
 - CSS — `references/css/style_guide.md`, `references/css/quality_standards/patterns_and_naming_enforcement.md`, `references/css/quick_reference.md`, `references/css/patterns/tokens_state_machine_and_triggers.md`
 - HTML — `references/html/style_guide.md`, `references/html/quality_standards.md`
-- JavaScript — `references/javascript/style_guide/overview-naming-and-structure.md`, `references/javascript/quality_standards/init-dom-error-and-async.md`, `references/javascript/quick_reference.md`
+- JavaScript — `references/javascript/style_guide/overview_naming_and_structure.md`, `references/javascript/quality_standards/init_dom_error_and_async.md`, `references/javascript/quick_reference.md`
 
 Implementation patterns (`references/implementation/`):
 - Core: `implementation_workflows.md`, `webflow_patterns.md`, `animation_workflows.md`
@@ -60,10 +60,10 @@ This block is the deterministic projection of code-webflow's own reference/asset
 # (re-prefixed with code-webflow/) and the sibling code-opencode map plus the
 # parent-owned universal/shared tier; a drift guard enforces that equality.
 DEFAULT_RESOURCE = [
-    "references/shared/dev_workflow/overview-nav-and-logging.md",
-    "references/shared/dev_workflow/automation-errors-and-compat.md",
-    "references/shared/dev_workflow/common-commands.md",
-    "references/shared/dev_workflow/checklists-and-decision-matrix.md",
+    "references/shared/dev_workflow/overview_nav_and_logging.md",
+    "references/shared/dev_workflow/automation_errors_and_compat.md",
+    "references/shared/dev_workflow/common_commands.md",
+    "references/shared/dev_workflow/checklists_and_decision_matrix.md",
 ]
 
 INTENT_SIGNALS = {
@@ -99,10 +99,10 @@ RESOURCE_MAP = {
         "references/implementation/webflow_patterns/overview-limits-and-collection-lists.md",
         "references/implementation/webflow_patterns/development-and-production.md",
         "references/implementation/webflow_patterns/finsweet-custom-select-bridge.md",
-        "references/shared/dev_workflow/overview-nav-and-logging.md",
-        "references/shared/dev_workflow/automation-errors-and-compat.md",
-        "references/shared/dev_workflow/common-commands.md",
-        "references/shared/dev_workflow/checklists-and-decision-matrix.md",
+        "references/shared/dev_workflow/overview_nav_and_logging.md",
+        "references/shared/dev_workflow/automation_errors_and_compat.md",
+        "references/shared/dev_workflow/common_commands.md",
+        "references/shared/dev_workflow/checklists_and_decision_matrix.md",
         "assets/integrations/README.md",
         "assets/patterns/README.md",
         "assets/templates/README.md"
@@ -204,14 +204,14 @@ RESOURCE_MAP = {
         "references/css/patterns/quick_reference_and_related.md",
         "references/html/style_guide.md",
         "references/html/quality_standards.md",
-        "references/javascript/style_guide/overview-naming-and-structure.md",
+        "references/javascript/style_guide/overview_naming_and_structure.md",
         "references/javascript/style_guide/formatting.md",
-        "references/javascript/style_guide/commenting-and-related.md",
-        "references/javascript/quality_standards/init-dom-error-and-async.md",
-        "references/javascript/quality_standards/observer-validation-and-performance.md",
-        "references/javascript/quality_standards/state-and-cleanup.md",
-        "references/javascript/quality_standards/shared-listener-and-weakmap.md",
-        "references/javascript/quality_standards/enforcement-and-quick-reference.md",
+        "references/javascript/style_guide/commenting_and_related.md",
+        "references/javascript/quality_standards/init_dom_error_and_async.md",
+        "references/javascript/quality_standards/observer_validation_and_performance.md",
+        "references/javascript/quality_standards/state_and_cleanup.md",
+        "references/javascript/quality_standards/shared_listener_and_weakmap.md",
+        "references/javascript/quality_standards/enforcement_and_quick_reference.md",
         "references/javascript/quick_reference.md"
     ],
 }

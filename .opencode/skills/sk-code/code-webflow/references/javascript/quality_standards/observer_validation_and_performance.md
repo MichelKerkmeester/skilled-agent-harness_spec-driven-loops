@@ -1,6 +1,11 @@
 ---
 title: Observer, Validation, Performance & Animation Patterns
-description: "Defensive code patterns for Webflow JS: CDN-safe initialization (MANDATORY), DOM safety, error handling, async, observers, validation, performance, animation quality, state management, cleanup/destroy, shared document listeners, WeakMap/WeakSet caching. Includes JS naming and initialization-pattern enforcement." — Observer, Validation, Performance & Animation Patterns.
+description: "Observer, validation, and performance patterns for defensive JavaScript in the Webflow stack."
+trigger_phrases:
+  - "webflow observer patterns"
+  - "javascript validation patterns"
+  - "webflow performance patterns"
+  - "intersectionobserver webflow"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.7
@@ -8,7 +13,25 @@ version: 3.5.0.7
 
 # Observer, Validation, Performance & Animation Patterns
 
-## 6. OBSERVER PATTERNS
+Defensive observer, validation, and performance patterns for Webflow JavaScript.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides reusable JavaScript patterns for observing DOM changes, validating values, and reducing runtime performance costs.
+
+### When to Use
+
+- Observing visibility, DOM mutations, or element resizing
+- Validating parsed numbers, strings, or generated identifiers
+- Optimizing visual updates, resize handlers, or delegated events
+
+---
+
+## 2. OBSERVER PATTERNS
 
 ### IntersectionObserver for Visibility-Triggered Actions
 
@@ -69,7 +92,7 @@ ro.observe(container);
 
 ---
 
-## 7. VALIDATION PATTERNS
+## 3. VALIDATION PATTERNS
 
 ### Type-Safe Number Parsing
 
@@ -122,7 +145,7 @@ function is_valid_email(email) {
 
 ---
 
-## 8. PERFORMANCE PATTERNS
+## 4. PERFORMANCE PATTERNS
 
 ### RequestAnimationFrame for Visual Updates
 
@@ -179,4 +202,3 @@ container.addEventListener('click', (e) => {
 ```
 
 ---
-

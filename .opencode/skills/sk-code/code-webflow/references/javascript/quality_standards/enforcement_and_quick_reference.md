@@ -1,6 +1,11 @@
 ---
 title: Naming/Init Enforcement & Quick Reference
-description: "Defensive code patterns for Webflow JS: CDN-safe initialization (MANDATORY), DOM safety, error handling, async, observers, validation, performance, animation quality, state management, cleanup/destroy, shared document listeners, WeakMap/WeakSet caching. Includes JS naming and initialization-pattern enforcement." — Naming/Init Enforcement & Quick Reference.
+description: "JavaScript naming and initialization enforcement patterns with a pre-deployment quality checklist for Webflow components."
+trigger_phrases:
+  - "webflow naming enforcement"
+  - "webflow initialization enforcement"
+  - "javascript deployment checklist"
+  - "cdn safe init checklist"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.7
@@ -8,7 +13,25 @@ version: 3.5.0.7
 
 # Naming/Init Enforcement & Quick Reference
 
-## 14. NAMING CONVENTION ENFORCEMENT
+Naming and initialization enforcement guidance with a concise deployment checklist for Webflow JavaScript.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides validation prompts, recognition patterns, and remediation steps for JavaScript naming and CDN-safe initialization.
+
+### When to Use
+
+- Reviewing JavaScript identifiers for naming compliance
+- Validating the Webflow initialization guard pattern
+- Running a final component deployment checklist
+
+---
+
+## 2. NAMING CONVENTION ENFORCEMENT
 
 ### Validation Prompt
 
@@ -86,7 +109,7 @@ const required = true;            // Should be: is_required or has_required
 
 ---
 
-## 15. INITIALIZATION PATTERN ENFORCEMENT
+## 3. INITIALIZATION PATTERN ENFORCEMENT
 
 ### Validation Prompt
 
@@ -158,7 +181,7 @@ const INIT_DELAY_MS = 50;
 
 ---
 
-## 16. QUICK REFERENCE CHECKLIST
+## 4. QUICK REFERENCE CHECKLIST
 
 Before deploying any component:
 
@@ -215,12 +238,12 @@ Before deploying any component:
 
 ---
 
-## RELATED RESOURCES
+## 5. RELATED RESOURCES
 
-- [`../style_guide/overview-naming-and-structure.md`](../style_guide/overview-naming-and-structure.md) — JS naming, file structure, formatting
+- [`../style_guide/overview_naming_and_structure.md`](../style_guide/overview_naming_and_structure.md) — JS naming, file structure, formatting
 - [`../quick_reference.md`](../quick_reference.md) — JS workflows, snippets, one-liners
 - [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) — file naming, comment principles
 - [`../../shared/enforcement.md`](../../shared/enforcement.md) — cross-language pre-completion gate
-- [`../../shared/dev_workflow/overview-nav-and-logging.md`](../../shared/dev_workflow/overview-nav-and-logging.md) — DevTools, logging, testing patterns
+- [`../../shared/dev_workflow/overview_nav_and_logging.md`](../../shared/dev_workflow/overview_nav_and_logging.md) — DevTools, logging, testing patterns
 - [`../../implementation/animation_workflows/overview-decision-tree-and-css.md`](../../implementation/animation_workflows/overview-decision-tree-and-css.md) — full animation guide (CSS + Motion.dev)
 - [`../../implementation/webflow_patterns/overview-limits-and-collection-lists.md`](../../implementation/webflow_patterns/overview-limits-and-collection-lists.md) — Webflow-specific patterns

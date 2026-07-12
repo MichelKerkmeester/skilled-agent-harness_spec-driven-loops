@@ -328,7 +328,7 @@ document.querySelectorAll('.fs-sort-select--hidden').forEach(sel => {
 ### Reference Files
 - [`../../css/patterns/tokens_state_machine_and_triggers.md`](../../css/patterns/tokens_state_machine_and_triggers.md) — CSS-specific Webflow patterns (token system, state machines, BEM hover/focus, form validation, accessibility, mobile)
 - [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Condition-based waiting patterns complement async rendering solutions
-- [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) - CDN-safe initialization pattern for Webflow platform
+- [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) - CDN-safe initialization pattern for Webflow platform
 - [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) - CSS quality patterns for Webflow Designer styling layer + 4 CSS enforcement subsections
 - [performance_patterns.md](../performance_patterns/overview-and-checklist.md) - Performance optimization for collection lists with many items
 

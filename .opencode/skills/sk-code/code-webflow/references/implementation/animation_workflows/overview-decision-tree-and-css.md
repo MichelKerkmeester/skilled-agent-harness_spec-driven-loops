@@ -34,7 +34,7 @@ CSS first for simplicity and performance. Motion.dev when you need programmatic 
 Follow code quality standards:
 - **Initialization:** Use CDN-safe pattern with guard flags and delays
 - **Naming:** Use `snake_case` for functions/variables
-- See [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) for complete standards
+- See [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) for complete standards
 
 ---
 
@@ -189,4 +189,3 @@ function close_dropdown(dropdown) {
 **Reference implementation:** `src/javascript/navigation/language_selector.js` - Complete dropdown with measured height animation
 
 ---
-

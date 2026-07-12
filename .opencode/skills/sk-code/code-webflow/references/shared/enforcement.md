@@ -17,9 +17,9 @@ version: 3.5.0.2
 This file enforces rules that apply to all Webflow languages (JavaScript and CSS). Per-language enforcement (JS naming conventions, JS initialization patterns, CSS custom properties, CSS attribute selectors, CSS BEM, CSS animation properties) lives in the matching language `quality_standards.md`.
 
 **Related Documents:**
-- [`../javascript/style_guide/overview-naming-and-structure.md`](../javascript/style_guide/overview-naming-and-structure.md) — JS style conventions (naming, file structure, formatting, JSDoc)
+- [`../javascript/style_guide/overview_naming_and_structure.md`](../javascript/style_guide/overview_naming_and_structure.md) — JS style conventions (naming, file structure, formatting, JSDoc)
 - [`../css/style_guide.md`](../css/style_guide.md) — CSS style conventions (BEM, custom properties, attribute selectors, animation CSS)
-- [`../javascript/quality_standards/init-dom-error-and-async.md`](../javascript/quality_standards/init-dom-error-and-async.md) — JS quality patterns + JS naming/init enforcement
+- [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md) — JS quality patterns + JS naming/init enforcement
 - [`../css/quality_standards/patterns_and_naming_enforcement.md`](../css/quality_standards/patterns_and_naming_enforcement.md) — CSS quality patterns + 4 CSS enforcement subsections
 - [`../../../assets/webflow/checklists/code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist/overview_header_and_comments.md) — validation checklist used at the pre-completion gate
 
@@ -252,7 +252,7 @@ Before claiming "done" or "complete" on **JavaScript or CSS** implementation:
 1. **Identify file type** - JavaScript or CSS
 2. **Load** [`code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist/overview_header_and_comments.md)
 3. **Apply cross-language rules** from this document (Sections 2-4: file headers, section organization, comment quality)
-4. **Apply per-language rules** from the matching `quality_standards.md` ([JS](../javascript/quality_standards/init-dom-error-and-async.md) | [CSS](../css/quality_standards/patterns_and_naming_enforcement.md))
+4. **Apply per-language rules** from the matching `quality_standards.md` ([JS](../javascript/quality_standards/init_dom_error_and_async.md) | [CSS](../css/quality_standards/patterns_and_naming_enforcement.md))
 5. **Check** each P0 item systematically for that file type
 6. **Fix** any P0 violations found
 7. **Check** P1 items
@@ -266,7 +266,7 @@ For formal findings-first review output, run `sk-code`'s code-review mode as bas
 
 | File Type | Cross-Language (this file) | Per-Language Quality Standards |
 |-----------|---------------------------|-------------------------------|
-| JavaScript (`.js`) | Sections 2-4 (headers, organization, comments) | [`../javascript/quality_standards/init-dom-error-and-async.md`](../javascript/quality_standards/init-dom-error-and-async.md) (naming, init patterns) |
+| JavaScript (`.js`) | Sections 2-4 (headers, organization, comments) | [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md) (naming, init patterns) |
 | CSS (`.css`) | Sections 2-4 (headers, organization, comments) | [`../css/quality_standards/patterns_and_naming_enforcement.md`](../css/quality_standards/patterns_and_naming_enforcement.md) (custom properties, BEM, attribute selectors, animations) |
 | Both | All cross-language + both per-language files | Combined |
 
@@ -299,7 +299,7 @@ If you cannot resolve a violation:
 
 For language-specific enforcement, see:
 
-- **JavaScript** naming conventions + initialization patterns: [`../javascript/quality_standards/init-dom-error-and-async.md`](../javascript/quality_standards/init-dom-error-and-async.md)
+- **JavaScript** naming conventions + initialization patterns: [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md)
 - **CSS** custom properties + attribute selectors + BEM + animation properties: [`../css/quality_standards/patterns_and_naming_enforcement.md`](../css/quality_standards/patterns_and_naming_enforcement.md)
 
 ---
@@ -307,9 +307,9 @@ For language-specific enforcement, see:
 ## 7. RELATED RESOURCES
 
 ### Primary Standards (per-language tree)
-- [`../javascript/style_guide/overview-naming-and-structure.md`](../javascript/style_guide/overview-naming-and-structure.md) — JS style guide
+- [`../javascript/style_guide/overview_naming_and_structure.md`](../javascript/style_guide/overview_naming_and_structure.md) — JS style guide
 - [`../css/style_guide.md`](../css/style_guide.md) — CSS style guide
-- [`../javascript/quality_standards/init-dom-error-and-async.md`](../javascript/quality_standards/init-dom-error-and-async.md) — JS quality patterns + enforcement
+- [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md) — JS quality patterns + enforcement
 - [`../css/quality_standards/patterns_and_naming_enforcement.md`](../css/quality_standards/patterns_and_naming_enforcement.md) — CSS quality patterns + enforcement
 - [`./cross_language_rules.md`](./cross_language_rules.md) — cross-language file naming, comment principles, banner format
 

@@ -14,13 +14,15 @@ version: 3.5.0.6
 
 # Webflow JavaScript Style Guide
 
-> See [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) for rules that apply to all languages (file naming, comment WHY-not-WHAT, file-header banner shape, platform-specific comment prefixes). This file covers JavaScript-specific conventions only.
+JavaScript-specific naming and file-structure conventions for the Webflow stack.
 
 ## 1. OVERVIEW
 
 ### Purpose
 
 Defines JavaScript naming conventions, file structure, formatting rules, JSDoc usage, and debug logging patterns for code targeting the Webflow stack.
+
+> See [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) for rules that apply to all languages (file naming, comment WHY-not-WHAT, file-header banner shape, platform-specific comment prefixes). This file covers JavaScript-specific conventions only.
 
 ### When to Use
 
@@ -236,4 +238,3 @@ Every JavaScript file should follow this structure:
 ```
 
 ---
-

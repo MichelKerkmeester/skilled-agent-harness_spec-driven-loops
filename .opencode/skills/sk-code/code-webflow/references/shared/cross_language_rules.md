@@ -14,11 +14,7 @@ version: 3.5.0.3
 # Cross-Language Rules: Webflow
 
 These rules apply to ALL Webflow code — JavaScript, CSS, and HTML alike. Per-language conventions (naming, formatting, type-specific patterns) live in:
-- [`../javascript/style_guide/overview-naming-and-structure.md`](../javascript/style_guide/overview-naming-and-structure.md)
-- [`../css/style_guide.md`](../css/style_guide.md)
-- [`../html/style_guide.md`](../html/style_guide.md)
-
-If a rule appears in a per-language file, it is language-specific. If it appears here, it applies to every language in the stack.
+Cross-language naming, commenting, and file-structure rules for JavaScript, CSS, and HTML in the Webflow stack.
 
 ---
 
@@ -27,6 +23,13 @@ If a rule appears in a per-language file, it is language-specific. If it appears
 ### Purpose
 
 File naming conventions, comment principles (WHY-not-WHAT), file-header banner format, and platform-specific comment prefixes that apply equally to JavaScript, CSS, and HTML in the Webflow stack.
+
+Per-language conventions (naming, formatting, type-specific patterns) live in:
+- [`../javascript/style_guide/overview_naming_and_structure.md`](../javascript/style_guide/overview_naming_and_structure.md)
+- [`../css/style_guide.md`](../css/style_guide.md)
+- [`../html/style_guide.md`](../html/style_guide.md)
+
+If a rule appears in a per-language file, it is language-specific. If it appears here, it applies to every language in the stack.
 
 ### When to Use
 
@@ -191,8 +194,8 @@ if (window[INIT_FLAG]) return;
 
 ---
 
-## RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 - Per-language style guides (linked above)
 - [`./enforcement.md`](./enforcement.md) — how these rules get enforced at gate time
-- [`dev_workflow/overview-nav-and-logging.md`](dev_workflow/overview-nav-and-logging.md) — DevTools, logging, testing patterns shared across languages
+- [`dev_workflow/overview_nav_and_logging.md`](dev_workflow/overview_nav_and_logging.md) — DevTools, logging, testing patterns shared across languages

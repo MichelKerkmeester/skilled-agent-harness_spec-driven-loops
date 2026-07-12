@@ -75,7 +75,7 @@ The `data-action` attribute declares what a clickable element does. Values mirro
 <button data-action="remove">Delete item</button>
 ```
 
-JS routes these via a single delegated event listener that reads `element.dataset.action` and dispatches to the matching handler (see [`../javascript/quality_standards/init-dom-error-and-async.md`](../javascript/quality_standards/init-dom-error-and-async.md) §13 Action Routing Pattern).
+JS routes these via a single delegated event listener that reads `element.dataset.action` and dispatches to the matching handler (see [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md) §13 Action Routing Pattern).
 
 ### Trigger / target patterns
 
@@ -188,7 +188,7 @@ When custom JavaScript adds interactive behavior to Webflow markup, sync the ARI
 <div id="accordion-panel-1" role="region" hidden>…</div>
 ```
 
-When the JS toggles the panel, it must update `aria-expanded` and `hidden` together. The action-routing pattern in [`../javascript/quality_standards/init-dom-error-and-async.md`](../javascript/quality_standards/init-dom-error-and-async.md) §13 handles this — the `expand` and `collapse` actions set `aria-expanded` on the target element.
+When the JS toggles the panel, it must update `aria-expanded` and `hidden` together. The action-routing pattern in [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md) §13 handles this — the `expand` and `collapse` actions set `aria-expanded` on the target element.
 
 ---
 
@@ -331,7 +331,7 @@ End-markers are OPTIONAL for short blocks (`<link>` tags, single-line `<script>`
 
 ### Comments INSIDE `<script>` blocks
 
-Once inside a `<script>` block, the rules in [`../javascript/style_guide/overview-naming-and-structure.md`](../javascript/style_guide/overview-naming-and-structure.md) §5 apply (function preambles, inline WHY-comments, group-introductory comments, snake_case naming). HTML comment syntax (`<!-- -->`) does NOT work inside `<script>`; use `//` line comments or `/* */` block comments per the JS conventions.
+Once inside a `<script>` block, the rules in [`../javascript/style_guide/overview_naming_and_structure.md`](../javascript/style_guide/overview_naming_and_structure.md) §5 apply (function preambles, inline WHY-comments, group-introductory comments, snake_case naming). HTML comment syntax (`<!-- -->`) does NOT work inside `<script>`; use `//` line comments or `/* */` block comments per the JS conventions.
 
 ```html
 <script>
@@ -392,8 +392,8 @@ Compare your panel content against `anobel.com/src/0_html/global.html` — the c
 ## RELATED RESOURCES
 
 - [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) — file naming, comment principles, file-header banner format
-- [`../javascript/style_guide/overview-naming-and-structure.md`](../javascript/style_guide/overview-naming-and-structure.md) — JS conventions for code that targets HTML
+- [`../javascript/style_guide/overview_naming_and_structure.md`](../javascript/style_guide/overview_naming_and_structure.md) — JS conventions for code that targets HTML
 - [`../css/style_guide.md`](../css/style_guide.md) — CSS conventions for styling Webflow output
 - [`../implementation/webflow_patterns/overview-limits-and-collection-lists.md`](../implementation/webflow_patterns/overview-limits-and-collection-lists.md) — Webflow-specific implementation patterns (collection lists, async rendering, page transitions)
-- [`../javascript/quality_standards/init-dom-error-and-async.md`](../javascript/quality_standards/init-dom-error-and-async.md) — action routing pattern and event delegation
+- [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md) — action routing pattern and event delegation
 - [`../javascript/quick_reference.md`](../javascript/quick_reference.md) — form validation class reference

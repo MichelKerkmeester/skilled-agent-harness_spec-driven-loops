@@ -1,6 +1,11 @@
 ---
 title: Formatting
-description: "JavaScript naming conventions (snake_case), file structure (IIFE wrapper, file header banner, numbered sections), formatting (2-space indent, K&R braces, single quotes, trailing commas), function-purpose comments, JSDoc usage, and debug logging — for the Webflow stack." — Formatting.
+description: "JavaScript formatting rules for indentation, braces, semicolons, quotes, trailing commas, line length, and whitespace in the Webflow stack."
+trigger_phrases:
+  - "javascript formatting webflow"
+  - "javascript indentation rules"
+  - "javascript brace style"
+  - "javascript trailing commas"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.6
@@ -8,7 +13,25 @@ version: 3.5.0.6
 
 # Formatting
 
-## 4. FORMATTING
+JavaScript formatting rules for consistent Webflow implementations.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines the formatting conventions used by JavaScript files in the Webflow stack.
+
+### When to Use
+
+- Formatting new JavaScript code
+- Reviewing indentation, braces, punctuation, and whitespace
+- Aligning existing code with the Webflow JavaScript conventions
+
+---
+
+## 2. FORMATTING
 
 ### Indentation
 
@@ -168,4 +191,3 @@ function example (param) { }
 ```
 
 ---
-

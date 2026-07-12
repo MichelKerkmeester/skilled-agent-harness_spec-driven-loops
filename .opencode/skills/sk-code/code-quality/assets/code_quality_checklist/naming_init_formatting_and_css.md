@@ -31,7 +31,7 @@ Apply each relevant check to the target JavaScript or CSS file before reporting 
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 2](../../../code-webflow/references/javascript/style_guide/overview-naming-and-structure.md)
+**Reference:** [code_style_guide.md Section 2](../../../code-webflow/references/javascript/style_guide/overview_naming_and_structure.md)
 
 ### Variable Naming
 
@@ -91,7 +91,7 @@ function data(form) { }    // Should be: get_form_data
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_quality_standards.md Section 2](../../../code-webflow/references/javascript/quality_standards/init-dom-error-and-async.md)
+**Reference:** [code_quality_standards.md Section 2](../../../code-webflow/references/javascript/quality_standards/init_dom_error_and_async.md)
 
 ### CDN-Safe Initialization
 
@@ -141,7 +141,7 @@ if (window.Webflow?.push) {
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 4](../../../code-webflow/references/javascript/style_guide/overview-naming-and-structure.md)
+**Reference:** [code_style_guide.md Section 4](../../../code-webflow/references/javascript/style_guide/overview_naming_and_structure.md)
 
 ### Basic Formatting
 

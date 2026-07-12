@@ -1,6 +1,11 @@
 ---
 title: Common Commands
-description: "DevTools, logging, testing, automation patterns, error handling, and browser compatibility for Webflow stack — applies to all languages." — Common Commands.
+description: "Common condition-waiting, validation, performance, security, debugging, and browser-verification commands for Webflow work."
+trigger_phrases:
+  - "webflow common commands"
+  - "webflow devtools commands"
+  - "browser verification commands"
+  - "frontend validation snippets"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.6
@@ -8,7 +13,25 @@ version: 3.5.0.6
 
 # Common Commands
 
-## 9. COMMON COMMANDS
+Common snippets and terminal commands for implementing, debugging, and verifying Webflow components.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Collects frequently used commands and snippets for condition waiting, validation, security, performance, and browser inspection.
+
+### When to Use
+
+- Looking up a common implementation snippet
+- Running browser verification from the terminal
+- Inspecting performance, events, or network behavior
+
+---
+
+## 2. COMMON COMMANDS
 
 ### Condition-Based Waiting
 
@@ -183,4 +206,3 @@ npm install -g browser-debugger-cli@alpha
 **See:** [`.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`](../../../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for complete CLI workflows.
 
 ---
-

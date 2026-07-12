@@ -27,8 +27,8 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 - `code-opencode/references/config/style_guide.md`
 - `code-opencode/references/config/quality_standards.md`
 - `code-opencode/references/config/quick_reference.md`
-- `code-opencode/references/shared/code_organization/overview-and-module-organization.md`
-- `code-opencode/references/shared/universal_patterns/naming-and-commenting.md`
+- `code-opencode/references/shared/code_organization/overview_and_module_organization.md`
+- `code-opencode/references/shared/universal_patterns/naming_and_commenting.md`
 
 **Expected assets loaded**:
 - `code-opencode/assets/checklists/config_checklist.md`

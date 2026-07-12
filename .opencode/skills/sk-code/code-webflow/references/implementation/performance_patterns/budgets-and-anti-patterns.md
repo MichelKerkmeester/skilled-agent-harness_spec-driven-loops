@@ -207,7 +207,7 @@ This file is the high-level checklist + budgets + anti-patterns index. For deep-
 - [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md) - Webflow-specific performance considerations for collection lists
 
 ### Per-language quality patterns
-- [`../../javascript/quality_standards/init-dom-error-and-async.md`](../../javascript/quality_standards/init-dom-error-and-async.md) — JS-side performance patterns (RequestAnimationFrame, GPU acceleration hints, debounced resize, event delegation)
+- [`../../javascript/quality_standards/init_dom_error_and_async.md`](../../javascript/quality_standards/init_dom_error_and_async.md) — JS-side performance patterns (RequestAnimationFrame, GPU acceleration hints, debounced resize, event delegation)
 - [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) — CSS-side performance patterns (will-change management, GPU-accelerated properties, easing standards, fluid typography)
 
 ### Cross-stack

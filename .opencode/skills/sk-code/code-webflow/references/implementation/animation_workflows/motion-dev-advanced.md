@@ -217,7 +217,7 @@ animate(element, {
 - [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Implementation phase guidance
 - [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md) - Animation debugging techniques
 - [verification_workflows.md](../../verification/verification_workflows/gate_and_automated_options.md) - Animation verification procedures
-- [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) - CDN-safe initialization patterns
+- [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) - CDN-safe initialization patterns
 - [`../../css/quality_standards/patterns_and_naming_enforcement.md`](../../css/quality_standards/patterns_and_naming_enforcement.md) - CSS animation quality patterns (will-change management, GPU-accelerated properties, easing standards aligned with Motion.dev, fluid typography)
 
 ### Related Skills

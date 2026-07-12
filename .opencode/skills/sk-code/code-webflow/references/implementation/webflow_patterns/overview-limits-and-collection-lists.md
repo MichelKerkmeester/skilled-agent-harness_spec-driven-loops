@@ -26,7 +26,7 @@ Platform constraints and collection list patterns for Webflow development. These
 Follow code quality standards:
 - **Initialization:** Use CDN-safe pattern with guard flags and delays
 - **Naming:** Use `snake_case` for functions/variables
-- See [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) for complete standards
+- See [code_quality_standards.md](../../javascript/quality_standards/init_dom_error_and_async.md) for complete standards
 
 ### When to Use
 - Working with Webflow CMS Collections
@@ -485,4 +485,3 @@ function init_collection_items() {
 - ✅ Survives DOM manipulations
 
 ---
-

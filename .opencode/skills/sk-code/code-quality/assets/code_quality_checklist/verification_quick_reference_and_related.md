@@ -120,10 +120,10 @@ After completing validation, document the results using the appropriate template
 ### Per-language source standards
 
 - [shared/cross_language_rules.md](../../../code-webflow/references/shared/cross_language_rules.md) - File naming, comment principles, file-header banner, platform prefixes
-- [javascript/style_guide.md](../../../code-webflow/references/javascript/style_guide/overview-naming-and-structure.md) - JS naming + file structure + formatting + JSDoc
-- [javascript/quality_standards.md](../../../code-webflow/references/javascript/quality_standards/init-dom-error-and-async.md) - JS defensive patterns + naming/init enforcement
+- [javascript/style_guide.md](../../../code-webflow/references/javascript/style_guide/overview_naming_and_structure.md) - JS naming + file structure + formatting + JSDoc
+- [javascript/quality_standards.md](../../../code-webflow/references/javascript/quality_standards/init_dom_error_and_async.md) - JS defensive patterns + naming/init enforcement
 - [css/style_guide.md](../../../code-webflow/references/css/style_guide.md) - CSS naming + custom properties + animation CSS
-- [css/quality_standards.md](../../../code-webflow/references/css/quality_standards/patterns-and-naming-enforcement.md) - CSS quality patterns + enforcement subsections
+- [css/quality_standards.md](../../../code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md) - CSS quality patterns + enforcement subsections
 
 ### Enforcement Reference
 

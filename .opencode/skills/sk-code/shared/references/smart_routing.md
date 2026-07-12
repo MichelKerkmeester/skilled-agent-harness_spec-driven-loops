@@ -107,7 +107,7 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 | SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`code-webflow/references/shared/*` or `code-opencode/references/shared/*`) |
 | INTENT | After intent classification | Implementation, debugging, verification, performance, etc. matching the top-1 intent (and top-2 when ambiguous) |
 | LANGUAGE | OPENCODE only | JavaScript, TypeScript, Python, Shell, Config standards from the matching `code-opencode/<lang>/*` folder |
-| ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `code-webflow/references/css/patterns/tokens-state-machine-and-triggers.md` for advanced CSS patterns) |
+| ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `code-webflow/references/css/patterns/tokens_state_machine_and_triggers.md` for advanced CSS patterns) |
 
 ---
 
@@ -117,12 +117,12 @@ WEBFLOW loads from `code-webflow/references/` and `code-webflow/assets/`. The pe
 
 | Intent | Resources |
 | --- | --- |
-| IMPLEMENTATION | MUST load the implementation trio: `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`, `code-webflow/references/implementation/implementation_workflows/condition-based-waiting.md`, `code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`; then add per-language style guides (`code-webflow/references/javascript/style_guide/overview-naming-and-structure.md`, `code-webflow/references/css/style_guide.md`) and focused guides such as forms/vendor refs as needed |
-| CODE_QUALITY | `code-review/assets/code_quality_checklist.md`, `code-webflow/references/javascript/quality_standards/init-dom-error-and-async.md`, `code-webflow/references/css/quality_standards/patterns-and-naming-enforcement.md`, `code-webflow/references/shared/enforcement.md` |
-| DEBUGGING | `code-webflow/references/debugging/*`, `code-webflow/references/shared/dev_workflow/overview-nav-and-logging.md`, universal debugging checklist |
-| VERIFICATION | `code-webflow/references/verification/verification_workflows/gate-and-automated-options.md`, `code-webflow/references/shared/enforcement.md`, verification checklist |
-| PERFORMANCE | `code-webflow/references/performance/cwv_remediation.md`, `code-webflow/references/performance/resource_loading.md`, `code-webflow/references/performance/interaction_gated_loading.md`, `code-webflow/references/css/quality_standards/patterns-and-naming-enforcement.md` (will-change, GPU props), `code-webflow/references/javascript/quality_standards/init-dom-error-and-async.md` (RAF, debounce) |
-| DEPLOYMENT | `code-webflow/references/deployment/cdn_deployment.md`, `code-webflow/references/deployment/minification_guide/overview-terser-and-patterns.md`, `code-webflow/references/deployment/webflow_staging_production.md` |
+| IMPLEMENTATION | MUST load the implementation trio: `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`, `code-webflow/references/implementation/implementation_workflows/condition-based-waiting.md`, `code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`; then add per-language style guides (`code-webflow/references/javascript/style_guide/overview_naming_and_structure.md`, `code-webflow/references/css/style_guide.md`) and focused guides such as forms/vendor refs as needed |
+| CODE_QUALITY | `code-review/assets/code_quality_checklist.md`, `code-webflow/references/javascript/quality_standards/init_dom_error_and_async.md`, `code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md`, `code-webflow/references/shared/enforcement.md` |
+| DEBUGGING | `code-webflow/references/debugging/*`, `code-webflow/references/shared/dev_workflow/overview_nav_and_logging.md`, universal debugging checklist |
+| VERIFICATION | `code-webflow/references/verification/verification_workflows/gate_and_automated_options.md`, `code-webflow/references/shared/enforcement.md`, verification checklist |
+| PERFORMANCE | `code-webflow/references/performance/cwv_remediation.md`, `code-webflow/references/performance/resource_loading.md`, `code-webflow/references/performance/interaction_gated_loading.md`, `code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md` (will-change, GPU props), `code-webflow/references/javascript/quality_standards/init_dom_error_and_async.md` (RAF, debounce) |
+| DEPLOYMENT | `code-webflow/references/deployment/cdn_deployment.md`, `code-webflow/references/deployment/minification_guide/overview_terser_and_patterns.md`, `code-webflow/references/deployment/webflow_staging_production.md` |
 
 ### Implementation trio contract
 
@@ -196,8 +196,8 @@ OPENCODE loads from `code-opencode/references/` and `assets/code_opencode/`.
 
 ### Always-load (every OPENCODE invocation)
 
-- `code-opencode/references/shared/universal_patterns/naming-and-commenting.md`
-- `code-opencode/references/shared/code_organization/overview-and-module-organization.md`
+- `code-opencode/references/shared/universal_patterns/naming_and_commenting.md`
+- `code-opencode/references/shared/code_organization/overview_and_module_organization.md`
 
 ### Intent overlay
 
@@ -358,15 +358,15 @@ RESOURCE_MAP = {
         "code-webflow/references/implementation/webflow_patterns/overview-limits-and-collection-lists.md",
         "code-webflow/references/implementation/webflow_patterns/development-and-production.md",
         "code-webflow/references/implementation/webflow_patterns/finsweet-custom-select-bridge.md",
-        "code-webflow/references/shared/dev_workflow/overview-nav-and-logging.md",
-        "code-webflow/references/shared/dev_workflow/automation-errors-and-compat.md",
-        "code-webflow/references/shared/dev_workflow/common-commands.md",
-        "code-webflow/references/shared/dev_workflow/checklists-and-decision-matrix.md",
-        "code-opencode/references/shared/universal_patterns/naming-and-commenting.md",
-        "code-opencode/references/shared/universal_patterns/organization-security-and-examples.md",
-        "code-opencode/references/shared/code_organization/overview-and-module-organization.md",
-        "code-opencode/references/shared/code_organization/imports-and-exports.md",
-        "code-opencode/references/shared/code_organization/directory-and-test-conventions.md",
+        "code-webflow/references/shared/dev_workflow/overview_nav_and_logging.md",
+        "code-webflow/references/shared/dev_workflow/automation_errors_and_compat.md",
+        "code-webflow/references/shared/dev_workflow/common_commands.md",
+        "code-webflow/references/shared/dev_workflow/checklists_and_decision_matrix.md",
+        "code-opencode/references/shared/universal_patterns/naming_and_commenting.md",
+        "code-opencode/references/shared/universal_patterns/organization_security_and_examples.md",
+        "code-opencode/references/shared/code_organization/overview_and_module_organization.md",
+        "code-opencode/references/shared/code_organization/imports_and_exports.md",
+        "code-opencode/references/shared/code_organization/directory_and_test_conventions.md",
         "code-opencode/assets/checklists/agent_authoring.md",
         "code-opencode/assets/checklists/command_authoring.md",
         "code-opencode/assets/checklists/skill_authoring.md",
@@ -386,27 +386,27 @@ RESOURCE_MAP = {
         "code-opencode/assets/checklists/typescript_checklist.md",
         "code-opencode/assets/checklists/python_checklist.md",
         "code-opencode/assets/checklists/shell_checklist.md",
-        "code-opencode/assets/checklists/rust_checklist/overview-and-p0-parity.md",
-        "code-opencode/assets/checklists/rust_checklist/p0-safety-and-boundary-discipline.md",
-        "code-opencode/assets/checklists/rust_checklist/p1-required.md",
-        "code-opencode/assets/checklists/rust_checklist/p2-evidence-validation-and-resources.md",
+        "code-opencode/assets/checklists/rust_checklist/overview_and_p0_parity.md",
+        "code-opencode/assets/checklists/rust_checklist/p0_safety_and_boundary_discipline.md",
+        "code-opencode/assets/checklists/rust_checklist/p1_required.md",
+        "code-opencode/assets/checklists/rust_checklist/p2_evidence_validation_and_resources.md",
         "code-review/assets/code_quality_checklist.md"
     ],
     "DEBUGGING": [
         "references/universal/error_recovery.md",
-        "code-webflow/references/debugging/debugging_workflows/systematic-four-phases.md",
-        "code-webflow/references/debugging/debugging_workflows/rules-and-root-cause.md",
-        "code-webflow/references/debugging/debugging_workflows/performance-debugging.md",
-        "code-webflow/references/debugging/debugging_workflows/quick-reference-and-lenis.md",
-        "code-webflow/references/debugging/debugging_workflows/sub-agent-verification.md",
-        "code-webflow/references/debugging/debugging_workflows/scroll-interceptor-and-related.md",
+        "code-webflow/references/debugging/debugging_workflows/systematic_four_phases.md",
+        "code-webflow/references/debugging/debugging_workflows/rules_and_root_cause.md",
+        "code-webflow/references/debugging/debugging_workflows/performance_debugging.md",
+        "code-webflow/references/debugging/debugging_workflows/quick_reference_and_lenis.md",
+        "code-webflow/references/debugging/debugging_workflows/sub_agent_verification.md",
+        "code-webflow/references/debugging/debugging_workflows/scroll_interceptor_and_related.md",
         "code-webflow/references/debugging/error_recovery.md",
         "references/universal-debugging_checklist.md",
         "code-webflow/assets/webflow-debugging_checklist.md"
     ],
     "VERIFICATION": [
-        "code-webflow/references/verification/verification_workflows/gate-and-automated-options.md",
-        "code-webflow/references/verification/verification_workflows/requirements-rules-and-checklist.md",
+        "code-webflow/references/verification/verification_workflows/gate_and_automated_options.md",
+        "code-webflow/references/verification/verification_workflows/requirements_rules_and_checklist.md",
         "code-opencode/references/shared/alignment_verification_automation.md",
         "references/universal-verification_checklist.md",
         "code-webflow/assets/webflow-verification_checklist.md",
@@ -417,9 +417,9 @@ RESOURCE_MAP = {
     ],
     "DEPLOYMENT": [
         "code-webflow/references/deployment/cdn_deployment.md",
-        "code-webflow/references/deployment/minification_guide/overview-terser-and-patterns.md",
-        "code-webflow/references/deployment/minification_guide/workflow-verification-and-debugging.md",
-        "code-webflow/references/deployment/minification_guide/batch-rules-and-related.md",
+        "code-webflow/references/deployment/minification_guide/overview_terser_and_patterns.md",
+        "code-webflow/references/deployment/minification_guide/workflow_verification_and_debugging.md",
+        "code-webflow/references/deployment/minification_guide/batch_rules_and_related.md",
         "code-webflow/references/deployment/webflow_staging_production.md",
         "code-webflow/assets/scripts/README.md"
     ],
@@ -462,8 +462,8 @@ RESOURCE_MAP = {
         "code-webflow/references/implementation/animation_workflows/motion-dev-and-performance.md",
         "code-webflow/references/implementation/animation_workflows/testing-and-common-issues.md",
         "code-webflow/references/implementation/animation_workflows/motion-dev-advanced.md",
-        "code-webflow/references/verification/verification_workflows/gate-and-automated-options.md"
-        "code-webflow/references/verification/verification_workflows/requirements-rules-and-checklist.md"
+        "code-webflow/references/verification/verification_workflows/gate_and_automated_options.md"
+        "code-webflow/references/verification/verification_workflows/requirements_rules_and_checklist.md"
     ],
     "FORMS": [
         "code-webflow/references/implementation/form_upload_workflows/overview-architecture-and-filepond.md",
@@ -489,41 +489,41 @@ RESOURCE_MAP = {
     ],
     "LANGUAGE_STANDARDS": [
         "code-webflow/references/css/style_guide.md",
-        "code-webflow/references/css/quality_standards/patterns-and-naming-enforcement.md",
-        "code-webflow/references/css/quality_standards/typography-autofill-and-color.md",
-        "code-webflow/references/css/quality_standards/focus-has-print-and-quick-reference.md",
+        "code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md",
+        "code-webflow/references/css/quality_standards/typography_autofill_and_color.md",
+        "code-webflow/references/css/quality_standards/focus_has_print_and_quick_reference.md",
         "code-webflow/references/css/quick_reference.md",
-        "code-webflow/references/css/patterns/tokens-state-machine-and-triggers.md",
-        "code-webflow/references/css/patterns/data-attributes-and-forms.md",
-        "code-webflow/references/css/patterns/focus-accessibility-and-mobile.md",
-        "code-webflow/references/css/patterns/designer-component-and-performance.md",
-        "code-webflow/references/css/patterns/quick-reference-and-related.md",
+        "code-webflow/references/css/patterns/tokens_state_machine_and_triggers.md",
+        "code-webflow/references/css/patterns/data_attributes_and_forms.md",
+        "code-webflow/references/css/patterns/focus_accessibility_and_mobile.md",
+        "code-webflow/references/css/patterns/designer_component_and_performance.md",
+        "code-webflow/references/css/patterns/quick_reference_and_related.md",
         "code-webflow/references/html/style_guide.md",
         "code-webflow/references/html/quality_standards.md",
-        "code-webflow/references/javascript/style_guide/overview-naming-and-structure.md",
+        "code-webflow/references/javascript/style_guide/overview_naming_and_structure.md",
         "code-webflow/references/javascript/style_guide/formatting.md",
-        "code-webflow/references/javascript/style_guide/commenting-and-related.md",
-        "code-webflow/references/javascript/quality_standards/init-dom-error-and-async.md",
-        "code-webflow/references/javascript/quality_standards/observer-validation-and-performance.md",
-        "code-webflow/references/javascript/quality_standards/state-and-cleanup.md",
-        "code-webflow/references/javascript/quality_standards/shared-listener-and-weakmap.md",
-        "code-webflow/references/javascript/quality_standards/enforcement-and-quick-reference.md",
+        "code-webflow/references/javascript/style_guide/commenting_and_related.md",
+        "code-webflow/references/javascript/quality_standards/init_dom_error_and_async.md",
+        "code-webflow/references/javascript/quality_standards/observer_validation_and_performance.md",
+        "code-webflow/references/javascript/quality_standards/state_and_cleanup.md",
+        "code-webflow/references/javascript/quality_standards/shared_listener_and_weakmap.md",
+        "code-webflow/references/javascript/quality_standards/enforcement_and_quick_reference.md",
         "code-webflow/references/javascript/quick_reference.md"
     ],
     "JAVASCRIPT": [
         "code-opencode/references/javascript/style_guide.md",
-        "code-opencode/references/javascript/quality_standards/overview-modules-and-docs.md",
-        "code-opencode/references/javascript/quality_standards/security-testing-and-exemptions.md",
+        "code-opencode/references/javascript/quality_standards/overview_modules_and_docs.md",
+        "code-opencode/references/javascript/quality_standards/security_testing_and_exemptions.md",
         "code-opencode/references/javascript/quick_reference.md"
     ],
     "TYPESCRIPT": [
-        "code-opencode/references/typescript/style_guide/overview-strict-and-naming.md",
-        "code-opencode/references/typescript/style_guide/formatting-imports-and-coexistence.md",
-        "code-opencode/references/typescript/quality_standards/overview-and-type-system.md",
-        "code-opencode/references/typescript/quality_standards/tsdoc-errors-and-async.md",
-        "code-opencode/references/typescript/quality_standards/tsconfig-and-modules.md",
-        "code-opencode/references/typescript/quick_reference/template-naming-and-types.md"
-        "code-opencode/references/typescript/quick_reference/imports-errors-and-tsconfig.md"
+        "code-opencode/references/typescript/style_guide/overview_strict_and_naming.md",
+        "code-opencode/references/typescript/style_guide/formatting_imports_and_coexistence.md",
+        "code-opencode/references/typescript/quality_standards/overview_and_type_system.md",
+        "code-opencode/references/typescript/quality_standards/tsdoc_errors_and_async.md",
+        "code-opencode/references/typescript/quality_standards/tsconfig_and_modules.md",
+        "code-opencode/references/typescript/quick_reference/template_naming_and_types.md"
+        "code-opencode/references/typescript/quick_reference/imports_errors_and_tsconfig.md"
     ],
     "PYTHON": [
         "code-opencode/references/python/style_guide.md",
@@ -531,31 +531,31 @@ RESOURCE_MAP = {
         "code-opencode/references/python/quick_reference.md"
     ],
     "SHELL": [
-        "code-opencode/references/shell/style_guide/overview-structure-and-naming.md",
-        "code-opencode/references/shell/style_guide/variables-functions-and-output.md",
-        "code-opencode/references/shell/quality_standards/overview-and-priority-blockers.md",
-        "code-opencode/references/shell/quality_standards/validation-security-and-shellcheck.md",
-        "code-opencode/references/shell/quick_reference/template-variables-and-loops.md"
-        "code-opencode/references/shell/quick_reference/functions-strings-and-checklist.md"
+        "code-opencode/references/shell/style_guide/overview_structure_and_naming.md",
+        "code-opencode/references/shell/style_guide/variables_functions_and_output.md",
+        "code-opencode/references/shell/quality_standards/overview_and_priority_blockers.md",
+        "code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md",
+        "code-opencode/references/shell/quick_reference/template_variables_and_loops.md"
+        "code-opencode/references/shell/quick_reference/functions_strings_and_checklist.md"
     ],
     "RUST": [
-        "code-opencode/references/rust/style_guide/overview-and-file-header.md",
-        "code-opencode/references/rust/style_guide/toolchain-and-project-structure.md",
-        "code-opencode/references/rust/style_guide/naming-conventions.md",
-        "code-opencode/references/rust/style_guide/formatting-and-imports.md",
-        "code-opencode/references/rust/style_guide/commenting-and-rustdoc.md",
-        "code-opencode/references/rust/style_guide/interop-model.md",
-        "code-opencode/references/rust/style_guide/interop-errors-and-parity.md",
-        "code-opencode/references/rust/quality_standards/overview-and-data-ownership.md",
-        "code-opencode/references/rust/quality_standards/modeling-collections-and-api.md",
-        "code-opencode/references/rust/quality_standards/docs-errors-and-async.md",
-        "code-opencode/references/rust/quality_standards/build-and-organization.md",
-        "code-opencode/references/rust/quality_standards/determinism-and-parity.md",
-        "code-opencode/references/rust/quick_reference/overview-and-boundary-template.md",
-        "code-opencode/references/rust/quick_reference/naming-ordering-and-signatures.md",
-        "code-opencode/references/rust/quick_reference/collections-imports-and-errors.md",
-        "code-opencode/references/rust/quick_reference/rustdoc-and-cargo.md",
-        "code-opencode/references/rust/quick_reference/determinism-parity-and-related.md"
+        "code-opencode/references/rust/style_guide/overview_and_file_header.md",
+        "code-opencode/references/rust/style_guide/toolchain_and_project_structure.md",
+        "code-opencode/references/rust/style_guide/naming_conventions.md",
+        "code-opencode/references/rust/style_guide/formatting_and_imports.md",
+        "code-opencode/references/rust/style_guide/commenting_and_rustdoc.md",
+        "code-opencode/references/rust/style_guide/interop_model.md",
+        "code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+        "code-opencode/references/rust/quality_standards/overview_and_data_ownership.md",
+        "code-opencode/references/rust/quality_standards/modeling_collections_and_api.md",
+        "code-opencode/references/rust/quality_standards/docs_errors_and_async.md",
+        "code-opencode/references/rust/quality_standards/build_and_organization.md",
+        "code-opencode/references/rust/quality_standards/determinism_and_parity.md",
+        "code-opencode/references/rust/quick_reference/overview_and_boundary_template.md",
+        "code-opencode/references/rust/quick_reference/naming_ordering_and_signatures.md",
+        "code-opencode/references/rust/quick_reference/collections_imports_and_errors.md",
+        "code-opencode/references/rust/quick_reference/rustdoc_and_cargo.md",
+        "code-opencode/references/rust/quick_reference/determinism_parity_and_related.md"
     ],
 }
 ```

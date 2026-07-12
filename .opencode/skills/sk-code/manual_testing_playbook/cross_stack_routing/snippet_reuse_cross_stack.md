@@ -32,7 +32,7 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 - `code-webflow/references/animation/quick_start.md`
 - `code-webflow/references/animation/integration_patterns.md`
 - `code-webflow/references/animation/scroll_and_gestures.md`
-- `code-webflow/references/javascript/style_guide/overview-naming-and-structure.md`
+- `code-webflow/references/javascript/style_guide/overview_naming_and_structure.md`
 
 **Expected assets loaded**:
 - `code-webflow/assets/animation/snippets/in_view_reveal.js`
@@ -47,7 +47,7 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 **Failure triage**:
 1. If the snippet is missing, inspect `code-webflow/assets/animation/snippets/`.
 2. If the response says Webflow is required, re-read `references/smart_routing.md` Section 3.
-3. If no caveat appears, inspect `code-webflow/references/javascript/style_guide/overview-naming-and-structure.md` for local naming guidance.
+3. If no caveat appears, inspect `code-webflow/references/javascript/style_guide/overview_naming_and_structure.md` for local naming guidance.
 
 ---
 
@@ -65,7 +65,7 @@ Evidence files:
 
 - `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/in_view_reveal.js` - Required reusable snippet.
 - `.opencode/skills/sk-code/code-webflow/references/animation/integration_patterns.md` - Cross-stack integration guidance.
-- `.opencode/skills/sk-code/code-webflow/references/javascript/style_guide/overview-naming-and-structure.md` - Snake_case caveat source.
+- `.opencode/skills/sk-code/code-webflow/references/javascript/style_guide/overview_naming_and_structure.md` - Snake_case caveat source.
 
 ---
 

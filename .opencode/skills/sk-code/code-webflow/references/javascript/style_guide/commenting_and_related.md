@@ -1,6 +1,11 @@
 ---
 title: Commenting (JS-Specific) & Related
-description: "JavaScript naming conventions (snake_case), file structure (IIFE wrapper, file header banner, numbered sections), formatting (2-space indent, K&R braces, single quotes, trailing commas), function-purpose comments, JSDoc usage, and debug logging — for the Webflow stack." — Commenting (JS-Specific) & Related.
+description: "JavaScript-specific comment layout, frequency, purpose comments, JSDoc usage, and debug logging for the Webflow stack."
+trigger_phrases:
+  - "javascript commenting webflow"
+  - "function purpose comments"
+  - "javascript comment density"
+  - "webflow jsdoc usage"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.6
@@ -8,7 +13,25 @@ version: 3.5.0.6
 
 # Commenting (JS-Specific) & Related
 
-## 5. COMMENTING (JS-SPECIFIC)
+JavaScript-specific guidance for comments, JSDoc, private state markers, and debug logging.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Defines comment layout, frequency, and content patterns observed in production Webflow JavaScript.
+
+### When to Use
+
+- Commenting JavaScript functions or logical groups
+- Deciding between a line comment and JSDoc
+- Reviewing comment density and debug logging
+
+---
+
+## 2. COMMENTING (JS-SPECIFIC)
 
 > Cross-language commenting rules (WHY-not-WHAT principle, no commented-out code, platform-specific `WEBFLOW:`/`MOTION:`/`LENIS:`/`HLS.JS:` prefixes) live in [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md). This section covers JavaScript-specific comment **layout, frequency, and content** patterns observed in production.
 
@@ -236,10 +259,10 @@ log('Initialized with config:', config);
 log('Processing item:', item.id);
 ```
 
-## RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 - [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) — file naming, comment principles, file-header banner shape, platform-specific prefixes
-- [`../quality_standards/init-dom-error-and-async.md`](../quality_standards/init-dom-error-and-async.md) — initialization, DOM safety, error handling, async, observers, validation, performance, animation, state, cleanup, document listener, WeakMap caching
+- [`../quality_standards/init_dom_error_and_async.md`](../quality_standards/init_dom_error_and_async.md) — initialization, DOM safety, error handling, async, observers, validation, performance, animation, state, cleanup, document listener, WeakMap caching
 - [`../quick_reference.md`](../quick_reference.md) — JS workflows, code snippets, one-liners
 - [`../../shared/enforcement.md`](../../shared/enforcement.md) — pre-completion gate workflow
 

@@ -1,6 +1,11 @@
 ---
 title: Debugging/Verification Checklists, Decision Matrix & Related
-description: "DevTools, logging, testing, automation patterns, error handling, and browser compatibility for Webflow stack — applies to all languages." — Debugging/Verification Checklists, Decision Matrix & Related.
+description: "Debugging and verification checklists, a workflow decision matrix, and quick DevTools commands for the Webflow stack."
+trigger_phrases:
+  - "webflow debugging checklist"
+  - "webflow verification checklist"
+  - "frontend workflow decision matrix"
+  - "devtools quick commands"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.6
@@ -8,7 +13,25 @@ version: 3.5.0.6
 
 # Debugging/Verification Checklists, Decision Matrix & Related
 
-## 10. DEBUGGING CHECKLIST
+Debugging and verification checklists with a decision matrix and quick browser commands for Webflow work.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides concise operational checklists and routing guidance for debugging and verifying Webflow implementations.
+
+### When to Use
+
+- Starting a structured frontend debugging pass
+- Verifying behavior before claiming completion
+- Selecting a workflow for a common Webflow scenario
+
+---
+
+## 2. DEBUGGING CHECKLIST
 
 ```markdown
 □ PHASE 1: ROOT CAUSE INVESTIGATION
@@ -39,7 +62,7 @@ version: 3.5.0.6
 
 ---
 
-## 11. VERIFICATION CHECKLIST
+## 3. VERIFICATION CHECKLIST
 
 ```markdown
 □ BROWSER TESTING
@@ -67,7 +90,7 @@ version: 3.5.0.6
 
 ---
 
-## 12. DECISION MATRIX
+## 4. DECISION MATRIX
 
 | Scenario                | Workflow                | Key Action                        |
 | ----------------------- | ----------------------- | --------------------------------- |
@@ -86,7 +109,7 @@ version: 3.5.0.6
 
 ---
 
-## 13. QUICK COMMAND REFERENCE
+## 5. QUICK COMMAND REFERENCE
 
 ### DevTools Console Commands
 
@@ -141,10 +164,10 @@ window.addEventListener('offline', handleOffline);
 
 ---
 
-## RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 ### Per-Language Style Guides
-- [JavaScript Style Guide](../../javascript/style_guide/overview-naming-and-structure.md)
+- [JavaScript Style Guide](../../javascript/style_guide/overview_naming_and_structure.md)
 - [CSS Style Guide](../../css/style_guide.md)
 
 ### Shared Rules

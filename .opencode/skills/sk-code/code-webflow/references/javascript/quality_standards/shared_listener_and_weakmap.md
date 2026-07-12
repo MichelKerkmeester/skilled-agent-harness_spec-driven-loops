@@ -1,6 +1,11 @@
 ---
 title: Shared Document Listener & WeakMap/WeakSet Caching
-description: "Defensive code patterns for Webflow JS: CDN-safe initialization (MANDATORY), DOM safety, error handling, async, observers, validation, performance, animation quality, state management, cleanup/destroy, shared document listeners, WeakMap/WeakSet caching. Includes JS naming and initialization-pattern enforcement." — Shared Document Listener & WeakMap/WeakSet Caching.
+description: "Shared document listener and WeakMap or WeakSet caching patterns for efficient Webflow JavaScript components."
+trigger_phrases:
+  - "shared document listener"
+  - "weakmap webflow caching"
+  - "weakset processed elements"
+  - "javascript event delegation webflow"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.7
@@ -8,7 +13,25 @@ version: 3.5.0.7
 
 # Shared Document Listener & WeakMap/WeakSet Caching
 
-## 12. SHARED DOCUMENT LISTENER PATTERN
+Efficient event delegation and element-state caching patterns for Webflow JavaScript.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Shows how shared listeners and weak collections reduce duplicate handlers and avoid retaining removed DOM elements.
+
+### When to Use
+
+- Handling events for dynamic element collections
+- Associating metadata or processing state with DOM elements
+- Preventing duplicate element initialization
+
+---
+
+## 2. SHARED DOCUMENT LISTENER PATTERN
 
 Single document-level listener for all instances improves performance over per-element listeners.
 
@@ -123,7 +146,7 @@ function route_event(e) {
 
 ---
 
-## 13. WEAKMAP/WEAKSET CACHING PATTERNS
+## 3. WEAKMAP/WEAKSET CACHING PATTERNS
 
 WeakMap and WeakSet allow caching data against DOM elements without preventing garbage collection.
 
@@ -301,4 +324,3 @@ function observe_element(el) {
 ```
 
 ---
-

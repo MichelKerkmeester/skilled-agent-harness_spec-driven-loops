@@ -32,11 +32,11 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp_server/lib/scorer/l
 - `references/smart_routing.md`
 - `references/smart_routing.md`
 - `references/universal/code_quality_standards.md`
-- `code-opencode/references/shared/code_organization/overview-and-module-organization.md`
-- `code-opencode/references/shared/universal_patterns/naming-and-commenting.md`
-- `code-opencode/references/typescript/style_guide/overview-strict-and-naming.md`
-- `code-opencode/references/typescript/quality_standards/overview-and-type-system.md`
-- `code-opencode/references/typescript/quick_reference/template-naming-and-types.md`
+- `code-opencode/references/shared/code_organization/overview_and_module_organization.md`
+- `code-opencode/references/shared/universal_patterns/naming_and_commenting.md`
+- `code-opencode/references/typescript/style_guide/overview_strict_and_naming.md`
+- `code-opencode/references/typescript/quality_standards/overview_and_type_system.md`
+- `code-opencode/references/typescript/quick_reference/template_naming_and_types.md`
 
 **Expected assets loaded**:
 - `code-opencode/assets/checklists/typescript_checklist.md`
@@ -76,7 +76,7 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp_server/lib/scorer/l
 | 1 | Advisor: top_skill == sk-code, score ≥ 0.80. |
 | 3 | sk-code router emits `SURFACE: OPENCODE`. |
 | 4 | sk-code language sub-detection emits `LANGUAGE: TYPESCRIPT`. |
-| 5 | Loaded refs include `code-opencode/references/typescript/style_guide/overview-strict-and-naming.md`, `quality_standards.md`, `quick_reference.md`, `code-opencode/references/shared/code_organization/overview-and-module-organization.md`, `code-opencode/assets/checklists/typescript_checklist.md`, `code-opencode/assets/checklists/universal_checklist.md`. NO `code-webflow/references/*`, NO `code-opencode/references/python/*`. |
+| 5 | Loaded refs include `code-opencode/references/typescript/style_guide/overview_strict_and_naming.md`, `quality_standards.md`, `quick_reference.md`, `code-opencode/references/shared/code_organization/overview_and_module_organization.md`, `code-opencode/assets/checklists/typescript_checklist.md`, `code-opencode/assets/checklists/universal_checklist.md`. NO `code-webflow/references/*`, NO `code-opencode/references/python/*`. |
 
 ### Pass/Fail Criteria
 

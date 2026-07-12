@@ -16,7 +16,7 @@ version: 3.5.0.7
 
 # Webflow JavaScript Quality Standards
 
-> See [`../style_guide/overview-naming-and-structure.md`](../style_guide/overview-naming-and-structure.md) for naming conventions, formatting, and file structure. See [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) for cross-language rules. This file covers JavaScript quality patterns and JS-specific enforcement.
+Defensive JavaScript quality patterns for reliable Webflow component initialization and runtime behavior.
 
 ---
 
@@ -24,6 +24,8 @@ version: 3.5.0.7
 
 ### Purpose
 Code quality patterns for frontend development covering initialization, error handling, validation, async operations, and performance.
+
+> See [`../style_guide/overview_naming_and_structure.md`](../style_guide/overview_naming_and_structure.md) for naming conventions, formatting, and file structure. See [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) for cross-language rules. This file covers JavaScript quality patterns and JS-specific enforcement.
 
 ### Core Principle
 Defensive code prevents runtime errors. Quality patterns ensure reliability.
@@ -33,7 +35,7 @@ Defensive code prevents runtime errors. Quality patterns ensure reliability.
 - Sections 3-8 - Safety and error handling patterns
 - Sections 10-13 - Cleanup, shared listeners, and WeakMap caching patterns
 - [animation_workflows.md](../../implementation/animation_workflows/overview-decision-tree-and-css.md) - Complete animation implementation guide
-- [./style_guide.md](../style_guide/overview-naming-and-structure.md) - Naming conventions, file structure, commenting rules
+- [./style_guide.md](../style_guide/overview_naming_and_structure.md) - Naming conventions, file structure, commenting rules
 
 ### When to Use
 - Writing new components (initialization pattern)
@@ -284,4 +286,3 @@ const throttle = (fn, limit = 100) => {
 ```
 
 ---
-

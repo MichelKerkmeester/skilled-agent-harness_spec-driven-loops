@@ -16,14 +16,14 @@ expected_resources:
   - references/css/patterns/quick_reference_and_related.md
   - references/html/style_guide.md
   - references/html/quality_standards.md
-  - references/javascript/style_guide/overview-naming-and-structure.md
+  - references/javascript/style_guide/overview_naming_and_structure.md
   - references/javascript/style_guide/formatting.md
-  - references/javascript/style_guide/commenting-and-related.md
-  - references/javascript/quality_standards/init-dom-error-and-async.md
-  - references/javascript/quality_standards/observer-validation-and-performance.md
-  - references/javascript/quality_standards/state-and-cleanup.md
-  - references/javascript/quality_standards/shared-listener-and-weakmap.md
-  - references/javascript/quality_standards/enforcement-and-quick-reference.md
+  - references/javascript/style_guide/commenting_and_related.md
+  - references/javascript/quality_standards/init_dom_error_and_async.md
+  - references/javascript/quality_standards/observer_validation_and_performance.md
+  - references/javascript/quality_standards/state_and_cleanup.md
+  - references/javascript/quality_standards/shared_listener_and_weakmap.md
+  - references/javascript/quality_standards/enforcement_and_quick_reference.md
   - references/javascript/quick_reference.md
 version: 1.0.0.0
 ---

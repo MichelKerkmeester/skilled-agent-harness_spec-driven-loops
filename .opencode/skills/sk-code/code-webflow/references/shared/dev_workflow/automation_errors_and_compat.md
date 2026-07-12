@@ -1,6 +1,11 @@
 ---
 title: Automation Patterns, Error Patterns & Browser Compatibility
-description: "DevTools, logging, testing, automation patterns, error handling, and browser compatibility for Webflow stack — applies to all languages." — Automation Patterns, Error Patterns & Browser Compatibility.
+description: "Browser automation, frontend error handling, and compatibility patterns for testing Webflow implementations."
+trigger_phrases:
+  - "webflow browser automation"
+  - "frontend error patterns"
+  - "webflow browser compatibility"
+  - "multi viewport testing"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.6
@@ -8,7 +13,25 @@ version: 3.5.0.6
 
 # Automation Patterns, Error Patterns & Browser Compatibility
 
-## 6. AUTOMATION PATTERNS
+Browser automation, common error diagnosis, and compatibility guidance for Webflow implementations.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides repeatable browser-testing patterns, common frontend error remediations, and compatibility fallbacks.
+
+### When to Use
+
+- Automating console, network, performance, or viewport checks
+- Diagnosing common frontend runtime failures
+- Adding feature detection or browser fallbacks
+
+---
+
+## 2. AUTOMATION PATTERNS
 
 ### Chrome DevTools MCP Automation
 
@@ -180,7 +203,7 @@ Both can navigate, test, and screenshot without conflicts.
 
 ---
 
-## 7. ERROR PATTERNS
+## 3. ERROR PATTERNS
 
 ### Common Frontend Errors
 
@@ -284,7 +307,7 @@ async function robustOperation() {
 
 ---
 
-## 8. BROWSER COMPATIBILITY
+## 4. BROWSER COMPATIBILITY
 
 ### Feature Detection
 
@@ -337,4 +360,3 @@ element.classList.add('animate');
 - **MDN Web Docs**: Browser support tables
 
 ---
-

@@ -275,4 +275,3 @@ PERFORMANCE:
 - 6x slowdown - Very slow device
 
 ---
-
