@@ -1,14 +1,35 @@
 ---
 title: Sub-Agent Verification Pattern
 description: Systematic debugging with four-phase investigation, root cause tracing, and performance profiling. — Sub-Agent Verification Pattern.
+trigger_phrases:
+  - "sub agent verification"
+  - "sub agent verification webflow"
+  - "sub agent verification reference"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.18
 ---
 
+
 # Sub-Agent Verification Pattern
 
-## 7. SUB-AGENT VERIFICATION PATTERN
+Systematic debugging with four-phase investigation, root cause tracing, and performance profiling.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides the detailed sub-agent verification pattern guidance for the broader Webflow workflow.
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented sub-agent verification pattern practices.
+
+---
+
+## 2. SUB-AGENT VERIFICATION PATTERN
 
 **When to use**: Complex debugging tasks, verifying assumptions before implementation, when you need a second perspective on root cause analysis
 
@@ -209,4 +230,3 @@ FALLBACK behavior:
 **See also:** `.opencode/commands/speckit/debug.md` for debug delegation command
 
 ---
-

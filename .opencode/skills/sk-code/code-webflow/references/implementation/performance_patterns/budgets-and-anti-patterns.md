@@ -201,8 +201,8 @@ This file is the high-level checklist + budgets + anti-patterns index. For deep-
 - [`../../performance/webflow_constraints.md`](../../performance/webflow_constraints.md) — Typekit / jQuery / Webflow.js / CSS generation / custom code injection constraints (what Webflow controls vs what you can change)
 
 ### Reference Files (sibling implementation patterns)
-- [debugging_workflows.md](../../debugging/debugging_workflows/systematic-four-phases.md) - Performance debugging workflows for identifying bottlenecks
-- [verification_workflows.md](../../verification/verification_workflows/gate-and-automated-options.md) - Browser testing and verification workflows
+- [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md) - Performance debugging workflows for identifying bottlenecks
+- [verification_workflows.md](../../verification/verification_workflows/gate_and_automated_options.md) - Browser testing and verification workflows
 - [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Animation performance patterns for GPU-accelerated properties
 - [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md) - Webflow-specific performance considerations for collection lists
 

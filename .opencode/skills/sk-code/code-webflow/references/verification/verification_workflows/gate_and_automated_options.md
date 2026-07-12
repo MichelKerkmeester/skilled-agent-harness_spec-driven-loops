@@ -11,6 +11,7 @@ contextType: implementation
 version: 3.5.0.8
 ---
 
+
 # Verification Workflows - Phase 3 (MANDATORY)
 
 Browser verification requirements for all completion claims - no exceptions.
@@ -70,7 +71,7 @@ Skip any step = lying, not verifying.
 
 ---
 
-## 2.5. AUTOMATED VERIFICATION OPTIONS (MCP OR CLI)
+## 3. 2.5. AUTOMATED VERIFICATION OPTIONS (MCP OR CLI)
 
 **Automated browser testing enables faster, repeatable verification.**
 
@@ -360,4 +361,3 @@ bdg stop 2>&1
 | Best For | Complex automation, IDE users | Quick tasks, CLI users |
 
 ---
-

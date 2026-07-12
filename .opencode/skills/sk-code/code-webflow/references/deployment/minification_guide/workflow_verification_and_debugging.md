@@ -1,14 +1,35 @@
 ---
 title: Safe Minification Workflow, Verification Scripts & Debugging
 description: Safe minification workflow for Webflow projects with verification to prevent breaking functionality. — Safe Minification Workflow, Verification Scripts & Debugging.
+trigger_phrases:
+  - "workflow verification and debugging"
+  - "workflow verification and debugging webflow"
+  - "workflow verification and debugging reference"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.15
 ---
 
+
 # Safe Minification Workflow, Verification Scripts & Debugging
 
-## 4. SAFE MINIFICATION WORKFLOW
+Safe minification workflow for Webflow projects with verification to prevent breaking functionality.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides the detailed safe minification workflow, verification scripts & debugging guidance for the broader Webflow workflow.
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented safe minification workflow, verification scripts & debugging practices.
+
+---
+
+## 2. SAFE MINIFICATION WORKFLOW
 
 ### Step 1: Minify with Terser
 
@@ -103,7 +124,7 @@ bdg stop
 
 ---
 
-## 5. VERIFICATION SCRIPTS REFERENCE
+## 3. VERIFICATION SCRIPTS REFERENCE
 
 ### verify-minification.mjs
 
@@ -183,7 +204,7 @@ Summary:
 
 ---
 
-## 6. DEBUGGING MINIFICATION ISSUES
+## 4. DEBUGGING MINIFICATION ISSUES
 
 ### Common Error: "X is not defined"
 
@@ -269,4 +290,3 @@ window['initHero'] = function() { ... };  // Bracket notation preserves name
    ```
 
 ---
-

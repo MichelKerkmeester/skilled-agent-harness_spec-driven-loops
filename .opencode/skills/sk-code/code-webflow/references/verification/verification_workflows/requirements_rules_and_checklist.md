@@ -1,14 +1,35 @@
 ---
 title: Requirements, Rules, Red Flags, Patterns & Checklist
 description: Browser verification requirements for all completion claims - no exceptions. — Requirements, Rules, Red Flags, Patterns & Checklist.
+trigger_phrases:
+  - "requirements rules and checklist"
+  - "requirements rules and checklist webflow"
+  - "requirements rules and checklist reference"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.8
 ---
 
+
 # Requirements, Rules, Red Flags, Patterns & Checklist
 
-## 3. VERIFICATION REQUIREMENTS
+Browser verification requirements for all completion claims - no exceptions.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides the detailed requirements, rules, red flags, patterns & checklist guidance for the broader Webflow workflow.
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented requirements, rules, red flags, patterns & checklist practices.
+
+---
+
+## 2. VERIFICATION REQUIREMENTS
 
 ### Required For Every Claim
 
@@ -58,7 +79,7 @@ version: 3.5.0.8
 
 ---
 
-## 4. RULES
+## 3. RULES
 
 ### ✅ ALWAYS
 
@@ -124,7 +145,7 @@ version: 3.5.0.8
 
 ---
 
-## 5. RED FLAGS - STOP
+## 4. RED FLAGS - STOP
 
 If you catch yourself thinking:
 - "Quick fix for now, test later"
@@ -141,7 +162,7 @@ If you catch yourself thinking:
 
 ---
 
-## 6. KEY PATTERNS
+## 5. KEY PATTERNS
 
 ### Pattern 1: Layout Changes
 
@@ -212,7 +233,7 @@ across all tested viewports."
 
 ---
 
-## 7. COMMON RATIONALIZATIONS
+## 6. COMMON RATIONALIZATIONS
 
 | Excuse | Reality |
 |--------|---------|
@@ -229,7 +250,7 @@ across all tested viewports."
 
 ---
 
-## 8. SUCCESS CRITERIA
+## 7. SUCCESS CRITERIA
 
 **Verification is successful when:**
 - ✅ Opened actual browser (not just reviewed code)
@@ -252,7 +273,7 @@ across all tested viewports."
 
 ---
 
-## 9. VERIFICATION CHECKLIST
+## 8. VERIFICATION CHECKLIST
 
 **Before claiming any work complete, verify:**
 
@@ -295,11 +316,11 @@ EVIDENCE:
 
 ---
 
-## 10. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Reference Files
 - [implementation_workflows.md](../../implementation/implementation_workflows/condition-based-waiting.md) - Verify implementations work correctly
-- [debugging_workflows.md](../../debugging/debugging_workflows/systematic-four-phases.md) - Verify fixes work after debugging
+- [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md) - Verify fixes work after debugging
 - [dev_workflow.md](../../shared/dev_workflow/overview-nav-and-logging.md) - Use standard DevTools verification patterns
 
 ### Templates

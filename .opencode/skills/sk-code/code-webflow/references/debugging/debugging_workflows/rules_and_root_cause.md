@@ -1,12 +1,31 @@
 ---
 title: Systematic Debugging Rules & Root Cause Tracing
 description: Systematic debugging with four-phase investigation, root cause tracing, and performance profiling. — Systematic Debugging Rules & Root Cause Tracing.
+trigger_phrases:
+  - "rules and root cause"
+  - "rules and root cause webflow"
+  - "rules and root cause reference"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.18
 ---
 
+
 # Systematic Debugging Rules & Root Cause Tracing
+
+Systematic debugging with four-phase investigation, root cause tracing, and performance profiling.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides the detailed systematic debugging rules & root cause tracing guidance for the broader Webflow workflow.
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented systematic debugging rules & root cause tracing practices.
 
 ### Rules
 
@@ -33,7 +52,7 @@ version: 3.5.0.18
 
 ---
 
-## 3. ROOT CAUSE TRACING
+## 2. ROOT CAUSE TRACING
 
 **When to use**: Errors deep in call stack, event handlers fail mysteriously, animations break unexpectedly, unclear where invalid data originated
 
@@ -272,4 +291,3 @@ observer.observe(document.body, {
 **See also:** [debugging_checklist.md](../../../assets/webflow-debugging_checklist.md) for tracing checklist
 
 ---
-

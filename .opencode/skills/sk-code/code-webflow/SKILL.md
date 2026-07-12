@@ -112,18 +112,18 @@ RESOURCE_MAP = {
         "references/shared/enforcement.md",
     ],
     "DEBUGGING": [
-        "references/debugging/debugging_workflows/systematic-four-phases.md",
-        "references/debugging/debugging_workflows/rules-and-root-cause.md",
-        "references/debugging/debugging_workflows/performance-debugging.md",
-        "references/debugging/debugging_workflows/quick-reference-and-lenis.md",
-        "references/debugging/debugging_workflows/sub-agent-verification.md",
-        "references/debugging/debugging_workflows/scroll-interceptor-and-related.md",
+        "references/debugging/debugging_workflows/systematic_four_phases.md",
+        "references/debugging/debugging_workflows/rules_and_root_cause.md",
+        "references/debugging/debugging_workflows/performance_debugging.md",
+        "references/debugging/debugging_workflows/quick_reference_and_lenis.md",
+        "references/debugging/debugging_workflows/sub_agent_verification.md",
+        "references/debugging/debugging_workflows/scroll_interceptor_and_related.md",
         "references/debugging/error_recovery.md",
         "assets/webflow-debugging_checklist.md"
     ],
     "VERIFICATION": [
-        "references/verification/verification_workflows/gate-and-automated-options.md",
-        "references/verification/verification_workflows/requirements-rules-and-checklist.md",
+        "references/verification/verification_workflows/gate_and_automated_options.md",
+        "references/verification/verification_workflows/requirements_rules_and_checklist.md",
         "assets/webflow-verification_checklist.md"
     ],
     "TESTING": [
@@ -131,9 +131,9 @@ RESOURCE_MAP = {
     ],
     "DEPLOYMENT": [
         "references/deployment/cdn_deployment.md",
-        "references/deployment/minification_guide/overview-terser-and-patterns.md",
-        "references/deployment/minification_guide/workflow-verification-and-debugging.md",
-        "references/deployment/minification_guide/batch-rules-and-related.md",
+        "references/deployment/minification_guide/overview_terser_and_patterns.md",
+        "references/deployment/minification_guide/workflow_verification_and_debugging.md",
+        "references/deployment/minification_guide/batch_rules_and_related.md",
         "references/deployment/webflow_staging_production.md",
         "assets/scripts/README.md"
     ],
@@ -175,8 +175,8 @@ RESOURCE_MAP = {
         "references/implementation/animation_workflows/motion-dev-and-performance.md",
         "references/implementation/animation_workflows/testing-and-common-issues.md",
         "references/implementation/animation_workflows/motion-dev-advanced.md",
-        "references/verification/verification_workflows/gate-and-automated-options.md"
-        "references/verification/verification_workflows/requirements-rules-and-checklist.md"
+        "references/verification/verification_workflows/gate_and_automated_options.md"
+        "references/verification/verification_workflows/requirements_rules_and_checklist.md"
     ],
     "FORMS": [
         "references/implementation/form_upload_workflows/overview-architecture-and-filepond.md",
@@ -219,7 +219,7 @@ RESOURCE_MAP = {
 
 ## 3. SURFACE STANDARDS (the non-negotiables)
 
-- **CDN runtime reality.** Client scripts ship over a CDN with cache lag; treat every deploy as versioned and verify the minified runtime, not just the source. See `references/deployment/minification_guide/overview-terser-and-patterns.md` and `references/verification/verification_workflows/gate-and-automated-options.md`.
+- **CDN runtime reality.** Client scripts ship over a CDN with cache lag; treat every deploy as versioned and verify the minified runtime, not just the source. See `references/deployment/minification_guide/overview_terser_and_patterns.md` and `references/verification/verification_workflows/gate_and_automated_options.md`.
 - **Interaction-gated loading.** Heavy vendors (HLS.js, FilePond, Swiper) load on interaction/visibility, never eagerly. See `references/performance/interaction_gated_loading.md` and `references/implementation/observer_patterns/mutation-and-intersection.md`.
 - **Core Web Vitals are a gate, not a report.** LCP/CLS/INP regressions block; remediate against `references/performance/cwv_remediation.md` and `references/performance/webflow_constraints.md`.
 - **Focus and forms are accessibility-load-bearing.** Focus traps and upload flows follow `references/implementation/focus_management/selector-and-focus-trap.md` and `references/implementation/form_upload_workflows/overview-architecture-and-filepond.md`.

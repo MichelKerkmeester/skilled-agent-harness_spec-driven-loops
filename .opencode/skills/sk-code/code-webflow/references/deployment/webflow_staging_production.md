@@ -12,6 +12,7 @@ contextType: implementation
 version: 3.5.0.2
 ---
 
+
 # Webflow Staging vs Production Workflow
 
 Promotion workflow from the Webflow staging subdomain (`.webflow.io`) to a production custom domain — covering CSS export, asset versioning, custom code panel sync, and CDN cache invalidation.
@@ -246,9 +247,9 @@ If you must serve fresh code at the SAME version (rare — usually a sign you sh
 
 ---
 
-## RELATED RESOURCES
+## 8. RELATED RESOURCES
 
-- [`minification_guide/overview-terser-and-patterns.md`](minification_guide/overview-terser-and-patterns.md) — JS minification workflow with terser
+- [`minification_guide/overview_terser_and_patterns.md`](minification_guide/overview_terser_and_patterns.md) — JS minification workflow with terser
 - [`./cdn_deployment.md`](./cdn_deployment.md) — R2 deployment + version-pin pattern for custom JS bundles
 - [`../performance/cwv_remediation.md`](../performance/cwv_remediation.md) — Core Web Vitals checks to run before promotion
 - [`../performance/third_party.md`](../performance/third_party.md) — Third-party script loading strategy (relevant for promotion)

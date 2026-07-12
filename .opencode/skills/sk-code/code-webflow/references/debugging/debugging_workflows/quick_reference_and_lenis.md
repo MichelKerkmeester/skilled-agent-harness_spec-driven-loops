@@ -1,14 +1,35 @@
 ---
 title: Quick Reference & Lenis Conflict Resolution
 description: Systematic debugging with four-phase investigation, root cause tracing, and performance profiling. — Quick Reference & Lenis Conflict Resolution.
+trigger_phrases:
+  - "quick reference and lenis"
+  - "quick reference and lenis webflow"
+  - "quick reference and lenis reference"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.18
 ---
 
+
 # Quick Reference & Lenis Conflict Resolution
 
-## 5. QUICK REFERENCE
+Systematic debugging with four-phase investigation, root cause tracing, and performance profiling.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides the detailed quick reference & lenis conflict resolution guidance for the broader Webflow workflow.
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented quick reference & lenis conflict resolution practices.
+
+---
+
+## 2. QUICK REFERENCE
 
 ### DevTools Keyboard Shortcuts
 
@@ -47,7 +68,7 @@ console.dir(object);
 
 ---
 
-## 6. LENIS CONFLICT RESOLUTION
+## 3. LENIS CONFLICT RESOLUTION
 
 **When to use**: Anchor scrolling not working, double-scroll behavior, scroll position off by header height, smooth scroll library intercepting events
 
@@ -264,4 +285,3 @@ bdg stop 2>&1
 **See also:** `(retired) lenis_patterns.js` for complete Lenis integration patterns
 
 ---
-

@@ -97,7 +97,7 @@ if (!email_regex.test(email)) throw new Error('Invalid email');
 
 ### Performance Debugging
 
-See: [debugging_workflows.md](../../debugging/debugging_workflows/systematic-four-phases.md)
+See: [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md)
 
 ```markdown
 Chrome DevTools → Performance tab

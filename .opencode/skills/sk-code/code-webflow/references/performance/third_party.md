@@ -11,6 +11,7 @@ contextType: implementation
 version: 3.5.0.4
 ---
 
+
 # Third-Party Performance Optimization
 
 Deferral patterns for analytics, tag managers, and consent scripts to reduce main thread blocking.
@@ -19,6 +20,8 @@ Deferral patterns for analytics, tag managers, and consent scripts to reduce mai
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Third-party scripts (analytics, tag managers, consent) often block the main thread and degrade Core Web Vitals. This guide covers deferral patterns to minimize their performance impact while maintaining functionality.
 
 ### Key Strategies
@@ -26,6 +29,11 @@ Third-party scripts (analytics, tag managers, consent) often block the main thre
 - **requestIdleCallback** - Schedule non-critical work during browser idle time
 - **Lazy loading** - Load scripts only when needed
 - **LCP-aware loading** - Wait for largest contentful paint before loading
+
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented third-party performance optimization practices.
 
 ---
 

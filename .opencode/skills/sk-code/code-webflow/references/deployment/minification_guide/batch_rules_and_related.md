@@ -1,14 +1,35 @@
 ---
 title: Batch Minification, Rules & Related
 description: Safe minification workflow for Webflow projects with verification to prevent breaking functionality. — Batch Minification, Rules & Related.
+trigger_phrases:
+  - "batch rules and related"
+  - "batch rules and related webflow"
+  - "batch rules and related reference"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.15
 ---
 
+
 # Batch Minification, Rules & Related
 
-## 7. BATCH MINIFICATION WORKFLOW
+Safe minification workflow for Webflow projects with verification to prevent breaking functionality.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides the detailed batch minification, rules & related guidance for the broader Webflow workflow.
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented batch minification, rules & related practices.
+
+---
+
+## 2. BATCH MINIFICATION WORKFLOW
 
 ### For All Files
 
@@ -49,7 +70,7 @@ bdg stop
 
 ---
 
-## 8. RULES
+## 3. RULES
 
 ### ✅ ALWAYS
 
@@ -78,13 +99,13 @@ bdg stop
 
 ---
 
-## 9. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 ### Reference Files
 
 - [cdn_deployment.md](../cdn_deployment.md) - Deploying minified files to Cloudflare R2
 - [implementation_workflows.md](../../implementation/implementation_workflows/condition-based-waiting.md) - General implementation patterns
-- [debugging_workflows.md](../../debugging/debugging_workflows/systematic-four-phases.md) - Debugging workflows
+- [debugging_workflows.md](../../debugging/debugging_workflows/systematic_four_phases.md) - Debugging workflows
 
 ### Scripts
 

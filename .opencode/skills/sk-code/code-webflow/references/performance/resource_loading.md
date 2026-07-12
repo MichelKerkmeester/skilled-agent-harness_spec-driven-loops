@@ -11,6 +11,7 @@ contextType: implementation
 version: 3.5.0.6
 ---
 
+
 # Resource Loading Patterns
 
 Resource hints and loading strategies for optimal performance in Webflow sites.
@@ -18,6 +19,8 @@ Resource hints and loading strategies for optimal performance in Webflow sites.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 Resource loading optimization uses browser hints to prioritize critical resources and defer non-essential ones. This improves Core Web Vitals, particularly LCP (Largest Contentful Paint) and FID (First Input Delay).
 
@@ -28,6 +31,11 @@ Resource loading optimization uses browser hints to prioritize critical resource
 - **Preload** - Prioritize critical resources for current page
 - **Prefetch** - Download resources for future navigation
 - **Async Loading** - Non-blocking resource loading patterns
+
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented resource loading patterns practices.
 
 ---
 

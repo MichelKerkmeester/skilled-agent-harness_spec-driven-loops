@@ -11,6 +11,7 @@ contextType: implementation
 version: 3.5.0.18
 ---
 
+
 # Debugging Workflows - Phase 2
 
 Systematic debugging with four-phase investigation, root cause tracing, and performance profiling.
@@ -475,4 +476,3 @@ STOP and question fundamentals:
 - Should we refactor architecture vs. continue fixing?
 
 Discuss with project lead before attempting more fixes.
-

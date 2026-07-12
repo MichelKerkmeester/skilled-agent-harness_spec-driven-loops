@@ -11,6 +11,7 @@ contextType: implementation
 version: 3.5.0.5
 ---
 
+
 # Error Recovery Workflows
 
 Recovery procedures for common frontend deployment failures.
@@ -110,5 +111,5 @@ When any failure occurs:
 ## 6. RELATED RESOURCES
 
 - [cdn_deployment.md](../deployment/cdn_deployment.md) - CDN deployment workflow
-- [minification_guide.md](../deployment/minification_guide/overview-terser-and-patterns.md) - Minification procedures
-- [debugging_workflows.md](debugging_workflows/systematic-four-phases.md) - General debugging
+- [minification_guide.md](../deployment/minification_guide/overview_terser_and_patterns.md) - Minification procedures
+- [debugging_workflows.md](debugging_workflows/systematic_four_phases.md) - General debugging

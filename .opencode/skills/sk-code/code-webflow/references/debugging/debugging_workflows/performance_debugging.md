@@ -1,14 +1,35 @@
 ---
 title: Performance Debugging
 description: Systematic debugging with four-phase investigation, root cause tracing, and performance profiling. — Performance Debugging.
+trigger_phrases:
+  - "performance debugging"
+  - "performance debugging webflow"
+  - "performance debugging reference"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.18
 ---
 
+
 # Performance Debugging
 
-## 4. PERFORMANCE DEBUGGING
+Systematic debugging with four-phase investigation, root cause tracing, and performance profiling.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides the detailed performance debugging guidance for the broader Webflow workflow.
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented performance debugging practices.
+
+---
+
+## 2. PERFORMANCE DEBUGGING
 
 **When to use**: Slow page load, janky animations, memory leaks, high CPU usage
 
@@ -389,4 +410,3 @@ echo "✅ Baseline captured: $OUTPUT_DIR/"
 **See:** `.opencode/skills/mcp-tooling/mcp-chrome-devtools/` for complete CLI automation patterns
 
 ---
-

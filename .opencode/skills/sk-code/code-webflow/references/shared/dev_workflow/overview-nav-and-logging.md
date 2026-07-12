@@ -58,7 +58,7 @@ Automated DevTools workflows + structured logging make every Webflow component o
 │  Deep call stack issue?       → root-cause-tracing    │
 │  Animation issues?            → animation-workflows    │
 │  Webflow collection issues?   → webflow-patterns        │
-│  Performance issues?          → performance-debugging │
+│  Performance issues?          → performance_debugging │
 │  Error in unknown location?   → systematic-debugging  │
 │                                                       │
 └───────────────────────────────────────────────────────┘

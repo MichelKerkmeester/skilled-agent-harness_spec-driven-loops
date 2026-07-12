@@ -255,4 +255,4 @@ window.cleanupFilepondInstances();
 - **[security_patterns.md](../security_patterns/overview-and-checklist.md)** — XSS prevention relevant to file upload handling
 - **[code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md)** — Naming conventions and initialization patterns
 - **CDN Deployment**: See [cdn_deployment.md](../../deployment/cdn_deployment.md) for R2 upload workflow
-- **Minification**: See [minification_guide.md](../../deployment/minification_guide/overview-terser-and-patterns.md) for terser configuration
+- **Minification**: See [minification_guide.md](../../deployment/minification_guide/overview_terser_and_patterns.md) for terser configuration

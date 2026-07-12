@@ -1,14 +1,35 @@
 ---
 title: Scroll Interceptor Debugging & Related
 description: Systematic debugging with four-phase investigation, root cause tracing, and performance profiling. — Scroll Interceptor Debugging & Related.
+trigger_phrases:
+  - "scroll interceptor and related"
+  - "scroll interceptor and related webflow"
+  - "scroll interceptor and related reference"
 importance_tier: normal
 contextType: implementation
 version: 3.5.0.18
 ---
 
+
 # Scroll Interceptor Debugging & Related
 
-## 8. SCROLL INTERCEPTOR DEBUGGING
+Systematic debugging with four-phase investigation, root cause tracing, and performance profiling.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provides the detailed scroll interceptor debugging & related guidance for the broader Webflow workflow.
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented scroll interceptor debugging & related practices.
+
+---
+
+## 2. SCROLL INTERCEPTOR DEBUGGING
 
 **When to use**: Double-scroll problems, scroll position inconsistencies, debugging smooth scroll library conflicts, tracing scroll event sources
 
@@ -332,11 +353,11 @@ bdg stop 2>&1
 
 ---
 
-## 9. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 ### Reference Files
 - [implementation_workflows.md](../../implementation/implementation_workflows/condition-based-waiting.md) - Debug timing and validation issues
-- [verification_workflows.md](../../verification/verification_workflows/gate-and-automated-options.md) - Verify fixes work correctly
+- [verification_workflows.md](../../verification/verification_workflows/gate_and_automated_options.md) - Verify fixes work correctly
 - [dev_workflow.md](../../shared/dev_workflow/overview-nav-and-logging.md) - Use common DevTools and logging patterns
 
 ### Asset Files

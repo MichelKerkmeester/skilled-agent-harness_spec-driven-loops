@@ -11,6 +11,7 @@ contextType: implementation
 version: 3.5.0.4
 ---
 
+
 # Webflow Performance Constraints
 
 Platform-imposed limitations on performance optimization and available workarounds.
@@ -18,6 +19,8 @@ Platform-imposed limitations on performance optimization and available workaroun
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 Webflow's platform imposes specific limitations on performance optimization. Understanding these constraints prevents wasted effort on impossible optimizations and helps focus on what IS controllable.
 
@@ -27,6 +30,11 @@ Webflow's platform imposes specific limitations on performance optimization. Und
 - **jQuery/webflow.js** - Auto-injected without defer
 - **CSS Generation** - Single file, no critical CSS extraction
 - **Custom Code** - Limited injection points with specific timing
+
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented webflow performance constraints practices.
 
 ---
 

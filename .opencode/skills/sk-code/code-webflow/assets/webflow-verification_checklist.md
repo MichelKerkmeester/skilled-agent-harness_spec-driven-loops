@@ -263,5 +263,5 @@ Timing appears correct
 
 ## 12. RELATED RESOURCES
 
-- [verification_workflows.md](../references/verification/verification_workflows/gate-and-automated-options.md) - Full verification guide
+- [verification_workflows.md](../references/verification/verification_workflows/gate_and_automated_options.md) - Full verification guide
 - [quick_reference.md](../references/javascript/quick_reference.md) - Quick checklist

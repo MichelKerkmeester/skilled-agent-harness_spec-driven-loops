@@ -11,6 +11,7 @@ contextType: implementation
 version: 3.5.0.3
 ---
 
+
 # Performance Verification Checklist
 
 Before/after verification protocol for performance optimization work using PageSpeed Insights.
@@ -18,6 +19,8 @@ Before/after verification protocol for performance optimization work using PageS
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 Performance optimization requires measurable verification. This checklist ensures consistent baseline capture, incremental testing, and post-implementation comparison to validate improvements and catch regressions.
 
@@ -31,6 +34,11 @@ Performance optimization requires measurable verification. This checklist ensure
 | CLS | <0.1 | <0.1 |
 | Speed Index | <3.4s | <3.4s |
 | Score | 90+ | 90+ |
+
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented performance verification checklist practices.
 
 ---
 

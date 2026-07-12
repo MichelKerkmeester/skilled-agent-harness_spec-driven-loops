@@ -11,6 +11,7 @@ contextType: implementation
 version: 3.5.0.15
 ---
 
+
 # JavaScript Minification Guide
 
 Safe minification workflow for Webflow projects with verification to prevent breaking functionality.
@@ -180,4 +181,3 @@ animate(element, { opacity: [0, 1], y: ['4rem', '0px'] });
 **Why:** Property names must match CSS specification exactly.
 
 ---
-

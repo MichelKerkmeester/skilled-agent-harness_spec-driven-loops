@@ -11,6 +11,7 @@ contextType: implementation
 version: 3.5.0.6
 ---
 
+
 # Interaction-Gated Loading
 
 Practical guidance for deferring non-critical script loading to first interaction, viewport entry, or idle time without hurting responsiveness.
@@ -19,6 +20,8 @@ Practical guidance for deferring non-critical script loading to first interactio
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Use interaction-gated loading when startup JavaScript is expensive but the feature is not required for first paint, LCP, or compliance.
 
 ### Primary Goals
@@ -26,6 +29,11 @@ Use interaction-gated loading when startup JavaScript is expensive but the featu
 - Reduce early main-thread work and Lighthouse/PageSpeed TBT.
 - Keep first-use latency low enough that INP does not regress.
 - Avoid loading feature code in sessions where the feature is never used.
+
+
+### When to Use
+
+- Use this reference when applying or troubleshooting the documented interaction-gated loading practices.
 
 ---
 

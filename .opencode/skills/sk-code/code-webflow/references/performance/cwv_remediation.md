@@ -11,6 +11,7 @@ contextType: implementation
 version: 3.5.0.6
 ---
 
+
 # Core Web Vitals Remediation Guide
 
 Actionable remediation patterns for LCP, FCP, TBT, and CLS issues in Webflow sites with custom JavaScript.
@@ -18,6 +19,8 @@ Actionable remediation patterns for LCP, FCP, TBT, and CLS issues in Webflow sit
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 ### Core Principle
 
@@ -30,8 +33,7 @@ Measure first, optimize with evidence, verify improvement with before/after Page
 - **TBT (Total Blocking Time)** - Interactivity/responsiveness (target: <200ms)
 - **CLS (Cumulative Layout Shift)** - Visual stability (target: <0.1)
 
-### When to Use This Guide
-
+### When to Use
 - Performance audit shows CWV failures
 - PageSpeed score below 90
 - LCP exceeds 2.5s (mobile or desktop)
@@ -39,7 +41,7 @@ Measure first, optimize with evidence, verify improvement with before/after Page
 
 ---
 
-## 2. LCP (Largest Contentful Paint)
+## 2. LCP (LARGEST CONTENTFUL PAINT)
 
 ### Problem Patterns
 
@@ -185,7 +187,7 @@ See `wait_patterns.js` → `wait_for_image_with_timeout()` for a reusable implem
 
 ---
 
-## 3. FCP (First Contentful Paint)
+## 3. FCP (FIRST CONTENTFUL PAINT)
 
 ### Problem Patterns
 
@@ -243,7 +245,7 @@ See `wait_patterns.js` → `wait_for_image_with_timeout()` for a reusable implem
 
 ---
 
-## 4. TBT (Total Blocking Time)
+## 4. TBT (TOTAL BLOCKING TIME)
 
 ### Problem Patterns
 
@@ -308,7 +310,7 @@ See `wait_patterns.js` → `wait_for_image_with_timeout()` for a reusable implem
 
 ---
 
-## 5. CLS (Cumulative Layout Shift)
+## 5. CLS (CUMULATIVE LAYOUT SHIFT)
 
 ### Problem Patterns
 
