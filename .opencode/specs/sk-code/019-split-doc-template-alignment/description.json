@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/019-split-doc-template-alignment",
+  "description": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the",
+  "keywords": [
+    "conform",
+    "hyphenated",
+    "total",
+    "mechanically-sliced",
+    "reference",
+    "asset",
+    "files",
+    "sk-code",
+    "code-opencode",
+    "code-webflow",
+    "code-quality"
+  ],
+  "lastUpdated": "2026-07-12T14:23:42.983Z",
+  "specId": "019",
+  "folderSlug": "split-doc-template-alignment",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
