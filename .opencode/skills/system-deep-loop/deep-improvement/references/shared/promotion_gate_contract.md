@@ -74,7 +74,7 @@ The promotion gate contract defines the five required gates that must pass befor
 
 **Failure mode:** `benchmark_gate_failed` - candidate fails output-based validation.
 
-**Note:** Benchmark integration requires target-specific fixture set under `assets/model_benchmark/benchmark-fixtures/`. Not all targets have fixtures; this gate is conditional on fixture availability.
+**Note:** Benchmark integration requires target-specific fixture set under `assets/model_benchmark/benchmark_fixtures/`. Not all targets have fixtures; this gate is conditional on fixture availability.
 
 ---
 
@@ -320,4 +320,4 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-
 | `scripts/agent-improvement/benchmark-stability.cjs` | Repeatability analysis |
 | `assets/agent_improvement/target_manifest.jsonc` | Target boundary definition |
 | `references/shared/promotion_rules.md` | Promotion policy documentation |
-| `feature_catalog/evaluation-loop/promotion-gates.md` | Feature catalog entry |
+| `feature_catalog/evaluation_loop/promotion_gates.md` | Feature catalog entry |

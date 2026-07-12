@@ -1,0 +1,64 @@
+---
+title: "runtime convergence CLI three-state decision matrix"
+description: "Verify runtime convergence CLI returns the correct bucket for each of three documented signal configurations."
+trigger_phrases:
+  - "runtime convergence cli three-state decision matrix"
+  - "convergence.cjs three-state"
+  - "council stop continue escalate decision"
+  - "three-state convergence signal"
+  - "council orchestrator stop rule"
+version: 2.3.0.10
+---
+
+# runtime convergence CLI three-state decision matrix
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Verify runtime convergence CLI returns the correct bucket for each of three documented signal configurations.
+
+The three-state output is the council orchestrator's primary stop/continue/escalate signal.
+
+Operators use this feature when the real request is: Decide whether the council should stop, continue, or block on three different setups.
+
+---
+
+## 2. HOW IT WORKS
+
+The shipped surface is anchored by `runtime upsert CLI`, `runtime convergence CLI`, `deep-ai-council`. The playbook scenario `council-graph-integration/council-graph-convergence-three-state-decision-matrix.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-023.
+
+Current behavior is grounded in `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`, which the scenario identifies as runtime CLI script: three-state decision logic. Validation is anchored by `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`, covering tests: "allows convergence when ... thresholds are met", "continues convergence when non-blocking thresholds are not met", "blocks convergence for empty derived graphs...".
+
+The user-visible contract is concrete: Verify runtime convergence CLI returns the correct bucket for each of three documented signal configurations. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Handler | runtime CLI script: three-state decision logic |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | Library | Per-signal helpers (`agreementRatio`, `dissentDensity`, etc.) |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md 4` | Reference | Documents the convergence signals |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `manual_testing_playbook/council_graph_integration/council_graph_convergence_three_state_decision_matrix.md` | Automated test | Manual scenario contract |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Tests: "allows convergence when ... thresholds are met", "continues convergence when non-blocking thresholds are not met", "blocks convergence for empty derived graphs..." |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Council Graph Integration
+- Feature ID: DAC-023
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `feature_catalog/council_graph_integration/council_graph_convergence_three_state_decision_matrix.md`
+- Playbook scenario: `manual_testing_playbook/council_graph_integration/council_graph_convergence_three_state_decision_matrix.md`
+Related references:
+- [council-graph-query-five-modes-prompt-safe-context.md](../council_graph_integration/council_graph_query_five_modes_prompt_safe_context.md) — runtime query CLI five modes return prompt-safe context
+- [council-graph-status-recovery-payload-and-readiness.md](../council_graph_integration/council_graph_status_recovery_payload_and_readiness.md) — runtime status CLI recovery payload and readiness

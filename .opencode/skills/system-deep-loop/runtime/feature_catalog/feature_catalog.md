@@ -21,12 +21,12 @@ Use this catalog as the canonical inventory for the live `runtime/` feature surf
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
 | [executor](executor/) | 4 features | `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `lib/deep-loop/fallback-router.ts` |
-| [prompt-rendering](prompt-rendering/) | 1 features | `lib/deep-loop/prompt-pack.ts` |
+| [prompt-rendering](prompt_rendering/) | 1 features | `lib/deep-loop/prompt-pack.ts` |
 | [validation](validation/) | 3 features | `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/plugins/mk-deep-loop-guard.js` |
-| [state-safety](state-safety/) | 10 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
+| [state-safety](state_safety/) | 10 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
 | [scoring](scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
-| [coverage-graph](coverage-graph/) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
-| [script-entry-points](script-entry-points/) | 4 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
+| [coverage-graph](coverage_graph/) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
+| [script-entry-points](script_entry_points/) | 4 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
 | [council](council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
 | [fanout](fanout/) | 8 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
 | [lifecycle](lifecycle/) | 2 features | `lib/deep-loop/sleep.ts`, `lib/deep-loop/lifecycle-taxonomy.cjs` |
@@ -53,7 +53,7 @@ Schema, parsing, defaults, supported flags, sandbox and permission-mode normaliz
 
 #### Source Files
 
-See [`executor/executor-config.md`](executor/executor-config.md) for full implementation and validation file listings.
+See [`executor/executor-config.md`](executor/executor_config.md) for full implementation and validation file listings.
 
 ---
 
@@ -69,7 +69,7 @@ Recursion guard, executor audit record writing, dispatch-failure emission, and a
 
 #### Source Files
 
-See [`executor/executor-audit.md`](executor/executor-audit.md) for full implementation and validation file listings.
+See [`executor/executor-audit.md`](executor/executor_audit.md) for full implementation and validation file listings.
 
 ---
 
@@ -85,7 +85,7 @@ Model registry lookup, fallback target selection, disabled fallback, and fail-fa
 
 #### Source Files
 
-See [`executor/fallback-router.md`](executor/fallback-router.md) for full implementation and validation file listings.
+See [`executor/fallback-router.md`](executor/fallback_router.md) for full implementation and validation file listings.
 
 ---
 
@@ -101,7 +101,7 @@ Fallback routes can declare success and failure targets, every decision can carr
 
 #### Source Files
 
-See [`executor/fallback-router-typed-reroute.md`](executor/fallback-router-typed-reroute.md) for full implementation and validation file listings.
+See [`executor/fallback-router-typed-reroute.md`](executor/fallback_router_typed_reroute.md) for full implementation and validation file listings.
 
 ---
 
@@ -121,7 +121,7 @@ Template token extraction, strict variable names, missing-token failures, and re
 
 #### Source Files
 
-See [`prompt-rendering/prompt-pack.md`](prompt-rendering/prompt-pack.md) for full implementation and validation file listings.
+See [`prompt-rendering/prompt-pack.md`](prompt_rendering/prompt_pack.md) for full implementation and validation file listings.
 
 ---
 
@@ -141,7 +141,7 @@ Iteration markdown, JSONL, delta validation, review-depth v2 enforcement, and ve
 
 #### Source Files
 
-See [`validation/post-dispatch-validate.md`](validation/post-dispatch-validate.md) for full implementation and validation file listings.
+See [`validation/post-dispatch-validate.md`](validation/post_dispatch_validate.md) for full implementation and validation file listings.
 
 ---
 
@@ -157,7 +157,7 @@ Hardens LLM judge validation with retries, dual timeouts, format-strip parsing, 
 
 #### Source Files
 
-See [`validation/llm-judge-hardening.md`](validation/llm-judge-hardening.md) for full implementation and validation file listings.
+See [`validation/llm-judge-hardening.md`](validation/llm_judge_hardening.md) for full implementation and validation file listings.
 
 ---
 
@@ -173,7 +173,7 @@ A `tool.execute.before` hook resolves the real target agent (`orchestrate` alway
 
 #### Source Files
 
-See [`validation/mk-deep-loop-guard.md`](validation/mk-deep-loop-guard.md) for full implementation and validation file listings.
+See [`validation/mk-deep-loop-guard.md`](validation/mk_deep_loop_guard.md) for full implementation and validation file listings.
 
 ---
 
@@ -193,7 +193,7 @@ Atomic JSON serialization, temp-file writes, fsync, rename, and cleanup on failu
 
 #### Source Files
 
-See [`state-safety/atomic-state.md`](state-safety/atomic-state.md) for full implementation and validation file listings.
+See [`state-safety/atomic-state.md`](state_safety/atomic_state.md) for full implementation and validation file listings.
 
 ---
 
@@ -209,7 +209,7 @@ Valid-prefix detection, corrupt-tail truncation, byte accounting, and append-aft
 
 #### Source Files
 
-See [`state-safety/jsonl-repair.md`](state-safety/jsonl-repair.md) for full implementation and validation file listings.
+See [`state-safety/jsonl-repair.md`](state_safety/jsonl_repair.md) for full implementation and validation file listings.
 
 ---
 
@@ -225,7 +225,7 @@ Lock file schema, live-holder refusal, stale replacement, heartbeat refresh, and
 
 #### Source Files
 
-See [`state-safety/loop-lock.md`](state-safety/loop-lock.md) for full implementation and validation file listings.
+See [`state-safety/loop-lock.md`](state_safety/loop_lock.md) for full implementation and validation file listings.
 
 ---
 
@@ -241,7 +241,7 @@ Tool operation mapping, path resolution, glob specificity, default-deny, and all
 
 #### Source Files
 
-See [`state-safety/permissions-gate.md`](state-safety/permissions-gate.md) for full implementation and validation file listings.
+See [`state-safety/permissions-gate.md`](state_safety/permissions_gate.md) for full implementation and validation file listings.
 
 ---
 
@@ -257,7 +257,7 @@ Canonicalizes and serializes the incoming state, compares it against a per-path 
 
 #### Source Files
 
-See [`state-safety/atomic-state-serialize-diff.md`](state-safety/atomic-state-serialize-diff.md) for full implementation and validation file listings.
+See [`state-safety/atomic-state-serialize-diff.md`](state_safety/atomic_state_serialize_diff.md) for full implementation and validation file listings.
 
 ---
 
@@ -273,7 +273,7 @@ Adds SHA-256 integrity helpers for object and registry JSON without applying the
 
 #### Source Files
 
-See [`state-safety/atomic-state-integrity-helpers.md`](state-safety/atomic-state-integrity-helpers.md) for full implementation and validation file listings.
+See [`state-safety/atomic-state-integrity-helpers.md`](state_safety/atomic_state_integrity_helpers.md) for full implementation and validation file listings.
 
 ---
 
@@ -289,7 +289,7 @@ Adds a per-path deferred atomic writer that coalesces superseded snapshot writes
 
 #### Source Files
 
-See [`state-safety/atomic-state-deferred-writer.md`](state-safety/atomic-state-deferred-writer.md) for full implementation and validation file listings.
+See [`state-safety/atomic-state-deferred-writer.md`](state_safety/atomic_state_deferred_writer.md) for full implementation and validation file listings.
 
 ---
 
@@ -305,7 +305,7 @@ Adds a lock-held JSONL merge path for fan-out salvage so recovered events are de
 
 #### Source Files
 
-See [`state-safety/jsonl-lock-held-merge.md`](state-safety/jsonl-lock-held-merge.md) for full implementation and validation file listings.
+See [`state-safety/jsonl-lock-held-merge.md`](state_safety/jsonl_lock_held_merge.md) for full implementation and validation file listings.
 
 ---
 
@@ -321,7 +321,7 @@ Hardens loop-lock ownership with TTL-aware heartbeat refresh plus phase and last
 
 #### Source Files
 
-See [`state-safety/loop-lock-heartbeat-hardening.md`](state-safety/loop-lock-heartbeat-hardening.md) for full implementation and validation file listings.
+See [`state-safety/loop-lock-heartbeat-hardening.md`](state_safety/loop_lock_heartbeat_hardening.md) for full implementation and validation file listings.
 
 ---
 
@@ -337,7 +337,7 @@ Adds opt-in host-local single-flight acquisition so concurrent acquire attempts 
 
 #### Source Files
 
-See [`state-safety/loop-lock-single-flight-decision.md`](state-safety/loop-lock-single-flight-decision.md) for full implementation and validation file listings.
+See [`state-safety/loop-lock-single-flight-decision.md`](state_safety/loop_lock_single_flight_decision.md) for full implementation and validation file listings.
 
 ---
 
@@ -357,7 +357,7 @@ Smoothed success scoring and demotion threshold checks.
 
 #### Source Files
 
-See [`scoring/bayesian-scorer.md`](scoring/bayesian-scorer.md) for full implementation and validation file listings.
+See [`scoring/bayesian-scorer.md`](scoring/bayesian_scorer.md) for full implementation and validation file listings.
 
 ---
 
@@ -373,7 +373,7 @@ Adds a convergence score-delta signal comparing the current graph score with the
 
 #### Source Files
 
-See [`scoring/convergence-score-delta.md`](scoring/convergence-score-delta.md) for full implementation and validation file listings.
+See [`scoring/convergence-score-delta.md`](scoring/convergence_score_delta.md) for full implementation and validation file listings.
 
 ---
 
@@ -393,7 +393,7 @@ Schema v2, node and edge CRUD, snapshots, stats, composite namespace keys, and D
 
 #### Source Files
 
-See [`coverage-graph/coverage-graph-db.md`](coverage-graph/coverage-graph-db.md) for full implementation and validation file listings.
+See [`coverage-graph/coverage-graph-db.md`](coverage_graph/coverage_graph_db.md) for full implementation and validation file listings.
 
 ---
 
@@ -409,7 +409,7 @@ Session-scoped query helpers for research and review coverage graph reads.
 
 #### Source Files
 
-See [`coverage-graph/coverage-graph-query.md`](coverage-graph/coverage-graph-query.md) for full implementation and validation file listings.
+See [`coverage-graph/coverage-graph-query.md`](coverage_graph/coverage_graph_query.md) for full implementation and validation file listings.
 
 ---
 
@@ -425,7 +425,7 @@ Node degree/depth, research signals, review signals, snapshots, and momentum.
 
 #### Source Files
 
-See [`coverage-graph/coverage-graph-signals.md`](coverage-graph/coverage-graph-signals.md) for full implementation and validation file listings.
+See [`coverage-graph/coverage-graph-signals.md`](coverage_graph/coverage_graph_signals.md) for full implementation and validation file listings.
 
 ---
 
@@ -441,7 +441,7 @@ Adds a default-off minimum-observations guard that blocks stop or promotion deci
 
 #### Source Files
 
-See [`coverage-graph/observation-threshold-guard.md`](coverage-graph/observation-threshold-guard.md) for full implementation and validation file listings.
+See [`coverage-graph/observation-threshold-guard.md`](coverage_graph/observation_threshold_guard.md) for full implementation and validation file listings.
 
 ---
 
@@ -457,7 +457,7 @@ Adds optional time-decay weighting to coverage-graph signal ranking while preser
 
 #### Source Files
 
-See [`coverage-graph/coverage-graph-time-decay.md`](coverage-graph/coverage-graph-time-decay.md) for full implementation and validation file listings.
+See [`coverage-graph/coverage-graph-time-decay.md`](coverage_graph/coverage_graph_time_decay.md) for full implementation and validation file listings.
 
 ---
 
@@ -473,7 +473,7 @@ Adds deterministic fuzzy-merge query helpers for near-duplicate coverage nodes w
 
 #### Source Files
 
-See [`coverage-graph/coverage-graph-fuzzy-merge.md`](coverage-graph/coverage-graph-fuzzy-merge.md) for full implementation and validation file listings.
+See [`coverage-graph/coverage-graph-fuzzy-merge.md`](coverage_graph/coverage_graph_fuzzy_merge.md) for full implementation and validation file listings.
 
 ---
 
@@ -493,7 +493,7 @@ Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindi
 
 #### Source Files
 
-See [`script-entry-points/convergence-script.md`](script-entry-points/convergence-script.md) for full implementation and validation file listings.
+See [`script-entry-points/convergence-script.md`](script_entry_points/convergence_script.md) for full implementation and validation file listings.
 
 ---
 
@@ -509,7 +509,7 @@ Direct replacement for `deep_loop_graph_upsert`; validates kinds, relations, and
 
 #### Source Files
 
-See [`script-entry-points/upsert-script.md`](script-entry-points/upsert-script.md) for full implementation and validation file listings.
+See [`script-entry-points/upsert-script.md`](script_entry_points/upsert_script.md) for full implementation and validation file listings.
 
 ---
 
@@ -525,7 +525,7 @@ Direct replacement for `deep_loop_graph_query`; serves gaps, claims, contradicti
 
 #### Source Files
 
-See [`script-entry-points/query-script.md`](script-entry-points/query-script.md) for full implementation and validation file listings.
+See [`script-entry-points/query-script.md`](script_entry_points/query_script.md) for full implementation and validation file listings.
 
 ---
 
@@ -541,7 +541,7 @@ Direct replacement for `deep_loop_graph_status`; reports counts, schema, DB size
 
 #### Source Files
 
-See [`script-entry-points/status-script.md`](script-entry-points/status-script.md) for full implementation and validation file listings.
+See [`script-entry-points/status-script.md`](script_entry_points/status_script.md) for full implementation and validation file listings.
 
 ---
 
@@ -557,7 +557,7 @@ Runs seat executors in parallel for one council round; preserves seat result ord
 
 #### Source Files
 
-See [`council/multi-seat-dispatch.md`](council/multi-seat-dispatch.md) for full implementation and validation file listings.
+See [`council/multi-seat-dispatch.md`](council/multi_seat_dispatch.md) for full implementation and validation file listings.
 
 ---
 
@@ -569,7 +569,7 @@ Appends per-round JSONL records with a lock-file single-writer guard; repairs co
 
 #### Source Files
 
-See [`council/round-state-jsonl.md`](council/round-state-jsonl.md) for full implementation and validation file listings.
+See [`council/round-state-jsonl.md`](council/round_state_jsonl.md) for full implementation and validation file listings.
 
 ---
 
@@ -581,7 +581,7 @@ Scores Round-N to Round-N+1 adjudicator verdict deltas using ADR-003 weights for
 
 #### Source Files
 
-See [`council/adjudicator-verdict-scoring.md`](council/adjudicator-verdict-scoring.md) for full implementation and validation file listings.
+See [`council/adjudicator-verdict-scoring.md`](council/adjudicator_verdict_scoring.md) for full implementation and validation file listings.
 
 ---
 
@@ -593,7 +593,7 @@ Normalizes and enforces ADR-004 defaults for max_rounds_per_topic, max_topics_pe
 
 #### Source Files
 
-See [`council/cost-guards.md`](council/cost-guards.md) for full implementation and validation file listings.
+See [`council/cost-guards.md`](council/cost_guards.md) for full implementation and validation file listings.
 
 ---
 
@@ -605,7 +605,7 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 
 #### Source Files
 
-See [`council/session-state-hierarchy.md`](council/session-state-hierarchy.md) for full implementation and validation file listings.
+See [`council/session-state-hierarchy.md`](council/session_state_hierarchy.md) for full implementation and validation file listings.
 
 ---
 
@@ -625,7 +625,7 @@ on top of the existing single-executor config without modifying it.
 
 #### Source Files
 
-See [`fanout/fanout-config-schema.md`](fanout/fanout-config-schema.md) for full implementation and validation file listings.
+See [`fanout/fanout-config-schema.md`](fanout/fanout_config_schema.md) for full implementation and validation file listings.
 
 ---
 
@@ -638,7 +638,7 @@ ordered results, and a JSONL status ledger.
 
 #### Source Files
 
-See [`fanout/fanout-pool.md`](fanout/fanout-pool.md) for full implementation and validation file listings.
+See [`fanout/fanout-pool.md`](fanout/fanout_pool.md) for full implementation and validation file listings.
 
 ---
 
@@ -652,7 +652,7 @@ sub-packet, with per-kind state-dir isolation and a post-subprocess salvage swee
 
 #### Source Files
 
-See [`fanout/fanout-run.md`](fanout/fanout-run.md) for full implementation and validation file listings.
+See [`fanout/fanout-run.md`](fanout/fanout_run.md) for full implementation and validation file listings.
 
 ---
 
@@ -665,7 +665,7 @@ subprocess stdout (opencode `--format json` text parts or raw fallback).
 
 #### Source Files
 
-See [`fanout/fanout-salvage.md`](fanout/fanout-salvage.md) for full implementation and validation file listings.
+See [`fanout/fanout-salvage.md`](fanout/fanout_salvage.md) for full implementation and validation file listings.
 
 ---
 
@@ -679,7 +679,7 @@ Cross-lineage merge: research (dedup by `findingId` + cross-model attribution) o
 
 #### Source Files
 
-See [`fanout/fanout-merge.md`](fanout/fanout-merge.md) for full implementation and validation file listings.
+See [`fanout/fanout-merge.md`](fanout/fanout_merge.md) for full implementation and validation file listings.
 
 ---
 
@@ -695,7 +695,7 @@ Records fixed-rate scheduling overruns without replaying missed slots or violati
 
 #### Source Files
 
-See [`fanout/fixed-rate-overrun-accounting.md`](fanout/fixed-rate-overrun-accounting.md) for full implementation and validation file listings.
+See [`fanout/fixed-rate-overrun-accounting.md`](fanout/fixed_rate_overrun_accounting.md) for full implementation and validation file listings.
 
 ---
 
@@ -711,7 +711,7 @@ Adds an opt-in fan-out stall watchdog that aborts and requeues lineages when pen
 
 #### Source Files
 
-See [`fanout/fanout-stall-watchdog.md`](fanout/fanout-stall-watchdog.md) for full implementation and validation file listings.
+See [`fanout/fanout-stall-watchdog.md`](fanout/fanout_stall_watchdog.md) for full implementation and validation file listings.
 
 ---
 
@@ -727,7 +727,7 @@ Persists a pre-dispatch wait checkpoint and resumes waiting state before dispatc
 
 #### Source Files
 
-See [`fanout/persisted-wait-crash-resume.md`](fanout/persisted-wait-crash-resume.md) for full implementation and validation file listings.
+See [`fanout/persisted-wait-crash-resume.md`](fanout/persisted_wait_crash_resume.md) for full implementation and validation file listings.
 
 ---
 
@@ -747,7 +747,7 @@ Adds an abortable chunked sleep primitive for cancellable waits and executor-bou
 
 #### Source Files
 
-See [`lifecycle/abortable-chunked-sleep.md`](lifecycle/abortable-chunked-sleep.md) for full implementation and validation file listings.
+See [`lifecycle/abortable-chunked-sleep.md`](lifecycle/abortable_chunked_sleep.md) for full implementation and validation file listings.
 
 ---
 
@@ -763,7 +763,7 @@ Promotes loop lifecycle status and stop-reason taxonomy with legal transitions a
 
 #### Source Files
 
-See [`lifecycle/lifecycle-taxonomy-guards.md`](lifecycle/lifecycle-taxonomy-guards.md) for full implementation and validation file listings.
+See [`lifecycle/lifecycle-taxonomy-guards.md`](lifecycle/lifecycle_taxonomy_guards.md) for full implementation and validation file listings.
 
 ---
 
@@ -783,7 +783,7 @@ Stamps seekable byte-region metadata on iteration records and surfaces those off
 
 #### Source Files
 
-See [`observability/byte-offset-log-regions.md`](observability/byte-offset-log-regions.md) for full implementation and validation file listings.
+See [`observability/byte-offset-log-regions.md`](observability/byte_offset_log_regions.md) for full implementation and validation file listings.
 
 ---
 
@@ -799,7 +799,7 @@ Adds single-loop telemetry heartbeat rows for started, progress, and terminal li
 
 #### Source Files
 
-See [`observability/single-loop-telemetry-heartbeat.md`](observability/single-loop-telemetry-heartbeat.md) for full implementation and validation file listings.
+See [`observability/single-loop-telemetry-heartbeat.md`](observability/single_loop_telemetry_heartbeat.md) for full implementation and validation file listings.
 
 ---
 
@@ -815,7 +815,7 @@ Adds a unified observability event envelope and routes core runtime emitters thr
 
 #### Source Files
 
-See [`observability/unified-observability-event-envelope.md`](observability/unified-observability-event-envelope.md) for full implementation and validation file listings.
+See [`observability/unified-observability-event-envelope.md`](observability/unified_observability_event_envelope.md) for full implementation and validation file listings.
 
 ---
 
@@ -835,7 +835,7 @@ Adds shared hermetic test environments so runtime tests can run in parallel with
 
 #### Source Files
 
-See [`testing/hermetic-test-isolation.md`](testing/hermetic-test-isolation.md) for full implementation and validation file listings.
+See [`testing/hermetic-test-isolation.md`](testing/hermetic_test_isolation.md) for full implementation and validation file listings.
 
 ---
 
@@ -851,6 +851,6 @@ Adds record/replay helpers for script-level cassette regressions with redaction 
 
 #### Source Files
 
-See [`testing/record-replay-cassette-harness.md`](testing/record-replay-cassette-harness.md) for full implementation and validation file listings.
+See [`testing/record-replay-cassette-harness.md`](testing/record_replay_cassette_harness.md) for full implementation and validation file listings.
 
 ---

@@ -155,7 +155,7 @@ Prompt: `Validate the deep-alignment invocation contract in SKILL.md and report 
 Expected signals: The frontmatter argument-hint names `[target] [authority] [:auto|:confirm] [--lane-config <file.json>] [--max-iterations=N] [--convergence=N]`; the NEVER list forbids custom dispatchers, direct CLI loops, direct `@deep-alignment` Task dispatch, ad-hoc state, and ungated remediation; the ALWAYS list requires exclusive command invocation, lanes-before-discovery, per-finding re-verification, and a read-only default.
 
 #### Test Execution
-> **Feature File:** [DAL-001](entry-points-and-modes/invocation-contract-and-forbidden-patterns.md)
+> **Feature File:** [DAL-001](entry_points_and_modes/invocation_contract_and_forbidden_patterns.md)
 
 ### DAL-002 | Parameter surface: modes and loop tuning
 
@@ -168,7 +168,7 @@ Prompt: `Validate deep-alignment parameter handling for :auto/:confirm, --max-it
 Expected signals: `deep_alignment_config_template.json` carries `maxIterations: 10`, `convergence.coverageThreshold: 1.0`, `convergence.stabilityWindow: 2`, `convergence.combination: "AND"`, and `executionMode: "auto"`; `check-convergence.cjs` defaults match (`DEFAULT_MAX_ITERATIONS=10`, `DEFAULT_COVERAGE_THRESHOLD=1.0`, `DEFAULT_STABILITY_WINDOW=2`) and expose `--max-iterations`, `--coverage-threshold`, `--stability-window`; the single argument-hint `--convergence` maps to the config's two-field convergence object (the command-level glue is phase 009's, not built yet).
 
 #### Test Execution
-> **Feature File:** [DAL-002](entry-points-and-modes/parameter-surface-modes-and-tuning.md)
+> **Feature File:** [DAL-002](entry_points_and_modes/parameter_surface_modes_and_tuning.md)
 
 ### DAL-003 | Config-file-only non-interactive path
 
@@ -181,7 +181,7 @@ Prompt: `Validate that deep-alignment's non-interactive scoping path is config-f
 Expected signals: `scoping.cjs main()` requires `--lane-config` and exits with an input-validation error (exit `3`) and an explicit message pointing at the interactive fallback when the flag is absent; `scoping_protocol.md` §6 and `lane_config_schema.md` §1 lock the config-file-only rule; `resolveLanesFromSelections()` is the interactive path the invoking command calls, not a readline loop.
 
 #### Test Execution
-> **Feature File:** [DAL-003](entry-points-and-modes/config-file-only-non-interactive-path.md)
+> **Feature File:** [DAL-003](entry_points_and_modes/config_file_only_non_interactive_path.md)
 
 ---
 
@@ -200,7 +200,7 @@ Prompt: `Validate that an interactively-resolved deep-alignment lane and a --lan
 Expected signals: Equivalent input through both entrypoints yields identical `{authority, artifactClass, scope}` tuples; both call `validateLane` -> `validateScope`; `scoping_protocol.md` §4 states "one shape, two producers".
 
 #### Test Execution
-> **Feature File:** [DAL-004](lane-resolution-and-scoping/dual-path-identical-lane-shape.md)
+> **Feature File:** [DAL-004](lane_resolution_and_scoping/dual_path_identical_lane_shape.md)
 
 ### DAL-005 | Authority x artifact-class registry enforcement
 
@@ -213,7 +213,7 @@ Prompt: `Validate deep-alignment authority/artifact-class registry enforcement: 
 Expected signals: `AUTHORITY_ARTIFACT_CLASSES` maps `sk-doc->docs`, `sk-git->git-history`, `sk-design->designs`, `sk-code->code`; `validateLane` rejects an unknown authority listing the registered set, and rejects a valid-authority/invalid-class pairing naming both values and the authority's supported class(es).
 
 #### Test Execution
-> **Feature File:** [DAL-005](lane-resolution-and-scoping/authority-artifact-class-registry.md)
+> **Feature File:** [DAL-005](lane_resolution_and_scoping/authority_artifact_class_registry.md)
 
 ### DAL-006 | Scope-shape validation and repo-root containment
 
@@ -226,7 +226,7 @@ Prompt: `Validate deep-alignment scope-shape validation: the three SCOPE_TYPES, 
 Expected signals: `SCOPE_TYPES = ['paths','globs','branchRange']`; a `..`-traversal or repo-escaping `paths`/`globs` value fails the lane (NFR-S01, via `validateNamespaceValue`); an empty `values` array fails; a `branchRange` missing `from` or `to` fails; refs are not repo-root-validated.
 
 #### Test Execution
-> **Feature File:** [DAL-006](lane-resolution-and-scoping/scope-shape-and-repo-root-validation.md)
+> **Feature File:** [DAL-006](lane_resolution_and_scoping/scope_shape_and_repo_root_validation.md)
 
 ### DAL-007 | Empty lane-config resolves to zero lanes
 
@@ -239,7 +239,7 @@ Prompt: `Validate that an empty deep-alignment --lane-config array resolves to z
 Expected signals: `resolveLanesFromConfig([])` returns `[]`; `lane_config_schema.md` §2 states an empty array is valid; downstream, zero applicable lanes becomes the convergence "nothing to converge" signal, not a crash.
 
 #### Test Execution
-> **Feature File:** [DAL-007](lane-resolution-and-scoping/empty-lane-config-zero-lanes.md)
+> **Feature File:** [DAL-007](lane_resolution_and_scoping/empty_lane_config_zero_lanes.md)
 
 ### DAL-008 | Fail-closed error contract
 
@@ -252,7 +252,7 @@ Prompt: `Validate the deep-alignment lane-config fail-closed error contract: one
 Expected signals: `parseLaneConfigFile` raises `INPUT_VALIDATION` (exit `3`) on a missing file, unreadable file, non-JSON content, or any failing lane; `lane_config_schema.md` §8's error table names the offending value/lane; no partial lane set is ever returned.
 
 #### Test Execution
-> **Feature File:** [DAL-008](lane-resolution-and-scoping/fail-closed-error-contract.md)
+> **Feature File:** [DAL-008](lane_resolution_and_scoping/fail_closed_error_contract.md)
 
 ### DAL-009 | Multi-authority single run
 
@@ -265,7 +265,7 @@ Prompt: `Validate deep-alignment multi-authority resolution: the worked 3-lane e
 Expected signals: The `lane_config_schema.md` §7 worked example (sk-code/code, sk-git/git-history, sk-design/designs) resolves to 3 lanes; `scoping_protocol.md` §3 states only named combinations become lanes and lane count is unbounded by the engine (SC-002).
 
 #### Test Execution
-> **Feature File:** [DAL-009](lane-resolution-and-scoping/multi-authority-single-run.md)
+> **Feature File:** [DAL-009](lane_resolution_and_scoping/multi_authority_single_run.md)
 
 ---
 
@@ -284,7 +284,7 @@ Prompt: `Validate the sk-doc alignment adapter: markdown discover(), validator-w
 Expected signals: `discover({type:'paths'|'globs'})` walks `.md` files excluding `node_modules`/`dist`/etc. and a `branchRange` scope returns empty; `standardSource('sk-doc')` returns the two Python validators + create-skill templates + `core_standards.md` + `knownDeviations`; `check()` emits blocking->P0 / warnings->P1 / `dqi-below-threshold`->P2 and only records a reality-drift finding when a caller-supplied claim is already contradicted with cited reprobe evidence.
 
 #### Test Execution
-> **Feature File:** [DAL-010](discovery-and-adapters/sk-doc-adapter.md)
+> **Feature File:** [DAL-010](discovery_and_adapters/sk_doc_adapter.md)
 
 ### DAL-011 | sk-git adapter: commit-message grammar and branch naming
 
@@ -297,7 +297,7 @@ Prompt: `Validate the sk-git alignment adapter: branchRange discover(), ported c
 Expected signals: `discover({type:'branchRange'})` returns commit + branch artifacts and a `paths`/`globs` scope returns empty; `checkCommitGrammar` mirrors `commit-msg` (`SUBJECT_RE`, `VAGUE_SUMMARIES`, `historicalFileCount>=4` body rule against the commit's OWN diff-tree, not today's index); exempt subjects (`Merge`/`Revert "`/`fixup!`/`squash!`/`amend!`) are pre-checked out; a non-`wt/` branch is flagged only when `git worktree list --porcelain` shows it backs a live linked worktree; `commitExists`/`branchExists` re-probe live git first.
 
 #### Test Execution
-> **Feature File:** [DAL-011](discovery-and-adapters/sk-git-adapter.md)
+> **Feature File:** [DAL-011](discovery_and_adapters/sk_git_adapter.md)
 
 ### DAL-012 | sk-design static adapter: DESIGN.md structural conformance
 
@@ -310,7 +310,7 @@ Prompt: `Validate the sk-design static alignment adapter: DESIGN.md/tokens.json 
 Expected signals: `discover()` collects only `DESIGN.md`/`tokens.json` (branchRange->empty); `checkDesignDoc` flags missing required headings (P0), banned patterns (P1), and Quick-Start color drift (P1); `checkTokensJsonArtifact` flags invalid JSON; `checkAuditRubric` records a finding only for a caller-supplied `verifiedFindings` entry carrying both a `dimension` and a `citation`; the adapter never renders or drives chrome-devtools (STATIC-ONLY, NFR-S01).
 
 #### Test Execution
-> **Feature File:** [DAL-012](discovery-and-adapters/sk-design-static-adapter.md)
+> **Feature File:** [DAL-012](discovery_and_adapters/sk_design_static_adapter.md)
 
 ### DAL-013 | sk-code hybrid adapter: deterministic + reasoning-agent layers
 
@@ -323,7 +323,7 @@ Prompt: `Validate the sk-code hybrid alignment adapter: surface classification, 
 Expected signals: `classifySurface` returns OPENCODE for `.opencode/...`, WEBFLOW for `src/2_javascript/` or content markers, else UNKNOWN (surface-undetected finding, never guessed); OPENCODE drift ERROR->P0 / WARN->P1; WEBFLOW FAIL->P0; `standardSource().excludedFromCheck` names `minify-webflow.mjs` (writes to the tree); `buildReasoningLayerDispatch` prepares a packet but judges nothing; `checkPatternConformance` emits a finding only for a `matchesStandard:false` entry with cited `evidence`.
 
 #### Test Execution
-> **Feature File:** [DAL-013](discovery-and-adapters/sk-code-hybrid-adapter.md)
+> **Feature File:** [DAL-013](discovery_and_adapters/sk_code_hybrid_adapter.md)
 
 ### DAL-014 | sk-design-live-render adapter: render-evidence contract
 
@@ -336,7 +336,7 @@ Prompt: `Validate the sk-design-live-render alignment adapter: it never renders 
 Expected signals: `discover()` classifies `url` vs `componentEntry` targets (branchRange->empty); `check()` with no `renderResult` returns exactly one `render-unavailable` P1 finding (`producedBy:'unavailable'`); a `renderResult.dispatchedThrough` other than `design-mcp-open-design` returns a `dispatch-boundary-violation` P0; supplied `measurements` drive contrast/touch-target/CWV threshold findings; `judgmentFindings` require `evidence` + `rubricSection`.
 
 #### Test Execution
-> **Feature File:** [DAL-014](discovery-and-adapters/sk-design-live-render-adapter.md)
+> **Feature File:** [DAL-014](discovery_and_adapters/sk_design_live_render_adapter.md)
 
 ### DAL-015 | Authority-agnostic three-method adapter contract
 
@@ -349,7 +349,7 @@ Prompt: `Validate the deep-alignment authority-agnostic adapter contract: all fi
 Expected signals: all five adapter modules export `discover`, `standardSource`, `check`; `discover(scope)` is single-parameter (no authority arg); each `discover` returns `{artifacts, nodes}` with `kind:'FILE'` nodes carrying `authority`/`artifactClass` metadata; `discover_contract.md` §6 states a fifth authority needs no change to the contract, `scoping.cjs`, or the loop.
 
 #### Test Execution
-> **Feature File:** [DAL-015](discovery-and-adapters/authority-agnostic-adapter-contract.md)
+> **Feature File:** [DAL-015](discovery_and_adapters/authority_agnostic_adapter_contract.md)
 
 ---
 
@@ -368,7 +368,7 @@ Prompt: `Validate the deep-alignment verify-first invariant: reasoning-agent sub
 Expected signals: `checkRealityAlignment` (sk-doc), `checkPatternConformance` (sk-code), `checkAuditRubric` (sk-design), and `checkJudgmentFindings` (live-render) each return zero findings with no caller-supplied verified evidence and skip any entry missing its required citation/evidence; sk-git's `check()` calls `commitExists`/`getCommitMessage`/`branchExists` live; SKILL.md ALWAYS-#2 and NEVER-#1 state the rule.
 
 #### Test Execution
-> **Feature File:** [DAL-016](verify-first-and-known-deviations/verify-first-no-finding-without-reprobe.md)
+> **Feature File:** [DAL-016](verify_first_and_known_deviations/verify_first_no_finding_without_reprobe.md)
 
 ### DAL-017 | Known-deviation suppression
 
@@ -381,7 +381,7 @@ Prompt: `Validate deep-alignment known-deviation suppression: each authority loa
 Expected signals: each adapter's `loadKnownDeviations()` parses the ```json block in its `references/adapters/sk_*_known_deviations.md`; `suppressKnownDeviations` filters only matching findings; sk-doc's `compact-pointer-card-dqi` is `active` (suppresses `dqi-below-threshold` only when the validator exited 0 and docType is `readme`/`asset`) while other sk-doc entries are `dormant`; SKILL.md ALWAYS-#3 and NEVER-#2 state the rule.
 
 #### Test Execution
-> **Feature File:** [DAL-017](verify-first-and-known-deviations/known-deviation-suppression.md)
+> **Feature File:** [DAL-017](verify_first_and_known_deviations/known_deviation_suppression.md)
 
 ### DAL-018 | sk-git exempt-subject pre-check vs post-hoc suppression
 
@@ -394,7 +394,7 @@ Prompt: `Validate that sk-git treats git-generated subjects as a structural pre-
 Expected signals: `isExemptSubject` short-circuits `checkCommit` before any grammar evaluation (empty findings, mirroring the hook's own `case ... exit 0`); the exemption is NOT implemented as a `knownDeviations` entry; `matchesDeviation` supports `requiresCommitBeforeHookInstall` comparing `finding.detail.commitDate` against `HOOK_INSTALL_DATE`.
 
 #### Test Execution
-> **Feature File:** [DAL-018](verify-first-and-known-deviations/sk-git-exempt-precheck-vs-suppression.md)
+> **Feature File:** [DAL-018](verify_first_and_known_deviations/sk_git_exempt_precheck_vs_suppression.md)
 
 ---
 
@@ -413,7 +413,7 @@ Prompt: `Validate deep-alignment corpus partitioning: lane-declaration-order rou
 Expected signals: `resolveNextSlice` returns the next lane with unaudited artifacts in corpus-declaration order, wrapping; a fully-checked or zero-artifact lane is skipped without ending the walk; `{done:true}` only when all corpora are exhausted; this is distinct from deep-review's fixed four-dimension rotation.
 
 #### Test Execution
-> **Feature File:** [DAL-019](iteration-and-convergence/corpus-partitioning-round-robin.md)
+> **Feature File:** [DAL-019](iteration_and_convergence/corpus_partitioning_round_robin.md)
 
 ### DAL-020 | Coverage AND dry-run stability convergence
 
@@ -426,7 +426,7 @@ Prompt: `Validate deep-alignment convergence AND-semantics: CONVERGED requires c
 Expected signals: `checkConvergence` computes `converged = coverageMet && stability.stable`; a run with 100% coverage but a recent new-finding iteration returns `CONTINUE`; a stable-but-incompletely-covered run returns `CONTINUE`; `state_machine_wiring.md` §4 states "AND, not OR" with the rationale.
 
 #### Test Execution
-> **Feature File:** [DAL-020](iteration-and-convergence/coverage-and-stability-and-semantics.md)
+> **Feature File:** [DAL-020](iteration_and_convergence/coverage_and_stability_and_semantics.md)
 
 ### DAL-021 | Max-iterations independent hard stop
 
@@ -439,7 +439,7 @@ Prompt: `Validate the deep-alignment max-iterations hard stop: it fires independ
 Expected signals: with coverage not met and stability false, reaching `maxIterations` returns `STOP_MAX_ITERATIONS` (not `CONTINUE`); `check-convergence.cjs` applies the cap after the AND-pair; the wiring test's `testMaxIterationsIndependentHardStop` asserts exactly this (`coverage.met=false`, `stability.stable=false`, decision `STOP_MAX_ITERATIONS`); default cap is 10.
 
 #### Test Execution
-> **Feature File:** [DAL-021](iteration-and-convergence/max-iterations-hard-stop.md)
+> **Feature File:** [DAL-021](iteration_and_convergence/max_iterations_hard_stop.md)
 
 ### DAL-022 | Dry-run stability window fails closed on a fresh run
 
@@ -452,7 +452,7 @@ Prompt: `Validate that deep-alignment's dry-run stability window fails closed: w
 Expected signals: `computeDryRunStability(records, window)` returns `{stable:false, reason:'fewer than N iterations recorded'}` when `records.length < window`; the last-`window` iterations must all report `newFindingsRatio === 0` to be stable; a single non-zero (or unrecognized) `newFindingsRatio` in the window keeps it unstable.
 
 #### Test Execution
-> **Feature File:** [DAL-022](iteration-and-convergence/dry-run-stability-fail-closed.md)
+> **Feature File:** [DAL-022](iteration_and_convergence/dry_run_stability_fail_closed.md)
 
 ### DAL-023 | Nothing-to-converge and vacuous-lane exclusion
 
@@ -465,7 +465,7 @@ Prompt: `Validate deep-alignment's nothing-to-converge signal and vacuous-lane h
 Expected signals: `checkConvergence` returns `NOTHING_TO_CONVERGE` when `registry.overall.nothingToConverge`; `computeArtifactCoverage` skips a lane with zero discovered artifacts on both sides of the ratio; the reducer marks that lane `NOT_APPLICABLE`; the wiring test's `testZeroLanesCleanExit` and `testZeroArtifactLaneIsNotApplicable` assert both behaviors.
 
 #### Test Execution
-> **Feature File:** [DAL-023](iteration-and-convergence/nothing-to-converge-and-vacuous-lane.md)
+> **Feature File:** [DAL-023](iteration_and_convergence/nothing_to_converge_and_vacuous_lane.md)
 
 ---
 
@@ -484,7 +484,7 @@ Prompt: `Validate the deep-alignment read-only default: no Write/Edit in the def
 Expected signals: `SKILL.md` `allowed-tools` lists read/query tools plus Task/Bash reserved for gated remediation, with a note that the default surface has no Write/Edit; `check-convergence.cjs` writes nothing (decision only); `sk-code.cjs standardSource().excludedFromCheck` names `minify-webflow.mjs` with a read-only-by-default reason; the static sk-design adapter never renders; SKILL.md ALWAYS-#4 and NEVER-#3 state the rule.
 
 #### Test Execution
-> **Feature File:** [DAL-024](read-only-and-gated-remediation/read-only-default-surface.md)
+> **Feature File:** [DAL-024](read_only_and_gated_remediation/read_only_default_surface.md)
 
 ### DAL-025 | Gated remediation hook is an enterable no-op
 
@@ -497,7 +497,7 @@ Prompt: `Validate the deep-alignment gated-remediation hook: it is enterable, re
 Expected signals: `enterRemediateHook()` returns `status:'not_implemented'`, `state:'REMEDIATE'`, a message citing ADR-005 invariant 4 and SKILL.md's ungated-remediation NEVER rule, and a `safetyDiscipline` list (scoped staging / worktree-when-diverged / doc-only when concurrent); `--confirm` is parsed but not actionable; the wiring test asserts `alignment/` file listing is identical before and after the hook runs.
 
 #### Test Execution
-> **Feature File:** [DAL-025](read-only-and-gated-remediation/gated-remediation-hook-noop.md)
+> **Feature File:** [DAL-025](read_only_and_gated_remediation/gated_remediation_hook_noop.md)
 
 ---
 
@@ -516,7 +516,7 @@ Prompt: `Validate deep-alignment report emission: one section per lane in alignm
 Expected signals: `renderAlignmentReport` writes an overall summary plus one `## Lane: <authority> / <artifactClass> / <scope>` section per lane, with per-severity subsections; the report frontmatter says "Auto-generated ... Never manually edited"; SKILL.md ALWAYS-#5 requires one report per lane, not one blended report.
 
 #### Test Execution
-> **Feature File:** [DAL-026](report-emission-per-lane/one-report-per-lane.md)
+> **Feature File:** [DAL-026](report_emission_per_lane/one_report_per_lane.md)
 
 ### DAL-027 | Worst-verdict overall rollup
 
@@ -529,7 +529,7 @@ Prompt: `Validate deep-alignment's worst-verdict rollup: a single FAIL lane fail
 Expected signals: `buildOverallRollup` uses `VERDICT_SEVERITY_RANK` (FAIL=3 > CONDITIONAL=2 > PASS=1 > NOT_APPLICABLE=0) to pick the worst; a FAIL lane among clean lanes yields overall FAIL; an all-NOT_APPLICABLE run yields `verdict:'PASS'` with `nothingToConverge:true`; per-lane verdict derives P0->FAIL / P1->CONDITIONAL / else PASS (zero-artifact -> NOT_APPLICABLE).
 
 #### Test Execution
-> **Feature File:** [DAL-027](report-emission-per-lane/worst-verdict-overall-rollup.md)
+> **Feature File:** [DAL-027](report_emission_per_lane/worst_verdict_overall_rollup.md)
 
 ### DAL-028 | Finding dedup and fail-closed severity
 
@@ -542,7 +542,7 @@ Prompt: `Validate deep-alignment finding dedup and fail-closed severity: repeate
 Expected signals: `findingDedupKey` prefers `contentHash`, else a `severity|type|artifact|message` fallback that does not reach for an adapter-specific field; `buildLaneEntry` keeps only the first occurrence per key; `normalizeSeverity` returns null for a non-P0/P1/P2 value and that finding is skipped; `SEVERITY_WEIGHTS` (P0=10, P1=5, P2=1) drive the composite score.
 
 #### Test Execution
-> **Feature File:** [DAL-028](report-emission-per-lane/finding-dedup-and-fail-closed-severity.md)
+> **Feature File:** [DAL-028](report_emission_per_lane/finding_dedup_and_fail_closed_severity.md)
 
 ---
 
@@ -561,7 +561,7 @@ Prompt: `Validate the deep-alignment alignment/ state-file layout and fileProtec
 Expected signals: `state_machine_wiring.md` §3 documents the `alignment/` layout (config, corpus, state.jsonl, findings-registry, report, lock, iterations/, deltas/, prompts/, dispatch-receipts/); the config template's `fileProtection` block marks config `immutable`, corpus `auto-generated`, state.jsonl `append-only`, registry/report `auto-generated`, lock `operator-controlled`; `deep-alignment-corpus.json` has no deep-review analog because lanes are resolved per-run.
 
 #### Test Execution
-> **Feature File:** [DAL-029](state-and-fault-tolerance/alignment-state-file-layout.md)
+> **Feature File:** [DAL-029](state_and_fault_tolerance/alignment_state_file_layout.md)
 
 ### DAL-030 | Malformed JSONL surfaces corruptionWarnings, never crashes
 
@@ -574,7 +574,7 @@ Prompt: `Validate deep-alignment fault tolerance: malformed state-log JSONL beco
 Expected signals: `parseJsonlDetailed` returns `{records, corruptionWarnings}` where each warning has `{line, raw, error}` and `raw` is truncated past 200 chars; the reducer's registry carries `corruptionWarnings` + `hasCorruption`; `check-convergence.cjs readJsonlIterationRecords` skips unparseable lines (best-effort) and still counts well-formed `iteration` records.
 
 #### Test Execution
-> **Feature File:** [DAL-030](state-and-fault-tolerance/malformed-jsonl-corruption-warnings.md)
+> **Feature File:** [DAL-030](state_and_fault_tolerance/malformed_jsonl_corruption_warnings.md)
 
 ### DAL-031 | End-to-end state-machine wiring regression
 
@@ -587,7 +587,7 @@ Prompt: `Validate deep-alignment end-to-end wiring by running state-machine-wiri
 Expected signals: `node scripts/tests/state-machine-wiring.test.cjs` runs all four tests and prints the pass line; `state_machine_wiring.md` §2's state-to-script map matches the scripts exercised; §5 documents that `convergence.cjs`'s loopType enum (research/review/council/context) does not accept "alignment", so `check-convergence.cjs` is the NFR-R01-sanctioned self-contained coverage check, and Option A (extend the enum) is a scoped future recommendation, not done here.
 
 #### Test Execution
-> **Feature File:** [DAL-031](state-and-fault-tolerance/state-machine-wiring-regression.md)
+> **Feature File:** [DAL-031](state_and_fault_tolerance/state_machine_wiring_regression.md)
 
 ---
 
@@ -616,55 +616,55 @@ Unlike `deep-review`, `deep-alignment` ships one real automated regression test 
 
 ### ENTRY POINTS AND MODES
 
-- DAL-001: [Invocation contract and forbidden patterns](entry-points-and-modes/invocation-contract-and-forbidden-patterns.md)
-- DAL-002: [Parameter surface: modes and loop tuning](entry-points-and-modes/parameter-surface-modes-and-tuning.md)
-- DAL-003: [Config-file-only non-interactive path](entry-points-and-modes/config-file-only-non-interactive-path.md)
+- DAL-001: [Invocation contract and forbidden patterns](entry_points_and_modes/invocation_contract_and_forbidden_patterns.md)
+- DAL-002: [Parameter surface: modes and loop tuning](entry_points_and_modes/parameter_surface_modes_and_tuning.md)
+- DAL-003: [Config-file-only non-interactive path](entry_points_and_modes/config_file_only_non_interactive_path.md)
 
 ### LANE RESOLUTION AND SCOPING
 
-- DAL-004: [Two resolution paths produce one identical lane shape](lane-resolution-and-scoping/dual-path-identical-lane-shape.md)
-- DAL-005: [Authority x artifact-class registry enforcement](lane-resolution-and-scoping/authority-artifact-class-registry.md)
-- DAL-006: [Scope-shape validation and repo-root containment](lane-resolution-and-scoping/scope-shape-and-repo-root-validation.md)
-- DAL-007: [Empty lane-config resolves to zero lanes](lane-resolution-and-scoping/empty-lane-config-zero-lanes.md)
-- DAL-008: [Fail-closed error contract](lane-resolution-and-scoping/fail-closed-error-contract.md)
-- DAL-009: [Multi-authority single run](lane-resolution-and-scoping/multi-authority-single-run.md)
+- DAL-004: [Two resolution paths produce one identical lane shape](lane_resolution_and_scoping/dual_path_identical_lane_shape.md)
+- DAL-005: [Authority x artifact-class registry enforcement](lane_resolution_and_scoping/authority_artifact_class_registry.md)
+- DAL-006: [Scope-shape validation and repo-root containment](lane_resolution_and_scoping/scope_shape_and_repo_root_validation.md)
+- DAL-007: [Empty lane-config resolves to zero lanes](lane_resolution_and_scoping/empty_lane_config_zero_lanes.md)
+- DAL-008: [Fail-closed error contract](lane_resolution_and_scoping/fail_closed_error_contract.md)
+- DAL-009: [Multi-authority single run](lane_resolution_and_scoping/multi_authority_single_run.md)
 
 ### DISCOVERY AND ADAPTERS
 
-- DAL-010: [sk-doc adapter: discover / standardSource / check](discovery-and-adapters/sk-doc-adapter.md)
-- DAL-011: [sk-git adapter: commit-message grammar and branch naming](discovery-and-adapters/sk-git-adapter.md)
-- DAL-012: [sk-design static adapter: DESIGN.md structural conformance](discovery-and-adapters/sk-design-static-adapter.md)
-- DAL-013: [sk-code hybrid adapter: deterministic + reasoning-agent layers](discovery-and-adapters/sk-code-hybrid-adapter.md)
-- DAL-014: [sk-design-live-render adapter: render-evidence contract](discovery-and-adapters/sk-design-live-render-adapter.md)
-- DAL-015: [Authority-agnostic three-method adapter contract](discovery-and-adapters/authority-agnostic-adapter-contract.md)
+- DAL-010: [sk-doc adapter: discover / standardSource / check](discovery_and_adapters/sk_doc_adapter.md)
+- DAL-011: [sk-git adapter: commit-message grammar and branch naming](discovery_and_adapters/sk_git_adapter.md)
+- DAL-012: [sk-design static adapter: DESIGN.md structural conformance](discovery_and_adapters/sk_design_static_adapter.md)
+- DAL-013: [sk-code hybrid adapter: deterministic + reasoning-agent layers](discovery_and_adapters/sk_code_hybrid_adapter.md)
+- DAL-014: [sk-design-live-render adapter: render-evidence contract](discovery_and_adapters/sk_design_live_render_adapter.md)
+- DAL-015: [Authority-agnostic three-method adapter contract](discovery_and_adapters/authority_agnostic_adapter_contract.md)
 
 ### VERIFY-FIRST AND KNOWN DEVIATIONS
 
-- DAL-016: [Verify-first: no finding without a live re-probe](verify-first-and-known-deviations/verify-first-no-finding-without-reprobe.md)
-- DAL-017: [Known-deviation suppression](verify-first-and-known-deviations/known-deviation-suppression.md)
-- DAL-018: [sk-git exempt-subject pre-check vs post-hoc suppression](verify-first-and-known-deviations/sk-git-exempt-precheck-vs-suppression.md)
+- DAL-016: [Verify-first: no finding without a live re-probe](verify_first_and_known_deviations/verify_first_no_finding_without_reprobe.md)
+- DAL-017: [Known-deviation suppression](verify_first_and_known_deviations/known_deviation_suppression.md)
+- DAL-018: [sk-git exempt-subject pre-check vs post-hoc suppression](verify_first_and_known_deviations/sk_git_exempt_precheck_vs_suppression.md)
 
 ### ITERATION AND CONVERGENCE
 
-- DAL-019: [Corpus partitioning round-robin](iteration-and-convergence/corpus-partitioning-round-robin.md)
-- DAL-020: [Coverage AND dry-run stability convergence](iteration-and-convergence/coverage-and-stability-and-semantics.md)
-- DAL-021: [Max-iterations independent hard stop](iteration-and-convergence/max-iterations-hard-stop.md)
-- DAL-022: [Dry-run stability window fails closed on a fresh run](iteration-and-convergence/dry-run-stability-fail-closed.md)
-- DAL-023: [Nothing-to-converge and vacuous-lane exclusion](iteration-and-convergence/nothing-to-converge-and-vacuous-lane.md)
+- DAL-019: [Corpus partitioning round-robin](iteration_and_convergence/corpus_partitioning_round_robin.md)
+- DAL-020: [Coverage AND dry-run stability convergence](iteration_and_convergence/coverage_and_stability_and_semantics.md)
+- DAL-021: [Max-iterations independent hard stop](iteration_and_convergence/max_iterations_hard_stop.md)
+- DAL-022: [Dry-run stability window fails closed on a fresh run](iteration_and_convergence/dry_run_stability_fail_closed.md)
+- DAL-023: [Nothing-to-converge and vacuous-lane exclusion](iteration_and_convergence/nothing_to_converge_and_vacuous_lane.md)
 
 ### READ-ONLY AND GATED REMEDIATION
 
-- DAL-024: [Read-only default: audited artifacts are never modified](read-only-and-gated-remediation/read-only-default-surface.md)
-- DAL-025: [Gated remediation hook is an enterable no-op](read-only-and-gated-remediation/gated-remediation-hook-noop.md)
+- DAL-024: [Read-only default: audited artifacts are never modified](read_only_and_gated_remediation/read_only_default_surface.md)
+- DAL-025: [Gated remediation hook is an enterable no-op](read_only_and_gated_remediation/gated_remediation_hook_noop.md)
 
 ### REPORT EMISSION PER LANE
 
-- DAL-026: [One report section per lane, never blended](report-emission-per-lane/one-report-per-lane.md)
-- DAL-027: [Worst-verdict overall rollup](report-emission-per-lane/worst-verdict-overall-rollup.md)
-- DAL-028: [Finding dedup and fail-closed severity](report-emission-per-lane/finding-dedup-and-fail-closed-severity.md)
+- DAL-026: [One report section per lane, never blended](report_emission_per_lane/one_report_per_lane.md)
+- DAL-027: [Worst-verdict overall rollup](report_emission_per_lane/worst_verdict_overall_rollup.md)
+- DAL-028: [Finding dedup and fail-closed severity](report_emission_per_lane/finding_dedup_and_fail_closed_severity.md)
 
 ### STATE AND FAULT TOLERANCE
 
-- DAL-029: [alignment/ state-file layout and file protection](state-and-fault-tolerance/alignment-state-file-layout.md)
-- DAL-030: [Malformed JSONL surfaces corruptionWarnings, never crashes](state-and-fault-tolerance/malformed-jsonl-corruption-warnings.md)
-- DAL-031: [End-to-end state-machine wiring regression](state-and-fault-tolerance/state-machine-wiring-regression.md)
+- DAL-029: [alignment/ state-file layout and file protection](state_and_fault_tolerance/alignment_state_file_layout.md)
+- DAL-030: [Malformed JSONL surfaces corruptionWarnings, never crashes](state_and_fault_tolerance/malformed_jsonl_corruption_warnings.md)
+- DAL-031: [End-to-end state-machine wiring regression](state_and_fault_tolerance/state_machine_wiring_regression.md)

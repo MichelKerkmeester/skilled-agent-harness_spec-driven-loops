@@ -7,12 +7,12 @@
   "mode": "alignment",
   "entry_surface": "E3",
   "clarity": "C2",
-  "prompt": "check the docs in .opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx-001-alignment-target/docs against sk-doc's standards",
+  "prompt": "check the docs in .opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx_001_alignment_target/docs against sk-doc's standards",
   "invocation": {
     "kind": "natural",
     "command": null
   },
-  "fixture": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx-001-alignment-target",
+  "fixture": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx_001_alignment_target",
   "expected_interaction": "question_halt",
   "expected_presentation_markers": [
     "/align|conformance|sk-doc/i",
