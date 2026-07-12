@@ -2,12 +2,17 @@
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-b-live` · trace mode: `live`.
 
-**Verdict: PASS** · aggregate 82/100
+**Verdict: PASS** · aggregate 81/100
 
 ## Coverage
 
 - Scored (text executors): **9** · routed out to browser harness: **0**
 - By class — routing: 9 · advisor: 0 · browser: 0
+
+## Generalization (fitted vs holdout)
+
+- Fitted aggregate: **81/100** · holdout: _none declared_ · negatives: 0
+- _no holdout-staged scenarios; fitted aggregate equals the overall score (score-preserving)_
 
 ## Dimension scores
 
@@ -16,7 +21,7 @@
 | D1 inter (advisor) | 12pts | _excluded-by-design_ |
 | D1 intra (router) | 13pts | 100/100 |
 | D2 discovery | 20pts | 100/100 |
-| D3 efficiency | 15pts | 42/100 |
+| D3 efficiency | 15pts | 40/100 |
 | D4 usefulness | 25pts | _unscored-mode-a_ |
 | D5 connectivity (hard gate) | 15pts | 100/100 |
 
@@ -39,17 +44,17 @@ _None._
 
 ## Scenarios
 
-| Scenario | Class | Score | First failing stage |
-| -------- | ----- | ----- | ------------------- |
-| OC-002 | routing | 80/100 | passed |
-| OC-009 | routing | 87/100 | passed |
-| OC-003 | routing | 86/100 | passed |
-| OC-001 | routing | 87/100 | passed |
-| OC-004 | routing | 80/100 | passed |
-| OC-005 | routing | 74/100 | passed |
-| OC-007 | routing | 69/100 | passed |
-| OC-006 | routing | 100/100 | passed |
-| OC-008 | routing | 74/100 | passed |
+| Scenario | Class | Stage | Score | First failing stage |
+| -------- | ----- | ----- | ----- | ------------------- |
+| OC-002 | routing | routing | 80/100 | passed |
+| OC-009 | routing | routing | 87/100 | passed |
+| OC-003 | routing | routing | 86/100 | passed |
+| OC-001 | routing | routing | 87/100 | passed |
+| OC-004 | routing | routing | 80/100 | passed |
+| OC-005 | routing | routing | 74/100 | passed |
+| OC-007 | routing | routing | 80/100 | passed |
+| OC-006 | routing | routing | 82/100 | passed |
+| OC-008 | routing | routing | 74/100 | passed |
 
 ## Methodology / caveats
 

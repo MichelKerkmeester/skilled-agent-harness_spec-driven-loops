@@ -9,7 +9,16 @@
     "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/code-opencode"
   },
   "verdict": "PASS",
-  "aggregateScore": 82,
+  "aggregateScore": 81,
+  "generalization": {
+    "fittedScore": 81,
+    "holdoutScore": null,
+    "generalizationGap": null,
+    "fittedCount": 9,
+    "holdoutCount": 0,
+    "negativeCount": 0,
+    "note": "no holdout-staged scenarios; fitted aggregate equals the overall score (score-preserving)"
+  },
   "gate": {
     "d5Score": 100,
     "gateFailed": false,
@@ -47,7 +56,7 @@
     },
     "D3": {
       "points": 15,
-      "score": 42
+      "score": 40
     },
     "D4": {
       "points": 25,
@@ -167,7 +176,9 @@
     "advisor": 0,
     "browser": 0,
     "routedOut": 0,
-    "scored": 9
+    "scored": 9,
+    "holdout": 0,
+    "negative": 0
   },
   "divergence": [],
   "lintFindings": [],
@@ -175,6 +186,7 @@
     {
       "scenarioId": "OC-002",
       "tier": "live",
+      "stage": "routing",
       "dims": {
         "d1intra": {
           "score": 1,
@@ -268,6 +280,7 @@
     {
       "scenarioId": "OC-009",
       "tier": "live",
+      "stage": "routing",
       "dims": {
         "d1intra": {
           "score": 1,
@@ -354,13 +367,14 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"rust\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/s"
+        "responseHead": "```json\n{\n  \"surface\": \"OPENCODE\",\n  \"subLanguage\": \"Rust\",\n  \"resources\": [\n    \"references/shared/universal_patterns/naming-and-commenting.md\",\n    \"references/shared/universal_patterns/organization-security-and-examples.md\",\n    \"references/shared/code_organization/overview-and-module-organizatio"
       },
       "routeTelemetry": null
     },
     {
       "scenarioId": "OC-003",
       "tier": "live",
+      "stage": "routing",
       "dims": {
         "d1intra": {
           "score": 1,
@@ -447,13 +461,14 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"shell\", \"resources\": [\"references/shell/style_guide/overview-structure-and-naming.md\", \"references/shell/style_guide/variables-functions-and-output.md\", \"references/shell/quality_standards/overview-and-priority-blockers.md\", \"references/shell/quality_s"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"shell\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/"
       },
       "routeTelemetry": null
     },
     {
       "scenarioId": "OC-001",
       "tier": "live",
+      "stage": "routing",
       "dims": {
         "d1intra": {
           "score": 1,
@@ -540,13 +555,14 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"TypeScript\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"refere"
+        "responseHead": "```json\n{\n  \"surface\": \"OPENCODE\",\n  \"subLanguage\": \"typescript\",\n  \"resources\": [\n    \"references/shared/universal_patterns/naming-and-commenting.md\",\n    \"references/shared/universal_patterns/organization-security-and-examples.md\",\n    \"references/shared/code_organization/overview-and-module-organ"
       },
       "routeTelemetry": null
     },
     {
       "scenarioId": "OC-004",
       "tier": "live",
+      "stage": "routing",
       "dims": {
         "d1intra": {
           "score": 1,
@@ -633,13 +649,14 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"config\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references"
+        "responseHead": "```json\n{\n  \"surface\": \"OPENCODE\",\n  \"subLanguage\": \"config\",\n  \"resources\": [\n    \"references/shared/universal_patterns/naming-and-commenting.md\",\n    \"references/shared/universal_patterns/organization-security-and-examples.md\",\n    \"references/shared/code_organization/overview-and-module-organizat"
       },
       "routeTelemetry": null
     },
     {
       "scenarioId": "OC-005",
       "tier": "live",
+      "stage": "routing",
       "dims": {
         "d1intra": {
           "score": 1,
@@ -733,6 +750,7 @@
     {
       "scenarioId": "OC-007",
       "tier": "live",
+      "stage": "routing",
       "dims": {
         "d1intra": {
           "score": 1,
@@ -754,9 +772,9 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0,
-          "routedCount": 5,
-          "wastedCount": 5,
+          "score": 0.3571428571428571,
+          "routedCount": 14,
+          "wastedCount": 9,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -801,7 +819,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 69,
+      "modeAScore": 80,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -826,6 +844,7 @@
     {
       "scenarioId": "OC-006",
       "tier": "live",
+      "stage": "routing",
       "dims": {
         "d1intra": {
           "score": 1,
@@ -847,9 +866,9 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 1,
-          "routedCount": 5,
-          "wastedCount": 0,
+          "score": 0.41666666666666663,
+          "routedCount": 12,
+          "wastedCount": 7,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -894,7 +913,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 100,
+      "modeAScore": 82,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -912,13 +931,14 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/s"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"typescript\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"refere"
       },
       "routeTelemetry": null
     },
     {
       "scenarioId": "OC-008",
       "tier": "live",
+      "stage": "routing",
       "dims": {
         "d1intra": {
           "score": 1,
@@ -1005,7 +1025,7 @@
           "code-opencode/SKILL.md"
         ],
         "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organization/overview-and-module-organization.md\", \"references/s"
+        "responseHead": "```json\n{\"surface\": \"OPENCODE\", \"subLanguage\": \"none\", \"resources\": [\"references/shared/alignment_verification_automation.md\", \"references/shared/universal_patterns/naming-and-commenting.md\", \"references/shared/universal_patterns/organization-security-and-examples.md\", \"references/shared/code_organi"
       },
       "routeTelemetry": null
     }
