@@ -1,0 +1,67 @@
+---
+title: "advisor_rebuild MCP Tool"
+description: "Explicit operator MCP tool that rebuilds the native advisor skill graph from checked-in skill metadata when advisor_status reports stale, absent or unavailable state."
+trigger_phrases:
+  - "advisor_rebuild"
+  - "advisor rebuild"
+  - "rebuild advisor index"
+  - "skill graph rebuild"
+version: 0.8.0.11
+---
+
+# advisor_rebuild MCP Tool
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Give operators an explicit repair path for stale, absent or unavailable advisor state without hiding rebuild side effects inside `advisor_status`.
+
+## 2. HOW IT WORKS
+
+`advisor_rebuild` is the explicit MCP repair tool that keeps rebuild behavior out of `advisor_status`. The handler reads the current status first. If status is `live` and `force` is not true, it skips the rebuild and returns a diagnostic telling the caller to pass `force:true` when a live rebuild is intentional.
+
+When rebuild proceeds, it indexes `.opencode/skills/`, publishes a fresh skill-graph generation with `reason: "advisor_rebuild"`, rereads status and returns freshness before/after, generation before/after, skill count, indexing summary and warnings. `advisor_status` remains diagnostic-only and never repairs stale state.
+
+The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor_recommend`, `advisor_status` and `advisor_validate`. The standalone advisor server currently exposes eight public tools: four `advisor_*` tools and four `skill_graph_*` tools.
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-rebuild.ts:46-101` | Handler core | Reads status, skips live non-forced rebuilds, indexes skills, publishes generation and returns before/after diagnostics |
+| `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-rebuild.ts:103-115` | MCP handler | Serializes the rebuild output and exports the snake_case compatibility alias |
+| `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts:89-94` | Handler contract | Documents that status is diagnostic-only and points repair callers to `advisor_rebuild` |
+| `.opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts:8-17` | Tool descriptor | Declares the MCP tool and `force` option |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:56-72` | Dispatcher | Registers `advisor_rebuild` in the advisor MCP tool set |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:954-962` | Server registry | Includes `advisor_rebuild` in `TOOL_DEFINITIONS` |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts` | Vitest | Covers skip, forced rebuild, stale rebuild and output schema behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | Vitest | Validates strict tool input schemas for registered MCP tools |
+
+---
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts` | Automated test | Validation reference |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | Automated test | Validation reference |
+
+## 4. SOURCE METADATA
+
+- Group: MCP surface
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `mcp-surface/advisor-rebuild.md`
+
+Related references:
+
+- [02-advisor-status.md](../mcp_surface/advisor_status.md).
+- [`daemon-and-freshness/rebuild-from-source.md`](../daemon_and_freshness/rebuild_from_source.md).
+- [`auto-indexing/sync.md`](../auto_indexing/sync.md).

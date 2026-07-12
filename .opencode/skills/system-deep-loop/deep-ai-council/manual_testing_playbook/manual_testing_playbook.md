@@ -90,7 +90,7 @@ bash: node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-art
 ### Inputs Required
 
 1. `manual_testing_playbook.md`
-2. Referenced per-feature files under `manual_testing_playbook/NN--category-name/`
+2. Referenced per-feature files under `manual_testing_playbook/NN__category_name/`
 3. Scenario execution evidence
 4. Feature-to-scenario coverage map
 5. Triage notes for all non-pass outcomes
@@ -166,13 +166,13 @@ This section records wave planning and capacity guidance for the manual testing 
 
 Verify runtime mirrors expose `deep-ai-council` and active mirror paths do not retain `ai-council` as the primary identity.
 
-Feature file: [DAC-001](runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md)
+Feature file: [DAC-001](runtime_routing_and_rename/runtime_agent_renamed_to_deep_ai_council.md)
 
 ### DAC-002 | Advisor routes council prompts to skill
 
 Verify skill advisor scorer routes explicit council prompts to `deep-ai-council`.
 
-Feature file: [DAC-002](runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md)
+Feature file: [DAC-002](runtime_routing_and_rename/advisor_routes_council_prompts_to_skill.md)
 
 ---
 
@@ -182,13 +182,13 @@ Feature file: [DAC-002](runtime-routing-and-rename/advisor-routes-council-prompt
 
 Verify a council run uses distinct seats, lenses, and mandates.
 
-Feature file: [DAC-003](council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md)
+Feature file: [DAC-003](council_deliberation_and_seat_diversity/three_seat_diverse_deliberation.md)
 
 ### DAC-004 | Cross-seat critique blocks premature convergence
 
 Verify agreement is not accepted until cross-seat critique checks assumptions and failure modes.
 
-Feature file: [DAC-004](council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md)
+Feature file: [DAC-004](council_deliberation_and_seat_diversity/cross_seat_critique_blocks_premature_convergence.md)
 
 ---
 
@@ -198,19 +198,19 @@ Feature file: [DAC-004](council-deliberation-and-seat-diversity/cross-seat-criti
 
 Verify the helper writes the expected `ai-council/` artifact tree.
 
-Feature file: [DAC-005](artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md)
+Feature file: [DAC-005](artifact_persistence_and_state_format/persist_artifacts_helper_writes_packet_local_tree.md)
 
 ### DAC-006 | State JSONL records council_complete event
 
 Verify persisted state ends with an auditable completion event.
 
-Feature file: [DAC-006](artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md)
+Feature file: [DAC-006](artifact_persistence_and_state_format/state_jsonl_records_council_complete_event.md)
 
 ### DAC-007 | Output schema strict required sections fail closed
 
 Verify missing required report sections cause exit 1 before writes.
 
-Feature file: [DAC-007](artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md)
+Feature file: [DAC-007](artifact_persistence_and_state_format/output_schema_strict_required_sections_fail_closed.md)
 
 ---
 
@@ -220,25 +220,25 @@ Feature file: [DAC-007](artifact-persistence-and-state-format/output-schema-stri
 
 Verify convergence guidance uses the two-of-three rule.
 
-Feature file: [DAC-008](convergence-and-rollback/two-of-three-agree-triggers-convergence.md)
+Feature file: [DAC-008](convergence_and_rollback/two_of_three_agree_triggers_convergence.md)
 
 ### DAC-009 | Max rounds without convergence emits non-converged
 
 Verify max-round escape-hatch guidance preserves non-converged output.
 
-Feature file: [DAC-009](convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md)
+Feature file: [DAC-009](convergence_and_rollback/max_rounds_without_convergence_emits_non_converged.md)
 
 ### DAC-010 | Rollback failed round preserves forensic trail
 
 Verify rollback preserves failed artifacts and audit state.
 
-Feature file: [DAC-010](convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md)
+Feature file: [DAC-010](convergence_and_rollback/rollback_failed_round_preserves_forensic_trail.md)
 
 ### DAC-033 | Cross-mode anti-convergence contract
 
 Verify council mode declares a minimum round floor and fail-closed stop policy before convergence is trusted.
 
-Feature file: [DAC-033](convergence-and-rollback/cross-mode-anti-convergence-contract.md)
+Feature file: [DAC-033](convergence_and_rollback/cross_mode_anti_convergence_contract.md)
 
 ---
 
@@ -248,13 +248,13 @@ Feature file: [DAC-033](convergence-and-rollback/cross-mode-anti-convergence-con
 
 Verify graph references preserve artifact source-of-truth and caller-owned runtime CLI boundaries. Functional graph behavior is verified by DAC-019..DAC-026.
 
-Feature file: [DAC-011](scope-boundaries/graph-support-derived-and-scoped.md)
+Feature file: [DAC-011](scope_boundaries/graph_support_derived_and_scoped.md)
 
 ### DAC-012 | Planning-only boundary rejects implementation writes
 
 Verify council instructions reject application-code and authored spec-doc writes.
 
-Feature file: [DAC-012](scope-boundaries/planning-only-boundary-rejects-implementation-writes.md)
+Feature file: [DAC-012](scope_boundaries/planning_only_boundary_rejects_implementation_writes.md)
 
 ---
 
@@ -264,13 +264,13 @@ Feature file: [DAC-012](scope-boundaries/planning-only-boundary-rejects-implemen
 
 Verify an explicit `Depth: 1` marker selects `sequential_thinking` inline mode and does not dispatch recursive council seats.
 
-Feature file: [DAC-014](depth-and-failure-handling/depth-detection-parallel-vs-sequential.md)
+Feature file: [DAC-014](depth_and_failure_handling/depth_detection_parallel_vs_sequential.md)
 
 ### DAC-018 | Resume after interrupted state
 
 Verify resume rules continue from the last completed JSONL event toward `council_complete`.
 
-Feature file: [DAC-018](depth-and-failure-handling/resume-after-interrupted-state.md)
+Feature file: [DAC-018](depth_and_failure_handling/resume_after_interrupted_state.md)
 
 ---
 
@@ -280,25 +280,25 @@ Feature file: [DAC-018](depth-and-failure-handling/resume-after-interrupted-stat
 
 Verify `persist-artifacts.cjs` exposes the canonical seven writer functions and emits `artifact_written` audit events.
 
-Feature file: [DAC-013](writer-library-contract/library-writer-call-sequence.md)
+Feature file: [DAC-013](writer_library_contract/library_writer_call_sequence.md)
 
 ### DAC-015 | Five-dimension scoring rubric application
 
 Verify `scoring_rubric.md` preserves the five weighted dimensions used for council synthesis.
 
-Feature file: [DAC-015](writer-library-contract/five-dimension-scoring-rubric-application.md)
+Feature file: [DAC-015](writer_library_contract/five_dimension_scoring_rubric_application.md)
 
 ### DAC-016 | Hunter Skeptic Referee cross-critique
 
 Verify adversarial cross-critique documents HUNTER, SKEPTIC, REFEREE, and pre/post critique score adjustment.
 
-Feature file: [DAC-016](writer-library-contract/hunter-skeptic-referee-cross-critique.md)
+Feature file: [DAC-016](writer_library_contract/hunter_skeptic_referee_cross_critique.md)
 
 ### DAC-017 | OUT_OF_SCOPE_WRITE rejection
 
 Verify out-of-scope writer attempts are rejected with `OUT_OF_SCOPE_WRITE` before filesystem touch.
 
-Feature file: [DAC-017](writer-library-contract/out-of-scope-write-rejection.md)
+Feature file: [DAC-017](writer_library_contract/out_of_scope_write_rejection.md)
 
 ---
 
@@ -308,49 +308,49 @@ Feature file: [DAC-017](writer-library-contract/out-of-scope-write-rejection.md)
 
 Verify `runtime upsert CLI` is idempotent across repeated calls and that self-loop edges are rejected by strict input validation.
 
-Feature file: [DAC-019](council-graph-integration/council-graph-upsert-idempotency-and-self-loop-rejection.md)
+Feature file: [DAC-019](council_graph_integration/council_graph_upsert_idempotency_and_self_loop_rejection.md)
 
 ### DAC-020 | runtime upsert CLI empty input no-op success
 
 Verify `runtime upsert CLI` returns explicit no-op success on empty `nodes`/`edges` input rather than erroring.
 
-Feature file: [DAC-020](council-graph-integration/council-graph-upsert-empty-input-no-op-success.md)
+Feature file: [DAC-020](council_graph_integration/council_graph_upsert_empty_input_no_op_success.md)
 
 ### DAC-021 | runtime query CLI hostile metadata redaction
 
 Verify `runtime query CLI` redacts arbitrary metadata keys and bounds string lengths before returning prompt-safe output.
 
-Feature file: [DAC-021](council-graph-integration/council-graph-query-hostile-metadata-redaction.md)
+Feature file: [DAC-021](council_graph_integration/council_graph_query_hostile_metadata_redaction.md)
 
 ### DAC-022 | runtime query CLI five modes return prompt-safe context
 
 Verify all five query modes (`unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, `hot_nodes`) return bounded prompt-safe context.
 
-Feature file: [DAC-022](council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md)
+Feature file: [DAC-022](council_graph_integration/council_graph_query_five_modes_prompt_safe_context.md)
 
 ### DAC-023 | runtime convergence CLI three-state decision matrix
 
 Verify `runtime convergence CLI` emits `CONTINUE`, `STOP_ALLOWED`, or `STOP_BLOCKED` based on agreement, evidence, confidence, and unresolved-critical-disagreement signals.
 
-Feature file: [DAC-023](council-graph-integration/council-graph-convergence-three-state-decision-matrix.md)
+Feature file: [DAC-023](council_graph_integration/council_graph_convergence_three_state_decision_matrix.md)
 
 ### DAC-024 | runtime status CLI recovery payload and readiness
 
 Verify `runtime status CLI` returns readiness, counts, schema version, signals, and a namespace-scoped `recovery` payload — never false-safe empty success on missing/corrupt state.
 
-Feature file: [DAC-024](council-graph-integration/council-graph-status-recovery-payload-and-readiness.md)
+Feature file: [DAC-024](council_graph_integration/council_graph_status_recovery_payload_and_readiness.md)
 
 ### DAC-025 | Derived projection rebuilds from artifacts
 
 Verify deleting `council-graph.sqlite` rows for a session and replaying upserts from `ai-council/**` artifacts restores graph state without touching the artifacts.
 
-Feature file: [DAC-025](council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md)
+Feature file: [DAC-025](council_graph_integration/council_graph_derived_projection_rebuilds_from_artifacts.md)
 
 ### DAC-026 | Council graph MCP surface retired
 
 Verify mk-spec-memory has no council graph MCP entries and council graph operations route through `runtime/ --loop-type council`.
 
-Feature file: [DAC-026](council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md)
+Feature file: [DAC-026](council_graph_integration/council_graph_tools_registered_separately_from_deep_loop.md)
 
 ---
 
@@ -362,37 +362,37 @@ Each value-comparison scenario contrasts the no-graph baseline workflow against 
 
 Graph returns the unresolved critical set in one runtime CLI call; baseline requires reading 12+ deliberation/critique artifacts.
 
-Feature file: [DAC-027](council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md)
+Feature file: [DAC-027](council_graph_value_comparison/unresolved_disagreement_triage_graph_vs_baseline.md)
 
 ### DAC-028 | Decision provenance audit: graph vs baseline
 
 Graph returns a structured DECISION → SUPPORTS → EVIDENCE → SEAT trace; baseline produces unstructured prose narrative.
 
-Feature file: [DAC-028](council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md)
+Feature file: [DAC-028](council_graph_value_comparison/decision_provenance_audit_graph_vs_baseline.md)
 
 ### DAC-029 | Convergence safety under critical disagreement: graph vs baseline
 
 Graph returns `STOP_BLOCKED` when 2-of-3 agree but a critical disagreement is unresolved; the naive two-of-three baseline would have allowed stop.
 
-Feature file: [DAC-029](council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md)
+Feature file: [DAC-029](council_graph_value_comparison/convergence_safety_under_critical_disagreement_graph_vs_baseline.md)
 
 ### DAC-030 | Stalled-council blocker ranking: graph vs baseline
 
 Graph returns ranked blockers (severity / evidence-depth / centrality) with reason traces; baseline returns unranked artifact survey.
 
-Feature file: [DAC-030](council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md)
+Feature file: [DAC-030](council_graph_value_comparison/stalled_council_blocker_ranking_graph_vs_baseline.md)
 
 ### DAC-031 | Hot-topic discovery: graph vs baseline
 
 Graph ranks nodes by edge-degree (SUPPORTS + CONTRADICTS + EVIDENCE_FOR); baseline approximates via text cross-reference counts.
 
-Feature file: [DAC-031](council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md)
+Feature file: [DAC-031](council_graph_value_comparison/hot_topic_discovery_graph_vs_baseline.md)
 
 ### DAC-032 | Mid-run interruption recovery: graph vs baseline
 
 Graph status returns counts + readiness + namespace-scoped recovery payload; baseline requires manual JSONL forensics.
 
-Feature file: [DAC-032](council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md)
+Feature file: [DAC-032](council_graph_value_comparison/mid_run_interruption_recovery_graph_vs_baseline.md)
 
 ---
 
@@ -417,36 +417,36 @@ Feature file: [DAC-032](council-graph-value-comparison/mid-run-interruption-reco
 
 | Feature ID | Scenario | Feature File | Catalog |
 | --- | --- | --- | --- |
-| DAC-001 | Runtime agent renamed to deep-ai-council | `runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` | `feature_catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` |
-| DAC-002 | Advisor routes council prompts to skill | `runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md` | `feature_catalog/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md` |
-| DAC-003 | Three-seat diverse deliberation | `council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md` | `feature_catalog/council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md` |
-| DAC-004 | Cross-seat critique blocks premature convergence | `council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md` | `feature_catalog/council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md` |
-| DAC-005 | Persist-artifacts helper writes packet-local tree | `artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md` | `feature_catalog/artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md` |
-| DAC-006 | State JSONL records council_complete event | `artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md` | `feature_catalog/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md` |
-| DAC-007 | Output schema strict required sections fail closed | `artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md` | `feature_catalog/artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md` |
-| DAC-008 | Two-of-three agree triggers convergence | `convergence-and-rollback/two-of-three-agree-triggers-convergence.md` | `feature_catalog/convergence-and-rollback/two-of-three-agree-triggers-convergence.md` |
-| DAC-009 | Max rounds without convergence emits non-converged | `convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md` | `feature_catalog/convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md` |
-| DAC-010 | Rollback failed round preserves forensic trail | `convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md` | `feature_catalog/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md` |
-| DAC-033 | Cross-mode anti-convergence contract | `convergence-and-rollback/cross-mode-anti-convergence-contract.md` | `feature_catalog/convergence-and-rollback/cross-mode-anti-convergence-contract.md` |
-| DAC-011 | Graph support stays derived and scoped | `scope-boundaries/graph-support-derived-and-scoped.md` | `feature_catalog/scope-boundaries/graph-support-derived-and-scoped.md` |
-| DAC-012 | Planning-only boundary rejects implementation writes | `scope-boundaries/planning-only-boundary-rejects-implementation-writes.md` | `feature_catalog/scope-boundaries/planning-only-boundary-rejects-implementation-writes.md` |
-| DAC-013 | Library writer call sequence | `writer-library-contract/library-writer-call-sequence.md` | `feature_catalog/writer-library-contract/library-writer-call-sequence.md` |
-| DAC-014 | Depth detection parallel vs sequential | `depth-and-failure-handling/depth-detection-parallel-vs-sequential.md` | `feature_catalog/depth-and-failure-handling/depth-detection-parallel-vs-sequential.md` |
-| DAC-015 | Five-dimension scoring rubric application | `writer-library-contract/five-dimension-scoring-rubric-application.md` | `feature_catalog/writer-library-contract/five-dimension-scoring-rubric-application.md` |
-| DAC-016 | Hunter Skeptic Referee cross-critique | `writer-library-contract/hunter-skeptic-referee-cross-critique.md` | `feature_catalog/writer-library-contract/hunter-skeptic-referee-cross-critique.md` |
-| DAC-017 | OUT_OF_SCOPE_WRITE rejection | `writer-library-contract/out-of-scope-write-rejection.md` | `feature_catalog/writer-library-contract/out-of-scope-write-rejection.md` |
-| DAC-018 | Resume after interrupted state | `depth-and-failure-handling/resume-after-interrupted-state.md` | `feature_catalog/depth-and-failure-handling/resume-after-interrupted-state.md` |
-| DAC-019 | runtime upsert CLI idempotency and self-loop rejection | `council-graph-integration/council-graph-upsert-idempotency-and-self-loop-rejection.md` | `feature_catalog/council-graph-integration/council-graph-upsert-idempotency-and-self-loop-rejection.md` |
-| DAC-020 | runtime upsert CLI empty input no-op success | `council-graph-integration/council-graph-upsert-empty-input-no-op-success.md` | `feature_catalog/council-graph-integration/council-graph-upsert-empty-input-no-op-success.md` |
-| DAC-021 | runtime query CLI hostile metadata redaction | `council-graph-integration/council-graph-query-hostile-metadata-redaction.md` | `feature_catalog/council-graph-integration/council-graph-query-hostile-metadata-redaction.md` |
-| DAC-022 | runtime query CLI five modes return prompt-safe context | `council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md` | `feature_catalog/council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md` |
-| DAC-023 | runtime convergence CLI three-state decision matrix | `council-graph-integration/council-graph-convergence-three-state-decision-matrix.md` | `feature_catalog/council-graph-integration/council-graph-convergence-three-state-decision-matrix.md` |
-| DAC-024 | runtime status CLI recovery payload and readiness | `council-graph-integration/council-graph-status-recovery-payload-and-readiness.md` | `feature_catalog/council-graph-integration/council-graph-status-recovery-payload-and-readiness.md` |
-| DAC-025 | Derived projection rebuilds from artifacts | `council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md` | `feature_catalog/council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md` |
-| DAC-026 | Council graph MCP surface retired | `council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md` | `feature_catalog/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md` |
-| DAC-027 | Unresolved disagreement triage: graph vs baseline | `council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md` | `feature_catalog/council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md` |
-| DAC-028 | Decision provenance audit: graph vs baseline | `council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md` | `feature_catalog/council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md` |
-| DAC-029 | Convergence safety under critical disagreement: graph vs baseline | `council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md` | `feature_catalog/council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md` |
-| DAC-030 | Stalled-council blocker ranking: graph vs baseline | `council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md` | `feature_catalog/council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md` |
-| DAC-031 | Hot-topic discovery: graph vs baseline | `council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md` | `feature_catalog/council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md` |
-| DAC-032 | Mid-run interruption recovery: graph vs baseline | `council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md` | `feature_catalog/council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md` |
+| DAC-001 | Runtime agent renamed to deep-ai-council | `runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` | `feature_catalog/runtime_routing_and_rename/runtime_agent_renamed_to_deep_ai_council.md` |
+| DAC-002 | Advisor routes council prompts to skill | `runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md` | `feature_catalog/runtime_routing_and_rename/advisor_routes_council_prompts_to_skill.md` |
+| DAC-003 | Three-seat diverse deliberation | `council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md` | `feature_catalog/council_deliberation_and_seat_diversity/three_seat_diverse_deliberation.md` |
+| DAC-004 | Cross-seat critique blocks premature convergence | `council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md` | `feature_catalog/council_deliberation_and_seat_diversity/cross_seat_critique_blocks_premature_convergence.md` |
+| DAC-005 | Persist-artifacts helper writes packet-local tree | `artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md` | `feature_catalog/artifact_persistence_and_state_format/persist_artifacts_helper_writes_packet_local_tree.md` |
+| DAC-006 | State JSONL records council_complete event | `artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md` | `feature_catalog/artifact_persistence_and_state_format/state_jsonl_records_council_complete_event.md` |
+| DAC-007 | Output schema strict required sections fail closed | `artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md` | `feature_catalog/artifact_persistence_and_state_format/output_schema_strict_required_sections_fail_closed.md` |
+| DAC-008 | Two-of-three agree triggers convergence | `convergence-and-rollback/two-of-three-agree-triggers-convergence.md` | `feature_catalog/convergence_and_rollback/two_of_three_agree_triggers_convergence.md` |
+| DAC-009 | Max rounds without convergence emits non-converged | `convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md` | `feature_catalog/convergence_and_rollback/max_rounds_without_convergence_emits_non_converged.md` |
+| DAC-010 | Rollback failed round preserves forensic trail | `convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md` | `feature_catalog/convergence_and_rollback/rollback_failed_round_preserves_forensic_trail.md` |
+| DAC-033 | Cross-mode anti-convergence contract | `convergence-and-rollback/cross-mode-anti-convergence-contract.md` | `feature_catalog/convergence_and_rollback/cross_mode_anti_convergence_contract.md` |
+| DAC-011 | Graph support stays derived and scoped | `scope-boundaries/graph-support-derived-and-scoped.md` | `feature_catalog/scope_boundaries/graph_support_derived_and_scoped.md` |
+| DAC-012 | Planning-only boundary rejects implementation writes | `scope-boundaries/planning-only-boundary-rejects-implementation-writes.md` | `feature_catalog/scope_boundaries/planning_only_boundary_rejects_implementation_writes.md` |
+| DAC-013 | Library writer call sequence | `writer-library-contract/library-writer-call-sequence.md` | `feature_catalog/writer_library_contract/library_writer_call_sequence.md` |
+| DAC-014 | Depth detection parallel vs sequential | `depth-and-failure-handling/depth-detection-parallel-vs-sequential.md` | `feature_catalog/depth_and_failure_handling/depth_detection_parallel_vs_sequential.md` |
+| DAC-015 | Five-dimension scoring rubric application | `writer-library-contract/five-dimension-scoring-rubric-application.md` | `feature_catalog/writer_library_contract/five_dimension_scoring_rubric_application.md` |
+| DAC-016 | Hunter Skeptic Referee cross-critique | `writer-library-contract/hunter-skeptic-referee-cross-critique.md` | `feature_catalog/writer_library_contract/hunter_skeptic_referee_cross_critique.md` |
+| DAC-017 | OUT_OF_SCOPE_WRITE rejection | `writer-library-contract/out-of-scope-write-rejection.md` | `feature_catalog/writer_library_contract/out_of_scope_write_rejection.md` |
+| DAC-018 | Resume after interrupted state | `depth-and-failure-handling/resume-after-interrupted-state.md` | `feature_catalog/depth_and_failure_handling/resume_after_interrupted_state.md` |
+| DAC-019 | runtime upsert CLI idempotency and self-loop rejection | `council-graph-integration/council-graph-upsert-idempotency-and-self-loop-rejection.md` | `feature_catalog/council_graph_integration/council_graph_upsert_idempotency_and_self_loop_rejection.md` |
+| DAC-020 | runtime upsert CLI empty input no-op success | `council-graph-integration/council-graph-upsert-empty-input-no-op-success.md` | `feature_catalog/council_graph_integration/council_graph_upsert_empty_input_no_op_success.md` |
+| DAC-021 | runtime query CLI hostile metadata redaction | `council-graph-integration/council-graph-query-hostile-metadata-redaction.md` | `feature_catalog/council_graph_integration/council_graph_query_hostile_metadata_redaction.md` |
+| DAC-022 | runtime query CLI five modes return prompt-safe context | `council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md` | `feature_catalog/council_graph_integration/council_graph_query_five_modes_prompt_safe_context.md` |
+| DAC-023 | runtime convergence CLI three-state decision matrix | `council-graph-integration/council-graph-convergence-three-state-decision-matrix.md` | `feature_catalog/council_graph_integration/council_graph_convergence_three_state_decision_matrix.md` |
+| DAC-024 | runtime status CLI recovery payload and readiness | `council-graph-integration/council-graph-status-recovery-payload-and-readiness.md` | `feature_catalog/council_graph_integration/council_graph_status_recovery_payload_and_readiness.md` |
+| DAC-025 | Derived projection rebuilds from artifacts | `council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md` | `feature_catalog/council_graph_integration/council_graph_derived_projection_rebuilds_from_artifacts.md` |
+| DAC-026 | Council graph MCP surface retired | `council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md` | `feature_catalog/council_graph_integration/council_graph_tools_registered_separately_from_deep_loop.md` |
+| DAC-027 | Unresolved disagreement triage: graph vs baseline | `council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md` | `feature_catalog/council_graph_value_comparison/unresolved_disagreement_triage_graph_vs_baseline.md` |
+| DAC-028 | Decision provenance audit: graph vs baseline | `council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md` | `feature_catalog/council_graph_value_comparison/decision_provenance_audit_graph_vs_baseline.md` |
+| DAC-029 | Convergence safety under critical disagreement: graph vs baseline | `council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md` | `feature_catalog/council_graph_value_comparison/convergence_safety_under_critical_disagreement_graph_vs_baseline.md` |
+| DAC-030 | Stalled-council blocker ranking: graph vs baseline | `council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md` | `feature_catalog/council_graph_value_comparison/stalled_council_blocker_ranking_graph_vs_baseline.md` |
+| DAC-031 | Hot-topic discovery: graph vs baseline | `council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md` | `feature_catalog/council_graph_value_comparison/hot_topic_discovery_graph_vs_baseline.md` |
+| DAC-032 | Mid-run interruption recovery: graph vs baseline | `council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md` | `feature_catalog/council_graph_value_comparison/mid_run_interruption_recovery_graph_vs_baseline.md` |

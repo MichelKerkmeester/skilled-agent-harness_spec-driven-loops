@@ -39,7 +39,7 @@ Initialization classifies the packet as fresh, resume, completed-session, or inv
 
 #### Source Files
 
-See [`loop-lifecycle/initialization.md`](loop-lifecycle/initialization.md) for full implementation and test file listings.
+See [`loop-lifecycle/initialization.md`](loop_lifecycle/initialization.md) for full implementation and test file listings.
 
 ---
 
@@ -55,7 +55,7 @@ The loop reads config, JSONL state, and strategy state, generates a compact stat
 
 #### Source Files
 
-See [`loop-lifecycle/iteration-dispatch.md`](loop-lifecycle/iteration-dispatch.md) for full implementation and test file listings.
+See [`loop-lifecycle/iteration-dispatch.md`](loop_lifecycle/iteration_dispatch.md) for full implementation and test file listings.
 
 ---
 
@@ -71,7 +71,7 @@ The loop first applies hard stops and the three-signal `shouldContinue()` vote, 
 
 #### Source Files
 
-See [`loop-lifecycle/convergence-check.md`](loop-lifecycle/convergence-check.md) for full implementation and test file listings.
+See [`loop-lifecycle/convergence-check.md`](loop_lifecycle/convergence_check.md) for full implementation and test file listings.
 
 ---
 
@@ -87,7 +87,7 @@ Synthesis owns the final `research/research.md` output. It reads all iteration f
 
 #### Source Files
 
-See [`loop-lifecycle/synthesis.md`](loop-lifecycle/synthesis.md) for full implementation and test file listings.
+See [`loop-lifecycle/synthesis.md`](loop_lifecycle/synthesis.md) for full implementation and test file listings.
 
 ---
 
@@ -103,7 +103,7 @@ The save phase calls `generate-context.js` with the spec folder payload and trea
 
 #### Source Files
 
-See [`loop-lifecycle/memory-save.md`](loop-lifecycle/memory-save.md) for full implementation and test file listings.
+See [`loop-lifecycle/memory-save.md`](loop_lifecycle/memory_save.md) for full implementation and test file listings.
 
 ---
 
@@ -127,7 +127,7 @@ before `step_compile_research` runs. Command flags: `--executor` (repeatable), `
 
 #### Source Files
 
-See [`loop-lifecycle/fanout-dispatch.md`](loop-lifecycle/fanout-dispatch.md) for full implementation and validation file listings.
+See [`loop-lifecycle/fanout-dispatch.md`](loop_lifecycle/fanout_dispatch.md) for full implementation and validation file listings.
 
 ---
 
@@ -143,7 +143,7 @@ Consumes a one-shot sentinel to force the next auto-mode iteration out of cadenc
 
 #### Source Files
 
-See [`loop-lifecycle/run-now-control.md`](loop-lifecycle/run-now-control.md) for full implementation and validation file listings.
+See [`loop-lifecycle/run-now-control.md`](loop_lifecycle/run_now_control.md) for full implementation and validation file listings.
 
 ---
 
@@ -159,7 +159,7 @@ After iteration validation, reducer refresh, and graph upsert, the auto workflow
 
 #### Source Files
 
-See [`loop-lifecycle/per-iteration-memory-upsert.md`](loop-lifecycle/per-iteration-memory-upsert.md) for full implementation and validation file listings.
+See [`loop-lifecycle/per-iteration-memory-upsert.md`](loop_lifecycle/per_iteration_memory_upsert.md) for full implementation and validation file listings.
 
 ---
 
@@ -175,7 +175,7 @@ Previews confirm-mode work while halting before mutation boundaries.
 
 #### Source Files
 
-See [`loop-lifecycle/loop-wide-dry-run.md`](loop-lifecycle/loop-wide-dry-run.md) for full implementation and validation file listings.
+See [`loop-lifecycle/loop-wide-dry-run.md`](loop_lifecycle/loop_wide_dry_run.md) for full implementation and validation file listings.
 
 ---
 
@@ -195,7 +195,7 @@ Acts as the append-only ledger for config, iteration, and lifecycle events.
 
 #### Source Files
 
-See [`state-management/jsonl-state-log.md`](state-management/jsonl-state-log.md) for full implementation and test file listings.
+See [`state-management/jsonl-state-log.md`](state_management/jsonl_state_log.md) for full implementation and test file listings.
 
 ---
 
@@ -211,7 +211,7 @@ Keeps the persistent research brain and the synchronized reducer surfaces aligne
 
 #### Source Files
 
-See [`state-management/strategy-tracking.md`](state-management/strategy-tracking.md) for full implementation and test file listings.
+See [`state-management/strategy-tracking.md`](state_management/strategy_tracking.md) for full implementation and test file listings.
 
 ---
 
@@ -227,7 +227,7 @@ Defines the immutable loop contract, tunable thresholds, and runtime capability 
 
 #### Source Files
 
-See [`state-management/config-management.md`](state-management/config-management.md) for full implementation and test file listings.
+See [`state-management/config-management.md`](state_management/config_management.md) for full implementation and test file listings.
 
 ---
 
@@ -243,7 +243,7 @@ The reducer reads append-only inbox records on every reduce step and carries `or
 
 #### Source Files
 
-See [`state-management/injection-inbox-provenance.md`](state-management/injection-inbox-provenance.md) for full implementation and test file listings.
+See [`state-management/injection-inbox-provenance.md`](state_management/injection_inbox_provenance.md) for full implementation and test file listings.
 
 ---
 
@@ -259,7 +259,7 @@ Inbox rows are immutable input, the registry is canonical question state, and th
 
 #### Source Files
 
-See [`state-management/question-conflict-ownership.md`](state-management/question-conflict-ownership.md) for full implementation and test file listings.
+See [`state-management/question-conflict-ownership.md`](state_management/question_conflict_ownership.md) for full implementation and test file listings.
 
 ---
 
@@ -275,7 +275,7 @@ JSONL rejection events derive a bounded active cache with exact and category-com
 
 #### Source Files
 
-See [`state-management/rejected-pattern-cache.md`](state-management/rejected-pattern-cache.md) for full implementation and test file listings.
+See [`state-management/rejected-pattern-cache.md`](state_management/rejected_pattern_cache.md) for full implementation and test file listings.
 
 ---
 
@@ -291,7 +291,7 @@ Leaf agents may emit `idea_observed` only when idea capture is explicitly allowe
 
 #### Source Files
 
-See [`state-management/ideas-backlog-lifecycle.md`](state-management/ideas-backlog-lifecycle.md) for full implementation and test file listings.
+See [`state-management/ideas-backlog-lifecycle.md`](state_management/ideas_backlog_lifecycle.md) for full implementation and test file listings.
 
 ---
 
@@ -307,7 +307,7 @@ Renders dashboard sparklines for novelty and score history.
 
 #### Source Files
 
-See [`state-management/dashboard-sparkline-trend.md`](state-management/dashboard-sparkline-trend.md) for full implementation and test file listings.
+See [`state-management/dashboard-sparkline-trend.md`](state_management/dashboard_sparkline_trend.md) for full implementation and test file listings.
 
 ---
 
@@ -327,7 +327,7 @@ The live algorithm checks hard stops first, then computes a weighted vote from r
 
 #### Source Files
 
-See [`convergence/three-signal-model.md`](convergence/three-signal-model.md) for full implementation and test file listings.
+See [`convergence/three-signal-model.md`](convergence/three_signal_model.md) for full implementation and test file listings.
 
 ---
 
@@ -343,7 +343,7 @@ The config template defines the anti-convergence defaults and the auto workflow 
 
 #### Source Files
 
-See [`convergence/anti-convergence-floor.md`](convergence/anti-convergence-floor.md) for full implementation and test file listings.
+See [`convergence/anti-convergence-floor.md`](convergence/anti_convergence_floor.md) for full implementation and test file listings.
 
 ---
 
@@ -359,7 +359,7 @@ The loop increments `stuckCount` when evidence iterations fall below the configu
 
 #### Source Files
 
-See [`convergence/stuck-detection.md`](convergence/stuck-detection.md) for full implementation and test file listings.
+See [`convergence/stuck-detection.md`](convergence/stuck_detection.md) for full implementation and test file listings.
 
 ---
 
@@ -375,7 +375,7 @@ The legal-stop bundle checks coverage, evidence density, and research quality be
 
 #### Source Files
 
-See [`convergence/quality-guards.md`](convergence/quality-guards.md) for full implementation and test file listings.
+See [`convergence/quality-guards.md`](convergence/quality_guards.md) for full implementation and test file listings.
 
 ---
 
@@ -391,7 +391,7 @@ When `graphEvents` are present, the workflow calls the graph convergence tool, a
 
 #### Source Files
 
-See [`convergence/graph-convergence.md`](convergence/graph-convergence.md) for full implementation and test file listings.
+See [`convergence/graph-convergence.md`](convergence/graph_convergence.md) for full implementation and test file listings.
 
 ---
 
@@ -407,7 +407,7 @@ Turns an eligible, legally converged research direction into a bounded scope-exp
 
 #### Source Files
 
-See [`convergence/divergent-convergence-mode.md`](convergence/divergent-convergence-mode.md) for full implementation and validation file listings.
+See [`convergence/divergent-convergence-mode.md`](convergence/divergent_convergence_mode.md) for full implementation and validation file listings.
 
 ---
 
@@ -427,7 +427,7 @@ Keeps `research/research.md` live during the loop and reconciles it at the end.
 
 #### Source Files
 
-See [`research-output/progressive-synthesis.md`](research-output/progressive-synthesis.md) for full implementation and test file listings.
+See [`research-output/progressive-synthesis.md`](research_output/progressive_synthesis.md) for full implementation and test file listings.
 
 ---
 
@@ -443,4 +443,4 @@ Iteration files include `Ruled Out` and `Dead Ends` sections, JSONL records can 
 
 #### Source Files
 
-See [`research-output/negative-knowledge.md`](research-output/negative-knowledge.md) for full implementation and test file listings.
+See [`research-output/negative-knowledge.md`](research_output/negative_knowledge.md) for full implementation and test file listings.

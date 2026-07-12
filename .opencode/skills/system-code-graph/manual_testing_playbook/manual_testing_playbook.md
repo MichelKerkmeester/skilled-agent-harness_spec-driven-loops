@@ -21,15 +21,15 @@ The playbook contains 28 scenarios across 9 groups. It targets the current reali
 
 | Group | Scenario Files |
 | --- | --- |
-| Read-path freshness | [read-path-freshness](./read-path-freshness/) |
-| Manual scan / verify / status | [manual-scan-verify-status](./manual-scan-verify-status/) |
-| Detect changes | [detect-changes](./detect-changes/) |
-| Context retrieval | [context-retrieval](./context-retrieval/) |
-| Coverage graph | [coverage-graph](./coverage-graph/) |
-| MCP tool surface | [mcp-tool-surface](./mcp-tool-surface/) |
-| Doctor code graph | [doctor-code-graph](./doctor-code-graph/) |
-| Post-rename infrastructure | [post-rename-infrastructure](./post-rename-infrastructure/) |
-| Plugins and hooks | [plugins-and-hooks](./plugins-and-hooks/) |
+| Read-path freshness | [read-path-freshness](./read_path_freshness/) |
+| Manual scan / verify / status | [manual-scan-verify-status](./manual_scan_verify_status/) |
+| Detect changes | [detect-changes](./detect_changes/) |
+| Context retrieval | [context-retrieval](./context_retrieval/) |
+| Coverage graph | [coverage-graph](./coverage_graph/) |
+| MCP tool surface | [mcp-tool-surface](./mcp_tool_surface/) |
+| Doctor code graph | [doctor-code-graph](./doctor_code_graph/) |
+| Post-rename infrastructure | [post-rename-infrastructure](./post_rename_infrastructure/) |
+| Plugins and hooks | [plugins-and-hooks](./plugins_and_hooks/) |
 
 ## 2. GLOBAL PRECONDITIONS
 
@@ -67,8 +67,8 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 001 | ensure-ready selective reindex | [ensure-ready-selective-reindex.md](./read-path-freshness/ensure-ready-selective-reindex.md) |
-| 002 | query self-heal stale file | [query-self-heal-stale-file.md](./read-path-freshness/query-self-heal-stale-file.md) |
+| 001 | ensure-ready selective reindex | [ensure-ready-selective-reindex.md](./read_path_freshness/ensure_ready_selective_reindex.md) |
+| 002 | query self-heal stale file | [query-self-heal-stale-file.md](./read_path_freshness/query_self_heal_stale_file.md) |
 
 ---
 
@@ -76,10 +76,10 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 003 | code_graph_scan incremental | [code-graph-scan-incremental.md](./manual-scan-verify-status/code-graph-scan-incremental.md) |
-| 004 | code_graph_scan full | [code-graph-scan-full.md](./manual-scan-verify-status/code-graph-scan-full.md) |
-| 005 | code_graph_verify blocked on stale | [code-graph-verify-blocked-on-stale.md](./manual-scan-verify-status/code-graph-verify-blocked-on-stale.md) |
-| 006 | code_graph_status readonly | [code-graph-status-readonly.md](./manual-scan-verify-status/code-graph-status-readonly.md) |
+| 003 | code_graph_scan incremental | [code-graph-scan-incremental.md](./manual_scan_verify_status/code_graph_scan_incremental.md) |
+| 004 | code_graph_scan full | [code-graph-scan-full.md](./manual_scan_verify_status/code_graph_scan_full.md) |
+| 005 | code_graph_verify blocked on stale | [code-graph-verify-blocked-on-stale.md](./manual_scan_verify_status/code_graph_verify_blocked_on_stale.md) |
+| 006 | code_graph_status readonly | [code-graph-status-readonly.md](./manual_scan_verify_status/code_graph_status_readonly.md) |
 
 ---
 
@@ -87,8 +87,8 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 007 | detect_changes no inline index | [detect-changes-no-inline-index.md](./detect-changes/detect-changes-no-inline-index.md) |
-| 024 | detect_changes with multi-file unified diff (F018 coverage) | [detect-changes-multi-file-diff.md](./detect-changes/detect-changes-multi-file-diff.md) |
+| 007 | detect_changes no inline index | [detect-changes-no-inline-index.md](./detect_changes/detect_changes_no_inline_index.md) |
+| 024 | detect_changes with multi-file unified diff (F018 coverage) | [detect-changes-multi-file-diff.md](./detect_changes/detect_changes_multi_file_diff.md) |
 
 ---
 
@@ -96,9 +96,9 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 008 | code_graph_context readiness block | [code-graph-context-readiness-block.md](./context-retrieval/code-graph-context-readiness-block.md) |
-| 028 | code_graph_context CALLS edge-confidence differentiation (edge-confidence-differentiation flag gated) | [code-graph-context-edge-confidence-differentiation.md](./context-retrieval/code-graph-context-edge-confidence-differentiation.md) |
-| 029 | code_graph_context seeded-PPR impact ranking, benchmark-only CUT verdict (seeded-ppr-ranking flag gated) | [code-graph-context-seeded-ppr-ranking.md](./context-retrieval/code-graph-context-seeded-ppr-ranking.md) |
+| 008 | code_graph_context readiness block | [code-graph-context-readiness-block.md](./context_retrieval/code_graph_context_readiness_block.md) |
+| 028 | code_graph_context CALLS edge-confidence differentiation (edge-confidence-differentiation flag gated) | [code-graph-context-edge-confidence-differentiation.md](./context_retrieval/code_graph_context_edge_confidence_differentiation.md) |
+| 029 | code_graph_context seeded-PPR impact ranking, benchmark-only CUT verdict (seeded-ppr-ranking flag gated) | [code-graph-context-seeded-ppr-ranking.md](./context_retrieval/code_graph_context_seeded_ppr_ranking.md) |
 
 ---
 
@@ -106,8 +106,8 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 009 | deep_loop_graph_convergence yaml fire | [deep-loop-graph-convergence-yaml-fire.md](./coverage-graph/deep-loop-graph-convergence-yaml-fire.md) |
-| 010 | deep_loop_graph_upsert conditional | [deep-loop-graph-upsert-conditional.md](./coverage-graph/deep-loop-graph-upsert-conditional.md) |
+| 009 | deep_loop_graph_convergence yaml fire | [deep-loop-graph-convergence-yaml-fire.md](./coverage_graph/deep_loop_graph_convergence_yaml_fire.md) |
+| 010 | deep_loop_graph_upsert conditional | [deep-loop-graph-upsert-conditional.md](./coverage_graph/deep_loop_graph_upsert_conditional.md) |
 
 ---
 
@@ -115,12 +115,12 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 011 | tool call shape validation (authoritative tool list: `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` + `TOOL_DEFINITIONS` alias) | [tool-call-shape-validation.md](./mcp-tool-surface/tool-call-shape-validation.md) |
-| 022 | code_graph_query blast_radius multi-subject + transitive (F018 coverage) | [code-graph-query-blast-radius.md](./mcp-tool-surface/code-graph-query-blast-radius.md) |
-| 016 | MCP tool manifest post-rename | [mcp-tool-manifest-post-rename.md](./mcp-tool-surface/mcp-tool-manifest-post-rename.md) |
-| 025 | code-index CLI fallback surface (028: list-tools parity, warm-only 75, usage 64, blocked-read) | [code-index-cli-fallback-surface.md](./mcp-tool-surface/code-index-cli-fallback-surface.md) |
-| 026 | code_graph_query asOf time-travel relationship reads (bitemporal-reads flag gated) | [code-graph-query-asof-time-travel.md](./mcp-tool-surface/code-graph-query-asof-time-travel.md) |
-| 027 | code_graph_query BM25 fallback-only symbol suggestions (resolver flag gated) | [code-graph-query-bm25-symbol-resolver.md](./mcp-tool-surface/code-graph-query-bm25-symbol-resolver.md) |
+| 011 | tool call shape validation (authoritative tool list: `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` + `TOOL_DEFINITIONS` alias) | [tool-call-shape-validation.md](./mcp_tool_surface/tool_call_shape_validation.md) |
+| 022 | code_graph_query blast_radius multi-subject + transitive (F018 coverage) | [code-graph-query-blast-radius.md](./mcp_tool_surface/code_graph_query_blast_radius.md) |
+| 016 | MCP tool manifest post-rename | [mcp-tool-manifest-post-rename.md](./mcp_tool_surface/mcp_tool_manifest_post_rename.md) |
+| 025 | code-index CLI fallback surface (028: list-tools parity, warm-only 75, usage 64, blocked-read) | [code-index-cli-fallback-surface.md](./mcp_tool_surface/code_index_cli_fallback_surface.md) |
+| 026 | code_graph_query asOf time-travel relationship reads (bitemporal-reads flag gated) | [code-graph-query-asof-time-travel.md](./mcp_tool_surface/code_graph_query_asof_time_travel.md) |
+| 027 | code_graph_query BM25 fallback-only symbol suggestions (resolver flag gated) | [code-graph-query-bm25-symbol-resolver.md](./mcp_tool_surface/code_graph_query_bm25_symbol_resolver.md) |
 
 ---
 
@@ -128,8 +128,8 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 015 | doctor apply mode policy | [doctor-apply-mode-policy.md](./doctor-code-graph/doctor-apply-mode-policy.md) |
-| 023 | code_graph_apply sub-operations rescan/prune/repair (F018 coverage) | [code-graph-apply-sub-operations.md](./doctor-code-graph/code-graph-apply-sub-operations.md) |
+| 015 | doctor apply mode policy | [doctor-apply-mode-policy.md](./doctor_code_graph/doctor_apply_mode_policy.md) |
+| 023 | code_graph_apply sub-operations rescan/prune/repair (F018 coverage) | [code-graph-apply-sub-operations.md](./doctor_code_graph/code_graph_apply_sub_operations.md) |
 
 ---
 
@@ -137,11 +137,11 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 017 | launcher startup prefix | [launcher-startup-prefix.md](./post-rename-infrastructure/launcher-startup-prefix.md) |
-| 018 | mcp.json server key rename | [mcp-json-server-key-rename.md](./post-rename-infrastructure/mcp-json-server-key-rename.md) |
-| 019 | database path verification | [database-path-verification.md](./post-rename-infrastructure/database-path-verification.md) |
-| 020 | TypeScript build and entry point | [typescript-build-and-entry-point.md](./post-rename-infrastructure/typescript-build-and-entry-point.md) |
-| 021 | root dist cleanup verification (file retains historical name `021-unicode-normalization-fix-from-009`) | [unicode-normalization-fix-from-009.md](./post-rename-infrastructure/unicode-normalization-fix-from-009.md) |
+| 017 | launcher startup prefix | [launcher-startup-prefix.md](./post_rename_infrastructure/launcher_startup_prefix.md) |
+| 018 | mcp.json server key rename | [mcp-json-server-key-rename.md](./post_rename_infrastructure/mcp_json_server_key_rename.md) |
+| 019 | database path verification | [database-path-verification.md](./post_rename_infrastructure/database_path_verification.md) |
+| 020 | TypeScript build and entry point | [typescript-build-and-entry-point.md](./post_rename_infrastructure/typescript_build_and_entry_point.md) |
+| 021 | root dist cleanup verification (file retains historical name `021-unicode-normalization-fix-from-009`) | [unicode-normalization-fix-from-009.md](./post_rename_infrastructure/unicode_normalization_fix_from_009.md) |
 
 ---
 
@@ -149,8 +149,8 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| code-graph-freshness-guard | Code Graph Freshness Guard | [code-graph-freshness-guard.md](./plugins-and-hooks/code-graph-freshness-guard.md) |
-| code-graph-plugin | Code Graph OpenCode Plugin | [code-graph-plugin.md](./plugins-and-hooks/code-graph-plugin.md) |
+| code-graph-freshness-guard | Code Graph Freshness Guard | [code-graph-freshness-guard.md](./plugins_and_hooks/code_graph_freshness_guard.md) |
+| code-graph-plugin | Code Graph OpenCode Plugin | [code-graph-plugin.md](./plugins_and_hooks/code_graph_plugin.md) |
 
 ---
 

@@ -7,12 +7,12 @@
   "mode": "alignment",
   "entry_surface": "E1",
   "clarity": "C3",
-  "prompt": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx-001-alignment-target :auto --lane-config .opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx-001-alignment-target/lane-config-multi.json --max-iterations=2 --convergence=1.0",
+  "prompt": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx_001_alignment_target :auto --lane-config .opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx_001_alignment_target/lane-config-multi.json --max-iterations=2 --convergence=1.0",
   "invocation": {
     "kind": "command",
     "command": "deep/alignment"
   },
-  "fixture": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx-001-alignment-target",
+  "fixture": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx_001_alignment_target",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "/lane/i",

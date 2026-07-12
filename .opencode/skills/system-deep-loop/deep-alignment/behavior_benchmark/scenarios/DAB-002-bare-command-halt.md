@@ -7,12 +7,12 @@
   "mode": "alignment",
   "entry_surface": "E2",
   "clarity": "C2",
-  "prompt": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx-001-alignment-target",
+  "prompt": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx_001_alignment_target",
   "invocation": {
     "kind": "command",
     "command": "deep/alignment"
   },
-  "fixture": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx-001-alignment-target",
+  "fixture": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx_001_alignment_target",
   "expected_interaction": "question_halt",
   "expected_presentation_markers": [
     "/execution mode|:auto|:confirm/i",

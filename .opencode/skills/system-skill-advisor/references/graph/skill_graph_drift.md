@@ -150,5 +150,5 @@ After hard reset, verify with `advisor_status` plus `skill_graph_validate` befor
 - [`daemon_lease_contract.md`](../runtime/daemon_lease_contract.md), lease must release cleanly for rebuild
 - [`skill_graph_query_cookbook.md`](./skill_graph_query_cookbook.md), query the graph after reconciliation
 - [`tool_ids_reference.md`](../runtime/tool_ids_reference.md), `advisor_rebuild`, `skill_graph_scan`, `skill_graph_validate` schemas
-- `feature_catalog/daemon-and-freshness/rebuild-from-source.md`, feature inventory
+- `feature_catalog/daemon_and_freshness/rebuild_from_source.md`, feature inventory
 - `mcp_server/handlers/skill-graph/scan.ts`, `mcp_server/handlers/advisor-rebuild.ts`, source

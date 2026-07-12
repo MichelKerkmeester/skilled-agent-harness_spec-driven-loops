@@ -36,7 +36,7 @@ The mode reads the shared Brand-vs-Product register first, because that call set
 
 #### Source Files
 
-See [`token-system/oklch-color-and-token-system.md`](token-system/oklch-color-and-token-system.md) for source anchors and the token starter scaffold.
+See [`token-system/oklch-color-and-token-system.md`](token_system/oklch_color_and_token_system.md) for source anchors and the token starter scaffold.
 
 ---
 
@@ -52,7 +52,7 @@ The mode sets display, heading, body, caption, and utility type roles before dec
 
 #### Source Files
 
-See [`token-system/typography-and-spacing-scale.md`](token-system/typography-and-spacing-scale.md) for source anchors.
+See [`token-system/typography-and-spacing-scale.md`](token_system/typography_and_spacing_scale.md) for source anchors.
 
 ---
 
@@ -70,7 +70,7 @@ The adaptation matrix reads four dimensions, device and viewport, input method, 
 
 #### Source Files
 
-See [`adaptation-and-data/context-adaptation-matrix.md`](adaptation-and-data/context-adaptation-matrix.md) for the four adaptation dimensions and worked references.
+See [`adaptation-and-data/context-adaptation-matrix.md`](adaptation_and_data/context_adaptation_matrix.md) for the four adaptation dimensions and worked references.
 
 ---
 
@@ -86,7 +86,7 @@ A chart type is chosen by the question rather than the dataset shape, every visu
 
 #### Source Files
 
-See [`adaptation-and-data/data-visualization-discipline.md`](adaptation-and-data/data-visualization-discipline.md) for chart-type selection and encoding rules.
+See [`adaptation-and-data/data-visualization-discipline.md`](adaptation_and_data/data_visualization_discipline.md) for chart-type selection and encoding rules.
 
 ---
 
@@ -104,4 +104,4 @@ The mode chooses at most one primary card when a trigger matches, cites it in th
 
 #### Source Files
 
-See [`procedure-cards/foundations-procedure-card-inventory.md`](procedure-cards/foundations-procedure-card-inventory.md) for the card list and boundaries.
+See [`procedure-cards/foundations-procedure-card-inventory.md`](procedure_cards/foundations_procedure_card_inventory.md) for the card list and boundaries.

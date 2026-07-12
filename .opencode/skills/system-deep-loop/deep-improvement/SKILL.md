@@ -126,15 +126,15 @@ RESOURCE_MAP = {
     "PROMOTION_OPERATIONS": ["references/shared/rollback_runbook.md", "references/agent_improvement/mirror_drift_policy.md", "references/shared/promotion_rules.md", "references/agent_improvement/stress_test_protocol.md", "references/shared/promotion_gate_contract.md"],
     "TARGET_ONBOARDING": ["references/agent_improvement/target_onboarding.md"],
     "INTEGRATION_SCAN": ["references/agent_improvement/integration_scanning.md", "references/model_benchmark/evaluator_contract.md", "references/agent_improvement/profiling_audit_log.md"],
-    "MODEL_BENCHMARK": ["references/model_benchmark/benchmark_operator_guide.md", "references/model_benchmark/evaluator_contract.md", "references/model_benchmark/lane_b_mechanics.md", "references/model_benchmark/mixed_executor_methodology.md", "assets/model_benchmark/benchmark-fixtures/reviewer_schema.md"],
-    "SKILL_BENCHMARK": ["references/skill_benchmark/operator_guide.md", "references/skill_benchmark/scoring_contract.md", "references/skill_benchmark/scenario_authoring.md", "references/skill_benchmark/routing_optimization.md", "assets/skill_benchmark/fixtures/deep-loop-workflows/routing_precision.md"],
+    "MODEL_BENCHMARK": ["references/model_benchmark/benchmark_operator_guide.md", "references/model_benchmark/evaluator_contract.md", "references/model_benchmark/lane_b_mechanics.md", "references/model_benchmark/mixed_executor_methodology.md", "assets/model_benchmark/benchmark_fixtures/reviewer_schema.md"],
+    "SKILL_BENCHMARK": ["references/skill_benchmark/operator_guide.md", "references/skill_benchmark/scoring_contract.md", "references/skill_benchmark/scenario_authoring.md", "references/skill_benchmark/routing_optimization.md", "assets/skill_benchmark/fixtures/deep_loop_workflows/routing_precision.md"],
     "NON_DEV_AI_SYSTEM": ["references/non_dev_ai_system/operator_guide.md", "references/non_dev_ai_system/loop_contract.md", "references/non_dev_ai_system/guardrails_teachings.md", "references/non_dev_ai_system/fixture_authoring.md", "references/non_dev_ai_system/grader_calibration.md"],
     "FULL_SETUP": ["assets/agent_improvement/improvement_charter.md", "assets/agent_improvement/improvement_strategy.md"],
 }
 
 RUNTIME_ASSETS = {
     "ALWAYS": ["assets/agent_improvement/improvement_config.json", "assets/agent_improvement/target_manifest.jsonc"],
-    "MODEL_BENCHMARK": ["assets/model_benchmark/benchmark-profiles/default.json"],
+    "MODEL_BENCHMARK": ["assets/model_benchmark/benchmark_profiles/default.json"],
     "SKILL_BENCHMARK": ["assets/skill_benchmark/default_profile.json"],
     "NON_DEV_AI_SYSTEM": ["assets/non_dev_ai_system/packaging_config.example.json"],
 }

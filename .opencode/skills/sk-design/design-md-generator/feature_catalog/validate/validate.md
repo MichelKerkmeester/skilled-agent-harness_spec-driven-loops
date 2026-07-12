@@ -89,7 +89,7 @@ Four conditions require escalation rather than automated correction:
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/validate/phantom-hex-detection.md` | Manual playbook | Validator pass/fail scenario — confirms faithful DESIGN.md passes and phantom hexes are flagged |
+| `../../manual_testing_playbook/validate/phantom_hex_detection.md` | Manual playbook | Validator pass/fail scenario — confirms faithful DESIGN.md passes and phantom hexes are flagged |
 | `backend/tests/validate.test.ts` | Automated test | Validation engine unit tests covering hex accuracy, section completeness, and format consistency |
 
 ---
@@ -102,5 +102,5 @@ Four conditions require escalation rather than automated correction:
 
 Related references:
 - [references/quality_checklist.md](../../references/quality_checklist.md) — pre-validate self-check list
-- [write-design-md.md](../write-design-md/write-design-md.md) — the write phase that produces the DESIGN.md under validation
+- [write-design-md.md](../write_design_md/write_design_md.md) — the write phase that produces the DESIGN.md under validation
 - [references/troubleshooting.md](../../references/troubleshooting.md) — failure modes and escalation guidance

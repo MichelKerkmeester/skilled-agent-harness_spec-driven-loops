@@ -12,7 +12,7 @@
     "kind": "natural",
     "command": null
   },
-  "fixture": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx-001-alignment-target",
+  "fixture": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/behavior_benchmark/fixtures/fx_001_alignment_target",
   "expected_interaction": "question_halt",
   "expected_presentation_markers": [
     "/which|what|whose|authority|standard|sk-doc|sk-git|sk-design|sk-code/i",

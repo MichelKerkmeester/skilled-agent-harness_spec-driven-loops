@@ -29,7 +29,7 @@ The orchestrator (`extract.ts`) accepts a URL and dispatch flags, then hands off
 
 ### Interaction capture flags
 
-Interaction state capture (hover, focus, active, disabled) runs by default: `extract.ts` sets `noInteraction = false`, so the extractor captures interaction states unless told to skip. Opt out with `--no-interaction` or `--fast-no-interaction`. `--with-interaction` is still accepted but is now redundant — it requests the behavior that is already the default. `--fast` reduces crawl depth (`maxPages = 5`) but STILL captures interaction; `--fast-no-interaction` is the combined fast-crawl-and-skip-interaction mode (the old `--fast` behavior). The full interaction-capture surface is documented in [interaction-capture.md](../interaction-capture/interaction-capture.md).
+Interaction state capture (hover, focus, active, disabled) runs by default: `extract.ts` sets `noInteraction = false`, so the extractor captures interaction states unless told to skip. Opt out with `--no-interaction` or `--fast-no-interaction`. `--with-interaction` is still accepted but is now redundant — it requests the behavior that is already the default. `--fast` reduces crawl depth (`maxPages = 5`) but STILL captures interaction; `--fast-no-interaction` is the combined fast-crawl-and-skip-interaction mode (the old `--fast` behavior). The full interaction-capture surface is documented in [interaction-capture.md](../interaction_capture/interaction_capture.md).
 
 ### DOM collection and CSS analysis
 
@@ -80,8 +80,8 @@ If Playwright cannot reach the URL, JavaScript rendering times out, or the page 
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/extract/live-extraction.md` | Manual playbook | Live extraction end-to-end scenario — confirms extract.ts produces a valid, non-empty tokens.json |
-| `../../manual_testing_playbook/escalation/anti-bot-escalation.md` | Manual playbook | Anti-bot crawl escalation scenario — confirms blocked crawls never fabricate tokens |
+| `../../manual_testing_playbook/extract/live_extraction.md` | Manual playbook | Live extraction end-to-end scenario — confirms extract.ts produces a valid, non-empty tokens.json |
+| `../../manual_testing_playbook/escalation/anti_bot_escalation.md` | Manual playbook | Anti-bot crawl escalation scenario — confirms blocked crawls never fabricate tokens |
 | (no automated test) | Automated test | Covered by the manual playbook scenarios |
 
 ---
@@ -95,4 +95,4 @@ If Playwright cannot reach the URL, JavaScript rendering times out, or the page 
 Related references:
 - [references/extraction_workflow.md](../../references/extraction_workflow.md) — the three-phase operational guide
 - [references/troubleshooting.md](../../references/troubleshooting.md) — failure modes and fixes
-- [cluster-classify.md](../cluster-classify/cluster-classify.md) — the clustering and stability-classification phase that consumes extract output
+- [cluster-classify.md](../cluster_classify/cluster_classify.md) — the clustering and stability-classification phase that consumes extract output

@@ -81,7 +81,7 @@ Transforms raw color data from `tokens.json` into stability-classified tokens vi
 
 #### Source Files
 
-See [`cluster-classify/cluster-classify.md`](cluster-classify/cluster-classify.md) for the OKLCH clustering algorithm, the stability-classification heuristic, and the boundary-disambiguation rule.
+See [`cluster-classify/cluster-classify.md`](cluster_classify/cluster_classify.md) for the OKLCH clustering algorithm, the stability-classification heuristic, and the boundary-disambiguation rule.
 
 ---
 
@@ -106,7 +106,7 @@ Produces the v3 Style Reference `DESIGN.md` from `tokens.json` — a named, role
 
 #### Source Files
 
-See [`write-design-md/write-design-md.md`](write-design-md/write-design-md.md) for the cardinal fidelity rule, the v3 Style Reference contract, the doc-as-view v3 emitters, and the write-phase prompt template.
+See [`write-design-md/write-design-md.md`](write_design_md/write_design_md.md) for the cardinal fidelity rule, the v3 Style Reference contract, the doc-as-view v3 emitters, and the write-phase prompt template.
 
 ---
 
@@ -148,7 +148,7 @@ Optional post-validation phase that renders visual artifacts — HTML report, CS
 
 #### Source Files
 
-See [`report-preview/report-preview.md`](report-preview/report-preview.md) for the report schema, preview rendering, and proof artifact format.
+See [`report-preview/report-preview.md`](report_preview/report_preview.md) for the report schema, preview rendering, and proof artifact format.
 
 ---
 
@@ -170,7 +170,7 @@ Six per-feature detectors that run inline during extraction, each targeting a sp
 
 #### Source Files
 
-See [`feature-extractors/feature-extractors.md`](feature-extractors/feature-extractors.md) for each detector's extraction method, the token-schema fields it populates, and the absence-reporting rule.
+See [`feature-extractors/feature-extractors.md`](feature_extractors/feature_extractors.md) for each detector's extraction method, the token-schema fields it populates, and the absence-reporting rule.
 
 ---
 
@@ -190,7 +190,7 @@ Captures hover, focus, active, and disabled component states when extraction run
 
 #### Source Files
 
-See [`interaction-capture/interaction-capture.md`](interaction-capture/interaction-capture.md) for the interaction-capture method, the state-matrix schema, and the `--with-interaction` flag contract.
+See [`interaction-capture/interaction-capture.md`](interaction_capture/interaction_capture.md) for the interaction-capture method, the state-matrix schema, and the `--with-interaction` flag contract.
 
 ---
 
@@ -206,4 +206,4 @@ The mode cites the card when the request asks to extract tokens, capture CSS, ge
 
 #### Source Files
 
-See [`procedure-cards/md-generator-procedure-card-inventory.md`](procedure-cards/md-generator-procedure-card-inventory.md) for the card definition, tool boundary, and conflict rule.
+See [`procedure-cards/md-generator-procedure-card-inventory.md`](procedure_cards/md_generator_procedure_card_inventory.md) for the card definition, tool boundary, and conflict rule.

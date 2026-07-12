@@ -118,7 +118,7 @@ The tables below list tools from the most recent successful `list_tools()` captu
 | `clickup_get_custom_fields` | List custom fields |
 | `clickup_set_custom_field_value` | Set custom field value |
 
-Note: no top-level `get_document`/`update_document` tool was found in the last inventory — only creation and page-level operations. Treat those two capabilities as unsupported until proven otherwise (see `feature_catalog/mcp-medium-priority/{get-document,update-document}.md`).
+Note: no top-level `get_document`/`update_document` tool was found in the last inventory — only creation and page-level operations. Treat those two capabilities as unsupported until proven otherwise (see `feature_catalog/mcp_medium_priority/{get-document,update-document}.md`).
 
 ---
 

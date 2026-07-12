@@ -43,7 +43,7 @@ The tree is walked once per lane the operator wants: pick an artifact-class, mul
 
 #### Source Files
 
-See [`lane-resolution/scoping-tree.md`](lane-resolution/scoping-tree.md) for full implementation and validation file listings.
+See [`lane-resolution/scoping-tree.md`](lane_resolution/scoping_tree.md) for full implementation and validation file listings.
 
 ---
 
@@ -59,7 +59,7 @@ The four artifact-class values a lane may carry: `docs`, `code`, `designs`, `git
 
 #### Source Files
 
-See [`lane-resolution/artifact-classes.md`](lane-resolution/artifact-classes.md) for full implementation and validation file listings.
+See [`lane-resolution/artifact-classes.md`](lane_resolution/artifact_classes.md) for full implementation and validation file listings.
 
 ---
 
@@ -75,7 +75,7 @@ A frozen registry maps `sk-doc -> [docs]`, `sk-git -> [git-history]`, `sk-design
 
 #### Source Files
 
-See [`lane-resolution/authority-registry.md`](lane-resolution/authority-registry.md) for full implementation and validation file listings.
+See [`lane-resolution/authority-registry.md`](lane_resolution/authority_registry.md) for full implementation and validation file listings.
 
 ---
 
@@ -91,7 +91,7 @@ The three scope shapes — `paths`, `globs`, `branchRange` — validated against
 
 #### Source Files
 
-See [`lane-resolution/scope-types.md`](lane-resolution/scope-types.md) for full implementation and validation file listings.
+See [`lane-resolution/scope-types.md`](lane_resolution/scope_types.md) for full implementation and validation file listings.
 
 ---
 
@@ -107,7 +107,7 @@ The non-interactive `--lane-config <file.json>` path: a bare JSON array of lane 
 
 #### Source Files
 
-See [`lane-resolution/lane-config.md`](lane-resolution/lane-config.md) for full implementation and validation file listings.
+See [`lane-resolution/lane-config.md`](lane_resolution/lane_config.md) for full implementation and validation file listings.
 
 ---
 
@@ -127,7 +127,7 @@ The first adapter method: turn a lane's scope into an artifact corpus plus cover
 
 #### Source Files
 
-See [`adapter-contract/discover.md`](adapter-contract/discover.md) for full implementation and validation file listings.
+See [`adapter-contract/discover.md`](adapter_contract/discover.md) for full implementation and validation file listings.
 
 ---
 
@@ -143,7 +143,7 @@ The second adapter method: resolve where an authority's own creation standard li
 
 #### Source Files
 
-See [`adapter-contract/standard-source.md`](adapter-contract/standard-source.md) for full implementation and validation file listings.
+See [`adapter-contract/standard-source.md`](adapter_contract/standard_source.md) for full implementation and validation file listings.
 
 ---
 
@@ -159,7 +159,7 @@ The third adapter method: check one artifact against its lane's standard and ret
 
 #### Source Files
 
-See [`adapter-contract/check.md`](adapter-contract/check.md) for full implementation and validation file listings.
+See [`adapter-contract/check.md`](adapter_contract/check.md) for full implementation and validation file listings.
 
 ---
 
@@ -175,7 +175,7 @@ The reference authority adapter: wraps `validate_document.py` and `extract_struc
 
 #### Source Files
 
-See [`adapter-contract/adapter-sk-doc.md`](adapter-contract/adapter-sk-doc.md) for full implementation and validation file listings.
+See [`adapter-contract/adapter-sk-doc.md`](adapter_contract/adapter_sk_doc.md) for full implementation and validation file listings.
 
 ---
 
@@ -191,7 +191,7 @@ The single-layer deterministic authority adapter for the `git-history` artifact-
 
 #### Source Files
 
-See [`adapter-contract/adapter-sk-git.md`](adapter-contract/adapter-sk-git.md) for full implementation and validation file listings.
+See [`adapter-contract/adapter-sk-git.md`](adapter_contract/adapter_sk_git.md) for full implementation and validation file listings.
 
 ---
 
@@ -207,7 +207,7 @@ The static-only hybrid authority adapter for the `designs` artifact-class (DESIG
 
 #### Source Files
 
-See [`adapter-contract/adapter-sk-design.md`](adapter-contract/adapter-sk-design.md) for full implementation and validation file listings.
+See [`adapter-contract/adapter-sk-design.md`](adapter_contract/adapter_sk_design.md) for full implementation and validation file listings.
 
 ---
 
@@ -223,7 +223,7 @@ The hardest hybrid authority adapter for the `code` artifact-class, spanning the
 
 #### Source Files
 
-See [`adapter-contract/adapter-sk-code.md`](adapter-contract/adapter-sk-code.md) for full implementation and validation file listings.
+See [`adapter-contract/adapter-sk-code.md`](adapter_contract/adapter_sk_code.md) for full implementation and validation file listings.
 
 ---
 
@@ -239,7 +239,7 @@ The live-render authority adapter that wraps no local renderer and checks only c
 
 #### Source Files
 
-See [`adapter-contract/adapter-sk-design-live-render.md`](adapter-contract/adapter-sk-design-live-render.md) for full implementation and validation file listings.
+See [`adapter-contract/adapter-sk-design-live-render.md`](adapter_contract/adapter_sk_design_live_render.md) for full implementation and validation file listings.
 
 ---
 
@@ -259,7 +259,7 @@ Each state calls one single-shot script that answers a question and returns; no 
 
 #### Source Files
 
-See [`loop-lifecycle/state-machine.md`](loop-lifecycle/state-machine.md) for full implementation and validation file listings.
+See [`loop-lifecycle/state-machine.md`](loop_lifecycle/state_machine.md) for full implementation and validation file listings.
 
 ---
 
@@ -275,7 +275,7 @@ The `ITERATE`-state resolver that answers "what should the next iteration check?
 
 #### Source Files
 
-See [`loop-lifecycle/corpus-partitioning.md`](loop-lifecycle/corpus-partitioning.md) for full implementation and validation file listings.
+See [`loop-lifecycle/corpus-partitioning.md`](loop_lifecycle/corpus_partitioning.md) for full implementation and validation file listings.
 
 ---
 
@@ -291,7 +291,7 @@ The `CONVERGE`-state decision: coverage AND dry-run-stability, with max-iteratio
 
 #### Source Files
 
-See [`loop-lifecycle/convergence-check.md`](loop-lifecycle/convergence-check.md) for full implementation and validation file listings.
+See [`loop-lifecycle/convergence-check.md`](loop_lifecycle/convergence_check.md) for full implementation and validation file listings.
 
 ---
 
@@ -307,7 +307,7 @@ The `REPORT`-state reducer that folds the JSONL state log and deltas into the fi
 
 #### Source Files
 
-See [`loop-lifecycle/alignment-report-reducer.md`](loop-lifecycle/alignment-report-reducer.md) for full implementation and validation file listings.
+See [`loop-lifecycle/alignment-report-reducer.md`](loop_lifecycle/alignment_report_reducer.md) for full implementation and validation file listings.
 
 ---
 
@@ -327,7 +327,7 @@ Pattern-matching alone is never sufficient grounds for a finding. Deterministic 
 
 #### Source Files
 
-See [`alignment-contract/verify-first.md`](alignment-contract/verify-first.md) for full implementation and validation file listings.
+See [`alignment-contract/verify-first.md`](alignment_contract/verify_first.md) for full implementation and validation file listings.
 
 ---
 
@@ -343,7 +343,7 @@ Each adapter's `standardSource()` loads a machine-readable deviation list parsed
 
 #### Source Files
 
-See [`alignment-contract/known-deviation-suppression.md`](alignment-contract/known-deviation-suppression.md) for full implementation and validation file listings.
+See [`alignment-contract/known-deviation-suppression.md`](alignment_contract/known_deviation_suppression.md) for full implementation and validation file listings.
 
 ---
 
@@ -359,7 +359,7 @@ The default surface exposes no `Write`/`Edit`. `Task` and `Bash` are present in 
 
 #### Source Files
 
-See [`alignment-contract/read-only-default.md`](alignment-contract/read-only-default.md) for full implementation and validation file listings.
+See [`alignment-contract/read-only-default.md`](alignment_contract/read_only_default.md) for full implementation and validation file listings.
 
 ---
 
@@ -375,4 +375,4 @@ The optional `REMEDIATE` state exists as a callable, testable hook point (`remed
 
 #### Source Files
 
-See [`alignment-contract/gated-remediation.md`](alignment-contract/gated-remediation.md) for full implementation and validation file listings.
+See [`alignment-contract/gated-remediation.md`](alignment_contract/gated_remediation.md) for full implementation and validation file listings.

@@ -187,7 +187,7 @@ The skill ships a manual testing playbook covering the core tools, the naming co
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-code-mode/README.md --type readme` reports zero issues |
 | Config health | `python3 .opencode/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json` passes with no errors |
 | Runtime health | `bash .opencode/skills/mcp-code-mode/scripts/doctor.sh` runs a read-only health check against the live config |
-| Behavior | Run the playbook scenarios under `manual_testing_playbook/core-tools/` through `manual_testing_playbook/recovery-and-config/` in a live session |
+| Behavior | Run the playbook scenarios under `manual_testing_playbook/core_tools/` through `manual_testing_playbook/recovery_and_config/` in a live session |
 
 ---
 

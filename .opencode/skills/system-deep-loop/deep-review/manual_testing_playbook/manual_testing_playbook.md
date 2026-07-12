@@ -71,7 +71,7 @@ This playbook provides 51 deterministic scenarios across 9 categories validating
 ### Inputs Required
 
 1. `manual_testing_playbook.md`
-2. Referenced per-feature files under `manual_testing_playbook/NN--category-name/`
+2. Referenced per-feature files under `manual_testing_playbook/NN__category_name/`
 3. Scenario execution evidence including `review/iterations/iteration-NNN.md`, `review/deep-review-state.jsonl`, and `review/review-report.md` when synthesis runs
 4. Feature-to-scenario coverage map (every DRV-NNN appears in section 14)
 5. Triage notes for all non-pass outcomes including pause-sentinel halts, malformed-state recovery, and convergence stalls
@@ -140,7 +140,7 @@ Prompt: `Validate the autonomous deep-review entrypoint and report whether docs,
 Expected signals: The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `review/review-report.md`.
 
 #### Test Execution
-> **Feature File:** [DRV-001](entry-points-and-modes/auto-mode-deep-review-kickoff.md)
+> **Feature File:** [DRV-001](entry_points_and_modes/auto_mode_deep_review_kickoff.md)
 
 ### DRV-002 | Confirm mode checkpointed review
 
@@ -153,7 +153,7 @@ Prompt: `Validate the confirm-mode deep-review entrypoint and report whether app
 Expected signals: The confirm YAML has `approvals: multi_gate`, pause/approval steps appear in the loop, and the command entrypoint routes `:confirm` to the confirm YAML.
 
 #### Test Execution
-> **Feature File:** [DRV-002](entry-points-and-modes/confirm-mode-checkpointed-review.md)
+> **Feature File:** [DRV-002](entry_points_and_modes/confirm_mode_checkpointed_review.md)
 
 ### DRV-003 | Parameterized invocation max-iterations and convergence
 
@@ -166,7 +166,7 @@ Prompt: `Validate deep-review parameter handling for --max-iterations and --conv
 Expected signals: Default values of 7 and 0.10 appear consistently across all sources. The YAML writes these into `deep-review-config.json` during init.
 
 #### Test Execution
-> **Feature File:** [DRV-003](entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
+> **Feature File:** [DRV-003](entry_points_and_modes/parameterized_invocation_max_iterations_convergence.md)
 
 ---
 
@@ -185,7 +185,7 @@ Prompt: `Validate fresh deep-review initialization and report whether all canoni
 Expected signals: The review/ directory is created, config comes from the shared deep-review config template, the findings registry is created from the reducer contract, strategy comes from the deep-review strategy template, and the JSONL begins with a config record.
 
 #### Test Execution
-> **Feature File:** [DRV-004](initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md)
+> **Feature File:** [DRV-004](initialization_and_state_setup/fresh_review_initialization_creates_canonical_state_files.md)
 
 ### DRV-005 | Resume classification from valid prior review state
 
@@ -198,7 +198,7 @@ Prompt: `Validate deep-review resume classification from existing review state a
 Expected signals: The classify step checks for config, JSONL, and strategy presence. Classifies as "resume" when all three exist and are consistent. And skips to phase_loop.
 
 #### Test Execution
-> **Feature File:** [DRV-005](initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md)
+> **Feature File:** [DRV-005](initialization_and_state_setup/resume_classification_from_valid_prior_review_state.md)
 
 ### DRV-006 | Invalid or contradictory review state halts for repair
 
@@ -211,7 +211,7 @@ Prompt: `Validate invalid deep-review state handling and report whether partial 
 Expected signals: The classify step has an explicit "invalid-state" classification for partial or contradictory combinations. It halts with a descriptive message. The migration step also halts on canonical/legacy conflicts.
 
 #### Test Execution
-> **Feature File:** [DRV-006](initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md)
+> **Feature File:** [DRV-006](initialization_and_state_setup/invalid_or_contradictory_review_state_halts_for_repair.md)
 
 ### DRV-007 | Scope discovery and dimension ordering
 
@@ -224,7 +224,7 @@ Prompt: `Validate deep-review scope discovery and dimension ordering for target 
 Expected signals: The scope discovery step has resolution rules for each target type (spec-folder, skill, agent, track, files). The dimension ordering step enforces correctness > security > traceability > maintainability. The quick reference dimension table matches.
 
 #### Test Execution
-> **Feature File:** [DRV-007](initialization-and-state-setup/scope-discovery-and-dimension-ordering.md)
+> **Feature File:** [DRV-007](initialization_and_state_setup/scope_discovery_and_dimension_ordering.md)
 
 ---
 
@@ -243,7 +243,7 @@ Prompt: `Validate that each deep-review iteration reads JSONL and strategy state
 Expected signals: Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
 
 #### Test Execution
-> **Feature File:** [DRV-008](iteration-execution-and-state-discipline/review-iteration-reads-state-before-review.md)
+> **Feature File:** [DRV-008](iteration_execution_and_state_discipline/review_iteration_reads_state_before_review.md)
 
 ### DRV-009 | Review iteration writes findings, JSONL, and strategy update
 
@@ -256,7 +256,7 @@ Prompt: `Validate the deep-review per-iteration write contract for iteration mar
 Expected signals: The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy. The post-dispatch validation checks for all three. The quick reference checklist documents the same three outputs.
 
 #### Test Execution
-> **Feature File:** [DRV-009](iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md)
+> **Feature File:** [DRV-009](iteration_execution_and_state_discipline/review_iteration_writes_findings_jsonl_and_strategy_update.md)
 
 ### DRV-010 | Strategy next focus and dimension rotation
 
@@ -269,7 +269,7 @@ Prompt: `Validate deep-review dimension rotation through strategy Next Focus and
 Expected signals: The read-state step extracts the next uncovered dimension. The dispatch step injects it as the focus. The strategy template has a "Next Focus" section. The convergence docs require all dimensions to be covered.
 
 #### Test Execution
-> **Feature File:** [DRV-010](iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md)
+> **Feature File:** [DRV-010](iteration_execution_and_state_discipline/strategy_next_focus_and_dimension_rotation.md)
 
 ### DRV-011 | Cross-reference verification detects misalignment
 
@@ -282,7 +282,7 @@ Prompt: `Validate deep-review traceability cross-reference checks and confirm th
 Expected signals: The config includes crossReference with core and overlay protocols. The dispatch prompt includes traceability constraints. The strategy template tracks cross-reference results. The quality guards require cross-reference checks before convergence.
 
 #### Test Execution
-> **Feature File:** [DRV-011](iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md)
+> **Feature File:** [DRV-011](iteration_execution_and_state_discipline/cross_reference_verification_detects_misalignment.md)
 
 ### DRV-012 | Adversarial self-check runs on P0 findings
 
@@ -295,7 +295,7 @@ Prompt: `Validate that deep-review runs adversarial self-checks on P0 findings b
 Expected signals: Rule 10 in SKILL.md mandates adversarial self-check for P0. The iteration checklist includes it as step 5. The YAML has a claim adjudication step that checks for P0/P1 self-check evidence. The agent definitions describe the Hunter/Skeptic/Referee roles.
 
 #### Test Execution
-> **Feature File:** [DRV-012](iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md)
+> **Feature File:** [DRV-012](iteration_execution_and_state_discipline/adversarial_self_check_runs_on_p0_findings.md)
 
 ### DRV-013 | Review dashboard generation after iteration
 
@@ -308,7 +308,7 @@ Prompt: `Validate deep-review dashboard generation after each iteration from JSO
 Expected signals: The step_generate_dashboard runs after step_validate_iteration. It reads JSONL and strategy. It writes to deep-review-dashboard.md. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
 
 #### Test Execution
-> **Feature File:** [DRV-013](iteration-execution-and-state-discipline/review-dashboard-generation-after-iteration.md)
+> **Feature File:** [DRV-013](iteration_execution_and_state_discipline/review_dashboard_generation_after_iteration.md)
 
 ### DRV-014 | Severity classification in JSONL
 
@@ -321,7 +321,7 @@ Prompt: `Validate deep-review JSONL severity classification for findingsSummary,
 Expected signals: Rule 11 mandates the fields. The YAML dispatch prompt constrains them. The convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0. The P0 override sets newFindingsRatio >= 0.50.
 
 #### Test Execution
-> **Feature File:** [DRV-014](iteration-execution-and-state-discipline/severity-classification-in-jsonl.md)
+> **Feature File:** [DRV-014](iteration_execution_and_state_discipline/severity_classification_in_jsonl.md)
 
 ### DRV-015 | Review iterations emit structured graphEvents
 
@@ -334,7 +334,7 @@ Prompt: `Validate deep-review graphEvents records for dimension, file, and findi
 Expected signals: `graphEvents` referenced as iteration-record input for graph-aware review convergence. Replay tests include review node-type coverage for `dimension_node`, `file_node`, and `finding_node`.
 
 #### Test Execution
-> **Feature File:** [DRV-015](iteration-execution-and-state-discipline/graph-events-review.md)
+> **Feature File:** [DRV-015](iteration_execution_and_state_discipline/graph_events_review.md)
 
 ---
 
@@ -353,7 +353,7 @@ Prompt: `Validate the deep-review hard iteration cap and report whether synthesi
 Expected signals: `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
 
 #### Test Execution
-> **Feature File:** [DRV-030](convergence-and-recovery/stop-on-max-iterations.md)
+> **Feature File:** [DRV-030](convergence_and_recovery/stop_on_max_iterations.md)
 
 ### DRV-031 | Composite review convergence stop behavior
 
@@ -366,7 +366,7 @@ Prompt: `Validate deep-review composite convergence scoring, including rolling a
 Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
 
 #### Test Execution
-> **Feature File:** [DRV-031](convergence-and-recovery/composite-review-convergence-stop-behavior.md)
+> **Feature File:** [DRV-031](convergence_and_recovery/composite_review_convergence_stop_behavior.md)
 
 ### DRV-017 | P0 override blocks convergence
 
@@ -379,7 +379,7 @@ Prompt: `Validate that new P0 findings block deep-review convergence by forcing 
 Expected signals: P0 finding sets `newFindingsRatio >= 0.50`, this blocks the rolling average signal from contributing to convergence, the composite score cannot reach 0.60, and review continues.
 
 #### Test Execution
-> **Feature File:** [DRV-017](convergence-and-recovery/p0-override-blocks-convergence.md)
+> **Feature File:** [DRV-017](convergence_and_recovery/p0_override_blocks_convergence.md)
 
 ### DRV-018 | Review quality guards block premature stop
 
@@ -392,7 +392,7 @@ Prompt: `Validate deep-review quality guards for evidence, scope, and coverage b
 Expected signals: Three named binary gates (evidence, scope, coverage), each must return true, enforcement happens after convergence check but before STOP transition, and gates are review-specific.
 
 #### Test Execution
-> **Feature File:** [DRV-018](convergence-and-recovery/review-quality-guards-block-premature-stop.md)
+> **Feature File:** [DRV-018](convergence_and_recovery/review_quality_guards_block_premature_stop.md)
 
 ### DRV-019 | Stuck recovery widens dimension focus
 
@@ -405,7 +405,7 @@ Prompt: `Validate deep-review stuck recovery and report whether the loop switche
 Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
 
 #### Test Execution
-> **Feature File:** [DRV-019](convergence-and-recovery/stuck-recovery-widens-dimension-focus.md)
+> **Feature File:** [DRV-019](convergence_and_recovery/stuck_recovery_widens_dimension_focus.md)
 
 ### DRV-020 | Dimension coverage convergence signal
 
@@ -418,7 +418,7 @@ Prompt: `Validate the deep-review dimension coverage convergence signal and its 
 Expected signals: Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
 
 #### Test Execution
-> **Feature File:** [DRV-020](convergence-and-recovery/dimension-coverage-convergence-signal.md)
+> **Feature File:** [DRV-020](convergence_and_recovery/dimension_coverage_convergence_signal.md)
 
 ### DRV-032 | Review graph convergence signals participate in legal-stop gates
 
@@ -431,7 +431,7 @@ Prompt: `Validate the graph-backed legal-stop gate and report whether blocked-st
 Expected signals: review convergence docs describe `blockedStop` when legal-stop gates fail. Graph convergence handler enforces review `dimensionCoverage`. Fixture evidence shows `blocked_stop` with `blockedBy: ["dimensionCoverage", ...]`.
 
 #### Test Execution
-> **Feature File:** [DRV-032](convergence-and-recovery/graph-convergence-review.md)
+> **Feature File:** [DRV-032](convergence_and_recovery/graph_convergence_review.md)
 
 ### DRV-033 | Review reducer surfaces blocked-stop history across registry, dashboard, and next-focus
 
@@ -444,7 +444,7 @@ Prompt: `Validate blocked-stop reducer surfacing in deep-review dashboard and st
 Expected signals: `blockedStopHistory` is non-empty. Review entries preserve `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`. `BLOCKED STOPS` renders the same blocked-stop data. The strategy `next-focus` anchor contains the blocked-stop recovery strategy.
 
 #### Test Execution
-> **Feature File:** [DRV-033](convergence-and-recovery/blocked-stop-reducer-surfacing.md)
+> **Feature File:** [DRV-033](convergence_and_recovery/blocked_stop_reducer_surfacing.md)
 
 ### DRV-034 | Review reducer fails closed on corruption and missing anchors
 
@@ -457,7 +457,7 @@ Prompt: `Validate deep-review reducer fail-closed behavior for malformed JSONL a
 Expected signals: corrupt JSONL exits `2` without `--lenient`. `corruptionWarnings` is populated in the registry. Missing anchors throw `Missing machine-owned anchor ...`. `--lenient` exits `0` while preserving `corruptionWarnings`. `--create-missing-anchors` appends the `next-focus` anchor and allows the reducer to proceed.
 
 #### Test Execution
-> **Feature File:** [DRV-034](convergence-and-recovery/fail-closed-reducer.md)
+> **Feature File:** [DRV-034](convergence_and_recovery/fail_closed_reducer.md)
 
 ### DRV-068 | Cross-mode anti-convergence contract
 
@@ -470,7 +470,7 @@ Prompt: `Validate the deep-review anti-convergence floor, fail-closed stop polic
 Expected signals: `deep_review_config.json` has `antiConvergence.minIterations = 2`, `convergenceMode = "default"`, and `stopPolicy = "fail-closed"`; runtime capabilities repeat fail-closed policy; the shared runtime resolver rejects missing or permissive policy; the optimizer manifest locks convergence mode and carries `minIterations<=maxIterations`.
 
 #### Test Execution
-> **Feature File:** [DRV-068](convergence-and-recovery/cross-mode-anti-convergence-contract.md)
+> **Feature File:** [DRV-068](convergence_and_recovery/cross_mode_anti_convergence_contract.md)
 
 ### RV-069 | Divergent convergence mode
 
@@ -486,7 +486,7 @@ Expected signals: Only `all_dimensions_clean` is eligible; all nine gates preced
 
 #### Test Execution
 
-> **Feature File:** [RV-069](convergence-and-recovery/divergent-convergence-mode.md)
+> **Feature File:** [RV-069](convergence_and_recovery/divergent_convergence_mode.md)
 
 ---
 
@@ -505,7 +505,7 @@ Prompt: `Validate the deep-review pause sentinel and report whether the loop hal
 Expected signals: The sentinel is checked before dispatch, a paused event is logged to JSONL, the loop halts rather than flowing into synthesis, and the sentinel location is `review/.deep-review-pause`.
 
 #### Test Execution
-> **Feature File:** [DRV-021](pause-resume-and-fault-tolerance/pause-sentinel-halts-between-review-iterations.md)
+> **Feature File:** [DRV-021](pause_resume_and_fault_tolerance/pause_sentinel_halts_between_review_iterations.md)
 
 ### DRV-022 | Resume after pause sentinel removal
 
@@ -518,7 +518,7 @@ Prompt: `Validate deep-review resume after pause removal and report whether the 
 Expected signals: Removing the sentinel triggers loop re-entry, JSONL is re-read to determine last iteration, strategy.md provides dimension coverage state, no iterations are re-run, and the resume event is logged.
 
 #### Test Execution
-> **Feature File:** [DRV-022](pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md)
+> **Feature File:** [DRV-022](pause_resume_and_fault_tolerance/resume_after_pause_sentinel_removal.md)
 
 ### DRV-023 | Malformed JSONL lines are skipped with defaults
 
@@ -531,7 +531,7 @@ Prompt: `Validate malformed deep-review JSONL handling and report whether bad li
 Expected signals: Malformed lines are skipped (not crash), defaults applied (e.g., `newFindingsRatio = 1.0` to force continuation), iteration count still derived from valid lines, and the skip is observable.
 
 #### Test Execution
-> **Feature File:** [DRV-023](pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md)
+> **Feature File:** [DRV-023](pause_resume_and_fault_tolerance/malformed_jsonl_lines_are_skipped_with_defaults.md)
 
 ### DRV-024 | JSONL reconstruction from review iteration files
 
@@ -544,7 +544,7 @@ Prompt: `Validate deep-review JSONL reconstruction from iteration markdown and r
 Expected signals: Iteration files contain metadata matching JSONL fields, reconstruction path is documented or derivable, reconstructed JSONL allows loop resume, and iteration files are write-once (immutable after creation).
 
 #### Test Execution
-> **Feature File:** [DRV-024](pause-resume-and-fault-tolerance/jsonl-reconstruction-from-review-iteration-files.md)
+> **Feature File:** [DRV-024](pause_resume_and_fault_tolerance/jsonl_reconstruction_from_review_iteration_files.md)
 
 ---
 
@@ -563,7 +563,7 @@ Prompt: `Validate deep-review report synthesis and confirm review-report.md cont
 Expected signals: All 9 section headers present, Executive Summary contains verdict and P0/P1/P2 counts, Active Finding Registry has deduplicated findings with evidence, and Audit Appendix includes convergence data.
 
 #### Test Execution
-> **Feature File:** [DRV-025](synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md)
+> **Feature File:** [DRV-025](synthesis_save_and_guardrails/review_report_synthesis_has_all_9_sections.md)
 
 ### DRV-026 | Review verdict determines post-review workflow
 
@@ -576,7 +576,7 @@ Prompt: `Validate deep-review verdict routing for FAIL, CONDITIONAL, and PASS po
 Expected signals: Three distinct verdicts, each with a documented next command, `hasAdvisories` flag on PASS with P2 findings, verdict appears in Executive Summary, and routing rationale appears in Planning Trigger.
 
 #### Test Execution
-> **Feature File:** [DRV-026](synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md)
+> **Feature File:** [DRV-026](synthesis_save_and_guardrails/review_verdict_determines_post_review_workflow.md)
 
 ### DRV-027 | Final synthesis memory save and guardrail behavior
 
@@ -589,7 +589,7 @@ Prompt: `Validate deep-review finalization, memory-save routing, LEAF-only behav
 Expected signals: Synthesis produces `review/review-report.md`, memory save calls `generate-context.js`, the runtime agent forbids nested delegation (LEAF-only), the agent never modifies files under review (read-only), and memory save uses the spec folder established at setup.
 
 #### Test Execution
-> **Feature File:** [DRV-027](synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md)
+> **Feature File:** [DRV-027](synthesis_save_and_guardrails/final_synthesis_memory_save_and_guardrail_behavior.md)
 
 ### DRV-028 | Finding deduplication and registry
 
@@ -602,7 +602,7 @@ Prompt: `Validate deep-review finding deduplication and confirm the active regis
 Expected signals: Findings are compared across iterations by location and description, `finalSeverity` is the highest severity encountered, the Active Finding Registry contains unique entries only, P0 findings are never downgraded or discarded, and the registry includes file:line evidence for each finding.
 
 #### Test Execution
-> **Feature File:** [DRV-028](synthesis-save-and-guardrails/finding-deduplication-and-registry.md)
+> **Feature File:** [DRV-028](synthesis_save_and_guardrails/finding_deduplication_and_registry.md)
 
 ---
 
@@ -629,74 +629,74 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 
 ### ENTRY POINTS AND MODES
 
-- DRV-001: [Auto-mode deep-review kickoff](entry-points-and-modes/auto-mode-deep-review-kickoff.md)
-- DRV-002: [Confirm-mode checkpointed review](entry-points-and-modes/confirm-mode-checkpointed-review.md)
-- DRV-003: [Parameterized invocation: max iterations + convergence](entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
+- DRV-001: [Auto-mode deep-review kickoff](entry_points_and_modes/auto_mode_deep_review_kickoff.md)
+- DRV-002: [Confirm-mode checkpointed review](entry_points_and_modes/confirm_mode_checkpointed_review.md)
+- DRV-003: [Parameterized invocation: max iterations + convergence](entry_points_and_modes/parameterized_invocation_max_iterations_convergence.md)
 
 ### INITIALIZATION AND STATE SETUP
 
-- DRV-004: [Fresh review initialization creates canonical state files](initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md)
-- DRV-005: [Resume classification from valid prior review state](initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md)
-- DRV-006: [Invalid or contradictory review state halts for repair](initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md)
-- DRV-007: [Scope discovery and dimension ordering](initialization-and-state-setup/scope-discovery-and-dimension-ordering.md)
+- DRV-004: [Fresh review initialization creates canonical state files](initialization_and_state_setup/fresh_review_initialization_creates_canonical_state_files.md)
+- DRV-005: [Resume classification from valid prior review state](initialization_and_state_setup/resume_classification_from_valid_prior_review_state.md)
+- DRV-006: [Invalid or contradictory review state halts for repair](initialization_and_state_setup/invalid_or_contradictory_review_state_halts_for_repair.md)
+- DRV-007: [Scope discovery and dimension ordering](initialization_and_state_setup/scope_discovery_and_dimension_ordering.md)
 
 ### ITERATION EXECUTION AND STATE DISCIPLINE
 
-- DRV-008: [Review iteration reads state before review](iteration-execution-and-state-discipline/review-iteration-reads-state-before-review.md)
-- DRV-009: [Review iteration writes findings.jsonl and strategy update](iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md)
-- DRV-010: [Strategy next-focus and dimension rotation](iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md)
-- DRV-011: [Cross-reference verification detects misalignment](iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md)
-- DRV-012: [Adversarial self-check runs on P0 findings](iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md)
-- DRV-013: [Review dashboard generation after iteration](iteration-execution-and-state-discipline/review-dashboard-generation-after-iteration.md)
-- DRV-014: [Severity classification in JSONL](iteration-execution-and-state-discipline/severity-classification-in-jsonl.md)
-- DRV-015: [Review iterations emit structured graphEvents](iteration-execution-and-state-discipline/graph-events-review.md)
+- DRV-008: [Review iteration reads state before review](iteration_execution_and_state_discipline/review_iteration_reads_state_before_review.md)
+- DRV-009: [Review iteration writes findings.jsonl and strategy update](iteration_execution_and_state_discipline/review_iteration_writes_findings_jsonl_and_strategy_update.md)
+- DRV-010: [Strategy next-focus and dimension rotation](iteration_execution_and_state_discipline/strategy_next_focus_and_dimension_rotation.md)
+- DRV-011: [Cross-reference verification detects misalignment](iteration_execution_and_state_discipline/cross_reference_verification_detects_misalignment.md)
+- DRV-012: [Adversarial self-check runs on P0 findings](iteration_execution_and_state_discipline/adversarial_self_check_runs_on_p0_findings.md)
+- DRV-013: [Review dashboard generation after iteration](iteration_execution_and_state_discipline/review_dashboard_generation_after_iteration.md)
+- DRV-014: [Severity classification in JSONL](iteration_execution_and_state_discipline/severity_classification_in_jsonl.md)
+- DRV-015: [Review iterations emit structured graphEvents](iteration_execution_and_state_discipline/graph_events_review.md)
 
 ### CONVERGENCE AND RECOVERY
 
-- DRV-017: [P0 override blocks convergence](convergence-and-recovery/p0-override-blocks-convergence.md)
-- DRV-018: [Review quality guards block premature stop](convergence-and-recovery/review-quality-guards-block-premature-stop.md)
-- DRV-019: [Stuck recovery widens dimension focus](convergence-and-recovery/stuck-recovery-widens-dimension-focus.md)
-- DRV-020: [Dimension coverage convergence signal](convergence-and-recovery/dimension-coverage-convergence-signal.md)
-- DRV-030: [Stop on max iterations](convergence-and-recovery/stop-on-max-iterations.md)
-- DRV-031: [Composite review convergence stop behavior](convergence-and-recovery/composite-review-convergence-stop-behavior.md)
-- DRV-032: [Review graph convergence signals participate in legal-stop gates](convergence-and-recovery/graph-convergence-review.md)
-- DRV-033: [Review reducer surfaces blocked-stop history across registry, dashboard, next-focus](convergence-and-recovery/blocked-stop-reducer-surfacing.md)
-- DRV-034: [Review reducer fails closed on corruption and missing anchors](convergence-and-recovery/fail-closed-reducer.md)
-- DRV-068: [Cross-mode anti-convergence contract](convergence-and-recovery/cross-mode-anti-convergence-contract.md)
-- RV-069: [Divergent convergence mode](convergence-and-recovery/divergent-convergence-mode.md)
+- DRV-017: [P0 override blocks convergence](convergence_and_recovery/p0_override_blocks_convergence.md)
+- DRV-018: [Review quality guards block premature stop](convergence_and_recovery/review_quality_guards_block_premature_stop.md)
+- DRV-019: [Stuck recovery widens dimension focus](convergence_and_recovery/stuck_recovery_widens_dimension_focus.md)
+- DRV-020: [Dimension coverage convergence signal](convergence_and_recovery/dimension_coverage_convergence_signal.md)
+- DRV-030: [Stop on max iterations](convergence_and_recovery/stop_on_max_iterations.md)
+- DRV-031: [Composite review convergence stop behavior](convergence_and_recovery/composite_review_convergence_stop_behavior.md)
+- DRV-032: [Review graph convergence signals participate in legal-stop gates](convergence_and_recovery/graph_convergence_review.md)
+- DRV-033: [Review reducer surfaces blocked-stop history across registry, dashboard, next-focus](convergence_and_recovery/blocked_stop_reducer_surfacing.md)
+- DRV-034: [Review reducer fails closed on corruption and missing anchors](convergence_and_recovery/fail_closed_reducer.md)
+- DRV-068: [Cross-mode anti-convergence contract](convergence_and_recovery/cross_mode_anti_convergence_contract.md)
+- RV-069: [Divergent convergence mode](convergence_and_recovery/divergent_convergence_mode.md)
 
 ### PAUSE, RESUME, AND FAULT TOLERANCE
 
-- DRV-021: [Pause sentinel halts between review iterations](pause-resume-and-fault-tolerance/pause-sentinel-halts-between-review-iterations.md)
-- DRV-022: [Resume after pause sentinel removal](pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md)
-- DRV-023: [Malformed JSONL lines are skipped with defaults](pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md)
-- DRV-024: [JSONL reconstruction from review-iteration files](pause-resume-and-fault-tolerance/jsonl-reconstruction-from-review-iteration-files.md)
+- DRV-021: [Pause sentinel halts between review iterations](pause_resume_and_fault_tolerance/pause_sentinel_halts_between_review_iterations.md)
+- DRV-022: [Resume after pause sentinel removal](pause_resume_and_fault_tolerance/resume_after_pause_sentinel_removal.md)
+- DRV-023: [Malformed JSONL lines are skipped with defaults](pause_resume_and_fault_tolerance/malformed_jsonl_lines_are_skipped_with_defaults.md)
+- DRV-024: [JSONL reconstruction from review-iteration files](pause_resume_and_fault_tolerance/jsonl_reconstruction_from_review_iteration_files.md)
 
 ### SYNTHESIS, SAVE, AND GUARDRAILS
 
-- DRV-025: [Review-report synthesis has all 9 sections](synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md)
-- DRV-026: [Review verdict determines post-review workflow](synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md)
-- DRV-027: [Final synthesis memory save and guardrail behavior](synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md)
-- DRV-028: [Finding deduplication and registry](synthesis-save-and-guardrails/finding-deduplication-and-registry.md)
-- DRV-029: [Resource map emission](synthesis-save-and-guardrails/resource-map-emission.md)
+- DRV-025: [Review-report synthesis has all 9 sections](synthesis_save_and_guardrails/review_report_synthesis_has_all_9_sections.md)
+- DRV-026: [Review verdict determines post-review workflow](synthesis_save_and_guardrails/review_verdict_determines_post_review_workflow.md)
+- DRV-027: [Final synthesis memory save and guardrail behavior](synthesis_save_and_guardrails/final_synthesis_memory_save_and_guardrail_behavior.md)
+- DRV-028: [Finding deduplication and registry](synthesis_save_and_guardrails/finding_deduplication_and_registry.md)
+- DRV-029: [Resource map emission](synthesis_save_and_guardrails/resource_map_emission.md)
 
 ### COMMAND FLOW STRESS TESTS
 
-- CP-052: [Deep-review setup-to-YAML handoff (sandboxed)](command-flow-stress-tests/setup-yaml-handoff.md)
-- CP-053: [Three-artifact iteration contract (sandboxed)](command-flow-stress-tests/three-artifact-iteration-contract.md)
-- CP-054: [Resource-map coverage gate (sandboxed)](command-flow-stress-tests/resource-map-coverage-gate.md)
-- CP-055: [Synthesis and save boundary (sandboxed)](command-flow-stress-tests/synthesis-save-boundary.md)
-- CP-056: [LEAF-only nested dispatch refusal (sandboxed)](command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md)
-- CP-057: [Write boundary and reducer-owned files (sandboxed)](command-flow-stress-tests/write-boundary-reducer-owned-files.md)
+- CP-052: [Deep-review setup-to-YAML handoff (sandboxed)](command_flow_stress_tests/setup_yaml_handoff.md)
+- CP-053: [Three-artifact iteration contract (sandboxed)](command_flow_stress_tests/three_artifact_iteration_contract.md)
+- CP-054: [Resource-map coverage gate (sandboxed)](command_flow_stress_tests/resource_map_coverage_gate.md)
+- CP-055: [Synthesis and save boundary (sandboxed)](command_flow_stress_tests/synthesis_save_boundary.md)
+- CP-056: [LEAF-only nested dispatch refusal (sandboxed)](command_flow_stress_tests/leaf_only_nested_dispatch_refusal.md)
+- CP-057: [Write boundary and reducer-owned files (sandboxed)](command_flow_stress_tests/write_boundary_reducer_owned_files.md)
 
 ### REVIEW-DEPTH V2 ROLLOUT
 
-- DRV-058: [Validator warn rollout for legacy unversioned records](review-depth-v2-rollout/validator-warn-rollout.md)
-- DRV-059: [Validator strict v2 with all five failure codes](review-depth-v2-rollout/validator-strict-v2.md)
-- DRV-060: [Reducer search-debt registry + dashboard + report persistence](review-depth-v2-rollout/reducer-search-debt.md)
-- DRV-061: [candidateCoverageGate STOP blocker](review-depth-v2-rollout/stop-gate-candidate-coverage.md)
-- DRV-062: [graphlessFallbackGate STOP blocker](review-depth-v2-rollout/stop-gate-graphless-fallback.md)
-- DRV-063: [Ledger-led graph vocabulary upserts (BUG_CLASS / INVARIANT / PRODUCER / CONSUMER / TEST)](review-depth-v2-rollout/graph-vocabulary.md)
+- DRV-058: [Validator warn rollout for legacy unversioned records](review_depth_v2_rollout/validator_warn_rollout.md)
+- DRV-059: [Validator strict v2 with all five failure codes](review_depth_v2_rollout/validator_strict_v2.md)
+- DRV-060: [Reducer search-debt registry + dashboard + report persistence](review_depth_v2_rollout/reducer_search_debt.md)
+- DRV-061: [candidateCoverageGate STOP blocker](review_depth_v2_rollout/stop_gate_candidate_coverage.md)
+- DRV-062: [graphlessFallbackGate STOP blocker](review_depth_v2_rollout/stop_gate_graphless_fallback.md)
+- DRV-063: [Ledger-led graph vocabulary upserts (BUG_CLASS / INVARIANT / PRODUCER / CONSUMER / TEST)](review_depth_v2_rollout/graph_vocabulary.md)
 
 ---
 
@@ -719,7 +719,7 @@ The convention was established by the `z_archive/062-deep-loop-command-flow-stre
 Verify the command setup phase produces a YAML-handoff bundle that the runtime workflow can consume without modification.
 
 #### Test Execution
-> **Feature File:** [CP-052](command-flow-stress-tests/setup-yaml-handoff.md)
+> **Feature File:** [CP-052](command_flow_stress_tests/setup_yaml_handoff.md)
 
 ### CP-053 | Three-artifact iteration contract (sandboxed)
 
@@ -727,7 +727,7 @@ Verify the command setup phase produces a YAML-handoff bundle that the runtime w
 Verify each iteration produces exactly three artifacts: iteration markdown, JSONL delta append, and strategy update.
 
 #### Test Execution
-> **Feature File:** [CP-053](command-flow-stress-tests/three-artifact-iteration-contract.md)
+> **Feature File:** [CP-053](command_flow_stress_tests/three_artifact_iteration_contract.md)
 
 ### CP-054 | Resource-map coverage gate (sandboxed)
 
@@ -735,7 +735,7 @@ Verify each iteration produces exactly three artifacts: iteration markdown, JSON
 Verify the resource-map coverage audit pass runs when `{spec_folder}/resource-map.md` is present and skips cleanly when absent.
 
 #### Test Execution
-> **Feature File:** [CP-054](command-flow-stress-tests/resource-map-coverage-gate.md)
+> **Feature File:** [CP-054](command_flow_stress_tests/resource_map_coverage_gate.md)
 
 ### CP-055 | Synthesis and save boundary (sandboxed)
 
@@ -743,7 +743,7 @@ Verify the resource-map coverage audit pass runs when `{spec_folder}/resource-ma
 Verify synthesis writes `review-report.md` and the save phase routes through `generate-context.js` without leaking state to context.
 
 #### Test Execution
-> **Feature File:** [CP-055](command-flow-stress-tests/synthesis-save-boundary.md)
+> **Feature File:** [CP-055](command_flow_stress_tests/synthesis_save_boundary.md)
 
 ### CP-056 | LEAF-only nested dispatch refusal (sandboxed)
 
@@ -751,7 +751,7 @@ Verify synthesis writes `review-report.md` and the save phase routes through `ge
 Verify the runtime agent refuses any nested-dispatch attempt with the canonical REFUSE wording.
 
 #### Test Execution
-> **Feature File:** [CP-056](command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md)
+> **Feature File:** [CP-056](command_flow_stress_tests/leaf_only_nested_dispatch_refusal.md)
 
 ### CP-057 | Write boundary and reducer-owned files (sandboxed)
 
@@ -759,7 +759,7 @@ Verify the runtime agent refuses any nested-dispatch attempt with the canonical 
 Verify that only the reducer mutates reducer-owned files (registry, dashboard, strategy) and that iterations stay write-once for their own narrative.
 
 #### Test Execution
-> **Feature File:** [CP-057](command-flow-stress-tests/write-boundary-reducer-owned-files.md)
+> **Feature File:** [CP-057](command_flow_stress_tests/write_boundary_reducer_owned_files.md)
 
 ---
 
@@ -773,7 +773,7 @@ This category covers 6 scenarios that validate the review-depth v2 contract roll
 Verify the validator emits warnings (not failures) when records lack the v2 schema version field, preserving backward compatibility during rollout.
 
 #### Test Execution
-> **Feature File:** [DRV-058](review-depth-v2-rollout/validator-warn-rollout.md)
+> **Feature File:** [DRV-058](review_depth_v2_rollout/validator_warn_rollout.md)
 
 ### DRV-059 | Validator strict v2 with all five failure codes
 
@@ -781,7 +781,7 @@ Verify the validator emits warnings (not failures) when records lack the v2 sche
 Verify strict-mode validator emits all five v2 failure codes when records violate the new schema contract.
 
 #### Test Execution
-> **Feature File:** [DRV-059](review-depth-v2-rollout/validator-strict-v2.md)
+> **Feature File:** [DRV-059](review_depth_v2_rollout/validator_strict_v2.md)
 
 ### DRV-060 | Reducer search-debt registry + dashboard + report persistence
 
@@ -789,7 +789,7 @@ Verify strict-mode validator emits all five v2 failure codes when records violat
 Verify the reducer accumulates search-debt across iterations and surfaces it in the registry, dashboard, and final report.
 
 #### Test Execution
-> **Feature File:** [DRV-060](review-depth-v2-rollout/reducer-search-debt.md)
+> **Feature File:** [DRV-060](review_depth_v2_rollout/reducer_search_debt.md)
 
 ### DRV-061 | candidateCoverageGate STOP blocker
 
@@ -797,7 +797,7 @@ Verify the reducer accumulates search-debt across iterations and surfaces it in 
 Verify the candidateCoverageGate blocks STOP votes until candidate coverage reaches the configured threshold.
 
 #### Test Execution
-> **Feature File:** [DRV-061](review-depth-v2-rollout/stop-gate-candidate-coverage.md)
+> **Feature File:** [DRV-061](review_depth_v2_rollout/stop_gate_candidate_coverage.md)
 
 ### DRV-062 | graphlessFallbackGate STOP blocker
 
@@ -805,7 +805,7 @@ Verify the candidateCoverageGate blocks STOP votes until candidate coverage reac
 Verify the graphlessFallbackGate blocks STOP votes when graph backing is required but unavailable, falling back to a documented degraded path.
 
 #### Test Execution
-> **Feature File:** [DRV-062](review-depth-v2-rollout/stop-gate-graphless-fallback.md)
+> **Feature File:** [DRV-062](review_depth_v2_rollout/stop_gate_graphless_fallback.md)
 
 ### DRV-063 | Ledger-led graph vocabulary upserts
 
@@ -813,7 +813,7 @@ Verify the graphlessFallbackGate blocks STOP votes when graph backing is require
 Verify ledger-led upserts emit the canonical graph vocabulary (BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, TEST) during synthesis.
 
 #### Test Execution
-> **Feature File:** [DRV-063](review-depth-v2-rollout/graph-vocabulary.md)
+> **Feature File:** [DRV-063](review_depth_v2_rollout/graph_vocabulary.md)
 
 ---
 
@@ -832,7 +832,7 @@ Prompt summary: Validate the CLI fan-out path for deep-review: confirm `step_fan
 Expected signals: `bind_from_output` present in YAML; 10/10 fanout-merge tests pass.
 
 #### Test Execution
-> **Feature File:** [DRV-064](fanout/fanout-cli-lineages-review.md)
+> **Feature File:** [DRV-064](fanout/fanout_cli_lineages_review.md)
 
 ### DRV-065 | Fan-out review strongest-restriction
 
@@ -845,7 +845,7 @@ Prompt summary: Validate the review fan-out strongest-restriction policy and con
 Expected signals: 5/5 review strongest-restriction tests pass; `SEVERITY_RANK` confirmed in source; non-active guard confirmed.
 
 #### Test Execution
-> **Feature File:** [DRV-065](fanout/fanout-strongest-restriction.md)
+> **Feature File:** [DRV-065](fanout/fanout_strongest_restriction.md)
 
 ### DRV-066 | Fan-out native sequential review dispatch
 
@@ -858,7 +858,7 @@ Prompt summary: Validate native fan-out for deep-review: confirm `step_fanout_sp
 Expected signals: `agent: deep-review` (not `deep-research`) in native dispatch block; `config.fanout_lineage_artifact_dir` in context; correct `skip_when`.
 
 #### Test Execution
-> **Feature File:** [DRV-066](fanout/fanout-native-sequential-review.md)
+> **Feature File:** [DRV-066](fanout/fanout_native_sequential_review.md)
 
 ### DRV-067 | Fan-out single-executor parity for review loop
 
@@ -871,4 +871,4 @@ Prompt summary: Validate single-executor parity for deep-review: confirm the fan
 Expected signals: `if_absent` command uses `'review'`; both fan-out steps have `skip_when`; 197/197 vitest.
 
 #### Test Execution
-> **Feature File:** [DRV-067](fanout/fanout-single-executor-parity-review.md)
+> **Feature File:** [DRV-067](fanout/fanout_single_executor_parity_review.md)

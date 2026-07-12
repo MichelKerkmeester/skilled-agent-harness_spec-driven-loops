@@ -41,7 +41,7 @@ The inspect surface locates and reports structure from the open file. `figma-ds-
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/read-only/read-only-inspect.md` | Manual playbook | An inspect verb returns structure without changing the document |
+| `manual_testing_playbook/read_only/read_only_inspect.md` | Manual playbook | An inspect verb returns structure without changing the document |
 
 ---
 
@@ -52,5 +52,5 @@ The inspect surface locates and reports structure from the open file. `figma-ds-
 - Feature file path: `inspect/inspect.md`
 
 Related references:
-- [connect-and-daemon.md](../connect-and-daemon/connect-and-daemon.md) covers the connection inspect depends on
+- [connect-and-daemon.md](../connect_and_daemon/connect_and_daemon.md) covers the connection inspect depends on
 - [export.md](../export/export.md) covers writing read-only assets out to explicit paths

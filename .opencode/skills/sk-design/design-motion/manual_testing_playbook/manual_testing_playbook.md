@@ -12,19 +12,19 @@ version: 1.0.0.0
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| MOTION-STRATEGY-001 | Purposeful motion plan | [`strategy/purposeful-motion-plan.md`](strategy/purposeful-motion-plan.md) |
-| MOTION-STRATEGY-002 | Motion pattern card | [`strategy/motion-pattern-card.md`](strategy/motion-pattern-card.md) |
-| MOTION-STRATEGY-003 | Async state-machine card | [`strategy/async-state-machine-card.md`](strategy/async-state-machine-card.md) |
-| MOTION-PRESENCE-001 | AnimatePresence exit rules | [`presence/animate-presence-exit-rules.md`](presence/animate-presence-exit-rules.md) |
-| MOTION-PRESENCE-002 | AnimatePresence checklist | [`presence/animate-presence-checklist.md`](presence/animate-presence-checklist.md) |
-| MOTION-REDUCED-001 | Performance and reduced motion | [`reduced-motion/performance-and-reduced-motion.md`](reduced-motion/performance-and-reduced-motion.md) |
-| MOTION-REDUCED-002 | Motion performance failure card | [`reduced-motion/motion-performance-failure-card.md`](reduced-motion/motion-performance-failure-card.md) |
-| MOTION-MICRO-001 | Micro-interactions feedback | [`micro-interactions/micro-interactions-feedback.md`](micro-interactions/micro-interactions-feedback.md) |
-| MOTION-DECISION-001 | Restraint gate | [`decision/restraint-gate.md`](decision/restraint-gate.md) |
-| MOTION-ADVANCED-001 | Advanced craft popover and tooltip timing | [`advanced-craft/advanced-craft-popover-tooltip.md`](advanced-craft/advanced-craft-popover-tooltip.md) |
-| MOTION-PROCCARD-001 | Procedure-card selection proof | [`procedure-card-contract/card-selection-proof.md`](procedure-card-contract/card-selection-proof.md) |
-| MOTION-PROCCARD-002 | No-card fallback | [`procedure-card-contract/no-card-fallback.md`](procedure-card-contract/no-card-fallback.md) |
-| MOTION-PROCCARD-003 | Direct fallback without subagents | [`procedure-card-contract/direct-fallback-without-subagents.md`](procedure-card-contract/direct-fallback-without-subagents.md) |
+| MOTION-STRATEGY-001 | Purposeful motion plan | [`strategy/purposeful-motion-plan.md`](strategy/purposeful_motion_plan.md) |
+| MOTION-STRATEGY-002 | Motion pattern card | [`strategy/motion-pattern-card.md`](strategy/motion_pattern_card.md) |
+| MOTION-STRATEGY-003 | Async state-machine card | [`strategy/async-state-machine-card.md`](strategy/async_state_machine_card.md) |
+| MOTION-PRESENCE-001 | AnimatePresence exit rules | [`presence/animate-presence-exit-rules.md`](presence/animate_presence_exit_rules.md) |
+| MOTION-PRESENCE-002 | AnimatePresence checklist | [`presence/animate-presence-checklist.md`](presence/animate_presence_checklist.md) |
+| MOTION-REDUCED-001 | Performance and reduced motion | [`reduced-motion/performance-and-reduced-motion.md`](reduced_motion/performance_and_reduced_motion.md) |
+| MOTION-REDUCED-002 | Motion performance failure card | [`reduced-motion/motion-performance-failure-card.md`](reduced_motion/motion_performance_failure_card.md) |
+| MOTION-MICRO-001 | Micro-interactions feedback | [`micro-interactions/micro-interactions-feedback.md`](micro_interactions/micro_interactions_feedback.md) |
+| MOTION-DECISION-001 | Restraint gate | [`decision/restraint-gate.md`](decision/restraint_gate.md) |
+| MOTION-ADVANCED-001 | Advanced craft popover and tooltip timing | [`advanced-craft/advanced-craft-popover-tooltip.md`](advanced_craft/advanced_craft_popover_tooltip.md) |
+| MOTION-PROCCARD-001 | Procedure-card selection proof | [`procedure-card-contract/card-selection-proof.md`](procedure_card_contract/card_selection_proof.md) |
+| MOTION-PROCCARD-002 | No-card fallback | [`procedure-card-contract/no-card-fallback.md`](procedure_card_contract/no_card_fallback.md) |
+| MOTION-PROCCARD-003 | Direct fallback without subagents | [`procedure-card-contract/direct-fallback-without-subagents.md`](procedure_card_contract/direct_fallback_without_subagents.md) |
 
 ## 2. GLOBAL PRECONDITIONS
 

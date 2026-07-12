@@ -1,0 +1,58 @@
+---
+title: "clickup_manage_lists"
+description: "Create, update, or delete lists within a space or folder."
+trigger_phrases:
+  - "manage lists"
+  - "clickup_manage_lists"
+  - "create clickup list"
+  - "delete list"
+  - "sprint list management"
+version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
+---
+
+# clickup_manage_lists
+
+Create, update, or delete lists within a space or folder.
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+---
+
+## 1. OVERVIEW
+
+CRUD operations on ClickUp lists. Create: requires `space_id` or `folder_id`, `name`. Update: requires `list_id` and fields to change. Delete: requires `list_id`.
+
+---
+
+## 2. HOW IT WORKS
+
+Use for project or sprint setup. Deleting a list archives all contained tasks.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
+
+### Validation And Tests
+
+| File | Type | Role |
+|------|------|------|
+| `manual_testing_playbook/` | Manual | Per-scenario playbook files for this feature |
+
+---
+
+## 4. SOURCE METADATA
+
+- Group: MCP MEDIUM Priority
+- Canonical catalog source: `FEATURE_CATALOG.md`
+- Feature file path: `mcp-medium-priority/manage-lists.md`
+Related references:
+- [task-attachments.md](../mcp_medium_priority/task_attachments.md) — clickup_manage_task_attachments
+- [manage-spaces.md](../mcp_medium_priority/manage_spaces.md) — clickup_manage_spaces

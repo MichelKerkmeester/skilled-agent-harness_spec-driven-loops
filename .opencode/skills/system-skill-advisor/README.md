@@ -242,5 +242,5 @@ A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract
 | [`references/hooks/skill_advisor_hook.md`](./references/hooks/skill_advisor_hook.md) | Prompt-time hook contract across runtimes |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Current feature inventory |
 | [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index |
-| [`feature_catalog/hooks-and-plugin/goal-opencode-plugin.md`](./feature_catalog/hooks-and-plugin/goal-opencode-plugin.md) | `/goal` OpenCode plugin reference |
+| [`feature_catalog/hooks_and_plugin/goal_opencode_plugin.md`](./feature_catalog/hooks_and_plugin/goal_opencode_plugin.md) | `/goal` OpenCode plugin reference |
 | [`changelog/`](./changelog/) | Versioned changelogs |

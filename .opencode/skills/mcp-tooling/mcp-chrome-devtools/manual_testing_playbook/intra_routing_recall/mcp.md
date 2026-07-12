@@ -1,0 +1,18 @@
+---
+id: CD-R02
+category: intra_routing_recall
+stage: routing
+title: 'MCP routing'
+expected_intent: MCP
+expected_resources:
+  - references/session_management.md
+  - references/cdp_patterns.md
+version: 1.0.0.0
+---
+# CD-R02: MCP routing
+## SCENARIO CONTRACT
+- Expected intent: `MCP`
+**Exact prompt**:
+```text
+Run several parallel browser sessions through code mode as a multi-tool mcp workflow.
+```
