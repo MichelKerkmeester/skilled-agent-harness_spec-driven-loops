@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
+# ---------------------------------------------------------------------------
+# COMPONENT: Catalog Content Naming Regression Test
+# ---------------------------------------------------------------------------
 """Regression tests for separator-agnostic catalog/playbook leaf classification and the content-name guard.
 
 Catalog and playbook leaves are classified by their structural position (a subfolder of the
-catalog/playbook root), not by an ordinal folder-name prefix. Both the legacy `NN--slug` form
-hyphenated and underscore forms must classify as typed documents; the root index file must not; and the
-guard must flag any hyphenated content path.
+catalog/playbook root), not by an ordinal folder-name prefix. The legacy `NN--slug`, hyphenated, and
+underscore forms must classify as typed documents; the root index file must not; and the guard must flag
+any hyphenated content path.
 """
 import subprocess
 import sys

@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Underscore Catalog Content Migration                          ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Preview or apply collision-safe catalog and playbook renames.    ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';

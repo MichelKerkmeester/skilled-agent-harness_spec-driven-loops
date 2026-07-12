@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ---------------------------------------------------------------------------
+# COMPONENT: Hyphenated Catalog Content Guard
+# ---------------------------------------------------------------------------
 """Guard: reject hyphenated catalog and playbook content names.
 
 Category folders and per-feature Markdown files use underscore_case so path
