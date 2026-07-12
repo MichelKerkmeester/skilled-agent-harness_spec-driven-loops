@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention",
+  "spec_folder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention",
+  "parent_id": "sk-doc/014-sk-doc-parent",
+  "children_ids": [
+    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix",
+    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames",
+    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "catalog naming convention",
+      "playbook naming convention",
+      "underscore content folders",
+      "feature catalog folder naming",
+      "manual testing playbook folder naming"
+    ],
+    "key_topics": [
+      "catalog",
+      "playbook",
+      "naming convention",
+      "underscore",
+      "migration"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "003-underscore-content-folders-and-files/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "underscore content folders and files",
+        "kind": "phase",
+        "path": "003-underscore-content-folders-and-files/spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "One program keeps category and per-feature path naming consistent while preserving completed de-numbering evidence and coordinating the active underscore migration.",
+    "created_at": "2026-07-12T00:00:00.000Z",
+    "last_save_at": "2026-07-12T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "003-underscore-content-folders-and-files/spec.md"
+    ],
+    "last_active_child_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files",
+    "last_active_at": "2026-07-12T00:00:00.000Z"
+  }
+}

@@ -38,16 +38,16 @@ A catalog package uses this structure:
 ```text
 feature_catalog/
 ├── feature_catalog.md
-├── category-name/
-│   ├── feature-name.md
-│   └── another-feature-name.md
-└── another-category/
-    └── feature-name.md
+├── category_name/
+│   ├── feature_name.md
+│   └── another_feature_name.md
+└── another_category/
+    └── feature_name.md
 ```
 
-Category folders use the bare descriptive slug `category-name`; the root catalog `feature_catalog.md` owns display order, not the folder name.
+Category folders use descriptive `underscore_case` names such as `category_name`; the root catalog `feature_catalog.md` owns display order, not the folder name.
 
-Per-feature files use stable `feature-name.md` slugs without numeric prefixes.
+Per-feature files use stable `feature_name.md` slugs without numeric prefixes.
 
 Each root catalog entry should map to exactly one per-feature file.
 

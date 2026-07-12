@@ -1,0 +1,22 @@
+{
+  "level": "phase",
+  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention",
+  "description": "Program parent grouping the completed category and snippet de-numbering packets with the active underscore naming convention migration for feature catalogs and manual testing playbooks.",
+  "keywords": [
+    "catalog",
+    "playbook",
+    "naming convention",
+    "underscore",
+    "feature catalog",
+    "manual testing playbook"
+  ],
+  "lastUpdated": "2026-07-12T00:00:00.000Z",
+  "specId": "027",
+  "folderSlug": "catalog-naming-convention",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

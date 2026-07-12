@@ -57,7 +57,7 @@ version: 1.0.0.0
 
 ## 3. TEMPLATE SCAFFOLD
 
-Copy everything inside the code fence into `feature_catalog/{CATEGORY_DIR}/{feature-name}.md`:
+Copy everything inside the code fence into `feature_catalog/{CATEGORY_DIR}/{feature_name}.md`:
 
 ```markdown
 ---
@@ -124,7 +124,7 @@ version: 1.0.0.0
 
 - Group: {CATEGORY_NAME}
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
+- Feature file path: `{CATEGORY_DIR}/{feature_name}.md`
 
 Related references:
 - [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
@@ -160,7 +160,7 @@ Related references:
 - If no implementation files exist yet, add a single row: `| — | — | Not yet implemented |`.
 
 **SOURCE METADATA**
-- Preserve the feature file path after publication — other docs link to this path. Category folders use the bare descriptive slug (no numeric prefix); per-feature files also have no numeric prefix.
+- Preserve the feature file path after publication — other docs link to this path. Category folders and per-feature files use descriptive `underscore_case` names without numeric prefixes.
 - Related references: link to the immediately adjacent features in the same category directory so readers can navigate without returning to the root catalog.
 
 ---

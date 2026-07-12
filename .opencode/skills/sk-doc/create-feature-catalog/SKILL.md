@@ -28,7 +28,7 @@ Use this workflow when the request involves:
 - Documenting shipped behavior with source-file anchors, validation anchors, and stable feature slugs.
 - Creating or updating `feature_catalog/feature_catalog.md`.
 - Creating category folders such as `retrieval/` or `mutation/`.
-- Creating per-feature files such as `unified-context-retrieval.md` under category folders.
+- Creating per-feature files such as `unified_context_retrieval.md` under category folders.
 - Linking manual testing playbooks, README summaries, or operator docs back to a stable feature reference.
 
 Keyword triggers: `feature catalog`, `feature inventory`, `catalog package`, `per-feature files`, `source anchors`, `root catalog`, `capability inventory`, `/create:feature-catalog`.
@@ -81,18 +81,18 @@ This is a nested workflow packet under `sk-doc`. It carries its own `SKILL.md`, 
 ```text
 feature_catalog/
 ├── feature_catalog.md
-├── category-name/
-│   ├── feature-name.md
-│   └── another-feature-name.md
-└── another-category/
-    └── feature-name.md
+├── category_name/
+│   ├── feature_name.md
+│   └── another_feature_name.md
+└── another_category/
+    └── feature_name.md
 ```
 
 Invariants:
 
 - Root file is always `feature_catalog.md` in lowercase.
-- Category directories use the bare descriptive slug `category-name` (no numeric prefix).
-- Per-feature files use `feature-name.md` without numeric prefixes.
+- Category directories use descriptive `underscore_case` names such as `category_name` (no numeric prefix).
+- Per-feature files use `feature_name.md` without numeric prefixes.
 - One root entry maps to exactly one per-feature file.
 - Slugs should remain stable after publication.
 - Display order is owned by the root catalog index (`feature_catalog.md`), not the folder name.
@@ -119,7 +119,7 @@ Follow this workflow in order.
 3. Decide the category taxonomy before writing prose.
 4. Stabilize category names, feature names, and feature slugs before polishing descriptions.
 5. Create `feature_catalog/feature_catalog.md` from `assets/feature_catalog/feature_catalog_template.md`.
-6. Create one category folder per root section using the bare descriptive slug `category-name`; the root catalog listing defines display order.
+6. Create one category folder per root section using a descriptive `underscore_case` slug such as `category_name`; the root catalog listing defines display order.
 7. Create one per-feature file for each root entry using `assets/feature_catalog/feature_catalog_snippet_template.md`.
 8. Write concise root summaries and link each feature to its per-feature file.
 9. Fill each per-feature `## 2. HOW IT WORKS` section with current behavior.
@@ -237,7 +237,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skil
 python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <target-skill>/feature_catalog/feature_catalog.md
 
 # Each per-feature leaf (detected as the feature_catalog doc type; validates the Validation And Tests table taxonomy)
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature_catalog/<category>/feature-name.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature_catalog/<category_name>/feature_name.md
 ```
 
 The validator machine-checks the root-catalog structure and each leaf's Validation And Tests table, but not cross-file link targets or source-anchor accuracy. Manually verify:
@@ -265,7 +265,7 @@ Validator boundary:
 1. Use `assets/feature_catalog/feature_catalog_template.md` for the root catalog scaffold.
 2. Use `assets/feature_catalog/feature_catalog_snippet_template.md` for per-feature files.
 3. Preserve the canonical root path `feature_catalog/feature_catalog.md`.
-4. Name category folders with the bare descriptive slug `category-name`; let the root catalog index own display order.
+4. Name category folders with a descriptive `underscore_case` slug such as `category_name`; let the root catalog index own display order.
 5. Keep per-feature filenames stable after publication.
 6. Keep per-feature filenames free of numeric prefixes.
 7. Include source-file and validation anchors for every feature claim.
@@ -286,10 +286,11 @@ Validator boundary:
 6. Never cite mutable packet numbers where current source paths, commands, or feature names should be used.
 7. Never use numeric prefixes on per-feature filenames.
 8. Never add numeric prefixes to category folder names; the root catalog index owns display order.
-9. Never put manual execution scenario matrices in the catalog.
-10. Never omit source anchors for feature claims.
-11. Never leave long `HOW IT WORKS` sections as unbroken walls of prose.
-12. Never omit `trigger_phrases` from per-feature frontmatter.
+9. Never use hyphens in category folder or per-feature filename path segments.
+10. Never put manual execution scenario matrices in the catalog.
+11. Never omit source anchors for feature claims.
+12. Never leave long `HOW IT WORKS` sections as unbroken walls of prose.
+13. Never omit `trigger_phrases` from per-feature frontmatter.
 
 ### ESCALATE IF
 

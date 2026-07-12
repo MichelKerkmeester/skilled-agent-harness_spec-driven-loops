@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/004-execute-migration",
+  "description": "Phase 004.",
+  "keywords": [
+    "phase"
+  ],
+  "lastUpdated": "2026-07-11T17:21:40.628Z",
+  "specId": "004",
+  "folderSlug": "execute-migration",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent",
+    "027-catalog-naming-convention",
+    "002-deprecate-numbered-snippet-filenames"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
