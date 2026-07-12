@@ -23,6 +23,10 @@ Formatting standards and conventions for JSONC behavior config and strict-JSON m
 
 Defines consistent styling rules for configuration files to ensure readability and maintainability across OpenCode behavior config and machine descriptor files.
 
+### When to Use
+
+Use when writing or reviewing JSONC behavior config or strict-JSON machine descriptors.
+
 ### Scope
 
 Applies to two config genres:

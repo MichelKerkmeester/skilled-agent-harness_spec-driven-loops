@@ -23,6 +23,10 @@ Coding conventions and formatting standards for Python scripts in the OpenCode d
 
 Defines consistent styling rules for Python code to ensure readability, maintainability, and alignment across all OpenCode Python scripts.
 
+### When to Use
+
+Use when writing or reviewing Python scripts in the OpenCode development environment.
+
 ### Scope
 
 Applies to all Python files in:

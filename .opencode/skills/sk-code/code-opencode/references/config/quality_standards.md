@@ -23,6 +23,10 @@ Quality gates for JSON/JSONC configuration files used by OpenCode system tooling
 
 Define deterministic configuration quality checks so config updates stay parseable, low-noise, and maintainable across mixed-language workflows.
 
+### When to Use
+
+Use when implementing, validating, or reviewing JSON/JSONC configuration quality.
+
 ### Scope
 
 - JSON files (`.json`) with no comments.

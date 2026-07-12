@@ -25,6 +25,10 @@ Defines consistent styling rules for JavaScript files to ensure readability, mai
 
 ### When to Use
 
+Use when writing, reviewing, or resolving style questions for JavaScript files.
+
+### Use Cases
+
 - Writing new JavaScript files
 - Reviewing JavaScript code for consistency
 - Resolving style disagreements in code review

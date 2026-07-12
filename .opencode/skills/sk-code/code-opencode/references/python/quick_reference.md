@@ -25,6 +25,10 @@ Quick-access reference card for Python patterns. For detailed explanations, see:
 - [style_guide.md](./style_guide.md) - Full style documentation
 - [quality_standards.md](./quality_standards.md) - Quality requirements
 
+### When to Use
+
+Use when implementing or reviewing Python code and a concise pattern lookup is sufficient.
+
 ---
 
 ## 2. FILE TEMPLATE

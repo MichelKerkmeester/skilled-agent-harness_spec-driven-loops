@@ -25,6 +25,10 @@ Quick-access reference card for configuration file patterns. For detailed explan
 - [style_guide.md](./style_guide.md) - Full style documentation
 - [quality_standards.md](./quality_standards.md) - P0/P1/P2 quality gates
 
+### When to Use
+
+Use when implementing or reviewing JSON/JSONC configuration and a concise pattern lookup is sufficient.
+
 ---
 
 ## 2. FILE TEMPLATE

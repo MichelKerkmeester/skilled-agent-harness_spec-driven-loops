@@ -25,6 +25,10 @@ Quick-access reference card for JavaScript patterns. For detailed explanations, 
 - [style_guide.md](./style_guide.md) - Full style documentation
 - [quality_standards.md](quality_standards/overview-modules-and-docs.md) - Quality requirements
 
+### When to Use
+
+Use when implementing or reviewing JavaScript code and a concise pattern lookup is sufficient.
+
 ---
 
 ## 2. COMPLETE FILE TEMPLATE

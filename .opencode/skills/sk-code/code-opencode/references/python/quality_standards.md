@@ -23,6 +23,10 @@ Code quality requirements, validation rules, and best practices for Python scrip
 
 Establishes quality gates and validation criteria that all Python code must meet before being committed or deployed.
 
+### When to Use
+
+Use when implementing, validating, or reviewing Python code quality.
+
 ### Quality Tiers
 
 | Tier | Requirement Level | Enforcement |
