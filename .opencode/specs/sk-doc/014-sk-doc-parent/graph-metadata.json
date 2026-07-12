@@ -61,8 +61,7 @@
     "sk-doc/014-sk-doc-parent/019-create-command-alignment",
     "sk-doc/014-sk-doc-parent/020-command-agent-template-conformance",
     "sk-doc/014-sk-doc-parent/021-flatten-asset-subfolders",
-    "sk-doc/014-sk-doc-parent/025-deprecate-numbered-category-prefix",
-    "sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames"
+    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention"
   ],
   "manual": {
     "depends_on": [],

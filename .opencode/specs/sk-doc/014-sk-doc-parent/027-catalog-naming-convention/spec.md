@@ -15,11 +15,11 @@ _memory:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention"
     last_updated_at: "2026-07-12T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Program parent scaffolded; child 003 spec authored"
-    next_safe_action: "Dispatch Terra: re-nest 025->001 + 026->002, then build+run 003"
+    recent_action: "Re-nested completed children 001/002 and migrated sk-doc-owned naming-convention content"
+    next_safe_action: "Reconcile concurrent non-sk-doc restyles before closing child 003"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 66
     open_questions: []
     answered_questions:
       - "Executor confirmed: openai/gpt-5.6-terra-fast --variant xhigh (luna returns empty completions; terra smoke-test returned real content)"
