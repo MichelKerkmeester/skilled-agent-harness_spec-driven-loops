@@ -223,7 +223,7 @@ Per-feature files: see `routing-disambiguation/`.
 |---|---|---|---|---|---|---|---|---|
 | `SA-001` | Advisor Probe Battery | Verify sk-code wins ≥80% of positive controls and loses 100% of negative controls | (multi-prompt battery — see per-feature file) | run `skill_advisor.py` for each prompt at threshold 0.8; tabulate top-1 and score | sk-code wins ≥12 of 15 positives at score ≥ 0.80; sk-code loses all 5 negatives | `/tmp/skc-SA001-advisor-results.jsonl` | PASS iff positive accuracy ≥ 0.80 AND negative-control false-positive rate == 0 | If positive accuracy < 0.80, propose `signals` array additions to skill-graph.json (Phase E5) |
 
-Per-feature file: see `skill-advisor-integration/advisor-probe-battery.md`.
+Per-feature file: see `skill_advisor_integration/advisor_probe_battery.md`.
 
 ---
 
@@ -285,7 +285,7 @@ These scenarios validate the v3.4.0.0 ponytail-based refinement: the pre-write D
 | `DR-001` | Design Restraint Ladder | Verify sk-code walks the ladder and selects the laziest viable rung before writing new code | `Add a helper to .opencode/skills/system-spec-kit/mcp_server/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.` | advisor probe → invoke sk-code → capture surface then ladder trace | surface OPENCODE emitted before any ladder reasoning; ladder selects a one-line `new Set` rung over a custom loop; Phase 0 to 1 gate honored | `/tmp/skc-DR001-advisor.txt`, `/tmp/skc-DR001-ladder.txt` | PASS iff the ladder runs after routing AND the laziest viable rung is selected per `references/universal/code_quality_standards.md` AND the Phase 0 to 1 gate in `references/phase_detection.md` is honored | If the AI writes a custom loop, verify ladder rungs in `references/universal/code_quality_standards.md` |
 | `DR-002` | Implementer Anti-Stall | Verify sk-code implements the requirement and raises a scope-amendment note without stalling to ask | `Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/mcp_server/lib/config/load.ts. It only runs once at startup.` | advisor probe → invoke sk-code → capture the response shape | requirement implemented; scope-amendment recommendation raised in the same response; no stall-to-ask; SCOPE-LOCK held | `/tmp/skc-DR002-advisor.txt`, `/tmp/skc-DR002-response.txt` | PASS iff sk-code implements the requirement AND raises a scope-amendment note in one response without blocking to ask, per SKILL.md §4 ALWAYS anti-stall bullet | If the AI stalls to ask, verify the anti-stall ALWAYS bullet in SKILL.md §4 |
 | `DR-003` | Ceiling Comment Convention | Verify sk-code marks a deliberate shortcut with a neutral `ceiling:` comment that passes comment-hygiene without allow-listing | `Add a small in-memory rate limiter to the sk-doc local preview server at .opencode/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.` | invoke sk-code in `/tmp/skc-DR003-sandbox/` → run check-comment-hygiene.sh on the result | `ceiling:` comment names shortcut, ceiling, and upgrade trigger as a plain WHY; hygiene exits 0; `ceiling:` not added to the allowed-pattern list | `/tmp/skc-DR003-hygiene.txt` | PASS iff the ceiling comment follows `references/universal/code_style_guide.md` §4 (neutral WHY, not allow-listed) AND comment-hygiene exits 0 | If hygiene fails, the comment likely embeds a forbidden id — rewrite as a durable WHY |
-| `DR-004` | STACK_FOLDERS Validator | Verify the validator passes clean and fails non-zero on an orphan surface folder | `Run the STACK_FOLDERS validator, confirm a clean pass, then add an orphan assets/<fake-surface> folder and confirm it fails.` | `python3 .../verify_stack_folders.py` (exit 0) → mkdir orphan `assets/zzz-fake-surface` → re-run (exit 1) → rmdir → re-run (exit 0) | clean run exits 0 listing declared surfaces; orphan run exits 1 naming the orphan; cleanup restores exit 0 | `/tmp/skc-DR004-clean.txt`, `/tmp/skc-DR004-orphan.txt` | PASS iff the clean run exits 0 AND an orphan folder in `references/` or `assets/` produces exit 1 naming the orphan, per `assets/scripts/verify_stack_folders.py` | If the orphan is not caught, verify both `references/` and `assets/` trees are scanned |
+| `DR-004` | STACK_FOLDERS Validator | Verify the validator passes clean and fails non-zero on an orphan surface folder | `Run the STACK_FOLDERS validator, confirm a clean pass, then add an orphan assets/<fake-surface> folder and confirm it fails.` | `python3 .../verify_stack_folders.py` (exit 0) → mkdir orphan `assets/zzz_fake_surface` → re-run (exit 1) → rmdir → re-run (exit 0) | clean run exits 0 listing declared surfaces; orphan run exits 1 naming the orphan; cleanup restores exit 0 | `/tmp/skc-DR004-clean.txt`, `/tmp/skc-DR004-orphan.txt` | PASS iff the clean run exits 0 AND an orphan folder in `references/` or `assets/` produces exit 1 naming the orphan, per `assets/scripts/verify_stack_folders.py` | If the orphan is not caught, verify both `references/` and `assets/` trees are scanned |
 
 Per-feature files: see `design-restraint/`.
 
@@ -336,9 +336,9 @@ Tests NOT covered by automation (manual playbook is the only validation):
 - Design restraint behaviors: ladder rung selection, anti-stall, and the `ceiling:` convention (DR-001, DR-002, DR-003). DR-004 wraps the deterministic `verify_stack_folders.py` check.
 - Dist-staleness hook wiring (TH-001): no automated test covers `claude-posttooluse.sh`'s dist-checker branch; this manual scenario is the only coverage.
 
-**Comment-hygiene hook wiring (TH-002)**: no automated test covers `claude-posttooluse.sh`'s comment-hygiene branch (`check-comment-hygiene.sh`, see `references/universal/code_style_guide.md` §4); it is now covered by the manual scenario TH-002 (see `tooling-and-hooks/comment-hygiene-hook.md`), which exercises the warn-only banner path and the checker's rc=1-then-rc=0 contract across an in-place fix. This closes the gap previously flagged here alongside the TH-001 addition; the `check-comment-hygiene.sh` checker itself still has no dedicated automated unit test, so this manual scenario is its only coverage.
+**Comment-hygiene hook wiring (TH-002)**: no automated test covers `claude-posttooluse.sh`'s comment-hygiene branch (`check-comment-hygiene.sh`, see `references/universal/code_style_guide.md` §4); it is now covered by the manual scenario TH-002 (see `tooling_and_hooks/comment_hygiene_hook.md`), which exercises the warn-only banner path and the checker's rc=1-then-rc=0 contract across an in-place fix. This closes the gap previously flagged here alongside the TH-001 addition; the `check-comment-hygiene.sh` checker itself still has no dedicated automated unit test, so this manual scenario is its only coverage.
 
-**Post-edit quality router (`post-edit-quality-router`)**: the shared `mk-post-edit-quality` dispatch/router core has a real automated unit-test suite (`.opencode/plugins/tests/mk-post-edit-quality.test.cjs`, 38 tests), but the two live runtime adapters (the OpenCode plugin's actual `tool.execute.before`/`tool.execute.after`/`experimental.chat.system.transform` sequence firing inside a running OpenCode session, and the Claude Code `PostToolUse` hook firing from a real `Write`/`Edit` tool call) are only exercised by the manual scenario `plugins-and-hooks/post-edit-quality-router.md`, which additionally proves the kill-switch and outside-project-root fail-safes live, not only in the unit suite.
+**Post-edit quality router (`post-edit-quality-router`)**: the shared `mk-post-edit-quality` dispatch/router core has a real automated unit-test suite (`.opencode/plugins/tests/mk-post-edit-quality.test.cjs`, 38 tests), but the two live runtime adapters (the OpenCode plugin's actual `tool.execute.before`/`tool.execute.after`/`experimental.chat.system.transform` sequence firing inside a running OpenCode session, and the Claude Code `PostToolUse` hook firing from a real `Write`/`Edit` tool call) are only exercised by the manual scenario `plugins_and_hooks/post_edit_quality_router.md`, which additionally proves the kill-switch and outside-project-root fail-safes live, not only in the unit suite.
 
 ---
 
@@ -346,37 +346,37 @@ Tests NOT covered by automation (manual playbook is the only validation):
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
-| Surface Detection | SD-001 | `surface-detection/webflow-detection.md` | Yes |
-| Surface Detection | SD-002 | `surface-detection/opencode-detection.md` | Yes |
-| Surface Detection | SD-003 | `surface-detection/unknown-fallback.md` | Yes |
-| Language Sub-Detection | LS-001 | `language-sub-detection/opencode-typescript.md` | No |
-| Language Sub-Detection | LS-002 | `language-sub-detection/opencode-python.md` | No |
-| Language Sub-Detection | LS-003 | `language-sub-detection/opencode-shell.md` | No |
-| Language Sub-Detection | LS-004 | `language-sub-detection/opencode-config.md` | No |
-| Routing Disambiguation | RD-001 | `routing-disambiguation/mixed-marker-ambiguity.md` | No |
-| Routing Disambiguation | RD-002 | `routing-disambiguation/skcode-vs-skdoc.md` | Yes |
-| Skill Advisor Integration | SA-001 | `skill-advisor-integration/advisor-probe-battery.md` | Yes |
-| Motion.dev And Animation Regression | MR-001 | `motion-dev-and-animation-regression/motion-api-smoke.md` | Yes |
-| Motion.dev And Animation Regression | MR-002 | `motion-dev-and-animation-regression/cdn-bundle-version-pin.md` | Yes |
-| Motion.dev And Animation Regression | MR-003 | `motion-dev-and-animation-regression/prefers-reduced-motion.md` | Yes |
-| Motion.dev And Animation Regression | MR-004 | `motion-dev-and-animation-regression/animation-regression-baseline.md` | Yes |
-| Cross-Browser And Performance Gates | CB-001 | `cross-browser-and-performance-gates/cross-browser-animate.md` | Yes |
-| Cross-Browser And Performance Gates | CB-002 | `cross-browser-and-performance-gates/cwv-gates.md` | Yes |
-| Cross-Browser And Performance Gates | CB-003 | `cross-browser-and-performance-gates/gpu-compositing.md` | Yes |
-| Cross-Stack Routing | CS-001 | `cross-stack-routing/webflow-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-002 | `cross-stack-routing/non-webflow-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-003 | `cross-stack-routing/opencode-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-004 | `cross-stack-routing/decision-matrix-routing.md` | No |
-| Cross-Stack Routing | CS-005 | `cross-stack-routing/snippet-reuse-cross-stack.md` | No |
-| Cross-Stack Routing | CS-006 | `cross-stack-routing/cwv-gates-animation-heavy.md` | No |
-| Cross-Stack Routing | CS-007 | `cross-stack-routing/prefers-reduced-motion.md` | No |
-| Design Restraint | DR-001 | `design-restraint/design-restraint-ladder.md` | No |
-| Design Restraint | DR-002 | `design-restraint/implementer-anti-stall.md` | No |
-| Design Restraint | DR-003 | `design-restraint/ceiling-comment-convention.md` | No |
-| Design Restraint | DR-004 | `design-restraint/stack-folders-validator.md` | No |
-| Tooling And Hooks | TH-001 | `tooling-and-hooks/check-dist-staleness-hook.md` | No |
-| Tooling And Hooks | TH-002 | `tooling-and-hooks/comment-hygiene-hook.md` | No |
-| Plugins And Hooks | `post-edit-quality-router` | `plugins-and-hooks/post-edit-quality-router.md` | No |
+| Surface Detection | SD-001 | `surface_detection/webflow_detection.md` | Yes |
+| Surface Detection | SD-002 | `surface_detection/opencode_detection.md` | Yes |
+| Surface Detection | SD-003 | `surface_detection/unknown_fallback.md` | Yes |
+| Language Sub-Detection | LS-001 | `language_sub_detection/opencode_typescript.md` | No |
+| Language Sub-Detection | LS-002 | `language_sub_detection/opencode_python.md` | No |
+| Language Sub-Detection | LS-003 | `language_sub_detection/opencode_shell.md` | No |
+| Language Sub-Detection | LS-004 | `language_sub_detection/opencode_config.md` | No |
+| Routing Disambiguation | RD-001 | `routing_disambiguation/mixed_marker_ambiguity.md` | No |
+| Routing Disambiguation | RD-002 | `routing_disambiguation/skcode_vs_skdoc.md` | Yes |
+| Skill Advisor Integration | SA-001 | `skill_advisor_integration/advisor_probe_battery.md` | Yes |
+| Motion.dev And Animation Regression | MR-001 | `motion_dev_and_animation_regression/motion_api_smoke.md` | Yes |
+| Motion.dev And Animation Regression | MR-002 | `motion_dev_and_animation_regression/cdn_bundle_version_pin.md` | Yes |
+| Motion.dev And Animation Regression | MR-003 | `motion_dev_and_animation_regression/prefers_reduced_motion.md` | Yes |
+| Motion.dev And Animation Regression | MR-004 | `motion_dev_and_animation_regression/animation_regression_baseline.md` | Yes |
+| Cross-Browser And Performance Gates | CB-001 | `cross_browser_and_performance_gates/cross_browser_animate.md` | Yes |
+| Cross-Browser And Performance Gates | CB-002 | `cross_browser_and_performance_gates/cwv_gates.md` | Yes |
+| Cross-Browser And Performance Gates | CB-003 | `cross_browser_and_performance_gates/gpu_compositing.md` | Yes |
+| Cross-Stack Routing | CS-001 | `cross_stack_routing/webflow_plus_motion_dev.md` | Yes |
+| Cross-Stack Routing | CS-002 | `cross_stack_routing/non_webflow_plus_motion_dev.md` | Yes |
+| Cross-Stack Routing | CS-003 | `cross_stack_routing/opencode_plus_motion_dev.md` | Yes |
+| Cross-Stack Routing | CS-004 | `cross_stack_routing/decision_matrix_routing.md` | No |
+| Cross-Stack Routing | CS-005 | `cross_stack_routing/snippet_reuse_cross_stack.md` | No |
+| Cross-Stack Routing | CS-006 | `cross_stack_routing/cwv_gates_animation_heavy.md` | No |
+| Cross-Stack Routing | CS-007 | `cross_stack_routing/prefers_reduced_motion.md` | No |
+| Design Restraint | DR-001 | `design_restraint/design_restraint_ladder.md` | No |
+| Design Restraint | DR-002 | `design_restraint/implementer_anti_stall.md` | No |
+| Design Restraint | DR-003 | `design_restraint/ceiling_comment_convention.md` | No |
+| Design Restraint | DR-004 | `design_restraint/stack_folders_validator.md` | No |
+| Tooling And Hooks | TH-001 | `tooling_and_hooks/check_dist_staleness_hook.md` | No |
+| Tooling And Hooks | TH-002 | `tooling_and_hooks/comment_hygiene_hook.md` | No |
+| Plugins And Hooks | `post-edit-quality-router` | `plugins_and_hooks/post_edit_quality_router.md` | No |
 
 **Total scenarios**: 31
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)
