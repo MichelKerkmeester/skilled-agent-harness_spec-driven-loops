@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/016-sk-doc-router-alignment/002-p0-collision-fixes",
+  "description": "README and flowchart packets advertised standalone audit or validation actions even though `create-quality-control` owns existing-document quality",
+  "keywords": [
+    "readme",
+    "flowchart",
+    "packets",
+    "advertised",
+    "standalone",
+    "audit",
+    "validation",
+    "actions",
+    "even",
+    "though",
+    "create-quality-control",
+    "owns",
+    "existing-document",
+    "quality"
+  ],
+  "lastUpdated": "2026-07-13T12:01:44.516Z",
+  "specId": "002",
+  "folderSlug": "p0-collision-fixes",
+  "parentChain": [
+    "sk-doc",
+    "016-sk-doc-router-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
