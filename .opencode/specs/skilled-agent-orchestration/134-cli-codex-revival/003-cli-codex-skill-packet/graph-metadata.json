@@ -19,7 +19,8 @@
     "trigger_phrases": [
       "cli-codex skill packet",
       "cli-codex skill plan",
-      "cli-codex skill tasks"
+      "cli-codex skill tasks",
+      "cli-codex skill summary"
     ],
     "key_topics": [
       "cli-codex",
@@ -27,20 +28,21 @@
       "packet",
       "plan",
       "tasks",
+      "summary",
       "runtime",
       "support",
       "alone",
       "provide",
       "safe",
-      "user-facing",
-      "codex"
+      "user-facing"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -59,6 +61,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -134,7 +142,7 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation All",
+        "name": "Task Notation Completed",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -168,23 +176,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Runtime support alone does not provide a safe user-facing Codex route",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-07-13T05:05:56.132Z",
+    "last_save_at": "2026-07-13T06:20:22.924Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fcb1b99c208f433cee5c18cd50274dd3f8b2cccd00d8ca38e10dec73869a3c38",
+    "source_fingerprint": "sha256:755b7a53b7d6fe575a20a7470c2ff418c18e6f29caad466591569b7bd083ebc7",
     "source_doc_hashes": {
-      "spec.md": "cc5a773f23aedda21db3644b0bde34aff77ae0b5c7918ad4d1f13ec85b05b8a6",
-      "plan.md": "88bf77d7ff618c46aacff97933ece32745947f9fd0abc135eaed13c5797e7395",
-      "tasks.md": "0b65f628da341f936e807b91b68aa7f3195d3fc82a69949cd33141a9a87fd9a9"
+      "spec.md": "cd984e153fee3824dfc447a085c883033479b57c3e5ef7aeefc4a4f4b972df9e",
+      "plan.md": "16b61dd27e90f40735c63b64d9c8c1566e45bdf561c7093dafb4abbc1a2c31d0",
+      "tasks.md": "c280f082741789dccfcaaa66545bccc1829c04eccd0ab64b1eb5dde5c934b571",
+      "implementation-summary.md": "7fdbbf6d25eef819c62cd12f10a9eeb2688a8739434552e12e8c8560f0ab9633"
     },
     "last_active_child_id": null,
     "last_active_at": null

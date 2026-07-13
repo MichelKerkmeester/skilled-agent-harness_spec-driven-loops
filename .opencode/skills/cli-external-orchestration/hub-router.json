@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": "cli-opencode",
     "ambiguityDelta": 1,
-    "tieBreak": ["cli-opencode", "cli-claude-code"],
+    "tieBreak": ["cli-opencode", "cli-claude-code", "cli-codex"],
     "outcomes": {
       "single": "one dominant executor signal routes to one mode",
       "orderedBundle": "multiple explicitly requested executors route in tie-break order",
@@ -22,6 +22,11 @@
       "weight": 4,
       "classes": ["cli-claude-code-aliases", "claude-dispatch", "hub-identity"],
       "resources": ["cli-claude-code/SKILL.md"]
+    },
+    "cli-codex": {
+      "weight": 4,
+      "classes": ["cli-codex-aliases", "codex-dispatch", "hub-identity"],
+      "resources": ["cli-codex/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -39,6 +44,12 @@
     },
     "claude-dispatch": {
       "keywords": ["extended thinking", "deep reasoning handoff", "structured claude code output", "claude code review"]
+    },
+    "cli-codex-aliases": {
+      "keywords": ["codex cli", "codex exec", "delegate to codex", "openai cli second opinion", "cli-codex"]
+    },
+    "codex-dispatch": {
+      "keywords": ["openai coding agent", "codex web search", "codex diff review", "codex sandbox", "gpt codex dispatch"]
     }
   }
 }

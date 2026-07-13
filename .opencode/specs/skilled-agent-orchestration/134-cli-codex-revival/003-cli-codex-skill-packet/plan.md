@@ -57,7 +57,7 @@ Test binary present/absent matrices and one audited non-interactive smoke dispat
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| Hub rename | Internal | Red | Phase cannot start. |
+| Hub rename | Internal | Green | Rename landed; phase unblocked. |
 <!-- /ANCHOR:dependencies -->
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
