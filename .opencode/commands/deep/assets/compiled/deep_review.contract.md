@@ -32,7 +32,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "c3946dec6040fe5c13d07bcdeda8bd3410d8a18f959fac3fb339ae89b8a52c09",
+      "sha256": "bc35e18f1f3c09722661c187f33cdddac423d33efad9c85c6a92262978a2c6b8",
       "section": "full"
     },
     {

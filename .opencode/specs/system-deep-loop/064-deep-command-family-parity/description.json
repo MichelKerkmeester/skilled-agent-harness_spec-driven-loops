@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/064-deep-command-family-parity",
+  "description": "The `/deep:` command family is uniform in intent but uneven in shape",
+  "keywords": [
+    "deep",
+    "command",
+    "family",
+    "uniform",
+    "intent",
+    "uneven",
+    "shape"
+  ],
+  "lastUpdated": "2026-07-13T14:34:30.612Z",
+  "specId": "064",
+  "folderSlug": "deep-command-family-parity",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

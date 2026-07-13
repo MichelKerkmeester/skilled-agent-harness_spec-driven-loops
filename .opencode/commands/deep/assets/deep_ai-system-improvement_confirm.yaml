@@ -1,0 +1,142 @@
+# ─────────────────────────────────────────────────────────────────
+# AI SYSTEM IMPROVEMENT: GUARDED REFINE RUN (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
+role: AI System Improvement Specialist using deep-improvement non-dev-ai-system-refine mode with confirmation
+purpose: Benchmark an AI-system packaging with an independent different-family grader and run a guarded refine loop (Lane D) after an operator confirms the resolved inputs; dry-run by default
+action: Present the resolved packaging root, dry-run/live mode, and frozen surfaces for approval, then dispatch the guarded refine loop host once and surface the packaging-owned run journal
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single_dispatch_guarded_refine
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: single_gate
+  tracking: packaging_owned_loop_journal
+  validation: packaging_owned_guarded_loop
+  promotion: guarded_worktree_only
+  description: |
+    Identical dispatch to the autonomous mode, with one approval gate before
+    the loop host runs. loop-host.cjs --mode=non-dev-ai-system-refine spawns the
+    packaging's adapter (run-non-dev-ai-system.cjs), which validates the
+    benchmark/_loop/loop.py contract and runs the packaging's own guarded loop.
+    Dry-run is the DEFAULT (gates + grader-family guard + gap analysis, zero
+    dispatches); --live opts into guarded model dispatch and worktree promotion
+    and requires a clean tree. This workflow adds no iteration or scoring of its
+    own; all guarded-loop logic (frozen scoring surface, kill-switches, worktree
+    promote-N, resume) lives with the packaging.
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS (resolved by the command's Mandatory Input Gate + self-target fork before this loads)
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  packaging_root: "[PACKAGING_ROOT] - Path to the packaging under test (implements benchmark/_loop/loop.py). REQUIRED. When --self-target <profile> was used, this is the profile-resolved packaging root."
+  live: "[LIVE] - false (default: dry-run, gates + grader-family guard + gap analysis, zero dispatches) or true (--live: guarded model dispatch + worktree promotion; requires a clean tree)."
+  max_iters: "[MAX_ITERS] - Live-loop ceiling. Optional; defaults to the adapter's own default (1 for a first run)."
+  fixtures: "[FIXTURES] - Optional comma-separated fixture override."
+  variants: "[VARIANTS] - Optional comma-separated variant override."
+  held_out: "[HELD_OUT] - Optional comma-separated held-out fixtures (non-interactive, deliverable-producing; the proposer never sees them)."
+  samples: "[SAMPLES] - Optional per-fixture sample count override."
+  proposer_model: "[PROPOSER_MODEL] - Optional proposer model id."
+  grader_model: "[GRADER_MODEL] - Optional grader model id. MUST be a different family than the proposer (the loop kill-switches otherwise)."
+  execution_mode: "[EXECUTION_MODE] - AUTONOMOUS or INTERACTIVE. Derived from :auto/:confirm suffix."
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    live_empty: "false (dry-run: gates + grader-family guard + gap analysis, zero dispatches, no mutations)"
+    max_iters_empty: "let the adapter apply its own default (1 for a first run)"
+    optional_overrides_empty: "unset (the packaging's own fixtures/variants/held-out/samples/model defaults apply)"
+  validation:
+    packaging_root_required: true
+    live_boolean: "true or false"
+    grader_family_distinct: "When both proposer_model and grader_model are set, they must be different model families"
+    live_requires_clean_tree: "When live=true, the working tree must be clean (the loop refuses uncommitted knowledge-base or shared-global-doc changes)"
+
+# ─────────────────────────────────────────────────────────────────
+# SKILL REFERENCE
+# ─────────────────────────────────────────────────────────────────
+skill_reference:
+  skill: system-deep-loop
+  skill_md: .opencode/skills/system-deep-loop/deep-improvement/SKILL.md
+  operator_guide: .opencode/skills/system-deep-loop/deep-improvement/references/non_dev_ai_system/operator_guide.md
+  scripts:
+    loop_host: .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs
+    adapter: .opencode/skills/system-deep-loop/deep-improvement/scripts/non-dev-ai-system/run-non-dev-ai-system.cjs
+  self_target:
+    profiles_dir: .opencode/skills/system-deep-loop/deep-improvement/assets/non_dev_ai_system/profiles/
+    schema: .opencode/skills/system-deep-loop/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json
+
+# ─────────────────────────────────────────────────────────────────
+# STATE PATHS (packaging-owned; loop-host spawns the loop that lives WITH the packaging)
+# ─────────────────────────────────────────────────────────────────
+state_paths:
+  packaging_root: "{packaging_root}"
+  loop_journal: "{packaging_root}/benchmark/_loop/state/loop-journal.jsonl"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_setup:
+    description: "Confirm the resolved packaging root and, for --live, the guarded-run pre-flight, then gate before dispatch"
+    steps:
+      step_preflight:
+        action: "Confirm packaging_root is bound before the approval gate. The command's Mandatory Input Gate and self-target fork resolve packaging_root (from the positional arg or the validated profile) before this YAML loads; --self-target is never forwarded to loop-host."
+        verify:
+          - required_values_present: [packaging_root]
+          - grader_family_distinct: "If proposer_model and grader_model are both set, they are different families"
+        on_fail: "Halt with STATUS=FAIL naming the missing or invalid input"
+      step_live_preflight:
+        description: "Only when live=true: enforce the guarded-run pre-flight before the approval gate"
+        when: "live == true"
+        verify:
+          - clean_tree: "git status is clean (no uncommitted knowledge-base or shared-global-doc changes)"
+          - single_writer_lock: "no other loop run is active (single-writer lock acquired)"
+          - provider_auth: "provider credentials probe succeeds before the batch (an expired credential fails the whole batch)"
+        on_fail: "Halt with STATUS=FAIL; do not dispatch a live run on a dirty tree, an active lock, or an expired credential"
+
+      # ─── APPROVAL GATE: Pre-Run ───
+      gate_run_approval:
+        type: approval_gate
+        purpose: "Show the resolved packaging root, dry-run/live mode, frozen surfaces, and allowed diff paths. Get approval to run the guarded loop."
+        present: |
+          ## AI System Improvement Ready
+
+          **Packaging root**: {packaging_root}
+          **Mode**: {live} (false = dry-run: gates + grader-family guard + gap analysis, zero dispatches; true = --live: guarded dispatch + worktree promotion)
+          **Max iters**: {max_iters}
+          **Proposer model**: {proposer_model}
+          **Grader model**: {grader_model} (MUST be a different family than the proposer)
+
+          Dry-run is the default and mutates nothing. A --live run requires a clean tree,
+          acquires the single-writer lock, and only ever promotes into an isolated,
+          detached worktree — never the live tree.
+
+          Options:
+          A) Run the guarded refine loop
+          B) Adjust inputs
+          C) Cancel
+        wait_for: "User response"
+        on_A: { proceed_to: phase_run }
+        on_B: { action: "Apply the operator's input adjustments, then return to gate_run_approval", return_to: gate_run_approval }
+        on_C: { action: "Cancel workflow", status: "CANCELLED" }
+
+  phase_run:
+    description: "Dispatch the self-contained Lane D refine loop host once"
+    steps:
+      step_run_refine:
+        description: "Run loop-host.cjs --mode=non-dev-ai-system-refine; it spawns run-non-dev-ai-system.cjs, which validates the benchmark/_loop/loop.py contract and runs the packaging's guarded loop"
+        dispatch_contract: "This is the exact direct-dispatch invocation the command previously ran inline. --packaging-root is always passed; --live is appended bare only when live=true; --max-iters/--fixtures/--variants/--held-out/--samples/--proposer-model/--grader-model are appended only when the operator set them, in loop-host's forwarding order. --self-target and --parallel are router-owned and are never forwarded to loop-host."
+        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs --mode=non-dev-ai-system-refine --packaging-root={packaging_root}$([ \"{live}\" = \"true\" ] && echo \" --live\")$([ -n \"{max_iters}\" ] && echo \" --max-iters={max_iters}\")$([ -n \"{fixtures}\" ] && echo \" --fixtures={fixtures}\")$([ -n \"{variants}\" ] && echo \" --variants={variants}\")$([ -n \"{held_out}\" ] && echo \" --held-out={held_out}\")$([ -n \"{samples}\" ] && echo \" --samples={samples}\")$([ -n \"{proposer_model}\" ] && echo \" --proposer-model={proposer_model}\")$([ -n \"{grader_model}\" ] && echo \" --grader-model={grader_model}\")"
+        on_fail: "Report the loop host's own STATUS=FAIL and error verbatim; do not synthesize a grade or promotion decision."
+
+  phase_report:
+    description: "Surface the run journal the packaging wrote; add nothing to it"
+    steps:
+      step_report_status:
+        description: "Report the packaging-owned journal outcome; grades, promotion decisions, and kill-switch details are owned by the packaging loop, never synthesized here"
+        action: "Read {packaging_root}/benchmark/_loop/state/loop-journal.jsonl and report its latest run's per-sample grades, canonical stop reason, and promotion decision. On promote_accept the candidate edit lives in a kept detached worktree for deliberate operator merge; the loop never writes the live tree. Lane D never mutates canonical files outside that guarded worktree."
