@@ -3,7 +3,9 @@
   "packet_id": "sk-doc/016-benchmark-authoring-centralization",
   "spec_folder": "sk-doc/016-benchmark-authoring-centralization",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "sk-doc/016-benchmark-authoring-centralization/001-create-benchmark-reorg-and-routing"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -100,6 +102,12 @@
         "source": "derived"
       },
       {
+        "name": "Phase Transition Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "an",
         "kind": "key_phrase",
         "path": "spec.md",
@@ -107,12 +115,6 @@
       },
       {
         "name": "in-lane",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "pointers",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -192,7 +194,7 @@
     ],
     "causal_summary": "Make sk-doc/create-benchmark the single home for benchmark-DOCUMENT templates and authoring standards across all repo benchmark families. Author skill-benchmark storage/README templates and model-benchmark fixture/profile templates plus guides, add a complete family-disambiguation table (Lane A/D marked code-owned), and rewire deep-improvement consumer docs to point at create-benchmark for authoring while run/scoring logic stays in the deep-loop lanes. The Lane C report .md stays renderer-owned.",
     "created_at": "2026-07-12T10:58:43.605Z",
-    "last_save_at": "2026-07-12T11:38:54.242Z",
+    "last_save_at": "2026-07-13T04:36:43.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c20bcb626d52ebbb5882e0aec846806bda1a76b1a0dd935706cacb742036611",
+    "source_fingerprint": "sha256:7329b37ca6aeb53b871dd4ec08dd9cc9a9409bbebb5ab9eabaa086d81ea00eac",
     "source_doc_hashes": {
-      "spec.md": "a80820a8bb8293980a49f5a967c3bf4bd3bad5019a8119fae21e22b0229dba42",
+      "spec.md": "80ff2392e3b572957d291e655af8d5518f28217ec212ac9b84aa2877aa710187",
       "plan.md": "1bc303e4d4c3a00226a1cc641e1546a3deed2ef97ed740be14abe04739e67966",
       "tasks.md": "be65a06461782483df9357814e110f03b884258734c0069435eab66c03c2186b",
       "checklist.md": "20eb024c13e52d7e0f83a274628eee5cc5837cc06bd02ae70d804790df91ffb3",
       "decision-record.md": "c83fa4e2ef512279ca8a5566809fdc17f0ee06663b54cedf4a28fe876388066b",
-      "implementation-summary.md": "b7f3c4da42f7fbda4862e8d34954f44f4ee4086a95a03f36c45bb03994c11096"
+      "implementation-summary.md": "565380117c13bb2a20e3b7a01362abd4cf75d394f7f47b66554e5a0b87f8e559"
     },
     "last_active_child_id": null,
     "last_active_at": null

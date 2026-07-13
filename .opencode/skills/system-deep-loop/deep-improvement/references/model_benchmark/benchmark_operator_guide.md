@@ -117,4 +117,4 @@ Benchmark success does not mean:
 - `evaluator_contract.md`
 - `../shared/loop_protocol.md`
 - `../shared/promotion_rules.md`
-- Authoring the fixtures and profiles this runner consumes: [`sk-doc/create-benchmark`](../../../../sk-doc/create-benchmark/SKILL.md) §11 — the fixture/profile templates plus [`model_benchmark_fixture_guide.md`](../../../../sk-doc/create-benchmark/references/model_benchmark_fixture_guide.md). This guide keeps the run and scoring workflow; create-benchmark authors the input documents.
+- Authoring the fixtures and profiles this runner consumes: [`sk-doc/create-benchmark`](../../../../sk-doc/create-benchmark/SKILL.md) §11 — the fixture/profile templates plus [`model_benchmark_fixture_guide.md`](../../../../sk-doc/create-benchmark/references/model_benchmark/model_benchmark_fixture_guide.md). This guide keeps the run and scoring workflow; create-benchmark authors the input documents.

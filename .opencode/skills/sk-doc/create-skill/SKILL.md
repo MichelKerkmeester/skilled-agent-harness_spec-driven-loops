@@ -5,7 +5,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.1.0.0
 ---
 
-<!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, mode-registry, hub-router, package-skill, init-skill, /create:skill, /create:skill-parent -->
+<!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, package-skill, init-skill, /create:skill, /create:skill-parent -->
 
 # Create Skill
 
@@ -25,13 +25,13 @@ Use this packet when the request involves:
 - Creating parent-hub router files such as `mode-registry.json`, `hub-router.json`, `description.json`, or hub-level `graph-metadata.json`.
 - Validating and packaging a skill with `scripts/package_skill.py`.
 
-Keyword triggers: `create skill`, `new skill`, `skill scaffold`, `OpenCode skill`, `parent skill`, `parent hub`, `mode packet`, `workflowMode`, `mode-registry`, `hub-router`, `package skill`, `/create:skill`, `/create:skill-parent`.
+Keyword triggers: `create skill`, `/create:skill`, `/create:skill-parent`, `new skill`, `skill scaffold`, `OpenCode skill`, `parent skill`, `parent hub`, `mode packet`, `nested workflow packet`, `package skill`.
 
 ### When NOT to Use
 
-Skip this packet when:
-- The user asks for agent scaffolding, command scaffolding, README creation, benchmark folders, feature catalogs, or manual testing playbooks. Route to the matching sk-doc packet.
-- The task is only quality review of an existing document. Route to `create-quality-control`.
+Use another `sk-doc` packet when:
+- The user asks for agent scaffolding, command scaffolding, README or install-guide creation, benchmark packages, feature catalogs, manual testing playbooks, flowcharts, or changelogs. Use `create-agent`, `create-command`, `create-readme`, `create-benchmark`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-flowchart`, or `create-changelog`.
+- The task audits, validates, scores, or optimizes an existing skill document without authoring or rebuilding the skill. Use `create-quality-control`.
 - The task is application code implementation. Route to `sk-code`.
 - The user only needs conceptual advice and no artifact authoring or validation.
 

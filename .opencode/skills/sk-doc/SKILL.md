@@ -44,7 +44,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any documentation/authoring query to the single identity `sk-doc`; the hub then picks the packet.
+Routing is **registry-driven at runtime and packet-authored at source**. Each nested packet's single `Keyword triggers:` line is the source of truth for its routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized projections that the hub reads without re-deriving mappings during a request. The advisor routes any documentation/authoring query to the single identity `sk-doc`; the hub then picks the packet.
 
 ### The discriminator
 - **`workflowMode`** — the public packet key (e.g. `create-skill`, `create-quality-control`). `create-skill-parent` is a second mode over the same `create-skill` packet.
