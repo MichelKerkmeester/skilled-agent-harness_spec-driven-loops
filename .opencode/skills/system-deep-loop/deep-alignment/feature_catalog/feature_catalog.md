@@ -1,7 +1,7 @@
 ---
 title: "deep-alignment: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-alignment conformance-review loop."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # deep-alignment: Feature Catalog
@@ -16,7 +16,7 @@ This document combines the current feature inventory for the `deep-alignment` sy
 
 Use this catalog as the canonical inventory for the `deep-alignment` feature surface. The numbered sections below group the system by lane resolution, adapter contract, loop lifecycle, and the alignment contract so readers can move from a top-level summary into per-feature reference files without losing the contract behind each phase.
 
-> **Availability.** The engine catalogued here — `scoping.cjs`, the five per-authority adapters, `check-convergence.cjs`, `partition-corpus.cjs`, the intentionally-unimplemented `remediate-hook.cjs` stub, and `runtime/scripts/reduce-alignment-state.cjs` — is shipped and independently runnable today, each through its own CLI. The `/deep:alignment` command and `@deep-alignment` LEAF agent that would drive these scripts end-to-end are the phase-009 last-mile deliverable and are **not yet built**. Every mention of a "command workflow," "invoking command," or "driving agent" below describes that planned orchestration surface, not an operational one.
+> **Availability.** The engine catalogued here — `scoping.cjs`, the five per-authority adapters, `check-convergence.cjs`, `partition-corpus.cjs`, the intentionally-unimplemented `remediate-hook.cjs` stub, and `runtime/scripts/reduce-alignment-state.cjs` — is shipped and independently runnable today, each through its own CLI. The `/deep:alignment` command and `@deep-alignment` LEAF agent are the invocation path for these scripts, built and verified in phase 009 with both cutover gates green. Every mention of a "command workflow," "invoking command," or "driving agent" below describes that built and verified orchestration surface.
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
@@ -235,7 +235,7 @@ The live-render authority adapter that wraps no local renderer and checks only c
 
 #### How It Works
 
-`sk-design-live-render.cjs` classifies a target as a URL or repo-relative component entry, then `check()` requires an `options.renderResult` that the planned ITERATE-state driving agent (phase-009, not yet built) would obtain by dispatching through `design-mcp-open-design`. Without it — or with the wrong dispatch boundary, a rejected dispatch, or an auth-blocked target — it returns a single honest `render-unavailable`-family finding, never a fabricated pass. When present, it runs deterministic threshold checks over the supplied measurements.
+`sk-design-live-render.cjs` classifies a target as a URL or repo-relative component entry, then `check()` requires an `options.renderResult` that the ITERATE-state driving agent, built and verified in phase 009 with both cutover gates green, supplies by dispatching through `design-mcp-open-design`. Without it — or with the wrong dispatch boundary, a rejected dispatch, or an auth-blocked target — it returns a single honest `render-unavailable`-family finding, never a fabricated pass. When present, it runs deterministic threshold checks over the supplied measurements.
 
 #### Source Files
 
@@ -255,7 +255,7 @@ The `INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT -> [REMEDIATE]` 
 
 #### How It Works
 
-Each state calls one single-shot script that answers a question and returns; no script loops or dispatches internally. `INIT` acquires the loop lock, `SCOPE` freezes lanes into `deep-alignment-config.json`, `DISCOVER` writes `deep-alignment-corpus.json` and seeds `FILE` nodes, and `ITERATE`/`CONVERGE`/`REPORT`/`REMEDIATE` are covered by their own feature files. The planned `/deep:alignment` command workflow (phase-009, not yet built) will drive the states; the state machine forbids any custom bash/shell dispatcher.
+Each state calls one single-shot script that answers a question and returns; no script loops or dispatches internally. `INIT` acquires the loop lock, `SCOPE` freezes lanes into `deep-alignment-config.json`, `DISCOVER` writes `deep-alignment-corpus.json` and seeds `FILE` nodes, and `ITERATE`/`CONVERGE`/`REPORT`/`REMEDIATE` are covered by their own feature files. The `/deep:alignment` command workflow, built and verified in phase 009 with both cutover gates green, is the surface that drives the states. The state machine forbids any custom bash/shell dispatcher.
 
 #### Source Files
 

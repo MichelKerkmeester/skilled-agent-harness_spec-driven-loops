@@ -7,7 +7,7 @@ trigger_phrases:
   - "artifact corpus seed nodes"
   - "FILE seed nodes upsert"
   - "authority-agnostic discover"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # discover(scope)
@@ -48,7 +48,6 @@ The `artifacts` array has one entry per discovered item — `{ path }` for `path
 |---|---|---|
 | Each `scripts/adapters/*.cjs` CLI `discover` subcommand | Manual dry-run | Prints an adapter's real `discover()` output for a scope, used to verify the corpus while building. |
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Consumes a discover()-shaped corpus (hand-seeded) through the downstream `ITERATE`/`CONVERGE` wiring. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/004-scoping-and-discovery/` | Spec phase | `discover_contract.md`'s owning phase and its acceptance criteria. |
 
 ---
 

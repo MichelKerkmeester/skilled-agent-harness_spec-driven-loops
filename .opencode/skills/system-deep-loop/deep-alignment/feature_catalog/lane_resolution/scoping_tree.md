@@ -7,7 +7,7 @@ trigger_phrases:
   - "artifact-class authority scope tree"
   - "resolveLanesFromSelections"
   - "validateLane choke point"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Scoping tree
@@ -46,8 +46,6 @@ Both entry paths funnel through the same choke point. The interactive path is th
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Drives `resolveLanesFromConfig()` end to end across the multi-lane, zero-lane, and zero-artifact-lane fixtures. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/004-scoping-and-discovery/` | Spec phase | Acceptance criteria and validation evidence for lane resolution (REQ-002/SC-002). |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/` | Spec phase | ADR-002 (this tree), ADR-011 (config-file only), ADR-012 (authority registration). |
 
 ---
 

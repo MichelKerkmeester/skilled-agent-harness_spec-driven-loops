@@ -7,7 +7,7 @@ trigger_phrases:
   - "coverage and stability AND"
   - "max-iterations hard stop"
   - "nothing to converge"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Convergence check
@@ -45,7 +45,6 @@ It reduces the state log into the registry, reads iteration records and the corp
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Proves the AND semantics (coverage 100% but not-yet-stable → CONTINUE, then CONVERGED once stable), the independent max-iterations stop, and the zero-lanes `NOTHING_TO_CONVERGE` exit. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report/` | Spec phase | REQ-004 (convergence formula) and NFR-R01 (fallback justification). |
 
 ---
 

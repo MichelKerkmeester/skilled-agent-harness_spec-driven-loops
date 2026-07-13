@@ -6,7 +6,7 @@ trigger_phrases:
   - "ARTIFACT_CLASSES"
   - "docs code designs git-history"
   - "alignment artifact class axis"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Artifact classes
@@ -44,7 +44,6 @@ The class also implies the natural scope shape: `paths`/`globs` for `docs`/`code
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Exercises `docs` and `git-history` lanes through `resolveLanesFromConfig()`. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/004-scoping-and-discovery/` | Spec phase | Acceptance criteria for the artifact-class axis. |
 
 ---
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "authority creation standard paths"
   - "validators templates rules"
   - "load known deviations"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # standardSource(authority)
@@ -47,8 +47,6 @@ The returned shape is authority-specific because standards differ: sk-doc return
 | File | Type | Role |
 |---|---|---|
 | Each `scripts/adapters/*.cjs` CLI `standard-source` subcommand | Manual dry-run | Prints an adapter's real `standardSource()` output for inspection. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/005-adapter-sk-doc/` | Spec phase | The reference adapter's `standardSource` acceptance criteria (ADR-003). |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/` | Spec phase | ADR-003 (the three-method contract) and ADR-005 (known-deviation list requirement). |
 
 ---
 

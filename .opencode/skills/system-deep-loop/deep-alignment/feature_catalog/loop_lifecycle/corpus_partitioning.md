@@ -7,7 +7,7 @@ trigger_phrases:
   - "lane round-robin"
   - "next slice batch size"
   - "iterate state partitioning"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Corpus partitioning
@@ -45,7 +45,6 @@ The round-robin order is stable across calls because it walks the corpus's decla
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Exercises the round-robin across two lanes (slice 1 → lane 0, slice 2 → lane 1, slice 3 → done) and the zero-lane `done` case. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report/` | Spec phase | The `ITERATE`-state partitioning acceptance criteria. |
 
 ---
 

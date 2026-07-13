@@ -7,7 +7,7 @@ trigger_phrases:
   - "non-interactive lane resolution"
   - "parseLaneConfigFile"
   - "headless alignment scoping"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Lane config
@@ -45,8 +45,6 @@ The two paths never run together and neither is silently skipped: `scoping.cjs`'
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Drives `resolveLanesFromConfig()` for multi-lane, zero-lane, and zero-artifact-lane inputs. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/` | Spec phase | ADR-011 (config-file-only lock), ADR-012 (authority-enum growth). |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/004-scoping-and-discovery/` | Spec phase | Non-interactive path acceptance criteria. |
 
 ---
 

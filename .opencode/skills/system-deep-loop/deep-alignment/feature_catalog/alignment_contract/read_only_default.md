@@ -7,7 +7,7 @@ trigger_phrases:
   - "observe and report"
   - "Task Bash reserved remediation"
   - "alignment invariant 3"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Read-only default
@@ -46,7 +46,6 @@ The `alignment/` state files the loop does write (config, corpus, state log, reg
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Asserts the `REMEDIATE` hook mutates nothing (before/after `alignment/` file listings are identical). |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/` | Spec phase | ADR-005 invariant 3 (read-only default) and NFR-S01. |
 
 ---
 

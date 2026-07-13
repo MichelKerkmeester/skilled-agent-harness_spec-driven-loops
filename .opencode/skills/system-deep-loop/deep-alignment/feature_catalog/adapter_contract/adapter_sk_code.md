@@ -7,7 +7,7 @@ trigger_phrases:
   - "verify_alignment_drift.py"
   - "webflow minification verification"
   - "reasoning-agent dispatch packet"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # sk-code adapter
@@ -47,7 +47,6 @@ The adapter deliberately excludes `minify-webflow.mjs` from `check()` because it
 | File | Type | Role |
 |---|---|---|
 | `scripts/adapters/sk-code.cjs` CLI (`discover`/`check`/`standard-source`/`reasoning-dispatch`) | Manual dry-run | Runs the adapter and prints the reasoning-agent dispatch packet for inspection. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/007-adapter-sk-code/` | Spec phase | The sk-code hybrid adapter's spec and acceptance criteria (REQ-001, REQ-002, REQ-005, ADR-008). |
 
 ---
 

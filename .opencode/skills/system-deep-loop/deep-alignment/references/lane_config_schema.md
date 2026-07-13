@@ -7,20 +7,38 @@ trigger_phrases:
   - "--lane-config json shape"
 importance_tier: "important"
 contextType: "reference"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # --lane-config JSON Schema
 
-## 1. OVERVIEW
-
-ADR-011 (`002-architecture-decision/decision-record.md`) locks the non-interactive path to **config-file only**: a single `--lane-config <file.json>` flag, not repeated `--lane` flags and not an inline `--lanes` JSON-array flag. This document is that ADR's remaining open deliverable — the concrete field-level JSON shape — and the reference implementation that parses and validates it is `scripts/scoping.cjs`.
+The concrete JSON shape a `--lane-config <file.json>` file must satisfy for deep-alignment's non-interactive path.
 
 ---
 
-## 2. Top-Level Shape
+## 1. OVERVIEW
 
-The file is a **bare JSON array** of lane objects — not wrapped in an envelope object:
+### Purpose
+
+ADR-011 (`002-architecture-decision/decision-record.md`) locks the non-interactive path to **config-file only**: a single `--lane-config <file.json>` flag, not repeated `--lane` flags and not an inline `--lanes` JSON-array flag. This document is that ADR's remaining open deliverable, the concrete field-level JSON shape, and the reference implementation that parses and validates it is `scripts/scoping.cjs`.
+
+### When to Use
+
+- Authoring a `--lane-config` file for a headless deep-alignment run.
+- Validating a config-file lane against the same rules `scripts/scoping.cjs` enforces at parse time.
+- Confirming a config-file lane resolves to the identical shape an interactive session would produce.
+- Debugging a lane-config validation failure (unknown authority, invalid artifact-class, malformed scope).
+
+### Prerequisites
+
+- `scoping_protocol.md`, the interactive tree that produces the identical lane-tuple shape this file's `authority`/`artifactClass`/`scope` triple maps onto 1:1.
+- `discover_contract.md`, what `DISCOVER` does with a resolved lane's `scope` next.
+
+---
+
+## 2. TOP-LEVEL SHAPE
+
+The file is a **bare JSON array** of lane objects, not wrapped in an envelope object:
 
 ```json
 [
@@ -29,26 +47,26 @@ The file is a **bare JSON array** of lane objects — not wrapped in an envelope
 ]
 ```
 
-No envelope, version field, or metadata wrapper is added at this level. ADR-011's own reasoning for a file (over an inline flag) is that the file itself is versionable, diffable, and reviewable *as a file* — properties git already gives any tracked JSON file — not that the content needs its own internal version counter. An empty array (`[]`) is valid and resolves to zero lanes; it is not an error (mirrors the "empty resolves, does not fail" pattern the rest of this phase uses for empty scopes — see `scoping_protocol.md` §7).
+No envelope, version field, or metadata wrapper is added at this level. ADR-011's own reasoning for a file (over an inline flag) is that the file itself is versionable, diffable, and reviewable *as a file*, properties git already gives any tracked JSON file, not that the content needs its own internal version counter. An empty array (`[]`) is valid and resolves to zero lanes. It is not an error (mirrors the "empty resolves, does not fail" pattern the rest of this phase uses for empty scopes, see `scoping_protocol.md` §7).
 
 ---
 
-## 3. Per-Lane Object Shape
+## 3. PER-LANE OBJECT SHAPE
 
-Each array entry has three required keys — the same three ADR-011 names verbatim — plus an optional `adapter` discriminator:
+Each array entry has three required keys, the same three ADR-011 names verbatim, plus an optional `adapter` discriminator:
 
 | Key | Type | Constraint |
 |---|---|---|
-| `authority` | string | Must be one of the registered authorities (`scripts/scoping.cjs`'s `AUTHORITY_ARTIFACT_CLASSES` keys — `sk-doc`, `sk-git`, `sk-design`, `sk-code` in v1, extensible per ADR-012) |
+| `authority` | string | Must be one of the registered authorities (`scripts/scoping.cjs`'s `AUTHORITY_ARTIFACT_CLASSES` keys: `sk-doc`, `sk-git`, `sk-design`, `sk-code` in v1, extensible per ADR-012) |
 | `artifactClass` | string | Must be one of `docs`, `code`, `designs`, `git-history`, AND must be one the named `authority` actually supports (see §4) |
 | `scope` | object | One of the three shapes in §5, validated against the repo root for `paths`/`globs` |
-| `adapter` | string | **Optional.** One of the authority's registered adapter modules (`scripts/scoping.cjs`'s `AUTHORITY_ADAPTERS[authority]`); defaults to the authority's own module. Lets a `designs` lane select `sk-design-live-render` instead of the static `sk-design` adapter. It is a discovery/check module selector, not part of the lane's identity (laneId is authority×artifactClass×scope). |
+| `adapter` | string | **Optional.** One of the authority's registered adapter modules (`scripts/scoping.cjs`'s `AUTHORITY_ADAPTERS[authority]`). Defaults to the authority's own module. Lets a `designs` lane select `sk-design-live-render` instead of the static `sk-design` adapter. It is a discovery/check module selector, not part of the lane's identity (laneId is authority×artifactClass×scope). |
 
-This is not a schema-only rule — it is the literal object `scripts/scoping.cjs`'s `validateLane()` returns on success, unchanged, so a config-file lane and an interactively-resolved lane are indistinguishable once resolved (zero information loss, per ADR-011's own constraint).
+This is not a schema-only rule. It is the literal object `scripts/scoping.cjs`'s `validateLane()` returns on success, unchanged, so a config-file lane and an interactively-resolved lane are indistinguishable once resolved (zero information loss, per ADR-011's own constraint).
 
 ---
 
-## 4. Authority -> Artifact-Class Validity
+## 4. AUTHORITY -> ARTIFACT-CLASS VALIDITY
 
 | Authority | Valid `artifactClass` values (v1) |
 |---|---|
@@ -57,11 +75,11 @@ This is not a schema-only rule — it is the literal object `scripts/scoping.cjs
 | `sk-design` | `designs` |
 | `sk-code` | `code` |
 
-A lane naming a real authority with an artifact-class that authority does not support fails validation with both values named in the error (for example, `sk-git` paired with `docs`). This table is the config-file's version of the same rule the interactive tree enforces by only offering valid authorities once ARTIFACT-CLASS is picked (`scoping_protocol.md` §2.2) — the config file has no such filtering at authoring time, so `scripts/scoping.cjs` enforces it at parse time instead.
+A lane naming a real authority with an artifact-class that authority does not support fails validation with both values named in the error (for example, `sk-git` paired with `docs`). This table is the config-file's version of the same rule the interactive tree enforces by only offering valid authorities once ARTIFACT-CLASS is picked (`scoping_protocol.md` §2.2). The config file has no such filtering at authoring time, so `scripts/scoping.cjs` enforces it at parse time instead.
 
 ---
 
-## 5. `scope` Shapes
+## 5. `scope` SHAPES
 
 Exactly one of three, discriminated by `scope.type`:
 
@@ -75,13 +93,13 @@ Exactly one of three, discriminated by `scope.type`:
 { "type": "branchRange", "from": "main", "to": "HEAD" }
 ```
 
-`values` (for `paths`/`globs`) must be a non-empty array of non-empty strings; each is validated against the repo root before the lane is accepted (NFR-S01) — an absolute path outside the repo, or a value containing a `..` traversal segment, fails the whole lane-config, not just that one lane. `from`/`to` (for `branchRange`) must be non-empty strings; they are git refs, not filesystem paths, so they are not repo-root-validated the same way.
+`values` (for `paths`/`globs`) must be a non-empty array of non-empty strings. Each is validated against the repo root before the lane is accepted (NFR-S01): an absolute path outside the repo, or a value containing a `..` traversal segment, fails the whole lane-config, not just that one lane. `from`/`to` (for `branchRange`) must be non-empty strings. They are git refs, not filesystem paths, so they are not repo-root-validated the same way.
 
 ---
 
-## 6. JSON Schema (informative)
+## 6. JSON SCHEMA (INFORMATIVE)
 
-The following is a machine-checkable restatement of §3-§5, for tooling that wants a formal schema rather than the prose above. `scripts/scoping.cjs` does not load this file or any schema-validator library at runtime — it hand-validates against the same rules directly, matching this repo's existing convention (`runtime/scripts/upsert.cjs` validates its own JSON input the same hand-rolled way, with no `ajv`/`zod` dependency in this package).
+The following is a machine-checkable restatement of §3-§5, for tooling that wants a formal schema rather than the prose above. `scripts/scoping.cjs` does not load this file or any schema-validator library at runtime. It hand-validates against the same rules directly, matching this repo's existing convention (`runtime/scripts/upsert.cjs` validates its own JSON input the same hand-rolled way, with no `ajv`/`zod` dependency in this package).
 
 ```json
 {
@@ -133,11 +151,11 @@ The following is a machine-checkable restatement of §3-§5, for tooling that wa
 }
 ```
 
-The `authority` enum grows by one value whenever ADR-012's governance process registers a new authority; nothing else in this schema, or in `scripts/scoping.cjs`, changes shape to accommodate it.
+The `authority` enum grows by one value whenever ADR-012's governance process registers a new authority. Nothing else in this schema, or in `scripts/scoping.cjs`, changes shape to accommodate it.
 
 ---
 
-## 7. Worked Example — Multi-Authority Single Run
+## 7. WORKED EXAMPLE, MULTI-AUTHORITY SINGLE RUN
 
 The operator precedent from `002-architecture-decision` ("sk-code and sk-git and/or sk-design" in one pass) as a `--lane-config` file:
 
@@ -161,11 +179,11 @@ The operator precedent from `002-architecture-decision` ("sk-code and sk-git and
 ]
 ```
 
-`node scripts/scoping.cjs --lane-config path/to/this-file.json` resolves this to 3 lanes in one call — the same 3-lane result an equivalent 3-walk interactive session produces via `resolveLanesFromSelections()`.
+`node scripts/scoping.cjs --lane-config path/to/this-file.json` resolves this to 3 lanes in one call, the same 3-lane result an equivalent 3-walk interactive session produces via `resolveLanesFromSelections()`.
 
 ---
 
-## 8. Error Contract
+## 8. ERROR CONTRACT
 
 Every validation failure fails the whole file (fail-closed, per ADR-011's own risk mitigation and `spec.md`'s Error Scenarios), before `DISCOVER` starts:
 
@@ -176,13 +194,13 @@ Every validation failure fails the whole file (fail-closed, per ADR-011's own ri
 | Malformed/missing `scope` | Which lane (`lanes[N]`) and which field |
 | File missing, unreadable, or not valid JSON | The resolved path and the underlying I/O or parse error |
 
-`scripts/scoping.cjs` exits `3` (input-validation, matching `runtime/scripts/upsert.cjs`'s own exit-code convention) on any of these; it never resolves a malformed file to a partial or best-effort lane set.
+`scripts/scoping.cjs` exits `3` (input-validation, matching `runtime/scripts/upsert.cjs`'s own exit-code convention) on any of these. It never resolves a malformed file to a partial or best-effort lane set.
 
 ---
 
-## 9. Cross-References
+## 9. REFERENCES AND RELATED RESOURCES
 
-- `scoping_protocol.md` — the interactive tree that produces the identical lane-tuple shape this file's `authority`/`artifactClass`/`scope` triple maps onto 1:1.
-- `discover_contract.md` — what `DISCOVER` does with a resolved lane's `scope` next.
-- `scripts/scoping.cjs` — `resolveLanesFromConfig()`, `parseLaneConfigFile()`, and `validateLane()`, the reference implementation of everything in this document.
-- `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md` — ADR-011 (this schema's lock), ADR-012 (authority registration governance).
+- `scoping_protocol.md`, the interactive tree that produces the identical lane-tuple shape this file's `authority`/`artifactClass`/`scope` triple maps onto 1:1.
+- `discover_contract.md`, what `DISCOVER` does with a resolved lane's `scope` next.
+- `scripts/scoping.cjs`, `resolveLanesFromConfig()`, `parseLaneConfigFile()`, and `validateLane()`, the reference implementation of everything in this document.
+- `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md`, ADR-011 (this schema's lock), ADR-012 (authority registration governance).
