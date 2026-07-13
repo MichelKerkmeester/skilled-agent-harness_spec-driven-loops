@@ -36,6 +36,7 @@ function writeFixtureRegistry(dir) {
         { workflowMode: 'model-benchmark', agent: 'deep-improvement' },
         { workflowMode: 'skill-benchmark', agent: 'deep-improvement' },
         { workflowMode: 'ai-system-improvement', agent: 'deep-improvement' },
+        { workflowMode: 'alignment', agent: 'deep-alignment' },
       ],
     }),
   );
@@ -228,6 +229,17 @@ async function main() {
   process.env[REJECT_LOOP_ENV] = '1';
   await assert.rejects(
     () => beforeHook({ tool: 'task', sessionID: sessionUppercase }, { args: { subagent_type: 'general', prompt: 'Agent: @DEEP-REVIEW\nmode=REVIEW three' } }),
+    /mk-deep-loop-guard: loop-like repeated dispatch/,
+  );
+  delete process.env[REJECT_LOOP_ENV];
+
+  // deep-alignment is a command-owned loop executor: repeated hand-offs reach loop rejection.
+  const sessionAlignment = 'session-loop-alignment';
+  await beforeHook({ tool: 'task', sessionID: sessionAlignment }, { args: { subagent_type: 'general', prompt: 'Agent: @deep-alignment\nmode=alignment one' } });
+  await beforeHook({ tool: 'task', sessionID: sessionAlignment }, { args: { subagent_type: 'general', prompt: 'Agent: @deep-alignment\nmode=alignment two' } });
+  process.env[REJECT_LOOP_ENV] = '1';
+  await assert.rejects(
+    () => beforeHook({ tool: 'task', sessionID: sessionAlignment }, { args: { subagent_type: 'general', prompt: 'Agent: @deep-alignment\nmode=alignment three' } }),
     /mk-deep-loop-guard: loop-like repeated dispatch/,
   );
   delete process.env[REJECT_LOOP_ENV];

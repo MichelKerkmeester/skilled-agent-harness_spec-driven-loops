@@ -204,7 +204,7 @@
       "toolSurface": {
         "allowed": ["Read", "Grep", "Glob", "Task", "Bash"],
         "forbidden": ["Write", "Edit"],
-        "mutatesWorkspace": false,
+        "mutatesWorkspace": true,
         "bashAllowlist": []
       },
       "packet": "deep-alignment",

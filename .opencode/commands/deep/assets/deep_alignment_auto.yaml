@@ -34,6 +34,12 @@ user_inputs:
   coverage_threshold: 1.0
   stability_window: 2
   batch_size: 5
+  # This mode always dispatches the native @deep-alignment agent on a fixed model;
+  # it resolves no external executor and honors only `kind` (native) and
+  # `timeout_seconds`. `model` / `reasoning_effort` / `service_tier` /
+  # `sandbox_mode` are reserved placeholders the workflow never reads -- the
+  # command surface must not advertise them as configurable until an
+  # executor-resolution branch actually exists (contract must match dispatch).
   executor:
     kind: native
     model: null
@@ -119,7 +125,7 @@ workflow:
 
   step_resolve_artifact_root:
     description: "Resolve artifact directory from spec_folder"
-    command: "node -e \"const { resolveArtifactRoot } = require('.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'alignment')));\""
+    command: "node -e \"const { resolveArtifactRoot } = require('./.opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'alignment')));\""
     outputs:
       - artifact_root_dir: "Resolved local alignment owner directory"
       - artifact_subfolder: "Local packet subfolder ({ownerSlug}-pt-{NN}), else null"
@@ -197,9 +203,16 @@ workflow:
       step_resolve_lanes:
         action: "Resolve lanes for this run (SCOPE state)"
         note: "Lanes are already bound by the command layer before this workflow loads -- either scripts/scoping.cjs parsed --lane-config, or the operator's structured scoping answers were bound. This step only re-validates and freezes what was already resolved; it never invents or infers a lane."
-        command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs --lane-config {lane_config_path} --json"
-        skip_when: "lane_config_path is absent (lanes were bound directly from structured scoping answers, not a config file)"
-        on_fail: "Halt with STATUS=FAIL and report the lane-config validation error verbatim (exit code 3 = input validation)"
+        branch_on: "lane_config_path"
+        if_present:
+          action: "Re-validate and freeze the --lane-config lanes"
+          command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs --lane-config {lane_config_path} --json"
+          on_fail: "Halt with STATUS=FAIL and report the lane-config validation error verbatim (exit code 3 = input validation)"
+          bind: { resolved_lanes: "lanes array from the scoping.cjs --json output" }
+        if_absent:
+          action: "Freeze the lanes already resolved from the operator's structured scoping answers"
+          note: "The structured-answer path resolved lanes via scripts/scoping.cjs resolveLanesFromSelections() before this workflow loaded; there is no config file to re-parse, so bind resolved_lanes directly to the pre-bound `lanes`. Without this bind resolved_lanes is undefined on the no-config path, yet step_create_config, step_create_state_log, and step_discover_lanes all consume {resolved_lanes}."
+          bind: { resolved_lanes: "{lanes}" }
         outputs:
           - resolved_lanes: "Array of {authority, artifactClass, scope} tuples, identical in shape regardless of which path resolved them"
 
@@ -241,7 +254,7 @@ workflow:
       step_discover_lanes:
         action: "Run each lane's adapter discover(scope) and assemble the corpus (DISCOVER state)"
         for_each: "lane in resolved_lanes"
-        command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/{lane.authority}.cjs discover {lane.scope_cli_args}"
+        command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/{lane.adapter}.cjs discover {lane.scope_cli_args}"
         note: |
           Each adapter's discover CLI takes the lane's scope in its own authority-appropriate
           form (sk-doc/sk-design/sk-code: `discover [--glob] <scope-value...>` for paths/globs
@@ -256,8 +269,8 @@ workflow:
 
       step_write_corpus:
         action: "Aggregate all per-lane discover() results into deep-alignment-corpus.json"
-        content: '{"lanes":[{"laneId":"<authority>::<artifactClass>::<scope-summary>","authority":"<lane.authority>","artifactClass":"<lane.artifactClass>","scope":"<lane.scope>","artifacts":"<lane_artifacts>"}, ...]}'
-        note: "laneId uses the same authority::artifactClass::scope-summary key runtime/scripts/reduce-alignment-state.cjs's laneKey() computes, so corpus entries and reducer entries are joinable without a second lookup."
+        content: '{"lanes":[{"laneId":"<authority>::<artifactClass>::<scope-summary>","authority":"<lane.authority>","artifactClass":"<lane.artifactClass>","adapter":"<lane.adapter>","scope":"<lane.scope>","artifacts":"<lane_artifacts>"}, ...]}'
+        note: "laneId uses the same authority::artifactClass::scope-summary key runtime/scripts/reduce-alignment-state.cjs's laneKey() computes, so corpus entries and reducer entries are joinable without a second lookup. `adapter` is carried per-lane (default: the authority's own module) so partition-corpus/dispatch load adapters/<adapter>.cjs, not just adapters/<authority>.cjs; it is not part of laneId."
         output: "{state_paths.corpus}"
 
       step_seed_coverage_graph:
@@ -274,6 +287,20 @@ workflow:
         on_warning:
           log: "Coverage graph seed inserted zero nodes (every lane discovered zero artifacts); continuing with an empty graph."
           proceed: true
+
+      step_seed_findings_registry:
+        action: "Seed the reducer-owned findings registry before the first LEAF dispatch"
+        note: |
+          The LEAF's input gate expects deep-alignment-findings-registry.json to exist,
+          and session classification inspects it. Running the reducer over the just-written
+          config/corpus and the still-iteration-free state log produces the registry with
+          every lane unchecked -- a truthful "nothing audited yet" baseline. Because the
+          reducer gates on the DISCOVERED corpus, a non-empty corpus reduces to
+          overallVerdict FAIL (incompleteCoverage), never a clean PASS, so a failed or
+          empty first LEAF pass can no longer terminate the audit as a false PASS.
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs {spec_folder}"
+        outputs:
+          - registry_seeded: "deep-alignment-findings-registry.json exists with zero checked artifacts before dispatch"
 
       step_init_complete:
         log: "Initialization complete. Config, state, and corpus files created. {lane_count} lane(s) resolved, {total_artifact_count} artifact(s) discovered."
@@ -310,6 +337,7 @@ workflow:
           - slice_lane_id: "laneId of the resolved slice, when slice_done is false"
           - slice_authority: "authority of the resolved slice"
           - slice_artifact_class: "artifactClass of the resolved slice"
+          - slice_adapter: "adapter module of the resolved slice (adapters/<adapter>.cjs); defaults to the authority's own module"
           - slice_scope: "scope of the resolved slice"
           - slice_artifacts: "artifactsSlice array to hand the dispatched agent"
           - slice_remaining: "remainingAfterThisSlice count"
@@ -327,6 +355,7 @@ workflow:
               alignmentPacketRoot: {state_paths.packet_dir}
               laneId: {slice_lane_id}
               authority: {slice_authority}
+              adapter: {slice_adapter}
               artifactClass: {slice_artifact_class}
               scope: {slice_scope}
               artifactsSlice: {slice_artifacts}

@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: deep-alignment — conformance-audit mode for docs, code, design, and git history against named parent-skill authorities"
 description: "Phase parent for deep-alignment, a new system-deep-loop mode-packet that asks a structured scoping question, resolves N alignment lanes (authority x artifact-class x scope), and reuses the deep-review runtime engine to audit artifacts against a named parent skill's own templates and creation standards via a pluggable per-authority adapter."
-status: planned
+status: in_progress
 trigger_phrases:
   - "deep-alignment mode"
   - "alignment lanes"
@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode"
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Resolved final 5 ADRs; extended parent to 10-phase map"
-    next_safe_action: "Start phase 001 research gate"
+    recent_action: "Reconciled topology to children 000-013; opened 013-review-remediation"
+    next_safe_action: "Finish the in-progress phases (001/003/004/006/008) or complete 013-review-remediation"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-059-deep-alignment-mode"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 50
     open_questions: []
     answered_questions:
       - "New mode-packet, not a deep-review mode (locked, see 002)"
@@ -62,14 +62,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In progress |
 | **Created** | 2026-07-11 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-deep-loop/059-deep-alignment-mode |
 | **Predecessor** | None (new mode-packet; prior art reviewed as evidence, not as a phase-chain predecessor, in phase 001) |
 | **Successor** | None (new subsystem; a follow-on hardening tail is plausible after phase 009 but is not pre-scoped here) |
-| **Handoff Criteria** | All 10 child phases pass `validate.sh --strict`; `parent-skill-check.cjs` STRICT clean once phase 003 scaffolds the real skill; the mode's cutover gate in phase 009 passes (gating on every other phase, including peer adapter phase 010) before advisor routing goes live |
+| **Handoff Criteria** | All child phases (000-013) pass `validate.sh --strict`; `parent-skill-check.cjs` STRICT clean once phase 003 scaffolds the real skill; the mode's cutover gate in phase 009 passes (gating on every other phase, including peer adapter phase 010) before advisor routing goes live |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -129,21 +129,24 @@ Summary of aggregate file scope across all 9 phases; per-phase detail lives in e
 
 > This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
 
-> **DAG note**: Phase numbers are folder IDs, not a strict execution order. Phase 010 (`sk-design` live-render) is a peer adapter alongside 006 and 007 — it feeds phase 008's reducer the same way 006/007 do, even though its folder number is higher than phase 009's. Phase 009 (cutover) is the true terminal phase: its gates run last, after every other phase — including 010 — is implemented.
+> **DAG note**: Phase numbers are folder IDs, not a strict execution order. Phase 010 (`sk-design` live-render) is a peer adapter alongside 006 and 007 — it feeds phase 008's reducer the same way 006/007 do, even though its folder number is higher than phase 009's. Phase 009 (cutover) is the terminal phase of the original 0-010 build DAG: its gates run last, after every other build phase — including 010 — is implemented. Phases 011-013 are post-build follow-on phases (doc-conformance, behavior-benchmark capture, and review remediation) added after that build DAG; they do not re-open it. Statuses below reflect on-disk reality.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 0 | 000-deep-loop-runtime-refinement/ | Prerequisite: remediate the deep-loop runtime bugs surfaced by the `008-divergent-mode-dogfood` findings that this mode reuses — the reducers, agent-definition contracts, council dispatch, and benchmark verdict must be sound before the mode is built on top of them | In progress |
-| 1 | 001-research-and-context/ | Read-only research gate: deep-review packet + runtime scripts, prior art (052, 055, 051), the 4 parent skills' standards surfaces, and reference implementation packets 130/131 | Planned |
-| 2 | 002-architecture-decision/ | Decision gate: freeze new-packet-vs-review-mode, the scoping decision-tree, the adapter contract, the alignment contract, the state machine, artifact layout, and the boundaries vs `parent-skill-check.cjs`/`deep-review`. All 12 ADRs Accepted (7 brief-locked + 5 operator-resolved 2026-07-11) | Planned |
-| 3 | 003-scaffold-mode-packet/ | Plan the mode-packet skeleton: `SKILL.md`, `mode-registry.json` entry, advisor routing block, hub-router touchpoints, prompt-pack template, dir skeleton, changelog | Planned |
-| 4 | 004-scoping-and-discovery/ | The interactive scoping question decision-tree, lane resolution, the non-interactive `--lane-config` arg form (ADR-011 LOCKED: config-file-only), per-adapter `discover(scope)` | Planned |
-| 5 | 005-adapter-sk-doc/ | The reference adapter: validators, templates, reality-check — the proven path every other adapter follows | Planned |
-| 6 | 006-adapter-sk-git-and-sk-design/ | The deterministic `sk-git` commit/branch adapter plus the `sk-design` STATIC audit-rubric adapter (live-render split into peer phase 010) | Planned |
-| 7 | 007-adapter-sk-code/ | The hardest adapter: surface-detection + reasoning-agent-based pattern-conformance, HYBRID (ADR-008 LOCKED) with honest layer-tagging | Planned |
-| 8 | 008-iterate-converge-report/ | Wire the loop to the runtime engine (`reduce-state.cjs` promoted to shared `runtime/scripts/` per ADR-010 LOCKED), the alignment-report reducer, convergence thresholds, corpus partitioning across all adapter lanes including 010 | Planned |
-| 9 | 009-command-agent-advisor-cutover/ | `/deep:alignment` command + assets, `@deep-alignment` leaf agent, advisor vocab/routing, a behavior benchmark, and the cutover gates — terminal phase, gates run after phase 010 too | Planned |
-| 10 | 010-adapter-sk-design-live-render/ | Peer adapter phase: the `sk-design` live-render dimension (chrome-devtools-driven, dispatched only through `design-mcp-open-design`), ADR-009 LOCKED; feeds phase 008's reducer alongside 006/007 | Planned |
+| 0 | 000-deep-loop-runtime-refinement/ | Prerequisite: remediate the deep-loop runtime bugs surfaced by the `008-divergent-mode-dogfood` findings that this mode reuses — the reducers, agent-definition contracts, council dispatch, and benchmark verdict must be sound before the mode is built on top of them | Complete |
+| 1 | 001-research-and-context/ | Read-only research gate: deep-review packet + runtime scripts, prior art (052, 055, 051), the 4 parent skills' standards surfaces, and reference implementation packets 130/131 | In progress |
+| 2 | 002-architecture-decision/ | Decision gate: freeze new-packet-vs-review-mode, the scoping decision-tree, the adapter contract, the alignment contract, the state machine, artifact layout, and the boundaries vs `parent-skill-check.cjs`/`deep-review`. All 12 ADRs Accepted (7 brief-locked + 5 operator-resolved 2026-07-11) | Complete |
+| 3 | 003-scaffold-mode-packet/ | Plan the mode-packet skeleton: `SKILL.md`, `mode-registry.json` entry, advisor routing block, hub-router touchpoints, prompt-pack template, dir skeleton, changelog | In progress |
+| 4 | 004-scoping-and-discovery/ | The interactive scoping question decision-tree, lane resolution, the non-interactive `--lane-config` arg form (ADR-011 LOCKED: config-file-only), per-adapter `discover(scope)` | In progress |
+| 5 | 005-adapter-sk-doc/ | The reference adapter: validators, templates, reality-check — the proven path every other adapter follows | Complete |
+| 6 | 006-adapter-sk-git-and-sk-design/ | The deterministic `sk-git` commit/branch adapter plus the `sk-design` STATIC audit-rubric adapter (live-render split into peer phase 010) | In progress |
+| 7 | 007-adapter-sk-code/ | The hardest adapter: surface-detection + reasoning-agent-based pattern-conformance, HYBRID (ADR-008 LOCKED) with honest layer-tagging | Complete |
+| 8 | 008-iterate-converge-report/ | Wire the loop to the runtime engine (`reduce-state.cjs` promoted to shared `runtime/scripts/` per ADR-010 LOCKED), the alignment-report reducer, convergence thresholds, corpus partitioning across all adapter lanes including 010 | In progress |
+| 9 | 009-command-agent-advisor-cutover/ | `/deep:alignment` command + assets, `@deep-alignment` leaf agent, advisor vocab/routing, a behavior benchmark, and the cutover gates — terminal phase, gates run after phase 010 too | Complete |
+| 10 | 010-adapter-sk-design-live-render/ | Peer adapter phase: the `sk-design` live-render dimension (chrome-devtools-driven, dispatched only through `design-mcp-open-design`), ADR-009 LOCKED; feeds phase 008's reducer alongside 006/007 | Complete |
+| 11 | 011-skdoc-doc-conformance/ | sk-doc doc-conformance pass over the deep-alignment packet's own authored docs | Complete |
+| 12 | 012-behavior-benchmark-capture/ | Capture the mode's autonomous behavior baseline across runtimes; records the setup-misbind and autonomous-termination signals the review's F010 cites | Complete |
+| 13 | 013-review-remediation/ | Remediate the deep-review Pass A findings (F001-F010): fail-closed correctness, security-boundary honesty, contract fidelity, topology truth | In progress |
 
 ### Phase Transition Rules
 

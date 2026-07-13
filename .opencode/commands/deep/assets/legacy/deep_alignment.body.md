@@ -76,7 +76,7 @@ No standalone presentation-text asset exists for this command (unlike `/deep:rev
 ## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:alignment:auto` and `/deep:alignment:confirm`; keep AGENTS, skills, and quick references synchronized to this entrypoint.
-2. Treat target/authority text, `--lane-config`, `--max-iterations`, `--coverage-threshold`, `--stability-window`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), executor flags, and pre-bound setup answers as workflow inputs, not execution modes.
+2. Treat target/authority text, `--lane-config`, `--max-iterations`, `--coverage-threshold`, `--stability-window`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), the `--executor-timeout` flag, and pre-bound setup answers as workflow inputs, not execution modes. This mode dispatches the native `@deep-alignment` agent on a fixed model and resolves no executor/model/reasoning-effort/service-tier — those are not part of its contract.
 3. If `:auto` is present, set `execution_mode = AUTONOMOUS`. A `--lane-config <file.json>` flag resolves lanes non-interactively (`scripts/scoping.cjs` `parseLaneConfigFile`); without it, resolve lanes through the structured three-axis scoping question (authority x artifactClass x scope) before loading YAML.
 4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the consolidated setup prompt (inline in the confirm workflow's own `gate_init_approval`-equivalent step) before loading YAML.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the same consolidated setup prompt to ask for execution mode.

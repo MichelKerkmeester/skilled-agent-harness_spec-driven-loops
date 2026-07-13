@@ -50,6 +50,7 @@ function writeFixtureRegistry(dir) {
         { workflowMode: 'model-benchmark', agent: 'deep-improvement' },
         { workflowMode: 'skill-benchmark', agent: 'deep-improvement' },
         { workflowMode: 'ai-system-improvement', agent: 'deep-improvement' },
+        { workflowMode: 'alignment', agent: 'deep-alignment' },
       ],
     }),
   );
@@ -286,6 +287,17 @@ function main() {
     { [REJECT_LOOP_ENV]: '1' },
   );
   assert.equal(decisionOf(hook), 'deny', 'mixed-case identity must still reach loop rejection');
+
+  // deep-alignment is a command-owned loop executor: repeated hand-offs reach loop rejection.
+  const sessionAlign = 'claude-loop-alignment';
+  runHook({ tool_name: 'Task', session_id: sessionAlign, tool_input: { subagent_type: 'general', prompt: 'Agent: @deep-alignment\nmode=alignment one' }, cwd });
+  runHook({ tool_name: 'Task', session_id: sessionAlign, tool_input: { subagent_type: 'general', prompt: 'Agent: @deep-alignment\nmode=alignment two' }, cwd });
+  hook = runHook(
+    { tool_name: 'Task', session_id: sessionAlign, tool_input: { subagent_type: 'general', prompt: 'Agent: @deep-alignment\nmode=alignment three' }, cwd },
+    { [REJECT_LOOP_ENV]: '1' },
+  );
+  assert.equal(decisionOf(hook), 'deny', 'deep-alignment repeated hand-off must reach loop rejection');
+  assert.match(reasonOf(hook), /mk-deep-loop-guard: loop-like repeated dispatch/, 'deny must carry the loop-repeat reason for deep-alignment');
 
   // Command-driven dispatches never count toward the threshold.
   const sessionCmd = 'claude-loop-cmd';

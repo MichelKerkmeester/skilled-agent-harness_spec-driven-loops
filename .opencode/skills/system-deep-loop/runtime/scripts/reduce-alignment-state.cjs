@@ -150,6 +150,21 @@ function loadDeltaPayloads(deltaDir) {
     .flatMap((fileName) => parseJsonl(readUtf8(path.join(deltaDir, fileName))));
 }
 
+// Sum of discovered artifacts across all lanes from the DISCOVER-state corpus
+// (deep-alignment-corpus.json). Absent or malformed file counts as zero
+// (DISCOVER has not run yet), matching check-convergence.cjs's tolerant read so
+// the two layers agree on what "the corpus is empty" means.
+function readTotalDiscovered(corpusPath) {
+  if (!fs.existsSync(corpusPath)) return 0;
+  let parsed;
+  try { parsed = JSON.parse(readUtf8(corpusPath)); } catch { return 0; }
+  const lanes = Array.isArray(parsed && parsed.lanes) ? parsed.lanes : [];
+  return lanes.reduce(
+    (sum, lane) => sum + (Array.isArray(lane && lane.artifacts) ? lane.artifacts.length : 0),
+    0,
+  );
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -249,9 +264,17 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords) {
   // Dedup across iterations (a re-checked artifact that still fails re-emits
   // the same finding; only the first occurrence counts as "open").
   const byKey = new Map();
+  let invalidSeverityCount = 0;
   for (const finding of laneDeltaFindings) {
     const severity = normalizeSeverity(finding.severity);
-    if (!severity) continue; // a finding without a recognized P0/P1/P2 severity is not counted (fail-closed, not guessed)
+    if (!severity) {
+      // A finding whose severity is not a recognized P0/P1/P2 is a data-integrity
+      // fault, not a droppable non-finding. Silently skipping it lets a truncated
+      // or schema-broken blocker vanish from the gate, so count it and let the
+      // rollup fail closed rather than emit a clean verdict over corrupted input.
+      invalidSeverityCount += 1;
+      continue;
+    }
     const key = findingDedupKey(finding);
     if (!byKey.has(key)) {
       byKey.set(key, { ...finding, severity });
@@ -290,8 +313,15 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords) {
     scope: requiredLane.scope,
     iterationsRun: laneIterations.length,
     artifactsChecked,
+    // The identity set behind artifactsChecked, when iterations reported artifact
+    // paths (not bare counts). Progress consumers use this to advance by identity —
+    // a set difference against the corpus — instead of trusting artifactsChecked as
+    // a prefix cursor, which a duplicate or out-of-order re-check would desync. Null
+    // when only bare counts were reported, signalling the count-cursor fallback.
+    checkedArtifactIds: sawPathArray ? [...checkedPaths] : null,
     openFindings,
     findingsBySeverity,
+    invalidSeverityCount,
     compositeScore: Math.round(compositeScore * 100) / 100,
     verdict,
   };
@@ -306,7 +336,7 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords) {
  * @param {Array<Object>} laneEntries
  * @returns {Object}
  */
-function buildOverallRollup(laneEntries) {
+function buildOverallRollup(laneEntries, integrity = {}) {
   const findingsBySeverity = zeroSeverityMap();
   let compositeScore = 0;
   let worstRank = VERDICT_SEVERITY_RANK.NOT_APPLICABLE;
@@ -325,19 +355,43 @@ function buildOverallRollup(laneEntries) {
     }
   }
 
-  // All lanes NOT_APPLICABLE (nothing discovered anywhere): report the
-  // trivial PASS but flag it distinctly so a caller does not mistake "zero
-  // coverage everywhere" for a real, evidenced pass (spec.md Data Boundaries
-  // -- "the loop reports 'nothing to converge' and exits cleanly").
-  const nothingToConverge = laneEntries.length === 0 || applicableLanes.length === 0;
+  const invalidSeverityCount = laneEntries.reduce(
+    (sum, entry) => sum + (entry.invalidSeverityCount || 0), 0,
+  );
+  // A corrupted state log or an unrecognized finding severity means the gate is
+  // reasoning over incomplete data; an audit tool must fail closed there rather
+  // than emit a clean verdict it cannot stand behind.
+  const integrityFault = Boolean(integrity.hasCorruption) || invalidSeverityCount > 0;
+
+  // "Nothing to converge" is a claim about the DISCOVERED corpus, not about
+  // whether iterations happened to check anything. A run that discovered a
+  // non-empty corpus but audited none of it (a failed or empty first pass) is
+  // incomplete, not trivially clean -- gating on the discovered total is what
+  // keeps that state from being reported as a pass.
+  const totalDiscovered = Number.isFinite(integrity.totalDiscovered) ? integrity.totalDiscovered : 0;
+  const emptyCorpus = totalDiscovered === 0;
+  const nothingToConverge = emptyCorpus && (laneEntries.length === 0 || applicableLanes.length === 0);
+  const incompleteCoverage = !emptyCorpus && applicableLanes.length === 0;
+
+  let verdict;
+  if (integrityFault || incompleteCoverage) {
+    verdict = 'FAIL';
+  } else if (nothingToConverge) {
+    verdict = 'PASS';
+  } else {
+    verdict = worstVerdict;
+  }
 
   return {
     laneCount: laneEntries.length,
     applicableLaneCount: applicableLanes.length,
     findingsBySeverity,
     compositeScore: Math.round(compositeScore * 100) / 100,
-    verdict: nothingToConverge ? 'PASS' : worstVerdict,
+    verdict,
     nothingToConverge,
+    incompleteCoverage,
+    integrityFault,
+    invalidSeverityCount,
   };
 }
 
@@ -428,7 +482,11 @@ function reduceAlignmentState(specFolder, options = {}) {
 
   const requiredLanes = resolveRequiredLanes(config);
   const laneEntries = requiredLanes.map((lane) => buildLaneEntry(lane, deltaRecords, iterationRecords));
-  const overall = buildOverallRollup(laneEntries);
+  const totalDiscovered = readTotalDiscovered(path.join(alignmentDir, 'deep-alignment-corpus.json'));
+  const overall = buildOverallRollup(laneEntries, {
+    totalDiscovered,
+    hasCorruption: corruptionWarnings.length > 0,
+  });
 
   const registry = {
     alignmentTarget: config.alignmentTarget || null,

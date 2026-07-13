@@ -4,6 +4,7 @@
   "spec_folder": "system-deep-loop/059-deep-alignment-mode",
   "parent_id": null,
   "children_ids": [
+    "system-deep-loop/059-deep-alignment-mode/000-deep-loop-runtime-refinement",
     "system-deep-loop/059-deep-alignment-mode/001-research-and-context",
     "system-deep-loop/059-deep-alignment-mode/002-architecture-decision",
     "system-deep-loop/059-deep-alignment-mode/003-scaffold-mode-packet",
@@ -13,8 +14,10 @@
     "system-deep-loop/059-deep-alignment-mode/007-adapter-sk-code",
     "system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report",
     "system-deep-loop/059-deep-alignment-mode/009-command-agent-advisor-cutover",
-    "system-deep-loop/059-deep-alignment-mode/000-deep-loop-runtime-refinement",
-    "system-deep-loop/059-deep-alignment-mode/010-adapter-sk-design-live-render"
+    "system-deep-loop/059-deep-alignment-mode/010-adapter-sk-design-live-render",
+    "system-deep-loop/059-deep-alignment-mode/011-skdoc-doc-conformance",
+    "system-deep-loop/059-deep-alignment-mode/012-behavior-benchmark-capture",
+    "system-deep-loop/059-deep-alignment-mode/013-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +47,7 @@
       "sk-git"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
@@ -53,6 +56,8 @@
       ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes/spec.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".opencode/commands/deep/alignment.md",
       "002-architecture-decision/decision-record.md",
       "spec.md"
     ],
@@ -85,6 +90,18 @@
         "name": "loop-lock.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "alignment.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/alignment.md",
         "source": "derived"
       },
       {
@@ -132,17 +149,17 @@
     ],
     "causal_summary": "This repository defines conformance standards for its own artifacts — `sk-doc`'s document templates and DQI validators, `sk-git`'s commit and branch-naming rules, `sk-design`'s DESIGN.md and token structure, `sk-code`'s per-surface implementation patterns — but nothing checks a given artifact against the named standard it claims to follow, with reality-drift verification, in a repeatable loop",
     "created_at": "2026-07-11T06:09:13.466Z",
-    "last_save_at": "2026-07-11T12:54:45.264Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-13T06:12:12.865Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b2060f06b8299bd7f60ecdd02ad9d3ccd9bff15255afeee5c2da8d8bf1b46dd8",
+    "source_fingerprint": "sha256:69e3a212fa3c8e20efbc253484836848ef3e46c8322c066f89086369092aa255",
     "source_doc_hashes": {
-      "spec.md": "28432f35e8b6033139581c78f2f4ec48463e2ab6e86a4b22157c67481ec14b54"
+      "spec.md": "51f94686a7c1c26bdff90c4ae900f6d4ebd312759946726830862801da1d95f4"
     },
-    "last_active_child_id": "system-deep-loop/059-deep-alignment-mode/001-research-and-context",
-    "last_active_at": "2026-07-11T06:09:13.466Z"
+    "last_active_child_id": "system-deep-loop/059-deep-alignment-mode/013-review-remediation",
+    "last_active_at": "2026-07-12T10:59:34.243Z"
   }
 }
