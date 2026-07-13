@@ -1,0 +1,14 @@
+[features]
+hooks = true
+
+[mcp_servers."mk-spec-memory"]
+command = "node"
+args = [".opencode/bin/mk-spec-memory-launcher.cjs"]
+
+[mcp_servers.mk_skill_advisor]
+command = "node"
+args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]
+
+[mcp_servers.mk_code_index]
+command = "node"
+args = [".opencode/bin/mk-code-index-launcher.cjs"]

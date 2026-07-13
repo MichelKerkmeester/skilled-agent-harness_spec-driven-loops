@@ -25,7 +25,7 @@ _memory:
 |---|---|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Source implemented; dist and live smoke pending |
 | **Created** | 2026-07-13 |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../003-cli-codex-skill-packet/spec.md` |

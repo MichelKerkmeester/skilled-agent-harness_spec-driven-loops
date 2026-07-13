@@ -19,7 +19,8 @@
     "trigger_phrases": [
       "Codex hook adapters",
       "Codex hook adapter plan",
-      "Codex hook tasks"
+      "Codex hook tasks",
+      "Codex hook adapter summary"
     ],
     "key_topics": [
       "codex",
@@ -28,21 +29,84 @@
       "adapter",
       "plan",
       "tasks",
+      "summary",
       "native",
       "hooks",
       "stable",
       "exist",
-      "historical",
-      "two-event"
+      "historical"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/shared.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-stop.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/compact-inject.ts",
+      ".codex/hooks.json",
+      ".codex/config.toml",
+      "tasks.md",
+      "implementation-summary.md",
+      "hooks/codex/shared.ts",
       "spec.md",
-      "plan.md",
-      "tasks.md"
+      "plan.md"
     ],
     "entities": [
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-stop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -53,12 +117,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -134,57 +192,29 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation All",
+        "name": "Implemented Codex",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Codex native hooks are stable, but no Codex adapters exist and the historical two-event configuration predates 0.144.1",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-07-13T05:05:56.257Z",
+    "last_save_at": "2026-07-13T06:38:28.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9ab42250c746c3cec5ca13c6664c949d8bf9c6b0b6f6297b847018aa9f70b2a6",
+    "source_fingerprint": "sha256:654da5001a19a9946e60a83fd9a89b5f097e81e2e7851d9c14824debfce23b16",
     "source_doc_hashes": {
-      "spec.md": "dc21e1f4a2fd7a18b3cb439103068ee5986cca4947f47d82336ffb76f9a76917",
+      "spec.md": "060a00b1ce83eb3055ca7cf7a0f05bf235dfb92f9dea5133d04b560925ea9448",
       "plan.md": "d1184765a119883e2cd3c101c2bd7f1952f2158850c6bdb96d34a5a712363a9f",
-      "tasks.md": "9599957787ad5ba4600307a7c868370114cc1a743c21c47b1bbe85ab9ebd244b"
+      "tasks.md": "30ebcdad8e8910988f85fbac7a637d111da98a98c0cf0982f89c616c3a53f4f8",
+      "implementation-summary.md": "bb2a2dc3c013e4ad84bdf0ca1c24e15495e0cdcf1212463aff86a3f77bf4e11a"
     },
     "last_active_child_id": null,
     "last_active_at": null
