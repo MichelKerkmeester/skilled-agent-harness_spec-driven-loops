@@ -7,14 +7,14 @@ contextType: planning
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/005-codex-agent-toml-sync"
-    last_updated_at: "2026-07-13T06:25:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Authored planned phase stub for the .codex agents TOML sync"
-    next_safe_action: "Implement after the cli-codex skill packet lands"
-    blockers: []
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    last_updated_at: "2026-07-13T10:00:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Generated Codex agent adapters and parity check"
+    next_safe_action: "Run live Codex 0.144.1 agent-load smoke"
+    blockers: ["Live Codex agent-load smoke requires orchestrator"]
+    completion_pct: 90
+    open_questions: ["Will all generated agents load in a live Codex 0.144.1 session?"]
+    answered_questions: ["The canonical set is the 13 live Markdown filenames"]
 ---
 # Feature Specification: Codex agent TOML sync
 <!-- SPECKIT_LEVEL: 1 -->
@@ -25,7 +25,7 @@ _memory:
 |---|---|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented; live agent-load smoke pending |
 | **Created** | 2026-07-13 |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../004-codex-hook-adapter-layer/spec.md` |
@@ -34,7 +34,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 ### Problem Statement
-Historical Codex agent TOMLs no longer match the canonical OpenCode Markdown set, and a prior plan assumed 15 agents while the live source currently has 14.
+Historical Codex agent TOMLs no longer match the canonical OpenCode Markdown set. Earlier prose assumed 14 agents and a prior plan assumed 15, while the live source has 13.
 ### Purpose
 Generate accepted Codex TOMLs from the live canonical set and enforce parity so count and content drift self-correct.
 <!-- /ANCHOR:problem -->
@@ -49,8 +49,8 @@ Generate accepted Codex TOMLs from the live canonical set and enforce parity so 
 ### Files to Change
 | File Path | Change Type | Description |
 |---|---|---|
-| `.codex/agents/*.toml` | Planned create | Generated runtime agents. |
-| Sync/check scripts | Planned create | Canonical conversion and parity enforcement. |
+| `.codex/agents/*.toml` | Created | Generated runtime agents. |
+| `.opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs` | Created | Canonical conversion and parity enforcement. |
 <!-- /ANCHOR:scope -->
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
@@ -77,5 +77,5 @@ Generate accepted Codex TOMLs from the live canonical set and enforce parity so 
 <!-- /ANCHOR:risks -->
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
-- Is the canonical set still 14 when this phase begins, or has a fifteenth runtime agent landed?
+- None. The generator derives the canonical set from live `.opencode/agents/*.md` filenames.
 <!-- /ANCHOR:questions -->
