@@ -7,7 +7,7 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T18:44:01Z"
+    last_updated_at: "2026-07-13T19:39:11Z"
     last_updated_by: "claude-code"
     recent_action: "Verified all checks with fixture + live evidence"
     next_safe_action: "Re-point installer at the primary checkout once it reconciles to v4"
@@ -37,7 +37,7 @@ A check is marked only with evidence: a command output, a file diff, or a live-s
 <!-- ANCHOR:testing -->
 ## Testing
 - [x] CHK-020 [P0] Fixture stdin-pipe smoke passes for all adapters. `fixture-smoke` matrix: `33/33` PASS, including a real `permissionDecision` deny envelope and a `runtime:"codex"` audit line.
-- [x] CHK-021 [P0] Live `codex exec` matrix confirms firing and, for deny guards, blocking. Live Codex 0.144.2: `SessionStart`/`UserPromptSubmit` Completed and `spec-gate-classify` wrote `.spec-gate-state/<hex(session_id)>.json`; the deny-block half is fixture-confirmed (`permissionDecision`) and documented as a live-deny residual (no out-of-scope write occurred in the read-only session).
+- [x] CHK-021 [P0] Live `codex exec` matrix confirms firing and, for deny guards, blocking. Live Codex 0.144.2: `SessionStart`/`UserPromptSubmit` Completed, `spec-gate-classify` wrote `.spec-gate-state/<hex(session_id)>.json`, and a real `apply_patch` write was **blocked** by `spec-gate-enforce` (Codex router `Command blocked by PreToolUse hook: DENIED…`; file not created; `would-deny` logged).
 - [x] CHK-022 [P1] Manual testing playbook entries exist and match observed output. `codex_hook_parity.md` under `plugins_and_hooks`, indexed in the hub playbook, with the real fixture + live captures.
 <!-- /ANCHOR:testing -->
 <!-- ANCHOR:fix-completeness -->

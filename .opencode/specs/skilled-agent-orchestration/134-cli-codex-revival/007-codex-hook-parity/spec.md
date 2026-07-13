@@ -7,7 +7,7 @@ contextType: planning
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T18:44:01Z"
+    last_updated_at: "2026-07-13T19:39:11Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped and verified; packet complete"
     next_safe_action: "Re-point installer at the primary checkout once it reconciles to v4"

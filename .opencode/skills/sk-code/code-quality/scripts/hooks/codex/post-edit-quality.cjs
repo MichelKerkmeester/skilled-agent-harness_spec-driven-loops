@@ -8,6 +8,7 @@
 'use strict';
 
 const fs = require('node:fs');
+const path = require('node:path');
 const router = require('../../lib/post-edit-router.cjs');
 
 const DISABLED_ENV = 'MK_POST_EDIT_QUALITY_DISABLED';
@@ -24,10 +25,21 @@ function remainingMs(startedAt, budgetMs) {
   return budgetMs - (Date.now() - startedAt);
 }
 
+// Codex `apply_patch` carries the target inside the patch body (tool_input.command)
+// as an `*** Add/Update/Delete File:` header, not a file_path field. Without parsing
+// it the checker never runs on a Codex patch.
+function firstPatchPath(patchText) {
+  if (typeof patchText !== 'string') return undefined;
+  const match = patchText.match(/^\*\*\* (?:Add|Update|Delete) File: (.+?)\s*$/m)
+    || patchText.match(/^\*\*\* Move to: (.+?)\s*$/m);
+  return match ? match[1].trim() : undefined;
+}
+
 function filePathFrom(toolInput) {
   if (!toolInput || typeof toolInput !== 'object') return undefined;
   const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
-  return typeof candidate === 'string' ? candidate : undefined;
+  if (typeof candidate === 'string' && candidate) return candidate;
+  return firstPatchPath(toolInput.command || toolInput.input || toolInput.patch);
 }
 
 function printCommentHygieneFinding(finding, filePath) {
@@ -76,8 +88,16 @@ async function main() {
   if (!CODEX_EDIT_TOOLS.has(String(payload.tool_name || '').toLowerCase())) return;
 
   const toolInput = payload.tool_input && typeof payload.tool_input === 'object' ? payload.tool_input : {};
-  const filePath = filePathFrom(toolInput);
+  const projectDir = typeof payload.cwd === 'string' && payload.cwd
+    ? payload.cwd
+    : (process.env.CODEX_PROJECT_DIR || process.cwd());
+
+  let filePath = filePathFrom(toolInput);
   if (typeof filePath !== 'string' || !filePath) return;
+  // A patch-derived path is relative to the project dir; resolve it so the
+  // existence check and the checkers see the real file rather than a path
+  // relative to wherever the hook process happens to be running.
+  if (!path.isAbsolute(filePath)) filePath = path.join(projectDir, filePath);
 
   let fileExists = false;
   try {
@@ -86,10 +106,6 @@ async function main() {
     fileExists = false;
   }
   if (!fileExists) return;
-
-  const projectDir = typeof payload.cwd === 'string' && payload.cwd
-    ? payload.cwd
-    : (process.env.CODEX_PROJECT_DIR || process.cwd());
 
   try {
     const entries = router.resolveDispatch(filePath, projectDir);

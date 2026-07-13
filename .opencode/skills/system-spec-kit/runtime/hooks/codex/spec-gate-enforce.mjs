@@ -27,10 +27,32 @@ async function readStdin() {
   return Buffer.concat(chunks).toString('utf8');
 }
 
-function filePathFrom(toolInput) {
+// Codex `apply_patch` carries the target inside the patch body (tool_input.command),
+// not a file_path field -- an `*** Add/Update/Delete File:` (or `*** Move to:`)
+// header per affected file. Parse those out so the gate sees the real target;
+// without this the enforce path reads a null filePath and treats every Codex
+// patch as exempt, silently never denying.
+function pathsFromPatch(patchText) {
+  if (typeof patchText !== 'string') return [];
+  const paths = [];
+  const fileHeader = /^\*\*\* (?:Add|Update|Delete) File: (.+?)\s*$/gm;
+  let match;
+  while ((match = fileHeader.exec(patchText))) paths.push(match[1].trim());
+  const moveTarget = patchText.match(/^\*\*\* Move to: (.+?)\s*$/m);
+  if (moveTarget) paths.push(moveTarget[1].trim());
+  return paths;
+}
+
+function filePathFrom(toolInput, projectDir) {
   if (!toolInput || typeof toolInput !== 'object') return null;
   const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
-  return typeof candidate === 'string' ? candidate : null;
+  if (typeof candidate === 'string' && candidate) return candidate;
+  const paths = pathsFromPatch(toolInput.command || toolInput.input || toolInput.patch);
+  if (paths.length === 0) return null;
+  // Evaluate on the first path the gate would actually act on, so a multi-file
+  // patch that touches any non-exempt file is judged on that file rather than an
+  // exempt sibling that happens to come first.
+  return paths.find((candidatePath) => !guardCore.isExemptTargetPath(candidatePath, projectDir)) || paths[0];
 }
 
 async function main() {
@@ -45,7 +67,7 @@ async function main() {
   if (!tool) return approve();
 
   const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();
-  const filePath = filePathFrom(payload?.tool_input);
+  const filePath = filePathFrom(payload?.tool_input, projectDir);
   const sessionID = payload?.session_id;
   const result = guardCore.evaluateMutation({
     tool,

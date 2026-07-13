@@ -7,9 +7,9 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T18:44:01Z"
+    last_updated_at: "2026-07-13T19:39:11Z"
     last_updated_by: "claude-code"
-    recent_action: "Shipped adapters + wiring + installer; fixture 33/33 and live codex exec verified"
+    recent_action: "Fixed apply_patch path extraction; live deny block confirmed under Codex"
     next_safe_action: "Re-point installer at the primary checkout once it reconciles to v4"
     blockers: []
     completion_pct: 100
@@ -85,6 +85,7 @@ See `decision-record.md` for full ADR documentation.
 | `validate.sh --strict` | Pass | Errors: 0 (closeout run) |
 | Per-adapter fixture smoke (allow / advise / deny / fail-open) | Pass | 33/33 assertions; real `permissionDecision:"deny"` envelope, Gate-3 `additionalContext`, and `runtime:"codex"` audit line all captured |
 | Live `codex exec` matrix (timed) | Pass | Codex 0.144.2: SessionStart 5/5 + UserPromptSubmit 3/3 Completed; `spec-gate-classify` wrote `.spec-gate-state/<hex(session_id)>.json`; model honored the injected Gate-3 menu (chose option E) |
+| Live deny block (`spec-gate-enforce`) | Pass | Real `apply_patch` blocked: Codex router logged `Command blocked by PreToolUse hook: DENIED…`, the file was not created, and the enforce warning log recorded `codex \| <session> \| write \| src/app.ts \| would-deny` |
 | Cores / Claude hooks / OpenCode plugins byte-unchanged | Pass | Landed diff touches only new `codex/` adapters + `.codex/hooks.json` + installer + spec docs; no core modified |
 | `.codex/hooks.json` parses + adapter paths exist | Pass | Installer dry-run parsed the source and resolved all 8 adapter paths |
 | Installer idempotent + preserves Superset entries | Pass | 14 added / 2 skipped, re-run 0 added, `notify.sh` preserved (3), `.bak-<ts>` backup created |
@@ -92,7 +93,7 @@ See `decision-record.md` for full ADR documentation.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Deny envelope is fixture-confirmed, not yet live-blocked** — the live run confirmed hooks fire and the model honors an injected `additionalContext`; the `permissionDecision:"deny"` path is proven by a real fixture envelope but was not exercised against a live out-of-scope `apply_patch` (the read-only test session made no such write). The deny code path is byte-identical to the advise path that did fire live.
+1. **Deny is live-confirmed.** A live `codex exec apply_patch` on a non-exempt file was blocked end-to-end (Codex router: `Command blocked by PreToolUse hook: DENIED…`; file not created; `would-deny` logged). Confirming this surfaced a real defect: Codex delivers the target path inside the patch body (`tool_input.command`, an `*** Add/Update/Delete File:` header), not a `file_path` field, so the first live attempt read a null path and treated every patch as exempt. Fixed by parsing the affected path(s) out of the patch in the three filePath-driven adapters (`spec-gate-enforce`, `post-edit-quality`, `code-graph-freshness`); the enforce adapter evaluates the first non-exempt affected path so a multi-file patch can't hide a real write behind an exempt sibling.
 2. **The active install points at the worktree, not the primary checkout** — the primary checkout is behind origin/v4 and unsafe to write into (concurrent sessions), so the installer was run against the isolated worktree (which required staging the gitignored `shared/dist` + `mcp_server/dist` from the primary tree to complete the lifecycle-adapter chain). Re-run the installer against the primary checkout once it reconciles to origin/v4 for a permanent target; fail-open means the interim worktree target degrades gracefully if removed.
 3. **One Stop-chain entry reports a live-teardown `Stop Failed`** — all four Stop hooks exit 0 in isolation; exactly one fails only under Codex's live Stop teardown. It is the pre-existing Superset `notify.sh` (a network POST, the sole Stop hook before this install) or the child-004 `session-stop.js` lifecycle adapter — not one of this packet's guard adapters. Non-blocking by the fail-open contract; the session still completes (exit 0).
 4. **`~/.codex/hooks.json` is the one out-of-repo write** — the installer backs it up first and merges rather than replaces; revertible via the `.bak-<ts>` backup.

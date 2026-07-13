@@ -54,12 +54,12 @@ This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (al
 1. Fixture stdin-pipe smoke for all eight adapters (fail-open on empty + malformed; plus the deny / advise / additionalContext / audit-line envelopes). The deny fixture plants an open gate-state under a project dir **outside `/tmp`** (the core exempts `/tmp`), then pipes an `apply_patch` payload with `MK_SPEC_GATE_ENFORCE=1`:
 
 ```bash
-# deny path — real permissionDecision:"deny"
-PROJ="$HOME/.codex-hook-fixtures/proj"; mkdir -p "$PROJ/src" "$PROJ/.opencode/skills/.spec-gate-state"
-printf 'export const x=1;\n' > "$PROJ/src/app.ts"
+# deny path — real permissionDecision:"deny". The apply_patch target lives in the
+# patch body (tool_input.command: "*** Add File: <path>"), not a file_path field.
+PROJ="$HOME/.codex-hook-fixtures/proj"; mkdir -p "$PROJ/.opencode/skills/.spec-gate-state"
 HEX=$(python3 -c "print('fix-sess'.encode().hex())")
 printf '{"status":"open","askedAtMs":1}\n' > "$PROJ/.opencode/skills/.spec-gate-state/$HEX.json"
-printf '%s' "{\"tool_name\":\"apply_patch\",\"tool_input\":{\"file_path\":\"$PROJ/src/app.ts\"},\"cwd\":\"$PROJ\",\"session_id\":\"fix-sess\"}" \
+printf '%s' "{\"tool_name\":\"apply_patch\",\"tool_input\":{\"command\":\"*** Begin Patch\n*** Add File: src/app.ts\n+export const x=1;\n*** End Patch\"},\"cwd\":\"$PROJ\",\"session_id\":\"fix-sess\"}" \
   | MK_SPEC_GATE_ENFORCE=1 node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "  exit=$?"
 
 # fail-open — empty + malformed stdin exit 0 with no emit (every adapter)
@@ -185,6 +185,21 @@ codex
 I'm using option E: no spec folder for this focused parser/test fix. …
 ```
 
+Live deny block — a second live run (`MK_SPEC_GATE_ENFORCE=1`, `-s workspace-write`, prompt to `apply_patch` a new `src/app.ts`) was **blocked** by `spec-gate-enforce`. The Codex tool router refused the write and surfaced the deny reason; the file was never created; the enforce warning log recorded the event:
+
+```text
+ERROR codex_core::tools::router: error=Command blocked by PreToolUse hook:
+  DENIED: this Write/Edit needs a bound spec folder first. Ask the USER to reply
+  with a letter A-E naming an existing (or new) spec folder, then retry.
+hook: PreToolUse Blocked
+```
+```text
+# spec-gate-warnings.log
+2026-07-13T19:36:17Z [mk-spec-gate] codex | 019f5cfa-… | write | src/app.ts | would-deny
+```
+
+Confirming this surfaced (and fixed) a real defect: Codex's `apply_patch` hook payload carries the target path inside `tool_input.command` (the `*** Add File:` patch header), not a `file_path` field. The first live attempt therefore read a null path, treated the write as exempt, and did not block; the three filePath-driven adapters now parse the affected path out of the patch body (the enforce guard picks the first non-exempt path so a multi-file patch can't hide a real write behind an exempt sibling).
+
 Installer — real run then idempotent re-run, Superset `notify.sh` preserved:
 
 ```text
@@ -229,4 +244,4 @@ Residual (documented, non-blocking): under the live Stop teardown one hook in th
 
 **PASS**
 
-The fixture stdin-pipe matrix passed 33/33: every adapter fails open on empty and malformed stdin, `spec-gate-enforce` emits a real `permissionDecision:"deny"` envelope on an open-gate enforce path (and advise / allow / exempt / unmatched-tool on the others), `spec-gate-classify` emits the Gate-3 `additionalContext`, and `dispatch-audit` writes a real `runtime:"codex"`, `skill:"cli-codex"` JSONL line. A live `codex exec` run under Codex 0.144.2 fired the SessionStart and UserPromptSubmit chains to completion, `spec-gate-classify` persisted a session-scoped gate-state whose filename decodes to the run's Codex session id (proving the snake_case payload contract), and the model acted on the injected Gate-3 menu (choosing option E). The installer merged 14 entries, preserved the pre-existing Superset `notify.sh` entries, and re-ran idempotently (0 added). One Stop-chain entry reports a live-teardown `Stop Failed` that reproduces in neither isolation nor any guard adapter of this set — a documented, non-blocking residual in pre-existing/lifecycle wiring, safe by the fail-open contract. Every output above was captured from a real process invocation; none is fabricated.
+The fixture stdin-pipe matrix passed 33/33: every adapter fails open on empty and malformed stdin, `spec-gate-enforce` emits a real `permissionDecision:"deny"` envelope on an open-gate enforce path (and advise / allow / exempt / unmatched-tool on the others), `spec-gate-classify` emits the Gate-3 `additionalContext`, and `dispatch-audit` writes a real `runtime:"codex"`, `skill:"cli-codex"` JSONL line. A live `codex exec` run under Codex 0.144.2 fired the SessionStart and UserPromptSubmit chains to completion, `spec-gate-classify` persisted a session-scoped gate-state whose filename decodes to the run's Codex session id (proving the snake_case payload contract), and the model acted on the injected Gate-3 menu (choosing option E). A second live run confirmed the deny path end-to-end: a real `apply_patch` write was blocked by `spec-gate-enforce` (Codex router `Command blocked by PreToolUse hook: DENIED…`, file not created, `would-deny` logged), after fixing the adapter to read the target path from the patch body rather than a `file_path` field. The installer merged 14 entries, preserved the pre-existing Superset `notify.sh` entries, and re-ran idempotently (0 added). One Stop-chain entry reports a live-teardown `Stop Failed` that reproduces in neither isolation nor any guard adapter of this set — a documented, non-blocking residual in pre-existing/lifecycle wiring, safe by the fail-open contract. Every output above was captured from a real process invocation; none is fabricated.

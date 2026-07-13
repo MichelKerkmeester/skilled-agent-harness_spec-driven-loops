@@ -10,7 +10,7 @@
 'use strict';
 
 const { spawn } = require('node:child_process');
-const { join } = require('node:path');
+const { join, isAbsolute } = require('node:path');
 
 const freshnessCore = require('../../lib/code-graph/freshness-core.cjs');
 
@@ -27,10 +27,25 @@ async function readStdin() {
   return Buffer.concat(chunks).toString('utf8');
 }
 
-function filePathFrom(toolInput) {
+// Codex `apply_patch` carries the target inside the patch body (tool_input.command)
+// as an `*** Add/Update/Delete File:` header, not a file_path field. Parse it out
+// so a Codex patch actually triggers the freshness probe.
+function firstPatchPath(patchText) {
+  if (typeof patchText !== 'string') return undefined;
+  const match = patchText.match(/^\*\*\* (?:Add|Update|Delete) File: (.+?)\s*$/m)
+    || patchText.match(/^\*\*\* Move to: (.+?)\s*$/m);
+  return match ? match[1].trim() : undefined;
+}
+
+function filePathFrom(toolInput, projectDir) {
   if (!toolInput || typeof toolInput !== 'object') return undefined;
   const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
-  return typeof candidate === 'string' ? candidate : undefined;
+  let resolved = typeof candidate === 'string' && candidate ? candidate : firstPatchPath(toolInput.command || toolInput.input || toolInput.patch);
+  if (!resolved) return undefined;
+  // A patch-derived path is relative to the project dir; make it absolute so the
+  // core's file-type and change checks resolve against the real file.
+  if (!isAbsolute(resolved) && projectDir) resolved = join(projectDir, resolved);
+  return resolved;
 }
 
 function dispatchScan(projectDir, dispatchSpec) {
@@ -72,7 +87,7 @@ async function main() {
   if (!CODEX_EDIT_TOOLS.has(String(payload?.tool_name || '').toLowerCase())) return exitOpen();
 
   const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();
-  const filePath = filePathFrom(payload?.tool_input);
+  const filePath = filePathFrom(payload?.tool_input, projectDir);
   const sessionID = payload?.session_id || '__unknown-session__';
 
   const result = freshnessCore.evaluateEdit({
