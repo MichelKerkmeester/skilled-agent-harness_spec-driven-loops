@@ -12,7 +12,7 @@ trigger_phrases:
   - "reconcile primary checkout after worktree push"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.17
+version: 1.1.0.18
 ---
 
 # Git Finish - Detailed Workflow Reference
@@ -28,6 +28,8 @@ This workflow assumes any branch already came from `git worktree add -b ...`, no
 Systematically complete development work by verifying tests, presenting integration options, and executing the chosen workflow. Ensures work is properly integrated with clean branch management.
 
 **Core principle**: Verify tests → Present options → Execute choice → Clean up = reliable completion workflow
+
+> **Continuous-integration note**: When a session runs under the launch wrapper's continuous-integration model, each commit is already **autosynced** to the shared live branch via `git-sync.sh` (see [continuous_integration.md](continuous_integration.md)), and the primary checkout follows it with `git-live-follow.sh`. In that mode the Step 5b manual reconciliation below is normally already done for you; "finish" is then just the final PR/merge decision. To publish outstanding commits on demand outside a commit, run `bash .opencode/bin/git-sync.sh` from the session worktree.
 
 ---
 
