@@ -1,0 +1,883 @@
+{
+  "sessionId": "fanout-xhigh-c-1783915428096-y929h9",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-07-13T04:58:15.269Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "I1-P1-001",
+      "severity": "P1",
+      "title": "A scoped Rust reference bypasses the mandatory OVERVIEW wrapper",
+      "file": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+      "line": 19,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "I2-P1-001",
+      "severity": "P1",
+      "title": "The CSRF checklist labels a JavaScript-accessible session cookie as good guidance",
+      "file": ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md",
+      "line": 94,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "I1-P2-001",
+      "severity": "P2",
+      "title": "Seven references exceed the 1-2 sentence intro contract",
+      "file": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "I2-P2-001",
+      "severity": "P2",
+      "title": "Production CDN-loader guidance omits integrity enforcement and accepts any caller-provided URL",
+      "file": ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md",
+      "line": 40,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "I4-P2-001",
+      "severity": "P2",
+      "title": "Six When-to-Use sections repeat their filenames instead of naming actionable scenarios",
+      "file": ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md",
+      "line": 28,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 3
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9231,
+  "graphConvergenceScore": 0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "feature_catalog_applicability",
+      "intro_contract",
+      "javascript_session_cookie",
+      "playbook_capability_applicability",
+      "remote_script_supply_chain",
+      "template_contract",
+      "when_to_use_clarity"
+    ],
+    "ruledOut": [
+      "active_finding_drift",
+      "checklist_claim_support",
+      "client_side_authorization",
+      "destructive_command_guidance",
+      "filename_contract",
+      "filename_contract_and_link_integrity",
+      "frontmatter_contract",
+      "link_integrity",
+      "markdown_inventory_157",
+      "markdown_inventory_count",
+      "r3_full_conformance",
+      "spec_corpus_alignment",
+      "unresolved_maintenance_markers",
+      "unsafe_input_execution",
+      "unsafe_input_execution_and_destructive_commands",
+      "unsafe_secret_handling",
+      "validator_proves_r3"
+    ],
+    "deferred": [
+      "content_preservation"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "template_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "intro_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "frontmatter_contract": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "filename_contract": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "link_integrity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "content_preservation": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1,
+          4
+        ]
+      },
+      "filename_contract_and_link_integrity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "javascript_session_cookie": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "remote_script_supply_chain": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unsafe_secret_handling": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "client_side_authorization": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unsafe_input_execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "destructive_command_guidance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unsafe_input_execution_and_destructive_commands": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "feature_catalog_applicability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_capability_applicability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "markdown_inventory_157": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "r3_full_conformance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "validator_proves_r3": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "markdown_inventory_count": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "spec_corpus_alignment": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_claim_support": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "when_to_use_clarity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "unresolved_maintenance_markers": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "active_finding_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 4,
+      "id": "SL4-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "two representative rename histories",
+        "remaining 158 resolved targets"
+      ],
+      "bugClass": "content_preservation",
+      "disposition": "deferred",
+      "rationale": "Representative history narrows the uncertainty but does not prove all resolved targets.",
+      "evidenceRefs": [
+        "git:dd9e700477384f2b4312f3236428e300b29e840e",
+        "git:1922cffed797c62b96e8cf862308232b3f6ba7a8",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:70"
+      ],
+      "reason": "No authoritative all-target rename manifest or normalized 160-target diff audit was available within the final-pass budget."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "six configured roots"
+      ],
+      "bugClass": "frontmatter_contract",
+      "disposition": "ruled_out",
+      "rationale": "Independent full-corpus checks found no metadata mismatch.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:49",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:67"
+      ],
+      "reason": "All 163 files satisfied the frontmatter/version checks."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "six configured roots"
+      ],
+      "bugClass": "filename_contract_and_link_integrity",
+      "disposition": "ruled_out",
+      "rationale": "The complete scoped scan found no active instance.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:50-52"
+      ],
+      "reason": "No hyphenated scoped stem or broken scoped navigational link was found."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md"
+      ],
+      "bugClass": "unsafe_secret_handling",
+      "disposition": "ruled_out",
+      "rationale": "Matched credential examples were negative demonstrations or operational credential checks.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
+      ],
+      "reason": "No positively endorsed hardcoded-secret pattern was found."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/owasp_prototype_and_safe_access.md"
+      ],
+      "bugClass": "client_side_authorization",
+      "disposition": "ruled_out",
+      "rationale": "The trust boundary is explicit and consistent in the reviewed authorization sections.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:201-233",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/owasp_prototype_and_safe_access.md:315-329"
+      ],
+      "reason": "No approved client-side-only authorization pattern was found."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-005",
+      "dimension": "security",
+      "targetRefs": [
+        "configured **/*.md scope"
+      ],
+      "bugClass": "unsafe_input_execution_and_destructive_commands",
+      "disposition": "ruled_out",
+      "rationale": "The scoped guidance rejects direct execution and did not contain the searched destructive command forms.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:140-168",
+        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md:204"
+      ],
+      "reason": "No positively endorsed instance was found."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "six configured **/*.md scope globs"
+      ],
+      "bugClass": "markdown_inventory_count",
+      "disposition": "ruled_out",
+      "rationale": "Independent enumeration supports the configured 163 path-entry count and falsifies iteration 2's 157 hypothesis.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-config.json:47-55",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:39-46"
+      ],
+      "reason": "All 163 lexical matches have .md suffixes; symlink handling, not non-Markdown assets, caused the prior undercount."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md",
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md"
+      ],
+      "bugClass": "spec_corpus_alignment",
+      "disposition": "ruled_out",
+      "rationale": "Current evidence reconfirms the prior active mismatch without creating a duplicate finding.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:67-72",
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21"
+      ],
+      "reason": "Full R3 conformance is disproved and remains represented by active I1-P1-001."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md",
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md"
+      ],
+      "bugClass": "checklist_claim_support",
+      "disposition": "ruled_out",
+      "rationale": "The checklist result is real but insufficient as proof of the broader structural invariant.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:49",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:90-95",
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21"
+      ],
+      "reason": "The current counterexample falsifies the evidence-completeness claim."
+    },
+    {
+      "iteration": 4,
+      "id": "SL4-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "six configured Markdown roots"
+      ],
+      "bugClass": "unresolved_maintenance_markers",
+      "disposition": "ruled_out",
+      "rationale": "No unresolved author marker was identified.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-opencode/assets/checklists/python_checklist.md:232-241",
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/commenting_and_rustdoc.md:77"
+      ],
+      "reason": "Every match is explanatory content, not pending document work."
+    },
+    {
+      "iteration": 4,
+      "id": "SL4-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "I1-P1-001",
+        "I2-P1-001",
+        "I1-P2-001",
+        "I2-P2-001"
+      ],
+      "bugClass": "active_finding_drift",
+      "disposition": "ruled_out",
+      "rationale": "Current reads reconfirm rather than change the registry claims.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:89-98",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:247-258",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:34-55",
+        ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20",
+        ".opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-27"
+      ],
+      "reason": "No fix, downgrade trigger, or new affected class was observed; duplicate findings were suppressed."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "six configured roots"
+      ],
+      "bugClass": "frontmatter_contract",
+      "disposition": "ruled_out",
+      "rationale": "Independent full-corpus checks found no metadata mismatch.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:49",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:67"
+      ],
+      "proof": "All 163 files satisfied the frontmatter/version checks."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "six configured roots"
+      ],
+      "bugClass": "filename_contract_and_link_integrity",
+      "disposition": "ruled_out",
+      "rationale": "The complete scoped scan found no active instance.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:50-52"
+      ],
+      "proof": "No hyphenated scoped stem or broken scoped navigational link was found."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md"
+      ],
+      "bugClass": "unsafe_secret_handling",
+      "disposition": "ruled_out",
+      "rationale": "Matched credential examples were negative demonstrations or operational credential checks.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
+      ],
+      "proof": "No positively endorsed hardcoded-secret pattern was found."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/owasp_prototype_and_safe_access.md"
+      ],
+      "bugClass": "client_side_authorization",
+      "disposition": "ruled_out",
+      "rationale": "The trust boundary is explicit and consistent in the reviewed authorization sections.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:201-233",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/owasp_prototype_and_safe_access.md:315-329"
+      ],
+      "proof": "No approved client-side-only authorization pattern was found."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-005",
+      "dimension": "security",
+      "targetRefs": [
+        "configured **/*.md scope"
+      ],
+      "bugClass": "unsafe_input_execution_and_destructive_commands",
+      "disposition": "ruled_out",
+      "rationale": "The scoped guidance rejects direct execution and did not contain the searched destructive command forms.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:140-168",
+        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md:204"
+      ],
+      "proof": "No positively endorsed instance was found."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "six configured **/*.md scope globs"
+      ],
+      "bugClass": "markdown_inventory_count",
+      "disposition": "ruled_out",
+      "rationale": "Independent enumeration supports the configured 163 path-entry count and falsifies iteration 2's 157 hypothesis.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-config.json:47-55",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:39-46"
+      ],
+      "proof": "All 163 lexical matches have .md suffixes; symlink handling, not non-Markdown assets, caused the prior undercount."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md",
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md"
+      ],
+      "bugClass": "spec_corpus_alignment",
+      "disposition": "ruled_out",
+      "rationale": "Current evidence reconfirms the prior active mismatch without creating a duplicate finding.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:67-72",
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21"
+      ],
+      "proof": "Full R3 conformance is disproved and remains represented by active I1-P1-001."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md",
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md"
+      ],
+      "bugClass": "checklist_claim_support",
+      "disposition": "ruled_out",
+      "rationale": "The checklist result is real but insufficient as proof of the broader structural invariant.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:49",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:90-95",
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21"
+      ],
+      "proof": "The current counterexample falsifies the evidence-completeness claim."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md"
+      ],
+      "bugClass": "feature_catalog_applicability",
+      "disposition": "not_applicable",
+      "rationale": "The packet is split-document template alignment and has no feature-catalog capability claim.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:55-60"
+      ],
+      "proof": "The governing scope explicitly excludes feature_catalog files."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md"
+      ],
+      "bugClass": "playbook_capability_applicability",
+      "disposition": "not_applicable",
+      "rationale": "No playbook capability is introduced or claimed by the packet.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:55-60",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md:23-28"
+      ],
+      "proof": "The governing scope excludes manual-testing playbooks and declares no runtime change."
+    },
+    {
+      "iteration": 4,
+      "id": "SL4-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "six configured Markdown roots"
+      ],
+      "bugClass": "unresolved_maintenance_markers",
+      "disposition": "ruled_out",
+      "rationale": "No unresolved author marker was identified.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-opencode/assets/checklists/python_checklist.md:232-241",
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/commenting_and_rustdoc.md:77"
+      ],
+      "proof": "Every match is explanatory content, not pending document work."
+    },
+    {
+      "iteration": 4,
+      "id": "SL4-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "I1-P1-001",
+        "I2-P1-001",
+        "I1-P2-001",
+        "I2-P2-001"
+      ],
+      "bugClass": "active_finding_drift",
+      "disposition": "ruled_out",
+      "rationale": "Current reads reconfirm rather than change the registry claims.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:89-98",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:247-258",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:34-55",
+        ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20",
+        ".opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-27"
+      ],
+      "proof": "No fix, downgrade trigger, or new affected class was observed; duplicate findings were suppressed."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "when_to_use_clarity",
+      "unresolved_maintenance_markers",
+      "content_preservation",
+      "active_finding_drift"
+    ],
+    "covered": [
+      "when_to_use_clarity"
+    ],
+    "ruledOut": [
+      "unresolved_maintenance_markers",
+      "active_finding_drift"
+    ],
+    "deferred": [
+      "content_preservation"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

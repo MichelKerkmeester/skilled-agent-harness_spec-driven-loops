@@ -1,0 +1,798 @@
+{
+  "sessionId": "fanout-xhigh-b-1783915428096-y929h9",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-07-13T04:29:00Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Rust interop reference places OVERVIEW after substantive content",
+      "file": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+      "line": 13,
+      "description": "The required OVERVIEW wrapper appears after substantive Rust guidance instead of before it.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Full 163-file ordering audit found exactly one instance.",
+      "affectedSurfaceHints": [
+        "code-opencode Rust reference",
+        "create-skill reference template",
+        "packet R3"
+      ],
+      "contentHash": "7233e90b9f7706f97a94774b04eab38d7aa75091f083f683f8e8cfb20a292c81",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Third-party integration Purpose still duplicates its intro",
+      "file": ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md",
+      "line": 14,
+      "description": "The Purpose paragraph repeats the H1 intro core sentence rather than adding distinct detail.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Semantic containment scan across all 163 targets found one remaining instance.",
+      "affectedSurfaceHints": [
+        "code-webflow third-party integration reference",
+        "create-skill reference template",
+        "post-review remediation"
+      ],
+      "contentHash": "eae5f4e27b57b1f9e480dc2efee56c51b4d8290e9124cdb4ea4621ad730fc49f",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Implementation summary still makes the rejected hub-wide zero-link claim",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+      "line": 65,
+      "description": "The implementation summary reports zero broken links for the whole hub despite two documented unresolved artifacts.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "328-file, 583-link replay reproduced exactly the two documented exclusions.",
+      "affectedSurfaceHints": [
+        "implementation-summary verification table",
+        "checklist link scope",
+        "completion metadata"
+      ],
+      "contentHash": "6280459ef63ef25ad40b0d0ee6223149676977a56d0e288b55fe95cdbdfa3a9a",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "Complete packet fails its strict validation gate",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md",
+      "line": 23,
+      "description": "The completed packet strict validation exits nonzero because checked items omit required evidence and other Level 2 warnings remain.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Live strict validation returned FAILED with zero errors and five warning classes.",
+      "affectedSurfaceHints": [
+        "checklist evidence rows",
+        "Level 2 strict validation",
+        "completion status reconciliation"
+      ],
+      "contentHash": "db6a1003c6ba1b34738042f85f40c202a999e3c7302b074b46f62045dd8238e8",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Asset README trigger phrase is not lowercase",
+      "file": ".opencode/skills/sk-code/code-opencode/assets/scripts/README.md",
+      "line": 1,
+      "description": "One target asset README contains an uppercase trigger phrase, weakening canonical lowercase routing metadata.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "All 163 frontmatter blocks parsed; one phrase in one file violates lowercase shape.",
+      "affectedSurfaceHints": [
+        "code-opencode asset README",
+        "Skill Advisor trigger metadata"
+      ],
+      "contentHash": "27ec0c4676091bd5c83e797ad808ea81543a29fe7d489e707915625535b402b3",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Rust interop reference places OVERVIEW after substantive content",
+      "file": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+      "line": 13,
+      "description": "The required OVERVIEW wrapper appears after substantive Rust guidance instead of before it.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Full 163-file ordering audit found exactly one instance.",
+      "affectedSurfaceHints": [
+        "code-opencode Rust reference",
+        "create-skill reference template",
+        "packet R3"
+      ],
+      "contentHash": "7233e90b9f7706f97a94774b04eab38d7aa75091f083f683f8e8cfb20a292c81",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Third-party integration Purpose still duplicates its intro",
+      "file": ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md",
+      "line": 14,
+      "description": "The Purpose paragraph repeats the H1 intro core sentence rather than adding distinct detail.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Semantic containment scan across all 163 targets found one remaining instance.",
+      "affectedSurfaceHints": [
+        "code-webflow third-party integration reference",
+        "create-skill reference template",
+        "post-review remediation"
+      ],
+      "contentHash": "eae5f4e27b57b1f9e480dc2efee56c51b4d8290e9124cdb4ea4621ad730fc49f",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Rust interop reference places OVERVIEW after substantive content",
+      "file": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+      "line": 13,
+      "description": "The required OVERVIEW wrapper appears after substantive Rust guidance instead of before it.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Full 163-file ordering audit found exactly one instance.",
+      "affectedSurfaceHints": [
+        "code-opencode Rust reference",
+        "create-skill reference template",
+        "packet R3"
+      ],
+      "contentHash": "7233e90b9f7706f97a94774b04eab38d7aa75091f083f683f8e8cfb20a292c81",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Third-party integration Purpose still duplicates its intro",
+      "file": ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md",
+      "line": 14,
+      "description": "The Purpose paragraph repeats the H1 intro core sentence rather than adding distinct detail.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Semantic containment scan across all 163 targets found one remaining instance.",
+      "affectedSurfaceHints": [
+        "code-webflow third-party integration reference",
+        "create-skill reference template",
+        "post-review remediation"
+      ],
+      "contentHash": "eae5f4e27b57b1f9e480dc2efee56c51b4d8290e9124cdb4ea4621ad730fc49f",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 1
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9524,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "cross_doc_consistency",
+      "deterministic_replay",
+      "evidence_completeness",
+      "link_scope_claim",
+      "routing_metadata_quality",
+      "scope_isolation",
+      "scope_mutation",
+      "secrets_exposure",
+      "semantic_duplication",
+      "spec_code_mismatch",
+      "spec_contract",
+      "strict_gate_failure",
+      "unsafe_command_guidance",
+      "xss_instruction_safety"
+    ],
+    "ruledOut": [
+      "deterministic_replay",
+      "scope_isolation",
+      "scope_mutation",
+      "secrets_exposure",
+      "unsafe_command_guidance",
+      "xss_instruction_safety"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "spec_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "semantic_duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "secrets_exposure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "unsafe_command_guidance": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "xss_instruction_safety": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "scope_mutation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_code_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "link_scope_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "evidence_completeness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "strict_gate_failure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "routing_metadata_quality": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "cross_doc_consistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "deterministic_replay": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "scope_isolation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        "163 target files"
+      ],
+      "bugClass": "secrets_exposure",
+      "disposition": "ruled_out",
+      "rationale": "No credential signatures found",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:65-68"
+      ],
+      "reason": "Exact target-root scan returned no matches"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        "163 target files"
+      ],
+      "bugClass": "unsafe_command_guidance",
+      "disposition": "ruled_out",
+      "rationale": "No destructive command guidance in target corpus",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:55-60"
+      ],
+      "reason": "Exact target-root scan returned no matches"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "security-pattern references"
+      ],
+      "bugClass": "xss_instruction_safety",
+      "disposition": "ruled_out",
+      "rationale": "Unsafe examples are clearly negative",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:37-63",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:127-168"
+      ],
+      "reason": "Direct context read confirms safe framing"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "12 packet commits"
+      ],
+      "bugClass": "scope_mutation",
+      "disposition": "ruled_out",
+      "rationale": "No executable capability delta",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md:43-47",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:79-83"
+      ],
+      "reason": "Changed-path and direct diff inspection"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "corpus and link audits"
+      ],
+      "bugClass": "deterministic_replay",
+      "disposition": "ruled_out",
+      "rationale": "Audit results stable",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:47-95"
+      ],
+      "reason": "Terminal replay matches prior outputs"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "target surfaces and packet docs"
+      ],
+      "bugClass": "scope_isolation",
+      "disposition": "ruled_out",
+      "rationale": "Target remained read-only",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:55-60"
+      ],
+      "reason": "Scoped Git status empty"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        "163 target files"
+      ],
+      "bugClass": "secrets_exposure",
+      "disposition": "ruled_out",
+      "rationale": "No credential signatures found",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:65-68"
+      ],
+      "proof": "Exact target-root scan returned no matches"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        "163 target files"
+      ],
+      "bugClass": "unsafe_command_guidance",
+      "disposition": "ruled_out",
+      "rationale": "No destructive command guidance in target corpus",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:55-60"
+      ],
+      "proof": "Exact target-root scan returned no matches"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "security-pattern references"
+      ],
+      "bugClass": "xss_instruction_safety",
+      "disposition": "ruled_out",
+      "rationale": "Unsafe examples are clearly negative",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:37-63",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:127-168"
+      ],
+      "proof": "Direct context read confirms safe framing"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "12 packet commits"
+      ],
+      "bugClass": "scope_mutation",
+      "disposition": "ruled_out",
+      "rationale": "No executable capability delta",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md:43-47",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:79-83"
+      ],
+      "proof": "Changed-path and direct diff inspection"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "corpus and link audits"
+      ],
+      "bugClass": "deterministic_replay",
+      "disposition": "ruled_out",
+      "rationale": "Audit results stable",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:47-95"
+      ],
+      "proof": "Terminal replay matches prior outputs"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "target surfaces and packet docs"
+      ],
+      "bugClass": "scope_isolation",
+      "disposition": "ruled_out",
+      "rationale": "Target remained read-only",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:55-60"
+      ],
+      "proof": "Scoped Git status empty"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "routing_metadata_quality",
+      "cross_doc_consistency",
+      "deterministic_replay",
+      "scope_isolation"
+    ],
+    "covered": [
+      "routing_metadata_quality",
+      "cross_doc_consistency",
+      "deterministic_replay",
+      "scope_isolation"
+    ],
+    "ruledOut": [
+      "deterministic_replay",
+      "scope_isolation"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 0,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 3,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:65-72"
+        ],
+        "findingRefs": [
+          "F001",
+          "F002"
+        ],
+        "summary": "R3 remains contradicted."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 2,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:23-25",
+          ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:65-76"
+        ],
+        "findingRefs": [
+          "F003",
+          "F004"
+        ],
+        "summary": "Completion evidence remains inconsistent and strict gate remains red."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "No feature catalog claim."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "No executable playbook capability."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

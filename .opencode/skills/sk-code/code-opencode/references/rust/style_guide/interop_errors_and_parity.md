@@ -16,7 +16,19 @@ Formatting standards, naming conventions, and TypeScript interoperability rules 
 
 ---
 
-### Error Style
+## 1. OVERVIEW
+
+### Purpose
+
+Provides focused Rust guidance for rust/typescript interop — errors, parity & related resources in the OpenCode development environment.
+
+### When to Use
+
+- Implementing or reviewing Rust code covered by this topic
+- Preserving TypeScript interoperability and deterministic behavior
+- Applying the corresponding Rust standards at an implementation boundary
+
+## 2. ERROR STYLE
 
 Core public operations return domain-specific `Result` values backed by `thiserror`.
 
@@ -49,7 +61,7 @@ Rules:
 - Error messages and codes covered by TypeScript contracts are golden-tested.
 - Panic only for an impossible internal invariant, never for recoverable boundary input.
 
-### Exhaustive Adapter Error Mapping
+## 3. EXHAUSTIVE ADAPTER ERROR MAPPING
 
 ```rust
 #[derive(Debug)]
@@ -78,7 +90,7 @@ fn map_ranking_error(error: RankingError) -> JsErrorShape {
 
 The adapter must also preserve whether the existing TypeScript operation throws synchronously or rejects a Promise.
 
-### Panic-Free Boundary Validation
+## 4. PANIC-FREE BOUNDARY VALIDATION
 
 Do not use:
 
@@ -112,7 +124,7 @@ JavaScript-controlled data must not reach:
 - Assertions used as validation
 - `partial_cmp(...).unwrap()`
 
-### Deterministic Identifiers
+## 5. DETERMINISTIC IDENTIFIERS
 
 Identifier generation preserves the exact TypeScript preimage contract:
 
@@ -137,7 +149,7 @@ fn deterministic_id(namespace: &str, name: &str) -> String {
 
 This example is correct only if the TypeScript oracle uses the same fields, NUL delimiter, UTF-8 bytes, SHA-256, lowercase hexadecimal output, and 24-character truncation. Never infer those details from a semantically similar implementation.
 
-### Stable Serialization
+## 6. STABLE SERIALIZATION
 
 Do not assume `serde_json` reproduces JavaScript byte output automatically.
 
@@ -175,7 +187,7 @@ struct SearchResult {
 
 Byte-for-byte fixtures remain required even when the Rust structure appears equivalent to the TypeScript object.
 
-### Async and Threading
+## 7. ASYNC AND THREADING
 
 Keep parsing, scoring, ranking, hashing, canonicalization, and serialization preparation synchronous in the core.
 
@@ -200,7 +212,7 @@ Parity-visible floating-point reductions MUST NOT run in nondeterministic parall
 
 Baseline WASM is single-threaded. Promise bridging does not create CPU parallelism.
 
-### napi-rs Export Example
+## 8. NAPI-RS EXPORT EXAMPLE
 
 ```rust
 use napi::bindgen_prelude::{Error, Status};
@@ -236,7 +248,7 @@ pub fn rank_candidates(candidates: Vec<CandidateDto>) -> napi::Result<Vec<Candid
 
 In production, ranking belongs in the pure core and the adapter converts DTOs and errors only. The example shows the JavaScript-visible naming and owned boundary shape.
 
-### wasm-bindgen Export Example
+## 9. WASM-BINDGEN EXPORT EXAMPLE
 
 ```rust
 use wasm_bindgen::prelude::*;
@@ -256,7 +268,7 @@ pub fn normalize_score(value: f64) -> Result<f64, JsValue> {
 
 The exact rounding implementation and error shape require differential fixtures against the TypeScript oracle before release.
 
-### Coexistence and Fallbacks
+## 10. COEXISTENCE AND FALLBACKS
 
 TypeScript retains fallback selection. Rust adapters expose capability; they do not silently choose themselves.
 
@@ -268,7 +280,7 @@ const result = flags.nativeRanking && nativeAddon !== null
 
 Both paths must emit identical bytes for the supported input domain. A semantic deep-equality test is useful for diagnosis but does not replace the byte comparison.
 
-### Differential Test Contract
+## 11. DIFFERENTIAL TEST CONTRACT
 
 The release-level assertion is:
 
@@ -299,23 +311,7 @@ Parity fixtures cover:
 - Synchronous throws and Promise rejections
 - Native and WASM artifacts
 
----
-
-## 1. OVERVIEW
-
-### Purpose
-
-Provides focused Rust guidance for rust/typescript interop — errors, parity & related resources in the OpenCode development environment.
-
-### When to Use
-
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
-
----
-
-## 2. RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 - [quality_standards.md](../quality_standards/overview_and_data_ownership.md) - Ownership, safety, ABI contracts, error translation, concurrency, Cargo, and parity gates
 - [quick_reference.md](../quick_reference/overview_and_boundary_template.md) - Copy-paste Rust boundary templates, deterministic recipes, and build commands

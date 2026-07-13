@@ -3,7 +3,7 @@ title: "sk code assets scripts: Code README"
 description: "Code-facing README for .opencode/skills/sk-code/code-opencode/assets/scripts."
 trigger_phrases:
   - "sk-code assets/scripts"
-  - "code README"
+  - "code readme"
   - "opencode script maintenance"
 importance_tier: normal
 contextType: implementation

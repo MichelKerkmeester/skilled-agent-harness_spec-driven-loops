@@ -20,7 +20,8 @@ Reference guide for integrating external JavaScript libraries in Webflow project
 ## 1. OVERVIEW
 
 ### Purpose
-Reference guide for integrating external JavaScript libraries in Webflow projects.
+
+Entry point for integrating external JavaScript libraries into Webflow: the shared integration principles and script-loading pattern, plus concrete setups for HLS.js (video streaming) and Lenis (smooth scroll).
 
 ### When to Use
 - Integrating new third-party libraries

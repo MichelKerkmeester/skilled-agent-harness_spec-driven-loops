@@ -1,0 +1,187 @@
+{
+  "sessionId": "fanout-xhigh-a-1783915428096-y929h9",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "instance-only",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Rust reference never enters the required numbered OVERVIEW",
+      "file": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+      "line": 19,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "content_hash": "827c2d4ba5ff65895863cabd349e8f789a544946c9355d090f94a48ada5ff1ed",
+      "scopeProof": "A complete 163-file structure matrix found one missing OVERVIEW wrapper.",
+      "affectedSurfaceHints": [
+        "code-opencode Rust references",
+        "create-skill reference contract",
+        "document validator"
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "finding_class": "instance-only",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Post-review Purpose de-duplication left one containment duplicate",
+      "file": ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md",
+      "line": 22,
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "content_hash": "b133af55ef44e06d0779c42e39334c1f1b39601337a6a84392d296b48094ab05",
+      "scopeProof": "The normalized equality/containment matrix found exactly one remaining duplicate across 163 files.",
+      "affectedSurfaceHints": [
+        "code-webflow third-party references",
+        "post-review remediation",
+        "semantic conformance checker"
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "finding_class": "matrix/evidence",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Completed rows do not carry the evidence their own protocol requires",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md",
+      "line": 24,
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "content_hash": "05cf17325f2251fe2acc88a8e464904fe79380e262a5f550b60f13d4ca030f98",
+      "scopeProof": "Strict verbose validation enumerated 14 checklist and 11 task rows with UNSPECIFIED evidence.",
+      "affectedSurfaceHints": [
+        "completion verification",
+        "checklist evidence",
+        "strict packet validation"
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "traceability",
+      "finding_class": "matrix/evidence",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Implementation summary retains the withdrawn whole-hub zero-link claim",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+      "line": 76,
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "content_hash": "741ac03162b390129a0e0e5ac3146b9c1411b8ad929a6407f7ebb3e01f983e3b",
+      "scopeProof": "A fenced-code-aware scan covered 326 tracked sk-code Markdown files and reproduced the two checklist exclusions.",
+      "affectedSurfaceHints": [
+        "implementation summary",
+        "verification table",
+        "link-scope claim"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003",
+    "F004"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    "F001",
+    "F002",
+    "F003",
+    "F004"
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 0.0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "template_structure",
+      "validator_false_negative",
+      "executable_change",
+      "credential_exposure",
+      "trust_boundary_regression",
+      "semantic_template_duplication",
+      "checklist_evidence",
+      "spec_claim_drift",
+      "unadjudicated_p0",
+      "new_same_class_gap"
+    ],
+    "covered": [
+      "template_structure",
+      "validator_false_negative",
+      "semantic_template_duplication",
+      "checklist_evidence",
+      "spec_claim_drift"
+    ],
+    "ruledOut": [
+      "executable_change",
+      "credential_exposure",
+      "trust_boundary_regression",
+      "unadjudicated_p0",
+      "new_same_class_gap"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "candidateCoverage": {
+    "covered": [
+      "template_structure",
+      "validator_false_negative",
+      "executable_change",
+      "credential_exposure",
+      "trust_boundary_regression",
+      "semantic_template_duplication",
+      "checklist_evidence",
+      "spec_claim_drift",
+      "unadjudicated_p0",
+      "new_same_class_gap"
+    ]
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    "Corpus-wide frontmatter or filename regression",
+    "Executable, credential, or trust-boundary regression",
+    "Additional same-class defect",
+    "P0 severity trajectory"
+  ],
+  "cleanSearchProof": [
+    "All 163 files pass generic validation and frontmatter/version checks.",
+    "All 13 scoped implementation/remediation commits changed only Markdown or JSON.",
+    "Final semantic/evidence replay found no distinct root cause beyond F001-F004."
+  ],
+  "divergence": {
+    "saturatedDirections": [
+      "frontmatter and filename conformance",
+      "documentation-only security boundary",
+      "same-class template/evidence replay"
+    ],
+    "completed": [],
+    "failed": [],
+    "overrides": []
+  }
+}
