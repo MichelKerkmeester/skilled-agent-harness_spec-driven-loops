@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity",
+  "spec_folder": "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity",
+  "parent_id": "skilled-agent-orchestration/134-cli-codex-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Codex hook parity",
+      "cli-codex hooks",
+      "codex parity adapters",
+      "Codex hook parity plan",
+      "Codex hook parity tasks",
+      "Codex hook parity checklist",
+      "Codex hook decisions",
+      "codex parity ADR",
+      "codex 0.144.2 hook contract"
+    ],
+    "key_topics": [
+      "codex",
+      "hook",
+      "parity",
+      "cli-codex",
+      "hooks",
+      "adapters",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr",
+      "contract"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".codex/config.toml",
+      ".codex/hooks.json",
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Each Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "installer",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Checked",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codex Stop",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Child 004 shipped only the four Codex session-lifecycle adapters (SessionStart, UserPromptSubmit, Stop, PreCompact)",
+    "created_at": "2026-07-13T16:41:33.164Z",
+    "last_save_at": "2026-07-13T16:41:33.164Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:a597fc83cc7cd436cbcdd8187c7dad82be96d1527c0141eab2a6bc4abc51cb56",
+    "source_doc_hashes": {
+      "spec.md": "abe474edcb420a9a8623d18fbae7c5c9746d9ae0b3afe595e076d9afdf025225",
+      "plan.md": "14cb610dfb315ea0c4424445a3ef7f030d7b18b2b7e124ccafbd09eb1de6132a",
+      "tasks.md": "66ddc33528814f4917e80f12f54d6b9833d7b3c92bacaf5569cfe941e1d05d40",
+      "checklist.md": "a5eeb6e6109df43edca153a4c34e42237d48da65966a0ee589c273383931bbad",
+      "decision-record.md": "b8b5e318569604985bf27431fe3e6237a435c60b7f85b569792bc5e02c835b0c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
