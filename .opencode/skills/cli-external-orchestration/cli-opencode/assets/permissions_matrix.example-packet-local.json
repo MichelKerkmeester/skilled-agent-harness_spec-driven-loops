@@ -24,28 +24,28 @@
       "rationale": "Phase 003 packet docs are the approved documentation edit scope."
     },
     {
-      "target_glob": ".opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix*.json",
+      "target_glob": ".opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix*.json",
       "operation_class": "write",
       "scope": "packet-local",
       "effect": "allow",
       "rationale": "Phase 003 explicitly creates schema and example matrix assets."
     },
     {
-      "target_glob": ".opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix*.json",
+      "target_glob": ".opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix*.json",
       "operation_class": "edit",
       "scope": "packet-local",
       "effect": "allow",
       "rationale": "Phase 003 explicitly updates schema and example matrix assets."
     },
     {
-      "target_glob": ".opencode/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md",
+      "target_glob": ".opencode/skills/cli-external-orchestration/cli-opencode/references/permissions_matrix.md",
       "operation_class": "write",
       "scope": "packet-local",
       "effect": "allow",
       "rationale": "Phase 003 explicitly creates the permissions matrix reference doc."
     },
     {
-      "target_glob": ".opencode/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md",
+      "target_glob": ".opencode/skills/cli-external-orchestration/cli-opencode/references/permissions_matrix.md",
       "operation_class": "edit",
       "scope": "packet-local",
       "effect": "allow",

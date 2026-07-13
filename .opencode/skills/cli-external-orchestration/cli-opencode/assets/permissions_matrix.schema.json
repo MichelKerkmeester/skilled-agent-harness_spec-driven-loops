@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://opencode.local/schemas/permissions-matrix.schema.json",
+  "$id": "https://opencode.local/schemas/permissions_matrix.schema.json",
   "title": "cli-opencode permissions matrix",
   "description": "Structured pre-tool-call permissions matrix for cli-opencode deep-loop dispatches. Resolution semantics: rules are evaluated by operation_class and target_glob; the most-specific matching glob wins, where specificity is longer literal prefix plus fewer wildcards, and the first rule in rules[] breaks exact ties. Empty or malformed matrices default-deny at runtime.",
   "type": "object",

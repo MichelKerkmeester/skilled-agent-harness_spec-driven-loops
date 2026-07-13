@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.3.0.28
+version: 1.3.0.29
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -118,7 +118,7 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `--variant` | string | Provider-specific reasoning effort (`high`, `max`, `minimal`, etc.) |
 | `--thinking` | boolean | Show thinking blocks (default false) |
 
-> **`--command` semantics (verified on v1.17.4):** the `run` message is plain text — slash-command syntax inside it (`opencode run "/memory:search query"`) is NOT expanded, so the command's template never reaches the model. Executing a registered command non-interactively requires `--command <family>/<name>` with the args as the message (they become `$ARGUMENTS`). Registry names are slash-namespaced (`memory/search` for `/memory:search`); a wrong name fails with the full registry list. Behavior probes of slash commands MUST use `--command`; the raw-text form only measures the model freestyling without the contract.
+> **`--command` semantics (verified on v1.17.4):** the `run` message is plain text — slash-command syntax inside it (`opencode run "/memory:search query"`) is NOT expanded, so the command's template never reaches the model. Executing a registered command non-interactively requires `--command <family>/<name>` with the args as the message (they become `$ARGUMENTS`). Registry names are slash-namespaced (`memory/search` for `/memory:search`); a wrong name fails with the full registry list. Behavior probes of slash commands MUST use `--command`; the raw-text form only measures the model freestyling without the contract. Consequences: (a) any behavior/adherence probe of a slash command MUST use `--command`, and the raw-text form is only valid as a labeled negative control; (b) inside `` !`…` `` template injections `$ARGUMENTS` expands like `"$@"` — one word per argument — so renderer scripts must join argv themselves.
 
 ### cli-opencode default invocation shape
 
@@ -230,6 +230,39 @@ opencode auth login          # → provider zai-coding-plan; model zai-coding-pl
 
 **On auth-error mid-dispatch** (`401 Unauthorized`, `provider/model not found`): invalidate the cache, rerun the pre-flight, and apply the same decision tree before retrying. Never substitute a model the user didn't approve.
 
+### User-facing prompt templates
+
+Surface these verbatim to the operator when the pre-flight decision tree lands on "ASK user" (default missing with a fallback configured, or all providers missing). Never dispatch until the operator responds.
+
+**Default missing, fallback configured:**
+
+```text
+The skill default `deepseek/deepseek-v4-pro` is not configured on this machine.
+A configured fallback is available. Pick one:
+  A) Use `openai/gpt-5.6-sol-pro --variant high` (OpenAI premium, configured now — paid)
+  B) Use `xiaomi/mimo-v2.5-pro --variant high` (Xiaomi Direct API, configured now) — or `xiaomi/mimo-v2.5-pro-ultraspeed --variant high` for latency-sensitive runs
+  C) Use `kimi-for-coding/k2p7` (Kimi For Coding plan, configured now — subscription)
+  D) Run `opencode providers login deepseek` first, then retry the original dispatch
+  E) Name a different model — paste the `--model <provider/model>` you want to use
+```
+
+**All providers missing:**
+
+```text
+No supported providers are configured on this machine. Run one:
+  - `opencode providers login deepseek`     (recommended — default for cli-opencode)
+  - `opencode auth login`                   (MiniMax Token Plan — default MiniMax path; pick "MiniMax Token Plan (minimax.io)" → provider minimax-coding-plan; model minimax-coding-plan/MiniMax-M3)
+  - `opencode providers login minimax`      (MiniMax Direct API — pay-per-token; needs MINIMAX_API_KEY; model minimax/MiniMax-M3)
+  - `opencode auth login`                   (Xiaomi Token Plan — default Xiaomi path; pick "Xiaomi Token Plan (Europe)" → provider xiaomi-token-plan-ams; model xiaomi-token-plan-ams/mimo-v2.5-pro)
+  - `opencode providers login xiaomi`       (Xiaomi Direct API — pay-per-token; models xiaomi/mimo-v2.5-pro and xiaomi/mimo-v2.5-pro-ultraspeed)
+  - `opencode auth login`                   (Kimi For Coding plan — Kimi/Moonshot coding subscription; provider kimi-for-coding; model kimi-for-coding/k2p7)
+  - `opencode auth login`                   (Z.AI GLM Coding Plan — GLM coding subscription; provider zai-coding-plan; model zai-coding-plan/glm-5.2)
+  - `opencode providers login openai`       (OpenAI premium alternative — paid)
+Which would you like to set up? Confirm when login finishes; the skill will retry the original dispatch.
+```
+
+**Error-recovery contract.** If a dispatch returns an auth error after pre-flight passed (credential expired or rotated), invalidate the cache, rerun the pre-flight, and apply the same decision tree before retrying. Never substitute a model the user didn't approve.
+
 ---
 
 ## 5. MODEL SELECTION
@@ -263,6 +296,12 @@ The `--variant` flag maps to provider-specific reasoning effort. Underlying-mode
 | `openai` GPT-5.6 (`gpt-5.6` / `gpt-5.6-fast` / `gpt-5.6-pro` / `gpt-5.6-sol` / `gpt-5.6-sol-fast` / `gpt-5.6-sol-pro` / `gpt-5.6-terra` / `gpt-5.6-terra-fast` / `gpt-5.6-terra-pro` / `gpt-5.6-luna` / `gpt-5.6-luna-fast` / `gpt-5.6-luna-pro`) | `--variant` maps to OpenAI reasoning effort — a separate lever from the model tier: `none`/`low`/`medium`/`high`/**`xhigh`** (Pro tiers — `gpt-5.6-pro` / `gpt-5.6-sol-pro` / `gpt-5.6-terra-pro` / `gpt-5.6-luna-pro`: `medium`/`high`/`xhigh` — **inferred from the now-retired `gpt-5.5-pro` mapping and unverified against the live catalog (which no longer lists `gpt-5.5-pro` to re-check); smoke-test a Pro slug at `--variant low` before relying on the restriction**). **The `-fast` slugs** (`gpt-5.6-fast` / `gpt-5.6-sol-fast` / `gpt-5.6-terra-fast` / `gpt-5.6-luna-fast`) are the low-latency **Fast** model tier (OpenAI `priority` service tier) with the same effort range — e.g. `--model openai/gpt-5.6-sol-fast --variant xhigh`. `gpt-5.6-sol` is the flagship default; confirm live slugs via `opencode models openai`. |
 
 Default skill behavior: pass `--variant high` for cross-AI dispatches. Operators may override via the prompt template's variant field.
+
+### Model-specific operational caveats
+
+- **Kimi K2.7 Code (`kimi-for-coding/k2p7`) over-exploration (observed 2026-06-17):** on broad / large-repo scopes at `--variant high`, k2p7 over-explores (many sequential reads) and can exceed a 600s timeout WITHOUT emitting — opencode flushes only the final assistant message to stdout, so a killed run yields 0 bytes (looks like a hang, but it was working). Mitigate with a hard read-cap in the prompt ("read ≤N files then emit") + a 1200s+ timeout, or omit `--variant`.
+- **GLM-5.2 (`zai-coding-plan/glm-5.2`) latency variance (benchmark 008, n=45):** thinking-on drives latency variance 6–161s (avg ~26s) — budget generous timeouts; expect ~1/45 transient dispatch failures (retry the cell). Empirical prompt framework: COSTAR (benchmark 008).
+- **GLM-5.2 vision (image input):** `glm-5.2` is natively multimodal (vision-to-code), but `opencode run --file <image>` does NOT deliver images to this provider — upstream #20802 for custom OpenAI-compatible providers (confirmed 2026-06-28: `--file` → `NO_IMAGE_RECEIVED`). For image input use the direct Z.AI Coding Plan multimodal API (base64 `image_url` at `https://api.z.ai/api/coding/paas/v4/chat/completions`) — a deviation from this skill's dispatch path justified only by the verified #20802 breakage; see `../../sk-prompt/prompt-models/references/models/glm-5.2.md` §7.
 
 ---
 

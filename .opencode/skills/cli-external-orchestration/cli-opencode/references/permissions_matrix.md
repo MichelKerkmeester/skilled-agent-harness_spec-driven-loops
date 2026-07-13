@@ -9,7 +9,7 @@ trigger_phrases:
   - "rm-8 replay walkthrough"
 importance_tier: normal
 contextType: implementation
-version: 1.3.0.11
+version: 1.3.0.12
 ---
 
 # cli-opencode permissions matrix
@@ -40,13 +40,13 @@ The structured gate is designed to check each tool call against deterministic `r
 
 Schema file:
 
-`.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json`
+`.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix.schema.json`
 
 Examples:
 
-- `.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-readonly.json`
-- `.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-packet-local.json`
-- `.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json`
+- `.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix.example-readonly.json`
+- `.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix.example-packet-local.json`
+- `.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix.example-repo-wide.json`
 
 Top-level fields:
 
@@ -101,7 +101,7 @@ No matching rule means deny. Empty or malformed matrix means deny.
 
 ## 4. EXAMPLE MATRIX: READ-ONLY
 
-Use `permissions-matrix.example-readonly.json` for audit, review, and research
+Use `permissions_matrix.example-readonly.json` for audit, review, and research
 iterations that should not mutate the repository.
 
 Core intent:
@@ -124,7 +124,7 @@ call.
 
 ## 5. EXAMPLE MATRIX: PACKET-LOCAL
 
-Use `permissions-matrix.example-packet-local.json` when the operator approves a
+Use `permissions_matrix.example-packet-local.json` when the operator approves a
 specific packet or small file set.
 
 Core intent:
@@ -147,7 +147,7 @@ but mutation must stay narrow.
 
 ## 6. EXAMPLE MATRIX: REPO-WIDE `.opencode`
 
-Use `permissions-matrix.example-repo-wide.json` for trusted refactors across
+Use `permissions_matrix.example-repo-wide.json` for trusted refactors across
 `.opencode`.
 
 Core intent:
@@ -310,7 +310,7 @@ mitigation regardless of whether a matrix exists.
 - Add explicit `Exec(<cmd>)` allows for every shell command the task requires.
 - Add explicit denies for `rm`, `mv`, `cp`, package managers, `node`, `python*`,
   `sed -i*`, and any project-specific destructive command.
-- Validate with `npx ajv validate -s permissions-matrix.schema.json -d <matrix>`.
+- Validate with `npx ajv validate -s permissions_matrix.schema.json -d <matrix>`.
 - Run a dry replay with representative denied writes before dispatch.
 - Keep applying the four-layer prose mitigation whether or not a matrix is
   authored — the gate does not enforce it until wired into dispatch.
@@ -347,9 +347,9 @@ team wants enforcement.
 Schema examples:
 
 ```bash
-npx ajv validate -s .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json -d .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-readonly.json
-npx ajv validate -s .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json -d .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-packet-local.json
-npx ajv validate -s .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json -d .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json
+npx ajv validate -s .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix.schema.json -d .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix.example-readonly.json
+npx ajv validate -s .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix.schema.json -d .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix.example-packet-local.json
+npx ajv validate -s .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix.schema.json -d .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions_matrix.example-repo-wide.json
 ```
 
 Runtime tests:

@@ -75,7 +75,7 @@ Operators run the exact prompt and command sequence for `CO-035` and confirm the
 |---|---|
 | `../../SKILL.md` | §3 Provider Auth Pre-Flight + default provider (deepseek/deepseek-v4-pro) |
 | `../../../../system-skill-advisor/mcp_server/scripts/skill_advisor.py` | Advisor scorer entry point |
-| `../../references/permissions-matrix.md` | Structured permissions schema for dispatches with `--permissions-matrix` flag |
+| `../../references/permissions_matrix.md` | Structured permissions schema for dispatches with `--permissions-matrix` flag |
 
 ---
 
