@@ -36,6 +36,8 @@ This playbook provides 28 deterministic scenarios across 9 categories validating
 
 Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.5` + `medium` reasoning + `service_tier="fast"`), every documented sandbox mode, every reasoning_effort level, every agent profile (`review`, `context`, `research`, `write`, `debug`, `ai-council`), session continuity surfaces (`--full-auto`, native hooks, resume, fork), unique built-in capabilities (`/review`, `--search`, `--image`, `codex mcp`), prompt-template usage with the CLEAR quality card and cross-AI delegation patterns. Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
 
+> **Guard-hook parity (cross-cutting, not a `CX-NNN` scenario):** the Codex-side guard adapters that make a live Codex session honor the same spec-gate / dispatch / freshness / post-edit / completion guardrails as Claude and OpenCode are runtime infrastructure, not `cli-codex` dispatch features, so they are validated in the hub's shared plugins-and-hooks playbook rather than this scored corpus — see [`plugins_and_hooks/codex_hook_parity.md`](../../manual_testing_playbook/plugins_and_hooks/codex_hook_parity.md).
+
 ### Realistic Test Model
 
 1. A realistic user request is given to an orchestrator running on a non-Codex runtime (Claude Code, OpenCode, Copilot or shell).

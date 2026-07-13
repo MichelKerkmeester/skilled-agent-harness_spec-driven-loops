@@ -7,12 +7,12 @@ contextType: planning
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T18:17:53Z"
+    last_updated_at: "2026-07-13T18:44:01Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored Level 3 spec after the Codex 0.144.2 capability spike"
-    next_safe_action: "Implement the eight portable Codex guard adapters over their neutral cores"
+    recent_action: "Shipped and verified; packet complete"
+    next_safe_action: "Re-point installer at the primary checkout once it reconciles to v4"
     blockers: []
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -33,7 +33,7 @@ Give Codex full hook/plugin parity with Claude and OpenCode. Child 004 shipped o
 |---|---|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Created** | 2026-07-13 |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../004-codex-hook-adapter-layer/spec.md` |

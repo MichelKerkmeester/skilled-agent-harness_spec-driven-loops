@@ -38,36 +38,24 @@
       "contract"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "decision-record.md",
-      "spec.md",
-      "tasks.md",
       ".codex/hooks.json",
       "mcp_server/hooks/codex/shared.ts",
       ".codex/config.toml",
       ".opencode/bin/install-codex-hooks.mjs",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
       {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -101,6 +89,12 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
@@ -113,13 +107,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
+        "name": "spec.md",
+        "kind": "doc",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Authored Level",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -144,6 +138,12 @@
       },
       {
         "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Child 004 shipped only the four Codex session-lifecycle adapters (SessionStart, UserPromptSubmit, Stop, PreCompact)",
     "created_at": "2026-07-13T16:41:33.164Z",
-    "last_save_at": "2026-07-13T18:17:53.368Z",
+    "last_save_at": "2026-07-13T18:49:56.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a32f528ed9d44fb7424b2f98bb5c9af6c6866b322bb18303b29242edf0768bd",
+    "source_fingerprint": "sha256:2d8246b3c26514c1758572c6d385757dea315d080203ec8d5ca319293c3e990d",
     "source_doc_hashes": {
-      "spec.md": "55ddbb69d8e0fb8522d2c961b08c88f9003ad2df83fe5fafeace1ba83af2753a",
-      "plan.md": "8583fcdd6899ae7106cbd95a7a6b2c38016f3e4d82b573b5514b731bbbe7a3a8",
-      "tasks.md": "95670b5a1655310807c392dfc436073707f6eca11f4c7317a142a866b0051dce",
-      "checklist.md": "77720e5df1ae1eee0fddec89c811030a84606931fdb3bd1010feed2f8744a82a",
-      "decision-record.md": "87692d3b48788d46103f418eaab486fb7c3857225bbed20225c1b33600d86b65",
-      "implementation-summary.md": "8818ddaba1a929b6f65b8f3ff9efe0751f4a58b11607a33c8021a7ceef9198e1"
+      "spec.md": "ee14a1d9f2dae44777dd288e92494dbafeb09ad30488c981b1113d2e4148c518",
+      "plan.md": "49604114cbc6f61c81234174141fc046449f5cbfd8f6bdb7fa2fabc697061755",
+      "tasks.md": "926a082ef2258024b8bafa61cb4f65585de20b7f15d897a964194f17e62dd692",
+      "checklist.md": "e12b981240c7eb35e231f40be0eef9d6f78504bcb0acfeafb5fa3f73b262ae28",
+      "decision-record.md": "74baf8169d14e35cf5bc590dd58042f0e3cd2be2ee070f7ca8bfebb55394bdac",
+      "implementation-summary.md": "83ba6a63a0893473e3700178e9cf696aa446946da69aa1cb715bb3a74c64161a"
     },
     "last_active_child_id": null,
     "last_active_at": null

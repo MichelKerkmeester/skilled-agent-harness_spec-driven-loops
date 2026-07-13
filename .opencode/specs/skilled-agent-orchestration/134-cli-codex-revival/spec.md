@@ -7,7 +7,7 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival"
-    last_updated_at: "2026-07-13T11:23:00Z"
+    last_updated_at: "2026-07-13T18:55:16Z"
     last_updated_by: "claude-code"
     recent_action: "Reconciled parent rollup — 6 child phases implemented (93%), live verification pending"
     next_safe_action: "Close out pending live-verification items across phases 002-006"
@@ -44,7 +44,7 @@ _memory:
 Codex CLI 0.144.1 now provides stable native hooks, multi-agent support, and a supported non-interactive executor, reversing the operational assumptions behind packet 122. Revival must restore support without repeating the former advertised-but-unusable failure mode.
 
 ### Purpose
-Restore Codex through six bounded phases, beginning with a verified contract and a fail-closed deep-loop executor. Detailed implementation remains in child phases.
+Restore Codex through bounded phases, beginning with a verified contract and a fail-closed deep-loop executor, and extending to full guard-hook parity with the other runtimes. Detailed implementation remains in child phases. The original six-phase revival is followed by `007-codex-hook-parity`, which gives every Claude guard hook / OpenCode plugin a Codex adapter, native equivalent, or documented gap.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

@@ -7,12 +7,12 @@ contextType: planning
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T18:17:53Z"
+    last_updated_at: "2026-07-13T18:44:01Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the task breakdown"
-    next_safe_action: "Implement the portable Codex guard adapters"
+    recent_action: "All tasks complete; fixture + live verification passed"
+    next_safe_action: "Re-point installer at the primary checkout once it reconciles to v4"
     blockers: []
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,8 +35,8 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Capability spike: pin the Codex 0.144.2 hook contract from the binary schema + live probe (`decision-record.md`).
-- [ ] T002 Conform the scaffold docs to the Level 3 template; `validate.sh --strict` → Errors: 0 (spec folder).
-- [ ] T003 Confirm the six neutral cores are present and map each core's entry function (spec folder) {deps: T001}.
+- [x] T002 Conform the scaffold docs to the Level 3 template; `validate.sh --strict` → Errors: 0 (spec folder).
+- [x] T003 Confirm the six neutral cores are present and map each core's entry function (spec folder) {deps: T001}. Mapped in `decision-record.md` ADR-002.
 <!-- /ANCHOR:phase-1 -->
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
@@ -44,42 +44,42 @@ _memory:
 Each guard adapter is a thin sibling of the existing Claude adapter under a new `runtime/hooks/codex/` (or `scripts/hooks/codex/`) directory; it reads stdin, normalizes the Codex tool name, calls the neutral core unchanged, emits the Codex envelope, and fails open.
 
 ### Portable guard adapters
-- [ ] T004 spec-gate-enforce Codex adapter — PreToolUse, deny-capable — over `spec-gate-core.mjs` `evaluateMutation` {deps: T003}.
-- [ ] T005 spec-gate-classify Codex adapter — UserPromptSubmit, advisory — over `spec-gate-core.mjs` `classifyIntent` {deps: T003}.
-- [ ] T006 [P] code-graph-freshness Codex adapter — PostToolUse, fire-and-forget — over `freshness-core.cjs` `evaluateEdit` {deps: T003}.
-- [ ] T007 [P] post-edit-quality Codex adapter — PostToolUse, advisory — over `post-edit-router.cjs` `resolveDispatch`/`runChecks` {deps: T003}.
-- [ ] T008 dispatch-preflight-lint Codex adapter — PreToolUse, deny-capable — over `dispatch-rule-checks.mjs` `evaluate` {deps: T003}.
-- [ ] T009 [P] dispatch-audit Codex adapter — PostToolUse, observe — over `dispatch-audit.mjs` `recordDispatch` (tag `runtime:'codex'`) {deps: T003}.
-- [ ] T010 [P] completion-evidence Codex adapter — Stop, advisory, plain `.cjs` — over `completion-evidence-sentinel.cjs` `evaluateCompletionEvidence` {deps: T003}.
+- [x] T004 spec-gate-enforce Codex adapter — PreToolUse, deny-capable — over `spec-gate-core.mjs` `evaluateMutation` {deps: T003}.
+- [x] T005 spec-gate-classify Codex adapter — UserPromptSubmit, advisory — over `spec-gate-core.mjs` `classifyIntent` {deps: T003}.
+- [x] T006 [P] code-graph-freshness Codex adapter — PostToolUse, fire-and-forget — over `freshness-core.cjs` `evaluateEdit` {deps: T003}.
+- [x] T007 [P] post-edit-quality Codex adapter — PostToolUse, advisory — over `post-edit-router.cjs` `resolveDispatch`/`runChecks` {deps: T003}.
+- [x] T008 dispatch-preflight-lint Codex adapter — PreToolUse, deny-capable — over `dispatch-rule-checks.mjs` `evaluate` {deps: T003}.
+- [x] T009 [P] dispatch-audit Codex adapter — PostToolUse, observe — over `dispatch-audit.mjs` `recordDispatch` (tag `runtime:'codex'`) {deps: T003}.
+- [x] T010 [P] completion-evidence Codex adapter — Stop, advisory, plain `.cjs` — over `completion-evidence-sentinel.cjs` `evaluateCompletionEvidence` {deps: T003}.
 
 ### Session-lifecycle wiring
-- [ ] T011 Register worktree-guard, check-git-hooks, check-dist-staleness in the Codex SessionStart chain.
-- [ ] T012 Fold session-cleanup into the Codex Stop chain with a neutral session-pid env.
+- [x] T011 Register worktree-guard, check-git-hooks, check-dist-staleness in the Codex SessionStart chain. Wired in `.codex/hooks.json` (SessionStart: 3 guards).
+- [x] T012 Fold session-cleanup into the Codex Stop chain with a neutral session-pid env. `session-cleanup.sh` in the Stop chain (`||true`, no-op without an identity).
 
 ### Native equivalents
-- [ ] T013 Codex route-guard adapter over `mcp-route-guard.cjs` `evaluateNativeMcpCall` with a `mcp__.*` matcher; document dormancy {deps: T003}.
-- [ ] T014 Extend the Codex dispatch adapter to recognize `codex exec -p` command shapes (cores unchanged); correct the ADR-005 `[profiles.*]` footnote {deps: T008, T009}.
+- [x] T013 Codex route-guard adapter over `mcp-route-guard.cjs` `evaluateNativeMcpCall` with a `mcp__.*` matcher; document dormancy {deps: T003}.
+- [x] T014 Extend the Codex dispatch adapter to recognize `codex exec -p` command shapes (cores unchanged); correct the ADR-005 `[profiles.*]` footnote {deps: T008, T009}.
 
 ### Install and registration
-- [ ] T015 Extend the versioned repo `.codex/hooks.json` with all new events and matchers, preserving existing entries {deps: T004-T013}.
-- [ ] T016 Add `install-codex-hooks.mjs` and run it to merge into `~/.codex/hooks.json` (backup first, idempotent) {deps: T015}.
+- [x] T015 Extend the versioned repo `.codex/hooks.json` with all new events and matchers, preserving existing entries {deps: T004-T013}.
+- [x] T016 Add `install-codex-hooks.mjs` and run it to merge into `~/.codex/hooks.json` (backup first, idempotent) {deps: T015}.
 <!-- /ANCHOR:phase-2 -->
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T017 Fixture stdin-pipe smoke plus fail-open check (empty + malformed) for every adapter {deps: T004-T013}.
-- [ ] T018 Live `codex exec --dangerously-bypass-hook-trust` matrix for the representative set — timed, with a fixture + schema fallback if it hangs {deps: T016, T017}.
-- [ ] T019 Author cli-codex manual testing playbook entries, cross-referenced to observed output {deps: T017}.
-- [ ] T020 Finalize implementation-summary.md; reconcile completion metadata; `validate.sh --strict` Errors: 0; note the closeout in the 134 parent {deps: T017, T018, T019}.
+- [x] T017 Fixture stdin-pipe smoke plus fail-open check (empty + malformed) for every adapter {deps: T004-T013}. `fixture-smoke` matrix 33/33 PASS.
+- [x] T018 Live `codex exec --dangerously-bypass-hook-trust` matrix for the representative set — timed, with a fixture + schema fallback if it hangs {deps: T016, T017}.
+- [x] T019 Author cli-codex manual testing playbook entries, cross-referenced to observed output {deps: T017}. `codex_hook_parity.md` (plus a cli-codex cross-ref).
+- [x] T020 Finalize implementation-summary.md; reconcile completion metadata; `validate.sh --strict` Errors: 0; note the closeout in the 134 parent {deps: T017, T018, T019}.
 <!-- /ANCHOR:phase-3 -->
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Every Claude hook / OpenCode plugin has a Codex adapter, a documented native equivalent, or a documented gap — all verified.
-- [ ] Every adapter passes fixture smoke and fails open on empty / malformed stdin.
-- [ ] The representative set is confirmed live under `codex exec` (or the gap is documented as owed).
-- [ ] The six neutral cores, all Claude hooks, and all OpenCode plugins remain byte-unchanged.
-- [ ] `validate.sh --strict` green; `checklist.md` verified with evidence.
+- [x] Every Claude hook / OpenCode plugin has a Codex adapter, a documented native equivalent, or a documented gap — all verified. 11-row coverage map in `implementation-summary.md`.
+- [x] Every adapter passes fixture smoke and fails open on empty / malformed stdin. `fixture-smoke` 33/33.
+- [x] The representative set is confirmed live under `codex exec` (or the gap is documented as owed).
+- [x] The six neutral cores, all Claude hooks, and all OpenCode plugins remain byte-unchanged. Landed diff `cae68c0d44` adds only new `codex/` files.
+- [x] `validate.sh --strict` green; `checklist.md` verified with evidence.
 <!-- /ANCHOR:completion -->
 <!-- ANCHOR:cross-refs -->
 ## Cross-References

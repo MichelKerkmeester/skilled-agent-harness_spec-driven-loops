@@ -7,12 +7,12 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T18:17:53Z"
+    last_updated_at: "2026-07-13T18:44:01Z"
     last_updated_by: "claude-code"
-    recent_action: "Conformed scaffold to L3 template"
-    next_safe_action: "Build the portable Codex guard adapters (Phase 2)"
+    recent_action: "Shipped adapters + wiring + installer; fixture 33/33 and live codex exec verified"
+    next_safe_action: "Re-point installer at the primary checkout once it reconciles to v4"
     blockers: []
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -25,35 +25,37 @@ _memory:
 | Field | Value |
 |---|---|
 | **Spec Folder** | 007-codex-hook-parity |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Level** | 3 |
 | **Predecessor** | `../004-codex-hook-adapter-layer` |
 | **Started** | 2026-07-13 |
+| **Completed** | 2026-07-13 |
 <!-- /ANCHOR:metadata -->
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Built so far:
+Built:
 - **Capability spike** — the Codex 0.144.2 hook contract pinned from the binary schema plus a live probe (`decision-record.md`, ADR-001).
-- **Scaffold conformance** — `spec.md`, `tasks.md`, and this summary conformed to the Level 3 template.
-
-Pending (Phase 2 → Phase 3): the guard adapters, lifecycle wiring, native equivalents, install, and verification.
+- **Eight guard adapters** — thin Codex siblings over the runtime-neutral cores (six guard cores + two CLI-dispatch cores), each a third consumer alongside the Claude hook and the OpenCode plugin.
+- **Lifecycle wiring** — the neutral SessionStart guards (worktree, git-hooks, dist-staleness) and the Stop chain (session-cleanup folded in) registered in `.codex/hooks.json`.
+- **Installer** — `install-codex-hooks.mjs` merges the versioned repo hook set into user-global `~/.codex/hooks.json`, backed up and idempotent.
+- **Verification** — fixture stdin-pipe matrix (33/33) plus a live `codex exec` run under Codex 0.144.2.
 
 ### Coverage map (adapter / native / gap)
 
 | Claude hook / plugin | Codex handling | Target | Status |
 |---|---|---|---|
-| spec-gate-enforce | Adapter (PreToolUse, deny) | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | Pending |
-| spec-gate-classify | Adapter (UserPromptSubmit) | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | Pending |
-| code-graph-freshness | Adapter (PostToolUse) | `system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs` | Pending |
-| post-edit-quality | Adapter (PostToolUse) | `sk-code/code-quality/scripts/hooks/codex/post-edit-quality.cjs` | Pending |
-| dispatch-preflight-lint | Adapter (PreToolUse, deny) | `cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs` | Pending |
-| dispatch-audit | Adapter (PostToolUse, observe) | `cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs` | Pending |
-| completion-evidence | Adapter (Stop, advisory) | `system-spec-kit/mcp_server/hooks/codex/completion-evidence-stop.cjs` | Pending |
-| mcp-route-guard | Native equivalent (dormant, documented) | `mcp-code-mode/runtime/hooks/codex/mcp-route-guard.cjs` | Pending |
-| task-dispatch-guard | Folded into exec command-shape recognizer | (in the Codex dispatch adapter) | Pending |
-| SessionStart guards (worktree, git-hooks, dist-staleness) | Wire neutral scripts | `.codex/hooks.json` SessionStart chain | Pending |
-| session-cleanup | Fold into Stop (no SessionEnd event) | `.codex/hooks.json` Stop chain | Pending |
+| spec-gate-enforce | Adapter (PreToolUse, deny) | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | Done |
+| spec-gate-classify | Adapter (UserPromptSubmit) | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | Done |
+| code-graph-freshness | Adapter (PostToolUse) | `system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs` | Done |
+| post-edit-quality | Adapter (PostToolUse) | `sk-code/code-quality/scripts/hooks/codex/post-edit-quality.cjs` | Done |
+| dispatch-preflight-lint | Adapter (PreToolUse, deny) | `cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs` | Done |
+| dispatch-audit | Adapter (PostToolUse, observe) | `cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs` | Done |
+| completion-evidence | Adapter (Stop, advisory) | `system-spec-kit/mcp_server/hooks/codex/completion-evidence-stop.cjs` | Done |
+| mcp-route-guard | Native equivalent (dormant, documented) | `mcp-code-mode/runtime/hooks/codex/mcp-route-guard.cjs` | Done |
+| task-dispatch-guard | Folded into exec command-shape recognizer | (in the Codex dispatch adapter) | Done |
+| SessionStart guards (worktree, git-hooks, dist-staleness) | Wire neutral scripts | `.codex/hooks.json` SessionStart chain | Done |
+| session-cleanup | Fold into Stop (no SessionEnd event) | `.codex/hooks.json` Stop chain | Done |
 <!-- /ANCHOR:what-built -->
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
@@ -80,18 +82,21 @@ See `decision-record.md` for full ADR documentation.
 
 | Check | Status | Evidence |
 |---|---|---|
-| Scaffold `validate.sh --strict` | Pending → target Errors: 0 | Re-run after this summary lands |
-| Per-adapter fixture smoke (allow / advise / deny / fail-open) | Pending | Phase 3, T017 |
-| Live `codex exec` matrix (timed) | Pending | Phase 3, T018 |
-| Cores / Claude hooks / OpenCode plugins byte-unchanged | Pending | Diff at closeout |
-| `.codex/hooks.json` parses + adapter paths exist | Pending | Phase 3 |
+| `validate.sh --strict` | Pass | Errors: 0 (closeout run) |
+| Per-adapter fixture smoke (allow / advise / deny / fail-open) | Pass | 33/33 assertions; real `permissionDecision:"deny"` envelope, Gate-3 `additionalContext`, and `runtime:"codex"` audit line all captured |
+| Live `codex exec` matrix (timed) | Pass | Codex 0.144.2: SessionStart 5/5 + UserPromptSubmit 3/3 Completed; `spec-gate-classify` wrote `.spec-gate-state/<hex(session_id)>.json`; model honored the injected Gate-3 menu (chose option E) |
+| Cores / Claude hooks / OpenCode plugins byte-unchanged | Pass | Landed diff touches only new `codex/` adapters + `.codex/hooks.json` + installer + spec docs; no core modified |
+| `.codex/hooks.json` parses + adapter paths exist | Pass | Installer dry-run parsed the source and resolved all 8 adapter paths |
+| Installer idempotent + preserves Superset entries | Pass | 14 added / 2 skipped, re-run 0 added, `notify.sh` preserved (3), `.bak-<ts>` backup created |
 <!-- /ANCHOR:verification -->
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Live deny-behavioral confirmation is owed until Phase 3** — deny capability is settled from the 0.144.2 binary schema; the runtime block will be observed (or documented as owed if the session hangs) in the live matrix.
-2. **`~/.codex/hooks.json` is the one out-of-repo write** — the installer backs it up first and merges rather than replaces; revertible via the backup.
-3. **`mcp-route-guard` codex adapter is dormant** — Codex's three registered MCP servers are all `mk_`-prefixed and thus core-exempt; it activates only when an external MCP family is registered.
+1. **Deny envelope is fixture-confirmed, not yet live-blocked** — the live run confirmed hooks fire and the model honors an injected `additionalContext`; the `permissionDecision:"deny"` path is proven by a real fixture envelope but was not exercised against a live out-of-scope `apply_patch` (the read-only test session made no such write). The deny code path is byte-identical to the advise path that did fire live.
+2. **The active install points at the worktree, not the primary checkout** — the primary checkout is behind origin/v4 and unsafe to write into (concurrent sessions), so the installer was run against the isolated worktree (which required staging the gitignored `shared/dist` + `mcp_server/dist` from the primary tree to complete the lifecycle-adapter chain). Re-run the installer against the primary checkout once it reconciles to origin/v4 for a permanent target; fail-open means the interim worktree target degrades gracefully if removed.
+3. **One Stop-chain entry reports a live-teardown `Stop Failed`** — all four Stop hooks exit 0 in isolation; exactly one fails only under Codex's live Stop teardown. It is the pre-existing Superset `notify.sh` (a network POST, the sole Stop hook before this install) or the child-004 `session-stop.js` lifecycle adapter — not one of this packet's guard adapters. Non-blocking by the fail-open contract; the session still completes (exit 0).
+4. **`~/.codex/hooks.json` is the one out-of-repo write** — the installer backs it up first and merges rather than replaces; revertible via the `.bak-<ts>` backup.
+5. **`mcp-route-guard` codex adapter is dormant** — Codex's registered MCP servers are all `mk_`-prefixed and thus core-exempt; it activates only when an external MCP family is registered.
 <!-- /ANCHOR:limitations -->
 <!-- ANCHOR:architecture-summary -->
 ## Architecture Summary

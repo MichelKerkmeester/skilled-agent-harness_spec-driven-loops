@@ -39,6 +39,7 @@ Unscored, directly-run manual scenarios validating shared `cli-external-orchestr
 | ID | Scenario | File |
 | --- | --- | --- |
 | cli-dispatch-audit-trail | CLI Dispatch Audit Trail | [cli-dispatch-audit-trail.md](plugins_and_hooks/cli_dispatch_audit_trail.md) |
+| codex-hook-parity | Codex Hook/Plugin Parity | [codex-hook-parity.md](plugins_and_hooks/codex_hook_parity.md) |
 
 ---
 
