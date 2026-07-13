@@ -7,7 +7,7 @@ trigger_phrases:
   - "paths globs branchRange"
   - "validateScope repo root"
   - "alignment scope validation"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Scope types
@@ -46,7 +46,6 @@ A scope that resolves fine here but matches zero files at discover-time is not a
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Resolves `paths` and `branchRange` scopes, including a `paths` scope that matches zero files (the zero-artifact-lane fixture). |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/004-scoping-and-discovery/` | Spec phase | NFR-S01 (repo-root containment) acceptance evidence. |
 
 ---
 

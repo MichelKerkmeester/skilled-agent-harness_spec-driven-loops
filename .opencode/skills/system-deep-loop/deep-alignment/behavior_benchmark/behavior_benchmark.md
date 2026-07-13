@@ -2,31 +2,32 @@
 title: Deep-Alignment Behavior Benchmark
 description: >-
   Behavior benchmark package for deep-alignment: eleven scenario contracts that
-  specify executor-model behavior at the planned /deep:alignment command surface
-  — the phase-009 last-mile deliverable, not yet built — under realistic
-  prompting. Instantiates the shared framework as its governing contract and
-  probes the mode's four alignment invariants.
+  specify executor-model behavior at the /deep:alignment command surface, built
+  and verified in phase 009, under realistic prompting. Instantiates the shared
+  framework as its governing contract and probes the mode's four alignment
+  invariants.
 trigger_phrases:
   - deep-alignment behavior benchmark
   - alignment executor behavior scenarios
   - DAB scenario contract
 importance_tier: high
 contextType: implementation
+version: 1.0.0.1
 ---
 
 ## 1. OVERVIEW
 
 > **Availability.** The `/deep:alignment` command and its `@deep-alignment` LEAF
-> agent are the planned invocation surface — the phase-009 last-mile deliverable,
-> **not yet built**. The engine the scenarios exercise (scoping, the five
+> agent are the invocation surface, built and verified in phase 009 with both
+> cutover gates green. The engine the scenarios exercise (scoping, the five
 > adapters, the convergence and reducer scripts) is shipped and independently
 > runnable today via each script's own CLI. Every scenario contract below
-> therefore specifies *expected* behavior at that planned surface, and every
-> `deep-alignment` LEAF-agent reference names the planned agent; no executor leg
+> therefore specifies *expected* behavior at that surface, and every
+> `deep-alignment` LEAF-agent reference names the built agent. No executor leg
 > has been captured yet (see
 > [./baselines/claude-baseline.md](./baselines/claude-baseline.md)).
 
-This package specifies what an executor **model** should do once the planned
+This package specifies what an executor **model** should do once the
 `/deep:alignment` command surface is triggered with a realistic user prompt. It
 is a `behavior_benchmark` package carried by the `deep-alignment` mode-packet,
 alongside the packages the other deep-loop workflow sub-skills carry; the
@@ -53,8 +54,8 @@ framework's own tables; both are grounded in the shipped mode, not invented for
 this benchmark:
 
 - **`mode: "alignment"`** — the value the shipped `assets/deep_alignment_config_template.json`
-  (`"mode": "alignment"`) carries today and the planned `/deep:alignment` command
-  will consume. This extends the framework's `mode` enum
+  (`"mode": "alignment"`) carries today and the `/deep:alignment` command, built
+  and verified in phase 009, consumes. This extends the framework's `mode` enum
   (`context | research | review | ai-council | improvement`) with the mode this
   package measures.
 - **ID prefix `DAB`** (Deep Alignment Behavior) — extends the framework's

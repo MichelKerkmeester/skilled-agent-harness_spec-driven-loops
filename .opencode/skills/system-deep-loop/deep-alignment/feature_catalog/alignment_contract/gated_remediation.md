@@ -7,7 +7,7 @@ trigger_phrases:
   - "remediate-hook.cjs not_implemented"
   - "opt-in operator approval"
   - "alignment invariant 4"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Gated remediation
@@ -46,7 +46,6 @@ When real remediation does land, it stays verify-first: it fixes only findings t
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Proves the hook is enterable, returns `not_implemented`, and mutates nothing (before/after file listings identical). |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report/` | Spec phase | The REMEDIATE-hook wiring acceptance criteria (ADR-005 invariant 4). |
 
 ---
 

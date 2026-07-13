@@ -7,7 +7,7 @@ trigger_phrases:
   - "no pattern-matching finding"
   - "live ground truth verification"
   - "alignment invariant 1"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Verify-first
@@ -47,7 +47,6 @@ The live-render adapter takes this furthest: when it cannot obtain real render e
 | File | Type | Role |
 |---|---|---|
 | Each `scripts/adapters/*.cjs` CLI `check` subcommand | Manual dry-run | Runs the live re-probe path against real artifacts, the discipline used to seed every deviation list. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/` | Spec phase | ADR-005 invariant 1 (verify-first) and its acceptance criteria. |
 
 ---
 

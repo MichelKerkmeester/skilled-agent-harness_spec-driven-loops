@@ -7,7 +7,7 @@ trigger_phrases:
   - "design_md_format schema"
   - "tokens.json validity"
   - "static-only design audit"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # sk-design adapter
@@ -46,7 +46,6 @@ Several regexes carry documented calibration from the adapter's own dry-run agai
 | File | Type | Role |
 |---|---|---|
 | `scripts/adapters/sk-design.cjs` CLI (`discover`/`check`/`standard-source`) | Manual dry-run | Runs the adapter against real DESIGN.md example docs; the regex calibrations were caught this way. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/006-adapter-sk-git-and-sk-design/` | Spec phase | The sk-design (static v1) adapter's spec and acceptance criteria (ADR-004/ADR-009). |
 
 ---
 

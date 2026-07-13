@@ -7,7 +7,7 @@ trigger_phrases:
   - "deterministic reasoning-agent layer"
   - "verify-first findings"
   - "layer tagged findings"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # check(artifact, rules)
@@ -47,8 +47,6 @@ The reasoning-agent sub-checks are structurally verify-first: they never invent 
 | File | Type | Role |
 |---|---|---|
 | Each `scripts/adapters/*.cjs` CLI `check` subcommand | Manual dry-run | Runs a real `check()` against one artifact for inspection while building. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/005-adapter-sk-doc/` | Spec phase | Reference `check()` acceptance criteria including the verify-first reality-alignment sub-check. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/007-adapter-sk-code/` | Spec phase | The two-layer honesty contract (ADR-008) acceptance evidence. |
 
 ---
 

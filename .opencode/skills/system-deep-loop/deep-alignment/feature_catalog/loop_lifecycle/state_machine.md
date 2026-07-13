@@ -7,7 +7,7 @@ trigger_phrases:
   - "alignment state file layout"
   - "single-shot scripts"
   - "deep-alignment loop states"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # State machine
@@ -47,7 +47,6 @@ The `alignment/` layout is modeled on the real `review/` layout, with one struct
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Drives the full `SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT -> REMEDIATE` seam end to end against synthetic fixtures. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report/` | Spec phase | The wiring phase's spec, plan, and acceptance criteria (REQ-001..REQ-006). |
 
 ---
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "per-lane verdict rollup"
   - "worst verdict not average"
   - "NOT_APPLICABLE lane"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Alignment-report reducer
@@ -46,7 +46,6 @@ The overall rollup is the worst per-lane verdict present (by severity rank), nev
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Confirms the reducer writes the registry + report, derives a `PASS` overall for a P2-only run, and marks a zero-artifact lane `NOT_APPLICABLE`. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report/` | Spec phase | The `REPORT`-state and reducer acceptance criteria (ADR-010, ALWAYS #5). |
 
 ---
 

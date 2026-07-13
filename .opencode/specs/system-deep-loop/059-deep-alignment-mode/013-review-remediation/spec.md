@@ -54,7 +54,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` (isolated worktree `wt/0034-deep-review-059`) |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 012-behavior-benchmark-capture (folder-order predecessor only) |
-| **Successor** | None - remediation follow-on to the 059 build phases |
+| **Successor** | 014-skill-doc-template-conformance |
 <!-- /ANCHOR:metadata -->
 
 ---

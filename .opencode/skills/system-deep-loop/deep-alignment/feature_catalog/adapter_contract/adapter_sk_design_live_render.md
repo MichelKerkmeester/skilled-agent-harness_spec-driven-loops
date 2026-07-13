@@ -7,7 +7,7 @@ trigger_phrases:
   - "design-mcp-open-design dispatch boundary"
   - "render-unavailable finding"
   - "accessibility threshold checks"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # sk-design live-render adapter
@@ -45,7 +45,6 @@ Its known-deviations file does not exist yet — no real live-render run has eve
 | File | Type | Role |
 |---|---|---|
 | `scripts/adapters/sk-design-live-render.cjs` CLI (`discover`/`check [--render-result]`/`standard-source`) | Manual dry-run | Exercises the render-unavailable path and the evidence-supplied path for inspection. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/010-adapter-sk-design-live-render/` | Spec phase | The live-render adapter's spec and acceptance criteria (ADR-009). |
 
 ---
 

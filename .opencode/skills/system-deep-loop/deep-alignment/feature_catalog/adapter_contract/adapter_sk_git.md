@@ -7,7 +7,7 @@ trigger_phrases:
   - "wt branch naming"
   - "git-history artifact class"
   - "conventional commit port"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # sk-git adapter
@@ -47,7 +47,6 @@ Two exemptions are structural, not JSON suppression: Git-generated subjects (`Me
 | File | Type | Role |
 |---|---|---|
 | `scripts/adapters/sk-git.cjs` CLI (`discover`/`check --commit`/`check --branch`) | Manual dry-run | Runs the adapter against live commits and branches; the deviation list was seeded from exactly these re-probes. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/006-adapter-sk-git-and-sk-design/` | Spec phase | The sk-git adapter's spec and acceptance criteria (REQ-005). |
 
 ---
 

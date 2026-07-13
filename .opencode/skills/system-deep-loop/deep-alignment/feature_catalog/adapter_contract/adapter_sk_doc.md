@@ -7,7 +7,7 @@ trigger_phrases:
   - "validate_document.py extract_structure.py"
   - "docs conformance"
   - "template conformance DQI floor"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # sk-doc adapter
@@ -47,7 +47,6 @@ Two provenance details are deliberate and documented: the `DQI_FLOOR` of 75 is a
 | File | Type | Role |
 |---|---|---|
 | `scripts/adapters/sk-doc.cjs` CLI (`discover`/`check`/`standard-source`) | Manual dry-run | Runs the real adapter against live docs, the same way the deviation list was re-probed while authored. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/005-adapter-sk-doc/` | Spec phase | The reference adapter's spec, plan, and acceptance criteria (REQ-001..REQ-003). |
 
 ---
 

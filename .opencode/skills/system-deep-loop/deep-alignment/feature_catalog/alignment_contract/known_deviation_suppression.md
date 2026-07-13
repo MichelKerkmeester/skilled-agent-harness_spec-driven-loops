@@ -7,7 +7,7 @@ trigger_phrases:
   - "loadKnownDeviations suppressKnownDeviations"
   - "per-authority deviation list"
   - "alignment invariant 2"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Known-deviation suppression
@@ -47,7 +47,6 @@ sk-git is a special case with two distinct mechanisms: its Git-generated-subject
 | File | Type | Role |
 |---|---|---|
 | Each `scripts/adapters/*.cjs` CLI (`standard-source`/`check`) | Manual dry-run | Confirms the loaded deviation list and its effect on real findings; the lists' own "Live-Reality Check" notes are the re-probe record. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/` | Spec phase | ADR-005 invariant 2 (per-authority known-deviation lists). |
 
 ---
 

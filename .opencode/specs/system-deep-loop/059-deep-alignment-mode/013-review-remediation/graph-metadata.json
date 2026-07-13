@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A 10-iteration deep-review Pass A (executor `openai/gpt-5.6-sol-fast`, reasoning `xhigh`) of the whole 059 deep-alignment packet returned FAIL with 2 P0 and 8 P1 active findings",
     "created_at": "2026-07-13T06:01:09.541Z",
-    "last_save_at": "2026-07-13T06:12:12.622Z",
+    "last_save_at": "2026-07-13T11:07:42.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,9 +214,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddd10443947454f72b4ed425dfddabe45441e6419f05c685616202a536a92762",
+    "source_fingerprint": "sha256:9bd6581392f2b3a7d4dc5dbe8c44b19ecadc288e71baa027b0c58dac217843ea",
     "source_doc_hashes": {
-      "spec.md": "74b7b9babba0154ca85f23e2690966ae9ca8175bed8b1256aaba96d194638266",
+      "spec.md": "3d04f60fd16c47aaa23903154a616bc69529ebf061aa3b3cada382961249be7a",
       "plan.md": "ec8203f9e3195fd673900f35b00334ccfda5a75d0bf57cd3626211c67f92f526",
       "tasks.md": "95cfe99bd8abdac1d459ed83334f3621fa6ed4bec36ccf87adc762d6472452c6",
       "checklist.md": "28a9ce9d745b86dda6b7a36ae6e566078d52575c1560c32249dd8084170c251f",

@@ -7,7 +7,7 @@ trigger_phrases:
   - "registered authorities"
   - "new authority registration"
   - "sk-doc sk-git sk-design sk-code authority"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Authority registry
@@ -45,7 +45,6 @@ The set is extensible by design: a fifth authority registers by adding one entry
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/state-machine-wiring.test.cjs` | Regression test | Resolves `sk-doc` and `sk-git` lanes, exercising the registry-backed validation. |
-| `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/` | Spec phase | ADR-003 (adapter contract), ADR-004 (authority determinism ordering), ADR-012 (new-authority governance). |
 
 ---
 
