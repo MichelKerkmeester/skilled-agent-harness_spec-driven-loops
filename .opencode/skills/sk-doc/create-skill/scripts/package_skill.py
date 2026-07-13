@@ -738,11 +738,17 @@ def package_skill(skill_path_str: str, output_dir: Optional[str] = None) -> Opti
 
     try:
         with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            zip_resolved = zip_filename.resolve()
             file_count = 0
             for file_path in skill_path.rglob('*'):
                 if file_path.is_file():
-                    # Skip hidden files and Python cache
-                    if file_path.name.startswith('.') or file_path.name == '__pycache__':
+                    # An in-tree output archive would recursively package its partial contents.
+                    if file_path.resolve() == zip_resolved:
+                        continue
+
+                    rel_parts = file_path.relative_to(skill_path).parts
+                    # Hidden ancestors and cache directories contain non-distributable files.
+                    if any(part.startswith('.') or part == '__pycache__' for part in rel_parts):
                         continue
                     if file_path.suffix in ['.pyc', '.pyo']:
                         continue
