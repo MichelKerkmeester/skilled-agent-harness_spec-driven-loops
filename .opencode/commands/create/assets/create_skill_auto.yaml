@@ -215,6 +215,7 @@ validation_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
   extract_structure: .opencode/skills/sk-doc/scripts/extract_structure.py
   package_skill: .opencode/skills/sk-doc/scripts/package_skill.py
+  validate_skill_package: .opencode/skills/sk-doc/scripts/validate_skill_package.py
 
 quality_standards:
   template_first: required
@@ -225,7 +226,7 @@ quality_standards:
   validation_pipeline:
     full_flows:
     - "python3 .opencode/skills/sk-doc/scripts/quick_validate.py [skill_path]/[skill_name] --json"
-    - "python3 .opencode/skills/sk-doc/scripts/package_skill.py [skill_path]/[skill_name] --check"
+    - "python3 .opencode/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name]"
     - "python3 .opencode/skills/sk-doc/scripts/extract_structure.py [skill_path]/[skill_name]/SKILL.md"
     doc_only_flows:
     - "python3 .opencode/skills/sk-doc/scripts/validate_document.py [target_file]"
@@ -386,13 +387,13 @@ workflow:
     purpose: Enforce operation-specific validation and DQI targets
     activities:
     - Run operation-appropriate validation scripts
-    - "Run the completion gate: python3 .opencode/skills/sk-doc/scripts/package_skill.py [skill_path]/[skill_name] --check . This is the authoritative structural gate (hard-fails missing/non-4-part version, name!=folder, missing required section; warns on non-snake_case references/assets). It MUST pass before completion."
+    - "Run the completion gate: python3 .opencode/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name] . This is the authoritative structural gate (hard-fails missing/non-4-part version, name!=folder, missing required section; warns on non-snake_case references/assets). It MUST pass before completion."
     - Capture DQI score and quality band
     - Enforce hard minimum threshold (75)
     - Compare against operation target score
     - Run fix-and-revalidate loop if needed
     gate:
-      command: "python3 .opencode/skills/sk-doc/scripts/package_skill.py [skill_path]/[skill_name] --check"
+      command: "python3 .opencode/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name]"
       blocking: true
     thresholds:
       hard_minimum: 75
@@ -527,7 +528,7 @@ rules:
   - "Load templates before writing"
   - "Seed every authored .md from its template so frontmatter is present by construction (frontmatter_contract)"
   - "Seed SKILL.md SMART ROUTING pseudocode from skill_smart_router.md on full-create"
-  - "Pass package_skill.py --check before completion"
+  - "Pass validate_skill_package.py before completion"
   - "Run validation before completion"
   - "Preserve WHEN TO USE vs SMART ROUTING boundaries"
   - "Save memory context only through system-spec-kit workflow"

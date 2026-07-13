@@ -192,7 +192,7 @@ Follow these steps in order, skipping only when the target skill already exists 
 22. Put required actions, forbidden actions, and escalation conditions in `RULES`.
 23. Put completion checks in `SUCCESS CRITERIA`.
 24. Put references only as overflow pointers for deep detail, examples, or schemas.
-25. Run `scripts/package_skill.py <path/to/skill-folder> --check` before claiming the skill is complete.
+25. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
 26. Fix every hard failure and rerun the check until it exits clean.
 27. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
 28. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
@@ -276,8 +276,10 @@ parent-hub/
 Run the completion gate before any completion claim:
 
 ```bash
-scripts/package_skill.py <path/to/skill-folder> --check
+scripts/validate_skill_package.py <path/to/skill-folder>
 ```
+
+It auto-detects skill kind — standalone skills run the package check; parent hubs additionally run the parent-hub structural check.
 
 `--check` hard-fails on missing SKILL frontmatter or required fields, non-four-part versions, folder/name mismatches, missing required sections, malformed names, and descriptions that are missing, multiline, or contain angle brackets. It warns (does not fail) on TODO-placeholder descriptions, non-snake_case filenames in `references/` and `assets/`, missing resource-doc frontmatter, and absent smart-router markers.
 
@@ -308,7 +310,7 @@ scripts/package_skill.py <path/to/skill-folder> <output-directory>
 7. Keep `WHEN TO USE` free of file references and navigation tables.
 8. Keep one authoritative routing source in `SMART ROUTING`.
 9. Delete TODO placeholders and generated example files before validation.
-10. Run `scripts/package_skill.py <path> --check` before calling the scaffold complete.
+10. Run `scripts/validate_skill_package.py <path>` before calling the scaffold complete.
 11. Use `assets/skill/skill_procedure_template.md` for a private, triggerable internal procedure; use `assets/skill/skill_reference_template.md` when no trigger-based selection is needed.
 
 ### NEVER
@@ -341,7 +343,7 @@ scripts/package_skill.py <path/to/skill-folder> <output-directory>
 - Standalone skills contain valid frontmatter, executable `SKILL.md` workflow content, useful resources, and no placeholder examples.
 - Parent hubs contain one hub identity, one `modes[]` registry, valid router metadata, and nested packets without packet-local graph metadata.
 - References and assets use the packet templates and snake_case filenames.
-- `scripts/package_skill.py <path> --check` exits clean, or exact blockers are reported.
+- `scripts/validate_skill_package.py <path>` exits clean, or exact blockers are reported.
 - Shared create-quality-control standards from `../shared` were applied when quality evidence was needed.
 
 ---
