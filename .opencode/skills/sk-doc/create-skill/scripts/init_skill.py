@@ -16,8 +16,10 @@ Examples:
 """
 
 import argparse
+import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
@@ -133,6 +135,229 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
     return skill_dir
 
 
+def init_parent_skill(skill_name: str, path: str) -> Optional[Path]:
+    """Initialize a minimal parent skill hub and its primary workflow packet."""
+    is_valid, error_msg = validate_skill_name(skill_name)
+    if not is_valid:
+        print(f"❌ Error: {error_msg}")
+        return None
+
+    skill_dir = Path(path).resolve() / skill_name
+    if skill_dir.exists():
+        print(f"❌ Error: Skill directory already exists: {skill_dir}")
+        return None
+
+    scaffold_dir = (
+        Path(__file__).parent.parent
+        / 'assets'
+        / 'parent_skill'
+        / 'scaffold'
+    )
+    hub_template_path = scaffold_dir / 'hub_skill_scaffold.md'
+    packet_template_path = scaffold_dir / 'packet_skill_scaffold.md'
+    try:
+        hub_template = hub_template_path.read_text(encoding='utf-8')
+        packet_template = packet_template_path.read_text(encoding='utf-8')
+    except (OSError, UnicodeError) as exc:
+        print(f"❌ Error reading parent scaffold template: {exc}")
+        return None
+
+    skill_title = title_case_skill_name(skill_name)
+    mode = 'primary'
+    packet_name = f'{skill_name}-{mode}'
+    packet_title = f'{skill_title} Primary'
+    allowed_union = ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
+    allowed_tools = "[" + ", ".join(allowed_union) + "]"
+    timestamp = datetime.now(timezone.utc).isoformat()
+
+    hub_content = (
+        hub_template
+        .replace('{{HUB_NAME}}', skill_name)
+        .replace('{{ALLOWED_TOOLS}}', allowed_tools)
+        .replace('{{HUB_TITLE}}', skill_title)
+        .replace('{{MODE}}', mode)
+        .replace('{{PACKET}}', packet_name)
+    )
+    packet_content = (
+        packet_template
+        .replace('{{PACKET_NAME}}', packet_name)
+        .replace('{{PACKET_TITLE}}', packet_title)
+        .replace('{{HUB_NAME}}', skill_name)
+    )
+
+    mode_registry = {
+        "skill": skill_name,
+        "version": "1.0.0.0",
+        "modes": [
+            {
+                "workflowMode": mode,
+                "packetKind": "workflow",
+                "backendKind": "skill-workflow",
+                "toolSurface": {
+                    "allowed": allowed_union,
+                    "forbidden": ["Task"],
+                    "mutatesWorkspace": True,
+                    "bashAllowlist": [],
+                },
+                "packet": packet_name,
+                "packetSkillName": packet_name,
+                "grandfatheredFolderMismatch": False,
+                "aliases": [packet_name, f"{skill_name} primary workflow"],
+                "advisorRouting": {
+                    "routingClass": "metadata",
+                    "packetSkillName": packet_name,
+                },
+            }
+        ],
+    }
+    hub_router = {
+        "skill": skill_name,
+        "version": "1.0.0.0",
+        "routerPolicy": {
+            "defaultMode": mode,
+            "ambiguityDelta": 1,
+            "tieBreak": [mode],
+            "outcomes": {
+                "single": "one dominant workflow intent routes to the primary workflow mode",
+                "orderedBundle": "clearly separate workflow intents route to an ordered workflow mode list",
+                "defer": "unclear or contradictory intent asks for disambiguation",
+            },
+            "defaultResource": [f"{packet_name}/SKILL.md"],
+            "bundleRules": [],
+        },
+        "routerSignals": {
+            mode: {
+                "weight": 4,
+                "classes": ["primary-aliases", "hub-identity"],
+                "resources": [f"{packet_name}/SKILL.md"],
+            }
+        },
+        "vocabularyClasses": {
+            "hub-identity": {
+                "keywords": [
+                    skill_name,
+                    "mode-registry",
+                    "hub-router",
+                    "workflowmode",
+                    "packetkind",
+                ]
+            },
+            "primary-aliases": {
+                "keywords": ["primary", f"{skill_name} primary"]
+            },
+        },
+    }
+    graph_metadata = {
+        "schema_version": 2,
+        "skill_id": skill_name,
+        "family": "sk-hub",
+        "category": "skill",
+        "deprecated": False,
+        "edges": {
+            "depends_on": [],
+            "enhances": [],
+            "siblings": [],
+            "conflicts_with": [],
+            "prerequisite_for": [],
+        },
+        "manual": {"depends_on": [], "related_to": []},
+        "domains": [
+            skill_name,
+            "mode-registry",
+            "hub-router",
+            "workflowMode",
+            "packetKind",
+        ],
+        "intent_signals": [
+            f"{skill_name} hub",
+            f"{skill_name} primary workflow",
+        ],
+        "derived": {
+            "trigger_phrases": [skill_name, "primary"],
+            "key_topics": [
+                skill_name,
+                "mode-registry",
+                "hub-router",
+                "workflowMode",
+                "packetKind",
+            ],
+            "source_docs": [
+                "SKILL.md",
+                "README.md",
+                "mode-registry.json",
+                "hub-router.json",
+            ],
+            "created_at": timestamp,
+            "last_updated_at": timestamp,
+        },
+    }
+    description = {
+        "name": skill_name,
+        "description": (
+            "TODO hub description — routes the primary workflow packet via "
+            "mode-registry.json."
+        ),
+        "version": "1.0.0.0",
+        "importance_tier": "high",
+        "keywords": [skill_name, "mode-registry", "hub-router", "primary"],
+        "trigger_examples": [
+            f"example request for the {skill_name} primary workflow"
+        ],
+        "lastUpdated": timestamp,
+    }
+
+    packet_dir = skill_dir / packet_name
+    changelog_dir = packet_dir / 'changelog'
+    try:
+        changelog_dir.mkdir(parents=True, exist_ok=False)
+        for directory_name in (
+            'changelog',
+            'manual_testing_playbook',
+            'benchmark',
+        ):
+            (skill_dir / directory_name).mkdir()
+        print(f"✅ Created parent skill directory: {skill_dir}")
+
+        (skill_dir / 'SKILL.md').write_text(hub_content, encoding='utf-8')
+        (skill_dir / 'README.md').write_text(
+            f"# {skill_title}\n\nRouting hub. See SKILL.md and mode-registry.json.\n",
+            encoding='utf-8',
+        )
+        with (skill_dir / 'mode-registry.json').open('w', encoding='utf-8') as handle:
+            json.dump(mode_registry, handle, indent=2)
+            handle.write('\n')
+        with (skill_dir / 'hub-router.json').open('w', encoding='utf-8') as handle:
+            json.dump(hub_router, handle, indent=2)
+            handle.write('\n')
+        with (skill_dir / 'graph-metadata.json').open('w', encoding='utf-8') as handle:
+            json.dump(graph_metadata, handle, indent=2)
+            handle.write('\n')
+        with (skill_dir / 'description.json').open('w', encoding='utf-8') as handle:
+            json.dump(description, handle, indent=2)
+            handle.write('\n')
+
+        (packet_dir / 'SKILL.md').write_text(packet_content, encoding='utf-8')
+        (packet_dir / 'README.md').write_text(
+            f"# {packet_title}\n\nPrimary workflow packet for the {skill_name} hub.\n",
+            encoding='utf-8',
+        )
+        (changelog_dir / '1.0.0.0.md').write_text(
+            "# 1.0.0.0 - Initial scaffold\n",
+            encoding='utf-8',
+        )
+    except OSError as exc:
+        print(f"❌ Error creating parent skill scaffold: {exc}")
+        return None
+
+    print(f"\n✅ Parent skill '{skill_name}' initialized successfully at {skill_dir}")
+    print("\nNext steps:")
+    print(f"1. Rename or replace the {packet_name} example mode")
+    print("2. Fill the TODO descriptions in the hub and packet SKILL.md files")
+    print("3. Re-run the completion gate with validate_skill_package.py")
+
+    return skill_dir
+
+
 # ───────────────────────────────────────────────────────────────
 # 3. MAIN
 # ───────────────────────────────────────────────────────────────
@@ -151,6 +376,12 @@ def main() -> None:
         required=True,
         help="Destination parent directory for the skill",
     )
+    parser.add_argument(
+        '--kind',
+        choices=['standalone', 'parent'],
+        default='standalone',
+        help="Skill scaffold kind (default: standalone)",
+    )
     args = parser.parse_args()
 
     skill_name = args.skill_name
@@ -160,7 +391,10 @@ def main() -> None:
     print(f"   Location: {path}")
     print()
 
-    result = init_skill(skill_name, path)
+    if args.kind == 'parent':
+        result = init_parent_skill(skill_name, path)
+    else:
+        result = init_skill(skill_name, path)
 
     if result:
         sys.exit(0)
