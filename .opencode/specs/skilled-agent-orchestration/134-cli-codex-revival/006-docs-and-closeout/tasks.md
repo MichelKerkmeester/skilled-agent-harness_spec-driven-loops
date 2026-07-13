@@ -25,18 +25,18 @@ All tasks remain pending.
 <!-- /ANCHOR:notation -->
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] T001 Confirm phases 003-005 completion evidence.
-- [ ] T002 Inventory active Codex references.
+- [x] T001 Confirm phases 003-005 completion evidence. Evidence: each child validates `Errors:0`; fail-closed proof 4/4.
+- [x] T002 Inventory active Codex references. Evidence: `git grep` shows the README hub section is the sole active advertising anchor.
 <!-- /ANCHOR:phase-1 -->
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] T003 Reconcile active docs and release notes.
-- [ ] T004 Complete packet summaries and status metadata.
+- [x] T003 Reconcile active docs and release notes. Evidence: `README.md` cli-codex bullet + hub `changelog/v1.2.0.0.md`.
+- [x] T004 Complete packet summaries and status metadata. Evidence: `implementation-summary.md` + parent rollup.
 <!-- /ANCHOR:phase-2 -->
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] T005 Run all component and parity gates.
-- [ ] T006 Run recursive strict packet validation.
+- [x] T005 Run all component and parity gates. Evidence: `sync-agents.cjs --check` 13/13; fail-closed proof; JSON/TOML valid.
+- [x] T006 Run recursive strict packet validation. Evidence: `validate.sh --recursive --strict` parent+6 children Errors:0.
 <!-- /ANCHOR:phase-3 -->
 <!-- ANCHOR:completion -->
 ## Completion Criteria

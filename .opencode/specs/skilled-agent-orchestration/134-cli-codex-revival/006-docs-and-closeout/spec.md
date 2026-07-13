@@ -25,7 +25,7 @@ _memory:
 |---|---|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented; hook live smoke pending dist build |
 | **Created** | 2026-07-13 |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../005-codex-agent-toml-sync/spec.md` |
