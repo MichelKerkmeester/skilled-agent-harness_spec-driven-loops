@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/064-deep-command-family-parity/003-deep-agent-family-reconciliation",
+  "spec_folder": "system-deep-loop/064-deep-command-family-parity/003-deep-agent-family-reconciliation",
+  "parent_id": "system-deep-loop/064-deep-command-family-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep agent create-agent reconciliation",
+      "bless the deep-loop agent dialect",
+      "create-agent sanctioned section vocabulary"
+    ],
+    "key_topics": [
+      "deep",
+      "agent",
+      "create-agent",
+      "reconciliation",
+      "bless",
+      "deep-loop",
+      "dialect",
+      "sanctioned",
+      "section",
+      "vocabulary",
+      "sk-doc",
+      "authoring"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-agent/SKILL.md",
+      ".opencode/skills/sk-doc/create-agent/assets/agent_template.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-agent/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-agent/assets/agent_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Update",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sanctioned Section",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Vocabulary Dialects",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Descriptive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Documents",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unit Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integration Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-doc/create-agent` authoring guide and template prescribe one canonical agent section skeleton (`CORE WORKFLOW` / `CAPABILITY SCAN` / `RUNTIME PARAMETERS` / … / `SUMMARY`)",
+    "created_at": "2026-07-13T14:34:02.945Z",
+    "last_save_at": "2026-07-13T14:35:42.889Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3f6c43b7f730b967b1015f4964839e62c44686c72b55f0e8d5b5688a47b8b034",
+    "source_doc_hashes": {
+      "spec.md": "d5184d1183d307e6722c101fc14d0d418bcb61f384a8e28550e17e4bf01e381d",
+      "plan.md": "ab6494c5e36a2e84669987930dac9041abf1fb456bb6f562ce4b98a9daa4e36b",
+      "tasks.md": "db2990576da3f38554f20f9ad3f58b8433bb89b008464bc520bd617260f7cd6c",
+      "checklist.md": "1fe1e7e79a6dfca9352e393f3d8722b35c27c3ec59b37c22ce86d2acfafe23d6",
+      "implementation-summary.md": "388ca8eb8097d726d48cc2d8d92bffd712736c14ae27c539d285908d31ed91f3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

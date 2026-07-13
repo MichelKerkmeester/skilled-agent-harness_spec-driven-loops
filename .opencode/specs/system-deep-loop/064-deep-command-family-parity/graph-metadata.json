@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "system-deep-loop/064-deep-command-family-parity/001-pipeline-command-parity",
-    "system-deep-loop/064-deep-command-family-parity/002-direct-dispatch-to-yaml"
+    "system-deep-loop/064-deep-command-family-parity/002-direct-dispatch-to-yaml",
+    "system-deep-loop/064-deep-command-family-parity/003-deep-agent-family-reconciliation"
   ],
   "manual": {
     "depends_on": [],
@@ -134,17 +135,17 @@
     ],
     "causal_summary": "The `/deep:` command family is uniform in intent but uneven in shape",
     "created_at": "2026-07-13T13:11:37.171Z",
-    "last_save_at": "2026-07-13T14:15:00.000Z",
+    "last_save_at": "2026-07-13T14:30:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:49d1a8f48bd0e8c232e4722629da8f610c79ce05ab27b8bbe45732bfa71e5dca",
+    "source_fingerprint": "sha256:0730a54cc7f2bee8a35b660b88a6c10277e34c0105382a6cfbab1d206e6b0b16",
     "source_doc_hashes": {
-      "spec.md": "8978018f8111b10192b64136dcf4911c027f38421392d4031dde5e62d9e405fa"
+      "spec.md": "60054a638dd602bc432ec7730ba2ba4fd79d288ab0407457ed8e38508d239aa7"
     },
-    "last_active_child_id": "system-deep-loop/064-deep-command-family-parity/002-direct-dispatch-to-yaml",
-    "last_active_at": "2026-07-13T14:15:00.000Z"
+    "last_active_child_id": "system-deep-loop/064-deep-command-family-parity/003-deep-agent-family-reconciliation",
+    "last_active_at": "2026-07-13T14:30:00.000Z"
   }
 }

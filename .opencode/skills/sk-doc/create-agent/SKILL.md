@@ -165,6 +165,12 @@ Start from `assets/agent_template.md` when creating a new agent. At minimum, a p
 
 Boundary variants: LEAF write-capable agents deny nested sub-agent dispatch and restrict mutation to explicitly scoped paths; LEAF read-only agents deny nested dispatch and all file mutation; orchestrators may dispatch only when orchestration is their explicit authority and `task` permission allows it; command-driven or machine-validated agents may need input/scope gates before workflow steps.
 
+### Sanctioned Section-Vocabulary Dialects
+
+The skeleton above is the default; start new agents from it. One alternate section vocabulary is also sanctioned — the **deep-loop leaf-iteration agents** (`@deep-alignment` / `@deep-review` / `@deep-research`, in both runtime directories). A per-iteration loop worker reads more clearly under lane-named headings, so these agents carry the same responsibilities under a different vocabulary: `ROUTING SCAN`, a lane `CONTRACT` (`ALIGNMENT CONTRACT` / `REVIEW CONTRACT`, or `ITERATION PROTOCOL` for the leaner research variant), `STATE MANAGEMENT` (`+ WRITE SAFETY` where the agent mutates), a lane `ADVERSARIAL CHECK` (`VERIFY-FIRST ADVERSARIAL CHECK` / `ADVERSARIAL SELF-CHECK`), and `RULES`.
+
+This is a documented shape, not drift. `--type agent` requires only `## 1. CORE WORKFLOW`, and the dialect still carries every hard-block boundary, capability, verification, and anti-pattern responsibility from "Required Body Shape" above. Reach for it only when authoring another member of the deep-loop iteration family — do not invent a fresh dialect for a one-off agent. The concrete section order and its two sub-variants are in `assets/agent_template.md` §9.
+
 ### Ordered Creation Workflow
 
 Follow this order for new agents and material rewrites:
