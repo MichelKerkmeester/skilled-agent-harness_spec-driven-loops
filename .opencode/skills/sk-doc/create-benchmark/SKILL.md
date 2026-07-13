@@ -136,9 +136,9 @@ Required and optional files:
 
 `SOURCE.md` is a wayfinding file, not a duplicate audit trail. It contains the spec packet path, why to read it, question-to-file mapping, evidence map, follow-on packet notes, rename or renumber notes, and last-updated date.
 
-Use `assets/_shared/benchmark_report_template.md` for `benchmark_report.md` and `assets/_shared/source_template.md` for `SOURCE.md`.
+Use `assets/shared/benchmark_report_template.md` for `benchmark_report.md` and `assets/shared/source_template.md` for `SOURCE.md`.
 
-Reference `references/_shared/README.md` for deep overflow: it routes to the case studies, the report worked example, and common pitfalls.
+Reference `references/shared/README.md` for deep overflow: it routes to the case studies, the report worked example, and common pitfalls.
 
 ---
 
@@ -505,7 +505,7 @@ Each template's fenced json block is the only thing copied into the shipped `.js
 
 **Within this packet** — family guides and the overflow route-map; the fillable templates are mapped in each family section above:
 
-- [`references/_shared/README.md`](references/_shared/README.md) — overflow route-map (case studies, worked example, pitfalls).
+- [`references/shared/README.md`](references/shared/README.md) — overflow route-map (case studies, worked example, pitfalls).
 - [`references/behavior_benchmark/behavior_benchmark_guide.md`](references/behavior_benchmark/behavior_benchmark_guide.md) — behavior package authoring path (§9).
 - [`references/skill_benchmark/skill_benchmark_storage_guide.md`](references/skill_benchmark/skill_benchmark_storage_guide.md) — skill-benchmark storage convention and renderer boundary (§10).
 - [`references/model_benchmark/model_benchmark_fixture_guide.md`](references/model_benchmark/model_benchmark_fixture_guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§11).

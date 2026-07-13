@@ -173,7 +173,7 @@ A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-par
 | [`references/install_guide/quality_and_standards.md`](create-readme/references/install_guide/quality_and_standards.md) | Five-phase install guide standards and validation checkpoints |
 | [`references/README.md`](create-manual-testing-playbook/references/README.md) | Playbook package structure, scenario tables and cross-reference index |
 | [`references/README.md`](create-feature-catalog/references/README.md) | Feature catalog inventory standards and per-feature file structure |
-| [`references/README.md`](create-benchmark/references/_shared/README.md) | Benchmark folder standards, ten-section report shape and promotion workflow |
+| [`references/README.md`](create-benchmark/references/shared/README.md) | Benchmark folder standards, ten-section report shape and promotion workflow |
 | [`scripts/validate_document.py`](./scripts/validate_document.py) | Fast format validator, exit 0/1/2, supports `--json` and `--fix` |
 | [`scripts/extract_structure.py`](./scripts/extract_structure.py) | Full DQI analysis with type-specific checklists and JSON output |
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |

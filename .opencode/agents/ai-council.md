@@ -234,7 +234,7 @@ You are the <STRATEGY_NAME> Council Seat for a Multi-AI Council planning run.
 <STRATEGY_DESCRIPTION from the Strategy Lenses table>
 
 ## Your AI Vantage Target
-<VANTAGE_TARGET such as cli-opencode, cli-claude-code, cli-opencode, or native @deep-research>
+<VANTAGE_TARGET such as cli-opencode, cli-claude-code, or native @deep-research>
 
 If this runtime cannot actually invoke that external system, state that your answer is a simulated vantage lens, not external execution.
 

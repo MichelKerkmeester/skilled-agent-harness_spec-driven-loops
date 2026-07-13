@@ -39,11 +39,11 @@ const EXCLUDE_SEGMENTS = [
 // Adding a genuinely-new broken link still fails — these specific pairs are the only waivers.
 const ALLOWLIST = new Set([
   // benchmark report template — sibling artifacts the report author creates
-  '.opencode/skills/sk-doc/create-benchmark/assets/_shared/benchmark_report_template.md::./SOURCE.md',
-  '.opencode/skills/sk-doc/create-benchmark/assets/_shared/benchmark_report_template.md::./results.csv',
-  '.opencode/skills/sk-doc/create-benchmark/assets/_shared/benchmark_report_template.md::./per-probe.jsonl',
-  '.opencode/skills/sk-doc/create-benchmark/assets/_shared/benchmark_report_template.md::./runtime-measurements.md',
-  '.opencode/skills/sk-doc/create-benchmark/assets/_shared/benchmark_report_template.md::../README.md',
+  '.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark_report_template.md::./SOURCE.md',
+  '.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark_report_template.md::./results.csv',
+  '.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark_report_template.md::./per-probe.jsonl',
+  '.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark_report_template.md::./runtime-measurements.md',
+  '.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark_report_template.md::../README.md',
   // skill_md_template — fill-in names the author replaces per skill
   '.opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md::./references/workflow-details.md',
   '.opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md::./references/reference-name.md',
