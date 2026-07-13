@@ -13,8 +13,7 @@ version: 3.5.0.3
 
 # Cross-Language Rules: Webflow
 
-These rules apply to ALL Webflow code — JavaScript, CSS, and HTML alike. Per-language conventions (naming, formatting, type-specific patterns) live in:
-Cross-language naming, commenting, and file-structure rules for JavaScript, CSS, and HTML in the Webflow stack.
+Cross-language naming, commenting, and file-structure rules that apply to ALL Webflow code — JavaScript, CSS, and HTML alike. Per-language conventions (naming, formatting, type-specific patterns) live in the matching language style guide.
 
 ---
 

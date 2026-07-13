@@ -14,7 +14,7 @@ version: 3.5.0.2
 
 # Webflow CSS Style Guide
 
-> See [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) for rules that apply to all languages (file naming, comment WHY-not-WHAT, file-header banner shape, platform-specific comment prefixes). This file covers CSS-specific conventions only.
+CSS-specific style conventions for Webflow — BEM naming, custom properties, attribute selectors, and animation CSS. Rules shared across all languages live in [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md).
 
 ---
 

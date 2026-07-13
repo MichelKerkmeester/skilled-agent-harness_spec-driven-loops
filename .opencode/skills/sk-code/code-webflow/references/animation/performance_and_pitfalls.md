@@ -16,7 +16,6 @@ version: 3.5.0.5
 
 Performance guidance for Motion animations, bundle sizing, reduced-motion compliance, and Core Web Vitals risk.
 
-Attribution: Frame-level visual verification guidance in this reference adapts `Schmandarine/web-motion-skill` (MIT).
 
 ---
 
@@ -142,3 +141,7 @@ Do not vendor external recording scripts into sk-code for this workflow. Prefer 
 - Local dropdown measured-height examples: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/navigation/nav_language_selector.js`
 - Local drag/rAF/reduced-motion example: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
 - Local video reduced-motion/mobile guard: `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`
+
+---
+
+*Attribution: Frame-level visual verification guidance in this reference adapts `Schmandarine/web-motion-skill` (MIT).*

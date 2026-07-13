@@ -1,0 +1,884 @@
+{
+  "sessionId": "fanout-confirm-a-1783921047347-ky9ry5",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-07-13T06:36:45Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "The new usage wrapper presents an unconstrained dynamic script loader as an implementation pattern",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": "open",
+      "scopeProof": "Exact scoped searches found one generic unconstrained loader and one separate allowlisted implementation.",
+      "affectedSurfaceHints": [
+        "resource-loading reference",
+        "dynamic script loader guidance",
+        "AI/context consumers"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+      "line": 91,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Both named resources were directly read and the quoted phrase was searched separately in every existing allowed resource/asset root.",
+      "affectedSurfaceHints": [
+        "implementation summary",
+        "future content-quality planning",
+        "security reference handoff"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md",
+      "line": 23,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "All 11 task rows and 15 checklist rows were reconciled; the evidence-format gap is packet-wide.",
+      "affectedSurfaceHints": [
+        "tasks evidence rows",
+        "checklist verification protocol",
+        "historical provenance replay"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "The new usage wrapper presents an unconstrained dynamic script loader as an implementation pattern",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": "open",
+      "scopeProof": "Exact scoped searches found one generic unconstrained loader and one separate allowlisted implementation.",
+      "affectedSurfaceHints": [
+        "resource-loading reference",
+        "dynamic script loader guidance",
+        "AI/context consumers"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+      "line": 91,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Both named resources were directly read and the quoted phrase was searched separately in every existing allowed resource/asset root.",
+      "affectedSurfaceHints": [
+        "implementation summary",
+        "future content-quality planning",
+        "security reference handoff"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md",
+      "line": 23,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "All 11 task rows and 15 checklist rows were reconciled; the evidence-format gap is packet-wide.",
+      "affectedSurfaceHints": [
+        "tasks evidence rows",
+        "checklist verification protocol",
+        "historical provenance replay"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "The new usage wrapper presents an unconstrained dynamic script loader as an implementation pattern",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": "open",
+      "scopeProof": "Exact scoped searches found one generic unconstrained loader and one separate allowlisted implementation.",
+      "affectedSurfaceHints": [
+        "resource-loading reference",
+        "dynamic script loader guidance",
+        "AI/context consumers"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+      "line": 91,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Both named resources were directly read and the quoted phrase was searched separately in every existing allowed resource/asset root.",
+      "affectedSurfaceHints": [
+        "implementation summary",
+        "future content-quality planning",
+        "security reference handoff"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md",
+      "line": 23,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "All 11 task rows and 15 checklist rows were reconciled; the evidence-format gap is packet-wide.",
+      "affectedSurfaceHints": [
+        "tasks evidence rows",
+        "checklist verification protocol",
+        "historical provenance replay"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 3
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "checklist_evidence_provenance",
+      "stale_completion_follow_up",
+      "unsafe_snippet_framing"
+    ],
+    "ruledOut": [
+      "cross_dimension_duplicate",
+      "documentation_only_security_claim",
+      "known_security_concern_regression",
+      "missing_maintenance_mechanism",
+      "new_maintenance_p0_p1",
+      "requirement_surface_alignment",
+      "secrets_and_injection_guidance",
+      "trust_boundary_guidance"
+    ],
+    "deferred": [
+      "preservation_provenance"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "unsafe_snippet_framing": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          4
+        ]
+      },
+      "trust_boundary_guidance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secrets_and_injection_guidance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "known_security_concern_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "documentation_only_security_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "checklist_evidence_provenance": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "stale_completion_follow_up": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "requirement_surface_alignment": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cross_dimension_duplicate": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "preservation_provenance": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "missing_maintenance_mechanism": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "new_maintenance_p0_p1": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 4,
+      "id": "SL-003-02",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md"
+      ],
+      "bugClass": "preservation_provenance",
+      "disposition": "deferred",
+      "rationale": "Existing search debt is carried without retry because the current tree cannot prove historical preservation.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:67-71",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md:61-64",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md:23-61",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:23-97"
+      ],
+      "reason": "Requires the unavailable pre-change baseline and commit evidence; the strategy marks the approach exhausted."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 2,
+      "id": "SL-002-02",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md"
+      ],
+      "bugClass": "trust_boundary_guidance",
+      "disposition": "ruled_out",
+      "rationale": "The formerly disclosed cookie contradiction is not present in the current file.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:91-100,230-262"
+      ],
+      "reason": "Current text explicitly separates non-sensitive client cookies from sensitive server-set session cookies."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-03",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md",
+        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md",
+        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md"
+      ],
+      "bugClass": "secrets_and_injection_guidance",
+      "disposition": "ruled_out",
+      "rationale": "No inspected dangerous sink or secret literal was framed as recommended production behavior.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:37-87,129-170",
+        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md:200-229",
+        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
+      ],
+      "reason": "Bad examples carry explicit negative labels and safer alternatives."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-04",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md"
+      ],
+      "bugClass": "known_security_concern_regression",
+      "disposition": "ruled_out",
+      "rationale": "Implementation evidence outranks stale summary prose for current security behavior.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:91-93",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:39-60"
+      ],
+      "reason": "The current target contains the missing allowlist and integrity guidance."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-05",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md"
+      ],
+      "bugClass": "documentation_only_security_claim",
+      "disposition": "ruled_out",
+      "rationale": "No executable capability was introduced; P2-001 concerns documentation recommendation framing only.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:54-60",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md:23-29",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:65-68"
+      ],
+      "reason": "All in-scope deliverables are Markdown references/assets and packet documentation."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-01",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+        ".opencode/skills/sk-code/code-opencode/references",
+        ".opencode/skills/sk-code/code-opencode/assets",
+        ".opencode/skills/sk-code/code-webflow/references",
+        ".opencode/skills/sk-code/code-webflow/assets",
+        ".opencode/skills/sk-code/code-quality/assets"
+      ],
+      "bugClass": "requirement_surface_alignment",
+      "disposition": "ruled_out",
+      "rationale": "No current R1-R3/R5 mismatch was found within the reduced explicit-root scope.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:64-82",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:37-48,71-79",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:41-46"
+      ],
+      "reason": "Current packet and surface evidence agree; historical R4 is tracked separately."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-05",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+        ".opencode/skills/sk-code/code-webflow/references/performance/resource_loading.md"
+      ],
+      "bugClass": "cross_dimension_duplicate",
+      "disposition": "ruled_out",
+      "rationale": "The producers, impacts, and remediation surfaces differ, so no duplicate/refinement event is recorded.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/iterations/iteration-002.md:34-44",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:83-93"
+      ],
+      "reason": "P2-001 remains unchanged and cross-dimensionally distinct."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md"
+      ],
+      "bugClass": "missing_maintenance_mechanism",
+      "disposition": "ruled_out",
+      "rationale": "The durable mechanical support path is explicit; a generic ownership advisory would not be actionable.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md:33-38,43-72"
+      ],
+      "reason": "Template/package authority and deterministic verification mechanics are already named."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-05",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment",
+        ".opencode/skills/sk-code/code-opencode/references",
+        ".opencode/skills/sk-code/code-opencode/assets",
+        ".opencode/skills/sk-code/code-webflow/references",
+        ".opencode/skills/sk-code/code-webflow/assets",
+        ".opencode/skills/sk-code/code-quality/assets"
+      ],
+      "bugClass": "new_maintenance_p0_p1",
+      "disposition": "ruled_out",
+      "rationale": "No evidence-based must-fix maintainability defect survived direct-read adjudication.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md:23-29,33-38,61-72",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:67-71"
+      ],
+      "reason": "Documentation-only scope and explicit mechanics contain the observed follow-on cost to active P2 advisories."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-06",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/performance/resource_loading.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md"
+      ],
+      "bugClass": "cross_dimension_duplicate",
+      "disposition": "ruled_out",
+      "rationale": "No merge, refinement, severity change, or resolution is supported.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/performance/resource_loading.md:21-38,303-325",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:83-93",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md:23-25",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:23-25"
+      ],
+      "reason": "Each finding has a distinct producer, impact, and fix surface."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 2,
+      "id": "SL-002-02",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md"
+      ],
+      "bugClass": "trust_boundary_guidance",
+      "disposition": "ruled_out",
+      "rationale": "The formerly disclosed cookie contradiction is not present in the current file.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:91-100,230-262"
+      ],
+      "proof": "Current text explicitly separates non-sensitive client cookies from sensitive server-set session cookies."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-03",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md",
+        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md",
+        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md"
+      ],
+      "bugClass": "secrets_and_injection_guidance",
+      "disposition": "ruled_out",
+      "rationale": "No inspected dangerous sink or secret literal was framed as recommended production behavior.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:37-87,129-170",
+        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md:200-229",
+        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
+      ],
+      "proof": "Bad examples carry explicit negative labels and safer alternatives."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-04",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md"
+      ],
+      "bugClass": "known_security_concern_regression",
+      "disposition": "ruled_out",
+      "rationale": "Implementation evidence outranks stale summary prose for current security behavior.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:91-93",
+        ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:39-60"
+      ],
+      "proof": "The current target contains the missing allowlist and integrity guidance."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-05",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md"
+      ],
+      "bugClass": "documentation_only_security_claim",
+      "disposition": "ruled_out",
+      "rationale": "No executable capability was introduced; P2-001 concerns documentation recommendation framing only.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:54-60",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md:23-29",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:65-68"
+      ],
+      "proof": "All in-scope deliverables are Markdown references/assets and packet documentation."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-01",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+        ".opencode/skills/sk-code/code-opencode/references",
+        ".opencode/skills/sk-code/code-opencode/assets",
+        ".opencode/skills/sk-code/code-webflow/references",
+        ".opencode/skills/sk-code/code-webflow/assets",
+        ".opencode/skills/sk-code/code-quality/assets"
+      ],
+      "bugClass": "requirement_surface_alignment",
+      "disposition": "ruled_out",
+      "rationale": "No current R1-R3/R5 mismatch was found within the reduced explicit-root scope.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:64-82",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:37-48,71-79",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:41-46"
+      ],
+      "proof": "Current packet and surface evidence agree; historical R4 is tracked separately."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-05",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+        ".opencode/skills/sk-code/code-webflow/references/performance/resource_loading.md"
+      ],
+      "bugClass": "cross_dimension_duplicate",
+      "disposition": "ruled_out",
+      "rationale": "The producers, impacts, and remediation surfaces differ, so no duplicate/refinement event is recorded.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/iterations/iteration-002.md:34-44",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:83-93"
+      ],
+      "proof": "P2-001 remains unchanged and cross-dimensionally distinct."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md"
+      ],
+      "bugClass": "missing_maintenance_mechanism",
+      "disposition": "ruled_out",
+      "rationale": "The durable mechanical support path is explicit; a generic ownership advisory would not be actionable.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md:33-38,43-72"
+      ],
+      "proof": "Template/package authority and deterministic verification mechanics are already named."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-05",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment",
+        ".opencode/skills/sk-code/code-opencode/references",
+        ".opencode/skills/sk-code/code-opencode/assets",
+        ".opencode/skills/sk-code/code-webflow/references",
+        ".opencode/skills/sk-code/code-webflow/assets",
+        ".opencode/skills/sk-code/code-quality/assets"
+      ],
+      "bugClass": "new_maintenance_p0_p1",
+      "disposition": "ruled_out",
+      "rationale": "No evidence-based must-fix maintainability defect survived direct-read adjudication.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md:23-29,33-38,61-72",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:67-71"
+      ],
+      "proof": "Documentation-only scope and explicit mechanics contain the observed follow-on cost to active P2 advisories."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-06",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/performance/resource_loading.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md"
+      ],
+      "bugClass": "cross_dimension_duplicate",
+      "disposition": "ruled_out",
+      "rationale": "No merge, refinement, severity change, or resolution is supported.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/code-webflow/references/performance/resource_loading.md:21-38,303-325",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:83-93",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md:23-25",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:23-25"
+      ],
+      "proof": "Each finding has a distinct producer, impact, and fix surface."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "missing_maintenance_mechanism",
+      "unsafe_snippet_framing",
+      "stale_completion_follow_up",
+      "checklist_evidence_provenance",
+      "new_maintenance_p0_p1",
+      "cross_dimension_duplicate",
+      "preservation_provenance"
+    ],
+    "covered": [
+      "unsafe_snippet_framing",
+      "stale_completion_follow_up",
+      "checklist_evidence_provenance"
+    ],
+    "ruledOut": [
+      "missing_maintenance_mechanism",
+      "new_maintenance_p0_p1",
+      "cross_dimension_duplicate"
+    ],
+    "deferred": [
+      "preservation_provenance"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Fix the pre-existing content-quality issues in sk-code code-webflow references surfaced by the 019 xHigh verification review — issues outside 019's structural template-alignment scope: a self-contradicting session-cookie security example, a script.src loader that injects an unvalidated URL without an origin allowlist or SRI, and ~19 references whose When-to-Use is generic boilerplate rather than concrete scenarios.",
     "created_at": "2026-07-13T05:21:31.962Z",
-    "last_save_at": "2026-07-13T05:23:03.210Z",
+    "last_save_at": "2026-07-13T07:16:52.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05e8a08caf20e4928b9b847f69be16b169cf178bd0b5c2ab381e5ff2713c842a",
+    "source_fingerprint": "sha256:a1d567f91b3ff7d108abdddd6b9d8cff787556e97ba9f6be6e66649772907881",
     "source_doc_hashes": {
-      "spec.md": "4811b5c2814edf3a5349ad362bafead9a99720c90b4d674fb1f4e7a0825a0635",
-      "plan.md": "8c9a35ace524c3d14696cf68afd7c761c6a74b838fff186f19a30140f402591f",
-      "tasks.md": "328024d5bc298377d9bb3ab72d31d188508c39fd23821280f2b37ed433c22445",
-      "checklist.md": "02ac0f40ac0c1f4dd41c4e741f9ca925116b8c1919e9034bc40eefd6aec6512f",
-      "implementation-summary.md": "94235f9080f4a5e02ed6b6756834cd3f9ca6d09c159b80534ecdc91a478157ab"
+      "spec.md": "b562a42aed9e04012df87e43a499bc6c335507e4482fbd07094c665dd6c92495",
+      "plan.md": "01be2c01b8f288a257808866c1b7e540dd342f2db82feddfcfd595fc27abf369",
+      "tasks.md": "ea0984357bf84d01b01aa3a7835df9c54dec3872f28b237fd3af8cad72aefdbd",
+      "checklist.md": "591027085f07da81085816ccc6cbc6a60332d1de30c71f68153ca425bd2ca6ed",
+      "implementation-summary.md": "f1bcba5629886b6a752b9c440ceeaeb18a0ff6094ec0bb1b19f3d0d01fb34cf3"
     },
     "last_active_child_id": null,
     "last_active_at": null

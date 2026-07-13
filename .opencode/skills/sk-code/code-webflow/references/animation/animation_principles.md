@@ -16,7 +16,6 @@ version: 3.5.0.2
 
 Design-principle layer for Motion.dev: timing, easing, stagger direction, anticipation, overshoot, arc, depth, and visual verification cues.
 
-Attribution: Adapted from `Schmandarine/web-motion-skill` (MIT), especially its web-adapted 12 principles and frame-by-frame animation review workflow.
 
 ---
 
@@ -164,3 +163,7 @@ For frame-level verification, see [`performance_and_pitfalls.md`](./performance_
 - [`performance_and_pitfalls.md`](./performance_and_pitfalls.md) - reduced motion, compositing, CWV risk, visual verification escalation.
 - [`decision_matrix.md`](./decision_matrix.md) - CSS vs Motion.dev vs GSAP vs WAAPI selection.
 - Snippet: `assets/animation/snippets/principled_reveal.js`.
+
+---
+
+*Attribution: Adapted from `Schmandarine/web-motion-skill` (MIT), especially its web-adapted 12 principles and frame-by-frame animation review workflow.*

@@ -13,7 +13,7 @@ version: 3.5.0.2
 
 # Webflow HTML Style Guide
 
-> See [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) for rules that apply to all languages.
+HTML style conventions for Webflow output — structure, semantics, and attribute usage. Rules shared across all languages live in [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md).
 
 ---
 

@@ -15,7 +15,7 @@ version: 3.5.0.2
 
 # Webflow CSS Quick Reference
 
-> See [`./style_guide.md`](./style_guide.md) for CSS conventions and [`quality_standards/patterns_and_naming_enforcement.md`](quality_standards/patterns_and_naming_enforcement.md) for CSS quality patterns + enforcement. See [`../shared/dev_workflow/overview_nav_and_logging.md`](../shared/dev_workflow/overview_nav_and_logging.md) for cross-language commands and decision matrix.
+Fast-lookup CSS reference for Webflow — tokens, form-validation classes, reduced-motion, and focus detection. See [`./style_guide.md`](./style_guide.md) for the full conventions and [`quality_standards/patterns_and_naming_enforcement.md`](quality_standards/patterns_and_naming_enforcement.md) for quality patterns and enforcement.
 
 ---
 

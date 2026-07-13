@@ -1,0 +1,157 @@
+{
+  "sessionId": "fanout-confirm-b-1783921047347-ky9ry5",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Seven lexical paths exceed the one-to-two-sentence intro contract",
+      "file": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md",
+      "line": 16,
+      "lineRange": "14-20",
+      "content_hash": "003db46a37b7dd81062a1b2f422a54851bb33b0fccb7f92325a16f45b0853280",
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "findingClass": "class-of-bug",
+      "scopeProof": "Full-corpus opening-shape scan isolated seven lexical paths representing four resolved documents.",
+      "affectedSurfaceHints": [
+        "shared workflow references",
+        "code-webflow CSS quality reference",
+        "reference template conformance"
+      ],
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md:67-71",
+        ".opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:56-87",
+        ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20",
+        ".opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-23"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Current-state full-corpus confirmation"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Completed rows lack the evidence required by their own protocol and strict completion gate",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md",
+      "line": 23,
+      "lineRange": "23-60",
+      "content_hash": "74d9bcfe60699ca32bd3a5df3ce27e9ea15a26e3152708891f33e0768cfd4b3d",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "findingClass": "matrix/evidence",
+      "scopeProof": "Strict validation enumerated the complete 25-row missing-evidence matrix.",
+      "affectedSurfaceHints": [
+        "packet completion evidence",
+        "strict spec validation",
+        "checklist_evidence protocol"
+      ],
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md:23-60",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md:23-54",
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:71-86"
+      ],
+      "claimAdjudication": {
+        "passed": true,
+        "finalSeverity": "P1",
+        "confidence": 0.99,
+        "downgradeTrigger": "All 25 rows gain concrete evidence, the summary names a verification artifact, and strict validation exits 0."
+      },
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Fresh strict validation and complete checked-row matrix"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Packet 019 still recommends a content-quality pass completed by sibling packet 020",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+      "line": 91,
+      "lineRange": "91-93",
+      "content_hash": "b70d2ad46972b6f1d55523eb77ab0cb6e21d42ef95f0cadc6079f64630e23f25",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "findingClass": "cross-consumer",
+      "scopeProof": "Packet 020 closes exactly the three follow-up classes named by packet 019.",
+      "affectedSurfaceHints": [
+        "019 implementation summary",
+        "020 sibling packet",
+        "resume continuity"
+      ],
+      "evidenceRefs": [
+        ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md:91-93",
+        ".opencode/specs/sk-code/020-content-quality-remediation/implementation-summary.md:37-77"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Cross-packet current-state reconciliation"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "firstSeen": 1,
+      "lastSeen": 4
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "firstSeen": 3,
+      "lastSeen": 4
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "firstSeen": 3,
+      "lastSeen": 4
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 2
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

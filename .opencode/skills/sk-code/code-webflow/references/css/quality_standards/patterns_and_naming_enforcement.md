@@ -16,7 +16,7 @@ version: 3.5.0.2
 
 # Webflow CSS Quality Standards
 
-> See [`../style_guide.md`](../style_guide.md) for CSS naming, custom property prefixes, attribute selectors, animation CSS, and file organization. See [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) for cross-language rules. This file covers CSS quality patterns AND CSS-specific enforcement.
+CSS quality patterns and CSS-specific enforcement for Webflow — will-change management, GPU-accelerated properties, easing standards, fluid typography, and the four CSS enforcement rules. See [`../style_guide.md`](../style_guide.md) for naming and formatting conventions.
 
 ---
 

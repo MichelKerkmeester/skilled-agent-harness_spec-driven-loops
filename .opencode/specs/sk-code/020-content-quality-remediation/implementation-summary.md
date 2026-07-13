@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/020-content-quality-remediation"
-    last_updated_at: "2026-07-13T05:20:00Z"
+    last_updated_at: "2026-07-13T07:19:48Z"
     last_updated_by: "claude-code"
     recent_action: "20 files remediated + verified"
     next_safe_action: "Commit + push"
@@ -82,6 +82,7 @@ Applied directly by the orchestrator. The two security fixes were hand-authored 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 - Scope is the specific content defects the 019 xHigh review surfaced; it is not a full content audit of the sk-code hub. Other references may carry unrelated content issues not flagged by that review.
+- `validate.sh --strict` returns exit 1 (warnings), not exit 0. `EVIDENCE_CITED` is cleared; the residual `COMPLEXITY_MATCH`/`SECTION_COUNTS`/`PRIORITY_TAGS` warnings are inherent to the standard Level-2 spec template and would require template-foreign padding to clear — declined as anti-quality. Errors: 0 (the project's completion bar) is met.
 <!-- /ANCHOR:limitations -->
 
 ---

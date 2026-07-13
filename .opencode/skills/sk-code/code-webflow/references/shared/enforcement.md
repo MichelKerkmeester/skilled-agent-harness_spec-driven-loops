@@ -16,13 +16,6 @@ version: 3.5.0.2
 
 This file enforces rules that apply to all Webflow languages (JavaScript and CSS). Per-language enforcement (JS naming conventions, JS initialization patterns, CSS custom properties, CSS attribute selectors, CSS BEM, CSS animation properties) lives in the matching language `quality_standards.md`.
 
-**Related Documents:**
-- [`../javascript/style_guide/overview_naming_and_structure.md`](../javascript/style_guide/overview_naming_and_structure.md) — JS style conventions (naming, file structure, formatting, JSDoc)
-- [`../css/style_guide.md`](../css/style_guide.md) — CSS style conventions (BEM, custom properties, attribute selectors, animation CSS)
-- [`../javascript/quality_standards/init_dom_error_and_async.md`](../javascript/quality_standards/init_dom_error_and_async.md) — JS quality patterns + JS naming/init enforcement
-- [`../css/quality_standards/patterns_and_naming_enforcement.md`](../css/quality_standards/patterns_and_naming_enforcement.md) — CSS quality patterns + 4 CSS enforcement subsections
-- [`../../../assets/webflow/checklists/code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist/overview_header_and_comments.md) — validation checklist used at the pre-completion gate
-
 ---
 
 ## 1. OVERVIEW

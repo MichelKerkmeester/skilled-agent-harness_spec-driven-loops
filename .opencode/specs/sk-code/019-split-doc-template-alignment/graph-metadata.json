@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the canonical create-skill asset/reference templates: 5-field frontmatter + 4-part version, snake_case filenames, H1 + intro + `## 1. OVERVIEW` before content, optional RELATED RESOURCES last. Every rename updates all in-hub references. Extends 027's underscore convention to the reference/asset split files 027 did not cover.",
     "created_at": "2026-07-12T14:23:01.630Z",
-    "last_save_at": "2026-07-13T05:08:19.235Z",
+    "last_save_at": "2026-07-13T07:16:48.596Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15542ef6f30a69bea99a5e0dbd93354c5e2c28ecd1864096a5221db031bca6c8",
+    "source_fingerprint": "sha256:dbe99d3a02de9fb1763bd9278351ab67b539a08f7fa827e69dc5de74fbd237d8",
     "source_doc_hashes": {
-      "spec.md": "dd345226556a8bb9abc4de80b9d59ae293004196cf024385b72c3070cd39a617",
-      "plan.md": "aad345aa84428ebb8d4bbcbe8b85caeb8719eba60117b6363c998c89036fa947",
-      "tasks.md": "ed18a119344bf9701a36033a2f49bcaf03bbe7b890e3d1d0c9145649c0daeb02",
-      "checklist.md": "63ce2b53de438995644f0211fdeadd119e93fb41d8e3b966e34f2a64871bb5fb",
-      "implementation-summary.md": "7455fb71bcd716984cbfaf82915ee354fd69043a092de004730ea575fe8d599c"
+      "spec.md": "413317319283666631433f27a0674d5f3a1ce44a7abd3819568296c3cac3baba",
+      "plan.md": "605fe1fe50e08e1958edf5fea397d259f9c551f28f28517bbc383a073b0bf168",
+      "tasks.md": "ee07dea2a57205172443f3609063085e7dafef2da5cef69767e66c14fd954d63",
+      "checklist.md": "1655747960f3f678483a0f520dea8d0f49ee32b1c3abfca07f3f593564b5c982",
+      "implementation-summary.md": "06ea4b1a170ba87c9cd012827815443e5f2514cece453726107b9550aedd8a72"
     },
     "last_active_child_id": null,
     "last_active_at": null
