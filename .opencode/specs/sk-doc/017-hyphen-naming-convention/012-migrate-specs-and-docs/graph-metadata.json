@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/017-hyphen-naming-convention/012-migrate-specs-and-docs",
+  "spec_folder": "sk-doc/017-hyphen-naming-convention/012-migrate-specs-and-docs",
+  "parent_id": "sk-doc/017-hyphen-naming-convention",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "migrate specs and docs",
+      "hyphen naming phase 012",
+      "kebab-case migrate specs",
+      "migrate specs and docs implementation plan",
+      "hyphen naming phase 012 implementation plan",
+      "migrate specs and docs tasks",
+      "hyphen naming phase 012 tasks",
+      "migrate specs and docs checklist",
+      "hyphen naming phase 012 checklist"
+    ],
+    "key_topics": [
+      "migrate",
+      "specs",
+      "docs",
+      "hyphen",
+      "naming",
+      "phase",
+      "kebab-case",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist",
+      "remaining"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remaining",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Ready",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remaining in-scope snake_case names exist across spec docs and other `.md` filesystem names. These must be hyphenated while honoring frozen surfaces (z_archive, changelogs, completed history) and the identifier/key exemption, with markdown links resolved across active specs/docs.",
+    "created_at": "2026-07-13T14:34:05.541Z",
+    "last_save_at": "2026-07-13T14:34:05.541Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:28196b3d2bd460008a4e23feb1f5f9d1afe228c338701045191ea8f4591e8fae",
+    "source_doc_hashes": {
+      "spec.md": "5183c7ab7b4692bb194f2d66dd42c776ec51c3ebd9fe54955b288bfa49d399aa",
+      "plan.md": "fea650eb1108148af165d655a8776cb042322f42d5290e41bd46025e0709fffc",
+      "tasks.md": "f3e33fd93f47007a5fb14470efbd4f2902c48a97c8fb9304cb5ef3b374cc0cb5",
+      "checklist.md": "1d657d6c559179cbafeed663ff0a12a6bcfd0e87d9e8848884ce0c08d48bb8fd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

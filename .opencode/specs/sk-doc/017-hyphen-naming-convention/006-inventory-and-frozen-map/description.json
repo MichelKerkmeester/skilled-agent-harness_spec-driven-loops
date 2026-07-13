@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/006-inventory-and-frozen-map",
+  "description": "Before any rename, the in-scope surface must be frozen into a bijective, fully-classified rename map partitioned by dependency closure.",
+  "keywords": [
+    "rename",
+    "in-scope",
+    "surface",
+    "must",
+    "frozen",
+    "bijective",
+    "fully-classified",
+    "map",
+    "partitioned",
+    "dependency",
+    "closure"
+  ],
+  "lastUpdated": "2026-07-13T14:31:53.808Z",
+  "specId": "006",
+  "folderSlug": "inventory-and-frozen-map",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

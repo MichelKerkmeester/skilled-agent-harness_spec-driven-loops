@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: repo-wide kebab-case (hyphen) filesystem-naming convention"
-description: "Ban snake_case in filesystem names repo-wide and make kebab-case (hyphens) the sole canonical form for folder names, file names, and script filenames — with a hard exemption for Python (.py, PEP-8 snake_case) plus vendored/third-party trees, generated/lockfile output, and tool-mandated filenames. Code identifiers, JSON/YAML keys, frontmatter fields, and DB columns are OUT of scope (idiomatic case, hyphens illegal there). Reverses and supersedes the 027 underscore migration, including the sk-doc validator/loader logic that keys on feature_catalog / manual_testing_playbook. Phase parent for a 12-phase program: policy + logic + generators + guard/tooling first, then a full repo inventory, then surface-by-surface migration (catalog/playbook, references/assets, scripts+imports, specs/docs, config/data), then validate/build/test/re-benchmark, then close-out and worktree merge."
+description: "Ban snake_case in filesystem names repo-wide and make kebab-case (hyphens) the sole canonical form for folder names, file names, and script filenames — with a hard exemption for Python (.py, PEP-8 snake_case) plus vendored/third-party trees, generated/lockfile output, tool-mandated filenames, and Python import-package directories. Code identifiers, JSON/YAML/TOML keys, frontmatter fields, and DB columns are OUT of scope (idiomatic case, hyphens illegal there). Reverses and supersedes the 027 underscore migration, including the sk-doc validator/loader logic keyed on feature_catalog / manual_testing_playbook. Phase parent for a 16-phase program (000-015): worktree + immutable-baseline + census first, then policy + all-consumer logic + generators + guard/rename-and-reference tooling, then a frozen bijective rename map, then dependency-closure surface migration (catalog, alias-removal, runtime/package-layout, references, scripts+imports, docs, config/data), then the whole-repo gate, then integrate-latest + closeout. Migration runs on a dedicated worktree pinned to an immutable BASE SHA."
 trigger_phrases:
   - "hyphen naming convention"
   - "kebab-case filesystem names"
@@ -13,26 +13,28 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/017-hyphen-naming-convention"
-    last_updated_at: "2026-07-13T11:44:19Z"
+    last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the phase-parent spec and 12-phase decomposition"
-    next_safe_action: "Review the phase map, then plan phase 001 in a worktree"
+    recent_action: "Replanned to 16 phases after the GPT-5.6-SOL-max design review (REQUESTED_CHANGES)"
+    next_safe_action: "Execute phase 000 (worktree + baseline + census) on the pinned BASE SHA"
     blockers: []
     key_files: []
     completion_pct: 0
-    open_questions:
-      - "Transition tolerance window for the validator (dual-name accept) vs atomic logic+rename coupling for the catalog roots"
+    open_questions: []
     answered_questions:
-      - "Scope = filesystem names only (folders/files/script filenames); code identifiers + JSON/YAML keys + frontmatter fields keep idiomatic case"
-      - "Exemptions = .py files, vendored/third-party, lockfiles/generated output, tool-mandated filenames"
+      - "Scope = filesystem names only (folders/files/script filenames); code identifiers + JSON/YAML/TOML keys + frontmatter fields keep idiomatic case"
+      - "Exemptions = .py files, Python import-package dirs, vendored/third-party, lockfiles/generated output, tool-mandated filenames, frozen surfaces"
       - "Fully reverses 027, including the sk-doc validator/loader logic keyed on feature_catalog / manual_testing_playbook"
-      - "Placement = new top-level phase parent under sk-doc; migration execution runs on a worktree"
+      - "Placement = top-level phase parent under sk-doc; packet number 017 (concurrent 017-smart-routing folds into 016); migration on a worktree"
+      - "Catalog-root transition = bounded dual-name tolerance + an explicit alias-removal phase"
+      - "Rename batching = dependency-closure (reference-graph SCCs), not per-extension"
+      - "node tooling in the worktree = fresh deterministic install, never a symlink to the main tree"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
-<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; mechanics live in each child's plan.md, decisions in decision-record.md. -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; mechanics live in each child's plan.md, decisions in 001's decision-record.md. -->
 
 # Feature Specification: Repo-Wide Kebab-Case Filesystem Naming
 
@@ -48,6 +50,7 @@ _memory:
 | **Created** | 2026-07-13 |
 | **Owner skill** | sk-doc (owns the naming conventions, the `validate_document.py` classifier, the create-* generators, and the templates) |
 | **Origin** | Operator: "reverse the naming convention and ban snake_case EVERYWHERE except python scripts … folder names, file names, script file names should all use hyphens … change logic in sk-doc and its create skills, then retroactively fix across the repo … definitely needs a worktree" |
+| **Review** | GPT-5.6-sol (max) design review returned REQUESTED_CHANGES; this 16-phase decomposition folds in every P0/P1. See `001-convention-policy-and-scope/decision-record.md`. |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -60,21 +63,27 @@ for every filesystem name — folders, files, and script filenames — with Pyth
 (`.py` files keep PEP-8 snake_case). This program bans snake_case in filesystem names repo-wide and makes hyphens the
 single canonical form.
 
-The load-bearing complication: the sk-doc validator classifies catalog/playbook leaves by the `feature_catalog` /
-`manual_testing_playbook` parent-directory NAME (`validate_document.py:129,137`), and the Lane C benchmark loader keys
-on frontmatter. Renaming those two root directories to `feature-catalog` / `manual-testing-playbook` therefore requires
-a coordinated change to the sk-doc classification logic — this is not a pure rename.
+The load-bearing complication: the sk-doc classifier classifies catalog/playbook leaves by the `feature_catalog` /
+`manual_testing_playbook` parent-directory NAME (`validate_document.py:123-138`), and a **network of other consumers**
+key on the same root/index names — the Lane C benchmark loader and generator, `parent-skill-check.cjs`, the
+`post-edit-router.cjs`, `package_skill.py`, plus an **inverse guard** (`check_no_hyphenated_catalog_content.py`) that
+currently *rejects* the desired state. Renaming those two roots therefore requires a coordinated, all-consumer logic
+change — this is not a pure rename. A second complication: the execution environment must be reproducible — the repo's
+scale and a `mcp_server` workspace declared in `package-lock.json` mean the migration must run against an **immutable
+BASE SHA** in a worktree with a fresh, deterministic dependency install, not the actively-raced shared checkout.
 
 ### Purpose
-Make kebab-case the sole canonical filesystem-naming form repo-wide; update the sk-doc logic, create-* generators, and
-templates to emit and validate it; add a guard so snake_case cannot re-enter in-scope names; and retroactively rename
-every in-scope snake_case folder/file/script — fixing all path references and imports in lockstep — without regressing
-validation, builds, tests, imports, or the Lane C benchmark.
+Make kebab-case the sole canonical filesystem-naming form repo-wide; update the sk-doc logic, all root-name consumers,
+the create-* generators, and templates to emit and validate it; add a guard so snake_case cannot re-enter in-scope
+names; build a semantic rename engine + a rename-map-driven whole-repo reference checker; and retroactively rename every
+in-scope snake_case folder/file/script — fixing all path references and imports in lockstep, in dependency-closed
+batches — without regressing validation, builds, tests, imports, or the Lane C benchmark.
 
 ### Non-Goals
-- Renaming **code identifiers**, **JSON/YAML keys**, **frontmatter fields**, or **DB columns** — hyphens are illegal in
-  most identifiers and snake_case keys are a data/API contract, not a filename. Idiomatic case is kept there.
-- Touching **Python `.py`** filenames (snake_case is idiomatic / PEP-8).
+- Renaming **code identifiers**, **JSON/YAML/TOML keys**, **frontmatter fields**, or **DB columns** — hyphens are
+  illegal in most identifiers and snake_case keys are a data/API contract, not a filename. Idiomatic case is kept.
+- Touching **Python `.py`** filenames or **Python import-package directory names** (snake_case is idiomatic / required
+  for importability).
 - Renaming **vendored/third-party** trees, **generated/lockfile** output, or **tool-mandated** filenames.
 <!-- /ANCHOR:problem -->
 
@@ -83,96 +92,121 @@ validation, builds, tests, imports, or the Lane C benchmark.
 
 ### In Scope
 - **Convention & policy**: hyphens are the sole canonical form for in-scope filesystem names; supersede the 027
-  underscore ADR; publish the authoritative convention doc + the exemption/deny-list boundary.
-- **sk-doc logic**: the `validate_document.py` classifier and any name-keyed logic (both copies), the Lane C loader
-  (`load-playbook-scenarios.cjs`), and any validator rule that references `feature_catalog` / `manual_testing_playbook`.
-- **create-* generators + templates**: emit hyphenated folder/file names (`feature-name.md`, `category-name/`, …);
-  reverse the 027 generator changes.
-- **Guard + migration tooling**: an exemption-aware no-new-snake_case guard; a deterministic, dry-run-default rename
-  engine with collision hard-abort and an in-lockstep reference/import sweep.
+  underscore ADR; publish the authoritative convention doc + the exemption/deny-list boundary + the frontmatter-value
+  vs frontmatter-key line + the frozen-history exception.
+- **All root-name consumer logic**: the `validate_document.py` classifier (a **symlink** at `sk-doc/scripts/` plus the
+  real file under `shared/scripts/`), the Lane C loader + generator, `parent-skill-check.cjs`, `post-edit-router.cjs`,
+  `package_skill.py`, the **inverse** `check_no_hyphenated_catalog_content.py` guard, and every rule/test keyed on
+  `feature_catalog` / `manual_testing_playbook`.
+- **create-* generators + templates**: emit hyphenated folder/file names; reverse the 027 generator changes.
+- **Guard + tooling**: an exemption-aware no-new-snake_case guard (`--changed-since $BASE` and `--all` modes); a
+  deterministic, dry-run-default rename engine (semantic source→target map, collision hard-abort on exact/casefold/NFC,
+  symlink mode-120000 + exec-bit preservation); a rename-map-driven whole-repo reference checker (module resolution,
+  path-value config, shell sourcing, registries, and a disposition ledger for dynamic `require`/glob sites).
 - **Retroactive migration** of every in-scope snake_case folder / file / script filename across all skills, specs,
-  references, assets, benchmarks, scripts, and config/data filenames — with all path references and imports fixed.
+  references, assets, benchmarks, scripts, runtime/package-layout dirs, and config/data filenames — with all path
+  references and imports fixed, in dependency-closed batches.
 
 ### Out of Scope (deliberate — exemptions)
-- **Python `.py`** filenames.
+- **Python `.py`** filenames; **Python import-package directory names** (`_`→`-` would break `import`).
 - **Vendored / third-party**: `node_modules/`, Python `site-packages` / `.venv`, embedded package trees.
 - **Generated / lockfiles**: `package-lock.json`, `dist/`, compiled bundles, other regenerated artifacts.
-- **Tool-mandated filenames**: `package.json`, `tsconfig.json`, GitHub/workflow files, etc.
-- **Code identifiers, JSON/YAML keys, frontmatter fields, DB columns** (idiomatic case retained).
-- **Skill / agent / command directory names** and **spec phase-folder names** (`^[0-9]{3}-[a-z0-9-]+$`) are already
-  hyphen-only; confirmed compliant, not re-touched.
-- **Frozen surfaces**: `z_archive/`, changelogs, completed spec history.
+- **Tool-mandated filenames**: `package.json`, `tsconfig.json`, `.utcp_config.json`, `action.yml`/`action.yaml`,
+  plugin manifests, `SKILL.md`, GitHub/workflow files, and similar exact-name contracts. Test-runner magic
+  (`__snapshots__`, `__mocks__`, `conftest.py`, `test_*.py`/`*_test.py`) is preserved unless moved with its full
+  discovery/config closure.
+- **Code identifiers, JSON/YAML/TOML keys, frontmatter FIELDS, DB columns** (idiomatic case retained). Frontmatter
+  *values* that are filesystem paths or path-derived slugs DO change when required.
+- **Already-compliant**: skill/agent/command directory names and spec phase-folder names (`^[0-9]{3}-[a-z0-9-]+$`).
+- **Frozen surfaces**: `z_archive/`, changelogs, completed spec history — never rewritten (append-only supersession
+  only); the whole-repo "zero snake_case" gate is scope-aware and excludes these.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:phases -->
 ## PHASE DOCUMENTATION MAP
 
-Ordered so the repo stays internally consistent at every commit: policy + logic + generators + guard land BEFORE any
-rename, so the toolchain emits and accepts hyphens first; then inventory; then surface-by-surface migration; then the
-full gate; then close-out. Migration-execution phases (005+) run on a dedicated worktree.
+Ordered so the repo stays internally consistent at every commit and the execution is reproducible: an isolated worktree
++ immutable baseline + raw census come FIRST; then policy + all-consumer logic + generators + guard/rename tooling (the
+toolchain speaks hyphens before any rename); then the frozen bijective rename map; then dependency-closure surface
+migration; then the whole-repo gate; then integrate-latest + closeout. Every phase carries a blocking SOL verifier
+contract in its `checklist.md`.
 
 | Phase | Child | Outcome |
 |-------|-------|---------|
-| **001** | `001-convention-policy-and-scope` | The authoritative kebab-case convention doc + decision record: the rule (hyphens for in-scope FS names, `.py` exempt), the full exemption/deny-list boundary, the identifier/key out-of-scope line, and formal supersession of the 027 underscore ADR. |
-| **002** | `002-sk-doc-validator-and-classifier-logic` | Update the sk-doc classifier (`validate_document.py`, both copies) + the Lane C loader + any validator rule keyed on `feature_catalog` / `manual_testing_playbook` to accept the hyphenated roots. Ship a transition tolerance (accept both names) so 002 can land before 006 renames the dirs. |
-| **003** | `003-create-generators-and-templates` | Update the create-feature-catalog + create-manual-testing-playbook (and any other) create-* skills, the `/create:*` generators, and templates to emit hyphenated folder/file names; reverse the 027 generator changes. |
-| **004** | `004-guard-and-migration-tooling` | Build the exemption-aware no-new-snake_case guard + the deterministic, dry-run-default rename engine (path-segment `_`→`-`, collision hard-abort, in-lockstep reference + import sweep, exemption deny-list). |
-| **005** | `005-inventory-and-partitioning` | Full repo inventory of in-scope snake_case FS names (applying every exemption); the authoritative rename map + collision/exemption report; partition into migration batches by surface/skill family. Establish the worktree. |
-| **006** | `006-migrate-catalog-and-playbook` | Reverse 027: rename `feature_catalog`→`feature-catalog`, `manual_testing_playbook`→`manual-testing-playbook`, and all underscore catalog/playbook content back to hyphens, across all skills; rewrite index tables + `category:` frontmatter + cross-refs; validated against the 002 logic. |
-| **007** | `007-migrate-references-and-assets` | Hyphenate snake_case folders/files under `references/`, `assets/`, and `benchmark/` across all skills (non-catalog); rewrite their cross-references. |
-| **008** | `008-migrate-scripts-and-imports` | Rename snake_case **script filenames** (`.ts`/`.js`/`.cjs`/`.mjs`/`.sh`) to hyphens AND fix every `import`/`require`/`source`/registry path reference in lockstep — the highest-risk phase. |
-| **009** | `009-migrate-specs-and-docs` | Hyphenate remaining in-scope snake_case names across spec docs and other `.md` filesystem names (honoring frozen surfaces and the identifier/key exemption). |
-| **010** | `010-migrate-config-and-data` | Remaining in-scope `.json`/`.yaml`/`.yml` **data/config filenames** (not keys) and any stragglers; final exemption reconciliation. |
-| **011** | `011-validate-build-test-rebenchmark` | Recursive `validate.sh --strict` on touched skills; full build/test/typecheck gates; whole-repo import + markdown-link resolution (0 broken); Lane C re-baseline vs a pre-migration snapshot; prove the no-new-snake guard fires. |
-| **012** | `012-supersede-027-and-closeout` | Mark 027 superseded, update changelogs, finalize the convention as canonical, parent rollup, and merge the worktree back. |
+| **000** | `000-worktree-baseline-and-census` | Establish the isolated worktree off an immutable BASE SHA; a fresh deterministic dependency install (never a symlink to the raced main tree); capture the full baseline — naming census, symlink + mode manifest, test-discovery counts, strict-validate output, Lane C scenario IDs/scores, casefold/NFC collision report — against which every later phase is proven. |
+| **001** | `001-convention-policy-and-scope` | The authoritative kebab-case convention doc + the program decision record (dual-name tolerance, dependency-closure batching, fresh-install, numbering, GPT review). The full exemption/deny-list boundary, the identifier/key + frontmatter-value line, the frozen-history exception, Python import-package handling, and formal supersession of the 027 underscore ADR. |
+| **002** | `002-root-name-consumer-migration` | Update **every** runtime consumer of the catalog/playbook root + index names to accept the hyphenated roots: the classifier (symlink-aware, both surfaces), the Lane C loader + generator, `parent-skill-check.cjs`, `post-edit-router.cjs`, `package_skill.py`, the inverse guard + its tests. Ship a bounded dual-name tolerance (accept both, emit only hyphens, fail closed if both physical roots coexist); test POSIX + Windows paths. |
+| **003** | `003-create-generators-and-templates` | Update every create-* generator (incl. `package_skill.py`) + templates to emit hyphenated folder/file names; reverse the 027 generator changes. Verify by generating into a temp dir and comparing the whole emitted tree against the policy. |
+| **004** | `004-no-new-snake-guard` | The exemption-aware no-new-snake_case guard with a debt-tolerant `--changed-since $BASE` mode and an `--all` mode enabled after migration; positive + negative fixtures. |
+| **005** | `005-rename-and-reference-tooling` | The deterministic, dry-run-default rename engine (semantic source→target map — NOT a character substitution; collision hard-abort on exact/casefold/NFC; symlink mode-120000 + exec-bit preservation) AND the rename-map-driven whole-repo reference checker (JS/TS module resolution, JSON/YAML/TOML path values, shell sourcing, registries; a disposition ledger for every dynamic `require`/`source`/glob site; fail on zero scan). |
+| **006** | `006-inventory-and-frozen-map` | The full repo inventory (every exemption applied) frozen into a **bijective, fully-classified** rename map — every candidate is exactly one of rename / exempt / frozen / generated / tool-mandated, no "unknown" bucket — partitioned into dependency-closed batches (reference-graph SCCs). Hash the map together with BASE. |
+| **007** | `007-migrate-catalog-and-playbook` | Reverse 027: rename `feature_catalog`→`feature-catalog`, `manual_testing_playbook`→`manual-testing-playbook`, and all underscore catalog/playbook content back to hyphens, across all skills; rewrite index tables + `category:` frontmatter VALUES + cross-refs; validated against the 002 logic with **zero silent `readme` downgrade**. |
+| **008** | `008-remove-transition-aliases` | Drop the underscore aliases from the 002 logic; prove the old live root names are now rejected and only scoped frozen/exempt references remain. |
+| **009** | `009-runtime-and-package-layout` | Migrate runtime/package-layout directories (`mcp_server`, `install_scripts`, `plugin_bridges`, `matrix_runners`, `behavior_benchmark`, `stress_test`, `level_1/2/3` templates, `__fixtures__`/`__tests__`/`_support` where safe) WITH their manifests, lockfiles, tsconfigs, launchers, imports, tests, and registries — each moved in one dependency-closed batch; fresh-install + `realpath` proof that deps resolve inside the worktree. |
+| **010** | `010-migrate-references-and-assets` | Hyphenate snake_case folders/files under `references/`, `assets/`, and `benchmark/` across all skills (non-catalog), in dependency-closed batches; rewrite their cross-references. |
+| **011** | `011-migrate-scripts-and-imports` | Rename snake_case script filenames (`.ts`/`.js`/`.cjs`/`.mjs`/`.sh`) AND fix every `import`/`require`/`source`/registry reference in lockstep — dependency-closed per-skill/package batches, with shared dispatch/runtime scripts as their own cross-cutting batch; `node --check`, `bash -n`, build/typecheck/tests; every dynamic site dispositioned; test-discovery-count parity. The highest-risk phase. |
+| **012** | `012-migrate-specs-and-docs` | Hyphenate remaining in-scope snake_case `.md` filesystem names across specs and docs (honoring frozen surfaces + the identifier/key exemption); resolve markdown links across all active specs/docs; strict-validate every touched packet/skill. |
+| **013** | `013-migrate-config-and-data` | Remaining in-scope `.json`/`.yaml`/`.yml`/`.toml` DATA/CONFIG filenames (not keys); classify the tracked SQLite DB (active → schema-aware migration, never raw byte replace); symlink + magic-name preservation; final exemption reconciliation. |
+| **014** | `014-validate-build-test-rebenchmark` | The whole-repo gate: the `--all` naming guard, every affected build/typecheck/test suite with discovery-count parity, whole-repo import + path + markdown-link resolution (0 broken), recursive `validate.sh --strict`, and a fixed-seed Lane C re-baseline (semantic + score, not count only) vs the 000 snapshot. Verification mutates no tracked file. |
+| **015** | `015-integrate-and-closeout` | Integrate the latest origin in a clean integration worktree and rerun the ENTIRE 014 gate on the exact final commit; mark 027 superseded (append-only), update changelogs, finalize the convention as canonical, parent rollup, reconcile completion metadata, and merge. |
 
-**Sequencing invariants:** 001 lands first, then 002/003/004 (the toolchain speaks hyphens before any rename). 002 ships
-a dual-name tolerance so it can precede 006. The rename batches (006-010) each validate + fix references before commit. 011 is the whole-repo gate;
-012 supersedes 027 and merges. Because a runtime path (the validator classifier) keys on the catalog root names, 006
-must land coupled with the 002 logic — call out any silent-downgrade risk in the 006 plan.
+**Sequencing invariants:** 000 pins BASE + baseline before anything. 001-005 make the toolchain speak hyphens (and build the guard + rename/reference tooling) before any rename. 002 ships a bounded dual-name tolerance so it precedes 007; 008 removes the alias only after 007 lands. 006's map is frozen + hashed with BASE; batches are dependency-closed (a batch may mix JS/shell/JSON/YAML/MD — surface labels 009-013 are organizational, not atomicity boundaries). 014 is the whole-repo gate; 015 integrates the latest origin and reruns 014 before closeout. Because a runtime path (the classifier) keys on the catalog root names, 007 must land coupled with the 002 logic + tolerance — the 007 checklist proves zero silent downgrade.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 1. Zero in-scope snake_case filesystem names remain (folders, files, script filenames) outside the exemption set and
-   frozen surfaces; all are kebab-case.
+   frozen surfaces; all are kebab-case. The scope-aware `--all` guard proves it and rejects a fresh violation.
 2. `validate.sh --strict` is Errors 0 recursively across every touched skill; catalog/playbook leaves still classify
-   correctly under the updated (hyphen-keyed) logic.
-3. All build / test / typecheck gates pass; whole-repo import and markdown-link resolution shows **0 broken references**
-   after the script+import rename.
-4. The Lane C smart-routing benchmark shows no scoring regression vs the pre-migration baseline; scenario count intact.
+   correctly under the updated (hyphen-keyed) logic — zero silent `readme` downgrade.
+3. All build / test / typecheck gates pass; whole-repo import, path-value, and markdown-link resolution shows **0
+   broken references**; test-file and test-case discovery counts equal the 000 baseline.
+4. The Lane C smart-routing benchmark shows no scoring regression vs the pinned pre-migration baseline; scenario IDs +
+   semantics intact (compared by ID, not count alone).
 5. The create-* generators + templates emit only kebab-case; the no-new-snake_case guard rejects a fresh in-scope
    snake_case name and accepts a hyphenated one.
-6. Every exemption is honored — no `.py`, vendored, generated, lockfile, or tool-mandated name was renamed; no code
-   identifier / JSON-YAML key / frontmatter field was altered.
-7. Packet 027 is formally superseded; the convention doc is the single canonical source.
+6. Every exemption is honored — no `.py`, Python package dir, vendored, generated, lockfile, or tool-mandated name was
+   renamed; no code identifier / JSON-YAML-TOML key / frontmatter field was altered; frozen history is unchanged except
+   an approved append-only 027-supersession note.
+7. Packet 027 is formally superseded; the convention doc is the single canonical source; the program is merged via a
+   clean integration after the full 014 gate reran on the exact final commit.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Broken imports/requires (highest risk)** — renaming script files breaks `import`/`require`/`source`/registry paths.
-  Mitigation: 008 does rename + reference-rewrite in one atomic pass; 011 runs whole-repo import resolution to zero.
-- **Validator silent-downgrade** — the classifier keys on the catalog root dir names; renaming before the logic accepts
-  hyphens would downgrade every catalog leaf to `readme`. Mitigation: 002 dual-name tolerance lands before 006.
-- **Over-broad sweep** — matching `_` inside identifiers / JSON-YAML keys / prose would corrupt code and data.
-  Mitigation: path-segment-only, word-boundary-safe rename; identifiers/keys explicitly out of scope; exemption deny-list.
-- **Exemption leakage** — the vendored Python and package trees are enormous; a mis-scoped find would try to rename them.
-  Mitigation: exemption-aware inventory (005) + guard (004); collision hard-abort.
-- **Concurrent sessions** — other lanes are active. Mitigation: execute on an isolated worktree; path-scoped commits.
+- **Broken imports/requires (highest risk)** — renaming script files breaks `import`/`require`/`source`/registry paths,
+  including dynamic `require(path.join(...))` sites a static sweep misses. Mitigation: 005 reference checker with a
+  dynamic-site disposition ledger; 011 does rename + reference-rewrite in one dependency-closed pass; 014 resolves
+  whole-repo imports to zero.
+- **Validator silent-downgrade** — the classifier + a network of consumers key on the catalog root names; renaming
+  before all of them accept hyphens downgrades every catalog leaf to `readme`. Mitigation: 002 migrates ALL consumers
+  with a dual-name tolerance before 007; the 007 checklist enumerates every leaf's type.
+- **Non-reproducible builds** — a `mcp_server` workspace in `package-lock.json` + locally-untracked manifests mean a
+  clean worktree may not `npm ci`. Mitigation: 000 fixes/tracks manifests + fresh install; 009 updates canonical
+  manifests/lockfiles when package paths move; never symlink deps or `dist` from the raced main tree.
+- **Over-broad / mechanical sweep** — matching `_` inside identifiers/keys/prose, or a blind `_`→`-`, corrupts code and
+  produces bad names (`_common.sh`→`-common.sh`, `__fixtures__`→`--fixtures--`, leading-hyphen CLI hazards).
+  Mitigation: semantic source→target map (005), path-segment + word-boundary safety, exemption deny-list, bijective
+  classified map (006).
+- **Exemption leakage** — the vendored Python + package trees are enormous; a mis-scoped find would rename them.
+  Mitigation: exemption-aware census (000/006) + guard (004); collision hard-abort (005).
+- **Concurrent sessions** — other lanes commit to the same branch and share the main index. Mitigation: pin BASE,
+  execute on an isolated worktree, one writer at a time (or satellite worktrees merged serially), path-scoped commits,
+  final integration in a clean worktree.
 - **Reverses just-shipped 027** — this program undoes 027's underscore migration. Mitigation: 001 supersedes the 027
-  ADR explicitly; 006 is framed as the deliberate reversal; 012 reconciles 027's docs.
-- **Dependency:** the Lane C harness (unchanged) for the 011 regression check; the spec-kit validator (rebuilt in the
-  worktree); sk-git for the worktree lifecycle.
+  ADR explicitly; 007 is framed as the deliberate reversal; 015 reconciles 027's docs append-only.
+- **Dependency:** the Lane C harness (unchanged) for the 014 regression check; the spec-kit validator (rebuilt in the
+  worktree); sk-git for the worktree lifecycle (`references/worktree_workflows.md`).
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- **Transition model for the catalog roots**: dual-name tolerance in the validator (002 accepts both, 006 renames, a
-  later cleanup drops the underscore alias) vs a single atomic logic+rename commit. Recommend the tolerance window to
-  keep every intermediate commit green. To be decided in the 002 plan.
-- **Batch granularity for 008** (scripts+imports): one big atomic rename vs per-skill batches. To be decided in 008's
-  plan once the 005 inventory quantifies the import graph.
+- **Parallelism model** for the rename batches: strictly one LUNA writer per worktree with serial SOL verification, vs
+  satellite worktrees per dependency-closed batch merged serially into the coordinator branch. To be decided in 006
+  once the batch graph is known; default is serial-single-writer.
+- **Rebase cadence**: frequent fetch/overlap audits with one controlled final integration (default) vs a single final
+  rebase of the whole rename set. To be decided in 015 against the observed origin drift.
 <!-- /ANCHOR:questions -->

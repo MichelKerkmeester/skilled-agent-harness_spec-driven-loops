@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/010-migrate-references-and-assets",
+  "description": "Snake_case folders and files exist under `references/`, `assets/`, and `benchmark/` across skills (non-catalog).",
+  "keywords": [
+    "folders",
+    "files",
+    "exist",
+    "references",
+    "assets",
+    "benchmark",
+    "across",
+    "skills",
+    "non-catalog"
+  ],
+  "lastUpdated": "2026-07-13T14:31:53.810Z",
+  "specId": "010",
+  "folderSlug": "migrate-references-and-assets",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

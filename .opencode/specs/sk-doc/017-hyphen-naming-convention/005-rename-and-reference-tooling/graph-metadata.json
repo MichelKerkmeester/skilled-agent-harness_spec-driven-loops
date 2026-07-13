@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "spec_folder": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "parent_id": "sk-doc/017-hyphen-naming-convention",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rename and reference tooling",
+      "hyphen naming phase 005",
+      "kebab-case rename and",
+      "rename and reference tooling implementation plan",
+      "hyphen naming phase 005 implementation plan",
+      "rename and reference tooling tasks",
+      "hyphen naming phase 005 tasks",
+      "rename and reference tooling checklist",
+      "hyphen naming phase 005 checklist"
+    ],
+    "key_topics": [
+      "rename",
+      "reference",
+      "tooling",
+      "hyphen",
+      "naming",
+      "phase",
+      "kebab-case",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist",
+      "blind"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Ready",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Done",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A blind path-segment `_`->`-` substitution corrupts names (`_common.sh`->`-common.sh`, `__fixtures__`->`--fixtures--`, leading-hyphen CLI hazards) and misses dynamic references. The program needs a deterministic, dry-run-default rename engine driven by a SEMANTIC source->target map, plus a rename-map-driven whole-repo",
+    "created_at": "2026-07-13T14:34:05.527Z",
+    "last_save_at": "2026-07-13T14:34:05.527Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:a687a1921a38039b601f87c59ee7cabb3211793a598a043130cc7c96d34efd18",
+    "source_doc_hashes": {
+      "spec.md": "d4b933c8de689d37a4d121f1302b02eeaebb9edfe58988d9ed9c02b643188e32",
+      "plan.md": "576c8a7fd3ad319cc4f68d2558ad0c65d6e7e1fdb2ecbbec14dcec7824523d99",
+      "tasks.md": "231898ab72e33a122b3fb7d3abccf07bc15a247d58fbf39842062ef4907b6268",
+      "checklist.md": "f90a80367bb8d2b0fba6e51ee879e193eda41c59cfab6b4c0ac04ddd975cf502"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "description": "A blind path-segment `_`->`-` substitution corrupts names (`_common.sh`->`-common.sh`, `__fixtures__`->`--fixtures--`, leading-hyphen CLI hazards) and",
+  "keywords": [
+    "blind",
+    "path-segment",
+    "substitution",
+    "corrupts",
+    "names",
+    "common",
+    "fixtures",
+    "leading-hyphen",
+    "cli",
+    "hazards"
+  ],
+  "lastUpdated": "2026-07-13T14:31:53.808Z",
+  "specId": "005",
+  "folderSlug": "rename-and-reference-tooling",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

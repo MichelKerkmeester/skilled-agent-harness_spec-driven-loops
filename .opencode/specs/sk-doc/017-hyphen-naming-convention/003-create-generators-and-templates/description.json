@@ -1,7 +1,6 @@
 {
-  "level": "1",
   "specFolder": "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates",
-  "description": "The create-feature-catalog and create-manual-testing-playbook skills, the `/create:*` generators, and their templates currently emit underscore names",
+  "description": "The create-feature-catalog / create-manual-testing-playbook skills, the `/create:*` generators, `package_skill.py`, and their templates currently emit",
   "keywords": [
     "create-feature-catalog",
     "create-manual-testing-playbook",
@@ -9,11 +8,9 @@
     "generators",
     "templates",
     "currently",
-    "emit",
-    "underscore",
-    "names"
+    "emit"
   ],
-  "lastUpdated": "2026-07-13T11:58:27.675Z",
+  "lastUpdated": "2026-07-13T14:31:53.807Z",
   "specId": "003",
   "folderSlug": "create-generators-and-templates",
   "parentChain": [
@@ -21,5 +18,6 @@
     "017-hyphen-naming-convention"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

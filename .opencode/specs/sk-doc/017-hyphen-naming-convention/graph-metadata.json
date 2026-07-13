@@ -15,7 +15,21 @@
     "sk-doc/017-hyphen-naming-convention/009-migrate-specs-and-docs",
     "sk-doc/017-hyphen-naming-convention/010-migrate-config-and-data",
     "sk-doc/017-hyphen-naming-convention/011-validate-build-test-rebenchmark",
-    "sk-doc/017-hyphen-naming-convention/012-supersede-027-and-closeout"
+    "sk-doc/017-hyphen-naming-convention/012-supersede-027-and-closeout",
+    "sk-doc/017-hyphen-naming-convention/000-worktree-baseline-and-census",
+    "sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration",
+    "sk-doc/017-hyphen-naming-convention/004-no-new-snake-guard",
+    "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling",
+    "sk-doc/017-hyphen-naming-convention/006-inventory-and-frozen-map",
+    "sk-doc/017-hyphen-naming-convention/007-migrate-catalog-and-playbook",
+    "sk-doc/017-hyphen-naming-convention/008-remove-transition-aliases",
+    "sk-doc/017-hyphen-naming-convention/009-runtime-and-package-layout",
+    "sk-doc/017-hyphen-naming-convention/010-migrate-references-and-assets",
+    "sk-doc/017-hyphen-naming-convention/011-migrate-scripts-and-imports",
+    "sk-doc/017-hyphen-naming-convention/012-migrate-specs-and-docs",
+    "sk-doc/017-hyphen-naming-convention/013-migrate-config-and-data",
+    "sk-doc/017-hyphen-naming-convention/014-validate-build-test-rebenchmark",
+    "sk-doc/017-hyphen-naming-convention/015-integrate-and-closeout"
   ],
   "manual": {
     "depends_on": [],
@@ -47,6 +61,7 @@
     "importance_tier": "critical",
     "status": "planned",
     "key_files": [
+      "001-convention-policy-and-scope/decision-record.md",
       "spec.md"
     ],
     "entities": [
@@ -95,15 +110,15 @@
     ],
     "causal_summary": "The repo's filesystem naming is inconsistent and, after packet 027, actively snakecase for catalog/playbook content",
     "created_at": "2026-07-13T11:48:37.060Z",
-    "last_save_at": "2026-07-13T11:53:27.191Z",
+    "last_save_at": "2026-07-13T14:34:05.510Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c974642f92ccab07749ae753cc94bde4c4d79508f60d9c412383fc91f310315c",
+    "source_fingerprint": "sha256:2636ed217903b162a0cf8282c0f2dbc4d6ec75730845f06bd141d196d42a205b",
     "source_doc_hashes": {
-      "spec.md": "12d0b37344c06c297534762263f765842ce663be128737c2ccb75f91374eb3d9"
+      "spec.md": "f15938cd2c61d9629fac4daa7502fffce6d383b7ac84fccf11562b1a20c66dda"
     },
     "last_active_child_id": null,
     "last_active_at": null

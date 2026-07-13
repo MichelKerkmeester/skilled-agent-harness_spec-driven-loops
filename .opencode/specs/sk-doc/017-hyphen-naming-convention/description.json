@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/017-hyphen-naming-convention",
   "description": "The repo's filesystem naming is inconsistent and, after packet 027, actively snakecase for catalog/playbook content",
   "keywords": [
@@ -13,13 +14,12 @@
     "playbook",
     "content"
   ],
-  "lastUpdated": "2026-07-13T11:53:07.664Z",
-  "specId": "019",
+  "lastUpdated": "2026-07-13T14:25:03.891Z",
+  "specId": "017",
   "folderSlug": "hyphen-naming-convention",
   "parentChain": [
     "sk-doc"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

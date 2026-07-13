@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/012-migrate-specs-and-docs",
+  "description": "Remaining in-scope snake_case names exist across spec docs and other `.md` filesystem names.",
+  "keywords": [
+    "remaining",
+    "in-scope",
+    "names",
+    "exist",
+    "across",
+    "spec",
+    "docs",
+    "filesystem"
+  ],
+  "lastUpdated": "2026-07-13T14:31:53.811Z",
+  "specId": "012",
+  "folderSlug": "migrate-specs-and-docs",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

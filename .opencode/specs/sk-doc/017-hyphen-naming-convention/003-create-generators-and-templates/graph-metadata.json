@@ -17,7 +17,9 @@
       "create-* generators and templates implementation plan",
       "hyphen naming phase 003 implementation plan",
       "create-* generators and templates tasks",
-      "hyphen naming phase 003 tasks"
+      "hyphen naming phase 003 tasks",
+      "create-* generators and templates checklist",
+      "hyphen naming phase 003 checklist"
     ],
     "key_topics": [
       "generators",
@@ -29,16 +31,17 @@
       "implementation",
       "plan",
       "tasks",
+      "checklist",
       "create-feature-catalog",
-      "create-manual-testing-playbook",
-      "skills"
+      "create-manual-testing-playbook"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -57,6 +60,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -166,23 +175,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The create-feature-catalog and create-manual-testing-playbook skills, the `/create:*` generators, and their templates currently emit underscore names (the 027 change, commit 7cc369f2ed). They must emit hyphenated folder/file names so newly-created content is born compliant.",
-    "created_at": "2026-07-13T11:48:37.085Z",
-    "last_save_at": "2026-07-13T11:58:27.898Z",
+    "causal_summary": "The create-feature-catalog / create-manual-testing-playbook skills, the `/create:*` generators, `package_skill.py`, and their templates currently emit underscore names (the 027 change). They must emit hyphenated folder/file names so newly-created content is born compliant.",
+    "created_at": "2026-07-13T14:34:05.523Z",
+    "last_save_at": "2026-07-13T14:34:05.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md"
     ],
-    "source_fingerprint": "sha256:d2c6a56d957784bac48b7b5951ad89971a7f8ecae8266a01d10d35b32ac09682",
+    "source_fingerprint": "sha256:b0a0a5079acf5b16b711e85b9c3b796ea5ed16a565b0f3deaed6a1f3ba1f7ce0",
     "source_doc_hashes": {
-      "spec.md": "053f120d8bbd6b51f939ca4ba4199a6d7437af2f922e8f9d7eff282b7f7f24ef",
-      "plan.md": "1d6ed1547bd04096b757a2ec5618a59dcdb2bd912d3bf51b1e7c6a9f22d0fe65",
-      "tasks.md": "30562f62bfe91f7ed83e0e6989c9141ed7e74379f07060af057dd614fabed4aa"
+      "spec.md": "a72fd4ac70169f4caf38e447f5c0ac7487f2e1ad206bfd5addde12f0cdaf6b23",
+      "plan.md": "dd0743d2e7750445aecd1a904fa560d35555d131be5ccf948868f9f8ebb46b11",
+      "tasks.md": "8111655bbb9b9bb5a5bfe03233d1f7a2dff572f0685f6bf6cea0de9ce8da835f",
+      "checklist.md": "216e245a30062850a5d1ec6fb3da5501f75efeda6bdc0ebd8052c55c9517c4c1"
     },
     "last_active_child_id": null,
     "last_active_at": null
