@@ -20,7 +20,8 @@ Three specialized workflows for writing robust frontend code with proper timing,
 ## 1. OVERVIEW
 
 ### Purpose
-Specialized workflows for writing robust frontend code with proper timing, validation, and cache management.
+
+Phase-1 implementation workflow for condition-based waiting — polling for DOM and state readiness instead of fixed timeouts to avoid race conditions in async operations.
 
 ### Prerequisites
 Follow code quality standards for all implementations:

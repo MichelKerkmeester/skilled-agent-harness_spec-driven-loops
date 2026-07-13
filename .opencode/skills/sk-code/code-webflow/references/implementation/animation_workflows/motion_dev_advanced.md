@@ -21,7 +21,7 @@ CSS-first animation guide with Motion.dev integration for complex sequences and 
 
 ### Purpose
 
-CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Motion.dev Advanced Patterns & Related.
+Advanced motion.dev animation techniques for Webflow — sequencing, scroll-linked and gesture-driven motion, and the edge cases that sit beyond the basic integration — with pointers to the related animation references.
 
 ### When to Use
 

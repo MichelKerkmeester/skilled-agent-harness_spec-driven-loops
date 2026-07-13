@@ -21,7 +21,7 @@ Complete platform constraints and collection list patterns for Webflow developme
 
 ### Purpose
 
-Complete platform constraints and collection list patterns for Webflow development. — Finsweet Custom Select Bridge Pattern & Related.
+The bridge pattern for syncing a Finsweet custom select with the underlying native form control, with pointers to the related integration references.
 
 ### When to Use
 

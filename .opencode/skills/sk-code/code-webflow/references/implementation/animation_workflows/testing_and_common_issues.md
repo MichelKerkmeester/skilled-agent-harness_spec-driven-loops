@@ -21,7 +21,7 @@ CSS-first animation guide with Motion.dev integration for complex sequences and 
 
 ### Purpose
 
-CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Testing/Debugging Procedures & Common Issues.
+Testing and debugging procedures for Webflow animations, paired with a catalog of the common issues and their solutions.
 
 ### When to Use
 

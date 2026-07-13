@@ -21,7 +21,7 @@ Complete platform constraints and collection list patterns for Webflow developme
 
 ### Purpose
 
-Complete platform constraints and collection list patterns for Webflow development. — Development Best Practices, Production Config, Testing & Integration.
+Development best practices and the production-configuration constraints of the Webflow platform, with a testing checklist and how the patterns tie into the workflows-code.
 
 ### When to Use
 

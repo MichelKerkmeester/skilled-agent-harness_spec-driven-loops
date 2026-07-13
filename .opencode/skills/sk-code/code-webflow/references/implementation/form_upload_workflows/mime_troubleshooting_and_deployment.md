@@ -21,7 +21,7 @@ Complete architecture reference for the FilePond-to-R2 file upload pipeline, inc
 
 ### Purpose
 
-Complete architecture reference for the FilePond-to-R2 file upload pipeline, including Cloudflare Worker proxy, state management, and Webflow integration. — MIME Types, Troubleshooting, Deployment & Related.
+A MIME-type reference for file uploads, a troubleshooting guide for upload failures, and the pages-and-deployment steps that move an upload flow into production.
 
 ### When to Use
 

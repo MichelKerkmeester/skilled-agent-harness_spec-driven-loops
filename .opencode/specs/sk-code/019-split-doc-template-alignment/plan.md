@@ -35,7 +35,7 @@ Conform ~163 mechanically-split reference/asset files across code-opencode, code
 ### Definition of Ready
 Templates + package_skill.py read as authority; 027 collision scope confirmed (027 done, did not cover reference/asset split files).
 ### Definition of Done
-0 hyphenated split filenames remaining; validate_document 0 on every file; 0 broken .md links hub-wide; committed + pushed to v4.
+0 hyphenated split filenames remaining; validate_document 0 on every file; 0 broken .md links to renamed files (all conformed files + referrers resolve); committed + pushed to v4.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -53,7 +53,7 @@ Serial per-subtree GPT batches (batches serialize on each surface's shared SKILL
 1. code-quality assets (pilot).
 2. code-opencode references (config/python/js/shell/typescript/rust/shared) + assets.
 3. code-webflow references (animation/css/html/debugging/deployment/performance/verification/js/shared/implementation) + assets.
-4. Full-hub verification: 0 hyphenated, 0 broken links, all validate 0.
+4. Full-hub verification: 0 hyphenated, 0 broken links to renamed files, all validate 0.
 <!-- /ANCHOR:phases -->
 
 ---

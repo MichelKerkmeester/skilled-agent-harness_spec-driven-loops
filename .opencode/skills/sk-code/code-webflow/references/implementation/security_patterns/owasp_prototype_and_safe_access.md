@@ -21,7 +21,7 @@ Security hardening patterns covering XSS prevention, CSRF protection, and input 
 
 ### Purpose
 
-Security hardening patterns covering XSS prevention, CSRF protection, and input validation. — OWASP Coverage, Prototype Pollution, Secure IDs & Safe Access.
+Client-side security for Webflow JavaScript mapped to the OWASP Top 10: prototype-pollution prevention, secure ID generation, safe property access via Object.hasOwn, and the anti-patterns to avoid.
 
 ### When to Use
 

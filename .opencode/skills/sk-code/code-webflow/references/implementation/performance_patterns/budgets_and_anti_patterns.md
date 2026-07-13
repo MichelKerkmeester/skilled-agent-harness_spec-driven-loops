@@ -21,7 +21,7 @@ Performance optimization checklist covering animations, assets, requests, and Co
 
 ### Purpose
 
-Performance optimization checklist covering animations, assets, requests, and Core Web Vitals budgets. — Performance Budgets, Anti-Patterns & Related.
+Concrete performance budgets to hold a Webflow build to, and the anti-patterns that blow them.
 
 ### When to Use
 

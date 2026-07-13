@@ -21,7 +21,7 @@ Complete architecture reference for the FilePond-to-R2 file upload pipeline, inc
 
 ### Purpose
 
-Complete architecture reference for the FilePond-to-R2 file upload pipeline, including Cloudflare Worker proxy, state management, and Webflow integration. — State Machine, Cloudflare Worker Proxy & Form Integration.
+The upload state machine, the Cloudflare Worker proxy that fronts it, and how both integrate with a Webflow form.
 
 ### When to Use
 

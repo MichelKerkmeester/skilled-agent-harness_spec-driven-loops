@@ -21,7 +21,7 @@ Focus trap implementation, focus restoration, and touch detection patterns for a
 
 ### Purpose
 
-Focus trap implementation, focus restoration, and touch detection patterns for accessible modal dialogs. — Focus Restoration, Touch Detection, Anti-Patterns & Checklist.
+Focus-restoration and touch-detection techniques for accessible Webflow interactions, the anti-patterns to avoid, and an integration checklist.
 
 ### When to Use
 

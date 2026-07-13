@@ -21,7 +21,7 @@ Reference guide for integrating external JavaScript libraries in Webflow project
 
 ### Purpose
 
-Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — Botpoison Spam Protection & Finsweet Attributes.
+Integrating two Webflow third-party libraries: Botpoison for spam protection and Finsweet Attributes for CMS and list behavior.
 
 ### When to Use
 

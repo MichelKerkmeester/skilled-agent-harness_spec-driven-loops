@@ -21,7 +21,7 @@ Browser scheduling APIs and patterns for non-blocking code execution. — Priori
 
 ### Purpose
 
-Browser scheduling APIs and patterns for non-blocking code execution. — Priority/Timing Decision Tree, Compatibility & Webflow Timing.
+A decision tree for choosing a scheduling primitive by priority, the browser-compatibility constraints of each, and the Webflow-specific timing patterns — including a GTM-delay worked example.
 
 ### When to Use
 

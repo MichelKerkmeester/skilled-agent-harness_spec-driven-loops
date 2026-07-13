@@ -20,7 +20,7 @@ Reference guide for integrating external JavaScript libraries in Webflow project
 
 ### Purpose
 
-Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — FilePond File Upload.
+Integrating the FilePond file-upload library into a Webflow form — setup, configuration, and the upload flow.
 
 ### When to Use
 

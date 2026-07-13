@@ -48,7 +48,8 @@ Every item carries a command + result. Deterministic checkers only.
 ## Testing
 - [x] validate_document.py 0 issues on all 163 sk-code ref+asset files
 - [x] 0 hyphenated split filenames remaining
-- [x] 0 broken .md links across the whole sk-code hub
+- [x] 0 broken .md links to/among the renamed files — every conformed file and its referrers resolve
+- [x] 2 pre-existing non-navigational artifacts hub-wide are out of this packet's scope: an illustrative `005-example.com` example path (`webflow_constraints.md`) and a bare filename quoted in changelog prose (`changelog/v3.3.0.0.md`) — both predate this work, neither is a rename referrer
 <!-- /ANCHOR:testing -->
 
 ---
@@ -90,7 +91,7 @@ Every item carries a command + result. Deterministic checkers only.
 |----------|-------|----------|
 | sk-code ref+asset files conformed | 163 | 163/163 at 0 issues |
 | Hyphenated split filenames remaining | 0 | 0 |
-| Broken .md links (hub-wide) | 0 | 0 |
+| Broken .md links to/among renamed files | 0 | 0 (2 pre-existing non-nav artifacts hub-wide out of scope) |
 | Batches committed + pushed to v4 | 11 | 11/11 |
 
 **Verification Date**: 2026-07-12

@@ -40,7 +40,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "plan.md"
+      "plan.md",
+      "changelog/v3.3.0.0.md"
     ],
     "entities": [
       {
@@ -71,6 +72,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.3.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v3.3.0.0.md",
         "source": "derived"
       },
       {
@@ -180,17 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the canonical create-skill asset/reference templates: 5-field frontmatter + 4-part version, snake_case filenames, H1 + intro + `## 1. OVERVIEW` before content, optional RELATED RESOURCES last. Every rename updates all in-hub references. Extends 027's underscore convention to the reference/asset split files 027 did not cover.",
     "created_at": "2026-07-12T14:23:01.630Z",
-    "last_save_at": "2026-07-12T14:23:43.252Z",
+    "last_save_at": "2026-07-13T03:41:44.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:220ebbfceb5d3261a3f4782c592504014e4c2c21b8cd3048bac5ad073c2401bc",
+    "source_fingerprint": "sha256:37fa5677389178745dfdc4ff6de7df3e3be20f133e0ec279871ebd1c7d55d368",
     "source_doc_hashes": {
       "spec.md": "dd345226556a8bb9abc4de80b9d59ae293004196cf024385b72c3070cd39a617",
-      "plan.md": "adcad9bc1a535a3ac6379cfb5841a3084e6e7937174b159afe7a1c22360f0b41",
-      "tasks.md": "75d4da50f1e0414fb7630d950b3f0e32e177a482a7ac948e06019811d55c2754",
-      "checklist.md": "accab62b549e332eccc570853e6c9ee450683d63c75a17039067155ae2487a81",
-      "implementation-summary.md": "dde25c1d6c031ebdbee5e93b6833330fd6fb908fb3476c7967d6aae4ce74d4cb"
+      "plan.md": "aad345aa84428ebb8d4bbcbe8b85caeb8719eba60117b6363c998c89036fa947",
+      "tasks.md": "ed18a119344bf9701a36033a2f49bcaf03bbe7b890e3d1d0c9145649c0daeb02",
+      "checklist.md": "63ce2b53de438995644f0211fdeadd119e93fb41d8e3b966e34f2a64871bb5fb",
+      "implementation-summary.md": "06de3b10824c59a2a9b21b596df8cc438d03d5b82a0124b1ae76cb7bca87a503"
     },
     "last_active_child_id": null,
     "last_active_at": null

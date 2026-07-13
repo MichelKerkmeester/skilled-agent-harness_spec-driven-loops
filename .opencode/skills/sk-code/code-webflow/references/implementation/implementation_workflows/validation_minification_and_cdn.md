@@ -21,7 +21,7 @@ Three specialized workflows for writing robust frontend code with proper timing,
 
 ### Purpose
 
-Three specialized workflows for writing robust frontend code with proper timing, validation, and cache management. — Defense-in-Depth Validation, Minification & CDN Deployment.
+Three deployment-hardening workflows: defense-in-depth input validation, build-time minification, and CDN cache management, with a quick-reference summary.
 
 ### When to Use
 

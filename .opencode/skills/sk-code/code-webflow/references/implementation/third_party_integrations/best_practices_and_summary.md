@@ -21,7 +21,7 @@ Reference guide for integrating external JavaScript libraries in Webflow project
 
 ### Purpose
 
-Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns. — Best Practices, Library Summary & Related.
+Cross-library best practices for third-party integrations, plus a summary of the supported libraries and what each one is for.
 
 ### When to Use
 

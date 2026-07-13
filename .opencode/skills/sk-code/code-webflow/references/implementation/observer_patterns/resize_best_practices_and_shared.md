@@ -21,7 +21,7 @@ Browser observer APIs for reactive DOM watching, visibility detection, and scrol
 
 ### Purpose
 
-Browser observer APIs for reactive DOM watching, visibility detection, and scroll-triggered behaviors. — ResizeObserver, Best Practices, Quick Reference & SharedObservers.
+ResizeObserver usage and best practices, a quick reference, and the SharedObservers consolidation pattern for reusing one observer across many elements.
 
 ### When to Use
 

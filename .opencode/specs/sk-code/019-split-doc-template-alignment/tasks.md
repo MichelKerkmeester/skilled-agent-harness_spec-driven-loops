@@ -51,14 +51,14 @@ _memory:
 ## Phase 3: Verification
 - [x] T009 validate_document.py 0 issues on all 163 sk-code ref+asset files
 - [x] T010 0 hyphenated split filenames remaining across all three surfaces
-- [x] T011 0 broken relative .md links across the entire sk-code hub
+- [x] T011 0 broken relative .md links to/among renamed files (all conformed files + referrers resolve; 2 pre-existing non-navigational artifacts hub-wide are out of scope)
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-163/163 files at 0 issues; 0 hyphenated; 0 broken links; all batches committed + pushed to v4. Met.
+163/163 files at 0 issues; 0 hyphenated; 0 broken links to renamed files; all batches committed + pushed to v4. Met.
 <!-- /ANCHOR:completion -->
 
 ---

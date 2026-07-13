@@ -23,7 +23,7 @@ Copy-paste-ready JS snippets and one-liners for the Webflow stack — condition-
 
 ### Purpose
 
-Copy-paste-ready JS snippets and one-liners for the Webflow stack — condition-based waiting, observers, animation, custom events, optional chaining.
+A fast lookup surface for Webflow JavaScript: a pre-commit checklist, copy-paste snippets for common patterns (waitForElement, IntersectionObserver, debounce), common one-liners, and form-validation classes.
 
 ### When to Use
 

@@ -21,7 +21,7 @@ CSS-first animation guide with Motion.dev integration for complex sequences and 
 
 ### Purpose
 
-CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects. — Motion.dev Integration & Performance Optimization.
+How to wire motion.dev into a Webflow project and keep it performant: integration setup paired with the performance-optimization techniques that hold animations at 60fps.
 
 ### When to Use
 

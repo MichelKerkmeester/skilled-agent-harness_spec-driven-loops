@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-code Split-Doc Template Alignment"
-description: "Conformed all 163 mechanically-split reference/asset files under sk-code/{code-opencode,code-webflow,code-quality} to the create-skill asset/reference templates: snake_case renames, 5-field frontmatter + 4-part version, OVERVIEW wrapper, content preserved, every in-hub reference updated. Executed by GPT-5.6-sol-fast in an isolated worktree, orchestrator-verified per batch; 0 hyphenated names, 0 broken links hub-wide; committed + pushed to v4."
+description: "Conformed all 163 mechanically-split reference/asset files under sk-code/{code-opencode,code-webflow,code-quality} to the create-skill asset/reference templates: snake_case renames, 5-field frontmatter + 4-part version, OVERVIEW wrapper, content preserved, every in-hub reference updated. Executed by GPT-5.6-sol-fast in an isolated worktree, orchestrator-verified per batch; 0 hyphenated names, 0 broken links to renamed files; committed + pushed to v4. Post-ship 10-iteration deep review (GPT-5.6-sol-fast HIGH) drove two P1 remediations: 21 code-webflow Purpose paragraphs de-duplicated from their H1 intro, and the broken-link completion claim narrowed to its true renamed-file scope."
 trigger_phrases:
   - "019 summary sk-code split doc alignment"
 importance_tier: "important"
@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/019-split-doc-template-alignment"
-    last_updated_at: "2026-07-12T14:23:42Z"
+    last_updated_at: "2026-07-13T03:40:30Z"
     last_updated_by: "claude-code"
-    recent_action: "163/163 conformed; pushed to v4"
-    next_safe_action: "Terminal gates + memory save"
+    recent_action: "Post-ship deep review remediation: F001 (21 Purpose de-dups) + F002 (link-claim narrowed)"
+    next_safe_action: "Terminal gates + xHigh verification re-review"
     blockers: []
     completion_pct: 100
     status: "Complete"
@@ -62,6 +62,7 @@ Serial GPT-5.6-sol-fast batches (opencode, --variant medium) in an isolated work
 - **Recurse into nested split dirs.** Verification caught GPT initially skipping nested `<lang>/quality_standards/` split dirs; every subsequent batch prompt made recursion explicit.
 - **Whole-hub staging.** Early per-surface `git add <surface>` commits dropped cross-surface reference-link fixes, leaving 2 broken links on v4; switched to staging the whole sk-code hub per commit and repaired them.
 - **snake_case per operator + 027.** Renames use underscore, aligning with the concurrent 027 naming migration (which had not covered these reference/asset split files).
+- **Post-ship deep review → two P1 remediations.** A 10-iteration GPT-5.6-sol-fast HIGH review (verdict FAIL, convergence 1.0) surfaced two confirmed P1s that the structural validators could not catch. F001: 21 code-webflow references had `### Purpose` copied verbatim from the H1 intro, violating the create-skill template's explicit non-duplication rule — each Purpose was rewritten to a section-derived, intro-distinct statement (0 duplicates across all 163). F002: the completion claim overstated "0 broken links hub-wide"; a fenced-code-aware scan found two pre-existing non-navigational artifacts (an illustrative `005-example.com` example path and a filename quoted in changelog prose, both authored by prior commits) — the claim was narrowed to its true renamed-file scope rather than editing correct documentation.
 <!-- /ANCHOR:decisions -->
 
 ---

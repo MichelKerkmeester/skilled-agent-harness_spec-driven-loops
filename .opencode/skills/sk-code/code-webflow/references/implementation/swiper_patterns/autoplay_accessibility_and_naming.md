@@ -21,7 +21,7 @@ Production-tested Swiper.js configurations for carousels and marquees with Inter
 
 ### Purpose
 
-Production-tested Swiper.js configurations for carousels and marquees with IntersectionObserver autoplay control, accessibility, and Webflow integration. — IntersectionObserver Autoplay, Accessibility & Class Naming.
+IntersectionObserver-gated Swiper autoplay, accessibility configuration, and the Webflow class-naming conventions that bind a slider to its markup.
 
 ### When to Use
 

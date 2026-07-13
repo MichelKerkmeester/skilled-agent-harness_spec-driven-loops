@@ -1,0 +1,49 @@
+{
+  "sessionId": "fanout-gpt56-sol-high-1783912216470-zu43f5",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Twenty-one conformed references duplicate the intro in Purpose",
+      "file": ".opencode/skills/sk-code/code-webflow/references/implementation/implementation_workflows/validation_minification_and_cdn.md",
+      "line": 16,
+      "content_hash": "f2c00ec766ad9603e0ba6cf2164d277df3b613496264439c521f1a96cbf761ff",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "transitions": [{"iteration": 2, "from": null, "to": "P1", "reason": "Confirmed class-of-bug against canonical template"}]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Checked hub-wide zero-broken-link gate is false",
+      "file": ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md",
+      "line": 51,
+      "content_hash": "accab62b549e332eccc570853e6c9ee450683d63c75a17039067155ae2487a81",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "transitions": [{"iteration": 4, "from": null, "to": "P1", "reason": "Deterministic tracked-hub link replay contradicted checked evidence"}]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": ["F001", "F002"],
+  "severityChanged": [],
+  "repeatedFindings": ["F001", "F002"],
+  "dimensionCoverage": {"correctness": true, "security": true, "traceability": true, "maintainability": true},
+  "findingsBySeverity": {"P0": 0, "P1": 2, "P2": 0},
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -21,7 +21,7 @@ Browser scheduling APIs and patterns for non-blocking code execution.
 
 ### Purpose
 
-Browser scheduling APIs and patterns for non-blocking code execution.
+The four main-thread scheduling APIs — requestAnimationFrame, requestIdleCallback, queueMicrotask, and scheduler.postTask — and when to reach for each to schedule work without blocking rendering.
 
 ### When to Use
 
