@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The Memory MCP ships a live retrieval eval harness that is already ~75-85% built [CONFIRMED: iter-011 \"extend-not-greenfield … honest figure ≈ 75-85%\"]: a 110-query graded golden set (290 relevance judgments, grades 1-3, 93 real production memory IDs, 0 placeholders), a 12-metric library (`computeAllMetrics`, `eval-metrics.ts:586`, MRR/nDCG/recall/precision/F1/MAP/hitRate + 5 diagnostics), a live end-to-end runner `evalrunablation` driving real `hybridSearchEnhanced` against the golden set with per-channel recall deltas + paired sign-test p-values, a baseline runner, a dashboard, an alignment",
     "created_at": "2026-06-19T05:52:29.575Z",
-    "last_save_at": "2026-07-11T18:40:35.945Z",
+    "last_save_at": "2026-07-12T13:24:51.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,9 +214,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dca4093168d54ace5f59d76bd6a99367f9e675b0bd5244ff5208ddac49faaba2",
+    "source_fingerprint": "sha256:9297564844854aeb045e13fe8ece13fc6c55f0e4a4c4d3994f6982709d8afd1d",
     "source_doc_hashes": {
-      "spec.md": "ca1bfa7afd320a342a27cd91b2fecac06f5417d0928a424beea78b192273bb7b",
+      "spec.md": "c24336e6a8defbb85a4d8cc0e2d8304ee7b049bc4c590a7898e937b6206108e1",
       "plan.md": "3391386b4a4244f637fc7bf5cc508aac907ddd0e9a14f4587a260a42d608a406",
       "tasks.md": "e30b1db999e08d8b0f6889f1f4bc67df229c924d35c3127e7a1fecccf51ae8ec",
       "checklist.md": "f6302304705ffcdd07e5b726a25388cdc34a504b1f9f9649205a58370bceff76",

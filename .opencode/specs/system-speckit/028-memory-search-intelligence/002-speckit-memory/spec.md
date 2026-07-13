@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Spec-Kit Memory MCP Phase Parent"
-description: "Phase parent for 30 Spec-Kit Memory MCP child phases derived from packet 028 research and follow-on builds."
+description: "Phase parent for 42 current Spec-Kit Memory MCP child phases derived from packet 028 research and follow-on builds."
 trigger_phrases:
   - "028 speckit memory implementation parent"
   - "memory mcp child phase map"
@@ -14,24 +14,25 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/002-speckit-memory"
     last_updated_at: "2026-07-04T17:50:57.196Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Wired Spec-Kit Memory MCP as a phase parent with 30 child phases"
-    next_safe_action: "Use the child map to implement PENDING memory candidates in gate order"
+    recent_action: "Reconciled the Spec-Kit Memory MCP parent with its 42 canonical direct children"
+    next_safe_action: "Use the canonical 42-child map for future follow-up"
     blockers: []
     key_files:
       - "spec.md"
       - "research/research.md"
       - "001-corpus-reindex-gate-zero/spec.md"
-      - "021-residual-correctness/spec.md"
-      - "029-substrate-sandbox-cleanup/spec.md"
-      - "030-opencode-temp-worker-reaping/spec.md"
+      - "029-residual-correctness/spec.md"
+      - "039-substrate-sandbox-cleanup/spec.md"
+      - "040-opencode-temp-worker-reaping/spec.md"
+      - "042-embedder-relisten-and-reaper-hardening/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-19-028-001-speckit-memory-parent"
+      session_id: "2026-06-19-028-002-speckit-memory-parent"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The memory research child now routes to 30 child folders, the 30th (030-opencode-temp-worker-reaping) still a planned scaffold."
+      - "Current graph authority routes this parent to 42 canonical direct children, ending with 042-embedder-relisten-and-reaper-hardening."
       - "Packet 030 (a separate top-level packet, the Wave-0 shipped evidence record) is unrelated to this parent's own 030-opencode-temp-worker-reaping child and remains out of scope for this parent."
 ---
 
@@ -76,7 +77,7 @@ Provide the subsystem root purpose and implementation phase map for the Memory M
 ## 3. SCOPE
 
 ### In Scope
-- Root-level routing for the 30 Memory MCP child folders.
+- Root-level routing for the 42 current Memory MCP child folders.
 - A phase-documentation map that names each implementation sub-phase and current planning status.
 - A research-input pointer for the evidence packet that fed these child plans.
 
@@ -100,7 +101,66 @@ Provide the subsystem root purpose and implementation phase map for the Memory M
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-Research input: `research/research.md` remains the subsystem source packet for candidate evidence and citations.
+Research input: `research/research.md` remains the subsystem source packet for candidate evidence and citations. Current navigation authority is the exact 42-entry `children_ids` array in `graph-metadata.json`.
+
+| Phase | Canonical folder |
+|---:|---|
+| 001 | `001-corpus-reindex-gate-zero/` |
+| 002 | `002-determinism-content-id-foundation/` |
+| 003 | `003-retrieval-class-routing/` |
+| 004 | `004-graceful-degradation/` |
+| 005 | `005-recall-render-escaper/` |
+| 006 | `006-redteam-probe-gate/` |
+| 007 | `007-bitemporal-window/` |
+| 008 | `008-search-index-integrity-sweep/` |
+| 009 | `009-edge-presence-currentness/` |
+| 010 | `010-derived-id-provenance/` |
+| 011 | `011-consolidation-cursor-clock/` |
+| 012 | `012-query-channel-calibration/` |
+| 013 | `013-retention-forgetting/` |
+| 014 | `014-automatic-drift-self-healing/` |
+| 015 | `015-procedural-reliability-benchmark/` |
+| 016 | `016-orphan-sweep-scoped-scan-safety/` |
+| 017 | `017-enrichment-observability/` |
+| 018 | `018-drift-marker-pipeline-resilience/` |
+| 019 | `019-mem0-ranking-tweaks/` |
+| 020 | `020-self-healing-internals-hardening/` |
+| 021 | `021-summary-fusion-grounding/` |
+| 022 | `022-iterative-agentic-recall/` |
+| 023 | `023-semantic-edge-layer/` |
+| 024 | `024-sleeptime-consolidation/` |
+| 025 | `025-git-hooks-reinstall-and-guard/` |
+| 026 | `026-eval-harness-extension/` |
+| 027 | `027-eval-calibration-ab/` |
+| 028 | `028-query-time-filter-benchmark/` |
+| 029 | `029-residual-correctness/` |
+| 030 | `030-kept-off-flag-resolution/` |
+| 031 | `031-drift-marker-native-consolidation/` |
+| 032 | `032-new-feature-research-build/` |
+| 033 | `033-self-healing-model-consolidation/` |
+| 034 | `034-reranker-research/` |
+| 035 | `035-off-corpus-eval-fixture-gate/` |
+| 036 | `036-lexical-grounding-floor/` |
+| 037 | `037-envelope-fidelity-enforcement/` |
+| 038 | `038-scoring-hardening/` |
+| 039 | `039-substrate-sandbox-cleanup/` |
+| 040 | `040-opencode-temp-worker-reaping/` |
+| 041 | `041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/` |
+| 042 | `042-embedder-relisten-and-reaper-hardening/` |
+
+### Current Phase Transition Rules
+
+- Each child folder owns its detailed spec and validation evidence.
+- Parent status changes only after child evidence supports the change.
+- Use `/speckit:resume system-speckit/028-memory-search-intelligence/002-speckit-memory/[NNN-phase]/` to resume a specific current child.
+
+<!-- /ANCHOR:phase-map -->
+
+---
+
+## HISTORICAL PHASE DOCUMENTATION MAP (PRE-MIGRATION SNAPSHOT THROUGH 2026-07-04)
+
+The table and transition notes below preserve the former 30-child narrative plus its later 31st-child addition as dated provenance. They are not current navigation; the exact 42-child canonical map above is authoritative.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
@@ -149,8 +209,6 @@ Research input: `research/research.md` remains the subsystem source packet for c
 | parent | child | Select the next PENDING candidate group | Child `spec.md` names gate, scope and evidence |
 | child | parent | Child reaches strict validation green | `validate.sh <child> --strict` exits 0 |
 | 029-substrate-sandbox-cleanup | 030-opencode-temp-worker-reaping | To be defined once child 030 is planned | Not applicable until planning begins |
-<!-- /ANCHOR:phase-map -->
-
 ---
 
 <!-- ANCHOR:questions -->

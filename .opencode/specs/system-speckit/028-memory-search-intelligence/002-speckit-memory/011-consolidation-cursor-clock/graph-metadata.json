@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The Memory MCP's async-consolidation path is half-built and not crash-safe",
     "created_at": "2026-06-19T05:40:37.446Z",
-    "last_save_at": "2026-07-11T18:40:35.874Z",
+    "last_save_at": "2026-07-12T13:24:49.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,9 +216,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:adf88d7532d464bcb732b0e66b6d01af3bc4509969fd37c73e7c3302c5a0732c",
+    "source_fingerprint": "sha256:5382ce3cb7dd0791e2823a1b7879740429a6858ddb169bfc0ec7cb060d7a6096",
     "source_doc_hashes": {
-      "spec.md": "16e2893f264e99552569940d8c46e368b9470c618ac7a1239fdf2ab1910e2fc6",
+      "spec.md": "dc6e1dd9e51f379df41b7602f502772796bbbc0834c8533de061152d7fd69312",
       "plan.md": "2758e68816e59ed503057b87c6398dfcc368a151a401b36c96a6f9f11419cf9a",
       "tasks.md": "388979799281b76fcbfbb211a64c95b0c2223e1e20090951e35dd569ec198a77",
       "checklist.md": "ff28bdbd60a9ae572a77ccdf1a01724a87b0b749f2300ab098dc366287e6ee26",

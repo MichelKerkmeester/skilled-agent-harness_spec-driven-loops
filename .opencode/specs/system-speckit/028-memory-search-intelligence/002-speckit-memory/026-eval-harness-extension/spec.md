@@ -55,7 +55,7 @@ This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built
 | **Status** | complete (partial scope, C9 implemented, A8 pending, see §14) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Candidate** | `eval-harness-spine` (C9-1 / C9-2 / C9-3 + A8-1/A8-2/A8-5/A8-4) |
 | **Source research** | `../research/retrieval-evaluation/research.md` (+ `iterations/iteration-{001,008,009,011,012}.md`) |
 | **Source synthesis** | `../../research/synthesis/08-retrieval-evaluation-findings.md` (Wave-1 spine) |

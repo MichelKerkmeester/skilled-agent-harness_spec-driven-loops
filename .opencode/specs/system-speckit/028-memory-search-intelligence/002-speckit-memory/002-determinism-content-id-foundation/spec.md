@@ -59,7 +59,7 @@ This sub-phase is the determinism keystone of the Spec-Kit Memory MCP (the PRIMA
 | **Status** | In Progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03` |
 | **Shipped record** | Wave-0 record (Wave-0 commits `738e118751..ab5459fb6d`) |
 | **Parent Spec** | ../spec.md |

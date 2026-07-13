@@ -144,7 +144,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The Memory",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is build-side only and unwired on the read path",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-07-11T18:40:35.865Z",
+    "last_save_at": "2026-07-12T13:24:49.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,9 +211,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5435574165f41e49fafad4c09bfeb99a121fd06ffae09300e04ef79ad34ed633",
+    "source_fingerprint": "sha256:0d3719e99b72827629e3097aff766f7a28fd2d74d8e8b53d09b3578ea7ac1cc7",
     "source_doc_hashes": {
-      "spec.md": "f6e7809355730bb900b339e2cd0b86c3e40bcb7cf8f8800e3dbb83c2ac8139ff",
+      "spec.md": "2c049a70425d6ad0af7402e228e0450a69f1d957f147f71ee9dc55ec12d8e992",
       "plan.md": "c01a91232ee00e4c623c08c666abbed5cbe0c6c9b9f59bfeb247b3693192a3e5",
       "tasks.md": "2664c7509b876a4dd942340e59905ff52e7456d84f5054c6a8cd83baf45a913b",
       "checklist.md": "c614c5210f01e418cc69c414ff1c64146b10e0564cbd50a642d993d6ec7b846c",

@@ -51,7 +51,7 @@ _memory:
 | **Status detail** | Candidates 4 + 2 shipped, candidate 8 resolved NO-TRANSFER, candidates 1, 3, 5, 6, 7 PENDING on their gates |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | `system-speckit/028-memory-search-intelligence/001-speckit-memory` (Memory MCP research phase, PRIMARY) |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence/002-speckit-memory` (Memory MCP research phase, PRIMARY) |
 | **Source research** | `../research/research.md`, `../research/external-memory-systems/{research.md,iterations,deltas}`, `../../research/synthesis/06-memory-systems-findings.md`, `../../research/roadmap.md` (MEMORY-SYSTEMS addendum) |
 | **Wave-0 done-record** | Wave-0 record, this bundle is **entirely absent** from it |
 | **Parent Spec** | ../spec.md |

@@ -14,13 +14,13 @@
     "work",
     "root"
   ],
-  "lastUpdated": "2026-07-11T17:13:10.021Z",
+  "lastUpdated": "2026-07-12T12:17:43.756Z",
   "specId": "028",
   "folderSlug": "memory-search-intelligence",
   "parentChain": [
     "system-speckit"
   ],
-  "memorySequence": 19,
+  "memorySequence": 20,
   "memoryNameHistory": [
     "16-06-26_18-01__completed-a-phase-decomposed-deep-research.md",
     "16-06-26_22-38__confirmed-the-stopping-condition-is-satisfied-and.md",
@@ -40,6 +40,7 @@
     "05-07-26_10-14__item-10-shipped-the-highest-leverage-fix-and-it.md",
     "05-07-26_11-25__gpt-5-5-fast-is-implementing-the-11-file-fix-in.md",
     "05-07-26_13-15__session-terminal-state-honest-close-4-of-5-done.md",
-    "05-07-26_13-17__monitor-armed-bqvnomb7y-polling-origin-every-3.md"
+    "05-07-26_13-17__monitor-armed-bqvnomb7y-polling-origin-every-3.md",
+    "12-07-26_13-17__packet-028-migration-completion-state.md"
   ]
 }

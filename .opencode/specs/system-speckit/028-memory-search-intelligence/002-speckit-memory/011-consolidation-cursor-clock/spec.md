@@ -57,7 +57,7 @@ The Spec-Kit Memory MCP already ships most of an idempotent async-consolidation 
 | **Status** | Draft |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | ../010-derived-id-provenance/spec.md |
 | **Successor** | ../012-query-channel-calibration/spec.md |

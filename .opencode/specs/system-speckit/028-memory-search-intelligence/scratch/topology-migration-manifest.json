@@ -2,7 +2,7 @@
   "schema_version": 1,
   "status": "applied",
   "created_at": "2026-07-11T16:53:08.657699Z",
-  "updated_at": "2026-07-11T16:53:11.428367Z",
+  "updated_at": "2026-07-13T05:49:28.146718Z",
   "packet_id": "system-speckit/028-memory-search-intelligence",
   "governed_predicate": "basename ^[0-9]{3}-[a-z0-9-]+$ and immediate regular-file spec.md",
   "counts": {
@@ -27878,5 +27878,73 @@
     "renamed_support_alias": "003-spec-data-quality/029-vague-query-model-benchmark",
     "active_support_path": "003-spec-data-quality/vague-query-model-benchmark",
     "provenance": "Task #20 declassified non-phase benchmark evidence from phase numbering"
+  },
+  "rollback_contract": {
+    "schema_version": 1,
+    "topology_only": {
+      "semantics": "inverse phase-path transform preserving every current file byte",
+      "restores_identity_backups": false,
+      "rejects_post_migration_content_hashes": false
+    },
+    "full_restore": {
+      "semantics": "inverse topology plus exact restoration of every migration-mutated identity file",
+      "backup_index": "scratch/topology-migration-backup/backup-index.json",
+      "required_classification": "identity_updated",
+      "coverage_rule": "every files_before identity_updated entry must have one exact backup",
+      "preserves_nonidentity_post_migration_edits": true,
+      "path_moves": [
+        {
+          "source_after_inverse": "002-spec-data-quality/vague-query-model-benchmark",
+          "restored": "002-spec-data-quality/029-vague-query-model-benchmark"
+        },
+        {
+          "source_after_inverse": "changelog/002-speckit-memory/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+          "restored": "changelog/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+        },
+        {
+          "source_after_inverse": "changelog/001-release-cleanup",
+          "restored": "changelog/000-release-cleanup"
+        },
+        {
+          "source_after_inverse": "changelog/002-speckit-memory",
+          "restored": "changelog/001-speckit-memory"
+        },
+        {
+          "source_after_inverse": "changelog/006-speckit-surface-alignment",
+          "restored": "changelog/speckit-surface-alignment"
+        }
+      ]
+    },
+    "execution_policy": "simulation_only_until_separately_approved",
+    "staging_policy": "fail_closed_with_source_recovery"
+  },
+  "rollback_verification": {
+    "verified_at": "2026-07-13T05:49:28.146710Z",
+    "contract_tests": {
+      "support_alias_preserved": "pass",
+      "post_migration_hash_preserved": "pass",
+      "duplicate_destinations_rejected": "pass",
+      "interruption_source_recovered": "pass"
+    },
+    "topology_only": {
+      "phase_count": 173,
+      "file_count": 2656,
+      "path_mismatches": 0,
+      "hash_mismatches": 0,
+      "post_migration_nonidentity_hash_changes_preserved": 20,
+      "forward_reapply_mismatches": 0
+    },
+    "full_restore": {
+      "phase_count": 173,
+      "support_count": 7,
+      "numbered_count": 180,
+      "file_count": 2656,
+      "backup_file_count": 1139,
+      "backup_sha256": "a2ea281e6cb9f8bd4cf245f4bba5a3101c0462add6328617b9545a8c28783a6a",
+      "path_mismatches": 0,
+      "identity_hash_mismatches": 0,
+      "nonidentity_hash_rejections": 0,
+      "forward_reapply_mismatches": 0
+    }
   }
 }

@@ -10,6 +10,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
@@ -71,6 +72,20 @@ ARTIFACT_PREFIXES = (
     "scratch/topology_migration.py",
     "scratch/.topology-migration-stage",
     "scratch/topology-migration-backup",
+)
+
+FULL_RESTORE_PATH_MOVES = (
+    (
+        "002-spec-data-quality/vague-query-model-benchmark",
+        "002-spec-data-quality/029-vague-query-model-benchmark",
+    ),
+    (
+        "changelog/002-speckit-memory/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+        "changelog/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+    ),
+    ("changelog/001-release-cleanup", "changelog/000-release-cleanup"),
+    ("changelog/002-speckit-memory", "changelog/001-speckit-memory"),
+    ("changelog/006-speckit-surface-alignment", "changelog/speckit-surface-alignment"),
 )
 
 
@@ -489,12 +504,12 @@ def copy_backups(manifest: dict, destination: Path) -> None:
         shutil.copy2(source, target)
 
 
-def flatten(mappings: list[dict], path_key: str, stage: Path) -> None:
+def flatten(mappings: list[dict], path_key: str, stage: Path, root: Path = ROOT) -> None:
     nodes = stage / "nodes"
     nodes.mkdir(parents=True, exist_ok=True)
     indexed = {item["old_path"]: index for index, item in enumerate(mappings)}
     for item in sorted(mappings, key=lambda value: (-value[path_key].count("/"), value[path_key])):
-        source = ROOT / item[path_key]
+        source = root / item[path_key]
         target = nodes / f"{indexed[item['old_path']]:03d}"
         if target.exists():
             continue
@@ -503,12 +518,12 @@ def flatten(mappings: list[dict], path_key: str, stage: Path) -> None:
         os.replace(source, target)
 
 
-def reconstruct(mappings: list[dict], path_key: str, stage: Path) -> None:
+def reconstruct(mappings: list[dict], path_key: str, stage: Path, root: Path = ROOT) -> None:
     nodes = stage / "nodes"
     indexed = {item["old_path"]: index for index, item in enumerate(mappings)}
     for item in sorted(mappings, key=lambda value: (value[path_key].count("/"), value[path_key])):
         source = nodes / f"{indexed[item['old_path']]:03d}"
-        target = ROOT / item[path_key]
+        target = root / item[path_key]
         target.parent.mkdir(parents=True, exist_ok=True)
         if target.exists():
             raise ValueError(f"phase destination collision during reconstruct: {item[path_key]}")
@@ -547,7 +562,7 @@ def update_pointer(path: Path, aliases: dict[str, str]) -> None:
         path.write_text(updated_frontmatter + text[end:])
 
 
-def update_identities(manifest: dict) -> None:
+def update_identities(manifest: dict, root: Path = ROOT) -> None:
     mappings = manifest["phase_mappings"]
     mapping_by_old = {item["old_path"]: item["new_path"] for item in mappings}
     aliases = manifest["aliases"]
@@ -556,7 +571,7 @@ def update_identities(manifest: dict) -> None:
         parent = PurePosixPath(item["new_path"]).parent.as_posix()
         children_by_parent[parent].append(item["new_path"])
 
-    all_nodes = [(".", ROOT)] + [(item["new_path"], ROOT / item["new_path"]) for item in mappings]
+    all_nodes = [(".", root)] + [(item["new_path"], root / item["new_path"]) for item in mappings]
     for node_value, folder in all_nodes:
         canonical = PACKET_ID if node_value == "." else f"{PACKET_ID}/{node_value}"
         parent_value = PurePosixPath(node_value).parent.as_posix()
@@ -608,8 +623,9 @@ def update_identities(manifest: dict) -> None:
                             entity["path"] = transform_relative(entity["path"], mapping_by_old)
             graph_path.write_text(json.dumps(data, indent=2) + "\n")
 
-    for path in ROOT.rglob("*.md"):
-        if not is_artifact(path):
+    for path in root.rglob("*.md"):
+        relative = path.relative_to(root).as_posix()
+        if not any(relative == prefix or relative.startswith(prefix + "/") for prefix in ARTIFACT_PREFIXES):
             update_pointer(path, aliases)
 
 
@@ -720,6 +736,451 @@ def verify_applied(manifest: dict) -> dict:
     }
 
 
+def rollback_inventory(root: Path) -> dict[str, str]:
+    values = {}
+    for path in sorted(candidate for candidate in root.rglob("*") if candidate.is_file()):
+        relative = path.relative_to(root).as_posix()
+        if relative.startswith("scratch/topology-migration-backup/"):
+            continue
+        if relative.startswith("scratch/.topology-migration-stage/"):
+            continue
+        values[relative] = digest(path)
+    return values
+
+
+def phase_dirs_at(root: Path) -> list[Path]:
+    return sorted(
+        path
+        for path in root.rglob("*")
+        if path.is_dir()
+        and "scratch" not in path.relative_to(root).parts
+        and PHASE_RE.fullmatch(path.name)
+        and (path / "spec.md").is_file()
+    )
+
+
+def numbered_dirs_at(root: Path) -> list[Path]:
+    return sorted(
+        path
+        for path in root.rglob("*")
+        if path.is_dir()
+        and "scratch" not in path.relative_to(root).parts
+        and PHASE_RE.fullmatch(path.name)
+    )
+
+
+def transform_inventory_paths(values: dict[str, str], mappings: dict[str, str]) -> dict[str, str]:
+    transformed = {relocate(path, mappings): value for path, value in values.items()}
+    if len(transformed) != len(values):
+        raise ValueError("rollback path transform produces duplicate file destinations")
+    return transformed
+
+
+def recover_phase_transform(
+    root: Path,
+    mappings: list[dict],
+    source_key: str,
+    target_key: str,
+    stage: Path,
+) -> None:
+    nodes = stage / "nodes"
+    nodes.mkdir(parents=True, exist_ok=True)
+    indexed = {item["old_path"]: index for index, item in enumerate(mappings)}
+    for item in sorted(mappings, key=lambda value: (-value[target_key].count("/"), value[target_key])):
+        token = nodes / f"{indexed[item['old_path']]:03d}"
+        if token.exists():
+            continue
+        for key in (target_key, source_key):
+            candidate = root / item[key]
+            if candidate.is_dir():
+                os.replace(candidate, token)
+                break
+        else:
+            raise ValueError(f"recovery cannot locate phase: {item['old_path']}")
+    reconstruct(mappings, source_key, stage, root)
+    state = stage / "transaction-state.json"
+    state.write_text(json.dumps({"status": "recovered", "recovered_at": now()}, indent=2) + "\n")
+
+
+def transform_phase_tree(
+    root: Path,
+    mappings: list[dict],
+    source_key: str,
+    target_key: str,
+    stage: Path,
+) -> None:
+    if stage.exists():
+        raise ValueError(f"rollback staging path already exists: {stage}")
+    stage.mkdir(parents=True)
+    state = stage / "transaction-state.json"
+    state.write_text(
+        json.dumps(
+            {
+                "status": "staging",
+                "started_at": now(),
+                "source_key": source_key,
+                "target_key": target_key,
+            },
+            indent=2,
+        )
+        + "\n"
+    )
+    try:
+        flatten(mappings, source_key, stage, root)
+        reconstruct(mappings, target_key, stage, root)
+        state.write_text(json.dumps({"status": "complete", "completed_at": now()}, indent=2) + "\n")
+    except Exception:
+        recover_phase_transform(root, mappings, source_key, target_key, stage)
+        raise
+    finally:
+        if state.is_file() and json.loads(state.read_text()).get("status") == "complete":
+            shutil.rmtree(stage)
+
+
+def apply_path_moves(root: Path, moves: tuple[tuple[str, str], ...]) -> None:
+    for source_value, target_value in moves:
+        source = root / source_value
+        target = root / target_value
+        if not source.is_dir():
+            raise ValueError(f"declared rollback path source is missing: {source_value}")
+        if target.exists():
+            raise ValueError(f"declared rollback path destination exists: {target_value}")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        os.replace(source, target)
+
+
+def transform_declared_paths(value: str, moves: tuple[tuple[str, str], ...]) -> str:
+    for source, target in moves:
+        if value == source or value.startswith(source + "/"):
+            return target + value[len(source) :]
+    return value
+
+
+def verify_backup_completeness(manifest: dict, backup_root: Path) -> dict:
+    identity_items = [
+        item for item in manifest["files_before"] if item["classification"] == "identity_updated"
+    ]
+    expected = {item["old_path"]: item["sha256"] for item in identity_items}
+    actual_files = sorted(path for path in backup_root.rglob("*") if path.is_file())
+    actual = {path.relative_to(backup_root).as_posix(): digest(path) for path in actual_files}
+    if set(actual) != set(expected):
+        raise ValueError(
+            "full-restore backup coverage mismatch: "
+            f"missing={len(set(expected) - set(actual))}, extra={len(set(actual) - set(expected))}"
+        )
+    mismatches = [path for path, value in expected.items() if actual[path] != value]
+    if mismatches:
+        raise ValueError(f"full-restore backup hash mismatch: {mismatches[0]}")
+    entries = [{"path": path, "sha256": expected[path]} for path in sorted(expected)]
+    return {
+        "classification": "identity_updated",
+        "file_count": len(entries),
+        "sha256": aggregate(entries),
+    }
+
+
+def copy_packet_for_rollback(destination: Path) -> None:
+    def ignore(directory: str, names: list[str]) -> set[str]:
+        if Path(directory).resolve() == SCRATCH.resolve():
+            return {name for name in names if name in {"topology-migration-backup", ".topology-migration-stage"}}
+        return set()
+
+    shutil.copytree(ROOT, destination, ignore=ignore)
+
+
+def current_manifest_path(item: dict, manifest: dict) -> str:
+    value = item["new_path"]
+    for support in manifest.get("support_directories", []):
+        historical = support.get("new_path")
+        current = support.get("declassified_path")
+        if not isinstance(historical, str) or not isinstance(current, str):
+            continue
+        if value == historical or value.startswith(historical + "/"):
+            return current + value[len(historical) :]
+    return value
+
+
+def verify_topology_only_rollback(root: Path, manifest: dict, work_root: Path) -> dict:
+    mappings = manifest["phase_mappings"]
+    inverse = {item["new_path"]: item["old_path"] for item in mappings}
+    forward = {item["old_path"]: item["new_path"] for item in mappings}
+    before = rollback_inventory(root)
+    changed_nonidentity = 0
+    for item in manifest["files_before"]:
+        if item["classification"] != "content_unchanged":
+            continue
+        current = root / current_manifest_path(item, manifest)
+        if current.is_file() and digest(current) != item["sha256"]:
+            changed_nonidentity += 1
+    expected_rollback = transform_inventory_paths(before, inverse)
+    transform_phase_tree(root, mappings, "new_path", "old_path", work_root / "inverse-stage")
+    after_rollback = rollback_inventory(root)
+    if after_rollback != expected_rollback:
+        missing = set(expected_rollback) - set(after_rollback)
+        unexpected = set(after_rollback) - set(expected_rollback)
+        changed = {
+            path for path in set(expected_rollback) & set(after_rollback)
+            if expected_rollback[path] != after_rollback[path]
+        }
+        raise ValueError(
+            "topology-only rollback preservation mismatch: "
+            f"missing={len(missing)}, unexpected={len(unexpected)}, changed={len(changed)}"
+        )
+    old_phases = {item["old_path"] for item in mappings}
+    actual_old_phases = {path.relative_to(root).as_posix() for path in phase_dirs_at(root)}
+    if actual_old_phases != old_phases:
+        raise ValueError("topology-only rollback phase paths differ from the inverse map")
+    transform_phase_tree(root, mappings, "old_path", "new_path", work_root / "forward-stage")
+    reapplied = rollback_inventory(root)
+    if reapplied != before:
+        raise ValueError("topology-only forward reapply is not byte reproducible")
+    if transform_inventory_paths(expected_rollback, forward) != before:
+        raise ValueError("topology-only forward path map is not bijective")
+    return {
+        "phase_count": len(old_phases),
+        "file_count": len(before),
+        "path_mismatches": 0,
+        "hash_mismatches": 0,
+        "post_migration_nonidentity_hash_changes_preserved": changed_nonidentity,
+        "forward_reapply_mismatches": 0,
+    }
+
+
+def full_reapply_path_moves() -> tuple[tuple[str, str], ...]:
+    return (
+        (
+            "002-spec-data-quality/029-vague-query-model-benchmark",
+            "002-spec-data-quality/vague-query-model-benchmark",
+        ),
+        ("changelog/001-speckit-memory", "changelog/002-speckit-memory"),
+        ("changelog/000-release-cleanup", "changelog/001-release-cleanup"),
+        (
+            "changelog/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+            "changelog/002-speckit-memory/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+        ),
+        ("changelog/speckit-surface-alignment", "changelog/006-speckit-surface-alignment"),
+    )
+
+
+def verify_full_restore(root: Path, manifest: dict, work_root: Path, backup_root: Path) -> dict:
+    mappings = manifest["phase_mappings"]
+    inverse = {item["new_path"]: item["old_path"] for item in mappings}
+    before = rollback_inventory(root)
+    expected = transform_inventory_paths(before, inverse)
+    expected = {
+        transform_declared_paths(path, FULL_RESTORE_PATH_MOVES): value
+        for path, value in expected.items()
+    }
+    if len(expected) != len(before):
+        raise ValueError("full-restore path policy produces duplicate destinations")
+
+    backup = verify_backup_completeness(manifest, backup_root)
+    transform_phase_tree(root, mappings, "new_path", "old_path", work_root / "full-inverse-stage")
+    apply_path_moves(root, FULL_RESTORE_PATH_MOVES)
+
+    identity_items = [
+        item for item in manifest["files_before"] if item["classification"] == "identity_updated"
+    ]
+    for item in identity_items:
+        source = backup_root / item["old_path"]
+        target = root / item["old_path"]
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
+        expected[item["old_path"]] = item["sha256"]
+
+    restored = rollback_inventory(root)
+    if restored != expected:
+        missing = set(expected) - set(restored)
+        unexpected = set(restored) - set(expected)
+        changed = {
+            path for path in set(expected) & set(restored) if expected[path] != restored[path]
+        }
+        raise ValueError(
+            "full restore mismatch: "
+            f"missing={len(missing)}, unexpected={len(unexpected)}, changed={len(changed)}"
+        )
+
+    old_phases = {item["old_path"] for item in mappings}
+    actual_phases = {path.relative_to(root).as_posix() for path in phase_dirs_at(root)}
+    if actual_phases != old_phases:
+        raise ValueError("full restore does not reproduce the pre-migration phase topology")
+    numbered = numbered_dirs_at(root)
+    phases = phase_dirs_at(root)
+    support = {path.relative_to(root).as_posix() for path in numbered if path not in set(phases)}
+    expected_support = {item["old_path"] for item in manifest["support_directories"]}
+    if support != expected_support or (len(phases), len(support), len(numbered)) != (173, 7, 180):
+        raise ValueError(
+            "full restore count mismatch: "
+            f"phases={len(phases)}, support={len(support)}, numbered={len(numbered)}"
+        )
+
+    apply_path_moves(root, full_reapply_path_moves())
+    transform_phase_tree(root, mappings, "old_path", "new_path", work_root / "full-forward-stage")
+    update_identities(manifest, root)
+    reapplied = rollback_inventory(root)
+    current_identity = {
+        item["new_path"]: item["after_sha256"]
+        for item in identity_items
+        if isinstance(item.get("after_sha256"), str)
+    }
+    expected_reapplied = dict(before)
+    expected_reapplied.update(current_identity)
+    if reapplied != expected_reapplied:
+        missing = set(expected_reapplied) - set(reapplied)
+        unexpected = set(reapplied) - set(expected_reapplied)
+        changed = {
+            path for path in set(expected_reapplied) & set(reapplied)
+            if expected_reapplied[path] != reapplied[path]
+        }
+        raise ValueError(
+            "full-restore forward reapply mismatch: "
+            f"missing={len(missing)}, unexpected={len(unexpected)}, changed={len(changed)}"
+        )
+    return {
+        "phase_count": len(phases),
+        "support_count": len(support),
+        "numbered_count": len(numbered),
+        "file_count": len(restored),
+        "backup_file_count": backup["file_count"],
+        "backup_sha256": backup["sha256"],
+        "path_mismatches": 0,
+        "identity_hash_mismatches": 0,
+        "nonidentity_hash_rejections": 0,
+        "forward_reapply_mismatches": 0,
+    }
+
+
+def rollback_contract_tests(manifest: dict) -> dict:
+    mappings = manifest["phase_mappings"]
+    inverse = {item["new_path"]: item["old_path"] for item in mappings}
+    benchmark = "003-spec-data-quality/vague-query-model-benchmark/results/raw/example.json"
+    expected = "002-spec-data-quality/vague-query-model-benchmark/results/raw/example.json"
+    if relocate(benchmark, inverse) != expected:
+        raise ValueError("contract test failed: post-migration support edit was not preserved")
+    changed = {"003-spec-data-quality/spec.md": "post-migration-content-hash"}
+    transformed = transform_inventory_paths(changed, inverse)
+    if transformed != {"002-spec-data-quality/spec.md": "post-migration-content-hash"}:
+        raise ValueError("contract test failed: topology rollback rejected current content")
+    try:
+        transform_inventory_paths(
+            {
+                "003-spec-data-quality/spec.md": "current",
+                "002-spec-data-quality/spec.md": "collision",
+            },
+            inverse,
+        )
+    except ValueError:
+        pass
+    else:
+        raise ValueError("contract test failed: duplicate rollback destinations were accepted")
+
+    temp_parent = Path("/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode")
+    with tempfile.TemporaryDirectory(prefix="rollback-recovery-test-", dir=temp_parent) as temporary:
+        fixture = Path(temporary)
+        source = fixture / "001-fixture"
+        collision = fixture / "000-fixture"
+        source.mkdir()
+        collision.mkdir()
+        (source / "spec.md").write_text("source\n")
+        fixture_mapping = [{"old_path": "000-fixture", "new_path": "001-fixture"}]
+        try:
+            transform_phase_tree(
+                fixture,
+                fixture_mapping,
+                "new_path",
+                "old_path",
+                fixture / "stage",
+            )
+        except ValueError:
+            pass
+        else:
+            raise ValueError("contract test failed: destination collision did not fail closed")
+        if not (source / "spec.md").is_file():
+            raise ValueError("contract test failed: interrupted transform did not recover its source")
+    return {
+        "support_alias_preserved": "pass",
+        "post_migration_hash_preserved": "pass",
+        "duplicate_destinations_rejected": "pass",
+        "interruption_source_recovered": "pass",
+    }
+
+
+def rollback_simulate() -> None:
+    manifest = json.loads(MANIFEST.read_text())
+    if manifest.get("status") != "applied":
+        raise ValueError(f"manifest is not simulation-ready: {manifest.get('status')}")
+    tests = rollback_contract_tests(manifest)
+    backup_root = BACKUP / "identity-backups"
+    backup = verify_backup_completeness(manifest, backup_root)
+    temp_parent = Path("/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode")
+    with tempfile.TemporaryDirectory(prefix="topology-rollback-", dir=temp_parent) as temporary:
+        work_root = Path(temporary)
+        topology_root = work_root / "topology-only" / "packet"
+        full_root = work_root / "full-restore" / "packet"
+        copy_packet_for_rollback(topology_root)
+        copy_packet_for_rollback(full_root)
+        topology_result = verify_topology_only_rollback(
+            topology_root,
+            manifest,
+            work_root / "topology-only",
+        )
+        full_result = verify_full_restore(
+            full_root,
+            manifest,
+            work_root / "full-restore",
+            backup_root,
+        )
+
+    backup_index = {
+        "schema_version": 1,
+        "manifest_content_before_sha256": manifest["content_before"]["sha256"],
+        "required_classification": "identity_updated",
+        "file_count": backup["file_count"],
+        "sha256": backup["sha256"],
+        "verified_at": now(),
+    }
+    backup_index_path = BACKUP / "backup-index.json"
+    temporary_index = BACKUP / ".backup-index.json.tmp"
+    temporary_index.write_text(json.dumps(backup_index, indent=2) + "\n")
+    os.replace(temporary_index, backup_index_path)
+
+    manifest["rollback_contract"] = {
+        "schema_version": 1,
+        "topology_only": {
+            "semantics": "inverse phase-path transform preserving every current file byte",
+            "restores_identity_backups": False,
+            "rejects_post_migration_content_hashes": False,
+        },
+        "full_restore": {
+            "semantics": "inverse topology plus exact restoration of every migration-mutated identity file",
+            "backup_index": "scratch/topology-migration-backup/backup-index.json",
+            "required_classification": "identity_updated",
+            "coverage_rule": "every files_before identity_updated entry must have one exact backup",
+            "preserves_nonidentity_post_migration_edits": True,
+            "path_moves": [
+                {"source_after_inverse": source, "restored": target}
+                for source, target in FULL_RESTORE_PATH_MOVES
+            ],
+        },
+        "execution_policy": "simulation_only_until_separately_approved",
+        "staging_policy": "fail_closed_with_source_recovery",
+    }
+    manifest["rollback_verification"] = {
+        "verified_at": now(),
+        "contract_tests": tests,
+        "topology_only": topology_result,
+        "full_restore": full_result,
+    }
+    manifest["updated_at"] = now()
+    MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n")
+    print(
+        "ROLLBACK_SIMULATION_PASS "
+        f"topology_files={topology_result['file_count']} "
+        f"backup_files={full_result['backup_file_count']} "
+        "phases=173 support=7 numbered=180"
+    )
+
+
 def restore_original(manifest: dict, stage: Path, reason: str) -> None:
     mappings = manifest["phase_mappings"]
     nodes = stage / "nodes"
@@ -803,14 +1264,10 @@ def verify() -> None:
 
 
 def rollback() -> None:
-    manifest = json.loads(MANIFEST.read_text())
-    if manifest.get("status") != "applied":
-        raise ValueError(f"manifest is not rollback-ready: {manifest.get('status')}")
-    if not BACKUP.is_dir():
-        raise ValueError("rollback backup is missing")
-    restore_original(manifest, BACKUP, "external verification failure")
-    shutil.rmtree(BACKUP, ignore_errors=True)
-    print("ROLLBACK_PASS restored pre-migration hashes")
+    raise ValueError(
+        "ambiguous live rollback is disabled; run rollback-simulate and obtain separate approval "
+        "for either topology-only or full-restore execution"
+    )
 
 
 def metadata_folders() -> list[Path]:
@@ -1162,7 +1619,7 @@ def main() -> int:
     parser.add_argument(
         "mode",
         choices=(
-            "dry-run", "apply", "verify", "rollback",
+            "dry-run", "apply", "verify", "rollback", "rollback-simulate",
             "metadata-dry-run", "metadata-apply", "metadata-finalize",
         ),
     )
@@ -1173,6 +1630,7 @@ def main() -> int:
             "apply": apply,
             "verify": verify,
             "rollback": rollback,
+            "rollback-simulate": rollback_simulate,
             "metadata-dry-run": metadata_dry_run,
             "metadata-apply": metadata_apply,
             "metadata-finalize": metadata_finalize,

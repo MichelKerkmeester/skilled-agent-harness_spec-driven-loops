@@ -60,7 +60,7 @@ This sub-phase scopes the Memory MCP **procedural-reliability** cluster mined fr
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Source roadmap** | `../../research/roadmap.md` §5 + §7 follow-ups, `../../research/synthesis/01-go-candidates.md` (Needs-validation + Follow-ups) |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | ../014-automatic-drift-self-healing/spec.md |
 | **Successor** | ../016-orphan-sweep-scoped-scan-safety/spec.md |

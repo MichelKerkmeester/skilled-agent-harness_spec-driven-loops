@@ -1,6 +1,9 @@
 {
-  "status": "staging",
+  "status": "retained_backup_verified",
   "started_at": "2026-07-11T16:53:09.071057Z",
+  "verified_at": "2026-07-12T12:34:46.665556Z",
+  "backup_index": "scratch/topology-migration-backup/backup-index.json",
+  "execution_policy": "simulation_only_until_separately_approved",
   "inverse_map": {
     "001-release-cleanup": "000-release-cleanup",
     "001-release-cleanup/001-code-readmes": "000-release-cleanup/001-code-readmes",

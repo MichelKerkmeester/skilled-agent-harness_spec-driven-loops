@@ -63,7 +63,7 @@ Add a ReAct-style agentic strategy to the Memory MCP's `memory_context` mode rou
 | **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Wave** | Wave-2 (prove-first) |
 | **Candidate** | CG-agentic-tool-loop |
 | **Parent Spec** | ../spec.md |

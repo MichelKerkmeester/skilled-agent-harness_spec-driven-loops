@@ -46,7 +46,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Candidates** | C9 |
 | **Shipped In** | 030 commit `484b77b589` (Wave-0 record) |
 | **Parent Spec** | ../spec.md |

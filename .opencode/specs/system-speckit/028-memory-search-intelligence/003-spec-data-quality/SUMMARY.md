@@ -1,18 +1,44 @@
 # Data Quality Program: Navigation Index
 
-> What this folder is, in one line: a built-out data-quality lineage with 44 verified child folders. Children 001 through 028 preserve the original planned research scaffold, and children 029 through 044 record the shipped benchmark, generated-metadata, migration, flag-graduation and search-quality tail.
+> **Historical/superseded navigation notice (2026-07-12):** the 44/53-child numbering below is pre-migration provenance. It remains valid as dated delivery history but is not the active directory map. Current navigation comes from `graph-metadata.json`, which lists 20 canonical direct children.
 
 ---
 
 ## Current Navigation
 
+- **Canonical child authority:** [`graph-metadata.json`](graph-metadata.json) lists the 20 current direct children.
 - **Program narrative:** [`../before-vs-after.md`](../before-vs-after.md) explains how this track fits into the wider 028 program.
 - **Benchmark and test status:** [`benchmark-and-test-status.md`](benchmark-and-test-status.md) records the local benchmark and verification state.
-- **Authoritative rollup:** [`../changelog/003-spec-data-quality/changelog-003-root.md`](../changelog/003-spec-data-quality/changelog-003-root.md) is the source-of-truth rollup for phase status.
+- **Historical rollup:** [`../changelog/003-spec-data-quality/changelog-003-root.md`](../changelog/003-spec-data-quality/changelog-003-root.md) preserves the pre-migration phase rollup.
+
+### Canonical 20-Child Map
+
+| Child | Canonical folder |
+|---:|---|
+| 001 | `001-on-write-quality/` |
+| 002 | `002-retroactive-automation/` |
+| 003 | `003-retrieval-gated-tuning/` |
+| 004 | `004-novel-research/` |
+| 005 | `005-shared-engine-and-research/` |
+| 006 | `006-generated-metadata-build/` |
+| 007 | `007-metadata-rename-reconciliation/` |
+| 008 | `008-validation-integrity-hardening/` |
+| 009 | `009-validation-hardening-fixes/` |
+| 010 | `010-validation-enforce-graduation/` |
+| 011 | `011-drift-audit-remediation/` |
+| 012 | `012-drift-audit-deep-history-correction/` |
+| 013 | `013-generated-metadata-status-integrity/` |
+| 014 | `014-create-sh-parent-corruption-fix/` |
+| 015 | `015-derive-status-explicit-bypass-fix/` |
+| 016 | `016-validate-sh-dist-freshness-and-repo-remediation/` |
+| 017 | `017-graph-metadata-child-drift-audit-and-harden/` |
+| 018 | `018-z-archive-metadata-backfill/` |
+| 019 | `019-deep-loop-036-037-reindex/` |
+| 020 | `020-archive-renumber-010-044-to-001-023/` |
 
 ---
 
-## 001-028: Original Planned Research Scaffold
+## Historical 001-028: Original Planned Research Scaffold
 
 The original research program remains intact as planned scaffolding. These folders hold the deep-research recommendations and build contracts, not shipped implementation evidence.
 

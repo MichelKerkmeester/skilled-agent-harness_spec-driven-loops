@@ -147,13 +147,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement This",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Ship",
+        "name": "Problem Statement This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "This sub-phase closes two always-on correctness residuals surfaced by the 008 retrieval-evaluation campaign",
     "created_at": "2026-06-19T05:52:29.577Z",
-    "last_save_at": "2026-07-11T18:40:35.959Z",
+    "last_save_at": "2026-07-12T13:24:51.594Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,9 +213,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27f9540688fae2ecce19fb6775018c4325877ee3f41d6038376c150116591f14",
+    "source_fingerprint": "sha256:013dd8e144c349fda4456216699726db1f1a35bdb3d41bfebce8b9ecae803988",
     "source_doc_hashes": {
-      "spec.md": "9dc5db441727765c8c16d19640d0df2f9c970d18fddbaba47eb2142a061c1597",
+      "spec.md": "cb984aa14b81549e4c1a1b4ae480f67cf5c184739506cdc6eb9a1fe83a0c3abd",
       "plan.md": "3cf50437cd964f6df1e4da4e68441febc685c6c844e6bd5c107d5e1524623b21",
       "tasks.md": "417bcf6dc73089c9325470c72949cd0231469d712f17fa8f8b583195ce1b1349",
       "checklist.md": "f3ecd5bdc37a0630e66cbcb7496c23c9f4677beb5e66be68ee808f5ebcc3d3c1",

@@ -15,9 +15,9 @@ _memory:
     last_updated_at: "2026-07-06T18:49:39.808Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored phase impl doc for retrieval floor experiment scaffold"
-    next_safe_action: "Hold for 015-c2 recall gate before this phase runs"
+    next_safe_action: "Wait for ../../003-retrieval-gated-tuning/002-prodmode-recall-gate"
     blockers:
-      - "Depends on 015-prodmode-recall-gate which must ship the prod-mode completeRecall@3 instrument first"
+      - "Depends on ../../003-retrieval-gated-tuning/002-prodmode-recall-gate prod-mode instrument"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-floor-experiment.mjs"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts"
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 027-retrieval-floor-experiment |
+| **Spec Folder** | 002-retrieval-floor-experiment |
 | **Completed** | Not yet, status PLANNED |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

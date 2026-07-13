@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Packet 030 fixed the chronic orphan-daemon accumulation at its source (a test leak) and taught the orphan sweeper about the embedder sidecar, but it deliberately deferred two harder problems",
     "created_at": "2026-07-11T08:41:48.642Z",
-    "last_save_at": "2026-07-11T18:40:36.073Z",
+    "last_save_at": "2026-07-12T13:24:51.784Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,9 +216,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71a2e8928ab71844eafea423a6ec888633412c504024f31a8c5b8203562c43e8",
+    "source_fingerprint": "sha256:633b3085eadaf380315d8c6bf4d0d82ca673b286017190eedc251f138f4a47c7",
     "source_doc_hashes": {
-      "spec.md": "d9d2972d7e2fb9a5f792bfe6f70338341e7ad0d6476676776f557af4e1cea229",
+      "spec.md": "96d085d79babba31ce3815f3c40baa2b2c0622ed616d8c1fd7d5e4c9a45c6057",
       "plan.md": "cc2b8713b07ec7e98e62f94775072527ecbd81559ddee909ef7309da0ea4c580",
       "tasks.md": "43852e636cde03572d9a772caa2e175a5e4b39c3fdcfca37e2d83106d9d63ded",
       "checklist.md": "9cfdfc9353bd4e0f16a876b6dbcbc4d6afa97493043994b8e0b8b6c7afa3ea7b",

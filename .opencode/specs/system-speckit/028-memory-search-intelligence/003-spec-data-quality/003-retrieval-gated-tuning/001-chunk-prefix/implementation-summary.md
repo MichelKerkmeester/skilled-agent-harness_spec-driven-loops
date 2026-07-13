@@ -14,9 +14,9 @@ _memory:
     last_updated_at: "2026-07-06T19:16:37.295Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored planned scaffold doc"
-    next_safe_action: "Build prefix builder once 015 gate lands"
+    next_safe_action: "Wait for ../002-prodmode-recall-gate, then build the prefix"
     blockers:
-      - "Gated on 015-prodmode-recall-gate prod-mode completeRecall@3 proof"
+      - "Gated on ../002-prodmode-recall-gate prod-mode completeRecall@3 proof"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 014-chunk-prefix |
+| **Spec Folder** | 001-chunk-prefix |
 | **Completed** | PLANNED, not yet implemented |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

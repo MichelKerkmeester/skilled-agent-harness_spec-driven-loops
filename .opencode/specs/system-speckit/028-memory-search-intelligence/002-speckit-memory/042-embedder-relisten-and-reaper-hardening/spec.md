@@ -9,7 +9,7 @@ trigger_phrases:
   - "032 embedder relisten reaper hardening"
 importance_tier: "high"
 contextType: "implementation"
-parent: "system-speckit/028-memory-search-intelligence/001-speckit-memory"
+parent: "system-speckit/028-memory-search-intelligence/002-speckit-memory"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening"
@@ -58,7 +58,7 @@ FAILURE MODES:
 | **Created** | 2026-07-11 |
 | **Branch** | `scaffold/032-embedder-relisten-and-reaper-hardening` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `system-speckit/028-memory-search-intelligence/001-speckit-memory` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence/002-speckit-memory` |
 | **Predecessor** | `../041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/spec.md` |
 | **Successor** | None |
 | **Handoff Criteria** | WS1-WS5 shipped + verified (84/84, two adversarial rounds); post-merge stress + `memory_index_scan` remain |

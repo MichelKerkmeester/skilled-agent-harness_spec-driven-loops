@@ -12,19 +12,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/003-spec-data-quality"
-    last_updated_at: "2026-07-04T17:11:44.982Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Ran the research loop to convergence and scaffolded the 28 phase children"
-    next_safe_action: "Build 026 the shared safe-fix engine, then 004 the schema gate"
-    blockers: []
+    last_updated_at: "2026-07-12T12:17:12Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Reconciled parent governance truth after topology migration"
+    next_safe_action: "Resolve CHK-050/051, obtain sign-offs, then rerun reviews and strict validation"
+    blockers:
+      - "CHK-050 and CHK-051 lack current completion evidence"
+      - "Three governance sign-offs and two fresh independent reviews remain open"
     key_files:
-      - "research/stage-0-external-findings.md"
+      - "system-speckit/028-memory-search-intelligence/003-spec-data-quality/checklist.md"
+      - "system-speckit/028-memory-search-intelligence/scratch/task-30c-data-quality-truth.md"
     session_dedup:
       fingerprint: "sha256:a13d79278b8e7546f3edb041b539b5aa0a91ec037e7cd0e86fb96918be7acc04"
       session_id: "031-stage-0-init"
       parent_session_id: null
-    completion_pct: 100
-    open_questions: []
+    completion_pct: 91
+    open_questions:
+      - "When current evidence for CHK-050 and CHK-051 and all sign-offs will be available"
     answered_questions: []
 ---
 # Implementation Plan: Spec-Kit Data Quality by Default
@@ -63,15 +67,43 @@ This plan runs a research-first loop. Stage 0 already captured the external swee
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
 - [ ] All acceptance criteria met
 - [ ] Tests passing (if applicable)
 - [ ] Docs updated (spec/plan/tasks)
+
+The research deliverables are historical completed evidence. Current parent governance remains **In Progress** until CHK-050/051 have current evidence, all three sign-offs are recorded, two fresh independent reviews complete and strict validation is rerun without blocking findings.
 <!-- /ANCHOR:quality-gates -->
+
+---
+
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+Before changing parent governance docs, confirm the allowed file list, read the current checklist and continuity state, identify the exact validator finding being addressed and verify that every proposed completion claim has existing evidence.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| Scope | Write only to the explicitly allowed parent documents and evidence ledger |
+| Sequence | Read current sources, apply the smallest truthful edit, then rerun the targeted validator |
+| Evidence | Keep a completed item checked only when a substantive path, command result or numeric outcome supports it |
+| History | Preserve dated former IDs and delivery claims as provenance while using canonical paths for current navigation |
+| Governance | Keep unresolved checks and sign-offs open; never change state merely to obtain a passing result |
+
+### Status Reporting Format
+
+Report the files changed, evidence-marker count, AI protocol result, checklist arithmetic, validator exit code, remaining warnings and parent-agent follow-up. Distinguish current results from historical evidence.
+
+### Blocked Task Protocol
+
+If evidence is missing, uncheck the unsupported item and update the affected arithmetic. If the fix requires an out-of-scope file, generated metadata, continuity regeneration or an independent approval, stop that part, record the blocker in `scratch/task-30c-data-quality-truth.md` and return it to the parent agent.
 
 ---
 
@@ -108,19 +140,19 @@ This is a research packet, not a fix. No producer, consumer or policy surface ch
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Packet created at Level 3
-- [ ] Stage 0 brief recorded
-- [ ] Research index points at the brief
+- [x] Packet created at Level 3
+- [x] Stage 0 brief recorded
+- [ ] Research index points at the brief - current `research/research.md` does not link `research/stage-0-external-findings.md`
 
 ### Phase 2: Core Research
-- [ ] Verify each ranked candidate against the spec-kit corpus
-- [ ] Separate robust signals from corpus-specific ones
-- [ ] Flag every vendor-only claim
+- [x] Verify each ranked candidate against the spec-kit corpus
+- [x] Separate robust signals from corpus-specific ones
+- [x] Flag every vendor-only claim
 
 ### Phase 3: Verification
 - [ ] Strict validation passes
 - [ ] HVR voice holds across the docs
-- [ ] Candidate verdict ready for a build packet
+- [x] Candidate verdict ready for a build packet
 <!-- /ANCHOR:phases -->
 
 ---

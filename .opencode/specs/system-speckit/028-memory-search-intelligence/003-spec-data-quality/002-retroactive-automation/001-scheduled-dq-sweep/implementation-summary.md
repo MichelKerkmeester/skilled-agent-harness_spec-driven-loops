@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/001-scheduled-dq-sweep"
-    last_updated_at: "2026-07-06T18:49:48.508Z"
+    last_updated_at: "2026-07-12T13:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Scaffolded plan tasks and checklist, status PLANNED"
-    next_safe_action: "Build the sweep after 026 engine lands"
+    next_safe_action: "Wait for ../../005-shared-engine-and-research/001-shared-safe-fix-engine"
     blockers: []
     key_files: []
     session_dedup:
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-scheduled-dq-sweep |
+| **Spec Folder** | 001-scheduled-dq-sweep |
 | **Status** | PLANNED, not yet implemented |
 | **Completed** | Not completed |
 | **Level** | 2 |

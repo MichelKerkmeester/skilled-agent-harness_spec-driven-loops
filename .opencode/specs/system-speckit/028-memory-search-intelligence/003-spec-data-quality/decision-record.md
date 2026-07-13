@@ -12,19 +12,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/003-spec-data-quality"
-    last_updated_at: "2026-07-04T17:11:44.982Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Confirmed research-before-build and scaffolded the 28 phase children"
-    next_safe_action: "Build 026 the shared safe-fix engine, then 004 the schema gate"
-    blockers: []
+    last_updated_at: "2026-07-12T12:17:12Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Reconciled parent governance truth after topology migration"
+    next_safe_action: "Resolve CHK-050/051, obtain sign-offs, then rerun reviews and strict validation"
+    blockers:
+      - "CHK-050 and CHK-051 lack current completion evidence"
+      - "Three governance sign-offs and two fresh independent reviews remain open"
     key_files:
-      - "research/stage-0-external-findings.md"
+      - "system-speckit/028-memory-search-intelligence/003-spec-data-quality/checklist.md"
+      - "system-speckit/028-memory-search-intelligence/scratch/task-30c-data-quality-truth.md"
     session_dedup:
       fingerprint: "sha256:a13d79278b8e7546f3edb041b539b5aa0a91ec037e7cd0e86fb96918be7acc04"
       session_id: "031-stage-0-init"
       parent_session_id: null
-    completion_pct: 100
-    open_questions: []
+    completion_pct: 91
+    open_questions:
+      - "When current evidence for CHK-050 and CHK-051 and all sign-offs will be available"
     answered_questions: []
 ---
 # Decision Record: Spec-Kit Data Quality by Default
