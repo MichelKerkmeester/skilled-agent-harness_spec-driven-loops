@@ -299,6 +299,8 @@ function main() {
       let routingOk = true;
       let surfaceOk = true;
       let folderNameOk = true;      // folder == packetSkillName unless grandfatheredFolderMismatch
+      let frontmatterNameOk = true; // packet SKILL.md frontmatter name == packetSkillName
+      let frontmatterNamesChecked = 0;
       let packetFilesOk = true;     // each packet carries SKILL.md + README.md + changelog/
       let aliasOk = true;           // aliases unique across all modes
       const aliasSeen = new Map();  // alias (lowercased) → first mode that declared it
@@ -366,6 +368,25 @@ function main() {
           } else if (mode.grandfatheredFolderMismatch === true && !nameMismatch) {
             softFail(`3d-name: mode "${label}" sets grandfatheredFolderMismatch:true but folder "${folderLeaf}" == packetSkillName (stale flag — set it false; a blanket-true flag would mask a real future mismatch)`);
             folderNameOk = false;
+          }
+        }
+        // 3d-name-frontmatter — the packet's declared skill identity must match
+        // packetSkillName. Missing frontmatter/name is owned by a separate check.
+        if (typeof mode.packet === 'string' && typeof mode.packetSkillName === 'string') {
+          const skillFile = path.join(target, mode.packet, 'SKILL.md');
+          if (fs.existsSync(skillFile) && fs.statSync(skillFile).isFile()) {
+            const skillSource = fs.readFileSync(skillFile, 'utf8');
+            const frontmatter = skillSource.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+            const nameMatch = frontmatter && frontmatter[1].match(/^name:\s*(.+)$/m);
+            if (nameMatch) {
+              const frontmatterName = nameMatch[1].trim().replace(/^(['"])(.*)\1$/, '$2').trim();
+              frontmatterNamesChecked += 1;
+              if (frontmatterName !== mode.packetSkillName) {
+                softFail(`3d-name-frontmatter: packet "${mode.packet}" SKILL.md frontmatter name "${frontmatterName}" != packetSkillName "${mode.packetSkillName}"`);
+                folderNameOk = false;
+                frontmatterNameOk = false;
+              }
+            }
           }
         }
         // 3d-files — every packet carries its companion files (doctrine §6).
@@ -514,6 +535,7 @@ function main() {
       if (discriminatorOk) pass('3d: every mode carries the hard discriminator (workflowMode + backendKind)');
       if (canonOk) pass('3d-canon: every mode carries packetKind + toolSurface + grandfatheredFolderMismatch');
       if (folderNameOk) pass('3d-name: every mode folder matches packetSkillName (or is grandfathered)');
+      if (frontmatterNameOk) pass(`3d-name-frontmatter: all ${frontmatterNamesChecked} packet SKILL.md frontmatter name(s) match packetSkillName`);
       if (packetFilesOk) pass('3d-files: every packet carries SKILL.md, README.md, and changelog/');
       if (aliasOk) pass(`3d-alias: all ${aliasSeen.size} aliases are unique across modes`);
       if (routingOk) pass('3e: every mode has an advisorRouting block with a valid routingClass');
@@ -724,13 +746,18 @@ function main() {
         softFail(`5d: router resource path(s) missing on disk: [${[...new Set(missingResources)].join(', ')}]`);
       }
 
-      // 5e — tieBreak covers every registered mode.
+      // 5e — tieBreak is an exact permutation of the registered modes.
       const tieBreak = router.routerPolicy && Array.isArray(router.routerPolicy.tieBreak) ? router.routerPolicy.tieBreak : [];
       const tieMissing = [...registryModeSet].filter((m) => !tieBreak.includes(m));
-      if (registryModeSet.size > 0 && tieMissing.length === 0 && tieBreak.length >= registryModeSet.size) {
+      const tieCounts = new Map();
+      for (const mode of tieBreak) tieCounts.set(mode, (tieCounts.get(mode) || 0) + 1);
+      const tieExtras = [...tieCounts.keys()].filter((m) => !registryModeSet.has(m));
+      const tieDuplicates = [...tieCounts.entries()].filter(([, count]) => count > 1).map(([m]) => m);
+      if (registryModeSet.size > 0 && tieMissing.length === 0 && tieExtras.length === 0 &&
+          tieDuplicates.length === 0 && tieBreak.length === registryModeSet.size) {
         pass('5e: routerPolicy.tieBreak covers every registered mode');
       } else {
-        softFail(`5e: routerPolicy.tieBreak is missing mode(s): [${tieMissing.join(', ') || '(no registry modes)'}]`);
+        softFail(`5e: routerPolicy.tieBreak is not an exact permutation of registry modes — extras: [${tieExtras.join(', ') || 'none'}], duplicates: [${tieDuplicates.join(', ') || 'none'}], missing: [${tieMissing.join(', ') || 'none'}], length: ${tieBreak.length} (expected ${registryModeSet.size})`);
       }
 
       // 5f — bundleRules (if any) reference real modes; surfaceBundle present when surfaces exist.
