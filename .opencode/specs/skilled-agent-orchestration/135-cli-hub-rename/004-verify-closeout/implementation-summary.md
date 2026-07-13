@@ -11,9 +11,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/135-cli-hub-rename/004-verify-closeout"
-    last_updated_at: "2026-07-13T06:08:29Z"
+    last_updated_at: "2026-07-13T13:50:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Finalized honest closeout evidence"
+    recent_action: "Recorded create-skill conformance pass over the renamed hub and modes"
     next_safe_action: "After authorized repairs, rerun blocked executor, graph, and strict validation gates"
     blockers:
       - "Executor-delegation import blocked by missing stale @spec-kit/shared dist"
@@ -65,6 +65,10 @@ The targeted rename evidence is strong: routing, prompt synchronization, advisor
 
 Prompt-quality-card synchronization passes. The routing projection is fresh at `sha256:56e8cceee4c9c7a1eadcdb024e9ac48c9215323bafa96e851abc610dc5a583f0`. The local advisor resolves `cli-opencode` at confidence 0.95 and uncertainty 0.20. Rename-invariants plus routing-registry drift pass 11 tests. The parent-skill checker passes all hard invariants with zero warnings, and the dispatch suites pass 38 Vitest tests plus 6 Node tests.
 
+### Create-Skill Conformance
+
+The renamed hub and its three executor packets now conform to the sk-doc create-skill canon. cli-opencode SKILL.md dropped from 6543 to 4874 words by relocating the self-invocation guard and provider pre-flight detail into references, clearing the 5000-word hard failure. The kebab references and the four hyphenated permissions-matrix JSON assets became snake_case, and the cli-codex manual testing playbook renamed nine category directories and 27 per-feature files to underscore_case while rewriting its stale numbered index. Two markdown agents ran the edits on isolated subtrees; every rename used `git mv` so history is preserved. Renaming the cli-opencode references broke inbound links in `sk-prompt/prompt-models`, which were repaired in the same pass.
+
 ### Blocked Broader Gates
 
 The executor-delegation suite cannot import because the stale `@spec-kit/shared` dist is missing. Skill graph compiler/validate is blocked by four unrelated missing graph key paths in `mcp-code-mode` and `sk-code`. `validate.sh` is blocked by stale compiled mcp-server dist, and rebuilding is forbidden.
@@ -108,6 +112,10 @@ Each executable targeted check was run and recorded separately. Blocked commands
 | Check | Result |
 |-------|--------|
 | Prompt-quality-card sync | PASS. |
+| Create-skill `package_skill.py --check` | PASS, zero errors on hub and all three modes. cli-opencode SKILL.md 4874 words, under the 5000 cap. |
+| Hub `parent-skill-check.cjs` (post-conformance) | PASS, zero warnings. |
+| cli-codex playbook snake_case + index | PASS, zero hyphenated paths, `validate_document.py` zero issues, all 54 index links resolve. |
+| Rename link repair | PASS, six `sk-prompt/prompt-models` links repointed and resolving; no live references to old filenames remain. |
 | Routing projection | PASS, fresh hash `sha256:56e8cceee4c9c7a1eadcdb024e9ac48c9215323bafa96e851abc610dc5a583f0`. |
 | Local advisor smoke | PASS: `cli-opencode`, confidence 0.95, uncertainty 0.20. |
 | Rename-invariants + routing-registry drift | PASS: 11 tests. |
@@ -131,6 +139,7 @@ Each executable targeted check was run and recorded separately. Blocked commands
 1. Full validation has not passed and must not be claimed until the stale compiled distributions are rebuilt by an authorized workflow.
 2. Skill graph validation requires unrelated graph-key repairs outside this packet.
 3. Executor-delegation coverage remains unexecuted until `@spec-kit/shared` dist is restored.
+4. Six `sk-prompt/prompt-models` files (five model profiles plus `assets/cli_prompt_quality_card.md`) carried pre-existing broken links to `cli-opencode` that used a wrong parent path predating this work. They were corrected to the `cli-external-orchestration/cli-opencode` path and now resolve; the repository-wide broken-link count fell accordingly.
 <!-- /ANCHOR:limitations -->
 
 ---

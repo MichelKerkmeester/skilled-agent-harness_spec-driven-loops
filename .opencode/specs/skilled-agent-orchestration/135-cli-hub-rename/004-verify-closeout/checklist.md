@@ -7,7 +7,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/135-cli-hub-rename/004-verify-closeout"
-    last_updated_at: "2026-07-13T06:08:29Z"
+    last_updated_at: "2026-07-13T13:50:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored and validated the phase spec docs"
     next_safe_action: "Orchestrator gate and commit"
@@ -61,15 +61,22 @@ P0 validation remains open when a gate cannot execute. A blocked command is evid
 - [x] CHK-050 [P1] Exactly four direct phase children exist.
 - [x] CHK-051 [P1] No files outside this packet were modified by documentation finalization.
 <!-- /ANCHOR:file-org -->
+<!-- ANCHOR:conformance -->
+## Create-Skill Conformance (post-rename doc alignment)
+- [x] CHK-060 [P0] `package_skill.py --check` passes with zero errors on the hub and all three mode packets. cli-opencode SKILL.md trimmed from 6543 to 4874 words, under the 5000-word hard cap, by relocating the self-invocation guard and provider pre-flight detail into references.
+- [x] CHK-061 [P1] Resource and playbook filenames conform to snake_case: cli-opencode `context_budget.md`, `permissions_matrix.md` and the four `permissions_matrix.*.json` assets renamed via `git mv`; cli-codex playbook renamed 9 category directories and 27 per-feature files to underscore_case and rewrote the stale numbered root index.
+- [x] CHK-062 [P1] Hub `parent-skill-check.cjs` re-confirmed zero warnings after the conformance pass, and no live references to the old filenames remain.
+- [x] CHK-063 [P1] Links broken by the resource renames were repaired in `sk-prompt/prompt-models` (SKILL.md and `references/pattern_index.md`); every touched link resolves on disk.
+<!-- /ANCHOR:conformance -->
 <!-- ANCHOR:summary -->
 ## Verification Summary
 | Category | Total | Verified | Blocked |
 |---|---:|---:|---:|
-| P0 | 12 | 10 | 2 |
-| P1 | 6 | 6 | 0 |
+| P0 | 13 | 11 | 2 |
+| P1 | 9 | 9 | 0 |
 | P2 | 0 | 0 | 0 |
 
-**Overall**: Active. Full validation has not passed.
+**Overall**: Active. Targeted checks and create-skill conformance pass; the repository-wide gates remain blocked by stale dist and unrelated graph keys.
 <!-- /ANCHOR:summary -->
 <!-- ANCHOR:arch-verify -->
 ## L3: Architecture Verification
