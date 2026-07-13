@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
+  "description": "The create-skill creation/validation path does not enforce its documented contract",
+  "keywords": [
+    "create-skill",
+    "creation",
+    "validation",
+    "path",
+    "enforce",
+    "documented",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-13T15:45:14.480Z",
+  "specId": "028",
+  "folderSlug": "create-skill-contract-unification",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
