@@ -144,3 +144,34 @@ def test_zip_does_not_include_itself(tmp_path):
     with zipfile.ZipFile(zip_path) as archive:
         assert archive.testzip() is None
         assert self_member not in archive.namelist()
+
+
+def test_skill_template_asset_exempt_from_resource_frontmatter(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "with-template-asset")
+    asset_dir = skill_path / "assets" / "skill"
+    asset_dir.mkdir(parents=True)
+    # A scaffold template renders into a new skill's SKILL.md, so it carries
+    # skill frontmatter (name + allowed-tools), not the resource-doc block.
+    (asset_dir / "scaffold_template.md").write_text(
+        "---\n"
+        "name: {{SKILL_NAME}}\n"
+        "description: TODO one-line description of the scaffolded skill.\n"
+        "allowed-tools: [Read, Write, Edit]\n"
+        "version: 1.0.0.0\n"
+        "---\n\n# {{SKILL_TITLE}}\n",
+        encoding="utf-8",
+    )
+    # Control: a real resource doc missing the 5-field block still warns.
+    (asset_dir / "real_reference.md").write_text(
+        "---\ntitle: Real Doc\n---\n\nbody\n",
+        encoding="utf-8",
+    )
+
+    _valid, _message, warnings = module.validate_resource_frontmatter(skill_path)
+
+    assert not any("scaffold_template.md" in w for w in warnings)
+    assert any(
+        "real_reference.md" in w and "missing frontmatter field" in w
+        for w in warnings
+    )

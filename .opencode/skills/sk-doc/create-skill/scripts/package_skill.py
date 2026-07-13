@@ -471,6 +471,20 @@ def _iter_subtree_markdown(skill_path: Path, subtrees: List[str]):
                 yield file, subtree
 
 
+def _has_skill_frontmatter_signature(frontmatter: str) -> bool:
+    """True when a doc's frontmatter is a SKILL.md template, not a resource doc.
+
+    A scaffold template renders verbatim into a new skill's SKILL.md, so its
+    frontmatter is skill frontmatter (``name`` plus ``allowed-tools``) rather
+    than the reference/asset 5-field block. Such files are judged by the
+    SKILL.md contract, so the resource-doc block does not apply to them.
+    Resource docs never carry ``allowed-tools``, so this signature is exclusive.
+    """
+    has_name = re.search(r'^name:', frontmatter, re.MULTILINE) is not None
+    has_tools = re.search(r'^allowed-tools:', frontmatter, re.MULTILINE) is not None
+    return has_name and has_tools
+
+
 def validate_resource_frontmatter(skill_path: Path) -> Tuple[bool, str, List[str]]:
     """Validate reference/asset doc frontmatter per the sk-doc templates.
 
@@ -498,6 +512,8 @@ def validate_resource_frontmatter(skill_path: Path) -> Tuple[bool, str, List[str
                 f"Resource doc '{file.relative_to(skill_path)}' has no frontmatter "
                 f"(expected 5-field block: {', '.join(REQUIRED_RESOURCE_FRONTMATTER_FIELDS)})"
             )
+            continue
+        if _has_skill_frontmatter_signature(frontmatter):
             continue
         missing = [
             field for field in REQUIRED_RESOURCE_FRONTMATTER_FIELDS
