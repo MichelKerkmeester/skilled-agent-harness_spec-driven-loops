@@ -32,6 +32,21 @@ if [ -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" ]; t
   mark_memory_drift_from_diff HEAD || true
 fi
 
+# Continuous-integration autosync: publish this commit to the shared "live" branch
+# so the operator's IDE checkout reflects it within seconds. Gated tight so it
+# fires ONLY for a launch-wrapper session — the wrapper is the sole place that
+# exports both SPECKIT_AUTOSYNC=1 and SPECKIT_LIVE_BRANCH — and only from inside a
+# linked worktree, never the primary checkout. Fully non-fatal: git-sync leaves a
+# blocked commit local and post-commit's exit status never affects the commit.
+if [ "${SPECKIT_AUTOSYNC:-0}" = "1" ] && [ -n "${SPECKIT_LIVE_BRANCH:-}" ]; then
+  _as_git_dir="$(git rev-parse --absolute-git-dir 2>/dev/null || true)"
+  _as_common_dir="$(cd "$(git rev-parse --git-common-dir 2>/dev/null || echo .)" 2>/dev/null && pwd -P || true)"
+  if [ -n "$_as_git_dir" ] && [ -n "$_as_common_dir" ] && [ "$_as_git_dir" != "$_as_common_dir" ]; then
+    _as_sync="$REPO_ROOT/.opencode/bin/git-sync.sh"
+    [ -f "$_as_sync" ] && bash "$_as_sync" --auto --quiet || true
+  fi
+fi
+
 if [ "${SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT:-0}" = "1" ]; then
   exit 0
 fi

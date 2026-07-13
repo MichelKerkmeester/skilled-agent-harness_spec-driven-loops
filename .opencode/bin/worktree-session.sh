@@ -121,6 +121,14 @@ WT_REL=".worktrees/${RUNTIME}-${SLUG}"
 WT_ABS="$MAIN_ROOT/$WT_REL"
 BRANCH="work/${RUNTIME}/${SLUG}"
 
+# The "live" branch is whatever the primary checkout (MAIN_ROOT) currently has
+# checked out — the branch the operator's IDE follows. Basing the session worktree
+# on it, and later autosyncing commits back to it, is what keeps every session's
+# committed work visible in that one tree. Empty when MAIN_ROOT is on a detached
+# HEAD, in which case we fall back to basing on HEAD and skip autosync wiring.
+LIVE_BRANCH="$(git -C "$MAIN_ROOT" symbolic-ref --quiet --short HEAD 2>/dev/null || true)"
+WT_BASE="${LIVE_BRANCH:-HEAD}"
+
 # Resolve the shared-artifact list.
 if [ -n "${SPECKIT_WORKTREE_SHARED_PATHS:-}" ]; then
   SHARED_RAW="$(printf '%s' "$SPECKIT_WORKTREE_SHARED_PATHS" | tr ':' '\n')"
@@ -143,6 +151,12 @@ if [ "$DRY_RUN" = "1" ]; then
   echo "  main_root      = $MAIN_ROOT"
   echo "  worktree       = $WT_ABS"
   echo "  branch         = $BRANCH"
+  echo "  base           = $WT_BASE"
+  if [ -n "$LIVE_BRANCH" ]; then
+    echo "  SPECKIT_LIVE_BRANCH    = $LIVE_BRANCH  (autosync ${SPECKIT_AUTOSYNC:-1}: post-commit publishes to this branch)"
+  else
+    echo "  SPECKIT_LIVE_BRANCH    = <none: main is detached; autosync disabled>"
+  fi
   echo "  SPEC_KIT_DB_DIR        = $WT_DB_DIR"
   echo "  SPECKIT_CODE_GRAPH_DB_DIR = $WT_CG_DB_DIR"
   echo "  SPECKIT_IPC_SOCKET_DIR = $SOCK_DIR  (socket path len $(( ${#SOCK_DIR} + 16 )), platform limit ~104)"
@@ -159,8 +173,8 @@ fi
 # 6. WORKTREE CREATION
 # ───────────────────────────────────────────────────────────────
 
-log "allocating worktree $WT_REL on branch $BRANCH"
-git -C "$MAIN_ROOT" worktree add -b "$BRANCH" "$WT_ABS" HEAD >&2
+log "allocating worktree $WT_REL on branch $BRANCH (base: $WT_BASE)"
+git -C "$MAIN_ROOT" worktree add -b "$BRANCH" "$WT_ABS" "$WT_BASE" >&2
 
 # Symlink shared artifacts so the worktree reuses main's installed deps + compiled output.
 while IFS= read -r rel; do
@@ -193,6 +207,16 @@ fi
 
 # Mark descendants of THIS session as children so they do not re-nest.
 export AI_SESSION_CHILD=1
+
+# Wire continuous-integration autosync: the post-commit hook publishes this
+# session's commits to the live branch so the operator's IDE stays current. Opt
+# out per launch with SPECKIT_AUTOSYNC=0. Skipped when MAIN_ROOT was detached
+# (no live branch to publish to). Children inherit these envs and correctly
+# publish their own commits from inside this same worktree.
+if [ -n "$LIVE_BRANCH" ]; then
+  export SPECKIT_LIVE_BRANCH="$LIVE_BRANCH"
+  export SPECKIT_AUTOSYNC="${SPECKIT_AUTOSYNC:-1}"
+fi
 
 log "entering $WT_REL with isolated DBs; launching $RUNTIME"
 cd "$WT_ABS"
