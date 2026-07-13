@@ -1770,14 +1770,17 @@ async function main() {
           : {}),
       };
 
-      // Recursion guard (fail closed): refuse to spawn when this executor kind is
-      // already on the INHERITED dispatch stack — i.e. a seat that itself runs the loop
-      // tried to fan out the SAME kind again. Only the stack layer is checked here: the
-      // orchestrator legitimately runs inside one of these runtimes, so the runtime-env
-      // (e.g. OPENCODE_SESSION_ID) and ancestry layers would false-positive on the
-      // first-level dispatch. The stack is empty at top level and only carries a kind
-      // once a parent fanout stamped it via buildExecutorDispatchEnv for its child.
-      if (detectSameKindFromStack(process.env[CLI_DISPATCH_STACK_ENV], lineage.kind)) {
+      // Recursion guard (fail closed): the executor stack can already name the hosting
+      // runtime before the first detached fan-out spawn. The lineage marker is added only
+      // to a spawned seat, so both signals are required to prove that a seat is trying to
+      // fan out its own executor kind again.
+      const inheritedLineageId = process.env.SPECKIT_FANOUT_LINEAGE_ID;
+      const isInsideFanoutLineage = typeof inheritedLineageId === 'string'
+        && inheritedLineageId.trim() !== '';
+      if (
+        isInsideFanoutLineage
+        && detectSameKindFromStack(process.env[CLI_DISPATCH_STACK_ENV], lineage.kind)
+      ) {
         throw new Error(
           `recursive ${lineage.kind} dispatch blocked for lineage ${lineage.label}: ${lineage.kind} already on ${CLI_DISPATCH_STACK_ENV}`,
         );

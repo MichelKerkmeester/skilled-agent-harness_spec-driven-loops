@@ -2027,6 +2027,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
  * @param {string} specFolder - Path to the target spec folder for the review packet
  * @param {Object} [options] - Reducer options
  * @param {boolean} [options.write=true] - Write outputs to disk when true
+ * @param {string} [options.artifactDir] - Explicit review artifact directory override
  * @returns {Object} Paths and content for registry, strategy, and dashboard
  */
 function reduceReviewState(specFolder, options = {}) {
@@ -2035,7 +2036,9 @@ function reduceReviewState(specFolder, options = {}) {
   const createMissingAnchors = Boolean(options.createMissingAnchors);
   const emitResourceMapOutput = Boolean(options.emitResourceMap);
   const resolvedSpecFolder = path.resolve(specFolder);
-  const { artifactDir: reviewDir } = resolveArtifactRoot(resolvedSpecFolder, 'review');
+  const reviewDir = options.artifactDir
+    ? path.resolve(options.artifactDir)
+    : resolveArtifactRoot(resolvedSpecFolder, 'review').artifactDir;
   const configPath = path.join(reviewDir, 'deep-review-config.json');
   const stateLogPath = path.join(reviewDir, 'deep-review-state.jsonl');
   const strategyPath = path.join(reviewDir, 'deep-review-strategy.md');
@@ -2158,12 +2161,14 @@ if (require.main === module) {
   const lenient = args.includes('--lenient');
   const createMissingAnchors = args.includes('--create-missing-anchors');
   const emitResourceMapOutput = args.includes('--emit-resource-map');
+  const artifactDirIndex = args.indexOf('--artifact-dir');
+  const artifactDir = artifactDirIndex === -1 ? undefined : args[artifactDirIndex + 1];
   const positional = args.filter((arg) => !arg.startsWith('--'));
   const specFolder = positional[0];
 
-  if (!specFolder) {
+  if (!specFolder || (artifactDirIndex !== -1 && (!artifactDir || artifactDir.startsWith('--')))) {
     process.stderr.write(
-      'Usage: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder> [--lenient] [--create-missing-anchors] [--emit-resource-map]\n',
+      'Usage: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder> [--artifact-dir <path>] [--lenient] [--create-missing-anchors] [--emit-resource-map]\n',
     );
     process.exit(1);
   }
@@ -2174,6 +2179,7 @@ if (require.main === module) {
       lenient,
       createMissingAnchors,
       emitResourceMap: emitResourceMapOutput,
+      artifactDir,
     });
     process.stdout.write(
       `${JSON.stringify(

@@ -135,6 +135,16 @@ workflow:
         - artifact_dir: "Resolved review packet directory for this target"
         - artifact_archive_root: "Resolved local review archive directory for this target"
 
+  step_bind_reducer_artifact_arg:
+    description: "Keep the reducer on the lineage-owned artifact directory during fan-out"
+    branch_on: "config.fanout_lineage_artifact_dir"
+    if_present:
+      bind:
+        reducer_artifact_arg: "--artifact-dir {artifact_dir}"
+    if_absent:
+      bind:
+        reducer_artifact_arg: ""
+
   step_apply_lifecycle_request:
     description: "Honor explicit auto-mode restart before fan-out or normal initialization"
     skip_when: "lineage_mode != 'restart'"
@@ -311,10 +321,12 @@ workflow:
         action: "Resolve review target to a concrete file list based on target type"
         resolve:
           spec-folder: |
-            1. Read spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md
-            2. Discover implementation files referenced in spec artifacts
-            3. Discover test files associated with implementation
-            4. Set scope = all discovered files
+            1. Inspect spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, and goal-file-manifest.txt when present
+            2. If goal-file-manifest.txt exists, parse one repo-relative path per non-empty, non-comment line; reject absolute paths, traversal outside repo_root, duplicates, missing paths, and non-file entries
+            3. Fail before dispatch with line-numbered validation errors when any manifest entry is invalid; otherwise set scope = the validated manifest paths in declared order
+            4. When no manifest exists, discover implementation files referenced in the canonical spec artifacts
+            5. Discover test files associated with the implementation files
+            6. Set scope = all discovered implementation and test files
           skill: |
             1. Read SKILL.md from .opencode/skills/{skill_name}/
             2. Discover references/, assets/, scripts/ contents
@@ -890,7 +902,7 @@ workflow:
                     next_dimension: "{pivot_result.restoredFocus}"
                     pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
                     saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
-                  command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder}"
+                  command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
                   log: "Divergent review pivot {pivot_result.pivotId} restored focus to {pivot_result.restoredFocus}; continuing iteration {current_iteration}."
                   proceed_to: step_normalize_pause_events
                 if_failed:
@@ -1206,8 +1218,10 @@ workflow:
         if_cli_opencode:
           command: |
             node --experimental-strip-types --input-type=module <<'EOF'
-            import { readFileSync } from 'node:fs';
+            import { execFileSync } from 'node:child_process';
+            import { appendFileSync, readFileSync, realpathSync } from 'node:fs';
             import { createHash } from 'node:crypto';
+            import { isAbsolute, relative, resolve } from 'node:path';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
 
@@ -1223,6 +1237,59 @@ workflow:
               governor: null,
             };
             const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            if (!promptBody.includes('BANNED OPERATIONS') || !promptBody.includes('ALLOWED WRITE PATHS')) {
+              throw new Error('Unsafe cli-opencode dispatch: rendered prompt is missing required write-containment sections');
+            }
+
+            const repoRoot = realpathSync('{repo_root}');
+            const artifactDir = resolve(repoRoot, '{state_paths.packet_dir}');
+            const artifactRelative = relative(repoRoot, artifactDir);
+            if (artifactRelative === '' || artifactRelative.startsWith('..') || isAbsolute(artifactRelative)) {
+              throw new Error('Unsafe cli-opencode dispatch: artifact directory must be a strict descendant of the worktree root');
+            }
+
+            const git = (args, cwd = repoRoot, trim = true) => {
+              const output = execFileSync('git', args, { cwd, encoding: 'utf8' });
+              return trim ? output.trim() : output;
+            };
+            const resolveGitPath = (candidate) => realpathSync(isAbsolute(candidate) ? candidate : resolve(repoRoot, candidate));
+            const gitDir = resolveGitPath(git(['rev-parse', '--git-dir']));
+            const commonGitDir = resolveGitPath(git(['rev-parse', '--git-common-dir']));
+            if (gitDir === commonGitDir) {
+              throw new Error('Unsafe cli-opencode dispatch: --dir must point at an isolated linked worktree');
+            }
+
+            const primaryBlock = git(['worktree', 'list', '--porcelain'])
+              .split(/\n\n+/)
+              .find((block) => /^branch refs\/heads\/(?:main|master)$/m.test(block));
+            const primaryLine = primaryBlock?.split('\n').find((line) => line.startsWith('worktree '));
+            if (!primaryLine) {
+              throw new Error('Unsafe cli-opencode dispatch: primary main/master worktree could not be resolved');
+            }
+            const primaryRoot = realpathSync(primaryLine.slice('worktree '.length));
+            const primaryStatus = git(['status', '--porcelain=v1', '--untracked-files=all'], primaryRoot);
+            if (primaryStatus) {
+              throw new Error('Unsafe cli-opencode dispatch: primary worktree must be clean before unrestricted execution');
+            }
+
+            const dirtyPaths = [
+              ...git(['diff', '--name-only', '-z', 'HEAD', '--'], repoRoot, false).split('\0'),
+              ...git(['ls-files', '--others', '--exclude-standard', '-z'], repoRoot, false).split('\0'),
+            ].filter(Boolean);
+            const outsideArtifactDir = dirtyPaths.filter((candidate) => {
+              const candidateRelative = relative(artifactDir, resolve(repoRoot, candidate));
+              return candidateRelative.startsWith('..') || isAbsolute(candidateRelative);
+            });
+            if (outsideArtifactDir.length > 0) {
+              throw new Error(`Unsafe cli-opencode dispatch: worktree changes outside the artifact directory: ${outsideArtifactDir.join(', ')}`);
+            }
+
+            const recoveryBaselineCommit = git(['rev-parse', '--verify', 'HEAD']);
+            appendFileSync(
+              '{state_paths.state_log}',
+              `${JSON.stringify({ type: 'event', event: 'recovery_baseline', mode: 'review', iteration: Number('{current_iteration}'), recoveryBaselineCommit, worktree: repoRoot, timestamp: new Date().toISOString() })}\n`,
+              'utf8',
+            );
             const message = 'Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; state_source=externalized_files; do_not_switch_mode=true'
               + '\n\n'
               + promptBody;
@@ -1276,11 +1343,88 @@ workflow:
           wait_for_completion: true
           notes:
             - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
+            - "Fail closed before dispatch unless the rendered containment sections exist, --dir is an isolated linked worktree, the primary worktree is clean, and current-worktree changes are confined to artifact_dir; append the recovery-baseline commit to state_log"
             - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode v1.14.39 reads stdin at startup and hangs at 0% CPU after +60s snapshot prune without it (the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule)"
             - "opencode run takes a positional message; prompt is the route-proof preamble + iteration body"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
             - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+        if_cli_codex:
+          command: |
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+            import { execFileSync } from 'node:child_process';
+
+            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+
+            // Fail closed: a requested codex executor must dispatch codex or abort,
+            // never silently degrade to another executor. Undetected absence is what
+            // got Codex deprecated before, so the branch exits non-zero when the
+            // binary is missing instead of falling through to a native/other path.
+            let codexAvailable = false;
+            try {
+              execFileSync('/bin/sh', ['-c', 'command -v codex >/dev/null 2>&1'], { stdio: 'ignore' });
+              codexAvailable = true;
+            } catch {}
+            if (!codexAvailable) {
+              console.error('cli-codex executor unavailable: command -v codex failed');
+              process.exit(1);
+            }
+
+            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const serviceTier = '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}';
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            const executor = {
+              kind: 'cli-codex',
+              model,
+              configDir: null,
+              reasoningEffort,
+              serviceTier,
+              sandboxMode: 'workspace-write',
+              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+              governor: null,
+            };
+
+            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+
+            // codex reads the iteration prompt from stdin via the trailing '-'. A review
+            // iteration must WRITE its own iteration file, delta and state record, so the
+            // sandbox is workspace-write — read-only would block those required writes.
+            // approval_policy=never keeps the run non-interactive.
+            const args = ['exec'];
+            if (model) {
+              args.push('--model', model);
+            }
+            args.push('-c', 'model_reasoning_effort=' + (reasoningEffort || 'medium'));
+            if (serviceTier) {
+              args.push('-c', 'service_tier=' + serviceTier);
+            }
+            args.push('-c', 'approval_policy=never', '--sandbox', executor.sandboxMode, '-');
+
+            const dispatchId = 'review-i{current_iteration}-g{generation}';
+            process.exit(
+              runAuditedExecutorCommand({
+                command: 'codex',
+                args,
+                cwd: '{repo_root}',
+                timeoutSeconds: executor.timeoutSeconds,
+                stateLogPath: '{state_paths.state_log}',
+                executor,
+                iteration: Number('{current_iteration}'),
+                input: promptBody,
+                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+                dispatchId,
+              }),
+            );
+            EOF
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          notes:
+            - "Routed through runAuditedExecutorCommand so codex produces INTENT + COMPLETION dispatch receipts; recursion guard (CODEX_SESSION_ID) + env allowlist (CODEX_/OPENAI_/AZURE_OPENAI_) enforced via buildExecutorDispatchEnv"
+            - "Fails closed when the codex binary is absent (exit 1) — parity with the fan-out cli-codex lineage guard in fanout-run.cjs; codex routing never degrades to native"
+            - "codex exec reads the iteration prompt from stdin via the trailing '-' (input: promptBody); '-c model_reasoning_effort=' maps reasoning depth, default medium; '-c service_tier=' forwarded when configured"
+            - "--sandbox workspace-write is required so the iteration can write its own iteration file/delta/state record (read-only would fail the post-dispatch artifact gate); -c approval_policy=never keeps it non-interactive; --model omitted when unset so ~/.codex/config.toml default applies"
         post_dispatch_validate:
           validator: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           command: "node .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type review --artifact-dir {artifact_dir} --iteration {current_iteration}"
@@ -1380,7 +1524,7 @@ workflow:
 
       step_reduce_review_state:
         action: "Run reducer to refresh the canonical findings registry before dashboard generation"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder}"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
         read:
           - "{state_paths.state_log}"
           - "{state_paths.iteration_pattern}"
@@ -1592,7 +1736,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged review deltas unless config.resource_map.emit is false"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --emit-resource-map"
         read:
           - "{state_paths.config}"
           - "{state_paths.delta_dir}/iter-*.jsonl"
@@ -1826,11 +1970,9 @@ workflow:
         edit: "{state_paths.config}"
         set_field: { status: "complete" }
 
-      step_stage_artifact_dir:
-        action: "Stage all skill-owned artifacts under artifact_dir for the operator's next git commit"
-        command: "git add {state_paths.packet_dir}"
-        note: "Skill-owned contract fix (028): without this stage step, operators who do `git add review-report.md` lose the iteration trail (iterations/, deltas/, state.jsonl, strategy, findings-registry, etc.). Staging the whole artifact_dir keeps the audit trail intact. Operators retain commit authority and can `git restore --staged {path}` to unstage anything before commit. Failure is non-fatal — log warning and continue."
-        on_fail: "Log warning. Do not block synthesis. The artifact_dir may be outside a git repo (e.g., temp test fixture) which is a valid case."
+      step_leave_artifacts_unstaged:
+        action: "Leave all synthesized artifacts unstaged for explicit operator review"
+        note: "Synthesis must not mutate the shared Git index. The operator retains staging and commit authority after reviewing the complete artifact directory."
 
   # ═══════════════════════════════════════════════════════════════
   # PHASE 4: SAVE
