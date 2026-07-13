@@ -31,6 +31,11 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 try:
+    import yaml
+except ImportError:
+    yaml = None
+
+try:
     import os as _os
     import sys as _sys
 
@@ -177,15 +182,33 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
 
     frontmatter = match.group(1)
 
-    for field in REQUIRED_FRONTMATTER_FIELDS:
-        if f'{field}:' not in frontmatter:
-            return False, f"Missing required field '{field}' in frontmatter", warnings, parsed
+    structured_frontmatter = None
+    if yaml is not None:
+        try:
+            loaded_frontmatter = yaml.safe_load(frontmatter)
+        except Exception:
+            loaded_frontmatter = None
+        if isinstance(loaded_frontmatter, dict):
+            structured_frontmatter = loaded_frontmatter
 
-    name_match = re.search(r'name:\s*(.+)', frontmatter)
-    if name_match:
-        name = name_match.group(1).strip().strip('"\'')
+    if structured_frontmatter is not None:
+        for field in REQUIRED_FRONTMATTER_FIELDS:
+            if field not in structured_frontmatter:
+                return False, f"Missing required field '{field}' in frontmatter", warnings, parsed
+        name = str(structured_frontmatter['name']).strip()
         parsed['name'] = name
+    else:
+        for field in REQUIRED_FRONTMATTER_FIELDS:
+            if f'{field}:' not in frontmatter:
+                return False, f"Missing required field '{field}' in frontmatter", warnings, parsed
 
+        name_match = re.search(r'name:\s*(.+)', frontmatter)
+        name = None
+        if name_match:
+            name = name_match.group(1).strip().strip('"\'')
+            parsed['name'] = name
+
+    if name is not None:
         # Hyphen-case: lowercase with hyphens only
         if not re.match(r'^[a-z0-9-]+$', name):
             return False, f"Name '{name}' must be hyphen-case (lowercase letters, digits, and hyphens only)", warnings, parsed
@@ -194,53 +217,70 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
         if '--' in name:
             return False, f"Name '{name}' cannot contain consecutive hyphens", warnings, parsed
 
-    # YAML multiline block format not allowed
-    if re.search(r'description:\s*\n\s+', frontmatter) or re.search(r'^description:\s*[|>]\s*$', frontmatter, flags=re.MULTILINE):
-        return False, "Description uses YAML multiline block format (must be single line after colon)", warnings, parsed
-
-    desc_match = re.search(r'description:\s*(.+)', frontmatter)
-    if desc_match:
-        description = desc_match.group(1).strip().strip('"\'')
+    if structured_frontmatter is not None:
+        description = str(structured_frontmatter['description']).strip()
+        if '\n' in description or re.search(r'description:\s*\n\s+', frontmatter) or re.search(r'^description:\s*[|>]\s*$', frontmatter, flags=re.MULTILINE):
+            return False, "Description uses YAML multiline block format (must be single line after colon)", warnings, parsed
+        if not description:
+            return False, "Description appears to be empty or multiline (must be single line after colon)", warnings, parsed
         parsed['description'] = description
-
-        # Angle brackets break OpenCode XML parsing
-        if '<' in description or '>' in description:
-            return False, "Description cannot contain angle brackets (< or >) - breaks OpenCode parsing", warnings, parsed
-
-        if 'TODO' in description.upper():
-            warnings.append("Description contains TODO placeholder - please complete it")
-
-        # Description budget: ≤130 soft target (see skill_contract.json).
-        budget = _description_budget('skill') if _description_budget else {}
-        soft = int(budget.get('softMax', 130))
-        hard = int(budget.get('hardCap', 1536))
-        description_length = len(description)
-        if description_length > hard:
-            return False, (
-                f"Description {description_length} chars exceeds hard cap {hard} — "
-                "skill will fail to register"
-            ), warnings, parsed
-        elif description_length > soft:
-            warnings.append(
-                f"Description {description_length} chars exceeds soft target of {soft}"
-            )
     else:
-        return False, "Description appears to be empty or multiline (must be single line after colon)", warnings, parsed
+        # YAML multiline block format not allowed
+        if re.search(r'description:\s*\n\s+', frontmatter) or re.search(r'^description:\s*[|>]\s*$', frontmatter, flags=re.MULTILINE):
+            return False, "Description uses YAML multiline block format (must be single line after colon)", warnings, parsed
 
-    tools_match = re.search(r'allowed-tools:\s*(.+)', frontmatter)
-    if tools_match:
-        tools_value = tools_match.group(1).strip()
+        desc_match = re.search(r'description:\s*(.+)', frontmatter)
+        if desc_match:
+            description = desc_match.group(1).strip().strip('"\'')
+            parsed['description'] = description
+        else:
+            return False, "Description appears to be empty or multiline (must be single line after colon)", warnings, parsed
+
+    # Angle brackets break OpenCode XML parsing
+    if '<' in description or '>' in description:
+        return False, "Description cannot contain angle brackets (< or >) - breaks OpenCode parsing", warnings, parsed
+
+    if 'TODO' in description.upper():
+        warnings.append("Description contains TODO placeholder - please complete it")
+
+    # Description budget: ≤130 soft target (see skill_contract.json).
+    budget = _description_budget('skill') if _description_budget else {}
+    soft = int(budget.get('softMax', 130))
+    hard = int(budget.get('hardCap', 1536))
+    description_length = len(description)
+    if description_length > hard:
+        return False, (
+            f"Description {description_length} chars exceeds hard cap {hard} — "
+            "skill will fail to register"
+        ), warnings, parsed
+    elif description_length > soft:
+        warnings.append(
+            f"Description {description_length} chars exceeds soft target of {soft}"
+        )
+
+    if structured_frontmatter is not None:
+        tools_value = structured_frontmatter['allowed-tools']
         parsed['allowed-tools'] = tools_value
+        if not isinstance(tools_value, list):
+            return False, f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}", warnings, parsed
+    else:
+        tools_match = re.search(r'allowed-tools:\s*(.+)', frontmatter)
+        if tools_match:
+            tools_value = tools_match.group(1).strip()
+            parsed['allowed-tools'] = tools_value
 
-        # Array format required: [Tool1, Tool2]
-        if tools_value and not tools_value.startswith('['):
-            if ',' in tools_value:
-                return False, f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}", warnings, parsed
+            # Array format required: [Tool1, Tool2]
+            if tools_value and not tools_value.startswith('['):
+                if ',' in tools_value:
+                    return False, f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}", warnings, parsed
 
     # version is required (enforced by REQUIRED_FRONTMATTER_FIELDS above) and must be 4-part X.Y.Z.W.
-    version_match = re.search(r'^version:\s*(.+)', frontmatter, flags=re.MULTILINE)
-    if version_match:
-        parsed['version'] = version_match.group(1).strip()
+    if structured_frontmatter is not None:
+        parsed['version'] = str(structured_frontmatter['version']).strip()
+    else:
+        version_match = re.search(r'^version:\s*(.+)', frontmatter, flags=re.MULTILINE)
+        if version_match:
+            parsed['version'] = version_match.group(1).strip()
 
     if 'version' in parsed:
         version_value = parsed['version'].strip().strip('"\'')
@@ -263,13 +303,18 @@ def validate_sections(content: str) -> Tuple[bool, str, List[str]]:
         Tuple of (is_valid, error_message, warnings).
     """
     warnings = []
-    h2_pattern = r'^##\s+(?:\d+\.\s*)?(.+?)\s*$'
+    h2_pattern = r'^##\s+(.+?)\s*$'
     headings = re.findall(h2_pattern, content, re.MULTILINE)
-    headings_upper = [h.upper().strip() for h in headings]
+    headings_upper = []
+    for heading in headings:
+        heading = re.sub(r'^\d+\.\s*', '', heading).strip()
+        heading = re.sub(r'^[^\w]+', '', heading).strip()
+        headings_upper.append(heading.upper())
 
     missing_required = []
     for section in REQUIRED_SECTIONS:
         aliases = SECTION_ALIASES.get(section, [section])
+        # Fleet headings extend canonical names, so matching remains substring-based.
         found = any(alias in h for h in headings_upper for alias in aliases)
         if not found:
             missing_required.append(section)
