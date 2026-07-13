@@ -154,7 +154,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/scripts/session-cleanup.sh || true'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/scripts/session-cleanup.sh >/dev/null 2>&1 || true'",
             "timeout": 10
           }
         ]

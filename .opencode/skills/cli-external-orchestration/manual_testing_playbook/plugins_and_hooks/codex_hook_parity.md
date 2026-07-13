@@ -209,7 +209,7 @@ notify.sh preserved: 3
 per-event: SessionStart 3, UserPromptSubmit 1, PreToolUse 3, PostToolUse 3, Stop 3, PreCompact 1
 ```
 
-Residual (documented, non-blocking): under the live Stop teardown one hook in the four-entry Stop chain reports `Stop Failed` while the other three `Complete`; all four exit 0 when run in isolation with a realistic Stop payload. The failing entry is the pre-existing Superset `notify.sh` (a network POST, the sole Stop hook before this install) or the child-004 `session-stop.js` lifecycle adapter — neither is one of this parity set's guard adapters, and fail-open means the session still finishes cleanly (overall exit 0). This packet's `completion-evidence-stop.cjs` and `session-cleanup.sh` wiring both complete.
+Stop chain (resolved): an earlier run showed one `Stop Failed` while the other three completed. Root cause — `session-cleanup.sh` always prints a plain-text teardown line to stdout, and Codex parses a Stop hook's stdout as a response envelope, so the non-JSON text read as a failure despite exit 0. Fixed by redirecting that neutral script's stdout in the Stop wiring (`>/dev/null 2>&1`; script byte-unchanged). A consolidated live acceptance run (`MK_SPEC_GATE_ENFORCE=1`, workspace-write) now shows SessionStart 5/5, UserPromptSubmit 3/3, PreToolUse `Blocked` (the deny), and **Stop 4/4 Completed, 0 Failed**.
 
 ---
 

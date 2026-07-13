@@ -7,9 +7,9 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T19:39:11Z"
+    last_updated_at: "2026-07-13T20:11:19Z"
     last_updated_by: "claude-code"
-    recent_action: "Fixed apply_patch path extraction; live deny block confirmed under Codex"
+    recent_action: "Fixed Stop-hook stdout parse failure; full live acceptance matrix green"
     next_safe_action: "Re-point installer at the primary checkout once it reconciles to v4"
     blockers: []
     completion_pct: 100
@@ -86,6 +86,7 @@ See `decision-record.md` for full ADR documentation.
 | Per-adapter fixture smoke (allow / advise / deny / fail-open) | Pass | 33/33 assertions; real `permissionDecision:"deny"` envelope, Gate-3 `additionalContext`, and `runtime:"codex"` audit line all captured |
 | Live `codex exec` matrix (timed) | Pass | Codex 0.144.2: SessionStart 5/5 + UserPromptSubmit 3/3 Completed; `spec-gate-classify` wrote `.spec-gate-state/<hex(session_id)>.json`; model honored the injected Gate-3 menu (chose option E) |
 | Live deny block (`spec-gate-enforce`) | Pass | Real `apply_patch` blocked: Codex router logged `Command blocked by PreToolUse hook: DENIED…`, the file was not created, and the enforce warning log recorded `codex \| <session> \| write \| src/app.ts \| would-deny` |
+| Live Stop chain clean | Pass | Acceptance run: Stop 4/4 Completed, 0 Failed after suppressing `session-cleanup.sh` stdout in the wiring |
 | Cores / Claude hooks / OpenCode plugins byte-unchanged | Pass | Landed diff touches only new `codex/` adapters + `.codex/hooks.json` + installer + spec docs; no core modified |
 | `.codex/hooks.json` parses + adapter paths exist | Pass | Installer dry-run parsed the source and resolved all 8 adapter paths |
 | Installer idempotent + preserves Superset entries | Pass | 14 added / 2 skipped, re-run 0 added, `notify.sh` preserved (3), `.bak-<ts>` backup created |
@@ -95,7 +96,7 @@ See `decision-record.md` for full ADR documentation.
 
 1. **Deny is live-confirmed.** A live `codex exec apply_patch` on a non-exempt file was blocked end-to-end (Codex router: `Command blocked by PreToolUse hook: DENIED…`; file not created; `would-deny` logged). Confirming this surfaced a real defect: Codex delivers the target path inside the patch body (`tool_input.command`, an `*** Add/Update/Delete File:` header), not a `file_path` field, so the first live attempt read a null path and treated every patch as exempt. Fixed by parsing the affected path(s) out of the patch in the three filePath-driven adapters (`spec-gate-enforce`, `post-edit-quality`, `code-graph-freshness`); the enforce adapter evaluates the first non-exempt affected path so a multi-file patch can't hide a real write behind an exempt sibling.
 2. **The active install points at the worktree, not the primary checkout** — the primary checkout is behind origin/v4 and unsafe to write into (concurrent sessions), so the installer was run against the isolated worktree (which required staging the gitignored `shared/dist` + `mcp_server/dist` from the primary tree to complete the lifecycle-adapter chain). Re-run the installer against the primary checkout once it reconciles to origin/v4 for a permanent target; fail-open means the interim worktree target degrades gracefully if removed.
-3. **One Stop-chain entry reports a live-teardown `Stop Failed`** — all four Stop hooks exit 0 in isolation; exactly one fails only under Codex's live Stop teardown. It is the pre-existing Superset `notify.sh` (a network POST, the sole Stop hook before this install) or the child-004 `session-stop.js` lifecycle adapter — not one of this packet's guard adapters. Non-blocking by the fail-open contract; the session still completes (exit 0).
+3. **Stop chain is now clean (was 1 `Stop Failed`; fixed).** Root cause: `session-cleanup.sh` always prints a plain-text teardown line to stdout (`action=skip reason=no-session-pid`), and Codex parses a Stop hook's stdout as a response envelope — the non-JSON text failed that parse and read as `Stop Failed` (despite exit 0). Fixed by redirecting that neutral script's stdout in the Stop wiring (`>/dev/null 2>&1`; the script stays byte-unchanged). A live acceptance run now shows Stop 4/4 Completed. Contract note recorded in `decision-record.md`: neutral shell scripts wired to a Codex hook must not emit stdout, since only the lifecycle JS adapters speak the response-envelope protocol.
 4. **`~/.codex/hooks.json` is the one out-of-repo write** — the installer backs it up first and merges rather than replaces; revertible via the `.bak-<ts>` backup.
 5. **`mcp-route-guard` codex adapter is dormant** — Codex's registered MCP servers are all `mk_`-prefixed and thus core-exempt; it activates only when an external MCP family is registered.
 <!-- /ANCHOR:limitations -->

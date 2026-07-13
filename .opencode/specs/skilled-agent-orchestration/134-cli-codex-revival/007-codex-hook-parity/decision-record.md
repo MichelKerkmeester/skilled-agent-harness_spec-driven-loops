@@ -7,7 +7,7 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T19:39:11Z"
+    last_updated_at: "2026-07-13T20:11:19Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded the five capability-spike decisions"
     next_safe_action: "Implement the eight portable Codex guard adapters"
@@ -34,6 +34,7 @@ Pin the contract empirically from the binary's embedded schema plus a live probe
 - **Tool vocabulary**: `exec` (shell), `apply_patch`/`edit` (file writes). No `Task` tool; no `mcp__claude_ai_*` surface.
 - **Input**: snake_case JSON on stdin (`hook_event_name`, `tool_name`, `tool_input`, `cwd`, `session_id`, `prompt`), Claude-shaped.
 - **`apply_patch` target path** (captured live from the hook payload): `tool_input.command` holds the full patch envelope (`*** Begin Patch` … `*** Add/Update/Delete File: <path>` … `*** End Patch`) with the path relative to `cwd` — it is NOT a `file_path`/`filePath`/`path` field. filePath-driven adapters must parse the affected path(s) out of the patch body; otherwise they read a null path and (for the enforce guard) treat every Codex write as exempt and never deny.
+- **Stop-hook stdout is parsed as a response envelope** (observed live): a Stop hook that writes non-JSON to stdout is reported as `Stop Failed` even when it exits 0. The lifecycle JS adapters emit a valid envelope, but a neutral shell script wired to Stop (e.g. `session-cleanup.sh`, which logs a teardown line to stdout) must have its stdout redirected in the wiring (`>/dev/null 2>&1`), keeping the script byte-unchanged. SessionStart is lenient (stdout there is treated as additional context), so its neutral scripts need no redirect.
 - **Runtime discovery**: Codex reads `~/.codex/hooks.json` (user-global). A live probe with a project-level `<cwd>/.codex/hooks.json` produced no hook firings, confirming project-level files are inert. `[features] hooks = true` is already set in `~/.codex/config.toml`.
 <!-- /ANCHOR:adr-001-decision -->
 <!-- ANCHOR:adr-001-alternatives -->

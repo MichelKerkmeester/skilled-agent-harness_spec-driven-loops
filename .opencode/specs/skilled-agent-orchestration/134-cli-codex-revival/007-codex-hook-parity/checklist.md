@@ -7,7 +7,7 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T19:39:11Z"
+    last_updated_at: "2026-07-13T20:11:19Z"
     last_updated_by: "claude-code"
     recent_action: "Verified all checks with fixture + live evidence"
     next_safe_action: "Re-point installer at the primary checkout once it reconciles to v4"
@@ -67,7 +67,7 @@ A check is marked only with evidence: a command output, a file diff, or a live-s
 | P1 | 8 | 8 | 0 |
 | P2 | 0 | 0 | 0 |
 
-**Overall**: Complete. All adapters built, wired, installed, and verified by a 33/33 fixture matrix plus a live `codex exec` run; one documented non-blocking Stop-teardown residual in pre-existing/lifecycle wiring.
+**Overall**: Complete. All adapters built, wired, installed, and verified by a 33/33 fixture matrix plus a live `codex exec` acceptance run — SessionStart 5/5, UserPromptSubmit 3/3, PreToolUse deny **blocked** a real `apply_patch`, and Stop 4/4 Completed (0 Failed).
 <!-- /ANCHOR:summary -->
 <!-- ANCHOR:arch-verify -->
 ## L3: Architecture Verification
