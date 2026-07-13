@@ -16,7 +16,7 @@ version: 1.8.0.4
 Copy-paste-ready scaffold for mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md.
 
 Usage:
-  cp .opencode/skills/sk-doc/create-benchmark/assets/benchmark_report_template.md \
+  cp .opencode/skills/sk-doc/create-benchmark/assets/_shared/benchmark_report_template.md \
      .opencode/skills/<your-skill>/mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md
 
 Then fill in every {{PLACEHOLDER}}. Keep the numbered H2 ALL CAPS structure intact.
@@ -323,7 +323,7 @@ Expected outcome: {{EXPECTED_OUTCOME_LINE}}.
 | [`results.csv`](./results.csv) | Raw aggregate scores, one row per candidate. |
 | [`per-probe.jsonl`](./per-probe.jsonl) | Per-probe rows. |
 | [`runtime-measurements.md`](./runtime-measurements.md) | RAM, residency, raw inference latency for the final candidates. |
-| [`../README.md`](../README.md) | Index of all `{{SKILL_NAME}}` benchmarks. |
+| [`../README.md`](../../README.md) | Index of all `{{SKILL_NAME}}` benchmarks. |
 | `.opencode/skills/sk-doc/create-benchmark/SKILL.md` | Convention these files follow. |
 
 ### Authoritative spec packet

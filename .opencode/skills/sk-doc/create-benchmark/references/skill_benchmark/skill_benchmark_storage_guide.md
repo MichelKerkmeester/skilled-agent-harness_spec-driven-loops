@@ -44,8 +44,8 @@ documents remain the authority for everything the reports contain:
 
 | Concern | Authority (owned by deep-improvement) |
 | --- | --- |
-| D1-D5 computation, point weights, Mode A/B scoring, advisory signals, funnel/bottleneck ranking | [`scoring_contract.md`](../../../system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md) |
-| How to run Lane C, invocation flags, dimension coverage, verdict bands, target eligibility | [`operator_guide.md`](../../../system-deep-loop/deep-improvement/references/skill_benchmark/operator_guide.md) |
+| D1-D5 computation, point weights, Mode A/B scoring, advisory signals, funnel/bottleneck ranking | [`scoring_contract.md`](../../../../system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md) |
+| How to run Lane C, invocation flags, dimension coverage, verdict bands, target eligibility | [`operator_guide.md`](../../../../system-deep-loop/deep-improvement/references/skill_benchmark/operator_guide.md) |
 
 Do not copy either contract into this packet. Cross-link them.
 
@@ -54,8 +54,8 @@ Do not copy either contract into this packet. Cross-link them.
 Read these two shipped hub trees to see the convention filled in against real
 skills:
 
-- [`system-deep-loop/benchmark/README.md`](../../../system-deep-loop/benchmark/README.md) — a hub benchmarking itself with the harness that lives inside it.
-- [`sk-code/benchmark/README.md`](../../../sk-code/benchmark/README.md) — a hub with the fullest set of run-label folders, its structure and reading guide.
+- [`system-deep-loop/benchmark/README.md`](../../../../system-deep-loop/benchmark/README.md) — a hub benchmarking itself with the harness that lives inside it.
+- [`sk-code/benchmark/README.md`](../../../../sk-code/benchmark/README.md) — a hub with the fullest set of run-label folders, its structure and reading guide.
 
 ---
 
@@ -112,7 +112,7 @@ human convenience — the run's authoritative parameters live inside its
 | `live_<model>_<variant>/` | A live run stamped with the executor model and reasoning variant it dispatched through (for example a GLM or Kimi leg). |
 
 Trace-mode semantics (router vs live) and the flags that produce each run are
-owned by [`operator_guide.md`](../../../system-deep-loop/deep-improvement/references/skill_benchmark/operator_guide.md);
+owned by [`operator_guide.md`](../../../../system-deep-loop/deep-improvement/references/skill_benchmark/operator_guide.md);
 this guide only fixes how the resulting folder is named and where it sits.
 
 ---
@@ -140,7 +140,7 @@ any diff against `baseline/skill-benchmark-report.json`.
 
 **`skill-benchmark-report.md` is a machine render. Never hand-author or hand-edit
 it.** It is produced solely by the deep-improvement renderer
-[`build-report.cjs`](../../../system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs),
+[`build-report.cjs`](../../../../system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs),
 which renders the Markdown FROM `skill-benchmark-report.json` specifically so the
 two artifacts cannot drift. That renderer is the ONLY writer of the report `.md`;
 it takes the report object, not score arguments.
@@ -162,22 +162,22 @@ then re-run Lane C so the renderer regenerates the pair. Never patch the `.md`.
 
 ### Normative contract (owned by deep-improvement — link, do not restate)
 
-- [`scoring_contract.md`](../../../system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md) — the authoritative D1-D5 computation: point weights, Mode A deterministic scoring, the opt-in advisor probe, live-mode dimensions, advisory signals, and funnel/bottleneck ranking.
-- [`operator_guide.md`](../../../system-deep-loop/deep-improvement/references/skill_benchmark/operator_guide.md) — how to run Lane C: invocation, flags, dimension coverage, verdict bands, and target eligibility.
-- [`build-report.cjs`](../../../system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs) — the renderer that owns `skill-benchmark-report.md` (see section 5).
-- [`/deep:skill-benchmark`](../../../../commands/deep/skill-benchmark.md) — the command that drives a Lane C run.
+- [`scoring_contract.md`](../../../../system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md) — the authoritative D1-D5 computation: point weights, Mode A deterministic scoring, the opt-in advisor probe, live-mode dimensions, advisory signals, and funnel/bottleneck ranking.
+- [`operator_guide.md`](../../../../system-deep-loop/deep-improvement/references/skill_benchmark/operator_guide.md) — how to run Lane C: invocation, flags, dimension coverage, verdict bands, and target eligibility.
+- [`build-report.cjs`](../../../../system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs) — the renderer that owns `skill-benchmark-report.md` (see section 5).
+- [`/deep:skill-benchmark`](../../../../../commands/deep/skill-benchmark.md) — the command that drives a Lane C run.
 
 ### Shipped hub trees to model against
 
-- [`system-deep-loop/benchmark/README.md`](../../../system-deep-loop/benchmark/README.md) — a hub benchmark index and run-label set.
-- [`sk-code/benchmark/README.md`](../../../sk-code/benchmark/README.md) — the fullest run-label set with a structure and reading guide.
+- [`system-deep-loop/benchmark/README.md`](../../../../system-deep-loop/benchmark/README.md) — a hub benchmark index and run-label set.
+- [`sk-code/benchmark/README.md`](../../../../sk-code/benchmark/README.md) — the fullest run-label set with a structure and reading guide.
 
 ### Within this packet
 
-- [`../SKILL.md`](../SKILL.md) — the create-benchmark workflow and report contracts.
-- [`README.md`](README.md) — the benchmark-creation reference map.
-- [`behavior_benchmark_guide.md`](behavior_benchmark_guide.md) — authoring guide for the distinct behavior-benchmark family (executor behavior at a deep-loop mode's invocation surface), not the Lane C skill-benchmark storage covered here.
+- [`../SKILL.md`](../../SKILL.md) — the create-benchmark workflow and report contracts.
+- [`README.md`](../_shared/README.md) — the benchmark-creation reference map.
+- [`behavior_benchmark_guide.md`](../behavior_benchmark/behavior_benchmark_guide.md) — authoring guide for the distinct behavior-benchmark family (executor behavior at a deep-loop mode's invocation surface), not the Lane C skill-benchmark storage covered here.
 
 ---
 
-*End of skill-benchmark storage guide — the normative D1-D5 measurement contract lives in [`scoring_contract.md`](../../../system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md), owned by deep-improvement.*
+*End of skill-benchmark storage guide — the normative D1-D5 measurement contract lives in [`scoring_contract.md`](../../../../system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md), owned by deep-improvement.*

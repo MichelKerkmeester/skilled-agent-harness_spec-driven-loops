@@ -59,4 +59,4 @@ The bake-off compared five code-tuned embedders against an 18-pair paraphrased f
 
 ---
 
-*See [pitfalls.md](pitfalls.md) for the common mistakes these adoptions avoided, and [`../SKILL.md`](../SKILL.md) for the authoritative workflow.*
+*See [pitfalls.md](pitfalls.md) for the common mistakes these adoptions avoided, and [`../SKILL.md`](../../SKILL.md) for the authoritative workflow.*

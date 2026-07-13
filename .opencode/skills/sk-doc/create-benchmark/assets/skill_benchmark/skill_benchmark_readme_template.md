@@ -22,7 +22,7 @@ only point to it (see section 5).
 
 Usage:
   1. cp this file to the hub's benchmark/ folder, for example:
-     cp .opencode/skills/sk-doc/create-benchmark/assets/skill_benchmark_readme_template.md \
+     cp .opencode/skills/sk-doc/create-benchmark/assets/skill_benchmark/skill_benchmark_readme_template.md \
         .opencode/skills/<hub>/benchmark/README.md
   2. DELETE the "version:" line above. A shipped hub benchmark README carries the
      five frontmatter fields shown (title / description / trigger_phrases /

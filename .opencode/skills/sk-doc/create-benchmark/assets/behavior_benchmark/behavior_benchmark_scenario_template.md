@@ -18,7 +18,7 @@ Copy-paste scaffold for ONE behavior-benchmark scenario file:
 Usage:
   1. Pick the next zero-padded 3-digit NNN and a lowercase-hyphen slug, then
      cp this file to that path, for example:
-     cp .opencode/skills/sk-doc/create-benchmark/assets/behavior_benchmark_scenario_template.md \
+     cp .opencode/skills/sk-doc/create-benchmark/assets/behavior_benchmark/behavior_benchmark_scenario_template.md \
         .opencode/skills/system-deep-loop/<mode>/behavior_benchmark/scenarios/<PREFIX>-007-verify-first.md
   2. DELETE this template's own frontmatter and this comment. A shipped scenario
      file has NO frontmatter: it starts at the "# <PREFIX>-NNN" H1.

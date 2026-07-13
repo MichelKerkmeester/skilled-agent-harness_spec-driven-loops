@@ -187,16 +187,16 @@ operation_router:
 
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/create-benchmark/SKILL.md
-  reference_map: .opencode/skills/sk-doc/create-benchmark/references/README.md
-  case_studies: .opencode/skills/sk-doc/create-benchmark/references/case_studies.md
-  pitfalls: .opencode/skills/sk-doc/create-benchmark/references/pitfalls.md
-  worked_example: .opencode/skills/sk-doc/create-benchmark/references/worked_example.md
+  reference_map: .opencode/skills/sk-doc/create-benchmark/references/_shared/README.md
+  case_studies: .opencode/skills/sk-doc/create-benchmark/references/_shared/case_studies.md
+  pitfalls: .opencode/skills/sk-doc/create-benchmark/references/_shared/pitfalls.md
+  worked_example: .opencode/skills/sk-doc/create-benchmark/references/_shared/worked_example.md
   core_standards: .opencode/skills/sk-doc/shared/references/core_standards.md
   validation: .opencode/skills/sk-doc/shared/references/validation.md
 
 template_sources:
-  benchmark_report: .opencode/skills/sk-doc/create-benchmark/assets/benchmark_report_template.md
-  source_file: .opencode/skills/sk-doc/create-benchmark/assets/source_template.md
+  benchmark_report: .opencode/skills/sk-doc/create-benchmark/assets/_shared/benchmark_report_template.md
+  source_file: .opencode/skills/sk-doc/create-benchmark/assets/_shared/source_template.md
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/shared/scripts/validate_document.py

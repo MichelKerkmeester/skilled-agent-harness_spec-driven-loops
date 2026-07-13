@@ -103,3 +103,19 @@ _memory:
 
 None blocking. Whether to CI-wire `package_skill.py` is a documented optional follow-up, not in scope.
 <!-- /ANCHOR:questions -->
+
+---
+
+## 8. PHASE DOCUMENTATION MAP
+
+> This packet is a phase parent: the child phase below carries the family-oriented resource grouping and routing-coverage work. Each child validates independently; run `validate.sh --recursive` on this parent to validate the set.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 001 | `001-create-benchmark-reorg-and-routing/` | Group create-benchmark resources into per-family subfolders and add durable behavior/skill/model/fixture routing vocabulary | Complete |
+
+### Phase Transition Rules
+
+- Each child phase MUST pass `validate.sh --strict` independently.
+- This parent spec tracks aggregate progress via the map above.
+- Use `/speckit:resume` on a specific `NNN-phase/` child to resume it.

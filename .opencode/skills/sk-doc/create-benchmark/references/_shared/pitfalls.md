@@ -20,7 +20,7 @@ The mistakes that most often make a skill-local benchmark folder drift from its 
 
 ## 1. OVERVIEW
 
-Each row names a mistake, why it breaks the skill-local surface, and the correct fix. The two case studies in [case_studies.md](case_studies.md) show real adoptions that avoided these traps; the ALWAYS/NEVER rules and authority hierarchy that back them live in [`../SKILL.md`](../SKILL.md) §6.
+Each row names a mistake, why it breaks the skill-local surface, and the correct fix. The two case studies in [case_studies.md](case_studies.md) show real adoptions that avoided these traps; the ALWAYS/NEVER rules and authority hierarchy that back them live in [`../SKILL.md`](../../SKILL.md) §6.
 
 ---
 
@@ -38,4 +38,4 @@ Each row names a mistake, why it breaks the skill-local surface, and the correct
 
 ---
 
-*See [case_studies.md](case_studies.md) for adoptions that avoided these mistakes, and [`../SKILL.md`](../SKILL.md) for the authoritative workflow and rules.*
+*See [case_studies.md](case_studies.md) for adoptions that avoided these mistakes, and [`../SKILL.md`](../../SKILL.md) for the authoritative workflow and rules.*

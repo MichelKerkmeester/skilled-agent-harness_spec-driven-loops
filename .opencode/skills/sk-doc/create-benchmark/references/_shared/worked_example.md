@@ -19,7 +19,7 @@ A miniature rendering of the `benchmark_report.md` shape, so you can see the str
 
 ## 1. OVERVIEW
 
-The fixed ten-section contract and the report style rules live in [`../SKILL.md`](../SKILL.md) §4. The full fillable scaffold, with every section and placeholder, is [`../assets/benchmark/benchmark_report_template.md`](../assets/benchmark/benchmark_report_template.md) — copy that to author a real report. This file shows sections 1 to 3 in pattern so the shape is legible at a glance.
+The fixed ten-section contract and the report style rules live in [`../SKILL.md`](../../SKILL.md) §4. The full fillable scaffold, with every section and placeholder, is [`../assets/_shared/benchmark_report_template.md`](../../assets/_shared/benchmark_report_template.md) — copy that to author a real report. This file shows sections 1 to 3 in pattern so the shape is legible at a glance.
 
 ---
 
@@ -91,4 +91,4 @@ Retrieval pipeline = <pipeline-description>. Toggle via `<config-flag>=true|fals
 
 ## 3. SECTIONS 4 TO 10
 
-Subsequent sections follow the same pattern: H2 numbered headers, ALL CAPS section names, tables for data, code blocks for verbatim commands. Each section gets its own slug; keep slugs stable across revisions so deep links keep working. See [`../assets/benchmark/benchmark_report_template.md`](../assets/benchmark/benchmark_report_template.md) for all ten sections rendered with fill-in placeholders.
+Subsequent sections follow the same pattern: H2 numbered headers, ALL CAPS section names, tables for data, code blocks for verbatim commands. Each section gets its own slug; keep slugs stable across revisions so deep links keep working. See [`../assets/_shared/benchmark_report_template.md`](../../assets/_shared/benchmark_report_template.md) for all ten sections rendered with fill-in placeholders.

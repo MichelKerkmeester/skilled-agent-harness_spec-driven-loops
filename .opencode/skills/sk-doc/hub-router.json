@@ -43,7 +43,7 @@
     "create-command-aliases": { "keywords": ["command", "slash command", "create-command", "argument-hint"] },
     "create-feature-catalog-aliases": { "keywords": ["feature catalog", "feature inventory", "feature-catalog"] },
     "create-manual-testing-playbook-aliases": { "keywords": ["testing playbook", "manual testing", "test scenarios", "testing-playbook"] },
-    "create-benchmark-aliases": { "keywords": ["benchmark", "benchmark folder", "benchmark report", "mcp_server benchmarks"] },
+    "create-benchmark-aliases": { "keywords": ["benchmark", "benchmark folder", "benchmark report", "mcp_server benchmarks", "behavior benchmark", "skill-benchmark", "model-benchmark", "benchmark fixture", "benchmark profile", "scenario contract", "run-label folder", "reviewer-prompt fixture"] },
     "create-flowchart-aliases": { "keywords": ["flowchart", "ascii diagram", "decision tree", "swimlane", "ascii flowchart"] },
     "create-changelog-aliases": { "keywords": ["changelog", "create-changelog", "release notes", "version bump", "changelog entry"] },
     "create-quality-control-aliases": { "keywords": ["doc quality", "document quality", "dqi", "quality score", "optimize doc", "validate doc", "human voice", "hvr"] }

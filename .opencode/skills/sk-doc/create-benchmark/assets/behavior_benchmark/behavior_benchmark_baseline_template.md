@@ -17,7 +17,7 @@ Copy-paste scaffold for a behavior_benchmark BASELINE:
 
 Usage:
   1. cp this file to that path, for example:
-     cp .opencode/skills/sk-doc/create-benchmark/assets/behavior_benchmark_baseline_template.md \
+     cp .opencode/skills/sk-doc/create-benchmark/assets/behavior_benchmark/behavior_benchmark_baseline_template.md \
         .opencode/skills/system-deep-loop/<mode>/behavior_benchmark/baselines/claude-baseline.md
   2. DELETE the "version:" line below. A shipped baseline carries the five
      frontmatter fields shown and NO version field.

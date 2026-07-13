@@ -135,9 +135,9 @@ Required and optional files:
 
 `SOURCE.md` is a wayfinding file, not a duplicate audit trail. It contains the spec packet path, why to read it, question-to-file mapping, evidence map, follow-on packet notes, rename or renumber notes, and last-updated date.
 
-Use `assets/benchmark_report_template.md` for `benchmark_report.md` and `assets/source_template.md` for `SOURCE.md`.
+Use `assets/_shared/benchmark_report_template.md` for `benchmark_report.md` and `assets/_shared/source_template.md` for `SOURCE.md`.
 
-Reference `references/README.md` for deep overflow: it routes to the case studies, the report worked example, and common pitfalls.
+Reference `references/_shared/README.md` for deep overflow: it routes to the case studies, the report worked example, and common pitfalls.
 
 ---
 
@@ -314,7 +314,7 @@ invariants, and how long each takes relative to a Claude reference leg. It is a
 package of run contracts, not a numeric bake-off.
 
 The end-to-end authoring path, the scenario-matrix design rules, and the naming
-conventions live in [`references/behavior_benchmark_guide.md`](references/behavior_benchmark_guide.md).
+conventions live in [`references/behavior_benchmark/behavior_benchmark_guide.md`](references/behavior_benchmark/behavior_benchmark_guide.md).
 The single-source measurement contract — the five-dimension rubric, terminal
 buckets, budget formula, entry-surface and clarity enums, and the per-package
 ID-prefix table — lives once in
@@ -343,9 +343,9 @@ the run evidence. The package is the contract; the packet is the proof.
 
 | Output file | Template |
 | --- | --- |
-| `behavior_benchmark.md` | [`assets/behavior_benchmark_index_template.md`](assets/behavior_benchmark_index_template.md) |
-| `scenarios/<PREFIX>-NNN-<slug>.md` | [`assets/behavior_benchmark_scenario_template.md`](assets/behavior_benchmark_scenario_template.md) |
-| `baselines/claude-baseline.md` | [`assets/behavior_benchmark_baseline_template.md`](assets/behavior_benchmark_baseline_template.md) |
+| `behavior_benchmark.md` | [`assets/behavior_benchmark/behavior_benchmark_index_template.md`](assets/behavior_benchmark/behavior_benchmark_index_template.md) |
+| `scenarios/<PREFIX>-NNN-<slug>.md` | [`assets/behavior_benchmark/behavior_benchmark_scenario_template.md`](assets/behavior_benchmark/behavior_benchmark_scenario_template.md) |
+| `baselines/claude-baseline.md` | [`assets/behavior_benchmark/behavior_benchmark_baseline_template.md`](assets/behavior_benchmark/behavior_benchmark_baseline_template.md) |
 
 ### Authoring Workflow
 
@@ -387,7 +387,7 @@ Complete these steps in order; the guide expands each.
 
 ## 10. SKILL-BENCHMARK STORAGE AND INDEX
 
-A skill-benchmark measures whether a skill is well-routed, discoverable, efficient, and useful; it is run by the deep-improvement Lane C harness (`/deep:skill-benchmark`), which emits a JSON+Markdown report pair per run. This packet owns exactly two things: the **storage convention** for a hub's `benchmark/` tree and the **template for its `benchmark/README.md` index**. It never authors the per-run report, the runner, or the scoring (see ALWAYS / NEVER). The full storage convention, run-label naming, and renderer boundary live in [`references/skill_benchmark_storage_guide.md`](references/skill_benchmark_storage_guide.md); the D1-D5 contract stays lane-local, cross-linked and never restated.
+A skill-benchmark measures whether a skill is well-routed, discoverable, efficient, and useful; it is run by the deep-improvement Lane C harness (`/deep:skill-benchmark`), which emits a JSON+Markdown report pair per run. This packet owns exactly two things: the **storage convention** for a hub's `benchmark/` tree and the **template for its `benchmark/README.md` index**. It never authors the per-run report, the runner, or the scoring (see ALWAYS / NEVER). The full storage convention, run-label naming, and renderer boundary live in [`references/skill_benchmark/skill_benchmark_storage_guide.md`](references/skill_benchmark/skill_benchmark_storage_guide.md); the D1-D5 contract stays lane-local, cross-linked and never restated.
 
 ### Storage Shape
 
@@ -411,7 +411,7 @@ Runs are siblings; one never overwrites another. `baseline/` is the frozen befor
 
 | Output file | Template |
 | --- | --- |
-| `<skill-or-hub>/benchmark/README.md` | [`assets/skill_benchmark_readme_template.md`](assets/skill_benchmark_readme_template.md) |
+| `<skill-or-hub>/benchmark/README.md` | [`assets/skill_benchmark/skill_benchmark_readme_template.md`](assets/skill_benchmark/skill_benchmark_readme_template.md) |
 | `skill-benchmark-report.md` | None — renderer-owned; see NEVER below |
 
 ### Authoring Workflow
@@ -442,7 +442,7 @@ Runs are siblings; one never overwrites another. `baseline/` is the frozen befor
 
 ## 11. MODEL-BENCHMARK FIXTURES AND PROFILES
 
-A model-benchmark run scores what a model or prompt framework produces against a fixed, held-out oracle; it is run by the deep-improvement Lane B harness (`/deep:model-benchmark`). This packet owns the **authored inputs** — the fixtures the model answers and the run profiles that drive a run. Both are data only; nothing in those directories executes. It never authors the evaluator, scorers, or reviewer-verdict contract (see ALWAYS / NEVER). The fixture-family taxonomy, profile shape, and lane boundary live in [`references/model_benchmark_fixture_guide.md`](references/model_benchmark_fixture_guide.md).
+A model-benchmark run scores what a model or prompt framework produces against a fixed, held-out oracle; it is run by the deep-improvement Lane B harness (`/deep:model-benchmark`). This packet owns the **authored inputs** — the fixtures the model answers and the run profiles that drive a run. Both are data only; nothing in those directories executes. It never authors the evaluator, scorers, or reviewer-verdict contract (see ALWAYS / NEVER). The fixture-family taxonomy, profile shape, and lane boundary live in [`references/model_benchmark/model_benchmark_fixture_guide.md`](references/model_benchmark/model_benchmark_fixture_guide.md).
 
 ### Artifact Shape
 
@@ -468,9 +468,9 @@ A fixture is detected by its **shape**, not its filename; three families each fe
 
 | Output file | Template |
 | --- | --- |
-| Code-task oracle fixture `<slug>.json` | [`assets/model_benchmark_code_task_fixture_template.md`](assets/model_benchmark_code_task_fixture_template.md) |
-| Pattern / capability or reviewer-prompt fixture `<slug>.json` | [`assets/model_benchmark_pattern_fixture_template.md`](assets/model_benchmark_pattern_fixture_template.md) |
-| Run profile `<profile>.json` | [`assets/model_benchmark_profile_template.md`](assets/model_benchmark_profile_template.md) |
+| Code-task oracle fixture `<slug>.json` | [`assets/model_benchmark/model_benchmark_code_task_fixture_template.md`](assets/model_benchmark/model_benchmark_code_task_fixture_template.md) |
+| Pattern / capability or reviewer-prompt fixture `<slug>.json` | [`assets/model_benchmark/model_benchmark_pattern_fixture_template.md`](assets/model_benchmark/model_benchmark_pattern_fixture_template.md) |
+| Run profile `<profile>.json` | [`assets/model_benchmark/model_benchmark_profile_template.md`](assets/model_benchmark/model_benchmark_profile_template.md) |
 
 Each template's fenced json block is the only thing copied into the shipped `.json`; shipped fixtures and profiles carry no frontmatter and no comments.
 
@@ -504,10 +504,10 @@ Each template's fenced json block is the only thing copied into the shipped `.js
 
 **Within this packet** — family guides and the overflow route-map; the fillable templates are mapped in each family section above:
 
-- [`references/README.md`](references/README.md) — overflow route-map (case studies, worked example, pitfalls).
-- [`references/behavior_benchmark_guide.md`](references/behavior_benchmark_guide.md) — behavior package authoring path (§9).
-- [`references/skill_benchmark_storage_guide.md`](references/skill_benchmark_storage_guide.md) — skill-benchmark storage convention and renderer boundary (§10).
-- [`references/model_benchmark_fixture_guide.md`](references/model_benchmark_fixture_guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§11).
+- [`references/_shared/README.md`](references/_shared/README.md) — overflow route-map (case studies, worked example, pitfalls).
+- [`references/behavior_benchmark/behavior_benchmark_guide.md`](references/behavior_benchmark/behavior_benchmark_guide.md) — behavior package authoring path (§9).
+- [`references/skill_benchmark/skill_benchmark_storage_guide.md`](references/skill_benchmark/skill_benchmark_storage_guide.md) — skill-benchmark storage convention and renderer boundary (§10).
+- [`references/model_benchmark/model_benchmark_fixture_guide.md`](references/model_benchmark/model_benchmark_fixture_guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§11).
 
 **Lane-owned contracts** — cross-link, never restate:
 

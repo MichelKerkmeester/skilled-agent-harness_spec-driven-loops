@@ -19,7 +19,7 @@ authoring path end to end and points at the three templates and the normative
 framework. It does NOT restate the measurement contract: the five-dimension
 rubric, terminal buckets, budget formula, entry-surface and clarity enums, and the
 per-package ID-prefix table live once in
-[`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../system-deep-loop/shared/behavior-benchmark/framework.md).
+[`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md).
 Where this guide and that framework diverge, the framework prevails.
 
 ---
@@ -40,7 +40,7 @@ and the scoring so results stay comparable across modes.
 
 ### How it differs from an MCP promotion benchmark
 
-The other benchmark family this packet authors — see [`../SKILL.md`](../SKILL.md)
+The other benchmark family this packet authors — see [`../SKILL.md`](../../SKILL.md)
 sections 3 through 8 — promotes a completed MCP retrieval or runtime bake-off into
 a consuming skill's `mcp_server/benchmarks/` folder with a ten-section
 `benchmark_report.md`. The two families are distinct and must not be conflated:
@@ -75,9 +75,9 @@ Author this shape inside the owning deep-loop mode-packet:
 
 | File | Required | Template |
 | --- | --- | --- |
-| `behavior_benchmark.md` | Yes | [`../assets/behavior_benchmark_index_template.md`](../assets/behavior_benchmark_index_template.md) |
-| `scenarios/<PREFIX>-NNN-<slug>.md` | One per scenario | [`../assets/behavior_benchmark_scenario_template.md`](../assets/behavior_benchmark_scenario_template.md) |
-| `baselines/claude-baseline.md` | Yes | [`../assets/behavior_benchmark_baseline_template.md`](../assets/behavior_benchmark_baseline_template.md) |
+| `behavior_benchmark.md` | Yes | [`../assets/behavior_benchmark/behavior_benchmark_index_template.md`](../../assets/behavior_benchmark/behavior_benchmark_index_template.md) |
+| `scenarios/<PREFIX>-NNN-<slug>.md` | One per scenario | [`../assets/behavior_benchmark/behavior_benchmark_scenario_template.md`](../../assets/behavior_benchmark/behavior_benchmark_scenario_template.md) |
+| `baselines/claude-baseline.md` | Yes | [`../assets/behavior_benchmark/behavior_benchmark_baseline_template.md`](../../assets/behavior_benchmark/behavior_benchmark_baseline_template.md) |
 
 Fixtures, lane-configs, transcripts, result JSONs, and scorecards are NOT shipped
 in this package. The executing spec-packet phase provisions the fixtures and holds
@@ -110,7 +110,7 @@ These match the sk-doc reference-doc conventions and the shipped
 Complete these steps in order.
 
 1. **Read the framework.** Load
-   [`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../system-deep-loop/shared/behavior-benchmark/framework.md)
+   [`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md)
    in full: the scenario contract schema, the five-dimension rubric, the terminal
    buckets, the budget formula, and the ID-prefix table. It is the authority for
    every field the scenario template leaves as a placeholder.
@@ -208,14 +208,14 @@ isolates, and any axis intentionally left out with its reason.
 
 | File | Purpose |
 | --- | --- |
-| [`../assets/behavior_benchmark_index_template.md`](../assets/behavior_benchmark_index_template.md) | Scaffold for the `behavior_benchmark.md` package index |
-| [`../assets/behavior_benchmark_scenario_template.md`](../assets/behavior_benchmark_scenario_template.md) | Scaffold for one `<PREFIX>-NNN-<slug>.md` scenario contract |
-| [`../assets/behavior_benchmark_baseline_template.md`](../assets/behavior_benchmark_baseline_template.md) | Scaffold for `baselines/claude-baseline.md` |
+| [`../assets/behavior_benchmark/behavior_benchmark_index_template.md`](../../assets/behavior_benchmark/behavior_benchmark_index_template.md) | Scaffold for the `behavior_benchmark.md` package index |
+| [`../assets/behavior_benchmark/behavior_benchmark_scenario_template.md`](../../assets/behavior_benchmark/behavior_benchmark_scenario_template.md) | Scaffold for one `<PREFIX>-NNN-<slug>.md` scenario contract |
+| [`../assets/behavior_benchmark/behavior_benchmark_baseline_template.md`](../../assets/behavior_benchmark/behavior_benchmark_baseline_template.md) | Scaffold for `baselines/claude-baseline.md` |
 
 ### Normative contract and runner
 
-- [`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../system-deep-loop/shared/behavior-benchmark/framework.md) — the single-source measurement contract: scenario schema, five-dimension rubric, terminal buckets, budget formula, ID-prefix table.
-- [`../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs`](../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
+- [`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md) — the single-source measurement contract: scenario schema, five-dimension rubric, terminal buckets, budget formula, ID-prefix table.
+- [`../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs`](../../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
 
 ### Worked reference package
 
@@ -223,4 +223,4 @@ isolates, and any axis intentionally left out with its reason.
 
 ---
 
-*End of behavior benchmark authoring guide — the normative measurement contract lives in [`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../system-deep-loop/shared/behavior-benchmark/framework.md).*
+*End of behavior benchmark authoring guide — the normative measurement contract lives in [`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md).*

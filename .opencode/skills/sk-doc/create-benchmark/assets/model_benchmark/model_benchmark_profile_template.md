@@ -17,7 +17,7 @@ Copy-paste scaffold for ONE Lane B model-benchmark PROFILE:
 
 Usage:
   1. Pick a lowercase-hyphen profile id, then cp this file to that path, for example:
-     cp .opencode/skills/sk-doc/create-benchmark/assets/model_benchmark_profile_template.md \
+     cp .opencode/skills/sk-doc/create-benchmark/assets/model_benchmark/model_benchmark_profile_template.md \
         .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/my-profile.json
   2. The shipped artifact is a JSON file, NOT markdown: it carries NO frontmatter and NO
      prose. Keep ONLY the contents of the fenced json block below, drop this whole .md
@@ -153,8 +153,8 @@ Field guidance (the enums and hard rules are authoritative in MODES.md and profi
 
 ## 3. RELATED RESOURCES
 
-- [`../../../system-deep-loop/deep-improvement/scripts/model-benchmark/MODES.md`](../../../system-deep-loop/deep-improvement/scripts/model-benchmark/MODES.md) — the A–F mode operator guide: mode enum, swept axis, and per-mode `groupBy` / scorer defaults with a runnable profile delta for each.
-- [`../../../system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs`](../../../system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs) — the hard validation contract (`validateProfile`): mode enum, executor enum, dimension-weight sum, threshold range, positive sample count.
-- [`../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/README.md`](../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/README.md) — the shipped profiles, the shared-vs-sweep-only key split, and the `{spec_folder}` token policy.
-- [`../../../system-deep-loop/deep-improvement/scripts/model-benchmark/README.md`](../../../system-deep-loop/deep-improvement/scripts/model-benchmark/README.md) — the `run-benchmark.cjs` / `dispatch-model.cjs` entrypoints that consume a profile, and [`SWEEP.md`](../../../system-deep-loop/deep-improvement/scripts/model-benchmark/SWEEP.md) for how a sweep runs and what the outputs mean.
+- [`../../../system-deep-loop/deep-improvement/scripts/model-benchmark/MODES.md`](../../../../system-deep-loop/deep-improvement/scripts/model-benchmark/MODES.md) — the A–F mode operator guide: mode enum, swept axis, and per-mode `groupBy` / scorer defaults with a runnable profile delta for each.
+- [`../../../system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs`](../../../../system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs) — the hard validation contract (`validateProfile`): mode enum, executor enum, dimension-weight sum, threshold range, positive sample count.
+- [`../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/README.md) — the shipped profiles, the shared-vs-sweep-only key split, and the `{spec_folder}` token policy.
+- [`../../../system-deep-loop/deep-improvement/scripts/model-benchmark/README.md`](../../../../system-deep-loop/deep-improvement/scripts/model-benchmark/README.md) — the `run-benchmark.cjs` / `dispatch-model.cjs` entrypoints that consume a profile, and [`SWEEP.md`](../../../../system-deep-loop/deep-improvement/scripts/model-benchmark/SWEEP.md) for how a sweep runs and what the outputs mean.
 - The scorer/evaluator and reviewer scoring contracts stay lane-local in `system-deep-loop/deep-improvement`; cross-link them from there, never copy them into this package.

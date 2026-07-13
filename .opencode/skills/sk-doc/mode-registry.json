@@ -107,7 +107,7 @@
       "packetSkillName": "create-benchmark",
       "grandfatheredFolderMismatch": false,
       "command": "/create:benchmark",
-      "aliases": ["create benchmark folder", "promote benchmark", "mcp_server benchmarks", "benchmark report package"],
+      "aliases": ["create benchmark folder", "promote benchmark", "mcp_server benchmarks", "benchmark report package", "behavior benchmark", "skill-benchmark", "model-benchmark", "benchmark fixture", "benchmark profile"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-benchmark" }
     },
     {

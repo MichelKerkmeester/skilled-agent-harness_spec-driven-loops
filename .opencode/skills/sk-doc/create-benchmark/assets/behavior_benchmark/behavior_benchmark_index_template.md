@@ -17,7 +17,7 @@ Copy-paste scaffold for a behavior_benchmark PACKAGE INDEX:
 
 Usage:
   1. cp this file to that path, for example:
-     cp .opencode/skills/sk-doc/create-benchmark/assets/behavior_benchmark_index_template.md \
+     cp .opencode/skills/sk-doc/create-benchmark/assets/behavior_benchmark/behavior_benchmark_index_template.md \
         .opencode/skills/system-deep-loop/<mode>/behavior_benchmark/behavior_benchmark.md
   2. DELETE the "version:" line below. A shipped behavior_benchmark index carries
      the five frontmatter fields shown (title / description / trigger_phrases /
@@ -45,7 +45,7 @@ This package specifies what an executor **model** should do once the
 a `behavior_benchmark` package carried by the `{{MODE}}` mode-packet, alongside
 the packages the sibling deep-loop workflow sub-skills carry; the single-source
 measurement contract it instantiates is
-[../../shared/behavior-benchmark/framework.md](../../shared/behavior-benchmark/framework.md),
+[../../shared/behavior-benchmark/framework.md](../../../../system-deep-loop/shared/behavior-benchmark/framework.md),
 which is normative — where this index or a scenario note diverges, that framework
 prevails. Each scenario here is a self-contained run contract scored on the
 framework's five-dimension rubric and classified into exactly one terminal bucket.
@@ -92,7 +92,7 @@ Entry-surface coverage: {{E1_COUNT_AND_CELLS}}, {{E2_COUNT_AND_CELLS}}, {{E3_COU
 ## 4. EXECUTION
 
 The runner is
-[../../shared/behavior-benchmark/behavior-bench-run.cjs](../../shared/behavior-benchmark/behavior-bench-run.cjs),
+[../../shared/behavior-benchmark/behavior-bench-run.cjs](../../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs),
 invoked per cell as one run of one scenario contract against one executor, with
 the scenario's `fixture` absorbing all writes for the run. Checkpoint and
 delegation-evidence extraction, the no-progress watchdog, scoring, and
@@ -113,8 +113,8 @@ one.
 
 ## 5. RELATED RESOURCES
 
-- [../../shared/behavior-benchmark/framework.md](../../shared/behavior-benchmark/framework.md) — the normative measurement contract this package instantiates (five-dimension rubric, terminal buckets, ID-prefix table, budget formula).
-- [../../shared/behavior-benchmark/behavior-bench-run.cjs](../../shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
-- [../README.md](../README.md) — the mode README (its availability / build-state note for the invocation surface, when applicable).
-- [../SKILL.md](../SKILL.md) — the mode contract: state machine, delegation contract, and the invariants these scenarios probe.
+- [../../shared/behavior-benchmark/framework.md](../../../../system-deep-loop/shared/behavior-benchmark/framework.md) — the normative measurement contract this package instantiates (five-dimension rubric, terminal buckets, ID-prefix table, budget formula).
+- [../../shared/behavior-benchmark/behavior-bench-run.cjs](../../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
+- [../README.md](../../README.md) — the mode README (its availability / build-state note for the invocation surface, when applicable).
+- [../SKILL.md](../../SKILL.md) — the mode contract: state machine, delegation contract, and the invariants these scenarios probe.
 - [./baselines/claude-baseline.md](./baselines/claude-baseline.md) — per-scenario Claude-leg baseline checkpoints.
