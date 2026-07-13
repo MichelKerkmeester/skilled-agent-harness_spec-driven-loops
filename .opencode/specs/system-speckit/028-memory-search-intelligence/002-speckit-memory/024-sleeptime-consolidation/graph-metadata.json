@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The internal Memory MCP has no off-turn memory reorganization",
     "created_at": "2026-06-19T05:47:05.579Z",
-    "last_save_at": "2026-07-11T18:40:35.937Z",
+    "last_save_at": "2026-07-12T13:24:51.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,9 +218,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ae056f3eb278f3ab5519d8d0f40f5f3c37e6183ea8f44f626c92e1656bc74df",
+    "source_fingerprint": "sha256:3ca73d1ba781b9117bf402f652d34d41289257096b11dfd1cefe97b20277297e",
     "source_doc_hashes": {
-      "spec.md": "94a832fa3e6450f171ddd1030eff087554f8e2e71fa814dab01611885e56ef9b",
+      "spec.md": "977bc5ea6aefcf9a74a028350a0473848b6b68169d3a325e2119d5b9954b4450",
       "plan.md": "608011245fa579dc623b52d86f5cf767f5a77cfd18148d4644f29fe4c5e9b224",
       "tasks.md": "32e229956095210b1aa6b4ef961f9bc5b0697b030ca8025dcb94a34a07969cad",
       "checklist.md": "478ebcee918cab8854631ad403ba47bda76a0cdff41cb9a27978e72758f35485",

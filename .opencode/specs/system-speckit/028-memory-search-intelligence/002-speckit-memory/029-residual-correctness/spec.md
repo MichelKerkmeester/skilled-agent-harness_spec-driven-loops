@@ -50,7 +50,7 @@ _memory:
 | **Status** | DONE |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY) |
 | **Wave** | Wave-0 (correctness, always-on, no harness/benchmark dependency) |
 | **Source research** | `../../research/synthesis/08-retrieval-evaluation-findings.md` (Wave-0 §9-10), `../research/retrieval-evaluation/research.md`, `../research/retrieval-evaluation/deltas/iter-002.jsonl` (A4), `../research/retrieval-evaluation/deltas/iter-007.jsonl` (A7) |

@@ -176,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -183,12 +189,6 @@
       },
       {
         "name": "Kit Memory",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Capture",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED: `memory-types.ts:93-98` (decay-only label, no success/failure counters), `research/iterations/iteration-015.md:9`]",
     "created_at": "2026-06-19T05:40:37.447Z",
-    "last_save_at": "2026-07-11T18:40:35.895Z",
+    "last_save_at": "2026-07-12T13:24:50.326Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,9 +219,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb36880117f7865c1b1ce5e61a45fae1ff60bec4c0886b282829737c428e868c",
+    "source_fingerprint": "sha256:c14deae061a4cb418ee1b94088e26582c414d1876790e3e49672aa8fb2cb0800",
     "source_doc_hashes": {
-      "spec.md": "246fb657d12acdecaa195d7050be7d93de390b41eed79b506f1832eb7d7602a8",
+      "spec.md": "60e468c76dc3bb7df010abab7e69902d8f092d87ea0576545f39d24aa9ce7e8c",
       "plan.md": "a3284aa1c13abf028bdb5534a183b29ec1c5a6fa5671794d6575c3cb13bd75b8",
       "tasks.md": "10c78e5884bde42b930ea35c3fd7a85c58c88a6993bc906104ba291cab727701",
       "checklist.md": "8c37709b28fda99c305c2e1ae2be4ce673d6ffbb32363a8a9600031b51489218",

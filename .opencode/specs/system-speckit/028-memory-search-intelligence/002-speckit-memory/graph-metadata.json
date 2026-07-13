@@ -76,11 +76,15 @@
       "candidate"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "research/research.md",
       "001-corpus-reindex-gate-zero/spec.md",
+      "029-residual-correctness/spec.md",
+      "039-substrate-sandbox-cleanup/spec.md",
+      "040-opencode-temp-worker-reaping/spec.md",
+      "042-embedder-relisten-and-reaper-hardening/spec.md",
       "shared/algorithms/rrf-fusion.ts",
       "mcp_server/lib/search/pipeline/stage2-fusion.ts",
       "lib/search/query-router.ts",
@@ -184,12 +188,6 @@
         "source": "derived"
       },
       {
-        "name": "Wired Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -197,6 +195,12 @@
       },
       {
         "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -234,16 +238,16 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-07-11T19:51:13.766Z",
+    "last_save_at": "2026-07-12T13:12:08.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6954e0a5f01bb032a91ced7420b131d50698ea8670baa893d72a4ee3f9d20f8e",
+    "source_fingerprint": "sha256:a454da81899fbc177d33dba6d8604bdd905a540649c8ae112ac1de802cbdff84",
     "source_doc_hashes": {
-      "spec.md": "3118fd23b63b053ba9345c0a29eea1a15e9bd8ffa7a342c558555019c1a003a7",
+      "spec.md": "c8485532e3ba33c76f52f5ca3b39adba6d6fdd6ff69831a32434728c76412e76",
       "research/research.md": "1b660c1db38d7d958962be1851e6c18522db6929f4636700136c59e70fc8f604"
     },
     "last_active_child_id": "system-speckit/028-memory-search-intelligence/002-speckit-memory/039-substrate-sandbox-cleanup",

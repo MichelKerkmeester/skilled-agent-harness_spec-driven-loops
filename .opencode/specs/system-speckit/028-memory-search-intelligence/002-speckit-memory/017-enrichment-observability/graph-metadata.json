@@ -119,13 +119,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The Memory",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Expose",
+        "name": "Problem Statement The Memory",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async, concurrency-capped scheduler runs the actual entity/graph enrichment later [CONFIRMED: `handlers/memory-save.ts:2934-2987`, `lib/search/vector-index-schema.ts:1884-1885`, `postinsertenrichmentstatus TEXT NOT NULL DEFAULT 'complete'`]",
     "created_at": "2026-06-19T05:40:37.448Z",
-    "last_save_at": "2026-07-11T18:40:35.904Z",
+    "last_save_at": "2026-07-12T13:24:50.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3eaf32b2bf42bdafcdb2cdc47b28cc72da52c2e0ccee5c3a3552f1e13ac45af1",
+    "source_fingerprint": "sha256:a72fb875419d29f1ce51cd757628d8d2dbf15c403b587b05ae8c285d50b0c89e",
     "source_doc_hashes": {
-      "spec.md": "4070cef12fb707999f745f65fb7d0d3fdcb8d44a5877dd911d466107bcc8b383",
+      "spec.md": "29f9892c7ae936cd43b1c9d6140103deee6c16ca2f7f7ccefc22d5ca651dc94d",
       "plan.md": "eb110a67ad3e4b70a52c48fa02775244a2d059cf1dfd55cc1bf54bc61af6395e",
       "tasks.md": "281be462462a984c31063c33f32aa078f3ebaeff4433647ba0a2066191c7e192",
       "implementation-summary.md": "8f0c03c6b5844cf681e17eeedec512c853bfc77dfaefb65389c132342a0a3b63"

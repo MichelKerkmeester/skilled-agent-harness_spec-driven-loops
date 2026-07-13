@@ -190,7 +190,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The Spec",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary",
     "created_at": "2026-06-19T05:40:37.446Z",
-    "last_save_at": "2026-07-11T18:40:35.883Z",
+    "last_save_at": "2026-07-12T13:24:50.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,9 +220,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6142285b33ea4639c670f3fa3fbc6a413fa6056d557c21731ccea81cf65ca13e",
+    "source_fingerprint": "sha256:d7e8e31684043826f6059c60c88340c1e7d165dd6fb718e418bbbc1de124457e",
     "source_doc_hashes": {
-      "spec.md": "fc3f770b60a334da108e40eb58e898a50b476711a44040fe30c8a2b44b91d2b9",
+      "spec.md": "fe09b59ef265bb4c9b332fec917ccb2bae579ccedf77933d85e2494d4d0f20ad",
       "plan.md": "0c4730107ca25e9d7272d8de861e73f67eaf84a402525dac5cb644308d9a868d",
       "tasks.md": "f0bdc486a910e726274b4897c74458880f15d3a2999f4b28c0807d2ac234bcc3",
       "checklist.md": "5ae1ea3cd87f7031eaf1676400f3e5600af908043c634b81e4e19dc58113d222",

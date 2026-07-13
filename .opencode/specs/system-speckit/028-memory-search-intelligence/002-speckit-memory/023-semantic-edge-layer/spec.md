@@ -61,7 +61,7 @@ The internal causal graph stores edges in SQLite only: an edge is a `(source_id,
 | **Status** | No-Go (Partial) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Wave** | Wave-2 (prove-first, shadow-gated) |
 | **Candidates** | semantic-edge-layer, GR-fact-embedding-on-edge (root), unlocking CG-edge-vector-index, CG-edge-aware-triplet-search, GR-semantic-fact-dedup-merge, GR-semantic-invalidation-discovery |
 | **Parent Spec** | ../spec.md |

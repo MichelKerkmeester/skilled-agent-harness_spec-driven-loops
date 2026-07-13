@@ -47,7 +47,7 @@ _memory:
 | **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Candidate** | `corpus-reindex-gate-zero` (a.k.a. C9-4-assertEmbeddingCoverage, gate-zero) |
 | **Successor** | ../002-determinism-content-id-foundation/spec.md |
 <!-- /ANCHOR:metadata -->

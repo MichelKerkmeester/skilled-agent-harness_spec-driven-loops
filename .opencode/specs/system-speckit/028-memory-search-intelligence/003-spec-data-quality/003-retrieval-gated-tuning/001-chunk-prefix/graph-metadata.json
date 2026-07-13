@@ -106,6 +106,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -125,12 +131,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector",
     "created_at": "2026-06-27T17:15:36.300Z",
-    "last_save_at": "2026-07-11T18:40:36.124Z",
+    "last_save_at": "2026-07-12T13:12:08.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d76cb2160bc392a0d397d49e7e8285c2284c9013c578c38c71327eb19a2fde1",
+    "source_fingerprint": "sha256:790e753716b9723c1325f5277b1099cdad0a426b08324f21a32aa7d6ab2b125f",
     "source_doc_hashes": {
-      "spec.md": "010614c3cb30abd0239d0f2b55ee8a929c9ed797ec790c7951b36e4fb2dbcf00",
-      "plan.md": "7069789816fd4395ffdce6a590d2662326aa126f2c3fa163bec3c860772e13f1",
-      "tasks.md": "e9892c2b3d265912138ac2b6a016c1452a6eb558f4ad846fde6512ac2f39c0b3",
-      "checklist.md": "48dd8d28d0b15a8e84cb14cce2d66e06df50a9bb6be9dd73680f4f1402e5a27e",
-      "implementation-summary.md": "d3625887455934999104e925c6513c5ab364b1c92a3818020cf6a51c4f051771"
+      "spec.md": "fa07eac68a125b8954845d21493ddb0b9e9b1b79b24412c04e62edb932739eea",
+      "plan.md": "ef92f6b07434d145ca8c914eb49b4133d6a8e1095b385d0dcddfa2a92e38caea",
+      "tasks.md": "b9203fc50c35f941006e1a0f5ec45bdf42be4b2abe014ad2acf1b54cd4abd128",
+      "checklist.md": "5b6ee536b79b4439ac86d211c399523ea1b2e76669cefd7b1960163ed9b7f11f",
+      "implementation-summary.md": "b85138595e70bfe86164a99cbb65e7e83e6deae4dd49bb1c633cb5572299c31d"
     },
     "last_active_child_id": null,
     "last_active_at": null

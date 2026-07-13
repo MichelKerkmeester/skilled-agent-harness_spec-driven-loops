@@ -85,6 +85,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -104,12 +110,6 @@
       },
       {
         "name": "Change Type",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The eight shipped CI workflows are all `on: pullrequest` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/` returns empty, so no data-quality check runs on a timer or on demand",
     "created_at": "2026-06-27T17:15:35.490Z",
-    "last_save_at": "2026-07-11T18:40:36.114Z",
+    "last_save_at": "2026-07-12T13:12:08.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19a57513b29d282ff0055fe8fca6894f01b60365977768aba311bf2feecc0ecb",
+    "source_fingerprint": "sha256:415b1214c0ee2941fbbb6c82d612433494020e78ea617651d0b067ec3bdc5596",
     "source_doc_hashes": {
-      "spec.md": "b7ece4bd79db58f23ab0bf388ad5594efe9fb85f6521be10205dd0b202d760d6",
+      "spec.md": "85556874436eef534ed294d668ce8da830910277ed8355d46d6bbdfb1eacdd51",
       "plan.md": "3428fb604da5fa9fe97c577abeffeb99329a95f62105d5b5c5661a53d24080bb",
       "tasks.md": "5d65c07c3db9e182b9d4b8c1163ef603154276e5596c534876df244efd77d917",
       "checklist.md": "765145eea2e943a01eecfaf7e03732c94df3ec90bda9ad6cc2dd9cee7266242b",
-      "implementation-summary.md": "5c92a5e9dd9b33533a754d42583524d98446e85d23d557a29c80b9b8c7e6aa0d"
+      "implementation-summary.md": "281787d1fa0cfc2019e56c141b0a965f8b0b21d0bf118e1ddb7c85fb169c16bc"
     },
     "last_active_child_id": null,
     "last_active_at": null

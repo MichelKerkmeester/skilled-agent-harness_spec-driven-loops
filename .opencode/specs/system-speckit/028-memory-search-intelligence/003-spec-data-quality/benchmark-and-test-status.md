@@ -1,10 +1,32 @@
-# 005 Spec Data-Quality: Benchmark and Test Status
+---
+title: "003 Spec Data-Quality: Benchmark and Test Status"
+description: "Current supersession guidance plus the preserved historical benchmark-contract table for the data-quality program."
+trigger_phrases:
+  - "spec data quality benchmark status"
+  - "historical benchmark contract"
+  - "data quality test status"
+importance_tier: "normal"
+contextType: "research"
+---
+# 003 Spec Data-Quality: Benchmark and Test Status
+
+This supplementary record separates current navigation from the preserved benchmark contracts that guided the original research scaffold.
+
+---
+
+## 1. Current State and Supersession (2026-07-12)
+
+This document preserves the original 001-028 proposed benchmark contract as a dated research-stage snapshot. It is not a current claim that nothing shipped or ran. Later generated-metadata, migration, validation and search-quality waves produced shipped and measured evidence under the reorganized topology.
+
+Current navigation uses `graph-metadata.json`, whose 20 direct `children_ids` are authoritative, plus the current child documents at those canonical paths. `SUMMARY.md` preserves the former 44/53-child numbering as migration provenance. Use per-child `implementation-summary.md` files for present delivery claims and retain the table below unchanged as the proposed-contract baseline.
 
 Single-pane benchmark-and-test record for the whole 003-spec-data-quality program. All 28 phases (001 through 028) sit in one table below, grouped by tier. This is a supplementary record, not a canonical spec doc.
 
-> **STATUS: SPECIFIED, NOT RUN.** Every row below is what a phase *declares* it would measure, never a result. The whole program is research-only. No code has landed, nothing is built and nothing is measured. Read each Benchmark and Test cell as a contract a future build would have to clear, not as evidence it cleared. The single measured-class item in the parent narrative (A4, phase 004) is also still SPECIFIED here because no build run has happened in this program.
+> **HISTORICAL STATUS SNAPSHOT (2026-06-21): SPECIFIED, NOT RUN.** Every 001-028 row below records what the original phase declared it would measure, never a result from that snapshot. This paragraph is retained as dated provenance and is superseded for current delivery state by the section above and phase-local implementation evidence.
 
-## The truncation-law spine
+---
+
+## 2. The truncation-law spine
 
 The production default search route never cuts below a 3-result minimum and returns up to 20. `DEFAULT_MIN_RESULTS = 3` is a never-cut-below-3 floor guarantee, not a cap, so a contribution that lands past rank 3 is not mechanically invisible at prod. Two stages can trim the tail above that floor. Confidence truncation is cliff-conditional and returns 3..20, cutting only on a relevance gap past rank 3. Token-budget truncation is the real prod-limiting stage. What splits how the phases declare their metric is not a hard top-3 window but the eval-vs-prod fidelity gap, because the eval path skips truncation while the prod path runs it.
 
@@ -13,7 +35,9 @@ The production default search route never cuts below a 3-result minimum and retu
 
 The program inherits the production-truth finding from the parent `028-memory-search-intelligence/benchmark-status.md`: no Tier-C retrieval candidate earns a prod-path keep until the phase-015 prod read moves, and the floor minimum itself does not move until the phase-027 experiment sweeps settings 5/8/10 and shows results past rank 3 are signal rather than truncation noise. Until both run, no retrieval claim carries measured support. The direction survives the magnitude correction: retrieval stays gated on a prod-path read and write-time ships on cost.
 
-## Benchmark and test table
+---
+
+## 3. Benchmark and test table
 
 | Phase | Benchmark (metric : pass/regress threshold) | Test (file : key assertion) | Default-safety |
 |-------|----------------------------------------------|------------------------------|----------------|
@@ -53,7 +77,9 @@ The program inherits the production-truth finding from the parent `028-memory-se
 | **Meta (029, executed)** | | | |
 | 029 vague-query-model-benchmark | model-behavior characterization across a 4-model by 12-query by 3-sample matrix : no promotion gate, a per-model behavioral profile plus a cross-model verdict-stability finding | scripts/run-benchmark.mjs + scripts/extract-metrics.mjs : read-only bare-query dispatch, every metric traced to a raw stream, launch-race gaps reported not dropped | n/a, read-only benchmark, no flag and no memory write |
 
-## Reading the table
+---
+
+## 4. Reading the table
 
 - **Benchmark** is the named metric and its declared pass-or-regress threshold. `[via 015 gate]` marks a metric that only counts once it moves the phase-015 prod-mode `completeRecall@3` read, because a recall number measured on the unfloored eval path does not by itself prove a prod-path keep.
 - **Test** is the named test file and its key assertion.

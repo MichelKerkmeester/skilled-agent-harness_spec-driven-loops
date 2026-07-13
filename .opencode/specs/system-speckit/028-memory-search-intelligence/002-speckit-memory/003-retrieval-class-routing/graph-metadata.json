@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The Memory MCP query router (`mcpserver/lib/search/query-router.ts`) fuses exactly two orthogonal classifiers into `RouteResult`, complexity tier (`simple|moderate|complex`) and task intent (`addfeature|fixbug|findspec|…`), and neither is a retrieval-shape classifier [CONFIRMED: `query-router.ts:46-52`, `RouteResult` has `tier`/`channels`/`classification`, no `retrievalClass`]",
     "created_at": "2026-06-19T05:47:05.552Z",
-    "last_save_at": "2026-07-11T18:40:35.809Z",
+    "last_save_at": "2026-07-12T13:24:49.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,9 +219,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be4fbf908401c4765e8c1bee79bdde3170c16d85496a2c6a28031ea7bc8cda1c",
+    "source_fingerprint": "sha256:c235b9c08173c93c3fdb3c206363b6808b4eb1ef63f272a50129ab35b3204a6e",
     "source_doc_hashes": {
-      "spec.md": "e4a733eeee66ac86bfc7294ab85338c2c7f283f058cd4c77634ddd16f8779616",
+      "spec.md": "4e914c3432fd06d9c3bebf3177da2fe800744df24fe7d6c8e91c83f206a8cef7",
       "plan.md": "33b00f65092de1e41d662dbb95f81cb66122505355f8225573c1c9869afa3d72",
       "tasks.md": "2b74dba080e2dc1da4699fb3c337cd908a6a467dad791b877947d53c211818e7",
       "checklist.md": "f610bf4cb911b76688d302869bd8eb3be5c5c59be791c8cfcc7d3d994472b7ed",

@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - "spec.md"
-      - "026-shared-safe-fix-engine/spec.md"
+      - "001-shared-safe-fix-engine/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-27-028-005-005-shared-engine-and-research-parent"
@@ -44,10 +44,10 @@ Groups the shared safe-fix engine, retrieval-floor experiments, governance rollo
 
 | Child | Description |
 |-------|-------------|
-| `026-shared-safe-fix-engine/` | Shared Safe Fix Engine |
-| `027-retrieval-floor-experiment/` | Retrieval Floor Experiment |
-| `028-governance-rollout/` | Governance Rollout |
-| `029-vague-query-model-benchmark/` | Vague Query Model Benchmark |
-| `030-vague-query-improvement-research/` | Vague Query Improvement Research |
-| `031-generated-metadata-quality-research/` | Generated Metadata Quality Research |
-| `032-z-future-always-ignored/` | Z Future Always Ignored |
+| `001-shared-safe-fix-engine/` | Shared Safe Fix Engine |
+| `002-retrieval-floor-experiment/` | Retrieval Floor Experiment |
+| `003-governance-rollout/` | Governance Rollout |
+| `004-vague-query-model-benchmark/` | Vague Query Model Benchmark |
+| `005-vague-query-improvement-research/` | Vague Query Improvement Research |
+| `006-generated-metadata-quality-research/` | Generated Metadata Quality Research |
+| `007-z-future-always-ignored/` | Z Future Always Ignored |

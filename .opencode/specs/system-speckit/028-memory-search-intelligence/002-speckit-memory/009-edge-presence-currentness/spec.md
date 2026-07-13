@@ -56,7 +56,7 @@ This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate 
 | **Status** | in-progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Source roadmap** | `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda, authoritative) |
 | **Source synthesis** | `../../research/synthesis/01-go-candidates.md`, `03-corrections-caveats-and-residuals.md` |
 | **Source research** | `../research/research.md`, `../research/cross-packet-027-reconciliation/research.md`, `../research/external-memory-systems/research.md` |

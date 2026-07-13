@@ -10,21 +10,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-release-cleanup"
-    last_updated_at: "2026-07-04T17:31:27.800Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "All thirteen child cleanup and validation phases executed"
-    next_safe_action: "Parent complete, 003 and 006 subsets deferred to concurrent session"
-    blockers: []
+    last_updated_at: "2026-07-12T12:17:12Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Reconciled aggregate parent status with fifteen canonical children"
+    next_safe_action: "Complete child 014 reindex recovery and child 015 playbook execution sweep"
+    blockers:
+      - "Child 014 remains In Progress with reindex recovery blocked"
+      - "Child 015 remains In Progress with the execution sweep outstanding"
     key_files:
       - "spec.md"
       - "001-code-readmes/spec.md"
-      - "009-changelogs-constitutional-and-templates/spec.md"
+      - "014-spec-regrouping-renumber-reindex/spec.md"
+      - "015-manual-playbook-execution-sweep/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-000-release-cleanup-parent"
       parent_session_id: null
-    completion_pct: 100
-    open_questions: []
+    completion_pct: 87
+    open_questions:
+      - "When children 014 and 015 will close"
     answered_questions:
       - "All thirteen child phases executed or recorded their validation and drift-remediation scope."
       - "Phases 003 and 006 defer a subset to the concurrent session that owns it."
@@ -42,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | complete|
+| **Status** | In Progress (13 of 15 direct children complete) |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
@@ -55,10 +59,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028's release-cleanup track has executed across its documentation surfaces and follow-on validation phases. The parent needs to read as the completed cleanup rollup, not as an unexecuted scaffold, while still recording that the 003 and 006 subsets owned by a concurrent session were deliberately deferred.
+Packet 028's release-cleanup track has executed across most documentation surfaces and follow-on validation phases. Thirteen direct children are complete, while canonical children 014 and 015 remain In Progress. Historical completed child and release evidence remains valid, but the aggregate parent is not complete.
 
 ### Purpose
-Define the release-cleanup root purpose and executed child phase map. Each child phase owns one documentation or validation surface and the detailed evidence lives in `../changelog/000-release-cleanup/changelog-000-root.md` plus the linked child changelogs.
+Define the release-cleanup root purpose and current child phase map. Each child phase owns one documentation or validation surface; aggregate status follows all 15 canonical direct children rather than only the first 13 completed children.
 
 > **Phase-parent note:** This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
@@ -129,7 +133,7 @@ Define the release-cleanup root purpose and executed child phase map. Each child
 
 - Each child phase records the scope and evidence for its own cleanup or validation pass.
 - Phases 003 and 006 are complete for their owned scope and defer only the subsets held by a concurrent session.
-- Parent state follows the executed child changelog rollup.
+- Parent state remains In Progress until children 014 and 015 close; 87% is the rounded direct-child completion ratio of 13/15.
 - Packet 030 remains out of scope for this release-cleanup track.
 
 ### Phase Handoff Criteria
@@ -145,7 +149,7 @@ Define the release-cleanup root purpose and executed child phase map. Each child
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- None at the parent level. The detailed evidence source is `../changelog/000-release-cleanup/changelog-000-root.md`.
+- When will child 014 complete reindex recovery and child 015 complete the manual playbook execution sweep?
 <!-- /ANCHOR:questions -->
 
 ---

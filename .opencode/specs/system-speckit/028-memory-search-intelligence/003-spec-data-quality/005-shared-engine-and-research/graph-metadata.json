@@ -40,7 +40,8 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "001-shared-safe-fix-engine/spec.md"
     ],
     "entities": [
       {
@@ -74,13 +75,13 @@
         "source": "derived"
       },
       {
-        "name": "Shared Safe Fix Engine",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Retrieval Floor Experiment",
+        "name": "Shared Safe Fix Engine",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -88,15 +89,15 @@
     ],
     "causal_summary": "Shared Engine and Research subgroup of the spec-data-quality track: the shared fix engine, the floor experiment, governance rollout, and the vague-query/generated-metadata research bridge.",
     "created_at": "2026-06-27T17:25:56.206Z",
-    "last_save_at": "2026-07-11T18:40:36.158Z",
+    "last_save_at": "2026-07-12T13:12:08.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:703e7a4633b865d1e5ea70057b83b4ff5d3a2fd8cdb51f3c33d0aee207c66ad5",
+    "source_fingerprint": "sha256:a2d1f63f56b3b91af2b87790b3b8be7b6df56cdcf4a8ed1a05a65b4f70792d94",
     "source_doc_hashes": {
-      "spec.md": "0956819671b9e0fd95770d6380646a6117a9b5b3ff285ffcb2bec895b9b99069"
+      "spec.md": "47ea7ef5dd72756fbe673410e4f6a66696a0f501569804d4fc4216e4dca50b24"
     },
     "last_active_child_id": null,
     "last_active_at": null

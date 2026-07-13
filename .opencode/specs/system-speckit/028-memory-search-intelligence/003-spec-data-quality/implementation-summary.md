@@ -11,20 +11,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/003-spec-data-quality"
-    last_updated_at: "2026-07-06T18:50:04.883Z"
+    last_updated_at: "2026-07-12T12:17:12Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Scaffolded 28 implementation child phases and recorded the phase-parent state"
-    next_safe_action: "Build 026 the shared safe-fix engine first, then 004 the measured GO schema gate"
-    blockers: []
+    recent_action: "Reconciled parent governance truth after topology migration"
+    next_safe_action: "Resolve CHK-050/051, obtain sign-offs, then rerun reviews and strict validation"
+    blockers:
+      - "CHK-050 and CHK-051 lack current completion evidence"
+      - "Three governance sign-offs and two fresh independent reviews remain open"
     key_files:
-      - "research/research.md"
-      - "research/stage-0-external-findings.md"
+      - "system-speckit/028-memory-search-intelligence/003-spec-data-quality/checklist.md"
+      - "system-speckit/028-memory-search-intelligence/scratch/task-30c-data-quality-truth.md"
     session_dedup:
       fingerprint: "sha256:c72a91f3e8b40d6519a7c2f04e8b1d735908a6c41f2e7b53d9046a1c8e2f5071"
       session_id: "multi-lineage-research-synthesis"
       parent_session_id: "multi-lineage-research-synthesis"
-    completion_pct: 100
-    open_questions: []
+    completion_pct: 91
+    open_questions:
+      - "When current evidence for CHK-050 and CHK-051 and all sign-offs will be available"
     answered_questions:
       - "Which ranked candidates survive corpus-specific verification"
 ---
@@ -42,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-spec-data-quality |
-| **Status** | complete |
+| **Status** | In Progress |
 | **Completed** | Research complete 2026-06-21, 28 implementation child phases scaffolded, no build shipped at that point - superseded, see correction note below |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
@@ -52,7 +55,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**CORRECTION (2026-07-01, drift audit remediation):** the "Nothing was shipped" framing below describes this packet's state as of the 2026-06-21 research-complete pass. It is now stale. This packet later shipped real code: 13 built feature-flag switches (12 kept/graduated, 1 deleted) spanning children 029 through 044, covering the vague-query benchmark, generated-metadata build, full-repo JSON migration, and flag-graduation and search-quality tail. See `SUMMARY.md` for the current, accurate 44-child breakdown, and `../feature-flags.md` and `../timeline.md` for the shipped-flag evidence. The narrative below is preserved for historical reference only.
+**CORRECTION (2026-07-01, drift audit remediation):** the "Nothing was shipped" framing below describes this packet's state as of the 2026-06-21 research-complete pass. It is now stale. This packet later shipped real code: 13 built feature-flag switches (12 kept/graduated, 1 deleted) spanning the then-numbered children 029 through 044, covering the vague-query benchmark, generated-metadata build, full-repo JSON migration, and flag-graduation and search-quality tail. `SUMMARY.md` preserves that pre-migration 44/53-child history; it is not current navigation. Use `graph-metadata.json` and its 20 canonical direct `children_ids` for current navigation, with `../feature-flags.md` and `../timeline.md` retaining shipped-flag evidence.
+
+**CURRENT GOVERNANCE STATE (2026-07-12):** the parent is **In Progress**. Current `graph-metadata.json` records 20 direct child phases after thematic regrouping. Historical child delivery remains valid, but parent readiness is 21/23 P1 items (91% rounded), with CHK-042, CHK-050/051, CHK-143, three sign-offs, fresh independent reviews and a current strict-validation pass still open.
 
 This packet ran the full spec-kit data-quality research as the official multi-lineage loop and produced a canonical synthesis. Nothing was shipped as of 2026-06-21. The value is a verified evidence base and a tiered go or no-go program that a build stage can act on without re-deriving the corpus facts.
 
@@ -68,9 +73,9 @@ Five distinct deep-research lineages ran thirty-seven substantive iterations, ex
 
 The synthesis at `research/research.md` converges the five lineages into one program. It records the truncation law and the live default-ON quality-loop keystone, tiers every recommendation GO, GO-on-cost, CONDITIONAL or NO-GO, names the four novel floor-bypassing capabilities, lays out the build-ready engine plus the 17-stage governance rollout with a per-stage rollback and re-measured checkpoint, then restates which claims are measured versus hypothesis-until-prod-measured.
 
-### Current state, the 28-phase scaffold
+### Historical state as of 2026-06-21, the 28-phase scaffold
 
-This packet is now a phase parent. The research stays at the root and the implementation moved into 28 child phases, one per converged recommendation. The children group as 10 Tier-A on-write reuse-first phases, 3 Tier-B retroactive automation phases, 5 Tier-C retrieval phases gated on C2, 7 novel out-of-the-box GO phases and 3 infra phases. Each child carries its own full Level-2 doc set, spec.md plus plan.md plus tasks.md plus checklist.md plus implementation-summary.md, alongside its description.json plus graph-metadata.json. The parent graph-metadata.json children_ids lists all 28. The build order is fixed by two dependencies. 026 the shared safe-fix engine ships before A1 and B1 and B2 because those three reuse it. 015 the C2 prod-mode benchmark gate ships before every Tier-C item and before the 027 floor experiment because no retrieval candidate promotes without a prod-mode completeRecall@3 read. The full per-phase map and verdict tiers live in the parent spec.md phase-documentation map.
+At that point, the packet became a phase parent and implementation moved into 28 child phases, one per converged recommendation. The children grouped as 10 Tier-A on-write reuse-first phases, 3 Tier-B retroactive automation phases, 5 Tier-C retrieval phases gated on C2, 7 novel out-of-the-box GO phases and 3 infra phases. Each child carried its own full Level-2 doc set. The then-current build order used former phase IDs 026 and 015. Those IDs are retained here as dated provenance; current navigation uses the canonical thematic paths recorded in the migration manifest.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -78,7 +83,7 @@ This packet is now a phase parent. The research stays at the root and the implem
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The research ran in two stages. Stage 0 was a read-only online sweep. The official multi-lineage loop then ran five lineages across thirty-seven read-only iterations against the live retrieval and validation code, with the orchestrator writing each iteration doc plus its delta row and state, and the canonical synthesis composed last from the converged findings. The packet was validated with validate.sh strict and read for HVR voice before this summary was written. No code ran and no live system changed.
+The research ran in two stages. Stage 0 was a read-only online sweep. The official multi-lineage loop then ran five lineages across thirty-seven read-only iterations against the live retrieval and validation code, with the orchestrator writing each iteration doc plus its delta row and state, and the canonical synthesis composed last from the converged findings. As of the 2026-06-21 research pass, the packet was validated with validate.sh strict and read for HVR voice before this summary was written. No code had run and no live system had changed at that time.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -102,8 +107,8 @@ The research ran in two stages. Stage 0 was a read-only online sweep. The offici
 
 | Check | Result |
 |-------|--------|
-| validate.sh --strict on 003-spec-data-quality | PASS, exit 0 |
-| HVR voice across authored docs | PASS, no em-dashes, no prose semicolons, no Oxford commas |
+| validate.sh --strict on 003-spec-data-quality | Historical PASS, exit 0 on 2026-06-21; current rerun required |
+| HVR voice across authored docs | Historical PASS on 2026-06-21; fresh independent review required |
 | Source preservation in the brief | PASS, every cited URL retained |
 | Synthesis convergence | PASS, five lineages across thirty-seven iterations all converged and reconciled into one tiered verdict |
 | Tier reconciliation | PASS, 1 measured GO, a GO-on-cost cluster (Tier A and B plus 7 novel), 5 CONDITIONAL retrieval items, 18 consolidated NO-GO |
@@ -114,7 +119,7 @@ The research ran in two stages. Stage 0 was a read-only online sweep. The offici
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Research only.** This is a verdict, not a build. No candidate is shipped. The synthesis tiers the program and a build stage must execute it.
+1. **Historical research-stage limitation (2026-06-21).** At that time this was a verdict, not a build, and no candidate had shipped. Later child delivery is recorded in the dated correction above.
 2. **Retrieval candidates unproven on this corpus.** Every retrieval candidate stays a hypothesis until a full re-index runs and eval-v2 dual-mode shows the prod-mode completeRecall@3 number move. The external recall@K percentages cannot stand in for that read.
 3. **The rollup can go net-negative.** The graph-metadata rollup is the one candidate that can actively harm narrow queries if its broad-versus-narrow gate misclassifies, so its build needs the narrow-query regression measured in the same pass as the broad-query win.
 4. **Two review deferrals accepted as-is.** The handover content-hash fingerprint stays a placeholder and the heavy parent docs stay at the parent rather than moving to the lean-trio layout, both held as-is for now.

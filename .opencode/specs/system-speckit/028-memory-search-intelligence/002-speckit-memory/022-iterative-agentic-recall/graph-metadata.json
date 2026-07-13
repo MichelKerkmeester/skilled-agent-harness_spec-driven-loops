@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The Memory MCP's `memorycontext` is a static mode router with zero tool-calling: its `executeStrategy` switch dispatches `quick|deep|focused|resume`, and each branch is one straight-line retrieval call (quick→triggers, deep/focused→single `handleMemorySearch`, resume→ladder) [CONFIRMED: `handlers/memory-context.ts:1292-1311` (`executeStrategy` switch), deltas/iter-017.jsonl]",
     "created_at": "2026-06-19T05:40:37.449Z",
-    "last_save_at": "2026-07-11T18:40:35.927Z",
+    "last_save_at": "2026-07-12T13:24:50.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,9 +217,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73219906a2aa047d6af54b122fd25234120e64ab10a0a2f12973d7a9c8f26e0f",
+    "source_fingerprint": "sha256:47e8171d4c0ddf3eb0cf5c813cc8b0e107676b80b34ba247e3adf55fe4c84797",
     "source_doc_hashes": {
-      "spec.md": "e94b06f9882d2fd823d9e29b0711026fbdf72b6ca33e630bfddf2f445d40e4c3",
+      "spec.md": "6421184638c2db1f73cf490013a411951a70c231ddc3845a6e1105ca340ddaec",
       "plan.md": "0ac30259564065804b5a9ae8cb5077a2d9370001d5ce022105dca918a9ae8f64",
       "tasks.md": "fc34c236ee3a904664eb9b27331ff77c5a02e1ed49422d92ace7e3eaf24b7839",
       "checklist.md": "9abdfe30f4a65f5c08d5c26b8c7122c77c63d6b233ec3631362b027e4f5eb08e",

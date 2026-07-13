@@ -66,7 +66,7 @@ The Spec-Kit Memory MCP routes every query through two orthogonal classifiers (c
 | **Status** | in_progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md` (§3 Query-Class Routing + MEMORY-SYSTEMS ADDENDUM), `../../research/synthesis/{01,03,06}` |
 | **Shipped-record (done-candidate evidence)** | Wave-0 record + commits `1ecc531431..HEAD` |
 | **Parent Spec** | ../spec.md |

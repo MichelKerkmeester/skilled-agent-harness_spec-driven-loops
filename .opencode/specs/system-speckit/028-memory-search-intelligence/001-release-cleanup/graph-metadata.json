@@ -48,11 +48,12 @@
       "executed"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "001-code-readmes/spec.md",
-      "009-changelogs-constitutional-and-templates/spec.md",
+      "014-spec-regrouping-renumber-reindex/spec.md",
+      "015-manual-playbook-execution-sweep/spec.md",
       "002-skill-and-repo-readmes/spec.md",
       "003-skill-references-assets-and-skillmd/spec.md",
       "004-feature-catalogs/spec.md",
@@ -60,12 +61,11 @@
       "006-commands/spec.md",
       "007-agents/spec.md",
       "008-agents-md/spec.md",
+      "009-changelogs-constitutional-and-templates/spec.md",
       "010-catalog-playbook-coverage-audit/spec.md",
       "011-daemon-skills-playbook-validation/spec.md",
       "012-playbook-findings-remediation/spec.md",
-      "013-drift-remediation/spec.md",
-      "014-spec-regrouping-renumber-reindex/spec.md",
-      "015-manual-playbook-execution-sweep/spec.md"
+      "013-drift-remediation/spec.md"
     ],
     "entities": [
       {
@@ -87,6 +87,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,25 +109,19 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Define",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Packet 028's release-cleanup track has executed across its documentation surfaces and follow-on validation phases",
+    "causal_summary": "Packet 028's release-cleanup track has executed across most documentation surfaces and follow-on validation phases",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-11T19:51:13.639Z",
+    "last_save_at": "2026-07-12T12:50:29.865Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8f056696eb920f50117275d04f1d543d05e82404472c8b2e54fd35b784819d96",
+    "source_fingerprint": "sha256:96995c7b1e2898f12a9b3a29ff933a5c439e91b7d7bf930229058e64bb812e06",
     "source_doc_hashes": {
-      "spec.md": "8378837d5a633987b260feb2561e2e95990f50e979299d065f988f78f7da6372"
+      "spec.md": "5e64c1d0e53215a364fa15bb5a443dac0730da8bdc61f50527743bcba0647ad1"
     },
     "last_active_child_id": null,
     "last_active_at": null

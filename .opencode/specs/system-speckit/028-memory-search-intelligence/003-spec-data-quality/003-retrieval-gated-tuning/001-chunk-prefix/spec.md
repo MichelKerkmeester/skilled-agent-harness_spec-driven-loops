@@ -15,9 +15,9 @@ _memory:
     last_updated_at: "2026-07-04T17:11:52.520Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored phase spec from research C1 row"
-    next_safe_action: "Run generate-context.js to emit description.json and graph-metadata.json"
+    next_safe_action: "Wait for ../002-prodmode-recall-gate prod-mode proof"
     blockers:
-      - "Gated on 015-prodmode-recall-gate prod-mode completeRecall@3 proof"
+      - "Gated on ../002-prodmode-recall-gate prod-mode completeRecall@3 proof"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts"

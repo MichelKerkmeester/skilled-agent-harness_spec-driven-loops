@@ -59,7 +59,7 @@ The Spec-Kit Memory MCP reorganizes memory **synchronously, on-save**, `handlers
 | **Status** | in_progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Wave** | Wave-2 (prove-first, intelligence-class shadow-gated) |
 | **Candidate** | async-sleeptime-consolidation (`LT-bg-sleeptime-agent` + `LT-turn-cadence-trigger` + `LT-llm-transcript-chunking`, `LT-tool-rule-memory-chain` governor) |
 | **Parent Spec** | ../spec.md |

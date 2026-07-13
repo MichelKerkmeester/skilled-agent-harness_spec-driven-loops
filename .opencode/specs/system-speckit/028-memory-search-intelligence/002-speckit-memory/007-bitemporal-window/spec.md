@@ -63,7 +63,7 @@ The Memory MCP already ships an edge-presence currentness substrate (`SPECKIT_TE
 | **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Phase** | `system-speckit/028-memory-search-intelligence/001-speckit-memory` (research) |
+| **Parent Phase** | `system-speckit/028-memory-search-intelligence/002-speckit-memory` (research) |
 | **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY), retrieval intelligence |
 | **Parent Spec** | ../spec.md |

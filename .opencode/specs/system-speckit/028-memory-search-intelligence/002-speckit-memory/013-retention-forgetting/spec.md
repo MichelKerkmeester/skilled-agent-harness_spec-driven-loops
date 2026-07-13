@@ -47,7 +47,7 @@ _memory:
 | **Status** | in_progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Source research** | `../research/research.md` + `../../research/roadmap.md` + `../../research/synthesis/01-go-candidates.md` + `06` |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | ../012-query-channel-calibration/spec.md |

@@ -45,7 +45,7 @@
       "handover"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "handover.md",
@@ -211,7 +211,7 @@
     ],
     "causal_summary": "Packet 028 accumulated memory-search, data-quality, release, review, flag-governance and surface-alignment work at the root",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-07-11T18:40:35.727Z",
+    "last_save_at": "2026-07-12T12:17:45.676Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,6 +226,6 @@
       "handover.md": "d2396cd174fb82fc5cfd6bf09ff9bd4452b7fc1774e2eb161a64d4aaaa287e8a"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-07-05T12:17:24.510Z"
+    "last_active_at": "2026-07-12T12:17:45.676Z"
   }
 }

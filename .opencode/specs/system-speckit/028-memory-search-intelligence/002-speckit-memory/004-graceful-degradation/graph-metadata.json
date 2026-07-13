@@ -124,13 +124,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement When",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Both Stage",
+        "name": "Problem Statement When",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "When the embedder is unavailable and `generateQueryEmbedding` returns a null/empty embedding, Memory recall throws instead of degrading to lexical",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-07-11T18:40:35.813Z",
+    "last_save_at": "2026-07-12T13:24:49.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40c7d6ed3f286e3d091c702db590d9f1bf8002482be0279c41151cd487edbb8d",
+    "source_fingerprint": "sha256:75fd61b4339716ed522c04d9716d6abde0ff4ba7047d9fbcc70672b3c65569b6",
     "source_doc_hashes": {
-      "spec.md": "dce43da67b95157d7f17d0c90c6dbe6d543353adfab9f223e7c39004789a0053",
+      "spec.md": "a4ddae67b7780f7ea910a6b4f049adb86e0eb2423202801a02dd09f9c5890c58",
       "plan.md": "26fe00f49674c08f3db80fb88815aa199a4eee567919f5d860b1da192abb7d17",
       "tasks.md": "34c8155b2aa037eca00b738036ceca64bab83503381f72d6f1cc279cad1f9804",
       "implementation-summary.md": "a1236c93ff89e501f7f25b4c48cc5b4868ad5536e5454613fe5e2f6563e5a2d5"

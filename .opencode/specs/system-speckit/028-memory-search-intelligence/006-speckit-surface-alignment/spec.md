@@ -13,13 +13,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment"
-    last_updated_at: "2026-07-05T00:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Remediate surface-alignment documentation metadata"
-    next_safe_action: "Run strict validation for the phase parent"
+    last_updated_at: "2026-07-12T12:17:12Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Reconciled canonical six-child surface-alignment map"
+    next_safe_action: "Retain child 006 broad-suite caveat for future verification"
     blockers: []
     key_files:
-      - ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/spec.md"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/spec.md"
       - ".opencode/specs/system-speckit/028-memory-search-intelligence/changelog/changelog-028-root.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -29,13 +29,13 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# 005 — SpecKit Surface Alignment (Remediation)
+# 006 — SpecKit Surface Alignment (Remediation)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ## METADATA
 
-- **Status:** Planned
+- **Status:** Complete for 6/6 direct-child delivery records; child 006 broad-suite caveat remains documented
 - **Level:** Phase Parent
 - **Parent:** `028-memory-search-intelligence`
 - **Parent Spec:** `../spec.md`
@@ -60,7 +60,24 @@ The edits themselves land across `sk-doc`, `system-spec-kit`, `system-code-graph
 
 ---
 
-## PHASE DOCUMENTATION MAP
+## CURRENT CANONICAL CHILD MAP
+
+Current `graph-metadata.json` lists exactly these six direct children. Five child specs report Complete and child 006 reports Implemented with its broad-suite caveat documented, so the direct-child delivery rollup is 6/6.
+
+| Phase | Canonical folder | Current status |
+|---:|---|---|
+| 001 | `001-false-now-doc-corrections/` | Complete |
+| 002 | `002-fix-stress-docs/` | Complete |
+| 003 | `003-stress-and-skillmd-audit/` | Complete |
+| 004 | `004-recorded-failure-closure/` | Complete |
+| 005 | `005-manual-test-verification-and-fixes/` | Complete |
+| 006 | `006-presentation-layer-fixes/` | Implemented; broad-suite caveat retained |
+
+---
+
+## HISTORICAL PHASE DOCUMENTATION MAP (PRE-MIGRATION 15-CHILD PLAN)
+
+The table below preserves the original planning snapshot and former phase vocabulary. It is not current navigation; use the six-child canonical map above.
 
 Executor tags: **FAST** = GPT-5.5-fast `--variant high` mechanical edit (exact old→new strings + self-verify grep supplied); **CAREFUL** = GPT-5.5-fast `--variant xhigh` (or Claude) with a RED/GREEN test gate; **AUDIT** = Claude-led deep-review (cited report, not a mechanical fix — a fast executor would reproduce the audit's own sampling blind spot); **DECISION** = design call recorded before any edit.
 

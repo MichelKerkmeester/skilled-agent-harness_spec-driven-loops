@@ -14,9 +14,9 @@ _memory:
     last_updated_at: "2026-07-04T17:11:52.520Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored phase QA checklist as scaffold"
-    next_safe_action: "Verify items as implementation lands"
+    next_safe_action: "Wait for ../002-prodmode-recall-gate, then verify implementation"
     blockers:
-      - "Gated on 015-prodmode-recall-gate prod-mode completeRecall@3 proof"
+      - "Gated on ../002-prodmode-recall-gate prod-mode completeRecall@3 proof"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts"

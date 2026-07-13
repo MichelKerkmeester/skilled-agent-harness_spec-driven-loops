@@ -42,20 +42,21 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/spec.md",
       ".opencode/specs/system-speckit/028-memory-search-intelligence/changelog/changelog-028-root.md",
       "spec.md"
     ],
     "entities": [
       {
-        "name": "changelog-028-root.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/changelog/changelog-028-root.md",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/spec.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "changelog-028-root.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/changelog/changelog-028-root.md",
         "source": "derived"
       },
       {
@@ -97,15 +98,15 @@
     ],
     "causal_summary": "Phase-parent packet for the 028 surface-alignment audit, Fable review narrowing, audit remediation phases, inert-novelty detector, and recorded-failure closure.",
     "created_at": "2026-07-05T13:17:54.481Z",
-    "last_save_at": "2026-07-11T19:51:14.315Z",
+    "last_save_at": "2026-07-12T13:12:08.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5d17b0b1aed5cc493c58016ee3a9d7e97cf97273b7350174378b0818e5778180",
+    "source_fingerprint": "sha256:3f46f110499c26da846f4efc614054b88bcde458ed6cd55bd74c1e3dec28b49e",
     "source_doc_hashes": {
-      "spec.md": "335ba016b6e36b83b8d7cb8ef1ae5aa77da2e28dc1cc9a7575896188dfde9e21"
+      "spec.md": "928fc6885ce7724a2a49a1306aa411a8e89b972eb9c828c2186b8bd8c9236f69"
     },
     "last_active_child_id": null,
     "last_active_at": null
