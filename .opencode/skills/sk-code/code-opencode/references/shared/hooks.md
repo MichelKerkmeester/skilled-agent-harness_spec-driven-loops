@@ -77,7 +77,7 @@ Claude Code hook wiring is checked in at `.claude/settings.json`. Use that file 
 
 | Event | Matcher | Command | Timeout | Purpose |
 |---|---|---|---:|---|
-| `PreToolUse` | `Bash` | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/cli-external/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs'` | 5 | Evaluates CLI dispatch `hard_rules` before `opencode run` / `claude -p` commands proceed. |
+| `PreToolUse` | `Bash` | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs'` | 5 | Evaluates CLI dispatch `hard_rules` before `opencode run` / `claude -p` commands proceed. |
 | `UserPromptSubmit` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'` | 3 | Prompt-time Spec Kit advisor/context injection. |
 | `PreCompact` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js'` | 3 | Compaction payload preparation. |
 | `SessionStart` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js'` | 3 | Startup context priming. |

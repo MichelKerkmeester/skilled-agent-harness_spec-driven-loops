@@ -59,8 +59,8 @@ has_clear_matrix() {
 }
 
 cli_cards=(
-  "$ROOT/.opencode/skills/cli-external/cli-opencode/assets/prompt_quality_card.md"
-  "$ROOT/.opencode/skills/cli-external/cli-claude-code/assets/prompt_quality_card.md"
+  "$ROOT/.opencode/skills/cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md"
+  "$ROOT/.opencode/skills/cli-external-orchestration/cli-claude-code/assets/prompt_quality_card.md"
 )
 
 echo "CHECK 1 — framework / CLEAR table inlining"
@@ -88,7 +88,7 @@ done
 # A cli-*/SKILL.md that re-enumerates it (signature: a line naming both
 # "stakeholder" and "ambiguous requirement") has drifted — must point.
 echo "CHECK 2 — Tier-3 pointer-only (no inlined escalation triggers)"
-cli_skills=(cli-external/cli-opencode cli-external/cli-claude-code)
+cli_skills=(cli-external-orchestration/cli-opencode cli-external-orchestration/cli-claude-code)
 for skill in "${cli_skills[@]}"; do
   f="$ROOT/.opencode/skills/$skill/SKILL.md"
   if [[ ! -f "$f" ]]; then echo "  MISSING: $skill/SKILL.md"; overall_exit=1; continue; fi
@@ -146,12 +146,12 @@ for p in sorted(glob.glob(f"{H}/references/models/*.md")):
 # CHECK 4 — each adopted model reachable by family token in each dispatching executor
 # cli-opencode and cli-claude-code no longer carry their own graph-metadata.json
 # (the hub fold-in dissolved both into one hub identity); both
-# resolve to the shared cli-external/graph-metadata.json, which folds the union
+# resolve to the shared cli-external-orchestration/graph-metadata.json, which folds the union
 # of both former identities' trigger_phrases. Any other executor keeps the
 # flat per-skill path.
 CLI_EXECUTOR_HUB_METADATA = {
-    "cli-opencode": "cli-external/graph-metadata.json",
-    "cli-claude-code": "cli-external/graph-metadata.json",
+    "cli-opencode": "cli-external-orchestration/graph-metadata.json",
+    "cli-claude-code": "cli-external-orchestration/graph-metadata.json",
 }
 gm_cache = {}
 def gm(executor):

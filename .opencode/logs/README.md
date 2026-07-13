@@ -28,7 +28,7 @@ Current state:
 | File | Format | Writer |
 |---|---|---|
 | `autostash-orphan-alerts.log` | Tab-separated: `<UTC timestamp>\tHEAD=<short-sha>\t<stash-ref>\t<stash-commit-sha>` | `.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh` |
-| `cli-dispatch-audit.log` | JSON Lines, one redacted record per completed `opencode run` / `claude -p` dispatch (`schema_version`, `ts`, `runtime`, `sessionID`, `callID`, `skill`, `command`, `model`, `target`, `durationMs`, `exitCode`, `outputBytes`) | `.opencode/skills/cli-external/cli-opencode/scripts/lib/dispatch-audit.mjs`, paired with the `mk-cli-dispatch-audit.js` plugin |
+| `cli-dispatch-audit.log` | JSON Lines, one redacted record per completed `opencode run` / `claude -p` dispatch (`schema_version`, `ts`, `runtime`, `sessionID`, `callID`, `skill`, `command`, `model`, `target`, `durationMs`, `exitCode`, `outputBytes`) | `.opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-audit.mjs`, paired with the `mk-cli-dispatch-audit.js` plugin |
 | `completion-sentinel-advisories.log` | Plain text: `<UTC timestamp> [completion-evidence-sentinel] <advisory message>` | `.opencode/skills/system-spec-kit/mcp_server/lib/hooks/completion-evidence-sentinel.cjs`, via the `mk-completion-sentinel.js` plugin |
 | `dist-freshness-guard.log` | Plain text: `<UTC timestamp> [mk-dist-freshness-guard] <event>: <message>` | `.opencode/plugins/mk-dist-freshness-guard.js` |
 

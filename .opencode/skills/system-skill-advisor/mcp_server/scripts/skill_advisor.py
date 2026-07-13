@@ -1956,7 +1956,7 @@ PHRASE_INTENT_BOOSTERS = {
     "use cli-opencode": [("cli-opencode", 3.4)],
     "cli-claude-code": [("cli-claude-code", 2.8)],
     "/cli-claude-code": [("cli-claude-code", 2.8)],
-    ".opencode/skills/cli-external/cli-claude-code": [("cli-claude-code", 3.0)],
+    ".opencode/skills/cli-external-orchestration/cli-claude-code": [("cli-claude-code", 3.0)],
     # --- Copilot CLI cross-AI orchestration ---
     # --- Prompt Improver: prompt engineering and enhancement ---
     "improve my prompt": [("sk-prompt", 2.5)],
@@ -3306,14 +3306,14 @@ def _cli_metadata_phrases(meta: Dict[str, Any]) -> List[str]:
 
 
 def _load_cli_hub_executors() -> List[Dict[str, Any]]:
-    """Read cli-external's mode-registry.json workflow-mode packets as the
+    """Read cli-external-orchestration's mode-registry.json workflow-mode packets as the
     executor-delegation source of truth (mirror of the TS loadCliHubExecutors).
 
     A missing or malformed registry degrades to zero hub executors, never a
     hard failure — mirrors the model_profiles.json degrade-on-error convention
     below.
     """
-    registry_path = os.path.join(SKILLS_DIR, "cli-external", "mode-registry.json")
+    registry_path = os.path.join(SKILLS_DIR, "cli-external-orchestration", "mode-registry.json")
     executors: List[Dict[str, Any]] = []
     if not os.path.exists(registry_path):
         return executors
@@ -3338,13 +3338,13 @@ def _load_cli_hub_executors() -> List[Dict[str, Any]]:
 def _build_executor_alias_table() -> Dict[str, Any]:
     """Build the executor alias tables from metadata (mirror of the TS builder).
 
-    Executors are enumerated from cli-external's mode-registry.json
+    Executors are enumerated from cli-external-orchestration's mode-registry.json
     workflow-mode packets (keyed by packetSkillName), NOT a top-level
     family === "cli" graph-metadata scan: after the cli-opencode /
-    cli-claude-code fold-in, cli-external is the only top-level family="cli"
+    cli-claude-code fold-in, cli-external-orchestration is the only top-level family="cli"
     skill left, so scanning graph-metadata directly would select the HUB
     instead of the two leaf executors — mapping every alias to the
-    non-executor id "cli-external" and deriving the orchestrator noun
+    non-executor id "cli-external-orchestration" and deriving the orchestrator noun
     "external" from the hub id. Sourcing from the registry's per-mode
     aliases[] instead avoids both failure modes; no noun is ever derived from
     the hub id itself, only from each mode's packetSkillName.
@@ -3511,9 +3511,9 @@ def _apply_executor_delegation_disambiguation(
         table = _build_executor_alias_table()
         suppressed_ids = set(table["active_executor_ids"])
         suppressed_ids.add("sk-code")
-        # The cli-external hub identity itself must never survive an abstain
+        # The cli-external-orchestration hub identity itself must never survive an abstain
         # suppression pass, same invariant as the route path never routing to it.
-        suppressed_ids.add("cli-external")
+        suppressed_ids.add("cli-external-orchestration")
         for rec in recommendations:
             if rec.get("skill") in suppressed_ids:
                 rec["confidence"] = min(float(rec.get("confidence", 0.0)), 0.5)

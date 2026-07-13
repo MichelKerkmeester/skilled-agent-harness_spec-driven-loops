@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/135-cli-hub-rename/004-verify-closeout",
+  "spec_folder": "skilled-agent-orchestration/135-cli-hub-rename/004-verify-closeout",
+  "parent_id": "skilled-agent-orchestration/135-cli-hub-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/135-cli-hub-rename/003-reference-sweep",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core",
+      "implementation",
+      "plan",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "cli hub rename closeout",
+      "stale dist validation blocker"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "implementation",
+      "plan",
+      "tasks",
+      "cli",
+      "hub",
+      "rename"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Closeout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execute",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "honest",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Rename Closeout",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Targeted rename and routing checks pass, but broader suites cannot all execute because compiled artifacts are stale and unrelated graph keys are absent",
+    "created_at": "2026-07-13T03:34:32Z",
+    "last_save_at": "2026-07-13T05:38:30.448Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f8bc9cf88aaa5b11e6c9597d8f036706c372c093295aaa25ca84a2f41ead2078",
+    "source_doc_hashes": {
+      "spec.md": "76d91d49e75050c44ae279edf30d59e5517233fb89867d2ef039fbb1a8207178",
+      "plan.md": "fece37eecbb6b421d43f3fa2e629494f517dab2e19961f92eef232918dc6488a",
+      "tasks.md": "905439da63ee91bb9ba319021f66560dc04df4a8d1417b9f6be7899e970bf2a6",
+      "checklist.md": "90c2173cb03b76c3f3ce2cc27f41af0947bb2c979d9ff9c9129750ecafb2cb96",
+      "decision-record.md": "e010e272074109a11d25ef37ce12334615c1852211853659a23bdafd22e48eb7",
+      "implementation-summary.md": "e254e7e5314921a4e75bd892a45527f2fc6bd0d103ac678b3fe7ce2fca35e190"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-13T06:00:00Z"
+  }
+}

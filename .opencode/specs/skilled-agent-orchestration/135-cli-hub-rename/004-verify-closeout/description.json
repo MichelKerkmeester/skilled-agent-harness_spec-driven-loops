@@ -1,0 +1,12 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/135-cli-hub-rename/004-verify-closeout",
+  "description": "Phase 4 consolidates passing rename and routing checks while preserving explicit stale-dist and unrelated graph-validation blockers.",
+  "keywords": ["verification", "rename invariants", "routing registry", "stale dist", "graph validation"],
+  "lastUpdated": "2026-07-13T06:00:00.000Z",
+  "specId": "004",
+  "folderSlug": "verify-closeout",
+  "parentChain": ["skilled-agent-orchestration", "135-cli-hub-rename"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

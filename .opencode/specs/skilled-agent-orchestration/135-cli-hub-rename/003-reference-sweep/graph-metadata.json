@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/135-cli-hub-rename/003-reference-sweep",
+  "spec_folder": "skilled-agent-orchestration/135-cli-hub-rename/003-reference-sweep",
+  "parent_id": "skilled-agent-orchestration/135-cli-hub-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/135-cli-hub-rename/002-advisor-realign",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core",
+      "implementation",
+      "plan",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "reference sweep checklist",
+      "prompt quality card sync"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "implementation",
+      "plan",
+      "tasks",
+      "reference",
+      "sweep",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Reference Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Inventory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After a hub rename, active docs and generated prompt surfaces can continue speaking the old path",
+    "created_at": "2026-07-13T03:34:31Z",
+    "last_save_at": "2026-07-13T05:38:30.253Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:502da75235e221ccda10b94105899041e55ae944da4fbff5f3f24336f36bef01",
+    "source_doc_hashes": {
+      "spec.md": "ebc97e1c815c092dab9c1e031e3dc495397b103f39b774f8fd0e4cfaf54363b7",
+      "plan.md": "f6d493403da4d5b43a98de3b7d2ecfd67b911172b183fbbf95c65d095350f38c",
+      "tasks.md": "c951ddf6520a9b34d42582cae0e50037afee65f912aff46381390f760d568901",
+      "checklist.md": "e38595c1ec270a802733ecf82be79e876c1a250fcd9804532ad605f5ca61161b",
+      "decision-record.md": "aae379905e6eb98fdaa94117ce05657df3cc87ac2500cc8325b204b8da7d4496",
+      "implementation-summary.md": "2d2431caedb23ae01cfe1cc1680cb018a87feb78350ff9b045d67c848e3166cb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
