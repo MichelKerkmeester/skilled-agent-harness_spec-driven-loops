@@ -48,8 +48,7 @@
   },
   "descriptionBudget": {
     "skill": {
-      "softMin": 150,
-      "softMax": 300
+      "softMax": 130
     },
     "command": {
       "softMax": 110

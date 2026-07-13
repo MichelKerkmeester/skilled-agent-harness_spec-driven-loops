@@ -30,6 +30,15 @@ import zipfile
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+try:
+    import os as _os
+    import sys as _sys
+
+    _sys.path.insert(0, _os.path.join(_os.path.dirname(__file__), '..', '..', 'shared', 'scripts'))
+    from skill_contract import description_budget as _description_budget
+except Exception:
+    _description_budget = None
+
 # ───────────────────────────────────────────────────────────────
 # 1. VALIDATION CONSTANTS (aligned with skill_creation.md)
 # ───────────────────────────────────────────────────────────────
@@ -185,11 +194,20 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
         if 'TODO' in description.upper():
             warnings.append("Description contains TODO placeholder - please complete it")
 
-        # Recommended: 150-300 characters
-        if len(description) < 50:
-            warnings.append(f"Description too short ({len(description)} chars) - recommend 150-300 characters")
-        elif len(description) > 500:
-            warnings.append(f"Description too long ({len(description)} chars) - recommend 150-300 characters")
+        # Description budget: ≤130 soft target (see skill_contract.json).
+        budget = _description_budget('skill') if _description_budget else {}
+        soft = int(budget.get('softMax', 130))
+        hard = int(budget.get('hardCap', 1536))
+        description_length = len(description)
+        if description_length > hard:
+            return False, (
+                f"Description {description_length} chars exceeds hard cap {hard} — "
+                "skill will fail to register"
+            ), warnings, parsed
+        elif description_length > soft:
+            warnings.append(
+                f"Description {description_length} chars exceeds soft target of {soft}"
+            )
     else:
         return False, "Description appears to be empty or multiline (must be single line after colon)", warnings, parsed
 

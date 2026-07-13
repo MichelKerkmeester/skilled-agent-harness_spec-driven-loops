@@ -41,9 +41,19 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 # ───────────────────────────────────────────────────────────────
 # Soft targets are project conventions (warn, do not block).
 # Hard cap is the Claude Code internal limit on combined description+when_to_use.
-DESCRIPTION_SOFT_TARGET_SKILL = 130
-DESCRIPTION_SOFT_TARGET_COMMAND = 110
-DESCRIPTION_HARD_CAP = 1536
+try:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from skill_contract import description_budget as _db
+
+    _skill = _db('skill')
+    _cmd = _db('command')
+    DESCRIPTION_SOFT_TARGET_SKILL = int(_skill.get('softMax', 130))
+    DESCRIPTION_SOFT_TARGET_COMMAND = int(_cmd.get('softMax', 110))
+    DESCRIPTION_HARD_CAP = int(_skill.get('hardCap', 1536))
+except Exception:
+    DESCRIPTION_SOFT_TARGET_SKILL = 130
+    DESCRIPTION_SOFT_TARGET_COMMAND = 110
+    DESCRIPTION_HARD_CAP = 1536
 
 
 def _detect_target_kind(skill_path: Path) -> str:
