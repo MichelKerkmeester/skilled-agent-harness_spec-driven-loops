@@ -165,7 +165,15 @@ _VALID_RESOURCE_FM = (
 )
 
 
-def _write_valid_skill(skill_path, with_router_markers=True):
+def _write_valid_skill(
+    skill_path,
+    with_router_markers=True,
+    description=(
+        "A demo skill fixture long enough to satisfy the description length "
+        "warning threshold here."
+    ),
+    with_recommended_sections=False,
+):
     """Write a minimal skill that passes hard validation; mutate per-test."""
     skill_path.mkdir(parents=True, exist_ok=True)
     router_body = (
@@ -179,7 +187,7 @@ def _write_valid_skill(skill_path, with_router_markers=True):
     (skill_path / "SKILL.md").write_text(
         "---\n"
         f"name: {skill_path.name}\n"
-        "description: A demo skill fixture long enough to satisfy the description length warning threshold here.\n"
+        f"description: {description}\n"
         "allowed-tools: [Read, Write, Edit]\n"
         "version: 1.0.0.0\n"
         "---\n\n"
@@ -188,10 +196,60 @@ def _write_valid_skill(skill_path, with_router_markers=True):
         f"## 2. SMART ROUTING\n{router_body}\n---\n\n"
         "## 3. HOW IT WORKS\nText.\n\n---\n\n"
         "## 4. RULES\n### ALWAYS\n- Do.\n### NEVER\n- Don't.\n### ESCALATE IF\n- Ask.\n\n---\n\n"
-        "## 5. REFERENCES\nText.\n",
+        "## 5. REFERENCES\nText.\n"
+        + (
+            "\n## 6. SUCCESS CRITERIA\nText.\n"
+            "\n## 7. INTEGRATION POINTS\nText.\n"
+            "\n## 8. RELATED RESOURCES\nText.\n"
+            if with_recommended_sections
+            else ""
+        ),
         encoding="utf-8",
     )
     return skill_path
+
+
+def test_strict_mode_promotes_contract_warning_only(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(
+        tmp_path / "strict-warning",
+        description="A" * 200,
+        with_recommended_sections=True,
+    )
+
+    valid, _message, warnings = module.validate_skill(skill_path, strict=False)
+    assert valid is True
+    assert any("exceeds soft target" in warning for warning in warnings)
+
+    strict_valid, strict_message, strict_warnings = module.validate_skill(
+        skill_path,
+        strict=True,
+    )
+    assert strict_valid is False
+    assert "exceeds soft target" in strict_message
+    assert strict_warnings == []
+
+
+def test_strict_mode_accepts_fully_clean_skill(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(
+        tmp_path / "clean-skill",
+        with_recommended_sections=True,
+    )
+
+    for strict in (False, True):
+        valid, message, warnings = module.validate_skill(skill_path, strict=strict)
+        assert valid is True, message
+        assert warnings == []
+
+
+def test_strict_mode_keeps_recommended_sections_advisory(tmp_path):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "advisory-only")
+
+    valid, message, warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is True, message
+    assert any("Missing recommended section" in warning for warning in warnings)
 
 
 def test_resource_frontmatter_flags_missing_five_fields(tmp_path):

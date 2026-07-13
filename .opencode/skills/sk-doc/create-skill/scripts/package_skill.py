@@ -135,6 +135,22 @@ SMART_ROUTER_MARKERS = [
 # 4-part version pattern X.Y.Z.W (frontmatter_versioning.md).
 VERSION_4PART_RE = re.compile(r'^\d+\.\d+\.\d+\.\d+$')
 
+# Findings promoted from warning -> error under --strict. These are the create-skill
+# contract requirements (description budget, RULES subsections, resource-doc frontmatter,
+# smart-router markers, placeholder/TODO completeness). Recommended-section, file-type,
+# and snake_case-naming findings stay advisory.
+STRICT_PROMOTED_MARKERS = [
+    "exceeds soft target",            # description budget (validate_frontmatter)
+    "contains TODO placeholder",      # incomplete description
+    "RULES section missing",          # ALWAYS/NEVER/ESCALATE subsections
+    "has no frontmatter",             # resource-doc 5-field block absent
+    "missing frontmatter field",      # resource-doc 5-field block incomplete
+    "missing 'version' in frontmatter",  # versioned doc-class
+    "is not 4-part",                  # bad version on doc-class
+    "missing smart-router marker",    # SMART ROUTING resilience markers
+    "Placeholder file should be removed",  # example_*/placeholder_*/sample_* files
+]
+
 
 # ───────────────────────────────────────────────────────────────
 # 2. VALIDATION FUNCTIONS
@@ -531,11 +547,24 @@ def validate_name_matches_folder(skill_path: Path, parsed_frontmatter: Dict[str,
     return True, "Name matches folder", warnings
 
 
-def validate_skill(skill_path: Path) -> Tuple[bool, str, List[str]]:
+def _partition_strict(warnings: List[str]) -> Tuple[List[str], List[str]]:
+    """Split strict contract findings from advisory warnings."""
+    promoted = []
+    advisory = []
+
+    for warning in warnings:
+        target = promoted if any(marker in warning for marker in STRICT_PROMOTED_MARKERS) else advisory
+        target.append(warning)
+
+    return promoted, advisory
+
+
+def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, List[str]]:
     """Comprehensive skill validation aligned with all skill creation documentation.
 
     Args:
         skill_path: Path to the skill directory.
+        strict: Promote contract-required warnings to validation errors.
 
     Returns:
         Tuple of (is_valid, message, warnings).
@@ -594,6 +623,16 @@ def validate_skill(skill_path: Path) -> Tuple[bool, str, List[str]]:
     all_warnings.extend(warnings)
     if not valid:
         return False, message, all_warnings
+
+    if strict:
+        promoted, advisory = _partition_strict(all_warnings)
+        if promoted:
+            return (
+                False,
+                f"Strict mode: {len(promoted)} contract requirement(s) unmet — "
+                + "; ".join(promoted),
+                advisory,
+            )
 
     return True, "Skill is valid!", all_warnings
 
@@ -676,11 +715,12 @@ def package_skill(skill_path_str: str, output_dir: Optional[str] = None) -> Opti
         return None
 
 
-def check_only(skill_path_str: str) -> bool:
+def check_only(skill_path_str: str, strict: bool = False) -> bool:
     """Validate a skill without packaging.
 
     Args:
         skill_path_str: Path to the skill folder.
+        strict: Promote contract-required warnings to validation errors.
 
     Returns:
         True if valid, False otherwise.
@@ -696,9 +736,11 @@ def check_only(skill_path_str: str) -> bool:
         return False
     
     print(f"🔍 Validating skill: {skill_path.name}")
+    if strict:
+        print("(strict mode)")
     print("=" * 50)
     
-    valid, message, warnings = validate_skill(skill_path)
+    valid, message, warnings = validate_skill(skill_path, strict=strict)
     
     if valid:
         print(f"\n✅ {message}")
@@ -746,6 +788,11 @@ def main() -> None:
         action='store_true',
         help="Output validation results as JSON",
     )
+    parser.add_argument(
+        '--strict',
+        action='store_true',
+        help="Under --check/--json, promote contract-required warnings to errors",
+    )
     args = parser.parse_args()
 
     check_mode = args.check
@@ -764,7 +811,7 @@ def main() -> None:
             }, indent=2))
             sys.exit(1)
 
-        valid, message, warnings = validate_skill(skill_path_obj)
+        valid, message, warnings = validate_skill(skill_path_obj, strict=args.strict)
         print(json.dumps({
             'valid': valid,
             'message': message,
@@ -774,7 +821,7 @@ def main() -> None:
         sys.exit(0 if valid else 1)
 
     elif check_mode:
-        result = check_only(skill_path)
+        result = check_only(skill_path, strict=args.strict)
         sys.exit(0 if result else 1)
 
     else:
