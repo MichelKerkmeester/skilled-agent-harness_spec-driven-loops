@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/008-create-benchmark-routing",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/008-create-benchmark-routing",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-benchmark routing swap",
+      "benchmark package hub routing",
+      "redundant alias swap",
+      "008 plan create-benchmark routing swap",
+      "008 tasks create-benchmark routing swap",
+      "008 checklist create-benchmark routing swap",
+      "008 summary create-benchmark routing swap"
+    ],
+    "key_topics": [
+      "create-benchmark",
+      "routing",
+      "swap",
+      "benchmark",
+      "package",
+      "hub",
+      "redundant",
+      "alias",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md",
+      ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "redundant-alias",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Routing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Preserve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready Redundancy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Done Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Redundant",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`create a benchmark package` mis-routed to `create-skill`: create-benchmark's alias class held only artifact-path terms (`benchmarkreport.md`, `skill-benchmark`, `model-benchmark`, …) and no phrase matching that prompt, so it tied on the generic authoring verb and lost the tiebreak",
+    "created_at": "2026-07-13T13:51:00.677Z",
+    "last_save_at": "2026-07-13T13:51:00.677Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0526b42af06493aa28ae3d1cac14377831cf84d2b80899d55c016e7af637c703",
+    "source_doc_hashes": {
+      "spec.md": "663429b9b30c1d29c8aa2c9bc0228ad8dd9d3c51e38713ae11d37eaefb06288b",
+      "plan.md": "085f0e320f9aa9cb22c4e349df1a4cff367902015593a091cd59d47d0be33e87",
+      "tasks.md": "8fb114cbab31506120a0c5cea553670a9f8dd4a1ba632f4b72bb6b6268838c5f",
+      "checklist.md": "4b45ad24e0292e618c24ea5b785a148a128b2ff4358c545c64443458003fcf2e",
+      "implementation-summary.md": "216c8a7e143cf224336a2c5829b8299928f78169e804f6094492114dff47404a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

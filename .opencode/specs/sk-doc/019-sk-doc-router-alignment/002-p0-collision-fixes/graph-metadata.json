@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/002-p0-collision-fixes",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/002-p0-collision-fixes",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc quality collision",
+      "readme flowchart routing",
+      "quality collision plan",
+      "readme flowchart quality routing",
+      "quality collision tasks",
+      "readme flowchart routing tasks",
+      "quality collision checklist",
+      "readme flowchart routing checklist",
+      "quality ownership decision",
+      "creator validation boundary",
+      "quality collision summary",
+      "readme flowchart routing summary"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "quality",
+      "collision",
+      "readme",
+      "flowchart",
+      "routing",
+      "plan",
+      "tasks",
+      "checklist",
+      "ownership",
+      "decision",
+      "creator"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-readme/SKILL.md",
+      ".opencode/skills/sk-doc/create-flowchart/SKILL.md",
+      ".opencode/skills/sk-doc/create-quality-control/SKILL.md",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-readme/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Collision Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Intent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "README and flowchart packets advertised standalone audit or validation actions even though `create-quality-control` owns existing-document quality work",
+    "created_at": "2026-07-13T04:45:47Z",
+    "last_save_at": "2026-07-13T12:05:59.017Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0fbe733127c28d60ee1e27b4b466b72f99ca4f7037e2d4891a34f4d602722734",
+    "source_doc_hashes": {
+      "spec.md": "6b51d32793beb8f8de7c418feb75e6755bbdcae8ef4b12bd903224ba3f1d7b26",
+      "plan.md": "81a62f9a0b2b8ca108d5c23c13af7153aaa6ce53846e53cbc1becf54e7f01c58",
+      "tasks.md": "8fbee062d87be0fefe04f25ad73a84732cd0decd2e8cad09cb9ecfe1538f0054",
+      "checklist.md": "e4fa89c53152d8dce414a0b8f729bc8916577bd9b3f967e5d907da1a868c43a5",
+      "decision-record.md": "afc3b91cf437990bd20881d5d817472053fcca830f36dfd256aa997acef973ee",
+      "implementation-summary.md": "9040c41bd15403670dae52980508f2a967c4a5c447837aff7bd594638feab53e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

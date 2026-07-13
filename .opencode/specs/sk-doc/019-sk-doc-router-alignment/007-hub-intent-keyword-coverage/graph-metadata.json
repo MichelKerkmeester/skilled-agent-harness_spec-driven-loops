@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/007-hub-intent-keyword-coverage",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/007-hub-intent-keyword-coverage",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub intent keyword coverage",
+      "create-agent create-changelog mis-routing",
+      "sk-doc hub router keyword fix",
+      "007 plan hub intent keyword coverage",
+      "007 tasks hub intent keyword coverage",
+      "007 checklist hub intent keyword coverage",
+      "007 summary hub intent keyword coverage"
+    ],
+    "key_topics": [
+      "hub",
+      "intent",
+      "keyword",
+      "coverage",
+      "create-agent",
+      "create-changelog",
+      "mis-routing",
+      "sk-doc",
+      "router",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Routing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Keep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready Root",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Done Battery",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Both",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-doc hub router scores each mode by counting keyword hits times the mode weight",
+    "created_at": "2026-07-13T13:09:09.451Z",
+    "last_save_at": "2026-07-13T13:10:51.180Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:585fc446310d004d7d75bc9197b96aa9aae9655e74ab2fe0ca687fc933b90ced",
+    "source_doc_hashes": {
+      "spec.md": "03308d90e2ee0998dc580182b24d197b29d73b2a9a2df80e3fd7c1e5534e8d39",
+      "plan.md": "a972d670fad46345b82f613c97cf5c29a1efe4574bff1d286f3f69174edf9d10",
+      "tasks.md": "a58e52e69e6ebdae005746e49f53211c35749e350361d4563d9145721ae96f63",
+      "checklist.md": "e2c13eef49bc39e183ec029f22975c75b921f7910e6316f235171d085e6e92fd",
+      "implementation-summary.md": "7a6ad74853017c5965ac7c40133bcf61150e7a03da0d72b8813a18991dcd8a47"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

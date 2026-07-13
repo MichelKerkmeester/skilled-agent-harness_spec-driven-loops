@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/019-sk-doc-router-alignment/001-audit-and-fix-map",
+    "sk-doc/019-sk-doc-router-alignment/002-p0-collision-fixes",
+    "sk-doc/019-sk-doc-router-alignment/003-p1-trigger-scoping-and-handoffs",
+    "sk-doc/019-sk-doc-router-alignment/004-p2-standardization-and-regen",
+    "sk-doc/019-sk-doc-router-alignment/005-smart-routing-mechanism-notes",
+    "sk-doc/019-sk-doc-router-alignment/006-router-conformance-gap-analysis",
+    "sk-doc/019-sk-doc-router-alignment/007-hub-intent-keyword-coverage",
+    "sk-doc/019-sk-doc-router-alignment/008-create-benchmark-routing"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "019-sk-doc-router-alignment",
+      "sk-doc router alignment",
+      "phase parent"
+    ],
+    "key_topics": [
+      "019-sk-doc-router-alignment",
+      "sk-doc",
+      "router",
+      "alignment",
+      "phase",
+      "parent",
+      "ten",
+      "creation",
+      "packets",
+      "present",
+      "uniform",
+      "routing"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "context-index.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context-index.md",
+        "kind": "doc",
+        "path": "context-index.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The ten sk-doc `create-` creation packets did not present a uniform routing contract against the create-skill router standard",
+    "created_at": "2026-07-13T12:05:58.654Z",
+    "last_save_at": "2026-07-13T13:51:01.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:64e49e447d9e72ebe27087d772f27a4426756501508c9cd5335bdbaa838c5bc7",
+    "source_doc_hashes": {
+      "spec.md": "ef5683e360ba0189d4111e119ddad4f7db63141f1ae98d6c29e6f9c2b7458d3a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
