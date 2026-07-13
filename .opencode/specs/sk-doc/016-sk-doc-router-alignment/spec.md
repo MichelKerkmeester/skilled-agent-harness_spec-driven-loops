@@ -116,6 +116,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 5 | 005-smart-routing-mechanism-notes/ | Give each flat-resource packet an honest smart-routing N/A note | Complete |
 | 6 | 006-router-conformance-gap-analysis/ | Analyze the residual create-skill router-marker gap across all ten packets; record the keep-vs-wire decision | Open — decision pending |
 | 7 | 007-hub-intent-keyword-coverage/ | Fix create-agent / create-changelog hub mis-routing by adding artifact-noun keyword coverage across the three synced surfaces | Complete |
+| 8 | 008-create-benchmark-routing/ | Fix create-benchmark mis-routing under the word cap by swapping a redundant alias for `benchmark package` across the three synced surfaces | Complete |
 
 ### Phase Transition Rules
 

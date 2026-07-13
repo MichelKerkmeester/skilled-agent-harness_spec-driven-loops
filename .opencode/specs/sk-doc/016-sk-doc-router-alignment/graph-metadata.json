@@ -10,7 +10,8 @@
     "sk-doc/016-sk-doc-router-alignment/004-p2-standardization-and-regen",
     "sk-doc/016-sk-doc-router-alignment/005-smart-routing-mechanism-notes",
     "sk-doc/016-sk-doc-router-alignment/006-router-conformance-gap-analysis",
-    "sk-doc/016-sk-doc-router-alignment/007-hub-intent-keyword-coverage"
+    "sk-doc/016-sk-doc-router-alignment/007-hub-intent-keyword-coverage",
+    "sk-doc/016-sk-doc-router-alignment/008-create-benchmark-routing"
   ],
   "manual": {
     "depends_on": [],
@@ -95,15 +96,15 @@
     ],
     "causal_summary": "The ten sk-doc `create-` creation packets did not present a uniform routing contract against the create-skill router standard",
     "created_at": "2026-07-13T12:05:58.654Z",
-    "last_save_at": "2026-07-13T13:09:09.812Z",
+    "last_save_at": "2026-07-13T13:51:01.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9f7ae7d70cff8db413fa19d8242891203e978a27ddd7ad76a3332630f8bbe77c",
+    "source_fingerprint": "sha256:0e9ed798475f3529531fca5647bae87d5eea782113cc8896bfcb176df8738218",
     "source_doc_hashes": {
-      "spec.md": "3d324cb397b861bb0db5d3cc69f461cd867d126c0c9f5aa506046fce4a0ff8c5"
+      "spec.md": "ef5683e360ba0189d4111e119ddad4f7db63141f1ae98d6c29e6f9c2b7458d3a"
     },
     "last_active_child_id": null,
     "last_active_at": null
