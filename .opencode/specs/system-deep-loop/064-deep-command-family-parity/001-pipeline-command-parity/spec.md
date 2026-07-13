@@ -10,7 +10,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/064-deep-command-family-parity/001-pipeline-command-parity"
-    last_updated_at: "2026-07-13T14:00:00Z"
+    last_updated_at: "2026-07-13T14:15:00Z"
     last_updated_by: "claude"
     recent_action: "WS1 (alignment pipeline parity) + WS2 (ai-council fix flip) implemented and verified"
     next_safe_action: "Proceed to child 002 (convert the two direct-dispatch commands to yaml-backed)"
@@ -61,7 +61,7 @@ Register `deep/alignment` in the contract compiler with a `renderMarkers`-anchor
 ### Out of Scope
 - `render-command-contract.cjs` — already registers `deep/alignment`; no change needed.
 - Any change to alignment's runtime loop, YAML workflows, or the `@deep-alignment` agent's behavior.
-- The two direct-dispatch conversions (phase 002) and agent reconciliation (phase 003).
+- The two direct-dispatch conversions (successor phase `002-direct-dispatch-to-yaml`) and agent reconciliation (phase `003-deep-agent-family-reconciliation`).
 
 ### Files to Change
 

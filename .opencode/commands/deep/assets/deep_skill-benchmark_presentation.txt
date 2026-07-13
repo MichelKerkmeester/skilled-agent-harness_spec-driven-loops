@@ -1,0 +1,119 @@
+# Deep Start Skill Benchmark Loop Presentation Contract
+
+Presentation source of truth for `/deep:skill-benchmark`. The command router owns only mode selection, the two HARD-BLOCK gates, and asset loading. The workflow YAML dispatches the self-contained loop host. This file owns the visible setup prompt, dashboard layout, result displays, and next-step suggestions. Scoring, contamination-lint, router-replay, and report wording are owned by the loop-host scripts and never come from this router.
+
+## 1. Startup Presentation
+
+This command resolves setup through the command router's Mandatory Input Gate, then loads the workflow YAML. For `:confirm` or no suffix, present the resolved inputs and wait for confirmation before dispatch. For `:auto`, resolve confidently from arguments and defaults, or fail fast naming the missing inputs.
+
+### `:auto` Setup Resolution
+
+Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), resolve the Mandatory Input Gate values from `$ARGUMENTS` and defaults:
+
+1. **Resolve confidently**: bind `skill` (first positional or `--skill`), `outputs_dir` (`--outputs-dir`), and the optional `--fixtures-dir` / `--trace-mode` / `--advisor-mode`. Trace mode defaults to `router`. When `skill` and `outputs_dir` are bound, load `.opencode/commands/deep/assets/deep_skill-benchmark_auto.yaml`.
+2. **Fail fast**: when `skill` or `outputs_dir` cannot be resolved, emit the named-missing-inputs error with `/deep:skill-benchmark:auto` as the command name and exit non-zero. Do not load YAML.
+
+`skill` absence is a fail-fast, never a guess. The target skill must have an `INTENT_SIGNALS` + `RESOURCE_MAP` smart router for Mode A.
+
+### Consolidated Setup Prompt for `:confirm` and No-Suffix Mode
+
+Use this block when `execution_mode = "INTERACTIVE"` or no suffix was supplied.
+
+```
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
+
+1. CHECK for mode suffix:
+   |-- ":auto"    -> execution_mode = "AUTONOMOUS"
+   |-- ":confirm" -> execution_mode = "INTERACTIVE"
+   +-- No suffix  -> execution_mode = "ASK" (include Q-Mode)
+
+2. RESOLVE the Mandatory Input Gate values from $ARGUMENTS and defaults:
+   - skill (required): skill id or root to benchmark
+   - outputs_dir (required): where skill-benchmark-report.{json,md} are written
+   - fixtures_dir (optional): defaults to <skill>/assets/skill_benchmark/fixtures/<skill-id>/
+   - trace_mode (optional): router (default, deterministic CI gate) or live (playbook corpus)
+   - advisor_mode (optional): python enables the opt-in D1-inter advisor probe
+
+3. PRESENT the resolved inputs and ASK:
+   Q-Mode. Execution Mode (if no suffix):
+     A) Autonomous -- run without an approval gate
+     B) Interactive -- confirm at the init gate before the benchmark runs
+
+4. WAIT for user response (DO NOT PROCEED)
+
+5. On confirmation, load .opencode/commands/deep/assets/deep_skill-benchmark_confirm.yaml
+
+STOP HERE - Wait for the user before dispatching the benchmark.
+```
+
+**Phase Output:**
+
+- `skill` | `outputs_dir` | `fixtures_dir` | `trace_mode` | `advisor_mode` | `execution_mode`
+
+## 2. Dashboard / Checkpoint Layout
+
+### Deep Skill Benchmark
+
+Lane C of the `deep-improvement` skill. Benchmarks whether a skill is well-structured, well-routed, efficient, and useful in practice, and emits a ranked Skill Benchmark Report with concrete, remediable findings. Distinct from `sk-doc`/`validate.sh` (doc shape) and manual testing playbooks (described behavior).
+
+### Workflow Overview
+
+| Phase | Name | Purpose | Outputs |
+|-------|------|---------|---------|
+| Setup | Resolve | Validate inputs, create the outputs directory | Ready-to-run inputs |
+| Run | Dispatch | Run `loop-host.cjs --mode=skill-benchmark` once (self-contained: D5 hard gate, contamination-lint, router-replay, score) | `skill-benchmark-report.{json,md}` |
+| Report | Surface | Read and present the loop-host-owned report | Verdict, dimension scores, ranked bottlenecks |
+
+### Scoring Dimensions
+
+- **D1-intra / D1-inter**: routing precision within the skill and advisor selection across skills (D1-inter is opt-in via `--advisor-mode=python`).
+- **D2**: resource discovery and load efficiency.
+- **D3**: over-routing detection.
+- **D4**: usefulness ablation (opt-in, approximate).
+- **D5**: structural hard gate (must pass; blocks a clean verdict when it fails).
+
+Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically. Mode B (live playbook) dispatches a skill's own `manual_testing_playbook` corpus through `cli-opencode`; it is advisory, and the gated verdict stays router mode plus the D5 hard gate.
+
+## 3. Results Display
+
+### Return Status
+
+```
+skill-benchmark: <skill> verdict=<PASS|FAIL> aggregate=<N|null> scenarios=<N>
+  report.json -> <outputs_dir>/skill-benchmark-report.json
+  report.md   -> <outputs_dir>/skill-benchmark-report.md
+```
+
+The JSON report is the machine record (verdict, D1-D5, funnel, ranked bottlenecks, scenario rows); the Markdown report is rendered FROM the JSON (anti-drift). The loop host owns both; this router never synthesizes a verdict.
+
+### Error Handling
+
+| Error | Action |
+|-------|--------|
+| Loop host STATUS=FAIL | Report the loop host's error verbatim; do not synthesize a verdict |
+| Report missing after dispatch | Report `report-missing`; do not fabricate scores |
+| No scenarios resolved | The loop host emits `verdict=NO-SCENARIOS`; supply `--fixtures-dir` or a skill id whose fixtures resolve |
+
+## 4. Next-Step Suggestions
+
+### Examples
+
+```
+/deep:skill-benchmark "skill:sk-design" --outputs-dir=path/to/out
+/deep:skill-benchmark:auto ".opencode/skills/sk-code" --outputs-dir=out --trace-mode=router
+/deep:skill-benchmark:confirm "sk-design" --outputs-dir=out --fixtures-dir=path/to/fixtures --advisor-mode=python
+```
+
+### Next Steps
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Findings need agent-level fixes | `/deep:agent-improvement [agent]` | Route remediation into Lane A |
+| Router/discovery fixes needed | (operator-reviewed routing-optimization runbook) | Propose-by-default parent-router and per-child routing fixes; never mutate gold without review |
+| Structural D5 gate failing | Fix the skill's structure, then re-benchmark | D5 is the hard gate; a clean verdict requires it |
+
+### Presentation Boundary
+
+The following router-owned display must render verbatim when triggered: the Phase 0 general-agent-required failure block with `STATUS=FAIL ERROR="General agent required"`, and the Mandatory Input Gate blocked-state wording, resolved-input confirmation, and missing-input failure summary.
+
+The following content must not come from this router: loop-host progress, benchmark scores, verdicts, ranked bottlenecks, scenario rows, report wording, remediation details, and any skill-owned fixture, playbook, live-routing, advisor, or browser-scenario description beyond the setup fields named here.
