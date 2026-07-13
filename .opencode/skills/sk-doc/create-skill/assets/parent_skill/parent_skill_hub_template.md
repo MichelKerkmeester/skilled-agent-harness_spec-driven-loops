@@ -100,7 +100,7 @@ Surface packets have these required properties:
 ---
 name: [parent-skill-name]
 description: "[Unified skill: routes [workflow-count] workflow packet(s) and [surface-count] surface packet(s) through mode-registry.json; holds no packet-local logic.]"
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+allowed-tools: [<exact union of every mode's toolSurface.allowed — checker rule 3j; e.g. Read, Write, Edit, Bash, Grep, Glob, Task>]
 version: 1.0.0.0
 ---
 ```
@@ -120,7 +120,7 @@ Copy the block below into the hub `SKILL.md` and fill every `[bracketed]` placeh
 ---
 name: [parent-skill-name]
 description: "[Unified skill that routes workflow and surface packets through mode-registry.json; holds no packet-local logic.]"
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+allowed-tools: [<exact union of every mode's toolSurface.allowed — checker rule 3j; e.g. Read, Write, Edit, Bash, Grep, Glob, Task>]
 version: 1.0.0.0
 ---
 

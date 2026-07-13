@@ -1,5 +1,6 @@
 {
   "_template": "Parent-skill hub-router.json scaffold. Replace every [bracketed] placeholder. Keep routerSignals keys bidirectionally aligned with mode-registry.json modes[].workflowMode. The canonical live example is sk-code/hub-router.json.",
+  "_surfaceBundleNote": "The surfaceBundle outcome and its bundleRule are surface-axis only; a pure workflow hub keeps only single, orderedBundle, and defer (checker 5f/5g).",
   "skill": "[parent-skill-name]",
   "version": "1.0.0.0",
   "routerPolicy": {
@@ -9,13 +10,13 @@
     "outcomes": {
       "single": "one dominant workflow intent routes to one workflow mode",
       "orderedBundle": "clearly separate workflow intents route to an ordered workflow mode list",
-      "surfaceBundle": "one workflow mode primary plus zero-or-more read-only surface packets as evidence, workflow ordered first",
+      "surfaceBundle": "CONDITIONAL (declare only if this hub has packetKind:surface packets; delete for a pure workflow hub) — one workflow mode primary plus zero-or-more read-only surface packets as evidence, workflow ordered first",
       "defer": "unclear or contradictory intent asks for disambiguation"
     },
     "defaultResource": ["[shared-or-workflow-resource].md"],
     "bundleRules": [
       {
-        "_example": "Optional surfaceBundle rule: when whenPrimary routes, attach includeSurfaces as read-only evidence. Every named mode must be a real mode-registry.json entry.",
+        "_example": "Optional surfaceBundle rule: DELETE for a pure workflow hub because includeSurfaces names a surface mode that a workflow-only hub lacks (checker 5f). When whenPrimary routes, attach includeSurfaces as read-only evidence. Every named mode must be a real mode-registry.json entry.",
         "name": "[workflow-mode-a]-with-surface-evidence",
         "whenPrimary": "[workflow-mode-a]",
         "includeSurfaces": ["[surface-name]"],
