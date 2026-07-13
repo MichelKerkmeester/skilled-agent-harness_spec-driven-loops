@@ -15,6 +15,8 @@ version: 1.0.0.0
 
 ## 1. WHEN TO USE
 
+### Activation Triggers
+
 Use this packet when the request involves:
 
 - Creating or refreshing a folder `README.md`.
@@ -22,17 +24,17 @@ Use this packet when the request involves:
 - Writing developer orientation for a code folder, including topology, boundaries, entrypoints and validation.
 - Creating an install guide for MCP servers, plugins, CLI tools or development dependencies.
 - Running `/create:readme`.
-- Auditing README freshness, broken local references or key artifact coverage.
 
-Keyword triggers: `create readme`, `folder readme`, `write readme`, `README.md`, `install guide`, `installation guide`, `setup guide`, `code folder readme`, `/create:readme`, `audit readmes`.
+Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `install guide`, `installation guide`, `setup guide`, `code folder readme`.
 
-Skip this packet when:
+### When NOT to Use
 
-- The user wants general prose quality review of an existing document. Use the create-quality-control packet.
-- The user wants to scaffold a skill, agent, command, benchmark, feature catalog or testing playbook. Use that specific sk-doc packet.
+Use another `sk-doc` packet when:
+
+- The user wants to audit, validate, score, or optimize an existing README or another existing document without authoring or refreshing it. Use `create-quality-control`.
+- The user wants to scaffold a skill, agent, command, benchmark package, feature catalog, testing playbook, flowchart, or changelog. Use `create-skill`, `create-agent`, `create-command`, `create-benchmark`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-flowchart`, or `create-changelog`.
 - The target is not markdown.
 - The folder is self-explanatory and a parent README or inline comments already give enough orientation.
-- The requested output is a changelog or release note.
 
 This is a nested workflow packet under the `sk-doc` parent hub. It owns README and install-guide authoring only. It does not carry `graph-metadata.json`; advisor identity, skill graph metadata and cross-packet routing live at the `sk-doc` hub root.
 
@@ -47,9 +49,8 @@ Route by artifact type first, then by folder purpose.
 | Project, skill, feature or component README | `README.md` in the target folder | `assets/readme/readme_template.md` |
 | Source-code folder README | `README.md` in the source folder | `assets/readme/readme_code_template.md` |
 | Install guide | Markdown guide, usually under `.opencode/install_guides/` | `assets/readme/install_guide_template.md` |
-| Existing README audit | Findings or requested audit artifact | `scripts/audit_readmes.py` |
 
-This packet uses simple artifact routing. It selects README, code-folder README, install-guide or audit behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/`, `references/install_guide/` and `assets/readme/`.
+This packet uses simple artifact routing. It selects README, code-folder README, or install-guide behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/`, `references/install_guide/` and `assets/readme/`.
 
 Router resilience rules:
 
@@ -284,7 +285,7 @@ Install guides should contain 5+ STOP blocks across all validation checkpoints a
 
 ---
 
-## 8. VALIDATION AND AUDIT
+## 8. VALIDATION
 
 Run shared validation on authored markdown when feasible:
 
@@ -299,7 +300,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py <path>
 python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <path>
 ```
 
-For repository README audits, run from the repo root:
+As an internal authoring check after creating or refreshing READMEs, the packet-local inventory script can verify repository coverage from the repo root:
 
 ```bash
 python3 .opencode/skills/sk-doc/create-readme/scripts/audit_readmes.py --repo-root . --validator .opencode/skills/sk-doc/shared/scripts/validate_document.py

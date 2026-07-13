@@ -17,8 +17,6 @@ Core principle: keep shared rules in the root playbook, keep execution truth in 
 
 ## 1. WHEN TO USE
 
-Keyword triggers: manual testing playbook, testing playbook, deterministic scenario, evidence collection, operator validation, multi-agent execution, release readiness, `/create:manual-testing-playbook`.
-
 ### Activation Triggers
 
 Use this workflow when the request involves:
@@ -31,6 +29,8 @@ Use this workflow when the request involves:
 - Converting an ad hoc release checklist into a reusable evidence-driven playbook package.
 - Aligning a manual testing playbook with a feature catalog.
 
+Keyword triggers: `manual testing playbook`, `/create:manual-testing-playbook`, `testing playbook`, `deterministic scenario`, `evidence collection`, `operator validation`, `multi-agent execution`, `release readiness`.
+
 Strong signals that a playbook is warranted:
 
 - 5+ distinct features need manual validation.
@@ -41,14 +41,15 @@ Strong signals that a playbook is warranted:
 
 ### When NOT to Use
 
-Use a lighter alternative when:
+Use another `sk-doc` packet when:
 
 - Test steps fit cleanly in a spec folder checklist.
 - The feature is one-off or experimental.
 - The system has only a few manually testable behaviors.
 - Automated tests already cover the only meaningful acceptance criteria.
-- The user asks for a feature catalog rather than executable validation scenarios.
-- The task is generic markdown cleanup or DQI scoring without creating a playbook package.
+- The user asks for a feature catalog rather than executable validation scenarios. Use `create-feature-catalog`.
+- The user asks for a README, install guide, skill, agent, command, benchmark package, flowchart, or changelog. Use `create-readme`, `create-skill`, `create-agent`, `create-command`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
+- The task audits, validates, scores, or optimizes an existing playbook without creating or extending the package. Use `create-quality-control`.
 
 ---
 

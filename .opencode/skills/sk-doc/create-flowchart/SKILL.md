@@ -17,6 +17,8 @@ This packet owns flowchart authoring and `scripts/validate_flowchart.sh`. It use
 
 ## 1. When To Use + Smart Routing
 
+### Activation Triggers
+
 Use this packet when the request asks to:
 
 - Create an ASCII or box-drawing flowchart in markdown.
@@ -25,14 +27,18 @@ Use this packet when the request asks to:
 - Show parallel execution with fan-out, fan-in, and synchronization points.
 - Map onboarding, activation, guided setup, or support journeys.
 - Draw system interactions across services, layers, APIs, databases, queues, caches, or error paths.
-- Validate an existing markdown flowchart for structure, connector, size, branch-label, nesting, or readability issues.
+- Validate a flowchart created or edited in the same request for structure, connector, size, branch-label, nesting, or readability issues.
 
-Do not use this packet when:
+Keyword triggers: `create flowchart`, `/create:flowchart`, `flowchart`, `ASCII flowchart`, `workflow diagram`, `decision tree`, `swimlane`, `parallel execution diagram`, `approval loop diagram`.
+
+### When NOT to Use
+
+Use another `sk-doc` packet when:
 
 - A short 2-3 step bullet list is clearer.
 - The requested output is Mermaid, Graphviz, SVG, HTML, screenshot, canvas, or interactive design work.
-- The work is general markdown quality without a flowchart deliverable.
-- The requested artifact is a README, skill, command, agent, benchmark, catalog, or testing playbook.
+- The work audits, validates, scores, or optimizes an existing markdown document or existing flowchart without a flowchart-authoring deliverable. Use `create-quality-control`.
+- The requested artifact is a README, skill, command, agent, benchmark package, catalog, testing playbook, or changelog. Use `create-readme`, `create-skill`, `create-command`, `create-agent`, `create-benchmark`, `create-feature-catalog`, `create-manual-testing-playbook`, or `create-changelog`.
 
 If the target path is unknown and writing would be a guess, ask for the path before creating or editing a file.
 

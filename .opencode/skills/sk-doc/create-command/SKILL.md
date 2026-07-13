@@ -19,6 +19,8 @@ This packet is lean and self-contained. The advisor identity lives at the `sk-do
 
 ## 1. WHEN TO USE
 
+### Activation Triggers
+
 Use this packet when the request involves:
 
 - Creating a new OpenCode slash command.
@@ -29,11 +31,16 @@ Use this packet when the request involves:
 - Separating visible prompts, dashboards, result templates, or next-step wording into a presentation contract.
 - Checking whether a workflow should be a command instead of a skill, agent, or one-off task.
 
-Do not use this packet when:
+Keyword triggers: `create command`, `/create:command`, `slash command`, `OpenCode command`, `argument-hint`, `allowed-tools`, `command template`, `router presentation split`, `thin router`, `presentation contract`, `$ARGUMENTS`.
 
-- The request is to create a skill. Use `create-skill`.
+### When NOT to Use
+
+Use another `sk-doc` packet when:
+
+- The request is to create a skill or parent hub. Use `create-skill`.
 - The request is to create an agent. Use `create-agent`.
-- The task is reference documentation rather than an executable workflow.
+- The task is a README, install guide, feature catalog, manual testing playbook, benchmark package, flowchart, or changelog. Use `create-readme`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
+- The task audits, validates, scores, or optimizes an existing command document. Use `create-quality-control`.
 - The task is one-time work that does not need a reusable slash command.
 - The command already exists and the user only wants runtime debugging.
 - The requested workflow is destructive or externally privileged but lacks confirmation and rollback requirements.
@@ -42,9 +49,7 @@ Do not use this packet when:
 
 ## 2. SMART ROUTING
 
-Keyword triggers: `create command`, `slash command`, `opencode command`, `argument-hint`, `allowed-tools`, `command template`, `router presentation split`, `thin router`, `presentation contract`, `$ARGUMENTS`, `:auto`, `:confirm`.
-
-These triggers route a request into this command-authoring packet. When the true surface is a skill, an agent, or non-command reference documentation, hand off to the sibling `sk-doc` packet named in the "Do not use this packet when" list above instead of proceeding here. When the surface is a slash command, stay in this packet and continue to the creation workflow below.
+These triggers route a request into this command-authoring packet. Execution-mode suffixes are command syntax, not packet-selection triggers. When the surface is a slash command, stay in this packet and continue to the creation workflow below.
 
 ### Router Resilience
 

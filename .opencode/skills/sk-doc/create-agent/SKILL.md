@@ -17,7 +17,7 @@ Use `references/README.md` (the overflow route map) and `assets/agent_template.m
 
 ## 1. WHEN TO USE
 
-Keyword triggers: create-agent, /create:agent, opencode agent, claude code agent, agent frontmatter, permission object, authority boundary, agent template, runtime agent directory.
+### Activation Triggers
 
 Use this workflow when the request involves:
 
@@ -27,18 +27,24 @@ Use this workflow when the request involves:
 4. Deciding whether the requested component should be an agent, skill, or command.
 5. Running or supporting `/create:agent`.
 
+Keyword triggers: `create agent`, `/create:agent`, `OpenCode agent`, `Claude Code agent`, `agent frontmatter`, `permission object`, `authority boundary`, `agent template`, `runtime agent directory`.
+
 Create an agent only when the system needs a stable named persona with explicit tool permissions, denied capabilities, behavioral constraints, orchestration authority, or reusable execution posture.
+
+### When NOT to Use
+
+Use another `sk-doc` packet when:
+
+1. The request needs reusable knowledge, standards, templates, or long-form workflow guidance. Use `create-skill`.
+2. The request needs a slash-command entry point without a new runtime persona. Use `create-command`.
+3. The request needs a README, install guide, feature catalog, manual testing playbook, benchmark package, flowchart, or changelog. Use `create-readme`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
+4. The request audits, validates, scores, or optimizes an existing agent document. Use `create-quality-control`.
 
 ---
 
 ## 2. SMART ROUTING
 
-Use a different `sk-doc` workflow when:
-
-1. The request only needs reusable knowledge, standards, templates, or long-form workflow guidance. Create or update a skill instead.
-2. The request only needs a slash-command entry point. Create or update a command instead.
-3. Existing agents already cover the requested authority and boundary.
-4. The user asks for broad orchestration design rather than one concrete agent file.
+Stay in this packet only when the requested artifact is a concrete runtime agent file and an existing agent does not already cover the authority boundary.
 
 Decision rule:
 

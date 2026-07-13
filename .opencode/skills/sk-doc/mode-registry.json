@@ -23,7 +23,7 @@
       "packetSkillName": "create-skill",
       "grandfatheredFolderMismatch": false,
       "command": "/create:skill",
-      "aliases": ["create skill", "new skill", "scaffold a skill", "make a skill"],
+      "aliases": ["create skill", "new skill", "skill scaffold", "OpenCode skill", "package skill"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-skill" }
     },
     {
@@ -35,7 +35,7 @@
       "packetSkillName": "create-skill",
       "grandfatheredFolderMismatch": false,
       "command": "/create:skill-parent",
-      "aliases": ["create parent skill", "parent skill hub", "scaffold a parent hub", "nested mode packets"],
+      "aliases": ["parent skill", "parent hub", "mode packet", "nested workflow packet"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-skill" }
     },
     {
@@ -47,7 +47,7 @@
       "packetSkillName": "create-readme",
       "grandfatheredFolderMismatch": false,
       "command": "/create:readme",
-      "aliases": ["create readme", "write a readme", "folder readme", "install guide", "add documentation"],
+      "aliases": ["create readme", "readme", "folder readme", "write readme", "README.md", "install guide", "installation guide", "setup guide", "code folder readme"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-readme" }
     },
     {
@@ -59,7 +59,7 @@
       "packetSkillName": "create-agent",
       "grandfatheredFolderMismatch": false,
       "command": "/create:agent",
-      "aliases": ["create agent", "new agent", "make an agent", "agent persona"],
+      "aliases": ["create agent", "OpenCode agent", "Claude Code agent", "agent frontmatter", "permission object", "authority boundary", "agent template", "runtime agent directory"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-agent" }
     },
     {
@@ -71,7 +71,7 @@
       "packetSkillName": "create-command",
       "grandfatheredFolderMismatch": false,
       "command": "/create:command",
-      "aliases": ["create command", "new slash command", "make a command", "add a command"],
+      "aliases": ["create command", "slash command", "OpenCode command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract", "$ARGUMENTS"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-command" }
     },
     {
@@ -83,7 +83,7 @@
       "packetSkillName": "create-feature-catalog",
       "grandfatheredFolderMismatch": false,
       "command": "/create:feature-catalog",
-      "aliases": ["create feature catalog", "feature inventory", "catalog the features"],
+      "aliases": ["feature catalog", "feature inventory", "catalog package", "per-feature files", "source anchors", "root catalog", "capability inventory"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-feature-catalog" }
     },
     {
@@ -95,7 +95,7 @@
       "packetSkillName": "create-manual-testing-playbook",
       "grandfatheredFolderMismatch": false,
       "command": "/create:manual-testing-playbook",
-      "aliases": ["create testing playbook", "manual testing playbook", "test scenarios", "validation playbook"],
+      "aliases": ["manual testing playbook", "testing playbook", "deterministic scenario", "evidence collection", "operator validation", "multi-agent execution", "release readiness"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-manual-testing-playbook" }
     },
     {
@@ -107,7 +107,7 @@
       "packetSkillName": "create-benchmark",
       "grandfatheredFolderMismatch": false,
       "command": "/create:benchmark",
-      "aliases": ["create benchmark folder", "promote benchmark", "mcp_server benchmarks", "benchmark report package", "behavior benchmark", "skill-benchmark", "model-benchmark", "benchmark fixture", "benchmark profile"],
+      "aliases": ["benchmark_report.md", "SOURCE.md", "mcp_server/benchmarks", "MCP bake-off", "behavior benchmark", "behavior_benchmark.md", "scenario contract", "claude-baseline", "skill-benchmark", "benchmark/README.md", "run-label folder", "skill-benchmark-report", "model-benchmark", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-benchmark" }
     },
     {
@@ -119,7 +119,7 @@
       "packetSkillName": "create-flowchart",
       "grandfatheredFolderMismatch": false,
       "command": "/create:flowchart",
-      "aliases": ["create flowchart", "ascii flowchart", "ascii diagram", "decision tree", "swimlane"],
+      "aliases": ["create flowchart", "flowchart", "ASCII flowchart", "workflow diagram", "decision tree", "swimlane", "parallel execution diagram", "approval loop diagram"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-flowchart" }
     },
     {
@@ -131,7 +131,7 @@
       "packetSkillName": "create-changelog",
       "grandfatheredFolderMismatch": false,
       "command": "/create:changelog",
-      "aliases": ["create changelog", "write a changelog", "changelog entry", "version changelog", "release notes"],
+      "aliases": ["create changelog", "release notes", "global changelog", "packet-local changelog", "nested changelog", "--bump", "--release", "vX.Y.Z.B"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-changelog" }
     },
     {
@@ -143,7 +143,7 @@
       "packetSkillName": "create-quality-control",
       "grandfatheredFolderMismatch": false,
       "command": "/doc:quality",
-      "aliases": ["doc quality", "score this doc", "validate a document", "optimize documentation", "dqi", "harden docs"],
+      "aliases": ["doc quality", "audit documentation quality", "document audit", "validate a document", "validate markdown", "score this document", "optimize this doc", "DQI", "HVR", "human voice", "AI-friendly documentation", "extract structure"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-quality-control" }
     }
   ]

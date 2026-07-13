@@ -32,13 +32,14 @@ Keyword triggers: `create changelog`, `/create:changelog`, `release notes`, `glo
 
 ### When NOT to Use
 
-Skip this workflow when:
+Use another `sk-doc` packet when:
 
 1. The user only wants a generic release plan with no file output.
-2. The target is a README, install guide, agent, command, benchmark report, flowchart, or feature catalog.
-3. The work source is too ambiguous to resolve to a spec folder, component hint, or recent git history.
-4. The request is only to review an existing changelog without authoring or updating it.
-5. The user asks for Git branch, commit, PR, or release mechanics beyond preparing release-note content.
+2. The target is a README or install guide. Use `create-readme`.
+3. The target is an agent, command, benchmark package, flowchart, feature catalog, manual testing playbook, or skill. Use `create-agent`, `create-command`, `create-benchmark`, `create-flowchart`, `create-feature-catalog`, `create-manual-testing-playbook`, or `create-skill`.
+4. The user wants to audit, validate, score, or optimize an existing changelog. Use `create-quality-control`.
+5. The work source is too ambiguous to resolve to a spec folder, component hint, or recent git history.
+6. The user asks for Git branch, commit, PR, or release mechanics beyond preparing release-note content.
 
 Use `sk-git` for Git workflow ownership. This packet may prepare release notes when `/create:changelog --release` is requested, but release mechanics are only present in the source as an optional command route and body-format contract.
 

@@ -25,13 +25,14 @@ Use this workflow when the request involves:
 - Applying HVR voice checks for AI-pattern cleanup, direct language and natural writing.
 - Optimizing existing documentation for AI assistants, question-answering format or practical usage examples.
 - Validating an edited markdown document before handoff.
+- Auditing or validating an existing README or markdown flowchart when no new README or flowchart is being authored.
 
-Keyword triggers: `doc quality`, `/doc:quality`, `DQI`, `document audit`, `validate markdown`, `score this document`, `optimize this doc`, `HVR`, `human voice`, `AI-friendly documentation`, `extract structure`.
+Keyword triggers: `doc quality`, `/doc:quality`, `audit documentation quality`, `document audit`, `validate a document`, `validate markdown`, `score this document`, `optimize this doc`, `DQI`, `HVR`, `human voice`, `AI-friendly documentation`, `extract structure`.
 
 ### When NOT to Use
 
-Skip this workflow when:
-- The user wants a brand-new artifact created. Route to the matching `sk-doc` creation packet.
+Use another `sk-doc` packet when:
+- The user wants a brand-new skill, parent hub, README, install guide, agent, command, feature catalog, manual testing playbook, benchmark package, flowchart, or changelog. Use `create-skill`, `create-readme`, `create-agent`, `create-command`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
 - The task is code implementation, debugging or code review. Use `sk-code`.
 - The target is not markdown.
 - The user only needs a tiny typo fix and did not ask for validation or scoring.
