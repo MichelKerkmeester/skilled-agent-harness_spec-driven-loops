@@ -25,7 +25,9 @@ Three deployment-hardening workflows: defense-in-depth input validation, build-t
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting defense-in-depth validation, minification & cdn deployment.
+- Hardening input validation before shipping
+- Minifying build output for production
+- Managing CDN cache and versioning on deploy
 
 ---
 

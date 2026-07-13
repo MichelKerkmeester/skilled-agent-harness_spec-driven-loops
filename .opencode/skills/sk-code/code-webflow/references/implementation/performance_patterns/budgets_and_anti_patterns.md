@@ -25,7 +25,8 @@ Concrete performance budgets to hold a Webflow build to, and the anti-patterns t
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting performance budgets, anti-patterns & related.
+- Setting or checking a page against a performance budget
+- Reviewing code for the performance anti-patterns that blow those budgets
 
 ---
 

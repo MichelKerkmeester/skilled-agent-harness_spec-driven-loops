@@ -25,7 +25,9 @@ ResizeObserver usage and best practices, a quick reference, and the SharedObserv
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting resizeobserver, best practices, quick reference & sharedobservers.
+- Observing element size changes with ResizeObserver
+- Consolidating many observers into one SharedObservers instance
+- Avoiding resize-loop and observer performance pitfalls
 
 ---
 

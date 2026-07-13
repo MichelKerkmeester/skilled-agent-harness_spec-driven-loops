@@ -25,7 +25,9 @@ IntersectionObserver-gated Swiper autoplay, accessibility configuration, and the
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting intersectionobserver autoplay, accessibility & class naming.
+- Gating Swiper autoplay on viewport visibility with IntersectionObserver
+- Making a slider keyboard- and screen-reader-accessible
+- Naming Webflow classes so the slider binds to its markup correctly
 
 ---
 

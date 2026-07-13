@@ -25,7 +25,9 @@ Focus-restoration and touch-detection techniques for accessible Webflow interact
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting focus restoration, touch detection, anti-patterns & checklist.
+- Restoring focus after closing a modal or overlay
+- Distinguishing touch from mouse or pointer input
+- Auditing focus handling against the anti-patterns and integration checklist
 
 ---
 

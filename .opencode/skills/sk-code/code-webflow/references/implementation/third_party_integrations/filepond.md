@@ -24,7 +24,8 @@ Integrating the FilePond file-upload library into a Webflow form — setup, conf
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting filepond file upload.
+- Adding FilePond file upload to a Webflow form
+- Configuring FilePond options or its upload flow
 
 ---
 

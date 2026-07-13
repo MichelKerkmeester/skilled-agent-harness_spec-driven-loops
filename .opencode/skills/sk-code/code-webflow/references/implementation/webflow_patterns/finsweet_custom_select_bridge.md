@@ -25,7 +25,8 @@ The bridge pattern for syncing a Finsweet custom select with the underlying nati
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting finsweet custom select bridge pattern & related.
+- Syncing a Finsweet custom select with the underlying native form control
+- Debugging value or state drift between the custom select and its input
 
 ---
 

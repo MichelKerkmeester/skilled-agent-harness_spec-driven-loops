@@ -25,7 +25,9 @@ Advanced motion.dev animation techniques for Webflow — sequencing, scroll-link
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting motion.dev advanced patterns & related.
+- Building sequenced or timeline-based motion.dev animations beyond simple transitions
+- Coordinating scroll-linked or gesture-driven motion in a Webflow project
+- Debugging advanced motion.dev behavior the basic integration guide does not cover
 
 ---
 

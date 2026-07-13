@@ -90,12 +90,14 @@ send_to_api(user_email);
 
 **SameSite Cookies:**
 ```javascript
-// ✅ GOOD: Set SameSite cookie attribute
-document.cookie = "session=abc123; SameSite=Strict; Secure";
+// ✅ GOOD: Set SameSite on a non-sensitive, client-set cookie (e.g. a UI preference)
+document.cookie = "ui_theme=dark; SameSite=Strict; Secure; Path=/";
 
 // ❌ BAD: No SameSite attribute
-document.cookie = "session=abc123";  // Vulnerable to CSRF
+document.cookie = "ui_theme=dark";  // Sent on cross-site requests
 ```
+
+> Session tokens must NOT be set via `document.cookie` — a JavaScript-set cookie cannot be `HttpOnly`, so it is readable by XSS. Session cookies belong in a server-set `Set-Cookie: … Secure; HttpOnly; SameSite=Strict` header (see the Sensitive Data Storage section). Use client-set cookies only for non-sensitive values.
 
 **CSRF Tokens:**
 ```html

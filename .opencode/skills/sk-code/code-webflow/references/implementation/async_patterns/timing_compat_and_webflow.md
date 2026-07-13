@@ -25,7 +25,9 @@ A decision tree for choosing a scheduling primitive by priority, the browser-com
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting priority/timing decision tree, compatibility & webflow timing.
+- Deciding which timing API fits a task by priority
+- Confirming a scheduling API's browser support before relying on it
+- Code runs before Webflow's own scripts or interactions are ready (e.g. GTM-delayed init)
 
 ---
 

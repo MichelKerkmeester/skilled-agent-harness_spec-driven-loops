@@ -25,7 +25,9 @@ Development best practices and the production-configuration constraints of the W
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting development best practices, production config, testing & integration.
+- Setting up a Webflow development workflow
+- Working within Webflow's production configuration constraints
+- Running the pre-ship testing checklist
 
 ---
 

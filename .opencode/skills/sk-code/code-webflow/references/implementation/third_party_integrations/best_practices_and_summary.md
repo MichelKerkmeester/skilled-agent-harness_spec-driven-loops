@@ -25,7 +25,9 @@ Cross-library best practices for third-party integrations, plus a summary of the
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting best practices, library summary & related.
+- Choosing among the supported third-party libraries
+- Applying cross-library integration best practices (CDN loading, version pinning, error handling)
+- Looking up what a given library is for
 
 ---
 
@@ -34,23 +36,32 @@ Use this reference when implementing or troubleshooting best practices, library 
 ### CDN Loading Pattern
 
 ```javascript
-// ✅ Good: Version pinned, async, error handled
+// ✅ Good: Version pinned, origin-allowlisted, async, error handled
 const CDN_URL = 'https://cdn.jsdelivr.net/npm/library@{version}';
+const ALLOWED_CDN_HOSTS = ['cdn.jsdelivr.net', 'unpkg.com'];
 
 async function load_with_timeout(url, timeout_ms = 10000) {
+  // Never inject an unvalidated URL as a script src — restrict to trusted CDN origins.
+  let parsed;
+  try { parsed = new URL(url); } catch { return false; }
+  if (parsed.protocol !== 'https:' || !ALLOWED_CDN_HOSTS.includes(parsed.hostname)) {
+    return false;
+  }
+
   return new Promise((resolve) => {
     const timer = setTimeout(() => resolve(false), timeout_ms);
-    
+
     const script = document.createElement('script');
-    script.src = url;
+    script.src = parsed.href;
     script.async = true;
+    // Add Subresource Integrity when the hash is known: script.integrity = 'sha384-…'; script.crossOrigin = 'anonymous';
     script.onload = () => { clearTimeout(timer); resolve(true); };
     script.onerror = () => { clearTimeout(timer); resolve(false); };
     document.head.appendChild(script);
   });
 }
 
-// ❌ Bad: No version, no error handling
+// ❌ Bad: No version, no error handling, unvalidated src
 document.write('<script src="https://cdn.example.com/lib.js"></script>');
 ```
 

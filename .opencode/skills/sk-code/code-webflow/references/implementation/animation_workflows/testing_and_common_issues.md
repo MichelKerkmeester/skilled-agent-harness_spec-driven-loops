@@ -25,7 +25,9 @@ Testing and debugging procedures for Webflow animations, paired with a catalog o
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting testing/debugging procedures & common issues.
+- Verifying an animation behaves correctly before shipping
+- An animation fails only in some browsers or after republish and you need the known-issue catalog
+- Debugging timing, flicker, or teardown problems
 
 ---
 

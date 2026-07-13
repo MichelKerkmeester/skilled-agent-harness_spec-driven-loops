@@ -25,7 +25,9 @@ How to wire motion.dev into a Webflow project and keep it performant: integratio
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting motion.dev integration & performance optimization.
+- Wiring motion.dev into a Webflow project for the first time
+- An animation janks or drops frames and you need the 60fps optimization checklist
+- Deciding which properties to animate to stay on the compositor thread
 
 ---
 

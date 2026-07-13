@@ -25,7 +25,9 @@ The upload state machine, the Cloudflare Worker proxy that fronts it, and how bo
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting state machine, cloudflare worker proxy & form integration.
+- Implementing the upload state machine
+- Fronting uploads with a Cloudflare Worker proxy
+- Wiring the upload flow into a Webflow form
 
 ---
 

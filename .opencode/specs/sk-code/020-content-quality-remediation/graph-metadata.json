@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/020-content-quality-remediation",
+  "spec_folder": "sk-code/020-content-quality-remediation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code content quality remediation",
+      "code-webflow security doc fix cookie script src",
+      "when-to-use concrete scenarios sk-code",
+      "020 plan sk-code content quality remediation",
+      "020 tasks sk-code content quality remediation",
+      "020 checklist sk-code content quality",
+      "020 summary sk-code content quality remediation"
+    ],
+    "key_topics": [
+      "sk-code",
+      "content",
+      "quality",
+      "remediation",
+      "code-webflow",
+      "security",
+      "doc",
+      "cookie",
+      "script",
+      "src",
+      "when-to-use",
+      "concrete"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Subresource Integrity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "concrete",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Content",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fix the pre-existing content-quality issues in sk-code code-webflow references surfaced by the 019 xHigh verification review — issues outside 019's structural template-alignment scope: a self-contradicting session-cookie security example, a script.src loader that injects an unvalidated URL without an origin allowlist or SRI, and ~19 references whose When-to-Use is generic boilerplate rather than concrete scenarios.",
+    "created_at": "2026-07-13T05:21:31.962Z",
+    "last_save_at": "2026-07-13T05:23:03.210Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:05e8a08caf20e4928b9b847f69be16b169cf178bd0b5c2ab381e5ff2713c842a",
+    "source_doc_hashes": {
+      "spec.md": "4811b5c2814edf3a5349ad362bafead9a99720c90b4d674fb1f4e7a0825a0635",
+      "plan.md": "8c9a35ace524c3d14696cf68afd7c761c6a74b838fff186f19a30140f402591f",
+      "tasks.md": "328024d5bc298377d9bb3ab72d31d188508c39fd23821280f2b37ed433c22445",
+      "checklist.md": "02ac0f40ac0c1f4dd41c4e741f9ca925116b8c1919e9034bc40eefd6aec6512f",
+      "implementation-summary.md": "94235f9080f4a5e02ed6b6756834cd3f9ca6d09c159b80534ecdc91a478157ab"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

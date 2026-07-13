@@ -24,7 +24,9 @@ Swiper initialization patterns for Webflow, a summary of the common configuratio
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting initialization, common patterns, troubleshooting & related.
+- Initializing Swiper in a Webflow project
+- Applying a common slider configuration
+- A slider fails to initialize or behaves wrong and you need the troubleshooting guide
 
 ---
 

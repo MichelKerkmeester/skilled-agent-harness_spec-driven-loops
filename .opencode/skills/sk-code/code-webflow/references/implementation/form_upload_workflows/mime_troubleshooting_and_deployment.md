@@ -25,7 +25,9 @@ A MIME-type reference for file uploads, a troubleshooting guide for upload failu
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting mime types, troubleshooting, deployment & related.
+- Setting or verifying MIME types for a file-upload flow
+- An upload fails and you need the troubleshooting matrix
+- Deploying an upload feature to Pages
 
 ---
 

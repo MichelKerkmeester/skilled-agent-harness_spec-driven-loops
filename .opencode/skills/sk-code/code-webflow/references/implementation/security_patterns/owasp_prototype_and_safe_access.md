@@ -25,7 +25,9 @@ Client-side security for Webflow JavaScript mapped to the OWASP Top 10: prototyp
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting owasp coverage, prototype pollution, secure ids & safe access.
+- Mapping a client-side risk to the OWASP Top 10
+- Preventing prototype pollution or generating collision-resistant IDs
+- Accessing untrusted object properties safely with Object.hasOwn
 
 ---
 

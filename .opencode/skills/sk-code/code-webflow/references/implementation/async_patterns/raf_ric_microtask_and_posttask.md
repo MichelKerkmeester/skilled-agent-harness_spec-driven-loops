@@ -25,7 +25,9 @@ The four main-thread scheduling APIs — requestAnimationFrame, requestIdleCallb
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting async patterns.
+- Choosing a scheduling primitive for work that must not block rendering
+- Deferring low-priority work with requestIdleCallback or scheduler.postTask
+- Batching DOM reads and writes, or resolving microtask-ordering issues
 
 Modern browsers provide APIs for scheduling work efficiently without blocking the main thread. This guide covers `requestIdleCallback`, `requestAnimationFrame`, `queueMicrotask`, `scheduler.postTask`, and related patterns for optimizing JavaScript execution timing.
 

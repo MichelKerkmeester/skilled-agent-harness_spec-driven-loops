@@ -25,7 +25,8 @@ Integrating two Webflow third-party libraries: Botpoison for spam protection and
 
 ### When to Use
 
-Use this reference when implementing or troubleshooting botpoison spam protection & finsweet attributes.
+- Adding Botpoison spam protection to a form
+- Wiring Finsweet Attributes for CMS or list behavior
 
 ---
 
