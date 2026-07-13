@@ -8,7 +8,7 @@ import { z } from 'zod';
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-export const EXECUTOR_KINDS = ['native', 'cli-claude-code', 'cli-opencode'] as const;
+export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
 export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max'] as const;
@@ -51,6 +51,7 @@ export type ExecutorConfig = z.infer<typeof executorConfigSchema>;
 
 export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof ExecutorConfig)[]> = {
   native: [],
+  'cli-codex': ['model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'timeoutSeconds'],
   'cli-claude-code': ['model', 'configDir', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
   'cli-opencode': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
 };

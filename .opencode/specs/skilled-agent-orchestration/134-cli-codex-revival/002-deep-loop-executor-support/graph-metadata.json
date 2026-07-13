@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-cli-codex-revival/002-deep-loop-executor-support",
+  "spec_folder": "skilled-agent-orchestration/134-cli-codex-revival/002-deep-loop-executor-support",
+  "parent_id": "skilled-agent-orchestration/134-cli-codex-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/134-cli-codex-revival/001-codex-contract-pin",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-codex executor",
+      "Codex fanout",
+      "Codex executor audit",
+      "Codex executor plan",
+      "Codex executor tasks",
+      "Codex executor checklist",
+      "Codex executor summary"
+    ],
+    "key_topics": [
+      "cli-codex",
+      "executor",
+      "codex",
+      "fanout",
+      "audit",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "deep-loop",
+      "runtime",
+      "rejects"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "plan.md",
+      "implementation-summary.md",
+      "spec.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Restore Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Accept Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Errors",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop runtime rejects `cli-codex`, lacks its command adapter and audit metadata, and therefore cannot run Codex lineages",
+    "created_at": "2026-07-13T05:38:00Z",
+    "last_save_at": "2026-07-13T05:05:56.010Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b135eb5c200fde24c9938aaf78f1f6fe15c9cd2202d0c6b05a962e30fc0b895f",
+    "source_doc_hashes": {
+      "spec.md": "0deef5869c2b67f37dddc96dab53ed7e5b26ff870a7267d5eec9e6d4e2da558c",
+      "plan.md": "cc0d90e9e85fb65394fd03a26eb85c510475566f0d88e343492888fe47705eb7",
+      "tasks.md": "1a0aeb195f488f94e18fa42c3724a9ca0d8bcf84eeddeec45d88a360209de5b2",
+      "checklist.md": "552ea622468cb5fec2624fdab23352f1b2728dff31aa212e5fbaf4ef8bf2d41f",
+      "implementation-summary.md": "1c9e7a89329709b128ce2ced0806044bd518662d6cb0de6cb048b9245490591f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

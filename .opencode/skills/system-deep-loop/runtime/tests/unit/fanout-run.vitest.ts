@@ -703,6 +703,52 @@ describe('fanout-run.cjs — native convergence threshold defaults', () => {
   });
 });
 
+describe('fanout-run.cjs — cli-codex adapter', () => {
+  const { buildLineageCommand, isCodexBinaryAvailable } = requireCjs(fanoutRunScript) as {
+    buildLineageCommand: (
+      lineage: Record<string, unknown>,
+      prompt: string,
+      resolvedSandbox: string,
+      resolvedPermission: string,
+      options?: { env?: NodeJS.ProcessEnv },
+    ) => { command: string; args: string[]; input: string };
+    isCodexBinaryAvailable: (env?: NodeJS.ProcessEnv) => boolean;
+  };
+
+  it('builds the restored codex exec command with stdin prompt input', () => {
+    const command = buildLineageCommand(
+      { kind: 'cli-codex', model: 'gpt-5.6-codex', reasoningEffort: 'xhigh', serviceTier: 'fast' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+    );
+    expect(command).toEqual({
+      command: 'codex',
+      args: [
+        'exec', '--model', 'gpt-5.6-codex',
+        '-c', 'model_reasoning_effort=xhigh',
+        '-c', 'service_tier=fast',
+        '-c', 'approval_policy=never',
+        '--sandbox', 'workspace-write',
+        '-',
+      ],
+      input: 'bounded prompt',
+    });
+  });
+
+  it('fails closed before command construction when codex is absent', () => {
+    const env = { ...process.env, PATH: makeTempDir('fanout-run-no-codex-') };
+    expect(isCodexBinaryAvailable(env)).toBe(false);
+    expect(() => buildLineageCommand(
+      { kind: 'cli-codex', model: 'gpt-5.6-codex' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      { env },
+    )).toThrow(/command -v codex failed/);
+  });
+});
+
 describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
   const { buildLoopPrompt } = requireCjs(fanoutRunScript) as {
     buildLoopPrompt: (

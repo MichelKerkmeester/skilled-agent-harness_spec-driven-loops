@@ -177,7 +177,7 @@ function resolveExecutorKind(executorConfig = {}, councilConfig = {}) {
     throw new TypeError('executor must be an object with separate kind and model fields');
   }
   const kind = executor.kind || executor.cli || 'native';
-  if (!['native', 'cli-opencode', 'opencode'].includes(kind)) {
+  if (!['native', 'cli-codex', 'cli-opencode', 'opencode'].includes(kind)) {
     throw new RangeError(`unsupported council executor kind: ${kind}`);
   }
   return kind === 'opencode' ? 'cli-opencode' : kind;

@@ -72,6 +72,28 @@ describe('executor-config', () => {
     });
   });
 
+  it('accepts cli-codex with its supported execution flags', () => {
+    expect(parseExecutorConfig({
+      kind: 'cli-codex',
+      model: 'gpt-5.6-codex',
+      reasoningEffort: 'xhigh',
+      serviceTier: 'fast',
+      sandboxMode: 'workspace-write',
+    })).toMatchObject({
+      kind: 'cli-codex',
+      model: 'gpt-5.6-codex',
+      reasoningEffort: 'xhigh',
+      serviceTier: 'fast',
+      sandboxMode: 'workspace-write',
+    });
+  });
+
+  it('rejects configDir for cli-codex', () => {
+    expect(() => parseExecutorConfig({ kind: 'cli-codex', configDir: '~/.codex' })).toThrowError(
+      /configDir.*not supported by executor kind 'cli-codex'/,
+    );
+  });
+
 
   it('accepts a cli-claude-code executor with a model', () => {
     expect(parseExecutorConfig({ kind: 'cli-claude-code', model: 'claude-opus-4-6' })).toMatchObject({
@@ -233,6 +255,13 @@ describe('parseFanoutConfig', () => {
     expect(config.executors[0].assignment_model).toBe('flat_pool');
     expect(config.executors[0].depends_on).toEqual([]);
     expect(config.executors[0].touches).toEqual([]);
+  });
+
+  it('accepts cli-codex as a fan-out lineage', () => {
+    const config = parseFanoutConfig({
+      executors: [{ kind: 'cli-codex', model: 'gpt-5.6-codex', label: 'codex' }],
+    });
+    expect(config.executors[0]).toMatchObject({ kind: 'cli-codex', model: 'gpt-5.6-codex' });
   });
 
   it('accepts per-lineage cli-claude-code configDir in fan-out config', () => {

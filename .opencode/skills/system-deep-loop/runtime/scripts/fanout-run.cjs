@@ -18,7 +18,7 @@
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { spawn } = require('node:child_process');
+const { spawn, spawnSync } = require('node:child_process');
 
 const {
   classifyExitCode,
@@ -435,6 +435,7 @@ function logFlatPoolGuardRejections({ rejections, ledgerPath, runId, loopType, s
 
 // Per-kind first state-dir env var (used for lockfile isolation across same-kind replicas).
 const SPECKIT_STATE_ENV_BY_KIND = {
+  'cli-codex': 'SPECKIT_CODEX_STATE_DIR',
   'cli-claude-code': 'SPECKIT_CLAUDE_CODE_STATE_DIR',
   'cli-opencode': 'SPECKIT_OPENCODE_STATE_DIR',
 };
@@ -1381,6 +1382,24 @@ function runLineageProcess(command, cmdArgs, opts) {
 function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options = {}) {
   const kind = lineage.kind;
 
+  if (kind === 'cli-codex') {
+    if (!isCodexBinaryAvailable(options.env || process.env)) {
+      throw inputError('cli-codex executor unavailable: command -v codex failed');
+    }
+    const args = [
+      'exec',
+      '--model',
+      lineage.model || 'o4-mini',
+      '-c',
+      `model_reasoning_effort=${lineage.reasoningEffort || 'medium'}`,
+    ];
+    if (lineage.serviceTier) {
+      args.push('-c', `service_tier=${lineage.serviceTier}`);
+    }
+    args.push('-c', 'approval_policy=never', '--sandbox', resolvedSandbox, '-');
+    return { command: 'codex', args, input: prompt };
+  }
+
   if (kind === 'cli-claude-code') {
     const args = [
       '-p',
@@ -1458,6 +1477,14 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
   }
 
   throw inputError(`Unknown fan-out executor kind: ${kind}`);
+}
+
+function isCodexBinaryAvailable(env = process.env) {
+  const result = spawnSync('/bin/sh', ['-c', 'command -v codex >/dev/null 2>&1'], {
+    env,
+    stdio: 'ignore',
+  });
+  return result.status === 0;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1966,6 +1993,7 @@ if (require.main === module && isTsxLoaded) {
 
 module.exports = {
   buildLineageCommand,
+  isCodexBinaryAvailable,
   buildLoopPrompt,
   findMaxIterationsPolicyViolation,
   isMaxIterationsStopReason,

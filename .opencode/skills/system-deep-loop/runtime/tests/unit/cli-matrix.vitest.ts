@@ -32,6 +32,8 @@ function buildDispatchCommand(
         `--output-format text${effortFlag}`,
       ].join(' ');
     }
+    case 'cli-codex':
+      return `codex exec --model "${config.model}" -c model_reasoning_effort=${config.reasoningEffort || 'medium'} --sandbox ${config.sandboxMode || 'workspace-write'} -`;
     case 'cli-opencode':
       return `opencode run --model "${config.model}" --format json "$(cat '${promptPath}')"`;
   }
@@ -73,9 +75,14 @@ describe('cli-matrix dispatch command shape', () => {
     expect(buildDispatchCommand(config, promptPath)).toContain('TASK(agent=deep-research');
   });
 
-  it('rejects retired executor command shapes before command construction', () => {
-    const retiredKind = ['cli', 'gemini'].join('-');
-    expect(() => parseExecutorConfig({ kind: retiredKind, model: 'gpt-5.4' })).toThrow();
+  it('accepts the revived cli-codex command shape', () => {
+    const config = parseExecutorConfig({
+      kind: 'cli-codex',
+      model: 'gpt-5.6-codex',
+      reasoningEffort: 'xhigh',
+      sandboxMode: 'workspace-write',
+    });
+    expect(buildDispatchCommand(config, promptPath)).toContain('codex exec --model "gpt-5.6-codex"');
   });
 
   it('cli-opencode produces opencode run shape', () => {
