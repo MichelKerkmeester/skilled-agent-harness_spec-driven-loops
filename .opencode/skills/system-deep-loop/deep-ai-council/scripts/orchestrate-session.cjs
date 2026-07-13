@@ -177,7 +177,15 @@ function resolveExecutorKind(executorConfig = {}, councilConfig = {}) {
     throw new TypeError('executor must be an object with separate kind and model fields');
   }
   const kind = executor.kind || executor.cli || 'native';
-  if (!['native', 'cli-codex', 'cli-opencode', 'opencode'].includes(kind)) {
+  // Council seats only ever spawn opencode/native subprocesses, so accepting cli-codex
+  // here silently ran a codex-labelled seat on opencode. Reject it explicitly and point
+  // callers at the deep-review/deep-research loops, which do route codex end-to-end.
+  if (kind === 'cli-codex') {
+    throw new RangeError(
+      'cli-codex is not a supported AI Council seat executor (council seats run via opencode/native); use deep-review or deep-research for codex-backed loops',
+    );
+  }
+  if (!['native', 'cli-opencode', 'opencode'].includes(kind)) {
     throw new RangeError(`unsupported council executor kind: ${kind}`);
   }
   return kind === 'opencode' ? 'cli-opencode' : kind;

@@ -175,7 +175,7 @@ then re-run Lane C so the renderer regenerates the pair. Never patch the `.md`.
 ### Within this packet
 
 - [`../SKILL.md`](../../SKILL.md) — the create-benchmark workflow and report contracts.
-- [`README.md`](../_shared/README.md) — the benchmark-creation reference map.
+- [`README.md`](../shared/README.md) — the benchmark-creation reference map.
 - [`behavior_benchmark_guide.md`](../behavior_benchmark/behavior_benchmark_guide.md) — authoring guide for the distinct behavior-benchmark family (executor behavior at a deep-loop mode's invocation surface), not the Lane C skill-benchmark storage covered here.
 
 ---

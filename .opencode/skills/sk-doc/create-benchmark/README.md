@@ -54,15 +54,15 @@ Packet root:
 
 References:
 
-- `references/_shared/README.md` — overflow route-map to case studies, the report worked example, and common pitfalls. `SKILL.md` is the authoritative contract.
+- `references/shared/README.md` — overflow route-map to case studies, the report worked example, and common pitfalls. `SKILL.md` is the authoritative contract.
 - `references/behavior_benchmark/behavior_benchmark_guide.md` — end-to-end guide for authoring a behavior_benchmark package: what it measures, package layout, scenario-matrix design, naming, and validation.
 - `references/skill_benchmark/skill_benchmark_storage_guide.md` — storage convention for a hub's `benchmark/` tree: run-label naming, the frozen `baseline/` anchor, and the renderer-owned report boundary.
 - `references/model_benchmark/model_benchmark_fixture_guide.md` — authoring guide for Lane B inputs: the fixture-family taxonomy, profile shape, and the lane boundary for scoring.
 
 Assets:
 
-- `assets/_shared/benchmark_report_template.md` — template for the ten-section `benchmark_report.md`.
-- `assets/_shared/source_template.md` — template for the `SOURCE.md` wayfinding file.
+- `assets/shared/benchmark_report_template.md` — template for the ten-section `benchmark_report.md`.
+- `assets/shared/source_template.md` — template for the `SOURCE.md` wayfinding file.
 - `assets/behavior_benchmark/behavior_benchmark_index_template.md` — template for a `behavior_benchmark.md` package index.
 - `assets/behavior_benchmark/behavior_benchmark_scenario_template.md` — template for one `<PREFIX>-NNN-<slug>.md` scenario contract.
 - `assets/behavior_benchmark/behavior_benchmark_baseline_template.md` — template for `baselines/claude-baseline.md`.
@@ -101,11 +101,11 @@ mcp_server/benchmarks/
 Basic flow:
 
 1. Confirm the source spec packet has an accepted decision record, stable headline, stable fixture, replay commands, and defensible winner or provisional status.
-2. Read `SKILL.md` for the authoritative workflow; consult `references/_shared/README.md` for case studies and the worked example.
+2. Read `SKILL.md` for the authoritative workflow; consult `references/shared/README.md` for case studies and the worked example.
 3. Create the dated folder using the benchmark execution date, not the authoring date.
 4. Copy the source artifacts that support the decision.
-5. Write `benchmark_report.md` from `assets/_shared/benchmark_report_template.md`.
-6. Write `SOURCE.md` from `assets/_shared/source_template.md`.
+5. Write `benchmark_report.md` from `assets/shared/benchmark_report_template.md`.
+6. Write `SOURCE.md` from `assets/shared/source_template.md`.
 7. Update `mcp_server/benchmarks/README.md` with the benchmark index row.
 8. Validate authored markdown with the shared sk-doc validator.
 

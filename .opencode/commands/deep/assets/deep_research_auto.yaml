@@ -1205,6 +1205,82 @@ workflow:
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+        if_cli_codex:
+          command: |
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+            import { execFileSync } from 'node:child_process';
+
+            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+
+            // Fail closed: a requested codex executor must dispatch codex or abort,
+            // never silently degrade to another executor. Undetected absence is what
+            // got Codex deprecated before, so the branch exits non-zero when the
+            // binary is missing instead of falling through to a native/other path.
+            let codexAvailable = false;
+            try {
+              execFileSync('/bin/sh', ['-c', 'command -v codex >/dev/null 2>&1'], { stdio: 'ignore' });
+              codexAvailable = true;
+            } catch {}
+            if (!codexAvailable) {
+              console.error('cli-codex executor unavailable: command -v codex failed');
+              process.exit(1);
+            }
+
+            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const serviceTier = '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}';
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            const executor = {
+              kind: 'cli-codex',
+              model,
+              configDir: null,
+              reasoningEffort,
+              serviceTier,
+              sandboxMode: 'workspace-write',
+              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+              governor: null,
+            };
+
+            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+
+            // codex reads the iteration prompt from stdin via the trailing '-'. A research
+            // iteration must WRITE its own iteration file, delta and state record, so the
+            // sandbox is workspace-write — read-only would block those required writes.
+            // approval_policy=never keeps the run non-interactive.
+            const args = ['exec'];
+            if (model) {
+              args.push('--model', model);
+            }
+            args.push('-c', 'model_reasoning_effort=' + (reasoningEffort || 'medium'));
+            if (serviceTier) {
+              args.push('-c', 'service_tier=' + serviceTier);
+            }
+            args.push('-c', 'approval_policy=never', '--sandbox', executor.sandboxMode, '-');
+
+            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
+            process.exit(
+              runAuditedExecutorCommand({
+                command: 'codex',
+                args,
+                cwd: '{repo_root}',
+                timeoutSeconds: executor.timeoutSeconds,
+                stateLogPath: '{state_paths.state_log}',
+                executor,
+                iteration: Number('{current_iteration}'),
+                input: promptBody,
+                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+                dispatchId,
+              }),
+            );
+            EOF
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          notes:
+            - "Routed through runAuditedExecutorCommand so codex produces INTENT + COMPLETION dispatch receipts; recursion guard (CODEX_SESSION_ID) + env allowlist (CODEX_/OPENAI_/AZURE_OPENAI_) enforced via buildExecutorDispatchEnv"
+            - "Fails closed when the codex binary is absent (exit 1) — parity with the fan-out cli-codex lineage guard in fanout-run.cjs; codex routing never degrades to native"
+            - "codex exec reads the iteration prompt from stdin via the trailing '-' (input: promptBody); '-c model_reasoning_effort=' maps reasoning depth, default medium; '-c service_tier=' forwarded when configured"
+            - "--sandbox workspace-write is required so the iteration can write its own iteration file/delta/state record (read-only would fail the post-dispatch artifact gate); -c approval_policy=never keeps it non-interactive; --model omitted when unset so ~/.codex/config.toml default applies"
         post_dispatch_validate:
           validator: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           command: "node .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type research --artifact-dir {artifact_dir} --iteration {current_iteration}"
