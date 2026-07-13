@@ -7,7 +7,7 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T17:30:00Z"
+    last_updated_at: "2026-07-13T18:17:53Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded the five capability-spike decisions"
     next_safe_action: "Implement the eight portable Codex guard adapters"
@@ -153,7 +153,7 @@ Fabricate a Task/SubagentStop hook (rejected: no such live surface to guard). Om
 <!-- /ANCHOR:adr-005-alternatives -->
 <!-- ANCHOR:adr-005-consequences -->
 ### Consequences
-No dead or fabricated hooks. `.codex/config.toml` still defines no `[profiles.*]`, so `codex exec -p` dispatch is itself non-functional today; noted as an out-of-scope follow-up.
+No dead or fabricated hooks. The repo `.codex/config.toml` defines no `[profiles.*]`, but the user-global `~/.codex/config.toml` does define agent profiles, so `codex exec -p` dispatch is functional at the user level. The codex dispatch adapters therefore recognize that shape (enforcing cli-codex hard-rules on the preflight surface and auditing it on the post surface) via a locally-declared shape, keeping the shared dispatch core unchanged. Defining repo-level `[profiles.*]` remains an out-of-scope follow-up.
 <!-- /ANCHOR:adr-005-consequences -->
 <!-- ANCHOR:adr-005-five-checks -->
 ### Five Checks

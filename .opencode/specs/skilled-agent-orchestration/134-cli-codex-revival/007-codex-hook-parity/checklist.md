@@ -7,7 +7,7 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T17:30:00Z"
+    last_updated_at: "2026-07-13T18:17:53Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the Level 3 checklist"
     next_safe_action: "Implement the eight portable Codex guard adapters"
@@ -25,8 +25,8 @@ A check is marked only with evidence: a command output, a file diff, or a live-s
 <!-- /ANCHOR:protocol -->
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] CHK-001 [P0] Capability spike complete; contract pinned in `decision-record.md`.
-- [x] CHK-002 [P1] Neutral cores and their functions identified for each adapter.
+- [x] CHK-001 [P0] Capability spike complete; contract pinned in `decision-record.md` (ADR-001, Codex 0.144.2 event enum + output schema).
+- [x] CHK-002 [P1] Neutral cores and entry functions identified per adapter in `decision-record.md` ADR-002 (`evaluateMutation`, `evaluateEdit`, `evaluateCompletionEvidence`, `evaluateNativeMcpCall`).
 <!-- /ANCHOR:pre-impl -->
 <!-- ANCHOR:code-quality -->
 ## Code Quality

@@ -7,7 +7,7 @@ contextType: planning
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T17:30:00Z"
+    last_updated_at: "2026-07-13T18:17:53Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the Level 3 implementation plan"
     next_safe_action: "Implement the eight portable Codex guard adapters"
@@ -72,3 +72,35 @@ Fixture stdin-pipe smoke per adapter (allow, advise, deny, fail-open) plus a liv
 ## 7. ROLLBACK PLAN
 Restore the `~/.codex/hooks.json` backup, revert repo `.codex/hooks.json`, and delete the new `runtime/hooks/codex/` adapters and the installer. No neutral core changes, so Claude and OpenCode behavior is unaffected.
 <!-- /ANCHOR:rollback -->
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+- **T001 → T002 → T003** (Setup) gate everything.
+- **T004–T010** (guard adapters) each depend only on core identification (T003) and are mutually independent — parallelizable.
+- **T011–T014** (lifecycle wiring + native equivalents) depend on the adapters they register.
+- **T015** (`.codex/hooks.json`) depends on all adapters existing on disk; **T016** (installer) depends on T015.
+- **T017–T020** (verification + closeout) depend on T016.
+<!-- /ANCHOR:dependency-graph -->
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+`T003 → T004` (spec-gate-enforce, the reference deny adapter) `→ T015` (registration) `→ T016` (installer) `→ T018` (live matrix) `→ T020` (closeout). The live deny-behavioral confirmation on T018 is the longest-lead item; fixture smoke (T017) de-risks it by proving every envelope before the live run.
+<!-- /ANCHOR:critical-path -->
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+| Milestone | Definition | Gate |
+|---|---|---|
+| M1 Scaffold green | Docs conform; `validate.sh --strict` Errors: 0 | Phase 1 |
+| M2 Adapters built | All seven guard adapters + native equivalents pass fixture smoke | Phase 2 |
+| M3 Wired + installed | `.codex/hooks.json` extended; installer run into `~/.codex/hooks.json` | Phase 2 |
+| M4 Verified | Live matrix fires/honors (or documented owed); playbook written | Phase 3 |
+| M5 Closed out | Metadata reconciled; 134 parent noted; strict validation clean | Phase 3 |
+<!-- /ANCHOR:milestones -->
+## L3: AI EXECUTION PROTOCOL
+### Pre-Task Checklist
+Before each adapter: read the named Claude sibling and its neutral core; confirm the core's entry function and the tool-name normalization; confirm the target `codex/` sibling path.
+### Task Execution Rules
+- **TASK-SEQ**: Setup (T001–T003) precedes any Phase 2 work; install (T015–T016) runs only after every adapter exists on disk.
+- **TASK-SCOPE**: touch only the new `codex/` adapters, `.codex/hooks.json`, the installer, and the playbook. Never modify a neutral core, a Claude hook, or an OpenCode plugin.
+### Status Format
+Report each task as `T### — <result> (evidence: fixture output / file:line / diff)`, distinguishing confirmed from inferred.
+### Blocked Task Protocol
+On a BLOCKED task (e.g. a live `codex exec` run that hangs), stop, record the fixture + schema evidence already gathered, mark the live-behavioral item as explicitly owed, and continue with the next unblocked task rather than claiming completion.
