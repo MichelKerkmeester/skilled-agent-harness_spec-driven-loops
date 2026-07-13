@@ -38,13 +38,13 @@
     "create-skill-aliases": { "keywords": ["create skill", "new skill", "skill scaffold", "OpenCode skill", "package skill"] },
     "create-skill-parent-aliases": { "keywords": ["parent skill", "parent hub", "mode packet", "nested workflow packet"] },
     "create-readme-aliases": { "keywords": ["create readme", "readme", "folder readme", "write readme", "README.md", "install guide", "installation guide", "setup guide", "code folder readme"] },
-    "create-agent-aliases": { "keywords": ["create agent", "OpenCode agent", "Claude Code agent", "agent frontmatter", "permission object", "authority boundary", "agent template", "runtime agent directory"] },
+    "create-agent-aliases": { "keywords": ["create agent", "OpenCode agent", "Claude Code agent", "agent file", "new agent", "agent persona", "agent frontmatter", "permission object", "authority boundary", "agent template", "runtime agent directory"] },
     "create-command-aliases": { "keywords": ["create command", "slash command", "OpenCode command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract", "$ARGUMENTS"] },
     "create-feature-catalog-aliases": { "keywords": ["feature catalog", "feature inventory", "catalog package", "per-feature files", "source anchors", "root catalog", "capability inventory"] },
     "create-manual-testing-playbook-aliases": { "keywords": ["manual testing playbook", "testing playbook", "deterministic scenario", "evidence collection", "operator validation", "multi-agent execution", "release readiness"] },
     "create-benchmark-aliases": { "keywords": ["benchmark_report.md", "SOURCE.md", "mcp_server/benchmarks", "MCP bake-off", "behavior benchmark", "behavior_benchmark.md", "scenario contract", "claude-baseline", "skill-benchmark", "benchmark/README.md", "run-label folder", "skill-benchmark-report", "model-benchmark", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture"] },
     "create-flowchart-aliases": { "keywords": ["create flowchart", "flowchart", "ASCII flowchart", "workflow diagram", "decision tree", "swimlane", "parallel execution diagram", "approval loop diagram"] },
-    "create-changelog-aliases": { "keywords": ["create changelog", "release notes", "global changelog", "packet-local changelog", "nested changelog", "--bump", "--release", "vX.Y.Z.B"] },
+    "create-changelog-aliases": { "keywords": ["create changelog", "changelog", "changelog entry", "release notes", "global changelog", "packet-local changelog", "nested changelog", "--bump", "--release", "vX.Y.Z.B"] },
     "create-quality-control-aliases": { "keywords": ["doc quality", "audit documentation quality", "document audit", "validate a document", "validate markdown", "score this document", "optimize this doc", "DQI", "HVR", "human voice", "AI-friendly documentation", "extract structure"] }
   }
 }

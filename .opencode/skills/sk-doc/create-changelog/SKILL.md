@@ -28,7 +28,7 @@ Use this workflow when the task involves:
 5. Calculating the next four-part semantic version for a global changelog.
 6. Preparing GitHub release notes from the generated global changelog content.
 
-Keyword triggers: `create changelog`, `/create:changelog`, `release notes`, `global changelog`, `packet-local changelog`, `nested changelog`, `--bump`, `--release`, `vX.Y.Z.B`.
+Keyword triggers: `create changelog`, `/create:changelog`, `changelog`, `changelog entry`, `release notes`, `global changelog`, `packet-local changelog`, `nested changelog`, `--bump`, `--release`, `vX.Y.Z.B`.
 
 ### When NOT to Use
 

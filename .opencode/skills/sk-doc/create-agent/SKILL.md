@@ -27,7 +27,7 @@ Use this workflow when the request involves:
 4. Deciding whether the requested component should be an agent, skill, or command.
 5. Running or supporting `/create:agent`.
 
-Keyword triggers: `create agent`, `/create:agent`, `OpenCode agent`, `Claude Code agent`, `agent frontmatter`, `permission object`, `authority boundary`, `agent template`, `runtime agent directory`.
+Keyword triggers: `create agent`, `/create:agent`, `OpenCode agent`, `Claude Code agent`, `agent file`, `new agent`, `agent persona`, `agent frontmatter`, `permission object`, `authority boundary`, `agent template`, `runtime agent directory`.
 
 Create an agent only when the system needs a stable named persona with explicit tool permissions, denied capabilities, behavioral constraints, orchestration authority, or reusable execution posture.
 

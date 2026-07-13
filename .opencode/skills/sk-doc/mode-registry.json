@@ -59,7 +59,7 @@
       "packetSkillName": "create-agent",
       "grandfatheredFolderMismatch": false,
       "command": "/create:agent",
-      "aliases": ["create agent", "OpenCode agent", "Claude Code agent", "agent frontmatter", "permission object", "authority boundary", "agent template", "runtime agent directory"],
+      "aliases": ["create agent", "OpenCode agent", "Claude Code agent", "agent file", "new agent", "agent persona", "agent frontmatter", "permission object", "authority boundary", "agent template", "runtime agent directory"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-agent" }
     },
     {
@@ -131,7 +131,7 @@
       "packetSkillName": "create-changelog",
       "grandfatheredFolderMismatch": false,
       "command": "/create:changelog",
-      "aliases": ["create changelog", "release notes", "global changelog", "packet-local changelog", "nested changelog", "--bump", "--release", "vX.Y.Z.B"],
+      "aliases": ["create changelog", "changelog", "changelog entry", "release notes", "global changelog", "packet-local changelog", "nested changelog", "--bump", "--release", "vX.Y.Z.B"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-changelog" }
     },
     {
