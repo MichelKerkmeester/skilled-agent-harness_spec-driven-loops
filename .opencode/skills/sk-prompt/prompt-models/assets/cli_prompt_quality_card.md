@@ -9,7 +9,7 @@ trigger_phrases:
   - "escalate to prompt improver"
 importance_tier: important
 contextType: general
-version: 0.8.0.18
+version: 0.8.0.19
 ---
 
 # CLI Prompt Quality Card
@@ -143,4 +143,4 @@ When editing this file, no mirroring step is required — the delegating cards r
 - `../../prompt-improve/references/patterns_evaluation.md`
 - `../../prompt-improve/references/depth_framework.md`
 - `../../../cli-claude-code/assets/prompt_quality_card.md`
-- `../../../cli-opencode/assets/prompt_quality_card.md`
+- `../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md`

@@ -9,7 +9,7 @@ trigger_phrases:
   - "kimi k2.7 dispatch gotchas"
 importance_tier: normal
 contextType: implementation
-version: 0.8.0.7
+version: 0.8.0.8
 ---
 
 # Kimi-k2.7-code Prompt-Craft Profile
@@ -133,7 +133,7 @@ A senior engineer who will run the output against a strict hidden-test oracle.
 
 ## 6. DISPATCH GOTCHAS
 
-Model-specific capability fields and flags are sourced from the `kimi-k2.7-code` entry in [`../../assets/model_profiles.json`](../../assets/model_profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
+Model-specific capability fields and flags are sourced from the `kimi-k2.7-code` entry in [`../../assets/model_profiles.json`](../../assets/model_profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
 | Field | Value | Implication |
 | --- | --- | --- |
@@ -147,7 +147,7 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.7-code`
 
 **Slug-drift guard:** re-verify the live slug with `opencode models kimi-for-coding` before automation runs — Kimi/Moonshot ids drift. The provider is `kimi-for-coding`; do NOT use the invented `kimi-token-plan-ams` slug.
 
-**Non-TTY automation rule (executor mechanic):** In any non-interactive automation context, append `</dev/null` to the executor-owned invocation wrapper to prevent stdin blocking. Use the wrapper from [`cli-opencode`](../../../../cli-opencode/SKILL.md), not this profile.
+**Non-TTY automation rule (executor mechanic):** In any non-interactive automation context, append `</dev/null` to the executor-owned invocation wrapper to prevent stdin blocking. Use the wrapper from [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md), not this profile.
 
 **Fallback target:** none. If the `kimi-for-coding` pool is exhausted, defer the task — do not retry against the same pool.
 
@@ -169,8 +169,8 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.7-code`
 
 - [`../../assets/model_profiles.json`](../../assets/model_profiles.json) `#kimi-k2.7-code` — Registry entry; the authoritative DATA this profile mirrors.
 - [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — Generic framework definitions (RCAF § 3, full framework library).
-- [`../../../../cli-opencode/SKILL.md`](../../../../cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (Kimi For Coding); non-TTY rule, permissions, model-selection guidance.
-- [`../../../../cli-opencode/assets/prompt_templates.md`](../../../../cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax TIDD-EC + MiMo COSTAR templates as worked examples of the format).
+- [`../../../../cli-external-orchestration/cli-opencode/SKILL.md`](../../../../cli-external-orchestration/cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (Kimi For Coding); non-TTY rule, permissions, model-selection guidance.
+- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax TIDD-EC + MiMo COSTAR templates as worked examples of the format).
 - [`../pattern_index.md`](../pattern_index.md) — Index of all MECHANICS patterns + ship status.
 - [`../models/_index.md`](../models/_index.md) — Sibling model index; see DeepSeek-v4-pro for an opencode-go-tier reasoning peer.
-- **Executor quality card:** [`../../../../cli-opencode/assets/prompt_quality_card.md`](../../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.
+- **Executor quality card:** [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.

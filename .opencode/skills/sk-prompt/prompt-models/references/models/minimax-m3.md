@@ -9,7 +9,7 @@ trigger_phrases:
   - "minimax m3 dispatch gotchas"
 importance_tier: normal
 contextType: implementation
-version: 0.8.0.11
+version: 0.8.0.12
 ---
 
 # MiniMax-M3 Prompt-Craft Profile
@@ -208,7 +208,7 @@ Source of truth for capability fields: [`../../assets/model_profiles.json`](../.
 | `quota_pool` (Token Plan) | `minimax-token-plan` | Subscription; resets on a 5-hour rolling window |
 | `quota_pool` (Direct API) | `minimax-api` | Pay-per-token; large-context runs can be expensive |
 
-**Non-TTY / automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any `> file` redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--format json`, `--dir`, redirects) lives in [`../../../../cli-opencode/assets/prompt_templates.md`](../../../../cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
+**Non-TTY / automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any `> file` redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--format json`, `--dir`, redirects) lives in [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
 
 **Slug availability note:** Plain `minimax-coding-plan/MiniMax-M3` is confirmed live (2026-06-02; re-verified on opencode 1.16.2 on 2026-06-06). There is **no `MiniMax-M3-highspeed`** on opencode 1.16.2. Dispatch the plain `MiniMax-M3` slug.
 
@@ -218,6 +218,6 @@ Source of truth for capability fields: [`../../assets/model_profiles.json`](../.
 
 - [`../../assets/model_profiles.json#minimax-m3`](../../assets/model_profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, recommended_frameworks)
 - [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
-- [`../../../../cli-opencode/assets/prompt_templates.md`](../../../../cli-opencode/assets/prompt_templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue
-- [`../../../../cli-opencode/assets/prompt_quality_card.md`](../../../../cli-opencode/assets/prompt_quality_card.md) — per-model override block for MiniMax (cross-model pre-planning density context)
+- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue
+- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md) — per-model override block for MiniMax (cross-model pre-planning density context)
 - [`../../SKILL.md`](../../SKILL.md) — prompt-models hub workflow, dispatch matrix, escalation rules

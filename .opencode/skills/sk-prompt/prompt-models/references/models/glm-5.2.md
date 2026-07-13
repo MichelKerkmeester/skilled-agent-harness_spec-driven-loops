@@ -11,7 +11,7 @@ trigger_phrases:
   - "glm-5.2 vision to code"
 importance_tier: normal
 contextType: implementation
-version: 0.8.1.0
+version: 0.8.1.1
 ---
 
 # GLM-5.2 Prompt-Craft Profile
@@ -134,7 +134,7 @@ A senior engineer who will run the output against a strict hidden-test oracle.
 
 ## 6. DISPATCH GOTCHAS
 
-Model-specific capability fields and flags are sourced from the `glm-5.2` entry in [`../../assets/model_profiles.json`](../../assets/model_profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
+Model-specific capability fields and flags are sourced from the `glm-5.2` entry in [`../../assets/model_profiles.json`](../../assets/model_profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
 | Field | Value | Implication |
 | --- | --- | --- |
@@ -152,7 +152,7 @@ Model-specific capability fields and flags are sourced from the `glm-5.2` entry 
 
 **Slug-drift guard:** re-verify the live slug with `opencode models zai-coding-plan` before automation runs — Z.AI ids drift (the provider also serves `glm-4.7`, `glm-5.1`, `glm-5-turbo`, `glm-5v-turbo`). The provider is `zai-coding-plan`.
 
-**Non-TTY automation rule (executor mechanic):** In any non-interactive automation context, append `</dev/null` to the executor-owned invocation wrapper to prevent stdin blocking. Use the wrapper from [`cli-opencode`](../../../../cli-opencode/SKILL.md), not this profile.
+**Non-TTY automation rule (executor mechanic):** In any non-interactive automation context, append `</dev/null` to the executor-owned invocation wrapper to prevent stdin blocking. Use the wrapper from [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md), not this profile.
 
 **Fallback target:** none. If the `zai-coding-plan` pool is exhausted, defer the task — do not retry against the same pool.
 
@@ -208,7 +208,7 @@ Round 1: attach the reference image + the house-style/design-system contract →
 
 - [`../../assets/model_profiles.json`](../../assets/model_profiles.json) `#glm-5.2` — Registry entry; the authoritative DATA this profile mirrors.
 - [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, TIDD-EC, RCAF, full library).
-- [`../../../../cli-opencode/SKILL.md`](../../../../cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (Z.AI GLM Coding Plan); non-TTY rule, permissions, model-selection guidance.
+- [`../../../../cli-external-orchestration/cli-opencode/SKILL.md`](../../../../cli-external-orchestration/cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (Z.AI GLM Coding Plan); non-TTY rule, permissions, model-selection guidance.
 - [`../pattern_index.md`](../pattern_index.md) — Index of all MECHANICS patterns + ship status.
 - [`../models/_index.md`](../models/_index.md) — Sibling model index; see mimo-v2.5-pro for the other 1M-context rotation peer, and kimi-k2.7-code for the other COSTAR-winning coding model.
 - [`../vision-audit-benchmark.md`](../vision-audit-benchmark.md) — Cross-model vision capability + design-audit accuracy (GLM generates but confabulates audits; MiniMax-M3 is the accurate auditor).

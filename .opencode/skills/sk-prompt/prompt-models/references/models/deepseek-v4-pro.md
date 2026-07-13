@@ -9,12 +9,12 @@ trigger_phrases:
   - "deepseek dispatch gotchas"
 importance_tier: normal
 contextType: implementation
-version: 0.8.0.11
+version: 0.8.0.12
 ---
 
 # DeepSeek-v4-Pro Prompt-Craft Profile
 
-Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model_profiles.json`](../../assets/model_profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-opencode`](../../../../cli-opencode/SKILL.md) — not here.
+Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model_profiles.json`](../../assets/model_profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md) — not here.
 
 ---
 
@@ -145,7 +145,7 @@ Constraints:
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for model-specific capability fields and flags: [`model_profiles.json`](../../assets/model_profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-opencode`](../../../../cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
+Source of truth for model-specific capability fields and flags: [`model_profiles.json`](../../assets/model_profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-opencode`](../../../../cli-external-orchestration/cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
 
 | Field | Value | Notes |
 | --- | --- | --- |
@@ -181,6 +181,6 @@ Source of truth for model-specific capability fields and flags: [`model_profiles
 - [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix
 - [`../../SKILL.md`](../../SKILL.md) — prompt-models hub workflow and dispatch matrix
 - [`../pattern_index.md`](../pattern_index.md) — MECHANICS patterns (context budget, output verification, quota fallback)
-- [`../../../../cli-opencode/SKILL.md`](../../../../cli-opencode/SKILL.md) — Executor card for the deepseek-api path; `--pure` flag, provider wiring, `DEEPSEEK_API_KEY` setup
+- [`../../../../cli-external-orchestration/cli-opencode/SKILL.md`](../../../../cli-external-orchestration/cli-opencode/SKILL.md) — Executor card for the deepseek-api path; `--pure` flag, provider wiring, `DEEPSEEK_API_KEY` setup
 - **Other active profiles:** [`kimi-k2.7-code.md`](./kimi-k2.7-code.md) (COSTAR + lean — benchmark 007), [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) (COSTAR + lean — opposite of RCAF/medium), [`minimax-m3.md`](./minimax-m3.md) (TIDD-EC + dense — benchmark 003)
-- **Executor quality card:** [`../../../../cli-opencode/assets/prompt_quality_card.md`](../../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.
+- **Executor quality card:** [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.

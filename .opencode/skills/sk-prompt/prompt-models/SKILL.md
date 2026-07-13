@@ -2,7 +2,7 @@
 name: prompt-models
 description: sk-prompt workflow packet — per-model prompt-craft profiles for small-model dispatch (DeepSeek-v4-pro + Kimi-k2.7-code + MiniMax-M3 + MiMo-V2.5-Pro + GLM-5.2 via cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model_profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-opencode. Advisor co-surfaces it with that executor.
 allowed-tools: [Read, Grep, Glob]
-version: 0.9.0.0
+version: 0.9.0.1
 ---
 
 <!-- Keywords: small-model, deepseek-v4-pro, kimi-k2.7-code, kimi-for-coding, minimax-m3, minimax-coding-plan, minimax-token-plan, minimax-api, glm-5.2, zai-coding-plan, z.ai-coding-plan, haiku, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
@@ -260,9 +260,9 @@ Follow the single canonical checklist in [`references/pattern_index.md`](./refer
 - [`references/quota_fallback.md`](references/quota_fallback.md) — Pool-aware fallback decision matrix (re-homed from cli-devin)
 - [`assets/per_model_budgets.json`](assets/per_model_budgets.json) — Per-model token budget defaults
 - [`assets/confidence_scoring_rubric.md`](assets/confidence_scoring_rubric.md) — Verification confidence formula (re-homed from cli-devin)
-- [`cli-opencode/references/context-budget.md`](../../cli-external-orchestration/cli-opencode/references/context-budget.md) — cli-opencode budget mirror
-- [`cli-opencode/references/permissions-matrix.md`](../../cli-external-orchestration/cli-opencode/references/permissions-matrix.md) — Structured permissions schema
-- [`cli-opencode/assets/permissions-matrix.schema.json`](../../cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json) — JSON Schema for permission rules
+- [`cli-opencode/references/context_budget.md`](../../cli-external-orchestration/cli-opencode/references/context_budget.md) — cli-opencode budget mirror
+- [`cli-opencode/references/permissions_matrix.md`](../../cli-external-orchestration/cli-opencode/references/permissions_matrix.md) — Structured permissions schema
+- [`cli-opencode/assets/permissions_matrix.schema.json`](../../cli-external-orchestration/cli-opencode/assets/permissions_matrix.schema.json) — JSON Schema for permission rules
 - [`cli-opencode/assets/prompt_templates.md`](../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax, MiMo scaffolds in mechanics form)
 - [`prompt-models/assets/model_profiles.json`](./assets/model_profiles.json) — Unified model registry; the DATA each profile mirrors (owned by this skill)
 - [`assets/cli_prompt_quality_card.md`](./assets/cli_prompt_quality_card.md) — Canonical cross-CLI prompt quality card (owned by this hub); generic framework definitions live in `sk-prompt`

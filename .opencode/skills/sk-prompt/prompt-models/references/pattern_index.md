@@ -8,7 +8,7 @@ trigger_phrases:
   - "where is the small model pattern"
 importance_tier: normal
 contextType: general
-version: 0.8.0.19
+version: 0.8.0.20
 ---
 
 # Small-Model Pattern Index
@@ -48,10 +48,10 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | Model-profile registry (unified per-model metadata) | `prompt-models` | [`../assets/model_profiles.json`](../assets/model_profiles.json) | shipped |
 | Bayesian tool scoring (Laplace-smoothed per-call scoring) | `system-spec-kit` + `prompt-models` | [`../../runtime//lib/deep-loop/bayesian-scorer.ts`](../../runtime//lib/deep-loop/bayesian-scorer.ts) + [`./output_verification.md`](./output_verification.md) § Tool scoring state file format | shipped |
 | Fallback router (TS helper applied via recipe field) | `system-spec-kit` | [`../../runtime//lib/deep-loop/fallback-router.ts`](../../runtime//lib/deep-loop/fallback-router.ts) | shipped |
-| Structured permissions schema (JSON Schema for tool-call gating) | `cli-opencode` | [`../../../cli-opencode/assets/permissions-matrix.schema.json`](../../../cli-opencode/assets/permissions-matrix.schema.json) | shipped |
-| Structured permissions reference (schema fields + 3 examples + RM-8 walkthrough) | `cli-opencode` | [`../../../cli-opencode/references/permissions-matrix.md`](../../../cli-opencode/references/permissions-matrix.md) | shipped |
+| Structured permissions schema (JSON Schema for tool-call gating) | `cli-opencode` | [`../../../cli-external-orchestration/cli-opencode/assets/permissions_matrix.schema.json`](../../../cli-external-orchestration/cli-opencode/assets/permissions_matrix.schema.json) | shipped |
+| Structured permissions reference (schema fields + 3 examples + RM-8 walkthrough) | `cli-opencode` | [`../../../cli-external-orchestration/cli-opencode/references/permissions_matrix.md`](../../../cli-external-orchestration/cli-opencode/references/permissions_matrix.md) | shipped |
 | Permissions gate runtime (matching logic built + unit-tested; NOT wired into dispatch — zero production callers) | `system-spec-kit` | [`../../runtime//lib/deep-loop/permissions-gate.ts`](../../runtime//lib/deep-loop/permissions-gate.ts) | shipped (unwired) |
-| cli-opencode budget propagation (sentinel mirror of prompt-models canonical) | `cli-opencode` | [`../../../cli-opencode/references/context-budget.md`](../../../cli-opencode/references/context-budget.md) | shipped |
+| cli-opencode budget propagation (sentinel mirror of prompt-models canonical) | `cli-opencode` | [`../../../cli-external-orchestration/cli-opencode/references/context_budget.md`](../../../cli-external-orchestration/cli-opencode/references/context_budget.md) | shipped |
 | MiniMax-M3 prompt-framework guidance (TIDD-EC + dense pre-plan; benchmark 003) | `prompt-models` | [`./models/minimax-m3.md`](./models/minimax-m3.md) | shipped (benchmark 003, run on M2.7) |
 | MiMo-V2.5-Pro prompt-framework guidance (empirical winner: **COSTAR + lean**; RACE fallback — frame for format/brevity, NOT guardrails; TIDD-EC ranked last) | `prompt-models` | [`./models/mimo-v2.5-pro.md`](./models/mimo-v2.5-pro.md) | shipped (benchmark 004) |
 
@@ -66,7 +66,7 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | `prompt-models` (this skill) | Model registry + prompt-craft profiles + indexes + verification/fallback references | `assets/model_profiles.json` (each entry has `executors` array), `references/models/`, `references/output_verification.md`, `references/quota_fallback.md`, `assets/confidence_scoring_rubric.md`, this file, SKILL.md |
 | `system-spec-kit` | Runtime helpers (TypeScript) | bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts |
 
-If a pattern needs to span two executors, the rule is: ship the body in `prompt-models` (the hub) and add a sentinel-style mirror (≤ 200 LOC, link-only) in the secondary executor. The `cli-opencode/references/context-budget.md` mirror is the canonical example of this pattern.
+If a pattern needs to span two executors, the rule is: ship the body in `prompt-models` (the hub) and add a sentinel-style mirror (≤ 200 LOC, link-only) in the secondary executor. The `cli-opencode/references/context_budget.md` mirror is the canonical example of this pattern.
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "mimo dispatch gotchas"
 importance_tier: normal
 contextType: implementation
-version: 0.8.0.10
+version: 0.8.0.11
 ---
 
 # MiMo-V2.5-Pro Prompt-Craft Profile
@@ -164,7 +164,7 @@ Source of truth for the capability fields below: `model_profiles.json#mimo-v2.5-
 | `quota_pool` | `xiaomi-token-plan` | Independent pool — does not draw from `cognition-pro` or `minimax-token-plan` |
 | `fallback_target` | `null` | No automatic gateway fallback; use the direct Xiaomi provider (`xiaomi/mimo-v2.5-pro`) when manually rerouting from the token-plan pool |
 
-**Non-TTY automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any output redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--variant high`, `--format json`, `--dir`, redirects) lives in [`../../../../cli-opencode/assets/prompt_templates.md`](../../../../cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
+**Non-TTY automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any output redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--variant high`, `--format json`, `--dir`, redirects) lives in [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md`](../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
 
 **Fallback target:** no automatic gateway fallback is defined. For manual reroutes, use the direct Xiaomi provider (`xiaomi/mimo-v2.5-pro`) and verify live model ids with `opencode models xiaomi` before relying on that path.
 
@@ -188,7 +188,7 @@ Source of truth for the capability fields below: `model_profiles.json#mimo-v2.5-
 
 - [`model_profiles.json#mimo-v2.5-pro`](../../assets/model_profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
 - [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, RACE, TIDD-EC, RCAF, CIDI, CRISPE, CRAFT). Section 4 (Tuned Template Snippet) links here rather than copying.
-- [`../../../../cli-opencode/assets/prompt_templates.md` §TEMPLATE 15](../../../../cli-opencode/assets/prompt_templates.md) — MiMo executor card with the `opencode run` invocation wrapper and benchmark evidence pointer. The executor card points here for the prompt-craft contract.
-- [`../../../../cli-opencode/assets/prompt_quality_card.md` §Per-model override — MiMo](../../../../cli-opencode/assets/prompt_quality_card.md) — Fast-path selection note for MiMo in the OpenCode CLI quality card.
+- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md` §TEMPLATE 15](../../../../cli-external-orchestration/cli-opencode/assets/prompt_templates.md) — MiMo executor card with the `opencode run` invocation wrapper and benchmark evidence pointer. The executor card points here for the prompt-craft contract.
+- [`../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md` §Per-model override — MiMo](../../../../cli-external-orchestration/cli-opencode/assets/prompt_quality_card.md) — Fast-path selection note for MiMo in the OpenCode CLI quality card.
 - Sibling profiles (same hub): [`minimax-m3.md`](./minimax-m3.md) — The MiniMax profile is the counter-example: TIDD-EC + dense wins there, the opposite of MiMo.
 - [`../../SKILL.md`](../../SKILL.md) — prompt-models hub workflow and dispatch matrix.
