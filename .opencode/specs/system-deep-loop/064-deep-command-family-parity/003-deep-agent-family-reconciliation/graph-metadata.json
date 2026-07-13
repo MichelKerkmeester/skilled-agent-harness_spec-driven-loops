@@ -188,8 +188,8 @@
     ],
     "causal_summary": "The `sk-doc/create-agent` authoring guide and template prescribe one canonical agent section skeleton (`CORE WORKFLOW` / `CAPABILITY SCAN` / `RUNTIME PARAMETERS` / … / `SUMMARY`)",
     "created_at": "2026-07-13T14:34:02.945Z",
-    "last_save_at": "2026-07-13T14:35:42.889Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-13T19:49:34.714Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f6c43b7f730b967b1015f4964839e62c44686c72b55f0e8d5b5688a47b8b034",
+    "source_fingerprint": "sha256:7ff2cbe442e13f7c60711e6c199af8f17a00ffdb530bf5c87fb7f50ae580cde5",
     "source_doc_hashes": {
-      "spec.md": "d5184d1183d307e6722c101fc14d0d418bcb61f384a8e28550e17e4bf01e381d",
+      "spec.md": "3170152a96b7bbc2a30d51c734a1ece18e652974fc2033f0b67224372c824df7",
       "plan.md": "ab6494c5e36a2e84669987930dac9041abf1fb456bb6f562ce4b98a9daa4e36b",
       "tasks.md": "db2990576da3f38554f20f9ad3f58b8433bb89b008464bc520bd617260f7cd6c",
       "checklist.md": "1fe1e7e79a6dfca9352e393f3d8722b35c27c3ec59b37c22ce86d2acfafe23d6",
-      "implementation-summary.md": "388ca8eb8097d726d48cc2d8d92bffd712736c14ae27c539d285908d31ed91f3"
+      "implementation-summary.md": "eab8a727f1e37f282e12b3dca6f3e9b9ec1c9b456cd33d3dd076bee608f42829"
     },
     "last_active_child_id": null,
     "last_active_at": null

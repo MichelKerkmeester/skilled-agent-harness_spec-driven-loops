@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/064-deep-command-family-parity/004-pipeline-command-router-inline",
+  "description": "Packet 064 already converted `skill-benchmark` and `ai-system-improvement` to yaml-backed triads and gave `alignment`/`ai-council` render-pipeline",
+  "keywords": [
+    "packet",
+    "already",
+    "converted",
+    "skill-benchmark",
+    "ai-system-improvement",
+    "yaml-backed",
+    "triads",
+    "gave",
+    "alignment",
+    "ai-council",
+    "render-pipeline"
+  ],
+  "lastUpdated": "2026-07-13T19:50:01.061Z",
+  "specId": "004",
+  "folderSlug": "pipeline-command-router-inline",
+  "parentChain": [
+    "system-deep-loop",
+    "064-deep-command-family-parity"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "13-07-26_20-00__path-a-promote-legacy-body-drop-render-bang-fold.md",
+    "13-07-26_20-06__path-a-promote-legacy-body-drop-render-bang-fold.md",
+    "13-07-26_20-08__path-a-promote-legacy-body-drop-render-bang-fold.md",
+    "13-07-26_20-36__path-a-promote-legacy-body-drop-render-bang-fold.md",
+    "13-07-26_20-50__path-a-promote-legacy-body-drop-render-bang-fold.md"
+  ]
+}

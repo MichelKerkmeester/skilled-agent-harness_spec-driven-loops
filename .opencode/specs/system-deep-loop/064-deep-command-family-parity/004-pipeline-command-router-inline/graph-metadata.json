@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/064-deep-command-family-parity/004-pipeline-command-router-inline",
+  "spec_folder": "system-deep-loop/064-deep-command-family-parity/004-pipeline-command-router-inline",
+  "parent_id": "system-deep-loop/064-deep-command-family-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep command router inline",
+      "promote deep command body drop bang",
+      "render pipeline stub to router triad",
+      "recompile deep command contracts",
+      "deep command router inline decision",
+      "promote drop bang fold hardening",
+      "compiled stub blessed variant reversal"
+    ],
+    "key_topics": [
+      "deep",
+      "command",
+      "router",
+      "inline",
+      "promote",
+      "body",
+      "drop",
+      "bang",
+      "render",
+      "pipeline",
+      "stub",
+      "triad"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/deep/research.md",
+      ".opencode/commands/deep/review.md",
+      ".opencode/commands/deep/ai-council.md",
+      ".opencode/commands/deep/alignment.md",
+      ".opencode/skills/sk-doc/create-command/SKILL.md",
+      ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
+      ".opencode/skills/sk-doc/create-command/assets/command_template.md",
+      "spec.md",
+      ".opencode/commands/deep/assets/compiled/deep_research.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep_review.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep_ai-council.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep_alignment.contract.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "command_router_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "command_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/assets/command_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep_research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep_review.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ai-council.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep_ai-council.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_alignment.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep_alignment.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Promote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 064 already converted `skill-benchmark` and `ai-system-improvement` to yaml-backed triads and gave `alignment`/`ai-council` render-pipeline parity, but the family still ships in three different shapes",
+    "created_at": "2026-07-13T19:00:49.829Z",
+    "last_save_at": "2026-07-13T19:50:01.061Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:74c494c4f4a52926ca506ed5c0e22e2ab87049b7d35e8a10cdd12a95a09806ee",
+    "source_doc_hashes": {
+      "spec.md": "51fe58764f93718ba47590dca1dc9442be5b3d26bc436eeacd1b4155f8913dd9",
+      "plan.md": "5666f200c130a4d58a2c9572bb58727d2c71ff542ef58db5648aca071d20614b",
+      "tasks.md": "933d1e09df3fbb68148aff97d1c31507d0e69dff1d3211c4df6b24037e241243",
+      "checklist.md": "75191431e5bb2184232d454cbf5d0c6d116b6165148c611d713d5b4e877f1078",
+      "decision-record.md": "716b66d392fc974d788cde5e2daebf4f6619dae7c1accc1abca1cd8850a91b92",
+      "implementation-summary.md": "8cc0796e144aea0df36e6705a769abd40a3e9fc7639e76b0a3c15e28c5e4fb6c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

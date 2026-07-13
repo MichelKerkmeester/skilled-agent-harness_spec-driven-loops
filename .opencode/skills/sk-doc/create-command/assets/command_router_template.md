@@ -99,7 +99,7 @@ One router type; the variants differ only by hand-off, never by required section
 |---------|----------|------------------|-------|
 | Workflow-YAML-backed | Router routes modes into `_auto.yaml` / `_confirm.yaml` | speckit, create, deep-large | Keep `EXECUTION TARGETS` pointing at the YAML assets. |
 | Direct-dispatch-script | Router dispatches straight to tools or scripts | memory, doctor, skill-benchmark | No workflow YAML; recommended sections may stay as warnings. |
-| Compiled-stub | Contract rendered at invocation from a compiled source | research, review, ai-council | Carries a `render-command-contract` marker; exempt from authored section requirements — do not hand-write section headings. |
+| Compiled-stub | Contract rendered at invocation from a compiled source | — (retained; none active) | Carries a `render-command-contract` marker; exempt from authored section requirements — do not hand-write section headings. |
 
 ---
 

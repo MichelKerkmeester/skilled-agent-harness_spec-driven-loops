@@ -20,13 +20,16 @@
     "scan",
     "runtime"
   ],
-  "lastUpdated": "2026-07-13T14:35:32.108Z",
+  "lastUpdated": "2026-07-13T19:49:34.714Z",
   "specId": "003",
   "folderSlug": "deep-agent-family-reconciliation",
   "parentChain": [
     "system-deep-loop",
     "064-deep-command-family-parity"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "13-07-26_20-46__bless-the-dialect-over-rewrite-document-the-deep.md",
+    "13-07-26_20-49__bless-the-dialect-over-rewrite-document-the-deep.md"
+  ]
 }

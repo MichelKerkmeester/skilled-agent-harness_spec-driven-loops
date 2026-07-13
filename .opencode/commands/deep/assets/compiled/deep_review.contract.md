@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/review.md",
-      "sha256": "be861c5a961ec8339743effc1baa40832d8be1aee005d8cd98a8764c7a3c702d",
+      "sha256": "2c8049990e2208d377788addbbe0b8658dd78fa92997566c71a0e692cb76fd22",
       "section": "full"
     },
     {

@@ -840,7 +840,7 @@ The **memory** and **doctor** families have NO workflow YAML — their routers d
 
 - **Workflow-YAML-backed** (speckit, create, deep-large) route modes into `_auto.yaml` / `_confirm.yaml`.
 - **Direct-dispatch-script** (memory, doctor, skill-benchmark) dispatch straight to tools and scripts and may leave the recommended sections as warnings.
-- **Compiled-stub** (research, review, ai-council) carry a `render-command-contract` marker and are exempt from section requirements.
+- **Compiled-stub** commands carry a `render-command-contract` marker and are exempt from section requirements (retained variant; no command currently uses it — the deep commands are full routers).
 
 Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Execution Order`); the validator alias-normalizes those as a safety net, but the authored end state is the canonical names above. Reference shape: `.opencode/commands/speckit/plan.md` (router) + `speckit_plan_presentation.txt` (contract). Skeletons: [`command_router_template.md`](command_router_template.md), [`command_presentation_template.md`](command_presentation_template.md).
 

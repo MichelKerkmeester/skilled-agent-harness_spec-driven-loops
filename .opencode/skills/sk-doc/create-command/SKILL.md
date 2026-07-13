@@ -315,7 +315,7 @@ Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Executi
 
 - Workflow-YAML-backed — routes execution into `_auto.yaml` / `_confirm.yaml` workflow assets (for example the deep-large and speckit families).
 - Direct-dispatch-script — dispatches directly to tools or scripts, no workflow YAML (for example the skill-benchmark, doctor, and memory families).
-- Compiled-stub — a generated stub carrying the `render-command-contract` marker whose contract is rendered at invocation; exempt from authored section requirements (for example research, review, and ai-council).
+- Compiled-stub — a generated stub carrying the `render-command-contract` marker whose contract is rendered at invocation; exempt from authored section requirements (retained variant; no command currently uses it — the deep commands are full authored routers).
 
 Use `assets/command_router_template.md` for the canonical numbered router skeleton, and `assets/command_presentation_template.md` for the full presentation asset skeleton.
 

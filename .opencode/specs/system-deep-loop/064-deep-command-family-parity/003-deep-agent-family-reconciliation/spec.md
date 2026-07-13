@@ -59,7 +59,7 @@ Update create-agent (its `SKILL.md` guide and `assets/agent_template.md`) to nam
 ### Out of Scope
 - Any change to the six deep-* agent files — they already pass `--type agent` and are not rewritten.
 - Any change to the validator (`validate_document.py`) or `template_rules.json`.
-- The alignment/ai-council parity (phase `001-pipeline-command-parity`) and the direct-dispatch conversions (predecessor phase `002-direct-dispatch-to-yaml`).
+- The alignment/ai-council parity (phase `001-pipeline-command-parity`), the direct-dispatch conversions (predecessor phase `002-direct-dispatch-to-yaml`), and the render-stub → inline-router promotion (successor phase `004-pipeline-command-router-inline`).
 
 ### Files to Change
 
