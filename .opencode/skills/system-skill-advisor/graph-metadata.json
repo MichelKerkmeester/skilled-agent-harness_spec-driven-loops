@@ -7,9 +7,9 @@
     "depends_on": [],
     "enhances": [
       {
-        "target": "cli-external",
+        "target": "cli-external-orchestration",
         "weight": 0.7,
-        "context": "routes opencode and claude delegation requests via the cli-external hub (cli-opencode / cli-claude-code modes)"
+        "context": "routes opencode and claude delegation requests via the cli-external-orchestration hub (cli-opencode / cli-claude-code modes)"
       },
       {
         "target": "mcp-tooling",

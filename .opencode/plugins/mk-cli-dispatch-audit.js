@@ -23,7 +23,7 @@ import { join } from 'node:path';
 
 // The audit core lives outside .opencode/plugins/ so this file can remain a thin,
 // default-export-only OpenCode plugin while the Claude hook consumes the same logic.
-import * as dispatchAuditCore from '../skills/cli-external/cli-opencode/scripts/lib/dispatch-audit.mjs';
+import * as dispatchAuditCore from '../skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-audit.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PLUGIN FACTORY

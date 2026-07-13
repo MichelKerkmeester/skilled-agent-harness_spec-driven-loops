@@ -46,7 +46,7 @@ Each skill name links to its own README. The one-line descriptions come from the
 
 | Skill | What it does |
 |---|---|
-| [`cli-external`](cli-external/README.md) | Parent hub for external CLI dispatch: routes to `cli-opencode` (OpenCode runtime dispatch) and `cli-claude-code` (Claude Code CLI) |
+| [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch: routes to `cli-opencode` (OpenCode runtime dispatch) and `cli-claude-code` (Claude Code CLI) |
 
 ### deep-*: Autonomous Loops and the Shared Runtime
 

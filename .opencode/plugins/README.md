@@ -262,4 +262,4 @@ See [`tests/README.md`](./tests/README.md) for the current suite inventory, help
 - [`../skills/system-spec-kit/`](../skills/system-spec-kit/): continuity, spec gate, completion and dist freshness logic
 - [`../skills/sk-code/code-quality/`](../skills/sk-code/code-quality/): post-edit quality routing
 - [`../skills/mcp-code-mode/`](../skills/mcp-code-mode/): MCP routing policy
-- [`../skills/cli-external/cli-opencode/`](../skills/cli-external/cli-opencode/): CLI dispatch audit core
+- [`../skills/cli-external-orchestration/cli-opencode/`](../skills/cli-external-orchestration/cli-opencode/): CLI dispatch audit core

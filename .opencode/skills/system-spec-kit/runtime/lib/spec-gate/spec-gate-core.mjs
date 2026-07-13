@@ -61,7 +61,7 @@ export const ENFORCE_ENV = 'MK_SPEC_GATE_ENFORCE';
 export const DISABLED_ENV = 'MK_SPEC_GATE_DISABLED';
 /**
  * Cross-runtime convention for an orchestrated child/dispatched sub-session
- * (see worktree-session.sh's own child-detection branch and the cli-external
+ * (see worktree-session.sh's own child-detection branch and the cli-external-orchestration
  * dispatch recipes). A dispatched session has no user turn to answer Gate 3,
  * so it must never be denied even when the enforce env leaks into its
  * environment -- only the exact value '1' reads as a child; every other
@@ -222,7 +222,7 @@ const PATH_REDACTED_PLACEHOLDER = '[REDACTED]';
 // The target filePath itself can carry a secret-shaped segment (e.g. a file
 // or directory literally named "token=sk_live_...") even though command
 // contents are already excluded from this telemetry line entirely -- mirrors
-// the secret-scrub idiom cli-external/cli-opencode's dispatch-audit core uses
+// the secret-scrub idiom cli-external-orchestration/cli-opencode's dispatch-audit core uses
 // (see scripts/lib/dispatch-audit.mjs SECRET_PATTERNS), scoped down to the
 // two shapes that actually occur in a filesystem path: a key=value-style
 // segment naming a token/key/secret/password, and a bare known provider

@@ -1,0 +1,12 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/135-cli-hub-rename/002-advisor-realign",
+  "description": "Phase 2 aligns advisor and routing projections with cli-external-orchestration and confirms cli-opencode resolution through a local smoke check.",
+  "keywords": ["skill advisor", "cli-opencode", "cli-external-orchestration", "routing projection"],
+  "lastUpdated": "2026-07-13T06:00:00.000Z",
+  "specId": "002",
+  "folderSlug": "advisor-realign",
+  "parentChain": ["skilled-agent-orchestration", "135-cli-hub-rename"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

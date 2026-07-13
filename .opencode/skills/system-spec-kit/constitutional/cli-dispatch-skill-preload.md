@@ -31,7 +31,7 @@ triggerPhrases:
 
 ## Rule
 
-**Before composing any prompt for `cli-X` (opencode / claude-code / opencode), you MUST `Read` `.opencode/skills/cli-external/cli-X/SKILL.md` first.**
+**Before composing any prompt for `cli-X` (opencode / claude-code / opencode), you MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first.**
 
 Advisor confidence ≥ 0.8 recommending the skill does NOT waive this. The recommendation is a routing signal; loading the file is the enforcement step.
 
@@ -39,15 +39,15 @@ Advisor confidence ≥ 0.8 recommending the skill does NOT waive this. The recom
 
 Each cli-X skill carries a **model-specific prompt-quality contract** that is NOT in the binary's `--help` output. Skipping skill load = skipping contract = degraded output. Concrete examples:
 
-- **OpenCode direct-provider models** (cli-external/cli-opencode/SKILL.md): require the skill's invocation shape and self-dispatch guard.
-- **DeepSeek-backed opencode models** (cli-external/cli-opencode/SKILL.md): require `--pure` flag because DeepSeek API rejects `:` in MCP tool names.
+- **OpenCode direct-provider models** (cli-external-orchestration/cli-opencode/SKILL.md): require the skill's invocation shape and self-dispatch guard.
+- **DeepSeek-backed opencode models** (cli-external-orchestration/cli-opencode/SKILL.md): require `--pure` flag because DeepSeek API rejects `:` in MCP tool names.
 
 These rules ONLY live in the skill files. Authoring a dispatch without reading them produces underwhelming output that's hard to diagnose after the fact.
 
 ## How to apply
 
 1. Any time you write `<binary> --model <X>` for a CLI that has a corresponding `cli-X` skill:
-   - First `Read` `.opencode/skills/cli-external/cli-X/SKILL.md`
+   - First `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md`
    - Then compose the prompt per that skill's §3 (HOW IT WORKS) + relevant `assets/prompt_templates.md` if cited
 2. For deep-loop / deep-review iter dispatches: ALSO read the equivalent iter contract for the chosen CLI
 3. If `sk-prompt` skill is available, hand prompt composition to `sk-prompt` per the cli-X skill's directive

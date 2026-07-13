@@ -1,0 +1,58 @@
+{
+  "skill": "cli-external-orchestration",
+  "version": "1.1.0.0",
+  "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/packetKind/backendKind) PLUS the advisorRouting projection for cli-external-orchestration. The hub reads this file to resolve a mode; the advisor routes any external-CLI-dispatch query to the single identity cli-external-orchestration and the hub picks the mode. Both modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection — the advisor does not read this file at runtime. This registry is also the executor-delegation scorer's source of truth for which CLI executors exist (system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts), keyed by packetSkillName.",
+  "discriminator": {
+    "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
+    "packetKind": "The axis discriminator: 'workflow' for both cli-opencode and cli-claude-code — each classifies intent, chooses/confirms a provider, and conducts a dispatched CLI session whose writes land in this repo's workspace. Zero extensions (no surface-axis, no transport-axis): neither packet is read-only evidence, and both fail the transport contract because they orchestrate and their dispatched writes are local, not external.",
+    "backendKind": "Which backend runs the mode: cli-dispatch for both — each orchestrates the OpenCode or Claude Code CLI binary directly, with no MCP fallback path."
+  },
+  "advisorRoutingContract": {
+    "routingClass": "How the advisor finds the mode. For cli-external-orchestration every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity cli-external-orchestration and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
+    "packetSkillName": "The packet's SKILL.md name. For cli-external-orchestration the packet folder IS its packetSkillName (folder cli-opencode == packetSkillName cli-opencode, and likewise for cli-claude-code) — so no mode has a folder/name mismatch and grandfatheredFolderMismatch is false throughout (ADR-002 full-rename decision).",
+    "grandfatheredFolderMismatch": "true only when a packet folder differs from its packetSkillName (a preserved legacy mismatch). Both cli-external-orchestration modes use folder == packetSkillName, so grandfatheredFolderMismatch is false for both.",
+    "command": "The bound slash command for the mode. Neither cli-opencode nor cli-claude-code has ever had a dedicated command (command:null on both, per ADR-003) — both stay advisor-routed and cross-skill-referenced only."
+  },
+  "modes": [
+    {
+      "workflowMode": "cli-opencode",
+      "packetKind": "workflow",
+      "backendKind": "cli-dispatch",
+      "toolSurface": {
+        "allowed": ["Bash", "Read", "Glob", "Grep"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "cli-opencode",
+      "packetSkillName": "cli-opencode",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": ["opencode cli", "opencode run", "delegate to opencode", "parallel detached session", "cli-opencode"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "cli-opencode"
+      }
+    },
+    {
+      "workflowMode": "cli-claude-code",
+      "packetKind": "workflow",
+      "backendKind": "cli-dispatch",
+      "toolSurface": {
+        "allowed": ["Bash", "Read", "Glob", "Grep"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "cli-claude-code",
+      "packetSkillName": "cli-claude-code",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": ["claude code", "claude cli", "delegate to claude", "anthropic cli second opinion", "cli-claude-code"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "cli-claude-code"
+      }
+    }
+  ]
+}
