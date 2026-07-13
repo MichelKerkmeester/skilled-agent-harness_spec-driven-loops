@@ -80,10 +80,36 @@ function readCorpus(alignmentDir) {
 }
 
 /**
- * Resolve the next lane + slice to check, given each lane's discovered
- * corpus and its already-checked count from the reducer's registry. Lanes
- * are visited in corpus-declaration order, wrapping; a lane whose entire
- * corpus is already checked is skipped without ending the search.
+ * The stable identity of one corpus artifact, matching the path string an
+ * iteration reports in its artifactsChecked array. `{path}` (paths/globs) and
+ * `{path, ref}` (branchRange) both identify by path; a ref-only entry falls
+ * back to its ref. An unidentifiable artifact returns null and is treated as
+ * never-checked, so a malformed corpus entry is re-offered rather than skipped.
+ *
+ * @param {Object} artifact
+ * @returns {string|null}
+ */
+function artifactIdentity(artifact) {
+  if (artifact && typeof artifact === 'object') {
+    if (typeof artifact.path === 'string' && artifact.path) return artifact.path;
+    if (typeof artifact.ref === 'string' && artifact.ref) return artifact.ref;
+  }
+  return null;
+}
+
+/**
+ * Resolve the next lane + slice to check, given each lane's discovered corpus
+ * and the reducer's per-lane progress. Lanes are visited in corpus-declaration
+ * order, wrapping; a lane whose entire corpus is already checked is skipped
+ * without ending the search.
+ *
+ * Progress is identity-based when the reducer exposes checkedArtifactIds: the
+ * next slice is the corpus artifacts whose identity was not already reported as
+ * checked (a set difference), so a duplicate or out-of-order re-check can never
+ * advance a numeric cursor past a genuinely-unchecked artifact. When only a bare
+ * count is available (checkedArtifactIds null — simple emitters, fixtures), it
+ * falls back to the original prefix cursor over the first `artifactsChecked`
+ * entries.
  *
  * @param {Array<Object>} corpusLanes - readCorpus() output
  * @param {Array<Object>} laneEntries - registry.lanes from reduceAlignmentState()
@@ -91,24 +117,43 @@ function readCorpus(alignmentDir) {
  * @returns {{done:true}|{done:false, laneId:string, authority:string, artifactClass:string, scope:Object, artifactsSlice:Array<Object>, remainingAfterThisSlice:number}}
  */
 function resolveNextSlice(corpusLanes, laneEntries, batchSize) {
-  const checkedByLane = new Map(laneEntries.map((entry) => [entry.laneId, entry.artifactsChecked]));
+  const entryByLane = new Map(laneEntries.map((entry) => [entry.laneId, entry]));
 
   for (const lane of corpusLanes) {
-    const totalArtifacts = Array.isArray(lane.artifacts) ? lane.artifacts.length : 0;
-    if (totalArtifacts === 0) continue; // NOT_APPLICABLE lane, nothing to slice
+    const artifacts = Array.isArray(lane.artifacts) ? lane.artifacts : [];
+    if (artifacts.length === 0) continue; // NOT_APPLICABLE lane, nothing to slice
 
-    const alreadyChecked = checkedByLane.get(lane.laneId) || 0;
-    if (alreadyChecked >= totalArtifacts) continue; // this lane's corpus is exhausted
+    const entry = entryByLane.get(lane.laneId);
+    const checkedIds = entry && Array.isArray(entry.checkedArtifactIds) ? entry.checkedArtifactIds : null;
 
-    const slice = lane.artifacts.slice(alreadyChecked, alreadyChecked + batchSize);
+    let unchecked;
+    if (checkedIds) {
+      const checkedSet = new Set(checkedIds);
+      unchecked = artifacts.filter((artifact) => {
+        const id = artifactIdentity(artifact);
+        return id === null ? true : !checkedSet.has(id);
+      });
+    } else {
+      const alreadyChecked = entry ? (entry.artifactsChecked || 0) : 0;
+      unchecked = artifacts.slice(alreadyChecked);
+    }
+
+    if (unchecked.length === 0) continue; // this lane's corpus is exhausted
+
+    const slice = unchecked.slice(0, batchSize);
     return {
       done: false,
       laneId: lane.laneId,
       authority: lane.authority,
       artifactClass: lane.artifactClass,
+      // Which adapter module this lane's discover/check runs against. Defaults to
+      // the authority's own module; a live-render (or other peer) lane carries an
+      // explicit adapter so dispatch loads adapters/<adapter>.cjs, not just
+      // adapters/<authority>.cjs.
+      adapter: lane.adapter || lane.authority,
       scope: lane.scope,
       artifactsSlice: slice,
-      remainingAfterThisSlice: Math.max(0, totalArtifacts - alreadyChecked - slice.length),
+      remainingAfterThisSlice: Math.max(0, unchecked.length - slice.length),
     };
   }
 
@@ -189,6 +234,7 @@ if (require.main === module) {
 
 module.exports = {
   DEFAULT_BATCH_SIZE,
+  artifactIdentity,
   readCorpus,
   resolveNextSlice,
   partitionCorpus,

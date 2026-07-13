@@ -52,6 +52,22 @@ const AUTHORITY_ARTIFACT_CLASSES = Object.freeze({
   'sk-code': Object.freeze(['code']),
 });
 
+// AUTHORITY -> allowed ADAPTER MODULE registry. An authority resolves to its own
+// adapter module (adapters/<authority>.cjs) by default; a lane MAY carry an
+// optional `adapter` discriminator to select a peer adapter variant for the same
+// authority. sk-design ships two adapter shapes over the same `designs` class --
+// the static rubric adapter (sk-design) and the live-render adapter
+// (sk-design-live-render) -- so without an adapter selector a designs lane could
+// never reach sk-design-live-render.cjs. Discovery/check load
+// adapters/<adapter-or-authority>.cjs; the loop still never branches on which
+// authority produced a finding, it only loads the module the lane names.
+const AUTHORITY_ADAPTERS = Object.freeze({
+  'sk-doc': Object.freeze(['sk-doc']),
+  'sk-git': Object.freeze(['sk-git']),
+  'sk-design': Object.freeze(['sk-design', 'sk-design-live-render']),
+  'sk-code': Object.freeze(['sk-code']),
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -69,6 +85,17 @@ function inputError(message) {
  */
 function registeredAuthorities() {
   return Object.keys(AUTHORITY_ARTIFACT_CLASSES);
+}
+
+/**
+ * The adapter module names an authority may resolve to (the default is the
+ * authority's own name).
+ *
+ * @param {string} authority
+ * @returns {string[]}
+ */
+function registeredAdapters(authority) {
+  return AUTHORITY_ADAPTERS[authority] ? [...AUTHORITY_ADAPTERS[authority]] : [];
 }
 
 function isPlainObject(value) {
@@ -151,9 +178,25 @@ function validateLane(rawLane, label) {
   if (!allowedClasses.includes(artifactClass)) {
     throw inputError(`${label}: authority "${authority}" does not support artifactClass "${artifactClass}". Supported: ${allowedClasses.join(', ')}`);
   }
+  // Optional adapter discriminator: defaults to the authority's own module, and
+  // when supplied must be one of that authority's registered adapter variants so
+  // discovery/check can reach a peer adapter (e.g. sk-design-live-render) without
+  // the loop ever branching on authority.
+  const allowedAdapters = AUTHORITY_ADAPTERS[authority] || [authority];
+  let adapter = authority;
+  if (rawLane.adapter !== undefined && rawLane.adapter !== null) {
+    if (!nonEmptyString(rawLane.adapter)) {
+      throw inputError(`${label}.adapter must be a non-empty string when present`);
+    }
+    if (!allowedAdapters.includes(rawLane.adapter)) {
+      throw inputError(`${label}: adapter "${rawLane.adapter}" is not a registered adapter for authority "${authority}". Allowed: ${allowedAdapters.join(', ')}`);
+    }
+    adapter = rawLane.adapter;
+  }
   return {
     authority,
     artifactClass,
+    adapter,
     scope: validateScope(scope, `${label}.scope`),
   };
 }
@@ -317,8 +360,10 @@ if (require.main === module) {
 module.exports = {
   ARTIFACT_CLASSES,
   AUTHORITY_ARTIFACT_CLASSES,
+  AUTHORITY_ADAPTERS,
   SCOPE_TYPES,
   registeredAuthorities,
+  registeredAdapters,
   validateScope,
   validateLane,
   resolveLanesFromConfig,

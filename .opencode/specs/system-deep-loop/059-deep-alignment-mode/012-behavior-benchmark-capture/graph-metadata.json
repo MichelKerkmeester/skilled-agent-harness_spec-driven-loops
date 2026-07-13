@@ -191,7 +191,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Skeptic Verification",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The deep-alignment DAB benchmark existed only as scenario contracts and an all-pending `claude-baseline.md` — no leg had ever been captured, so nothing about the mode's real behavior (invocation, presentation, delegation, completion, latency) was measured",
     "created_at": "2026-07-12T12:39:55.000Z",
-    "last_save_at": "2026-07-12T12:53:41.986Z",
+    "last_save_at": "2026-07-13T07:08:29.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22664822b79a836dde780241652cde1386c6b05e381efb69929a7b1a815fe642",
+    "source_fingerprint": "sha256:38e40b6c42aa0bd9171a3abb1d133f3b48047f38c373cb2069ddff6d7cb71eba",
     "source_doc_hashes": {
-      "spec.md": "d1c0886d15129216414cfb9bffd29ad02f6f69e2cd8e9f62a8e526c550be2422",
+      "spec.md": "8930d434d98ec5aada926e61d849f606201c1f2dea58d12a72580b60abe1e257",
       "plan.md": "9e28bf7b7c1e73ac9d902d9d949bd607445c7a336dde6d29c6b5ae5541f02896",
       "tasks.md": "ba950f89832a5428b92a7e9741632649ed1779ac4e893bb1bc14358fa16bddbc",
       "implementation-summary.md": "f434e3ce9f1ab145a433d539a0e75c6e47f898c06098219ed8021788c826cefa"

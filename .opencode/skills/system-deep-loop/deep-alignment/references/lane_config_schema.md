@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # --lane-config JSON Schema
 
-## 1. Purpose and Lock
+## 1. OVERVIEW
 
 ADR-011 (`002-architecture-decision/decision-record.md`) locks the non-interactive path to **config-file only**: a single `--lane-config <file.json>` flag, not repeated `--lane` flags and not an inline `--lanes` JSON-array flag. This document is that ADR's remaining open deliverable — the concrete field-level JSON shape — and the reference implementation that parses and validates it is `scripts/scoping.cjs`.
 
@@ -35,13 +35,14 @@ No envelope, version field, or metadata wrapper is added at this level. ADR-011'
 
 ## 3. Per-Lane Object Shape
 
-Each array entry has exactly three required keys — the same three ADR-011 names verbatim:
+Each array entry has three required keys — the same three ADR-011 names verbatim — plus an optional `adapter` discriminator:
 
 | Key | Type | Constraint |
 |---|---|---|
 | `authority` | string | Must be one of the registered authorities (`scripts/scoping.cjs`'s `AUTHORITY_ARTIFACT_CLASSES` keys — `sk-doc`, `sk-git`, `sk-design`, `sk-code` in v1, extensible per ADR-012) |
 | `artifactClass` | string | Must be one of `docs`, `code`, `designs`, `git-history`, AND must be one the named `authority` actually supports (see §4) |
 | `scope` | object | One of the three shapes in §5, validated against the repo root for `paths`/`globs` |
+| `adapter` | string | **Optional.** One of the authority's registered adapter modules (`scripts/scoping.cjs`'s `AUTHORITY_ADAPTERS[authority]`); defaults to the authority's own module. Lets a `designs` lane select `sk-design-live-render` instead of the static `sk-design` adapter. It is a discovery/check module selector, not part of the lane's identity (laneId is authority×artifactClass×scope). |
 
 This is not a schema-only rule — it is the literal object `scripts/scoping.cjs`'s `validateLane()` returns on success, unchanged, so a config-file lane and an interactively-resolved lane are indistinguishable once resolved (zero information loss, per ADR-011's own constraint).
 
@@ -94,6 +95,7 @@ The following is a machine-checkable restatement of §3-§5, for tooling that wa
     "properties": {
       "authority": { "type": "string", "enum": ["sk-doc", "sk-git", "sk-design", "sk-code"] },
       "artifactClass": { "type": "string", "enum": ["docs", "code", "designs", "git-history"] },
+      "adapter": { "type": "string", "description": "Optional adapter-module discriminator; one of the authority's AUTHORITY_ADAPTERS entries (default: the authority's own module)." },
       "scope": {
         "oneOf": [
           {
