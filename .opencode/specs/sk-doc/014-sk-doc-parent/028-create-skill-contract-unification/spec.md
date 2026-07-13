@@ -54,7 +54,7 @@ Those findings share one root cause: **the create-skill contract is declared in 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft (plan; not yet executed) |
+| **Status** | Complete (executed 2026-07-13; 12 commits shipped to skilled/v4.0.0.0) |
 | **Created** | 2026-07-13 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-doc/014-sk-doc-parent` |
@@ -211,7 +211,7 @@ Medium. High breadth (templates + initializer + three validators) but low per-ed
 
 ## 12. OPEN QUESTIONS
 
-- One operator fork: which description budget wins (see decision-record ADR-003) — the workflow's ≤130 soft target, or `package_skill.py`'s 150-300 recommendation. The rest of the plan can proceed on the recommended default (≤130 soft, hard cap retained).
+- One operator fork: which description budget wins (see decision-record ADR-003) — the workflow's ≤130 soft target, or `package_skill.py`'s 150-300 recommendation. RESOLVED by the operator to the recommended default (≤130 soft, 1,536 hard cap retained); shipped in WU1b (`0f2c601f9f`).
 <!-- /ANCHOR:questions -->
 
 ---

@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-07-13T17:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored four ADRs incl. one operator fork"
-    next_safe_action: "Operator resolves ADR-003 then execute Phase 1"
+    next_safe_action: "Complete — ADR-003 resolved (≤130); all work units shipped"
     blockers: []
     key_files: []
     session_dedup:
@@ -169,7 +169,7 @@ The audit confirmed the create-skill contract is declared in three drifting plac
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (operator fork) |
+| **Status** | Accepted (operator resolved to ≤130 soft; shipped WU1b `0f2c601f9f`) |
 | **Date** | 2026-07-13 |
 | **Deciders** | Operator (pending) |
 

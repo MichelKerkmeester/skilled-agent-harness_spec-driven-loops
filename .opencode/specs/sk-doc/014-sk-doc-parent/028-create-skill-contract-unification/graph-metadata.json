@@ -37,7 +37,7 @@
       "adr"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
       ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
@@ -189,15 +189,15 @@
         "source": "derived"
       },
       {
-        "name": "surfaces",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The create-skill creation/validation path does not enforce its documented contract",
     "created_at": "2026-07-13T15:40:27.936Z",
-    "last_save_at": "2026-07-13T15:45:30.857Z",
+    "last_save_at": "2026-07-13T19:58:21.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab765a8b8c20666f6cc5272e31a05086cf6752f45e21cfb1c98cb7df32934e62",
+    "source_fingerprint": "sha256:6ab2f008d95f923dc9d2bc3b3f6a40f6bca229aaa4138ada254d09c8e1a3cc3d",
     "source_doc_hashes": {
-      "spec.md": "980b1a28a036147a7766d5eec5534435c60f54ad170cd8c9ec6f8b5262b4316c",
-      "plan.md": "565ef7a180c852b0461052763a3748144b55de01b88a5c8795ca803a1e21387e",
-      "tasks.md": "6ad82caaab0071e6ed36075f31b35bbce558c8332efb0bf3a3be8fa3d56e6d37",
-      "checklist.md": "0af2d08e2bce4c7d66d20fb74a91f77b406a4d76c9ad328ccc6f5ef33cb27122",
-      "decision-record.md": "d5e14cf169b0b601dbfde2bd403eec50abcef98d36759c7cf43c7a912a478625",
-      "implementation-summary.md": "69a9c36c82e87c597c8201bb5ec505313e5233165147e76263bf2ba84ed99029"
+      "spec.md": "bafb18a8ae274c7d55eeb5ea8c89bb2b9ff628d2fa597d22edc57f3ba1b6a892",
+      "plan.md": "07792e9ba423949fecb7e815b42923f5cbb92a619c71f85001c2f2d370e4c25a",
+      "tasks.md": "aebdcf05bc0684841256ed9f900f6d408a96fa96887ccbe6681398c0e7d73cbf",
+      "checklist.md": "2319c1dba2396b268995bf59872c04d558867e67903de3dc969b8080eed4ff65",
+      "decision-record.md": "d072210e131c8cfa2327cbd095e214cded6695161ca23b1e940acbf56facd1a1",
+      "implementation-summary.md": "62308261d398c636cda3ee03ec98a3e23233848c74181b6b84ebeab5cc9db53e"
     },
     "last_active_child_id": null,
     "last_active_at": null
