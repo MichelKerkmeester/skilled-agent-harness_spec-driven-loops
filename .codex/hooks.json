@@ -19,6 +19,33 @@
             "timeout": 3
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
+            "timeout": 3
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/check-git-hooks.sh'",
+            "timeout": 3
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all'",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -30,6 +57,79 @@
             "timeout": 3
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs'",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "exec",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs'",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "exec|apply_patch|edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs'",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/mcp-code-mode/runtime/hooks/codex/mcp-route-guard.cjs'",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "apply_patch|edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/code-quality/scripts/hooks/codex/post-edit-quality.cjs'",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "apply_patch|edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs'",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "exec",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs'",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "Stop": [
@@ -38,6 +138,24 @@
           {
             "type": "command",
             "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-stop.js'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/hooks/codex/completion-evidence-stop.cjs'",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/scripts/session-cleanup.sh || true'",
+            "timeout": 10
           }
         ]
       }
