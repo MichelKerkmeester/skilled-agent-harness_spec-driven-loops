@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-cli-codex-revival/003-cli-codex-skill-packet",
+  "spec_folder": "skilled-agent-orchestration/134-cli-codex-revival/003-cli-codex-skill-packet",
+  "parent_id": "skilled-agent-orchestration/134-cli-codex-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/134-cli-codex-revival/002-deep-loop-executor-support",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-codex skill packet",
+      "cli-codex skill plan",
+      "cli-codex skill tasks"
+    ],
+    "key_topics": [
+      "cli-codex",
+      "skill",
+      "packet",
+      "plan",
+      "tasks",
+      "runtime",
+      "support",
+      "alone",
+      "provide",
+      "safe",
+      "user-facing",
+      "codex"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Runtime",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Any Wave",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Runtime support alone does not provide a safe user-facing Codex route",
+    "created_at": "2026-07-13T05:38:00Z",
+    "last_save_at": "2026-07-13T05:05:56.132Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:fcb1b99c208f433cee5c18cd50274dd3f8b2cccd00d8ca38e10dec73869a3c38",
+    "source_doc_hashes": {
+      "spec.md": "cc5a773f23aedda21db3644b0bde34aff77ae0b5c7918ad4d1f13ec85b05b8a6",
+      "plan.md": "88bf77d7ff618c46aacff97933ece32745947f9fd0abc135eaed13c5797e7395",
+      "tasks.md": "0b65f628da341f936e807b91b68aa7f3195d3fc82a69949cd33141a9a87fd9a9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
