@@ -4,7 +4,7 @@
   "version": "1.0",
   "family": "deep-improvement",
   "mode": "model-vs-model",
-  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures",
   "fixtures": [
     "harder_semver_compare",
     "harder_normalize_path",

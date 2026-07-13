@@ -134,3 +134,4 @@ baseline-derived one.
 - [../README.md](../README.md) — the mode README, whose §5 carries the authoritative availability / build-state note for the `/deep:alignment` surface and its `@deep-alignment` LEAF agent.
 - [../SKILL.md](../SKILL.md) — the mode contract: state machine, adapter contract, and the four alignment invariants these scenarios probe.
 - [./baselines/claude-baseline.md](./baselines/claude-baseline.md) — per-scenario Claude-leg baseline checkpoints (all `pending` until a capture lands).
+- [Authoring: ../../../sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md](../../../sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md) — the behavior-benchmark authoring guide (create-benchmark §9): how to author this package's index, scenarios, and baseline. Templates and authoring standards live there; this package instantiates the framework above.

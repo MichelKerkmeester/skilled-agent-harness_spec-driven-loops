@@ -126,3 +126,4 @@ Barter Copywriter: `/Users/michelkerkmeester/MEGA/Development/AI_Systems/Barter/
 - [guardrails_teachings.md](./guardrails_teachings.md) — the twelve pilot teachings and their guardrail encodings
 - [fixture_authoring.md](./fixture_authoring.md) — how to author visible, held-out and gold fixtures
 - [grader_calibration.md](./grader_calibration.md) — the calibration protocol for independent graders
+- [Authoring: non_dev_ai_system_authoring_guide.md](../../../../sk-doc/create-benchmark/references/non_dev_ai_system/non_dev_ai_system_authoring_guide.md) — how to author these Lane D inputs (create-benchmark). The packaging schema, the nine templates, and the loop contract are code-owned here in-lane and are cross-linked, never relocated.

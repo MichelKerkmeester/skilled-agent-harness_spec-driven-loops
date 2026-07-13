@@ -108,11 +108,12 @@ None blocking. Whether to CI-wire `package_skill.py` is a documented optional fo
 
 ## 8. PHASE DOCUMENTATION MAP
 
-> This packet is a phase parent: the child phase below carries the family-oriented resource grouping and routing-coverage work. Each child validates independently; run `validate.sh --recursive` on this parent to validate the set.
+> This packet is a phase parent: the child phases below carry the family-oriented resource grouping and routing-coverage work, plus the authoring-guide completion and cross-link corrections. Each child validates independently; run `validate.sh --recursive` on this parent to validate the set.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-create-benchmark-reorg-and-routing/` | Group create-benchmark resources into per-family subfolders and add durable behavior/skill/model/fixture routing vocabulary | Complete |
+| 002 | `002-benchmark-authoring-completion-and-crosslinks/` | Author the Lane A/D authoring guides, complete the create-benchmark ↔ deep-loop cross-links, and land the fixtureDir/metadata/sibling corrections | Complete |
 
 ### Phase Transition Rules
 

@@ -2,7 +2,7 @@
 name: create-benchmark
 description: Author benchmark artifacts across families - MCP-promotion benchmark_report.md plus SOURCE.md; deep-loop behavior_benchmark packages; Lane C skill-benchmark benchmark/ storage tree plus README index; and Lane B model-benchmark fixtures plus profiles. Scoring contracts and report renderers stay lane-owned and cross-linked, not templated here.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 <!-- Keywords: create-benchmark, benchmark_report.md, SOURCE.md, mcp_server benchmarks, benchmark promotion, skill-local benchmark, MCP bake-off, benchmark folder, behavior benchmark, behavior_benchmark.md, scenario contract, DAB scenario, behavior-benchmark framework, claude-baseline, skill-benchmark, benchmark/README.md, run-label folder, skill-benchmark-report, Lane C benchmark, model-benchmark, benchmark fixture, benchmark profile, code-task oracle fixture, reviewer-prompt fixture, Lane B fixture -->
@@ -16,7 +16,7 @@ version: 1.2.0.0
 - **Skill-benchmark (Lane C)** — author a hub's `benchmark/` storage tree and its `benchmark/README.md` run-label index; the per-run `skill-benchmark-report.md` is a renderer-owned render this packet never authors (section 10).
 - **Model-benchmark (Lane B)** — author the Lane B input fixtures (code-task oracle, pattern/capability, reviewer-prompt) and the run profiles; the evaluator, scorers, and reviewer-verdict contract stay lane-local (section 11).
 
-Two further families — Lane A agent-improvement and Lane D non-dev AI-system improvement — appear only for disambiguation; their code-owned artifacts stay in-lane and are not templated here.
+Two further families — Lane A agent-improvement and Lane D non-dev AI-system improvement — now carry an authoring guide here (section 12); their code-owned artifacts stay in-lane.
 
 The skill-local surface is the look-here-first entry point, not the archive; the full audit trail stays in the owning spec packet or lane.
 
@@ -33,7 +33,7 @@ Use this packet when a completed benchmark, or a benchmark's input artifacts, ne
 - **Skill-benchmark** (section 10) — author or update a hub's `benchmark/README.md` run-label index, or establish the `benchmark/` storage convention (sibling run-label folders, frozen `baseline/` anchor) for a Lane C tree.
 - **Model-benchmark** (section 11) — author a Lane B input fixture (code-task oracle, pattern/capability, or reviewer-prompt) or a run profile that selects fixtures, models, frameworks, scoring, and the gate.
 
-Keyword triggers: `benchmark_report.md`, `SOURCE.md`, `mcp_server/benchmarks`, `MCP bake-off`; `behavior benchmark`, `behavior_benchmark.md`, `scenario contract`, `claude-baseline`; `skill-benchmark`, `benchmark/README.md`, `run-label folder`, `skill-benchmark-report`; `model-benchmark`, `benchmark fixture`, `benchmark profile`, `reviewer-prompt fixture`.
+Keyword triggers: `benchmark_report.md`, `SOURCE.md`, `mcp_server/benchmarks`, `MCP bake-off`; `behavior benchmark`, `behavior_benchmark.md`, `scenario contract`, `claude-baseline`; `skill-benchmark`, `benchmark/README.md`, `run-label folder`, `benchmark package`; `model-benchmark`, `benchmark fixture`, `benchmark profile`, `reviewer-prompt fixture`.
 
 ### Adoption Gate (MCP promotion)
 
@@ -92,14 +92,14 @@ Route to the right family before authoring; the families are distinct and must n
 | Behavior | Executor-model behavior at a deep-loop mode's invocation surface | `<mode>/behavior_benchmark/` | Index, scenario, and baseline templates + the authoring guide | Measurement contract → `system-deep-loop/shared/behavior-benchmark/framework.md` | §9 |
 | Skill-benchmark (Lane C) | Whether a skill is well-routed, discoverable, efficient, and useful | `<skill>/benchmark/<run-label>/` | The storage guide + the hub `benchmark/README.md` index template | `skill-benchmark-report.md` render → `build-report.cjs`; D1-D5 scoring → deep-improvement `scoring_contract.md` | §10 |
 | Model-benchmark (Lane B) | What a model or prompt framework produces against a held-out oracle | `system-deep-loop/deep-improvement/assets/model_benchmark/` | Code-task, pattern/capability, and reviewer fixture templates + the profile template + the fixture guide | Evaluator / scorer / reviewer-verdict contract → deep-improvement lane | §11 |
-| Agent-improvement (Lane A) | An agent's quality across five dimensions | deep-improvement lane (in-lane) | **Nothing — NON-GOAL** | Code-owned: authored and run in-lane by `/deep:agent-improvement` | — |
-| AI-system improvement (Lane D, non-dev) | A non-dev AI-system packaging's technique docs | deep-improvement lane (in-lane) | **Nothing — NON-GOAL** | Code-owned: authored and run in-lane by `/deep:ai-system-improvement` | — |
+| Agent-improvement (Lane A) | An agent's quality across five dimensions | deep-improvement lane (in-lane) | Authoring guide ([guide](references/agent_improvement/agent_improvement_authoring_guide.md)) | Code-owned rubric/config; run by `/deep:agent-improvement` | §12 |
+| AI-system improvement (Lane D, non-dev) | A non-dev AI-system packaging's technique docs | deep-improvement lane (in-lane) | Authoring guide ([guide](references/non_dev_ai_system/non_dev_ai_system_authoring_guide.md)) | Code-owned schema/templates; run by `/deep:ai-system-improvement` | §12 |
 
 ### Routing Decision
 
 Pick the family by what the task authors: shipped MCP-stack numbers into a skill's code tree → MCP promotion (§3-8); executor-model behavior at a deep-loop mode's surface → behavior (§9); where a Lane C run's report pair is stored, or a hub `benchmark/README.md` index → skill-benchmark (§10); a Lane B input fixture or run profile → model-benchmark (§11). Two hard stops: to hand-write a `skill-benchmark-report.md`, don't — it is renderer-owned; to change how any benchmark is *scored*, don't — the scoring contracts are lane-local.
 
-**Non-goals.** Lane A (agent-improvement) and Lane D (non-dev AI-system improvement) appear in the table only for router disambiguation. Their fixtures, evaluators, and reports are authored and run entirely in-lane; `create-benchmark` ships no template, guide, or index for either — route those to `/deep:agent-improvement` or `/deep:ai-system-improvement`.
+**Lane A and Lane D.** create-benchmark hosts an authoring guide for each (section 12); their fixtures, evaluators, configs, schemas, and templates stay code-owned in-lane. Route a run to `/deep:agent-improvement` or `/deep:ai-system-improvement`.
 
 ### Family Boundary
 
@@ -136,9 +136,9 @@ Required and optional files:
 
 `SOURCE.md` is a wayfinding file, not a duplicate audit trail. It contains the spec packet path, why to read it, question-to-file mapping, evidence map, follow-on packet notes, rename or renumber notes, and last-updated date.
 
-Use `assets/shared/benchmark_report_template.md` for `benchmark_report.md` and `assets/shared/source_template.md` for `SOURCE.md`.
+Use `assets/_shared/benchmark_report_template.md` for `benchmark_report.md` and `assets/_shared/source_template.md` for `SOURCE.md`.
 
-Reference `references/shared/README.md` for deep overflow: it routes to the case studies, the report worked example, and common pitfalls.
+Reference `references/_shared/README.md` for deep overflow: it routes to the case studies, the report worked example, and common pitfalls.
 
 ---
 
@@ -505,10 +505,12 @@ Each template's fenced json block is the only thing copied into the shipped `.js
 
 **Within this packet** — family guides and the overflow route-map; the fillable templates are mapped in each family section above:
 
-- [`references/shared/README.md`](references/shared/README.md) — overflow route-map (case studies, worked example, pitfalls).
+- [`references/_shared/README.md`](references/_shared/README.md) — overflow route-map (case studies, worked example, pitfalls).
 - [`references/behavior_benchmark/behavior_benchmark_guide.md`](references/behavior_benchmark/behavior_benchmark_guide.md) — behavior package authoring path (§9).
 - [`references/skill_benchmark/skill_benchmark_storage_guide.md`](references/skill_benchmark/skill_benchmark_storage_guide.md) — skill-benchmark storage convention and renderer boundary (§10).
 - [`references/model_benchmark/model_benchmark_fixture_guide.md`](references/model_benchmark/model_benchmark_fixture_guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§11).
+- [`agent_improvement_authoring_guide.md`](references/agent_improvement/agent_improvement_authoring_guide.md) — Lane A input authoring (§2).
+- [`non_dev_ai_system_authoring_guide.md`](references/non_dev_ai_system/non_dev_ai_system_authoring_guide.md) — Lane D input authoring (§2).
 
 **Lane-owned contracts** — cross-link, never restate:
 
