@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/017-hyphen-naming-convention/005-inventory-and-partitioning",
+  "spec_folder": "sk-doc/017-hyphen-naming-convention/005-inventory-and-partitioning",
+  "parent_id": "sk-doc/017-hyphen-naming-convention",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "inventory, partitioning, and worktree",
+      "hyphen naming phase 005",
+      "kebab-case inventory and",
+      "inventory, partitioning, and worktree implementation plan",
+      "hyphen naming phase 005 implementation plan",
+      "inventory, partitioning, and worktree tasks",
+      "hyphen naming phase 005 tasks"
+    ],
+    "key_topics": [
+      "inventory",
+      "partitioning",
+      "worktree",
+      "hyphen",
+      "naming",
+      "phase",
+      "kebab-case",
+      "implementation",
+      "plan",
+      "tasks",
+      "in-scope",
+      "surface"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The in-scope surface is large and interleaved with an enormous vendored Python tree and other exempt content. Before renaming, the program needs an exemption-applied inventory, the authoritative rename map, a collision/exemption report, and a partition into safe migration batches — executed on a dedicated worktree.",
+    "created_at": "2026-07-13T11:48:37.097Z",
+    "last_save_at": "2026-07-13T11:58:27.914Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:8d80b399a2311f2d43712064d732cbf13819c915a62897fad658fef5dac00e6c",
+    "source_doc_hashes": {
+      "spec.md": "a88f9bdbf9c46f8a16e0228e8806ac626195e414e381b58a4525392753244bdf",
+      "plan.md": "d13388f780d9f2565d790758ac27357afed0cd55a47f0a0ec5d93b3ff9bd9542",
+      "tasks.md": "e87ae2f1133a238991b92e6b9b7dbe19e481f170c60f6be13a33a0c1b6a2527f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

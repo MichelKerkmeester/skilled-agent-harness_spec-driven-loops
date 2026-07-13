@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/017-hyphen-naming-convention/002-sk-doc-validator-and-classifier-logic",
+  "description": "The sk-doc classifier keys on the `feature_catalog` / `manual_testing_playbook` parent-directory names (validate_document.py:129,137, both copies) and",
+  "keywords": [
+    "sk-doc",
+    "classifier",
+    "keys",
+    "parent-directory",
+    "names",
+    "copies"
+  ],
+  "lastUpdated": "2026-07-13T11:58:27.674Z",
+  "specId": "002",
+  "folderSlug": "sk-doc-validator-and-classifier-logic",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

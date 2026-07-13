@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/017-hyphen-naming-convention/010-migrate-config-and-data",
+  "description": "Remaining in-scope `.json`/`.yaml`/`.yml` DATA/CONFIG filenames (not keys) and any stragglers must be hyphenated, honoring lockfile/generated and",
+  "keywords": [
+    "remaining",
+    "in-scope",
+    "json",
+    "yaml",
+    "yml",
+    "data",
+    "config",
+    "filenames",
+    "keys",
+    "stragglers",
+    "must",
+    "hyphenated",
+    "honoring",
+    "lockfile"
+  ],
+  "lastUpdated": "2026-07-13T11:58:27.677Z",
+  "specId": "010",
+  "folderSlug": "migrate-config-and-data",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

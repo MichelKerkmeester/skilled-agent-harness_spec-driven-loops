@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/017-hyphen-naming-convention/002-sk-doc-validator-and-classifier-logic",
+  "spec_folder": "sk-doc/017-hyphen-naming-convention/002-sk-doc-validator-and-classifier-logic",
+  "parent_id": "sk-doc/017-hyphen-naming-convention",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc validator and classifier logic",
+      "hyphen naming phase 002",
+      "kebab-case sk doc",
+      "sk-doc validator and classifier logic implementation plan",
+      "hyphen naming phase 002 implementation plan",
+      "sk-doc validator and classifier logic tasks",
+      "hyphen naming phase 002 tasks"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "validator",
+      "classifier",
+      "logic",
+      "hyphen",
+      "naming",
+      "phase",
+      "kebab-case",
+      "doc",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-doc classifier keys on the `feature_catalog` / `manual_testing_playbook` parent-directory names (validate_document.py:129,137, both copies) and the Lane C loader keys on frontmatter. To rename those roots to hyphens without downgrading every catalog leaf to `readme`, the classification logic must accept the hyph",
+    "created_at": "2026-07-13T11:48:37.079Z",
+    "last_save_at": "2026-07-13T11:58:27.890Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:be3897757aca644fc1a943f3a343c41d58b21f92dc5ca0d155c41af8e0041f3c",
+    "source_doc_hashes": {
+      "spec.md": "e57290581ec880b99218324f6e85f88a0798c6c07f5cc377e73fa818ebc98c0e",
+      "plan.md": "bb073f7ee6c1844cb5a40bc07181c179f2a20202f61ee06477242c782b2a0d98",
+      "tasks.md": "caab6795eff8d28943d12a4b1e2205f5b8f0d58c210e635b07d00d24207f5c17"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

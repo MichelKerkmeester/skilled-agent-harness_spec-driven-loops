@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/017-hyphen-naming-convention/005-inventory-and-partitioning",
+  "description": "The in-scope surface is large and interleaved with an enormous vendored Python tree and other exempt content.",
+  "keywords": [
+    "in-scope",
+    "surface",
+    "large",
+    "interleaved",
+    "enormous",
+    "vendored",
+    "python",
+    "tree",
+    "exempt",
+    "content"
+  ],
+  "lastUpdated": "2026-07-13T11:58:27.676Z",
+  "specId": "005",
+  "folderSlug": "inventory-and-partitioning",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

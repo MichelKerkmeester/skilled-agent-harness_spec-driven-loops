@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/017-hyphen-naming-convention/008-migrate-scripts-and-imports",
+  "description": "Snake_case script filenames (`.ts`/`.js`/`.cjs`/`.mjs`/`.sh`) must be renamed to hyphens AND every `import`/`require`/`source`/registry path reference",
+  "keywords": [
+    "script",
+    "filenames",
+    "cjs",
+    "mjs",
+    "must",
+    "renamed",
+    "hyphens",
+    "every",
+    "import",
+    "require",
+    "source",
+    "registry",
+    "path",
+    "reference"
+  ],
+  "lastUpdated": "2026-07-13T11:58:27.676Z",
+  "specId": "008",
+  "folderSlug": "migrate-scripts-and-imports",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

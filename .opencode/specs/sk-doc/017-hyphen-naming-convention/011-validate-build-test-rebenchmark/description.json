@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/017-hyphen-naming-convention/011-validate-build-test-rebenchmark",
+  "description": "After the surface-by-surface migration, the whole repo must be proven green: recursive strict validation, all build/test/typecheck gates, whole-repo",
+  "keywords": [
+    "surface-by-surface",
+    "migration",
+    "whole",
+    "repo",
+    "must",
+    "proven",
+    "green",
+    "recursive",
+    "strict",
+    "validation",
+    "test",
+    "typecheck",
+    "gates",
+    "whole-repo"
+  ],
+  "lastUpdated": "2026-07-13T11:58:27.678Z",
+  "specId": "011",
+  "folderSlug": "validate-build-test-rebenchmark",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/017-hyphen-naming-convention",
+  "spec_folder": "sk-doc/017-hyphen-naming-convention",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/017-hyphen-naming-convention/001-convention-policy-and-scope",
+    "sk-doc/017-hyphen-naming-convention/002-sk-doc-validator-and-classifier-logic",
+    "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates",
+    "sk-doc/017-hyphen-naming-convention/004-guard-and-migration-tooling",
+    "sk-doc/017-hyphen-naming-convention/005-inventory-and-partitioning",
+    "sk-doc/017-hyphen-naming-convention/006-migrate-catalog-and-playbook",
+    "sk-doc/017-hyphen-naming-convention/007-migrate-references-and-assets",
+    "sk-doc/017-hyphen-naming-convention/008-migrate-scripts-and-imports",
+    "sk-doc/017-hyphen-naming-convention/009-migrate-specs-and-docs",
+    "sk-doc/017-hyphen-naming-convention/010-migrate-config-and-data",
+    "sk-doc/017-hyphen-naming-convention/011-validate-build-test-rebenchmark",
+    "sk-doc/017-hyphen-naming-convention/012-supersede-027-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hyphen naming convention",
+      "kebab-case filesystem names",
+      "ban snake_case files and folders",
+      "reverse underscore migration",
+      "hyphenate folder and file names"
+    ],
+    "key_topics": [
+      "hyphen",
+      "naming",
+      "convention",
+      "kebab-case",
+      "filesystem",
+      "names",
+      "ban",
+      "files",
+      "folders",
+      "reverse",
+      "underscore",
+      "migration"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wide Kebab",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Case Filesystem Naming",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo's filesystem naming is inconsistent and, after packet 027, actively snakecase for catalog/playbook content",
+    "created_at": "2026-07-13T11:48:37.060Z",
+    "last_save_at": "2026-07-13T11:53:27.191Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:c974642f92ccab07749ae753cc94bde4c4d79508f60d9c412383fc91f310315c",
+    "source_doc_hashes": {
+      "spec.md": "12d0b37344c06c297534762263f765842ce663be128737c2ccb75f91374eb3d9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

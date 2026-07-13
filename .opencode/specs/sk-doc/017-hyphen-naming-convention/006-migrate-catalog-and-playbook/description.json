@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/017-hyphen-naming-convention/006-migrate-catalog-and-playbook",
+  "description": "Packet 027 renamed catalog/playbook content to underscore.",
+  "keywords": [
+    "packet",
+    "renamed",
+    "catalog",
+    "playbook",
+    "content",
+    "underscore"
+  ],
+  "lastUpdated": "2026-07-13T11:58:27.676Z",
+  "specId": "006",
+  "folderSlug": "migrate-catalog-and-playbook",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

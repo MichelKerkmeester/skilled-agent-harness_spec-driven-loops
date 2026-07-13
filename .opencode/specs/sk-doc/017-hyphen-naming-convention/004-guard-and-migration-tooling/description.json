@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/017-hyphen-naming-convention/004-guard-and-migration-tooling",
+  "description": "Nothing prevents snake_case from re-entering in-scope names, and there is no engine to perform the repo-wide rename safely.",
+  "keywords": [
+    "nothing",
+    "prevents",
+    "re-entering",
+    "in-scope",
+    "names",
+    "engine",
+    "perform",
+    "repo-wide",
+    "rename",
+    "safely"
+  ],
+  "lastUpdated": "2026-07-13T11:58:27.675Z",
+  "specId": "004",
+  "folderSlug": "guard-and-migration-tooling",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
