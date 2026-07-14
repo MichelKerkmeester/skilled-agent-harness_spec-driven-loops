@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/002-skill-scoped-worktree-naming",
+  "spec_folder": "sk-git/002-skill-scoped-worktree-naming",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill scoped worktree naming",
+      "owner first branch convention",
+      "sk-git worktree cleanup",
+      "skilled branch alias",
+      "skill scoped worktree plan",
+      "owner first branch plan",
+      "sk-git cleanup plan",
+      "skill scoped worktree tasks",
+      "owner first branch tasks",
+      "sk-git cleanup tasks",
+      "skill scoped worktree checklist",
+      "owner first branch checklist"
+    ],
+    "key_topics": [
+      "skill",
+      "scoped",
+      "worktree",
+      "naming",
+      "owner",
+      "first",
+      "branch",
+      "convention",
+      "sk-git",
+      "cleanup",
+      "skilled",
+      "alias"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/bin/worktree-reaper.sh",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/bin/worktree-session.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoped Worktree",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Branch Naming",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Codify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cleanup Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cleanup Phases",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-git's numbered `wt/{NNNN}-{name}` branch namespace carries no owner, so a GitKraken tree of dozens of `wt/`, `work/`, `system-speckit/`, `wip/`, and `backup/` branches gives no signal of who owns what",
+    "created_at": "2026-07-14T07:44:47.707Z",
+    "last_save_at": "2026-07-14T07:52:56.623Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:baf0aca58a815d76cd9735eca7cd5ec63e8840d0a091a8a81f2eb016316bee8a",
+    "source_doc_hashes": {
+      "spec.md": "780081c1bbb5f26885f710f63fa9385be01e280a227597c53dc325df5d261066",
+      "plan.md": "132a862683f23aff1f0a2c552dbf0cf4f1a260e77d0552899616e36bc6fba5d8",
+      "tasks.md": "5e911383bfac56016479fbb1ecbd215a772d6f3ae7469d2be4439d46ed8c8a08",
+      "checklist.md": "64af981940c531a9f093f207c250e1f04efac16a7df15863b0888ab29417782c",
+      "decision-record.md": "06bbacccdd11a3e8922f5527690a9ec16971dc07aa6d6feb9f91659bccf39d74",
+      "implementation-summary.md": "11d1c0cbfa4fec0aef326a1113344916414d845db2f87ccd29ea67bfc62c3442"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

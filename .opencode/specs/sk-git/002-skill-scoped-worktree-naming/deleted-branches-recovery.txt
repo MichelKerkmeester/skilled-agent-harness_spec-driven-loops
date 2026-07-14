@@ -1,0 +1,8 @@
+# Deleted merged branch refs (recovery: git branch <name> <oid>) — 2026-07-14T07:36:04Z
+# All were ancestors of origin/skilled/v4.0.0.0 at deletion (commits remain on the shared branch).
+system-speckit/023-esm-module-compliance 45ee422b94cba1351b3a0bb108e986f17076d83f  [-d]
+system-speckit/024-compact-code-graph 22ed8191d00750ad3bad0eb5ca7bf3f2ac74ed18  [-d]
+system-speckit/026-graph-and-context-optimization 2ed47ad0acf604fee83e3eb1afda6b3f19d66536  [-d]
+wt/0030-underscore-migration f2ba7f29dde20085bbcb34f981099df699fef8c3  [-d]
+wt/0031-sk-doc-foundation 9272ba07f8c701388cfbe55586218ba6add238fb  [-d]
+wt/0032-skills-group2 8fdd92f740d343a00f7426fa41cf78850fbd056c  [-d]
