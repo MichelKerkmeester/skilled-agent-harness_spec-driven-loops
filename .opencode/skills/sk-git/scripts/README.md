@@ -48,15 +48,15 @@ Run from any location inside the clone. All subcommands operate on the shared co
 
 | Command | Type | Purpose |
 |---|---|---|
-| `create <owner> <slug>` | CLI | Allocate a number, then create the branch and worktree directory together |
-| `create-detached <owner> <slug>` | CLI | Create a detached worktree without an owner-first branch |
+| `create <owner> <slug> [base]` | CLI | Allocate a number, then create the branch and worktree directory together |
+| `create-detached <slug> [base]` | CLI | Create a numbered detached worktree (no branch) |
 | `allocate` | CLI | Reserve the next number under the lock and print it |
-| `next` | CLI | Print the next number without reserving it |
+| `next` | CLI | Preview the next number without reserving it (no lock or write) |
 | `scan-max` | CLI | Print the current maximum across the high-water mark, worktrees and refs |
 | `validate-owner <owner>` | CLI | Exit 0 when the owner is a valid skill id or `skilled` |
 | `validate-slug <slug>` | CLI | Exit 0 when the slug is lowercase kebab |
 | `validate-branch <branch>` | CLI | Exit 0 when the branch matches the owner-first grammar |
-| `validate-pair <owner> <slug>` | CLI | Exit 0 when the owner and slug agree |
+| `validate-pair <branch> <dir>` | CLI | Exit 0 when the branch and directory form a matching owner-first pair |
 | `skill-ids` | CLI | List the owner ids the allocator recognizes |
 
 ```bash
@@ -78,7 +78,7 @@ Run from the repository root.
 bash .opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh
 ```
 
-Expected result: the harness prints a pass count with `FAIL: 0`.
+Expected result: the harness prints a summary line ending in `FAIL=0` (for example `worktree-naming tests: PASS=43 FAIL=0`).
 
 ---
 

@@ -58,7 +58,7 @@ Calls follow the pattern `github.github_{tool_name}({...})` inside `call_tool_ch
 
 - Group: Remote Platform Integration
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `remote_platform_integration/github_mcp_integration.md`
+- Feature file path: `remote-platform-integration/github-mcp-integration.md`
 
 Related references:
-- [gitkraken_mcp_integration.md](gitkraken-mcp-integration.md) — GitKraken MCP integration
+- [gitkraken-mcp-integration.md](gitkraken-mcp-integration.md) — GitKraken MCP integration

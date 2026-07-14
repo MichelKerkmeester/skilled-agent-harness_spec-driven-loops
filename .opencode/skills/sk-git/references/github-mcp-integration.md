@@ -175,9 +175,9 @@ call_tool_chain({
 ## 6. RELATED RESOURCES
 
 **Internal References**:
-- [quick_reference.md](./quick-reference.md) - GitHub MCP quick reference commands
-- [shared_patterns.md](./shared-patterns.md) - GitHub MCP patterns
-- [finish_workflows.md](./finish-workflows.md) - PR creation in finish workflow
+- [quick-reference.md](./quick-reference.md) - GitHub MCP quick reference commands
+- [shared-patterns.md](./shared-patterns.md) - GitHub MCP patterns
+- [finish-workflows.md](./finish-workflows.md) - PR creation in finish workflow
 
 **External References**:
 - [GitHub REST API](https://docs.github.com/en/rest)

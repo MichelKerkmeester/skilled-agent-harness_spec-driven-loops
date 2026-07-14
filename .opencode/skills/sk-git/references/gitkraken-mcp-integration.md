@@ -20,7 +20,7 @@ Programmatic access to GitKraken's tools via Code Mode (`call_tool_chain`). Regi
 
 ## 1. OVERVIEW
 
-The GitKraken MCP server (`@gitkraken/gk`) exposes 31 tools spanning local git operations, GitLens AI workflows, and cross-platform issue/PR management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira. Unlike [github_mcp_integration.md](./github-mcp-integration.md), which is GitHub-only, GitKraken MCP is the tool to reach for when a repository lives on a non-GitHub provider, or when the task benefits from GitLens' AI-assisted workflows (commit composition, PR review, launchpad triage).
+The GitKraken MCP server (`@gitkraken/gk`) exposes 31 tools spanning local git operations, GitLens AI workflows, and cross-platform issue/PR management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira. Unlike [github-mcp-integration.md](./github-mcp-integration.md), which is GitHub-only, GitKraken MCP is the tool to reach for when a repository lives on a non-GitHub provider, or when the task benefits from GitLens' AI-assisted workflows (commit composition, PR review, launchpad triage).
 
 **Prerequisites**: The `gk` CLI must be authenticated (`gk auth login` / `gk whoami`) with the relevant provider(s) connected (`gk provider`). No `.utcp_config.json` env vars are required — auth is handled entirely by the CLI's own local auth state.
 
@@ -169,9 +169,9 @@ call_tool_chain({
 ## 7. RELATED RESOURCES
 
 **Internal References**:
-- [github_mcp_integration.md](./github-mcp-integration.md) - GitHub-only MCP reference; prefer it for GitHub-only tasks
-- [quick_reference.md](./quick-reference.md) - Command cheat sheet
-- [shared_patterns.md](./shared-patterns.md) - Reusable git patterns
+- [github-mcp-integration.md](./github-mcp-integration.md) - GitHub-only MCP reference; prefer it for GitHub-only tasks
+- [quick-reference.md](./quick-reference.md) - Command cheat sheet
+- [shared-patterns.md](./shared-patterns.md) - Reusable git patterns
 
 **External References**:
 - [GitKraken CLI Docs](https://help.gitkraken.com/cli/gk-cli-mcp)

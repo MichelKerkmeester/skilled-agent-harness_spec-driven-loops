@@ -7,7 +7,7 @@ trigger_phrases:
   - "conventional commits worktree"
   - "git workspace commit finish"
   - "pull request commit hygiene"
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # sk-git
@@ -29,7 +29,7 @@ It does not write code or manage spec folders. `sk-code` owns the code that gets
 | Metric | Value |
 |---|---|
 | Status | Active |
-| Version | 1.3.1.0 |
+| Version | 1.3.2.0 |
 | Main audience | AI sessions and operators sharing one repository |
 | Phases | Setup, commit, finish |
 | Allocator subcommands | `create`, `create-detached`, `allocate`, `next`, `scan-max`, plus four validators |
@@ -108,7 +108,7 @@ RESERVED     := "main"
 WRAPPER      := "work/" RUNTIME "/" SLUG        (launch-wrapper lane, exempt)
 ```
 
-The owner prefix groups every feature branch under its skill in a Git UI instead of a flat pile, so a reviewer can read who owns what at a glance. The `wt/` and `work/` lanes stay distinct: `wt/{NNNN}-{slug}` is the numbered lane for deliberate feature worktrees, and `work/{runtime}/{slug}` is the launch wrapper's ephemeral, auto-reaped, unnumbered lane.
+The owner prefix groups every feature branch under its skill in a Git UI instead of a flat pile, so a reviewer can read who owns what at a glance. Two other lanes stay distinct from owner-first task branches: `work/{runtime}/{slug}` is the launch wrapper's ephemeral, auto-reaped, unnumbered lane, and the older `wt/{NNNN}-{slug}` form predates this convention, so it is permitted but non-conformant and is migrated into the owner-first form by renaming the branch and directory, never by rewriting history.
 
 ### The Number Allocator And Its Lock
 
@@ -126,7 +126,7 @@ Worktree isolation keeps concurrent sessions safe, but it also hides each sessio
 
 ### Deterministic Commit Messages
 
-The same diff and metadata always produce the same commit subject. Type inference takes the first match in a fixed order: merge, release, docs, fix, feat, refactor, test then chore. Scope inference maps file paths the same way, resolving to the skill name, then the agent or command directory, then the dominant top-level path. The history reads consistently no matter which session or model produced it.
+The same diff and metadata always produce the same commit subject. Type inference takes the first match in a fixed priority order: release, docs, fix, feat, perf, refactor, test, ci, build then style. Scope inference maps file paths the same way, resolving to the skill name, then the agent or command directory, then the dominant top-level path. The history reads consistently no matter which session or model produced it.
 
 ### Cleanup And Safety Refusals
 
@@ -213,9 +213,8 @@ The skill ships a manual testing playbook (41 scenarios across 7 categories) and
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-git/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md` |
-| Allocator behavior | `bash .opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh` |
+| Skill packaging and structure | `python3 .opencode/skills/sk-doc/create-skill/scripts/package_skill.py .opencode/skills/sk-git --check` reports `PASS` (snake_case findings on `references/`/`assets/` are advisory ahead of the hyphen-naming program) |
+| Allocator behavior | `bash .opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh` ends in `FAIL=0` |
 | Live behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/` in a live session |
 
 ---

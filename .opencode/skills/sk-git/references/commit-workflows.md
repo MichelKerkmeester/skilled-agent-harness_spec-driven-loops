@@ -216,7 +216,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 **Purpose**: Prevent sweeping someone else's in-flight WIP into YOUR commit when the working tree is dirty (unrelated uncommitted or already-staged changes belonging to another packet/agent).
 
-**Why this matters (real incident)**: During the 026 wave-4 reorg, an orchestrator ran a broad `git add` while the tree held unrelated WIP. 24 unrelated files (another packet plus install guides) were swept into the reorg commit and had to be backed out with `git reset --mixed HEAD~1` and re-staged precisely. See `shared_patterns.md` §10 for the rename-heavy merge half of the same incident.
+**Why this matters (real incident)**: During the 026 wave-4 reorg, an orchestrator ran a broad `git add` while the tree held unrelated WIP. 24 unrelated files (another packet plus install guides) were swept into the reorg commit and had to be backed out with `git reset --mixed HEAD~1` and re-staged precisely. See `shared-patterns.md` §10 for the rename-heavy merge half of the same incident.
 
 **Hard rules**:
 
@@ -432,10 +432,10 @@ Clients must update to handle JSON responses.
 - [../SKILL.md](../SKILL.md) - Canonical Commit Message Logic
 - [../assets/commit-message-template.md](../assets/commit-message-template.md) - Repository-specific worked examples
 - [../../../scripts/git-hooks/commit-msg](../../../scripts/git-hooks/commit-msg) - Structural enforcement hook
-- [worktree_workflows.md](./worktree-workflows.md) - Create isolated git workspaces with minimal branching
-- [finish_workflows.md](./finish-workflows.md) - Complete development work with structured integration options
-- [quick_reference.md](./quick-reference.md) - One-page cheat sheet for all git workflows
-- [shared_patterns.md](./shared-patterns.md) - Common patterns and conventions across workflows
+- [worktree-workflows.md](./worktree-workflows.md) - Create isolated git workspaces with minimal branching
+- [finish-workflows.md](./finish-workflows.md) - Complete development work with structured integration options
+- [quick-reference.md](./quick-reference.md) - One-page cheat sheet for all git workflows
+- [shared-patterns.md](./shared-patterns.md) - Common patterns and conventions across workflows
 
 ### External Resources
 - [Conventional Commits Specification](https://www.conventionalcommits.org/) - Standard commit message format

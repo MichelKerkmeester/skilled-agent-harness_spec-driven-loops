@@ -65,8 +65,8 @@ After creation, the AI auto-detects the project's dependency manager (npm/yarn/p
 
 - Group: Workflow Playbooks
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `workflow_playbooks/numbered_worktree_workflows.md`
+- Feature file path: `workflow-playbooks/numbered-worktree-workflows.md`
 
 Related references:
-- [conventional_commit_workflows.md](conventional-commit-workflows.md) — Conventional commit workflows
-- [large_reorg_playbook.md](large-reorg-playbook.md) — Large reorg playbook
+- [conventional-commit-workflows.md](conventional-commit-workflows.md) — Conventional commit workflows
+- [large-reorg-playbook.md](large-reorg-playbook.md) — Large reorg playbook

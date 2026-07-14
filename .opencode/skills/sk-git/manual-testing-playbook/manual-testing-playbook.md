@@ -12,13 +12,13 @@ This document combines the full manual-validation contract for the `sk-git` skil
 
 Canonical package artifacts:
 - `manual-testing-playbook.md`
-- `worktree_setup/`
-- `commit_formation/`
-- `safety_refusals/`
-- `integration_and_pr/`
-- `recovery_and_edge_cases/`
-- `cross_cli_orchestration/`
-- `owner_first_worktree_tooling/`
+- `worktree-setup/`
+- `commit-formation/`
+- `safety-refusals/`
+- `integration-and-pr/`
+- `recovery-and-edge-cases/`
+- `cross-cli-orchestration/`
+- `owner-first-worktree-tooling/`
 
 ---
 
@@ -135,7 +135,7 @@ Keep global verdict logic in this root playbook. Put feature-specific acceptance
 
 ### Purpose
 
-This section records wave planning and capacity guidance for running the 22-scenario battery. It is an execution plan, not a separate sidecar ledger.
+This section records wave planning and capacity guidance for running the 41-scenario battery. It is an execution plan, not a separate sidecar ledger.
 
 ### Operational Rules
 
@@ -879,44 +879,44 @@ The current sk-doc validator checks this root document's markdown structure. It 
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
-| Worktree Setup | GIT-001 | `worktree_setup/fresh_feature_isolated_worktree.md` | Yes |
-| Worktree Setup | GIT-002 | `worktree_setup/current_branch_no_worktree.md` | Yes |
-| Worktree Setup | GIT-003 | `worktree_setup/stay_on_main_no_feature_branches.md` | Yes |
-| Commit Formation | GIT-004 | `commit_formation/conventional_commit_from_diff.md` | Yes |
-| Commit Formation | GIT-005 | `commit_formation/scope_inference_skill_folder.md` | Yes |
-| Commit Formation | GIT-006 | `commit_formation/mixed_concerns_split_or_warn.md` | Yes |
-| Commit Formation | GIT-007 | `commit_formation/co_authored_by_footer.md` | Yes |
-| Safety Refusals | GIT-008 | `safety_refusals/no_verify_bypass_refused.md` | Yes |
-| Safety Refusals | GIT-009 | `safety_refusals/secrets_in_diff_refused.md` | Yes |
-| Safety Refusals | GIT-010 | `safety_refusals/force_push_to_main_refused.md` | Yes |
-| Safety Refusals | GIT-011 | `safety_refusals/amend_published_commit_refused.md` | Yes |
-| Integration And PR | GIT-012 | `integration_and_pr/finish_merge_to_main.md` | No |
-| Integration And PR | GIT-013 | `integration_and_pr/finish_create_pr_with_template.md` | No |
-| Integration And PR | GIT-014 | `integration_and_pr/failing_tests_block_merge.md` | No |
-| Integration And PR | GIT-015 | `integration_and_pr/branch_cleanup_after_merge.md` | No |
-| Recovery And Edge Cases | GIT-016 | `recovery_and_edge_cases/merge_conflict_resolution.md` | No |
-| Recovery And Edge Cases | GIT-017 | `recovery_and_edge_cases/accidental_commit_wrong_branch.md` | No |
-| Recovery And Edge Cases | GIT-018 | `recovery_and_edge_cases/empty_commit_or_no_changes.md` | No |
-| Recovery And Edge Cases | GIT-019 | `recovery_and_edge_cases/rebase_vs_merge_decision.md` | No |
-| Cross CLI Orchestration | GIT-020 | `cross_cli_orchestration/native_claude_code_invocation.md` | No |
-| Cross CLI Orchestration | GIT-021 | `cross_cli_orchestration/cli_opencode_delegation.md` | No |
-| Cross CLI Orchestration | GIT-022 | `cross_cli_orchestration/cli_opencode_and_cli_copilot_handback.md` | No |
-| Owner-First Worktree Tooling | GIT-023 | `owner_first_worktree_tooling/locked_unique_number_allocation.md` | Yes |
-| Owner-First Worktree Tooling | GIT-024 | `owner_first_worktree_tooling/owner_slug_branch_pair_validation.md` | Yes |
-| Owner-First Worktree Tooling | GIT-025 | `owner_first_worktree_tooling/create_owner_first_and_detached_worktrees.md` | Yes |
-| Owner-First Worktree Tooling | GIT-026 | `owner_first_worktree_tooling/wrapper_lane_exemption_vs_illegal_owner.md` | No |
-| Owner-First Worktree Tooling | GIT-027 | `owner_first_worktree_tooling/top_level_session_isolation.md` | Yes |
-| Owner-First Worktree Tooling | GIT-028 | `owner_first_worktree_tooling/orchestrated_child_execs_in_place.md` | Yes |
-| Owner-First Worktree Tooling | GIT-029 | `owner_first_worktree_tooling/runtime_identity_validation.md` | No |
-| Owner-First Worktree Tooling | GIT-030 | `owner_first_worktree_tooling/session_activity_marker.md` | Yes |
-| Owner-First Worktree Tooling | GIT-031 | `owner_first_worktree_tooling/shared_artifact_symlink_containment.md` | Yes |
-| Owner-First Worktree Tooling | GIT-032 | `owner_first_worktree_tooling/reaper_auto_reap_qualifying_wrapper.md` | Yes |
-| Owner-First Worktree Tooling | GIT-033 | `owner_first_worktree_tooling/reaper_keeps_non_qualifying_worktrees.md` | Yes |
-| Owner-First Worktree Tooling | GIT-034 | `owner_first_worktree_tooling/reaper_dry_run_no_mutation.md` | No |
-| Owner-First Worktree Tooling | GIT-035 | `owner_first_worktree_tooling/reaper_orphan_daemon_report_only.md` | No |
-| Owner-First Worktree Tooling | GIT-036 | `owner_first_worktree_tooling/prepush_gates_only_new_branches.md` | Yes |
-| Owner-First Worktree Tooling | GIT-037 | `owner_first_worktree_tooling/prepush_migration_tolerance.md` | Yes |
-| Owner-First Worktree Tooling | GIT-038 | `owner_first_worktree_tooling/prepush_fail_open_on_broken_validator.md` | Yes |
-| Owner-First Worktree Tooling | GIT-039 | `owner_first_worktree_tooling/prepush_never_blocks_release_branches.md` | Yes |
-| Owner-First Worktree Tooling | GIT-040 | `owner_first_worktree_tooling/prepush_skip_env_bypass.md` | No |
-| Owner-First Worktree Tooling | GIT-041 | `owner_first_worktree_tooling/prepush_rejects_wrapper_ref.md` | Yes |
+| Worktree Setup | GIT-001 | `worktree-setup/fresh-feature-isolated-worktree.md` | Yes |
+| Worktree Setup | GIT-002 | `worktree-setup/current-branch-no-worktree.md` | Yes |
+| Worktree Setup | GIT-003 | `worktree-setup/stay-on-main-no-feature-branches.md` | Yes |
+| Commit Formation | GIT-004 | `commit-formation/conventional-commit-from-diff.md` | Yes |
+| Commit Formation | GIT-005 | `commit-formation/scope-inference-skill-folder.md` | Yes |
+| Commit Formation | GIT-006 | `commit-formation/mixed-concerns-split-or-warn.md` | Yes |
+| Commit Formation | GIT-007 | `commit-formation/co-authored-by-footer.md` | Yes |
+| Safety Refusals | GIT-008 | `safety-refusals/no-verify-bypass-refused.md` | Yes |
+| Safety Refusals | GIT-009 | `safety-refusals/secrets-in-diff-refused.md` | Yes |
+| Safety Refusals | GIT-010 | `safety-refusals/force-push-to-main-refused.md` | Yes |
+| Safety Refusals | GIT-011 | `safety-refusals/amend-published-commit-refused.md` | Yes |
+| Integration And PR | GIT-012 | `integration-and-pr/finish-merge-to-main.md` | No |
+| Integration And PR | GIT-013 | `integration-and-pr/finish-create-pr-with-template.md` | No |
+| Integration And PR | GIT-014 | `integration-and-pr/failing-tests-block-merge.md` | No |
+| Integration And PR | GIT-015 | `integration-and-pr/branch-cleanup-after-merge.md` | No |
+| Recovery And Edge Cases | GIT-016 | `recovery-and-edge-cases/merge-conflict-resolution.md` | No |
+| Recovery And Edge Cases | GIT-017 | `recovery-and-edge-cases/accidental-commit-wrong-branch.md` | No |
+| Recovery And Edge Cases | GIT-018 | `recovery-and-edge-cases/empty-commit-or-no-changes.md` | No |
+| Recovery And Edge Cases | GIT-019 | `recovery-and-edge-cases/rebase-vs-merge-decision.md` | No |
+| Cross CLI Orchestration | GIT-020 | `cross-cli-orchestration/native-claude-code-invocation.md` | No |
+| Cross CLI Orchestration | GIT-021 | `cross-cli-orchestration/cli-opencode-delegation.md` | No |
+| Cross CLI Orchestration | GIT-022 | `cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md` | No |
+| Owner-First Worktree Tooling | GIT-023 | `owner-first-worktree-tooling/locked-unique-number-allocation.md` | Yes |
+| Owner-First Worktree Tooling | GIT-024 | `owner-first-worktree-tooling/owner-slug-branch-pair-validation.md` | Yes |
+| Owner-First Worktree Tooling | GIT-025 | `owner-first-worktree-tooling/create-owner-first-and-detached-worktrees.md` | Yes |
+| Owner-First Worktree Tooling | GIT-026 | `owner-first-worktree-tooling/wrapper-lane-exemption-vs-illegal-owner.md` | No |
+| Owner-First Worktree Tooling | GIT-027 | `owner-first-worktree-tooling/top-level-session-isolation.md` | Yes |
+| Owner-First Worktree Tooling | GIT-028 | `owner-first-worktree-tooling/orchestrated-child-execs-in-place.md` | Yes |
+| Owner-First Worktree Tooling | GIT-029 | `owner-first-worktree-tooling/runtime-identity-validation.md` | No |
+| Owner-First Worktree Tooling | GIT-030 | `owner-first-worktree-tooling/session-activity-marker.md` | Yes |
+| Owner-First Worktree Tooling | GIT-031 | `owner-first-worktree-tooling/shared-artifact-symlink-containment.md` | Yes |
+| Owner-First Worktree Tooling | GIT-032 | `owner-first-worktree-tooling/reaper-auto-reap-qualifying-wrapper.md` | Yes |
+| Owner-First Worktree Tooling | GIT-033 | `owner-first-worktree-tooling/reaper-keeps-non-qualifying-worktrees.md` | Yes |
+| Owner-First Worktree Tooling | GIT-034 | `owner-first-worktree-tooling/reaper-dry-run-no-mutation.md` | No |
+| Owner-First Worktree Tooling | GIT-035 | `owner-first-worktree-tooling/reaper-orphan-daemon-report-only.md` | No |
+| Owner-First Worktree Tooling | GIT-036 | `owner-first-worktree-tooling/prepush-gates-only-new-branches.md` | Yes |
+| Owner-First Worktree Tooling | GIT-037 | `owner-first-worktree-tooling/prepush-migration-tolerance.md` | Yes |
+| Owner-First Worktree Tooling | GIT-038 | `owner-first-worktree-tooling/prepush-fail-open-on-broken-validator.md` | Yes |
+| Owner-First Worktree Tooling | GIT-039 | `owner-first-worktree-tooling/prepush-never-blocks-release-branches.md` | Yes |
+| Owner-First Worktree Tooling | GIT-040 | `owner-first-worktree-tooling/prepush-skip-env-bypass.md` | No |
+| Owner-First Worktree Tooling | GIT-041 | `owner-first-worktree-tooling/prepush-rejects-wrapper-ref.md` | Yes |

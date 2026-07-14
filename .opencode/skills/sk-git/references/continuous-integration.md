@@ -150,5 +150,5 @@ The two SessionStart guards that make the model observable — `worktree-guard.s
 ## 8. RELATED
 
 - [SKILL.md](../SKILL.md) — §3 lifecycle and the ALWAYS rule for the live-branch model; §4 ALWAYS #14 (autostash) and #15 (reconcile the primary checkout).
-- [finish_workflows.md](finish-workflows.md) — Step 5b, the manual primary-checkout reconciliation for a finish that ends in a worktree push.
-- [worktree_workflows.md](worktree-workflows.md) — worktree setup and the launch-wrapper model.
+- [finish-workflows.md](finish-workflows.md) — Step 5b, the manual primary-checkout reconciliation for a finish that ends in a worktree push.
+- [worktree-workflows.md](worktree-workflows.md) — worktree setup and the launch-wrapper model.

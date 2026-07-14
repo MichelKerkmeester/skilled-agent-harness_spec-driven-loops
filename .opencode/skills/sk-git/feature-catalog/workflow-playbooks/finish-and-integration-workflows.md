@@ -66,8 +66,8 @@ An optional release step is available only when explicitly requested. It creates
 
 - Group: Workflow Playbooks
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `workflow_playbooks/finish_and_integration_workflows.md`
+- Feature file path: `workflow-playbooks/finish-and-integration-workflows.md`
 
 Related references:
-- [conventional_commit_workflows.md](conventional-commit-workflows.md) — Conventional commit workflows
-- [numbered_worktree_workflows.md](numbered-worktree-workflows.md) — Numbered worktree workflows
+- [conventional-commit-workflows.md](conventional-commit-workflows.md) — Conventional commit workflows
+- [numbered-worktree-workflows.md](numbered-worktree-workflows.md) — Numbered worktree workflows

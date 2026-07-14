@@ -62,8 +62,8 @@ A PID-stamped marker file is written under the shared common git directory (neve
 
 - Group: Session Lifecycle
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `session_lifecycle/launch_wrapper_session_isolation.md`
+- Feature file path: `session-lifecycle/launch-wrapper-session-isolation.md`
 
 Related references:
-- [worktree_reaper.md](worktree-reaper.md) — Worktree reaper
-- [continuous_integration_autosync.md](continuous-integration-autosync.md) — Continuous integration autosync
+- [worktree-reaper.md](worktree-reaper.md) — Worktree reaper
+- [continuous-integration-autosync.md](continuous-integration-autosync.md) — Continuous integration autosync

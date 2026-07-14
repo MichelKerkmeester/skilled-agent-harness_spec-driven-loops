@@ -64,8 +64,8 @@ No session can clobber another's published work, because publication is non-forc
 
 - Group: Session Lifecycle
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `session_lifecycle/continuous_integration_autosync.md`
+- Feature file path: `session-lifecycle/continuous-integration-autosync.md`
 
 Related references:
-- [launch_wrapper_session_isolation.md](launch-wrapper-session-isolation.md) — Launch-wrapper session isolation
-- [worktree_reaper.md](worktree-reaper.md) — Worktree reaper
+- [launch-wrapper-session-isolation.md](launch-wrapper-session-isolation.md) — Launch-wrapper session isolation
+- [worktree-reaper.md](worktree-reaper.md) — Worktree reaper

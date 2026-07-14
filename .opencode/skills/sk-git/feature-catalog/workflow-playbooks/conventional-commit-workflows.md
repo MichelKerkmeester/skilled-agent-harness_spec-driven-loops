@@ -61,8 +61,8 @@ Before staging, the AI snapshots both the unstaged and already-staged state (`gi
 
 - Group: Workflow Playbooks
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `workflow_playbooks/conventional_commit_workflows.md`
+- Feature file path: `workflow-playbooks/conventional-commit-workflows.md`
 
 Related references:
-- [numbered_worktree_workflows.md](numbered-worktree-workflows.md) — Numbered worktree workflows
-- [finish_and_integration_workflows.md](finish-and-integration-workflows.md) — Finish and integration workflows
+- [numbered-worktree-workflows.md](numbered-worktree-workflows.md) — Numbered worktree workflows
+- [finish-and-integration-workflows.md](finish-and-integration-workflows.md) — Finish and integration workflows

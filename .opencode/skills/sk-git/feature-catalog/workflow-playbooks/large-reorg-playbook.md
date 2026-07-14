@@ -58,8 +58,8 @@ Everything from this point runs on `main`, the merged tree being the source of t
 
 - Group: Workflow Playbooks
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `workflow_playbooks/large_reorg_playbook.md`
+- Feature file path: `workflow-playbooks/large-reorg-playbook.md`
 
 Related references:
-- [numbered_worktree_workflows.md](numbered-worktree-workflows.md) — Numbered worktree workflows
-- [conventional_commit_workflows.md](conventional-commit-workflows.md) — Conventional commit workflows
+- [numbered-worktree-workflows.md](numbered-worktree-workflows.md) — Numbered worktree workflows
+- [conventional-commit-workflows.md](conventional-commit-workflows.md) — Conventional commit workflows

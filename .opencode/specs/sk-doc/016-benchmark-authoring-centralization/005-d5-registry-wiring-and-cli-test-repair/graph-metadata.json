@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/016-benchmark-authoring-centralization/005-d5-registry-wiring-and-cli-test-repair",
+  "spec_folder": "sk-doc/016-benchmark-authoring-centralization/005-d5-registry-wiring-and-cli-test-repair",
+  "parent_id": "sk-doc/016-benchmark-authoring-centralization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d5 registry gate wiring",
+      "blocked-by-registry reachable",
+      "cli-external-orchestration test repair",
+      "d5 registry wiring plan",
+      "cli test repair plan",
+      "d5 registry wiring tasks",
+      "d5 registry wiring checklist",
+      "d5 registry wiring summary",
+      "cli test repair summary"
+    ],
+    "key_topics": [
+      "registry",
+      "gate",
+      "wiring",
+      "blocked-by-registry",
+      "reachable",
+      "cli-external-orchestration",
+      "test",
+      "repair",
+      "plan",
+      "cli",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Wire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Minimal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "structural",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 004 shipped the D5 exit-code hard-fail but recorded two limitations it left untouched as out-of-scope",
+    "created_at": "2026-07-14T17:33:04.434Z",
+    "last_save_at": "2026-07-14T17:35:01.579Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4a135d0c98075bcc58123ddbf073950c2354d8c7fe2adffc39be3cb1ccdef551",
+    "source_doc_hashes": {
+      "spec.md": "7cc72befe0786479b3211e20a650ad9d9f0c3ed70a9c05db37be379bfdb737ec",
+      "plan.md": "13007f94d10ff10c7b4b168a5901321e7e7bf68a4673d5143e4a21e394daab4e",
+      "tasks.md": "93f5e49d5c8463782f1b817515dffb8afb2fc57431360a2d7df93439b9bdeb49",
+      "checklist.md": "efb992e8706478f9fac09c45f553a4475d4110c0a6d416445d41f8da87a4e5f8",
+      "implementation-summary.md": "17aa20592a4d82e66af06d1fee57f1cb9953c422372e3db37a2cdd95b6b2714f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

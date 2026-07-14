@@ -29,7 +29,7 @@ Systematically complete development work by verifying tests, presenting integrat
 
 **Core principle**: Verify tests → Present options → Execute choice → Clean up = reliable completion workflow
 
-> **Continuous-integration note**: When a session runs under the launch wrapper's continuous-integration model, each commit is already **autosynced** to the shared live branch via `git-sync.sh` (see [continuous_integration.md](continuous-integration.md)), and the primary checkout follows it with `git-live-follow.sh`. In that mode the Step 5b manual reconciliation below is normally already done for you; "finish" is then just the final PR/merge decision. To publish outstanding commits on demand outside a commit, run `bash .opencode/bin/git-sync.sh` from the session worktree.
+> **Continuous-integration note**: When a session runs under the launch wrapper's continuous-integration model, each commit is already **autosynced** to the shared live branch via `git-sync.sh` (see [continuous-integration.md](continuous-integration.md)), and the primary checkout follows it with `git-live-follow.sh`. In that mode the Step 5b manual reconciliation below is normally already done for you; "finish" is then just the final PR/merge decision. To publish outstanding commits on demand outside a commit, run `bash .opencode/bin/git-sync.sh` from the session worktree.
 
 ---
 
@@ -1070,10 +1070,10 @@ Which option? (1-3)
 ## 9. RELATED RESOURCES
 
 ### Reference Files
-- [worktree_workflows.md](./worktree-workflows.md) - Create isolated git workspaces with minimal branching
-- [commit_workflows.md](./commit-workflows.md) - Professional commit practices with Conventional Commits
-- [quick_reference.md](./quick-reference.md) - One-page cheat sheet for all git workflows
-- [shared_patterns.md](./shared-patterns.md) - Common patterns and conventions across workflows
+- [worktree-workflows.md](./worktree-workflows.md) - Create isolated git workspaces with minimal branching
+- [commit-workflows.md](./commit-workflows.md) - Professional commit practices with Conventional Commits
+- [quick-reference.md](./quick-reference.md) - One-page cheat sheet for all git workflows
+- [shared-patterns.md](./shared-patterns.md) - Common patterns and conventions across workflows
 
 ### External Resources
 - [Git Worktree Documentation](https://git-scm.com/docs/git-worktree) - Official git worktree documentation

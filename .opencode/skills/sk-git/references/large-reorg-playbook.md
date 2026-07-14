@@ -29,14 +29,14 @@ Step-ordered runbook for a LARGE rename/reorg (hundreds-to-thousands of `git mv`
   for post-move validation.
 
 For a handful of renames on the current branch, the standard
-[commit_workflows.md](./commit-workflows.md) flow is enough — skip this runbook.
+[commit-workflows.md](./commit-workflows.md) flow is enough — skip this runbook.
 
 ### Core Split
 
 The worktree does file/rename ops ONLY. The spec-kit toolchain (strict validate,
 generators, metadata regen) and the global memory/vector DBs both run on `main` AFTER
 merge — never inside the bare worktree. See
-[worktree_workflows.md §8b](./worktree-workflows.md#8b-large-reorg-in-a-worktree---caveats)
+[worktree-workflows.md §8b](./worktree-workflows.md#8b-large-reorg-in-a-worktree---caveats)
 for the why behind each caveat.
 
 ### Origin
@@ -99,12 +99,12 @@ git diff --cached --find-renames --name-status | grep -v '^R' | grep -E '^(A|D)'
 If a move shows as `A` + `D` instead of `R`, git did not detect the rename (often due to
 large content changes in the same commit). Keep renames and content edits in **separate
 commits** so rename detection stays clean. Commit the rename wave with a clear message
-(see [commit_workflows.md](./commit-workflows.md)).
+(see [commit-workflows.md](./commit-workflows.md)).
 
 ### Step 3: Merge to main
 
 Bring the rename commit(s) back to `main`. Rename-heavy merge-conflict handling (rename/edit,
-rename/rename) is covered in [shared_patterns.md](./shared-patterns.md).
+rename/rename) is covered in [shared-patterns.md](./shared-patterns.md).
 
 ```bash
 cd ../..                 # back to main worktree
@@ -196,7 +196,7 @@ real paths once — running it from the worktree would index paths that did not 
 
 ## 4. RELATED RESOURCES
 
-- [worktree_workflows.md](./worktree-workflows.md) - §8b caveats behind this runbook
-- [commit_workflows.md](./commit-workflows.md) - scoped staging + rename commit hygiene
-- [shared_patterns.md](./shared-patterns.md) - rename-heavy merge-conflict resolution
-- [quick_reference.md](./quick-reference.md) - one-page command cheat sheet
+- [worktree-workflows.md](./worktree-workflows.md) - §8b caveats behind this runbook
+- [commit-workflows.md](./commit-workflows.md) - scoped staging + rename commit hygiene
+- [shared-patterns.md](./shared-patterns.md) - rename-heavy merge-conflict resolution
+- [quick-reference.md](./quick-reference.md) - one-page command cheat sheet

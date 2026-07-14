@@ -58,7 +58,7 @@ The hook is fail-open by design: if `worktree-naming.sh` is missing, fails to so
 
 - Group: Worktree Naming
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `worktree_naming/pre_push_naming_enforcement.md`
+- Feature file path: `worktree-naming/pre-push-naming-enforcement.md`
 
 Related references:
-- [owner_first_worktree_naming.md](owner-first-worktree-naming.md) — Owner-first worktree naming grammar and allocator
+- [owner-first-worktree-naming.md](owner-first-worktree-naming.md) — Owner-first worktree naming grammar and allocator

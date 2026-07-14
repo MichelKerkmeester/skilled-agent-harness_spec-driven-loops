@@ -80,5 +80,5 @@ No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md
 - Group: Owner-First Worktree Tooling
 - Playbook ID: GIT-026
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `owner_first_worktree_tooling/wrapper_lane_exemption_vs_illegal_owner.md`
+- Feature file path: `owner-first-worktree-tooling/wrapper-lane-exemption-vs-illegal-owner.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

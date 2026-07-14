@@ -28,7 +28,7 @@ const fs = require('fs');
 const path = require('path');
 const { routeSkillResources } = require('./router-replay.cjs');
 const { buildBannedVocab, lintFixture } = require('./contamination-lint.cjs');
-const { scanConnectivity } = require('./d5-connectivity.cjs');
+const { scanConnectivity, scanHubRegistry } = require('./d5-connectivity.cjs');
 const { scoreScenario, aggregate } = require('./score-skill-benchmark.cjs');
 const { probeAdvisor } = require('./advisor-probe.cjs');
 const { renderReport } = require('./build-report.cjs');
@@ -192,6 +192,7 @@ function run(args) {
 
   // D5 hard gate first.
   const connectivity = scanConnectivity({ skillRoot });
+  const hubRegistry = scanHubRegistry({ skillRoot });
 
   const scenarioRows = [];
   const lintFindings = [];
@@ -207,7 +208,7 @@ function run(args) {
   }
 
   // aggregate + emit.
-  const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, lintFindings });
+  const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry, traceMode, lintFindings });
   if (warnings.length) report.parseWarnings = warnings;
   const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
   const reportMdPath = reportJsonPath.replace(/\.json$/, '.md');
