@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements",
+  "spec_folder": "skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements",
+  "parent_id": "skilled-agent-orchestration/137-parallel-session-git-autosync",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parallel git research charter",
+      "shared branch autosync research",
+      "concurrent session push without blockers",
+      "always up to date branch research",
+      "three model deep research plan",
+      "parallel git research methodology",
+      "sol luna glm fan-out",
+      "parallel git research tasks",
+      "three model research queue",
+      "sol luna glm iterations",
+      "parallel git research checklist",
+      "autosync research qa"
+    ],
+    "key_topics": [
+      "parallel",
+      "git",
+      "research",
+      "charter",
+      "shared",
+      "branch",
+      "autosync",
+      "concurrent",
+      "session",
+      "push",
+      "without",
+      "blockers"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Free Concurrent Commit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Branch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Multiple",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Deep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Confirm",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Parallel",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Git Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trade-offs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Git Autosync Research",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Multiple AI coding sessions run concurrently against one shared long-lived branch",
+    "created_at": "2026-07-14T04:11:52.401Z",
+    "last_save_at": "2026-07-14T04:17:30.006Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:d95952ea9e2c004e755015ab69fde0dbe501ee1b69f16028f2a023e184db8f98",
+    "source_doc_hashes": {
+      "spec.md": "0ea6ae15335992a684677a178d97d2871ed120f2780ee5121fd4705a9b5bafb2",
+      "plan.md": "3592ab172315000e1fe0970a7bca32c27a02572deace27b82591f4c7e7fe76e4",
+      "tasks.md": "1bfaef287db0217bc3c83ecd8b461c33954478817f9deeef0375397fd3c1c952",
+      "checklist.md": "2f3c5b44b28fcb404c997703a5fbaac759100222ad49f0647ba59e7cb2674217"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/137-parallel-session-git-autosync",
+  "spec_folder": "skilled-agent-orchestration/137-parallel-session-git-autosync",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parallel AI session git",
+      "shared branch autosync",
+      "commit push without blockers",
+      "multi session branch always up to date"
+    ],
+    "key_topics": [
+      "parallel",
+      "session",
+      "git",
+      "shared",
+      "branch",
+      "autosync",
+      "commit",
+      "push",
+      "without",
+      "blockers",
+      "multi",
+      "always"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-research-and-requirements/spec.md",
+      "001-research-and-requirements/plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Seamless Multi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Branch Autosync",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Several",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Several AI coding sessions run in parallel against one shared long-lived branch",
+    "created_at": "2026-07-14T04:11:52.142Z",
+    "last_save_at": "2026-07-14T04:11:52.142Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:77a6f0f3741aeed617d814725c853d6cf6b446bd0798c11aa7c694eb92b330b2",
+    "source_doc_hashes": {
+      "spec.md": "39aba244f142b551cec3ff9d31c87b0bd0e2c702e747d600ff17e138bb9b72a6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
