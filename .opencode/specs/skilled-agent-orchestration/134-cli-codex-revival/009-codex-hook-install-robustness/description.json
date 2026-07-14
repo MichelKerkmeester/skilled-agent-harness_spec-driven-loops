@@ -1,0 +1,33 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/134-cli-codex-revival/009-codex-hook-install-robustness",
+  "description": "Three AI runtimes share one repo and must enforce identical guardrails: Claude Code via repo-local `.claude/settings.json` hooks, OpenCode via",
+  "keywords": [
+    "three",
+    "runtimes",
+    "share",
+    "one",
+    "repo",
+    "must",
+    "enforce",
+    "identical",
+    "guardrails",
+    "claude",
+    "code",
+    "via",
+    "repo-local",
+    "settings",
+    "json",
+    "hooks",
+    "opencode"
+  ],
+  "lastUpdated": "2026-07-14T17:16:58.340Z",
+  "specId": "009",
+  "folderSlug": "codex-hook-install-robustness",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-cli-codex-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -11,7 +11,8 @@
     "skilled-agent-orchestration/134-cli-codex-revival/005-codex-agent-toml-sync",
     "skilled-agent-orchestration/134-cli-codex-revival/006-docs-and-closeout",
     "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity",
-    "skilled-agent-orchestration/134-cli-codex-revival/008-cli-codex-model-roster-and-alignment"
+    "skilled-agent-orchestration/134-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
+    "skilled-agent-orchestration/134-cli-codex-revival/009-codex-hook-install-robustness"
   ],
   "manual": {
     "depends_on": [],
@@ -102,7 +103,7 @@
     ],
     "causal_summary": "Codex CLI 0.144.1 now provides stable native hooks, multi-agent support, and a supported non-interactive executor, reversing the operational assumptions behind packet 122",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-07-14T04:33:30.755Z",
+    "last_save_at": "2026-07-14T17:19:38.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
