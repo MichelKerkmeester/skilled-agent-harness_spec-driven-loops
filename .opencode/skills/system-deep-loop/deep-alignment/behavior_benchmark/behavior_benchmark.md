@@ -12,22 +12,9 @@ trigger_phrases:
   - DAB scenario contract
 importance_tier: high
 contextType: implementation
-version: 1.0.0.1
 ---
 
 ## 1. OVERVIEW
-
-> **Availability.** The `/deep:alignment` command and its `@deep-alignment` LEAF
-> agent are the invocation surface, built and verified in phase 009 with both
-> cutover gates green. The engine the scenarios exercise (scoping, the five
-> adapters, the convergence and reducer scripts) is shipped and independently
-> runnable today via each script's own CLI. Every scenario contract below
-> therefore specifies *expected* behavior at that surface, and every
-> `deep-alignment` LEAF-agent reference names the built agent. The Claude leg
-> has been captured — all 11 DAB cells, 2026-07-12, single-sample on
-> `claude-opus-4-8` via `claude-cli`, skeptic-verified by three independent GPT
-> passes (9 confirm / 2 dispute) (see
-> [./baselines/claude-baseline.md](./baselines/claude-baseline.md)).
 
 This package specifies what an executor **model** should do once the
 `/deep:alignment` command surface is triggered with a realistic user prompt. It
@@ -47,21 +34,7 @@ the config-file non-interactive path (`scripts/scoping.cjs` `parseLaneConfigFile
 one report per lane (`runtime/scripts/reduce-alignment-state.cjs`
 `renderAlignmentReport`), and the four alignment invariants the engine enforces:
 verify-first, known-deviation suppression, read-only default, and gated
-remediation (`SKILL.md` §2 "The Alignment Contract").
-
-### Framework extensions this package declares
-
-Two framework fields carry package-specific values not yet enumerated in the
-framework's own tables; both are grounded in the shipped mode, not invented for
-this benchmark:
-
-- **`mode: "alignment"`** — the value the shipped `assets/deep_alignment_config_template.json`
-  (`"mode": "alignment"`) carries today and the `/deep:alignment` command, built
-  and verified in phase 009, consumes. This extends the framework's `mode` enum
-  (`context | research | review | ai-council | improvement`) with the mode this
-  package measures.
-- **ID prefix `DAB`** (Deep Alignment Behavior) — extends the framework's
-  fixed per-package prefix table (`ACB | IMB | RSB | RVB`).
+remediation ([SKILL.md §3 "The Alignment Contract"](../SKILL.md#the-alignment-contract)).
 
 ## 2. SCENARIO TABLE
 

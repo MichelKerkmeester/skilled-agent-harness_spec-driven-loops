@@ -48,7 +48,7 @@ This package specifies what an executor **model** should do once the
 a `behavior_benchmark` package carried by the `{{MODE}}` mode-packet, alongside
 the packages the sibling deep-loop workflow sub-skills carry; the single-source
 measurement contract it instantiates is
-[../../shared/behavior-benchmark/framework.md](../../../../system-deep-loop/shared/behavior-benchmark/framework.md),
+[../../shared/behavior-benchmark/framework.md](../../shared/behavior-benchmark/framework.md),
 which is normative — where this index or a scenario note diverges, that framework
 prevails. Each scenario here is a self-contained run contract scored on the
 framework's five-dimension rubric and classified into exactly one terminal bucket.
@@ -71,9 +71,11 @@ already cover; they concentrate on the behaviors **distinctive to `{{MODE}}`** �
 ## 2. SCENARIO TABLE
 
 <!-- One row per scenario file. Entry ∈ {E1,E2,E3,E4}; Clarity ∈ {C1,C2,C3};
-     Expected ∈ {autonomous, question_halt}; Budget is the provisional
-     framework-floor value until a baseline lands (question_halt 300000,
-     autonomous 900000 are the usual floors — confirm against framework.md). -->
+     Expected ∈ {autonomous, question_halt, fail_fast}; Budget is the
+     provisional framework floor (180000 ms) until a baseline lands, capped by
+     mode at 900000 ms (research/review) or 1500000 ms
+     (ai-council/improvement/alignment) — confirm against framework.md BUDGET
+     POLICY; do not invent a per-scenario number. -->
 
 | ID | Title | Entry | Clarity | Expected | Budget |
 | --- | --- | --- | --- | --- | --- |
@@ -95,7 +97,7 @@ Entry-surface coverage: {{E1_COUNT_AND_CELLS}}, {{E2_COUNT_AND_CELLS}}, {{E3_COU
 ## 4. EXECUTION
 
 The runner is
-[../../shared/behavior-benchmark/behavior-bench-run.cjs](../../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs),
+[../../shared/behavior-benchmark/behavior-bench-run.cjs](../../shared/behavior-benchmark/behavior-bench-run.cjs),
 invoked per cell as one run of one scenario contract against one executor, with
 the scenario's `fixture` absorbing all writes for the run. Checkpoint and
 delegation-evidence extraction, the no-progress watchdog, scoring, and
@@ -116,8 +118,8 @@ one.
 
 ## 5. RELATED RESOURCES
 
-- [../../shared/behavior-benchmark/framework.md](../../../../system-deep-loop/shared/behavior-benchmark/framework.md) — the normative measurement contract this package instantiates (five-dimension rubric, terminal buckets, ID-prefix table, budget formula).
-- [../../shared/behavior-benchmark/behavior-bench-run.cjs](../../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
-- [../README.md](../../README.md) — the mode README (its availability / build-state note for the invocation surface, when applicable).
-- [../SKILL.md](../../SKILL.md) — the mode contract: state machine, delegation contract, and the invariants these scenarios probe.
+- [../../shared/behavior-benchmark/framework.md](../../shared/behavior-benchmark/framework.md) — the normative measurement contract this package instantiates (five-dimension rubric, terminal buckets, ID-prefix table, budget formula).
+- [../../shared/behavior-benchmark/behavior-bench-run.cjs](../../shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
+- [../README.md](../README.md) — the mode README (its availability / build-state note for the invocation surface, when applicable).
+- [../SKILL.md](../SKILL.md) — the mode contract: state machine, delegation contract, and the invariants these scenarios probe.
 - [./baselines/claude-baseline.md](./baselines/claude-baseline.md) — per-scenario Claude-leg baseline checkpoints.

@@ -7,7 +7,6 @@ trigger_phrases:
   - "alignment behavior benchmark baseline"
 importance_tier: "high"
 contextType: "implementation"
-version: 1.0.0.0
 ---
 
 # deep-alignment Behavior Benchmark — Claude Baseline
@@ -120,10 +119,13 @@ two findings:
 - **Recomputed budgets (`budget_ms = max(3 * tTerminal, 180000)`, cap 900000).**
   DAB-001 900000 · DAB-002 522129 · DAB-003 180000 (floor) · DAB-004 739986 ·
   DAB-005 900000 · DAB-009 459000 · DAB-010 603000 · DAB-011 900000. The three
-  `timeout_latency` cells (006/007/008) hit the cap, so `3 * tTerminal` is itself
-  ≥ the cap — the true budget these cells need is **unbounded by the current
-  900000 cap on the Opus host**; the framework cap is too low for autonomous
-  multi-iteration alignment cells on this host.
+  `timeout_latency` cells (006/007/008) hit the then-in-force `900000` cap, so
+  `3 * tTerminal` was itself ≥ that cap at capture time — this finding is why the
+  `alignment` mode's cap has since been raised to **`1500000`** ms in
+  `../../../shared/behavior-benchmark/framework.md` BUDGET POLICY; under the
+  current `1500000` cap, all three autonomous multi-iteration alignment cells
+  fit. The `900000`-cap values recorded above are this baseline's frozen
+  2026-07-12 capture and are not re-derived here.
 - **Autonomous cells cluster at the latency ceiling.** Six autonomous cells:
   three finished just under the cap (001 max-iter=1 at 862s; 005 at 799s; 011 at
   814s) and three hit it (006/007/008). The mode's per-iteration LEAF dispatch +

@@ -18,6 +18,33 @@ function makeRouterlessSkill(): string {
   return dir;
 }
 
+// A minimal skill with a parseable inline router whose one routed resource
+// exists on disk — a hermetic D5-pass fixture that does not depend on any
+// real skill's on-disk location staying put.
+function makeConnectedSkill(): string {
+  const dir = mkdtempSync(join(tmpdir(), 'lc-connected-'));
+  mkdirSync(join(dir, 'references'), { recursive: true });
+  writeFileSync(join(dir, 'references', 'a.md'), '# A\n');
+  writeFileSync(join(dir, 'SKILL.md'), [
+    '---',
+    'name: connected-throwaway',
+    '---',
+    '# Connected Throwaway',
+    '',
+    '```python',
+    'INTENT_SIGNALS = {',
+    '    "REVIEW": {"weight": 4, "keywords": ["review"]},',
+    '}',
+    '',
+    'RESOURCE_MAP = {',
+    '    "REVIEW": ["references/a.md"],',
+    '}',
+    '```',
+    '',
+  ].join('\n'));
+  return dir;
+}
+
 // router-replay is a pure module — exercise it directly.
 const { routeSkillResources, scoreIntents, selectIntents, parseRouter, loadSurfaceRouter } = require(join(SB, 'router-replay.cjs'));
 const { buildBannedVocab, lintFixture } = require(join(SB, 'contamination-lint.cjs'));
@@ -594,6 +621,41 @@ describe('Lane C — malformed-fixture degradation', () => {
     const row = (report.scenarioRows || []).find((r: any) => r.firstFailingStage === 'unparseable-fixture');
     expect(row).toBeTruthy();
     expect(row.loadError).toBeTruthy();
+  });
+});
+
+describe('Lane C — D5 gate exit code (run-skill-benchmark)', () => {
+  const gateDirs: string[] = [];
+  afterAll(() => {
+    for (const d of gateDirs) rmSync(d, { recursive: true, force: true });
+  });
+
+  it('hard-fails the process (exit 3) on a BLOCKED-BY-STRUCTURE verdict, but still writes both reports', () => {
+    const { run } = require(join(SB, 'run-skill-benchmark.cjs'));
+    const skillRoot = makeRouterlessSkill();
+    const out = mkdtempSync(join(tmpdir(), 'lc-d5gate-'));
+    gateDirs.push(skillRoot, out);
+    const code = run({ skill: skillRoot, 'outputs-dir': out });
+    expect(code).toBe(3);
+    const jsonPath = join(out, 'skill-benchmark-report.json');
+    const mdPath = join(out, 'skill-benchmark-report.md');
+    expect(existsSync(jsonPath)).toBe(true);
+    expect(existsSync(mdPath)).toBe(true);
+    const report = JSON.parse(readFileSync(jsonPath, 'utf8'));
+    expect(report.verdict).toBe('BLOCKED-BY-STRUCTURE');
+  });
+
+  it('stays exit 0 for a router-bearing skill that does not hit the D5 gate (regression guard, NO-SCENARIOS is not gated)', () => {
+    const { run } = require(join(SB, 'run-skill-benchmark.cjs'));
+    const skillRoot = makeConnectedSkill();
+    const out = mkdtempSync(join(tmpdir(), 'lc-d5gate-ok-'));
+    gateDirs.push(skillRoot, out);
+    const code = run({ skill: skillRoot, 'outputs-dir': out });
+    expect(code).toBe(0);
+    const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
+    // No manual_testing_playbook ships with the fixture, so the verdict lands on
+    // NO-SCENARIOS — a documented expected-degraded result, not a D5 gate.
+    expect(report.verdict).toBe('NO-SCENARIOS');
   });
 });
 

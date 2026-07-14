@@ -60,8 +60,9 @@ scorer.
 
 ## 2. WHERE THESE LIVE
 
-All model-benchmark data sits under the deep-improvement mode-packet. Directory names
-use underscores.
+All model-benchmark data sits under the deep-improvement mode-packet. The parent
+`model_benchmark/` directory name uses an underscore; its `benchmark-fixtures/` and
+`benchmark-profiles/` children use hyphens.
 
 | Artifact | Location | Role |
 | --- | --- | --- |
@@ -83,7 +84,7 @@ feeds a different scorer family.
 
 | Family | Shape marker | Oracle | Feeds scorer (wayfinding) |
 | --- | --- | --- | --- |
-| Code-task oracle (t-tier) | `fn_name` + `tests[]` + `hidden_tests[]` | Function return values per case | Code-task / `5dim` scorer |
+| Code-task oracle (t-tier) | `fn_name` + `tests[]` + `hidden_tests[]` | Function return values per case | `scoreCodeTask` (sweep path only — never `run-benchmark.cjs`'s `pattern`/`5dim`) |
 | Pattern / capability evidence contract | `requiredHeadings` + `requiredPatterns` + `forbiddenPatterns` | Structure and evidence tokens in an artifact | Pattern scorer |
 | Reviewer-prompt | `kind: "reviewer-prompt"` + `expectedVerdict` | A verdict plus required finding tokens | Reviewer scorer |
 
@@ -229,11 +230,18 @@ profile.models[]            ─┘        │  samplesPerCell @ seed
 ```
 
 The one authoring constraint that ties the two together: **the scorer named in the
-profile must match the fixture shape it scores.** Code-task oracle fixtures feed the
-code-task / `5dim` scorer, evidence-contract fixtures feed the pattern scorer, and
-reviewer-prompt fixtures feed the reviewer scorer. A profile that points a scorer at
-the wrong fixture shape has nothing valid to grade. Also keep each id in
-`profile.fixtures` matching an on-disk fixture's `id` field, not its filename.
+profile must match the fixture shape it scores, on the path that actually reads it.**
+Code-task oracle fixtures are scored by `scoreCodeTask` on the **sweep** path
+(`sweep-benchmark.cjs`) — `run-benchmark.cjs`'s `pattern` (default) and opt-in `5dim`
+scorers read only `acceptance` / `requiredHeadings` / `requiredPatterns` and never
+touch `fn_name` / `tests[]` / `hidden_tests[]`, so a code-task fixture scored through
+`run-benchmark.cjs` has nothing valid to grade. Evidence-contract fixtures feed the
+pattern (or opt-in `5dim`) scorer on the single-pass `run-benchmark.cjs` path.
+Reviewer-prompt fixtures are **lane-only** (`mode: reviewer` / `scorer: reviewer`,
+gated) and are never referenced from this profile scaffold — see section 4's note.
+A profile that points a scorer at the wrong fixture shape has nothing valid to
+grade. Also keep each id in `profile.fixtures` matching an on-disk fixture's `id`
+field, not its filename.
 
 ---
 

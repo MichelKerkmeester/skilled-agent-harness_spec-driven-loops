@@ -119,8 +119,10 @@ Field guidance (the enums and hard rules are authoritative in MODES.md and profi
                         legacy single-pass profile (validator leaves a mode-less profile alone; it needs no sweep block).
   fixtureDir          : path to the fixtures folder the ids in "fixtures" resolve against.
   fixtures            : the fixture ids to score. Keep them in sync with fixtureSelection.include when both are present.
-  fixtureSelection    : OPTIONAL sweep filter. "include" narrows the fixture set; "filters.tier" keeps only listed tiers
-                        (e.g. ["T3"], ["T1","T3","T4"]). DELETE the whole object if you score the full "fixtures" list unfiltered.
+  fixtureSelection    : OPTIONAL sweep filter. "include" narrows the fixture set and IS read by sweep-benchmark.cjs.
+                        "filters.tier" (e.g. ["T3"], ["T1","T3","T4"]) is documented shape only — CURRENTLY UNSUPPORTED,
+                        the sweep runtime never reads it. DELETE the whole object if you score the full "fixtures" list
+                        unfiltered.
   frameworks          : prompt-framework registry ids. One entry = fixed framework; 2+ entries = the swept axis for
                         framework-bakeoff / prompt-vs-prompt. Framework ids are data in sk-prompt's framework-registry.json.
   models              : one object per model cell. executor MUST be in KNOWN_EXECUTORS (cli-opencode | cli-claude-code).
@@ -130,21 +132,39 @@ Field guidance (the enums and hard rules are authoritative in MODES.md and profi
   variants            : OPTIONAL top-level array (e.g. ["high","medium","low"]) — the swept axis ONLY for reasoning-ablation.
                         When present, drop per-model "variant" and give models exactly one cell. OMIT this key for every other mode.
   scoring.scorer      : "5dim" (opt-in five-dimension scorer) | "pattern" (default heading/pattern matcher) — the ONLY two
-                        scorers profile-validator.cjs accepts (KNOWN_SCORERS). OMIT the whole scoring block for the legacy
-                        default pattern path. NOTE: the reviewer-prompt regression is a SEPARATE gated lane family, not a
-                        standard profile scorer or one of the validated modes (KNOWN_MODES); it is not validated by
-                        profile-validator.cjs — author it through the lane, not this profile scaffold.
+                        scorers profile-validator.cjs accepts (KNOWN_SCORERS) and VALIDATES for shape only. SINGLE-PASS
+                        run-benchmark.cjs selects the scorer from the CLI `--scorer pattern|5dim` flag, NOT this field.
+                        SWEEP sweep-benchmark.cjs ignores this field entirely — it always scores code-task fixtures via
+                        `scoreCodeTask`. OMIT the whole scoring block for the legacy default pattern path. NOTE: the
+                        reviewer-prompt regression is a SEPARATE gated lane family, not a standard profile scorer or one
+                        of the validated modes (KNOWN_MODES); it is not validated by profile-validator.cjs — author it
+                        through the lane, not this profile scaffold.
   correctnessGate     : threshold in [0,1] (default 1.0). Correctness is a GATE, not a rank — a saturated fixture never crowns a winner.
-  dimensions          : five weighted dims required by the 5dim scorer; the weights MUST sum to exactly 1.0. Canonical split is
+  dimensions          : five weighted dims VALIDATED (shape + weights sum to 1.0) by profile-validator.cjs but applied
+                        only on the SINGLE-PASS `--scorer 5dim` path; the SWEEP path never reads it. Canonical split is
                         D1 0.25, D2 0.30, D3 0.20, D4 0.15, D5 0.10. OMIT this block when scorer is not 5dim.
-  sampling            : samplesPerCell is a positive integer (3 is typical; 5 for a tight prompt-vs-prompt call); seed pins reproducibility.
-  reporting.groupBy   : the reducer axis — model | framework | variant | run_label | fixture. Match it to the mode's swept axis.
-  reporting.leaderboard / history : booleans. leaderboard:false for regression (a delta, not a ranking); history:true keeps snapshots.
-  outputsDir          : where reports land. Use the "{spec_folder}" (and/or "{run_label}") token — the runtime expands it at
-                        dispatch time. Never hard-code a spec-folder path here.
+  sampling            : samplesPerCell is a positive integer (3 is typical; 5 for a tight prompt-vs-prompt call) and IS
+                        read by the sweep runtime. "seed" is CURRENTLY UNSUPPORTED for cell sampling — the runtime never
+                        reads it; only the reporter's own internal bootstrap-CI seed is derived, unrelated and not
+                        author-set.
+  reporting.groupBy   : the reducer axis — model | framework | variant | run_label | fixture. Match it to the mode's swept
+                        axis. This is the ONLY "reporting" field the sweep reporter reads.
+  reporting.leaderboard / history : booleans, VALIDATED shape only — CURRENTLY UNSUPPORTED, neither is read at runtime;
+                        the reporter always renders a leaderboard and never gates snapshot history on this flag.
+  outputsDir          : where SWEEP reports land — read ONLY by sweep-benchmark.cjs, falling back to a temp dir when the
+                        token is unresolved. NOT read by run-benchmark.cjs or the /deep:model-benchmark command; both take
+                        `--outputs-dir` on the CLI instead, and the command supplies a fixed hub path
+                        (.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/), ignoring this field entirely.
+                        Emitted files differ by path: run-benchmark.cjs -> report.json + report-history/; sweep-benchmark.cjs
+                        -> results.json (+ aggregate.json/synthesis.md by default); reviewer-scorer.cjs -> reviewer-report.json.
+                        When this field IS read (standalone sweep), use the "{spec_folder}" (and/or "{run_label}") token —
+                        the runtime expands it at dispatch time. Never hard-code a spec-folder path here.
   metrics             : the metric ids reported (e.g. score | delta | pass_rate).
   thresholdDelta      : OPTIONAL score-fraction below which a delta is a tie, not an improvement.
-  benchmark           : the promotion gate. requiredAggregateScore and minimumFixtureScore are 0–100 score thresholds;
+  benchmark           : the promotion gate — read ONLY by SINGLE-PASS run-benchmark.cjs (`profile.benchmark?.requiredAggregateScore`
+                        default 80, `?.minimumFixtureScore` default 70, `?.repeatabilityTolerance` default 0). The SWEEP
+                        path never reads this object; a sweep reports a ranked leaderboard and bootstrap verdict instead of
+                        gating against it. requiredAggregateScore and minimumFixtureScore are 0–100 score thresholds;
                         repeatabilityTolerance is the noise floor (0 asserts perfectly repeatable scoring). An optional
                         "repeatabilityCalibration" { basis, note } or "note" string may document the chosen tolerance.
 

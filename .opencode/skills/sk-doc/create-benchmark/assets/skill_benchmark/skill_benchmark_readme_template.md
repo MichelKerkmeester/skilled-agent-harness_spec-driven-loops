@@ -133,7 +133,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host
   --trace-mode=live
 ```
 
-Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` and `skill-benchmark-report.md` in the outputs dir. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add each new run as a fresh sibling run-label folder and a new row in section 2; never overwrite `baseline/`.
+Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` and `skill-benchmark-report.md` in the outputs dir. The D5 connectivity gate runs first and hard-fails the run on structural breaks — a non-zero exit (`3`) with verdict `BLOCKED-BY-STRUCTURE` (or `BLOCKED-BY-REGISTRY`), reported inside the same report pair. Add each new run as a fresh sibling run-label folder and a new row in section 2; never overwrite `baseline/`.
 
 ## 5. READING THE REPORTS
 

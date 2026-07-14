@@ -55,10 +55,10 @@ scoring context the runner never reads.
   "prompt": "{{VERBATIM_USER_PROMPT}}",
   "invocation": {
     "kind": "{{INVOCATION_KIND}}",
-    "command": "{{COMMAND_OR_NULL}}"
+    "command": {{COMMAND_STRING_OR_RAW_NULL}}
   },
-  "fixture": "{{FIXTURE_PATH_OR_NULL}}",
-  "expected_interaction": "{{AUTONOMOUS_OR_QUESTION_HALT}}",
+  "fixture": "{{FIXTURE_PATH}}",
+  "expected_interaction": "{{AUTONOMOUS_OR_QUESTION_HALT_OR_FAIL_FAST}}",
   "expected_presentation_markers": [
     "{{MARKER_ONE_LITERAL_OR_REGEX}}",
     "{{MARKER_TWO_LITERAL_OR_REGEX}}"
@@ -70,8 +70,8 @@ scoring context the runner never reads.
     "role_absorption_forbidden": {{TRUE_OR_FALSE}}
   },
   "budget_ms": {{BUDGET_MS}},
-  "notes": "{{ONE_LINE_INTENT_PLUS_THE_INVARIANT_AND_SOURCE_FUNCTION}}",
-  "watchdog_ms": {{WATCHDOG_MS_OR_OMIT}}
+  "watchdog_ms": {{WATCHDOG_MS_OR_OMIT}},
+  "notes": "{{ONE_LINE_INTENT_PLUS_THE_INVARIANT_AND_SOURCE_FUNCTION}}"
 }
 ```
 
@@ -81,12 +81,23 @@ Field guidance (see framework.md for the authoritative enums):
   entry_surface       : E1 command+suffix | E2 bare command (must halt) | E3 natural ask | E4 orchestrate-routed.
   clarity             : C1 vague | C2 concise-but-scoped | C3 fully specified.
   invocation.kind     : "command" (with command "namespace/name") or "natural" (command null).
-  expected_interaction: "autonomous" (runs to a terminal) or "question_halt" (must ask ONE consolidated setup question then stop).
+  invocation.command  : a RAW JSON value, not a quoted placeholder. For "command" kind, fill a quoted string (e.g.
+                        "review <target> :auto"). For "natural" kind, use the bare JSON literal null — never the quoted
+                        text "null" (a quoted "null" is a non-empty string, not the JSON null a natural-entry cell needs;
+                        see DAB-003's shipped `"command": null`).
+  fixture             : REQUIRED repo-relative directory string that absorbs all writes for the run. Never null — every
+                        scenario, including question_halt cells, binds a fixture.
+  expected_interaction: "autonomous" (runs to a terminal) | "question_halt" (must ask ONE consolidated setup question then
+                        stop) | "fail_fast" (must terminate on an unmet precondition).
   presentation markers: literal strings or /regex/ (case-insensitive is always applied). Keep them minimal and mode-distinctive.
   expected_delegation : use evidence_kind (default task_dispatch) + min_seats only when the mode delegates via seat_artifacts (ai-council).
                         question_halt cells usually set leaf_agent:null and min_task_events:0.
-  budget_ms           : provisional framework floor until a baseline lands (e.g. 300000 question_halt, 900000 autonomous). Recompute from tTerminal later.
-  watchdog_ms         : OPTIONAL. Set (e.g. 480000) only on autonomous delegating cells that legitimately go quiet; OMIT the line otherwise.
+  budget_ms           : provisional framework floor (180000 ms) until a baseline lands, capped by mode at 900000 ms
+                        (research/review) or 1500000 ms (ai-council/improvement/alignment) — see framework.md BUDGET
+                        POLICY; do not invent a per-scenario number. Recompute from tTerminal once a baseline lands.
+  watchdog_ms         : OPTIONAL, placed BEFORE the mandatory final "notes" field so deleting this one line never strands
+                        a trailing comma. Set (e.g. 480000) only on autonomous delegating cells that legitimately go
+                        quiet; OMIT the line otherwise.
 -->
 
 **Rationale.** {{WHY_THIS_CELL_EXISTS_WHICH_INVARIANT_OR_BOUNDARY_IT_ISOLATES_WITH_A_SKILL_MD_OR_REFERENCE_CITE}}

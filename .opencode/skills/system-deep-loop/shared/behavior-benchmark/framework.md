@@ -190,8 +190,11 @@ budget_ms = max(3 * claude_baseline_tTerminal, 180000)
 ```
 
 Capped at `900000` ms (15 minutes) for `research` and `review`
-scenarios. `ai-council` and `improvement` scenarios cap at `1500000` ms
-(25 minutes), reflecting their multi-seat and evaluator-loop cost.
+scenarios. `ai-council`, `improvement`, and `alignment` scenarios cap at
+`1500000` ms (25 minutes): `ai-council` and `improvement` for their
+multi-seat and evaluator-loop cost, and `alignment` because it runs
+autonomous multi-cell workloads of the same shape and the Claude baseline
+shows `900000` ms is too low for its cells.
 
 ### Watchdog (no-progress kill)
 

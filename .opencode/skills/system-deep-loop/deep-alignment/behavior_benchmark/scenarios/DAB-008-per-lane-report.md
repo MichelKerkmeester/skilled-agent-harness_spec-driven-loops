@@ -25,7 +25,7 @@
     "role_absorption_forbidden": true
   },
   "budget_ms": 900000,
-  "notes": "Emission-contract probe (SKILL.md ALWAYS #5 / NEVER #5b: 'Emit one report per lane, not one blended report across authorities'). lane-config-multi.json pins TWO lanes: sk-doc/docs/paths[docs/] and sk-code/code/globs[src/**]. reduce-alignment-state.cjs renderAlignmentReport() emits one '## Lane:' section per lane. Pass requires the emitted alignment-report.md to carry a distinct section for EACH authority, not one interleaved verdict.",
+  "notes": "Emission-contract probe (SKILL.md ALWAYS #5: 'Emit one report per lane, not one blended report across authorities'). lane-config-multi.json pins TWO lanes: sk-doc/docs/paths[docs/] and sk-code/code/globs[src/**]. reduce-alignment-state.cjs renderAlignmentReport() emits one '## Lane:' section per lane. Pass requires the emitted alignment-report.md to carry a distinct section for EACH authority, not one interleaved verdict.",
   "watchdog_ms": 480000
 }
 ```

@@ -6,7 +6,8 @@
   "children_ids": [
     "sk-doc/016-benchmark-authoring-centralization/001-create-benchmark-reorg-and-routing",
     "sk-doc/016-benchmark-authoring-centralization/002-benchmark-authoring-completion-and-crosslinks",
-    "sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation"
+    "sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation",
+    "sk-doc/016-benchmark-authoring-centralization/004-create-benchmark-contract-drift-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -196,7 +197,7 @@
     ],
     "causal_summary": "Make sk-doc/create-benchmark the single home for benchmark-DOCUMENT templates and authoring standards across all repo benchmark families. Author skill-benchmark storage/README templates and model-benchmark fixture/profile templates plus guides, add a complete family-disambiguation table (Lane A/D marked code-owned), and rewire deep-improvement consumer docs to point at create-benchmark for authoring while run/scoring logic stays in the deep-loop lanes. The Lane C report .md stays renderer-owned.",
     "created_at": "2026-07-12T10:58:43.605Z",
-    "last_save_at": "2026-07-14T08:22:39.889Z",
+    "last_save_at": "2026-07-14T16:34:14.494Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

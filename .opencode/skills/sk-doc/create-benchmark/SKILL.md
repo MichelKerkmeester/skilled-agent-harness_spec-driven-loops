@@ -9,7 +9,7 @@ version: 1.3.0.0
 
 # create-benchmark
 
-`create-benchmark` is the benchmark-authoring workflow packet of the `sk-doc` family. It authors documentation and input artifacts for four benchmark families, plus an authoring guide for two more that stay code-owned:
+`create-benchmark` is the benchmark-authoring workflow packet of the `sk-doc` family. It authors four benchmark families, plus an authoring guide for two more that stay code-owned:
 
 - **MCP promotion benchmark** — turn a shipped spec packet's curated benchmark evidence into a consuming skill's `mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/` folder, so MCP operators can find the winner, fixture, caveats, replay commands, and source packet without leaving the skill tree (sections 3 through 8).
 - **Behavior benchmark** — author a `<mode>/behavior_benchmark/` package (index, per-scenario machine contracts, and a Claude baseline) that specifies executor-model behavior at a deep-loop mode's invocation surface, governed by the shared measurement framework (section 9).
@@ -24,14 +24,15 @@ The skill-local surface is the look-here-first entry point, not the archive; the
 
 ## 1. WHEN TO USE
 
-Use this packet when a completed benchmark, or a benchmark's input artifacts, needs to be authored into the skill tree as durable, look-here-first documentation. It authors several benchmark families; settle which family you are in from the router in section 2 before authoring, because the families are distinct and must not be conflated.
+Use this packet when a completed benchmark, or a benchmark's input artifacts, needs to be authored into the skill tree as durable, look-here-first documentation. Settle which family applies via the router in section 2 first — families are distinct and must not be conflated.
 
 ### Activation Triggers
 
-- **MCP promotion** (sections 3-8) — promote a completed MCP benchmark or bake-off from a spec packet into a skill-local `mcp_server/benchmarks/` folder: author the ten-section `benchmark_report.md` and `SOURCE.md`, copy `results.csv` / `per-probe.jsonl` / runtime sidecars into a dated folder, and update the `benchmarks/README.md` index row.
+- **MCP promotion** (on-disk `shared`; sections 3-8) — promote a completed MCP benchmark or bake-off from a spec packet into a skill-local `mcp_server/benchmarks/` folder: author the ten-section `benchmark_report.md` and `SOURCE.md`, copy `results.csv` / `per-probe.jsonl` / runtime sidecars into a dated folder, and update the `benchmarks/README.md` index row.
 - **Behavior benchmark** (section 9) — author or extend a `behavior_benchmark` package for a deep-loop mode (`context`, `research`, `review`, `ai-council`, `improvement`, or a declared extension such as `alignment`): the `behavior_benchmark.md` index, per-scenario `<PREFIX>-NNN-<slug>.md` machine contracts, and `baselines/claude-baseline.md`, designing the entry-surface and clarity scenario matrix.
 - **Skill-benchmark** (section 10) — author or update a hub's `benchmark/README.md` run-label index, or establish the `benchmark/` storage convention (sibling run-label folders, frozen `baseline/` anchor) for a Lane C tree.
 - **Model-benchmark** (section 11) — author a Lane B input fixture (code-task oracle, pattern/capability, or reviewer-prompt) or a run profile that selects fixtures, models, frameworks, scoring, and the gate.
+- **Lane A/D guides** (section 13) — author the Lane A (`agent-improvement`) or Lane D (`non-dev AI-system`) authoring guide; rubrics, configs, and templates stay in-lane.
 
 Keyword triggers: `benchmark_report.md`, `SOURCE.md`, `mcp_server/benchmarks`, `MCP bake-off`; `behavior benchmark`, `behavior_benchmark.md`, `scenario contract`, `claude-baseline`; `skill-benchmark`, `benchmark/README.md`, `run-label folder`, `benchmark package`; `model-benchmark`, `benchmark fixture`, `benchmark profile`, `reviewer-prompt fixture`.
 
@@ -56,11 +57,11 @@ Measurable retrieval surface + shipped spec packet with accepted ADRs + stable f
 
 ### Trigger Signals
 
-You will know an MCP-promotion folder is warranted when:
+An MCP-promotion folder is warranted when:
 
 - An ADR just promoted a non-trivial default change (a new embedder, reranker, retrieval pipeline, or runtime setting), and operators inside the MCP code will ask "why this default?"
 - A reader has already asked "where are the benchmark numbers?" and you pointed at a deep spec path — that question recurs every time someone touches the MCP code.
-- You are about to write the same comparison table twice (a README and a release note), or a sibling skill ships a benchmark folder and yours has an analogous retrieval surface.
+- You are about to write the same comparison table twice (a README and a release note), or a sibling skill's benchmark folder has an analogous retrieval surface.
 
 ### When NOT to Use
 
@@ -76,7 +77,7 @@ Use another `sk-doc` packet when:
 - The result mixes data from different MCP stacks and asks for a single comparative verdict.
 - The task is to hand-edit a `skill-benchmark-report.md` (renderer-owned) or to define how any benchmark is *scored* — a rubric, evaluator, reviewer verdict, or D1-D5 weight. Those stay lane-local in deep-improvement; this packet authors inputs, indexes, and reports, not scoring (sections 10-11).
 
-If unsure, default to "not yet." Promotion is cheap after rigor; rolling back a premature folder costs more.
+If unsure, default to "not yet." Promotion is cheap after rigor; reverting a premature folder costs more.
 
 ---
 
@@ -99,7 +100,7 @@ Route to the right family before authoring; families are distinct and must not b
 
 Pick the family by what the task authors: shipped MCP-stack numbers into a skill's code tree → MCP promotion (§3-8); executor-model behavior at a deep-loop mode's surface → behavior (§9); where a Lane C run's report pair is stored, or a hub `benchmark/README.md` index → skill-benchmark (§10); a Lane B input fixture or run profile → model-benchmark (§11). Two hard stops: to hand-write a `skill-benchmark-report.md`, don't — it is renderer-owned; to change how any benchmark is *scored*, don't — the scoring contracts are lane-local.
 
-**Lane A and Lane D.** create-benchmark hosts an authoring guide for each (section 13); their fixtures, evaluators, and configs stay code-owned in-lane (§12).
+**Lane A and Lane D.** create-benchmark hosts an authoring guide for each (section 13); their fixtures, evaluators, and configs stay code-owned in-lane (§13).
 
 ### Smart Router Call Sequence
 
@@ -209,7 +210,7 @@ If a section legitimately has nothing to say, keep the header and write one line
 - Include frontmatter appropriate for a reference document.
 - Use H2 numbered headers with ALL CAPS section names.
 - Use tables for data and fenced code blocks for verbatim commands.
-- Keep slugs and anchors stable across revisions so deep links keep working.
+- Keep slugs and anchors stable across revisions.
 - Do not paste the full spec packet ADR trail into the report.
 - Do not compare numeric results across different MCP stacks as if equivalent.
 
@@ -453,7 +454,7 @@ Runs are siblings; one never overwrites another. `baseline/` is the frozen befor
 
 ## 11. MODEL-BENCHMARK FIXTURES AND PROFILES
 
-A model-benchmark run scores what a model or prompt framework produces against a fixed, held-out oracle; it is run by the deep-improvement Lane B harness (`/deep:model-benchmark`). This packet owns the **authored inputs** — the fixtures the model answers and the run profiles that drive a run. Both are data only; nothing in those directories executes. It never authors the evaluator, scorers, or reviewer-verdict contract (see ALWAYS / NEVER). The fixture-family taxonomy, profile shape, and lane boundary live in [`references/model_benchmark/model_benchmark_fixture_guide.md`](references/model_benchmark/model_benchmark_fixture_guide.md).
+A model-benchmark run scores what a model or prompt framework produces against a fixed, held-out oracle; it is run by the deep-improvement Lane B harness (`/deep:model-benchmark`). This packet owns the **authored inputs** — the fixtures the model answers and the run profiles that drive a run. Both are data only. It never authors the evaluator, scorers, or reviewer-verdict contract (see ALWAYS / NEVER). The fixture-family taxonomy, profile shape, and lane boundary live in [`references/model_benchmark/model_benchmark_fixture_guide.md`](references/model_benchmark/model_benchmark_fixture_guide.md).
 
 ### Artifact Shape
 
@@ -487,19 +488,19 @@ Each template's fenced json block is the only thing copied into the shipped `.js
 
 ### Authoring Workflow
 
-1. **Pick the family and shape**, and copy the closest existing fixture of that shape.
+1. **Pick the family and shape** and copy the closest existing fixture.
 2. **Author a code-task oracle** by generating every `tests[]` / `hidden_tests[]` value from a verified reference implementation — never hand-guess an oracle; bias hidden cases to held-out adversarial inputs.
 3. **Author a reviewer-prompt fixture** against the lane-local `reviewer_schema.md`; keep `expectedFindings` token-specific.
-4. **Add or extend a profile** referencing the fixture `id`, with a `scorer` matching the fixture shape plus the sweep matrix, sampling, and gate.
+4. **Add or extend a profile** referencing the fixture `id` (code-task/pattern only — reviewer-prompt is lane-only), with a `scorer` matching the fixture shape plus the sweep matrix, sampling, and gate.
 5. **Parse every fixture and profile as JSON**, then hand off to the lane to dispatch, score, and file the evidence.
 
 ### ALWAYS / NEVER (model-benchmark)
 
-- **ALWAYS** match the profile's scorer to the fixture shape — code-task → code-task scorer, evidence-contract → pattern scorer, reviewer-prompt → reviewer scorer.
+- **ALWAYS** match the profile's scorer to the fixture shape — code-task → code-task scorer, evidence-contract → pattern scorer; reviewer-prompt is lane-only (`mode: reviewer`), not this profile path.
 - **ALWAYS** generate code-task oracle `expect` values from a verified reference implementation, with held-out `hidden_tests[]` guarding overfit.
 - **ALWAYS** keep fixtures and profiles pure JSON, and each id in `profile.fixtures` matching an on-disk fixture's `id` field.
 - **NEVER** restate or copy the evaluator rubric, scorer mechanics, or reviewer schema / verdict contract into this packet — they are lane-local; cross-link them.
-- **NEVER** write run outputs back into the fixtures or profiles directories; those stay read-only inputs, and outputs land in each profile's `outputsDir`.
+- **NEVER** write run outputs back into the fixtures or profiles directories; those stay read-only inputs, and each path's outputs land differently — run/`report.json`, sweep/`results.json`, reviewer/`reviewer-report.json` (profile template OUTPUTS).
 
 ### Success Criteria (model-benchmark)
 

@@ -172,7 +172,8 @@ function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, pla
  * (legacy fixtures or playbook), aggregate, and write report.{json,md}.
  *
  * @param {Object} args - Parsed CLI args.
- * @returns {number} Process exit code (0 success, 2 on missing SKILL.md).
+ * @returns {number} Process exit code (0 success, 2 on missing SKILL.md,
+ *   3 when the D5 structural/registry gate blocked the verdict).
  */
 function run(args) {
   const skillRoot = resolveSkillRoot(args.skill);
@@ -215,6 +216,11 @@ function run(args) {
 
   process.stdout.write(`skill-benchmark: ${skillId} verdict=${report.verdict} aggregate=${report.aggregateScore} scenarios=${scenarioRows.length}\n`);
   process.stdout.write(`  report.json -> ${reportJsonPath}\n  report.md   -> ${reportMdPath}\n`);
+  // The D5 gate exists to make a structurally-broken skill (dead router, broken
+  // hub registry) unusable regardless of weighted score. An exit code that stays
+  // 0 on that verdict lets a CI caller treat "blocked" the same as "passed" —
+  // reports still write either way, but the process signal must disagree.
+  if (report.verdict === 'BLOCKED-BY-STRUCTURE' || report.verdict === 'BLOCKED-BY-REGISTRY') return 3;
   return 0;
 }
 

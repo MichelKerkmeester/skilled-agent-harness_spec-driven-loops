@@ -74,8 +74,7 @@ A hub `benchmark/` tree holds an optional index plus one folder per run:
 │   └── skill-benchmark-report.md
 ├── live_final/                   # another run-label folder
 │   ├── skill-benchmark-report.json
-│   ├── skill-benchmark-report.md
-│   └── d4-ablation.json          # optional per-run aux artifact
+│   └── skill-benchmark-report.md
 └── fixtures/                     # optional INPUT corpus — not a run, holds no report
 ```
 
@@ -119,15 +118,18 @@ this guide only fixes how the resulting folder is named and where it sits.
 
 ## 4. WHAT LANDS IN A RUN-LABEL DIR
 
-Every run writes a **matched report pair**. Auxiliary JSONs appear only when the
-run that produced them was requested.
+Every run writes a **matched report pair** and nothing else, unless a per-run
+`README.md` note was authored by hand. There is no separate `d4-ablation.json` or
+`d5-connectivity-detail.json` artifact: an opt-in `--d4` (D4-R task-outcome) run
+rewrites the SAME `skill-benchmark-report.json` / `.md` pair in place rather than
+writing a sibling file, and D5's structural-connectivity result is a field inside
+`skill-benchmark-report.json`, not a standalone detail file (verify against
+`run-skill-benchmark.cjs`).
 
 | File | Required | Content |
 | --- | --- | --- |
-| `skill-benchmark-report.json` | Yes | The machine report: verdict, D1-D5 dimension scores, funnel, ranked bottlenecks, and per-scenario rows. The canonical artifact. |
+| `skill-benchmark-report.json` | Yes | The machine report: verdict, D1-D5 dimension scores, funnel, ranked bottlenecks, and per-scenario rows. The canonical artifact. An opt-in `--d4` D4-R run rewrites this same file in place. |
 | `skill-benchmark-report.md` | Yes | The same report rendered for reading, generated FROM the JSON. Renderer-owned — see section 5. |
-| `d4-ablation.json` | Optional | Per-scenario usefulness deltas (skill-on vs skill-off), written by a live `--d4` run; stamped approximate. |
-| `d5-connectivity-detail.json` | Optional | Structural-connectivity (D5) detail for the run's hard-gate pass. |
 | `README.md` | Optional | A short per-run note (context for a one-off or model-stamped leg). |
 
 Read order: open `skill-benchmark-report.md` for the verdict and the ranked

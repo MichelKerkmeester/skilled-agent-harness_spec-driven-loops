@@ -15,6 +15,19 @@ Two further families — Lane A (agent-improvement) and Lane D (non-dev AI-syste
 
 The skill-local surface is the look-here-first entry point; the full audit trail stays in the owning spec packet or lane. `SKILL.md` is the authoritative contract.
 
+### Family Keys
+
+Six families, keyed by their on-disk asset/reference subdirectory. `SKILL.md` section 2 names these the same way and adds the Section / Lives-at / Owns-vs-routes columns; this table is the on-disk-key lookup:
+
+| Family | On-disk key | Assets/references live under |
+| --- | --- | --- |
+| MCP promotion | `shared` | `assets/shared/`, `references/shared/` |
+| Behavior benchmark | `behavior_benchmark` | `assets/behavior_benchmark/`, `references/behavior_benchmark/` |
+| Skill-benchmark (Lane C) | `skill_benchmark` | `assets/skill_benchmark/`, `references/skill_benchmark/` |
+| Model-benchmark (Lane B) | `model_benchmark` | `assets/model_benchmark/`, `references/model_benchmark/` |
+| Agent-improvement (Lane A) | `agent_improvement` | `references/agent_improvement/` (guide only — assets: N/A, code-owned in-lane) |
+| AI-system improvement (Lane D) | `non_dev_ai_system` | `references/non_dev_ai_system/` (guide only — assets: N/A, code-owned in-lane) |
+
 ## 2. WHEN TO USE
 
 Use this packet when a completed MCP benchmark or bake-off needs to move into the consuming skill tree, when a deep-loop mode needs a behavior_benchmark package, when a hub needs a skill-benchmark storage tree or index, or when a Lane B model-benchmark needs input fixtures or a run profile.
