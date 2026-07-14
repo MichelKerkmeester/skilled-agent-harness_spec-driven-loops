@@ -1,0 +1,51 @@
+{
+  "topic": "Review: .opencode/specs/sk-code/019-split-doc-template-alignment",
+  "mode": "review",
+  "sessionId": "fanout-gpt56-sol-high-1783912216470-zu43f5",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "reviewTarget": ".opencode/specs/sk-code/019-split-doc-template-alignment",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md",
+    ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md",
+    ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md",
+    ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md",
+    ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+    ".opencode/skills/sk-code/code-opencode/references/**/*.md",
+    ".opencode/skills/sk-code/code-opencode/assets/**/*.md",
+    ".opencode/skills/sk-code/code-webflow/references/**/*.md",
+    ".opencode/skills/sk-code/code-webflow/assets/**/*.md",
+    ".opencode/skills/sk-code/code-quality/assets/**/*.md"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {"convergenceMode": "default", "divergent": {}},
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "specFolder": ".opencode/specs/sk-code/019-split-doc-template-alignment",
+  "resource_map": {"emit": false},
+  "createdAt": "2026-07-13T03:12:00.000Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.6-sol-fast",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900,
+    "governor": null
+  }
+}

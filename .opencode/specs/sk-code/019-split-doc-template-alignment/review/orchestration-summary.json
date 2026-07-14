@@ -1,0 +1,71 @@
+{
+  "run_id": "1783912216470-zu43f5",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/sk-code/019-split-doc-template-alignment",
+  "base_artifact_dir": ".opencode/specs/sk-code/019-split-doc-template-alignment/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "gpt56-sol-high",
+      "state_log": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-13T03:10:16.473Z",
+        "end_at_iso": "2026-07-13T03:23:59.628Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 7,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 14
+      },
+      "sample": [
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T03:29:00.000Z",
+          "deltaMs": 180372
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T03:34:00.000Z",
+          "deltaMs": 480372
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T03:37:00.000Z",
+          "deltaMs": 660372
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T03:41:00.000Z",
+          "deltaMs": 900372
+        },
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T03:44:00.000Z",
+          "deltaMs": 1080372
+        }
+      ]
+    }
+  ]
+}

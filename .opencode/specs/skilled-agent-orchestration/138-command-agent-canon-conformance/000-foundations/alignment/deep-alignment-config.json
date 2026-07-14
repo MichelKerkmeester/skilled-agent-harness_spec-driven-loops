@@ -1,0 +1,89 @@
+{
+  "alignmentTarget": "command and agent create-skill canon conformance",
+  "sessionId": "2026-07-14T05:58:09.516Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "createdAt": "2026-07-14T05:58:09.516Z",
+  "status": "initialized",
+  "maxIterations": 2,
+  "convergence": {
+    "coverageThreshold": 1,
+    "stabilityWindow": 2,
+    "combination": "AND"
+  },
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "alignment",
+  "lanes": [
+    {
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "globs",
+        "values": [
+          ".opencode/commands/create/*.md",
+          ".opencode/commands/design/*.md",
+          ".opencode/commands/doctor/*.md",
+          ".opencode/commands/memory/*.md",
+          ".opencode/commands/speckit/*.md",
+          ".opencode/commands/prompt-improve.md",
+          ".opencode/commands/goal_opencode.md"
+        ]
+      },
+      "adapter": "sk-doc"
+    },
+    {
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "globs",
+        "values": [
+          ".opencode/agents/*.md",
+          ".claude/agents/*.md"
+        ]
+      },
+      "adapter": "sk-doc"
+    }
+  ],
+  "batchSize": 5,
+  "fileProtection": {
+    "deep-alignment-config.json": "immutable",
+    "deep-alignment-corpus.json": "auto-generated",
+    "deep-alignment-state.jsonl": "append-only",
+    "deep-alignment-findings-registry.json": "auto-generated",
+    "alignment-report.md": "auto-generated",
+    ".deep-alignment.lock": "operator-controlled"
+  },
+  "reducer": {
+    "enabled": true,
+    "scriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+    "inputs": [
+      "latestJSONLDelta",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "alignmentReport"
+    ],
+    "metrics": [
+      "laneCount",
+      "applicableLaneCount",
+      "findingsBySeverity",
+      "compositeScore",
+      "verdict"
+    ]
+  },
+  "convergenceScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+  "partitionScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+  "remediateHookScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/138-command-agent-canon-conformance/000-foundations",
+  "laneConfigPath": ".opencode/specs/skilled-agent-orchestration/138-command-agent-canon-conformance/000-foundations/lane-config.json"
+}

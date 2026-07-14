@@ -1,0 +1,22 @@
+{
+  "run_id": "1783915428096-y929h9",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/sk-code/019-split-doc-template-alignment",
+  "base_artifact_dir": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

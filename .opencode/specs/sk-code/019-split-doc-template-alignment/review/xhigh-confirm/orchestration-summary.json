@@ -1,0 +1,100 @@
+{
+  "run_id": "1783921047347-ky9ry5",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/sk-code/019-split-doc-template-alignment",
+  "base_artifact_dir": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "confirm-b",
+      "state_log": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-13T05:37:27.353Z",
+        "end_at_iso": "2026-07-13T06:04:42.901Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 2,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T06:09:00Z",
+          "deltaMs": 137099
+        },
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T06:09:00Z",
+          "deltaMs": 137099
+        }
+      ]
+    },
+    {
+      "label": "confirm-c",
+      "state_log": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-13T05:37:27.355Z",
+        "end_at_iso": "2026-07-13T05:58:05.546Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 7,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 18
+      },
+      "sample": [
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T06:08:00.000Z",
+          "deltaMs": 474454
+        },
+        {
+          "index": 12,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T06:08:01.000Z",
+          "deltaMs": 475454
+        },
+        {
+          "index": 13,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T06:09:00.000Z",
+          "deltaMs": 534454
+        },
+        {
+          "index": 14,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T06:09:01.000Z",
+          "deltaMs": 535454
+        },
+        {
+          "index": 15,
+          "reason": "after_window",
+          "timestamp": "2026-07-13T06:17:00.000Z",
+          "deltaMs": 1014454
+        }
+      ]
+    }
+  ]
+}

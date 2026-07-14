@@ -1,0 +1,75 @@
+{
+  "alignmentTarget": "command and agent create-skill canon conformance",
+  "lanes": [
+    {
+      "laneId": "sk-doc::docs::.opencode/commands/create/*.md, .opencode/commands/design/*.md, .opencode/commands/doctor/*.md, .opencode/commands/memory/*.md, .opencode/commands/speckit/*.md, .opencode/commands/prompt-improve.md, .opencode/commands/goal_opencode.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "globs",
+        "values": [
+          ".opencode/commands/create/*.md",
+          ".opencode/commands/design/*.md",
+          ".opencode/commands/doctor/*.md",
+          ".opencode/commands/memory/*.md",
+          ".opencode/commands/speckit/*.md",
+          ".opencode/commands/prompt-improve.md",
+          ".opencode/commands/goal_opencode.md"
+        ]
+      },
+      "iterationsRun": 0,
+      "artifactsChecked": 0,
+      "checkedArtifactIds": null,
+      "openFindings": [],
+      "findingsBySeverity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 0,
+      "verdict": "NOT_APPLICABLE"
+    },
+    {
+      "laneId": "sk-doc::docs::.opencode/agents/*.md, .claude/agents/*.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "globs",
+        "values": [
+          ".opencode/agents/*.md",
+          ".claude/agents/*.md"
+        ]
+      },
+      "iterationsRun": 0,
+      "artifactsChecked": 0,
+      "checkedArtifactIds": null,
+      "openFindings": [],
+      "findingsBySeverity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 0,
+      "verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "overall": {
+    "laneCount": 2,
+    "applicableLaneCount": 0,
+    "findingsBySeverity": {
+      "P0": 0,
+      "P1": 0,
+      "P2": 0
+    },
+    "compositeScore": 0,
+    "verdict": "FAIL",
+    "nothingToConverge": false,
+    "incompleteCoverage": true,
+    "integrityFault": false,
+    "invalidSeverityCount": 0
+  },
+  "corruptionWarnings": [],
+  "hasCorruption": false
+}

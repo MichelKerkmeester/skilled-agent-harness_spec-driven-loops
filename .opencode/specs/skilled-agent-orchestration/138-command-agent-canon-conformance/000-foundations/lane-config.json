@@ -1,0 +1,29 @@
+[
+  {
+    "authority": "sk-doc",
+    "artifactClass": "docs",
+    "scope": {
+      "type": "globs",
+      "values": [
+        ".opencode/commands/create/*.md",
+        ".opencode/commands/design/*.md",
+        ".opencode/commands/doctor/*.md",
+        ".opencode/commands/memory/*.md",
+        ".opencode/commands/speckit/*.md",
+        ".opencode/commands/prompt-improve.md",
+        ".opencode/commands/goal_opencode.md"
+      ]
+    }
+  },
+  {
+    "authority": "sk-doc",
+    "artifactClass": "docs",
+    "scope": {
+      "type": "globs",
+      "values": [
+        ".opencode/agents/*.md",
+        ".claude/agents/*.md"
+      ]
+    }
+  }
+]

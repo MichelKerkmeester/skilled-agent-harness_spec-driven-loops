@@ -1,0 +1,201 @@
+{
+  "lanes": [
+    {
+      "laneId": "sk-doc::docs::.opencode/commands/create/*.md, .opencode/commands/design/*.md, .opencode/commands/doctor/*.md, .opencode/commands/memory/*.md, .opencode/commands/speckit/*.md, .opencode/commands/prompt-improve.md, .opencode/commands/goal_opencode.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "globs",
+        "values": [
+          ".opencode/commands/create/*.md",
+          ".opencode/commands/design/*.md",
+          ".opencode/commands/doctor/*.md",
+          ".opencode/commands/memory/*.md",
+          ".opencode/commands/speckit/*.md",
+          ".opencode/commands/prompt-improve.md",
+          ".opencode/commands/goal_opencode.md"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".opencode/commands/create/agent.md"
+        },
+        {
+          "path": ".opencode/commands/create/benchmark.md"
+        },
+        {
+          "path": ".opencode/commands/create/changelog.md"
+        },
+        {
+          "path": ".opencode/commands/create/command.md"
+        },
+        {
+          "path": ".opencode/commands/create/feature-catalog.md"
+        },
+        {
+          "path": ".opencode/commands/create/flowchart.md"
+        },
+        {
+          "path": ".opencode/commands/create/manual-testing-playbook.md"
+        },
+        {
+          "path": ".opencode/commands/create/readme.md"
+        },
+        {
+          "path": ".opencode/commands/create/skill-parent.md"
+        },
+        {
+          "path": ".opencode/commands/create/skill.md"
+        },
+        {
+          "path": ".opencode/commands/design/audit.md"
+        },
+        {
+          "path": ".opencode/commands/design/foundations.md"
+        },
+        {
+          "path": ".opencode/commands/design/interface.md"
+        },
+        {
+          "path": ".opencode/commands/design/md-generator.md"
+        },
+        {
+          "path": ".opencode/commands/design/motion.md"
+        },
+        {
+          "path": ".opencode/commands/doctor/mcp.md"
+        },
+        {
+          "path": ".opencode/commands/doctor/speckit.md"
+        },
+        {
+          "path": ".opencode/commands/doctor/update.md"
+        },
+        {
+          "path": ".opencode/commands/memory/learn.md"
+        },
+        {
+          "path": ".opencode/commands/memory/manage.md"
+        },
+        {
+          "path": ".opencode/commands/memory/save.md"
+        },
+        {
+          "path": ".opencode/commands/memory/search.md"
+        },
+        {
+          "path": ".opencode/commands/speckit/complete.md"
+        },
+        {
+          "path": ".opencode/commands/speckit/implement.md"
+        },
+        {
+          "path": ".opencode/commands/speckit/plan.md"
+        },
+        {
+          "path": ".opencode/commands/speckit/resume.md"
+        },
+        {
+          "path": ".opencode/commands/prompt-improve.md"
+        },
+        {
+          "path": ".opencode/commands/goal_opencode.md"
+        }
+      ]
+    },
+    {
+      "laneId": "sk-doc::docs::.opencode/agents/*.md, .claude/agents/*.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "globs",
+        "values": [
+          ".opencode/agents/*.md",
+          ".claude/agents/*.md"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".opencode/agents/ai-council.md"
+        },
+        {
+          "path": ".opencode/agents/code.md"
+        },
+        {
+          "path": ".opencode/agents/context.md"
+        },
+        {
+          "path": ".opencode/agents/debug.md"
+        },
+        {
+          "path": ".opencode/agents/deep-alignment.md"
+        },
+        {
+          "path": ".opencode/agents/deep-improvement.md"
+        },
+        {
+          "path": ".opencode/agents/deep-research.md"
+        },
+        {
+          "path": ".opencode/agents/deep-review.md"
+        },
+        {
+          "path": ".opencode/agents/design.md"
+        },
+        {
+          "path": ".opencode/agents/markdown.md"
+        },
+        {
+          "path": ".opencode/agents/orchestrate.md"
+        },
+        {
+          "path": ".opencode/agents/prompt-improver.md"
+        },
+        {
+          "path": ".opencode/agents/review.md"
+        },
+        {
+          "path": ".claude/agents/ai-council.md"
+        },
+        {
+          "path": ".claude/agents/code.md"
+        },
+        {
+          "path": ".claude/agents/context.md"
+        },
+        {
+          "path": ".claude/agents/debug.md"
+        },
+        {
+          "path": ".claude/agents/deep-alignment.md"
+        },
+        {
+          "path": ".claude/agents/deep-improvement.md"
+        },
+        {
+          "path": ".claude/agents/deep-research.md"
+        },
+        {
+          "path": ".claude/agents/deep-review.md"
+        },
+        {
+          "path": ".claude/agents/design.md"
+        },
+        {
+          "path": ".claude/agents/markdown.md"
+        },
+        {
+          "path": ".claude/agents/orchestrate.md"
+        },
+        {
+          "path": ".claude/agents/prompt-improver.md"
+        },
+        {
+          "path": ".claude/agents/review.md"
+        }
+      ]
+    }
+  ]
+}
