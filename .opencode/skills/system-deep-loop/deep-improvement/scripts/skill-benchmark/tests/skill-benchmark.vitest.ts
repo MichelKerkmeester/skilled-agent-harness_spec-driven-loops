@@ -91,7 +91,7 @@ describe('Lane C — loop-host wiring (non-regression)', () => {
 describe('Lane C — router-replay (Mode A)', () => {
   it('routes a REVIEW task on cli-claude-code to the expected resources', () => {
     const res = routeSkillResources({
-      skillRoot: join(REPO_SKILLS, 'cli-claude-code'),
+      skillRoot: join(REPO_SKILLS, 'cli-external-orchestration', 'cli-claude-code'),
       taskText: 'review this diff for security vulnerabilities and give a second opinion',
     });
     expect(res.parseable).toBe(true);
@@ -111,8 +111,8 @@ describe('Lane C — router-replay (Mode A)', () => {
   });
 
   it('marks an inline-router skill with routerSource:"inline"', () => {
-    const skillMd = readFileSync(join(REPO_SKILLS, 'cli-opencode', 'SKILL.md'), 'utf8');
-    const router = parseRouter(skillMd, join(REPO_SKILLS, 'cli-opencode'));
+    const skillMd = readFileSync(join(REPO_SKILLS, 'cli-external-orchestration', 'cli-opencode', 'SKILL.md'), 'utf8');
+    const router = parseRouter(skillMd, join(REPO_SKILLS, 'cli-external-orchestration', 'cli-opencode'));
     expect(router.parseable).toBe(true);
     expect(router.routerSource).toBe('inline');
   });
@@ -166,7 +166,7 @@ describe('Lane C — reference-following router (delegated RESOURCE_MAP)', () =>
 
 describe('Lane C — contamination linter', () => {
   it('flags a public prompt that leaks the skill name', () => {
-    const vocab = buildBannedVocab({ skillRoot: join(REPO_SKILLS, 'cli-opencode'), skillId: 'cli-opencode' });
+    const vocab = buildBannedVocab({ skillRoot: join(REPO_SKILLS, 'cli-external-orchestration', 'cli-opencode'), skillId: 'cli-opencode' });
     const res = lintFixture({ publicText: 'use the cli-opencode skill to review', bannedVocab: vocab });
     expect(res.passed).toBe(false);
     expect(res.hardLeaks.length).toBeGreaterThan(0);
@@ -186,7 +186,7 @@ describe('Lane C — D5 connectivity gate', () => {
   });
 
   it('does not hard-gate a router-bearing skill with valid paths', () => {
-    const res = scanConnectivity({ skillRoot: join(REPO_SKILLS, 'cli-opencode') });
+    const res = scanConnectivity({ skillRoot: join(REPO_SKILLS, 'cli-external-orchestration', 'cli-opencode') });
     expect(res.routerParseable).toBe(true);
     // Routed paths exist, so no P0 dead-path gate.
     expect(res.deadResourcePaths).toEqual([]);
@@ -195,6 +195,20 @@ describe('Lane C — D5 connectivity gate', () => {
 
 function makeRegistrySkill(options: { missingMode?: boolean; aliasCollision?: boolean } = {}): string {
   const dir = mkdtempSync(join(tmpdir(), 'lc-registry-'));
+  mkdirSync(join(dir, 'references'));
+  writeFileSync(join(dir, 'references', 'a.md'), '# A\n');
+  writeFileSync(join(dir, 'SKILL.md'), [
+    '---',
+    'name: registry-throwaway',
+    '---',
+    '# Registry Throwaway',
+    '',
+    '```python',
+    'INTENT_SIGNALS = {"REVIEW": {"weight": 4, "keywords": ["review"]}}',
+    'RESOURCE_MAP = {"REVIEW": ["references/a.md"]}',
+    '```',
+    '',
+  ].join('\n'));
   const modes = [
     {
       workflowMode: 'alpha',
@@ -615,7 +629,7 @@ describe('Lane C — malformed-fixture degradation', () => {
     const fixDir = mkdtempSync(join(tmpdir(), 'lc-badfix-'));
     writeFileSync(join(fixDir, 'broken.public.json'), '{ not valid json');
     const out = mkdtempSync(join(tmpdir(), 'lc-badout-'));
-    const code = run({ skill: 'cli-opencode', 'outputs-dir': out, 'fixtures-dir': fixDir });
+    const code = run({ skill: join(REPO_SKILLS, 'cli-external-orchestration', 'cli-opencode'), 'outputs-dir': out, 'fixtures-dir': fixDir });
     expect(code).toBe(0); // did not crash
     const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
     const row = (report.scenarioRows || []).find((r: any) => r.firstFailingStage === 'unparseable-fixture');
@@ -643,6 +657,20 @@ describe('Lane C — D5 gate exit code (run-skill-benchmark)', () => {
     expect(existsSync(mdPath)).toBe(true);
     const report = JSON.parse(readFileSync(jsonPath, 'utf8'));
     expect(report.verdict).toBe('BLOCKED-BY-STRUCTURE');
+  });
+
+  it('hard-fails the process (exit 3) on a BLOCKED-BY-REGISTRY verdict and surfaces registry findings', () => {
+    const { run } = require(join(SB, 'run-skill-benchmark.cjs'));
+    const skillRoot = makeRegistrySkill({ missingMode: true });
+    const out = mkdtempSync(join(tmpdir(), 'lc-registrygate-'));
+    gateDirs.push(skillRoot, out);
+    const code = run({ skill: skillRoot, 'outputs-dir': out });
+    expect(code).toBe(3);
+    const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
+    expect(report.verdict).toBe('BLOCKED-BY-REGISTRY');
+    expect(report.bottlenecks).toEqual(expect.arrayContaining([
+      expect.objectContaining({ class: 'missing_mode', severity: 'P0' }),
+    ]));
   });
 
   it('stays exit 0 for a router-bearing skill that does not hit the D5 gate (regression guard, NO-SCENARIOS is not gated)', () => {
@@ -749,7 +777,7 @@ describe('Lane C — end-to-end via run-skill-benchmark', () => {
   it('emits dual report artifacts for a router-bearing skill', () => {
     const out = mkdtempSync(join(tmpdir(), 'lc-e2e-'));
     e2eDirs.push(out);
-    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', 'cli-opencode', '--outputs-dir', out], { encoding: 'utf8' });
+    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', join(REPO_SKILLS, 'cli-external-orchestration', 'cli-opencode'), '--outputs-dir', out], { encoding: 'utf8' });
     const jsonPath = join(out, 'skill-benchmark-report.json');
     const mdPath = join(out, 'skill-benchmark-report.md');
     expect(existsSync(jsonPath)).toBe(true);
@@ -766,7 +794,7 @@ describe('Lane C — end-to-end via run-skill-benchmark', () => {
     // actually produced a scored row.
     const out = mkdtempSync(join(tmpdir(), 'lc-e2e-scored-'));
     e2eDirs.push(out);
-    const fixturesDir = join(SKILL_ROOT, 'assets', 'skill_benchmark', 'fixtures', 'deep-improvement');
+    const fixturesDir = join(SKILL_ROOT, 'assets', 'skill_benchmark', 'fixtures', 'deep_improvement');
     execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', SKILL_ROOT, '--fixtures-dir', fixturesDir, '--outputs-dir', out], { encoding: 'utf8' });
     const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
     expect(Array.isArray(report.scenarioRows)).toBe(true);

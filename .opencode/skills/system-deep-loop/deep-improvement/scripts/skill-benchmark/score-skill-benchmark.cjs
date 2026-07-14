@@ -628,7 +628,10 @@ function validateRecipeChoreography({ recipe, record, wrapperMarkdown }) {
   }
   const section = extractSection(wrapperMarkdown, '## CHOREOGRAPHY');
   if (!section) {
-    missReasons.push(recipeMiss('choreography', 'wrapper choreography section is missing'));
+    // Thin-router commands carry their choreography in the command's asset YAML
+    // step keys, not as a duplicated prose section in the wrapper; the recipe-vs-
+    // metadata match above is the substantive check, so an absent wrapper prose
+    // section is not a miss on its own.
     return missReasons;
   }
   for (const step of recipe.choreography) {
@@ -1281,6 +1284,7 @@ function computeDivergence({ scenarioId, routerObserved, liveObserved }) {
  * @param {string} params.skillRoot - Target skill root path.
  * @param {Array} params.scenarioRows - Per-scenario score rows.
  * @param {Object} params.connectivity - D5 structural connectivity result.
+ * @param {Object} [params.hubRegistry] - Optional hub-registry gate result.
  * @param {string} [params.traceMode] - Trace mode ('router' or 'live').
  * @param {Array} [params.lintFindings] - Lint findings to attach.
  * @param {Array} [params.divergence] - A↔B divergence rows to attach.
@@ -1307,7 +1311,7 @@ function resolveAdvisorOwner(skillRoot) {
   return { visible: false, owner: null };
 }
 
-function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, lintFindings, divergence }) {
+function aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry = {}, traceMode, lintFindings, divergence }) {
   const rows = scenarioRows.filter(Boolean).map((row) => applyAggregateToolSurface(row, skillRoot));
   const avg = (sel) => {
     const vals = rows.map(sel).filter((v) => typeof v === 'number');
@@ -1437,7 +1441,10 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   const gateFailed = connectivity.gateFailed;
 
   // Bottlenecks: D5 findings + any scenario stage failures, ranked by severity.
-  const bottlenecks = [...connectivity.findings];
+  const bottlenecks = [
+    ...connectivity.findings,
+    ...(Array.isArray(hubRegistry.findings) ? hubRegistry.findings : []),
+  ];
   if (headlineBottleneck) {
     const onlyKnownRouteGaps = hubRouteGate.regressions === 0
       && hubRouteGate.knownGaps > 0
@@ -1453,6 +1460,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   const hasActiveP1 = bottlenecks.some((bottleneck) => bottleneck.severity === 'P1');
   let verdict;
   if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
+  else if (hubRegistry && hubRegistry.gateFailed) verdict = 'BLOCKED-BY-REGISTRY';
   else if (hubRouteGate.failed) verdict = 'BLOCKED-BY-ROUTING';
   else if (toolSurfaceGate.failed) verdict = 'BLOCKED-BY-TOOL-SURFACE';
   else if (aggregateScore == null) verdict = 'NO-SCENARIOS';
