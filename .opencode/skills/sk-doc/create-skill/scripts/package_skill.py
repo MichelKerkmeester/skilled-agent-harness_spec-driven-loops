@@ -293,6 +293,32 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
     return True, "Frontmatter valid", warnings, parsed
 
 
+def get_packet_kind(content: str) -> str:
+    """Return metadata.packetKind (lowercased) from SKILL.md frontmatter, or ''.
+
+    Surface packets bundle a hub sub-surface and use a surface-shaped section
+    layout rather than the standalone create-skill section contract, so the
+    section / RULES / smart-router shape checks and the description soft-target
+    do not apply to them. Frontmatter, naming, size, and resource-doc contracts
+    still do.
+    """
+    match = re.match(r'^---\n(.*?)\n---', content, re.DOTALL)
+    if not match:
+        return ''
+    frontmatter = match.group(1)
+    if yaml is not None:
+        try:
+            data = yaml.safe_load(frontmatter)
+        except Exception:
+            data = None
+        if isinstance(data, dict):
+            meta = data.get('metadata')
+            if isinstance(meta, dict) and meta.get('packetKind') is not None:
+                return str(meta.get('packetKind')).strip().lower()
+    kind_match = re.search(r'packetKind:\s*([A-Za-z0-9_-]+)', frontmatter)
+    return kind_match.group(1).strip().lower() if kind_match else ''
+
+
 def validate_sections(content: str) -> Tuple[bool, str, List[str]]:
     """Validate SKILL.md has required sections per skill_md_template.md.
 
@@ -642,6 +668,8 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
     except Exception as e:
         return False, f"Failed to read SKILL.md: {str(e)}", all_warnings
 
+    is_surface = get_packet_kind(content) == 'surface'
+
     valid, message, warnings, parsed = validate_frontmatter(content)
     all_warnings.extend(warnings)
     if not valid:
@@ -652,15 +680,18 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
     if not valid:
         return False, message, all_warnings
 
-    valid, message, warnings = validate_sections(content)
-    all_warnings.extend(warnings)
-    if not valid:
-        return False, message, all_warnings
+    # Surface packets bundle a hub sub-surface and use a surface-shaped section
+    # layout, not the standalone create-skill section / RULES contract.
+    if not is_surface:
+        valid, message, warnings = validate_sections(content)
+        all_warnings.extend(warnings)
+        if not valid:
+            return False, message, all_warnings
 
-    valid, message, warnings = validate_rules_section(content)
-    all_warnings.extend(warnings)
-    if not valid:
-        return False, message, all_warnings
+        valid, message, warnings = validate_rules_section(content)
+        all_warnings.extend(warnings)
+        if not valid:
+            return False, message, all_warnings
 
     valid, message, warnings = validate_content_size(content)
     all_warnings.extend(warnings)
@@ -680,13 +711,19 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
     if not valid:
         return False, message, all_warnings
 
-    valid, message, warnings = validate_smart_router(content)
-    all_warnings.extend(warnings)
-    if not valid:
-        return False, message, all_warnings
+    if not is_surface:
+        valid, message, warnings = validate_smart_router(content)
+        all_warnings.extend(warnings)
+        if not valid:
+            return False, message, all_warnings
 
     if strict:
         promoted, advisory = _partition_strict(all_warnings)
+        if is_surface:
+            # Surface descriptions bundle a whole sub-surface; the 130-char
+            # soft target is a standalone-skill target, so keep it advisory.
+            advisory = advisory + [p for p in promoted if 'exceeds soft target' in p]
+            promoted = [p for p in promoted if 'exceeds soft target' not in p]
         if promoted:
             return (
                 False,
