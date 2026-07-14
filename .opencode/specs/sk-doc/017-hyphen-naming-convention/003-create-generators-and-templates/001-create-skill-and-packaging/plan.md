@@ -1,170 +1,107 @@
 ---
-title: "Implementation Plan: Phase 1: create-skill-and-packaging [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: create-skill scaffolding and packaging (017 phase 003 child 001)"
+description: "Update the create-skill scaffold and package contract at their existing naming boundaries, then prove the emitted temporary trees and archives obey kebab-case without renaming Python implementation files."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "create-skill scaffolding implementation plan"
+  - "skill packaging naming plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-create-skill-and-packaging"
-    last_updated_at: "2026-07-14T15:16:45Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the implementation plan for create-skill output naming and package checks"
+    next_safe_action: "Inventory current scaffold outputs and package validation branches before implementation"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-create-skill-and-packaging"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: Create-skill Scaffolding and Packaging
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: create-skill-and-packaging
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `sk-doc/create-skill` scaffolding, packaging, templates, and tests |
+| **Change class** | Generator output contract and validation |
+| **Execution** | Isolated temporary output trees on the pinned BASE worktree |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Use the existing `init_skill.py` output branches as the source of truth for standalone and parent-hub scaffolds. Align `package_skill.py` and its wrapper with the same canonical-name predicate, update the templates and guidance that feed generated names, and test the result through temporary directories and zip members rather than touching existing skill trees.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The standalone and parent-hub output branches in `init_skill.py` are inventoried.
+- [ ] The package-name, folder-match, resource-path, and archive-name checks in `package_skill.py` are identified.
+- [ ] The Python, Python-package, and tool-mandated exemptions are pinned to the 017 policy.
+- [ ] Existing create-skill regression fixtures are mapped to the changed checks.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Standalone and parent-hub temporary scaffolds contain only canonical generated names plus exemptions.
+- [ ] Package checks reject new noncanonical generated names and accept valid packages.
+- [ ] Tests prove the generated output and exemption boundary.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- `init_skill.py` validates the user-facing skill slug, creates the skill root, renders `SKILL.md`, and builds parent-hub packet/storage directories.
+- `package_skill.py` validates frontmatter and folder agreement, recursively inspects generated resource paths, and writes the zip using the skill root name.
+- The skill and parent-hub assets provide naming examples and generated path patterns; their source filenames are not renamed in this phase.
+- `validate_skill_package.py` remains the orchestration/reporting entry point, while regression tests exercise the lower-level checks and archive members.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Confirm the 017 policy/exemption set and inspect both scaffold modes, package checks, templates, and existing tests.
+- [ ] Create temporary standalone and parent-hub fixture inputs without changing tracked skill trees.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Enforce kebab-case for generated skill roots, packet names, and generic parent-hub storage directories.
+- [ ] Align package folder/frontmatter checks, generated resource-path checks, and archive-root naming with the emitted contract.
+- [ ] Update create-skill templates and packaging guidance so generated reference/asset examples use hyphens while exempt names stay explicit.
+- [ ] Add regression fixtures for invalid names, valid names, archives, Python files/package directories, and tool-mandated files.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Generate standalone and parent-hub trees in temporary directories and inspect every relative path.
+- [ ] Run package checks against valid and invalid fixtures and inspect the zip member list.
+- [ ] Run the focused create-skill regression suites and record exit codes and fixture counts.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Run `init_skill.py demo-skill` in a temporary directory; assert `demo-skill/SKILL.md` exists and `demo_skill` is rejected without output. |
+| REQ-002 | Run the parent mode in a temporary directory; assert packet/storage paths use hyphens and exact tool-mandated names remain unchanged. |
+| REQ-003 | Compare generated template path examples and guidance against the policy; verify `.py`, Python package directories, `SKILL.md`, and `README.md` remain exempt. |
+| REQ-004 | Exercise package validation with matching/mismatching frontmatter and folder names plus a generated underscore resource path; capture the diagnostic and exit code. |
+| REQ-005 | List temporary tree paths and zip members; assert no non-exempt underscore segment appears and the archive root/filename use the hyphenated skill name. |
+| REQ-006 | Run `test_create_skill_contract.py` and `test_package_skill_regressions.py` with positive and negative fixture cases present. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The phase inherits the 017 pinned worktree and policy from phases 000/001. It uses the existing create-skill template set and focused Python regression suites. Later rename phases own existing repository debt; this phase must not depend on a retroactive rename to prove newly generated output.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Revert the path-scoped scaffold, package-check, template, and test changes for this child. Temporary fixture directories and archives are disposable and are not part of the tracked migration surface.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

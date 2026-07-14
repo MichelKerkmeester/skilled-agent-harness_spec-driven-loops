@@ -1,182 +1,103 @@
 ---
-title: "Feature Specification: Phase 2: catalog-and-playbook-generators [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: catalog and playbook generators (017 phase 003 child 002)"
+description: "The feature-catalog and manual-testing-playbook generators still describe and emit underscore roots, categories, and artifact files. They must emit kebab-case output only after phase 002's bounded consumer tolerance can resolve the new names without a silent readme downgrade."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "catalog and playbook generator naming"
+  - "hyphenated feature catalog output"
+  - "hyphenated testing playbook output"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-catalog-and-playbook-generators"
-    last_updated_at: "2026-07-14T15:16:45Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the Level 2 contract for catalog and playbook generator output names"
+    next_safe_action: "Confirm phase 002 consumer fixtures before changing generator output guidance"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-catalog-and-playbook-generators"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: catalog-and-playbook-generators
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Catalog and Playbook Generators
 
----
+> Parallel child under `003-create-generators-and-templates`; it has an external compatibility dependency on phase 002's consumer contract.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/002-catalog-and-playbook-generators` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 4 |
-| **Predecessor** | 001-create-skill-and-packaging |
-| **Successor** | 003-readme-agent-command-changelog-flowchart-diff-benchmark |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Child 002 of phase 003 in the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 2** of the create generators and templates (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The feature-catalog and manual-testing-playbook workflows currently teach and emit underscore roots, category folders, and per-artifact filenames. Their runtime consumers key on those roots, so changing only the generator would either make new artifacts unreadable or silently classify them as generic `readme` documents.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+After phase 002 establishes bounded dual-name tolerance, update both generator packets and their templates so new catalog/playbook trees use hyphenated roots, categories, files, links, and path-derived frontmatter values. The generator must emit only the new form while the consumer matrix proves that the coexistence window remains fail-closed.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The `create-feature-catalog` and `create-manual-testing-playbook` `SKILL.md`, `README.md`, references, and output templates that describe or scaffold artifact paths.
+- Feature-catalog output: `feature-catalog/feature-catalog.md`, hyphenated category directories, and hyphenated per-feature `.md` files.
+- Playbook output: `manual-testing-playbook/manual-testing-playbook.md`, hyphenated scenario/category directories, and hyphenated per-scenario `.md` files.
+- Generated relative links and filesystem-valued frontmatter such as category or feature slugs.
+- Temporary output fixtures and the phase 002 consumer-compatibility matrix.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Implementing phase 002's classifier, Lane C, guard, or other consumer logic.
+- Renaming existing catalog/playbook trees; that belongs to the later migration phases.
+- Renaming current source asset filenames such as `feature_catalog_template.md` or `manual_testing_playbook_template.md`; source-file renames are separate migration work.
+- The `/create:*` YAML/presentation asset emitters; child 004 owns those instructions.
+- Code identifiers, YAML/JSON keys, frontmatter field names, and Python filenames/package directories.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The feature-catalog generator emits a canonical hyphenated tree | A temporary generation contains `feature-catalog/feature-catalog.md`, a `category-name/` directory, and a `feature-name.md` leaf with no underscore output alias. |
+| REQ-002 | The manual-testing-playbook generator emits a canonical hyphenated tree | A temporary generation contains `manual-testing-playbook/manual-testing-playbook.md`, hyphenated scenario/category directories, and hyphenated scenario files. |
+| REQ-003 | Links, path values, and category/feature slugs agree with emitted names | Root indexes, per-artifact links, and filesystem-valued frontmatter resolve to the generated hyphenated paths; field keys remain unchanged. |
+| REQ-004 | Generation is compatible with phase 002's dual-name consumer contract | The phase 002 matrix resolves a generated hyphenated tree as its typed catalog/playbook document, not `readme`, while old-only reads remain supported during coexistence. |
+| REQ-005 | Coexisting physical roots fail closed | A fixture containing both the underscore and hyphen root fails with the phase 002 conflict diagnostic rather than choosing one silently. |
+| REQ-006 | Generated output contains no non-exempt underscore filesystem name | A recursive temporary-tree scan passes for the hyphenated output and reports no underscore root, category, leaf, or path-valued link. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: New catalogs and playbooks are born with hyphenated roots, categories, leaves, and links.
+- **SC-002**: The generator output is readable by phase 002 consumers throughout the bounded coexistence window, with both-root conflicts rejected.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The blocking dependency is phase 002's consumer matrix. A generator-only change can create a valid-looking tree that the classifier or Lane C loader cannot resolve, so the generated hyphenated fixture must be run through old-only, new-only, both-root, and missing-root cases. Existing source templates and repository content retain their current filenames until their assigned migration phases; this child proves emitted output, not retroactive cleanup.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking; the root-name tolerance, fail-closed coexistence rule, and exemption boundary are fixed by phase 002 and DR-002/DR-003/DR-005.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

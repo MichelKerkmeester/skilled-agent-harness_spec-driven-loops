@@ -2,25 +2,212 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "create-skill scaffolding naming",
+      "skill package kebab-case",
+      "hyphenate generated skill names",
+      "create-skill scaffolding implementation plan",
+      "skill packaging naming plan",
+      "create-skill scaffolding tasks",
+      "skill packaging naming tasks",
+      "create-skill scaffolding checklist",
+      "skill packaging naming checklist"
+    ],
+    "key_topics": [
+      "create-skill",
+      "scaffolding",
+      "naming",
+      "skill",
+      "package",
+      "kebab-case",
+      "hyphenate",
+      "names",
+      "implementation",
+      "plan",
+      "packaging",
+      "tasks"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: create-skill-and-packaging",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "matching",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "positive",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "actionable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The create-skill scaffolder and package checks must keep generated skill roots, packets, resource paths, and package names in kebab-case. Python implementation filenames remain exempt; the names those scripts produce do not.",
     "created_at": "2026-07-14T15:16:44Z",
-    "last_save_at": "2026-07-14T15:16:44Z",
+    "last_save_at": "2026-07-14T17:23:20.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:a5fe6f056076e1f3de63c9420087eeb2927d21ae98eb12033f29f02b162beefb",
+    "source_doc_hashes": {
+      "spec.md": "34d604c6e22010a362c2ae92d494acb14634b9b1044e7abf577726e72494394f",
+      "plan.md": "fb0b7659c95418b51c94022432188f498ba88ddeb64756ecca5524562f4cf866",
+      "tasks.md": "3cb1e05e7456f6b384c45ed3e9e3add9e90e5df2d27204529f8e353423f5a07d",
+      "checklist.md": "c053a998af292f50a9268e0c83aa0c49d2316768fce9fc4992543f7b11073e6c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

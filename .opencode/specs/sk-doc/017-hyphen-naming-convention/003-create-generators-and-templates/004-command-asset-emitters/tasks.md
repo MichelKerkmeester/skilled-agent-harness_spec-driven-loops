@@ -1,36 +1,30 @@
 ---
-title: "Tasks: Phase 4: command-asset-emitters [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: command asset emitters (017 phase 003 child 004)"
+description: "Tasks for aligning `/create:*` auto, confirm, and presentation assets with kebab-case emitted paths without renaming the source asset files."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "create command asset emitter tasks"
+  - "create auto confirm naming tasks"
+  - "hyphenated command asset output tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-command-asset-emitters"
-    last_updated_at: "2026-07-14T15:16:47Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the task breakdown for command asset output naming"
+    next_safe_action: "Build the complete command asset inventory"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-command-asset-emitters"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: Command Asset Emitters
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: command-asset-emitters
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -41,66 +35,48 @@ _memory:
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Enumerate every create auto, confirm, and presentation asset and map its source path, keys, output values, and displayed paths.
+- [ ] T002 Load child 001-003 output contracts and phase 002's catalog/playbook consumer matrix.
+- [ ] T003 [P] Prepare temporary target roots and representative route inputs for every command family.
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Align skill and parent-skill asset output rules with child 001.
+- [ ] T005 Align catalog/playbook asset roots, leaves, links, and conflict checks with child 002 and phase 002.
+- [ ] T006 Align readme, agent, command, changelog, flowchart, and benchmark asset output rules with child 003.
+- [ ] T007 Preserve source asset filenames, YAML/JSON keys, field names, exact tool contracts, and later-rename boundaries.
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Verify: the complete asset inventory covers every create command family and all three asset modes.
+- [ ] T009 Verify: skill/parent, catalog/playbook, and remaining command-family routes emit the expected hyphenated paths.
+- [ ] T010 Verify: catalog/playbook new-only output is typed correctly, old-only remains readable, both roots fail closed, and missing roots fail loudly.
+- [ ] T011 Verify: source asset filenames and mapping keys are unchanged, with only emitted values/messages updated.
+- [ ] T012 Recursively scan all temporary command targets and record zero non-exempt underscore path segments.
+- [ ] T013 Record route counts, output listings, displayed paths, diagnostics, and exit codes for auto and confirm coverage.
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete.
+- [ ] All requirements in `spec.md` are met with evidence.
+- [ ] Every command asset family has nonzero route evidence and the source-file rename boundary remains clean.
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See `spec.md`.
+- **Plan**: See `plan.md`.
+- **Consumer contract**: See `../../002-root-name-consumer-migration/checklist.md`.
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

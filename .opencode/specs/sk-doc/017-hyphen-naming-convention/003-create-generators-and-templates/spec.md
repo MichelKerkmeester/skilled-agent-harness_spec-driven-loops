@@ -1,20 +1,20 @@
 ---
-title: "Feature Specification: create-* generators and templates (017 phase 003)"
-description: "The create-feature-catalog / create-manual-testing-playbook skills, the `/create:*` generators, `package_skill.py`, and their templates currently emit underscore names (the 027 change). They must emit hyphenated folder/file names so newly-created content is born compliant."
+title: "Feature Specification: create-generators-and-templates (017 phase 003)"
+description: "The create-* generator families and their templates can still emit underscore filesystem names. This phase defines four parallel child contracts that make generated output kebab-case while preserving Python, package-directory, and tool-mandated-name exemptions."
 trigger_phrases:
-  - "create-* generators and templates"
+  - "create generators and templates naming"
   - "hyphen naming phase 003"
-  - "kebab-case create generators"
+  - "kebab-case generator output"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/017-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates"
-    last_updated_at: "2026-07-13T13:10:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase spec authored from the 16-phase decomposition"
-    next_safe_action: "Execute this phase on the pinned worktree when picked up"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Restructured the generator phase into four parallel Level 2 child contracts"
+    next_safe_action: "Execute the selected child generator phase on the pinned worktree"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -22,13 +22,11 @@ _memory:
     answered_questions: []
 ---
 
-<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only; mechanics live in the children. -->
 
-# Feature Specification: create-* generators and templates
-
-> Phase adjacency under the 017 parent (grouping order, not a runtime dependency): predecessor `002-root-name-consumer-migration`; successor `004-no-new-snake-guard`.
+# Feature Specification: Create-* Generators and Templates
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -36,90 +34,35 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates |
-| **Level** | 2 |
+| **Level** | phase parent (Level 2) |
 | **Priority** | P1 |
 | **Status** | Planned |
-| **Created** | 2026-07-13 |
-| **Owner skill** | sk-doc |
-| **Origin** | Phase 003 of the 017 kebab-case filesystem-naming program |
+| **Created** | 2026-07-14 |
+| **Branch** | `sk-doc/0042-017-authoring` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | sk-doc/017-hyphen-naming-convention |
+| **Predecessor** | 002-root-name-consumer-migration |
+| **Successor** | 004-no-new-snake-guard |
+| **Handoff Criteria** | Each child proves that its generator family emits only policy-compliant filesystem names in a temporary output tree. |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The create-feature-catalog / create-manual-testing-playbook skills, the `/create:*` generators, `package_skill.py`, and their templates currently emit underscore names (the 027 change). They must emit hyphenated folder/file names so newly-created content is born compliant.
+The create-* families are the repo's forward path for new skills, catalogs, playbooks, documents, commands, and benchmark artifacts. If their emitted directories or filenames retain snake_case, every new artifact reintroduces debt even after the consumers and guard speak kebab-case.
+
+This phase makes emitted filesystem names kebab-case across four independent generator families. The policy boundary remains unchanged: Python script filenames, Python import-package directories, and tool-mandated names such as `SKILL.md` and `README.md` stay exempt.
 <!-- /ANCHOR:problem -->
-
-<!-- ANCHOR:scope -->
-## 3. SCOPE
-
-### In Scope
-- create-feature-catalog + create-manual-testing-playbook SKILL.md + templates.
-- The `/create:*` generators (reverse the 027 `category_name`/`feature_name.md` emission back to `category-name`/`feature-name.md`).
-- `create-skill/scripts/package_skill.py` and its regression tests.
-- Any other create-* mode that emits filesystem names.
-
-### Out of Scope
-- Retroactive rename of existing content (007+).
-- The classifier logic (002).
-<!-- /ANCHOR:scope -->
-
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | The create-* generators emit hyphenated folder and file names | A dry-run generation produces `category-name/` and `feature-name.md` |
-| REQ-002 | Templates and SKILL docs document the hyphenated canonical form | No template or SKILL example shows an underscore filesystem name |
-| REQ-003 | The 027 generator changes are reversed | The generators no longer emit `category_name`/`feature_name.md` |
-| REQ-004 | `package_skill.py` emits and checks hyphenated names and its tests pass | The package_skill regression tests are green against the hyphenated policy |
-| REQ-005 | Every generator produces only canonical names when run into a temp dir | A generate-into-temp comparison finds no underscore filesystem name |
-<!-- /ANCHOR:requirements -->
-
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: New catalog/playbook content is born hyphenated.
-- **SC-002**: Generators + templates are the reference for the convention.
-<!-- /ANCHOR:success-criteria -->
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-Inherits the program-level risks in the 017 parent spec (import breakage, validator downgrade, non-reproducible builds,
-over-broad sweep, exemption leakage, concurrent sessions). Phase-specific risks are enumerated in this phase's plan.md.
-<!-- /ANCHOR:risks -->
-
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-
-None blocking; resolved during this phase's execution against the pinned baseline.
-<!-- /ANCHOR:questions -->
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
-
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-create-skill-and-packaging/ | [Phase 1 scope] | Pending |
-| 2 | 002-catalog-and-playbook-generators/ | [Phase 2 scope] | Pending |
-| 3 | 003-readme-agent-command-changelog-flowchart-diff-benchmark/ | [Phase 3 scope] | Pending |
-| 4 | 004-command-asset-emitters/ | [Phase 4 scope] | Pending |
+| 001 | `001-create-skill-and-packaging/` | Make skill scaffolding and packaging checks emit and enforce kebab-case names while leaving Python implementation filenames exempt. | Planned |
+| 002 | `002-catalog-and-playbook-generators/` | Make feature-catalog and manual-testing-playbook output trees use hyphenated roots, categories, files, and path values while respecting phase 002 consumer tolerance. | Planned |
+| 003 | `003-readme-agent-command-changelog-flowchart-diff-benchmark/` | Make the README, agent, command, changelog, flowchart, diff, and benchmark generator families emit kebab-case output paths. | Planned |
+| 004 | `004-command-asset-emitters/` | Make `/create:*` workflow assets instruct and verify kebab-case output names; defer renaming the asset source files themselves. | Planned |
 
-### Phase Transition Rules
-
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-
-### Phase Handoff Criteria
-
-| From | To | Criteria | Verification |
-|------|-----|----------|--------------|
-| 001-create-skill-and-packaging | 002-catalog-and-playbook-generators | [Criteria TBD] | [Verification TBD] |
-| 002-catalog-and-playbook-generators | 003-readme-agent-command-changelog-flowchart-diff-benchmark | [Criteria TBD] | [Verification TBD] |
-| 003-readme-agent-command-changelog-flowchart-diff-benchmark | 004-command-asset-emitters | [Criteria TBD] | [Verification TBD] |
+The four children are independent generator families and may run in parallel. Child 002 must prove compatibility with the fail-closed dual-name consumer contract from phase 002 before its generated catalog or playbook tree is accepted.
 <!-- /ANCHOR:phase-map -->

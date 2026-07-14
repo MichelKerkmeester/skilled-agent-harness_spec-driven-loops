@@ -1,170 +1,111 @@
 ---
-title: "Implementation Plan: Phase 3: readme-agent-command-changelog-flowchart-diff-benchmark [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: README, agent, command, changelog, flowchart, diff, and benchmark generators (017 phase 003 child 003)"
+description: "Inventory seven create-* output contracts, update their packet guidance and templates, and verify each family in a disposable target with semantic kebab-case naming and explicit exemptions."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "create workflow artifact naming implementation plan"
+  - "readme agent command benchmark naming plan"
+  - "hyphenated create output plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-readme-agent-command-changelog-flowchart-diff-benchmark"
-    last_updated_at: "2026-07-14T15:16:46Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the implementation plan for seven create-* output families"
+    next_safe_action: "Inventory output contracts and exact-name exemptions by generator family"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-readme-agent-command-changelog-flowchart-diff-benchmark"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: README, Agent, Command, Changelog, Flowchart, Diff, and Benchmark Generators
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 3: readme-agent-command-changelog-flowchart-diff-benchmark
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `sk-doc/create-readme`, `create-agent`, `create-command`, `create-changelog`, `create-flowchart`, `create-diff`, and `create-benchmark` |
+| **Change class** | Generator output paths and packet-local templates/guidance |
+| **Execution** | Family-by-family temporary output checks on the pinned BASE worktree |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+First inventory each workflow's output path inputs, derived slug rules, exact-name contracts, and current examples. Then update the packet-owned guidance/templates and run representative outputs through a semantic path checker. The proof stays family-specific so a version filename, `README.md`, benchmark artifact, or explicit user target is not treated like an ordinary slug.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Each of the seven packet output contracts has a concrete representative input and target.
+- [ ] Exact-name exemptions and user-provided target-path behavior are recorded before edits.
+- [ ] The create-diff preview boundary and benchmark evaluator/scoring boundary are preserved.
+- [ ] Temporary output roots are available for each generator family.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All seven families emit only compliant non-exempt path segments and filenames.
+- [ ] Packet guidance/templates match the emitted paths and contain no stale non-exempt output examples.
+- [ ] Family-specific output listings, path/link checks, and focused tests are green.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- README/install-guide output keeps exact `README.md` where the artifact contract requires it and hyphenates derived folder/file names.
+- Agent and command output derives the file stem from the validated hyphenated name and preserves the runtime command/agent surface.
+- Changelog output keeps version syntax and changelog directory contracts while hyphenating component and packet-derived segments.
+- Flowchart and diff output validate explicit target paths; create-diff reports preview availability rather than implementing a missing engine.
+- Benchmark output treats MCP, behavior, skill, and model families separately and preserves their evaluator/report ownership while naming emitted artifacts semantically.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Inventory `SKILL.md`, README, reference, asset, and output-path rules for all seven packets.
+- [ ] Define representative inputs, expected output trees, exact-name exemptions, and invalid-name cases.
+- [ ] Confirm existing source-template filenames and current benchmark/scoring files will not be renamed here.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Update README/install-guide, agent, and command output naming rules.
+- [ ] Update changelog, flowchart, and diff target-path rules without changing version or preview contracts.
+- [ ] Update benchmark family output rules and packet-local examples without changing scoring/evaluator ownership.
+- [ ] Replace stale non-exempt output examples and add semantic invalid-input diagnostics where the workflow validates names.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Run a representative temporary output for every family and list all emitted paths.
+- [ ] Resolve generated links/references and compare names against the exemption-aware policy.
+- [ ] Run focused packet tests/validators and record commands, exit codes, and output counts.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Generate a README and install guide into temporary targets; assert exact `README.md` preservation and kebab-case derived paths. |
+| REQ-002 | Generate an agent and command from hyphenated names; assert filename stems, namespace segments, and frontmatter/name agreement. |
+| REQ-003 | Generate changelog, flowchart, and diff targets; assert component/target segments, explicit path validation, and preserved version/tool contracts. |
+| REQ-004 | Exercise one temporary output for each benchmark family; list directories and artifacts and compare against the recorded exact-name manifest. |
+| REQ-005 | Search packet-owned output guidance and templates for stale non-exempt underscore examples; distinguish source-template filenames from copied output names. |
+| REQ-006 | Feed invalid/ambiguous names and joined path segments to the naming boundary; assert rejection or an explicit user-path decision rather than character substitution. |
+| REQ-007 | Run all seven representative generations and record nonzero output counts, path listings, and zero non-exempt underscore findings. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The phase uses the 017 policy/exemption set and the existing packet-local templates. Child 004 must later project the same output contract into command auto/confirm assets, while children 001/002 own skill/catalog/playbook-specific contracts. No existing on-disk rename or create-diff engine implementation is required here.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Revert the path-scoped packet guidance/template and focused test changes. Delete disposable family output trees and reports. Leave existing source templates, command asset filenames, benchmark stores, and renderer/scorer code untouched.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

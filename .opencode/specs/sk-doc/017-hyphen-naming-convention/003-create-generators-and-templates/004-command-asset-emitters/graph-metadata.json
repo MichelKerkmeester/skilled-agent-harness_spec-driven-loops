@@ -2,25 +2,209 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "create command asset emitter naming",
+      "hyphenate create command outputs",
+      "create auto confirm output paths",
+      "create command asset emitter implementation plan",
+      "create auto confirm naming plan",
+      "hyphenated command asset outputs",
+      "create command asset emitter tasks",
+      "create auto confirm naming tasks",
+      "hyphenated command asset output tasks",
+      "create command asset emitter checklist",
+      "create auto confirm naming checklist",
+      "hyphenated command asset output checklist"
+    ],
+    "key_topics": [
+      "command",
+      "asset",
+      "emitter",
+      "naming",
+      "hyphenate",
+      "outputs",
+      "auto",
+      "confirm",
+      "output",
+      "paths",
+      "implementation",
+      "plan"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 4: command-asset-emitters",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Asset Emitters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sibling",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "child",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Treat",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "children",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "kebab-case",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "both-root",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "only",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `/create:*` auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths. Update the emitter logic to request and write kebab-case names while leaving the asset source filenames and later on-disk renames untouched.",
     "created_at": "2026-07-14T15:16:46Z",
-    "last_save_at": "2026-07-14T15:16:46Z",
+    "last_save_at": "2026-07-14T17:23:50.160Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:c0833fc8a26462b7bdc5900f39eaf5b086f914ed6726164001f6cdad16bd6000",
+    "source_doc_hashes": {
+      "spec.md": "faf93424f6a9606ce57f825e3767fe579e5f0d3b47ef4383bde12b8322b84f50",
+      "plan.md": "ea10a686c2c48636015b3c156c63afd60cfe765280bb45b945f6d77696b972dd",
+      "tasks.md": "40a4f13cc6a6f4f3125c0456e73b57015b8d8b24fc3b471cdca684aab7858e28",
+      "checklist.md": "a125b097da1e1725c9b8f28677a9ec0fd5903ede7872db4964c62914165696a9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

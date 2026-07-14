@@ -1,36 +1,29 @@
 ---
-title: "Tasks: Phase 1: create-skill-and-packaging [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: create-skill scaffolding and packaging (017 phase 003 child 001)"
+description: "Tasks for aligning create-skill scaffolding, package checks, templates, and regression fixtures with the kebab-case filesystem policy."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "create-skill scaffolding tasks"
+  - "skill packaging naming tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-create-skill-and-packaging"
-    last_updated_at: "2026-07-14T15:16:45Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the task breakdown for create-skill output naming and package checks"
+    next_safe_action: "Start with the scaffold and package-check inventory"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-create-skill-and-packaging"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: Create-skill Scaffolding and Packaging
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 1: create-skill-and-packaging
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -41,66 +34,48 @@ _memory:
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Confirm the pinned worktree, 017 exemption boundary, and child scope before implementation.
+- [ ] T002 Inventory standalone/parent output branches in `create-skill/scripts/init_skill.py`, package checks, templates, and focused tests.
+- [ ] T003 [P] Build disposable standalone and parent-hub fixture inputs for generated-tree assertions.
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Update generated skill-root, packet, and parent-hub storage names to use canonical kebab-case.
+- [ ] T005 Update package folder/frontmatter, generated resource-path, and archive-root checks without rejecting declared Python or tool-mandated exemptions.
+- [ ] T006 Update create-skill templates and packaging guidance so emitted reference/asset examples use hyphens.
+- [ ] T007 Add regression fixtures for invalid underscore names, valid hyphen names, recursive paths, archives, Python files/package directories, and tool-mandated names.
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Verify: standalone scaffolding emits `demo-skill/SKILL.md` and rejects `demo_skill` before writing.
+- [ ] T009 Verify: parent-hub scaffolding emits hyphenated packet/storage directories and exact tool-mandated files.
+- [ ] T010 Verify: generated templates and guidance contain canonical output patterns, with Python and tool exemptions stated explicitly.
+- [ ] T011 Verify: package checks pass matching hyphenated names and fail noncanonical generated resource paths with actionable diagnostics.
+- [ ] T012 Verify: archive filename, archive root, and members contain no non-exempt underscore path segment.
+- [ ] T013 Run focused create-skill and package regression suites and record command, exit code, and fixture evidence.
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete.
+- [ ] All requirements in `spec.md` are met with evidence.
+- [ ] The phase gate is green for the focused scaffold/package checks and tests.
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See `spec.md`.
+- **Plan**: See `plan.md`.
+- **Program policy**: See `../../001-convention-policy-and-scope/decision-record.md`.
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-
