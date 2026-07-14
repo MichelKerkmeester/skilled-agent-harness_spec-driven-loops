@@ -1,182 +1,120 @@
 ---
-title: "Feature Specification: Phase 1: rename-engine [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: semantic rename engine (017 phase 005.001)"
+description: "The migration needs a deterministic git-mv engine driven by an explicit semantic source-to-target map. It must batch by dependency closure, skip every policy exemption, abort safely on collisions, remain idempotent, and support dry-run and rollback without performing the migration during authoring."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "semantic rename engine"
+  - "dependency-closure rename batching"
+  - "dry-run git-mv engine"
+  - "rename engine rollback"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-rename-engine"
-    last_updated_at: "2026-07-14T15:16:48Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the semantic rename engine phase contract"
+    next_safe_action: "Implement the engine against the frozen map input contract"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-rename-engine"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The engine consumes an explicit semantic source-to-target map; it never derives names by replacing every underscore."
+      - "A batch is a dependency closure and may contain mixed file extensions."
+      - "Dry-run is the default; apply and rollback are explicit, journaled operations."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: rename-engine
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Semantic Rename Engine
 
----
+> Phase adjacency under the 017 parent (grouping order, not a runtime dependency): predecessor `004-no-new-snake-guard`; successor `006-inventory-and-frozen-map`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/001-rename-engine` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 3 |
-| **Predecessor** | None |
-| **Successor** | 002-reference-checker-and-disposition-ledger |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Child phase 001 of the 017 rename-and-reference-tooling program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 1** of the rename and reference tooling (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The migration has names that cannot be safely produced by a global `_` to `-` replacement: leading underscores, double
+underscores, collisions, and exempt Python or tool-mandated paths all require semantic handling. A rename that runs per
+extension can also leave a referenced file in the wrong batch, so the operation must follow dependency closure.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phase defines a deterministic `git mv` engine that consumes the frozen source-to-target map, preflights every operation,
+defaults to dry-run, preserves symlink and executable semantics, applies dependency-closed batches, reports idempotent state,
+and can reverse its own applied operations.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- A semantic source-to-target map loader and validator; target names are explicit rather than mechanically derived.
+- Dependency-closure batch planning that may mix `.js`, `.ts`, `.sh`, `.json`, `.yaml`, `.yml`, `.toml`, and `.md` paths.
+- Preflight collision checks for exact, case-folded, and NFC-normalized names before any write.
+- Exemption-aware classification and skip reporting for Python files, Python package directories, vendored/third-party trees,
+  generated or lockfile output, tool-mandated names, test-runner magic, and frozen surfaces.
+- Dry-run by default, explicit apply, idempotent reruns, operation journaling, and rollback of operations owned by the engine.
+- `git mv` execution with symlink mode `120000` and executable-bit preservation checks.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- The whole-repository reference checker and disposition ledger; phase 002 consumes the engine's map and operation report.
+- The fixture corpus and end-to-end dry-run harness; phase 003 supplies the shared fixture contract.
+- The actual repo-wide rename, the final frozen inventory, and changes to code or production files during this authoring pass.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The engine is dry-run by default and writes only on an explicit apply action. | A disposable Git repository produces a complete operation plan in dry-run mode and its tracked tree, index, and file modes are unchanged. |
+| REQ-002 | The engine accepts semantic source-to-target entries and rejects unsafe or duplicate targets before execution. | Leading-underscore, double-underscore, exact, case-folded, and NFC collision fixtures are handled by explicit map validation; no character-substitution fallback exists. |
+| REQ-003 | The engine batches by dependency closure rather than file extension. | A closure containing mixed extensions is planned and applied as one batch; no per-extension partition can split a mapped reference closure. |
+| REQ-004 | The engine detects and skips all policy exemptions with an auditable reason. | Python `.py` files, Python import-package directories, vendored/third-party trees, generated or lockfile output, tool-mandated names, test-runner magic, and frozen surfaces are never ordinary rename targets. |
+| REQ-005 | The engine is idempotent and preserves filesystem semantics. | A second run after an apply reports no pending operations; symlink mode `120000` and executable bits match the pre-rename manifest. |
+| REQ-006 | The engine provides a rollback contract for its own applied operations. | An inverse journal can restore a completed batch, and a failed apply cannot leave an unreported partial operation. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The engine produces a deterministic, reviewable plan from a semantic map and never performs a character-wide substitution.
+- **SC-002**: Collision and exemption preflights fail or skip before writes, with reasons recorded for every map entry.
+- **SC-003**: Apply, rerun, and rollback behavior is proven in a disposable Git repository without touching the real migration tree.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+The phase inherits the 017 program risks: over-broad renames, exemption leakage, broken references, concurrent worktrees,
+and non-reproducible execution. Its specific risks are an incomplete dependency graph, a collision discovered after writes,
+loss of executable or symlink mode, and a rollback that cannot distinguish its own operations from pre-existing changes.
 
----
+Mitigations are a map-only input, closure preflight before execution, exact/casefold/NFC checks, mode manifests, an operation
+journal keyed to the applied batch, and execution only in the isolated worktree defined by phase 000. The policy boundary and
+exemption definitions are inherited from `001-convention-policy-and-scope/decision-record.md`; the final map contract is owned
+by phase 006.
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The implementation must preserve the documented `--dry-run` default, explicit apply action, inverse journal,
+and closure-batch semantics even if the concrete command names differ.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

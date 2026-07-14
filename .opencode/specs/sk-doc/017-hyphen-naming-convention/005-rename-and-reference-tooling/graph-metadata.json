@@ -16,22 +16,23 @@
   "derived": {
     "trigger_phrases": [
       "rename and reference tooling",
-      "hyphen naming phase 005",
-      "kebab-case rename and"
+      "semantic rename engine",
+      "whole-repo reference checker",
+      "rename disposition ledger"
     ],
     "key_topics": [
       "rename",
       "reference",
       "tooling",
-      "hyphen",
-      "naming",
+      "semantic",
+      "engine",
+      "whole-repo",
+      "checker",
+      "disposition",
+      "ledger",
       "phase",
-      "kebab-case",
-      "blind",
-      "path-segment",
-      "substitution",
-      "corrupts",
-      "names"
+      "defines",
+      "deterministic"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -52,19 +53,13 @@
         "source": "derived"
       },
       {
+        "name": "Reference Tooling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Transition Rules",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -76,23 +71,29 @@
         "source": "derived"
       },
       {
-        "name": "this",
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "dependency-closure",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "A blind path-segment `_`->`-` substitution corrupts names (`_common.sh`->`-common.sh`, `__fixtures__`->`--fixtures--`, leading-hyphen CLI hazards) and misses dynamic references. The program needs a deterministic, dry-run-default rename engine driven by a SEMANTIC source->target map, plus a rename-map-driven whole-repo",
+    "causal_summary": "The tooling phase defines a deterministic, exemption-aware rename engine and a whole-repository reference checker with a disposition ledger, then proves both against disposable fixtures before any migration run.",
     "created_at": "2026-07-13T14:34:05.527Z",
-    "last_save_at": "2026-07-14T15:24:34.150Z",
+    "last_save_at": "2026-07-14T17:41:14.806Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0198261382bd806506b8ae902c2b370d7c1f94d4f0e4bf39bb4a7957693fd9ac",
+    "source_fingerprint": "sha256:8865fdc0d47bcf8cc358577e255734e5fc1c647408be4d303bb7702ae668ae06",
     "source_doc_hashes": {
-      "spec.md": "bf927287e7da3350e83e272dd4fe72f8cb4512b22fdf5001c0e44f87e90b9fd9"
+      "spec.md": "6f88a791dfcd4be4c8dad53b34a55a4a58fc68e20c36ede6042f95ef944dd480"
     },
     "last_active_child_id": null,
     "last_active_at": null

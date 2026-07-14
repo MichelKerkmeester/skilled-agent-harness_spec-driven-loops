@@ -1,34 +1,35 @@
 ---
-title: "Feature Specification: rename and reference tooling (017 phase 005)"
-description: "A blind path-segment `_`->`-` substitution corrupts names (`_common.sh`->`-common.sh`, `__fixtures__`->`--fixtures--`, leading-hyphen CLI hazards) and misses dynamic references. The program needs a deterministic, dry-run-default rename engine driven by a SEMANTIC source->target map, plus a rename-map-driven whole-repo "
+title: "Feature Specification: Rename and Reference Tooling"
+description: "The tooling phase defines a deterministic, exemption-aware rename engine and a whole-repository reference checker with a disposition ledger, then proves both against disposable fixtures before any migration run."
 trigger_phrases:
   - "rename and reference tooling"
-  - "hyphen naming phase 005"
-  - "kebab-case rename and"
+  - "semantic rename engine"
+  - "whole-repo reference checker"
+  - "rename disposition ledger"
 importance_tier: "important"
 contextType: "planning"
 parent: "sk-doc/017-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling"
-    last_updated_at: "2026-07-13T13:10:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase spec authored from the 16-phase decomposition"
-    next_safe_action: "Execute this phase on the pinned worktree when picked up"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the lean phase-parent specification for rename and reference tooling"
+    next_safe_action: "Execute child phase 001 against the frozen map contract"
     blockers: []
     key_files: []
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The tooling describes and verifies future migration behavior; this authoring pass performs no rename."
+      - "In-scope names use kebab-case; Python files, Python package directories, and tool-mandated names remain exempt."
 ---
 
-<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only; detailed mechanics live in child documents. -->
 
-# Feature Specification: Rename and reference tooling
-
-> Phase adjacency under the 017 parent (grouping order, not a runtime dependency): predecessor `004-no-new-snake-guard`; successor `006-inventory-and-frozen-map`.
+# Feature Specification: Rename and Reference Tooling
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -36,90 +37,64 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling |
-| **Level** | 2 |
+| **Level** | phase parent |
 | **Priority** | P1 |
 | **Status** | Planned |
-| **Created** | 2026-07-13 |
+| **Created** | 2026-07-14 |
 | **Owner skill** | sk-doc |
-| **Origin** | Phase 005 of the 017 kebab-case filesystem-naming program |
+| **Parent packet** | sk-doc/017-hyphen-naming-convention |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-A blind path-segment `_`->`-` substitution corrupts names (`_common.sh`->`-common.sh`, `__fixtures__`->`--fixtures--`, leading-hyphen CLI hazards) and misses dynamic references. The program needs a deterministic, dry-run-default rename engine driven by a SEMANTIC source->target map, plus a rename-map-driven whole-repo reference checker that resolves modules, config path-values, and shell sourcing and dispositions every dynamic site.
+The migration cannot rely on character substitution or a text-only reference sweep. It needs a semantic source-to-target
+rename engine that understands dependency closure, collision safety, idempotency, rollback, and the program's exemption
+boundary. It also needs a whole-repository checker that resolves references and records a disposition for every rename and
+dynamic reference site before a real run is allowed.
+
+The three child phases define the engine, the checker and ledger, and a disposable fixture/dry-run harness. Together they
+make the toolchain able to prove a planned rename without executing the repo migration during this documentation pass.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- A dry-run-default rename engine: semantic source->target map (not char substitution), collision hard-abort on exact/casefold/NFC, symlink mode-120000 + exec-bit preservation, exemption deny-list.
-- A rename-map-driven whole-repo reference checker: JS/TS module resolution, JSON/YAML/TOML path-values, shell `source`, and registry paths.
-- A disposition ledger requiring every dynamic `require(...)`/`source`/glob site to be classified.
-- The checker fails on zero files scanned (no silent no-op).
+- A deterministic `git mv`-based engine driven by an explicit semantic map and dependency-closure batches.
+- A read-only whole-repository reference checker covering code, documentation, configuration, registries, and symlinks.
+- A disposition ledger that records each rename decision, rationale, status, evidence, and dynamic-site disposition.
+- Disposable fixtures and a dry-run harness that exercise the engine and checker before any real migration run.
+- Exemption-aware handling: Python `.py` files, Python import-package directories, vendored/third-party trees, generated or
+  lockfile output, tool-mandated names, test-runner magic, and frozen surfaces are never treated as ordinary rename targets.
 
 ### Out of Scope
-- Running the migration (007+).
-- The guard (004).
-- The frozen map (006).
+- Executing the repo-wide rename or changing any production code, script, configuration, or filesystem name.
+- Freezing the final repository rename map; that is phase 006.
+- Changing the no-new-snake guard; that is phase 004.
+- Redesigning the naming policy or its exemption set; the authoritative boundary is phase 001's decision record.
 <!-- /ANCHOR:scope -->
-
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | The rename engine is dry-run by default and applies only on an explicit flag | A dry-run makes zero writes in a temp git repo |
-| REQ-002 | The engine hard-aborts on exact/casefold/NFC collisions | A synthetic colliding pair aborts before any write |
-| REQ-003 | The engine uses a semantic map and preserves symlink mode and exec bits | Leading-underscore and double-underscore inputs map to safe targets; mode 120000 and +x survive |
-| REQ-004 | The reference checker resolves imports, path-values, and shell sourcing across the repo | Planted broken references are caught; resolution runs over JS/TS/JSON/YAML/shell |
-| REQ-005 | Every dynamic require/source/glob site is dispositioned in a ledger | The ledger has no un-dispositioned dynamic site |
-| REQ-006 | The checker fails when zero files are scanned | A misconfigured run exits non-zero rather than passing vacuously |
-<!-- /ANCHOR:requirements -->
-
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: A safe, reviewable rename engine exists.
-- **SC-002**: A whole-repo reference checker catches broken and dynamic references.
-<!-- /ANCHOR:success-criteria -->
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-Inherits the program-level risks in the 017 parent spec (import breakage, validator downgrade, non-reproducible builds,
-over-broad sweep, exemption leakage, concurrent sessions). Phase-specific risks are enumerated in this phase's plan.md.
-<!-- /ANCHOR:risks -->
-
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-
-None blocking; resolved during this phase's execution against the pinned baseline.
-<!-- /ANCHOR:questions -->
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
-
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-rename-engine/ | [Phase 1 scope] | Pending |
-| 2 | 002-reference-checker-and-disposition-ledger/ | [Phase 2 scope] | Pending |
-| 3 | 003-fixture-corpus-and-dry-run-harness/ | [Phase 3 scope] | Pending |
-
-### Phase Transition Rules
-
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+| 1 | `001-rename-engine/` | Semantic, exemption-aware `git mv` engine with dependency-closure batching, dry-run default, idempotency, and rollback. | Planned |
+| 2 | `002-reference-checker-and-disposition-ledger/` | Whole-repo reference resolution plus a complete ledger for rename decisions and dynamic sites. | Planned |
+| 3 | `003-fixture-corpus-and-dry-run-harness/` | Representative fixture corpus and disposable harness for engine/checker dry runs and pre-migration proof. | Planned |
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-rename-engine | 002-reference-checker-and-disposition-ledger | [Criteria TBD] | [Verification TBD] |
-| 002-reference-checker-and-disposition-ledger | 003-fixture-corpus-and-dry-run-harness | [Criteria TBD] | [Verification TBD] |
+| 001-rename-engine | 002-reference-checker-and-disposition-ledger | The engine's semantic map, exemption dispositions, closure batches, and operation states are documented and consumable by the checker. | Map schema and dry-run report are available; no migration is run. |
+| 002-reference-checker-and-disposition-ledger | 003-fixture-corpus-and-dry-run-harness | The checker defines its supported reference classes, ledger fields, dynamic-site rule, and zero-scan failure. | Ledger schema and failure conditions are exercised by the harness plan. |
 <!-- /ANCHOR:phase-map -->
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+None blocking. Child plans may choose concrete command names and report storage locations, but those choices must preserve
+the dry-run default, the exemption boundary, dependency-closure batching, and the no-silent-reference rule.
+<!-- /ANCHOR:questions -->

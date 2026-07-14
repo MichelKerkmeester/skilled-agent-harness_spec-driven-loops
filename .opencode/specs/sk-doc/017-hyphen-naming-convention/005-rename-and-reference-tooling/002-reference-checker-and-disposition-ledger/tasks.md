@@ -1,36 +1,31 @@
 ---
-title: "Tasks: Phase 2: reference-checker-and-disposition-ledger [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: reference checker and disposition ledger (017 phase 005.002)"
+description: "Tasks for the whole-repository checker and ledger: enumerate scan coverage, resolve typed path references, disposition dynamic sites, validate map-row completeness, and fail on empty or unresolved scans."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "reference checker tasks"
+  - "disposition ledger tasks"
+  - "dynamic reference audit tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-reference-checker-and-disposition-ledger"
-    last_updated_at: "2026-07-14T15:16:49Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the reference checker and ledger task contract"
+    next_safe_action: "Implement scan manifest and ledger schema validation"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-reference-checker-and-disposition-ledger"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The checker must fail closed on zero files, unresolved references, ambiguous resolution, and undispositioned dynamic sites."
 ---
+# Tasks: Reference Checker and Disposition Ledger
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 2: reference-checker-and-disposition-ledger
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -41,66 +36,53 @@ _memory:
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Define the map-entry and dynamic-site ledger rows, terminal statuses, evidence fields, and pre/post rename state.
+- [ ] T002 Enumerate tracked files, symlinks, generated/lockfile handling, and the zero-scan failure rule.
+- [ ] T003 [P] Define the resolver coverage matrix for JS/TS, Markdown, JSON/YAML/TOML path values, shell, registries, and symlinks.
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Implement the tracked-file and symlink manifest with a non-empty scan assertion.
+- [ ] T005 Implement typed extraction and resolution for JS/TS modules, Markdown links, and registry paths.
+- [ ] T006 Implement JSON/YAML/TOML and frontmatter path-value checks without treating keys or identifiers as paths.
+- [ ] T007 Implement shell sourcing, executable paths, symlink targets, and exemption-aware reporting.
+- [ ] T008 Detect dynamic `require`, `source`, and glob sites and require an explicit disposition for each.
+- [ ] T009 Implement map reconciliation, ledger schema validation, and non-zero outcomes for unresolved or ambiguous references.
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T010 Verify: A non-empty scan reports every supported file/reference class and a zero-file scan fails non-zero.
+- [ ] T011 Verify: Planted JS/TS, Markdown, JSON/YAML/TOML value, shell, registry, and symlink references resolve or fail with location evidence.
+- [ ] T012 Verify: Code identifiers, JSON/YAML/TOML keys, frontmatter fields, Python exemptions, generated output, tool-mandated names, and frozen paths are not misclassified.
+- [ ] T013 Verify: Every rename-map entry has one decision, rationale, status, and evidence row.
+- [ ] T014 Verify: Every dynamic `require`, `source`, and glob site is dispositioned; an undispositioned site fails the checker.
+- [ ] T015 Verify: The checker is read-only and leaves tracked content, modes, and the Git index unchanged.
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All checker and ledger tasks complete with evidence in the phase checklist.
+- [ ] All requirements in `spec.md` meet their acceptance criteria.
+- [ ] Phase 003 can consume the ledger schema and deterministic failure semantics.
+- [ ] No rename or reference rewrite was executed against the real repository.
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Verifier contract**: See `checklist.md`
+- **Checker decisions**: See `decision-record.md`
+- **Parent map**: See `../spec.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-
