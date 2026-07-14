@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-git/002-skill-scoped-worktree-naming"
     last_updated_at: "2026-07-14T12:20:00Z"
     last_updated_by: "claude"
-    recent_action: "Recorded Phases 1-4 shipped and verified"
+    recent_action: "Recorded Phase 5 full declutter"
     next_safe_action: "Run operator-gated cleanup from a clean worktree"
     blockers: []
     key_files:
@@ -78,9 +78,16 @@ _memory:
 | `sol-worktree-plan.md` / `deleted-branches-recovery.txt` | Add | SOL analysis of record; recovery OIDs |
 | local branches (6) | Delete | `system-speckit/023\|024\|026`, `wt/0030\|0031\|0032` (merged into v4) |
 
+### Cleanup executed (operator-authorized full declutter)
+
+- Proved every registered worktree **0 commits ahead of `origin/skilled/v4.0.0.0`** (the "dirty" trees were stale-base diff, not uncommitted work — HEADs pinned ~750 commits back, pre-rename; spot-checked untracked source already present on v4).
+- **Removed 34 stale worktrees (42→8)** — kept primary, the two active-goal worktrees (`0038-codex-hook-parity`, `0039-017-hyphen-naming`), and five external `/private/tmp/**` worktrees.
+- **Deleted 30 merged branches (45→14)** with `-d`; OIDs recorded in `deleted-branches-recovery.txt`.
+- **Preserved all 11 unmerged branches** + the 2 merged branches still checked out in external worktrees; authored `paused-session-resume-prompt.md`.
+
 ### Deferred (operator-gated)
 
-Only the remaining evidence-gated cleanup: stale registered-worktree removals, detached-worktree adjudication (preserve non-contained commits first), and per-item operator decisions on the unmerged branches (KEEP/RENAME/ARCHIVE/DISCARD, verified `git bundle` before any `-D`) — all from a clean control worktree, never the dirty/concurrent primary.
+Per-branch merge/archive decisions on the 11 preserved unmerged branches (KEEP/RENAME/ARCHIVE/DISCARD, verified `git bundle` before any `-D`) — from a clean control worktree, never the dirty/concurrent primary.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -124,7 +131,7 @@ Only the remaining evidence-gated cleanup: stale registered-worktree removals, d
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- **Cleanup is partial:** only the six-branch slice ran; ~30 stale worktrees, six detached worktrees, and the unmerged branches remain, each behind its own per-item operator gate (Phase 5 remainder).
+- **Cleanup is now the full declutter:** 34 worktrees + 30 merged branches removed (42→8 worktrees, 45→14 branches); only per-branch merge/archive decisions on the 11 preserved unmerged branches remain (each behind its own operator gate).
 - **Snapshot is point-in-time:** the concurrent tree moves; the cleanup phase must re-check live immediately before acting, from a clean control worktree.
 - **pre-push not yet blocking:** the hook is installed and migration-tolerant; PR head-name enforcement stays advisory until the legacy `wt/*` PR branches on origin are inventoried.
 - **`validate_document.py` not run on the doc surfaces:** its `template_rules.json` config is absent in this environment (CHK-110); README/playbook were instead grammar-consistency-reviewed manually.

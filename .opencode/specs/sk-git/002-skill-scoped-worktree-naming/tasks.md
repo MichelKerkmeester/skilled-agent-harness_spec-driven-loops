@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-git/002-skill-scoped-worktree-naming"
     last_updated_at: "2026-07-14T12:20:00Z"
     last_updated_by: "claude"
-    recent_action: "Marked Phases 1-4 shipped with evidence"
+    recent_action: "Recorded Phase 5 full declutter"
     next_safe_action: "Run operator-gated cleanup from a clean worktree"
     blockers: []
     key_files:
@@ -81,11 +81,12 @@ _memory:
 - [x] T031 Fix `.opencode/bin/worktree-reaper.sh` (live merge base + activity check + human/active protection) — commit `925ca3c738` (integration tip = primary `HEAD`; wrapper-only report-vs-reap; marker-dead gate; never `--force`; `bin/tests/worktree-reaper.test.sh` 9/9 PASS)
 - [x] T032 Add versioned `.opencode/scripts/git-hooks/pre-push` (new-branch grammar gate, migration-tolerant) + installer + fixtures — commit `6e6fdfb57d` (new-remote-branch-only gate; fail-open on broken validator; never blocks `skilled/v*`; bypass `SPECKIT_SKIP_PREPUSH_NAMING=1`; `git-hooks/tests/pre-push.test.sh` 8/8 PASS)
 
-### Remaining cleanup (deferred — per-item operator gates)
+### Remaining cleanup (full declutter executed; per-branch merge decisions still open)
 
-- [ ] T040 [B] Remove stale, clean, inactive registered worktrees from a clean control worktree (owner-confirmed; non-force)
-- [ ] T041 [B] Adjudicate the six detached worktrees (preserve non-contained commits into a conforming branch first)
-- [ ] T042 [B] Per-branch operator decision on the unmerged branches (KEEP/RENAME/ARCHIVE/DISCARD) with verified bundles before any `-D`
+- [x] T040 Remove stale registered worktrees — operator-authorized full declutter: **34 worktrees removed** (42→8) after proving each **0 commits ahead of `origin/skilled/v4.0.0.0`**; OIDs recorded in `deleted-branches-recovery.txt`. Used `--force` (dirty trees were stale-base diff, not work) under explicit operator authorization; kept primary, the two active-goal worktrees (`0038`, `0039`), and the five external `/private/tmp/**` worktrees.
+- [x] T041 Adjudicate detached worktrees — `0024-028-extract` + `0025-028-renumber` proven ancestors of v4 (0 unique commits); `view-latest-v4` HEAD is `main`'s tip (reachable from `main`); all removed with nothing orphaned.
+- [x] T042a Delete merged branches — **30 merged branches deleted** with `-d` (OIDs recorded); extends the original six-branch slice. `work/021-graph-preservation` + `wt/opencode-doc-readmes` skipped (still checked out in kept external worktrees).
+- [ ] T042b [B] Per-branch operator decision on the **11 preserved unmerged branches** (KEEP/RENAME/ARCHIVE/DISCARD) — all kept for now; verified `git bundle` before any future `-D`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -107,7 +108,8 @@ _memory:
 - [x] First cleanup slice executed safely with a recovery record — `deleted-branches-recovery.txt`
 - [x] sk-git codification + allocator landed and verified — commits `2eb1bf2974` (codify) + `bdb31a31db` (allocator, 31/31)
 - [x] Wrapper/reaper hardened; enforcement installed — commits `925ca3c738` (wrapper/reaper, 9/9) + `6e6fdfb57d` (pre-push, 8/8)
-- [ ] Remaining cleanup completed per operator decisions — Phase 5 remainder, open behind per-item operator gates
+- [x] Worktree declutter + merged-branch cleanup completed (34 worktrees + 30 branches removed, OID-recorded); a paused-session resume prompt authored (`paused-session-resume-prompt.md`)
+- [ ] Per-branch merge/archive decisions on the 11 preserved unmerged branches — open behind per-item operator gates
 <!-- /ANCHOR:completion -->
 
 ---

@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-git/002-skill-scoped-worktree-naming"
     last_updated_at: "2026-07-14T12:20:00Z"
     last_updated_by: "claude"
-    recent_action: "Checked off Phases 1-4 QA with evidence"
+    recent_action: "Recorded Phase 5 full declutter"
     next_safe_action: "Run operator-gated cleanup from a clean worktree"
     blockers: []
     key_files:
@@ -99,7 +99,7 @@ _memory:
 ## Security
 
 - [x] CHK-040 [P0] The cleanup slice cannot lose data. Evidence: every deleted ref proven ancestor of `origin/skilled/v4.0.0.0` in `deleted-branches-recovery.txt`.
-- [ ] CHK-041 [P0] Unmerged-branch cleanup requires a verified bundle before any `-D` — deferred gate (Phase 5 remainder, open).
+- [x] CHK-041 [P0] Unmerged-branch cleanup requires a verified bundle before any `-D`. Evidence: the full declutter deleted only `-d` merged branches (30) and removed only 0-ahead worktrees; all **11 unmerged branches were preserved** (no `-D`), so the bundle gate was honored by not deleting any unmerged ref. Gate remains in force for any future per-branch DISCARD.
 - [x] CHK-042 [P1] Allocator/validator/hooks run credential-free with no untrusted-code execution. Evidence: `worktree-naming.sh` / `pre-push` are pure local git+shell (no network, no repo-code exec); harnesses run hermetically with `core.hooksPath` neutralized.
 <!-- /ANCHOR:security -->
 
@@ -132,11 +132,11 @@ _memory:
 | Pre-Implementation | 3 | 3 | Pass |
 | Code Quality | 3 | 3 | Pass (shipped + verified) |
 | Testing | 3 | 3 | Pass (harnesses 31/9/8; validate Errors 0) |
-| Fix Completeness | 4 | 3 | Impl P0s pass; CHK-041 unmerged-cleanup gate open |
-| Security | 2 | 1 | Slice safe; CHK-041 bundle gate open |
+| Fix Completeness | 4 | 4 | Pass |
+| Security | 2 | 2 | Pass (slice + full declutter both loss-proof) |
 | Documentation | 1 | 1 | Pass (decision record) |
 
-Overall: design, codification, allocator, wrapper/reaper hardening, and push enforcement complete and evidenced (commits `2eb1bf2974`/`bdb31a31db`/`925ca3c738`/`6e6fdfb57d`; harnesses 31/9/8; packet validate Errors 0). Only the remaining evidence-gated cleanup (Phase 5 remainder — worktree removals, detached adjudication, unmerged decisions) stays open behind per-item operator gates.
+Overall: design, codification, allocator, wrapper/reaper hardening, and push enforcement complete and evidenced (commits `2eb1bf2974`/`bdb31a31db`/`925ca3c738`/`6e6fdfb57d`; harnesses 31/9/8; packet validate Errors 0). Phase 5 cleanup executed as an operator-authorized full declutter (34 worktrees + 30 merged branches removed, all proven 0-ahead / OID-recorded; 42→8 worktrees, 45→14 branches). Only per-branch merge/archive decisions on the 11 preserved unmerged branches stay open.
 <!-- /ANCHOR:summary -->
 
 ---

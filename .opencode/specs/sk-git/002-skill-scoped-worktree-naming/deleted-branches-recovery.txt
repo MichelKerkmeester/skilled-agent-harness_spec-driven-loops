@@ -6,3 +6,80 @@ system-speckit/026-graph-and-context-optimization 2ed47ad0acf604fee83e3eb1afda6b
 wt/0030-underscore-migration f2ba7f29dde20085bbcb34f981099df699fef8c3  [-d]
 wt/0031-sk-doc-foundation 9272ba07f8c701388cfbe55586218ba6add238fb  [-d]
 wt/0032-skills-group2 8fdd92f740d343a00f7426fa41cf78850fbd056c  [-d]
+
+===================================================================
+Phase 5 full-declutter — recovery record (2026-07-14, operator-authorized)
+Rollback a branch:   git branch <name> <OID>
+Rollback a worktree: git worktree add <path> <branch-or-OID>
+===================================================================
+
+--- WORKTREES REMOVED (branch survives; commits all 0-ahead of v4) ---
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.claude/worktrees/goal-benchmark  [wt/0033-benchmark-authoring]  HEAD=36bba13758a56dc29ee99f721975b3c83227a00f
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0001-mcp-front-proxy  [wt/0001-mcp-front-proxy]  HEAD=900c96259caa984b443d6d32c510aadef8bfb4f6
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0002-followups  [wt/0002-followups]  HEAD=2d25ed42ea8a0a5f5567c09bc43673e99af13a2f
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0003-followup-sentinel  [wt/0003-followup-sentinel]  HEAD=6c76793f25c21ff66c1aaa5d054a0cbbc7b0d271
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0004-followup-memorysave  [wt/0004-followup-memorysave]  HEAD=203fb19cbc9af967030bf2a717129db64ed2bf39
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0005-memory-followups  [wt/0005-memory-followups]  HEAD=253db8b43839c4f319c77fa6a6bf3c9a514c418a
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-028-cli-impl  [wt/0007-cli-impl]  HEAD=33631b039553a5987cc38c364a01f9dd22a0505a
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0008-findings-remediation  [wt/0008-findings-remediation]  HEAD=be9fdab279a1453fafe5ee26e1f4dc8c78652eba
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0010-016-012  [wt/0010-016-012]  HEAD=fa49443a7c784352406e5e2eddc048c6ead06cbe
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0012-016-002  [wt/0012-016-002]  HEAD=5ea9dc4c16df5b9dd65b2576ca9a01af2c4c2ba0
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0013-016-003  [wt/0013-016-003]  HEAD=8142e1dae3a495d671d1d608883e8f2b7850e20e
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0014-016-004  [wt/0014-016-004]  HEAD=b9400b1d5607dc2649c9f720afa22f4d529290cd
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0015-016-005  [wt/0015-016-005]  HEAD=289f5d57b50a79ac683fe5cda84a9fd28ff5916e
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0016-016-006  [wt/0016-016-006]  HEAD=23f5583ad3e973fab34dd0f73a1050f62a846ff3
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0017-016-007  [wt/0017-016-007]  HEAD=9d5e4901b911cde3cc72a5831b68ae2a9ec8e717
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0024-028-extract  [DETACHED]  HEAD=7dae42fc8ad2c2385d8f7afa82240213560dc9c5
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0025-028-renumber  [DETACHED]  HEAD=8b5f4167b76a52bf0290ff0f1ea662ccc327c7f0
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0029-daemon-reaper  [wt/0029-daemon-reaper]  HEAD=55e953f8ecaf01b2f5aaa334826d038ee78f057c
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0034-deep-review-059  [wt/0034-deep-review-059]  HEAD=f48c7e995ed6abd6fde63aa3d8e5c0c7aec39a02
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0037-sk-git-continuous-integration  [wt/0037-sk-git-continuous-integration]  HEAD=5535ad58f647ae7287688561ff72917f07f4b298
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0040-deep-alignment-hardening  [wt/0040-deep-alignment-hardening]  HEAD=2f0322ba38257290cf8b135d65b60b070191eea5
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/goal-integration  [wt/goal-integration]  HEAD=bf0528a2cc96d5bef019a5db94a0d83da473dd89
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/goalAB-skdoc  [wt/goalAB-skdoc]  HEAD=c6f9c6e7ac804a236947a56d9d8438ad0adfc561
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/goalC-cli-rename  [wt/goalC-cli-rename]  HEAD=0950bd9f215bd4fa5ec66154fad8e056dbcbd60e
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/goalD-codex  [wt/goalD-codex]  HEAD=a9c23ca0291d2b2364dcc75d06e8819b37facfe6
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/opencode-20260710-062729-13488  [work/opencode/20260710-062729-13488]  HEAD=fc8105a9a79676dbde0707a7177dc77010998b5f
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/opencode-20260710-062731-13877  [work/opencode/20260710-062731-13877]  HEAD=d26faba25e572e8e208de59aab784e7abc52f054
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/opencode-20260710-062733-14181  [work/opencode/20260710-062733-14181]  HEAD=bb6ce6bbd8317766dd9812dcd51ba05981ecc2c8
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/opencode-20260710-063918-40658  [work/opencode/20260710-063918-40658]  HEAD=ae197f90172d48674c4bbdba3c18d08b15b43c2b
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/opencode-20260710-063920-40725  [work/opencode/20260710-063920-40725]  HEAD=8716bd7a41b95c866512bbd4cdb1d7bac012c803
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/opencode-20260710-063922-40872  [work/opencode/20260710-063922-40872]  HEAD=5e9d9e53786dd5aafab4ef4226eee40baede8e19
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/opencode-20260710-063924-40916  [work/opencode/20260710-063924-40916]  HEAD=4278239aa1c73f2f1b2d5f05e9793cc626f4d417
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/opencode-20260710-092819-30688  [work/opencode/20260710-092819-30688]  HEAD=25b29bec4a303e667fafc76f6980ba4aecf0b015
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/view-latest-v4  [DETACHED]  HEAD=1546c05df977e8bd49565328471b740a8e159db8
+
+--- MERGED BRANCHES TO DELETE (OID recorded; all ancestors of origin/v4) ---
+  chore/renest-sk-doc-packets                    cebc9846cacf7149f3bc168eb92fc1e884ab5291
+  fix/create-benchmark-audit-remediation         65d4da40f4b75beb29fbff8d069b9db7ad75d2a5
+  work/021-graph-preservation                    3f2cf6ea8b14d3ac3ae9d265a7968c949a4766a3
+  work/opencode/20260710-062729-13488            fc8105a9a79676dbde0707a7177dc77010998b5f
+  work/opencode/20260710-062731-13877            d26faba25e572e8e208de59aab784e7abc52f054
+  work/opencode/20260710-062733-14181            bb6ce6bbd8317766dd9812dcd51ba05981ecc2c8
+  work/opencode/20260710-063918-40658            ae197f90172d48674c4bbdba3c18d08b15b43c2b
+  work/opencode/20260710-063920-40725            8716bd7a41b95c866512bbd4cdb1d7bac012c803
+  work/opencode/20260710-063922-40872            5e9d9e53786dd5aafab4ef4226eee40baede8e19
+  work/opencode/20260710-063924-40916            4278239aa1c73f2f1b2d5f05e9793cc626f4d417
+  wt/0002-followups                              2d25ed42ea8a0a5f5567c09bc43673e99af13a2f
+  wt/0003-followup-sentinel                      6c76793f25c21ff66c1aaa5d054a0cbbc7b0d271
+  wt/0004-followup-memorysave                    203fb19cbc9af967030bf2a717129db64ed2bf39
+  wt/0005-memory-followups                       253db8b43839c4f319c77fa6a6bf3c9a514c418a
+  wt/0007-cli-impl                               33631b039553a5987cc38c364a01f9dd22a0505a
+  wt/0008-findings-remediation                   be9fdab279a1453fafe5ee26e1f4dc8c78652eba
+  wt/0010-016-012                                fa49443a7c784352406e5e2eddc048c6ead06cbe
+  wt/0012-016-002                                5ea9dc4c16df5b9dd65b2576ca9a01af2c4c2ba0
+  wt/0013-016-003                                8142e1dae3a495d671d1d608883e8f2b7850e20e
+  wt/0014-016-004                                b9400b1d5607dc2649c9f720afa22f4d529290cd
+  wt/0015-016-005                                289f5d57b50a79ac683fe5cda84a9fd28ff5916e
+  wt/0016-016-006                                23f5583ad3e973fab34dd0f73a1050f62a846ff3
+  wt/0017-016-007                                9d5e4901b911cde3cc72a5831b68ae2a9ec8e717
+  wt/0029-daemon-reaper                          55e953f8ecaf01b2f5aaa334826d038ee78f057c
+  wt/0033-benchmark-authoring                    36bba13758a56dc29ee99f721975b3c83227a00f
+  wt/0034-deep-review-059                        f48c7e995ed6abd6fde63aa3d8e5c0c7aec39a02
+  wt/0037-sk-git-continuous-integration          5535ad58f647ae7287688561ff72917f07f4b298
+  wt/0040-deep-alignment-hardening               2f0322ba38257290cf8b135d65b60b070191eea5
+  wt/goal-integration                            bf0528a2cc96d5bef019a5db94a0d83da473dd89
+  wt/goalAB-skdoc                                c6f9c6e7ac804a236947a56d9d8438ad0adfc561
+  wt/goalC-cli-rename                            0950bd9f215bd4fa5ec66154fad8e056dbcbd60e
+  wt/goalD-codex                                 a9c23ca0291d2b2364dcc75d06e8819b37facfe6
+  wt/opencode-doc-readmes                        0659149d08b719b212520cacfead54c8394ebb4b
