@@ -7,10 +7,10 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
-    last_updated_at: "2026-07-13T20:11:19Z"
+    last_updated_at: "2026-07-14T03:36:41Z"
     last_updated_by: "claude-code"
-    recent_action: "Fixed Stop-hook stdout parse failure; full live acceptance matrix green"
-    next_safe_action: "Re-point installer at the primary checkout once it reconciles to v4"
+    recent_action: "Landed Stop-stdout fix to v4; deferred installer re-point to primary reconcile"
+    next_safe_action: "Re-run install-codex-hooks.mjs against the primary checkout once it reconciles to origin/v4"
     blockers: []
     completion_pct: 100
     open_questions: []
@@ -95,7 +95,7 @@ See `decision-record.md` for full ADR documentation.
 ## Known Limitations
 
 1. **Deny is live-confirmed.** A live `codex exec apply_patch` on a non-exempt file was blocked end-to-end (Codex router: `Command blocked by PreToolUse hook: DENIED…`; file not created; `would-deny` logged). Confirming this surfaced a real defect: Codex delivers the target path inside the patch body (`tool_input.command`, an `*** Add/Update/Delete File:` header), not a `file_path` field, so the first live attempt read a null path and treated every patch as exempt. Fixed by parsing the affected path(s) out of the patch in the three filePath-driven adapters (`spec-gate-enforce`, `post-edit-quality`, `code-graph-freshness`); the enforce adapter evaluates the first non-exempt affected path so a multi-file patch can't hide a real write behind an exempt sibling.
-2. **The active install points at the worktree, not the primary checkout** — the primary checkout is behind origin/v4 and unsafe to write into (concurrent sessions), so the installer was run against the isolated worktree (which required staging the gitignored `shared/dist` + `mcp_server/dist` from the primary tree to complete the lifecycle-adapter chain). Re-run the installer against the primary checkout once it reconciles to origin/v4 for a permanent target; fail-open means the interim worktree target degrades gracefully if removed.
+2. **The active install points at the worktree, not the primary checkout — deferred by operator decision (2026-07-14).** The primary checkout is diverged from origin/v4 (ahead by local commits, behind, and dirty with concurrent-session work) and unsafe to write into, so the installer targets the isolated worktree (which required staging the gitignored `shared/dist` + `mcp_server/dist` from the primary tree to complete the lifecycle-adapter chain). The interim worktree install is functional and live-verified, and fail-open means it degrades gracefully if the worktree is removed. The operator chose to **defer re-pointing until the primary checkout reconciles to origin/v4**, then re-run `install-codex-hooks.mjs` against the primary tree for the permanent target. All eight adapters are on origin/v4, so any clean v4 checkout already carries them — no rebuild is required, only the installer re-run.
 3. **Stop chain is now clean (was 1 `Stop Failed`; fixed).** Root cause: `session-cleanup.sh` always prints a plain-text teardown line to stdout (`action=skip reason=no-session-pid`), and Codex parses a Stop hook's stdout as a response envelope — the non-JSON text failed that parse and read as `Stop Failed` (despite exit 0). Fixed by redirecting that neutral script's stdout in the Stop wiring (`>/dev/null 2>&1`; the script stays byte-unchanged). A live acceptance run now shows Stop 4/4 Completed. Contract note recorded in `decision-record.md`: neutral shell scripts wired to a Codex hook must not emit stdout, since only the lifecycle JS adapters speak the response-envelope protocol.
 4. **`~/.codex/hooks.json` is the one out-of-repo write** — the installer backs it up first and merges rather than replaces; revertible via the `.bak-<ts>` backup.
 5. **`mcp-route-guard` codex adapter is dormant** — Codex's registered MCP servers are all `mk_`-prefixed and thus core-exempt; it activates only when an external MCP family is registered.

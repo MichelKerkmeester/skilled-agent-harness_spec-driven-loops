@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Child 004 shipped only the four Codex session-lifecycle adapters (SessionStart, UserPromptSubmit, Stop, PreCompact)",
     "created_at": "2026-07-13T16:41:33.164Z",
-    "last_save_at": "2026-07-13T20:12:31.986Z",
+    "last_save_at": "2026-07-14T03:41:58.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:56281f8f046e3a6925380c923b8dd1b2ae0b03019314ef98762ce430d5f732d2",
+    "source_fingerprint": "sha256:72509790316d737c9676e5d281cf924ffc1e23ff5f0bbda46dc167b54bf9dd47",
     "source_doc_hashes": {
       "spec.md": "39a69456faf71074103a232992171a6b4482140dc63f539d1fbd93ce6946b3d3",
       "plan.md": "b5c74ab173b37a04deef60d25201529fe2907046d302d0e4d7c005716f071687",
       "tasks.md": "af58e3f72088184f39468742cf6f55825c530e02a4573dabb9b5aa83416c0c35",
       "checklist.md": "fadfc55d2b89e34bc68e05222e74b4831e74a3b219badf2c48a7950f9e147a8f",
       "decision-record.md": "0a5daae05ac39310cebd1b4060afdea9fcecff5f621156297256d47125e0c283",
-      "implementation-summary.md": "1a6151abca63c2fd234234dd0c94b5ae3d492ff1cdecc0e6e384aa28af25b2df"
+      "implementation-summary.md": "4efd297998cb11c532ef9ba169bdcfc9f99a15863c381c3e353f42b3c5d7e9c2"
     },
     "last_active_child_id": null,
     "last_active_at": null
