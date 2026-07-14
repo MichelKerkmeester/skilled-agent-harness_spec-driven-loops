@@ -2,7 +2,7 @@
 name: cli-codex
 description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.7.0.0
+version: 1.7.1.0
 hard_rules:
   - id: codex-availability-required
     check: command-v-codex-required
@@ -245,19 +245,18 @@ Honor whichever dimensions the user names. Model stays on `gpt-5.5` and service 
 
 ### Codex Agent Delegation
 
-The calling AI is the conductor; Codex profiles in `config.toml` `[profiles.<name>]` shape HOW Codex processes the task (sandbox, reasoning). Route to a profile with `-p <name>` when the task matches a specialization.
+The calling AI is the conductor; Codex profiles in `.codex/config.toml` `[profiles.<name>]` shape HOW Codex processes the task (sandbox, reasoning). Route with `-p <name>` when the task matches a specialization. Full roster and invocation patterns: [agent_delegation.md](./references/agent_delegation.md).
 
-| Task Type | Profile | Invocation Pattern |
-|-----------|---------|-------------------|
-| Code review / security audit | review | `codex exec -p review "Review @./src/auth.ts for security issues" -m gpt-5.5` |
-| Git diff review | (built-in) | `codex exec review "Focus on security" --commit HEAD` |
-| Architecture exploration | context | `codex exec -p context "Analyze the architecture of this project" -m gpt-5.5` |
-| Technical research | research | `codex exec -p research "Research latest Express.js security advisories" -m gpt-5.5 --search` |
-| Documentation generation | write | `codex exec -p write "Generate README for this project" -m gpt-5.5` |
-| Fresh-perspective debugging | debug | `codex exec -p debug "Debug this error: [error]" -m gpt-5.5` |
-| Multi-strategy planning | ai-council | `codex exec -p ai-council "Plan the authentication redesign" -m gpt-5.5` |
+| Task Type | Profile |
+|-----------|---------|
+| Code review / security audit | `review` |
+| Architecture exploration | `context` |
+| Technical research | `research` (add `--search`) |
+| Documentation generation | `write` |
+| Fresh-perspective debugging | `debug` |
+| Multi-strategy planning | `ai-council` |
 
-Profiles live in `.codex/config.toml` under `[profiles.<name>]` (each may override `model`, `model_reasoning_effort`, `sandbox_mode`, `approval_policy`). The `.codex/agents/*.toml` files define personas for the interactive multi-agent TUI, NOT the `-p` flag. Full roster: [agent_delegation.md](./references/agent_delegation.md).
+Git diff review uses the built-in subcommand (no `-p`): `codex exec review "..." --commit HEAD`. Profiles may override `model`, `model_reasoning_effort`, `sandbox_mode`, `approval_policy`. The `.codex/agents/*.toml` files define personas for the interactive multi-agent TUI, NOT the `-p` flag.
 
 ### Dispatch-Critical Gotchas
 

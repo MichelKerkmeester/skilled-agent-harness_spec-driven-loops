@@ -2,7 +2,7 @@
 name: cli-claude-code
 description: "Claude Code CLI executor for Anthropic-backed reasoning, edits, reviews, and structured cross-AI handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.2.0.0
+version: 1.3.0.0
 hard_rules:
   - id: non-interactive-permission-mode-risk
     check: non-interactive-permission-mode-risk
@@ -224,111 +224,42 @@ claude -p "<prompt>" \
 | "Cost-capped" | Append `--max-budget-usd 1.00` |
 | "Plan mode" | Append `--permission-mode plan` (read-only) |
 
-### Core Invocation Pattern
-
-All non-interactive Claude Code CLI calls use the `-p` (print) flag:
-
-```bash
-claude -p "prompt" --output-format text 2>&1
-```
-
-| Flag / Option | Purpose |
-|---------------|---------|
-| `-p "prompt"` | Non-interactive mode — send prompt, get response, exit |
-| `--output-format text` | Plain text output (default for human consumption) |
-| `--output-format json` | JSON output with metadata (role, content, cost) |
-| `--output-format stream-json` | Streaming JSON for real-time processing |
-| `--model claude-sonnet-4-6` | Model selection (default: sonnet) |
-| `--permission-mode plan` | Read-only safe exploration — no file writes |
-| `--permission-mode bypassPermissions` | Auto-approve all operations — **requires explicit user approval** |
-| `--json-schema '{"type":"object",...}'` | Schema-validated structured output |
-| `--max-budget-usd 1.00` | Cost cap for the session |
-| `--agent review` | Route to a specialized agent |
-| `--continue` | Continue the most recent conversation |
-| `--resume SESSION_ID` | Resume a specific session |
-
 ### Model Selection
 
-| Model | ID | Use Case |
-|-------|----|----------|
-| **Opus** | `claude-opus-4-6` | Deep reasoning, complex architecture, extended thinking |
-| **Sonnet** | `claude-sonnet-4-6` | Balanced performance/cost — default for most tasks |
-| **Haiku** | `claude-haiku-4-5-20251001` | Optional-unverified; use only when explicitly requested or after adoption for fast, lightweight tasks |
+`claude-sonnet-4-6` is the skill default. The full roster (including the current-generation `claude-opus-4-8` / `claude-sonnet-5` / `claude-fable-5` IDs), with cost and per-task selection guidance, lives in the ALWAYS-loaded [cli_reference.md](./references/cli_reference.md) §6.
 
-**Selection guidance**: Default to Sonnet unless the task specifically needs deep reasoning (Opus + `--effort high`). Use Haiku only when explicitly requested or after adoption.
+| Model | ID | When to reach for it |
+|-------|----|----------------------|
+| **Opus** | `claude-opus-4-6` (current: `claude-opus-4-8`) | Deep reasoning, complex architecture, extended thinking (`--effort high`) |
+| **Sonnet** ★ default | `claude-sonnet-4-6` (current: `claude-sonnet-5`) | Balanced performance/cost — default for most tasks |
+| **Haiku** | `claude-haiku-4-5-20251001` | Fast, lightweight tasks; use only when explicitly requested |
+
+Default to Sonnet unless the task needs Opus deep reasoning; name a current-generation ID explicitly when you want it.
 
 ### Claude Code Agent Delegation
 
-The calling AI is the conductor; Claude Code agents in `.claude/agents/*.md` shape HOW Claude Code processes the task.
+Route to a specialized `.claude/agents/*.md` agent with `--agent <name>` when the task matches a specialization. Full roster and invocation patterns: [agent_delegation.md](./references/agent_delegation.md).
 
-| Task Type | Agent | Invocation Pattern |
-|-----------|-------|-------------------|
-| Codebase exploration | `context` | `claude -p "Analyze the architecture of src/" --agent context --permission-mode plan --output-format text 2>&1` |
-| Systematic debugging | `debug` | `claude -p "Debug this error: [error]" --agent debug --output-format text 2>&1` |
-| Session state capture | `handover` | `claude -p "Create handover for current work" --agent handover --output-format text 2>&1` |
-| Multi-agent coordination | `orchestrate` | `claude -p "Coordinate review and testing of auth module" --agent orchestrate --output-format text 2>&1` |
-| Evidence gathering | `research` | `claude -p "Research best practices for [topic]" --agent research --output-format text 2>&1` |
-| Code review / audit | `review` | `claude -p "Review @src/auth.ts for security issues" --agent review --permission-mode plan --output-format text 2>&1` |
-| Spec documentation | `speckit` | `claude -p "Create spec folder for [feature]" --agent speckit --output-format text 2>&1` |
-| Multi-strategy planning | `ai-council` | `claude -p "Plan the authentication redesign" --agent ai-council --permission-mode plan --output-format text 2>&1` |
-| Documentation generation | `write` | `claude -p "Generate README for this project" --agent write --output-format text 2>&1` |
+| Task Type | Agent |
+|-----------|-------|
+| Codebase exploration | `context` (add `--permission-mode plan`) |
+| Systematic debugging | `debug` |
+| Session state capture | `handover` |
+| Multi-agent coordination | `orchestrate` |
+| Evidence gathering | `research` |
+| Code review / audit | `review` (add `--permission-mode plan`) |
+| Spec documentation | `speckit` |
+| Multi-strategy planning | `ai-council` (add `--permission-mode plan`) |
+| Documentation generation | `write` |
 
-See [agent_delegation.md](./references/agent_delegation.md) for complete agent roster.
+### Dispatch-Critical Gotchas
 
-### Unique Claude Code Capabilities
+The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`, extended thinking, session `--continue`/`--resume`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli_reference.md](./references/cli_reference.md) (§4–§13). Four gotchas that must be honored at routing time:
 
-| Capability | Purpose | Invocation |
-|------------|---------|------------|
-| Extended Thinking | Deep chain-of-thought reasoning | `claude -p "..." --effort high --model claude-opus-4-6` |
-| Edit Tool | Surgical diff-based code editing | Built-in — Claude Code edits files directly |
-| Agent Tool | Spawn focused subagents within a session | Built-in — agents defined in `.claude/agents/` |
-| `--json-schema` | Schema-validated structured output | `claude -p "..." --json-schema '{"type":"object",...}'` |
-| `--permission-mode plan` | Read-only safe exploration | `claude -p "..." --permission-mode plan` |
-| `--max-budget-usd` | Cost-controlled execution | `claude -p "..." --max-budget-usd 1.00` |
-| Skills System | On-demand specialized workflows | Loaded via SKILL.md files |
-| Spec Kit Memory | Persistent structured context across sessions | Via MCP tools |
-| Hooks | Pre/post tool-call automation | Configured in settings |
-| Session continuity | Continue or resume conversations | `--continue` or `--resume SESSION_ID` |
-
-### Essential Commands
-
-```bash
-# Deep reasoning with extended thinking (Opus)
-claude -p "Analyze the trade-offs between microservices and monolith for this project." \
-  --model claude-opus-4-6 --effort high --output-format text 2>&1
-
-# Code review (read-only — safe exploration)
-claude -p "Review @src/auth.ts for security vulnerabilities" \
-  --permission-mode plan --output-format text 2>&1
-
-# Structured JSON output with schema validation
-claude -p "Analyze src/utils.ts and return function signatures" \
-  --json-schema '{"type":"object","properties":{"functions":{"type":"array"}}}' \
-  --output-format json 2>&1
-
-# Agent-delegated architecture analysis
-claude -p "Map the dependency graph for src/" \
-  --agent context --permission-mode plan --output-format text 2>&1
-
-# Cost-controlled background execution
-claude -p "Generate comprehensive tests for src/utils.ts" \
-  --max-budget-usd 0.50 --output-format text 2>&1 &
-
-# Continue previous conversation
-claude -p "Now refactor the auth module based on the review" --continue --output-format text 2>&1
-```
-
-### Error Handling
-
-| Issue | Solution |
-|-------|----------|
-| CLI not installed | `npm install -g @anthropic-ai/claude-code` |
-| `401 Unauthorized` / not authenticated | Run `claude auth login` (Claude subscription OAuth), or `claude setup-token` for CI/CD |
-| Nested session detected | Cannot run `claude` inside Claude Code — use a different terminal or exit first |
-| Rate limit exceeded | Wait for auto-retry or reduce request frequency |
-| Budget exceeded | Increase `--max-budget-usd` or reduce prompt complexity |
-| Permission denied | Match `--permission-mode` to task requirements |
-| Context too large | Specify files explicitly with `@./path` rather than broad prompts |
+- **Non-interactive requires `-p` (print) mode** — `claude -p "prompt" --output-format text 2>&1`. `--output-format` defaults to `text`; use `json` (adds role/content/cost metadata) or `stream-json` only when a pipeline needs it. Capture stderr with `2>&1`.
+- **`--permission-mode plan` is read-only** — use it for review/analysis/exploration (no file writes). `bypassPermissions` auto-approves all writes and **requires explicit user approval**; the default mode already allows writes.
+- **No `--search` flag** — Claude Code has no live web browsing. Route web research to cli-opencode.
+- **Check `$CLAUDECODE` before dispatch** — a set value means the caller is already inside Claude Code; refuse (self-invocation), do not dispatch.
 
 ---
 
