@@ -8,7 +8,7 @@ metadata:
   family: sk-util
 ---
 
-<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, create-skill, create-readme, create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, create-quality-control, shared-backbone, create-quality-control-pipeline -->
+<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, create-skill, create-readme, create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, create-diff, create-quality-control, shared-backbone, create-quality-control-pipeline -->
 
 # Documentation Authoring Hub (sk-doc)
 
@@ -31,6 +31,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | **create-benchmark** | Promote a curated MCP benchmark folder into a consuming skill | `create-benchmark/` | `/create:benchmark` |
 | **create-flowchart** | Generate and validate an ASCII flowchart | `create-flowchart/` | `/create:flowchart` |
 | **create-changelog** | Author a global or packet-local changelog entry (version bump + topology-aware placement) | `create-changelog/` | `/create:changelog` |
+| **create-diff** | Produce a local, Git-free before/after review of an AI-edited document (preview; engine pending packet 136) | `create-diff/` | — (preview) |
 | **create-quality-control** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `create-quality-control/` | `/doc:quality` |
 
 ### When NOT to Use

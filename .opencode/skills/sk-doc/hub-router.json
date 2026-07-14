@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["create-quality-control", "create-skill", "create-skill-parent", "create-readme", "create-agent", "create-command", "create-feature-catalog", "create-manual-testing-playbook", "create-benchmark", "create-flowchart", "create-changelog"],
+    "tieBreak": ["create-quality-control", "create-skill", "create-skill-parent", "create-readme", "create-agent", "create-command", "create-feature-catalog", "create-manual-testing-playbook", "create-benchmark", "create-flowchart", "create-changelog", "create-diff"],
     "outcomes": {
       "single": "one dominant authoring/quality intent routes to one workflow mode",
       "orderedBundle": "clearly separate authoring intents route to an ordered workflow mode list",
@@ -30,6 +30,7 @@
     "create-benchmark": { "weight": 3, "classes": ["create-benchmark-aliases", "authoring-actions"], "resources": ["create-benchmark/SKILL.md"] },
     "create-flowchart": { "weight": 3, "classes": ["create-flowchart-aliases", "authoring-actions"], "resources": ["create-flowchart/SKILL.md"] },
     "create-changelog": { "weight": 3, "classes": ["create-changelog-aliases", "authoring-actions"], "resources": ["create-changelog/SKILL.md"] },
+    "create-diff": { "weight": 3, "classes": ["create-diff-aliases", "authoring-actions"], "resources": ["create-diff/SKILL.md"] },
     "create-quality-control": { "weight": 4, "classes": ["create-quality-control-aliases", "quality-actions"], "resources": ["create-quality-control/SKILL.md"] }
   },
   "vocabularyClasses": {
@@ -45,6 +46,7 @@
     "create-benchmark-aliases": { "keywords": ["benchmark_report.md", "SOURCE.md", "mcp_server/benchmarks", "MCP bake-off", "behavior benchmark", "behavior_benchmark.md", "scenario contract", "claude-baseline", "skill-benchmark", "benchmark/README.md", "run-label folder", "benchmark package", "model-benchmark", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture"] },
     "create-flowchart-aliases": { "keywords": ["create flowchart", "flowchart", "ASCII flowchart", "workflow diagram", "decision tree", "swimlane", "parallel execution diagram", "approval loop diagram"] },
     "create-changelog-aliases": { "keywords": ["create changelog", "changelog", "changelog entry", "release notes", "global changelog", "packet-local changelog", "nested changelog", "--bump", "--release", "vX.Y.Z.B"] },
+    "create-diff-aliases": { "keywords": ["create diff report", "document before after review", "before after document diff", "document change report"] },
     "create-quality-control-aliases": { "keywords": ["doc quality", "audit documentation quality", "document audit", "validate a document", "validate markdown", "score this document", "optimize this doc", "DQI", "HVR", "human voice", "AI-friendly documentation", "extract structure"] }
   }
 }

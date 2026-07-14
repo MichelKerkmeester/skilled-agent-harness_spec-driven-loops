@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/136-standalone-document-diff-skill/003-validation-security-and-quality-gates",
+  "description": "Fixture corpus and measurable security, CSP, license, accessibility, dependency, and performance release gates for the document diff product.",
+  "keywords": [
+    "fixture",
+    "corpus",
+    "measurable",
+    "security",
+    "csp",
+    "license",
+    "accessibility",
+    "dependency",
+    "performance",
+    "release",
+    "gates",
+    "document",
+    "diff",
+    "product"
+  ],
+  "lastUpdated": "2026-07-13T14:16:22.087Z",
+  "specId": "003",
+  "folderSlug": "validation-security-and-quality-gates",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "136-standalone-document-diff-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

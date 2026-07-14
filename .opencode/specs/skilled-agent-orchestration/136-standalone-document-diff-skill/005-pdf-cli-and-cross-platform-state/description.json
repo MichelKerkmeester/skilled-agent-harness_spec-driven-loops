@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/136-standalone-document-diff-skill/005-pdf-cli-and-cross-platform-state",
+  "description": "PDF text extraction and automatic snapshots both fail in subtle ways when their limitations are hidden",
+  "keywords": [
+    "text-pdf",
+    "extraction",
+    "standalone",
+    "lifecycle",
+    "cli",
+    "secure",
+    "atomic",
+    "cross-platform",
+    "snapshot",
+    "state",
+    "retention",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-07-13T14:16:22.109Z",
+  "specId": "005",
+  "folderSlug": "pdf-cli-and-cross-platform-state",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "136-standalone-document-diff-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

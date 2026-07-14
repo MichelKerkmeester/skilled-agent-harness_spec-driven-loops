@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/136-standalone-document-diff-skill/001-research-and-requirements",
+  "spec_folder": "skilled-agent-orchestration/136-standalone-document-diff-skill/001-research-and-requirements",
+  "parent_id": "skilled-agent-orchestration/136-standalone-document-diff-skill",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "document diff research",
+      "before after document comparison",
+      "document diff without git",
+      "automatic AI edit snapshot",
+      "self-contained HTML diff",
+      "document diff research plan",
+      "document comparison architecture",
+      "deep research document diff",
+      "document diff research tasks",
+      "document comparison research queue",
+      "document diff readiness checklist",
+      "document diff research verification"
+    ],
+    "key_topics": [
+      "document",
+      "diff",
+      "research",
+      "comparison",
+      "without",
+      "git",
+      "automatic",
+      "edit",
+      "snapshot",
+      "self-contained",
+      "html",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "resource-map.md",
+      "research/research.md",
+      "checklist.md",
+      "research/orchestration-summary.json",
+      "research/lineages/document-diff-1/iterations/iteration-010.md",
+      "implementation-summary.md",
+      ".opencode/specs/skilled-agent-orchestration/136-standalone-document-diff-skill/001-research-and-requirements/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/136-standalone-document-diff-skill/001-research-and-requirements/resource-map.md",
+      ".opencode/commands/deep/research.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+      ".opencode/skills/system-spec-kit/references/workflows/spec_folder_authoring_checklist.md",
+      ".opencode/skills/system-spec-kit/references/workflows/spec_folder_write_recipe.md",
+      ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
+      ".opencode/skills/system-spec-kit/references/validation/phase_checklists.md",
+      ".opencode/skills/system-deep-loop/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/136-standalone-document-diff-skill/001-research-and-requirements/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/136-standalone-document-diff-skill/001-research-and-requirements/resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/lineages/document-diff-1/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec_folder_authoring_checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/spec_folder_authoring_checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec_folder_write_recipe.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/spec_folder_write_recipe.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase_definitions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase_checklists.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/validation/phase_checklists.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Document Diff Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "People use AI to edit documents outside Git repositories and cannot reliably inspect the exact before-and-after change",
+    "created_at": "2026-07-13T10:50:04Z",
+    "last_save_at": "2026-07-13T17:55:58.905Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:fe8c8bdf531e78e87dee6d31d74fe08ee509be2260d1c1d9870c07cc5513c640",
+    "source_doc_hashes": {
+      "spec.md": "a6520a12de3736bea5d5facd6e831af80330bfb3e5373b4fa2db8e41ec361146",
+      "plan.md": "5282c055131e9826728a3acdfba6c8e61ed14a20ae0e2e37a61620e7142959ad",
+      "tasks.md": "0dff12839e143acbd552bd1ab4b74279552531d6aeead6b4ed5602503802db10",
+      "checklist.md": "25b4dc842a524ab624c2164c1beaec14c5e50bf3e7e5a6a1c6d797d1d4a82619",
+      "decision-record.md": "2e1b4494eaded9b388aeae80a27a2525ee50c41d379659189ae921eb3432c6db",
+      "implementation-summary.md": "f3d160a70e6bd8848af062482b8ddf15bc3e9068753dcea100fedf7a8321f744",
+      "research/research.md": "47aad59cc69e4f8f65310f0381656dd851f5f7f192a5b252471c4e9ea909af98",
+      "resource-map.md": "df3c697bfa913dd8299386052df1788f9ff748a06e381463824206347f98caf1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

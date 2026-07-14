@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/136-standalone-document-diff-skill/005-pdf-cli-and-cross-platform-state",
+  "spec_folder": "skilled-agent-orchestration/136-standalone-document-diff-skill/005-pdf-cli-and-cross-platform-state",
+  "parent_id": "skilled-agent-orchestration/136-standalone-document-diff-skill",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "document diff PDF",
+      "snapshot lifecycle CLI",
+      "cross-platform document snapshots",
+      "document diff retention",
+      "PDF adapter plan",
+      "snapshot lifecycle implementation",
+      "document diff CLI plan",
+      "PDF CLI tasks",
+      "snapshot lifecycle tasks",
+      "cross-platform state tasks",
+      "PDF lifecycle phase summary",
+      "document diff CLI status"
+    ],
+    "key_topics": [
+      "document",
+      "diff",
+      "pdf",
+      "snapshot",
+      "lifecycle",
+      "cli",
+      "cross-platform",
+      "snapshots",
+      "retention",
+      "adapter",
+      "plan",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Ports",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Capture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Linux",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Node",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "PDF text extraction and automatic snapshots both fail in subtle ways when their limitations are hidden",
+    "created_at": "2026-07-13T14:01:38Z",
+    "last_save_at": "2026-07-13T15:06:25.854Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aec1932927ac401f69f5f48654812f204813ae8813c820fcc7df9d00838a6640",
+    "source_doc_hashes": {
+      "spec.md": "9a8a4f5308fb01fceae390ee1ef2e7e4474097562e6704507d21821fdfcdc54d",
+      "plan.md": "b49eb4a7701633fbea9b8b0727c6dd5a62d3245d93d577bdbc583dcdc12f6c7a",
+      "tasks.md": "5f1115f7485ccf8bbcf52b42dbfe8bddf997c040022f4e0070ebb52ad60b59ce",
+      "implementation-summary.md": "61d3b83ffe746d799f61c2a12dfe6945352ff01304f3d9bbc023cffe2f1616c0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

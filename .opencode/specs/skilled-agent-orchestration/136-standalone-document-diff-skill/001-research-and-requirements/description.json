@@ -1,0 +1,35 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/136-standalone-document-diff-skill/001-research-and-requirements",
+  "description": "People use AI to edit documents outside Git repositories and cannot reliably inspect the exact before-and-after change",
+  "keywords": [
+    "people",
+    "edit",
+    "documents",
+    "outside",
+    "git",
+    "repositories",
+    "cannot",
+    "reliably",
+    "inspect",
+    "exact",
+    "before-and-after",
+    "change"
+  ],
+  "lastUpdated": "2026-07-13T12:41:58.933Z",
+  "specId": "001",
+  "folderSlug": "research-and-requirements",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "136-standalone-document-diff-skill"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "13-07-26_12-26__prepared-a-level-3-research-charter-for-a.md",
+    "13-07-26_12-30__prepared-and-strictly-validated-the-phased.md",
+    "13-07-26_13-17__deep-research-completed-for-standalone-local-ai.md",
+    "13-07-26_13-40__executed-three-parallel-document-diff-research.md",
+    "13-07-26_13-41__executed-three-parallel-document-diff-research.md",
+    "13-07-26_13-41__executed-three-parallel-document-diff-research.md"
+  ]
+}

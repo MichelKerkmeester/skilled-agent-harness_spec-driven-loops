@@ -135,6 +135,18 @@
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-changelog" }
     },
     {
+      "workflowMode": "create-diff",
+      "packetKind": "workflow",
+      "backendKind": "template-scaffold",
+      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "packet": "create-diff",
+      "packetSkillName": "create-diff",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": ["create diff report", "document before after review", "before after document diff", "document change report"],
+      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-diff" }
+    },
+    {
       "workflowMode": "create-quality-control",
       "packetKind": "workflow",
       "backendKind": "create-quality-control",

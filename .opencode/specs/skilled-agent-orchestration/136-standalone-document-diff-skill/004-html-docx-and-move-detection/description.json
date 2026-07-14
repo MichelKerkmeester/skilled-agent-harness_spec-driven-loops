@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/136-standalone-document-diff-skill/004-html-docx-and-move-detection",
+  "description": "Isolated HTML and DOCX adapters with contextual move detection, fidelity diagnostics, and richer self-contained report views.",
+  "keywords": [
+    "isolated",
+    "html",
+    "docx",
+    "adapters",
+    "contextual",
+    "move",
+    "detection",
+    "fidelity",
+    "diagnostics",
+    "richer",
+    "self-contained",
+    "report",
+    "views"
+  ],
+  "lastUpdated": "2026-07-13T14:16:22.112Z",
+  "specId": "004",
+  "folderSlug": "html-docx-and-move-detection",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "136-standalone-document-diff-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
