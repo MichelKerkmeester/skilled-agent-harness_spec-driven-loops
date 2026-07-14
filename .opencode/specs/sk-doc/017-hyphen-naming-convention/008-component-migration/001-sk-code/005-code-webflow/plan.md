@@ -1,170 +1,126 @@
 ---
-title: "Implementation Plan: Phase 5: code-webflow [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: code-webflow filesystem names (017 phase 008/005)"
+description: "Plan for renaming code-webflow assets, playbook categories, references, symlink consumers, and benchmark labels through the frozen map, then proving browser-surface resource and scenario parity."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "code-webflow naming implementation plan"
+  - "Webflow packet rename plan"
+  - "Webflow asset reference repair"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-code-webflow"
-    last_updated_at: "2026-07-14T15:17:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored code-webflow phase plan"
+    next_safe_action: "Execute the Webflow packet rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-code-webflow"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-code/code-webflow/assets/"
+      - ".opencode/skills/sk-code/code-webflow/references/"
+      - ".opencode/skills/sk-code/code-webflow/manual_testing_playbook/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: code-webflow filesystem names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 5: code-webflow
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/sk-code/code-webflow |
+| **Change class** | Webflow surface filesystem rename plus reference/symlink repair |
+| **Execution** | Dependency-closed frozen-map batch in the pinned BASE worktree |
+| **Verification** | Link/path scan, resource discovery, symlink manifest, browser/runtime smoke, benchmark path check |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Group the rename by actual closure: assets and their indexes, manual scenarios, the deep reference tree, benchmark labels, and workflow symlinks. Update path consumers in the same batch, then compare Webflow and Motion.dev logical resource loads and smoke behavior with BASE.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The frozen map covers every underscore-bearing asset, directory, reference, symlink, and benchmark label.
+- [ ] BASE Webflow/Motion.dev resource-load, scenario, and browser evidence is attached.
+- [ ] Shared workflow and prior mode handoffs are available.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] All in-scope Webflow names are kebab-case and all path consumers resolve.
+- [ ] Asset, reference, scenario, symlink, and benchmark parity is proven.
+- [ ] No runtime semantics, identifier, or exemption surface changed.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Asset closure**: animation, integration, pattern, template, and checklist assets move with their indexes and inbound links.
+- **Playbook closure**: category directories and routing scenarios move with the root index and scenario cross-references.
+- **Reference closure**: nested animation, implementation, language, debugging, deployment, and verification trees move with all markdown links.
+- **Symlink/benchmark closure**: workflow link nodes and classified benchmark labels move with their path consumers; generated report contents stay generated.
+- **Behavior boundary**: preserve surface detection, Motion.dev overlay, browser selectors, code identifiers, and path-independent content.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load frozen map, BASE manifests, Webflow resource inventory, and prior shared/mode handoffs.
+- [ ] Record asset files, playbook categories, reference directories, symlink targets, benchmark labels, and every path edge.
+- [ ] Mark generated reports, exact names, identifiers, selectors, keys, and frozen content as non-rename surfaces.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename animation, integrations, patterns, templates, and root asset checklist names.
+- [ ] Rename the Webflow manual-testing-playbook root/categories/scenario files.
+- [ ] Rename the reference tree groups and nested files, including workflow, form, observer, performance, security, and deployment names.
+- [ ] Rename classified benchmark labels and repair SKILL.md, README.md, indexes, links, symlink target strings, and benchmark paths.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Resolve every markdown link and asset/reference path with a non-zero inventory.
+- [ ] Verify WEBFLOW, OPENCODE-over-WEBFLOW precedence, Motion.dev, and language/resource discovery behavior.
+- [ ] Run relevant browser/runtime smoke and benchmark path checks against BASE.
+- [ ] Verify symlink modes/targets, exemptions, and the final cross-component handoff.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Candidate coverage | Frozen-map scan covers every Webflow asset, playbook, reference, symlink, and benchmark candidate exactly once. |
+| Reference integrity | Resolve all markdown links and search old path basenames across markdown, JS, CSS, HTML, and config path values. |
+| Resource parity | Compare surface/animation/language resource load sets and scenario IDs with BASE. |
+| Runtime parity | Run browser/runtime smoke for Webflow and Motion.dev paths and compare route outcomes. |
+| Scope safety | Compare symlink manifests, identifiers/selectors, exact names, generated output, keys, package/Python, and frozen surfaces. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 001 shared hub closure | Internal | Required | Shared workflow source and link paths may be stale. |
+| 002-004 mode closures | Internal | Required | Cross-mode resource edges may be unresolved. |
+| 017 frozen rename map | Internal | Required | Asset/reference/generated classification is ambiguous. |
+| 000 baseline evidence | Internal | Required | Resource and browser parity cannot be measured. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Broken asset/reference link, missing scenario, browser/resource drift, symlink failure, collision, or exemption violation.
+- **Procedure**: Revert the Webflow closure, restore the pre-change link and resource manifest, and rerun the frozen-map preflight before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

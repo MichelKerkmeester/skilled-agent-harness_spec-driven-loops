@@ -1,170 +1,118 @@
 ---
-title: "Implementation Plan: Phase 1: hub-root-and-shared [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: cli-external-orchestration hub root and shared boundary (017 phase 005.001)"
+description: "Implementation plan for the cli-external-orchestration root/shared boundary: capture the live root census, protect exact router contracts, apply only owned path mappings, and keep playbook and benchmark ownership delegated."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "cli-external hub root implementation plan"
+  - "cli external shared boundary plan"
+  - "cli-external phase 001 plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-hub-root-and-shared"
-    last_updated_at: "2026-07-14T15:17:36Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored hub boundary plan"
+    next_safe_action: "Capture the pinned root census"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-hub-root-and-shared"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/cli-external-orchestration/SKILL.md"
+      - ".opencode/skills/cli-external-orchestration/hub-router.json"
+      - ".opencode/skills/cli-external-orchestration/mode-registry.json"
     completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    open_questions:
+      - "A later execution census must re-check the absent shared/ boundary."
+    answered_questions:
+      - "The current root-owned map is empty; delegated playbook and benchmark paths remain outside it."
 ---
+# Implementation Plan: cli-external-orchestration hub root and shared boundary
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: hub-root-and-shared
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Direct `.opencode/skills/cli-external-orchestration/` children and optional `shared/` |
+| **Change class** | Ownership census, bounded authored rename, root reference closure |
+| **Execution** | Pinned BASE, disposition ledger, protected-name and routing checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The plan starts with a direct-child census and records the current absence of `shared/`. It then evaluates only hub/shared-owned authored names, leaving all playbook, benchmark, and CLI component paths to their assigned phases. A zero-candidate owned map is valid when the census proves it.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The 017 scope/exemption record and component phase map are available.
+- [ ] Candidate and BASE SHAs are pinned and the direct root census is captured.
+- [ ] Each root child has an ownership and naming disposition before any rename.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Owned root/shared names have unique kebab-case targets or the empty map is evidenced.
+- [ ] Protected hub files and routing semantics are unchanged.
+- [ ] Delegated paths remain untouched and root-owned references resolve.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Use a boundary ledger: path → owner → classification → target/reference action → evidence. This prevents a root-wide underscore substitution from crossing child-phase ownership.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Hub contract**: `SKILL.md`, `README.md`, `hub-router.json`, `mode-registry.json`, and metadata files.
+- **Optional shared tree**: inspect only if present; do not create it.
+- **Delegated trees**: root/component playbooks, benchmark, and CLI component assets remain in their child maps.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Pinned root inventory → ownership/classification ledger → owned source-target map → targeted rename/reference update → routing and scope verification.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Capture root and optional shared inventories from BASE.
+- [ ] Classify protected, delegated, generated, frozen, exempt, and owned authored names.
+- [ ] Record the absence of `shared/` when absent and hash the disposition map.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename only owned authored root/shared paths to explicit kebab-case targets.
+- [ ] Update only root/shared path-valued references.
+- [ ] Keep tool-mandated filenames, keys, identifiers, routing values, and delegated child trees unchanged.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Re-enumerate the boundary and prove every path has one disposition.
+- [ ] Parse the routing files and verify existing modes/resources still resolve.
+- [ ] Search for stale owned source paths and inspect the diff for delegated-scope leakage.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Compare direct-child/shared census with the ledger; fail on unknown or duplicate ownership |
+| REQ-002 | Check each owned target for kebab-case and confirm no stale owned source path remains |
+| REQ-003 | Parse `hub-router.json` and `mode-registry.json`; compare protected names and routing values with BASE |
+| REQ-004 | Review the diff against all delegated playbook, benchmark, and component roots |
+| REQ-005 | Resolve every root/shared-owned path reference from the candidate tree |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The phase consumes the 017 exemption and dependency-closure rules. Phases 002–006 may update paths beneath the hub, so their checklists must use this boundary record when distinguishing a root consumer from a root-owned candidate.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Revert the bounded root/shared rename and reference changes if a protected-name, collision, routing, or delegated-scope check fails. If the census finds an unexpected shared subtree, stop before mutation and amend the disposition map rather than widening the operation implicitly.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

@@ -1,182 +1,99 @@
 ---
-title: "Feature Specification: Phase 3: references-and-assets [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: mcp-code-mode references and assets (017 component 011 phase 003)"
+description: "The skill's reference and asset directories contain four permitted snake_case Markdown filenames: naming_convention.md, tool_catalog.md, config_template.md, and env_template.md. This phase renames those files to kebab-case and closes every active link and path pointer while leaving tool-name examples, keys, Python paths, and frozen changelog history intact."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-code-mode references and assets"
+  - "mcp-code-mode phase 003"
+  - "reference asset kebab-case closure"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-references-and-assets"
-    last_updated_at: "2026-07-14T15:18:22Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets"
+    last_updated_at: "2026-07-14T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored references-assets docs"
+    next_safe_action: "Freeze the four-file path map"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-references-and-assets"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 3: references-and-assets
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: mcp-code-mode references and assets
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/003-references-and-assets` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 7 |
-| **Predecessor** | 002-scripts |
-| **Successor** | 004-runtime |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 003 of the 017 mcp-code-mode component migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 3** of the mcp code mode (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The mcp-code-mode references and assets tree uses underscore filenames for two reference documents and two copy-ready templates. The main guide, README, configuration reference, architecture/workflow references, scripts, and the templates themselves link to those paths, so isolated renames would create broken navigation.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phase applies the exact four-file kebab-case map and updates every active path pointer to it. It changes filesystem paths and links only; tool-call names, JSON/YAML/TOML keys, frontmatter fields, Python paths, and frozen changelog records remain untouched.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- references/naming_convention.md → references/naming-convention.md.
+- references/tool_catalog.md → references/tool-catalog.md.
+- assets/config_template.md → assets/config-template.md.
+- assets/env_template.md → assets/env-template.md.
+- Active Markdown links, router/resource lists, script messages, and path-valued pointers to those four files.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Snake_case words inside tool names, code examples, JSON/YAML/TOML keys, frontmatter fields, or prose.
+- Frozen changelog history and generated metadata unless its owning generator requires a path-valued refresh.
+- The mcp-server directory, scripts, runtime, manual-testing tree, other skills, and migration execution during this authoring pass.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The four permitted reference/asset filenames use kebab-case | The rename map contains exactly the four source-to-target pairs listed in scope |
+| REQ-002 | Active links and pointers follow the new names | Markdown link resolution and path scans find no stale active source filename |
+| REQ-003 | Cross-links among the four files remain valid | The naming, catalog, config template, and env template navigation links resolve from their new relative locations |
+| REQ-004 | Main skill consumers are updated | SKILL.md, README.md, configuration.md, architecture.md, workflows.md, and scripts/update.sh contain only final active paths where applicable |
+| REQ-005 | The exemption boundary is preserved | Tool-name underscores, data keys, frontmatter fields, Python paths, and frozen changelog references are not treated as filesystem renames |
+| REQ-006 | The phase produces evidence for all references | The candidate report records the path map, link scan, stale-hit scan, and any generated/frozen dispositions |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The four reference/asset documents are addressed through kebab-case paths and all active links resolve.
+- **SC-002**: No content contract is changed merely because an underscore appears in a tool name, key, field, or historical path.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The high-risk edge is a relative link that crosses references and assets, especially the links in configuration.md, the templates, and SKILL.md. This phase depends on the semantic reference checker and on phase 001's path state, but it does not own the manual-playbook or runtime references that other children rename.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking; the execution scan must distinguish active path values from frozen changelog history before applying the four-file map.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

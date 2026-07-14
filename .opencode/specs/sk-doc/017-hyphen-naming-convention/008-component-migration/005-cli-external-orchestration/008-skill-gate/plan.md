@@ -1,170 +1,120 @@
 ---
-title: "Implementation Plan: Phase 8: skill-gate [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: cli-external-orchestration subtree rollup gate (017 phase 005.008)"
+description: "Read-only rollup plan for phase 008: reconcile phases 001–007, enumerate the complete cli-external-orchestration surface, resolve final references, and publish a reproducible pass/block result without new migration work."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "cli-external subtree rollup gate plan"
+  - "cli-external kebab-clean plan"
+  - "cli-external phase 008 plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-skill-gate"
-    last_updated_at: "2026-07-14T15:17:41Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored cli-external rollup plan"
+    next_safe_action: "Collect sibling verdicts and final census"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-skill-gate"
-      parent_session_id: null
+    key_files:
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/"
+      - ".opencode/skills/cli-external-orchestration/"
+      - ".opencode/skills/cli-external-orchestration/cli-opencode/"
+      - ".opencode/skills/cli-external-orchestration/cli-claude-code/"
+      - ".opencode/skills/cli-external-orchestration/cli-codex/"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The gate is read-only and routes new findings to sibling owners."
 ---
+# Implementation Plan: cli-external-orchestration subtree rollup gate
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 8: skill-gate
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Complete cli-external-orchestration tree and phases 001–007 evidence |
+| **Change class** | Read-only aggregation, scope-aware census, final gate |
+| **Execution** | Sibling verdict matrix, map reconciliation, stale-reference scan |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The gate first checks every sibling contract, then joins their maps and scans the final hub/component/playbook/benchmark tree for unknown non-kebab names or stale active paths. It emits pass only when evidence is complete and performs no rename, repair, or release edit.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phases 001–007 have candidate evidence, checklist verdicts, maps, and release handoff available.
+- [ ] Final candidate and BASE SHAs are pinned.
+- [ ] The 017 exemption record and every sibling disposition hash are available.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Every sibling phase is green with no contradictory ownership or release evidence.
+- [ ] The final scope-aware census has no unknown in-scope snake_case name or stale active path.
+- [ ] The pass/block matrix and reproducible evidence are handed to central validation without skill-surface mutation.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Use two joined ledgers: phase → checklist verdict/evidence, and filesystem path → final classification/owner. A final reference scan joins both so an exempt name cannot hide a stale consumer.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Sibling matrix**: phases 001–007, their checklists, maps, hashes, and handoffs.
+- **Surface census**: hub root, cli-opencode, cli-claude-code, cli-codex, four playbook trees, and benchmark.
+- **Scope classifier**: authored in-scope, Python/package, tool-mandated, generated, frozen, identifier/data-key, or unknown.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Sibling evidence → map reconciliation → final filesystem census → active-reference resolution → rollup verdict and owner-routed findings.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Collect sibling checklist verdicts, map hashes, benchmark dispositions, release evidence, and handoffs.
+- [ ] Pin final candidate/BASE SHAs and enumerate the complete skill surface.
+- [ ] Reconcile overlapping root-consumer ownership without creating a new rename map.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Classify each retained non-kebab filesystem name against 017 exemptions or sibling evidence.
+- [ ] Resolve active references against all final source-target maps and target existence.
+- [ ] Record every mismatch as a blocking finding routed to the owning phase.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Re-run the census and stale-reference scan after evidence reconciliation.
+- [ ] Confirm no sibling P0 or release contradiction remains unresolved.
+- [ ] Publish the final pass/block matrix without editing the skill surface.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Read every sibling checklist and reconcile P0/P1 verdicts, maps, hashes, and evidence paths |
+| REQ-002 | Scan the complete surface and classify every retained non-kebab filesystem name; fail on unknown |
+| REQ-003 | Resolve final maps and search skill/README/router/playbook/asset/benchmark consumers for stale source paths |
+| REQ-004 | Compare retained names with 017 exemptions and each owning child disposition |
+| REQ-005 | Record SHAs, commands, exit codes, census/map hashes, release verdict, and findings |
+| REQ-006 | Confirm the gate's diff contains only rollup evidence and no migration mutation |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The gate depends on all sibling path maps, phase 006 benchmark evidence, and phase 007 release evidence. It is not a fallback implementation phase: a failed census returns to the owning child, and an unresolved release contradiction returns to the release workflow.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+There is no skill-surface mutation to roll back. If the gate fails, preserve the evidence, route the finding to its owner, and rerun the rollup after an explicitly authorized correction; do not patch the failure here.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

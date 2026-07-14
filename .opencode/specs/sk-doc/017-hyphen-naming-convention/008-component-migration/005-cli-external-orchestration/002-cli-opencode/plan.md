@@ -1,170 +1,119 @@
 ---
-title: "Implementation Plan: Phase 2: cli-opencode [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: cli-opencode component naming (017 phase 005.002)"
+description: "Implementation plan for the cli-opencode component: build a semantic local path map for references and assets, update path-valued consumers, preserve permissions/schema semantics, and exclude the delegated playbook tree."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "cli-opencode implementation plan"
+  - "OpenCode asset reference rename plan"
+  - "cli-external phase 002 plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-cli-opencode"
-    last_updated_at: "2026-07-14T15:17:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored cli-opencode path plan"
+    next_safe_action: "Build the component disposition map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-cli-opencode"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-external-orchestration/cli-opencode/references/"
+      - ".opencode/skills/cli-external-orchestration/cli-opencode/assets/"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The current non-playbook candidate set is eight reference files plus six asset files."
+      - "The nested manual-testing-playbook tree is phase 005 ownership."
 ---
+# Implementation Plan: cli-opencode component naming
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: cli-opencode
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `cli-opencode/references/`, `cli-opencode/assets/`, and their local consumers |
+| **Change class** | Semantic authored-file rename and path-reference closure |
+| **Execution** | Pinned BASE, source-target ledger, content/key parity, local link resolution |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The plan maps the eight reference files and six asset files explicitly: `cli_reference.md`, `opencode_tools.md`, `agent_delegation.md`, `permissions_matrix.md`, `self_invocation_guard.md`, `integration_patterns.md`, `context_budget.md`, `destructive_scope_violations.md`, the four `permissions_matrix.*.json` assets, `prompt_quality_card.md`, and `prompt_templates.md`. It then rewrites only path-valued consumers and proves that permission/schema data and dispatch behavior did not change.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 001 hub boundary and the 017 exemption record are available.
+- [ ] Candidate/BASE SHAs and the complete local file inventory are captured.
+- [ ] Every source path has an owner and a rename/exempt/protected disposition before mutation.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All local authored candidates have unique kebab-case targets and no stale source references.
+- [ ] Permission/schema keys and dispatch contracts compare equal with BASE.
+- [ ] The nested playbook and protected script/tool surfaces are outside the change set.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Use a local source-target map joined to a path-reference inventory. The map distinguishes filesystem tokens from JSON keys, schema properties, code identifiers, and external paths.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **References**: eight local Markdown files under `cli-opencode/references/`.
+- **Assets**: four permissions-matrix JSON files plus `prompt_quality_card.md` and `prompt_templates.md`.
+- **Consumers**: `SKILL.md`, `README.md`, asset links, schema `$id`/glob/path values, and active local changelog paths.
+- **Protected surfaces**: `SKILL.md`, `scripts/`, `manual_testing_playbook/`, changelog history, and external skill names.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+BASE inventory → path/key classification → bijective local map → filesystem rename → path-valued reference update → link, schema, script, and content parity checks.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Capture all files under `references/` and `assets/`, including the four permissions-matrix examples/schema.
+- [ ] Search `SKILL.md`, `README.md`, assets, and active local docs for each source basename and path segment.
+- [ ] Record delegated playbook, script, changelog, Python/package, and external-path dispositions.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Apply the explicit eight-reference and six-asset source-target map.
+- [ ] Update Markdown links, `SKILL.md`/README tables, JSON schema path values/globs, and active local path references.
+- [ ] Keep JSON keys, schema property names, dispatch text, scripts, and external paths unchanged unless their path value points at a mapped file.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Re-enumerate local paths and compare them with the ledger.
+- [ ] Resolve all local links and inspect schema/path values for stale sources.
+- [ ] Compare JSON keys, script checks, dispatch rule anchors, and protected files with BASE.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Reconcile `find` inventory with the map; fail on unknown, duplicate, collision, or stale source |
+| REQ-002 | Resolve Markdown links and search path-valued references in `SKILL.md`, README, assets, and active local docs |
+| REQ-003 | Compare JSON keys/schema properties, path-normalized schema values, dispatch rules, and script behavior with BASE |
+| REQ-004 | Review `manual_testing_playbook/`, scripts, changelog history, Python/package names, and external paths for scope leakage |
+| REQ-005 | Confirm exact source-target bijection, casefold/NFC collision absence, and git-revert reversibility |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The phase depends on phase 001's hub boundary, the 017 exemption decision record, and phase 005's ownership of all nested manual-testing-playbook paths. Phase 007 later verifies release evidence for the completed component set.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Revert the path-only rename/reference commit if collision, stale-link, schema, or dispatch parity checks fail. If a path is found to be an external or delegated consumer, stop before mutation and return it to the owning phase rather than broadening this map.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

@@ -1,182 +1,98 @@
 ---
-title: "Feature Specification: Phase 2: scripts [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: mcp-code-mode scripts (017 component 011 phase 002)"
+description: "The mcp-code-mode scripts surface must be audited under the 017 filesystem exemption boundary. The current non-Python script names are already kebab-case, while validate_config.py is an explicitly exempt Python filename; this phase proves that inventory and closes any eligible script reference set without renaming the Python file."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-code-mode scripts naming"
+  - "mcp-code-mode phase 002"
+  - "script filename exemption audit"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-scripts"
-    last_updated_at: "2026-07-14T15:18:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts"
+    last_updated_at: "2026-07-14T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored scripts audit docs"
+    next_safe_action: "Execute the script filename census after phase 001"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-scripts"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: scripts
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: mcp-code-mode scripts
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/002-scripts` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 7 |
-| **Predecessor** | 001-mcp-server-dir-and-manifest-closure |
-| **Successor** | 003-references-and-assets |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 002 of the 017 mcp-code-mode component migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 2** of the mcp code mode (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Script paths are consumed by shell sourcing, documentation, manual scenarios, and package tooling. The current inventory is mixed by language: doctor.sh, install.sh, update.sh, and the package check-node.cjs script are already kebab-case, while scripts/validate_config.py contains an underscore but must remain unchanged under the Python exemption.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phase produces an auditable script-name map, renames only a non-Python snake_case filename if the pinned census finds one, and updates every source/import/registry/path reference in the same closure. A zero eligible candidate result is valid only when the census and reference scan prove it.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The root scripts directory and the post-phase-001 mcp-server/scripts directory.
+- The current script inventory: doctor.sh, install.sh, update.sh, validate_config.py, and mcp-server/scripts/check-node.cjs.
+- Any additional non-Python script filename found by the pinned-tree census, plus its shell sourcing, imports, registry entries, documentation paths, and manual-scenario pointers.
+- Reference and syntax evidence showing the Python filename remains exempt.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Renaming scripts/validate_config.py or any .py file; renaming Python import-package directories; or changing Python identifiers.
+- The mcp-server directory closure, references/assets files, runtime names, manual-playbook tree, changelog history, and JSON/YAML/TOML keys.
+- Shell behavior, command names, environment variable names, and tool names that are not filesystem paths.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every script filename is classified against the exemption set | The report lists the root scripts and mcp-server/scripts inventories and has no unknown filename |
+| REQ-002 | Python script names remain exempt | validate_config.py remains the same filesystem name and all references to it continue to resolve |
+| REQ-003 | Eligible non-Python snake_case filenames are renamed semantically | Every eligible candidate has one kebab-case target, or the report proves the candidate set is empty at the pinned baseline |
+| REQ-004 | Script consumers move with any rename | Shell source paths, imports, registry entries, documentation links, and manual pointers contain no stale old eligible filename |
+| REQ-005 | Script execution contracts are preserved | bash syntax checks and Node checks pass for affected scripts, and no command, environment variable, or code identifier is renamed |
+| REQ-006 | The phase leaves an auditable zero-candidate or rename result | The candidate report records the inventory, map hash, consumer dispositions, and verification exit codes |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: No eligible non-Python snake_case script filename remains in the mcp-code-mode surface, with the empty current map accepted only when evidenced.
+- **SC-002**: The exempt validate_config.py path and all affected script consumers remain valid without identifier or behavior drift.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The main risk is treating an underscore in a shell variable, command, or Python filename as a filesystem candidate. This phase depends on phase 001's package-root state, the 017 semantic rename map, and a path-aware reference checker that distinguishes filenames from content identifiers.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking; the execution census decides whether this phase has a non-empty rename set.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

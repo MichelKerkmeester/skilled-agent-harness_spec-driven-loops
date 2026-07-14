@@ -1,182 +1,125 @@
 ---
-title: "Feature Specification: Phase 4: code-review [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: code-review filesystem names (017 phase 008/004)"
+description: "The code-review mode stores review assets, manual-review scenarios, benchmark labels, and reference documents under snake_case names. Those names are embedded in review routing, checklist links, and scenario indexes, so this phase defines a complete kebab-case rename/reference closure without changing review severity or security behavior."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "code-review naming migration"
+  - "review mode kebab-case"
+  - "review playbook path rename"
+  - "sk-code review packet migration"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-code-review"
-    last_updated_at: "2026-07-14T15:17:09Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored code-review phase spec"
+    next_safe_action: "Execute the review packet rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-code-review"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-code/code-review/SKILL.md"
+      - ".opencode/skills/sk-code/code-review/assets/"
+      - ".opencode/skills/sk-code/code-review/manual_testing_playbook/"
+      - ".opencode/skills/sk-code/code-review/references/"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Review findings, severity tiers, security rules, and review identifiers are unchanged."
+      - "SKILL.md, README.md, Python/package, generated, tool-mandated, and frozen names remain exact."
+      - "This child owns only the code-review subtree and its path/reference closure."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 4: code-review
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: code-review filesystem names
 
----
+> Phase adjacency under the sk-code component parent: predecessor 003-code-quality; successor 005-code-webflow.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/004-code-review` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 9 |
-| **Predecessor** | 003-code-quality |
-| **Successor** | 005-code-webflow |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-code |
+| **Origin** | Phase 004 of the sk-code component migration under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 4** of the sk code (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+The code-review packet contains snake_case checklist files, review-flow and security scenario directories, a manual_testing_playbook root, benchmark labels, and review reference documents. The review SKILL.md and every scenario use these paths as navigation and verification contracts; a partial rename could make security or evidence scenarios unreachable while leaving the mode apparently healthy.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
----
+Rename all in-scope code-review filesystem names to kebab-case and repair the review packet's links and resource paths while preserving findings-first behavior, severity/evidence discipline, security minimums, and exact-name exemptions.
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- Review assets: code_quality_checklist.md, fix_completeness_checklist.md, removal_plan.md, security_checklist.md, solid_checklist.md, and test_quality_checklist.md.
+- The code-review/manual_testing_playbook/ root and its baseline_review_flow, cross_cli_orchestration, efficiency_and_restraint, intra_routing_recall, re_review_and_stale_context, scope_and_precedence, security_and_correctness_minimums, severity_and_evidence_discipline, and structural_impact_preflight categories, including their scenario files.
+- Nested benchmark labels live_mode_b/ and router_mode_a/, review references pr_state_dedup.md, quick_reference.md, review_core.md, and review_ux_single_pass.md.
+- Code-review SKILL.md, README.md, scenario indexes, relative links, shared/surface resource references, and any path-valued registries that point into this packet.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- Findings logic, severity labels, security/correctness rules, review identifiers, code identifiers, JSON/YAML/TOML keys, and frontmatter fields.
+- SKILL.md, README.md, package manifests, Python .py files and package directories, generated/lockfile output, tool-mandated names, and frozen changelog/history as physical names.
+- Hub/shared, code-opencode, code-quality, code-webflow, hub-level playbook, and root benchmark physical renames owned by sibling children.
+- Rewriting review content merely because it mentions an underscore; only filesystem names and path-derived values change.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| .opencode/skills/sk-code/code-review/assets/** | Rename and reference update | Rename review checklist files and repair packet links. |
+| .opencode/skills/sk-code/code-review/manual_testing_playbook/** | Rename and reference update | Rename review-flow/category/scenario paths and the root index path. |
+| .opencode/skills/sk-code/code-review/references/** | Rename and reference update | Rename review reference files and update their links. |
+| .opencode/skills/sk-code/code-review/benchmark/** | Rename and path update | Rename live_mode_b and router_mode_a labels when classified as tracked names. |
+| .opencode/skills/sk-code/code-review/SKILL.md and README.md | Reference update | Preserve review contracts while replacing old path literals. |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every in-scope review name has a unique kebab-case target | The frozen map covers assets, all listed scenario categories/files, references, and benchmark labels with no unknown or collision row. |
+| REQ-002 | Review navigation and resource loading remain complete | SKILL.md, README.md, indexes, scenario links, shared/surface references, and benchmark paths resolve with no active old basename. |
+| REQ-003 | Review behavior remains equivalent | Findings-first output, severity/evidence checks, security minimums, and review-state handling match BASE evidence. |
+| REQ-004 | Exemption boundary remains intact | Exact names, Python/package, generated/lockfile, identifiers/keys, frontmatter fields, and frozen history remain unchanged. |
+| REQ-005 | Cross-component edges are handed off | The child records every reference into shared, surface, or root-playbook paths for the final subtree gate. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: No in-scope snake_case filesystem name remains under code-review.
+- **SC-002**: Every review asset, scenario, reference, benchmark, and cross-surface link resolves.
+- **SC-003**: Review findings, security checks, and scenario discovery match BASE.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The review packet is path-dense and contains security and correctness scenarios whose absence can look like a green review if discovery is not checked. The mitigation is an explicit scenario inventory, non-zero discovery counts, link resolution, and behavior parity against BASE. The phase depends on the frozen map and the shared/OpenCode/quality handoffs but does not authorize changes to their content.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The execution report must distinguish review scenario names from code-review identifiers and preserve the latter even when an identifier contains an underscore.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

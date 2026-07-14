@@ -1,106 +1,78 @@
 ---
-title: "Tasks: Phase 4: runtime [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: mcp-code-mode runtime (017 component 011 phase 004)"
+description: "Tasks for the runtime filename census, no-op proof, conditional rename closure, and executable path verification."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-code-mode runtime tasks"
+  - "mcp-code-mode phase 004 tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-runtime"
-    last_updated_at: "2026-07-14T15:18:23Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
+    last_updated_at: "2026-07-14T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored runtime audit tasks"
+    next_safe_action: "Enumerate runtime files"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-runtime"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: mcp-code-mode runtime
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: runtime
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Record BASE and enumerate runtime/hooks/claude, runtime/hooks/codex, and runtime/lib
+- [ ] T002 [P] Inventory direct runtime path consumers and manual-scenario references
+- [ ] T003 Classify the four observed mcp-route-guard filenames and any additional runtime name
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Freeze the runtime map, accepting an empty map only with census evidence
+- [ ] T005 Rename each eligible runtime filename, if any
+- [ ] T006 Update direct loader, require, test, and manual-scenario runtime path references
+- [ ] T007 Keep phase-005 manual-playbook filename changes outside this phase
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Run node --check on the runtime CommonJS files
+- [ ] T009 Run the route-guard test path and resolve affected references
+- [ ] T010 Verify no eligible runtime snake_case name remains
+- [ ] T011 Pin the map result, dispositions, commands, and exit codes
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete
+- [ ] All requirements in spec.md met with evidence
+- [ ] Phase gate green (validate/build/test/link as applicable)
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

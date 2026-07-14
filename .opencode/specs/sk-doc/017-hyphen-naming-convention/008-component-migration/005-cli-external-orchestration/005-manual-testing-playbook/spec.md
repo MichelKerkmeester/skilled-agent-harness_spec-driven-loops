@@ -1,182 +1,119 @@
 ---
-title: "Feature Specification: Phase 5: manual-testing-playbook [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: cli-external-orchestration manual-testing-playbook naming (017 phase 005.005)"
+description: "The cli-external-orchestration surface contains four manual_testing_playbook roots and snake_case category/file names across hub, OpenCode, Claude Code, and Codex scenarios. This phase renames those playbook filesystem names, updates active references, and preserves scenario IDs, frontmatter fields, and test meaning."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "cli-external manual playbook kebab-case"
+  - "manual-testing-playbook scenario rename"
+  - "cli-external phase 005 playbook naming"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:17:39Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored playbook naming docs"
+    next_safe_action: "Freeze the four-tree playbook map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-manual-testing-playbook"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/cli-external-orchestration/manual_testing_playbook/"
+      - ".opencode/skills/cli-external-orchestration/cli-opencode/manual_testing_playbook/"
+      - ".opencode/skills/cli-external-orchestration/cli-claude-code/manual_testing_playbook/"
+      - ".opencode/skills/cli-external-orchestration/cli-codex/manual_testing_playbook/"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The current inventory has four playbook roots, 34 directories, and 116 files; the path census reports 150 underscore-bearing entries."
+      - "All four playbook roots and their category/file descendants belong to this phase; component reference/assets remain with phases 002–004."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 5: manual-testing-playbook
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: cli-external-orchestration manual-testing-playbook naming
 
----
+> Phase adjacency under the cli-external-orchestration component parent: predecessor `004-cli-codex`; successor `006-benchmark`; phases 002–004 do not own any nested playbook path.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/005-manual-testing-playbook` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 8 |
-| **Predecessor** | 004-cli-codex |
-| **Successor** | 006-benchmark |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | cli-external-orchestration |
+| **Origin** | Phase 005 of the cli-external-orchestration subtree under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 5** of the cli external orchestration (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The hub, cli-opencode, cli-claude-code, and cli-codex playbooks use `manual_testing_playbook/` roots, underscore-separated category directories, and underscore-separated scenario filenames. Their links are distributed across playbook indexes, skill/README guidance, and cross-scenario references, so renaming a category without its descendants would break manual coverage and leave stale paths.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phase applies a complete four-tree filesystem map to kebab-case, rewrites path-valued references, and proves that scenario IDs, frontmatter fields, headings, and manual-test meaning are preserved.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Root tree `.opencode/skills/cli-external-orchestration/manual_testing_playbook/`, including `hub_routing/`, `plugins_and_hooks/`, and files such as `claude_code_second_opinion.md`, `holdout_second_opinion.md`, `opencode_full_runtime_dispatch.md`, `cli_dispatch_audit_trail.md`, and `codex_hook_parity.md`.
+- OpenCode tree `cli-opencode/manual_testing_playbook/`, including `agent_routing/`, `cli_invocation/`, `cross_repo_cross_server/`, `external_dispatch/`, `integration_patterns/`, `intra_routing_recall/`, `multi_provider/`, `parallel_detached/`, `prompt_templates/`, and `session_continuity/`, plus all snake_case scenario files such as `deep_research_agent_iterations.md`, `self_invocation_guard_nested.md`, `parallel_detached_session.md`, and `deepseek_v4_direct_api.md`.
+- Claude Code tree `cli-claude-code/manual_testing_playbook/`, including `agent_routing/`, `cli_invocation/`, `cost_and_background/`, `integration_patterns/`, `intra_routing_recall/`, `permission_modes/`, `prompt_templates/`, `reasoning_and_models/`, and `session_continuity/`, plus all scenario files.
+- Codex tree `cli-codex/manual_testing_playbook/`, including `agent_routing/`, `built_in_tools/`, `cli_invocation/`, `codex_cloud/`, `integration_patterns/`, `prompt_templates/`, `reasoning_effort/`, `sandbox_modes/`, and `session_continuity/`, plus all scenario files such as `gpt_5_5_model_lock.md` and `mcp_server_registration.md`.
+- Update playbook indexes, `SKILL.md`/README references, relative Markdown links, and any path-valued scenario or category references.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Non-playbook component references/assets, scripts, root router files, and benchmark artifacts; phases 001–004 and 006 own them.
+- Scenario IDs, frontmatter fields, JSON/YAML/TOML keys, code identifiers, prose terminology, changelog history, Python/package names, generated output, and tool-mandated names.
+- Executing the migration during this authoring pass.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| Root `manual_testing_playbook/` | Rename/reference update | Map `manual_testing_playbook`, `hub_routing`, `plugins_and_hooks`, and all child files |
+| `cli-opencode/manual_testing_playbook/` | Rename/reference update | Map the ten category dirs and all scenario files |
+| `cli-claude-code/manual_testing_playbook/` | Rename/reference update | Map the nine category dirs and all scenario files |
+| `cli-codex/manual_testing_playbook/` | Rename/reference update | Map the nine category dirs and all scenario files |
+| Skill/README/index references | Reference update | Repoint active playbook paths while preserving scenario semantics |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 [P0] | Four-tree ownership is complete | Every path under the four playbook roots has exactly one source-target, exempt, protected, generated, or frozen disposition |
+| REQ-002 [P0] | Playbook filesystem names are kebab-case | All four roots, category directories, and authored scenario filenames have unique hyphenated targets with no stale source path |
+| REQ-003 [P0] | Active playbook references resolve | Indexes, skill/README links, relative scenario links, and path-valued references resolve after the map is applied |
+| REQ-004 [P0] | Manual-test semantics are preserved | Scenario IDs, frontmatter fields, scenario count, headings, and content meaning match BASE; only filesystem path values change |
+| REQ-005 [P1] | Component ownership stays separate | Non-playbook reference/assets and benchmark paths are outside the diff and handed to their owning phases |
+| REQ-006 [P1] | The map is reversible | Source-target mappings are bijective, collision-free, and support a git revert |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All four manual-testing-playbook trees use kebab-case filesystem names.
+- **SC-002**: All active playbook/index references resolve with no stale authored source path.
+- **SC-003**: Scenario IDs, frontmatter, headings, and manual-test coverage match BASE.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The primary risk is a partial tree rename that breaks relative links or silently drops a scenario. The phase depends on the component handoffs and 017 path-vs-content boundary; a complete four-tree ledger, scenario-ID parity check, and recursive link resolution provide the guardrail.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The execution census must re-count all four trees before mutation because a later authoring change could add a category or scenario.
 <!-- /ANCHOR:questions -->
 
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

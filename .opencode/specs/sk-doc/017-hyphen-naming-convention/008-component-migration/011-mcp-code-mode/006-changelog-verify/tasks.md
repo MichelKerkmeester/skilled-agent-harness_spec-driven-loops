@@ -1,106 +1,77 @@
 ---
-title: "Tasks: Phase 6: changelog-verify [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: mcp-code-mode changelog verification (017 component 011 phase 006)"
+description: "Tasks for checking the post-v1.0.8.0 changelog entry, skill version bump, sibling rename evidence, and frozen history."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-code-mode changelog verify tasks"
+  - "mcp-code-mode phase 006 tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-changelog-verify"
-    last_updated_at: "2026-07-14T15:18:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify"
+    last_updated_at: "2026-07-14T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored changelog verify tasks"
+    next_safe_action: "Collect sibling evidence"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-changelog-verify"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: mcp-code-mode changelog verification
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 6: changelog-verify
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Confirm phases 001 through 005 provide final reports and map hashes
+- [ ] T002 Record the latest changelog/SKILL.md baseline and the separate README/package-lock version values
+- [ ] T003 [P] Collect the final package, script, reference/asset, runtime, and playbook path outcomes
 <!-- /ANCHOR:phase-1 -->
 
----
-
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation
+## Phase 2: Verification
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Verify a new versioned changelog entry exists after v1.0.8.0
+- [ ] T005 Compare its file list and descriptions to all five sibling outcomes
+- [ ] T006 Verify the changelog heading and SKILL.md release version agree
+- [ ] T007 Verify README.md and package-lock.json version differences have explicit dispositions
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Confirm historical changelog entries remain frozen
+- [ ] T009 Confirm this phase performed no renames or code changes
+- [ ] T010 Record pass/fail evidence and block phase 007 on any missing or inconsistent release evidence
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete
+- [ ] All requirements in spec.md met with evidence
+- [ ] Phase gate green (validate/build/test/link as applicable)
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

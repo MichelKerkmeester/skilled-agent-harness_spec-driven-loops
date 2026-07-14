@@ -1,170 +1,121 @@
 ---
-title: "Implementation Plan: Phase 7: changelog-verify [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: cli-external-orchestration changelog and version verification (017 phase 005.007)"
+description: "Verification plan for phase 007: inspect four release histories, compare new rename entries with child evidence and active metadata, preserve historical changelogs, and issue a pass/block handoff without changing the skill surface."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "cli-external changelog verification plan"
+  - "cli-external release evidence plan"
+  - "cli-external phase 007 plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-changelog-verify"
-    last_updated_at: "2026-07-14T15:17:40Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored changelog verification plan"
+    next_safe_action: "Capture release-entry/version matrix"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-changelog-verify"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/cli-external-orchestration/changelog/"
+      - ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/"
+      - ".opencode/skills/cli-external-orchestration/cli-claude-code/changelog/"
+      - ".opencode/skills/cli-external-orchestration/cli-codex/changelog/"
+      - ".opencode/skills/cli-external-orchestration/description.json"
     completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    open_questions:
+      - "The release version and exact new entry filenames are supplied by the migration candidate."
+    answered_questions:
+      - "The phase is read-only verification and does not create or edit changelog entries."
 ---
+# Implementation Plan: cli-external-orchestration changelog and version verification
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 7: changelog-verify
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Hub and three CLI-component changelogs plus active version metadata |
+| **Change class** | Read-only release evidence and contradiction reporting |
+| **Execution** | Post-migration candidate, phase evidence, version/file-list comparison |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The plan snapshots all four historical changelog file lists and active metadata, locates the new migration entries, compares each entry with phases 001–006, and emits a pass/block matrix. Missing coverage or version drift remains a blocking finding; this phase does not repair it.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phases 001–006 have passed their blocking checklist contracts and their maps/evidence are available.
+- [ ] Candidate/BASE SHAs, release date, and execution-time version values are recorded.
+- [ ] Historical changelog baselines and root active metadata are available for comparison.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] One matching migration entry is identified for each of the four release surfaces.
+- [ ] Rename-set, exemption, file-list, and version comparisons are evidenced.
+- [ ] Historical files are unchanged and phase 008 receives a clear pass/block result.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Use a release-evidence matrix: surface → changelog file/version → active metadata version → phase-map coverage → verdict. Keep historical files separate from the new entry under review.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Hub record**: root `changelog/`, `SKILL.md`, `description.json`, and `graph-metadata.json`; the current root version/history mismatch is a required comparison.
+- **OpenCode record**: `cli-opencode/changelog/` and `cli-opencode/SKILL.md`.
+- **Claude Code record**: `cli-claude-code/changelog/` and `cli-claude-code/SKILL.md`.
+- **Codex record**: `cli-codex/changelog/` and `cli-codex/SKILL.md`.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+BASE history → candidate release-entry inventory → active metadata/version comparison → phase-map coverage check → phase 008 pass/block handoff.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Capture four historical changelog file lists and active version/path metadata at BASE.
+- [ ] Record candidate release dates/versions and completed phase 001–006 evidence paths.
+- [ ] Locate the new entry for each release surface without editing any file.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Compare each entry's version, file list, rename scope, and exemption claims with child evidence.
+- [ ] Compare entry versions and filenames with active `SKILL.md`, root descriptors, and graph metadata where present.
+- [ ] Record each contradiction as a blocking release finding; do not normalize it here.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Prove historical changelog files did not change.
+- [ ] Confirm all six path/census phase concerns are represented without overclaiming.
+- [ ] Publish the release-evidence matrix and pass/block handoff to phase 008.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Enumerate new changelog files and match one migration entry to each release surface |
+| REQ-002 | Compare entry text/file list with phases 001–006 maps, benchmark evidence, playbook evidence, and exemption boundary |
+| REQ-003 | Compare changelog version/filename with active metadata and fail on unresolved mismatch |
+| REQ-004 | Compare historical files with BASE and confirm no frozen narrative changed |
+| REQ-005 | Check phase 008 handoff contains paths, versions, coverage, commands, exit codes, and findings |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The phase depends on the six preceding path/census checklists and their final evidence. It is verification-only and must not become an implicit release-edit phase; missing entries or version repairs return to the authorized release workflow before phase 008.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+There is no filesystem mutation to roll back. If evidence fails, retain the read-only report, mark the phase blocked, and return the release candidate to its owner for an explicit changelog/version change before rerunning this verifier.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

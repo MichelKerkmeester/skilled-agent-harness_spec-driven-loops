@@ -1,170 +1,104 @@
 ---
-title: "Implementation Plan: Phase 2: scripts [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: mcp-code-mode scripts (017 component 011 phase 002)"
+description: "Inventory the mcp-code-mode script filenames, preserve the Python exemption, and apply a semantic non-Python rename map only when the pinned tree contains an eligible candidate. Close shell, import, registry, and documentation references with the same map."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-code-mode scripts implementation plan"
+  - "mcp-code-mode phase 002 implementation plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-scripts"
-    last_updated_at: "2026-07-14T15:18:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts"
+    last_updated_at: "2026-07-14T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored scripts audit plan"
+    next_safe_action: "Classify script filename candidates"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-scripts"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: mcp-code-mode scripts
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: scripts
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | mcp-code-mode/scripts and mcp-server/scripts |
+| **Change class** | Script filename census and conditional reference closure |
+| **Execution** | Isolated worktree pinned to BASE; phase 001 package path is a prerequisite |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+At the authoring baseline, doctor.sh, install.sh, update.sh, and check-node.cjs already use kebab-case. validate_config.py is the intentional Python exception. The plan therefore makes the census itself blocking: an empty eligible map is accepted only after proving every script and every consumer disposition.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The phase-001 package root is mcp-server and the script inventory is recorded
+- [ ] Each filename is classified as rename or exemption
+- [ ] Script consumer classes include source, import, registry, docs, and manual pointers
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Every eligible script filename is kebab-case, or the pinned evidence proves no eligible filename exists
+- [ ] validate_config.py and its references remain unchanged in name and behavior
+- [ ] Syntax and reference checks pass for the final script map
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- A language-aware filename classifier over mcp-code-mode/scripts and mcp-server/scripts.
+- A semantic map for eligible non-Python filenames; the current expected map is empty because the observed non-Python names are already kebab-case.
+- A consumer closure covering shell sourcing, imports, registries, markdown paths, and manual-testing pointers, with Python and identifier hits explicitly excluded.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- Record BASE and enumerate every script filename after phase 001.
+- Classify doctor.sh, install.sh, update.sh, validate_config.py, and check-node.cjs, then search for any newly discovered candidate.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- If the eligible map is non-empty, rename each non-Python script filename to its semantic kebab-case target.
+- Update source, import, registry, documentation, and manual pointers using the same map.
+- If the map is empty, record the zero-candidate proof and make no script rename.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- Run bash -n for affected shell scripts and node --check for affected CommonJS scripts.
+- Prove validate_config.py remains present and every active reference resolves.
+- Record the final map, consumer dispositions, and path/reference scan results.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Script census lists both script directories and has no unknown disposition |
+| REQ-002 | Exact path scan proves validate_config.py is preserved and resolvable |
+| REQ-003 | Semantic map contains every eligible candidate or an evidenced empty set |
+| REQ-004 | Reference checker finds no stale eligible script path in active files |
+| REQ-005 | bash -n, node --check, and targeted script smoke checks pass |
+| REQ-006 | Candidate report pins the map hash, consumer ledger, commands, and exit codes |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+This phase depends on the 017 naming policy, phase 001's mcp-server directory state, the semantic reference checker, and the pinned worktree. Python tooling is used only for the exempt validator path and is not a rename target.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+If the map is non-empty, reverse each script rename and its recorded consumer rewrites in one path-scoped revert. If the map is empty, discard only the phase evidence; no source or script file requires rollback.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

@@ -1,170 +1,125 @@
 ---
-title: "Implementation Plan: Phase 6: manual-testing-playbook [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: sk-code manual-testing-playbook tree (017 phase 008/006)"
+description: "Plan for renaming the hub-level sk-code manual-testing-playbook root, categories, and scenario files through the frozen map, then proving scenario-ID and benchmark-corpus parity."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "manual playbook naming implementation plan"
+  - "sk-code scenario rename plan"
+  - "manual-testing-playbook reference repair"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:17:11Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored manual playbook phase plan"
+    next_safe_action: "Execute the hub playbook rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-manual-testing-playbook"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-code/manual_testing_playbook/"
+      - ".opencode/skills/sk-code/benchmark/README.md"
+      - ".opencode/skills/sk-code/code-webflow/assets/animation/playbook_entries.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: sk-code manual-testing-playbook tree
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 6: manual-testing-playbook
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/sk-code/manual_testing_playbook and its active consumers |
+| **Change class** | Playbook filesystem rename plus scenario-link repair |
+| **Execution** | Frozen semantic map in the pinned BASE worktree |
+| **Verification** | Scenario-ID extraction, link scan, category counts, benchmark corpus parity |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Move the hub playbook root, categories, index, and scenarios as one graph closure. Rewrite only path-derived references, then compare scenario IDs, category membership, expected resource paths, and benchmark discovery with the phase 000 baseline.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The frozen map covers every category, scenario, root index, and empty-directory disposition.
+- [ ] BASE scenario IDs, category counts, and benchmark corpus evidence are attached.
+- [ ] Component-local playbook ownership is recorded so no sibling tree is accidentally moved.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] The hub playbook tree is kebab-case and all links resolve.
+- [ ] Scenario IDs, category counts, prompts, and expected resource loads match BASE.
+- [ ] Benchmark corpus discovery and cross-surface references use the new root.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Root/index closure**: move manual_testing_playbook and manual_testing_playbook.md together.
+- **Category closure**: move each category directory with its complete scenario set, including empty-directory evidence.
+- **Consumer closure**: update hub docs, benchmark README, asset playbook entries, and cross-surface links.
+- **Semantic boundary**: preserve scenario IDs and prose; change only filesystem names and path-derived values.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load frozen map, BASE scenario inventory, and component ownership handoffs.
+- [ ] Extract scenario IDs, category membership, relative links, and benchmark corpus references.
+- [ ] Record the existing root/category/file manifest, including empty directories.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename the hub root and root index.
+- [ ] Rename the ten category directories and every in-scope scenario filename.
+- [ ] Update scenario cross-links, hub navigation, benchmark README, asset entries, and active cross-surface references.
+- [ ] Preserve component-local playbook paths and benchmark report/storage paths for sibling phases.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Re-extract scenario IDs and compare counts/category membership with BASE.
+- [ ] Resolve every markdown link and root/category index path.
+- [ ] Confirm benchmark corpus discovery reaches all expected scenarios.
+- [ ] Verify no content, identifier, key, exemption, or sibling-owned path changed.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Candidate coverage | Compare frozen map with root/category/file manifest and empty-directory dispositions. |
+| Link integrity | Resolve all playbook, hub, benchmark, asset, and cross-surface markdown links. |
+| Scenario parity | Compare scenario IDs, category counts, prompts, and expected resource paths with BASE. |
+| Benchmark parity | Load the playbook corpus through the benchmark README/loader path and compare corpus membership. |
+| Scope safety | Check component-local playbooks, identifiers, keys, exact names, generated output, Python/package, and frozen surfaces. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 001-005 component path handoffs | Internal | Required | Cross-surface scenario links may be unresolved. |
+| 017 frozen map | Internal | Required | Category and scenario ownership is ambiguous. |
+| 000 scenario baseline | Internal | Required | Loss or duplication of scenarios cannot be detected. |
+| 007 benchmark child | Internal | Downstream | Benchmark storage is not renamed here, but its corpus path must be handed off. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Lost/duplicated scenario, broken link, changed corpus membership, collision, or ownership violation.
+- **Procedure**: Revert the root/category/file closure, restore the scenario manifest, and rerun the ID/link preflight before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

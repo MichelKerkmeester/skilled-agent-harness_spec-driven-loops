@@ -1,106 +1,78 @@
 ---
-title: "Tasks: Phase 5: manual-testing-playbook [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: mcp-code-mode manual-testing playbook (017 component 011 phase 005)"
+description: "Tasks for the manual-testing root, eight category directories, index, 27 scenario files, and their active link closure."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-code-mode manual playbook tasks"
+  - "mcp-code-mode phase 005 tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:18:24Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook"
+    last_updated_at: "2026-07-14T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored manual-playbook tasks"
+    next_safe_action: "Freeze the full playbook map"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-manual-testing-playbook"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: mcp-code-mode manual-testing playbook
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 5: manual-testing-playbook
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Record BASE and enumerate the root, index, eight categories, and 27 scenarios
+- [ ] T002 [P] Capture scenario IDs, relative links, and content hashes for parity
+- [ ] T003 Inventory active old-tree references in the skill, scenarios, scripts, guides, and consumers
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Rename manual_testing_playbook and manual_testing_playbook.md to manual-testing-playbook and manual-testing-playbook.md
+- [ ] T005 Rename the eight category directories to their hyphenated targets
+- [ ] T006 Rename all 27 scenario files to their hyphenated targets
+- [ ] T007 Update the index, scenario links, tables, scripts, guides, and active consumers to final paths
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Resolve all Markdown links and scan for stale old-tree paths
+- [ ] T009 Verify eight category counts, 27 scenario files, scenario IDs, and content parity
+- [ ] T010 Verify only path strings changed and exemptions/frozen history were preserved
+- [ ] T011 Pin the map hash, link report, parity report, dispositions, and exit codes
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete
+- [ ] All requirements in spec.md met with evidence
+- [ ] Phase gate green (validate/build/test/link as applicable)
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

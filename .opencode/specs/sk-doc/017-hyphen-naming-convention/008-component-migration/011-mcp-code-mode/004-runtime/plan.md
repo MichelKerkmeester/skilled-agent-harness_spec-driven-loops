@@ -1,170 +1,106 @@
 ---
-title: "Implementation Plan: Phase 4: runtime [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: mcp-code-mode runtime (017 component 011 phase 004)"
+description: "Audit the executable runtime tree, prove its current kebab-case names, and conditionally apply a semantic rename/reference closure if the pinned tree contains an eligible runtime name."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-code-mode runtime implementation plan"
+  - "mcp-code-mode phase 004 implementation plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-runtime"
-    last_updated_at: "2026-07-14T15:18:23Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
+    last_updated_at: "2026-07-14T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored runtime audit plan"
+    next_safe_action: "Enumerate runtime paths and consumers"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-runtime"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: mcp-code-mode runtime
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 4: runtime
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | mcp-code-mode/runtime and active runtime path consumers |
+| **Change class** | Runtime filename census and conditional path closure |
+| **Execution** | Isolated worktree pinned to BASE; expected current rename map is empty |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The observed runtime paths are runtime/hooks/claude/mcp-route-guard.cjs, runtime/hooks/codex/mcp-route-guard.cjs,
+runtime/lib/mcp-route-guard.cjs, and runtime/lib/mcp-route-guard.test.cjs. The plan treats the empty eligible set as a
+blocking evidence result and prevents a silent skip if the pinned tree exposes another name.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The runtime inventory and active consumers are recorded from BASE
+- [ ] The current compliant filenames are separated from any eligible candidate
+- [ ] Manual-playbook references to runtime files are inventoried without taking ownership of playbook filename renames
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] No eligible runtime snake_case name remains, or every discovered candidate has a final target and closure
+- [ ] Node syntax and route-guard checks pass
+- [ ] The evidence proves the runtime path graph has no stale active edge
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- A path-segment census over runtime/hooks/claude, runtime/hooks/codex, and runtime/lib.
+- A no-op-safe semantic rename map, expected to be empty for the four observed mcp-route-guard files.
+- A consumer scan for manual scenario links, direct Node invocations, requires, and test paths, with phase-005 playbook filename changes kept separate.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- Record BASE and enumerate every runtime directory and file.
+- Classify the four observed kebab-case files and search for any eligible underscore-bearing name.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- If a candidate exists, apply its semantic kebab-case rename and update all active runtime path consumers.
+- If no candidate exists, preserve runtime files and record the empty-map proof.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- Run node --check on each runtime CommonJS file and the route-guard test path.
+- Resolve manual-scenario and direct-loader references to the final runtime paths.
+- Record map, dispositions, and exit codes.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Runtime census lists hooks/claude, hooks/codex, lib, and all four observed files |
+| REQ-002 | Map and exemption ledger prove an empty compliant result or list every candidate |
+| REQ-003 | Active runtime path scan has no stale eligible source path |
+| REQ-004 | node --check and route-guard tests pass with unchanged decisions and environment names |
+| REQ-005 | Candidate report pins inventory, map hash, reference dispositions, commands, and exit codes |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+This phase depends on the 017 policy, the prior package/scripts/reference closures, Node tooling, and the reference
+checker. It hands a stable runtime path inventory to phase 005, which owns the manual-playbook filename closure.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+For a non-empty map, restore runtime source names and reverse the recorded path consumers together. For the expected
+empty map, discard phase evidence only; the runtime tree has no planned content rollback.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

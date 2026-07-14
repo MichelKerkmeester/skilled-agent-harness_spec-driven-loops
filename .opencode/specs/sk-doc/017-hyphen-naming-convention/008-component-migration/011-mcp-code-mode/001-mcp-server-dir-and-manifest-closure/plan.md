@@ -1,170 +1,105 @@
 ---
-title: "Implementation Plan: Phase 1: mcp-server-dir-and-manifest-closure [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: mcp-server directory and manifest closure (017 component 011 phase 001)"
+description: "Rename the embedded mcp_server directory to mcp-server through a semantic, dependency-closed path map. Update installer, doctor, guide, metadata, and entrypoint references together while leaving Python, lockfile, tool-mandated, and package identifier contracts intact."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-server closure implementation plan"
+  - "mcp-code-mode phase 001 implementation plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-mcp-server-dir-and-manifest-closure"
-    last_updated_at: "2026-07-14T15:18:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure"
+    last_updated_at: "2026-07-14T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored mcp-server closure plan"
+    next_safe_action: "Execute the semantic package path map"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-mcp-server-dir-and-manifest-closure"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: mcp-server directory and manifest closure
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: mcp-server-dir-and-manifest-closure
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | mcp-code-mode/mcp_server and its active path consumers |
+| **Change class** | Directory rename and package/entrypoint reference closure |
+| **Execution** | Isolated worktree pinned to BASE; no migration is executed by this authoring pass |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The package directory is the only eligible snake_case filesystem name in the current mcp-code-mode package subtree. The plan maps mcp_server to mcp-server, inventories every path consumer, and proves the Node package and dist/index.js entrypoint still resolve through the new directory.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The BASE worktree and package subtree inventory are recorded
+- [ ] The semantic map contains mcp_server → mcp-server and no unresolved candidate
+- [ ] Active consumers and frozen/exempt references are classified
+- [ ] The package/entrypoint closure is listed before the rename
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] The directory and all active path consumers use mcp-server
+- [ ] Package, lockfile, tool-mandated, Python, and identifier contracts are preserved
+- [ ] Reference and runtime checks pass with evidence pinned to the candidate
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- A semantic one-entry path map: mcp_server → mcp-server.
+- A consumer closure covering scripts/install.sh, scripts/doctor.sh, INSTALL_GUIDE.md, graph-metadata.json, configured MCP commands, package working directories, and dist/index.js references.
+- A preservation ledger for package-lock.json, tsconfig.json, .nvmrc, index.ts, scripts/check-node.cjs, Python paths, package identifiers, and frozen changelog references.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- Confirm the pinned BASE, record the package tree, and freeze the one-entry semantic map.
+- Search active files for mcp_server path segments and classify each hit as a path, identifier, generated value, or frozen history.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- Rename the package directory from mcp_server to mcp-server.
+- Update installer, doctor, guide, metadata, command, and entrypoint path values in the same dependency-closed change.
+- Preserve package-lock.json and tool-mandated filenames and do not alter package identifiers or Python paths.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- Re-scan active files for stale mcp_server path segments.
+- Prove the configured command, npm working directory, diagnostic path, and dist/index.js path use mcp-server.
+- Run the package-specific syntax/reference checks and record the candidate SHA, BASE SHA, and map hash.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Path census and exemption ledger list every package-tree name |
+| REQ-002 | Rename map and collision check show exactly one mcp_server → mcp-server entry |
+| REQ-003 | Whole-surface reference scan has no stale active mcp_server path |
+| REQ-004 | Installer, doctor, configuration, and entrypoint path checks resolve under mcp-server |
+| REQ-005 | Diff review proves no Python, lockfile, tool-mandated, identifier, or frozen-history rewrite |
+| REQ-006 | Candidate report contains the map hash, consumer inventory, commands, and exit codes |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+This phase depends on the 017 immutable baseline, exemption policy in 001-convention-policy-and-scope, the semantic rename/reference tooling, and a real Node environment for package-path checks. Phase 002 starts only after this package closure is internally consistent.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Restore the mcp_server directory name and reverse the recorded path map in one path-scoped revert. Re-run the reference scan and package-path checks against the restored map; no package data or generated dependency contents are changed by the planned closure.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

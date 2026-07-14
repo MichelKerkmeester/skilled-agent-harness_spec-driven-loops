@@ -1,170 +1,125 @@
 ---
-title: "Implementation Plan: Phase 1: hub-root-and-shared [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: hub root and shared sk-code names (017 phase 008/001)"
+description: "Plan for renaming the sk-code hub shared assets and references through the frozen semantic map, then repairing path consumers and symlink targets before behavior verification."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "hub shared naming implementation plan"
+  - "sk-code shared rename plan"
+  - "shared workflow path migration"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-hub-root-and-shared"
-    last_updated_at: "2026-07-14T15:17:07Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored hub shared phase plan"
+    next_safe_action: "Execute the shared rename and reference closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-hub-root-and-shared"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-code/shared/references/"
+      - ".opencode/skills/sk-code/shared/assets/"
+      - ".opencode/skills/sk-code/SKILL.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: Hub root and shared sk-code names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: hub-root-and-shared
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/sk-code/shared and hub path consumers |
+| **Change class** | Filesystem rename plus reference repair |
+| **Execution** | Isolated worktree using the pinned BASE and frozen rename map |
+| **Verification** | Rename-map checker, symlink manifest, markdown-link scan, routing checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Use the phase 005 semantic source-to-target map to rename the shared reference and pattern files, then update every hub and surface path that points at them. The source workflow files and their symlink consumers are treated as one closure; code behavior, route keys, and exempt names remain unchanged.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The phase 006 frozen map identifies every shared candidate and its disposition.
+- [ ] The cross-cutting handoff identifies the workflow symlink nodes and expected targets.
+- [ ] The worktree is clean, pinned to BASE, and the baseline symlink/mode manifest is available.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Every in-scope shared name is kebab-case and every old path reference is repaired.
+- [ ] Shared source files, symlink consumers, and hub indexes resolve with their original semantics.
+- [ ] Exemption and exact-name checks pass, with evidence recorded in checklist.md.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Semantic rename closure**: map the shared files individually; never substitute underscores mechanically.
+- **Hub reference layer**: update SKILL.md, README.md, shared/README.md, and path-valued registry entries only where a filename changes.
+- **Symlink layer**: preserve link type, relative target intent, and executable/mode metadata for the workflow links consumed by code-opencode and code-webflow.
+- **Content boundary**: leave identifiers, JSON keys, frontmatter fields, and tool-mandated filenames untouched.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load the frozen map, baseline manifest, and cross-cutting symlink closure.
+- [ ] Capture the pre-change list of shared underscore names and all references to them.
+- [ ] Confirm the hub root names are already compliant or explicitly exempt.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename shared references: phase_detection, smart_routing, stack_detection, performance_loading_checklist, universal-debugging_checklist, universal-verification_checklist, workflow_debug, workflow_implement, and workflow_verify.
+- [ ] Rename shared universal references: code_quality_standards, code_style_guide, error_recovery, and multi_agent_research.
+- [ ] Rename assets/patterns/validation_patterns.js and wait_patterns.js.
+- [ ] Update hub indexes, shared documentation, route resource paths, internal markdown links, and workflow symlink targets.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Compare the post-change path manifest with the frozen map and baseline.
+- [ ] Resolve every workflow symlink and markdown link from the hub/shared closure.
+- [ ] Exercise shared surface detection, fallback routing, and workflow loading.
+- [ ] Confirm no exempt or tool-mandated file was renamed and no content key was changed.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Shared candidate coverage | Rename-map scan reports one disposition per candidate and zero unknown rows. |
+| Reference integrity | Search active markdown, JSON, and registry path values for old basenames; resolve every reported link. |
+| Symlink integrity | Compare link count, link targets, and modes before and after; resolve both surface workflow links. |
+| Routing parity | Run the existing shared routing/surface checks and compare route outcomes with the baseline. |
+| Exemption safety | Inspect SKILL.md, metadata, Python/package, generated, tool-mandated, and frozen surfaces for unchanged names. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 017 phase 006 frozen map | Internal | Required before execution | Candidate ownership and target names are unknown. |
+| 017 phase 007 shared closure handoff | Internal | Required before execution | Symlink ordering and cross-surface consumers may be missed. |
+| 000 baseline manifests | Internal | Required before verification | Mode, link, and route parity cannot be proven. |
+| 005 rename/reference tooling | Internal | Required before execution | Manual renames would violate the semantic-map contract. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Any collision, dangling symlink, unresolved active path, route drift, or exemption violation.
+- **Procedure**: Stop the dependency-closed batch and revert only the phase-scoped rename/reference commit; restore from the frozen map and rerun the pre-change manifest before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

@@ -1,106 +1,84 @@
 ---
-title: "Tasks: Phase 6: manual-testing-playbook [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: sk-code manual-testing-playbook tree (017 phase 008/006)"
+description: "Execution tasks for the hub-level sk-code playbook filesystem rename and scenario graph closure."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "manual playbook naming tasks"
+  - "sk-code scenario rename tasks"
+  - "playbook link repair tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:17:11Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored manual playbook phase tasks"
+    next_safe_action: "Execute the hub playbook rename closure"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-manual-testing-playbook"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Tasks: sk-code manual-testing-playbook tree
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 6: manual-testing-playbook
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+**Task Format**: T### [P?] Description (file path)
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Load frozen map, BASE scenario evidence, and component ownership handoffs.
+- [ ] T002 [P] Extract root/category/file paths, scenario IDs, category counts, links, and benchmark consumers.
+- [ ] T003 Record empty categories, component-local playbooks, generated output, identifiers, keys, and exact-name exemptions.
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Rename the hub-level manual-testing-playbook root and root index.
+- [ ] T005 Rename all ten category directories and their scenario files.
+- [ ] T006 Update scenario links, hub docs, benchmark README, asset entries, and cross-surface references.
+- [ ] T007 Publish the scenario graph and benchmark-corpus handoff for 007-benchmark and 009-skill-gate.
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Compare scenario IDs, category membership, and counts with BASE.
+- [ ] T009 Resolve every playbook/root/index/consumer link and confirm non-zero corpus discovery.
+- [ ] T010 Verify scenario content, expected resources, identifiers, keys, and sibling-owned trees are unchanged.
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked [x]
+- [ ] No [B] blocked tasks remain
+- [ ] Every requirement in spec.md has evidence in the candidate report
+- [ ] The phase checklist is green
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
+- **Benchmark consumer**: See ../007-benchmark/spec.md
+- **Governing policy**: See ../../../../001-convention-policy-and-scope/spec.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

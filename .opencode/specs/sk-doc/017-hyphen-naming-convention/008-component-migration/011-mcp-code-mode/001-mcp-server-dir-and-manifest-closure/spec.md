@@ -1,182 +1,98 @@
 ---
-title: "Feature Specification: Phase 1: mcp-server-dir-and-manifest-closure [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: mcp-server directory and manifest closure (017 component 011 phase 001)"
+description: "The skill stores its embedded Node MCP server under mcp_server, and installers, diagnostics, guides, and generated metadata refer to that path. This phase moves the permitted directory name to mcp-server while preserving package-lock.json, tool-mandated filenames, package metadata, and the dist/index.js entrypoint."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-server directory closure"
+  - "mcp-code-mode phase 001"
+  - "mcp_server kebab-case"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-mcp-server-dir-and-manifest-closure"
-    last_updated_at: "2026-07-14T15:18:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure"
+    last_updated_at: "2026-07-14T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored mcp-server closure docs"
+    next_safe_action: "Execute the directory closure after the baseline is pinned"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-mcp-server-dir-and-manifest-closure"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: mcp-server-dir-and-manifest-closure
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: mcp-server directory and manifest closure
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/001-mcp-server-dir-and-manifest-closure` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 7 |
-| **Predecessor** | None |
-| **Successor** | 002-scripts |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 001 of the 017 mcp-code-mode component migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 1** of the mcp code mode (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The embedded Node package lives at .opencode/skills/mcp-code-mode/mcp_server, while scripts and installation guidance construct that path directly. Renaming the directory without its launchers and package-path consumers would leave npm installation, diagnostics, and the dist/index.js entrypoint broken.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phase performs the single permitted directory rename to mcp-server and updates its active path consumers as one dependency-closed closure. The package-lock.json, tsconfig.json, .nvmrc, index.ts, and check-node.cjs names remain unchanged.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The directory .opencode/skills/mcp-code-mode/mcp_server/ and its target .opencode/skills/mcp-code-mode/mcp-server/.
+- The package layout beneath that directory: package-lock.json, tsconfig.json, .nvmrc, README.md, index.ts, scripts/check-node.cjs, and any manifest present at execution time.
+- Active path-valued references in scripts/install.sh, scripts/doctor.sh, INSTALL_GUIDE.md, graph-metadata.json, and any additional consumer found by the phase-wide reference scan.
+- The install, diagnostic, and entrypoint paths that must resolve to mcp-server/dist/index.js.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Python .py filenames and Python import-package directories, including scripts/validate_config.py.
+- Renaming package-lock.json, tsconfig.json, .nvmrc, or other tool-mandated names; rewriting lockfile/generated contents; or changing package identifiers and code identifiers.
+- Frozen changelog history, the references/assets tree, the runtime tree, the manual-testing tree, and any migration execution during this authoring pass.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The live package directory is classified against the program exemption boundary | The census records mcp_server as the one permitted rename candidate in this package subtree and records all Python, lockfile, and tool-mandated names as exempt |
+| REQ-002 | The directory rename is semantic and collision-safe | The rename map contains exactly mcp_server → mcp-server, with no casefold/NFC collision and no second physical package root |
+| REQ-003 | All active package-path consumers move with the directory | A repository reference scan finds no stale mcp_server path outside frozen history or an explicitly documented non-path identifier |
+| REQ-004 | The manifest and entrypoint closure remains coherent | The package root, npm install working directory, diagnostic MCP_DIR, configured command, and dist/index.js path all resolve under mcp-server |
+| REQ-005 | Exempt filesystem names and package semantics are preserved | package-lock.json, tsconfig.json, .nvmrc, index.ts, scripts/check-node.cjs, package identifiers, and Python paths are not renamed or semantically rewritten |
+| REQ-006 | The phase leaves evidence for the next component phase | The candidate report records the path map, consumer inventory, validation commands, and the preserved exemption list |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The embedded server is addressed only through mcp-server in active path references, with its package and dist entrypoint closure intact.
+- **SC-002**: The package subtree has no unclassified filesystem name and no altered Python, lockfile, tool-mandated, or identifier contract.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The primary risk is a split closure: install.sh and doctor.sh can pass different directory strings from the configured MCP command. The phase depends on the 017 baseline, semantic rename map, and reference checker; phase 002 must consume the resulting path state without changing this package closure.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. At setup, confirm whether a package.json is intentionally absent from the tracked tree while graph metadata names it; do not create or infer a manifest during this documentation pass.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

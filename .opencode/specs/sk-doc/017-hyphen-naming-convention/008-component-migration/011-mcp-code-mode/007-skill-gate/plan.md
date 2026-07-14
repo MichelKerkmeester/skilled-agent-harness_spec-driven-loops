@@ -1,170 +1,107 @@
 ---
-title: "Implementation Plan: Phase 7: skill-gate [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: mcp-code-mode subtree skill gate (017 component 011 phase 007)"
+description: "Aggregate the six preceding child reports, rerun the complete exemption-aware filesystem and reference census, and verify the mcp-code-mode subtree as one read-only naming gate."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-code-mode subtree gate implementation plan"
+  - "mcp-code-mode phase 007 implementation plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-skill-gate"
-    last_updated_at: "2026-07-14T15:18:26Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
+    last_updated_at: "2026-07-14T16:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored subtree gate plan"
+    next_safe_action: "Collect sibling checklist evidence"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-skill-gate"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: mcp-code-mode subtree skill gate
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 7: skill-gate
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Entire .opencode/skills/mcp-code-mode subtree |
+| **Change class** | Read-only evidence aggregation and naming/reference rollup |
+| **Execution** | Exact candidate tree after phases 001 through 006; no new migration work |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The gate treats the six sibling contracts as inputs, not as substitutes for a fresh whole-surface check. It recomputes
+the exemption-aware filesystem census, stale-path/link scan, executable checks, scenario parity, and changelog evidence,
+then records one rollup verdict.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] All six sibling checklists and reports are available
+- [ ] The final map hashes and exemption classifications are recorded
+- [ ] The exact candidate tree and BASE are pinned
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Sibling P0 evidence is complete and internally consistent
+- [ ] Whole-surface naming and reference scans are clean within scope
+- [ ] Executable, link, scenario, and changelog/version gates pass without mutation
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- Evidence aggregator for phases 001 through 006, including no-op proofs from scripts/runtime and the phase-006 release-note verdict.
+- Recursive path classifier with explicit rename, exempt, generated, tool-mandated, and frozen dispositions.
+- Whole-surface reference resolver for package, scripts, references/assets, runtime, and manual-playbook paths.
+- Read-only final report that records counts, map hashes, commands, exit codes, and any failed child pointer.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- Pin BASE and candidate SHAs and load all six sibling reports.
+- Check that each sibling P0 result points at the same final candidate tree and map lineage.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Rollup Verification
+- Run the full mcp-code-mode filesystem census and classify every underscore-bearing name.
+- Resolve active paths and links, run required syntax/package/playbook checks, and compare scenario/changelog evidence.
 
-### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+### Phase 3: Reporting
+- Emit a pass only when every requirement is evidenced and the working tree remains unchanged.
+- On failure, identify the owning child phase and stop the rollup; do not repair the subtree here.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | All six sibling checklists have P0 pass evidence for the exact candidate |
+| REQ-002 | Recursive census has zero in-scope snake_case names and a complete exemption ledger |
+| REQ-003 | Whole-surface stale-path and Markdown-link scans report zero active failures |
+| REQ-004 | Node, shell, package-path, manual-playbook, and baseline-parity checks pass |
+| REQ-005 | Phase-006 changelog/version report matches all final sibling outcomes |
+| REQ-006 | Read-only diff/index evidence shows no new tracked mutation |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+This gate depends on the 017 exemption policy, immutable BASE, all six child checklists, final semantic maps, and the
+central verification environment. It is the handoff into the next component parent only after its own report is accepted.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+The gate has no migration write path. If it fails, retain the evidence, return to the named sibling owner, and rerun the
+rollup against the corrected candidate; discard only any untracked verifier output.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

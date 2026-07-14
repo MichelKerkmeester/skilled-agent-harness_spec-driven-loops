@@ -1,106 +1,86 @@
 ---
-title: "Tasks: Phase 4: code-review [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: code-review filesystem names (017 phase 008/004)"
+description: "Execution tasks for the code-review filesystem rename and review-scenario path closure."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "code-review naming tasks"
+  - "review mode rename tasks"
+  - "review playbook path tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-code-review"
-    last_updated_at: "2026-07-14T15:17:09Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored code-review phase tasks"
+    next_safe_action: "Execute the review packet rename closure"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-code-review"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Tasks: code-review filesystem names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: code-review
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+**Task Format**: T### [P?] Description (file path)
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Load frozen map, BASE review evidence, and preceding sk-code handoffs.
+- [ ] T002 [P] Inventory review assets, categories, scenarios, references, benchmark labels, and path consumers.
+- [ ] T003 Classify review identifiers, content values, exact names, generated output, and frozen surfaces.
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Rename review checklist assets and repair incoming links.
+- [ ] T005 Rename the manual-testing-playbook root, review categories, indexes, and scenario files.
+- [ ] T006 Rename review references and classified benchmark labels.
+- [ ] T007 Update SKILL.md, README.md, indexes, scenario links, shared/surface references, and benchmark paths.
+- [ ] T008 Record scenario and cross-component disposition evidence.
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T009 Resolve all review markdown and path-valued references.
+- [ ] T010 Compare scenario IDs and discovery counts with BASE.
+- [ ] T011 Run findings-first, security, correctness, and review-state checks.
+- [ ] T012 Verify scope, exemptions, generated output, identifiers, and final cross-component handoff.
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked [x]
+- [ ] No [B] blocked tasks remain
+- [ ] Every requirement in spec.md has evidence in the candidate report
+- [ ] The phase checklist is green
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
+- **Predecessor**: See ../003-code-quality/spec.md
+- **Governing policy**: See ../../../../001-convention-policy-and-scope/spec.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

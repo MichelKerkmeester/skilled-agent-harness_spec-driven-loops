@@ -1,170 +1,125 @@
 ---
-title: "Implementation Plan: Phase 3: code-quality [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: code-quality filesystem names (017 phase 008/003)"
+description: "Plan for renaming code-quality checklist, playbook, and benchmark names through the frozen map, then proving that quality-mode routing and resource loading remain equivalent."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "code-quality naming implementation plan"
+  - "quality mode rename plan"
+  - "quality checklist reference repair"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-code-quality"
-    last_updated_at: "2026-07-14T15:17:09Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored code-quality phase plan"
+    next_safe_action: "Execute the quality packet rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-code-quality"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-code/code-quality/SKILL.md"
+      - ".opencode/skills/sk-code/code-quality/assets/"
+      - ".opencode/skills/sk-code/code-quality/manual_testing_playbook/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: code-quality filesystem names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 3: code-quality
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/sk-code/code-quality |
+| **Change class** | Quality-mode filesystem rename plus path repair |
+| **Execution** | Dependency-closed map batch in the pinned BASE worktree |
+| **Verification** | Quality resource-load check, path scan, benchmark path check, behavior parity |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Rename the quality checklist tree, manual-testing-playbook tree, and nested benchmark labels from the frozen map, then update the mode documents and all links that consume them. The implementation does not alter quality rules or check identifiers; it proves the same quality resources are loaded under kebab-case paths.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The frozen map distinguishes tracked benchmark storage from generated report output.
+- [ ] The preceding shared/OpenCode handoffs identify common path and symlink consumers.
+- [ ] BASE quality-mode resource and checklist evidence is recorded.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Checklist, playbook, and benchmark names are kebab-case.
+- [ ] Quality-mode resource paths resolve and quality outcomes match BASE.
+- [ ] No unrelated mode, script, identifier, or exemption surface changed.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Checklist closure**: assets/code_quality_checklist and its markdown consumers move together.
+- **Playbook closure**: manual_testing_playbook, quality_gate, the root index, and scenario links move together.
+- **Benchmark closure**: tracked run labels move only when classified as rename candidates; generated report contents remain generated.
+- **Mode consumer closure**: SKILL.md, README.md, shared standards links, and resource indexes receive path-only updates.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load the frozen map, BASE manifests, and shared/OpenCode handoffs.
+- [ ] Record old quality checklist, playbook, and benchmark paths and their consumers.
+- [ ] Mark generated reports, tool names, and content identifiers as non-rename surfaces.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename assets/code-quality-checklist and its three checklist files.
+- [ ] Rename the quality manual-testing-playbook root/category/index/scenario paths.
+- [ ] Rename live-mode-b and router-mode-a labels when the map classifies them as tracked names.
+- [ ] Update SKILL.md, README.md, quality references, scenario links, and benchmark commands.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Load the quality mode and confirm the expected checklist/resource set.
+- [ ] Run quality-mode scenario and gate checks with the renamed paths.
+- [ ] Search for old active basenames and verify the final component inventory.
+- [ ] Compare behavior, executable modes, and exempt-name manifests with BASE.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Candidate coverage | Frozen-map and path scans cover every underscore directory/file under code-quality. |
+| Reference repair | Resolve links and search old path literals in SKILL.md, README.md, assets, playbook, and benchmark docs. |
+| Quality parity | Run the existing quality-mode checklist/routing checks and compare logical resource loads and outcomes with BASE. |
+| Benchmark paths | Confirm router/live output discovery still points at the intended storage labels and reports. |
+| Scope safety | Compare executable scripts, identifiers, keys, frontmatter, tool names, and frozen surfaces with BASE. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 001 shared hub closure | Internal | Required | Shared standards and workflow paths may remain stale. |
+| 002 OpenCode closure | Internal | Required | Cross-surface path consumers may be unresolved. |
+| 017 frozen rename map | Internal | Required | Generated benchmark output could be misclassified. |
+| 000 baseline evidence | Internal | Required | Quality resource and behavior parity cannot be measured. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Quality resource load failure, stale playbook path, changed gate result, collision, or scope violation.
+- **Procedure**: Revert the quality-mode path-scoped batch, restore the old manifest, and rerun the map/reference preflight before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-
