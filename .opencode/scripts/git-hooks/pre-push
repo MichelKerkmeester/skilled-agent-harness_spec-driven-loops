@@ -1,0 +1,127 @@
+#!/usr/bin/env bash
+# Pre-push hook — blocks creation of a new remote branch whose name breaks the
+# owner-first naming grammar. Updates to a branch that already exists on the
+# remote are always allowed (migration tolerance for names that predate or fall
+# outside this grammar, e.g. a legacy wt/* branch).
+#
+# Protocol: git feeds "<local ref> <local sha> <remote ref> <remote sha>"
+# lines on stdin, one per ref being pushed. A remote sha of all-zeros means
+# the push CREATES a new remote branch — only that case is gated.
+#
+# Bypass: SPECKIT_SKIP_PREPUSH_NAMING=1 git push ...
+# Install: bash .opencode/scripts/install-git-hooks.sh
+# Uninstall: rm .git/hooks/pre-push
+
+set -euo pipefail
+
+if [[ "${SPECKIT_SKIP_PREPUSH_NAMING:-0}" = "1" ]]; then
+  echo "pre-push: SPECKIT_SKIP_PREPUSH_NAMING=1 — skipping branch-naming gate." >&2
+  exit 0
+fi
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -z "$REPO_ROOT" ]]; then
+  exit 0
+fi
+
+# --- Fail-safe validator load — never block a push on a missing/broken validator ---
+NAMING="$REPO_ROOT/.opencode/skills/sk-git/scripts/worktree-naming.sh"
+if [[ ! -f "$NAMING" ]]; then
+  echo "⚠️  pre-push: worktree-naming.sh not found at $NAMING — skipping branch-naming gate." >&2
+  exit 0
+fi
+
+# Disable errexit around the source: a SYNTAX error in the sourced file aborts
+# the shell even inside an `if !` guard under `set -e`, which would hard-fail
+# every push if the shared validator ever picked up a parse error. Capturing the
+# status with errexit off keeps the gate fail-open on a broken validator.
+set +e
+# shellcheck source=/dev/null
+source "$NAMING" 2>/dev/null
+_src_rc=$?
+set -e
+if [ "$_src_rc" -ne 0 ]; then
+  echo "⚠️  pre-push: failed to source worktree-naming.sh — skipping branch-naming gate." >&2
+  exit 0
+fi
+
+if ! command -v is_valid_branch >/dev/null 2>&1 || ! command -v is_wrapper_branch >/dev/null 2>&1; then
+  echo "⚠️  pre-push: worktree-naming.sh loaded without its validators — skipping branch-naming gate." >&2
+  exit 0
+fi
+
+_expected_grammar() {
+  cat <<'GRAMMAR'
+    Expected new-branch grammar:
+      <owner>/NNNN-<slug>   e.g. sk-git/0041-fix-thing
+        owner = a skill's frontmatter name: (.opencode/skills/*/SKILL.md), or "skilled"
+        NNNN  = 4-digit zero-padded number
+        slug  = lowercase kebab-case ([a-z0-9] segments joined by single hyphens)
+      skilled/vA.B.C.D      release branch, e.g. skilled/v4.0.0.0 (never gated)
+      main                  reserved
+GRAMMAR
+}
+
+REJECTED=0
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [[ -n "$remote_ref" ]] || continue
+
+  case "$remote_ref" in
+    refs/heads/*) branch_name="${remote_ref#refs/heads/}" ;;
+    *) continue ;;   # tags and other ref types sit outside the branch-naming grammar
+  esac
+
+  # Release branches are the one namespace this hook must never gate, new or updated.
+  case "$branch_name" in
+    skilled/v*) continue ;;
+  esac
+
+  is_new=0
+  if [[ "$remote_sha" =~ ^0+$ ]]; then
+    is_new=1
+  fi
+
+  if [[ "$is_new" -eq 0 ]]; then
+    # Migration tolerance: a branch that already exists on the remote can
+    # always be updated (or deleted), no matter what it's named.
+    if is_valid_branch "$branch_name"; then
+      continue
+    fi
+    echo "⚠️  pre-push: '$branch_name' does not match the owner-first naming grammar (update allowed — migration tolerance)." >&2
+    continue
+  fi
+
+  # New remote branch — name must conform.
+  if is_valid_branch "$branch_name"; then
+    continue
+  fi
+
+  if is_wrapper_branch "$branch_name"; then
+    {
+      echo ""
+      echo "BLOCKED: '$branch_name' is a launch-wrapper ref (work/<runtime>/<slug>)."
+      echo "Wrapper branches are local-only and machine-reaped — they must never be pushed as a feature branch."
+      _expected_grammar
+      echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
+      echo ""
+    } >&2
+    REJECTED=1
+    continue
+  fi
+
+  {
+    echo ""
+    echo "BLOCKED: new branch '$branch_name' does not match the owner-first naming grammar."
+    _expected_grammar
+    echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
+    echo ""
+  } >&2
+  REJECTED=1
+done
+
+if [[ "$REJECTED" -ne 0 ]]; then
+  exit 1
+fi
+
+exit 0

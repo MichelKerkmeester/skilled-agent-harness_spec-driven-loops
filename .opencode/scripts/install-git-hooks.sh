@@ -11,10 +11,12 @@
 #   post-commit — marks code-graph and memory-index drift for next startup repair
 #   post-merge  — marks memory-index drift after spec-folder renames/deletes
 #   post-rewrite — marks memory-index drift after amend/rebase rewrites
+#   pre-push    — blocks a new remote branch that breaks the owner-first naming grammar; updates to an existing remote branch are always allowed (migration tolerance)
 #
 # Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...
 # Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ...
 # Bypass memory drift marker: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1 git commit ...
+# Bypass pre-push naming gate: SPECKIT_SKIP_PREPUSH_NAMING=1 git push ...
 
 set -euo pipefail
 
@@ -101,6 +103,7 @@ echo "Hooks installed. Test: 'git commit --allow-empty -m \"chore(repo): test ho
 echo "Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ..."
 echo "Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..."
 echo "Bypass memory drift marker: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1 git commit ..."
+echo "Bypass pre-push naming gate: SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
 echo "Note: the target is resolved by Git (git rev-parse --git-path hooks), so a"
 echo "repo-local or global core.hooksPath override, and per-worktree hook dirs in"
 echo "linked worktrees, are honored automatically."
