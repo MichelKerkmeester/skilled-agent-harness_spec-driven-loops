@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 <!--
 Copy-paste scaffold for ONE model-benchmark code-task oracle fixture:
-  <deep-improvement>/assets/model_benchmark/benchmark_fixtures/<slug>.json
+  <deep-improvement>/assets/model_benchmark/benchmark-fixtures/<slug>.json
 
 A SHIPPED FIXTURE IS A PURE .json FILE — no frontmatter, no markdown, no comments.
 This .md is only the authoring scaffold. Copy the fenced json block below into a
@@ -23,7 +23,7 @@ Usage:
   1. Pick a lowercase-hyphen (or tier-prefixed underscore, matching the pack) slug
      and create the fixture next to its siblings, for example:
      cp /dev/null \
-        .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/t3_my_new_task.json
+        .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/t3_my_new_task.json
      then paste the json scaffold below into it.
   2. Fill every {{PLACEHOLDER}}. Keep the real field names and their order. `args`
      and `expect` hold literal JSON values (numbers, strings, arrays, objects, null,
@@ -121,6 +121,6 @@ Inline guidance (the fixtures README + scorer are authoritative):
 
 ## 4. RELATED RESOURCES
 
-- [`../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/README.md) — normative fixture taxonomy: field set, tier taxonomy (T1–T4), pack layout, and the correctness-pass-rate design lesson.
+- [`../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md) — normative fixture taxonomy: field set, tier taxonomy (T1–T4), pack layout, and the correctness-pass-rate design lesson.
 - [`../../../system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs`](../../../../system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs) — the scorer that extracts `fn_name`, runs every oracle case in isolation, and returns `correctness_pass_rate`; the ultimate check on a filled fixture.
-- [`../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/reviewer_schema.md) — the SEPARATE reviewer-prompt fixture shape (verdict oracle). Use it, not this template, for reviewer fixtures.
+- [`../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer_schema.md) — the SEPARATE reviewer-prompt fixture shape (verdict oracle). Use it, not this template, for reviewer fixtures.

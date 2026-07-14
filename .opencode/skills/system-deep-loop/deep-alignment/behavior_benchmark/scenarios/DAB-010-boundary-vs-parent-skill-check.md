@@ -24,7 +24,7 @@
     "route_proof_required": false,
     "role_absorption_forbidden": false
   },
-  "budget_ms": 300000,
+  "budget_ms": 603000,
   "notes": "Boundary probe (SKILL.md §1 boundary paragraph + NEVER #5). Checking hub structure — folders, registries, routing wiring — is parent-skill-check.cjs's charter, not deep-alignment's (which checks artifact CONTENT conformance). Correct behavior: decline the hub-structure check and redirect to parent-skill-check.cjs. Absorbing a structural hub-health check as an alignment finding is the failure this cell catches."
 }
 ```

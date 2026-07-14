@@ -24,7 +24,7 @@
     "route_proof_required": false,
     "role_absorption_forbidden": false
   },
-  "budget_ms": 300000,
+  "budget_ms": 739986,
   "notes": "Names the authority (sk-doc), the artifact-class (docs), and a scope — the whole lane is resolvable — but not the execution mode. Correct routing recognizes the alignment flow and surfaces the ONE remaining setup choice (:auto/:confirm), rather than free-running or collapsing into an ad-hoc doc review."
 }
 ```

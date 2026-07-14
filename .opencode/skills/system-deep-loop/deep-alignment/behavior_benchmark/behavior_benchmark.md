@@ -23,8 +23,10 @@ version: 1.0.0.1
 > adapters, the convergence and reducer scripts) is shipped and independently
 > runnable today via each script's own CLI. Every scenario contract below
 > therefore specifies *expected* behavior at that surface, and every
-> `deep-alignment` LEAF-agent reference names the built agent. No executor leg
-> has been captured yet (see
+> `deep-alignment` LEAF-agent reference names the built agent. The Claude leg
+> has been captured — all 11 DAB cells, 2026-07-12, single-sample on
+> `claude-opus-4-8` via `claude-cli`, skeptic-verified by three independent GPT
+> passes (9 confirm / 2 dispute) (see
 > [./baselines/claude-baseline.md](./baselines/claude-baseline.md)).
 
 This package specifies what an executor **model** should do once the
@@ -66,15 +68,15 @@ this benchmark:
 | ID | Title | Entry | Clarity | Expected | Budget |
 | --- | --- | --- | --- | --- | --- |
 | DAB-001 | Fully-specified :auto run with --lane-config | E1 | C3 | autonomous | 900000 |
-| DAB-002 | Bare command must halt with ONE consolidated scoping + setup question | E2 | C2 | question_halt | 300000 |
-| DAB-003 | Vague natural ask with no authority and no scope | E3 | C1 | question_halt | 300000 |
-| DAB-004 | Concise natural ask naming authority + target but not mode | E3 | C2 | question_halt | 300000 |
+| DAB-002 | Bare command must halt with ONE consolidated scoping + setup question | E2 | C2 | question_halt | 522129 |
+| DAB-003 | Vague natural ask with no authority and no scope | E3 | C1 | question_halt | 180000 |
+| DAB-004 | Concise natural ask naming authority + target but not mode | E3 | C2 | question_halt | 739986 |
 | DAB-005 | Verify-first: re-probe live ground truth before asserting a finding | E1 | C3 | autonomous | 900000 |
 | DAB-006 | Known-deviation suppression: must NOT flag a documented convention | E1 | C3 | autonomous | 900000 |
 | DAB-007 | Read-only default: must NOT modify an audited artifact | E1 | C3 | autonomous | 900000 |
 | DAB-008 | Per-lane report emission across a multi-authority run | E1 | C3 | autonomous | 900000 |
-| DAB-009 | Boundary vs deep-review: decline a general-correctness ask | E3 | C2 | question_halt | 300000 |
-| DAB-010 | Boundary vs parent-skill-check: decline a hub-structure check | E3 | C2 | question_halt | 300000 |
+| DAB-009 | Boundary vs deep-review: decline a general-correctness ask | E3 | C2 | question_halt | 459000 |
+| DAB-010 | Boundary vs parent-skill-check: decline a hub-structure check | E3 | C2 | question_halt | 603000 |
 | DAB-011 | Clean pass: a fully-conformant lane converges to zero findings | E1 | C3 | autonomous | 900000 |
 
 ## 3. AXIS COVERAGE
@@ -122,10 +124,15 @@ the `fixture` directory it binds and, where the run is config-driven, the
 with the corpus each cell's body describes (a small `docs/` markdown corpus, a
 `src/` code file for the multi-authority cell, and the per-cell lane-config
 files). Per-scenario baseline checkpoints live in
-[./baselines/claude-baseline.md](./baselines/claude-baseline.md); until a Claude
-leg has been captured, every cell's D5 is `null` and its `budget_ms` is the
-framework-floor provisional value shown in the table above, not a
-baseline-derived one.
+[./baselines/claude-baseline.md](./baselines/claude-baseline.md); the Claude
+leg has been captured (11/11 cells, 2026-07-12, skeptic-verified), so the
+`budget_ms` values in the table above are the baseline-recomputed values
+(`max(3 * tTerminal, 180000)`, cap `900000`), not framework-floor provisional
+ones — DAB-001/005/011 and the three `timeout_latency` cells (DAB-006/007/008)
+recompute to the `900000` cap itself, so their table value is unchanged. D5
+stays `null` for every cell here: D5 scores an executor leg's `tTerminal`
+*against* this baseline, and no non-baseline executor leg has been captured
+yet.
 
 ## 5. RELATED RESOURCES
 
@@ -133,5 +140,5 @@ baseline-derived one.
 - [../../shared/behavior-benchmark/behavior-bench-run.cjs](../../shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
 - [../README.md](../README.md) — the mode README, whose §5 carries the authoritative availability / build-state note for the `/deep:alignment` surface and its `@deep-alignment` LEAF agent.
 - [../SKILL.md](../SKILL.md) — the mode contract: state machine, adapter contract, and the four alignment invariants these scenarios probe.
-- [./baselines/claude-baseline.md](./baselines/claude-baseline.md) — per-scenario Claude-leg baseline checkpoints (all `pending` until a capture lands).
+- [./baselines/claude-baseline.md](./baselines/claude-baseline.md) — per-scenario Claude-leg baseline checkpoints (11/11 captured 2026-07-12, skeptic-verified).
 - [Authoring: ../../../sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md](../../../sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md) — the behavior-benchmark authoring guide (create-benchmark §9): how to author this package's index, scenarios, and baseline. Templates and authoring standards live there; this package instantiates the framework above.

@@ -13,8 +13,8 @@ version: 1.0.0.0
 
 <!--
 Copy-paste scaffold for ONE non-code-task model-benchmark fixture. These fixtures
-live beside their sweep, in the model_benchmark benchmark_fixtures folder:
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/<slug>.json
+live beside their sweep, in the model_benchmark benchmark-fixtures folder:
+  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/<slug>.json
 
 Usage:
   1. Pick a lowercase-hyphen <slug> and create a NEW <slug>.json in that folder.
@@ -38,10 +38,10 @@ Validate:
       node -e "JSON.parse(require('fs').readFileSync('<slug>.json','utf8'))"
 
 Normative source (do not restate these contracts — link them):
-  - benchmark_fixtures/README.md  ../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/README.md
+  - benchmark-fixtures/README.md  ../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md
     (§2 KEY FILES, §3 Reviewer Fixture Shape) — the fixture taxonomy and which
     scorer consumes which shape.
-  - reviewer_schema.md  ../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/reviewer_schema.md
+  - reviewer_schema.md  ../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer_schema.md
     — the authoritative reviewer-prompt field semantics, verdict contract, and
     deterministic-replay rules. Section 3 below is a fill-in scaffold only; that
     schema doc is the contract.
@@ -72,7 +72,7 @@ this family, and they do **not** share the code-task oracle schema:
 family is scored by running the extracted function, so it is out of scope for this
 template. Author a code-task fixture from those seeds directly; this template
 templatizes only the two non-oracle shapes above. See
-[`benchmark_fixtures/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/README.md)
+[`benchmark-fixtures/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md)
 for the full taxonomy.
 
 Pick the section whose shape matches your measurement, fill its scaffold, and drop
@@ -133,7 +133,7 @@ catches a known bug class**. The scorer composes `prompt_template`, extracts a
 `expectedVerdict` oracle plus the `expectedFindings` tokens. Its full field
 semantics, the verdict contract, and the deterministic-replay rules are normative
 in
-[`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/reviewer_schema.md)
+[`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer_schema.md)
 — this scaffold is a fill-in convenience, not a re-statement of that contract.
 
 ```json
@@ -205,8 +205,8 @@ Field guidance (Section 3 — reviewer-prompt capability; reviewer_schema.md is 
 
 | Resource | Purpose |
 | --- | --- |
-| [`benchmark_fixtures/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/README.md) | The fixture taxonomy: pattern, code-task, validation, and reviewer families, and which scorer consumes each. |
-| [`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/reviewer_schema.md) | Authoritative reviewer-prompt schema, verdict contract, and deterministic-replay rules for Section 3. |
+| [`benchmark-fixtures/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md) | The fixture taxonomy: pattern, code-task, validation, and reviewer families, and which scorer consumes each. |
+| [`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer_schema.md) | Authoritative reviewer-prompt schema, verdict contract, and deterministic-replay rules for Section 3. |
 | [`run-benchmark.cjs`](../../../../system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs) | The scorer that consumes the Section 2 pattern fields — the source of truth for band weighting. |
 
 For a code-task oracle fixture (the disjoint family this template does not cover),
@@ -215,4 +215,4 @@ follow the README taxonomy.
 
 ---
 
-*End of template — the reviewer contract is normative in [`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/reviewer_schema.md); the fixture taxonomy in [`benchmark_fixtures/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/README.md).*
+*End of template — the reviewer contract is normative in [`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer_schema.md); the fixture taxonomy in [`benchmark-fixtures/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md).*

@@ -4,7 +4,7 @@
   "version": "1.0",
   "family": "deep-improvement",
   "mode": "reviewer",
-  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": [
     "reviewer_stale_verdict",
     "reviewer_softened_fail",

@@ -24,7 +24,7 @@
     "route_proof_required": false,
     "role_absorption_forbidden": false
   },
-  "budget_ms": 300000,
+  "budget_ms": 459000,
   "notes": "Boundary probe (SKILL.md §1 'When NOT to Use' + boundary paragraph + NEVER #5). 'find bugs / correctness problems' with no named authority is general-correctness review — deep-review's charter, not deep-alignment's. Correct behavior: decline to run a general-correctness audit and redirect to deep-review, OR ask which authority's creation standards to conform-check against. Absorbing a bug-hunt is the failure this cell exists to catch."
 }
 ```

@@ -1,20 +1,18 @@
 {
-  "profileId": "model-vs-model",
-  "id": "model-vs-model",
+  "profileId": "kimi-k2.7-frameworks",
+  "id": "kimi-k2.7-frameworks",
   "version": "1.0",
   "family": "deep-improvement",
-  "mode": "model-vs-model",
-  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures",
+  "mode": "framework-bakeoff",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": ["t3-lower-bound", "t3-compare-versions"],
   "fixtureSelection": {
     "include": ["t3-lower-bound", "t3-compare-versions"],
     "filters": { "tier": ["T3"] }
   },
-  "frameworks": ["rcaf"],
+  "frameworks": ["rcaf", "race", "cidi", "tidd-ec", "costar"],
   "models": [
-    { "executor": "cli-opencode", "provider": "minimax-coding-plan", "model_slug": "MiniMax-M2.7", "variant": "default" },
-    { "executor": "cli-opencode", "provider": "openai", "model_slug": "gpt-5.5", "variant": "high" },
-    { "executor": "cli-claude-code", "provider": "anthropic", "model_slug": "claude-opus", "variant": "high" }
+    { "executor": "cli-opencode", "provider": "kimi-for-coding", "model_slug": "k2p7", "variant": "default" }
   ],
   "scoring": {
     "scorer": "5dim",
@@ -28,7 +26,7 @@
     ]
   },
   "sampling": { "samplesPerCell": 3, "seed": 1729 },
-  "reporting": { "groupBy": "model", "leaderboard": true, "history": true },
+  "reporting": { "groupBy": "framework", "leaderboard": true, "history": true },
   "outputsDir": "{spec_folder}/improvement/benchmark-outputs",
   "metrics": ["score", "delta", "pass_rate"],
   "thresholdDelta": 0.05,

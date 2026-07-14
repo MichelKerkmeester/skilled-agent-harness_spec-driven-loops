@@ -20,7 +20,10 @@ Usage:
      cp .opencode/skills/sk-doc/create-benchmark/assets/behavior_benchmark/behavior_benchmark_baseline_template.md \
         .opencode/skills/system-deep-loop/<mode>/behavior_benchmark/baselines/claude-baseline.md
   2. DELETE the "version:" line below. A shipped baseline carries the five
-     frontmatter fields shown and NO version field.
+     frontmatter fields shown and NO version field: it is a memory-indexed DATA
+     artifact outside the references/** and assets/** version-scope defined in
+     ../../../shared/references/frontmatter_versioning.md §1, not a versioned
+     reference doc.
   3. Ship the file with every row "pending" / "not_captured" if no Claude leg has
      run yet — an uncaptured cell is a legitimate ship state, but it is NEVER
      quotable as behavior. Replace pending cells with measured values only after a

@@ -21,7 +21,10 @@ Usage:
         .opencode/skills/system-deep-loop/<mode>/behavior_benchmark/behavior_benchmark.md
   2. DELETE the "version:" line below. A shipped behavior_benchmark index carries
      the five frontmatter fields shown (title / description / trigger_phrases /
-     importance_tier / contextType) and NO version field.
+     importance_tier / contextType) and NO version field: it is a memory-indexed
+     DATA artifact outside the references/** and assets/** version-scope defined
+     in ../../../shared/references/frontmatter_versioning.md §1, not a versioned
+     reference doc.
   3. Fill every {{PLACEHOLDER}} and remove every <!-- guidance --> comment.
   4. Author one scenarios/<PREFIX>-NNN-<slug>.md per row (scenario template) and one
      baselines/claude-baseline.md (baseline template). Keep the SCENARIO TABLE and the

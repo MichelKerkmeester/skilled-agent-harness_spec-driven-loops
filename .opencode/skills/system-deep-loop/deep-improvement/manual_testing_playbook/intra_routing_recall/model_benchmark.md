@@ -10,7 +10,7 @@ expected_resources:
   - references/model_benchmark/evaluator_contract.md
   - references/model_benchmark/lane_b_mechanics.md
   - references/model_benchmark/mixed_executor_methodology.md
-  - assets/model_benchmark/benchmark_fixtures/reviewer_schema.md
+  - assets/model_benchmark/benchmark-fixtures/reviewer_schema.md
 version: 1.0.0.0
 ---
 

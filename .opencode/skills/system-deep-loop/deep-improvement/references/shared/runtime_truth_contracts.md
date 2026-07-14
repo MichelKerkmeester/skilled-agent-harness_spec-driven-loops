@@ -108,16 +108,17 @@ For legal-stop replay, the reducer consumes `details.gateResults` from the lates
 
 The reusable benchmark contract ships with the skill, not with each spec packet:
 
-- Profile: `assets/model_benchmark/benchmark_profiles/default.json`
-- Fixtures: `assets/model_benchmark/benchmark_fixtures/*.json`
+- Profile: `assets/model_benchmark/benchmark-profiles/default.json`
+- Fixtures: `assets/model_benchmark/benchmark-fixtures/*.json`
 - Materializer: `scripts/shared/materialize-benchmark-fixtures.cjs`
 - Runner: `scripts/model-benchmark/run-benchmark.cjs`
 
-The command workflow first materializes static fixture JSON into outputs under `.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/default.json --outputs-dir .opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}`. The runner writes `.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
+`materialize-benchmark-fixtures.cjs` and `run-benchmark.cjs` are output-location-agnostic — both take a required `--outputs-dir` and write wherever the caller points them. Two callers use this contract for two distinct purposes with two distinct, fixed output conventions:
 
-Benchmark outputs are always written to the sk-prompt/prompt-models hub at `.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/`. There is no spec-local output path. `run_label` is a required identifier that distinguishes benchmark runs in the hub (e.g. `"minimax-tidd-ec"`, `"mimo-costar"`).
+- **Lane A (`/deep:agent-improvement`, this session's own runtime):** every iteration's `step_materialize_benchmark-fixtures` + `step_run_benchmark` steps materialize `default.json`'s fixtures and run the benchmark spec-locally, into `{spec_folder}/improvement/benchmark-outputs/`. `benchmark_completed` may be emitted only after `{spec_folder}/improvement/benchmark-outputs/report.json` exists (both `auto` and `confirm` modes verify with `test -f {spec_folder}/improvement/benchmark-outputs/report.json`). The runner also appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`. There is no sk-prompt/prompt-models hub path in this flow.
+- **Lane B (standalone `/deep:model-benchmark` command):** materializes fixtures and runs the benchmark against the sk-prompt/prompt-models hub, keyed by the operator-supplied `run_label` — `.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/{fixture.id}.md` for materialized fixtures, then `run-benchmark.cjs --outputs-dir .opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}`, writing `.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/report.json` with `status:"benchmark-complete"`. `run_label` is a required identifier that distinguishes benchmark runs in the hub (e.g. `"minimax-tidd-ec"`, `"mimo-costar"`). This flow is not spec-local by design — Lane B compares models/frameworks across sessions, so results are meant to persist centrally rather than live under one packet.
 
-`benchmark_completed` may be emitted only after `benchmarks/{run_label}/report.json` exists. Repeatability output from `benchmark-stability.cjs` is separate evidence and does not by itself prove benchmark completion.
+Repeatability output from `benchmark-stability.cjs` is separate evidence and does not by itself prove benchmark completion.
 
 ---
 
