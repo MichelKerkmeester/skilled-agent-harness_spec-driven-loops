@@ -9,18 +9,208 @@
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": ["sk-prompt naming rollup gate", "sk-prompt kebab-clean verification", "sk-prompt phase 007 gate"],
-    "key_topics": ["sk-prompt", "rollup", "naming-census", "kebab-clean", "handoff"],
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt naming rollup gate",
+      "sk-prompt kebab-clean verification",
+      "sk-prompt phase 007 gate",
+      "sk-prompt rollup gate plan",
+      "sk-prompt kebab-clean plan",
+      "sk-prompt phase 007 plan",
+      "sk-prompt rollup gate tasks",
+      "sk-prompt final naming census",
+      "sk-prompt phase 007 tasks",
+      "sk-prompt rollup gate checklist",
+      "sk-prompt kebab-clean verifier",
+      "sk-prompt phase 007 acceptance"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "naming",
+      "rollup",
+      "gate",
+      "kebab-clean",
+      "verification",
+      "phase",
+      "plan",
+      "tasks",
+      "final",
+      "census",
+      "checklist"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
-    "entities": [],
-    "causal_summary": "Final sk-prompt sibling-evidence rollup and scope-aware kebab-clean gate.",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Sibling",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 017 exemption boundary. It performs no new rename or reference migration.",
     "created_at": "2026-07-14T15:17:34Z",
-    "last_save_at": "2026-07-14T18:04:33Z",
+    "last_save_at": "2026-07-14T20:22:54.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:55f8736f41a29d7cf87f46df1bdf9b9868c7f0edc5389380af6301a3c6042e5d",
+    "source_doc_hashes": {
+      "spec.md": "a3a354dbb810132c125b1afeb8dbf86d9e53afc8f8f3754288db2fe53ba24a61",
+      "plan.md": "b2cf951bdbf16c384934f0c490a9a5186600d1de5dbdc85db4b8b9e1b84bb566",
+      "tasks.md": "cbe191586e69cf910f6b833c0210cb19ad47bbf79bab168f88eaa3a099d59444",
+      "checklist.md": "b5a1f415441d32f085556c8eade9201afab04cef7dfce8aaf722db0beb0f0818"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

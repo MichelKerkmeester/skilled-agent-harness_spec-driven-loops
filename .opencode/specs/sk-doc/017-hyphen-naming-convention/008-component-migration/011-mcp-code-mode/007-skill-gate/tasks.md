@@ -45,7 +45,7 @@ _memory:
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Rollup Verification
+## Phase 2: Implementation
 
 - [ ] T004 Run the recursive mcp-code-mode filesystem census and classify every underscore-bearing name
 - [ ] T005 Run the whole-surface stale-path and Markdown-link scans

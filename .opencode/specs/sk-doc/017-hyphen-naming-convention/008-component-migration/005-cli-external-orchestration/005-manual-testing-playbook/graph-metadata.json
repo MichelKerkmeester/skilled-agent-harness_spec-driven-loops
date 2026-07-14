@@ -2,25 +2,219 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "cli-external manual playbook kebab-case",
+      "manual-testing-playbook scenario rename",
+      "cli-external phase 005 playbook naming",
+      "cli-external manual playbook implementation plan",
+      "manual-testing-playbook path map plan",
+      "cli-external phase 005 plan",
+      "cli-external manual playbook tasks",
+      "manual-testing-playbook path map tasks",
+      "cli-external phase 005 tasks",
+      "cli-external manual playbook checklist",
+      "manual-testing-playbook verifier",
+      "cli-external phase 005 acceptance"
+    ],
+    "key_topics": [
+      "cli-external",
+      "manual",
+      "playbook",
+      "kebab-case",
+      "manual-testing-playbook",
+      "scenario",
+      "rename",
+      "phase",
+      "naming",
+      "implementation",
+      "plan",
+      "path"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 5: manual-testing-playbook",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/specs/sk-doc/017-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exactly",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-external-orchestration surface contains four manual_testing_playbook roots and snake_case category/file names across hub, OpenCode, Claude Code, and Codex scenarios. This phase renames those playbook filesystem names, updates active references, and preserves scenario IDs, frontmatter fields, and test meaning.",
     "created_at": "2026-07-14T15:17:38Z",
-    "last_save_at": "2026-07-14T15:17:38Z",
+    "last_save_at": "2026-07-14T20:22:55.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:1316c10fba32a8ab737d993919e6b59ca6c17d5cbae110322f1d4c5bbd587acb",
+    "source_doc_hashes": {
+      "spec.md": "7486e65b9c3e9886882c85df8517f785f4b8328116ca4316f3c6919c8609b4f3",
+      "plan.md": "4f1d54980833fe7ece46a21c32a8acdf3e6a4111907f3f9672e4df885e9f010f",
+      "tasks.md": "921678a1645d3536b16ed502c481b9d194c33185c0e35e98728dc75ce01e467b",
+      "checklist.md": "1ebc5a4ee4f8a3da5dcf3aa0118d073b061f6a1cb1eb491aa863788098c87ce7",
+      "decision-record.md": "e058ce4c09191b565ea0d3c5031ded158b9d0e0def86c804edab3ba3a9046ccb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

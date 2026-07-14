@@ -19,27 +19,25 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "mcp-code-mode component migration",
+      "017 mcp code mode naming",
+      "kebab-case mcp-code-mode"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "mcp-code-mode",
+      "component",
+      "migration",
+      "mcp",
+      "code",
+      "mode",
+      "naming",
+      "kebab-case",
+      "surface",
+      "still",
+      "contains",
+      "directory"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md"
@@ -58,13 +56,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -76,29 +74,29 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The mcp-code-mode surface still contains snake_case directory, reference, asset, and manual-playbook names. This phase parent defines seven independent contracts that move permitted filesystem names to kebab-case while preserving Python names, tool-mandated names, generated history, and non-filesystem identifiers.",
     "created_at": "2026-07-14T15:17:03Z",
-    "last_save_at": "2026-07-14T15:24:36.390Z",
+    "last_save_at": "2026-07-14T20:22:58.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ae0f335a8f032568428afdc95a6b695fc89f38e1a5254448f225c874e8ba0ff8",
+    "source_fingerprint": "sha256:68d95b528358db7f3fe97af7764f946e61845a412d933d8589f7681fa5912820",
     "source_doc_hashes": {
-      "spec.md": "f7145d222f632143a79677ee3b0adc4654073fc454c1be5ca3c2d3fe7ab83c33"
+      "spec.md": "68e1601c793e2de5aa53b4cc0d304efa6ba85d9e5f10cab9ca4d99c1b601435f"
     },
     "last_active_child_id": null,
     "last_active_at": null

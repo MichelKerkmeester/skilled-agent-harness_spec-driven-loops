@@ -45,7 +45,7 @@ _memory:
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Verification
+## Phase 2: Implementation
 
 - [ ] T004 Verify a new versioned changelog entry exists after v1.0.8.0
 - [ ] T005 Compare its file list and descriptions to all five sibling outcomes

@@ -19,32 +19,38 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "sk-prompt kebab-case migration",
+      "sk-prompt component naming phases",
+      "prompt surface hyphen naming"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "sk-prompt",
+      "kebab-case",
+      "migration",
+      "component",
+      "naming",
+      "phases",
+      "prompt",
+      "surface",
+      "hyphen",
+      "still",
+      "contains",
+      "underscore-separated"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/specs/sk-doc/017-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -58,13 +64,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -76,29 +82,29 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Purpose Define",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The sk-prompt surface still contains underscore-separated filesystem names across the hub-level playbook, the prompt-improve and prompt-models packets, and benchmark artifacts",
     "created_at": "2026-07-14T15:16:57Z",
-    "last_save_at": "2026-07-14T15:24:35.251Z",
+    "last_save_at": "2026-07-14T20:22:54.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0cf50e03701108f5875bd241112baa7a20a44bd5529aecc5d65cdcb7522be55a",
+    "source_fingerprint": "sha256:baf563051e4a4c6f3837f13370b6da27bcb3c77e9d4b007641efb79dfbd603eb",
     "source_doc_hashes": {
-      "spec.md": "4715f5ae349da7979228bb955302c32efd2b53b75882eb82fe3d7f72aef43f65"
+      "spec.md": "0b7ad6eb1804b9ff0954f79b3a925ab6168c0802a3afab03127d039c9a06568c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -20,32 +20,44 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "mcp-tooling kebab-case migration",
+      "mcp tooling component naming",
+      "017 mcp-tooling phase map"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "mcp-tooling",
+      "kebab-case",
+      "migration",
+      "mcp",
+      "tooling",
+      "component",
+      "naming",
+      "phase",
+      "map",
+      "surface",
+      "contains",
+      "directory"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/mcp-tooling/SKILL.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -59,7 +71,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Component Naming Migration",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -71,35 +83,35 @@
         "source": "derived"
       },
       {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The mcp-tooling surface contains snake_case directory and file names across its hub-level support material, three component packets, manual-testing playbooks, and benchmark boundary. This phased packet defines the independent rename and reference-rewrite scopes needed to make that surface kebab-clean while preserving tool-mandated names, Python exemptions, and component behavior.",
     "created_at": "2026-07-14T15:16:59Z",
-    "last_save_at": "2026-07-14T15:24:35.549Z",
+    "last_save_at": "2026-07-14T20:22:56.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5352a22dc65d6b5a958af06bbf7ac4a1de10e05ee6f0971e23a3303d3bb2f567",
+    "source_fingerprint": "sha256:4c3ad30da4a5df072a78a8284f2b9f2fa9f5624935b1530ff5a7ebfc30f0f632",
     "source_doc_hashes": {
-      "spec.md": "8b3515a356c4d4be6ffa700dadd59b161d8efef3610f42b08dec06de8c7c84bf"
+      "spec.md": "9a142e75ce37289d456c3508361d7bc2f879619576e976ed06b66735f5576bdf"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,25 +2,215 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
+  "derived": {
+    "trigger_phrases": [
+      "system-skill-advisor skill gate",
+      "advisor subtree naming gate",
+      "kebab-case rollup verification",
+      "system-skill-advisor migration closure",
+      "system-skill-advisor subtree gate plan",
+      "kebab-case rollup gate implementation",
+      "advisor whole-surface verification",
+      "system-skill-advisor gate tasks",
+      "subtree rollup tasks",
+      "advisor naming gate tasks",
+      "system-skill-advisor gate checklist",
+      "subtree rollup verification"
+    ],
+    "key_topics": [
+      "system-skill-advisor",
+      "skill",
+      "gate",
+      "advisor",
+      "subtree",
+      "naming",
+      "kebab-case",
+      "rollup",
+      "verification",
+      "migration",
+      "closure",
+      "plan"
+    ],
+    "importance_tier": "critical",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 8: skill-gate",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Accept",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changing Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Treat",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Leaf",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The six surface-migration phases can each appear green while a cross-phase path, an exempt name, a stale reference,",
     "created_at": "2026-07-14T15:18:12Z",
-    "last_save_at": "2026-07-14T15:18:12Z",
+    "last_save_at": "2026-07-14T20:22:57.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:b2dbb46ea408220c5f072d8bfd5e34d32f94af2e34c2db5c3777aca6aec49f7d",
+    "source_doc_hashes": {
+      "spec.md": "4a882c7215d91a9d6926b5246c1e58265f0ac33ca4951015c0cb548a4f029fd7",
+      "plan.md": "66e1b8a4117f8be8de4820802444a5521f2aa8525a1699408a4dabda991db786",
+      "tasks.md": "3f2d9e84d2474e199628221dea5cc07d7aa0a48b838f2309da4496b879d3b454",
+      "checklist.md": "03628a254b0b85af69486856d0cdd453acbe3c5f45f79ea758dc8ea2412ebae0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

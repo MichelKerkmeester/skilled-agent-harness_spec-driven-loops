@@ -2,25 +2,214 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": ["mcp-tooling manual testing playbook", "hub routing playbook naming", "manual scenario kebab-case", "manual playbook reference closure"],
-    "key_topics": ["manual-testing-playbook", "mcp-tooling", "snake_case", "kebab-case", "scenarios", "categories", "references"],
+  "derived": {
+    "trigger_phrases": [
+      "mcp-tooling manual-testing-playbook naming",
+      "hub routing playbook rename",
+      "017 mcp tooling phase 005",
+      "mcp-tooling hub playbook implementation plan",
+      "hub routing scenario path repair",
+      "mcp-tooling hub playbook tasks",
+      "hub routing scenario rename tasks",
+      "mcp-tooling hub playbook checklist",
+      "hub routing scenario verification"
+    ],
+    "key_topics": [
+      "mcp-tooling",
+      "manual-testing-playbook",
+      "naming",
+      "hub",
+      "routing",
+      "playbook",
+      "rename",
+      "mcp",
+      "tooling",
+      "phase",
+      "implementation",
+      "plan"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
-    "entities": [],
-    "causal_summary": "Rename only the hub-level manual-testing-playbook categories and scenarios, leaving component-local playbooks to their owning phases.",
+    "key_files": [
+      ".opencode/skills/mcp-tooling/SKILL.md",
+      ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Manual",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Naming Closure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-tooling hub-level manual-testing-playbook tree uses an underscored root, category directory, index file, and seven scenario filenames. This phase renames only that hub-level tree to kebab-case and updates its navigation references, leaving the three component-local playbooks to their own phases.",
     "created_at": "2026-07-14T15:17:44Z",
-    "last_save_at": "2026-07-14T15:17:44Z",
+    "last_save_at": "2026-07-14T20:22:56.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:faa2b2341f1f4d321aac24f7058a7d6911111376adf5f3df575958ba346cc744",
+    "source_doc_hashes": {
+      "spec.md": "cf113d231a7340d8d67108f1827ffc01d220a7992c1da9c8a60757d4e8f846d2",
+      "plan.md": "795382e7e82eb817efd525a12697c46971fba52d01f1663fcabbb4d546b1bc27",
+      "tasks.md": "54bf990a4a55ed0f26cb684e89441948cb69facead2e277e2625b1f6979b4d87",
+      "checklist.md": "baff9e7f27b936b573122128c04ed49783e8d857ceefddb52d73b234855651a1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

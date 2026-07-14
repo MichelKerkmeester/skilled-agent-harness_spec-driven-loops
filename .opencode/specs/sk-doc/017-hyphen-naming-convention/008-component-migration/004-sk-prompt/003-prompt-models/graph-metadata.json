@@ -9,18 +9,211 @@
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": ["prompt-models kebab-case migration", "prompt-models asset filenames", "sk-prompt phase 003 naming"],
-    "key_topics": ["prompt-models", "assets", "references", "model-data", "kebab-case"],
+  "derived": {
+    "trigger_phrases": [
+      "prompt-models kebab-case migration",
+      "prompt-models asset filenames",
+      "sk-prompt phase 003 naming",
+      "prompt-models asset and reference implementation plan",
+      "sk-prompt phase 003 plan",
+      "prompt-models asset and reference tasks",
+      "sk-prompt phase 003 tasks",
+      "prompt-models asset and reference checklist",
+      "sk-prompt phase 003 verifier"
+    ],
+    "key_topics": [
+      "prompt-models",
+      "kebab-case",
+      "migration",
+      "asset",
+      "filenames",
+      "sk-prompt",
+      "phase",
+      "naming",
+      "reference",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
-    "entities": [],
-    "causal_summary": "Prompt-models asset/reference path map with model and JSON contract preservation.",
+    "key_files": [
+      ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
+      ".opencode/skills/sk-prompt/prompt-models/README.md",
+      ".opencode/skills/sk-prompt/prompt-models/assets/cli_prompt_quality_card.md",
+      ".opencode/skills/sk-prompt/prompt-models/assets/confidence_scoring_rubric.md",
+      ".opencode/skills/sk-prompt/prompt-models/assets/model_profiles.json",
+      ".opencode/skills/sk-prompt/prompt-models/assets/per_model_budgets.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-models/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-models/assets/cli_prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "confidence_scoring_rubric.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-models/assets/confidence_scoring_rubric.md",
+        "source": "derived"
+      },
+      {
+        "name": "model_profiles.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/prompt-models/assets/model_profiles.json",
+        "source": "derived"
+      },
+      {
+        "name": "per_model_budgets.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/prompt-models/assets/per_model_budgets.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "unique",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Path",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "generated-output",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The prompt-models packet has underscore-separated asset and reference filenames, including the model registry and budget data files that are named by active Markdown and skill references. This phase renames those packet-owned paths to kebab-case, updates path-valued consumers, and preserves model IDs, JSON keys, Python/package exemptions, and generated benchmark output.",
     "created_at": "2026-07-14T15:17:31Z",
-    "last_save_at": "2026-07-14T18:04:33Z",
+    "last_save_at": "2026-07-14T20:22:54.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:c12ff347e42fc5b696c5682c3b8cb7d267a0c5f1b0f5008695d9e0d8fb2f2f59",
+    "source_doc_hashes": {
+      "spec.md": "05e82b67ebeaf06db515b51a4ede95198b3f58535dc7f66ae58de292752c3763",
+      "plan.md": "aec31d4a5e3f346277ad784b72f61b207f773777d2c4b5e30d79ac03dabffe07",
+      "tasks.md": "0192364938cdd03725e73c3e0497a2d230d1bc52560109072b73047fc5e796a0",
+      "checklist.md": "aa06e5e7107307eef1f385097a652390a1691a78bee3f6e2c60d99c1f801bd9c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -2,25 +2,217 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "cli-claude-code kebab-case migration",
+      "Claude Code reference asset naming",
+      "cli-external phase 003 naming",
+      "cli-claude-code implementation plan",
+      "Claude Code asset reference rename plan",
+      "cli-external phase 003 plan",
+      "cli-claude-code naming tasks",
+      "Claude Code path map tasks",
+      "cli-external phase 003 tasks",
+      "cli-claude-code naming checklist",
+      "Claude Code path map verifier",
+      "cli-external phase 003 acceptance"
+    ],
+    "key_topics": [
+      "cli-claude-code",
+      "kebab-case",
+      "migration",
+      "claude",
+      "code",
+      "reference",
+      "asset",
+      "naming",
+      "cli-external",
+      "phase",
+      "implementation",
+      "plan"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 3: cli-claude-code",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compare Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-claude-code component has underscore-separated reference and prompt-asset filenames with active links from its skill and README. This phase renames those local authored names, updates path-valued references, and preserves Claude dispatch contracts and the delegated playbook tree.",
     "created_at": "2026-07-14T15:17:37Z",
-    "last_save_at": "2026-07-14T15:17:37Z",
+    "last_save_at": "2026-07-14T20:22:55.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:9a943e9fb1866fc57bc56efea9b0e9fd3f724bbd48b98cebd7ecf9c14211e80d",
+    "source_doc_hashes": {
+      "spec.md": "7cfc992965550adc283320bd2eb9427447a61611124d4e1a98dc940ba7a47102",
+      "plan.md": "864151643a8ea95cd9de2a54ec24cdd2a1d3b036b1f4fa857c39a9c233b7cae1",
+      "tasks.md": "7eff30ee6783cde2146efa456d1007b85409233b194806362b428ec9f4ee625b",
+      "checklist.md": "fa9dd9254083b50861bd4a7c7e11bcfa2c7c9747f12a4b9e2ae09cb69ade78fc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

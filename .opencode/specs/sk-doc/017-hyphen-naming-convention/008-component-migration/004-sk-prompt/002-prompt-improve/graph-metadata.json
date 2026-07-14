@@ -9,18 +9,213 @@
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": ["prompt-improve kebab-case migration", "prompt-improve asset filenames", "sk-prompt phase 002 naming"],
-    "key_topics": ["prompt-improve", "assets", "references", "kebab-case", "path-closure"],
+  "derived": {
+    "trigger_phrases": [
+      "prompt-improve kebab-case migration",
+      "prompt-improve asset filenames",
+      "sk-prompt phase 002 naming",
+      "prompt-improve asset and reference implementation plan",
+      "sk-prompt phase 002 plan",
+      "prompt-improve asset and reference tasks",
+      "sk-prompt phase 002 tasks",
+      "prompt-improve asset and reference checklist",
+      "sk-prompt phase 002 verifier"
+    ],
+    "key_topics": [
+      "prompt-improve",
+      "kebab-case",
+      "migration",
+      "asset",
+      "filenames",
+      "sk-prompt",
+      "phase",
+      "naming",
+      "reference",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
-    "entities": [],
-    "causal_summary": "Prompt-improve asset/reference path map with active-link closure.",
+    "key_files": [
+      ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+      ".opencode/skills/sk-prompt/prompt-improve/README.md",
+      ".opencode/skills/sk-prompt/prompt-improve/assets/format_guide_json.md",
+      ".opencode/skills/sk-prompt/prompt-improve/assets/format_guide_markdown.md",
+      ".opencode/skills/sk-prompt/prompt-improve/assets/format_guide_yaml.md",
+      ".opencode/skills/sk-prompt/prompt-improve/references/depth_framework.md",
+      ".opencode/skills/sk-prompt/prompt-improve/references/design_generation_patterns.md",
+      ".opencode/skills/sk-prompt/prompt-improve/references/patterns_evaluation.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-improve/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "format_guide_json.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-improve/assets/format_guide_json.md",
+        "source": "derived"
+      },
+      {
+        "name": "format_guide_markdown.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-improve/assets/format_guide_markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "format_guide_yaml.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-improve/assets/format_guide_yaml.md",
+        "source": "derived"
+      },
+      {
+        "name": "depth_framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-improve/references/depth_framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_generation_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-improve/references/design_generation_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "patterns_evaluation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-improve/references/patterns_evaluation.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Six",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The prompt-improve packet still uses underscore-separated names for its format-guide assets and core reference files, and those paths are repeated in the packet skill, README, and router resource map. This phase renames only that packet-owned asset/reference set and closes every active path reference while leaving playbook, benchmark, changelog, tool-mandated, and data-key boundaries intact.",
     "created_at": "2026-07-14T15:17:31Z",
-    "last_save_at": "2026-07-14T18:04:33Z",
+    "last_save_at": "2026-07-14T20:22:54.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:f196fccf08ac38ac93659ae422bf9133133f3166868961b2f961c0810db91603",
+    "source_doc_hashes": {
+      "spec.md": "d8e1df2641af007ae179b4404e40dab054d1bd4c91bd3573f2c48b11d91c4f4c",
+      "plan.md": "35faa724ed25fc532c9efc8a23939c3e3d15c6ad0f5a9f4cb37d428f9ec06631",
+      "tasks.md": "c48b010e21773529774977c36b05dcffe728d8795d80ae4af7d303e0fe98898c",
+      "checklist.md": "430e8ecf02df0a0cd3337c65c2324c857da9f2709832c60e6018f5cc9edae9e5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

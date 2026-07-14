@@ -20,32 +20,51 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "cli-external-orchestration kebab-case migration",
+      "cli external orchestration naming phases",
+      "external CLI surface hyphen naming"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "cli-external-orchestration",
+      "kebab-case",
+      "migration",
+      "cli",
+      "external",
+      "orchestration",
+      "naming",
+      "phases",
+      "surface",
+      "hyphen",
+      "phase",
+      "parent"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/cli-external-orchestration/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/skills/cli-external-orchestration/mode-registry.json",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -59,13 +78,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Child Count",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -77,29 +96,29 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Rename Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Phase parent for the kebab-case migration of the cli-external-orchestration hub, its three CLI workflow components, manual-testing-playbook trees, benchmark boundary, release evidence, and final subtree gate. Children keep ownership and verification independent.",
     "created_at": "2026-07-14T15:16:58Z",
-    "last_save_at": "2026-07-14T15:24:35.406Z",
+    "last_save_at": "2026-07-14T20:22:55.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:cc5db05a110130d10956db67ccfb7b782086eb981da9f3fa302e9b738691b292",
+    "source_fingerprint": "sha256:d76c18b1dc14e4fcb054be18749e197356d7488582d2b512f9e02ca3de19295c",
     "source_doc_hashes": {
-      "spec.md": "ba4c54b799523a2854fd8232ffd940260d4d5e57f0d0d5f0af12c76487083fe0"
+      "spec.md": "0a1748ca02adeca82a814b7d6a62d5025c4b56165ebe0582e1323ca2dc9da2a8"
     },
     "last_active_child_id": null,
     "last_active_at": null
