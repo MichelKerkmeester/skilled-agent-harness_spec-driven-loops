@@ -55,6 +55,24 @@ This packet routes by target document type and execution mode: report-only audit
 - Ask for the missing target document, document type, or execution mode instead of silently loading no resources.
 - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
+### Machine-Readable Call Sequence
+
+The flat-reference router expresses its existing decisions through the shared sequence below. `get_routing_key()` represents the resolved document type and execution mode; it does not imply keyed resource subdirectories.
+
+```text
+discover_markdown_resources()
+  -> _guard_in_skill() + load_if_available()
+  -> score_intents() / select_intents()
+  -> get_routing_key()
+  -> UNKNOWN_FALLBACK
+```
+
+- `discover_markdown_resources()` enumerates available packet-local markdown resources.
+- `_guard_in_skill()` and `load_if_available()` load only existing, guarded resources.
+- `score_intents()` and `select_intents()` resolve the target document type and execution mode.
+- `get_routing_key()` combines those resolved routing decisions.
+- `UNKNOWN_FALLBACK` asks for the missing target document, document type, or execution mode.
+
 ---
 
 ## 3. HOW IT WORKS: CORE WORKFLOW

@@ -60,6 +60,37 @@ This packet routes by command-authoring intent and the requested component surfa
 - Ask for the missing command purpose, invocation shape, or component type instead of silently loading no resources.
 - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
+### Resource Loading Sequence
+
+The packet keeps its existing flat-resource routing while using the shared resilience call sequence:
+
+```python
+def discover_markdown_resources():
+    return flat markdown resources under this packet's `references/` and `assets/` folders
+
+def _guard_in_skill(relative_path):
+    # Keep packet-local markdown paths in scope; retain explicitly documented shared routes.
+    confirm the path is an allowed markdown resource for this packet
+
+def load_if_available(relative_path, inventory, seen):
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        seen.add(guarded)
+
+def route_create_command_request(request):
+    inventory = discover_markdown_resources()
+    intents = score_intents(request)  # command-authoring intent and component surface
+    selected = select_intents(intents)
+    routing_key = get_routing_key(request, selected)
+    if not selected or the command purpose or component surface is unclear:
+        load_if_available("references/README.md", inventory, seen)
+        return UNKNOWN_FALLBACK
+    return route by the existing command-authoring intent and component-surface rules
+```
+
+`UNKNOWN_FALLBACK` asks for the command purpose, invocation shape, or component type. The sequence discovers the current flat resources at routing time, guards and loads only available resources without duplicates, then applies the activation triggers and command-type rules already defined below.
+
 ---
 
 ## 3. HOW IT WORKS: CREATION WORKFLOW

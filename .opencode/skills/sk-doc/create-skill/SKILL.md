@@ -1,6 +1,6 @@
 ---
 name: create-skill
-description: Scaffold OpenCode skills and parent hubs for the sk-doc family, covering standalone skills and two-axis parent hubs with nested workflow or surface packets.
+description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.1.0.0
 ---

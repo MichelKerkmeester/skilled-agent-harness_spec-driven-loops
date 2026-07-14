@@ -1,6 +1,6 @@
 ---
 name: create-diff
-description: Preview-gated sk-doc mode that orchestrates the create-diff engine to produce a local, Git-free before/after review of an AI-edited document, with automatic baseline capture, explicit-pair fallback, and an accessible self-contained report.
+description: Preview create-diff: local Git-free AI-edited document before/after review; baseline, explicit-pair fallback, accessible report.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.0.0
 ---
@@ -30,6 +30,16 @@ Use simple intent routing with no keyed resource discovery and no `references/<k
 UNKNOWN_FALLBACK: If the request is ambiguous or the engine is unavailable, confirm the target document, whether a baseline exists, and the output path before acting. Explain the preview status rather than fabricating a diff.
 
 Do not hijack routing from functional siblings when the intent is not clearly a document before/after review.
+
+For this flat packet, map the canonical smart-router sequence to the existing phrase routing and no-resource topology:
+
+```text
+discover_markdown_resources()
+  -> _guard_in_skill() + load_if_available()
+  -> score_intents()/select_intents()  # match conservative activation phrases
+  -> get_routing_key()                 # resolve the document before/after review route
+  -> UNKNOWN_FALLBACK                  # confirm target, baseline, and output when unresolved
+```
 
 ## 3. HOW IT WORKS
 

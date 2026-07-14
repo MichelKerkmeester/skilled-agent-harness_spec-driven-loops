@@ -1,6 +1,6 @@
 ---
 name: create-readme
-description: Author folder READMEs and install guides for sk-doc, including code-folder orientation, skill/project READMEs and folded five-phase install guides.
+description: Author sk-doc folder, code-folder and skill/project READMEs plus folded five-phase install guides.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.0.0
 ---
@@ -58,6 +58,14 @@ Router resilience rules:
 - Treat `references/README.md` as the fallback route map when artifact type or folder purpose is unclear.
 - Ask for the missing artifact type, target folder or validation expectation instead of silently loading no resources.
 - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
+
+**Call sequence** for this packet's simple artifact routing:
+
+1. `discover_markdown_resources()` enumerates current markdown resources under the existing `references/` and `assets/` folders.
+2. `_guard_in_skill()` plus `load_if_available()` resolves optional packet-local resources, rejects paths outside this skill and skips missing files.
+3. `score_intents(task)` and `select_intents(scores, ambiguity_delta=1.0)` score the README, code-folder README and install-guide intents from the request and target-folder purpose.
+4. `get_routing_key(task, intents)` derives the selected artifact and folder-purpose route for the matching template.
+5. When no route scores, return `UNKNOWN_FALLBACK`, use `references/README.md` as the route map and ask for the missing artifact type, target folder or validation expectation.
 
 Use this README decision tree:
 

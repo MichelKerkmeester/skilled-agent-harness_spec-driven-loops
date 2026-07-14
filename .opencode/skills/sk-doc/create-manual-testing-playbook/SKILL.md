@@ -1,6 +1,6 @@
 ---
 name: create-manual-testing-playbook
-description: Author manual testing playbook packages with deterministic scenarios, structured evidence collection, and multi-agent execution planning.
+description: Author manual testing playbook packages with deterministic scenarios, evidence collection, and multi-agent execution planning.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.1.1
 ---
@@ -77,6 +77,18 @@ This packet routes by whether the target needs reusable manual validation with c
 - Treat `references/README.md` as the fallback route map when the validation scope or evidence needs are unclear.
 - Ask for the missing target system, feature set, or evidence requirements instead of silently loading no resources.
 - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
+
+Router call sequence for this flat-resource packet:
+
+```text
+discover_markdown_resources()
+  -> _guard_in_skill() + load_if_available()
+  -> score_intents(task) / select_intents(scores)
+  -> get_routing_key(task, intents)
+  -> UNKNOWN_FALLBACK
+```
+
+Here, intent selection resolves whether reusable manual validation with captured evidence is needed; the routing key remains this `sk-doc` packet. `UNKNOWN_FALLBACK` asks for the missing target system, feature set, or evidence requirements. Resource discovery is limited to existing markdown under this packet's flat `references/` and `assets/` folders.
 
 ---
 

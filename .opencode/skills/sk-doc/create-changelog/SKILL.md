@@ -69,6 +69,18 @@ This packet routes by source topology and the resulting global or packet-local o
 - Ask for the missing source type, target component or packet, or version intent instead of silently loading no resources.
 - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
+### Smart-router Call Sequence
+
+For this flat-reference packet, map the canonical smart-router sequence to the existing topology and output-mode routing:
+
+```text
+discover_markdown_resources()
+  -> _guard_in_skill() + load_if_available()
+  -> score_intents()/select_intents()  # choose global or packet-local mode
+  -> get_routing_key()                 # resolved source topology and output mode
+  -> UNKNOWN_FALLBACK                  # ask when source, target, or version intent is unresolved
+```
+
 ---
 
 ## 3. REQUIRED INPUTS

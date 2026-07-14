@@ -1,3 +1,17 @@
+---
+title: Command Router Template
+description: Canonical skeleton for thin router commands with owned assets and presentation boundaries.
+trigger_phrases:
+  - "command router template"
+  - "thin router command"
+  - "router presentation split"
+  - "router command skeleton"
+  - "owned assets presentation boundary"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
 # Command Router Template
 
 Canonical skeleton for a first-class **router** command: a thin dispatcher whose `.md`

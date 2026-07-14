@@ -1,6 +1,6 @@
 ---
 name: create-benchmark
-description: Author benchmark artifacts across families - MCP-promotion benchmark_report.md plus SOURCE.md; deep-loop behavior_benchmark packages; Lane C skill-benchmark benchmark/ storage tree plus README index; and Lane B model-benchmark fixtures plus profiles. Scoring contracts and report renderers stay lane-owned and cross-linked, not templated here.
+description: Author MCP-promotion, behavior, skill-benchmark, and model-benchmark artifacts; route Lane A/D authoring guides.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.3.0.0
 ---
@@ -100,6 +100,16 @@ Route to the right family before authoring; the families are distinct and must n
 Pick the family by what the task authors: shipped MCP-stack numbers into a skill's code tree → MCP promotion (§3-8); executor-model behavior at a deep-loop mode's surface → behavior (§9); where a Lane C run's report pair is stored, or a hub `benchmark/README.md` index → skill-benchmark (§10); a Lane B input fixture or run profile → model-benchmark (§11). Two hard stops: to hand-write a `skill-benchmark-report.md`, don't — it is renderer-owned; to change how any benchmark is *scored*, don't — the scoring contracts are lane-local.
 
 **Lane A and Lane D.** create-benchmark hosts an authoring guide for each (section 12); their fixtures, evaluators, configs, schemas, and templates stay code-owned in-lane. Route a run to `/deep:agent-improvement` or `/deep:ai-system-improvement`.
+
+### Smart Router Call Sequence
+
+```python
+resources = _guard_in_skill(discover_markdown_resources())
+load_if_available(resources, family_guides_and_templates)
+intents = select_intents(score_intents(task, family_activation_triggers))
+routing_key = get_routing_key(task, intents)
+return routing_key if intents else UNKNOWN_FALLBACK
+```
 
 ### Family Boundary
 

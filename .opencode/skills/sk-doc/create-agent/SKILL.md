@@ -1,6 +1,6 @@
 ---
 name: create-agent
-description: Scaffold OpenCode agents with runtime-aware placement, permission frontmatter, authority boundaries, workflow sections, and validation.
+description: Scaffold OpenCode agents with runtime placement, permission frontmatter, authority boundaries, workflow sections, and validation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.1.1
 ---
@@ -52,6 +52,22 @@ Decision rule:
 Need a named runtime persona with authority and tool policy?
   YES -> Create an agent
   NO  -> Use or create a skill, template, or command instead
+```
+
+### Router Call Sequence
+
+```text
+resources = discover_markdown_resources()  # flat references/ and assets/ resources only
+for resource in resources:
+  guarded = _guard_in_skill(resource)
+  load_if_available(guarded, seen)
+
+scores = score_intents(request)  # component choice, runtime profile, and authority needs
+intents = select_intents(scores)
+routing_key = get_routing_key(request, intents)
+
+if routing_key is UNKNOWN:
+  return UNKNOWN_FALLBACK with the missing component type, runtime profile, or authority requirements
 ```
 
 ### Router Resilience

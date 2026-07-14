@@ -1,6 +1,6 @@
 ---
 name: create-feature-catalog
-description: Author sk-doc feature-catalog inventory packages with a root catalog, category folders, per-feature files, and auditable source anchors.
+description: Create sk-doc feature-catalog packages with a root catalog, category folders, per-feature files, and auditable source anchors.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.1.1
 ---
@@ -87,6 +87,14 @@ This packet routes by whether the target needs a stable, reviewable current-stat
 - Treat `references/README.md` as the fallback route map when catalog necessity or target feature scope is unclear.
 - Ask for the missing target system, feature scope, or inventory requirements instead of silently loading no resources.
 - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
+
+**Call sequence** (using shared smart-router helpers):
+
+1. `discover_markdown_resources()` — enumerate existing `.md` files in this packet's flat `references/` and `assets/` directories; do not assume keyed resource subdirectories.
+2. `_guard_in_skill()` + `load_if_available()` — sandbox each candidate to this skill, load only existing markdown resources, and suppress duplicates.
+3. `score_intents(task)` / `select_intents(scores)` — distinguish a stable feature-catalog need from README-sized, playbook, changelog, or quality-control requests using the activation and exclusion signals above.
+4. `get_routing_key(task, intents)` — derive the route from the target system and feature scope; use `references/README.md` as the fallback route map because resources are flat.
+5. `UNKNOWN_FALLBACK` — if the target system, feature scope, or inventory requirements remain unclear, ask for the missing detail rather than silently loading no resources.
 
 ---
 
