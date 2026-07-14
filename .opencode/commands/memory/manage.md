@@ -8,16 +8,27 @@ allowed-tools: Read, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__mem
 
 Thin router for indexed-continuity database management.
 
-## 1. ROUTING ASSETS
+## 1. ROUTER CONTRACT
 
-| Asset | Path | Status | Purpose |
-| --- | --- | --- | --- |
-| Workflow | _No memory workflow YAML exists in this checkout_ | Missing upstream asset | Keep management routing in this file until a workflow YAML is introduced by a separate workflow-asset change. Do not invent or edit YAML from this command. |
-| Presentation | `.opencode/commands/memory/assets/manage_presentation.txt` | Required | Stats, scan, cleanup, retention, learned triggers, ledger sweeps, tier, trigger, validation, delete, health, checkpoint, ingest, and error displays. |
+Guardrails:
+- Never query the database with Bash or raw `sqlite3`.
+- All database access goes through the allowed MCP tools.
+- Do not fall back to raw SQL when MCP fails; report the MCP error and operator fallback guidance.
+- Protected tiers require the confirmation gates described in the presentation asset.
+- Learned-trigger expiry and ledger sweeps default to dry-run. Mutation requires an explicit apply/confirmation gate and must report matched/deleted counts for every touched ledger.
+- This is a direct-dispatch command with no workflow YAML by design; do not create or modify workflow YAML from this command.
+
+## 2. OWNED ASSETS
+
+| Asset | Path | Purpose |
+| --- | --- | --- |
+| Presentation | `.opencode/commands/memory/assets/manage_presentation.txt` | Stats, scan, cleanup, retention, learned triggers, ledger sweeps, tier, trigger, validation, delete, health, checkpoint, ingest, and error displays. |
+
+This is a direct-dispatch command: it routes straight to the memory MCP tools and owns no workflow YAML by design. There is no `_auto`/`_confirm` workflow YAML for the memory family and none is missing.
 
 Before rendering any dashboard, confirmation prompt, or result block, read the presentation asset and follow it as the display source of truth.
 
-## 2. ROUTER CONTRACT
+## 3. MODE ROUTING
 
 Default mode is `stats` when `$ARGUMENTS` is empty.
 
@@ -40,7 +51,9 @@ Recognized modes:
 
 On an unknown mode, return `STATUS=FAIL ERROR="Unknown mode: <mode>"` and list the valid modes.
 
-## 3. WORKFLOW ROUTING
+## 4. EXECUTION TARGETS
+
+Each recognized mode dispatches to the memory MCP tools below and applies the listed confirmation gate:
 
 | Mode | Primary Tooling | Confirmation |
 | --- | --- | --- |
@@ -60,15 +73,6 @@ On an unknown mode, return `STATUS=FAIL ERROR="Unknown mode: <mode>"` and list t
 | `checkpoint` | checkpoint tools | Restore/delete require confirmation |
 | `ingest` | ingest tools | Cancel requires explicit job id |
 
-## 4. HARD RULES
-
-- Never query the database with Bash or raw `sqlite3`.
-- All database access goes through the allowed MCP tools.
-- Do not fall back to raw SQL when MCP fails; report the MCP error and operator fallback guidance.
-- Protected tiers require the confirmation gates described in the presentation asset.
-- Learned-trigger expiry and ledger sweeps default to dry-run. Mutation requires an explicit apply/confirmation gate and must report matched/deleted counts for every touched ledger.
-- Do not create or modify workflow YAML from this command.
-
 ## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/memory/assets/manage_presentation.txt`:
@@ -80,11 +84,10 @@ The following content lives only in `.opencode/commands/memory/assets/manage_pre
 
 The router must not invent visible wording for those surfaces; it only resolves mode, tooling, and confirmation requirements.
 
-## 6. RELATED COMMANDS
+## 6. WORKFLOW SUMMARY
 
-- `/memory:search`: Intent-aware context retrieval and analysis tools.
-- `/memory:save`: Save conversation context.
-- `/memory:learn`: Constitutional rules.
-- `/speckit:resume`: Session recovery and continuation.
+The router resolves one recognized mode (defaulting to `stats`), applies the mode's confirmation gate, and dispatches to the allowed memory MCP tools for the continuity-DB lifecycle — stats, indexing, cleanup, retention, learned-trigger maintenance, ledger sweeps, tier/trigger/validation edits, deletes, health, checkpoints, and ingest — rendering every user-facing string through the presentation asset. It is a direct-dispatch command with no workflow YAML by design.
 
 Embedding-status repair is intentionally NOT a `/memory:manage` mode: it is the direct `memory_ln` MCP maintenance tool (`memory_ln({ mode: "apply" })`), which reconciles stored embeddings against the active embedder shard inside one guarded transaction and runs dry-run by default. Run it directly when `memory_health` reports `degraded_needs_repair` — this command manages the continuity-DB lifecycle, not embedding reconciliation.
+
+Related commands: `/memory:search` (intent-aware context retrieval and analysis tools); `/memory:save` (save conversation context); `/memory:learn` (constitutional rules); `/speckit:resume` (session recovery and continuation).

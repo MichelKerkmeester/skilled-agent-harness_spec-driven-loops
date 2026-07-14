@@ -47,9 +47,7 @@ No workflow-asset gap exists for this command.
 | `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` with `unattended_autopilot` enabled |
 | `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml` |
 
----
-
-## 5. UNATTENDED RESULT CONTRACT
+### UNATTENDED RESULT CONTRACT
 
 `:autopilot`, `:unattended`, and `--unattended` are a branch-preserved execution envelope, not a quieter spelling of `:auto`.
 
@@ -70,7 +68,7 @@ Successful completion emits `reason: null`; it does not add a fifth terminal rea
 
 ---
 
-## 6. PRESENTATION BOUNDARY
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/speckit/assets/speckit_complete_presentation.txt`:
 
@@ -82,6 +80,6 @@ The following content lives only in `.opencode/commands/speckit/assets/speckit_c
 
 ---
 
-## 7. WORKFLOW SUMMARY
+## 6. WORKFLOW SUMMARY
 
 The YAML workflow runs the full lifecycle from specification through implementation, validation, context refresh, and workflow closeout. Optional research, context, and phase-decomposition flows are routed through the selected workflow asset.

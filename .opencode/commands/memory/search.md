@@ -8,39 +8,54 @@ allowed-tools: Read, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__m
 
 Thin router for memory retrieval and analysis.
 
+## 1. ROUTER CONTRACT
+
 > **Contract register (COSTAR).** This contract is written objective-first for an automated-pipeline audience: a fixed response shape, no preamble, no conversational framing inside the rendered block. Weak instruction-followers tolerate this register best, so it is the contract's own wording style — not a prompt framework imposed on callers, and not a single global framework applied to every command.
 
-## 0. PURPOSE AND ARGUMENT RESOLUTION (deterministic, read this first)
-
-The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The renderer substitutes the raw query text where `$ARGUMENTS` appears as one positional argument after `--`, so the wrapper treats shell metacharacters in the query (`*`, `$(…)`, backticks, `;`, `|`) as literal query text. The wrapper then joins the provided positional argument into one string and reports whether any argument was supplied.
+Argument resolution (deterministic, read this first). The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The renderer substitutes the raw query text where `$ARGUMENTS` appears as one positional argument after `--`, so the wrapper treats shell metacharacters in the query (`*`, `$(…)`, backticks, `;`, `|`) as literal query text. The wrapper then joins the provided positional argument into one string and reports whether any argument was supplied.
 
 !`bash -c 'if [ "$#" -gt 0 ]; then q="$*"; q="${q//\"/\\\"}"; printf "ARGS_PRESENT=true\nQUERY=\"%s\"\n" "$q"; else printf "ARGS_PRESENT=false\nQUERY=\"\"\n"; fi' -- '$ARGUMENTS'`
 
 Bind your control flow to the two values above — never re-derive arg-presence from your own reading of the prompt:
 
-- **When `ARGS_PRESENT=true`: you MUST execute retrieval (or the analysis route) on `QUERY` now.** Do NOT ask the startup question, and do NOT treat a populated `QUERY` as empty. Go to §3 RETRIEVAL MODE, or §4 ANALYSIS MODE when the first token of `QUERY` is a known analysis subcommand.
-- **ONLY IF `ARGS_PRESENT=false`:** go to §5 STARTUP ROUTING and ask the one open-ended question.
+- **When `ARGS_PRESENT=true`: you MUST execute retrieval (or the analysis route) on `QUERY` now.** Do NOT ask the startup question, and do NOT treat a populated `QUERY` as empty. Go to the retrieval route in §4 EXECUTION TARGETS, or the analysis route in §4 EXECUTION TARGETS when the first token of `QUERY` is a known analysis subcommand.
+- **ONLY IF `ARGS_PRESENT=false`:** follow startup routing in §3 MODE ROUTING and ask the one open-ended question.
 
-## 1. ROUTING ASSETS
+Guardrails:
+- Do not infer a query from prior conversation when `ARGS_PRESENT=false`; ask the open-ended startup question.
+- Ask targeted follow-up questions only when the query is genuinely ambiguous.
+- Do not display the old option dump at startup.
+- Do not use forbidden memory/result labels listed in the presentation asset.
+- Do not open raw SQLite or edit memory DB files.
+- This is a direct-dispatch command with no workflow YAML by design; do not create or modify workflow YAML from this command.
 
-| Asset | Path | Status | Purpose |
-| --- | --- | --- | --- |
-| Workflow | _No memory workflow YAML exists in this checkout_ | Missing upstream asset | Keep retrieval and analysis routing in this file until a workflow YAML is introduced by a separate workflow-asset change. Do not invent or edit YAML from this command. |
-| Presentation | `.opencode/commands/memory/assets/search_presentation.txt` | Required | Startup question policy, analysis overview, result tables, empty-result fallback, and clean GPT-via-opencode display rules. |
+## 2. OWNED ASSETS
+
+| Asset | Path | Purpose |
+| --- | --- | --- |
+| Presentation | `.opencode/commands/memory/assets/search_presentation.txt` | Startup question policy, analysis overview, result tables, empty-result fallback, and clean GPT-via-opencode display rules. |
+
+This is a direct-dispatch command: it routes straight to the memory and code-graph MCP tools and owns no workflow YAML by design. There is no `_auto`/`_confirm` workflow YAML for the memory family and none is missing.
 
 Before asking startup questions or displaying results, read the presentation asset and use it as the display source of truth.
 
-## 2. INSTRUCTIONS AND EXECUTION ORDER
+## 3. MODE ROUTING
 
-1. Read the §0 PURPOSE AND ARGUMENT RESOLUTION header output: `ARGS_PRESENT` and `QUERY` are already computed for you.
+Execution order:
+
+1. Read the §1 ROUTER CONTRACT argument-resolution output: `ARGS_PRESENT` and `QUERY` are already computed for you.
 2. Read `.opencode/commands/memory/assets/search_presentation.txt` before rendering any response.
-3. **If `ARGS_PRESENT=true`:** route `QUERY` to retrieval mode (§3), or to analysis mode (§4) when the first token of `QUERY` is a known analysis subcommand. Execute now — do NOT ask the startup question.
-4. **ONLY IF `ARGS_PRESENT=false`:** go to startup routing (§5) and ask the one open-ended question.
-5. Render the response from the presentation contract; retrieval results must use the inline contract below.
+3. **If `ARGS_PRESENT=true`:** route `QUERY` to the retrieval route (§4 EXECUTION TARGETS), or to the analysis route (§4 EXECUTION TARGETS) when the first token of `QUERY` is a known analysis subcommand. Execute now — do NOT ask the startup question.
+4. **ONLY IF `ARGS_PRESENT=false`:** follow startup routing (below) and ask the one open-ended question.
+5. Render the response from the presentation contract; retrieval results must use the inline contract in §4 EXECUTION TARGETS.
 
-## 3. RETRIEVAL MODE
+Startup routing. **Reach this ONLY IF `ARGS_PRESENT=false`.** A populated `QUERY` never reaches here — if `ARGS_PRESENT=true`, you already executed the retrieval or analysis route in §4 EXECUTION TARGETS. When `ARGS_PRESENT=false`, ask one open-ended question from the presentation asset. Do not dump the full intent/menu list at startup. Treat a custom answer as the retrieval query.
 
-Enter this mode when `ARGS_PRESENT=true` and `QUERY` is not an analysis subcommand. Parse an optional `--intent <type>` or `--intent=<type>` from `QUERY`; otherwise let the server or local router infer intent from the query.
+## 4. EXECUTION TARGETS
+
+### Retrieval route
+
+Enter this route when `ARGS_PRESENT=true` and `QUERY` is not an analysis subcommand. Parse an optional `--intent <type>` or `--intent=<type>` from `QUERY`; otherwise let the server or local router infer intent from the query.
 
 1. Extract `query` (the resolved `QUERY`) and optional intent override.
 2. Prefer `memory_context({ input: query, mode: "auto", intent, limit: 10, enableDedup: true })`.
@@ -88,9 +103,9 @@ Supported intents:
 - `find_spec`
 - `find_decision`
 
-## 4. ANALYSIS MODE
+### Analysis route
 
-Enter this mode when `ARGS_PRESENT=true` and the first token of `QUERY` is one of the analysis subcommands below.
+Enter this route when `ARGS_PRESENT=true` and the first token of `QUERY` is one of the analysis subcommands below.
 
 Known analysis subcommands:
 - `preflight`
@@ -119,22 +134,7 @@ Known analysis subcommands:
 
 `dashboard` invokes `eval_reporting_dashboard` against stored eval snapshots. It reports persisted metric trends and channel breakdowns. C9 gate-verdict and calibration values are produced by stored ablation runs in the baseline metadata. They are not recomputed by the dashboard command.
 
-## 5. STARTUP ROUTING
-
-**Reach this section ONLY IF `ARGS_PRESENT=false`.** A populated `QUERY` never reaches here — if `ARGS_PRESENT=true`, you already executed §3 or §4.
-
-When `ARGS_PRESENT=false`, ask one open-ended question from the presentation asset. Do not dump the full intent/menu list at startup. Treat a custom answer as the retrieval query.
-
-## 6. HARD RULES
-
-- Do not infer a query from prior conversation when `ARGS_PRESENT=false`; ask the open-ended startup question.
-- Ask targeted follow-up questions only when the query is genuinely ambiguous.
-- Do not display the old option dump at startup.
-- Do not use forbidden memory/result labels listed in the presentation asset.
-- Do not open raw SQLite or edit memory DB files.
-- Do not create or modify workflow YAML from this command.
-
-## 7. PRESENTATION BOUNDARY
+## 5. PRESENTATION BOUNDARY
 
 The full presentation contract lives in `.opencode/commands/memory/assets/search_presentation.txt`. This router may only inline the compressed retrieval result shape above as a hard render reminder.
 
@@ -145,9 +145,8 @@ The following content must come from the presentation asset, not from router pro
 - Forbidden vocabulary, result labels, fallback labels, examples, and recovery text.
 - Verdict render-slot placement, exact field names (`requestQuality` and `citationPolicy`), the conditionally-mandatory required-when-present rule, and the `data.envelopeRender` paste fragment.
 
-## 8. RELATED COMMANDS
+## 6. WORKFLOW SUMMARY
 
-- `/memory:save`: Save conversation context.
-- `/memory:manage`: Database management, checkpoints, ingest, retention, and health.
-- `/memory:learn`: Constitutional rules.
-- `/speckit:resume`: Session recovery and continuation.
+The router binds control flow to the deterministic `ARGS_PRESENT`/`QUERY` resolution: with arguments present it dispatches the retrieval route (memory context/search tools plus code-graph tools, rendered through the fixed five-core-slot contract) or the analysis route (preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard) when the first token is a known subcommand; with no arguments it asks the one open-ended startup question. Every user-facing string renders through the presentation asset. It is a direct-dispatch command with no workflow YAML by design.
+
+Related commands: `/memory:save` (save conversation context); `/memory:manage` (database management, checkpoints, ingest, retention, and health); `/memory:learn` (constitutional rules); `/speckit:resume` (session recovery and continuation).

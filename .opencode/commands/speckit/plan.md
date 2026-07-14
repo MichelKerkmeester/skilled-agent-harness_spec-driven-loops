@@ -47,9 +47,7 @@ No workflow-asset gap exists for this command.
 | `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` with unattended task metadata required |
 | `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit_plan_confirm.yaml` |
 
----
-
-## 5. UNATTENDED TASK METADATA
+### UNATTENDED TASK METADATA
 
 When planning for `:autopilot`, `:unattended`, or `--unattended`, every executable task row in `tasks.md` must carry unattended-ready metadata so later implementation can decide eligibility without asking the user.
 
@@ -69,7 +67,7 @@ If the planner cannot assign one of these fields with at least medium confidence
 
 ---
 
-## 6. PRESENTATION BOUNDARY
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/speckit/assets/speckit_plan_presentation.txt`:
 
@@ -81,6 +79,6 @@ The following content lives only in `.opencode/commands/speckit/assets/speckit_p
 
 ---
 
-## 7. WORKFLOW SUMMARY
+## 6. WORKFLOW SUMMARY
 
 The YAML workflow runs planning from intake through context refresh and terminates before implementation. If a user requests implementation after planning, route to `/speckit:implement`; do not start implementation from this command.
