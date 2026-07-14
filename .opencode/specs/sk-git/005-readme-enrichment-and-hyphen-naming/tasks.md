@@ -88,7 +88,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T040 Sweep for any surviving underscore resource path; confirm every Smart Router path resolves on disk (REQ-005) — 0 surviving in target set; SKILL.md router-path sweep = `0 missing`
-- [x] T041 Hub-wide markdown link check — 0 broken links (REQ-004) — 0 rename-caused breaks; the 1 remaining (`assets/pr-template.md → ./docs/migration.md`) is a pre-existing template placeholder, byte-identical at HEAD
+- [x] T041 Hub-wide markdown link check — 0 broken links (REQ-004) — `165 checked, 0 broken`; 109 cross-links repaired + the pre-existing `assets/pr-template.md` example de-linked
 - [x] T042 `package_skill.py --check` PASS; regenerate `graph-metadata.json`/`description.json`; `validate.sh --strict` Errors 0 (SC-001, SC-005) — `--check` PASS (snake_case warnings advisory-only); frontmatter versions exit 0
 <!-- /ANCHOR:phase-3 -->
 
@@ -98,7 +98,7 @@ _memory:
 ## Completion Criteria
 
 - [x] All underscore names migrated to hyphen-case via `git mv` (0 remaining, exemptions aside); history preserved
-- [x] Every path reference resolves; the Smart Router resolves every resource path (`0 missing`); `0 broken` rename-caused links hub-wide (the sole residual is the pre-existing `assets/pr-template.md` placeholder)
+- [x] Every path reference resolves; the Smart Router resolves every resource path (`0 missing`); `165 checked, 0 broken` links hub-wide
 - [x] `README.md` rewritten to canon + four code READMEs present; `package_skill.py --check` PASS; packet validate Errors 0
 <!-- /ANCHOR:completion -->
 

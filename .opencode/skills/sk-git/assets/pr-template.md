@@ -435,7 +435,7 @@ Shows complete user flow: login → notification → mark as read
 
 **Migration**:
 Update client code to expect new response format.
-See [migration guide](./docs/migration.md) for details.
+See the migration guide at `docs/migration.md` for details.
 ```
 
 ---

@@ -66,6 +66,11 @@ _memory:
 
 - **`README.md`** rewritten to the `create-readme` canon (numbered-H2 profile, HVR-clean): a HOW IT WORKS section covering the owner-first grammar, the allocator lock, the ask-first rule, launch-wrapper autosync, the reaper contract, deterministic commits and the safety refusals.
 - **Four code READMEs** authored: `scripts/README.md`, `scripts/tests/README.md`, `.github/workflows/README.md`, `.github/hooks/scripts/README.md` — each accurate to the files it documents.
+
+### Template alignment (post-review)
+
+- **feature-catalog + manual-testing-playbook** verified against the sk-doc `create-feature-catalog` / `create-manual-testing-playbook` templates and the authoritative `template_rules.json`: root and leaf docs already satisfy every required section and the H2-uppercase rule. Added the one optional-but-useful `### Root-vs-Feature Rule` to the playbook's review-protocol section for fuller scaffold alignment (playbook version `1.1.0.7`).
+- **pr-template.md**: de-linked the illustrative `./docs/migration.md` example (a nested-code-fence PR-body sample) to an inline-code path reference, closing the last hub-wide link-check finding.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -100,7 +105,7 @@ _memory:
 | Rename completeness (`find -name '*_*'` in four trees) | 0 remaining |
 | History preserved (`git mv` rename status) | `R`, 0 failures |
 | SKILL.md Smart Router resource-path existence sweep | 0 missing |
-| Hub-wide markdown link check | 0 rename-caused breaks (109 repaired); 1 residual = pre-existing pr-template placeholder |
+| Hub-wide markdown link check | 0 broken (165 checked): 109 cross-links repaired + the pre-existing pr-template example de-linked |
 | `package_skill.py --check` | PASS (12 snake_case warnings advisory-only) |
 | Frontmatter version checker | exit 0 |
 | Authored-doc comment hygiene (no spec paths / req ids) | CLEAN |
@@ -112,6 +117,5 @@ _memory:
 ## Known Limitations
 
 - **Leads the 017 program**: sk-git adopts hyphen-case before the repo-wide `sk-doc/017` migration lands, so `package_skill.py --check` emits 12 advisory (non-blocking) snake_case findings on `references/`/`assets/` and still returns PASS. These clear once 017 flips the checker.
-- **Pre-existing residual link**: `assets/pr-template.md` links to `./docs/migration.md`, an illustrative PR-body placeholder that never resolved (no `assets/docs/` dir, byte-identical at HEAD). Left untouched under SCOPE LOCK — it is not a rename casualty.
 - **SKILL.md word count**: `package_skill.py` warns SKILL.md exceeds the 3000-word soft cap (4950). Pre-existing; this packet only edited resource-path tokens in SKILL.md, adding no prose.
 <!-- /ANCHOR:limitations -->

@@ -71,7 +71,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Hub-wide markdown link check reports 0 broken links. Evidence: 0 rename-caused breaks (109 cross-links repaired); the 1 remaining (`assets/pr-template.md → ./docs/migration.md`) is a pre-existing illustrative PR-template placeholder, byte-identical at HEAD, `assets/docs/` never existed — out of scope.
+- [x] CHK-020 [P0] Hub-wide markdown link check reports 0 broken links. Evidence: `165 checked, 0 broken` — 109 cross-links repaired plus the pre-existing `assets/pr-template.md` example (a nested-code-fence PR-body sample) de-linked to an inline-code path reference.
 - [x] CHK-021 [P0] Every SKILL.md Smart Router resource path resolves on disk. Evidence: router-path existence sweep = 0 missing across `RESOURCE_MAP`/`LOADING_LEVELS`/`DEFAULT_RESOURCE` + body links.
 - [x] CHK-022 [P1] `package_skill.py --check` on sk-git stays PASS. Evidence: `Result: PASS`; 12 snake_case warnings are advisory-only (not in STRICT_PROMOTED_MARKERS), the documented cost of leading 017.
 <!-- /ANCHOR:testing -->
@@ -125,5 +125,5 @@ _memory:
 | Fix Completeness | 3 | 3 | Pass |
 | Documentation | 1 | 1 | Pass |
 
-Overall: complete. Rename executed (66 files + 13 dirs via `git mv`, history preserved, 0 underscore names remain); all path references repointed (SKILL.md Smart Router 0 missing, 109 cross-links repaired, 0 rename-caused broken links); README rewritten to canon + four code READMEs authored; `package_skill.py --check` PASS. The sole residual broken link is a pre-existing PR-template placeholder, out of scope.
+Overall: complete. Rename executed (66 files + 13 dirs via `git mv`, history preserved, 0 underscore names remain); all path references repointed (SKILL.md Smart Router 0 missing, 109 cross-links repaired); README rewritten to canon + four code READMEs authored; `package_skill.py --check` PASS. Hub-wide link check `165 checked, 0 broken` (the pre-existing pr-template example was de-linked to an inline-code path reference).
 <!-- /ANCHOR:summary -->

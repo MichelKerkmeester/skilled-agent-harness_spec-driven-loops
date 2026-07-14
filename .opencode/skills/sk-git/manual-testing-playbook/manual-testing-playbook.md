@@ -1,7 +1,7 @@
 ---
 title: "sk-git: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-git skill."
-version: 1.1.0.6
+version: 1.1.0.7
 ---
 
 # sk-git: Manual Testing Playbook
@@ -124,6 +124,10 @@ Release is `READY` only when:
 3. Coverage is 100% of playbook scenarios defined by this root index and backed by per-feature files.
 4. No forbidden sidecar exists: `review_protocol.md`, `subagent_utilization_ledger.md`, or `snippets/`.
 5. The root document validates with `validate_document.py` and the per-feature structural sweep passes.
+
+### Root-vs-Feature Rule
+
+Keep global verdict logic in this root playbook. Put feature-specific acceptance caveats, such as a scenario's sandbox constraint or an exact refusal string, in the matching per-feature file.
 
 ---
 
