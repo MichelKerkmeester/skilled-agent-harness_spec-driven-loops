@@ -11,7 +11,8 @@ import { z } from 'zod';
 export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
-export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max'] as const;
+// Ordered low→high. `ultra` is codex gpt-5.6-sol's top reasoning tier, above `max`.
+export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max', 'ultra'] as const;
 export type ReasoningEffort = typeof REASONING_EFFORTS[number];
 
 export const SERVICE_TIERS = ['priority', 'standard', 'fast'] as const;

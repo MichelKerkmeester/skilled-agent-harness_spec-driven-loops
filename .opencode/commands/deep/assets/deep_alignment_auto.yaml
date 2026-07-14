@@ -34,12 +34,13 @@ user_inputs:
   coverage_threshold: 1.0
   stability_window: 2
   batch_size: 5
-  # This mode always dispatches the native @deep-alignment agent on a fixed model;
-  # it resolves no external executor and honors only `kind` (native) and
-  # `timeout_seconds`. `model` / `reasoning_effort` / `service_tier` /
-  # `sandbox_mode` are reserved placeholders the workflow never reads -- the
-  # command surface must not advertise them as configurable until an
-  # executor-resolution branch actually exists (contract must match dispatch).
+  # This mode dispatches either the native @deep-alignment LEAF agent (default) or
+  # a single external cli-codex executor acting as that leaf. For kind: native only
+  # `kind` and `timeout_seconds` are honored. For kind: cli-codex the workflow reads
+  # `model`, `reasoning_effort`, and `service_tier`; `sandbox_mode` is forced to
+  # workspace-write at dispatch (the leaf must Bash-write its iteration artifacts) and
+  # is not read from here. `cli-opencode` / `cli-claude-code` stay reserved and unwired
+  # for this mode -- do not advertise them on the command surface.
   executor:
     kind: native
     model: null
@@ -344,35 +345,163 @@ workflow:
         note: "This is a single-shot resolver, never a loop itself -- SKILL.md's FORBIDDEN INVOCATION PATTERNS rules out a custom dispatcher that parallelizes lanes or iterations."
 
       step_dispatch_alignment_iteration:
-        action: "Dispatch a fresh deep-alignment LEAF agent for exactly one lane-slice iteration"
+        action: "Dispatch one lane-slice iteration: the native deep-alignment LEAF agent, or an external cli-codex executor acting as that leaf"
         skip_when: "slice_done == true"
-        dispatch:
-          agent: deep-alignment
-          model: opus
-          context: |
-            Execute ONE deep-alignment iteration with these parameters:
-              specFolder: {spec_folder}
-              alignmentPacketRoot: {state_paths.packet_dir}
-              laneId: {slice_lane_id}
-              authority: {slice_authority}
-              adapter: {slice_adapter}
-              artifactClass: {slice_artifact_class}
-              scope: {slice_scope}
-              artifactsSlice: {slice_artifacts}
-              maxIterations: {max_iterations}
-              coverageThreshold: {coverage_threshold}
-              stabilityWindow: {stability_window}
-              mode: alignment
-              sessionId: {session_id}
-              generation: {generation}
-              lineageMode: {lineage_mode}
-            Check this slice's artifacts against the {slice_authority} authority's own
-            standard source. Re-probe every live-drift claim before asserting it
-            (Invariant 1). Suppress any finding matching {slice_authority}'s known-deviation
-            list (Invariant 2). Write the iteration narrative, append exactly one JSONL
-            iteration record, and write the delta file -- all via Bash; you have no
-            Write or Edit tool. Never modify an audited artifact.
-        wait_for_completion: true
+        resolve_executor:
+          source: "config.executor"
+          loader: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
+          note: "This mode resolves only native and cli-codex single executors. There is no if_cli_opencode branch here (the self-invocation guard makes a single-executor cli-opencode dispatch from this surface invalid), and fan-out is a separate parallel path this step never touches."
+        render_prompt_pack:
+          template_path: ".opencode/skills/system-deep-loop/deep-alignment/assets/alignment_prompt_pack.md.tmpl"
+          renderer: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
+          output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
+          note: "Rendered for every kind so prompt provenance is uniform. The native branch still dispatches with its inline context below (unchanged behavior); the cli-codex branch feeds this rendered file to codex via stdin."
+          variables:
+            current_iteration: "{current_iteration}"
+            max_iterations: "{max_iterations}"
+            spec_folder: "{spec_folder}"
+            alignment_packet_root: "{state_paths.packet_dir}"
+            lane_id: "{slice_lane_id}"
+            authority: "{slice_authority}"
+            adapter: "{slice_adapter}"
+            artifact_class: "{slice_artifact_class}"
+            scope: "{slice_scope}"
+            artifacts_slice: "{slice_artifacts}"
+            coverage_threshold: "{coverage_threshold}"
+            stability_window: "{stability_window}"
+            session_id: "{session_id}"
+            generation: "{generation}"
+            lineage_mode: "{lineage_mode}"
+            state_paths_config: "{state_paths.config}"
+            state_paths_corpus: "{state_paths.corpus}"
+            state_paths_state_log: "{state_paths.state_log}"
+            state_paths_findings_registry: "{state_paths.findings_registry}"
+            state_paths_iteration_pattern: "{state_paths.iteration_pattern}"
+            state_paths_delta_pattern: "{state_paths.delta_pattern}"
+        pre_dispatch_audit:
+          skip_when: "config.executor.kind == 'native'"
+          call: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
+          args:
+            stateLogPath: "{state_paths.state_log}"
+            executor: "{config.executor}"
+            iteration: "{current_iteration}"
+        branch_on: "config.executor.kind"
+        if_native:
+          dispatch:
+            agent: deep-alignment
+            model: opus
+            context: |
+              Execute ONE deep-alignment iteration with these parameters:
+                specFolder: {spec_folder}
+                alignmentPacketRoot: {state_paths.packet_dir}
+                laneId: {slice_lane_id}
+                authority: {slice_authority}
+                adapter: {slice_adapter}
+                artifactClass: {slice_artifact_class}
+                scope: {slice_scope}
+                artifactsSlice: {slice_artifacts}
+                maxIterations: {max_iterations}
+                coverageThreshold: {coverage_threshold}
+                stabilityWindow: {stability_window}
+                mode: alignment
+                sessionId: {session_id}
+                generation: {generation}
+                lineageMode: {lineage_mode}
+              Check this slice's artifacts against the {slice_authority} authority's own
+              standard source. Re-probe every live-drift claim before asserting it
+              (Invariant 1). Suppress any finding matching {slice_authority}'s known-deviation
+              list (Invariant 2). Write the iteration narrative, append exactly one JSONL
+              iteration record, and write the delta file -- all via Bash; you have no
+              Write or Edit tool. Never modify an audited artifact.
+          wait_for_completion: true
+        if_cli_codex:
+          command: |
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+            import { execFileSync } from 'node:child_process';
+
+            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+
+            // Fail closed: a requested codex executor must dispatch codex or abort,
+            // never silently degrade to another executor. The branch exits non-zero
+            // when the binary is missing instead of falling through to a native path.
+            let codexAvailable = false;
+            try {
+              execFileSync('/bin/sh', ['-c', 'command -v codex >/dev/null 2>&1'], { stdio: 'ignore' });
+              codexAvailable = true;
+            } catch {}
+            if (!codexAvailable) {
+              console.error('cli-codex executor unavailable: command -v codex failed');
+              process.exit(1);
+            }
+
+            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const serviceTier = '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}';
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            const executor = {
+              kind: 'cli-codex',
+              model,
+              configDir: null,
+              reasoningEffort,
+              serviceTier,
+              sandboxMode: 'workspace-write',
+              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+              governor: null,
+            };
+
+            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+
+            // codex reads the iteration prompt from stdin via the trailing '-'. An
+            // alignment iteration must WRITE its own iteration file, delta and state
+            // record through Bash, so the sandbox is workspace-write -- read-only
+            // would block those required writes. approval_policy=never keeps the run
+            // non-interactive. The rendered prompt pack carries the DEEP-ALIGNMENT
+            // marker and resolved-route line, so the codex leaf emits the route-proof
+            // fields itself; no route preamble is prepended here.
+            const args = ['exec'];
+            if (model) {
+              args.push('--model', model);
+            }
+            args.push('-c', 'model_reasoning_effort=' + (reasoningEffort || 'medium'));
+            if (serviceTier) {
+              args.push('-c', 'service_tier=' + serviceTier);
+            }
+            args.push('-c', 'approval_policy=never', '--sandbox', executor.sandboxMode, '-');
+
+            const dispatchId = 'alignment-i{current_iteration}-g{generation}';
+            process.exit(
+              runAuditedExecutorCommand({
+                command: 'codex',
+                args,
+                cwd: '{repo_root}',
+                timeoutSeconds: executor.timeoutSeconds,
+                stateLogPath: '{state_paths.state_log}',
+                executor,
+                iteration: Number('{current_iteration}'),
+                input: promptBody,
+                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+                dispatchId,
+              }),
+            );
+            EOF
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          notes:
+            - "Routed through runAuditedExecutorCommand so codex produces INTENT + COMPLETION dispatch receipts; recursion guard (CODEX_SESSION_ID) + env allowlist (CODEX_/OPENAI_/AZURE_OPENAI_) enforced via buildExecutorDispatchEnv"
+            - "Fails closed when the codex binary is absent (exit 1); codex routing never degrades to native"
+            - "codex exec reads the iteration prompt from stdin via the trailing '-' (input: promptBody); '-c model_reasoning_effort=' maps reasoning depth, default medium; '-c service_tier=' forwarded when configured"
+            - "--sandbox workspace-write is required so the leaf can Bash-write its own iteration file/delta/state record (the leaf agent has no Write/Edit tool); -c approval_policy=never keeps it non-interactive; --model omitted when unset so ~/.codex/config.toml default applies"
+            - "No if_cli_opencode single-executor branch exists here by design; the cli-opencode self-invocation guard makes it invalid from this surface, and parallel cli-codex/cli-opencode fan-out is a separate path this step never touches"
+        record_executor_audit:
+          skip_when: "config.executor.kind == 'native'"
+          target: "{state_paths.state_log}"
+          field: "executor"
+          value:
+            kind: "{config.executor.kind}"
+            model: "{config.executor.model}"
+            reasoningEffort: "{config.executor.reasoningEffort}"
+            serviceTier: "{config.executor.serviceTier}"
         outputs:
           - iteration_status: "complete | timeout | error | stuck | insight | thought, from the dispatched agent's completion report"
 

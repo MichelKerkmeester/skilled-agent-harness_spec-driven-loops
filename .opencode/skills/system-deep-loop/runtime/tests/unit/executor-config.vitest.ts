@@ -88,6 +88,18 @@ describe('executor-config', () => {
     });
   });
 
+  it('accepts ultra as the highest reasoning effort tier (codex gpt-5.6-sol ceiling)', () => {
+    expect(parseExecutorConfig({
+      kind: 'cli-codex',
+      model: 'gpt-5.6-sol',
+      reasoningEffort: 'ultra',
+    })).toMatchObject({
+      kind: 'cli-codex',
+      model: 'gpt-5.6-sol',
+      reasoningEffort: 'ultra',
+    });
+  });
+
   it('rejects configDir for cli-codex', () => {
     expect(() => parseExecutorConfig({ kind: 'cli-codex', configDir: '~/.codex' })).toThrowError(
       /configDir.*not supported by executor kind 'cli-codex'/,

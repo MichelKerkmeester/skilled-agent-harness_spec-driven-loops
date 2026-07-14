@@ -1,6 +1,6 @@
 ---
 description: Autonomous deep-alignment loop: conformance audit against named standard authorities across resolved lanes. Modes :auto, :confirm.
-argument-hint: "<target> [authority] [:auto|:confirm] [--lane-config <file.json>] [--max-iterations=N] [--coverage-threshold=N] [--stability-window=N] [--spec-folder=PATH] [--restart|--lineage-mode=restart] [--executor-timeout=SECONDS] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<target> [authority] [:auto|:confirm] [--lane-config <file.json>] [--max-iterations=N] [--coverage-threshold=N] [--stability-window=N] [--spec-folder=PATH] [--restart|--lineage-mode=restart] [--executor-kind=native|cli-codex] [--model=MODEL] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] (--model/--reasoning-effort/--service-tier are codex-leaf-only; :auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Grep, Glob, Task, Bash, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_code_index__code_graph_query
 ---
 
@@ -113,6 +113,14 @@ The presentation asset owns every dashboard, prompt, and result-template string 
 ### Convergence Flags
 
 `--coverage-threshold <F>` (default `1.0`) and `--stability-window <N>` (default `2`) tune the two-signal AND-gate `deep-alignment/scripts/check-convergence.cjs` evaluates; both must hold together before STOP is legal, and `--max-iterations` remains an independent hard stop regardless of their outcome. Do not transfer `deep-review`'s single `convergenceThreshold` ratio semantics onto these two flags — they are not equivalent.
+
+### Executor Flags
+
+The per-iteration LEAF defaults to the native `@deep-alignment` agent on `opus` (`--executor-kind=native`). Set `--executor-kind=cli-codex` to dispatch a single external GPT codex executor that acts as the deep-alignment leaf for each iteration, mirroring `/deep:review`'s codex path.
+
+- `--model=MODEL`, `--reasoning-effort=LEVEL` (`none|minimal|low|medium|high|xhigh|max|ultra`), and `--service-tier=TIER` (`priority|standard|fast`) are **codex-leaf-only** — they apply solely to `--executor-kind=cli-codex` and are rejected for native. The codex leaf always runs `--sandbox workspace-write` (it Bash-writes its own iteration, delta, and state records) with `approval_policy=never`; sandbox mode is not operator-configurable.
+- `--executor-timeout=SECONDS` bounds a single executor invocation for any kind.
+- `cli-opencode` and `cli-claude-code` are NOT available for this single-executor mode; only `native` and `cli-codex` resolve. Parallel fan-out is a separate path this command does not expose here.
 
 ---
 

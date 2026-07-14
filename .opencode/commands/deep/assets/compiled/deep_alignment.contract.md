@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/alignment.md",
-      "sha256": "db02ec690bde2cfa653bf258850fec92f18efc2f1363d61fbd973314e0bf20fa",
+      "sha256": "09ef3c1af64154a386ff6b88400d2f93a5c47f8059d46c40d6e2f4adac0ebdc2",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_alignment_auto.yaml",
-      "sha256": "58b3a8988c1a5253665861afc27bf066ea88bd926356c7bd04f19d7ac56ffc38",
+      "sha256": "56ee83f20f2ffcd300b480bcbe38203a11b97c89af7c4b0fbc5ecea9c32e56e8",
       "section": "full"
     },
     {
