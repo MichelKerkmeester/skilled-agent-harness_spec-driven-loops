@@ -1,0 +1,29 @@
+{
+  "specFolder": "skilled-agent-orchestration/138-command-agent-canon-conformance",
+  "description": "The command and agent surface is uneven against the sk-doc create-skill canon along two axes that packet 131 did not touch (131 audited",
+  "keywords": [
+    "command",
+    "agent",
+    "surface",
+    "uneven",
+    "against",
+    "sk-doc",
+    "create-skill",
+    "canon",
+    "along",
+    "two",
+    "axes",
+    "packet",
+    "touch",
+    "audited"
+  ],
+  "lastUpdated": "2026-07-14T16:16:58.531Z",
+  "specId": "138",
+  "folderSlug": "command-agent-canon-conformance",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

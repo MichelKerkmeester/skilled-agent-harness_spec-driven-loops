@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/138-command-agent-canon-conformance/004-integrate-validate-ship",
+  "spec_folder": "skilled-agent-orchestration/138-command-agent-canon-conformance/004-integrate-validate-ship",
+  "parent_id": "skilled-agent-orchestration/138-command-agent-canon-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "138 integrate validate ship",
+      "command agent canon parent rollup",
+      "recursive strict validate 138",
+      "138 integrate validate ship plan",
+      "recursive strict validate plan",
+      "138 parent rollup plan",
+      "138 integrate validate ship tasks",
+      "recursive strict validate tasks",
+      "138 parent rollup tasks",
+      "138 integrate validate ship checklist",
+      "recursive strict validate verification",
+      "138 parent rollup check"
+    ],
+    "key_topics": [
+      "integrate",
+      "validate",
+      "ship",
+      "command",
+      "agent",
+      "canon",
+      "parent",
+      "rollup",
+      "recursive",
+      "strict",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Integrate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Integrate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Integrate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Question",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 000–003 each land their own conformance work and each pass `validate.sh --strict` independently, but \"each child is green\" is not the same claim as \"the packet is green as an integrated unit\"",
+    "created_at": "2026-07-14T18:04:41.593Z",
+    "last_save_at": "2026-07-14T18:04:41.593Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8f40ab6880e9ef5ca98355ef605d221903cce1b4340082a8b8fae11383258e5c",
+    "source_doc_hashes": {
+      "spec.md": "b133064984aca2e2c3d8447fe94cbfd2478df55cab0bd88543fab47a939a50f9",
+      "plan.md": "a2c9fe88c822729538539704b28b1df7919afbe0fab89f150f7aba9cf83145fa",
+      "tasks.md": "3641e35874bfbe05f838e5fb1782a20e18a67244ef03b5619ade35b30149e8f9",
+      "checklist.md": "915c1180fe72c26835cf5b34175b9490525dd293eeca5f075faf9ecae97ab45a",
+      "decision-record.md": "d0329880e306bb89588ce505f273fbce65548b2deb44a029fd8dd7f21d03e667",
+      "implementation-summary.md": "461cd7557108313ba569505f9c887914504e187729afc8a29e78eb4f31e3981e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
