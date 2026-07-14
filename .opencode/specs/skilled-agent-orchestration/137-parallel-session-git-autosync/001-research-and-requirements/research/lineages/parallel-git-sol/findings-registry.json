@@ -1,0 +1,1202 @@
+{
+  "sessionId": "fanout-parallel-git-sol-1784004109977-h2q92q",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-14T05:09:21Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-integration-strategy-best-guarantees-continuous-fast-forward-publication-u",
+      "inboxId": null,
+      "text": "Which integration strategy best guarantees continuous fast-forward publication under concurrent writers: rebase/retry, serialization, merge queue, or scratch-index/ref-level commit construction?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-workspace-model-and-update-protocol-keep-session-work-isolated-while-maint",
+      "inboxId": null,
+      "text": "Which workspace model and update protocol keep session work isolated while maintaining an always-current IDE view?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-invariants-failure-recovery-and-rollback-prevent-lost-uncommitted-work-orph",
+      "inboxId": null,
+      "text": "What invariants, failure recovery, and rollback prevent lost uncommitted work, orphaned autostashes, rejected pushes, and force-push loss?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-automation-surface-and-conflict-avoidance-rules-are-reliable-enough-for-un",
+      "inboxId": null,
+      "text": "Which automation surface and conflict-avoidance rules are reliable enough for unattended AI sessions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-does-existing-art-prove-and-what-default-architecture-trade-offs-and-testab",
+      "inboxId": null,
+      "text": "What does existing art prove, and what default architecture, trade-offs, and testable acceptance conditions follow?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-integration-strategy-best-guarantees-continuous-fast-forward-publication-u",
+      "inboxId": null,
+      "text": "Which integration strategy best guarantees continuous fast-forward publication under concurrent writers: rebase/retry, serialization, merge queue, or scratch-index/ref-level commit construction?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-workspace-model-and-update-protocol-keep-session-work-isolated-while-maint",
+      "inboxId": null,
+      "text": "Which workspace model and update protocol keep session work isolated while maintaining an always-current IDE view?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-invariants-failure-recovery-and-rollback-prevent-lost-uncommitted-work-orph",
+      "inboxId": null,
+      "text": "What invariants, failure recovery, and rollback prevent lost uncommitted work, orphaned autostashes, rejected pushes, and force-push loss?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-which-automation-surface-and-conflict-avoidance-rules-are-reliable-enough-for-un",
+      "inboxId": null,
+      "text": "Which automation surface and conflict-avoidance rules are reliable enough for unattended AI sessions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-what-does-existing-art-prove-and-what-default-architecture-trade-offs-and-testab",
+      "inboxId": null,
+      "text": "What does existing art prove, and what default architecture, trade-offs, and testable acceptance conditions follow?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-zero-operator-visible-divergence-blockers-is-achievable-only-as-an-orchestration",
+      "text": "“Zero operator-visible divergence blockers” is achievable only as an orchestration property: the system can keep rejected pushes and retries inside a coordinator. It cannot mean that arbitrary overlapping intent is always merged correctly, because the next commit must select one concrete tree and Git may expose unmerged entries when both sides change the same content; a policy must defer, reject, or resolve that conflict. [INFERENCE: Git requires a combined descendant before both divergent histories can be retained, and GitHub's queue explicitly removes entries that conflict with the base.]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-receive-pack",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-write-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-1-1-a-branch-update-is-fast-forward-only-when-the-proposed-new-tip-descends-from-the",
+      "text": "A branch update is fast-forward only when the proposed new tip descends from the destination's current tip. If two writers start from the same tip and independently produce different descendants, the first accepted push advances the branch and the second becomes non-fast-forward; Git rejects it by default to avoid losing the first history. [SOURCE: https://git-scm.com/docs/git-push]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-receive-pack",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-write-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-1-5-a-github-merge-queue-validates-a-queued-change-against-the-latest-base-plus-earl",
+      "text": "A GitHub merge queue validates a queued change against the latest base plus earlier queued changes and merges successful groups in FIFO order. It is hosted serialization with integrated checks, but conflicts, failed checks, and timeouts remove entries; it therefore cannot promise uninterrupted publication for arbitrary session output, and its PR/check lifecycle is a poorer fit for low-latency continuous autosync than a dedicated publisher. [SOURCE: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-receive-pack",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-write-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-1-3-a-single-serialized-publisher-is-the-strongest-default-for-continuous-linear-pub",
+      "text": "A single serialized publisher is the strongest default for continuous linear publication: accept immutable session contributions, order them, construct each next commit on the last accepted tip, then publish one candidate at a time. This removes races among participating writers, but only if all shared-branch writes pass through that authority; the publisher must still re-read and retry if an external writer advances the hosted ref. [INFERENCE: Git's fast-forward rejection and `update-ref <new> <old>` conditional update semantics make serialization the only compared strategy that removes participating-writer races rather than reacting to them.]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-receive-pack",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-write-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-1-2-fetch-rebase-retry-can-make-each-eventually-accepted-push-fast-forward-by-rebuil",
+      "text": "Fetch/rebase/retry can make each eventually accepted push fast-forward by rebuilding work atop the latest remote tip, but it remains optimistic concurrency: another writer can advance the ref between fetch and push, and overlapping changes can stop integration for conflict resolution. Explicit `--force-with-lease=<ref>:<expected>` is a compare-and-swap safeguard, not a way to guarantee progress; blind force can discard concurrent commits. [SOURCE: https://git-scm.com/docs/git-push] [SOURCE: https://git-scm.com/docs/git-rebase]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-receive-pack",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-write-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-1-4-scratch-index-plumbing-isolates-commit-construction-from-a-session-s-index-and-w",
+      "text": "Scratch-index plumbing isolates commit construction from a session's index and working tree. `read-tree -i` is intended for merges in a temporary index; `write-tree` emits a tree from a fully merged index; `commit-tree` creates a commit with explicit parent(s); and `update-ref <ref> <new> <old>` updates only if the old value still matches. This can preserve concurrent uncommitted work by never checking out or resetting the session worktree, but the conditional ref update is local—publishing to a hosted remote still goes through the remote's receive path. [SOURCE: https://git-scm.com/docs/git-read-tree] [SOURCE: https://git-scm.com/docs/git-write-tree] [SOURCE: https://git-scm.com/docs/git-commit-tree] [SOURCE: https://git-scm.com/docs/git-update-ref]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-receive-pack",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-write-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-2-4-git-fetch-is-the-only-examined-freshness-primitive-suitable-inside-active-sessio",
+      "text": "`git fetch` is the only examined freshness primitive suitable inside active session worktrees: it downloads objects and updates remote-tracking refs, while Git refuses by default to fetch directly into the current branch. In a linked-worktree repository those remote-tracking refs are shared, but each worktree's `HEAD`, index, and files remain private, so fetch can expose the latest published tip without rebasing or rewriting a session's work. [SOURCE: https://git-scm.com/docs/git-fetch] [SOURCE: https://git-scm.com/docs/git-worktree]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-clone",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-reset"
+      ]
+    },
+    {
+      "id": "finding-2-6-pull-rebase-autostash-is-unsafe-for-unattended-freshness-in-a-session-worktree-r",
+      "text": "`pull --rebase --autostash` is unsafe for unattended freshness in a session worktree: rebase rewrites local history, and Git warns that the temporary stash's final application can produce non-trivial conflicts. `reset --keep` is less destructive than `reset --hard`, but it still moves `HEAD`, rewrites the index, updates some working files, and aborts only for documented overlap/unmerged conditions; it is not a no-touch guarantee. Reserve `reset --keep <authoritative-tip>` for explicit recovery of a clean, disposable projection after verifying ancestry, never for active session worktrees. [SOURCE: https://git-scm.com/docs/git-pull] [SOURCE: https://git-scm.com/docs/git-reset]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-clone",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-reset"
+      ]
+    },
+    {
+      "id": "finding-2-3-independent-clones-provide-a-larger-failure-boundary-because-their-refs-indexes-",
+      "text": "Independent clones provide a larger failure boundary because their refs, indexes, configuration, and object databases are separate, but cost more storage and fetch traffic. Local `clone --shared` or `--reference` is not an equivalent safe isolation boundary: it uses alternates, and Git warns that source-side pruning can remove objects still needed by the borrower and corrupt it; a local clone can also race concurrent source mutation. Use ordinary clones when repository-level isolation is required, or `--dissociate` after a reference-assisted clone. [SOURCE: https://git-scm.com/docs/git-clone]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-clone",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-reset"
+      ]
+    },
+    {
+      "id": "finding-2-2-linked-worktrees-are-the-strongest-default-on-one-host-they-avoid-duplicate-obje",
+      "text": "Linked worktrees are the strongest default on one host: they avoid duplicate object storage while keeping session indexes and working files separate. `worktree lock` protects a linked worktree's administrative record from pruning, moving, or deletion; it does not make dirty files durable, so session cleanup still needs an explicit clean/committed checkpoint and must never use forced removal as routine lifecycle management. [SOURCE: https://git-scm.com/docs/git-worktree] [INFERENCE: the documented lock and remove safeguards protect worktree administration, whereas uncommitted content exists only in that worktree's files and index.]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-clone",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-reset"
+      ]
+    },
+    {
+      "id": "finding-2-1-one-shared-working-tree-cannot-isolate-concurrent-sessions-because-the-working-f",
+      "text": "One shared working tree cannot isolate concurrent sessions because the working files and index are common mutable state. Linked worktrees provide separate working directories plus per-worktree `HEAD` and index state while sharing the repository's object store and most `refs/*`; each session therefore needs its own linked worktree and its own branch, while a dedicated projection may check out the shared branch. Git normally refuses to check out one branch in multiple worktrees, which is a useful guard rather than a limitation to bypass. [SOURCE: https://git-scm.com/docs/git-worktree]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-clone",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-reset"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-always-current-ide-view-should-be-a-dedicated-non-authoring-projection-refre",
+      "text": "The always-current IDE view should be a dedicated, non-authoring projection, refreshed by one serialized watcher/controller using `fetch` followed by `merge --ff-only` (or `pull --ff-only`) after a clean-tree check. `--ff-only` moves the projection branch only when the fetched tip descends from it and otherwise exits non-zero; watch events should coalesce and serialize because refresh commands mutate that projection's branch, index, and files. A failed or dirty projection should be quarantined/recreated rather than repaired by touching session worktrees. [SOURCE: https://git-scm.com/docs/git-fetch] [SOURCE: https://git-scm.com/docs/git-merge] [INFERENCE: a dedicated projection contains refresh mutations to disposable state, while serialized events prevent two refresh processes from racing on one index/worktree.]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-clone",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-reset"
+      ]
+    },
+    {
+      "id": "finding-3-2-acceptance-requires-a-real-ref-not-an-oid-in-a-journal-before-the-coordinator-re",
+      "text": "**Acceptance requires a real ref, not an OID in a journal.** Before the coordinator reports a session contribution accepted or permits session-branch cleanup, it must create a namespaced pin such as `refs/autosync/pending/<tx>/source` with `update-ref <ref> <oid> <zero>`; the expected-old value is compare-and-swap, and `--create-reflog` adds local recovery history. A journal string containing an OID is not a Git reachability root. Keep source and synthesized-candidate pins until the remote shared tip is verified to contain the candidate and the session acknowledgement is durable. Acceptance: kill after object creation, after pin creation, and after acknowledgement; run aggressive reflog expiry plus prune; every transaction that crossed “accepted” must still resolve through a live ref or the verified remote history. [SOURCE: https://git-scm.com/docs/git-update-ref] [SOURCE: https://git-scm.com/docs/git-gc] [SOURCE: https://git-scm.com/docs/git-fsck] [INFERENCE: Git's reachability traversal follows refs/reflogs, not arbitrary OIDs in an application file.]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-reflog",
+        "https://git-scm.com/docs/git-show-ref",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-ls-remote",
+        "https://git-scm.com/docs/git-revert",
+        "https://git-scm.com/docs/git-gc",
+        "https://git-scm.com/docs/git-fsck"
+      ]
+    },
+    {
+      "id": "finding-3-5-autostash-cannot-be-the-durability-mechanism-a-normal-stash-is-anchored-at-refs-",
+      "text": "**Autostash cannot be the durability mechanism.** A normal stash is anchored at `refs/stash`, with older entries in its reflog; `stash create` returns a dangling commit until `stash store` attaches it. A failed `stash pop` keeps the entry, and `rebase --quit` moves its temporary autostash into the stash list, but successful rebase can still end with non-trivial conflicts while reapplying it. The system should not autostash active sessions at all. If an explicit operator recovery ever snapshots dirty state, it must immediately pin the returned commit under a transaction-specific ref, verify the ref, and use `apply` before any eventual drop. Acceptance: interrupt between stash creation/storage/application and prove either the original worktree is untouched or a named ref resolves to the snapshot; no recovery may depend on an unreferenced stash-create OID. [SOURCE: https://git-scm.com/docs/git-stash] [SOURCE: https://git-scm.com/docs/git-rebase]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-reflog",
+        "https://git-scm.com/docs/git-show-ref",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-ls-remote",
+        "https://git-scm.com/docs/git-revert",
+        "https://git-scm.com/docs/git-gc",
+        "https://git-scm.com/docs/git-fsck"
+      ]
+    },
+    {
+      "id": "finding-3-6-fetch-rebase-failures-are-explicit-states-never-cleanup-signals-fetch-atomic-mak",
+      "text": "**Fetch/rebase failures are explicit states, never cleanup signals.** `fetch --atomic` makes local ref updates all-or-none. Rebase stops at the first conflicting commit; `--abort` restores the original branch, whereas `--quit` leaves `HEAD`, index, and working tree unchanged from the stopped state and saves an autostash to the stash list. An unattended publisher must record conflict/stopped state, preserve all pins, and either retry in a new disposable integration workspace or escalate; it must not skip a commit, delete the source branch, or touch the originating session. Acceptance: inject a content conflict and failures before/after fetch ref updates; require no shared-branch movement, no session mutation, and complete transaction evidence. [SOURCE: https://git-scm.com/docs/git-fetch] [SOURCE: https://git-scm.com/docs/git-rebase]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-reflog",
+        "https://git-scm.com/docs/git-show-ref",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-ls-remote",
+        "https://git-scm.com/docs/git-revert",
+        "https://git-scm.com/docs/git-gc",
+        "https://git-scm.com/docs/git-fsck"
+      ]
+    },
+    {
+      "id": "finding-3-3-local-ref-publication-is-cas-transactional-but-the-application-journal-closes-th",
+      "text": "**Local ref publication is CAS-transactional, but the application journal closes the cross-system gap.** `update-ref --stdin` supports `start`, `prepare`, `commit`, and `abort`; it locks all queued refs, verifies expected old OIDs, and changes none when a lock or comparison fails. Git also warns that concurrent readers may observe a subset of a multi-ref transaction. Therefore the coordinator needs an append-only, fsync-before-transition journal with at least transaction ID, source OID, candidate OID, expected shared-base OID, pin refs, phase, and remote verification result. On restart it scans both the journal and `refs/autosync/**`, treating unmatched pins as recoverable transactions rather than deleting them. Acceptance: SIGKILL at every state edge (`captured → pinned → integrated → push-sent → remote-verified → session-acked → released`) and require idempotent recovery without duplicate publication or early pin deletion. [SOURCE: https://git-scm.com/docs/git-update-ref] [INFERENCE: no Git ref transaction can atomically commit an external application journal and a hosted remote update, so explicit reconciliation is required.]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-reflog",
+        "https://git-scm.com/docs/git-show-ref",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-ls-remote",
+        "https://git-scm.com/docs/git-revert",
+        "https://git-scm.com/docs/git-gc",
+        "https://git-scm.com/docs/git-fsck"
+      ]
+    },
+    {
+      "id": "finding-3-1-no-touch-session-invariant-once-a-session-has-a-dedicated-worktree-branch-the-co",
+      "text": "**No-touch session invariant.** Once a session has a dedicated worktree/branch, the coordinator may read its ref and objects but must never run checkout, reset, pull, rebase, stash, clean, or conflict resolution in that worktree. Stash explicitly saves and then rolls back the working tree/index, while rebase changes `HEAD`, replays commits, and can stop with conflict state; those are mutations, not observation. Integration must occur in a disposable publisher worktree or scratch index. Acceptance: seed staged, unstaged, untracked, and ignored sentinels in two session worktrees; inject coordinator crashes at every publication phase; require byte-for-byte files, index tree, `HEAD`, and status to remain unchanged. [SOURCE: https://git-scm.com/docs/git-stash] [SOURCE: https://git-scm.com/docs/git-rebase] [INFERENCE: excluding every documented mutator from session worktrees is the only enforceable no-touch boundary.]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-reflog",
+        "https://git-scm.com/docs/git-show-ref",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-ls-remote",
+        "https://git-scm.com/docs/git-revert",
+        "https://git-scm.com/docs/git-gc",
+        "https://git-scm.com/docs/git-fsck"
+      ]
+    },
+    {
+      "id": "finding-3-8-reachability-must-outlive-reflog-policy-and-garbage-collection-reflogs-record-pr",
+      "text": "**Reachability must outlive reflog policy and garbage collection.** Reflogs record prior ref tips and aid recovery, but they expire; stash clear/drop similarly makes entries pruneable. Pending and accepted-but-unacknowledged objects therefore need live temporary refs, not reflog-only retention. The release precondition is conjunctive: remote verification proves the candidate reachable from the hosted shared tip, the durable journal records that fact, and the session acknowledgement/cleanup handoff is committed. Acceptance: configure immediate reflog expiry, run `gc`/`prune` at every injected crash point, use `fsck` to detect dangling objects, and require all non-released transactions to retain their source and candidate commits. [SOURCE: https://git-scm.com/docs/git-reflog] [SOURCE: https://git-scm.com/docs/git-stash] [SOURCE: https://git-scm.com/docs/git-gc] [SOURCE: https://git-scm.com/docs/git-fsck] [INFERENCE: a live namespaced ref makes retention independent of reflog age.]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-reflog",
+        "https://git-scm.com/docs/git-show-ref",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-ls-remote",
+        "https://git-scm.com/docs/git-revert",
+        "https://git-scm.com/docs/git-gc",
+        "https://git-scm.com/docs/git-fsck"
+      ]
+    },
+    {
+      "id": "finding-3-4-remote-acknowledgement-is-a-reconciled-fact-not-merely-a-process-exit-push-porce",
+      "text": "**Remote acknowledgement is a reconciled fact, not merely a process exit.** `push --porcelain` provides machine-readable per-ref status, and an atomic push either updates all requested remote refs or none when the server supports it. A coordinator can still lose the response after the server accepts the update. After any ambiguous transport failure, query the exact remote ref with `ls-remote`; if it equals the candidate, or a fetched newer tip contains the candidate, record remote verification instead of blindly retrying or rewriting. If the remote does not contain it, retain both pins and integrate again against the newly observed tip. Acceptance: cut the client connection after server-side ref update but before the client receives status; restart must classify the candidate as published exactly once. [SOURCE: https://git-scm.com/docs/git-push] [SOURCE: https://git-scm.com/docs/git-ls-remote] [SOURCE: https://git-scm.com/docs/git-fetch] [INFERENCE: remote ref observation disambiguates “server committed, response lost” from “server never committed.”]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-reflog",
+        "https://git-scm.com/docs/git-show-ref",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-ls-remote",
+        "https://git-scm.com/docs/git-revert",
+        "https://git-scm.com/docs/git-gc",
+        "https://git-scm.com/docs/git-fsck"
+      ]
+    },
+    {
+      "id": "finding-3-7-rollback-is-forward-only-after-a-candidate-is-published-moving-the-shared-ref-ba",
+      "text": "**Rollback is forward-only.** After a candidate is published, moving the shared ref backward—or force-pushing an alternative history—can erase later session commits. `git revert` records a new commit that reverses selected changes, so the coordinator must synthesize the revert from the current shared tip and publish it through the same serialized fast-forward path. Revert conflicts are a blocked transaction, not permission to reset history. Acceptance: publish A then B, request rollback of A, and require the resulting tip to descend from B while B remains reachable; a simultaneous C must either precede or follow the revert in the serialized log, never disappear. [SOURCE: https://git-scm.com/docs/git-revert] [SOURCE: https://git-scm.com/docs/git-push] [INFERENCE: a descendant revert preserves intervening ancestry, while backward ref movement does not.]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-reflog",
+        "https://git-scm.com/docs/git-show-ref",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-ls-remote",
+        "https://git-scm.com/docs/git-revert",
+        "https://git-scm.com/docs/git-gc",
+        "https://git-scm.com/docs/git-fsck"
+      ]
+    },
+    {
+      "id": "finding-4-4-a-remote-side-bot-is-useful-for-enforcement-and-hosted-execution-but-webhook-del",
+      "text": "**A remote-side bot is useful for enforcement and hosted execution, but webhook delivery is not a transaction journal.** A GitHub App installation token can be permission- and repository-scoped and is regenerated after expiry; Git's credential-helper interface similarly lets a publisher acquire credentials without distributing them to each session. GitHub's webhook guidance requires secret validation, fast acknowledgement with asynchronous work, and checking delivery IDs to avoid duplicate processing. Therefore a hosted bot needs durable idempotency and its own queue before it can be the publisher. It cannot discover a local session's uncommitted files or refresh a local IDE projection, and branch protection can reject nonconforming writes but cannot integrate them. [SOURCE: https://git-scm.com/docs/gitcredentials] [SOURCE: https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app] [SOURCE: https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks] [SOURCE: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/gitcredentials",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-diff-tree",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+        "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app",
+        "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+        "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+        "https://github.com/systemd/systemd/blob/main/man/systemd.service.xml"
+      ]
+    },
+    {
+      "id": "finding-4-2-client-side-git-hooks-are-advisory-not-authoritative-git-runs-hooks-only-at-docu",
+      "text": "**Client-side Git hooks are advisory, not authoritative.** Git runs hooks only at documented command points; non-executable hooks are ignored, the hook directory is configurable, and several commit hooks are bypassable with `--no-verify`. `pre-push` can reject one invocation, while post hooks are notification-only and cannot reverse completed work. Server-side `pre-receive`/`update` hooks are authoritative for a self-hosted receive path because they can reject ref updates, but they still do not provide the publisher's queue, journal, local session visibility, projection refresh, or crash-recovery state machine. On a hosted service, protected-branch rules are the corresponding enforcement boundary. [SOURCE: https://git-scm.com/docs/githooks] [SOURCE: https://git-scm.com/docs/git-push] [SOURCE: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/gitcredentials",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-diff-tree",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+        "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app",
+        "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+        "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+        "https://github.com/systemd/systemd/blob/main/man/systemd.service.xml"
+      ]
+    },
+    {
+      "id": "finding-4-5-conflict-preflight-does-not-require-checking-out-the-shared-branch-git-merge-tre",
+      "text": "**Conflict preflight does not require checking out the shared branch.** `git merge-tree --write-tree <base> <candidate>` performs a real merge without touching the working tree or index, reports conflicted-file information, and uses a non-zero status for conflicts. `git diff-tree -r --name-only <base> <candidate>` can derive the candidate's changed-path set directly from trees. The publisher can fetch, simulate against the latest remote tip, compare that path set with ownership and in-flight reservations, then integrate only in a scratch index or disposable publisher worktree. The result is a preflight snapshot, not a lock: the publisher must revalidate after any base-tip change and immediately before its serialized push. [SOURCE: https://git-scm.com/docs/git-merge-tree] [SOURCE: https://git-scm.com/docs/git-diff-tree] [INFERENCE: a preflight result is valid for the exact pair of input trees and becomes stale when the shared tip changes.]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/gitcredentials",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-diff-tree",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+        "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app",
+        "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+        "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+        "https://github.com/systemd/systemd/blob/main/man/systemd.service.xml"
+      ]
+    },
+    {
+      "id": "finding-4-1-one-supervised-publisher-should-own-every-stateful-publication-function-the-queu",
+      "text": "**One supervised publisher should own every stateful publication function.** The queue and append-only transaction journal belong together because ordering, retry, acknowledgement, and crash recovery are one state machine. The same publisher should broker authentication, fetch the authoritative remote tip, run integration in a disposable workspace or scratch index, serialize compare-and-swap pushes, reconcile ambiguous push outcomes, and refresh the clean IDE projection. Hooks may enqueue hints and the launch wrapper may register sessions, but neither should advance durable transaction state. A remote bot can replace the local publisher only if it also implements the same durable queue, journal, idempotency, and recovery contract; it still needs a local bridge for session capture and IDE refresh. [INFERENCE: Git hooks are point-in-command callbacks, Git credentials are acquired per remote operation through helpers, GitHub webhook consumers must handle deliveries asynchronously and idempotently, and prior packet evidence requires transaction recovery across process and transport failures.]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/gitcredentials",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-diff-tree",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+        "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app",
+        "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+        "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+        "https://github.com/systemd/systemd/blob/main/man/systemd.service.xml"
+      ]
+    },
+    {
+      "id": "finding-4-6-path-ownership-is-an-admission-control-mechanism-codeowners-is-not-mutual-exclus",
+      "text": "**Path ownership is an admission-control mechanism; CODEOWNERS is not mutual exclusion.** A machine-readable partition manifest plus queue-time path reservations can reject or defer overlapping writers before integration. GitHub CODEOWNERS automatically requests reviews and can be coupled to required owner approval, but it does not lock paths or serialize writers. Per-session subtrees make the partition structural, and additive-only records with unique IDs avoid same-path edits, but shared manifests, generated indexes, renames, and cross-tree invariants remain coordination points. Those shared artifacts should be generated by the publisher from additive inputs or handled as separately serialized transactions. [SOURCE: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners] [SOURCE: https://git-scm.com/docs/git-diff-tree] [INFERENCE: disjoint changed paths remove textual same-path overlap but do not prove semantic independence across files.]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/gitcredentials",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-diff-tree",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+        "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app",
+        "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+        "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+        "https://github.com/systemd/systemd/blob/main/man/systemd.service.xml"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-launch-wrapper-owns-admission-not-steady-state-synchronization-it-should-all",
+      "text": "**The launch wrapper owns admission, not steady-state synchronization.** It should allocate or validate the session worktree and branch, assign a stable session/transaction identity, verify that the publisher service is reachable, and register the session. Publication may outlive the launching shell and needs retries after later network or process failures, so putting fetch/integrate/push logic in the wrapper creates an unsupervised second publisher and loses recovery once the wrapper exits. [INFERENCE: the wrapper has a launch-scoped lifetime, while the queue/journal state machine must survive session and transport lifetimes.]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/gitcredentials",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-diff-tree",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+        "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app",
+        "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+        "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+        "https://github.com/systemd/systemd/blob/main/man/systemd.service.xml"
+      ]
+    },
+    {
+      "id": "finding-4-7-unavoidable-semantic-conflicts-must-be-quarantined-as-transaction-state-not-expo",
+      "text": "**Unavoidable semantic conflicts must be quarantined as transaction state, not exposed as branch divergence.** When merge simulation conflicts or semantic validators fail, the publisher should retain the source/candidate pins, journal `conflict-quarantined`, attach machine-readable conflict paths and validator output, and leave the shared branch and every session worktree untouched. Independent queued items may pass the quarantined item only when declared dependencies and changed-path reservations prove independence; otherwise strict FIFO causes head-of-line blocking. This preserves “zero operator-visible divergence blockers” as an infrastructure property—the IDE remains on a clean published tip and sessions are not forced into rebase/conflict state—while honestly retaining a blocked transaction for later automated regeneration or explicit adjudication. [SOURCE: https://git-scm.com/docs/git-merge-tree] [INFERENCE: Git can identify textual merge conflicts but cannot decide arbitrary semantic intent; quarantine contains that uncertainty without rewriting or dirtying user-visible worktrees.]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/gitcredentials",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-diff-tree",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+        "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app",
+        "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+        "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+        "https://github.com/systemd/systemd/blob/main/man/systemd.service.xml"
+      ]
+    },
+    {
+      "id": "finding-5-21-acceptance-is-conjunctive-and-always-current-needs-a-measurable-definition-a-con",
+      "text": "**Acceptance is conjunctive, and “always current” needs a measurable definition.** A contribution is complete only when the remote shared tip contains the candidate, the journal durably records verification, the projection acknowledges the same or a newer descendant OID, and the session acknowledgement is durable. Proposed initial service targets are configurable: projection p95 freshness under 2 seconds on a healthy local network, retry recovery without operator action, and zero mutation of session state. Any target not benchmarked in the implementation environment remains provisional. [SOURCE: https://github.com/kubernetes/git-sync] [INFERENCE: exact latency depends on repository size, network, validators, and IDE behavior; correctness can be fixed now, while the numeric SLA must be validated empirically.]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-13-ambiguous-push-acknowledgement-sever-the-response-after-the-server-updates-the-r",
+      "text": "**Ambiguous push acknowledgement:** sever the response after the server updates the ref; restart observes remote containment and records exactly one publication rather than pushing a rewritten duplicate.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-6-candidate-acceptance-tests-must-verify-outcomes-under-concurrency-and-faults-not",
+      "text": "**Candidate acceptance tests must verify outcomes under concurrency and faults, not command success.**",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-7-concurrent-publication-submit-at-least-32-contributions-from-the-same-base-with-",
+      "text": "**Concurrent publication:** submit at least 32 contributions from the same base with disjoint unique sentinels; the final remote tip contains every acknowledged source exactly once in one descendant chain, and no session receives a non-fast-forward task.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-11-crash-recovery-inject-sigkill-before-and-after-every-durable-state-edge-restart-",
+      "text": "**Crash recovery:** inject `SIGKILL` before and after every durable state edge; restart converges to one valid state, never duplicates publication, and never releases a pin before remote verification plus durable acknowledgement.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-1-existing-art-supplies-separable-mechanisms-not-the-complete-system-no-examined-t",
+      "text": "**Existing art supplies separable mechanisms, not the complete system.** No examined tool simultaneously isolates dirty authoring sessions, durably captures contributions, serializes one shared-branch writer, reconciles ambiguous remote acknowledgement, quarantines semantic conflicts, and atomically refreshes a read projection.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-18-force-push-prohibition-reject-commands-containing-force-force-with-lease-or-a-re",
+      "text": "**Force-push prohibition:** reject commands containing `--force`, `--force-with-lease`, or a `+` refspec at the publisher policy layer, and require branch protection/receive policy to reject an injected non-fast-forward update; audit logs show zero force attempts by the publisher.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-17-forward-only-rollback-publish-a-then-b-request-rollback-of-a-and-concurrently-su",
+      "text": "**Forward-only rollback:** publish A then B, request rollback of A, and concurrently submit C; the final tip descends from B, contains C exactly once in serialized order, and includes a revert commit rather than backward ref movement.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-5-hosted-systems-are-optional-enforcement-adjudication-backends-not-the-default-lo",
+      "text": "**Hosted systems are optional enforcement/adjudication backends, not the default local control plane.** GitHub's queue or Gerrit's pending changes can supply required checks, review state, and a hosted audit trail, but both externalize conflict resolution and lack access to local uncommitted files and IDE state. A hosted variant is valid only when a local capture/projection bridge remains and the remote service implements the same durable IDs, pending refs, idempotency, and acknowledgement reconciliation. [SOURCE: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue] [SOURCE: https://gerrit-review.googlesource.com/Documentation/intro-user.html] [INFERENCE: hosted submission state and local filesystem safety have different authority boundaries.]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-15-ide-freshness-and-atomicity-after-remote-verification-require-the-projection-s-r",
+      "text": "**IDE freshness and atomicity:** after remote verification, require the projection's reported OID and sampled files to switch from one complete revision to the next within the configured SLA; repeated sampling never observes a mixed tree, and the IDE refresh acknowledgement references that OID.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-12-no-lost-uncommitted-work-seed-staged-unstaged-untracked-ignored-rename-and-delet",
+      "text": "**No lost uncommitted work:** seed staged, unstaged, untracked, ignored, rename, and deletion sentinels in every session; hash files, index tree, `HEAD`, and porcelain status before load/fault tests and require byte-for-byte/state equality afterward.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-9-overlapping-textual-conflict-submit-incompatible-same-line-edits-one-may-publish",
+      "text": "**Overlapping textual conflict:** submit incompatible same-line edits; one may publish, while the other becomes `conflict-quarantined` with both OIDs and conflict paths retained. The system never claims successful auto-merge.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-16-projection-failure-make-the-current-projection-dirty-remove-it-and-interrupt-poi",
+      "text": "**Projection failure:** make the current projection dirty, remove it, and interrupt pointer switching; the controller preserves the last verified view or rebuilds a disposable one without touching any authoring worktree.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-20-quarantine-ordering-place-a-conflict-at-the-queue-head-then-submit-one-dependent",
+      "text": "**Quarantine ordering:** place a conflict at the queue head, then submit one dependent and one provably independent change; only the independent change may pass, and the journal contains the dependency/path proof used for bypass.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-19-reachability-under-gc-expire-reflogs-and-run-aggressive-prune-at-every-crash-poi",
+      "text": "**Reachability under GC:** expire reflogs and run aggressive prune at every crash point; each non-released transaction's source and candidate still resolve through a live namespaced ref or verified remote ancestry.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-8-ref-race-retry-advance-the-remote-between-integration-and-push-the-publisher-reb",
+      "text": "**Ref-race retry:** advance the remote between integration and push; the publisher rebuilds against the observed tip and publishes once without force, lost ancestry, or operator-visible divergence.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-10-semantic-conflict-submit-textually-clean-changes-that-fail-a-cross-file-invarian",
+      "text": "**Semantic conflict:** submit textually clean changes that fail a cross-file invariant validator; require the same quarantine behavior, with no shared-tip or projection movement for that transaction.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-concrete-default-is-a-local-supervised-single-writer-publisher-with-four-iso",
+      "text": "**The concrete default is a local supervised single-writer publisher with four isolated planes.** The authoring plane gives every AI session its own linked worktree and branch; the coordinator never mutates its files, index, or `HEAD`. The capture plane accepts only a committed source OID, creates `refs/autosync/pending/<tx>/source`, and fsyncs an append-only transaction record before acknowledgement. The integration plane has one publisher that fetches the authoritative remote tip, reserves paths/dependencies, runs `merge-tree` and semantic validators, constructs a candidate in a scratch index or disposable worktree, pins it, and sends only a fast-forward push from the expected remote base. The projection plane materializes verified remote revisions as immutable worktrees and atomically switches a stable pointer, then emits an idempotent IDE-refresh notification. [INFERENCE: iterations 1-4 established serialization, no-touch worktrees, live reachability refs, remote reconciliation, and quarantine; git-sync independently demonstrates the immutable-worktree plus atomic-pointer projection mechanism.]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-irreducible-trade-offs-are-explicit-serialization-removes-participating-writ",
+      "text": "**The irreducible trade-offs are explicit.** Serialization removes participating-writer races but caps publication throughput at one ordered commit boundary; safe batching recovers throughput only when the whole merge group validates. A non-authoring projection can be current and disposable, whereas an editable IDE checkout cannot also accept unconditional automated refresh without dirty-tree conflicts. Quarantine prevents lost or silently mismerged work but cannot guarantee every contribution reaches the shared branch without adjudication. Atomic symlink projection prevents partial trees, but some IDEs need an explicit file-watcher refresh or a stable-worktree fallback; freshness therefore needs an SLA and observed acknowledgement rather than “instant” wording. [SOURCE: https://github.com/kubernetes/git-sync] [SOURCE: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue] [SOURCE: https://www.git-town.com/commands/sync.html] [INFERENCE: authoring mutability, semantic correctness, strict ordering, and unlimited throughput cannot all be maximized simultaneously.]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-transaction-state-machine-separates-hidden-retry-from-semantic-quarantine-it",
+      "text": "**The transaction state machine separates hidden retry from semantic quarantine.** Its minimum durable states are `observed → source-pinned → queued → integrating → candidate-pinned → push-sent → remote-verified → projected → session-acked → released`, plus `retryable-transport` and `conflict-quarantined`. Process exits, credential expiry, ref races, timeouts, and ambiguous push responses enter `retryable-transport`: keep both pins, observe the remote ref, and resume idempotently without surfacing a divergence task. A textual merge conflict, dependency violation, or semantic-validator failure enters `conflict-quarantined`: retain both pins and diagnostics, do not advance the shared branch or projection, do not mutate any session, and require a new linked resolution transaction. Later transactions may pass only when declared dependencies and changed-path reservations prove independence; otherwise they remain ordered behind the quarantine. [SOURCE: https://docs.syncthing.net/users/syncing.html] [SOURCE: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue] [SOURCE: https://gerrit-review.googlesource.com/Documentation/intro-user.html] [INFERENCE: transport uncertainty is mechanically observable and retryable, while semantic intent is not.]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    },
+    {
+      "id": "finding-5-14-visible-divergence-instrument-user-facing-logs-ui-routine-ref-races-fetch-retrie",
+      "text": "**Visible divergence:** instrument user-facing logs/UI; routine ref races, fetch retries, credential refresh, and ambiguous acknowledgement appear only as internal retry telemetry, while only `conflict-quarantined` exposes an adjudication item and never dirties the IDE projection.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/kubernetes/git-sync",
+        "https://github.com/GitJournal/git-auto-sync",
+        "https://github.com/remotemobprogramming/mob",
+        "https://docs.syncthing.net/users/syncing.html",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://www.git-town.com/commands/sync.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-user.html",
+        "https://gerrit-review.googlesource.com/Documentation/concept-changes.html",
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-9b0fdea6e9bc",
+      "text": "A hosted merge queue as the sole continuous autosync mechanism: it serializes accepted PRs but externalizes conflicts and check failures by removing queue entries.",
+      "contentHash": "9b0fdea6e9bc",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bd918c96db37",
+      "text": "Force-pushing the shared branch: Git documents that force disables safety checks and can make the remote lose commits.",
+      "contentHash": "bd918c96db37",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-378b9298ebe9",
+      "text": "Uncoordinated direct pushes as a zero-rejection guarantee: the second divergent writer is rejected after the first advances the branch.",
+      "contentHash": "378b9298ebe9",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-61d34ca8f2a5",
+      "text": "`clone --shared` or long-lived `--reference` alternates as the default isolation boundary: source pruning can corrupt borrowers.",
+      "contentHash": "61d34ca8f2a5",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-6b0abf7f9b3b",
+      "text": "A single shared working tree for concurrent sessions: it shares the exact files and index whose isolation is required.",
+      "contentHash": "6b0abf7f9b3b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-b81b78ea8859",
+      "text": "Treating `reset --keep` as a general always-current refresh. Its safety checks are overlap-sensitive, and it can still discard local commits by moving the current branch.",
+      "contentHash": "b81b78ea8859",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-5f61a9337764",
+      "text": "Treating `worktree lock` as protection for uncommitted content. It prevents administrative pruning/move/removal, not filesystem loss or overwrite by an unsafe command.",
+      "contentHash": "5f61a9337764",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-0308164831dd",
+      "text": "Watch-triggered rebase, autostash, or reset in active session worktrees: these mutate the session branch, index, or files and can stop on conflicts.",
+      "contentHash": "0308164831dd",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-03db40ebf9ee",
+      "text": "Backward rollback and force-push remain permanently excluded from the shared branch.",
+      "contentHash": "03db40ebf9ee",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-20540130b5b0",
+      "text": "Moving the shared ref backward for rollback: it can remove later session history.",
+      "contentHash": "20540130b5b0",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-77c2959584f4",
+      "text": "Recording an accepted commit's OID only in the crash journal: application files are not Git reachability roots.",
+      "contentHash": "77c2959584f4",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-1d74e79e0bd1",
+      "text": "Reflog-only retention is time-bounded and configuration-dependent; it is useful forensic evidence, not the lifetime guarantee for accepted transactions.",
+      "contentHash": "1d74e79e0bd1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7cf06cd92f88",
+      "text": "Retrying an ambiguous push before observing the remote can duplicate integration work and complicate acknowledgement; reconcile first.",
+      "contentHash": "7cf06cd92f88",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7c3fa7f11d06",
+      "text": "Treating a successful local command return as the only remote acknowledgement: a lost response after server acceptance is ambiguous until the remote ref is observed.",
+      "contentHash": "7c3fa7f11d06",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-14a35ea1732b",
+      "text": "Using temporary autostash state as the unattended recovery boundary: it mutates the session and can end in conflicts or a dangling commit window.",
+      "contentHash": "14a35ea1732b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b715a8d2776c",
+      "text": "A hook-only publisher: hooks are command-scoped, configurable/bypassable on clients, and lack one durable recovery owner.",
+      "contentHash": "b715a8d2776c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-6e893c4d43c0",
+      "text": "A launch-wrapper-only publisher: its process lifetime does not cover delayed retries, remote ambiguity, or crash replay.",
+      "contentHash": "6e893c4d43c0",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-b5748e0ecc65",
+      "text": "Blindly skipping a quarantined FIFO head: safe continuation requires explicit dependency and changed-path independence, not queue convenience.",
+      "contentHash": "b5748e0ecc65",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ef3116d6ae12",
+      "text": "Claiming that per-session subtrees or additive-only commits eliminate semantic conflicts is too strong; cross-file invariants and shared derived artifacts remain.",
+      "contentHash": "ef3116d6ae12",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-86c7004ee679",
+      "text": "CODEOWNERS as a path lock: it routes review and approval; it does not reserve paths or prevent concurrent edits.",
+      "contentHash": "86c7004ee679",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-b2f746ef7fe1",
+      "text": "Making client hooks authoritative is structurally incompatible with unattended recovery and centralized ordering.",
+      "contentHash": "b2f746ef7fe1",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-b5100d004ae1",
+      "text": "“Always current” without an OID-linked refresh acknowledgement and latency budget is not testable.",
+      "contentHash": "b5100d004ae1",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-36fcc3f97bca",
+      "text": "Adopting `git-auto-sync` or Git Town as the multi-session authority: both operate by mutating and potentially stashing an authoring workspace.",
+      "contentHash": "36fcc3f97bca",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-c964ef248b17",
+      "text": "Claiming arbitrary overlapping edits always auto-merge: textual and semantic conflicts have a durable quarantine path instead.",
+      "contentHash": "c964ef248b17",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3579136cca35",
+      "text": "Hiding semantic quarantine as an infinite retry would turn an honest conflict into silent queue starvation.",
+      "contentHash": "3579136cca35",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ed8dd5d57c0e",
+      "text": "Searching for a single drop-in tool is exhausted; the required guarantees cross local filesystem, Git object reachability, hosted ref publication, and IDE observation boundaries.",
+      "contentHash": "ed8dd5d57c0e",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-71b5f342c1a0",
+      "text": "Treating GitHub merge queue or Gerrit alone as the complete solution: neither protects local dirty work nor refreshes the IDE projection.",
+      "contentHash": "71b5f342c1a0",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-982400c67f05",
+      "text": "Treating Syncthing-style last-writer selection or conflict copies as Git integration: preservation is borrowable, but ancestry and semantic validation are absent.",
+      "contentHash": "982400c67f05",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 48,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.957,
+    "coverageBySources": {
+      "docs.github.com": 5,
+      "docs.syncthing.net": 1,
+      "gerrit-review.googlesource.com": 2,
+      "git-scm.com": 24,
+      "github.com": 4,
+      "other": 13,
+      "www.freedesktop.org": 1,
+      "www.git-town.com": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements/research/lineages/parallel-git-sol/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

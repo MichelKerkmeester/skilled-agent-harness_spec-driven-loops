@@ -11,12 +11,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/137-parallel-session-git-autosync"
-    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_at: "2026-07-14T06:38:13Z"
     last_updated_by: "claude"
-    recent_action: "Created the phase parent and the 001 research charter"
-    next_safe_action: "Run the 15-iteration, three-model deep-research fan-out, then synthesize"
+    recent_action: "Research phase 001 converged and the decision record is frozen"
+    next_safe_action: "Scaffold the first implementation phase"
     blockers:
-      - "Research findings are pending; no solution architecture is chosen yet"
+      - "Implementation phases inherit the BLOCKING prerequisites in 001/decision-record.md (fencing singleton, sole-writer remote enforcement, remote-policy audit, durability, trust boundary)"
     key_files:
       - "spec.md"
       - "001-research-and-requirements/spec.md"
@@ -27,12 +27,11 @@ _memory:
       parent_session_id: null
     completion_pct: 10
     open_questions:
-      - "Should sessions share one working tree or each get an isolated worktree?"
-      - "Is a serialized push mux, an auto-rebase push loop, or a merge queue the right integration strategy?"
-      - "How is the local IDE kept current without disturbing a session's uncommitted work?"
+      - "Which BLOCKING prerequisites from ADR-003 must the first implementation phase satisfy to claim the strict primary-never-behind invariant?"
     answered_questions:
       - "The target is one shared long-lived branch (e.g. v4) that stays current, not per-session long-lived branches."
       - "A high volume of commits and pushes is acceptable; the goal is zero human-visible divergence blockers."
+      - "Recommended default: a serialized single-writer publisher + isolated per-session worktrees + a separate clean projection, with a projection-first primary-never-behind invariant."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -100,7 +99,7 @@ Research and define a system in which many concurrent AI sessions commit and pus
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `001-research-and-requirements/` | Create | 001 | Research charter, three-model deep-research fan-out, evidence synthesis, and architecture decision |
+| `001-research-and-requirements/` | Create | 001 | Research charter, two-lineage deep-research fan-out, three-pass verification, evidence synthesis, and architecture decision |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -110,7 +109,7 @@ Research and define a system in which many concurrent AI sessions commit and pus
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-research-and-requirements/` | Integration strategies, workspace models, safety, and automation surface; three-model deep-research fan-out and synthesis | Research charter defined; iterations pending |
+| 1 | `001-research-and-requirements/` | Integration strategies, workspace models, safety, automation surface, and the primary-never-behind invariant; two-lineage deep-research fan-out, three-pass verification, and synthesis | Complete (decision record frozen) |
 
 ### Phase Transition Rules
 

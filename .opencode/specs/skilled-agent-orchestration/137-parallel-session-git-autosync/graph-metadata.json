@@ -37,7 +37,8 @@
     "key_files": [
       "spec.md",
       "001-research-and-requirements/spec.md",
-      "001-research-and-requirements/plan.md"
+      "001-research-and-requirements/plan.md",
+      "001-research-and-requirements/research/research.md"
     ],
     "entities": [
       {
@@ -85,15 +86,15 @@
     ],
     "causal_summary": "Several AI coding sessions run in parallel against one shared long-lived branch",
     "created_at": "2026-07-14T04:11:52.142Z",
-    "last_save_at": "2026-07-14T04:11:52.142Z",
+    "last_save_at": "2026-07-14T06:38:13.699Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:77a6f0f3741aeed617d814725c853d6cf6b446bd0798c11aa7c694eb92b330b2",
+    "source_fingerprint": "sha256:dc380b4e39c11a7929983a014c414fc18f98f36c6a78dac840b6a3ee65a6bcd4",
     "source_doc_hashes": {
-      "spec.md": "39aba244f142b551cec3ff9d31c87b0bd0e2c702e747d600ff17e138bb9b72a6"
+      "spec.md": "943538c81826c2aa2e2976e05e8961a4a1e4763d73a95730f6c5d432a2707e02"
     },
     "last_active_child_id": null,
     "last_active_at": null

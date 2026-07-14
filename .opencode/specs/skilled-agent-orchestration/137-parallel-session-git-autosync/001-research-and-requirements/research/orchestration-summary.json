@@ -1,0 +1,22 @@
+{
+  "run_id": "1784004109977-h2q92q",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements",
+  "base_artifact_dir": ".opencode/specs/skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

@@ -1,0 +1,981 @@
+{
+  "sessionId": "fanout-parallel-git-luna-1784004109977-h2q92q",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 7,
+    "totalQuestions": 7,
+    "timestamp": null
+  },
+  "keyQuestions": [
+    {
+      "id": "RQ1",
+      "inboxId": null,
+      "text": "Which integration strategy handles concurrent publication and push races with the strongest correctness and liveness properties?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "RQ2",
+      "inboxId": null,
+      "text": "Which workspace model prevents sessions from overwriting each other's files while keeping the shared branch current?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "RQ3",
+      "inboxId": null,
+      "text": "How can a local IDE checkout stay current without disturbing uncommitted changes?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "RQ4",
+      "inboxId": null,
+      "text": "Which invariants prevent orphaned autostashes, overwritten work, force-push loss, and make rollback reliable?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "RQ5",
+      "inboxId": null,
+      "text": "Which automation surface provides the right lifecycle, observability, and failure recovery characteristics?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "RQ6",
+      "inboxId": null,
+      "text": "Which conflict-avoidance and conflict-handling rules make concurrent additive work tractable?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "RQ7",
+      "inboxId": null,
+      "text": "What do the named existing tools and workflows demonstrate or fail to guarantee?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "RQ1",
+      "inboxId": null,
+      "text": "Which integration strategy handles concurrent publication and push races with the strongest correctness and liveness properties?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "RQ2",
+      "inboxId": null,
+      "text": "Which workspace model prevents sessions from overwriting each other's files while keeping the shared branch current?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "RQ3",
+      "inboxId": null,
+      "text": "How can a local IDE checkout stay current without disturbing uncommitted changes?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "RQ4",
+      "inboxId": null,
+      "text": "Which invariants prevent orphaned autostashes, overwritten work, force-push loss, and make rollback reliable?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "RQ5",
+      "inboxId": null,
+      "text": "Which automation surface provides the right lifecycle, observability, and failure recovery characteristics?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "RQ6",
+      "inboxId": null,
+      "text": "Which conflict-avoidance and conflict-handling rules make concurrent additive work tractable?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "RQ7",
+      "inboxId": null,
+      "text": "What do the named existing tools and workflows demonstrate or fail to guarantee?",
+      "origin": "operator",
+      "source": "research charter",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What exact autostash, fetch, fast-forward-only, and rollback invariants are enforceable?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which queue/daemon/remote-side systems already implement these boundaries?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should an IDE-facing checkout consume new commits without overwriting dirty files?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What existing tools demonstrate, and what guarantees do they explicitly not provide?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which queue/daemon/remote-side systems already serialize publication and provide these recovery boundaries?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which automation surface gives the best observability and lifecycle behavior for session launch, retry, conflict, and rollback?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which conflict-avoidance policies make additive concurrent work tractable?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which safety and rollback invariants must be made acceptance tests rather than documentation claims?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which conflict-avoidance policies make concurrent additive work tractable?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact architecture best combines ref-level publishing with the IDE current-view worktree?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which integration strategy should be the default when low latency matters more than CI-gated queueing?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What trade-offs remain between a local daemon, remote merge queue, and hybrid deployment?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which rollback, observability, and latency conditions must be stated in the final recommendation?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which complete default architecture best combines these primitives and surfaces?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None for the stated research scope; implementation-specific queue storage, daemon protocol, and IDE integration remain design work outside this research loop.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-a-scratch-index-plus-read-tree-commit-tree-can-construct-commits-without-touchin",
+      "text": "A scratch index plus `read-tree`/`commit-tree` can construct commits without touching the IDE checkout, but it does not resolve conflicts automatically.",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-update-index",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-worktree"
+      ]
+    },
+    {
+      "id": "finding-1-3-a-serialized-publisher-can-hide-push-races-from-operators-while-retaining-condit",
+      "text": "A serialized publisher can hide push races from operators while retaining conditional ref-update correctness.",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-update-index",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-worktree"
+      ]
+    },
+    {
+      "id": "finding-1-1-a-shared-branch-requires-explicit-compare-and-swap-publication-blind-force-push-",
+      "text": "A shared branch requires explicit compare-and-swap publication; blind force-push is unsafe.",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-update-index",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-worktree"
+      ]
+    },
+    {
+      "id": "finding-1-2-auto-rebase-and-retry-improves-liveness-for-clean-patches-but-cannot-eliminate-o",
+      "text": "Auto-rebase-and-retry improves liveness for clean patches but cannot eliminate overlapping conflicts or starvation.",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-update-index",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-worktree"
+      ]
+    },
+    {
+      "id": "finding-1-5-linked-worktrees-isolate-each-session-s-files-and-index-while-leaving-shared-ref",
+      "text": "Linked worktrees isolate each session's files and index while leaving shared ref coordination to the publisher.",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-read-tree",
+        "https://git-scm.com/docs/git-update-index",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-worktree"
+      ]
+    },
+    {
+      "id": "finding-2-3-pull-rebase-autostash-is-a-convenience-mechanism-autostash-reapplication-can-con",
+      "text": "`pull --rebase --autostash` is a convenience mechanism; autostash reapplication can conflict and leave recovery state.",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-reset",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-reflog"
+      ]
+    },
+    {
+      "id": "finding-2-4-reset-keep-refuses-overlapping-updates-while-reset-hard-can-overwrite-tracked-ed",
+      "text": "`reset --keep` refuses overlapping updates while `reset --hard` can overwrite tracked edits and remove obstructing untracked files.",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-reset",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-reflog"
+      ]
+    },
+    {
+      "id": "finding-2-5-always-current-files-and-lossless-arbitrary-dirty-edits-require-separate-checkou",
+      "text": "Always-current files and lossless arbitrary dirty edits require separate checkout ownership or an explicit freshness/status distinction.",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-reset",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-reflog"
+      ]
+    },
+    {
+      "id": "finding-2-2-fast-forward-only-refresh-is-conservative-and-data-preserving-but-it-intentional",
+      "text": "Fast-forward-only refresh is conservative and data-preserving, but it intentionally refuses divergent histories.",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-reset",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-reflog"
+      ]
+    },
+    {
+      "id": "finding-2-1-fetch-only-watchers-refresh-remote-tracking-refs-without-rewriting-the-ide-workt",
+      "text": "Fetch-only watchers refresh remote-tracking refs without rewriting the IDE worktree.",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-reset",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-reflog"
+      ]
+    },
+    {
+      "id": "finding-2-6-rollback-needs-persisted-old-state-identifiable-recovery-material-and-post-opera",
+      "text": "Rollback needs persisted old state, identifiable recovery material, and post-operation tree verification.",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/docs/git-pull",
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-reset",
+        "https://git-scm.com/docs/git-rebase",
+        "https://git-scm.com/docs/git-stash",
+        "https://git-scm.com/docs/git-reflog"
+      ]
+    },
+    {
+      "id": "finding-3-3-a-background-daemon-is-the-best-local-lifecycle-surface-for-fetch-queueing-retri",
+      "text": "A background daemon is the best local lifecycle surface for fetch, queueing, retries, status, and recovery when it owns a clean publisher worktree or scratch index.",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://gerrit-review.googlesource.com/Documentation/intro-how-gerrit-works.html",
+        "https://gerrit-review.googlesource.com/Documentation/config-submit-requirements.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-project-owner.html",
+        "https://www.git-town.com/commands/sync",
+        "https://pkg.go.dev/github.com/findingjimoh/git-auto-sync",
+        "https://github.com/simonthum/git-sync",
+        "https://github.com/wei/git-sync",
+        "https://mob.sh/",
+        "https://docs.syncthing.net/users/faq.html",
+        "https://github.com/syncthing/syncthing"
+      ]
+    },
+    {
+      "id": "finding-3-2-a-launch-wrapper-is-the-right-place-to-allocate-a-session-worktree-and-register-",
+      "text": "A launch wrapper is the right place to allocate a session worktree and register it with a publisher, but it cannot serialize writers by itself.",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://gerrit-review.googlesource.com/Documentation/intro-how-gerrit-works.html",
+        "https://gerrit-review.googlesource.com/Documentation/config-submit-requirements.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-project-owner.html",
+        "https://www.git-town.com/commands/sync",
+        "https://pkg.go.dev/github.com/findingjimoh/git-auto-sync",
+        "https://github.com/simonthum/git-sync",
+        "https://github.com/wei/git-sync",
+        "https://mob.sh/",
+        "https://docs.syncthing.net/users/faq.html",
+        "https://github.com/syncthing/syncthing"
+      ]
+    },
+    {
+      "id": "finding-3-5-gerrit-s-pending-change-and-submit-requirement-model-gives-a-strong-remote-integ",
+      "text": "Gerrit's pending-change and submit-requirement model gives a strong remote integration boundary, but it introduces review/submit state rather than direct continuous branch appends.",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://gerrit-review.googlesource.com/Documentation/intro-how-gerrit-works.html",
+        "https://gerrit-review.googlesource.com/Documentation/config-submit-requirements.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-project-owner.html",
+        "https://www.git-town.com/commands/sync",
+        "https://pkg.go.dev/github.com/findingjimoh/git-auto-sync",
+        "https://github.com/simonthum/git-sync",
+        "https://github.com/wei/git-sync",
+        "https://mob.sh/",
+        "https://docs.syncthing.net/users/faq.html",
+        "https://github.com/syncthing/syncthing"
+      ]
+    },
+    {
+      "id": "finding-3-1-git-hooks-are-useful-synchronous-guardrails-but-local-hooks-are-not-a-shared-ser",
+      "text": "Git hooks are useful synchronous guardrails, but local hooks are not a shared serialization service and can be bypassed.",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://gerrit-review.googlesource.com/Documentation/intro-how-gerrit-works.html",
+        "https://gerrit-review.googlesource.com/Documentation/config-submit-requirements.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-project-owner.html",
+        "https://www.git-town.com/commands/sync",
+        "https://pkg.go.dev/github.com/findingjimoh/git-auto-sync",
+        "https://github.com/simonthum/git-sync",
+        "https://github.com/wei/git-sync",
+        "https://mob.sh/",
+        "https://docs.syncthing.net/users/faq.html",
+        "https://github.com/syncthing/syncthing"
+      ]
+    },
+    {
+      "id": "finding-3-6-git-town-mob-git-sync-and-git-auto-sync-demonstrate-useful-wrappers-and-recovery",
+      "text": "Git Town, mob, `git-sync`, and `git-auto-sync` demonstrate useful wrappers and recovery patterns, but each assumes a bounded workflow or stops on conflicts rather than guaranteeing concurrent lossless publication.",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://gerrit-review.googlesource.com/Documentation/intro-how-gerrit-works.html",
+        "https://gerrit-review.googlesource.com/Documentation/config-submit-requirements.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-project-owner.html",
+        "https://www.git-town.com/commands/sync",
+        "https://pkg.go.dev/github.com/findingjimoh/git-auto-sync",
+        "https://github.com/simonthum/git-sync",
+        "https://github.com/wei/git-sync",
+        "https://mob.sh/",
+        "https://docs.syncthing.net/users/faq.html",
+        "https://github.com/syncthing/syncthing"
+      ]
+    },
+    {
+      "id": "finding-3-4-github-merge-queues-serialize-pull-request-integration-and-validate-the-queued-r",
+      "text": "GitHub merge queues serialize pull-request integration and validate the queued result, but they are not a live dirty-worktree synchronizer.",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://gerrit-review.googlesource.com/Documentation/intro-how-gerrit-works.html",
+        "https://gerrit-review.googlesource.com/Documentation/config-submit-requirements.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-project-owner.html",
+        "https://www.git-town.com/commands/sync",
+        "https://pkg.go.dev/github.com/findingjimoh/git-auto-sync",
+        "https://github.com/simonthum/git-sync",
+        "https://github.com/wei/git-sync",
+        "https://mob.sh/",
+        "https://docs.syncthing.net/users/faq.html",
+        "https://github.com/syncthing/syncthing"
+      ]
+    },
+    {
+      "id": "finding-3-7-syncthing-style-mirroring-replicates-file-content-and-creates-conflict-handling-",
+      "text": "Syncthing-style mirroring replicates file content and creates conflict handling at the file layer; it is not a Git ref publication protocol.",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://git-scm.com/docs/githooks",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        "https://gerrit-review.googlesource.com/Documentation/intro-how-gerrit-works.html",
+        "https://gerrit-review.googlesource.com/Documentation/config-submit-requirements.html",
+        "https://gerrit-review.googlesource.com/Documentation/intro-project-owner.html",
+        "https://www.git-town.com/commands/sync",
+        "https://pkg.go.dev/github.com/findingjimoh/git-auto-sync",
+        "https://github.com/simonthum/git-sync",
+        "https://github.com/wei/git-sync",
+        "https://mob.sh/",
+        "https://docs.syncthing.net/users/faq.html",
+        "https://github.com/syncthing/syncthing"
+      ]
+    },
+    {
+      "id": "finding-4-3-git-merge-tree-write-tree-provides-a-worktree-index-free-three-way-merge-preflig",
+      "text": "`git merge-tree --write-tree` provides a worktree/index-free three-way merge preflight with a clean/conflicted exit status and a candidate tree.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-4-rerere-can-reuse-a-previously-recorded-human-resolution-but-it-is-an-acceleratio",
+      "text": "`rerere` can reuse a previously recorded human resolution, but it is an acceleration mechanism, not proof that a new conflict should resolve the same way.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-11-a-cas-race-causes-reconstruction-retry-against-the-new-tip-it-never-uses-force-o",
+      "text": "A CAS race causes reconstruction/retry against the new tip; it never uses `--force` or silently drops the other writer's commit.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-14-a-clean-current-view-worktree-advances-by-fast-forward-only-update-and-never-ove",
+      "text": "A clean current-view worktree advances by fast-forward-only update and never overwrites session work because no AI session owns that worktree.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-12-a-dirty-ide-worktree-remains-byte-for-byte-and-index-for-index-unchanged-while-f",
+      "text": "A dirty IDE worktree remains byte-for-byte and index-for-index unchanged while fetch, merge-tree preflight, conflict classification, and publication run elsewhere.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-13-a-failed-autostash-merge-refresh-leaves-the-old-head-and-a-named-recoverable-pat",
+      "text": "A failed autostash/merge/refresh leaves the old HEAD and a named recoverable patch or stash; cleanup is permitted only after post-apply tree/hash verification.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-15-a-path-manifest-violation-duplicate-additive-key-generated-file-collision-rename",
+      "text": "A path-manifest violation, duplicate additive key, generated-file collision, rename/delete conflict, or binary conflict is rejected or queued, never resolved by an unrecorded “ours/theirs” choice.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-10-a-publisher-crash-before-or-after-object-creation-cannot-lose-a-submission-the-q",
+      "text": "A publisher crash before or after object creation cannot lose a submission: the queue record, commit/tree object, or recovery bundle permits retry or replay, and a second attempt is idempotent.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-7-acceptance-tests-must-verify-no-silent-content-choice-no-force-update-durable-co",
+      "text": "Acceptance tests must verify no silent content choice, no force update, durable conflict retention, exact rollback, and eventual publication for disjoint contributions.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-5-custom-merge-drivers-can-encode-domain-specific-deterministic-merges-while-binar",
+      "text": "Custom merge drivers can encode domain-specific deterministic merges, while binary/opaque paths should remain explicit conflicts; neither mechanism can invent correct semantics.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-1-disjoint-path-ownership-is-the-only-structural-conflict-avoidance-rule-that-can-",
+      "text": "Disjoint path ownership is the only structural conflict-avoidance rule that can make arbitrary session contributions commute without content merging.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-2-per-session-subtrees-and-additive-only-records-help-only-when-path-key-ownership",
+      "text": "Per-session subtrees and additive-only records help only when path/key ownership is unique; shared generated, renamed, deleted, or cross-cutting files remain serialized resources.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-6-sparse-checkout-limits-files-populated-in-a-worktree-but-does-not-grant-ref-isol",
+      "text": "Sparse checkout limits files populated in a worktree but does not grant ref isolation or ownership of paths across concurrent writers.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-8-two-disjoint-session-commits-submitted-from-the-same-base-both-eventually-publis",
+      "text": "Two disjoint session commits submitted from the same base both eventually publish, with each commit's tree content present and no non-fast-forward error exposed to the sessions.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-4-9-two-overlapping-edits-produce-a-durable-conflicted-record-naming-the-submission-",
+      "text": "Two overlapping edits produce a durable `conflicted` record naming the submission, base SHA, current SHA, paths/merge status, and recovery reference; the shared branch remains unchanged until an explicit resolution is accepted.",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-rerere",
+        "https://git-scm.com/docs/gitattributes",
+        "https://git-scm.com/docs/git-sparse-checkout",
+        "https://git-scm.com/docs/git-merge"
+      ]
+    },
+    {
+      "id": "finding-5-3-a-remote-merge-queue-or-gerrit-is-stronger-when-ci-review-is-the-governing-const",
+      "text": "A remote merge queue or Gerrit is stronger when CI/review is the governing constraint; a hybrid can submit the daemon's immutable contributions to that queue while keeping local IDE freshness separate.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-5-6-acceptance-must-test-publication-conflict-crash-rollback-freshness-ownership-and",
+      "text": "Acceptance must test publication, conflict, crash, rollback, freshness, ownership, and observability separately rather than treating a successful `git push` as proof of end-to-end safety.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-5-11-clean-ide-current-view-worktree-updated-independently-of-dirty-session-worktrees",
+      "text": "clean IDE current-view worktree updated independently of dirty session worktrees.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-5-10-explicit-durable-recoverable-conflict-state-for-ambiguous-overlap",
+      "text": "explicit, durable, recoverable conflict state for ambiguous overlap;",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-5-8-no-force-pushes-silent-ours-theirs-choices-or-session-visible-non-fast-forward-r",
+      "text": "no force pushes, silent “ours/theirs” choices, or session-visible non-fast-forward retries;",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-5-7-no-loss-of-saved-work-under-the-managed-worktree-and-queue-boundary",
+      "text": "no loss of saved work under the managed worktree and queue boundary;",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-5-9-no-manual-response-required-for-disjoint-publication-races",
+      "text": "no manual response required for disjoint publication races;",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-5-2-optimistic-rebase-and-retry-is-a-useful-fast-path-inside-that-publisher-but-inde",
+      "text": "Optimistic rebase-and-retry is a useful fast path inside that publisher, but independent session push loops cannot provide queue fairness, durable retry ownership, or zero visible push failures.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-5-4-pending-submissions-need-durable-reachability-and-idempotent-operation-records-a",
+      "text": "Pending submissions need durable reachability and idempotent operation records across crashes and ambiguous push acknowledgments; object creation alone is not durable publication.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-recommended-low-latency-default-is-isolated-session-worktrees-plus-one-seria",
+      "text": "The recommended low-latency default is isolated session worktrees plus one serialized publisher daemon using merge-tree/scratch-index construction and explicit old-tip CAS publication.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-strongest-honest-contract-is-lossless-for-saved-files-and-commits-in-isolate",
+      "text": "The strongest honest contract is lossless for saved files and commits in isolated worktrees, no force/non-fast-forward errors on the session path, and explicit durable conflict states; arbitrary semantic overlap and unsaved editor buffers remain outside the guarantee.",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://git-scm.com/docs/git-push",
+        "https://git-scm.com/docs/git-update-ref",
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-merge-tree",
+        "https://git-scm.com/docs/git-commit-tree",
+        "https://git-scm.com/docs/git-fsck",
+        "https://git-scm.com/docs/git-bundle",
+        "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 7,
+    "carriedForwardOpenQuestions": 15,
+    "keyFindings": 44,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.68,
+    "coverageBySources": {
+      "docs.github.com": 1,
+      "docs.syncthing.net": 1,
+      "gerrit-review.googlesource.com": 3,
+      "git-scm.com": 20,
+      "github.com": 3,
+      "mob.sh": 1,
+      "pkg.go.dev": 1,
+      "www.git-town.com": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements/research/lineages/parallel-git-luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

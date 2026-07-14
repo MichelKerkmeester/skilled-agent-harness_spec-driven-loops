@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements",
   "description": "Multiple AI coding sessions run concurrently against one shared long-lived branch",
   "keywords": [
@@ -13,9 +14,8 @@
     "long-lived",
     "branch"
   ],
-  "lastUpdated": "2026-07-14T04:17:19.061Z",
+  "lastUpdated": "2026-07-14T06:33:10.663Z",
   "specId": "001",
-  "level": "2",
   "folderSlug": "research-and-requirements",
   "parentChain": [
     "skilled-agent-orchestration",
