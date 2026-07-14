@@ -1,35 +1,35 @@
 ---
 title: "Implementation Plan: Codex hook install robustness"
-description: "Interim re-anchor containment (shipped) plus the planned convergent/repair-default installer, linked-worktree anchor refusal, inline fail-loud emit, cross-runtime --check watchdog, and source dedupe — gated on an open Codex non-zero-exit probe and operator approval."
+description: "Interim re-anchor containment plus the convergent/repair-default installer, linked-worktree anchor refusal, inline fail-loud emit, cross-runtime --check watchdog, and source dedupe — all shipped, installed, and verified (installer self-test 9/9; probe resolved on Codex 0.144.4)."
 trigger_phrases: ["Codex hook install robustness plan"]
 importance_tier: normal
 contextType: planning
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/009-codex-hook-install-robustness"
-    last_updated_at: "2026-07-14T19:20:00Z"
+    last_updated_at: "2026-07-14T19:45:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the Level 3 implementation plan; containment done, durable fix planned"
-    next_safe_action: "run the OPEN PROBE, then implement D2/D3 in install-codex-hooks.mjs"
-    blockers: ["Durable fix D2/D3/D4 is approval-gated; not yet implemented", "OPEN PROBE (D4 pre-req) unresolved"]
-    completion_pct: 20
-    open_questions: ["How does Codex 0.144.x treat a hook command's non-zero exit?"]
-    answered_questions: []
+    recent_action: "Shipped+verified durable convergent installer (D2/D3/D4/D6); self-test 9/9; probe resolved"
+    next_safe_action: "packet complete; Part B (CLI spec consolidation) is a separate packet"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Codex 0.144.4 marks a non-zero hook exit Failed but does NOT abort the session (fail-open holds), and `node <adapter> || printf <additionalContext>` reaches the model — so the inline || emit is valid and shipped (ADR-007 resolved)."]
 ---
 # Implementation Plan: Codex hook install robustness
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-Two tracks. Track A (**done, shipped this session**): an interim re-anchor of the 14 stale worktree-anchored mk entries in `~/.codex/hooks.json` back to the primary checkout, backed up and live-smoke-verified, to remove the reap → silent dormancy risk today. Track B (**planned, approval-gated**): make `install-codex-hooks.mjs` convergent/repair-default so it re-anchors mk-owned entries by identity on every run, refuse to anchor at a linked worktree, emit an inline fail-loud `||` envelope per generated entry, wire a non-mutating `--check` into the repo-local Claude/OpenCode SessionStart chain, and dedupe the duplicated source `.codex/hooks.json` groups. Track B is NOT implemented; it depends on the OPEN PROBE (Codex non-zero-exit behavior) and operator approval.
+Two tracks, both shipped and verified. Track A (**containment, shipped first**): an interim re-anchor of the 14 stale worktree-anchored mk entries in `~/.codex/hooks.json` back to the primary checkout, backed up and live-smoke-verified, to remove the reap → silent dormancy risk immediately. Track B (**durable fix, shipped + installed + verified**): `install-codex-hooks.mjs` is now convergent/repair-default — it re-anchors mk-owned entries by identity on every run, refuses to anchor at a linked worktree, emits an inline fail-loud `||` envelope per generated entry, wires a non-mutating `--check` into the repo-local Claude/OpenCode SessionStart chain, and the source `.codex/hooks.json` duplicated groups are deduped. Installer self-test is 9/9 PASS, the OPEN PROBE resolved on Codex 0.144.4 (fail-open; fallback reaches the model), the reconcile was applied to the live `~/.codex/hooks.json` (backed up) with `--check` exiting 0, and a live `codex exec` smoke passed.
 <!-- /ANCHOR:summary -->
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-- [ ] A stale-anchored mk entry is repaired on the next run; a second run reports no further change (convergence).
-- [ ] Superset/unknown entries are byte-identical before and after a reconcile run.
-- [ ] Running from a linked worktree aborts unless `--allow-worktree`.
-- [ ] `--check` is non-mutating and reports drift; it never self-repairs from SessionStart.
-- [ ] No neutral core, Claude hook, or OpenCode plugin changes behavior (diff-confirmed); no new global artifact is created.
+- [x] A stale-anchored mk entry is repaired on the next run; a second run reports no further change (convergence) — self-test 9/9, second reconcile `changed:false`.
+- [x] Superset/unknown entries are byte-identical before and after a reconcile run — self-test preserves the `notify.sh` entry byte-for-byte.
+- [x] Running from a linked worktree aborts unless `--allow-worktree` — `assertSafeRepoAnchor`, self-test 9/9.
+- [x] `--check` is non-mutating and reports drift; it never self-repairs from SessionStart — exits 0 clean / 2 with `DRIFT`.
+- [x] No neutral core, Claude hook, or existing OpenCode plugin changes behavior (diff-confirmed); no new global artifact is created — change surface limited to installer, `.codex/hooks.json`, `.claude/settings.json`, and the new watchdog plugin.
 <!-- /ANCHOR:quality-gates -->
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
@@ -49,16 +49,16 @@ Two tracks. Track A (**done, shipped this session**): an interim re-anchor of th
 ## 4. IMPLEMENTATION PHASES
 ### Phase 0: Containment (DONE)
 - [x] Re-anchor the 14 stale `…/.worktrees/0038-codex-hook-parity` mk command prefixes → primary checkout in `~/.codex/hooks.json`; back up first; live smoke.
-### Phase 1: Open probe (gates Phase 4)
-- [ ] Empirically confirm how Codex 0.144.x treats a hook command's non-zero exit (surfaces / marks Failed / ignores).
-### Phase 2: Convergent reconcile + worktree refusal
-- [ ] Replace the identity/dedup logic with a reconcile keyed by `(owner,event,matcher,hookId)`; add the linked-worktree anchor refusal (D2/D3).
-### Phase 3: `--check` + cross-runtime watchdog
-- [ ] Add non-mutating `--check`; wire it into the repo-local Claude/OpenCode SessionStart chain (D4, no self-repair).
-### Phase 4: Fail-loud emit + source dedupe
-- [ ] Emit the inline `||` envelope per generated entry (shape driven by the Phase 1 probe); dedupe the source `.codex/hooks.json` groups (D4/D6).
-### Phase 5: Verification and closeout
-- [ ] Convergence/preserve/abort tests; live re-run; strict validation; metadata reconcile.
+### Phase 1: Open probe (gated Phase 4) — DONE
+- [x] Empirically confirmed how Codex 0.144.x treats a hook command's non-zero exit: on 0.144.4 it marks the hook Failed but does NOT abort the session (fail-open), and the `|| printf` fallback reaches the model.
+### Phase 2: Convergent reconcile + worktree refusal — DONE
+- [x] Replaced the identity/dedup logic with a reconcile keyed by `(owner,event,matcher,hookId)`; added the linked-worktree anchor refusal (D2/D3). Self-test 9/9 PASS.
+### Phase 3: `--check` + cross-runtime watchdog — DONE
+- [x] Added non-mutating `--check`; wired it into the repo-local Claude/OpenCode SessionStart chain (D4, no self-repair): `.claude/settings.json` + `.opencode/plugins/mk-codex-hooks-watchdog.js`.
+### Phase 4: Fail-loud emit + source dedupe — DONE
+- [x] Emitted the inline `||` envelope per generated entry (shape driven by the Phase 1 probe); deduped the source `.codex/hooks.json` groups (D4/D6). 16 of 19 mk commands wrapped; four mk groups reduced to two.
+### Phase 5: Verification and closeout — DONE
+- [x] Convergence/preserve/abort tests (self-test 9/9); live re-run + `--check` clean; `validate.sh --strict` Errors: 0; metadata reconciled to Complete.
 <!-- /ANCHOR:phases -->
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
@@ -68,13 +68,13 @@ Fixture-level: a synthetic `~/.codex/hooks.json` with mk entries anchored at a s
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| Codex 0.144.x non-zero hook-exit behavior | External | Open (probe) | D4 inline `||` fallback shape is unconfirmed; do not ship it until resolved. |
-| Operator approval for the durable fix | Process | Gated | Track B stays planned; only Track A containment is live. |
+| Codex 0.144.x non-zero hook-exit behavior | External | Resolved | Probed on 0.144.4: fail-open, fallback reaches the model; D4 inline `||` shaped to it and shipped. |
+| Operator approval for the durable fix | Process | Cleared | Track B is implemented, installed, and verified. |
 | 007 Codex adapters on origin/v4 | Internal | Green | Byte-frozen; reused unchanged as the reconcile targets. |
 <!-- /ANCHOR:dependencies -->
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-Track A: restore the timestamped backup `~/.codex/hooks.json.bak-2026-07-14T19-01-32` to revert the interim re-anchor. Track B (once implemented): revert the `install-codex-hooks.mjs` and `.codex/hooks.json` diffs and re-run the prior installer; no neutral core, Claude hook, or OpenCode plugin changes, so the other two runtimes are unaffected. No new global artifact means nothing to uninstall outside the repo and the one user-global file.
+Track A: restore the timestamped backup `~/.codex/hooks.json.bak-2026-07-14T19-01-32` to revert the interim re-anchor. Track B (shipped): revert the `install-codex-hooks.mjs`, `.codex/hooks.json`, and `.claude/settings.json` diffs, remove the new `.opencode/plugins/mk-codex-hooks-watchdog.js`, restore the live `~/.codex/hooks.json` from `~/.codex/hooks.json.bak-2026-07-14T18-15-54-565Z`, and re-run the prior installer; no neutral core, Claude hook, or existing OpenCode plugin changed, so the other two runtimes are unaffected. No new global artifact means nothing to uninstall outside the repo and the one user-global file.
 <!-- /ANCHOR:rollback -->
 <!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
@@ -107,6 +107,6 @@ Before touching the installer: read `install-codex-hooks.mjs` end to end (especi
 - **TASK-SEQ**: the reconcile (T020–T022) precedes the linked-worktree refusal and `--check`; the fail-loud emit (T041) runs only after the open probe (T010).
 - **TASK-SCOPE**: touch only `install-codex-hooks.mjs`, the source `.codex/hooks.json`, and the repo-local Claude/OpenCode SessionStart wiring. Never modify a neutral core, a Codex/Claude adapter, or an OpenCode plugin. Never add a global dispatcher, trust record, or LaunchAgent.
 ### Status Format
-Report each task as `T### — <result> (evidence: fixture output / file:line / live capture)`, distinguishing confirmed from inferred; keep containment (done) separate from the durable fix (planned).
+Report each task as `T### — <result> (evidence: fixture output / file:line / live capture)`, distinguishing confirmed from inferred; containment and the durable fix are both shipped and verified.
 ### Blocked Task Protocol
-If the OPEN PROBE cannot be run (no live Codex available), stop before T041, record the schema evidence gathered, mark the inline `||` shape as explicitly owed, and land only the probe-independent reconcile/refusal/`--check`/dedupe work rather than guessing the fallback shape.
+The OPEN PROBE was runnable (a live Codex 0.144.4 was available), so it ran before T041 rather than being deferred: the probe confirmed fail-open behavior and the inline `||` emit was shaped to it and shipped. No task was left owed; the probe-independent reconcile/refusal/`--check`/dedupe work and the probe-gated fail-loud emit all landed.

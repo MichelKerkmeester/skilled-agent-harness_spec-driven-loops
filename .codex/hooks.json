@@ -5,17 +5,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 3
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 3
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/check-git-hooks.sh'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/check-git-hooks.sh || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 3
           }
         ]
@@ -24,25 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
-            "timeout": 3
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/check-git-hooks.sh'",
-            "timeout": 3
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 5
           }
         ]
@@ -53,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 3
           }
         ]
@@ -62,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 3
           }
         ]
@@ -74,7 +56,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 5
           }
         ]
@@ -84,7 +66,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 5
           }
         ]
@@ -94,7 +76,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/mcp-code-mode/runtime/hooks/codex/mcp-route-guard.cjs'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/mcp-code-mode/runtime/hooks/codex/mcp-route-guard.cjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 5
           }
         ]
@@ -106,7 +88,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/code-quality/scripts/hooks/codex/post-edit-quality.cjs'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/code-quality/scripts/hooks/codex/post-edit-quality.cjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 10
           }
         ]
@@ -116,7 +98,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 5
           }
         ]
@@ -126,7 +108,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 5
           }
         ]
@@ -137,7 +119,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-stop.js'"
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-stop.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'"
           }
         ]
       },
@@ -145,7 +127,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/hooks/codex/completion-evidence-stop.cjs'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/hooks/codex/completion-evidence-stop.cjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 10
           }
         ]
@@ -154,7 +136,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/scripts/session-cleanup.sh >/dev/null 2>&1 || true'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/scripts/session-cleanup.sh >/dev/null 2>&1 || true || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 10
           }
         ]
@@ -165,7 +147,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/compact-inject.js'"
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/compact-inject.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreCompact\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'"
           }
         ]
       }

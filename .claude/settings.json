@@ -111,6 +111,11 @@
             "type": "command",
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all'",
             "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/bin/install-codex-hooks.mjs --check >/dev/null 2>&1 || echo \"[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check\"'",
+            "timeout": 5
           }
         ]
       }

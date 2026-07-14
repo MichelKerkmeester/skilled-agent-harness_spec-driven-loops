@@ -7,14 +7,14 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/009-codex-hook-install-robustness"
-    last_updated_at: "2026-07-14T19:20:00Z"
+    last_updated_at: "2026-07-14T19:45:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Recorded the two-model consult, six adjudicated decisions, the open probe, and containment"
-    next_safe_action: "run the OPEN PROBE (ADR-007), then implement D2/D3"
-    blockers: ["Durable fix is approval-gated", "OPEN PROBE (ADR-007) unresolved"]
-    completion_pct: 20
-    open_questions: ["How does Codex 0.144.x treat a hook command's non-zero exit?"]
-    answered_questions: []
+    recent_action: "Shipped+verified durable convergent installer (D2/D3/D4/D6); self-test 9/9; probe resolved"
+    next_safe_action: "packet complete; Part B (CLI spec consolidation) is a separate packet"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Codex 0.144.4 marks a non-zero hook exit Failed but does NOT abort the session (fail-open holds), and `node <adapter> || printf <additionalContext>` reaches the model — so the inline || emit is valid and shipped (ADR-007 resolved)."]
 ---
 # Decision Record: Codex hook install robustness
 <!-- SPECKIT_LEVEL: 3 -->
@@ -63,7 +63,7 @@ The current installer's `hookIdentity()` (~line 43) discards the `cd` anchor, an
 <!-- /ANCHOR:adr-002-context -->
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
-**ADOPT a convergent/repair-default installer:** reconcile the mk-owned subset by `(owner,event,matcher,hookId)` with full command+anchor rewrite; preserve Superset/unknown entries verbatim; append exactly one entry per key; atomic temp+rename only on change; add `--check` (non-mutating). Drop SOL's `--reanchor` (redundant once repair is the default and identity is anchor-independent).
+**ADOPT a convergent/repair-default installer — SHIPPED.** Reconcile the mk-owned subset by `(owner,event,matcher,hookId)` with full command+anchor rewrite; preserve Superset/unknown entries verbatim; append exactly one entry per key; atomic temp+rename only on change; add `--check` (non-mutating). Drop SOL's `--reanchor` (redundant once repair is the default and identity is anchor-independent).
 <!-- /ANCHOR:adr-002-decision -->
 <!-- ANCHOR:adr-002-alternatives -->
 ### Alternatives
@@ -79,7 +79,7 @@ Clarity: one reconcile path. Systems: touches only mk-owned keys. Bias: keyed on
 <!-- /ANCHOR:adr-002-five-checks -->
 <!-- ANCHOR:adr-002-impl -->
 ### Implementation Notes
-Key the mk subset explicitly; rewrite command+anchor from the resolved primary checkout; write via temp+rename only when the serialized content changes so a clean run touches no bytes.
+Key the mk subset explicitly; rewrite command+anchor from the resolved primary checkout; write via temp+rename only when the serialized content changes so a clean run touches no bytes. **Shipped** in `.opencode/bin/install-codex-hooks.mjs`; `hookIdentity()` was hardened to extract the first script after the `node`/`bash`/`python` runner so the D4a fallback text cannot corrupt the dedupe identity. Installer self-test 9/9 PASS (reconcile re-anchors a stale entry; a second reconcile reports `changed:false`; backup + JSON validation; `--check`/`--dry-run` mutually exclusive).
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -91,7 +91,7 @@ The installer derives its anchor from its own location. Run from a linked worktr
 <!-- /ANCHOR:adr-003-context -->
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
-**ADD a linked-worktree anchor refusal:** if `git rev-parse --git-common-dir` ≠ `<toplevel>/.git`, abort install unless `--allow-worktree`. Closes the recurrence class (installer must anchor at the primary checkout, never a linked worktree).
+**ADD a linked-worktree anchor refusal — SHIPPED.** If `git rev-parse --git-common-dir` ≠ `<toplevel>/.git`, abort install unless `--allow-worktree`. Closes the recurrence class (installer must anchor at the primary checkout, never a linked worktree).
 <!-- /ANCHOR:adr-003-decision -->
 <!-- ANCHOR:adr-003-alternatives -->
 ### Alternatives
@@ -107,7 +107,7 @@ Clarity: one guard at install time. Systems: uses `git rev-parse` only. Bias: fi
 <!-- /ANCHOR:adr-003-five-checks -->
 <!-- ANCHOR:adr-003-impl -->
 ### Implementation Notes
-Compare `git rev-parse --git-common-dir` against `<toplevel>/.git`; abort with a clear message naming `--allow-worktree` as the deliberate override.
+Compare `git rev-parse --git-common-dir` against `<toplevel>/.git`; abort with a clear message naming `--allow-worktree` as the deliberate override. **Shipped** as `assertSafeRepoAnchor` in `install-codex-hooks.mjs`; self-test 9/9 PASS (aborts when `--repo` points at a linked worktree; `--allow-worktree` bypasses).
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
 
@@ -119,7 +119,7 @@ SOL wanted a standalone global fail-loud SessionStart health checker. But Codex'
 <!-- /ANCHOR:adr-004-context -->
 <!-- ANCHOR:adr-004-decision -->
 ### Decision
-**FAIL-LOUD without a new global artifact:** the installer emits an inline `|| <additionalContext envelope: "mk codex hook unresolvable — run installer --check">` per generated entry (guards stay fail-open on POLICY via their own exit-0 design, but resolution failure — missing `cd`/`node`/file — becomes loud), AND wire `install-codex-hooks.mjs --check` into the existing repo-local Claude/OpenCode SessionStart chain so the durable runtimes police the fragile global file. Do NOT build a standalone global checker; do NOT self-repair from SessionStart (the table is already loaded; concurrent sessions would race).
+**FAIL-LOUD without a new global artifact — SHIPPED.** The installer emits an inline `|| <additionalContext envelope: "mk codex hook could not resolve; re-run the codex hooks installer with --check">` per generated entry (guards stay fail-open on POLICY via their own exit-0 design, but resolution failure — missing `cd`/`node`/file — becomes loud), AND wires `install-codex-hooks.mjs --check` into the existing repo-local Claude/OpenCode SessionStart chain so the durable runtimes police the fragile global file. Do NOT build a standalone global checker; do NOT self-repair from SessionStart (the table is already loaded; concurrent sessions would race).
 <!-- /ANCHOR:adr-004-decision -->
 <!-- ANCHOR:adr-004-alternatives -->
 ### Alternatives
@@ -135,7 +135,7 @@ Clarity: loud on resolution failure, quiet on policy pass. Systems: reuses the d
 <!-- /ANCHOR:adr-004-five-checks -->
 <!-- ANCHOR:adr-004-impl -->
 ### Implementation Notes
-Emit the `||` envelope only after the OPEN PROBE fixes its shape. Wire `--check` as a read-only step in the Claude/OpenCode SessionStart chain; it reports drift and never writes.
+**Shipped.** The `||` envelope was emitted after the OPEN PROBE (ADR-007) confirmed its shape on Codex 0.144.4: 16 of 19 mk commands are wrapped with `... || printf %s "<one-line JSON envelope>"` (the 3 Superset `notify.sh` correctly untouched), each with an event-specific `hookEventName` and a filename-free `additionalContext`. `--check` is wired as a read-only step in both durable runtimes — a 5th SessionStart hook in `.claude/settings.json` (non-blocking) and the new OpenCode plugin `.opencode/plugins/mk-codex-hooks-watchdog.js` (logs drift to a bounded workspace log, never stdout; fail-open; load-tested across 5 event shapes). It reports drift and never writes.
 <!-- /ANCHOR:adr-004-impl -->
 <!-- /ANCHOR:adr-004 -->
 
@@ -175,7 +175,7 @@ The repo `.codex/hooks.json` lists `worktree-guard.sh` and `check-git-hooks.sh` 
 <!-- /ANCHOR:adr-006-context -->
 <!-- ANCHOR:adr-006-decision -->
 ### Decision
-**DEDUPE the source `.codex/hooks.json` duplicate SessionStart groups** (`worktree-guard.sh`, `check-git-hooks.sh` appear twice).
+**DEDUPE the source `.codex/hooks.json` duplicate SessionStart groups — SHIPPED** (`worktree-guard.sh`, `check-git-hooks.sh` appeared twice).
 <!-- /ANCHOR:adr-006-decision -->
 <!-- ANCHOR:adr-006-alternatives -->
 ### Alternatives
@@ -191,27 +191,27 @@ Clarity: one entry per guard. Systems: source matches installed. Bias: fixes the
 <!-- /ANCHOR:adr-006-five-checks -->
 <!-- ANCHOR:adr-006-impl -->
 ### Implementation Notes
-Remove the duplicate SessionStart group entries in the source file; assert single-occurrence in the reconcile test (T042/T051).
+Remove the duplicate SessionStart group entries in the source file; assert single-occurrence in the reconcile test. **Shipped**: `.codex/hooks.json` SessionStart was deduped from four mk groups down to two, so `worktree-guard.sh` and `check-git-hooks.sh` each remain once in the first group and the reconcile is deterministic.
 <!-- /ANCHOR:adr-006-impl -->
 <!-- /ANCHOR:adr-006 -->
 
 <!-- ANCHOR:adr-007 -->
-## ADR-007: OPEN PROBE — Codex non-zero hook-exit behavior (pre-req for D4)
+## ADR-007: Codex non-zero hook-exit behavior (RESOLVED — pre-req for D4)
 <!-- ANCHOR:adr-007-context -->
 ### Context
-D4's inline `||` fail-loud envelope depends on how Codex 0.144.x treats a hook command's non-zero exit — whether it surfaces the stderr/`additionalContext`, marks the hook Failed, or ignores it. This is not yet confirmed empirically.
+D4's inline `||` fail-loud envelope depends on how Codex 0.144.x treats a hook command's non-zero exit — whether it surfaces the stderr/`additionalContext`, marks the hook Failed, or ignores it. This was confirmed empirically by a live probe before the emit shipped.
 <!-- /ANCHOR:adr-007-context -->
 <!-- ANCHOR:adr-007-decision -->
 ### Decision
-**OPEN — pending a live probe.** Confirm empirically how Codex 0.144.x treats a hook command's non-zero exit before shipping the inline `||` fallback. Do not implement the D4 emit (T041) until this resolves.
+**RESOLVED — confirmed by a live probe on Codex 0.144.4.** A non-zero hook exit is marked "Failed" but does NOT abort the session (fail-open holds), and `node <adapter> || printf <additionalContext>` reaches the model (the model echoed the injected marker). The inline `||` emit is therefore valid and has shipped in `.codex/hooks.json` (D4a).
 <!-- /ANCHOR:adr-007-decision -->
 <!-- ANCHOR:adr-007-alternatives -->
 ### Alternatives
-Ship the `||` envelope against an assumed behavior (rejected: a wrong shape could be silently ignored, defeating the fail-loud goal). Skip the inline emit entirely and rely only on `--check` (fallback if the probe shows Codex ignores non-zero exits — recorded as owed).
+Ship the `||` envelope against an assumed behavior (rejected: a wrong shape could be silently ignored, defeating the fail-loud goal). Skip the inline emit entirely and rely only on `--check` (would have been the fallback had the probe shown Codex ignores non-zero exits — not needed: the probe showed 0.144.4 surfaces the fallback to the model, so the inline emit shipped).
 <!-- /ANCHOR:adr-007-alternatives -->
 <!-- ANCHOR:adr-007-consequences -->
 ### Consequences
-The probe gates only the D4 emit (T041); the reconcile (ADR-002), worktree refusal (ADR-003), `--check` wiring (ADR-004), and dedupe (ADR-006) proceed independently. If the probe shows Codex ignores non-zero exits, the inline emit degrades to the `--check` watchdog alone.
+The probe gated only the D4 emit; the reconcile (ADR-002), worktree refusal (ADR-003), `--check` wiring (ADR-004), and dedupe (ADR-006) proceeded independently and shipped. Because Codex 0.144.4 surfaces the fallback to the model (rather than ignoring the non-zero exit), the inline emit is the primary fail-loud signal, backed by the cross-runtime `--check` watchdog.
 <!-- /ANCHOR:adr-007-consequences -->
 <!-- ANCHOR:adr-007-five-checks -->
 ### Five Checks
@@ -219,7 +219,7 @@ Clarity: one unknown, one probe. Systems: affects only the emit shape. Bias: mea
 <!-- /ANCHOR:adr-007-five-checks -->
 <!-- ANCHOR:adr-007-impl -->
 ### Implementation Notes
-Run a deliberately non-zero-exit hook under `codex exec` and observe whether the exit surfaces, marks Failed, or is ignored; record the result here and shape T041 to it.
+The live probe ran a deliberately non-zero-exit hook under `codex exec` on Codex 0.144.4 and observed: exit marked Failed, session not aborted, `additionalContext` from the `|| printf` fallback reached the model. The D4a emit was shaped to that result — a filename-free one-line JSON envelope per mk command — and validated (a failing adapter emits valid JSON), then confirmed in a real install where the fallback fired 0 times during normal operation.
 <!-- /ANCHOR:adr-007-impl -->
 <!-- /ANCHOR:adr-007 -->
 

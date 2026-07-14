@@ -1,20 +1,20 @@
 ---
 title: "Feature Specification: Codex hook install robustness"
-description: "Make the Codex hook installer converge and self-heal so a reaped git worktree can never silently drop Codex guardrails to fail-open dormancy. Interim re-anchor containment is shipped; the durable installer fix is planned and approval-gated."
+description: "Make the Codex hook installer converge and self-heal so a reaped git worktree can never silently drop Codex guardrails to fail-open dormancy. Interim re-anchor containment and the durable installer fix (convergent reconcile, linked-worktree refusal, inline fail-loud emit, cross-runtime --check watchdog, source dedupe) are shipped, installed, and verified."
 trigger_phrases: ["Codex hook install robustness", "codex installer re-anchor", "codex hook dormancy"]
 importance_tier: important
 contextType: planning
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/134-cli-codex-revival/009-codex-hook-install-robustness"
-    last_updated_at: "2026-07-14T19:20:00Z"
+    last_updated_at: "2026-07-14T19:45:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the Level 3 planning spec; interim re-anchor containment shipped, durable fix planned"
-    next_safe_action: "run the OPEN PROBE, then implement D2/D3 in install-codex-hooks.mjs"
-    blockers: ["Durable fix D2/D3/D4 is approval-gated; not yet implemented", "OPEN PROBE (D4 pre-req) unresolved: Codex 0.144.x non-zero hook-exit behavior unconfirmed"]
-    completion_pct: 20
-    open_questions: ["How does Codex 0.144.x treat a hook command's non-zero exit? (pre-req for the D4 inline || fail-loud fallback)"]
-    answered_questions: []
+    recent_action: "Shipped+verified durable convergent installer (D2/D3/D4/D6); self-test 9/9; probe resolved"
+    next_safe_action: "packet complete; Part B (CLI spec consolidation) is a separate packet"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Codex 0.144.4 marks a non-zero hook exit Failed but does NOT abort the session (fail-open holds), and `node <adapter> || printf <additionalContext>` reaches the model — so the inline || emit is valid and shipped (ADR-007 resolved)."]
 ---
 # Feature Specification: Codex hook install robustness
 <!-- SPECKIT_LEVEL: 3 -->
@@ -23,9 +23,9 @@ _memory:
 ## EXECUTIVE SUMMARY
 Codex hook parity (child 007) is functionally verified — the adapters fire and block live — but the way those adapters get INSTALLED into user-global `~/.codex/hooks.json` is fragile. The installer anchors every mk-owned command at an absolute checkout path (`cd <ABSOLUTE_CHECKOUT_PATH> && node …`), and before containment 14 of 16 mk-owned entries were anchored at a stale, disposable git worktree. Reaping that worktree would silently drop 14/16 Codex guardrails to fail-open dormancy with no alert — strictly worse than Claude and OpenCode, whose repo-local hooks cannot fall off. A plain installer re-run cannot repair this because `hookIdentity()` discards the `cd` anchor and the dedup filter compares commands after skipping identity, so a stale-anchored entry reads as "already installed" forever and re-runs report `added: 0`.
 
-**Status split (read this first)**: the interim re-anchor containment is **DONE and live-verified** this session; the durable installer fix is **PLANNED and APPROVAL-GATED** — it is NOT implemented. This packet documents the defect, the two-model consult, the adjudicated decisions, and the shipped containment, and it scopes the durable fix for a later approved implementation pass.
+**Status (read this first)**: the interim re-anchor containment and the durable installer fix are both **DONE, INSTALLED, and live-verified**. The convergent/repair-default reconcile, the linked-worktree anchor refusal, the inline `||` fail-loud emit, the cross-runtime `--check` watchdog, and the source dedupe are all shipped; installer self-test is 9/9 PASS, the reconcile was applied to the live `~/.codex/hooks.json` (backed up) with `--check` exiting 0, and a live `codex exec` fired SessionStart 5/5, UserPromptSubmit 3/3, Stop 4/4 with 0 Failed. This packet documents the defect, the two-model consult, the adjudicated decisions, and the shipped-and-verified fix.
 
-**Key decisions** (see `decision-record.md`): reject SOL's runtime dispatcher (ADR-001); adopt a convergent/repair-default installer (ADR-002); add a linked-worktree anchor refusal (ADR-003); fail loud without a new global artifact via an inline `||` envelope plus a cross-runtime `--check` watchdog (ADR-004); cut SOL's launcher shim + LaunchAgent (ADR-005); dedupe the duplicated source `.codex/hooks.json` groups (ADR-006). One open probe (ADR-007) gates the D4 fallback shape; the interim containment is recorded in ADR-008.
+**Key decisions** (see `decision-record.md`): reject SOL's runtime dispatcher (ADR-001); adopt a convergent/repair-default installer (ADR-002, shipped); add a linked-worktree anchor refusal (ADR-003, shipped); fail loud without a new global artifact via an inline `||` envelope plus a cross-runtime `--check` watchdog (ADR-004, shipped); cut SOL's launcher shim + LaunchAgent (ADR-005); dedupe the duplicated source `.codex/hooks.json` groups (ADR-006, shipped). The probe that gated the D4 fallback shape is resolved (ADR-007); the interim containment is recorded in ADR-008.
 <!-- /ANCHOR:executive-summary -->
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -33,7 +33,7 @@ Codex hook parity (child 007) is functionally verified — the adapters fire and
 |---|---|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../007-codex-hook-parity/spec.md` |
@@ -47,7 +47,7 @@ Three AI runtimes share one repo and must enforce identical guardrails: Claude C
 The defect is **install robustness**. The installer `.opencode/bin/install-codex-hooks.mjs` merges the repo `.codex/hooks.json` into `~/.codex/hooks.json`, emitting commands shaped `bash -c 'cd <ABSOLUTE_CHECKOUT_PATH> && node .opencode/skills/.../adapter.mjs'`. Before containment, 14 of 16 mk-owned entries were anchored (`cd`) at a stale, disposable git worktree `<repo>/.worktrees/0038-codex-hook-parity`; only 2 pointed at MAIN; 3 Superset `notify.sh` entries were preserved. Reaping that worktree would silently drop 14/16 Codex guardrails to fail-open dormancy with no alert. The root cause of why a re-run cannot fix it: `hookIdentity()` (`install-codex-hooks.mjs` ~line 43) deliberately discards the `cd` anchor, and the dedup filter (~line 98) compares commands **after** skipping identity, so a stale-anchored entry reads as "already installed" forever — re-runs report `added: 0` and never re-anchor.
 
 ### Purpose
-Make the installer converge and self-heal: repair (re-anchor) mk-owned entries by identity on every run, refuse to anchor at a linked worktree, fail loud when a generated entry becomes unresolvable, and let the durable Claude/OpenCode SessionStart chain police the fragile global file — all without adding a new always-on global artifact, a runtime dispatcher, or a trust record. Ship the interim re-anchor first (done), then land the durable installer fix under approval.
+Make the installer converge and self-heal: repair (re-anchor) mk-owned entries by identity on every run, refuse to anchor at a linked worktree, fail loud when a generated entry becomes unresolvable, and let the durable Claude/OpenCode SessionStart chain police the fragile global file — all without adding a new always-on global artifact, a runtime dispatcher, or a trust record. Delivered: the interim re-anchor shipped first, then the durable installer fix (D2 reconcile, D3 linked-worktree refusal, D4 fail-loud emit + `--check` watchdog, D6 source dedupe) was implemented, installed against the live `~/.codex/hooks.json`, and verified (self-test 9/9, `--check` clean, live smoke green).
 <!-- /ANCHOR:problem -->
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
@@ -56,7 +56,7 @@ Make the installer converge and self-heal: repair (re-anchor) mk-owned entries b
 - A linked-worktree anchor refusal: abort install if the installer's anchor is a linked worktree, unless `--allow-worktree`.
 - Fail-loud emission: an inline `|| <additionalContext envelope>` per generated entry, plus wiring `install-codex-hooks.mjs --check` into the existing repo-local Claude/OpenCode SessionStart chain.
 - Deduping the duplicated SessionStart groups in the source `.codex/hooks.json`.
-- The OPEN PROBE: empirically confirm how Codex 0.144.x treats a hook command's non-zero exit before shipping the inline `||` fallback.
+- The probe: empirically confirm how Codex 0.144.x treats a hook command's non-zero exit before shipping the inline `||` fallback (resolved on 0.144.4; see ADR-007).
 ### Out of Scope
 - A runtime dispatcher / global router (`~/.local/share/mk-codex-hooks/runner.mjs`) — rejected in ADR-001.
 - An install-time trust record for a cwd-resolving global runner — moot once the dispatcher is rejected.
@@ -91,19 +91,19 @@ Make the installer converge and self-heal: repair (re-anchor) mk-owned entries b
 <!-- /ANCHOR:requirements -->
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- The reap → silent dormancy failure class is closed: a re-run always re-anchors mk-owned entries, and anchoring at a linked worktree is refused.
-- The interim containment holds until the durable fix lands: `~/.codex/hooks.json` has 0 worktree-anchored mk entries and a restorable timestamped backup.
-- The OPEN PROBE resolves the Codex non-zero-exit behavior before any inline `||` fallback ships.
-- No new always-on global artifact, dispatcher, or trust record is introduced; the neutral cores and the two durable runtimes stay byte-unchanged.
+- **Met** — The reap-to-silent-dormancy failure class is closed: the shipped installer re-anchors mk-owned entries on every run (self-test 9/9), and anchoring at a linked worktree is refused (`assertSafeRepoAnchor`).
+- **Met** — `~/.codex/hooks.json` has 0 worktree-anchored mk entries (MAIN 16 / superset 3 / worktree 0) with a restorable timestamped backup; the durable reconcile now keeps it converged.
+- **Met** — The probe resolved the Codex 0.144.4 non-zero-exit behavior (fail-open; fallback reaches the model) before the inline `||` fallback shipped.
+- **Met** — No new always-on global artifact, dispatcher, or trust record was introduced; the neutral cores and the Codex guard adapters stay byte-unchanged (only the installer, the source hook file, and the durable-runtime SessionStart wiring changed).
 <!-- /ANCHOR:success-criteria -->
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 | Type | Item | Impact | Mitigation |
 |---|---|---|---|
-| Risk | A reaped worktree drops 14/16 Codex guardrails silently | Codex sessions run unguarded with no alert | Interim re-anchor (shipped); durable convergent installer + linked-worktree refusal (planned). |
+| Risk | A reaped worktree drops 14/16 Codex guardrails silently | Codex sessions run unguarded with no alert | Interim re-anchor (shipped); durable convergent installer + linked-worktree refusal (shipped). |
 | Risk | The installer converges to the NEXT stale worktree | The recurrence class reopens at a new anchor | Linked-worktree anchor refusal (D3): anchor only at the primary checkout. |
 | Risk | A cwd-resolving global runner would be an ACE regression | Arbitrary code execution surface on every session | Dispatcher rejected (ADR-001); no global runner is introduced. |
-| Dependency | Codex 0.144.x non-zero hook-exit behavior | The inline `||` fail-loud shape depends on it | OPEN PROBE (ADR-007) resolves it before D4 ships. |
+| Dependency | Codex 0.144.x non-zero hook-exit behavior | The inline `||` fail-loud shape depends on it | Probe resolved on 0.144.4 (fail-open; fallback reaches the model) before D4 shipped (ADR-007). |
 <!-- /ANCHOR:risks -->
 <!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
@@ -122,7 +122,7 @@ Make the installer converge and self-heal: repair (re-anchor) mk-owned entries b
 - **Running from a linked worktree**: abort with guidance unless `--allow-worktree`; never anchor policy at a disposable checkout.
 - **Duplicate source groups**: the reconcile dedupes deterministically so a doubled `worktree-guard.sh` cannot produce two installed entries.
 - **Superset/user entry present**: preserved verbatim; only mk-owned keys are reconciled.
-- **Generated target unresolvable at runtime**: the inline `||` envelope emits the "run installer --check" message instead of silently no-opping (pending the OPEN PROBE for the exact Codex exit semantics).
+- **Generated target unresolvable at runtime**: the inline `||` envelope emits the "run installer --check" message instead of silently no-opping (probe-confirmed on Codex 0.144.4: the fallback surfaces to the model).
 - **`~/.codex/hooks.json` missing**: the installer creates it (backing up any existing file first), same as 007.
 <!-- /ANCHOR:edge-cases -->
 <!-- ANCHOR:complexity -->
@@ -133,10 +133,10 @@ Level 3. The complexity is in **correctness and blast radius**, not volume: the 
 ## 10. RISK MATRIX
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---|---|---|---|---|
-| R-001 | Reaped worktree silently drops 14/16 Codex guardrails | H | M | Interim re-anchor shipped; durable convergent installer planned |
+| R-001 | Reaped worktree silently drops 14/16 Codex guardrails | H | M | Interim re-anchor shipped; durable convergent installer shipped + verified |
 | R-002 | Installer re-converges to the next stale worktree anchor | H | M | Linked-worktree anchor refusal (D3) |
 | R-003 | A global cwd-resolving runner introduces an ACE surface | H | L | Dispatcher rejected (ADR-001); no global runner |
-| R-004 | Inline `||` fallback ships against wrong Codex exit semantics | M | M | OPEN PROBE (ADR-007) gates the D4 fallback shape |
+| R-004 | Inline `||` fallback ships against wrong Codex exit semantics | M | M | Probe (ADR-007) resolved the D4 fallback shape on 0.144.4 before it shipped |
 | R-005 | Reconcile clobbers Superset/user entries | H | L | Reconcile only mk-owned keys; preserve unknown verbatim; backup + atomic write |
 <!-- /ANCHOR:risk-matrix -->
 <!-- ANCHOR:user-stories -->
@@ -150,7 +150,7 @@ Level 3. The complexity is in **correctness and blast radius**, not volume: the 
 <!-- /ANCHOR:user-stories -->
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
-- **OPEN PROBE (blocks the D4 inline `||` fallback shape)**: how does Codex 0.144.x treat a hook command's non-zero exit — does it surface the stderr/`additionalContext`, mark the hook Failed, or ignore it? The inline fail-loud envelope must be shaped to whatever Codex actually does with a non-zero exit. Confirm empirically before implementing D4. See `decision-record.md` ADR-007.
+- **RESOLVED (probe)**: how does Codex 0.144.x treat a hook command's non-zero exit? A live probe on Codex 0.144.4 confirmed it marks the hook "Failed" but does NOT abort the session (fail-open holds), and `node <adapter> || printf <additionalContext>` reaches the model. The inline `||` fail-loud envelope was shaped to that behavior and shipped in D4a. See `decision-record.md` ADR-007.
 <!-- /ANCHOR:questions -->
 <!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
