@@ -9,20 +9,31 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__mk_code_index__code_gra
 
 This command is a thin router. It resolves the target and setup values, then loads the target workflow YAML and the presentation contract.
 
-## Router Contract
+## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command.
 
 Load the presentation contract before showing startup questions, setup dashboards, approval prompts, diagnostic dashboards, result summaries, or next-step text.
 
-## Owned Assets
+## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
 | Route manifest | `.opencode/commands/doctor/_routes.yaml` |
 | Presentation source of truth | `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt` |
 
-## Workflow Assets
+## 3. MODE ROUTING
+
+- `_routes.yaml` is the canonical routing and mutation-class manifest.
+- `execution_mode` is always `INTERACTIVE`.
+- The positional target is parsed before any flag; global flag pre-parse is forbidden.
+- Unknown or cross-target flags fail before YAML load.
+- The YAML start condition is: target bound, workflow asset exists, presentation asset loaded, and every target setup variable resolved.
+- If any referenced asset is missing, stop and report the missing path.
+- Companion commands are not routed through this file: `/doctor:update` and `/doctor:mcp install|debug` have their own routers.
+- The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
+
+## 4. EXECUTION TARGETS
 
 These existing YAML assets are referenced only. The router must not modify them.
 
@@ -41,8 +52,6 @@ These existing YAML assets are referenced only. The router must not modify them.
 
 No workflow-asset gap exists for this command.
 
-## Execution Order
-
 1. Read `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt`.
 2. Read `.opencode/commands/doctor/_routes.yaml`.
 3. Parse the first positional token from `$ARGUMENTS` as `target`; support `list`, `?`, `--list`, and compatibility alias `--target=<name>`.
@@ -54,18 +63,7 @@ No workflow-asset gap exists for this command.
 9. Load the resolved workflow YAML from `.opencode/commands/doctor/assets/<yaml>` and execute it step by step.
 10. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
 
-## Routing Rules
-
-- `_routes.yaml` is the canonical routing and mutation-class manifest.
-- `execution_mode` is always `INTERACTIVE`.
-- The positional target is parsed before any flag; global flag pre-parse is forbidden.
-- Unknown or cross-target flags fail before YAML load.
-- The YAML start condition is: target bound, workflow asset exists, presentation asset loaded, and every target setup variable resolved.
-- If any referenced asset is missing, stop and report the missing path.
-- Companion commands are not routed through this file: `/doctor:update` and `/doctor:mcp install|debug` have their own routers.
-- The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
-
-## Presentation Boundary
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt`:
 
@@ -74,5 +72,9 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor_spe
 - Subsystem manifest display for `list`, `?`, or `--list`.
 - Diagnostic dashboard and result-summary templates.
 - Troubleshooting and next-step display text.
+
+## 6. WORKFLOW SUMMARY
+
+The router resolves a subsystem `target` against `_routes.yaml`, binds that target's workflow YAML plus its setup variables, allowed flags, and mutation class, then loads and executes the resolved `doctor_<target>.yaml` step by step under an always-interactive mode. `list`, `?`, or `--list` render the subsystem manifest instead of dispatching. All visible wording is owned by the presentation contract; subsystem-specific behavior lives in each target workflow.
 
 User request: $ARGUMENTS
