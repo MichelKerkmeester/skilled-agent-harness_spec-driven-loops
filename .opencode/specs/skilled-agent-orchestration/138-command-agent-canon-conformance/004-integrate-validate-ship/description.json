@@ -1,0 +1,28 @@
+{
+  "specFolder": "skilled-agent-orchestration/138-command-agent-canon-conformance/004-integrate-validate-ship",
+  "description": "Phases 000\u2013003 each land their own conformance work and each pass `validate.sh --strict` independently, but \"each child is green\" is not the same",
+  "keywords": [
+    "phases",
+    "land",
+    "own",
+    "conformance",
+    "work",
+    "pass",
+    "validate",
+    "strict",
+    "independently",
+    "child",
+    "green",
+    "same"
+  ],
+  "lastUpdated": "2026-07-14T18:01:31.023Z",
+  "specId": "004",
+  "folderSlug": "integrate-validate-ship",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "138-command-agent-canon-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

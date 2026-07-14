@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/138-command-agent-canon-conformance/002-agent-canon-conformance",
+  "description": "The 13 agents ship in two canonical markdown runtimes \u2014 `.opencode/agents/.md` (with `permission:` frontmatter) and `.claude/agents/.md` (with",
+  "keywords": [
+    "agents",
+    "ship",
+    "two",
+    "canonical",
+    "markdown",
+    "runtimes",
+    "opencode",
+    "permission",
+    "frontmatter",
+    "claude"
+  ],
+  "lastUpdated": "2026-07-14T17:40:47.761Z",
+  "specId": "002",
+  "folderSlug": "agent-canon-conformance",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "138-command-agent-canon-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

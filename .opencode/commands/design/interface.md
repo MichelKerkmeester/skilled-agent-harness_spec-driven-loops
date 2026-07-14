@@ -16,6 +16,27 @@ Pin the `interface` mode of the `sk-design` parent hub to build or reshape a dis
 
 Do not embed workflow steps or presentation content in this file. Workflow steps live in the owned YAML assets; visible prompts, dashboards, and result templates live in the presentation asset.
 
+<!-- ANCHOR:sibling-discriminator -->
+### WHEN TO USE THIS, NOT A SIBLING
+
+- **Use this command when** the request is to invent or reshape a distinctive interface direction.
+- **Prefer `/design:audit` when** the request is findings-first review, accessibility, performance, scoring, or production hardening.
+- **Prefer `/design:foundations` when** the request is static token work: color, typography, layout, spacing, responsive adaptation, or theming.
+- **Prefer `/design:md-generator` when** the request is extracting a live site's measured CSS into DESIGN.md.
+- **Prefer `/design:motion` when** the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior.
+- **Prefer the `sk-design` skill's `design-mcp-open-design` transport mode when** the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction. This is a nested mode reached through `sk-design`, not an independently dispatchable `/design:*` command.
+- **Defer to the `sk-design` hub when** the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction.
+<!-- /ANCHOR:sibling-discriminator -->
+
+### PRECONDITIONS
+
+- **Requires:** an interface target (surface, screen, or component set) plus the register and any mode hint.
+- **Cannot-run:** when no interface target is named to shape, stop with `STATUS=FAIL ERROR=<named-cause>`.
+- **Escalate:** if the register is genuinely mixed or unresolved and changes the design dials, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
+- **Route instead:** when the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction, return `STATUS=DEFER ROUTE=hub`.
+
+**Ask-first:** wording lives only in the presentation asset's Consolidated Prompt Template.
+
 ---
 
 ## 2. OWNED ASSETS
@@ -28,7 +49,15 @@ Do not embed workflow steps or presentation content in this file. Workflow steps
 
 ---
 
-## 3. INTERFACE TASK LANES
+## 3. MODE ROUTING
+
+1. Parse `$ARGUMENTS` for `:auto` or `:confirm`.
+2. If no suffix is present, check whether `$ARGUMENTS` already supplies the required input (an interface target). If complete, proceed autonomously; if incomplete, fall back to the `:confirm` consolidated prompt.
+3. For explicit `:auto`, resolve setup through the presentation contract's Auto Resolution Table; if the target still cannot be resolved, use the Auto Fail-Fast Display.
+4. For explicit `:confirm`, always show the consolidated setup prompt once, even when `$ARGUMENTS` is fully specified.
+5. Load the selected workflow asset and execute it step by step.
+
+### INTERFACE TASK LANES
 
 Pick the lane that matches the request; if none fits, defer to the `sk-design` hub.
 
@@ -41,31 +70,8 @@ Pick the lane that matches the request; if none fits, defer to the `sk-design` h
 - **quality** is not owned here; route accessibility, contrast, scoring, and hardening to `/design:audit`.
 - **register**, **copy-gate**, **grounding**, and **reference** are internal or hidden lanes; they run inside the workflow and are not surfaced and not selectable tasks.
 
-<!-- ANCHOR:sibling-discriminator -->
-## 4. WHEN TO USE THIS, NOT A SIBLING
-
-- **Use this command when** the request is to invent or reshape a distinctive interface direction.
-- **Prefer `/design:audit` when** the request is findings-first review, accessibility, performance, scoring, or production hardening.
-- **Prefer `/design:foundations` when** the request is static token work: color, typography, layout, spacing, responsive adaptation, or theming.
-- **Prefer `/design:md-generator` when** the request is extracting a live site's measured CSS into DESIGN.md.
-- **Prefer `/design:motion` when** the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior.
-- **Prefer the `sk-design` skill's `design-mcp-open-design` transport mode when** the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction. This is a nested mode reached through `sk-design`, not an independently dispatchable `/design:*` command.
-- **Defer to the `sk-design` hub when** the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction.
-<!-- /ANCHOR:sibling-discriminator -->
-
----
-
-## 5. PRECONDITIONS
-
-- **Requires:** an interface target (surface, screen, or component set) plus the register and any mode hint.
-- **Cannot-run:** when no interface target is named to shape, stop with `STATUS=FAIL ERROR=<named-cause>`.
-- **Escalate:** if the register is genuinely mixed or unresolved and changes the design dials, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
-- **Route instead:** when the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction, return `STATUS=DEFER ROUTE=hub`.
-
-**Ask-first:** wording lives only in the presentation asset's Consolidated Prompt Template.
-
 <!-- ANCHOR:register -->
-## REGISTER
+### REGISTER
 
 - **Pin with** `--register <brand|product>` at command entry. Default `auto` resolves the posture from a declared register field, then the task cue, then the surface in focus.
 - **Postures:** Brand (design IS the product) gives the interface room for expression, identity, and a memorable move. Product (design SERVES the product) keeps the interface dense, predictable, and task-led.
@@ -76,17 +82,7 @@ Register Ask-first question wording lives only in the presentation asset.
 
 ---
 
-## 6. MODE ROUTING
-
-1. Parse `$ARGUMENTS` for `:auto` or `:confirm`.
-2. If no suffix is present, check whether `$ARGUMENTS` already supplies the required input (an interface target). If complete, proceed autonomously; if incomplete, fall back to the `:confirm` consolidated prompt.
-3. For explicit `:auto`, resolve setup through the presentation contract's Auto Resolution Table; if the target still cannot be resolved, use the Auto Fail-Fast Display.
-4. For explicit `:confirm`, always show the consolidated setup prompt once, even when `$ARGUMENTS` is fully specified.
-5. Load the selected workflow asset and execute it step by step.
-
----
-
-## 7. EXECUTION TARGETS
+## 4. EXECUTION TARGETS
 
 | Mode | Workflow |
 |------|----------|
@@ -95,7 +91,7 @@ Register Ask-first question wording lives only in the presentation asset.
 
 ---
 
-## 8. PRESENTATION BOUNDARY
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/design/assets/design_interface_presentation.txt`:
 
@@ -107,6 +103,6 @@ The following content lives only in `.opencode/commands/design/assets/design_int
 
 ---
 
-## 9. WORKFLOW SUMMARY
+## 6. WORKFLOW SUMMARY
 
 Loads the `sk-design` hub and the `interface` mode packet, applies the mode to `$ARGUMENTS`, and returns a STATUS line naming the produced Interface Direction Spec. Never auto-chains to a sibling command; next steps are recommend-only.

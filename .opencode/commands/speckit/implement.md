@@ -48,9 +48,7 @@ No workflow-asset gap exists for this command.
 | `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` with branch-preserved failure semantics |
 | `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit_implement_confirm.yaml` |
 
----
-
-## 5. UNATTENDED TERMINATION
+### UNATTENDED TERMINATION
 
 `:autopilot`, `:unattended`, and `--unattended` must never end with prose-only failure output.
 
@@ -65,7 +63,7 @@ On any of those results, preserve the active branch, do not merge, and emit one 
 
 ---
 
-## 6. PRESENTATION BOUNDARY
+## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/speckit/assets/speckit_implement_presentation.txt`:
 
@@ -77,6 +75,6 @@ The following content lives only in `.opencode/commands/speckit/assets/speckit_i
 
 ---
 
-## 7. WORKFLOW SUMMARY
+## 6. WORKFLOW SUMMARY
 
 The YAML workflow requires prior planning artifacts, executes implementation tasks, verifies checklist evidence, writes completion artifacts, refreshes context, and closes the implementation pass.

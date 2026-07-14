@@ -8,16 +8,7 @@ allowed-tools: Read, Edit, Bash, Task, mcp__mk_spec_memory__memory_save, mcp__mk
 
 Thin router for canonical continuity saves.
 
-## 1. ROUTING ASSETS
-
-| Asset | Path | Status | Purpose |
-| --- | --- | --- | --- |
-| Workflow | _No memory workflow YAML exists in this checkout_ | Missing upstream asset | Keep routing in this file until a workflow YAML is introduced by a separate workflow-asset change. Do not invent or edit YAML from this command. |
-| Presentation | `.opencode/commands/memory/assets/save_presentation.txt` | Required | Startup questions, save dashboards, result envelopes, trigger-edit display, and error rendering. |
-
-Before rendering any prompt, dashboard, or result block, read the presentation asset and follow it as the display source of truth.
-
-## 2. ROUTER CONTRACT
+## 1. ROUTER CONTRACT
 
 Inputs:
 - `$ARGUMENTS` may contain an explicit spec folder.
@@ -28,23 +19,51 @@ Outputs:
 - Explicit apply/full-auto may run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` with AI-authored JSON.
 - Immediate retrieval freshness may use `memory_index_scan({ specFolder, includeSpecDocs: true, force: false })` after the save.
 
-## 3. WORKFLOW ROUTING
+Guardrails:
+- Do not use standalone `memory/*.md` files as save destinations.
+- Do not claim an automatic hook save unless current hook evidence proves it.
+- Do not open raw SQLite or edit memory DB files.
+- This is a direct-dispatch command with no workflow YAML by design; do not create or modify workflow YAML from this command.
+- Use `/memory:manage retention-sweep` for retention cleanup.
+
+## 2. OWNED ASSETS
+
+| Asset | Path | Purpose |
+| --- | --- | --- |
+| Presentation | `.opencode/commands/memory/assets/save_presentation.txt` | Startup questions, save dashboards, result envelopes, trigger-edit display, and error rendering. |
+
+This is a direct-dispatch command: it routes straight to the memory MCP tools and the `generate-context.js` script and owns no workflow YAML by design. There is no `_auto`/`_confirm` workflow YAML for the memory family, and none is missing — the absence of workflow YAML is intentional, not a gap.
+
+Before rendering any prompt, dashboard, or result block, read the presentation asset and follow it as the display source of truth.
+
+## 3. MODE ROUTING
+
+Operating modes:
+- Default mode returns the save plan without mutating.
+- Explicit apply/full-auto mode executes the metadata/description/graph-metadata refresh and index handoff.
+
+Route category (chosen during processing): `narrative_progress`, `narrative_delivery`, `decision`, `handover_state`, `research_finding`, `task_update`, `metadata_only`, or `drop`.
+
+## 4. EXECUTION TARGETS
+
+Procedure:
 
 1. Resolve and validate `target_folder`.
 2. Check topic/folder alignment and stop for confirmation on mismatch.
 3. Extract session summary, key decisions, modified files, trigger phrases, technical context, tool calls, and notable exchanges.
-4. Choose route category: `narrative_progress`, `narrative_delivery`, `decision`, `handover_state`, `research_finding`, `task_update`, `metadata_only`, or `drop`.
+4. Choose one route category (listed under MODE ROUTING).
 5. In default mode, return the save plan without mutating.
 6. In explicit apply/full-auto mode, execute the metadata/description/graph-metadata refresh and index handoff script, inspect the post-save quality review, patch HIGH metadata issues when practical, then refresh index visibility through MCP. Canonical spec-doc content is owned by the MCP content-router save path.
 7. Render the result using the presentation asset.
 
-## 4. HARD RULES
+Tool map:
 
-- Do not use standalone `memory/*.md` files as save destinations.
-- Do not claim an automatic hook save unless current hook evidence proves it.
-- Do not open raw SQLite or edit memory DB files.
-- Do not create or modify workflow YAML from this command.
-- Use `/memory:manage retention-sweep` for retention cleanup.
+| Need | Tool or Script |
+| --- | --- |
+| Metadata refresh and index handoff | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` |
+| Immediate index refresh | `mcp__mk_spec_memory__memory_index_scan` |
+| Single-file indexing fallback | `mcp__mk_spec_memory__memory_save` |
+| Trigger phrase correction | `mcp__mk_spec_memory__memory_update` |
 
 ## 5. PRESENTATION BOUNDARY
 
@@ -56,18 +75,8 @@ The following content lives only in `.opencode/commands/memory/assets/save_prese
 
 The router must not invent visible wording for those surfaces; it only resolves routing and tooling.
 
-## 6. TOOL MAP
+## 6. WORKFLOW SUMMARY
 
-| Need | Tool or Script |
-| --- | --- |
-| Metadata refresh and index handoff | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` |
-| Immediate index refresh | `mcp__mk_spec_memory__memory_index_scan` |
-| Single-file indexing fallback | `mcp__mk_spec_memory__memory_save` |
-| Trigger phrase correction | `mcp__mk_spec_memory__memory_update` |
+The router resolves and validates the target spec folder, extracts the session context, chooses a route category, and either returns a non-mutating save plan (default) or runs the metadata/description/graph-metadata refresh and index handoff via `generate-context.js` before refreshing index visibility through MCP (explicit apply/full-auto). Canonical spec-doc content is owned by the MCP content-router save path. Every user-facing string renders through the presentation asset. It is a direct-dispatch command with no workflow YAML by design.
 
-## 7. RELATED COMMANDS
-
-- `/memory:search`: Intent-aware context retrieval and analysis tools.
-- `/memory:manage`: Database management, checkpoints, ingest, retention, and health.
-- `/memory:learn`: Constitutional rules.
-- `/speckit:resume`: Session recovery and continuation.
+Related commands: `/memory:search` (intent-aware context retrieval and analysis tools); `/memory:manage` (database management, checkpoints, ingest, retention, and health); `/memory:learn` (constitutional rules); `/speckit:resume` (session recovery and continuation).

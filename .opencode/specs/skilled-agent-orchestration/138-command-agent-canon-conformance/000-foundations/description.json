@@ -1,0 +1,27 @@
+{
+  "specFolder": "skilled-agent-orchestration/138-command-agent-canon-conformance/000-foundations",
+  "description": "The canon-conformance program needs a single, machine-validated audit input before any per-lane conformance work begins",
+  "keywords": [
+    "canon-conformance",
+    "program",
+    "needs",
+    "single",
+    "machine-validated",
+    "audit",
+    "input",
+    "per-lane",
+    "conformance",
+    "work",
+    "begins"
+  ],
+  "lastUpdated": "2026-07-14T17:50:35.667Z",
+  "specId": "000",
+  "folderSlug": "foundations",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "138-command-agent-canon-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,30 @@
+{
+  "specFolder": "skilled-agent-orchestration/138-command-agent-canon-conformance/003-codex-command-parity",
+  "description": "Agents already have durable, fail-closed dual-runtime sync: `sync-agents.cjs` converts the canonical OpenCode/Claude agent markdown into",
+  "keywords": [
+    "agents",
+    "already",
+    "durable",
+    "fail-closed",
+    "dual-runtime",
+    "sync",
+    "sync-agents",
+    "cjs",
+    "converts",
+    "canonical",
+    "opencode",
+    "claude",
+    "agent",
+    "markdown"
+  ],
+  "lastUpdated": "2026-07-14T17:41:04.652Z",
+  "specId": "003",
+  "folderSlug": "codex-command-parity",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "138-command-agent-canon-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

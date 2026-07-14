@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/138-command-agent-canon-conformance/002-agent-canon-conformance",
+  "spec_folder": "skilled-agent-orchestration/138-command-agent-canon-conformance/002-agent-canon-conformance",
+  "parent_id": "skilled-agent-orchestration/138-command-agent-canon-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent canon conformance",
+      "create-agent validator gate",
+      "codex agent toml parity",
+      "sync-agents check gate",
+      "agent canon conformance plan",
+      "create-agent validator plan",
+      "codex toml parity plan",
+      "agent canon conformance tasks",
+      "codex toml parity tasks",
+      "sync-agents check tasks",
+      "agent canon conformance checklist",
+      "codex toml parity verification"
+    ],
+    "key_topics": [
+      "agent",
+      "canon",
+      "conformance",
+      "create-agent",
+      "validator",
+      "gate",
+      "codex",
+      "toml",
+      "parity",
+      "sync-agents",
+      "check",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      "decision-record.md",
+      ".codex/agents/ai-council.toml",
+      ".codex/agents/deep-alignment.toml",
+      ".codex/agents/markdown.toml",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-alignment.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-alignment.toml",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.toml",
+        "kind": "file",
+        "path": ".codex/agents/markdown.toml",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Assess",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 13 agents ship in two canonical markdown runtimes — `.opencode/agents/.md` (with `permission:` frontmatter) and `.claude/agents/.md` (with `tools:` frontmatter), 26 files total — plus a generated Codex runtime, `.codex/agents/.toml`, produced only by `sync-agents.cjs`",
+    "created_at": "2026-07-14T17:44:17.427Z",
+    "last_save_at": "2026-07-14T17:44:17.427Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1953f1d5bb3758cbaa442395d016a5d69800885754358071c5c83c596268af88",
+    "source_doc_hashes": {
+      "spec.md": "33d371c995421a89b31ac6b6b0971421b10e17b38a678d29c8ab9da1fcbfb73d",
+      "plan.md": "97f6bc6825773308bfbf385f2d27f03f536346e6f3bb415f89b2c600d9b1d2ef",
+      "tasks.md": "89b199a30eb2882c4338be4b6cd77f9e97f7fca511c4054275151afc344a307d",
+      "checklist.md": "7cd724a020d66cdf7b1955c4d14076649c1a996ae75006c12e376d6a62f5a74b",
+      "decision-record.md": "832f7277df2f8093756abd484f1e30d9ee193bba21bd5bdd589dc50ea26b38e2",
+      "implementation-summary.md": "9f36aac381514a4c9584d7dbe264acab4b789ec849535b88c33162f11b43daa0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
