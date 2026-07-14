@@ -1,182 +1,118 @@
 ---
-title: "Feature Specification: Phase 2: scripts [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: sk-doc scripts and test fixtures"
+description: "The sk-doc scripts tree contains snake_case markdown fixture filenames and Python script names that must be treated differently. This phase renames only the non-Python filesystem names, updates their sourcing/import/registry references, and records the Python exemption explicitly."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc scripts naming"
+  - "sk-doc test fixture kebab-case"
+  - "017 scripts phase"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-scripts"
-    last_updated_at: "2026-07-14T15:17:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored scripts phase docs"
+    next_safe_action: "Build the scripts rename and reference map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-scripts"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/scripts/", ".opencode/skills/sk-doc/scripts/tests/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: scripts
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: sk-doc scripts and test fixtures
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts` |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/002-scripts` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 7 |
-| **Predecessor** | 001-hub-root-and-shared |
-| **Successor** | 003-create-packets |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 002 of the sk-doc component migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 2** of the sk doc (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The scripts tree mixes executable helpers, facade symlinks, and markdown test fixtures. Thirteen non-Python fixture/test filenames use underscores, while the executable `.py` names are intentionally exempt and the remaining `.sh`, `.js`, and `.mjs` names are already hyphenated. Without a file-type-aware manifest, the phase could rename Python scripts and break imports or miss fixture references.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The outcome is a complete scripts-tree path map with kebab-case non-Python names, unchanged Python names and package semantics, and updated test/resource references.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- Rename `scripts/tests/command/auto_detect_command.md` to `auto-detect-command.md`.
+- Rename `scripts/tests/missing_emojis.md`, `missing_sections.md`, `missing_toc.md`, and `single_dash_anchors.md` to kebab-case.
+- Rename `scripts/tests/specs/auto_detect_spec.md` to `auto-detect-spec.md`.
+- Rename `scripts/tests/valid_command.md`, `valid_install_guide.md`, `valid_readme.md`, `valid_skill.md`, and `valid_spec.md` to kebab-case.
+- Rename `scripts/tests/test_flowchart_validator.sh` and `test_frontmatter_version.mjs` to kebab-case.
+- Update references in test runners, fixture indexes, README paths, and any script registry/source/import path that points to these files.
+- Audit every executable filename and record already-hyphenated scripts plus Python-exempt filenames in the manifest.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- `.py` filenames such as `audit_readmes.py`, `quick_validate.py`, `test_create_skill_contract.py`, and `validate_document.py`.
+- Python import-package directories, tool-mandated names, code identifiers, and test content keys.
+- Shared non-Python resources, create-* packet resources, and the root manual playbook, handled by sibling phases.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/sk-doc/scripts/tests/command/auto_detect_command.md` | Rename | Convert the command fixture filename |
+| `.opencode/skills/sk-doc/scripts/tests/{missing_emojis,missing_sections,missing_toc,single_dash_anchors}.md` | Rename | Convert root fixture filenames |
+| `.opencode/skills/sk-doc/scripts/tests/specs/auto_detect_spec.md` | Rename | Convert the spec fixture filename |
+| `.opencode/skills/sk-doc/scripts/tests/{valid_command,valid_install_guide,valid_readme,valid_skill,valid_spec}.md` | Rename | Convert the validation fixture filenames |
+| `.opencode/skills/sk-doc/scripts/tests/{test_flowchart_validator.sh,test_frontmatter_version.mjs}` | Rename | Convert non-Python test runner filenames |
+| `.opencode/skills/sk-doc/scripts/` consumers | Modify | Update path references while keeping Python facade names exact |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | All non-Python snake_case names in the scripts scope are renamed | The thirteen fixture/test names have one kebab-case target each and no other non-exempt candidate is unclassified |
+| REQ-002 | Python script names remain exempt | No `.py` basename or Python package directory appears in the rename diff, including facade symlinks named after Python scripts |
+| REQ-003 | Script and fixture references are closed | Test commands, fixture loaders, README links, and path-valued registry entries resolve to the new names |
+| REQ-004 | Existing non-Python executable names remain stable when already canonical | Already-kebab names such as `check-frontmatter-versions.sh` and `frontmatter-version.mjs` are not rewritten |
+| REQ-005 | The scripts test surface remains discoverable | The existing test inventory runs or loads every renamed fixture through its new path |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The thirteen non-Python snake_case fixture/test paths are kebab-case and fully referenced.
+- **SC-002**: Python script exemptions and existing symlink facade names are preserved without import or dispatch drift.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | 001 convention policy and scope | File-type boundary is misapplied | Classify by extension and package semantics before editing |
+| Risk | A test loader derives fixture paths dynamically | Tests fail only at runtime | Search basename stems and execute fixture discovery |
+| Risk | A Python facade symlink is treated as a rename candidate | Import/dispatch behavior breaks | Compare symlink names and targets separately from target resources |
+| Risk | A fixture filename is mistaken for a content identifier | Assertions or keys change unnecessarily | Change only filesystem path tokens and links |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. If a dynamic fixture glob cannot be proven statically, the execution report must include the exact discovery command and result.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

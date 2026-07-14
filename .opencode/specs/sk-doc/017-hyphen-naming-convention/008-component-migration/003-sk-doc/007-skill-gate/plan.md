@@ -1,170 +1,114 @@
 ---
-title: "Implementation Plan: Phase 7: skill-gate [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: sk-doc subtree rollup gate"
+description: "Read-only aggregation and whole-surface naming gate for the sk-doc component phases."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc skill gate plan"
+  - "sk-doc naming rollup plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-skill-gate"
-    last_updated_at: "2026-07-14T15:17:30Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored sk-doc rollup gate plan"
+    next_safe_action: "Collect all sibling checklist evidence"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-skill-gate"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/", "../003-create-packets/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: sk-doc subtree rollup gate
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 7: skill-gate
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/sk-doc/` and all assigned child evidence |
+| **Change class** | Read-only aggregation and final naming census |
+| **Execution** | After every executable sibling phase; no migration mutation |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Collect the direct and nested checklist/report receipts, verify zero-row phase evidence, and run the final exemption-aware filesystem census. The gate reports findings and blocks on residue; it does not repair another phase's surface.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] Direct phase checklists and all eleven create-packet checklists are available.
+- [ ] Phase 006 changelog/version evidence is available.
+- [ ] The 001 exemption set and final census command are pinned.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Every executable child has a passing evidence row.
+- [ ] Whole-surface candidate count is zero outside exemptions.
+- [ ] Gate diff is documentation/evidence only.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Evidence matrix**: one row per direct and nested leaf, including zero-row phases.
+- **Exemption classifier**: explicit checks for Python, package, mandated, key, and frozen classes.
+- **Whole-surface census**: scan `.opencode/skills/sk-doc` and compare candidate count to the aggregate rename map.
+- **Read-only gate**: report residue to the owning phase; do not mutate the surface.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Enumerate direct leaves and nested create-packet leaves.
+- [ ] Collect checklist/report hashes, zero-row receipts, and changelog/version evidence.
+
+### Phase 2: Implementation
+
+- [ ] Perform no migration or repair in the rollup phase.
+- [ ] Build the aggregate evidence table and exemption accounting.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Run the whole-surface candidate census and compare to the expected zero residue.
+- [ ] Confirm no unclassified paths, stale references, or missing phase evidence remain.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Evidence matrix covering all direct/nested child checklists |
+| REQ-002 | Zero-row reports for root benchmark and create-diff |
+| REQ-003 | Whole `.opencode/skills/sk-doc` filesystem census |
+| REQ-004 | Path-by-path exemption reconciliation |
+| REQ-005 | Phase 006 release/version comparison |
+| REQ-006 | Scoped diff and mutation audit |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Direct/nested sibling checklists | Evidence | Planned | Gate cannot close |
+| 001 convention policy | Internal contract | Required | Whole-surface classification is ambiguous |
+| Phase 006 changelog verify | Release evidence | Planned | Version/scope proof is incomplete |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A child report is missing/failed or the final census finds residue.
+- **Procedure**: Keep the gate open, route the finding to its owning phase, and rerun the read-only aggregation after evidence changes; do not repair from this phase.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

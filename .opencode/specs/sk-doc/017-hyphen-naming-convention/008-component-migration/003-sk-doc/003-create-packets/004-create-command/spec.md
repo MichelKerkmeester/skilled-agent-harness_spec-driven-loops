@@ -1,182 +1,110 @@
 ---
-title: "Feature Specification: Phase 4: create-command [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: create-command resource names"
+description: "The create-command packet contains snake_case command templates and routing guidance filenames. This phase renames those non-exempt resources to kebab-case and updates command-authoring references without changing command manifests, argument fields, or tool-mandated names."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "create-command resource naming"
+  - "create-command kebab-case phase"
+  - "command template rename"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-create-command"
-    last_updated_at: "2026-07-14T15:22:36Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored create-command phase docs"
+    next_safe_action: "Build the create-command rename map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-create-command"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/create-command/assets/", ".opencode/skills/sk-doc/create-command/references/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 4: create-command
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: create-command resource names
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command` |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/004-create-command` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 11 |
-| **Predecessor** | 003-create-agent |
-| **Successor** | 005-create-feature-catalog |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc/create-command |
+| **Origin** | Phase 004 of the nested create-packets decomposition |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 4** of the Create packets specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The create-command packet's assets and references use underscores in names such as `command_router_template.md` and `argument_hints_and_modes.md`. These paths are part of the command scaffold and router/presentation authoring workflow, so partial renames would break the resource contract.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The outcome is a kebab-case command-resource tree with all path consumers updated and command argument/router semantics unchanged.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- Rename `command_presentation_template.md`, `command_router_template.md`, and `command_template.md` in `assets/`.
+- Rename `argument_hints_and_modes.md`, `common_pitfalls.md`, `router_presentation_split.md`, and `worked_example.md` in `references/`.
+- Update path links and resource values in `SKILL.md`, README, templates, and references.
+- Preserve the packet's router/presentation split and argument-hint content.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- `SKILL.md`, `README.md`, changelog files, package metadata, and tool-mandated names.
+- Command frontmatter fields, argument identifiers, mode names, JSON/YAML keys, and prose tokens that are not paths.
+- Other create-* packets.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `create-command/assets/{command_presentation_template,command_router_template,command_template}.md` | Rename/reference update | Convert three command template filenames |
+| `create-command/references/{argument_hints_and_modes,common_pitfalls,router_presentation_split,worked_example}.md` | Rename/reference update | Convert four reference filenames |
+| `create-command/SKILL.md`, `README.md`, and docs | Modify | Repoint changed resource paths |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | All seven non-exempt resources use kebab-case | Manifest and filesystem census match with no unknown candidate |
+| REQ-002 | Command template and reference links resolve | Every old path consumer points to its correct new target |
+| REQ-003 | Router/presentation and argument-hint semantics remain stable | Content diff changes paths only, not command behavior fields |
+| REQ-004 | Tool-mandated names and metadata keys remain exact | No mandated file, key, frontmatter field, or identifier is renamed |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The create-command resource tree has kebab-case non-exempt names.
+- **SC-002**: Command scaffolding continues to resolve its router, presentation, and argument-hint resources.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Router/presentation template links | Generated command structure breaks | Resolve every template link after rename |
+| Risk | Argument names resemble path names | Command interface changes | Restrict edits to filesystem path tokens |
+| Risk | Worked examples contain relative links | Quality guidance becomes stale | Search examples and reference indexes explicitly |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. Any dynamic resource lookup must be pinned in the execution report.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

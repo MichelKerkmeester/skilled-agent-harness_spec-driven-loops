@@ -1,182 +1,112 @@
 ---
-title: "Feature Specification: Phase 7: design-mcp-open-design [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Design-mcp-open-design (017 phase 007)"
+description: "The nested Open Design transport packet contains underscore-bearing install, transport-reference, and shell-helper names, and the shell helper is sourced by multiple scripts."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "design-mcp-open-design naming phase"
+  - "sk-design design-mcp-open-design phase"
+  - "017 design-mcp-open-design"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-design-mcp-open-design"
-    last_updated_at: "2026-07-14T15:17:19Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored design-mcp-open-design spec"
+    next_safe_action: "Execute phase on pinned worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-design-mcp-open-design"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-design/design-mcp-open-design/README.md"
+      - ".opencode/skills/sk-design/design-mcp-open-design/references/"
+      - ".opencode/skills/sk-design/design-mcp-open-design/scripts/doctor.sh"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 7: design-mcp-open-design
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Design-mcp-open-design (017 phase 007)
 
----
+> Phase 007 of the sk-design component migration under `sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/007-design-mcp-open-design` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 12 |
-| **Predecessor** | 006-design-md-generator |
-| **Successor** | 008-feature-catalog |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-design |
+| **Origin** | Phase 7 of the sk-design subtree in the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 7** of the sk design (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The nested Open Design transport packet contains underscore-bearing install, transport-reference, and shell-helper names, and the shell helper is sourced by multiple scripts.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+**Purpose:** Rename the transport packet's non-exempt filesystem names to kebab-case, choose a valid target for the private shell helper, and update all transport references.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Apply the phase-local decision record: use common.sh rather than an invalid leading-hyphen target.
+- Rename the install guide and all listed reference files, then update README.md, scripts, shellcheck directives, and local links.
+- Preserve shell behavior, executable bits, source order, tool surfaces, frontmatter fields, and transport identifiers.
+- Keep catalog/playbook work in the later sibling phases.
+
+### Live candidate boundary
+- `INSTALL_GUIDE.md` → `INSTALL-GUIDE.md`
+- `references/cli_child_pairing.md`, `design_parity_transport.md`, `freshness_invalidation.md`, `guarded_proxy.md`, `inner_generator_binding.md`, `mcp_wiring.md`, `od_cli_reference.md`, `smart_router_pseudocode.md`, and `tool_surface.md` become hyphenated
+- `scripts/_common.sh` → `scripts/common.sh`; `doctor.sh` and `install.sh` stay exact while their source and shellcheck references change
+- Feature-catalog and manual-testing-playbook paths remain owned by phases 008 and 009
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Changing Open Design CLI/MCP behavior, daemon paths, tool names, or shell helper logic.
+- Feature-catalog, manual-testing-playbook, shared, benchmark, changelog, Python, and package-manifest surfaces.
+- Renaming tool-mandated SKILL.md, mode-registry.json, or package manifest names.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+|-------|-------|-------|
+| REQ-001 | The transport reference map is complete. | All underscore-bearing reference paths plus INSTALL_GUIDE.md and _common.sh have explicit target/disposition entries. |
+| REQ-002 | The shell helper remains sourceable. | doctor.sh and install.sh source common.sh, shellcheck points to common.sh, and mode/executable behavior is preserved. |
+| REQ-003 | The target naming decision is documented. | The phase decision record explains why common.sh is the valid target and why -common.sh is rejected. |
+| REQ-004 | Transport references remain resolvable. | README.md, reference links, and script-adjacent path values contain no stale old path. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The transport packet outside catalog/playbook is kebab-clean, with common.sh as the deliberate leading-underscore resolution.
+- **SC-002**: Shell source and shellcheck references resolve and preserve executable behavior.
+- **SC-003**: The decision record, path map, and stale-reference sweep are attached to the phase evidence.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+|-------|-------|-------|-------|
+| Risk | A mechanical underscore substitution creates -common.sh. | High | Use the decision record and semantic map; reject leading-hyphen targets before rename execution. |
+| Risk | A shell source reference is missed because it is not Markdown. | High | Sweep shell, shellcheck, and README references separately and run shell syntax checks after execution. |
 
----
+Dependencies: the canonical convention and exemption boundary in `001-convention-policy-and-scope/`; the pinned BASE and rename-map evidence from the program's earlier baseline/tooling phases; and the sibling handoffs named in this phase's plan.
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- No blocking questions; the helper target is resolved in the phase decision record.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

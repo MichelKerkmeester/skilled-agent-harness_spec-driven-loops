@@ -1,170 +1,142 @@
 ---
-title: "Implementation Plan: Phase 1: mcp-server-dir-and-manifest-closure [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: system-code-graph MCP server directory and manifest closure"
+description: "Use an explicit package-boundary rename map, update the code-graph path consumers as one dependency-closed change, preserve Python/tool/generated/test exemptions, and verify the renamed package through build, launcher, plugin, and discovery checks."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-code-graph mcp-server implementation plan"
+  - "code graph package root rename plan"
+  - "mcp-server entrypoint closure"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-mcp-server-dir-and-manifest-closure"
-    last_updated_at: "2026-07-14T15:18:14Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored package-boundary plan"
+    next_safe_action: "Freeze package-boundary map on pinned BASE"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-mcp-server-dir-and-manifest-closure"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-code-graph/mcp_server"
+      - ".opencode/skills/system-code-graph/tsconfig.json"
+      - ".opencode/skills/system-code-graph/vitest.config.ts"
+      - ".opencode/bin/mk-code-index-launcher.cjs"
+      - ".opencode/bin/code-index.cjs"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The current visible package root has package-lock.json but no package.json; no manifest is synthesized by this phase."
+      - "The direct package-layout rename targets are mcp_server, plugin_bridges, and stress_test; tests/__fixtures__ remains classified as test magic."
 ---
+
+# Implementation Plan: system-code-graph MCP server directory and manifest closure
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: mcp-server-dir-and-manifest-closure
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript/Node MCP runtime with shell and CommonJS launchers |
+| **Framework** | MCP transport, TypeScript compiler, Vitest |
+| **Storage** | Package-local SQLite database and generated dist output |
+| **Testing** | Typecheck/build, launcher/CLI smoke, plugin smoke, Vitest discovery |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Create a semantic map for mcp_server/, plugin_bridges/, and stress_test/, then apply the path rename together with
+every live launcher, CLI, compiler, test, plugin, configuration, and documentation reference. Preserve the lockfile
+and generated output contracts; record the visible absence of package.json instead of creating one.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Pinned BASE SHA and package-boundary inventory are recorded.
+- [ ] Package-lock, TypeScript/Vitest configuration, launcher, CLI, plugin, and runtime-config consumers are identified.
+- [ ] Each underscore-bearing directory is classified as rename, test-magic, generated, Python/package exemption, or
+  tool-mandated.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] The package root and permitted direct directories have one-to-one kebab targets.
+- [ ] All live path consumers resolve the same new root.
+- [ ] Build, launcher, CLI, plugin, and discovery checks pass with BASE counts.
+- [ ] No generated, Python, identifier, data-key, lockfile, or tool-mandated name was changed.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Dependency-closed filesystem rename with an explicit source-to-target map.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- Package root: owns the MCP server, CLI, handlers, libraries, tests, stress tests, tools, and package-local database.
+- Path consumers: TypeScript/Vitest configuration, stable launchers, CLI shim, runtime configs, plugin bridge,
+  worktree/git-hook helpers, tests, guides, and topology docs.
+- Preserved boundaries: package-lock/tool names, generated dist/node_modules, test magic, Python names, and runtime
+  identifiers.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The stable launcher and CLI resolve the skill directory, then the package root, then the built entrypoint. The plugin
+bridge, runtime configs, and tests resolve package-local paths. The rename map changes filesystem path segments only,
+so MCP tool IDs, config keys, server identity, and source-module behavior continue unchanged.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Capture the direct directory/file inventory, package-lock state, and explicit absence/presence of package.json.
+- [ ] Search package-root, database, dist, bridge, stress, launcher, CLI, configuration, hook, test, and documentation references.
+- [ ] Freeze the semantic map, collision report, symlink/mode manifest, and BASE discovery counts.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename mcp_server to mcp-server, plugin_bridges to plugin-bridges, and stress_test to stress-test.
+- [ ] Update TypeScript/Vitest path values, source path construction, launchers, CLI shim, runtime configs, plugin bridge,
+  tests, git/worktree helpers, guides, and topology docs.
+- [ ] Preserve package-lock.json, dist, node_modules, tests/__fixtures__, Python names, and identifiers under their
+  owner contracts.
+- [ ] Rebuild generated output through the package workflow after source paths are stable.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Confirm one physical package root and no stale live mcp_server path consumer.
+- [ ] Run typecheck/build, launcher/CLI smoke, plugin smoke, and ordinary/stress Vitest discovery.
+- [ ] Compare file, symlink, executable-bit, test, and discovery counts to BASE.
+- [ ] Record package-map and entrypoint evidence for the scripts phase.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Inventory | Candidate classification and old/new path closure | rg, filesystem manifest, rename-map checker |
+| Build | TypeScript sources and compiled package entrypoint | TypeScript build/typecheck from the skill root |
+| Integration | Stable launcher, CLI shim, runtime config, plugin bridge | launcher/CLI and plugin smoke checks |
+| Discovery | Ordinary and stress Vitest suites | Vitest config with BASE discovery-count comparison |
+| Metadata | Symlink and executable-bit preservation | git mode/symlink manifest comparison |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 000 BASE/worktree | Internal | Required | No trustworthy package map or parity baseline |
+| Node dependency install | Internal | Required | Build and launcher results are not meaningful |
+| Stable launcher and CLI consumers | Internal | Required | Installed runtime can remain broken despite local tests |
+| Plugin and hook path closure | Internal | Required | Prompt-time and plugin callers can retain stale paths |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Any collision, missing consumer, build/discovery regression, metadata drift, or package-manifest inconsistency.
+- **Procedure**: Stop before committing the candidate, restore the path map from pinned BASE in the isolated worktree,
+  discard regenerated output, and rerun the inventory. Do not repair a failed package-root move by adding an
+  unapproved compatibility alias or synthesizing a missing package manifest.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

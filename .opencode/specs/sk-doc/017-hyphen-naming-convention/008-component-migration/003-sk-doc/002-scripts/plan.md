@@ -1,170 +1,114 @@
 ---
-title: "Implementation Plan: Phase 2: scripts [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: sk-doc scripts and test fixtures"
+description: "Execution plan for the file-type-aware scripts-tree rename map and its sourcing, import, registry, and fixture-reference closure."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc scripts implementation plan"
+  - "scripts fixture rename plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-scripts"
-    last_updated_at: "2026-07-14T15:17:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored scripts plan"
+    next_safe_action: "Inventory script and fixture consumers"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-scripts"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/scripts/", ".opencode/skills/sk-doc/scripts/tests/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: sk-doc scripts and test fixtures
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: scripts
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/sk-doc/scripts/` |
+| **Change class** | Non-Python filename rename plus reference update |
+| **Execution** | Isolated worktree at the pinned 017 baseline |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Build a semantic manifest from `rg --files`, separating thirteen non-Python fixture/test renames from Python-exempt scripts and already-canonical executable names. Update every consumer of the thirteen paths and prove test discovery remains intact.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The file inventory distinguishes `.py`, `.sh`, `.js`, `.mjs`, and markdown fixtures.
+- [ ] The thirteen fixture/test source/target rows and consumer search terms are recorded.
+- [ ] Facade symlink names and targets are captured as exempt or reference-only paths.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] No non-Python snake_case scripts or fixtures remain in scope.
+- [ ] Every changed fixture path is loaded by its tests or documented consumer.
+- [ ] Python names and executable behavior are unchanged.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Type-aware census**: classify by extension and package semantics before selecting a rename.
+- **Fixture closure**: update direct links, basename comparisons, globs, and loader paths for the thirteen non-Python files.
+- **Script stability**: leave Python names and existing hyphenated `.sh`/`.js`/`.mjs` names unchanged.
+- **Reference proof**: combine static search with test discovery so dynamic fixture paths are covered.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Capture the scripts tree and symlink inventory.
+- [ ] Freeze the thirteen-row fixture/test rename map and the Python exemption list.
+
+### Phase 2: Implementation
+
+- [ ] Rename the command fixture, four root fixtures, spec fixture, five validation fixtures, and two non-Python test runners.
+- [ ] Update sourcing/import/registry/README/test references without changing script logic or keys.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Run fixture discovery and the scripts' relevant tests against the new paths.
+- [ ] Search for stale old names and prove no non-Python candidate was missed.
+- [ ] Review the diff for Python basename or package-directory changes.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Manifest count, path search, and whole scripts-tree candidate census |
+| REQ-002 | `.py` and symlink inventory diff against BASE |
+| REQ-003 | `rg` consumer search plus fixture loader/test execution |
+| REQ-004 | Non-Python executable name comparison and link resolution |
+| REQ-005 | Test discovery count and successful fixture reads |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 001 convention policy and scope | Internal contract | Required | Exemption classification cannot be closed |
+| scripts test fixtures and loaders | Local surface | Available | Reference closure cannot be proven |
+| 001 hub/shared phase | Adjacent naming contract | Planned | Shared facade targets may be unresolved |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Fixture discovery count changes, a stale path remains, or a Python/symlink name changes.
+- **Procedure**: Revert the path-scoped rename/reference commit, restore the thirteen original fixture/test names, and rerun the BASE inventory.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

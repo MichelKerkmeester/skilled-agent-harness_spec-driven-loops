@@ -1,170 +1,116 @@
 ---
-title: "Implementation Plan: Phase 1: hub-root-and-shared [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: system-deep-loop hub root and shared names (017 phase 007/001)"
+description: "Plan for classifying the hub/shared boundary, preserving exact routing and metadata names, and applying only any frozen-map candidate with its direct reference closure. The current inventory is expected to be a verified no-op."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-deep-loop hub shared implementation plan"
+  - "deep loop shared naming plan"
+  - "hub root path closure"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-hub-root-and-shared"
-    last_updated_at: "2026-07-14T15:17:48Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored hub shared phase plan"
+    next_safe_action: "Execute the hub shared boundary check"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-hub-root-and-shared"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: System-deep-loop hub root and shared names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: hub-root-and-shared
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/system-deep-loop/` root and `shared/` |
+| **Change class** | Candidate classification, optional rename, and reference verification |
+| **Execution** | Isolated worktree using the pinned BASE and frozen semantic map |
+| **Verification** | Root/shared manifest, path resolver, routing checks, and helper tests |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Inventory the hub root and shared helpers before touching anything. The live tree is already kebab-clean in this boundary, so the planned implementation is a no-op unless the pinned BASE exposes a candidate absent from the current tree; any such candidate moves only with its path consumers.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The pinned BASE manifest and frozen rename map are available.
+- [ ] The root/shared boundary is separated from runtime, workflow packets, root playbook, and root benchmark ownership.
+- [ ] Exact hub names and the one-graph-metadata invariant are recorded.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Every root/shared path has one disposition and the current no-op result is evidenced.
+- [ ] Any baseline candidate, if present, has a kebab-case target and repaired path consumers.
+- [ ] Hub routing and shared helper behavior match BASE evidence.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Boundary inventory**: enumerate root files and `shared/behavior-benchmark/`, `shared/progress/`, `shared/rollout/`, and `shared/synthesis/` without scanning sibling component ownership into this child.
+- **Exact-name guard**: preserve `SKILL.md`, `README.md`, `hub-router.json`, `mode-registry.json`, `description.json`, and `graph-metadata.json` names and contracts.
+- **Conditional rename closure**: if the BASE map contains an in-scope candidate, update its direct Markdown, JSON path-value, helper, and test consumers in the same batch.
+- **Behavior boundary**: keep router keys, JavaScript identifiers, JSON keys, and shared helper semantics unchanged.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load the BASE path/mode manifest, frozen map, and component ownership boundary.
+- [ ] Record the root/shared inventory, active path references, symlink status, and exact tool names.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Assign rename/exempt/frozen/generated/tool-mandated status to every root/shared path.
+- [ ] Apply the semantic map only if a pinned-baseline candidate exists; keep the current no-candidate outcome explicit otherwise.
+- [ ] Repair direct hub/shared path values and links for any moved candidate.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Compare the final root/shared manifest with the map and BASE inventory.
+- [ ] Resolve hub/router paths, shared Markdown links, and helper test fixtures.
+- [ ] Run non-zero routing/helper checks and confirm no sibling surface was changed.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Candidate coverage | Map scan reports every root/shared path once and no unknown row. |
+| Exact names | `SKILL.md`, router/registry, metadata, and already-compliant shared directories match the expected names. |
+| Reference integrity | Resolve Markdown and JSON path values; search for any old candidate basename if a rename occurred. |
+| Behavior parity | Run hub fallback/routing and shared benchmark/progress/rollout/synthesis helper checks against BASE outcomes. |
+| Scope safety | Inspect the diff for runtime, workflow, root playbook, and root benchmark leakage. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Dependency | Type | Impact if Blocked |
+|------------|------|-------------------|
+| Frozen semantic rename map | Internal | Candidate ownership and target names cannot be proven. |
+| BASE root/shared manifest | Internal | A no-op result or mode/link parity cannot be evidenced. |
+| Hub routing contract | Internal | The one-identity and registry behavior cannot be compared. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A collision, stale hub path, routing drift, unexpected candidate, or scope leakage appears.
+- **Procedure**: Stop the conditional batch; if a rename occurred, revert only the path-scoped commit and restore the pre-change manifest before retrying. A verified no-op needs no rollback.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

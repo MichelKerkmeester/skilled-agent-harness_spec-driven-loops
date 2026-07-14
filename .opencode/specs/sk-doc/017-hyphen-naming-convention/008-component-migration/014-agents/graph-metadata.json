@@ -26,27 +26,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "agents surface migration",
+      "agents kebab-case phase",
+      "agent filename verification",
+      "014 agents gate"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "agents",
+      "surface",
+      "migration",
+      "kebab-case",
+      "phase",
+      "agent",
+      "filename",
+      "verification",
+      "gate",
+      "program",
+      "needs",
+      "bounded"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md"
@@ -65,13 +64,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Agents Surface Migration",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -83,29 +82,29 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The 017 program needs a bounded documentation map for the agents surface. This parent groups one verify-only child per agent definition and a final rollup gate so every runtime agent directory is checked against the kebab-case filesystem policy.",
     "created_at": "2026-07-14T15:17:05Z",
-    "last_save_at": "2026-07-14T15:24:36.806Z",
+    "last_save_at": "2026-07-14T20:00:23.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:3932c0ed266f830c17163a15ac47ec469eff2bcfab147c267d1ed38f038e1755",
+    "source_fingerprint": "sha256:4da677bd3fd8c004f16cd755e16913b784cc7ee01aa3298a39e2344e8132c593",
     "source_doc_hashes": {
-      "spec.md": "0c1d0946fe1154b19df71fa13ba8622aff1e62bc22a45cf148a56781f6e7bba1"
+      "spec.md": "e9aaa8b3573192ca88ca57fe8ec13020f191ae45c3aeeff3f3e9bd1d3c0b57b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

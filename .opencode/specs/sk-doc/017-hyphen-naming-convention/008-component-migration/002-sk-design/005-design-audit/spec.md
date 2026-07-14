@@ -1,182 +1,113 @@
 ---
-title: "Feature Specification: Phase 5: design-audit [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Design-audit (017 phase 005)"
+description: "The design-audit mode has a broad underscore-bearing fixture and evidence surface, including AI-fingerprint fixture directories, registry files, and audit references."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "design-audit naming phase"
+  - "sk-design design-audit phase"
+  - "017 design-audit"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-design-audit"
-    last_updated_at: "2026-07-14T15:17:18Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored design-audit spec"
+    next_safe_action: "Execute phase on pinned worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-design-audit"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-design/design-audit/SKILL.md"
+      - ".opencode/skills/sk-design/design-audit/assets/ai_fingerprint_fixtures/"
+      - ".opencode/skills/sk-design/design-audit/references/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 5: design-audit
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Design-audit (017 phase 005)
 
----
+> Phase 005 of the sk-design component migration under `sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/005-design-audit` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 12 |
-| **Predecessor** | 004-design-motion |
-| **Successor** | 006-design-md-generator |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-design |
+| **Origin** | Phase 5 of the sk-design subtree in the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 5** of the sk design (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The design-audit mode has a broad underscore-bearing fixture and evidence surface, including AI-fingerprint fixture directories, registry files, and audit references.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+**Purpose:** Rename the audit mode's non-exempt filesystem names to kebab-case and update evidence, fixture, and routing references without changing audit semantics.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Rename the audit assets, fixture directory tree, procedures, and references listed above.
+- Update registry-adjacent path values, SKILL.md, README.md, audit references, fixture documentation, and Markdown links.
+- Preserve fixture IDs, JSON/YAML/TOML keys, audit labels, severity terms, and the Python scripts perf_evidence_check.py and polish_readiness_check.py.
+- Keep feature-catalog and manual-testing-playbook work in phases 008/009.
+
+### Live candidate boundary
+- `assets/a11y_quick_fixes.md`, `ai_fingerprint_fixtures/`, `ai_fingerprint_registry.json`, `ai_fingerprint_self_defect_card.md`, and `ai_fingerprint_tells.md` become hyphenated
+- `assets/ai_fingerprint_fixtures/` and its ten `ai_fingerprint_*` fixture directories become hyphenated; each keeps its `clean.html` and `tell.html` files
+- `ai_slop_check.md`, `anti_patterns_production.md`, `anti_patterns_score_rubric.md`, and `anti_slop_production_hardening.md` become hyphenated
+- `procedures/accessibility_audit.md` and `procedures/ai_slop_check.md` become hyphenated
+- `references/accessibility_performance.md`, `ai_fingerprint_tells.md`, `anti_patterns_production.md`, `critique_hardening.md`, `evidence_capture.md`, `hardening_edge_cases.md`, `smart_router_pseudocode.md`, and `transform_remediation.md` become hyphenated
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Python scripts, Python package directories, fixture content, semantic fixture_id values, and audit rule behavior.
+- Catalog/playbook, shared, benchmark, changelog, SKILL.md, mode-registry.json, and package-manifest naming.
+- Changing the audit corpus, scores, or anti-slop policy.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+|-------|-------|-------|
+| REQ-001 | The fixture tree is fully mapped. | The map includes the fixture root, all ten ai-fingerprint fixture directories, registry/card paths, and every non-exempt Markdown path. |
+| REQ-002 | Audit paths remain resolvable. | All fixture links, registry path values, SKILL.md resources, and reference links point to existing hyphenated targets. |
+| REQ-003 | Semantic audit data is preserved. | Fixture IDs, JSON keys, rule names, HTML filenames, and Python script paths are unchanged. |
+| REQ-004 | The phase does not absorb catalog/playbook work. | Those roots and their contents are listed as deferred sibling ownership. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The audit component outside catalog/playbook is kebab-clean.
+- **SC-002**: Every fixture directory remains paired with its clean/tell files and registry references.
+- **SC-003**: The evidence distinguishes filesystem path rewrites from unchanged audit identifiers and Python exemptions.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+|-------|-------|-------|-------|
+| Risk | A fixture path and its fixture_id are treated as the same contract. | High | Rename physical path segments only; compare registry IDs before and after and require semantic parity. |
+| Risk | The broad fixture tree produces partial references. | High | Use a recursive path inventory and verify every Markdown/JSON path consumer, including registry-adjacent values. |
 
----
+Dependencies: the canonical convention and exemption boundary in `001-convention-policy-and-scope/`; the pinned BASE and rename-map evidence from the program's earlier baseline/tooling phases; and the sibling handoffs named in this phase's plan.
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- No blocking questions; the fixture inventory is concrete and the exemption set resolves the Python boundary.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

@@ -1,182 +1,113 @@
 ---
-title: "Feature Specification: Phase 1: hub-root-and-shared [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Hub root and shared (017 phase 001)"
+description: "The sk-design hub and shared reference base still contain snake_case Markdown asset names, so routing instructions and cross-mode references cannot be treated as kebab-clean."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "hub-root-and-shared naming phase"
+  - "sk-design hub/shared phase"
+  - "017 hub-root-and-shared"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-hub-root-and-shared"
-    last_updated_at: "2026-07-14T15:17:14Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored hub/shared spec"
+    next_safe_action: "Execute phase on pinned worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-hub-root-and-shared"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-design/SKILL.md"
+      - ".opencode/skills/sk-design/README.md"
+      - ".opencode/skills/sk-design/shared/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: hub-root-and-shared
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Hub root and shared (017 phase 001)
 
----
+> Phase 001 of the sk-design component migration under `sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/001-hub-root-and-shared` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 12 |
-| **Predecessor** | None |
-| **Successor** | 002-design-interface |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-design |
+| **Origin** | Phase 1 of the sk-design subtree in the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 1** of the sk design (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The sk-design hub and shared reference base still contain snake_case Markdown asset names, so routing instructions and cross-mode references cannot be treated as kebab-clean.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+**Purpose:** Rename only the non-exempt hub/shared filesystem names to kebab-case and update every reference that resolves those paths.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Build the phase-local source→target map for the shared Markdown assets and cards listed above.
+- Rename the shared Markdown files and update hub, mode, README, and shared-document links that point to them.
+- Preserve the shared directory structure, frontmatter fields, JSON/YAML/TOML keys, code identifiers, and Python script filenames.
+- Record every candidate as rename or exempt so later phases can consume an unambiguous boundary.
+
+### Live candidate boundary
+- `shared/anti_slop_principles.md` → `shared/anti-slop-principles.md`; `shared/cognitive_laws.md` → `shared/cognitive-laws.md`
+- `shared/context_loading_contract.md`, `design_dispatch_boundary.md`, `design_proof_token.md`, `design_token_vocabulary.md`, `numeric_design_laws.md`, `procedure_card_schema.md`, and `sk_code_handoff.md` become their hyphenated names
+- `shared/assets/context_loaded_card.md`, `proof_of_application_card.md`, `register_card.md`, and `variant_parameter_contract.md` become their hyphenated names
+- `shared/procedures/polish_gate_orchestration.md` becomes `polish-gate-orchestration.md`
+- `shared/scripts/*.py` remains exact under the Python-script exemption; the existing hyphenated `*.mjs` helpers remain unchanged
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Mode-local assets, references, procedures, scripts, feature catalogs, playbooks, benchmark artifacts, and changelog entries; those belong to sibling phases.
+- SKILL.md, mode-registry.json, package manifests, and Python scripts or package directories named by the exemption policy.
+- Executing any rename or changing runtime behavior during this authoring pass.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+|-------|-------|-------|
+| REQ-001 | The shared Markdown candidate set is complete. | The inventory lists every non-exempt underscore-bearing shared path and marks each Python script as exempt. |
+| REQ-002 | Shared Markdown names use kebab-case after execution. | No in-scope shared Markdown file retains an underscore in its filesystem name. |
+| REQ-003 | Hub and shared references remain resolvable. | The reference sweep finds no stale old shared path and no broken new path. |
+| REQ-004 | The exemption boundary is preserved. | SKILL.md, tool-mandated names, Python scripts, package dirs, identifiers, and data keys are unchanged. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The shared reference base is kebab-clean outside the declared exemptions.
+- **SC-002**: Hub and cross-mode consumers resolve the renamed shared files without changing routing semantics.
+- **SC-003**: The phase evidence contains the source→target map, stale-reference sweep, and exemption report.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+|-------|-------|-------|-------|
+| Risk | Shared files are cited by every design mode. | High | Generate the consumer list from the live tree before any rename and verify every reference after the map is applied. |
+| Risk | A Python helper is mistaken for a filesystem candidate. | Medium | Classify by extension and package role before applying the kebab rule. |
 
----
+Dependencies: the canonical convention and exemption boundary in `001-convention-policy-and-scope/`; the pinned BASE and rename-map evidence from the program's earlier baseline/tooling phases; and the sibling handoffs named in this phase's plan.
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- No blocking questions; the live shared tree and the program exemption boundary define the candidate set.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

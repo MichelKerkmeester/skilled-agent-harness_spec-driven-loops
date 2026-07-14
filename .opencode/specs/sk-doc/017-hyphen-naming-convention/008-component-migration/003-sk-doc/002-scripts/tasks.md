@@ -1,36 +1,29 @@
 ---
-title: "Tasks: Phase 2: scripts [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: sk-doc scripts and test fixtures"
+description: "Concrete execution and verification tasks for the sk-doc scripts-tree naming phase."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc scripts tasks"
+  - "scripts fixture rename tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-scripts"
-    last_updated_at: "2026-07-14T15:17:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored scripts tasks"
+    next_safe_action: "Execute the type-aware inventory"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-scripts"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/scripts/", ".opencode/skills/sk-doc/scripts/tests/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: sk-doc scripts and test fixtures
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 2: scripts
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -41,66 +34,43 @@ _memory:
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Inventory every file and symlink under `scripts/` and classify by extension.
+- [ ] T002 Freeze the thirteen non-Python fixture/test source/target rows and all consumer search terms.
+- [ ] T003 Record Python script names and package directories as explicit exemptions.
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Rename `auto_detect_command.md`, `missing_emojis.md`, `missing_sections.md`, `missing_toc.md`, `single_dash_anchors.md`, `auto_detect_spec.md`, `valid_command.md`, `valid_install_guide.md`, `valid_readme.md`, `valid_skill.md`, `valid_spec.md`, `test_flowchart_validator.sh`, and `test_frontmatter_version.mjs` to kebab-case.
+- [ ] T005 Update fixture loaders, test references, README links, globs, and path-valued registry entries.
+- [ ] T006 Leave all `.py`, existing hyphenated executable names, and facade symlink basenames unchanged.
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T007 Verify: no non-Python snake_case candidate remains under `scripts/`.
+- [ ] T008 Verify: every old fixture path has no stale live consumer and every target is discoverable.
+- [ ] T009 Verify: Python script names, symlink names, modes, and target behavior match BASE.
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete.
+- [ ] All requirements in `spec.md` have evidence in the candidate report.
+- [ ] The phase checklist is satisfied by the central verifier.
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See `spec.md`.
+- **Plan**: See `plan.md`.
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

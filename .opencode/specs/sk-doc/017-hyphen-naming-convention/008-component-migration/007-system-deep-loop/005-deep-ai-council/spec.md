@@ -1,182 +1,114 @@
 ---
-title: "Feature Specification: Phase 5: deep-ai-council [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: deep-ai-council filesystem names (017 phase 007/005)"
+description: "The deep-ai-council packet contains 12 underscore-bearing directory families and 89 underscore-bearing files, including paired feature-catalog and manual-playbook trees, council graph material, and assets. This phase renames those in-scope paths to kebab-case and repairs their references while preserving council artifacts, state contracts, and tool-mandated names."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep-ai-council kebab-case migration"
+  - "AI council filesystem names"
+  - "council packet path repair"
+  - "deep-ai-council snake_case resources"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-deep-ai-council"
-    last_updated_at: "2026-07-14T15:17:52Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored council phase spec"
+    next_safe_action: "Execute the council rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-deep-ai-council"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The live deep-ai-council inventory has 12 underscore-bearing directory families and 89 underscore-bearing files."
+      - "The feature_catalog and manual_testing_playbook trees are paired views of the same council surface and move under one map."
+      - "SKILL.md, package/tool names, council state keys, and generated artifacts remain protected."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 5: deep-ai-council
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Deep-ai-council filesystem names
 
----
+> Phase adjacency under the system-deep-loop component parent: predecessor `004-deep-review`; successor `006-deep-improvement`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/005-deep-ai-council` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 11 |
-| **Predecessor** | 004-deep-review |
-| **Successor** | 006-deep-improvement |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | deep-ai-council |
+| **Origin** | Phase 005 of the system-deep-loop component migration under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 5** of the system deep loop (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The council packet carries two parallel documentation surfaces: `feature_catalog/` describes council capabilities and `manual_testing_playbook/` describes their scenarios. Both contain the same underscore-separated category families, including `artifact_persistence_and_state_format`, `council_deliberation_and_seat_diversity`, `council_graph_integration`, `convergence_and_rollback`, `runtime_routing_and_rename`, and `writer_library_contract`; assets also include `deep_ai_council_config.json`, `deep_ai_council_dashboard.md`, and `prompt_pack_round.md`.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phase moves the council packet's in-scope filesystem names to kebab-case as one paired reference closure, preserving council routing, artifact persistence, graph integration, convergence decisions, and public mode identity.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- The 12 underscore-bearing directory families under `deep-ai-council/`, including the paired `feature_catalog/` and `manual_testing_playbook/` category trees, `behavior_benchmark/`, and their index files.
+- The 89 underscore-bearing files across assets, catalog/playbook scenarios, references, and council benchmark material, including `deep_ai_council_config.json`, `council_graph_query_five_modes_prompt_safe_context.md`, `state_jsonl_records_council_complete_event.md`, and `runtime_agent_renamed_to_deep_ai_council.md`.
+- Council `SKILL.md`, README, scripts, tests, vitest configuration, resource maps, Markdown links, artifact path values, and graph/replay references where a filesystem path changes.
+- Paired catalog/playbook coverage and council scenario IDs before and after the rename.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- The shared runtime, sibling workflow packets, root playbook, and root benchmark storage.
+- `SKILL.md`, `vitest.config.mjs`, package manifests, generated council artifacts, Python `.py` files/package directories, code identifiers, JSON/YAML/TOML keys, frontmatter fields, database columns, and frozen changelog/history.
+- Changing council seat selection, deliberation order, convergence thresholds, artifact schemas, graph semantics, or public command/agent keys.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/deep-ai-council/assets/` | Rename/reference update | Rename underscore-bearing council config, dashboard, strategy, and prompt assets. |
+| `.opencode/skills/system-deep-loop/deep-ai-council/feature_catalog/` | Rename/reference update | Rename catalog root, paired categories, leaves, and index path values. |
+| `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/` | Rename/reference update | Rename paired playbook categories/scenarios and preserve coverage. |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/`, scripts, tests, and docs | Reference update | Repair council resource paths, artifact roots, graph/replay links, and test inputs. |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every council candidate is classified once | The map covers all 12 directory families and 89 underscore-bearing files with no unknown or duplicate target. |
+| REQ-002 | Paired catalog and playbook trees remain aligned | Each feature leaf and manual scenario keeps its counterpart, index path, and scenario/resource relationship after renaming. |
+| REQ-003 | Council path consumers are repaired | Assets, README/resource maps, scripts, tests, graph/replay references, and artifact path values resolve to kebab-case paths. |
+| REQ-004 | Council behavior and state contracts remain stable | Seat identities, convergence decisions, JSONL fields, artifact schemas, graph events, and public mode keys match BASE evidence. |
+| REQ-005 | Exemptions are respected | Tool/config names, generated artifacts, Python files/package directories, identifiers, data keys, and frozen history retain their original names. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: No in-scope snake_case filesystem name remains under `deep-ai-council/`.
+- **SC-002**: Catalog/playbook parity, resource routing, council artifact persistence, and graph replay remain intact.
+- **SC-003**: The council packet retains its public mode, planning-only boundary, and convergence behavior.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The catalog and playbook duplicate a large category/leaf shape, so renaming one side without the other would create a false documentation surface. Council graph and artifact paths are also assembled in scripts and tests. The phase depends on the frozen map, paired-tree evidence, and reference checker; its checklist requires parity and non-zero council scenario coverage.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The executor must record any generated council output or state path separately from authored resource names before applying the map.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

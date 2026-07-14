@@ -1,170 +1,116 @@
 ---
-title: "Implementation Plan: Phase 4: deep-review [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: deep-review filesystem names (017 phase 007/004)"
+description: "Plan for renaming deep-review assets, catalog/playbook paths, references, and state documentation through the frozen semantic map, then repairing static and dynamic path consumers without changing review contracts."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep-review implementation plan"
+  - "deep review kebab-case rename plan"
+  - "review packet reference closure"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-deep-review"
-    last_updated_at: "2026-07-14T15:17:51Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored deep review phase plan"
+    next_safe_action: "Execute the deep review rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-deep-review"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: Deep-review filesystem names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 4: deep-review
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/system-deep-loop/deep-review/` |
+| **Change class** | Workflow-packet filesystem rename plus reference repair |
+| **Execution** | Isolated worktree using the pinned BASE, review map, and path checker |
+| **Verification** | Resource routing, state/report resolution, scenario parity, links, and review checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Rename the 15 directory families and 96 underscore-bearing files in the review packet. Keep the review resource map, severity/state references, report paths, and command/agent consumers in one closure so the review workflow remains semantically identical under kebab-case names.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The frozen map covers all 15 directories and 96 files with explicit exemptions.
+- [ ] BASE review resource, scenario, state, report, and convergence inventories are captured.
+- [ ] Dynamic reducer/report path builders and command/agent consumers are listed.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Review paths and active consumers are kebab-clean and resolvable.
+- [ ] Catalog/playbook resource and scenario coverage matches BASE.
+- [ ] Severity, convergence, state, report, and command contracts remain unchanged.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Resource layer**: rename assets, references, catalog, playbook, review-dimension, severity, and benchmark paths through a semantic map.
+- **State/report layer**: update filesystem path values used by reducers, JSONL reconstruction, reports, and scenario tooling while preserving keys and event names.
+- **Consumer layer**: repair `SKILL.md`, README, resource maps, command/agent references, Markdown links, and test fixtures.
+- **Content boundary**: leave severity identifiers, finding IDs, YAML/JSON keys, convergence math, and generated output unchanged.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load the review frozen map, BASE path manifest, resource inventory, and scenario/state baseline.
+- [ ] Trace dynamic reducer, iteration, and report path builders and record every non-filesystem string disposition.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename the review directory families and underscore-bearing asset/reference/catalog/playbook files.
+- [ ] Update resource maps, indexes, Markdown links, command/agent paths, test fixtures, and state/report path values.
+- [ ] Preserve tool/config names, generated state, identifiers/keys, and all program exemptions.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Resolve every old/new resource, state, reducer, and report path.
+- [ ] Compare catalog leaves, playbook scenarios, review-depth rollout coverage, and finding IDs with BASE.
+- [ ] Run review routing/convergence/state checks and confirm non-zero discovery with no contract drift.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Candidate coverage | Map scan reports all 15 directories and 96 files once, with exact/casefold/NFC collision checks. |
+| Resource integrity | Resolve assets, references, catalog/playbook indexes, Markdown links, and command/agent paths. |
+| Dynamic paths | Exercise or disposition reducer, iteration, state, and report path builders; search for stale basenames. |
+| Review parity | Compare scenario/finding IDs, severity outputs, convergence decisions, and state reconstruction with BASE. |
+| Exemption safety | Check tool/config names, generated state, Python/package, identifiers/keys, and frozen history. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Dependency | Type | Impact if Blocked |
+|------------|------|-------------------|
+| Runtime path closure | Sibling | Review consumers may point at pre-rename runtime resources. |
+| Frozen review map | Internal | Source/target ownership and collision proof are unavailable. |
+| BASE review/state manifest | Internal | Scenario, report, and convergence parity cannot be shown. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Missing resource, stale reducer/report path, finding or scenario drift, state mismatch, or review routing change.
+- **Procedure**: Revert only the review packet batch, restore the pre-change path/state manifest, and rerun dynamic-path dispositions before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

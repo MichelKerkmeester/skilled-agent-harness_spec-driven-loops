@@ -23,27 +23,25 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "sk-doc create-packet components",
+      "create packet kebab-case phases",
+      "017 create workflow packet names"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "sk-doc",
+      "create-packet",
+      "components",
+      "packet",
+      "kebab-case",
+      "phases",
+      "workflow",
+      "names",
+      "packets",
+      "independent",
+      "authoring",
+      "workflows"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md"
@@ -62,13 +60,19 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Count",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -80,29 +84,23 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The create- packets are independent authoring workflows, but their resource directories and template filenames use mixed snakecase forms",
     "created_at": "2026-07-14T15:17:25Z",
-    "last_save_at": "2026-07-14T15:24:35.084Z",
+    "last_save_at": "2026-07-14T20:00:18.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f2d926920bd2b3b4ac3f1cd9292aca0b1f9a2f4ca9fdd77e49b37af3734d3e5f",
+    "source_fingerprint": "sha256:4f696abc3ed8cbceb89cd86ae865b3f608327110993c675ff10538b992e7f819",
     "source_doc_hashes": {
-      "spec.md": "9b24c3176578fa06c4c8562513a89a5cbd96b1cf4ccb3d54f677e70a3164856b"
+      "spec.md": "0ee9ffc8819fdcf995a6f2552cdeb4980532a5ba1a5ef4e9552c6247b3b1362f"
     },
     "last_active_child_id": null,
     "last_active_at": null

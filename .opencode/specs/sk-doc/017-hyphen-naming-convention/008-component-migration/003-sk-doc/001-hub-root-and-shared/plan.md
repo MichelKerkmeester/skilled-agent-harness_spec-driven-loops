@@ -1,170 +1,117 @@
 ---
-title: "Implementation Plan: Phase 1: hub-root-and-shared [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: sk-doc hub root and shared backbone"
+description: "Execution plan for the sk-doc hub/shared kebab-case rename map, including facade-link preservation and path-reference closure."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc hub shared implementation plan"
+  - "shared backbone rename plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-hub-root-and-shared"
-    last_updated_at: "2026-07-14T15:17:24Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored hub shared plan"
+    next_safe_action: "Build the shared rename manifest"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-hub-root-and-shared"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/shared/", ".opencode/skills/sk-doc/scripts/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: sk-doc hub root and shared backbone
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: hub-root-and-shared
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/sk-doc/shared/` and root facade references |
+| **Change class** | Filesystem rename plus path-reference update |
+| **Execution** | Isolated worktree at the pinned 017 baseline |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Inventory the actual shared tree, classify every underscore-bearing path against the 001 exemption set, apply only the eleven non-exempt name changes, and update consumers as one dependency-closed batch. Keep symlink paths, Python names, metadata names, and tool-mandated names unchanged.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The baseline inventory includes shared assets, references, scripts, and root facade links.
+- [ ] The rename map lists the five asset names, five reference names, and `skill_contract.cjs` target.
+- [ ] All Python and tool-mandated paths are explicitly classified as exempt.
+- [ ] Consumers and symlink targets are identified before any rename.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Every changed path resolves and no old shared path remains in live consumers.
+- [ ] Symlink target and executable-mode parity are proven.
+- [ ] The phase checklist has evidence for collision, reference, and exemption checks.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Rename manifest**: semantic source-to-target rows for shared assets, references, and the CommonJS script.
+- **Reference closure**: static search across `SKILL.md`, READMEs, packet resources, and registries, plus review of dynamic path joins.
+- **Facade preservation**: root `scripts/` links remain links; only moved targets and path-valued references change.
+- **Exemption filter**: Python `.py`, Python package directories, mandated names, keys, and identifiers are never passed to the rename step.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Capture the shared-tree census, symlink target/mode inventory, and baseline reference search.
+- [ ] Pin the rename manifest and classify every underscore-bearing candidate.
+
+### Phase 2: Implementation
+
+- [ ] Rename `changelog_template.md`, `frontmatter_templates.md`, `llmstxt_templates.md`, `skill_contract.json`, and `template_rules.json`.
+- [ ] Rename `core_standards.md`, `evergreen_packet_id_rule.md`, `frontmatter_versioning.md`, `hvr_rules.md`, `quick_reference.md`, and `skill_contract.cjs`.
+- [ ] Update only path-valued consumers and preserve facade links.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Re-run the candidate census and prove no unclassified shared name remains.
+- [ ] Resolve every changed path from the hub, shared README, and packet consumers.
+- [ ] Compare symlink targets, modes, and executable behavior with the baseline.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Manifest-to-filesystem count parity and collision checks |
+| REQ-002 | Exemption report for `.py`, package directories, mandated names, and metadata |
+| REQ-003 | Whole-repository search for each old shared path and target resolution checks |
+| REQ-004 | `find -type l`, `readlink`, mode comparison, and representative facade invocation |
+| REQ-005 | Diff review of keys, identifiers, and frontmatter fields |
+| REQ-006 | Link/resource load checks for the hub and every create-* packet |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 001 convention policy and scope | Internal contract | Required | Rename boundary is undefined |
+| `shared/` and root `scripts/` tree | Local surface | Available | No safe manifest can be built |
+| Later create-* phases | Downstream consumers | Pending | Their specs must use the final shared paths |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A collision, unresolved consumer, broken symlink, mode drift, or exemption leak appears.
+- **Procedure**: Revert the path-scoped rename/reference commit, restore the original relative symlink targets, and rerun the baseline census before resuming.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

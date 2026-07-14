@@ -1,170 +1,113 @@
 ---
-title: "Implementation Plan: Phase 5: benchmark [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: sk-doc root benchmark artifact boundary"
+description: "Verification-first plan for the root benchmark census and any baseline-specific non-exempt artifact rename."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc root benchmark audit plan"
+  - "benchmark artifact naming plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-benchmark"
-    last_updated_at: "2026-07-14T15:17:28Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored root benchmark audit plan"
+    next_safe_action: "Run the root benchmark census"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-benchmark"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/benchmark/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: sk-doc root benchmark artifact boundary
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 5: benchmark
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/sk-doc/benchmark/` |
+| **Change class** | Census, with conditional root-artifact rename only if present at BASE |
+| **Execution** | Pinned baseline; no artifact creation |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Enumerate the root benchmark directory including hidden files, resolve any root-owned references, and classify the observed result. The current inventory is `.gitkeep` only, so the expected map is empty; the report must prove that result before the rollup can accept the phase.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] Root benchmark path listing and reference search are defined.
+- [ ] Root-vs-`create-benchmark` ownership is explicit.
+- [ ] Fixture/profile/storage-guide candidate classes are ready if the baseline is non-empty.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] `.gitkeep`-only zero-row status is proven or every actual root artifact is mapped.
+- [ ] Root references resolve and no external packet resource was changed.
+- [ ] Benchmark payload semantics remain unchanged.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Root census**: include hidden and generated-looking files.
+- **Ownership filter**: keep `create-benchmark/` outside this phase.
+- **Conditional map**: apply semantic rename rows only for actual root paths at BASE.
+- **Rollup evidence**: report count and classification to phase 007.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Pin BASE and capture the complete root benchmark listing.
+- [ ] Search root and repository consumers for benchmark paths.
+
+### Phase 2: Implementation
+
+- [ ] Preserve `.gitkeep`-only baseline without mutation, or rename only actual root non-exempt artifacts found at BASE.
+- [ ] Update root-owned path references if an artifact map exists.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Re-run the census and prove count/path parity.
+- [ ] Verify root ownership, content fields, and create-benchmark separation.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Hidden-inclusive root listing and consumer search |
+| REQ-002 | Pinned count and zero-row/artifact map evidence |
+| REQ-003 | Root path resolution and stale-token search |
+| REQ-004 | Exact-path ownership audit |
+| REQ-005 | Benchmark content/key diff review |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 003-create-packets/007-create-benchmark | Adjacent component | Planned | Packet/root boundary may be confused |
+| Root benchmark baseline | Local surface | Available | Census cannot be reproduced |
+| 001 convention policy | Naming authority | Required | Candidate classification is undefined |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Root census differs from the pinned baseline or ownership is ambiguous.
+- **Procedure**: Stop, preserve the current tree, and amend the root artifact manifest before any rename.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

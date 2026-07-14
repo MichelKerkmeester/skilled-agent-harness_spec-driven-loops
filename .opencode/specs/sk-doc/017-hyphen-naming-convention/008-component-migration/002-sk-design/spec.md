@@ -1,226 +1,116 @@
 ---
-title: "Feature Specification: Phase 2: sk-design [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: sk-design component migration (017 phase parent)"
+description: "Lean phase parent for the kebab-case filesystem naming work across the sk-design hub, mode packets, catalog/playbook trees, benchmark artifacts, changelog evidence, and final gate."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-design naming phases"
+  - "sk-design kebab-case migration"
+  - "017 sk-design component migration"
+importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-sk-design"
-    last_updated_at: "2026-07-14T15:16:56Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored sk-design phase parent"
+    next_safe_action: "Resume the selected sk-design child phase"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-sk-design"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-design/SKILL.md"
+      - ".opencode/skills/sk-design/mode-registry.json"
+      - ".opencode/skills/sk-design/shared/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: sk-design
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: sk-design component migration
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/002-sk-design` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 14 |
-| **Predecessor** | 001-sk-code |
-| **Successor** | 003-sk-doc |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Branch** | `main` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design |
+| **Predecessor** | `001-sk-code` |
+| **Successor** | `003-sk-doc` |
+| **Handoff Criteria** | All child phase checklists and the final sk-design gate pass. |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 2** of the component migration (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The sk-design surface spans a routing hub, shared reference base, six mode packets, feature catalogs, manual playbooks, benchmark snapshots, and changelog records. Its non-exempt filesystem names must follow the 017 kebab-case convention while Python scripts/package directories and tool-mandated names remain exact.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This parent organizes one child phase per coherent surface so each child can inventory names, update path references, and hand evidence to the final gate. The child documents own all implementation detail.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Hub/shared Markdown assets and references.
+- Six mode-packet surfaces outside their catalog/playbook trees.
+- All sk-design feature-catalog and manual-testing-playbook trees.
+- Benchmark artifact labels, changelog evidence, and the final subtree gate.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Migration execution during this authoring pass.
+- Python scripts, Python package directories, tool-mandated names, code identifiers, data keys, and frontmatter fields.
+- Repository surfaces outside `.opencode/skills/sk-design/`.
 <!-- /ANCHOR:scope -->
-
----
-
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-
-### P0 - Blockers (MUST complete)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
-<!-- /ANCHOR:requirements -->
-
----
-
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
-
----
-
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+> This parent is intentionally lean. Each child folder owns its spec, plan, tasks, checklist, optional decision record, and continuity.
 
 | Phase | Folder | Focus | Status |
-|-------|--------|-------|--------|
-| 1 | 001-hub-root-and-shared/ | [Phase 1 scope] | Pending |
-| 2 | 002-design-interface/ | [Phase 2 scope] | Pending |
-| 3 | 003-design-foundations/ | [Phase 3 scope] | Pending |
-| 4 | 004-design-motion/ | [Phase 4 scope] | Pending |
-| 5 | 005-design-audit/ | [Phase 5 scope] | Pending |
-| 6 | 006-design-md-generator/ | [Phase 6 scope] | Pending |
-| 7 | 007-design-mcp-open-design/ | [Phase 7 scope] | Pending |
-| 8 | 008-feature-catalog/ | [Phase 8 scope] | Pending |
-| 9 | 009-manual-testing-playbook/ | [Phase 9 scope] | Pending |
-| 10 | 010-benchmark/ | [Phase 10 scope] | Pending |
-| 11 | 011-changelog-verify/ | [Phase 11 scope] | Pending |
-| 12 | 012-skill-gate/ | [Phase 12 scope] | Pending |
+|-------|-------|-------|-------|
+| 001 | 001-hub-root-and-shared/ | Rename only the non-exempt hub/shared filesystem names to kebab-case and update every reference that resolves those paths. | Planned |
+| 002 | 002-design-interface/ | Rename the design-interface mode's non-exempt filesystem names to kebab-case and keep its routing, procedure, and handoff references intact. | Planned |
+| 003 | 003-design-foundations/ | Rename non-exempt design-foundations filesystem names to kebab-case while preserving Python tooling and all resource references. | Planned |
+| 004 | 004-design-motion/ | Rename the motion mode's non-exempt filesystem names to kebab-case and update its resource references without changing motion guidance. | Planned |
+| 005 | 005-design-audit/ | Rename the audit mode's non-exempt filesystem names to kebab-case and update evidence, fixture, and routing references without changing audit semantics. | Planned |
+| 006 | 006-design-md-generator/ | Rename the md-generator mode's non-exempt filesystem names to kebab-case and update its extraction and validation references while preserving the backend contract. | Planned |
+| 007 | 007-design-mcp-open-design/ | Rename the transport packet's non-exempt filesystem names to kebab-case, choose a valid target for the private shell helper, and update all transport references. | Planned |
+| 008 | 008-feature-catalog/ | Rename every non-exempt feature-catalog root, category directory, and feature file to kebab-case and update catalog-owned references across the sk-design surface. | Planned |
+| 009 | 009-manual-testing-playbook/ | Rename every non-exempt manual-testing-playbook root, category directory, and scenario file to kebab-case and update all playbook-owned references. | Planned |
+| 010 | 010-benchmark/ | Rename non-exempt benchmark artifact paths to kebab-case and update storage-guide and README references while preserving frozen report content and baseline identity. | Planned |
+| 011 | 011-changelog-verify/ | Verify that the sk-design changelog contains a matching kebab-case migration entry and a version greater than the current v1.4.3.0 without performing any rename. | Planned |
+| 012 | 012-skill-gate/ | Aggregate sibling evidence and verify the complete sk-design surface is kebab-clean outside the declared exemptions, without introducing new migration work. | Planned |
 
-### Phase Transition Rules
+### Phase handoffs
 
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-
-### Phase Handoff Criteria
-
-| From | To | Criteria | Verification |
-|------|-----|----------|--------------|
-| 001-hub-root-and-shared | 002-design-interface | [Criteria TBD] | [Verification TBD] |
-| 002-design-interface | 003-design-foundations | [Criteria TBD] | [Verification TBD] |
-| 003-design-foundations | 004-design-motion | [Criteria TBD] | [Verification TBD] |
-| 004-design-motion | 005-design-audit | [Criteria TBD] | [Verification TBD] |
-| 005-design-audit | 006-design-md-generator | [Criteria TBD] | [Verification TBD] |
-| 006-design-md-generator | 007-design-mcp-open-design | [Criteria TBD] | [Verification TBD] |
-| 007-design-mcp-open-design | 008-feature-catalog | [Criteria TBD] | [Verification TBD] |
-| 008-feature-catalog | 009-manual-testing-playbook | [Criteria TBD] | [Verification TBD] |
-| 009-manual-testing-playbook | 010-benchmark | [Criteria TBD] | [Verification TBD] |
-| 010-benchmark | 011-changelog-verify | [Criteria TBD] | [Verification TBD] |
-| 011-changelog-verify | 012-skill-gate | [Criteria TBD] | [Verification TBD] |
+| From | To | Handoff evidence |
+|-------|-------|-------|
+| 001–007 | 008 | Component maps and local reference sweeps are clean; catalog ownership is explicit. |
+| 008 | 009 | Feature-catalog paths and catalog→playbook handoff ledger are complete. |
+| 009 | 010 | All playbook roots/indexes/scenarios resolve under the target names. |
+| 010 | 011 | Benchmark paths and report parity evidence are complete. |
+| 011 | 012 | Changelog version/scope verification passes. |
+| 012 | Parent packet | All sibling contracts pass and the whole sk-design inventory is kebab-clean outside exemptions. |
 <!-- /ANCHOR:phase-map -->
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+- The release owner must select the final changelog version greater than v1.4.3.0 before phase 011 executes.
+- The execution coordinator must pin the candidate/base evidence context used by all sibling reports.
+<!-- /ANCHOR:questions -->
+
+## RELATED DOCUMENTS
+
+- **Parent packet**: See `../spec.md`.
+- **Child phases**: See the twelve `[0-9][0-9][0-9]-*/` folders below this parent.
+- **Graph metadata**: See `graph-metadata.json` for the child graph pointer.

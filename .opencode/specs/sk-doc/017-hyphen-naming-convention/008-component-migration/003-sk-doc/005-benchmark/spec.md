@@ -1,182 +1,110 @@
 ---
-title: "Feature Specification: Phase 5: benchmark [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: sk-doc root benchmark artifact boundary"
+description: "The root sk-doc benchmark directory is assigned a naming phase for fixtures, profiles, and storage-guide artifacts, but the pinned surface currently contains only .gitkeep. This phase records the empty baseline, verifies no hidden or referenced snake_case artifact is missed, and keeps create-benchmark packet resources in their separate phase."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc benchmark artifact naming"
+  - "root benchmark kebab-case audit"
+  - "017 benchmark phase"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-benchmark"
-    last_updated_at: "2026-07-14T15:17:28Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored root benchmark audit docs"
+    next_safe_action: "Confirm the root benchmark census"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-benchmark"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/benchmark/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 5: benchmark
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: sk-doc root benchmark artifact boundary
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark` |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/005-benchmark` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 7 |
-| **Predecessor** | 004-manual-testing-playbook |
-| **Successor** | 006-changelog-verify |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 005 of the sk-doc component migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 5** of the sk doc (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The root `benchmark/` boundary is reserved for sk-doc benchmark artifacts, but the current tree contains only `.gitkeep`; the fixtures, profiles, and storage guides described by the surface contract are not present at this baseline. A rollup gate still needs evidence that this phase did not overlook a snake_case artifact or confuse the root boundary with the `create-benchmark` packet resources.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The outcome is an evidence-pinned root benchmark census. If the pinned execution baseline remains empty, no rename is performed; any actual artifact is classified and handled only within this phase's root boundary.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- Census `.opencode/skills/sk-doc/benchmark/`, including hidden files and referenced paths.
+- Confirm the current `.gitkeep`-only baseline and record a zero-row rename map if unchanged.
+- If the pinned baseline contains root fixtures, profiles, or storage guides, rename their non-exempt filesystem names to kebab-case and update root-benchmark references.
+- Preserve root boundary ownership and report any artifact reference owned by `create-benchmark` phase 007.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- The `create-benchmark/` packet assets/references, handled by nested phase 007.
+- Benchmark payload keys, profile fields, fixture identifiers, content names, and tool-mandated files.
+- Creating benchmark artifacts or running a migration during this authoring pass.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/sk-doc/benchmark/` | Verify/rename if present | Census root artifacts; current baseline is `.gitkeep` only |
+| `005-benchmark/` | Documentation only | Record the zero-row or baseline-specific acceptance contract |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The root benchmark inventory is complete | Hidden files, regular files, directories, and consumers are listed at BASE |
+| REQ-002 | The empty baseline is proven or actual artifacts are classified | The report records `.gitkeep`-only count or a complete root artifact rename map |
+| REQ-003 | Root benchmark references remain valid | No stale root-benchmark path exists after any scoped rename |
+| REQ-004 | Create-benchmark packet ownership remains separate | Packet resources are not renamed or counted as root artifacts |
+| REQ-005 | Benchmark content contracts remain stable | Keys, fields, identifiers, and tool names are unchanged |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The root benchmark boundary has a complete, evidence-pinned naming census.
+- **SC-002**: No root artifact is missed and no create-benchmark packet resource is double-counted.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Pinned root benchmark baseline | Empty result may be mistaken for missing work | Record full listing and count, including `.gitkeep` |
+| Risk | `create-benchmark/` is conflated with root `benchmark/` | Cross-phase rename collision | Use exact path ownership in the manifest |
+| Risk | Hidden/generated artifact is missed | Gate reports false clean state | Include hidden files and reference search in census |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. A non-empty root benchmark baseline requires a manifest amendment before execution.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

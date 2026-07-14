@@ -1,170 +1,118 @@
 ---
-title: "Implementation Plan: Phase 12: skill-gate [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Skill gate (017 phase 012)"
+description: "Execution plan for Skill gate in the 017 sk-design naming subtree."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "skill-gate implementation plan"
+  - "sk-design skill gate plan"
+  - "017 skill-gate tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate"
 _memory:
   continuity:
-    packet_pointer: "scaffold/012-skill-gate"
-    last_updated_at: "2026-07-14T15:17:23Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored skill gate plan"
+    next_safe_action: "Execute phase on pinned worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/012-skill-gate"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-design/SKILL.md"
+      - ".opencode/skills/sk-design/mode-registry.json"
+      - ".opencode/skills/sk-design/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: Skill gate (017 phase 012)
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 12: skill-gate
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+|-------|-------|
+| **Surface** | the complete `.opencode/skills/sk-design/` naming and reference surface |
+| **Change class** | Verification-only gate |
+| **Execution** | Pinned isolated worktree; migration execution is a later pass |
 
-### Overview
-[2-3 sentences: what this implements and the technical approach]
+Aggregate sibling evidence and verify the complete sk-design surface is kebab-clean outside the declared exemptions, without introducing new migration work.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The live phase boundary and exemption set are recorded.
+- [ ] Every phase-owned underscore path has a disposition or the phase proves it is absent.
+- [ ] The source→target map, consumer inventory, and rollback route are available.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] The phase checklist is satisfied with pinned evidence.
+- [ ] No stale or broken path reference remains in the phase surface.
+- [ ] No semantic identifier, data key, frontmatter field, Python path, or tool-mandated name was altered.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Read-only evidence gate over a scoped filesystem and reference inventory
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Inventory**: the live the complete `.opencode/skills/sk-design/` naming and reference surface tree and its exact candidate paths.
+- **Policy boundary**: kebab-case for filesystem names, except Python scripts/package directories and tool-mandated names.
+- **Reference ledger**: every path-valued consumer is updated or explicitly marked unchanged.
+- **SOL checklist**: blocking acceptance contract with evidence-pinned commands, counts, and clean-worktree proof.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Sibling reports + complete filesystem inventory → exemption-aware reference sweep → rollup verdict.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Confirm the pinned BASE, phase boundary, and clean isolated worktree.
+- [ ] Read the current phase-owned path inventory and canonical exemption policy.
+- [ ] Freeze the evidence inputs before any execution.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Core execution
+- [ ] Load sibling checklist/evidence contracts and reject missing, stale, or contradictory phase status.
+- [ ] Build the complete sk-design filesystem inventory, classify candidates using the canonical exemption set, and resolve every path-valued consumer.
+- [ ] Emit a read-only rollup verdict with zero unknown candidates and no new migration edits.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Run every phase-specific checklist item with concrete path, count, or content evidence.
+- [ ] Compare before/after inventories and confirm no unexpected tracked mutation.
+- [ ] Record the handoff evidence for the next sibling or rollup gate.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+|-------|-------|-------|
+| Evidence aggregation | Sibling checklists and reports | All P0/P1 gates passed |
+| Filesystem inventory | Complete sk-design tree | Zero in-scope snake_case names |
+| Reference sweep | Markdown/data/shell consumers | Zero stale or broken paths |
+| Exemption audit | Tool/Python/key boundaries | No prohibited rename |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+|-------|-------|-------|-------|
+| Phases 001–011 checklists | Internal | Required | Rollup cannot pass |
+| Canonical exemption policy | Internal | Required | Names cannot be classified safely |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Any missing, contradictory, or failed evidence in the read-only gate.
+- **Procedure**: Do not repair in this phase; return the exact failing evidence to the owning sibling/coordinator and rerun after the source state changes.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

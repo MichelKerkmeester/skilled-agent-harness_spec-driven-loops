@@ -2,25 +2,219 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "system-deep-loop benchmark naming",
+      "benchmark storage kebab-case",
+      "deep loop benchmark path repair",
+      "benchmark fixture profile naming",
+      "system-deep-loop benchmark implementation plan",
+      "benchmark storage rename plan",
+      "deep loop benchmark report path closure",
+      "system-deep-loop benchmark tasks",
+      "benchmark storage naming tasks",
+      "deep loop benchmark report path tasks",
+      "system-deep-loop benchmark checklist",
+      "benchmark storage naming verification"
+    ],
+    "key_topics": [
+      "system-deep-loop",
+      "benchmark",
+      "naming",
+      "storage",
+      "kebab-case",
+      "deep",
+      "loop",
+      "path",
+      "repair",
+      "fixture",
+      "profile",
+      "implementation"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 9: benchmark",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/benchmark/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "non-zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root system-deep-loop benchmark boundary contains three underscore-separated storage directories—after_d3_proxy, live_mode_b, and router_mode_a—while its report filenames are already kebab-case. This phase renames authored storage labels, repairs benchmark index/path references, and classifies fixture/profile and generated-output ownership without changing report payloads or benchmark scores.",
     "created_at": "2026-07-14T15:17:55Z",
-    "last_save_at": "2026-07-14T15:17:55Z",
+    "last_save_at": "2026-07-14T19:30:41.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:5daf86e50122cd411f6b944a4ccdb713506495314c1752afa6d5cf596235d020",
+    "source_doc_hashes": {
+      "spec.md": "029828742bbec53e808ef8529c195d75e9201781d103281699027aec52daf26d",
+      "plan.md": "e31b9d35857ddc05272247c6a78b193c99b9812a027b27871387b44e8f1afa0d",
+      "tasks.md": "e069f5b50efc06d0f3bd7db68bca87d581e86c2bf1a01dd8516c006885d9e919",
+      "checklist.md": "5f72216b13abef62fe85e93e3b5139d87685fd92c67ada1d547220de6cacc58f",
+      "decision-record.md": "c325f011925a1d9d70a5fff90ccfb55814fad87fded25d629df56d3d5c04036b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

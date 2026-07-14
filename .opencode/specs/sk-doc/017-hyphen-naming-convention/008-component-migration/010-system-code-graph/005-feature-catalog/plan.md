@@ -1,170 +1,138 @@
 ---
-title: "Implementation Plan: Phase 5: feature-catalog [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: system-code-graph feature catalog"
+description: "Rename the feature-catalog root, eight categories, and 19 files with an explicit path map, then repair catalog and cross-surface links while keeping classifier tokens and content identifiers stable."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-code-graph feature catalog implementation plan"
+  - "code graph feature-catalog path closure"
+  - "catalog rename map"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-feature-catalog"
-    last_updated_at: "2026-07-14T15:18:17Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored catalog implementation plan"
+    next_safe_action: "Freeze 19-file catalog map and cross-links"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-feature-catalog"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-code-graph/feature_catalog"
+      - ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md"
+      - ".opencode/skills/system-code-graph/SKILL.md"
+      - ".opencode/skills/system-code-graph/README.md"
+      - ".opencode/skills/system-code-graph/INSTALL_GUIDE.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The current tree contains eight snake_case category directories and 19 files including the root index."
+      - "Catalog classification tokens, feature IDs, tool IDs, and content identifiers remain unchanged."
 ---
+
+# Implementation Plan: system-code-graph feature catalog
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 5: feature-catalog
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown catalog assets, sk-doc routing metadata, path-aware validators |
+| **Framework** | Feature-catalog index and catalog-to-playbook/reference link contracts |
+| **Storage** | Version-controlled 19-file Markdown tree and derived metadata |
+| **Testing** | Inventory/map check, link scan, catalog validation, count and identifier parity |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Use a bijective map for the feature-catalog root, root index, eight category directories, and 18 category files.
+Update only path contexts in catalog content and consumers. The central root-name consumer contract supplies the
+read/emit transition; this phase changes the system-code-graph tree and links, not the classifier's identifiers or
+feature content schema.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The 19-file inventory, eight category list, and target map are pinned.
+- [ ] Root-consumer/alias behavior and cross-phase playbook/reference targets are available.
+- [ ] BASE feature IDs, source references, catalog links, and discovery counts are recorded.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] One feature-catalog root and eight kebab-case categories exist.
+- [ ] All catalog links and path-valued consumer references resolve.
+- [ ] Classification tags, IDs, frontmatter, code/data identifiers, and category semantics are unchanged.
+- [ ] Catalog file/link/count checks match BASE.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Dependency-closed content-tree rename with path-only link rewriting.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- Catalog root/index: feature_catalog and feature_catalog.md.
+- Category groups: context_retrieval, coverage_graph, detect_changes, doctor_code_graph,
+  edge_confidence_and_provenance, manual_scan_verify_status, mcp_tool_surface, and read_path_freshness.
+- Consumers: SKILL routing metadata, README/INSTALL/ARCHITECTURE indexes, catalog files, playbook links, references,
+  and live path-aware validators.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The classifier and catalog tooling discover the root/index, then operators follow category/file links to source
+references and playbook scenarios. The map updates each filesystem segment and link target while preserving the
+skill_asset_feature_catalog classification token, feature IDs, and content identifiers.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Enumerate all 19 files and eight categories; calculate kebab targets and collision checks.
+- [ ] Scan catalog, skill docs, reference pointers, playbook links, validators, and other live consumers for old paths.
+- [ ] Capture feature IDs, source references, link counts, and classifier discovery counts at BASE.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename the root, root index, categories, and all 18 category files in dependency-closed groups.
+- [ ] Update path-valued links and root/category/file examples in the enumerated consumers.
+- [ ] Leave classification tags, feature/tool IDs, code identifiers, frontmatter fields, data keys, and generated
+  metadata unchanged.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Scan for duplicate roots and stale live old paths.
+- [ ] Resolve every catalog link, catalog-to-playbook pointer, and catalog-to-reference pointer.
+- [ ] Run catalog validation and compare IDs, file counts, link counts, and discovery output to BASE.
+- [ ] Record the target map for the manual-playbook phase and subtree gate.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Inventory | Root, categories, files, and collisions | rg, filesystem manifest, rename-map checker |
+| Links | Catalog indexes and cross-links | Markdown/path resolver |
+| Classification | Root/index discovery and template tags | sk-doc validator/classifier |
+| Content | IDs, source references, fields, and counts | parser and BASE comparison |
+| Integration | Top-level docs and path-aware consumers | targeted generator/validator/link smoke |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Root-name consumer/alias phases | Internal | Required | New root may not be discoverable |
+| Frozen catalog map | Internal | Required | Partial tree rename breaks links |
+| Reference and manual-playbook maps | Internal | Required | Cross-links cannot be closed |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Missing catalog target, duplicate root, changed feature ID/classifier result, or link/count drift.
+- **Procedure**: Restore the catalog map and path-only link edits in the isolated worktree, retain the old-path
+  disposition report, and rerun the root discovery baseline before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

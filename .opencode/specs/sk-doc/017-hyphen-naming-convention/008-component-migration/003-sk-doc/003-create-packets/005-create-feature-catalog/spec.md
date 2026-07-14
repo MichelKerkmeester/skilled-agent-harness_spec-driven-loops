@@ -1,182 +1,111 @@
 ---
-title: "Feature Specification: Phase 5: create-feature-catalog [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: create-feature-catalog resource names"
+description: "The create-feature-catalog packet contains snake_case asset template filenames and a shared pitfalls reference. This phase renames those non-exempt resources to kebab-case and updates packet-local path references without changing catalog schema fields or feature identifiers."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "create-feature-catalog resource naming"
+  - "feature catalog kebab-case phase"
+  - "feature catalog template rename"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-create-feature-catalog"
-    last_updated_at: "2026-07-14T15:22:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored feature catalog phase docs"
+    next_safe_action: "Build the feature catalog rename map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-create-feature-catalog"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/create-feature-catalog/assets/", ".opencode/skills/sk-doc/create-feature-catalog/references/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 5: create-feature-catalog
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: create-feature-catalog resource names
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog` |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/005-create-feature-catalog` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 11 |
-| **Predecessor** | 004-create-command |
-| **Successor** | 006-create-manual-testing-playbook |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc/create-feature-catalog |
+| **Origin** | Phase 005 of the nested create-packets decomposition |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 5** of the Create packets specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The feature-catalog authoring packet names both of its asset templates and its pitfalls reference with underscores. These files are consumed as packet resources, while catalog field names and feature IDs are content contracts that must not be normalized by a filesystem rename.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The outcome is a kebab-case resource surface with resolved template links and unchanged catalog schema semantics.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- Rename `assets/feature_catalog_snippet_template.md` to `feature-catalog-snippet-template.md`.
+- Rename `assets/feature_catalog_template.md` to `feature-catalog-template.md`.
+- Rename `references/common_pitfalls.md` to `common-pitfalls.md`.
+- Update packet-local links and path values in `SKILL.md`, README, templates, and references.
+- Distinguish external feature-catalog path values from names owned by this packet.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- Catalog field keys, feature identifiers, frontmatter fields, and example payload keys.
+- `SKILL.md`, `README.md`, changelog files, package metadata, and other mandated names.
+- External catalog surfaces and other create-* packets.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `create-feature-catalog/assets/{feature_catalog_snippet_template,feature_catalog_template}.md` | Rename/reference update | Convert the two asset filenames |
+| `create-feature-catalog/references/common_pitfalls.md` | Rename/reference update | Convert the pitfalls reference filename |
+| `create-feature-catalog/SKILL.md`, `README.md`, and docs | Modify | Repoint packet-owned resource paths |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The three packet-owned resources use kebab-case | Manifest and filesystem census match exactly |
+| REQ-002 | Template and reference links resolve | Every packet-local old path consumer points at its target |
+| REQ-003 | Catalog schema content remains stable | No field key, feature ID, frontmatter field, or payload key changes as a side effect |
+| REQ-004 | External path boundaries remain explicit | Paths owned by another surface are not silently renamed in this phase |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The three create-feature-catalog resource names are kebab-case.
+- **SC-002**: Feature-catalog templates remain usable with unchanged catalog semantics.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Feature-catalog templates | Authoring links break | Resolve all packet-local template links |
+| Risk | A catalog key resembles a filesystem name | Schema drift | Review key/value changes separately from path changes |
+| Risk | External catalog paths are edited under this scope | Cross-phase collision | Classify path ownership before editing |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. Any cross-surface path consumer must be reported to the owning phase rather than expanded here.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

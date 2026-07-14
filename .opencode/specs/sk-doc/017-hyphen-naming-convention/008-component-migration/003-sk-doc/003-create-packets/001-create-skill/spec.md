@@ -1,182 +1,114 @@
 ---
-title: "Feature Specification: Phase 1: create-skill [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: create-skill resource names"
+description: "The create-skill packet uses snake_case directories and template/reference filenames throughout its parent-skill and ordinary skill resource trees. This phase converts those non-exempt filesystem names to kebab-case and updates generator and documentation references while preserving SKILL.md, manifests, and Python scripts."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "create-skill resource naming"
+  - "create-skill kebab-case phase"
+  - "parent skill template rename"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-create-skill"
-    last_updated_at: "2026-07-14T15:22:34Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored create-skill phase docs"
+    next_safe_action: "Build the create-skill rename map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-create-skill"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/create-skill/assets/", ".opencode/skills/sk-doc/create-skill/references/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: create-skill
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: create-skill resource names
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill` |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/001-create-skill` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 11 |
-| **Predecessor** | None |
-| **Successor** | 002-create-readme |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc/create-skill |
+| **Origin** | Phase 001 of the nested create-packets decomposition |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 1** of the Create packets specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The create-skill packet's resource names encode parent-skill and skill template concepts with underscores. These names are filesystem paths consumed by scaffolding instructions and package documentation, not Python identifiers. A partial rename would leave generated links or parent-skill references pointing at missing files.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The outcome is a component-local kebab-case resource tree with every path consumer updated and the tool contract unchanged.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- Rename `assets/parent_skill/` and `references/parent_skill/` to `parent-skill/`.
+- Rename `parent_skill_description_template.json`, `parent_skill_graph_metadata_template.json`, `parent_skill_hub_router_template.json`, `parent_skill_hub_template.md`, and `parent_skill_registry_template.json` to kebab-case.
+- Rename `assets/parent_skill/scaffold/hub_skill_scaffold.md` and `packet_skill_scaffold.md` to kebab-case.
+- Rename skill assets `skill_asset_template.md`, `skill_md_template.md`, `skill_procedure_template.md`, `skill_readme_template.md`, `skill_reference_template.md`, `skill_scaffold_template.md`, and `skill_smart_router.md`.
+- Rename `parent_hub_router_schema.md`, `parent_skills_nested_packets.md`, `common_pitfalls.md`, `validation_and_packaging.md`, `creation_workflow.md`, and `examples_and_maintenance.md` in their packet-owned reference directories.
+- Update `SKILL.md`-adjacent documentation, template links, scaffold instructions, and Python-script path values.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- `SKILL.md`, `README.md`, package manifests, registry metadata, and other tool-mandated names.
+- `.py` script filenames and Python package directories under `scripts/`.
+- Content identifiers, JSON keys, frontmatter fields, and resources in other create-* packets.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `create-skill/assets/parent_skill/` | Rename/reference update | Kebab-case the parent-skill directory, five templates, and two scaffold files |
+| `create-skill/assets/skill/` | Rename/reference update | Kebab-case seven skill template/resource filenames |
+| `create-skill/references/parent_skill/` and `references/skill/` | Rename/reference update | Kebab-case reference directories and six reference filenames |
+| `create-skill/references/shared/` | Rename/reference update | Rename the two packet-local shared reference files |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | All listed non-exempt create-skill resource names use kebab-case | Directory and filename census matches the component manifest with no unknown candidate |
+| REQ-002 | Every create-skill path consumer follows the target names | `SKILL.md`, README, references, scaffold text, and generator path values resolve after the rename |
+| REQ-003 | Tool-mandated and Python names remain exact | `SKILL.md`, manifests, `.py` files, and Python package directories have no rename entries |
+| REQ-004 | Parent-skill and ordinary-skill resource domains remain distinct | Parent and skill template links resolve to their corresponding renamed directories |
+| REQ-005 | No content key or identifier is changed as a side effect | Diff review separates filesystem path updates from template payload fields |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The create-skill assets and references have no in-scope snake_case filesystem name.
+- **SC-002**: Skill and parent-skill scaffolding resolves the renamed resources without changing generated contract content.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | create-skill `SKILL.md` and README | Stale links or loader paths | Search all relative path values and render/read each target |
+| Risk | Parent-skill directory is referenced from multiple scaffold examples | Partial resource loading | Search both `parent_skill` and each basename stem across the packet |
+| Risk | Python helper path is included in a mechanical rename | Import failure | Keep `.py` basenames and package directories in the explicit exemption list |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. Dynamic path assembly must be recorded in the execution evidence if static reference search cannot resolve it.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

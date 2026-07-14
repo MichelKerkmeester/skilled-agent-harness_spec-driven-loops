@@ -1,170 +1,134 @@
 ---
-title: "Implementation Plan: Phase 3: references [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: system-code-graph references"
+description: "Rename the seven reference Markdown files with an explicit path map, repair all top-level and relative links, and prove the already-compliant gold-query assets and reference contracts remain unchanged."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-code-graph references implementation plan"
+  - "code graph reference link closure"
+  - "reference filename rename map"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-references"
-    last_updated_at: "2026-07-14T15:18:15Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored references implementation plan"
+    next_safe_action: "Freeze seven-file reference map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-references"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-code-graph/references"
+      - ".opencode/skills/system-code-graph/SKILL.md"
+      - ".opencode/skills/system-code-graph/README.md"
+      - ".opencode/skills/system-code-graph/ARCHITECTURE.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The seven reference-file targets are database-path-policy, code-graph-readiness-check, readiness-and-scope-fingerprint, launcher-lease, naming-conventions, ownership-boundary, and tool-surface."
+      - "The two code-graph-gold-queries.json asset files are already compliant and remain outside the rename set."
 ---
+
+# Implementation Plan: system-code-graph references
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 3: references
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown references, path-aware documentation links, JSON asset references |
+| **Framework** | sk-doc resource routing and Markdown link contracts |
+| **Storage** | Version-controlled references tree and already-compliant gold-query assets |
+| **Testing** | Rename-map check, Markdown/path resolution, reference discovery, content/hash parity |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Use a bijective map for the seven reference files and update only filesystem path contexts in their consumers.
+Reference keys and identifiers remain unchanged, while the two existing code-graph-gold-queries.json assets receive an
+explicit already-compliant disposition rather than entering a mechanical underscore sweep.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Seven reference files, target names, and all reference consumers are pinned.
+- [ ] Top-level, plugin bridge, relative reference, catalog, and playbook links are enumerated.
+- [ ] Asset/template dispositions, reference discovery counts, and BASE content hashes are recorded.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All seven reference files have kebab-case names and no stale live old paths.
+- [ ] Every affected link and path pointer resolves.
+- [ ] Reference keys, path-hint identifiers, fields, content, and already-compliant assets retain BASE semantics.
+- [ ] No generated/template file was fabricated or hand-edited outside its owner.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Dependency-closed reference-file rename with path-only link rewriting.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- Reference groups: config/database_path_policy.md, readiness/*.md, and runtime/*.md.
+- Consumers: SKILL, README, ARCHITECTURE, INSTALL_GUIDE, plugin bridge docs, reference cross-links, catalog, and playbook.
+- Preserved boundaries: reference keys, path-hint identifiers, Markdown content, code/data identifiers, and compliant assets.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The skill routes agents through path hints and supporting reference links, while operators navigate top-level and
+cross-surface documentation. The map updates each reference filename and link target; it does not change the route
+key, tool identity, or policy prose.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Enumerate the seven reference files and the two existing gold-query asset files.
+- [ ] Scan top-level docs, plugin bridge docs, relative references, catalog, playbook, and external live consumers.
+- [ ] Freeze targets, collision evidence, link counts, content hashes, and intentional old-name dispositions.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename the seven reference files to database-path-policy.md, code-graph-readiness-check.md,
+  readiness-and-scope-fingerprint.md, launcher-lease.md, naming-conventions.md, ownership-boundary.md, and tool-surface.md.
+- [ ] Update all path-valued links and hints in the enumerated consumers.
+- [ ] Preserve reference keys, path-hint identifiers, frontmatter, prose, code/data identifiers, and gold-query assets.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Scan for stale live old reference paths and resolve every affected Markdown/path link.
+- [ ] Run reference discovery and documentation checks with BASE-equivalent counts.
+- [ ] Compare content/hashes for preserved assets and non-path values.
+- [ ] Hand off the reference map to the runtime/catalog/playbook phases and subtree gate.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Inventory | Seven reference files, assets, templates, collisions | rg, filesystem manifest, rename-map checker |
+| Links | Top-level, relative, catalog, playbook, and plugin documentation | Markdown/path resolver |
+| Discovery | Resource routing and path-hint resolution | targeted sk-doc/system-code-graph checks |
+| Content | Reference prose, fields, identifiers, and assets | parser/hash comparison |
+| Integration | Operator documentation and runtime reference pointers | focused documentation scans |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 001 package map | Internal | Required | Package-root prefixes can remain stale |
+| Feature-catalog and playbook maps | Internal | Required | Cross-surface links cannot be fully closed |
+| Frozen reference inventory | Internal | Required | Partial rename can leave broken relative links |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Missing reference target, broken link, discovery drift, changed route key, or asset/content hash drift.
+- **Procedure**: Restore the seven-file map and path-only link edits in the isolated worktree, retain the old-name
+  disposition ledger, and rerun the reference/link baseline before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

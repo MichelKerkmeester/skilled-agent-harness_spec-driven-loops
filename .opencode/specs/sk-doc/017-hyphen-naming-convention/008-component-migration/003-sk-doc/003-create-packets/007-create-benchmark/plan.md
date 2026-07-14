@@ -1,170 +1,113 @@
 ---
-title: "Implementation Plan: Phase 7: create-benchmark [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: create-benchmark resource names"
+description: "Execution plan for the create-benchmark taxonomy, fixture, profile, and guide rename/reference closure."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "create-benchmark resource implementation plan"
+  - "benchmark fixture rename plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-create-benchmark"
-    last_updated_at: "2026-07-14T15:22:38Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored create-benchmark plan"
+    next_safe_action: "Inventory benchmark resource consumers"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-create-benchmark"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/create-benchmark/assets/", ".opencode/skills/sk-doc/create-benchmark/references/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: create-benchmark resource names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 7: create-benchmark
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/sk-doc/create-benchmark/` |
+| **Change class** | Taxonomy directory/file rename plus path-reference update |
+| **Execution** | One component-local, dependency-closed batch |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Rename the actual behavior/model/skill benchmark directories and all listed fixture, profile, guide, shared-asset, and shared-reference files. Update the full packet-local reference graph, while leaving Python names and benchmark payload fields unchanged.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] Asset and reference taxonomy inventories are captured.
+- [ ] Every underscore-bearing path has a target or explicit exemption.
+- [ ] Cross-domain links and generated path producers are identified.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] No in-scope snake_case benchmark path remains.
+- [ ] All taxonomy, fixture, profile, and guide links resolve.
+- [ ] Shared-asset content and benchmark payloads are stable.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Asset taxonomy**: rename behavior, model, and skill benchmark directories and their templates.
+- **Reference taxonomy**: rename five guide domains and their nested files.
+- **Shared assets/references**: rename the two shared asset templates, case studies, and worked example.
+- **Graph closure**: update direct links, indexes, globs, and path-producing guidance across the packet.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Capture the full asset/reference census and freeze the semantic map.
+- [ ] Record tool-mandated, Python, and payload-field exemptions.
+
+### Phase 2: Implementation
+
+- [ ] Rename taxonomy directories and all listed underscore-bearing files.
+- [ ] Update packet-local links and generated/path-valued references.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Resolve every benchmark resource and search for stale old taxonomy tokens.
+- [ ] Compare discovery counts, shared assets, and payload contracts with BASE.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Full manifest and filesystem census |
+| REQ-002 | Cross-domain link resolution and old-token search |
+| REQ-003 | Shared asset target and diff audit |
+| REQ-004 | Fixture/profile/schema content comparison |
+| REQ-005 | Python path exemption audit |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 001 hub/shared phase | Sibling path contract | Planned | Shared guide links may be stale |
+| create-benchmark packet resources | Local surface | Available | Rename closure cannot be built |
+| 001 convention policy | Naming authority | Required | Exemptions cannot be classified |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A benchmark resource is unreachable, a shared asset drifts, or payload content changes.
+- **Procedure**: Revert the component-local rename/reference commit and restore the original taxonomy and filenames.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

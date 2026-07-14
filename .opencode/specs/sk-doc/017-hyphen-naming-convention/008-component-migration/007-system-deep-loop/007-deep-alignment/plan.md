@@ -1,170 +1,116 @@
 ---
-title: "Implementation Plan: Phase 7: deep-alignment [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: deep-alignment filesystem names (017 phase 007/007)"
+description: "Plan for renaming deep-alignment assets, catalog/playbook paths, and adapter/state references through a path-aware semantic map, then proving that embedded identifiers, authority keys, and read-only behavior remain unchanged."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep-alignment implementation plan"
+  - "alignment kebab-case rename plan"
+  - "alignment adapter path closure"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-deep-alignment"
-    last_updated_at: "2026-07-14T15:17:54Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored deep alignment phase plan"
+    next_safe_action: "Execute the deep alignment rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-deep-alignment"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: Deep-alignment filesystem names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 7: deep-alignment
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/system-deep-loop/deep-alignment/` |
+| **Change class** | Alignment resource filesystem rename plus path-string repair |
+| **Execution** | Isolated worktree using the pinned BASE, semantic path map, and key/identifier manifest |
+| **Verification** | Authority routing, resource resolution, playbook parity, read-only checks, and key preservation |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Rename the 15 alignment directory families and 68 underscore-bearing files using path-aware rows only. Repair path values in the embedded resource maps and adapter references, while keeping authority/lane keys, code-like identifiers, configuration keys, and the read-only tool boundary byte-stable.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The frozen map covers all 15 directories and 68 files with explicit path-versus-identifier dispositions.
+- [ ] BASE authority, lane, resource, playbook, and read-only tool-surface evidence is captured.
+- [ ] Embedded code/data key inventories and dynamic adapter path references are listed.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Alignment paths and active consumers are kebab-clean and resolvable.
+- [ ] Four authority adapters, resource/playbook coverage, and state transitions match BASE.
+- [ ] No identifier/key, authority name, tool contract, or read-only boundary changed.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Path layer**: rename assets, references, catalog/playbook categories, and leaf files through the semantic map.
+- **Embedded-map layer**: update only strings that resolve to moved files; compare identifier, authority, lane, and key inventories separately.
+- **Verification layer**: exercise each registered authority and the read-only guard with the renamed resources.
+- **Content boundary**: preserve `SKILL.md`, data keys, frontmatter fields, authority names, state events, and generated output.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load the alignment map, BASE path/key manifest, authority/resource inventory, and read-only baseline.
+- [ ] Trace embedded path strings and dynamic adapter references; disposition all non-filesystem strings.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename alignment asset, catalog, playbook, behavior-benchmark, and reference paths.
+- [ ] Update path-valued resource maps, adapter links, Markdown links, indexes, and test inputs.
+- [ ] Preserve authority/lane identifiers, JSON/YAML keys, tool names, generated output, and read-only permissions.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Resolve all old/new resource and adapter paths for the four authorities.
+- [ ] Compare catalog/playbook coverage, state transitions, route outputs, and key inventories with BASE.
+- [ ] Run read-only and alignment verification checks with non-zero authority/scenario discovery.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Candidate coverage | Map scan reports 15 directories and 68 files once, with path/key classifications and collisions. |
+| Path integrity | Resolve asset/reference/catalog/playbook links and adapter/resource map path values. |
+| Key preservation | Compare authority names, lane keys, embedded identifiers, JSON/YAML keys, and frontmatter fields with BASE. |
+| Alignment parity | Exercise all four authorities, state transitions, route/verdict behavior, and read-only checks. |
+| Exemption safety | Confirm SKILL.md, generated output, Python/package, tool names, database columns, and frozen history. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Dependency | Type | Impact if Blocked |
+|------------|------|-------------------|
+| Frozen path/key map | Internal | Path strings cannot be separated safely from identifiers and keys. |
+| Runtime path closure | Sibling | Alignment backend/resource consumers may remain stale. |
+| BASE authority/read-only manifest | Internal | Adapter and permission parity cannot be proven. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A changed key/identifier, missing adapter resource, read-only violation, authority/scenario drift, or collision.
+- **Procedure**: Revert only the alignment path batch, restore the path/key manifest, and rerun all authority and read-only checks before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

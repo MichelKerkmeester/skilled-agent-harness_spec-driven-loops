@@ -1,106 +1,78 @@
 ---
-title: "Tasks: Phase 14: agents-gate [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: agents surface rollup gate (017 phase 014)"
+description: "Tasks for phase 014 of the 017 agents component migration: aggregate sibling evidence and close the agents naming gate."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "agents surface rollup gate tasks"
+  - "agents naming gate tasks"
+  - "017 phase 014 agents tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
-    packet_pointer: "scaffold/014-agents-gate"
-    last_updated_at: "2026-07-14T15:18:49Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored agents gate docs"
+    next_safe_action: "Execute agents rollup gate"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/014-agents-gate"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Tasks: Agents Surface Rollup Gate
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 14: agents-gate
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Confirm the 13 sibling checklists, parent phase map, policy, and pinned BASE
+- [ ] T002 Confirm the three runtime roots and the expected 39 definition paths
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T003 Build the sibling evidence matrix for 001 through 013
+- [ ] T004 Reconcile the runtime inventory against the 39-path expected definition set
+- [ ] T005 Union all sibling candidate sets and record the required empty result or a blocker
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T006 Verify: every sibling has path-level P0 evidence
+- [ ] T007 Verify: the aggregate candidate set is exactly ∅
+- [ ] T008 Verify: the whole agents directory scan is kebab-clean within scope
+- [ ] T009 Verify: no runtime file or unassigned migration task was introduced
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete
+- [ ] All requirements in spec.md met with path-level evidence
+- [ ] Phase gate green (validate/build/test as applicable)
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

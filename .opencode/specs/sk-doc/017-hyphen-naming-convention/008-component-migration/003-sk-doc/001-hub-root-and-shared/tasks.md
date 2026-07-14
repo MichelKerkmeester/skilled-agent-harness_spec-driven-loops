@@ -1,36 +1,29 @@
 ---
-title: "Tasks: Phase 1: hub-root-and-shared [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: sk-doc hub root and shared backbone"
+description: "Concrete execution and verification tasks for the sk-doc hub/shared kebab-case rename phase."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc hub shared tasks"
+  - "shared backbone rename tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-hub-root-and-shared"
-    last_updated_at: "2026-07-14T15:17:24Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored hub shared tasks"
+    next_safe_action: "Execute the census and reference inventory"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-hub-root-and-shared"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/shared/", ".opencode/skills/sk-doc/scripts/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: sk-doc hub root and shared backbone
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 1: hub-root-and-shared
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -41,66 +34,46 @@ _memory:
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Record the shared-tree census and root facade symlink targets at BASE.
+- [ ] T002 Classify every underscore-bearing candidate as rename, exempt, mandated, generated, or frozen.
+- [ ] T003 Record all live path consumers for the eleven non-exempt target names.
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Rename the five shared asset names to kebab-case.
+- [ ] T005 Rename `core_standards.md`, `evergreen_packet_id_rule.md`, `frontmatter_versioning.md`, `hvr_rules.md`, `quick_reference.md`, and `skill_contract.cjs` to kebab-case.
+- [ ] T006 Update path-valued references and preserve root facade symlink paths, modes, and relative targets.
+- [ ] T007 Confirm Python scripts, Python package directories, metadata, registry names, and keys were not edited.
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Verify: the manifest is bijective — every changed shared path has one target and no unclassified candidate remains.
+- [ ] T009 Verify: live consumers resolve — no stale old path remains outside intentional historical/content examples.
+- [ ] T010 Verify: the facade is preserved — symlink targets, modes, and representative script dispatch match BASE behavior.
+- [ ] T011 Verify: the exemption boundary is preserved — `.py`, package directories, mandated names, keys, and identifiers are unchanged.
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete.
+- [ ] All requirements in `spec.md` have evidence in the candidate report.
+- [ ] The phase checklist is satisfied by the central verifier.
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See `spec.md`.
+- **Plan**: See `plan.md`.
+- **Decision record**: See `decision-record.md`.
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

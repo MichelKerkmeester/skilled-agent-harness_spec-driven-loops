@@ -1,182 +1,110 @@
 ---
-title: "Feature Specification: Phase 3: create-agent [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: create-agent resource names"
+description: "The create-agent packet contains snake_case template and reference filenames used to scaffold agent documentation. This phase converts those non-exempt names to kebab-case and updates packet-local references without changing agent permission fields, SKILL.md, or other tool-mandated names."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "create-agent resource naming"
+  - "create-agent kebab-case phase"
+  - "agent template rename"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-create-agent"
-    last_updated_at: "2026-07-14T15:22:35Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored create-agent phase docs"
+    next_safe_action: "Build the create-agent rename map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-create-agent"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/create-agent/assets/", ".opencode/skills/sk-doc/create-agent/references/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 3: create-agent
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: create-agent resource names
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent` |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/003-create-agent` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 11 |
-| **Predecessor** | 002-create-readme |
-| **Successor** | 004-create-command |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc/create-agent |
+| **Origin** | Phase 003 of the nested create-packets decomposition |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 3** of the Create packets specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The create-agent packet's `agent_template.md`, `common_pitfalls.md`, and `permission_design.md` filenames are snake_case. They are resource paths used by the agent scaffold and authoring guidance, so the names and their links must move together.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The outcome is a kebab-case create-agent resource tree with unchanged agent permission semantics and complete path-reference closure.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- Rename `assets/agent_template.md` to `agent-template.md`.
+- Rename `references/common_pitfalls.md` and `references/permission_design.md` to kebab-case.
+- Update links and path values in `SKILL.md`, README, the asset, and reference docs.
+- Check that already-hyphenated `agent-vs-skill-vs-command.md` remains unchanged.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- `SKILL.md`, `README.md`, changelog files, package metadata, and tool-mandated names.
+- Agent frontmatter fields, permission identifiers, code examples, and content keys.
+- Other create-* packets and Python names.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `create-agent/assets/agent_template.md` | Rename/reference update | Convert the agent scaffold template filename |
+| `create-agent/references/{common_pitfalls,permission_design}.md` | Rename/reference update | Convert the two snake_case guidance filenames |
+| `create-agent/SKILL.md`, `README.md`, and docs | Modify | Repoint changed resource paths |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The three non-exempt resource names become kebab-case | Manifest and filesystem census match exactly |
+| REQ-002 | Agent scaffold and guidance links resolve | Every old path consumer points to the correct new file |
+| REQ-003 | Agent permission semantics remain unchanged | No frontmatter field, permission value, or identifier changes outside path tokens |
+| REQ-004 | Already-canonical resources remain stable | `agent-vs-skill-vs-command.md` and changelog names are not rewritten |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The create-agent asset/reference resource names are kebab-case.
+- **SC-002**: Agent scaffolding references the new paths with no permission-contract drift.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | create-agent scaffold docs | Generated agents may lose template links | Search old basenames and resolve every target |
+| Risk | Permission examples are mistaken for filesystem names | Agent authority changes | Limit edits to path tokens and links |
+| Risk | A reference is only loaded through a routed path | Static links miss it | Inspect packet routing and resource map entries |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The execution report must record any routed or dynamically assembled resource path.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

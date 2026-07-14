@@ -1,170 +1,116 @@
 ---
-title: "Implementation Plan: Phase 11: skill-gate [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: system-deep-loop subtree skill gate (017 phase 007/011)"
+description: "Plan for aggregating phases 001-010 and running one read-only, exemption-aware whole-surface naming and reference gate. This phase performs no new migration work."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-deep-loop skill gate implementation plan"
+  - "deep loop subtree rollup gate"
+  - "whole surface kebab-case verification"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-skill-gate"
-    last_updated_at: "2026-07-14T15:17:57Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored subtree gate phase plan"
+    next_safe_action: "Aggregate sibling evidence and run the subtree gate"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/011-skill-gate"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: System-deep-loop subtree skill gate
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 11: skill-gate
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Complete `.opencode/skills/system-deep-loop/` plus phases 001-010 evidence |
+| **Change class** | Read-only rollup verification |
+| **Execution** | Pinned candidate/base comparison using the frozen map and exemption manifest |
+| **Verification** | Sibling evidence, whole-tree naming scan, reference resolution, route/scenario/benchmark parity |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Aggregate each child checklist and report, then scan the entire system-deep-loop surface rather than only changed files. The gate fails on an in-scope snake_case name, unresolved path, missing sibling evidence, zero discovery result, or unexpected mutation; it performs no repair.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] Phases 001-010 have their authored L2 docs, checklists, and execution evidence available.
+- [ ] The frozen map, exemption manifest, BASE/candidate SHAs, and generated-output dispositions are pinned.
+- [ ] Whole-surface path/reference and behavior baselines are available.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Every sibling has one accepted evidence row or an explicit blocking discrepancy.
+- [ ] The scope-aware whole-tree naming scan reports zero in-scope snake_case names.
+- [ ] References, routes, scenario IDs, benchmark paths, and parity gates are green with non-zero discovery.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Evidence aggregation**: reconcile each child owner, map hash, checklist status, and discrepancy before scanning the tree.
+- **Scope-aware scan**: exclude Python/package, tool-mandated, generated/lockfile, identifier/key, and frozen-history classes explicitly.
+- **Reference closure**: resolve Markdown, resource-map, module, shell, package, playbook, benchmark, and registry path consumers.
+- **Read-only gate**: report findings to the owning child; do not alter the skill surface during rollup verification.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load phases 001-010 checklists/reports, frozen map, exemption manifest, and BASE/candidate SHAs.
+- [ ] Confirm the scan root includes hub, shared, runtime, five packets, root playbook, and root benchmark.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Aggregate sibling P0/P1 evidence and reconcile ownership/discrepancy rows.
+- [ ] Run the full exemption-aware filesystem-name scan and the whole-surface reference resolver.
+- [ ] Compare routes, resource discovery, test/scenario counts, benchmark paths/scores, and required parity against BASE.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Reject zero-file/zero-scenario scans and any stale or missing child receipt.
+- [ ] Confirm no unexpected tracked mutation after verification.
+- [ ] Emit one gate result with all receipts and owning phase for every failure.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Sibling evidence | Reconcile phases 001-010 checklist P0/P1 status, map hashes, SHAs, and discrepancies. |
+| Naming gate | Scan all filesystem paths under the skill and report zero in-scope snake_case names after exclusions. |
+| Reference integrity | Resolve all active path/link/import/registry consumers and report stale targets by owning phase. |
+| Behavior parity | Run hub routes, workflow discovery, runtime tests, playbook IDs, benchmark paths/scores, and non-zero checks. |
+| Non-mutation | Verify the rollup left no unexpected tracked mutation and did not repair findings. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Dependency | Type | Impact if Blocked |
+|------------|------|-------------------|
+| Phases 001-010 evidence | Internal | The aggregate gate cannot prove ownership or completeness. |
+| Frozen map and exemption manifest | Internal | The naming scan cannot distinguish violations from allowed names. |
+| Whole-surface resolver and behavior baselines | Internal | Clean paths cannot be separated from silently broken consumers. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Any scan/reference/behavior failure or unexpected mutation.
+- **Procedure**: No migration rollback is performed here; pin the finding to its owning child phase, stop the gate, and rerun the read-only rollup after that child supplies a corrected candidate.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

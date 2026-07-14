@@ -1,170 +1,117 @@
 ---
-title: "Implementation Plan: Phase 11: changelog-verify [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Changelog verification (017 phase 011)"
+description: "Execution plan for Changelog verification in the 017 sk-design naming subtree."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "changelog-verify implementation plan"
+  - "sk-design changelog verification plan"
+  - "017 changelog-verify tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-changelog-verify"
-    last_updated_at: "2026-07-14T15:17:23Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored changelog verification plan"
+    next_safe_action: "Execute phase on pinned worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/011-changelog-verify"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-design/changelog/v1.4.3.0.md"
+      - ".opencode/skills/sk-design/changelog/"
+      - ".opencode/skills/sk-design/README.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: Changelog verification (017 phase 011)
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 11: changelog-verify
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+|-------|-------|
+| **Surface** | `.opencode/skills/sk-design/changelog/` release-note records |
+| **Change class** | Verification-only gate |
+| **Execution** | Pinned isolated worktree; migration execution is a later pass |
 
-### Overview
-[2-3 sentences: what this implements and the technical approach]
+Verify that the sk-design changelog contains a matching kebab-case migration entry and a version greater than the current v1.4.3.0 without performing any rename.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The live phase boundary and exemption set are recorded.
+- [ ] Every phase-owned underscore path has a disposition or the phase proves it is absent.
+- [ ] The source→target map, consumer inventory, and rollback route are available.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] The phase checklist is satisfied with pinned evidence.
+- [ ] No stale or broken path reference remains in the phase surface.
+- [ ] No semantic identifier, data key, frontmatter field, Python path, or tool-mandated name was altered.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Read-only evidence gate over a scoped filesystem and reference inventory
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Inventory**: the live `.opencode/skills/sk-design/changelog/` release-note records tree and its exact candidate paths.
+- **Policy boundary**: kebab-case for filesystem names, except Python scripts/package directories and tool-mandated names.
+- **Reference ledger**: every path-valued consumer is updated or explicitly marked unchanged.
+- **SOL checklist**: blocking acceptance contract with evidence-pinned commands, counts, and clean-worktree proof.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Changelog history → selected version/scope entry → evidence report → sibling/rollup gate.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Confirm the pinned BASE, phase boundary, and clean isolated worktree.
+- [ ] Read the current phase-owned path inventory and canonical exemption policy.
+- [ ] Freeze the evidence inputs before any execution.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Core execution
+- [ ] Inspect the current changelog sequence and identify the release-note entry that claims the 017 sk-design work.
+- [ ] Compare the selected entry against the packet phase map, current v1.4.3.0 baseline, and exemption boundary.
+- [ ] Return a pinned read-only verification report; do not create or rename changelog files.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Run every phase-specific checklist item with concrete path, count, or content evidence.
+- [ ] Compare before/after inventories and confirm no unexpected tracked mutation.
+- [ ] Record the handoff evidence for the next sibling or rollup gate.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+|-------|-------|-------|
+| History inspection | Changelog files and current version | Read-only version/scope comparison |
+| Scope verification | Entry text vs phase map | Exact packet/surface/exemption evidence |
+| Integrity | Changelog path set | No rename or tracked mutation |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+|-------|-------|-------|-------|
+| 017 completed sk-design evidence | Internal | Required | Missing or mismatched entry blocks gate |
+| Current release marker v1.4.3.0 | Internal | Present | Version comparison has no anchor |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Any missing, contradictory, or failed evidence in the read-only gate.
+- **Procedure**: Do not repair in this phase; return the exact failing evidence to the owning sibling/coordinator and rerun after the source state changes.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

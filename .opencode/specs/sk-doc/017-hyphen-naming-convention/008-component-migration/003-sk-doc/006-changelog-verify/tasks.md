@@ -1,36 +1,29 @@
 ---
-title: "Tasks: Phase 6: changelog-verify [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: sk-doc changelog and version verification"
+description: "Concrete verification tasks for the sk-doc migration changelog and version-bump phase."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc changelog verification tasks"
+  - "sk-doc version bump tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-changelog-verify"
-    last_updated_at: "2026-07-14T15:17:29Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored changelog verify tasks"
+    next_safe_action: "Collect sibling release evidence"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-changelog-verify"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/changelog/", ".opencode/skills/sk-doc/SKILL.md"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: sk-doc changelog and version verification
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 6: changelog-verify
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -41,66 +34,42 @@ _memory:
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Collect direct/nested sibling checklists, manifests, and reports.
+- [ ] T002 Record latest baseline changelog `v1.8.1.0` and post-migration `SKILL.md` version.
+- [ ] T003 Resolve the candidate changelog entry under create-changelog rules.
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Perform no rename or release-file mutation in this verification phase.
+- [ ] T005 Map the candidate entry's scope/path claims to sibling evidence.
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T006 Verify: one new greater four-part changelog entry exists.
+- [ ] T007 Verify: entry names the completed sk-doc rename set and cites accurate paths.
+- [ ] T008 Verify: entry version matches `SKILL.md` and historical entries are unchanged.
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete.
+- [ ] All requirements in `spec.md` have evidence in the candidate report.
+- [ ] The phase checklist is satisfied by the central verifier.
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See `spec.md`.
+- **Plan**: See `plan.md`.
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

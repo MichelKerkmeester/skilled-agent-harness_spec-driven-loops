@@ -1,224 +1,106 @@
 ---
-title: "Feature Specification: Phase 3: create-packets [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: sk-doc create-packet components"
+description: "The eleven create-* workflow packets under sk-doc contain snake_case asset, reference, and template names. This nested phase parent separates each packet so its rename map and path-reference closure can be reviewed without widening another component's scope."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc create-packet components"
+  - "create packet kebab-case phases"
+  - "017 create workflow packet names"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-create-packets"
-    last_updated_at: "2026-07-14T15:17:26Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored create-packet phase map"
+    next_safe_action: "Select a create-* child phase for execution"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-create-packets"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 3: create-packets
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: sk-doc create-packet components
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/003-create-packets` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 7 |
-| **Predecessor** | 002-scripts |
-| **Successor** | 004-manual-testing-playbook |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc` |
+| **Child Count** | 11 direct phases |
+| **Handoff Criteria** | Every create-* child passes its checklist and the parent rollup can account for every scoped path |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 3** of the sk doc (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+The create-* packets are independent authoring workflows, but their resource directories and template filenames use mixed snake_case forms. A single broad rename would make it difficult to distinguish path updates from content identifiers and from tool-mandated names.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
----
+Give each create-* packet a bounded Level-2 execution contract for converting its own non-exempt filesystem names to kebab-case and updating every path consumer while keeping `SKILL.md`, manifests, package metadata, Python files, and Python package directories exact.
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- `create-skill`, `create-readme`, `create-agent`, and `create-command` resource trees.
+- `create-feature-catalog`, `create-manual-testing-playbook`, and `create-benchmark` resource trees.
+- `create-flowchart`, `create-changelog`, `create-diff`, and `create-quality-control` resource trees.
+- References in each packet's `SKILL.md`, `README.md`, assets, references, tests, and registry-facing path values where the referenced filesystem name changes.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- The hub root, shared backbone, root scripts, root manual-testing-playbook, root benchmark, changelog evidence, and rollup gate, which have sibling phases.
+- Tool-mandated `SKILL.md`, `README.md`, `mode-registry.json`, package manifests, lockfiles, and similar names.
+- Python `.py` files, Python import-package directories, content identifiers, and non-path keys.
 
 ### Files to Change
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `create-*/` | Modify | 001-011 | Rename scoped assets/references and update their path consumers |
+| `003-create-packets/001-.../` through `011-.../` | Documentation only | Child phases | Hold the detailed manifest, tasks, and SOL checklist for each packet |
 <!-- /ANCHOR:scope -->
-
----
-
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-
-### P0 - Blockers (MUST complete)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
-<!-- /ANCHOR:requirements -->
-
----
-
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
-
----
-
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
-
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-create-skill/ | [Phase 1 scope] | Pending |
-| 2 | 002-create-readme/ | [Phase 2 scope] | Pending |
-| 3 | 003-create-agent/ | [Phase 3 scope] | Pending |
-| 4 | 004-create-command/ | [Phase 4 scope] | Pending |
-| 5 | 005-create-feature-catalog/ | [Phase 5 scope] | Pending |
-| 6 | 006-create-manual-testing-playbook/ | [Phase 6 scope] | Pending |
-| 7 | 007-create-benchmark/ | [Phase 7 scope] | Pending |
-| 8 | 008-create-flowchart/ | [Phase 8 scope] | Pending |
-| 9 | 009-create-changelog/ | [Phase 9 scope] | Pending |
-| 10 | 010-create-diff/ | [Phase 10 scope] | Pending |
-| 11 | 011-create-quality-control/ | [Phase 11 scope] | Pending |
+| 001 | `001-create-skill/` | Parent-skill and skill template/resource names | Planned |
+| 002 | `002-create-readme/` | README and install-guide assets/references | Planned |
+| 003 | `003-create-agent/` | Agent template and authoring references | Planned |
+| 004 | `004-create-command/` | Command templates and argument/router references | Planned |
+| 005 | `005-create-feature-catalog/` | Feature-catalog templates and guidance | Planned |
+| 006 | `006-create-manual-testing-playbook/` | Manual-testing-playbook templates and guidance | Planned |
+| 007 | `007-create-benchmark/` | Benchmark asset/reference taxonomy and storage guidance | Planned |
+| 008 | `008-create-flowchart/` | Flowchart assets, references, and validator resource paths | Planned |
+| 009 | `009-create-changelog/` | Changelog topology and versioning references | Planned |
+| 010 | `010-create-diff/` | Confirm the packet has no in-scope snake_case filesystem name to rename | Planned |
+| 011 | `011-create-quality-control/` | Quality-control transformation and validation references | Planned |
 
-### Phase Transition Rules
-
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-
-### Phase Handoff Criteria
-
-| From | To | Criteria | Verification |
-|------|-----|----------|--------------|
-| 001-create-skill | 002-create-readme | [Criteria TBD] | [Verification TBD] |
-| 002-create-readme | 003-create-agent | [Criteria TBD] | [Verification TBD] |
-| 003-create-agent | 004-create-command | [Criteria TBD] | [Verification TBD] |
-| 004-create-command | 005-create-feature-catalog | [Criteria TBD] | [Verification TBD] |
-| 005-create-feature-catalog | 006-create-manual-testing-playbook | [Criteria TBD] | [Verification TBD] |
-| 006-create-manual-testing-playbook | 007-create-benchmark | [Criteria TBD] | [Verification TBD] |
-| 007-create-benchmark | 008-create-flowchart | [Criteria TBD] | [Verification TBD] |
-| 008-create-flowchart | 009-create-changelog | [Criteria TBD] | [Verification TBD] |
-| 009-create-changelog | 010-create-diff | [Criteria TBD] | [Verification TBD] |
-| 010-create-diff | 011-create-quality-control | [Criteria TBD] | [Verification TBD] |
+The child checklists are the acceptance contracts. The parent is complete only when each row has a passing child report and no child leaves an unclassified path.
 <!-- /ANCHOR:phase-map -->
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+None at parent level. Child phases must resolve only their own path/reference ambiguities against the 001 convention and must not expand another packet's scope.
+<!-- /ANCHOR:questions -->

@@ -2,25 +2,219 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph manual testing playbook naming",
+      "code graph manual-playbook tree migration",
+      "manual_testing_playbook to manual-testing-playbook",
+      "code graph scenario link closure",
+      "system-code-graph manual testing playbook implementation plan",
+      "code graph manual-playbook path closure",
+      "manual scenario rename map",
+      "system-code-graph manual testing playbook tasks",
+      "code graph manual scenario rename tasks",
+      "manual-playbook link repair tasks",
+      "system-code-graph manual testing playbook checklist",
+      "code graph manual-playbook verification"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "manual",
+      "testing",
+      "playbook",
+      "naming",
+      "code",
+      "graph",
+      "manual-playbook",
+      "tree",
+      "migration",
+      "manual-testing-playbook",
+      "scenario"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 6: manual-testing-playbook",
+    "key_files": [
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/README.md",
+      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Convert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dependency",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operators",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph manual playbook currently uses the snakecase manualtestingplaybook root, nine snakecase category",
     "created_at": "2026-07-14T15:18:17Z",
-    "last_save_at": "2026-07-14T15:18:17Z",
+    "last_save_at": "2026-07-14T20:03:59.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:15da478de19a458ec658057852cc3447fdef39f5e819295c54a2c8e21e6e81e9",
+    "source_doc_hashes": {
+      "spec.md": "f5ca187c2e53bb723ef06cbcf1b320d7dfd3f5792d7612ef008f930226dfa94c",
+      "plan.md": "617ea2889a14c8388f785b7da40e4e09aec6bb034076f74393b895b8a5339c76",
+      "tasks.md": "780da8d02987a0ded5f2b45cc3d829969863396dfefae38595ab0029476e183b",
+      "checklist.md": "8be071d0cd72adb7deb13e4f288064acf9cca38f55b201947838c84b852a39a9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

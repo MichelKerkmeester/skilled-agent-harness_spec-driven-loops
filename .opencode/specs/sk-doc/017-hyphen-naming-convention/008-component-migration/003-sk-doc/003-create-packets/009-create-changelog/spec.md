@@ -1,182 +1,108 @@
 ---
-title: "Feature Specification: Phase 9: create-changelog [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: create-changelog resource names"
+description: "The create-changelog packet contains snake_case reference filenames for topology edge cases, version bump rules, and worked examples. This phase renames those non-exempt resources to kebab-case and updates packet-local links without changing release/version fields or changelog filenames."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "create-changelog resource naming"
+  - "changelog reference kebab-case phase"
+  - "version bump guide rename"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-create-changelog"
-    last_updated_at: "2026-07-14T15:22:40Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored create-changelog phase docs"
+    next_safe_action: "Build the create-changelog rename map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/009-create-changelog"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/create-changelog/references/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 9: create-changelog
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: create-changelog resource names
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog` |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/009-create-changelog` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 11 |
-| **Predecessor** | 008-create-flowchart |
-| **Successor** | 010-create-diff |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc/create-changelog |
+| **Origin** | Phase 009 of the nested create-packets decomposition |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 9** of the Create packets specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The create-changelog packet's three guidance references use underscores, even though the packet's changelog/version contract is otherwise path-sensitive. These reference paths must change without altering version fields, release topology, or changelog filenames.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The outcome is a kebab-case guidance resource set with intact changelog authoring semantics.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- Rename `references/topology_edge_cases.md`, `references/version_bump_rules.md`, and `references/worked_examples.md`.
+- Update links and path values in `SKILL.md`, README, reference indexes, and examples.
+- Preserve changelog filename conventions, version fields, and topology terms as content.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- `SKILL.md`, `README.md`, changelog files, package metadata, and tool-mandated names.
+- Version values, release-note fields, changelog paths outside this packet, and content identifiers.
+- Other create-* packets and the 006 changelog verification phase.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `create-changelog/references/{topology_edge_cases,version_bump_rules,worked_examples}.md` | Rename/reference update | Convert three guidance filenames |
+| `create-changelog/SKILL.md`, `README.md`, and reference indexes | Modify | Repoint packet-owned guidance paths |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | All three guidance resources become kebab-case | Manifest and filesystem census match exactly |
+| REQ-002 | Changelog guidance links resolve | Every old packet-local reference points to the target file |
+| REQ-003 | Version/changelog semantics remain stable | No version field, release filename, topology rule, or content key changes outside path tokens |
+| REQ-004 | The phase boundary remains clear | Global changelog evidence belongs to phase 006, not this component phase |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The create-changelog guidance resources are kebab-case.
+- **SC-002**: Version-bump and topology guidance remains reachable with unchanged release semantics.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Reference index and worked examples | Guidance links break | Search old basenames and resolve all targets |
+| Risk | Version strings resemble path changes | Release contract drift | Review version fields separately from path links |
+| Risk | Global changelog is edited in component phase | Verification scope overlaps | Hand global evidence to phase 006 |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. A path reference outside create-changelog must be recorded for its owning phase.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

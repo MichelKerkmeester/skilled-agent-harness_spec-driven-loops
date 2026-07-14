@@ -20,27 +20,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "system-code-graph kebab-case migration",
+      "system-code-graph component migration",
+      "system-code-graph snake_case cleanup",
+      "system-code-graph naming phases"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "system-code-graph",
+      "kebab-case",
+      "migration",
+      "component",
+      "cleanup",
+      "naming",
+      "phases",
+      "surface",
+      "still",
+      "exposes",
+      "snakecase",
+      "filesystem"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md"
@@ -59,47 +58,47 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Purpose Drive",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Handoff Criteria",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
+        "name": "its",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
+        "name": "1. METADATA",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The system-code-graph surface still exposes snakecase filesystem roots and content paths in its MCP package,",
     "created_at": "2026-07-14T15:17:02Z",
-    "last_save_at": "2026-07-14T15:24:36.243Z",
+    "last_save_at": "2026-07-14T19:30:43.073Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4326101da9e2eee9792d2b2c3482f8f1bf8f421ba18ae8a1d1692278619b3b41",
+    "source_fingerprint": "sha256:7462a0dcd0b5b189d27bbe89df910cfdc3ded4ba850b632dfc70feb79194f2ed",
     "source_doc_hashes": {
-      "spec.md": "40949a3f671311653d2968bdcdf5e87543c8447b7de39783c2df1dd9fc1583cc"
+      "spec.md": "c95a458955009f4dfbd6174838a3f8a38c5078485829a1b921550373745b30d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

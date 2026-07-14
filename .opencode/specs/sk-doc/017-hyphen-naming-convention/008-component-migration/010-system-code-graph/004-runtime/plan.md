@@ -1,170 +1,132 @@
 ---
-title: "Implementation Plan: Phase 4: runtime [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: system-code-graph runtime"
+description: "Inventory the four-file runtime tree, conditionally rename any non-tool-mandated snake_case path, update its consumers, and prove hook/library behavior and discovery remain at BASE parity."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-code-graph runtime implementation plan"
+  - "code graph runtime path plan"
+  - "freshness runtime naming audit"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-runtime"
-    last_updated_at: "2026-07-14T15:18:16Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored runtime implementation plan"
+    next_safe_action: "Freeze runtime inventory and path consumers"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-runtime"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-code-graph/runtime"
+      - ".opencode/skills/system-code-graph/runtime/hooks"
+      - ".opencode/skills/system-code-graph/runtime/lib"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "All four current runtime files and their containing directories are already kebab-case."
+      - "A verified no-rename result is valid and must include path, syntax, behavior, and discovery evidence."
 ---
+
+# Implementation Plan: system-code-graph runtime
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 4: runtime
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | CommonJS/Node hooks and Vitest TypeScript coverage |
+| **Framework** | Runtime freshness guard and code-graph test harness |
+| **Storage** | Runtime source files and path-valued operator examples |
+| **Testing** | Filesystem census, Node syntax, hook behavior, Vitest discovery, path scan |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Build a complete runtime disposition ledger before changing anything. The current runtime contains four already
+kebab-case files, so the expected outcome is an evidence-backed no-op; a conditional rename is performed only if the
+pinned BASE reveals an additional in-scope candidate.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Every runtime directory and file is enumerated.
+- [ ] Hook, library, test, playbook, and top-level documentation consumers are identified.
+- [ ] BASE syntax, behavior, and discovery evidence is captured.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] No runtime filesystem name is unclassified.
+- [ ] Any conditional target has no stale live old path.
+- [ ] Hook/library behavior, safety behavior, and discovery retain BASE parity.
+- [ ] A no-rename result is explicitly recorded when applicable.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Runtime filesystem audit with conditional path-consumer closure.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- Hook paths: hooks/claude/code-graph-freshness.cjs and hooks/codex/code-graph-freshness.cjs.
+- Library/test paths: lib/code-graph/freshness-core.cjs and freshness-core.vitest.ts.
+- Consumers: runtime tests, manual-playbook examples, SKILL/README/ARCHITECTURE/INSTALL documentation, and scripts.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Claude/Codex hook adapters load the freshness core, and tests exercise the same runtime contract. A conditional rename
+updates only filesystem paths and path-valued consumers; event names, environment keys, input/output envelopes, and
+fail-open behavior remain stable.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Enumerate the four current files and every runtime directory.
+- [ ] Scan hook adapters, tests, playbook examples, top-level docs, and external live consumers.
+- [ ] Freeze the candidate map, collision evidence, syntax/behavior baseline, and discovery counts.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Preserve the current kebab-case tree, or rename any additional pinned candidate with a semantic map.
+- [ ] Update all affected hook, library, test, playbook, and documentation path values.
+- [ ] Preserve event names, environment keys, code identifiers, test IDs, and runtime semantics.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Re-run the runtime census and old-name scan.
+- [ ] Run Node syntax, hook behavior, and runtime Vitest checks with BASE-equivalent discovery.
+- [ ] Record zero-candidate or conditional-rename evidence for the feature-catalog/playbook phases.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Inventory | Runtime directories/files and dispositions | rg, filesystem manifest, rename-map checker |
+| Syntax | CommonJS hooks and runtime modules | node --check |
+| Behavior | Freshness evaluation, fail-open, timeout, and path safety | focused runtime checks |
+| Discovery | Runtime Vitest coverage | Vitest with BASE count comparison |
+| Documentation | Runtime path examples and links | Markdown/path scan |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 000 BASE/worktree | Internal | Required | No defensible no-op or rename proof |
+| Phase 001 package map | Internal | Required | Package-root prefixes can produce false stale-path findings |
+| Runtime hook/test consumers | Internal | Required | Path cleanliness alone cannot prove behavior |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: An unclassified runtime name, unresolved path, syntax/behavior failure, or discovery drift.
+- **Procedure**: For a conditional rename, restore the mapped runtime path and reference edits in the isolated worktree,
+  retain the disposition report, and rerun the BASE checks. For a clean census, remove only the evidence of the failed
+  attempt and keep the source tree unchanged.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

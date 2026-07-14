@@ -1,182 +1,110 @@
 ---
-title: "Feature Specification: Phase 6: create-manual-testing-playbook [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: create-manual-testing-playbook resource names"
+description: "The create-manual-testing-playbook packet contains snake_case template and prompt-voice resource filenames. This phase converts those non-exempt names to kebab-case and updates packet-local links while preserving playbook schema fields and scenario identifiers."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "create-manual-testing-playbook resource naming"
+  - "manual testing playbook template kebab-case"
+  - "create playbook resource rename"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-create-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:22:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored create-playbook phase docs"
+    next_safe_action: "Build the create-playbook rename map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-create-manual-testing-playbook"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/create-manual-testing-playbook/assets/", ".opencode/skills/sk-doc/create-manual-testing-playbook/references/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 6: create-manual-testing-playbook
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: create-manual-testing-playbook resource names
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook` |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/006-create-manual-testing-playbook` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 11 |
-| **Predecessor** | 005-create-feature-catalog |
-| **Successor** | 007-create-benchmark |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc/create-manual-testing-playbook |
+| **Origin** | Phase 006 of the nested create-packets decomposition |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 6** of the Create packets specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The create-manual-testing-playbook packet names its two assets and two reference files with underscores. Those resource paths are linked by the playbook authoring workflow, while scenario IDs and prompt/schema fields are content contracts that must remain untouched.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The outcome is a kebab-case authoring-resource tree with intact playbook structure and resolved links.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- Rename `assets/manual_testing_playbook_snippet_template.md` and `assets/manual_testing_playbook_template.md`.
+- Rename `references/common_pitfalls.md` and `references/prompt_voice.md`.
+- Update packet-local links and path values in `SKILL.md`, README, assets, and references.
+- Preserve playbook category/scenario naming rules as content unless a token is a filesystem path.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- `SKILL.md`, `README.md`, changelog files, package metadata, and tool-mandated names.
+- Scenario IDs, category identifiers, frontmatter fields, prompt content, and schema keys.
+- The root `manual_testing_playbook/` tree, handled by phase 004.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `create-manual-testing-playbook/assets/{manual_testing_playbook_snippet_template,manual_testing_playbook_template}.md` | Rename/reference update | Convert the two asset filenames |
+| `create-manual-testing-playbook/references/{common_pitfalls,prompt_voice}.md` | Rename/reference update | Convert the two reference filenames |
+| `create-manual-testing-playbook/SKILL.md`, `README.md`, and docs | Modify | Repoint packet-owned paths |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | All four packet-owned resource names become kebab-case | Manifest and filesystem census match exactly |
+| REQ-002 | Template and guidance links resolve | Every old packet-local path consumer points at its target |
+| REQ-003 | Playbook content contracts remain stable | Scenario IDs, fields, keys, and prompt text are unchanged except for path links |
+| REQ-004 | Root playbook scope remains separate | No root `manual_testing_playbook/` directory or scenario file is changed here |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The create-manual-testing-playbook resources have kebab-case names.
+- **SC-002**: The packet continues to scaffold and explain playbook packages through the renamed paths.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Playbook asset/reference links | Scaffold fails to locate templates | Resolve every packet-local link |
+| Risk | Root playbook paths are confused with packet resources | Cross-phase edits | Use path ownership and phase boundary checks |
+| Risk | Scenario identifiers are normalized accidentally | Manual test selection changes | Review content keys separately from filesystem links |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. Cross-references to the root playbook must be handed to phase 004 if their target is root-owned.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

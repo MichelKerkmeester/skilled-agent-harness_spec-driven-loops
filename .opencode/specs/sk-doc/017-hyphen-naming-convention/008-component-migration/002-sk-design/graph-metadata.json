@@ -24,32 +24,44 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "sk-design naming phases",
+      "sk-design kebab-case migration",
+      "017 sk-design component migration"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "sk-design",
+      "naming",
+      "phases",
+      "kebab-case",
+      "migration",
+      "component",
+      "lean",
+      "phase",
+      "parent",
+      "filesystem",
+      "work",
+      "across"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/mode-registry.json",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,13 +75,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -81,29 +93,29 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
+        "name": "1. METADATA",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Lean phase parent for the kebab-case filesystem naming work across the sk-design hub, mode packets, catalog/playbook trees, benchmark artifacts, changelog evidence, and final gate.",
     "created_at": "2026-07-14T15:16:55Z",
-    "last_save_at": "2026-07-14T15:24:34.747Z",
+    "last_save_at": "2026-07-14T19:30:37.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2d44bb1537689acd393180ea3ce52c0c2de040bdac6aa813129eba69012eae96",
+    "source_fingerprint": "sha256:a42edf41ad053233a2b740897c967e712c49ea5d23baedf406a041958d061df9",
     "source_doc_hashes": {
-      "spec.md": "fca2fc2f88684a51411f7b1a9938e75557a5fc7d3f7da8f3bc707246f05cf99d"
+      "spec.md": "1f98638068cf14161398157059b1b62ba3a16d1f5825f15389807f5abb7e2266"
     },
     "last_active_child_id": null,
     "last_active_at": null

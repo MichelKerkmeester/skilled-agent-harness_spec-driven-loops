@@ -1,182 +1,108 @@
 ---
-title: "Feature Specification: Phase 11: create-quality-control [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: create-quality-control resource names"
+description: "The create-quality-control packet contains snake_case transformation, validation, and workflow reference filenames. This phase converts those non-exempt resources to kebab-case and updates packet-local references while preserving the shared quality-control contract and tool-mandated names."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "create-quality-control resource naming"
+  - "quality control reference kebab-case"
+  - "quality control transformation rename"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-create-quality-control"
-    last_updated_at: "2026-07-14T15:22:41Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored quality control phase docs"
+    next_safe_action: "Build the quality control rename map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/011-create-quality-control"
-      parent_session_id: null
+    key_files: [".opencode/skills/sk-doc/create-quality-control/references/"]
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 11: create-quality-control
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: create-quality-control resource names
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control` |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/011-create-quality-control` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 11 of 11 |
-| **Predecessor** | 010-create-diff |
-| **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc/create-quality-control |
+| **Origin** | Phase 011 of the nested create-packets decomposition |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 11** of the Create packets specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The create-quality-control packet has snake_case reference names for transformation patterns, validation/enforcement, and workflow examples. These are packet resources consumed by the quality workflow, so a filename-only move would leave the documentation quality pipeline with stale path references.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The outcome is a kebab-case reference surface with the quality-control workflow and shared backbone contract unchanged.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- Rename `references/transformation_patterns.md`, `references/validation_and_enforcement.md`, and `references/workflow_examples.md`.
+- Update links and path values in `SKILL.md`, README, reference indexes, and workflow examples.
+- Preserve `references/workflows.md`, shared backbone paths, quality scores, and validation terminology.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- `SKILL.md`, `README.md`, package metadata, and tool-mandated names.
+- Quality-control field names, score keys, workflow identifiers, and content prose that are not paths.
+- The shared `shared/` backbone and other create-* packets.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `create-quality-control/references/{transformation_patterns,validation_and_enforcement,workflow_examples}.md` | Rename/reference update | Convert three reference filenames |
+| `create-quality-control/SKILL.md`, `README.md`, and reference indexes | Modify | Repoint packet-owned paths |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | All three quality-control references become kebab-case | Manifest and filesystem census match exactly |
+| REQ-002 | Quality-control links and indexes resolve | Every old packet-local path points to its target |
+| REQ-003 | The workflow contract remains stable | `workflows.md`, score fields, validation terms, and identifiers are unchanged |
+| REQ-004 | Shared backbone ownership remains clear | Shared resources are referenced but not renamed by this packet phase |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The three create-quality-control reference names are kebab-case.
+- **SC-002**: Quality-control authoring and validation guidance resolves with unchanged workflow semantics.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Quality-control reference indexes | Workflow guidance breaks | Search old basenames and resolve every target |
+| Risk | Shared backbone paths are edited here | Cross-phase collision | Record shared paths as external/unchanged |
+| Risk | Score or validation terms are mistaken for path tokens | Quality behavior drifts | Review content and path diffs separately |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. Any shared path candidate belongs to phase 001 and must be handed off with evidence.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

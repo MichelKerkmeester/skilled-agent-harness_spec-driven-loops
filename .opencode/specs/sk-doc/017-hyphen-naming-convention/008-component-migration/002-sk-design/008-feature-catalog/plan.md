@@ -1,170 +1,119 @@
 ---
-title: "Implementation Plan: Phase 8: feature-catalog [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Feature-catalog (017 phase 008)"
+description: "Execution plan for Feature-catalog in the 017 sk-design naming subtree."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "feature-catalog implementation plan"
+  - "sk-design feature-catalog plan"
+  - "017 feature-catalog tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-feature-catalog"
-    last_updated_at: "2026-07-14T15:17:20Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored feature-catalog plan"
+    next_safe_action: "Execute phase on pinned worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-feature-catalog"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-design/feature_catalog/"
+      - ".opencode/skills/sk-design/design-interface/feature_catalog/"
+      - ".opencode/skills/sk-design/design-md-generator/feature_catalog/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: Feature-catalog (017 phase 008)
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 8: feature-catalog
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+|-------|-------|
+| **Surface** | all seven `.opencode/skills/sk-design/**/feature_catalog/` trees |
+| **Change class** | Filesystem rename plus path-reference update |
+| **Execution** | Pinned isolated worktree; migration execution is a later pass |
 
-### Overview
-[2-3 sentences: what this implements and the technical approach]
+Rename every non-exempt feature-catalog root, category directory, and feature file to kebab-case and update catalog-owned references across the sk-design surface.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The live phase boundary and exemption set are recorded.
+- [ ] Every phase-owned underscore path has a disposition or the phase proves it is absent.
+- [ ] The source→target map, consumer inventory, and rollback route are available.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] The phase checklist is satisfied with pinned evidence.
+- [ ] No stale or broken path reference remains in the phase surface.
+- [ ] No semantic identifier, data key, frontmatter field, Python path, or tool-mandated name was altered.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Deterministic rename-map execution with in-lockstep reference updates
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Inventory**: the live all seven `.opencode/skills/sk-design/**/feature_catalog/` trees tree and its exact candidate paths.
+- **Policy boundary**: kebab-case for filesystem names, except Python scripts/package directories and tool-mandated names.
+- **Reference ledger**: every path-valued consumer is updated or explicitly marked unchanged.
+- **SOL checklist**: blocking acceptance contract with evidence-pinned commands, counts, and clean-worktree proof.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Live path inventory → classified rename map → filesystem/reference execution → parity and resolution checks → phase evidence.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Confirm the pinned BASE, phase boundary, and clean isolated worktree.
+- [ ] Read the current phase-owned path inventory and canonical exemption policy.
+- [ ] Freeze the evidence inputs before any execution.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Core execution
+- [ ] Freeze the phase-local source→target map from the live surface and classify every candidate as rename, exempt, frozen, generated, or tool-mandated.
+- [ ] Apply filesystem renames in dependency-closed batches, update path-valued references in the same batch, and preserve all semantic identifiers and exempt names.
+- [ ] Run the phase checklist against the pinned BASE and record path-resolution, content-parity, and clean-worktree evidence.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Run every phase-specific checklist item with concrete path, count, or content evidence.
+- [ ] Compare before/after inventories and confirm no unexpected tracked mutation.
+- [ ] Record the handoff evidence for the next sibling or rollup gate.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+|-------|-------|-------|
+| Inventory | Phase-owned filesystem paths | Complete classified source→target map |
+| Reference resolution | Markdown, data path values, shell or registry consumers | Zero stale/broken paths |
+| Content parity | Identifiers, keys, fixture/scenario semantics | No semantic changes |
+| Boundary check | Exempt/tool-mandated/Python surfaces | No forbidden rename |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+|-------|-------|-------|-------|
+| 001 convention policy and scope | Internal | Required | Candidate classification is ambiguous |
+| Pinned BASE and rename map | Internal | Required | Parity and rollback evidence are unavailable |
+| Phase-specific sibling handoff | Internal | Required | Cross-surface references may be missed |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Collision, broken reference, semantic diff, exemption breach, or unexpected tracked mutation.
+- **Procedure**: Stop before further renames, preserve the map/report, and revert the phase-scoped commit(s) or discard the isolated worktree. Re-run only from the pinned BASE after the map is corrected.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

@@ -1,182 +1,112 @@
 ---
-title: "Feature Specification: Phase 14: agents-gate [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: agents surface rollup gate (017 phase 014)"
+description: "The agents subtree needs one blocking rollup that aggregates the 13 definition audits and proves the whole runtime naming surface has no in-scope snake_case filesystem name outside the program exemption set."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "agents surface rollup gate"
+  - "agents naming gate"
+  - "017 phase 014 agents"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
-    packet_pointer: "scaffold/014-agents-gate"
-    last_updated_at: "2026-07-14T15:18:49Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored agents gate docs"
+    next_safe_action: "Execute agents rollup gate"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/014-agents-gate"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 14: agents-gate
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Agents Surface Rollup Gate
 
----
+> Phase adjacency under the 017 agents component parent (grouping order, not a runtime dependency): predecessor 013-review-verify; successor None.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/014-agents-gate` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 14 of 14 |
-| **Predecessor** | 013-review-verify |
-| **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 014 of the 017 agents component migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 14** of the agents (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Thirteen sibling definition audits are useful only if their evidence is complete and their candidate sets are aggregated. This phase is the blocking rollup gate: it checks every sibling checklist, accounts for all 39 expected definition paths across the three runtime agent directories, and verifies that the whole agents naming surface contains no in-scope snake_case filesystem name outside the program exemption set.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The purpose is to close the agents subtree as a verified naming surface without creating new migration work or modifying runtime files.
+
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Aggregate the completed evidence from 001-ai-council-verify through 013-review-verify.
+- Account for these 13 definition names in all three runtimes: ai-council, code, context, debug, deep-alignment, deep-improvement, deep-research, deep-review, design, markdown, orchestrate, prompt-improver, and review.
+- Verify the expected 39 definition paths: 13 kebab-case .md names in .opencode/agents and .claude/agents, plus 13 kebab-case .toml names in .codex/agents.
+- Scan the whole agents directories for an in-scope snake_case filesystem name, while applying the program exemptions. README.txt support files in the two Markdown runtimes are not definition candidates and contain no snake_case separator.
+- Keep this phase as a rollup gate only; no rename, content edit, or reference rewrite is introduced.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Any new migration or rename work in the agents directories.
+- Reopening a sibling phase's component scope except to report missing or contradictory evidence.
+- Python scripts, Python import-package directories, tool-mandated names, generated or lockfile output, vendored trees, frozen history, identifiers, keys, and frontmatter fields.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| 014-agents/001-ai-council-verify through 013-review-verify/checklist.md | Inspect | Sibling SOL evidence and candidate-set records |
+| .opencode/agents, .claude/agents, .codex/agents | Inspect | Whole agents naming surface; no runtime mutation |
+| 014-agents/014-agents-gate/* | Create/Replace | Rollup gate documentation |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every sibling phase is represented in the rollup | All 13 sibling checklists are present and their P0 evidence is available for review |
+| REQ-002 | The expected definition inventory is complete | The rollup accounts for exactly 39 paths: 13 .md definitions in each of .opencode/agents and .claude/agents, and 13 .toml definitions in .codex/agents |
+| REQ-003 | The aggregate candidate set is correct | The union of the 13 sibling candidate sets is exactly ∅ |
+| REQ-004 | The whole agents surface is kebab-clean within scope | A recursive name scan finds no in-scope snake_case filesystem name; exemptions are recorded rather than misclassified |
+| REQ-005 | The gate adds no migration work | The rollup changes only assigned documentation and evidence; no runtime agent file is renamed or edited |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All 13 sibling checklists have path-level evidence and pass their P0 contracts.
+- **SC-002**: All 39 expected definition paths are accounted for and the aggregate candidate set is ∅.
+- **SC-003**: The recursive agents-surface name scan finds no in-scope snake_case filesystem name outside the exemption set.
+- **SC-004**: The subtree closes with no runtime mutation or unassigned rename task.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+The main risk is a false green caused by a missing sibling, an uncounted runtime format, or a silent disagreement between a leaf and the rollup. Mitigation is a 14-row sibling matrix, a 39-path expected inventory, a union-of-candidate-sets check, and a blocking discrepancy rule. The gate inherits the 017 convention, exemption, and baseline evidence; it does not perform migration.
 
----
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking; the sibling set and the three runtime roots are fixed by the parent phase map.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

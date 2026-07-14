@@ -1,106 +1,76 @@
 ---
-title: "Tasks: Phase 9: design-verify [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: verify design agent naming (017 phase 009)"
+description: "Tasks for phase 009 of the 017 agents component migration: verify the design filename candidate set."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "design agent naming tasks"
+  - "agents phase 009 tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-design-verify"
-    last_updated_at: "2026-07-14T15:18:45Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents/009-design-verify"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored design phase docs"
+    next_safe_action: "Execute verify-only inventory"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/009-design-verify"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Tasks: Design Agent Naming Verification
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 9: design-verify
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Confirm the 017 naming policy, exemption boundary, and pinned BASE for this read-only phase
+- [ ] T002 Confirm the three expected design definition paths in the runtime inventory
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T003 Record the OpenCode, Claude, and Codex path, extension, and basename for design
+- [ ] T004 Classify the three basenames against the kebab-case filesystem rule
+- [ ] T005 Record the rename-candidate set as exactly ∅ when all three names are compliant; create no rename task
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T006 Verify: all three expected paths are present and match the scoped component
+- [ ] T007 Verify: no in-scope snake_case filesystem name appears in the three definition filenames
+- [ ] T008 Verify: no runtime agent file, content field, or reference is changed by this phase
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete
+- [ ] All requirements in spec.md met with path-level evidence
+- [ ] Phase gate green (validate/build/test as applicable)
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

@@ -2,25 +2,216 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "system-deep-loop manual playbook naming",
+      "deep loop playbook kebab-case",
+      "manual testing scenario path repair",
+      "system-deep-loop playbook filesystem names",
+      "system-deep-loop manual playbook implementation plan",
+      "deep loop scenario rename plan",
+      "manual-testing-playbook reference closure",
+      "system-deep-loop manual playbook tasks",
+      "deep loop scenario naming tasks",
+      "manual-testing-playbook path repair tasks",
+      "system-deep-loop manual testing playbook checklist",
+      "manual-testing-playbook naming verification"
+    ],
+    "key_topics": [
+      "system-deep-loop",
+      "manual",
+      "playbook",
+      "naming",
+      "deep",
+      "loop",
+      "kebab-case",
+      "testing",
+      "scenario",
+      "path",
+      "repair",
+      "filesystem"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 8: manual-testing-playbook",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/benchmark/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "non-zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root system-deep-loop manual-testing-playbook tree has five underscore-bearing category directories and 21 underscore-bearing Markdown files, including its index. This phase renames the authored categories and scenarios to kebab-case and repairs playbook, benchmark, and router references while preserving scenario IDs and prompt content.",
     "created_at": "2026-07-14T15:17:54Z",
-    "last_save_at": "2026-07-14T15:17:54Z",
+    "last_save_at": "2026-07-14T19:30:40.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:8c800a1a93f009c3eadcd8ee1a9071df6ea706e387040cba2b11ea3720a11925",
+    "source_doc_hashes": {
+      "spec.md": "bb47deb1b8594dd67ed860ba7a1a3ff05b3d1d6799e1bda600e0fc3a42887c73",
+      "plan.md": "b28eb992ebb2b0a9ee8146de7707de4664f1558f423ef7f2bf2fdffcc3b20910",
+      "tasks.md": "a4c525843d222b53d173e51fdbe5faf34d0dbf9f8eb7b8e05264d171731edba5",
+      "checklist.md": "0b9af833b421afb660b109fa565b87f88eed31457dab941a5f134fe8cdc26c86"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

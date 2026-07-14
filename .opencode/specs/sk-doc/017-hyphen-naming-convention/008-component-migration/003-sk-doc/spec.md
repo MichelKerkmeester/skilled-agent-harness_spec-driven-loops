@@ -1,216 +1,105 @@
 ---
-title: "Feature Specification: Phase 3: sk-doc [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: sk-doc surface component migration"
+description: "The sk-doc skill surface contains in-scope snake_case directories and non-Python filenames across its hub, shared backbone, workflow packets, playbook, and release evidence. This phase parent divides the surface into independent component phases so each rename set has a bounded reference update and blocking acceptance contract."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-doc component migration"
+  - "sk-doc kebab-case phases"
+  - "017 sk-doc surface"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-sk-doc"
-    last_updated_at: "2026-07-14T15:16:57Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored sk-doc phase map"
+    next_safe_action: "Select a direct child phase for execution"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-sk-doc"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 3: sk-doc
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: sk-doc surface component migration
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/003-sk-doc` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 14 |
-| **Predecessor** | 002-sk-design |
-| **Successor** | 004-sk-prompt |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/017-hyphen-naming-convention/008-component-migration` |
+| **Child Count** | 7 direct phases |
+| **Handoff Criteria** | Every direct child passes its own checklist and the rollup gate confirms the complete sk-doc surface |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 3** of the component migration (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+The sk-doc surface uses snake_case in several directory and filename families, while the 017 program defines kebab-case as the sole canonical form for in-scope filesystem names. The surface also contains Python scripts, Python package directories, tool-mandated names, and historical content that must remain unchanged under the program exemption boundary.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
----
+Provide seven independently executable phase contracts that rename the in-scope sk-doc filesystem names, update their path references, preserve the exemption set, verify the changelog evidence, and close with a whole-surface gate.
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- The sk-doc hub root and `shared/` assets, references, scripts, and facade behavior.
+- The `scripts/` tree, including non-Python test fixture filenames and path consumers.
+- The eleven `create-*` workflow packets represented by the nested `003-create-packets` parent.
+- The root `manual_testing_playbook/` tree and the root `benchmark/` artifact boundary.
+- Changelog/version evidence and the final subtree naming gate.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- Python `.py` filenames and Python import-package directories.
+- `SKILL.md`, `README.md`, `mode-registry.json`, package manifests, lockfiles, and other tool-mandated names.
+- Code identifiers, JSON/YAML/TOML keys, frontmatter field names, database columns, and frozen historical surfaces.
+- Any migration outside `.opencode/skills/sk-doc` or any implementation during this authoring pass.
 
 ### Files to Change
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `.opencode/skills/sk-doc/` | Modify | 001-007 | Rename scoped names and update path consumers within the surface |
+| `003-create-packets/` | Documentation only | Nested parent | Decomposes the eleven create-* packet children |
+| `changelog/` | Verify | 006 | Confirm the released entry and version evidence match the completed rename set |
 <!-- /ANCHOR:scope -->
-
----
-
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-
-### P0 - Blockers (MUST complete)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
-<!-- /ANCHOR:requirements -->
-
----
-
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
-
----
-
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
-
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-hub-root-and-shared/ | [Phase 1 scope] | Pending |
-| 2 | 002-scripts/ | [Phase 2 scope] | Pending |
-| 3 | 003-create-packets/ | [Phase 3 scope] | Pending |
-| 4 | 004-manual-testing-playbook/ | [Phase 4 scope] | Pending |
-| 5 | 005-benchmark/ | [Phase 5 scope] | Pending |
-| 6 | 006-changelog-verify/ | [Phase 6 scope] | Pending |
-| 7 | 007-skill-gate/ | [Phase 7 scope] | Pending |
+| 001 | `001-hub-root-and-shared/` | Hub-root and shared-backbone non-Python filesystem names, preserving facade links and mandated names | Planned |
+| 002 | `002-scripts/` | Non-Python script-tree filenames, test fixtures, and sourcing/import/reference updates | Planned |
+| 003 | `003-create-packets/` | Parent map for the eleven independent create-* workflow packets | Planned |
+| 004 | `004-manual-testing-playbook/` | Root manual-testing-playbook directories, scenario files, and references | Planned |
+| 005 | `005-benchmark/` | Root benchmark artifact naming boundary; current baseline contains only `.gitkeep` | Planned |
+| 006 | `006-changelog-verify/` | Verify changelog entry and version-bump evidence after the rename phases | Planned |
+| 007 | `007-skill-gate/` | Roll up sibling evidence and enforce the subtree-wide exemption-aware kebab-case gate | Planned |
 
-### Phase Transition Rules
-
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-
-### Phase Handoff Criteria
-
-| From | To | Criteria | Verification |
-|------|-----|----------|--------------|
-| 001-hub-root-and-shared | 002-scripts | [Criteria TBD] | [Verification TBD] |
-| 002-scripts | 003-create-packets | [Criteria TBD] | [Verification TBD] |
-| 003-create-packets | 004-manual-testing-playbook | [Criteria TBD] | [Verification TBD] |
-| 004-manual-testing-playbook | 005-benchmark | [Criteria TBD] | [Verification TBD] |
-| 005-benchmark | 006-changelog-verify | [Criteria TBD] | [Verification TBD] |
-| 006-changelog-verify | 007-skill-gate | [Criteria TBD] | [Verification TBD] |
+Each child phase owns its rename/reference manifest and checklist. Phase 007 may close only after all executable children and the nested create-packet children have supplied passing evidence.
 <!-- /ANCHOR:phase-map -->
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+None at parent level. A child may record a path-specific question only when the baseline census finds a name that cannot be classified by the 001 convention and exemption boundary.
+<!-- /ANCHOR:questions -->

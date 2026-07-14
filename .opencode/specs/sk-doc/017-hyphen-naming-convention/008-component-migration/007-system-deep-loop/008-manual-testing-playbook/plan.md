@@ -1,170 +1,116 @@
 ---
-title: "Implementation Plan: Phase 8: manual-testing-playbook [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: system-deep-loop manual-testing-playbook names (017 phase 007/008)"
+description: "Plan for renaming the root manual-testing-playbook directory, five category directories, and 20 scenario files through the frozen semantic map, then repairing benchmark and routing references while preserving scenario IDs and content."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-deep-loop manual playbook implementation plan"
+  - "deep loop scenario rename plan"
+  - "manual-testing-playbook reference closure"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:17:55Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored manual playbook phase plan"
+    next_safe_action: "Execute the root playbook rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-manual-testing-playbook"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: System-deep-loop manual-testing-playbook names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 8: manual-testing-playbook
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/system-deep-loop/manual_testing_playbook/` |
+| **Change class** | Root scenario filesystem rename plus reference repair |
+| **Execution** | Isolated worktree using the pinned BASE, scenario inventory, and frozen map |
+| **Verification** | Scenario-ID/category parity, Markdown links, benchmark connectivity, and route checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Rename the root playbook directory, five categories, index, and 20 scenario files as one scenario-corpus closure. Update the benchmark README and active path consumers while leaving prompts, IDs, frontmatter fields, and category semantics unchanged.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The frozen map lists the root, five categories, index, and 20 scenario files.
+- [ ] BASE scenario IDs, category counts, links, and benchmark connectivity evidence are captured.
+- [ ] Nested workflow-packet playbooks are excluded and their ownership is recorded.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Root playbook names and active consumers are kebab-clean and resolvable.
+- [ ] All 20 scenario IDs and categories remain discoverable with non-zero coverage.
+- [ ] Benchmark/router behavior and playbook content contracts match BASE.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Corpus layer**: move the root and five category directories plus index/scenario files through a bijective map.
+- **Consumer layer**: update benchmark README/runner path values, hub resource paths, and Markdown links.
+- **Ownership layer**: do not move nested playbooks owned by runtime or workflow child phases.
+- **Content boundary**: preserve scenario IDs, expected routes, frontmatter fields, prompt vocabulary, and benchmark keys.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load the root-playbook map, BASE scenario manifest, and benchmark/router path inventory.
+- [ ] Record nested playbook exclusions and all active consumers of the root corpus path.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename the root directory, five category directories, index, and 20 scenario files.
+- [ ] Update benchmark README/runner paths, hub resource references, Markdown links, and scenario indexes.
+- [ ] Preserve scenario content, IDs, category meaning, tool names, keys, generated output, and nested ownership.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Compare final scenario/category inventory and IDs with BASE.
+- [ ] Resolve all Markdown links and benchmark/router path values.
+- [ ] Run the root benchmark connectivity and route checks with non-zero scenario discovery.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Candidate coverage | Map scan reports root, five categories, index, and 20 scenarios once. |
+| Scenario parity | Compare scenario IDs, categories, expected routes, and count with BASE. |
+| Reference integrity | Resolve benchmark README/runner, hub resource, index, and Markdown path references. |
+| Connectivity | Run root benchmark D5/path checks and ensure the corpus is non-zero. |
+| Scope safety | Confirm nested playbooks, content keys, generated reports, tool names, and frozen history were not moved. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Dependency | Type | Impact if Blocked |
+|------------|------|-------------------|
+| Frozen scenario map | Internal | Scenario ownership and target names cannot be proven. |
+| Root benchmark consumer inventory | Sibling | The benchmark may discover zero scenarios or stale paths. |
+| Workflow child boundaries | Sibling | Nested playbooks could be renamed twice or omitted. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Missing scenario, category/ID drift, zero benchmark discovery, stale link, or nested-scope leakage.
+- **Procedure**: Revert only the root playbook batch, restore the scenario manifest, and rerun path/connectivity checks before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

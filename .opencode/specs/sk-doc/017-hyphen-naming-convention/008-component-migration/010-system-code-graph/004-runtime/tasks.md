@@ -1,106 +1,85 @@
 ---
-title: "Tasks: Phase 4: runtime [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: system-code-graph runtime"
+description: "Concrete tasks for the code-graph runtime inventory, conditional path rename, hook/library reference closure, and no-op evidence."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-code-graph runtime tasks"
+  - "code graph runtime rename tasks"
+  - "freshness runtime audit tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-runtime"
-    last_updated_at: "2026-07-14T15:18:16Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored runtime tasks"
+    next_safe_action: "Begin pinned runtime inventory"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-runtime"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-code-graph/runtime"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The four current runtime files are already kebab-case; a verified no-rename result is valid."
 ---
+
+# Tasks: system-code-graph runtime
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: runtime
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+Task format: T### [P?] Description (file path)
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Inventory runtime/hooks/claude, runtime/hooks/codex, runtime/lib/code-graph, and every runtime basename
+- [ ] T002 Separate already-compliant names, conditional candidates, path references, hook events, and identifiers
+- [ ] T003 Freeze collision, syntax, behavior, and BASE discovery evidence
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Preserve the four current kebab-case runtime files, or rename any additional pinned in-scope candidate
+- [ ] T005 Update affected hook, library, test, playbook, and documentation path values for any conditional target
+- [ ] T006 Preserve hook events, environment keys, code identifiers, test IDs, and runtime behavior
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T007 Verify zero unclassified runtime names and zero stale live old paths
+- [ ] T008 Run Node syntax, freshness behavior, and runtime Vitest checks with BASE-equivalent discovery
+- [ ] T009 Record a no-rename receipt or conditional map and hand off the result to the catalog/playbook phases
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked [x]
+- [ ] No [B] blocked tasks remain
+- [ ] Every requirement in spec.md has pinned evidence
+- [ ] The phase checklist is fully satisfied by the central verifier
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
+- **Checklist**: See checklist.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
 

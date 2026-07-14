@@ -1,170 +1,116 @@
 ---
-title: "Implementation Plan: Phase 5: deep-ai-council [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: deep-ai-council filesystem names (017 phase 007/005)"
+description: "Plan for renaming the deep-ai-council paired catalog/playbook trees, assets, and references through one semantic map, then repairing artifact, graph, script, and test path consumers without changing council contracts."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep-ai-council implementation plan"
+  - "AI council kebab-case rename plan"
+  - "council paired playbook path closure"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-deep-ai-council"
-    last_updated_at: "2026-07-14T15:17:52Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored council phase plan"
+    next_safe_action: "Execute the council rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-deep-ai-council"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: Deep-ai-council filesystem names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 5: deep-ai-council
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/system-deep-loop/deep-ai-council/` |
+| **Change class** | Paired catalog/playbook filesystem rename plus reference repair |
+| **Execution** | Isolated worktree using the pinned BASE, paired map, and path checker |
+| **Verification** | Paired coverage, artifact/graph resolution, council tests, links, and route parity |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Rename the 12 council directory families and 89 underscore-bearing files with one map shared by the feature catalog and manual playbook. Update every asset, reference, graph, replay, script, and test path that names those files; leave council state keys and generated artifacts unchanged.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The frozen map covers all 12 directories and 89 files, including paired catalog/playbook rows.
+- [ ] BASE council scenario/resource, artifact, graph, and test inventories are captured.
+- [ ] Generated artifact and state paths are distinguished from authored resource paths.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Paired catalog/playbook paths and all active consumers are kebab-clean and resolvable.
+- [ ] Council artifact persistence, graph replay, seat/convergence behavior, and test discovery match BASE.
+- [ ] Exact tool names, keys, and generated output are preserved.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Paired resource layer**: map each feature-catalog category/leaf with its manual-playbook counterpart so the two views cannot drift.
+- **Council path layer**: update assets, references, README/resource indexes, scripts, tests, artifact roots, and graph/replay paths together.
+- **Contract boundary**: preserve `SKILL.md`, `vitest.config.mjs`, package names, JSONL/event keys, generated artifacts, and public mode keys.
+- **Parity check**: compare scenario IDs, feature leaves, and council graph/resource coverage before and after the path changes.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load the paired council map, BASE manifest, and catalog/playbook/artifact inventories.
+- [ ] Trace script, graph, replay, and test path builders and record generated/state dispositions.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename council asset names, paired catalog/playbook roots/categories/leaves, and underscore-bearing reference files.
+- [ ] Update README/resource maps, Markdown links, scripts, graph/replay paths, artifact roots, and tests.
+- [ ] Preserve tool names, state/event keys, generated outputs, identifiers, and public command/agent contracts.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Compare paired catalog/playbook inventories and scenario IDs with BASE.
+- [ ] Resolve all asset, reference, artifact, graph, replay, and test paths.
+- [ ] Run council routing/convergence/persistence tests with non-zero scenario coverage.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Candidate coverage | Map scan reports 12 directory families and 89 files once, with paired rows and collision checks. |
+| Paired parity | Compare feature leaves, scenario files, category indexes, and scenario IDs between catalog/playbook views. |
+| Reference integrity | Resolve Markdown, asset, script, graph/replay, artifact, and test paths; search for old basenames. |
+| Council parity | Run council persistence, graph, convergence, and route tests with non-zero discovery. |
+| Exemption safety | Inspect tool/config names, generated artifacts, state keys, Python/package boundaries, and frozen history. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Dependency | Type | Impact if Blocked |
+|------------|------|-------------------|
+| Runtime path closure | Sibling | Council graph/runtime consumers may point at old runtime paths. |
+| Frozen paired map | Internal | Catalog/playbook parity and target ownership cannot be proven. |
+| BASE council artifact/test manifest | Internal | Persistence and scenario parity cannot be demonstrated. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Paired-tree mismatch, dangling artifact/graph path, test discovery drift, collision, or changed council state.
+- **Procedure**: Revert only the council batch, restore paired indexes and the BASE manifest, then rerun the artifact/path closure before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

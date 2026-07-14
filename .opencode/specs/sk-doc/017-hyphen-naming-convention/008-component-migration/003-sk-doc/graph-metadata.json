@@ -19,27 +19,25 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "sk-doc component migration",
+      "sk-doc kebab-case phases",
+      "017 sk-doc surface"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "sk-doc",
+      "component",
+      "migration",
+      "kebab-case",
+      "phases",
+      "surface",
+      "snakecase",
+      "several",
+      "directory",
+      "filename",
+      "families",
+      "while"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md"
@@ -58,13 +56,19 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Count",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -76,29 +80,23 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The sk-doc surface uses snakecase in several directory and filename families, while the 017 program defines kebab-case as the sole canonical form for in-scope filesystem names",
     "created_at": "2026-07-14T15:16:56Z",
-    "last_save_at": "2026-07-14T15:24:34.903Z",
+    "last_save_at": "2026-07-14T20:00:18.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5161bce486bfd6b81e171168bc5d053764229633cd9d90308302e4bd57421334",
+    "source_fingerprint": "sha256:c6af89c4a04b01e59f40cc98146fd68f60ad3c365ee1a10627508b39cff84638",
     "source_doc_hashes": {
-      "spec.md": "8e6304161e5a0529fbac3ee80f2145e777bff9c73a8fff52b8af7f55fc5b005b"
+      "spec.md": "5a404cc3ec1a99ccbb4d65023656bc6ced67f9f988454576ab4758cd5fc3c031"
     },
     "last_active_child_id": null,
     "last_active_at": null

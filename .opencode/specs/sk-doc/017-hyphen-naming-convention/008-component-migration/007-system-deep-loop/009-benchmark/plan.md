@@ -1,170 +1,116 @@
 ---
-title: "Implementation Plan: Phase 9: benchmark [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: system-deep-loop benchmark storage names (017 phase 007/009)"
+description: "Plan for renaming the three root benchmark storage labels, repairing report/index path values, and proving fixture/profile and generated-output ownership without changing report filenames, payloads, or scores."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-deep-loop benchmark implementation plan"
+  - "benchmark storage rename plan"
+  - "deep loop benchmark report path closure"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-benchmark"
-    last_updated_at: "2026-07-14T15:17:55Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored benchmark phase plan"
+    next_safe_action: "Execute the root benchmark rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/009-benchmark"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: System-deep-loop benchmark storage names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 9: benchmark
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/system-deep-loop/benchmark/` |
+| **Change class** | Authored storage-directory rename plus path/reference repair |
+| **Execution** | Isolated worktree using the pinned BASE, benchmark manifest, and frozen map |
+| **Verification** | Report/path integrity, scenario discovery, D5 connectivity, and output ownership |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Rename `after_d3_proxy/`, `live_mode_b/`, and `router_mode_a/` to their exact kebab-case targets. Preserve `baseline/`, the already-kebab report filenames, and report payloads; update README and runner path values; and record that deep-improvement fixture/profile paths are owned by phase 006.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The root benchmark manifest records the three storage candidates, baseline, reports, and active consumers.
+- [ ] Generated report and deep-improvement fixture/profile ownership is attached.
+- [ ] BASE scenario/report counts, trace modes, scores, and D5 results are captured.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] The three storage labels and active path consumers are kebab-clean and resolvable.
+- [ ] Report presence, payloads, scenario IDs, scores, and connectivity match BASE.
+- [ ] Generated-output and component-owned paths are not moved or rewritten under this child.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Storage layer**: rename only the three authored parent directories; preserve baseline and report filenames.
+- **Consumer layer**: update README, runner output paths, baseline comparison paths, and storage-guide references.
+- **Ownership layer**: classify deep-improvement fixture/profile assets and generated reports separately from root storage.
+- **Data boundary**: preserve report JSON/Markdown content, keys, scenario IDs, trace modes, and score semantics.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load the root benchmark map, BASE report manifest, README/runner references, and output ownership list.
+- [ ] Record every report's parent label, trace mode, scenario count, verdict, and score.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename `after_d3_proxy`, `live_mode_b`, and `router_mode_a` to `after-d3-proxy`, `live-mode-b`, and `router-mode-a`.
+- [ ] Update README, benchmark commands, baseline comparisons, and storage path values.
+- [ ] Preserve report files/payloads and leave deep-improvement fixtures/profiles and generated output under their owning dispositions.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Compare report manifests, payload hashes/content, scenario IDs, scores, and trace modes with BASE.
+- [ ] Resolve all README/runner/storage references and run root benchmark discovery.
+- [ ] Run D5 connectivity and ensure the result is non-zero and equivalent.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Storage coverage | Map scan reports all three directories once and no old active storage path. |
+| Report integrity | Parse/compare every JSON/Markdown report and preserve scenario IDs, trace modes, scores, and verdicts. |
+| Reference integrity | Resolve README, runner, baseline, and storage-guide path values. |
+| Benchmark parity | Run router/live discovery and D5 connectivity with non-zero corpus. |
+| Ownership safety | Check deep-improvement fixture/profile and generated-output dispositions, report filenames, keys, and frozen history. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Dependency | Type | Impact if Blocked |
+|------------|------|-------------------|
+| Root playbook phase | Sibling | Scenario corpus and D5 connectivity cannot be compared. |
+| Deep-improvement ownership map | Sibling | Fixture/profile paths could be moved twice or omitted. |
+| BASE benchmark manifest | Internal | Report and score parity cannot be demonstrated. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Missing report, changed payload/score, stale benchmark path, zero discovery, or ownership collision.
+- **Procedure**: Revert only the root benchmark storage batch, restore the report manifest, and rerun discovery/parity checks before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

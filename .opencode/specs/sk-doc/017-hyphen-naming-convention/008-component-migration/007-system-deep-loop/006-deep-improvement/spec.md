@@ -1,182 +1,114 @@
 ---
-title: "Feature Specification: Phase 6: deep-improvement [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: deep-improvement filesystem names (017 phase 007/006)"
+description: "The deep-improvement packet has 23 underscore-bearing directory families and 263 underscore-bearing files across four improvement lanes, benchmark assets, playbooks, references, and scripts. This phase renames the in-scope authored names to kebab-case, repairs the shared loop-host and benchmark path closure, and protects Python files, package directories, generated output, and data contracts."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep-improvement kebab-case migration"
+  - "improvement packet filesystem names"
+  - "deep improvement path repair"
+  - "deep-improvement snake_case resources"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-deep-improvement"
-    last_updated_at: "2026-07-14T15:17:53Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored deep improvement phase spec"
+    next_safe_action: "Execute the deep improvement rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-deep-improvement"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The live deep-improvement inventory has 23 underscore-bearing directory families and 263 underscore-bearing files."
+      - "Python .py files and import-package directories remain exempt; .py.template assets are not Python script files and require explicit classification."
+      - "The deep-improvement benchmark subtree belongs to this component; the root system-deep-loop benchmark storage belongs to phase 009."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 6: deep-improvement
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Deep-improvement filesystem names
 
----
+> Phase adjacency under the system-deep-loop component parent: predecessor `005-deep-ai-council`; successor `007-deep-alignment`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/006-deep-improvement` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 11 |
-| **Predecessor** | 005-deep-ai-council |
-| **Successor** | 007-deep-alignment |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | deep-improvement |
+| **Origin** | Phase 006 of the system-deep-loop component migration under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 6** of the system deep loop (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The improvement packet multiplexes agent, model, skill, and non-development system lanes through a shared loop host. Its live surface contains directory families such as `agent_improvement`, `model_benchmark`, `model_benchmark_mode`, `skill_benchmark`, `non_dev_ai_system`, `deep_loop_workflows`, `integration_scanning`, `runtime_truth`, `target_profiles`, and `sk_design_dispatch`; the asset, reference, catalog, playbook, and benchmark trees repeat those names in hundreds of files.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phase renames every in-scope deep-improvement filesystem name to kebab-case and repairs the shared lane/benchmark reference closure without changing lane keys, evaluator schemas, Python importability, generated reports, or promotion/rollback behavior.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- The 23 underscore-bearing directory families under `deep-improvement/`, including `agent_improvement/`, `behavior_benchmark/`, `deep_loop_workflows/`, `model_benchmark/`, `model_benchmark_mode/`, `non_dev_ai_system/`, `skill_benchmark/`, `manual_testing_playbook/`, and `runtime_truth/`.
+- The 263 underscore-bearing files across `assets/`, `references/`, `feature_catalog/`, `manual_testing_playbook/`, `scripts/`, and the component-owned `benchmark/live_mode_b/` and `benchmark/router_mode_a/` storage paths.
+- Lane configs, fixture/profile path references, loop-host scripts, tests, README/resource maps, and benchmark commands where a filesystem path changes.
+- Explicit classification of Python `.py` files, Python package directories, `.py.template` asset names, generated benchmark reports, lockfiles, and tool-mandated names.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- The root `.opencode/skills/system-deep-loop/benchmark/` storage boundary, which belongs to phase 009, and the root manual-testing playbook, which belongs to phase 008.
+- Python `.py` filenames, Python import-package directories, generated/lockfile output, package manifests, tool-mandated names, code identifiers, JSON/YAML/TOML keys, frontmatter fields, database columns, and frozen changelog/history.
+- Changing lane names, evaluator dimensions, score semantics, promotion/rollback gates, external adapter contracts, or generated report payloads.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/` | Rename/reference update | Rename lane asset directories, fixture/profile names, and path-valued asset references. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/`, `feature_catalog/`, and `manual_testing_playbook/` | Rename/reference update | Rename authored documentation paths and their index/link closure. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/` and tests | Rename/reference update | Rename in-scope script/resource files and repair imports, launchers, fixtures, and registries. |
+| `.opencode/skills/system-deep-loop/deep-improvement/benchmark/` | Classification/reference update | Rename authored storage labels when in scope; leave generated report output under its recorded exemption. |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every improvement candidate is classified once | The map covers all 23 directory families and 263 underscore-bearing files with no unknown or duplicate target. |
+| REQ-002 | The four lanes retain one shared path contract | Loop-host dispatch, lane routing, evaluator references, command bridges, and registries resolve to the renamed paths without lane-key changes. |
+| REQ-003 | Fixture/profile and benchmark references are repaired | Authored fixture/profile paths, benchmark commands, playbook/catalog indexes, and test inputs resolve; generated reports are explicitly dispositioned. |
+| REQ-004 | Python and package exemptions are safe | `.py` scripts, Python import-package directories, and their imports remain unchanged; `.py.template` assets are treated according to their actual non-`.py` filename. |
+| REQ-005 | Improvement behavior and data contracts remain stable | Score dimensions, schemas, state/event keys, promotion/rollback behavior, and external adapter boundaries match BASE evidence. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: No in-scope snake_case filesystem name remains under `deep-improvement/`.
+- **SC-002**: All four lanes, their shared loop host, authored benchmark assets, and test/reference paths resolve with unchanged semantics.
+- **SC-003**: Python/package, generated-output, tool-name, identifier/key, and frozen-history exemptions are evidenced explicitly.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+This is the largest child surface and mixes executable scripts, fixture/profile data, documentation, and generated benchmark output. Renaming a Python package directory or a generated report can break imports or erase the baseline; renaming only one of the four lane views can break the shared host. The phase depends on the frozen map, generated-output manifest, and import/reference checker.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The executor must attach the generated-output and Python/package disposition lists before the first rename batch.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

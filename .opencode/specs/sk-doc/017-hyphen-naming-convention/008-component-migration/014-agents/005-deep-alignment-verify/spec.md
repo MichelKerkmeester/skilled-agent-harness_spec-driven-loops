@@ -1,182 +1,109 @@
 ---
-title: "Feature Specification: Phase 5: deep-alignment-verify [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: verify deep-alignment agent naming (017 phase 005)"
+description: "The agents surface needs an explicit candidate audit for deep-alignment across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep-alignment agent naming"
+  - "agents phase 005"
+  - "deep-alignment filename verification"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-deep-alignment-verify"
-    last_updated_at: "2026-07-14T15:18:43Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents/005-deep-alignment-verify"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored deep-alignment phase docs"
+    next_safe_action: "Execute verify-only inventory"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-deep-alignment-verify"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 5: deep-alignment-verify
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Deep Alignment Agent Naming Verification
 
----
+> Phase adjacency under the 017 agents component parent (grouping order, not a runtime dependency): predecessor 004-debug-verify; successor 006-deep-improvement-verify.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents/005-deep-alignment-verify |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/005-deep-alignment-verify` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 14 |
-| **Predecessor** | 004-debug-verify |
-| **Successor** | 006-deep-improvement-verify |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 005 of the 017 agents component migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 5** of the agents (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The agents surface must be checked before any migration batch treats this definition as a rename candidate. The current inventory contains exactly three runtime definitions for deep-alignment: .opencode/agents/deep-alignment.md, .claude/agents/deep-alignment.md, and .codex/agents/deep-alignment.toml. Each basename is already kebab-case, so this phase must record an explicit zero-candidate result rather than silently disappearing from the migration evidence.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The purpose is to produce a reproducible, read-only candidate-set record for deep-alignment, grounded in the filesystem naming policy and suitable for the agents rollup gate.
+
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Inventory the three deep-alignment definition paths across the OpenCode, Claude, and Codex runtime agent directories.
+- Classify filesystem basenames only; the canonical in-scope form is kebab-case, with Python scripts, Python import-package directories, and tool-mandated names exempt.
+- Record the rename-candidate set as exactly empty (∅) when the pinned inventory confirms all three names remain compliant.
+- Preserve the verify-only boundary: no runtime rename, content edit, or reference rewrite is part of this phase.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Executing a rename or changing any agent definition content, frontmatter, TOML key, or code identifier.
+- Inspecting or changing another agent component; the sibling phases own those inventories.
+- Treating Python .py files, Python package directories, vendored or generated trees, lockfiles, tool-mandated names, or frozen history as rename candidates.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| .opencode/agents/deep-alignment.md | Inspect | Definition filename is already kebab-case; no rename expected |
+| .claude/agents/deep-alignment.md | Inspect | Definition filename is already kebab-case; no rename expected |
+| .codex/agents/deep-alignment.toml | Inspect | Codex definition filename is already kebab-case; no rename expected |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The three runtime definitions are inventoried exactly | The phase evidence lists the three paths above and identifies their extensions and runtime directories |
+| REQ-002 | The rename-candidate set is explicit and correct | The candidate set is exactly ∅ because every observed basename is already kebab-case |
+| REQ-003 | The program exemption boundary is not widened | Classification examines filesystem names only and leaves identifiers, frontmatter fields, TOML keys, Python names, and tool-mandated names untouched |
+| REQ-004 | The phase remains verify-only | The report contains no rename operation or reference rewrite, and no runtime agent file is modified |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All three deep-alignment definition paths are recorded against the pinned baseline.
+- **SC-002**: The verified rename-candidate set is exactly ∅.
+- **SC-003**: The phase supplies path-level evidence to 014-agents-gate without changing runtime files.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+The principal risk is a false zero caused by missing one runtime directory or by inspecting content instead of the filename. Mitigation is an exact three-path inventory, a path-level evidence record, and a blocking check that fails on a missing or unexpected definition. The phase inherits the 017 program policy and baseline dependencies; it does not introduce a runtime dependency.
 
----
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking; the candidate set is determined by the three listed paths when the phase is executed against the pinned baseline.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

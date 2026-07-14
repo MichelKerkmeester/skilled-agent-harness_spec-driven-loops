@@ -1,182 +1,113 @@
 ---
-title: "Feature Specification: Phase 3: design-foundations [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Design-foundations (017 phase 003)"
+description: "The design-foundations mode contains underscore-bearing visual-system references and fixture directories, and its Python checker paths must remain executable under the exemption boundary."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "design-foundations naming phase"
+  - "sk-design design-foundations phase"
+  - "017 design-foundations"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-design-foundations"
-    last_updated_at: "2026-07-14T15:17:16Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored design-foundations spec"
+    next_safe_action: "Execute phase on pinned worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-design-foundations"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-design/design-foundations/SKILL.md"
+      - ".opencode/skills/sk-design/design-foundations/references/"
+      - ".opencode/skills/sk-design/design-foundations/scripts/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 3: design-foundations
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Design-foundations (017 phase 003)
 
----
+> Phase 003 of the sk-design component migration under `sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/003-design-foundations` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 12 |
-| **Predecessor** | 002-design-interface |
-| **Successor** | 004-design-motion |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-design |
+| **Origin** | Phase 3 of the sk-design subtree in the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 3** of the sk design (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The design-foundations mode contains underscore-bearing visual-system references and fixture directories, and its Python checker paths must remain executable under the exemption boundary.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+**Purpose:** Rename non-exempt design-foundations filesystem names to kebab-case while preserving Python tooling and all resource references.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Rename the listed Markdown assets, procedures, references, and the non-Python fixture directory.
+- Update SKILL.md, README.md, checker documentation, fixture references, and all local path links.
+- Leave baseline_rhythm_check.py, contrast_check.py, naming_doc_check.py, and every other Python file unchanged.
+- Keep catalog/playbook trees for phases 008/009 and preserve design-token identifiers and frontmatter/data keys.
+
+### Live candidate boundary
+- `assets/contrast_pair_inventory.md` and `assets/token_starter.md` become hyphenated
+- `procedures/component_system_inventory.md`, `hierarchy_rhythm_review.md`, and `tweakable_design_controls.md` become hyphenated
+- `references/color/`, `references/layout/`, and `references/type/` keep their roles while underscore-bearing files such as `oklch_workflow.md`, `palette_theming.md`, `adaptation_matrix.md`, `layout_responsive.md`, `typography_system.md`, and `worked_examples.md` become hyphenated
+- `references/data_viz.md`, `design_system_artifact_contract.md`, `smart_router_pseudocode.md`, and `corpus_map.md` become hyphenated
+- `scripts/fixtures/naming_doc/` → `scripts/fixtures/naming-doc/`; `scripts/*.py` remains exact
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Python script filenames, Python package directories, executable behavior, token names, and data keys.
+- Feature-catalog, manual-testing-playbook, shared, benchmark, and changelog surfaces.
+- Changing the naming checker rules; only filesystem paths and path-valued references move.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+|-------|-------|-------|
+| REQ-001 | The foundations candidate map separates Markdown/fixture paths from Python exemptions. | Every underscore-bearing path is classified exactly once, with all .py paths explicitly exempt. |
+| REQ-002 | Foundations resources resolve after the rename. | SKILL.md, README.md, checker docs, and local references contain no stale old path. |
+| REQ-003 | Python execution remains intact. | The phase evidence proves the Python script paths and import/package boundaries were not renamed. |
+| REQ-004 | Catalog/playbook ownership remains clean. | No phase-003 task changes paths owned by phases 008 or 009. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The design-foundations non-exempt tree is kebab-clean.
+- **SC-002**: The naming checker fixture path is hyphenated without changing Python code or fixture semantics.
+- **SC-003**: Resource and reference resolution passes with Python exemptions documented.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+|-------|-------|-------|-------|
+| Risk | A fixture directory is confused with a Python package directory. | High | Inspect package markers and classify the fixture directory separately from .py and import-package exemptions. |
+| Risk | Reference tables silently retain old filenames. | Medium | Sweep Markdown links and code-formatted paths from SKILL.md, README.md, and references. |
 
----
+Dependencies: the canonical convention and exemption boundary in `001-convention-policy-and-scope/`; the pinned BASE and rename-map evidence from the program's earlier baseline/tooling phases; and the sibling handoffs named in this phase's plan.
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- No blocking questions; the only special case is the explicitly preserved Python script set.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

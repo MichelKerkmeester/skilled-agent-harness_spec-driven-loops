@@ -1,182 +1,114 @@
 ---
-title: "Feature Specification: Phase 4: deep-review [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: deep-review filesystem names (017 phase 007/004)"
+description: "The deep-review packet contains 15 underscore-bearing directory families and 96 underscore-bearing files across review dimensions, severity, state, convergence, playbooks, and assets. This phase renames those in-scope paths to kebab-case and repairs their consumers without changing review findings, convergence, state, or tool contracts."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep-review kebab-case migration"
+  - "deep review filesystem names"
+  - "review packet path repair"
+  - "deep-review snake_case resources"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-deep-review"
-    last_updated_at: "2026-07-14T15:17:51Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored deep review phase spec"
+    next_safe_action: "Execute the deep review rename closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-deep-review"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The live deep-review inventory has 15 underscore-bearing directory families and 96 underscore-bearing files."
+      - "SKILL.md, review_mode_contract.yaml, tool-mandated names, generated output, and frozen history stay exact."
+      - "Review severity, state, JSONL, and convergence identifiers are contracts and are not filesystem rename targets."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 4: deep-review
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Deep-review filesystem names
 
----
+> Phase adjacency under the system-deep-loop component parent: predecessor `003-deep-research`; successor `005-deep-ai-council`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/004-deep-review` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 11 |
-| **Predecessor** | 003-deep-research |
-| **Successor** | 005-deep-ai-council |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | deep-review |
+| **Origin** | Phase 004 of the system-deep-loop component migration under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 4** of the system deep loop (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The review packet's resource map, convergence loop, and verifier documentation span `feature_catalog/`, `manual_testing_playbook/`, `references/`, `assets/`, and `behavior_benchmark/`. The live surface contains directory families such as `review_dimensions`, `severity_system`, `review_depth_v2_rollout`, `command_flow_stress_tests`, `pause_resume_and_fault_tolerance`, and `synthesis_save_and_guardrails`, plus files such as `deep_review_config.json`, `review_mode_contract_snapshot.md`, `jsonl_reconstruction_from_review_iteration_files.md`, and `p0_override_blocks_convergence.md`.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phase renames every in-scope review filesystem name to kebab-case and repairs all path-valued consumers while keeping severity classification, convergence behavior, state schemas, and read/write boundaries unchanged.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- The 15 underscore-bearing directory families under `deep-review/`, including `behavior_benchmark/`, `feature_catalog/`, `manual_testing_playbook/`, `review_dimensions/`, `severity_system/`, `review_depth_v2_rollout/`, and `state_management/`.
+- The 96 underscore-bearing files across assets, catalog leaves, playbook scenarios, convergence/state references, and benchmark material, including `deep_review_config.json`, `deep_review_dashboard.md`, `review_quality_guards_block_premature_stop.md`, and `review_iteration_writes_findings_jsonl_and_strategy_update.md`.
+- Review `SKILL.md`, README, resource maps, command/agent path consumers, Markdown links, test fixtures, and the `review_mode_contract.yaml` path context where a filesystem path changes; the YAML filename itself is already compliant and remains exact.
+- Scenario and finding-reference counts, state path resolution, and review-mode routing evidence.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- The shared runtime, sibling workflow packets, root playbook, and root benchmark storage.
+- `SKILL.md`, generated reports/state, Python `.py` files/package directories, code identifiers, JSON/YAML/TOML keys, frontmatter fields, database columns, and frozen changelog/history.
+- Changing severity weights, finding IDs, convergence math, state event names, command syntax, or verifier policy.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/deep-review/assets/` | Rename/reference update | Rename underscore-bearing review config, dashboard, strategy, and prompt assets. |
+| `.opencode/skills/system-deep-loop/deep-review/feature_catalog/` | Rename/reference update | Rename catalog root, categories, leaves, and index path values. |
+| `.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/` | Rename/reference update | Rename playbook categories/scenarios and preserve scenario coverage. |
+| `.opencode/skills/system-deep-loop/deep-review/references/`, `SKILL.md`, and tests | Reference update | Repair resource maps, state paths, Markdown links, and test inputs. |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every review candidate is classified once | The map covers all 15 directory families and 96 underscore-bearing files with no unknown or duplicate target. |
+| REQ-002 | Review path consumers are repaired | Resource maps, asset loaders, Markdown links, command/agent references, test fixtures, and state path builders resolve to kebab-case paths. |
+| REQ-003 | Review catalog and playbook discovery is preserved | The same feature and scenario leaves remain discoverable, including the review-depth v2 rollout categories. |
+| REQ-004 | Review contracts remain stable | Severity weights, finding IDs, JSONL field names, convergence thresholds, stop gates, and command arguments match BASE evidence. |
+| REQ-005 | Exemptions are respected | Tool/config names, generated state, Python files/package directories, identifiers, data keys, and frozen history retain their original names. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: No in-scope snake_case filesystem name remains under `deep-review/`.
+- **SC-002**: Review resource routing, state reconstruction, scenario discovery, and Markdown links resolve with BASE-equivalent semantics.
+- **SC-003**: The review packet retains its severity, convergence, read/write, and tool-surface contracts.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+Review state and report paths are assembled across iteration scripts, reducers, and scenario indexes; a stale path can fail closed or silently omit findings. The packet also contains strings that look like paths beside severity and event identifiers. The phase depends on the frozen map, the reference checker, and runtime handoff, and its checklist requires non-zero scenario coverage plus state/report resolution.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. Any dynamic reducer or report path must receive an explicit reference disposition before the rename batch is accepted.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

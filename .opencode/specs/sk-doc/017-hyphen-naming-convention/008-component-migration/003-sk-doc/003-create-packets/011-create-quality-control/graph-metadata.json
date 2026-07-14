@@ -2,25 +2,212 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "create-quality-control resource naming",
+      "quality control reference kebab-case",
+      "quality control transformation rename",
+      "create-quality-control resource implementation plan",
+      "quality control reference rename plan",
+      "create-quality-control resource tasks",
+      "quality control reference rename tasks",
+      "create-quality-control resource checklist",
+      "quality control reference rename verification"
+    ],
+    "key_topics": [
+      "create-quality-control",
+      "resource",
+      "naming",
+      "quality",
+      "control",
+      "reference",
+      "kebab-case",
+      "transformation",
+      "rename",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 11: create-quality-control",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stale",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The create-quality-control packet contains snake_case transformation, validation, and workflow reference filenames. This phase converts those non-exempt resources to kebab-case and updates packet-local references while preserving the shared quality-control contract and tool-mandated names.",
     "created_at": "2026-07-14T15:22:41Z",
-    "last_save_at": "2026-07-14T15:22:41Z",
+    "last_save_at": "2026-07-14T20:00:20.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:28be1ea8ab07229cf1a65d6b449887aa8f4fd0482718ac9db8074771a90de398",
+    "source_doc_hashes": {
+      "spec.md": "8d7bb30e013d9277d54ba8da6de6ab75c4e9bf7340af54120fdb2d16fd211ceb",
+      "plan.md": "b2dde6f43fa068e6cd4f0d8139b51b5d450b2b80aa9391b361c49e641352649f",
+      "tasks.md": "a66f388749be8d4d7407a76705c9a3ca91b0b622d4fa7e3422e5114576b3915f",
+      "checklist.md": "9f6ab9491e4f2e10d04203af747fbbff5d3d9b4f25ad8f43d8b477d47d21bff4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -1,182 +1,114 @@
 ---
-title: "Feature Specification: Phase 10: benchmark [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Benchmark (017 phase 010)"
+description: "Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison artifacts."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "benchmark naming phase"
+  - "sk-design benchmark phase"
+  - "017 benchmark"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-benchmark"
-    last_updated_at: "2026-07-14T15:17:22Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored benchmark spec"
+    next_safe_action: "Execute phase on pinned worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/010-benchmark"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-design/benchmark/README.md"
+      - ".opencode/skills/sk-design/benchmark/baseline/"
+      - ".opencode/skills/sk-design/benchmark/after_009/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 10: benchmark
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Benchmark (017 phase 010)
 
----
+> Phase 010 of the sk-design component migration under `sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design`. This document defines the future execution scope; this authoring pass performs no migration.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/010-benchmark` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 10 of 12 |
-| **Predecessor** | 009-manual-testing-playbook |
-| **Successor** | 011-changelog-verify |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-design |
+| **Origin** | Phase 10 of the sk-design subtree in the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 10** of the sk design (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison artifacts.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+**Purpose:** Rename non-exempt benchmark artifact paths to kebab-case and update storage-guide and README references while preserving frozen report content and baseline identity.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Inventory the benchmark run-label directories and all README/changelog/storage-guide references to them.
+- Rename the six underscore-bearing after snapshot directories and update path references.
+- Preserve report JSON keys, scenario IDs, scoring values, rendered-report content, baseline directory identity, and renderer-owned filenames.
+- Record absent local profile/storage-guide candidates as no-op inventory results rather than inventing paths.
+
+### Live candidate boundary
+- `after_009/` → `after-009/`
+- `after_012_routing_rigor/` → `after-012-routing-rigor/`
+- `after_016_hub_routing/` → `after-016-hub-routing/`
+- `after_018_transport_integration/` → `after-018-transport-integration/`
+- `after_022_coverage_fill/` → `after-022-coverage-fill/`; `after_d3_proxy/` → `after-d3-proxy/`
+- Keep `baseline/`, `report.json`, `report.md`, and `skill-benchmark-report.*` exact where already hyphenated or tool-defined
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Changing benchmark scores, scenario content, report schemas, baseline data, generator behavior, or benchmark execution.
+- Renaming external create-benchmark templates or tool-mandated report filenames.
+- Feature catalogs, playbooks, component files, changelog verification, and the final rollup gate.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+|-------|-------|-------|
+| REQ-001 | All benchmark filesystem candidates are classified. | The map covers six after-label directories and proves baseline/report filenames are unchanged or explicitly exempt. |
+| REQ-002 | Benchmark navigation resolves. | README.md and any path-valued changelog/storage-guide references point to the new directories. |
+| REQ-003 | Benchmark evidence is byte/semantic stable. | Report JSON keys, scenario IDs, score values, and baseline identity are unchanged. |
+| REQ-004 | No speculative artifact is introduced. | Profiles or storage guides not present under this benchmark tree are recorded as absent, not fabricated. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: No in-scope underscore-bearing benchmark directory remains.
+- **SC-002**: The benchmark README resolves every saved run label and still identifies baseline as the frozen comparison anchor.
+- **SC-003**: A pre/post report comparison shows only path-context changes where applicable.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+|-------|-------|-------|-------|
+| Risk | Historical run labels are treated as disposable names. | Medium | Preserve every snapshot and compare report content; change only physical path segments and path references. |
+| Risk | A generated report is hand-edited during path repair. | High | Update source/path references only and leave renderer-owned report content untouched. |
 
----
+Dependencies: the canonical convention and exemption boundary in `001-convention-policy-and-scope/`; the pinned BASE and rename-map evidence from the program's earlier baseline/tooling phases; and the sibling handoffs named in this phase's plan.
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- No blocking questions; the live benchmark tree supplies the six run-label targets and the absence of local profile/storage-guide files is verifiable.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
