@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/alignment.md",
-      "sha256": "3e94d74581010587688e8ea61b905fd8e9aafd7c4d6a505fb8931c7398f3fb91",
+      "sha256": "db02ec690bde2cfa653bf258850fec92f18efc2f1363d61fbd973314e0bf20fa",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "4d990838018f72d97d426e8aa7cbd26e3042ace7eb9844c793a0b15b2fb466e3",
+      "sha256": "110f52629f0081839dabf547157d9ed1ecd50b2f3d7e7e87767a50105777c241",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-      "sha256": "95ca5e139403b971a75cce3566b451516310f04dfeefd323e38452bfd9736cc4",
+      "sha256": "a957a561db5380ab84e6329e5b4ba8bcc98a8ee5a5d6ed9f7e846e3324611e1b",
       "section": "full"
     },
     {

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/059-deep-alignment-mode/014-skill-doc-template-conformance",
-  "spec_folder": "system-deep-loop/059-deep-alignment-mode/014-skill-doc-template-conformance",
+  "packet_id": "system-deep-loop/059-deep-alignment-mode/015-headless-model-matrix-hardening",
+  "spec_folder": "system-deep-loop/059-deep-alignment-mode/015-headless-model-matrix-hardening",
   "parent_id": "system-deep-loop/059-deep-alignment-mode",
   "children_ids": [],
   "manual": {
@@ -11,55 +11,47 @@
   },
   "derived": {
     "trigger_phrases": [
-      "deep-alignment doc conformance",
-      "deep-alignment create-skill template",
-      "deep-alignment SKILL.md smart routing",
-      "deep-alignment doc conformance plan",
-      "deep-alignment doc conformance tasks",
-      "deep-alignment doc conformance checklist",
-      "deep-alignment doc conformance summary",
-      "deep-alignment create-skill conformance summary"
+      "deep-alignment headless model matrix",
+      "deep-alignment narrate-then-stop fix",
+      "deep-alignment external executor wiring",
+      "deep-alignment hardening plan",
+      "deep-alignment executor wiring plan",
+      "deep-alignment model matrix plan",
+      "deep-alignment hardening tasks",
+      "deep-alignment matrix tasks",
+      "deep-alignment hardening checklist",
+      "deep-alignment matrix verification",
+      "deep-alignment hardening decisions",
+      "deep-alignment executor ADR"
     ],
     "key_topics": [
       "deep-alignment",
-      "doc",
-      "conformance",
-      "create-skill",
-      "template",
-      "skill",
-      "smart",
-      "routing",
+      "headless",
+      "model",
+      "matrix",
+      "narrate-then-stop",
+      "external",
+      "executor",
+      "wiring",
+      "hardening",
       "plan",
       "tasks",
-      "checklist",
-      "summary"
+      "checklist"
     ],
-    "importance_tier": "normal",
-    "status": "complete",
+    "importance_tier": "critical",
+    "status": "planned",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-alignment/README.md",
       ".opencode/commands/deep/alignment.md",
-      "feature_catalog/feature_catalog.md",
+      ".opencode/commands/deep/assets/deep_alignment_auto.yaml",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "checklist.md",
-      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/README.md",
-        "source": "derived"
-      },
       {
         "name": "alignment.md",
         "kind": "doc",
@@ -67,9 +59,21 @@
         "source": "derived"
       },
       {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
+        "name": "deep_alignment_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_alignment_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
         "source": "derived"
       },
       {
@@ -85,15 +89,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -109,7 +113,7 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +125,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Bring",
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -145,39 +149,33 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Must Pass",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview Six",
+        "name": "Task Checklist",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Parallel",
+        "name": "Confirm Gate",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Execution Rules",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow Template",
+        "name": "Status Reporting Format Report",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -191,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The deep-alignment skill shipped with its build phases but its authored docs drifted from the sk-doc `create-skill` templates",
-    "created_at": "2026-07-13T11:01:03.072Z",
-    "last_save_at": "2026-07-14T07:42:51.904Z",
+    "causal_summary": "The `deep-alignment` loop has never had a full live end-to-end run (its own README names this \"the remaining acceptance step\")",
+    "created_at": "2026-07-14T06:37:56.864Z",
+    "last_save_at": "2026-07-14T06:47:01.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +207,15 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e7a201638ed5191319933f29587e5122fe06b2236a0b73f10e3b7b7ca65a2bd2",
+    "source_fingerprint": "sha256:4813837bbd3a3a8cb1d94618e4e3aef037c39ded0f8cf4ddc76f3bfde1ba39e7",
     "source_doc_hashes": {
-      "spec.md": "6dfcd2cfe4b4bf8fb6f6a18efb11fa2186f5d64e869a50b6c709d6d9407e18cc",
-      "plan.md": "e7be656f80cb48f49917a979b9f81eecfc008771ffa109dbadf60eb649bd8067",
-      "tasks.md": "aa14a8a40f91f718678a7b2f25d58b0ef2781409a95d9d89d10885b17af2726f",
-      "checklist.md": "78a4747f379000e6d5ea2fcb8db472c5367eaa6d23a9b5faad1a8e9197314783",
-      "implementation-summary.md": "9e8af746ecc0b18a154462c9390118932f024fe003f140677737af77af7ebc10"
+      "spec.md": "2815fcfc35c405785c6e5a4518a88e27e14dd47ed36f17239c086393377b00cf",
+      "plan.md": "5d71283805c472cb9cbe207fc5980a560b114324de47ebb0dc4bac60f4fd1ffc",
+      "tasks.md": "1898df73109219a0156912cfc7cc3b9eb88c73be679de870d20720f78048f5ad",
+      "checklist.md": "f9ea70f4a84f642c842bce2d265dd27c1fdf7d1a827cb4e05e549b6d296f35ed",
+      "decision-record.md": "7c4a13a4930dfa040b8f8bbbab498a111b6d3de030a35b30004dceb377060184"
     },
     "last_active_child_id": null,
     "last_active_at": null

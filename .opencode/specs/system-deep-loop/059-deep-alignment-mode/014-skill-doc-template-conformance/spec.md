@@ -50,7 +50,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` (isolated worktree `wt/0035-deep-alignment-doc-conformance`) |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 013-review-remediation (folder-order predecessor only) |
-| **Successor** | None - documentation-conformance follow-on |
+| **Successor** | 015-headless-model-matrix-hardening (folder-order successor only) |
 <!-- /ANCHOR:metadata -->
 
 ---
