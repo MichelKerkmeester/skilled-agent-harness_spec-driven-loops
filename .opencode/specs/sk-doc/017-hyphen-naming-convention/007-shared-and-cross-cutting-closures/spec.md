@@ -1,138 +1,115 @@
 ---
-title: "Feature Specification: shared and cross cutting closures (017 parent)"
-description: "Phase parent for shared and cross cutting closures (017 parent)"
+title: "Feature Specification: shared and cross-cutting dependency closures (017 phase 007)"
+description: "Backbone phase for dependency closures whose filesystem-name changes and reference fan-out cross skill boundaries, shared script trees, root infrastructure, or active spec documentation."
 trigger_phrases:
-  - "007-shared-and-cross-cutting-closures"
-  - "phase parent"
+  - "shared cross-cutting dependency closures"
+  - "hyphen naming phase 007 closures"
+  - "cross-skill symlink closure"
+  - "hoisted shared script closure"
 importance_tier: "important"
-contextType: "implementation"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-shared-and-cross-cutting-closures"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize phase-parent continuity block"
-    next_safe_action: "Plan or resume a child phase folder"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
+    last_updated_at: "2026-07-14T17:28:55Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the shared-closure parent specification and four-child phase map"
+    next_safe_action: "Execute a selected closure child against the frozen rename map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "template-session"
-      parent_session_id: null
+    key_files:
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/"
+      - ".opencode/skills/sk-doc/scripts/"
+      - ".opencode/commands/"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Kebab-case is the canonical form for in-scope filesystem names"
+      - "Python scripts, Python import-package directories, tool-mandated names, generated output, and frozen history remain exempt"
+      - "Each child owns a dependency closure and publishes its handoff for the component phases"
 ---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- CONTENT DISCIPLINE: PHASE PARENT
-  FORBIDDEN content (do NOT author at phase-parent level):
-    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
-    - migrated from, ported from, originally in
-    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
-  REQUIRED content (MUST author at phase-parent level):
-    - Root purpose: what problem does this entire phased decomposition solve?
-    - Sub-phase list: which child phase folders exist and what each one does
-    - What needs done: the high-level outcome the phases work toward
--->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed plans, tasks, checklists, and decisions live in the children. -->
 
-# Feature Specification: shared and cross cutting closures (017 parent)
+# Feature Specification: Shared and Cross-Cutting Dependency Closures
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 2 |
+| **Level** | phase parent |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | scaffold/007-shared-and-cross-cutting-closures |
-| **Predecessor** | None |
-| **Successor** | None |
-| **Handoff Criteria** | Validator + template + generator changes ship so parent validates under tolerant policy |
+| **Parent Packet** | `sk-doc/017-hyphen-naming-convention` |
+| **Predecessor** | `006-inventory-and-frozen-map` |
+| **Successor** | `008-component-migration` |
+| **Handoff Criteria** | Every child has a concrete, evidence-pinned closure manifest that downstream component phases can declare as a dependency |
 <!-- /ANCHOR:metadata -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This phased decomposition tracks shared and cross cutting closures (017 parent) across independently executable child phase folders.
+Several in-scope filesystem names are not owned by one component subtree. Root and `.opencode` infrastructure, symlink façades, shared scripts, and active spec documents each fan out into multiple consumers. Treating any one of these as a local name change can leave a dangling link, stale command path, broken shared-script reference, or unresolved spec link.
 
 ### Purpose
-Keep parent documentation lean while child phases own detailed plans, tasks, checklists, and continuity.
-
-> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
+Define four hoisted dependency-closure children that inventory the shared surface, carry every rename and reference edge together, and hand a verifiable closure contract to the component phases under phase 008.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- Root purpose and child phase manifest for shared and cross cutting closures (017 parent)
-- Per-phase implementation details in child folders
+- Root-level and `.opencode` infrastructure names that no single skill owns.
+- Symlink link-nodes and targets whose resolved paths cross skill boundaries.
+- Shared scripts and their multi-skill consumer references.
+- Active spec folders and authored documentation names, links, and path-derived values.
+- Closure manifests that classify each candidate as rename, exempt, frozen, generated, or tool-mandated.
 
 ### Out of Scope
-- Detailed per-phase implementation plans at the parent level
+- Component-owned names handled by the phase 008 skill subtrees.
+- Python `.py` files and Python import-package directories.
+- Tool-mandated names such as `.utcp_config.json`, `.mcp.json`, `SKILL.md`, and other exact-name contracts.
+- Generated or lockfile output, changelogs, `z_archive/`, and completed spec history.
+- Code identifiers, JSON/YAML/TOML keys, frontmatter fields, and database columns.
 
 ### Files to Change
-Summary of aggregate file scope. Per-phase detail lives in child plans.
 
-| File Path | Change Type | Phase | Description |
+| File Path | Change Type | Child | Description |
 |-----------|-------------|-------|-------------|
-| [Per-child files] | Modify/Create | Child phases | Detailed file scope lives in each child phase |
+| Root files and `.opencode/commands/**`, `.opencode/install_guides/**` | Rename/reference closure | `001-root-and-opencode-infra-strays` | Classify and close names outside one skill-owned subtree |
+| Cross-skill symlink link-nodes and resolved targets | Symlink/reference closure | `002-cross-skill-symlink-closure` | Move targets and every pointer as one atomic closure |
+| `.opencode/skills/**/shared/**` and `scripts/shared/**` | Rename/reference closure | `003-hoisted-shared-script-closures` | Hoist scripts with consumers in multiple skill trees |
+| Active `.opencode/specs/**` folders and authored docs | Rename/reference closure | `004-active-specs-and-docs` | Preserve phase structure while resolving doc names and links |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+| Phase | Folder | Closure owned | Downstream handoff |
+|-------|--------|---------------|-------------------|
+| 001 | `001-root-and-opencode-infra-strays/` | Root-level and `.opencode` infrastructure candidates outside a single skill | Root-infrastructure closure manifest and unresolved cross-boundary edges |
+| 002 | `002-cross-skill-symlink-closure/` | Symlink targets and link-nodes that cross skill boundaries | Atomic symlink ordering contract, mode manifest, and resolved-target evidence |
+| 003 | `003-hoisted-shared-script-closures/` | Shared script names with consumers in multiple skill subtrees | Shared-script closure manifest and consumer/reference dispositions |
+| 004 | `004-active-specs-and-docs/` | Active spec/document names and path-derived references | Packet/doc closure manifest, link evidence, and strict-validation targets |
 
-| Phase | Folder | Focus | Status |
-|-------|--------|-------|--------|
-| 1 | 001-root-and-opencode-infra-strays/ | [Phase 1 scope] | Pending |
-| 2 | 002-cross-skill-symlink-closure/ | [Phase 2 scope] | Pending |
-| 3 | 003-hoisted-shared-script-closures/ | [Phase 3 scope] | Pending |
-| 4 | 004-active-specs-and-docs/ | [Phase 4 scope] | Pending |
-
-### Phase Transition Rules
-
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-
-### Phase Handoff Criteria
-
-| From | To | Criteria | Verification |
-|------|-----|----------|--------------|
-| 001-root-and-opencode-infra-strays | 002-cross-skill-symlink-closure | [Criteria TBD] | [Verification TBD] |
-| 002-cross-skill-symlink-closure | 003-hoisted-shared-script-closures | [Criteria TBD] | [Verification TBD] |
-| 003-hoisted-shared-script-closures | 004-active-specs-and-docs | [Criteria TBD] | [Verification TBD] |
+Each child remains a planning contract. The component phases consume the child handoffs through explicit `depends_on` entries; this parent does not duplicate their implementation details.
 <!-- /ANCHOR:phase-map -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Which child phase should execute first?
-- What handoff criteria must each child satisfy?
+None blocking. Child execution uses the immutable BASE, the frozen bijective rename map, and the rename/reference tooling defined by the governing 017 phases.
 <!-- /ANCHOR:questions -->
-
----
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
-- **Parent Spec**: See `../spec.md`
-- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
+- **Program scope and sequencing**: See `../spec.md`
+- **Naming policy and exemptions**: See `../../001-convention-policy-and-scope/spec.md`
+- **Child phase contracts**: See the four folders listed in the phase map above
+- **Graph metadata**: See `graph-metadata.json` for the active child pointer

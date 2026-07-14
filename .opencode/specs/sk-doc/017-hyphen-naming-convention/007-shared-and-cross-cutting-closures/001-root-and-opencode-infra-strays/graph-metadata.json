@@ -2,25 +2,218 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "root and OpenCode infrastructure strays",
+      "hyphen naming root infrastructure closure",
+      "phase 007 root infra",
+      "root infrastructure closure implementation plan",
+      "OpenCode infrastructure naming plan",
+      "phase 007 child 001 plan",
+      "root infrastructure closure tasks",
+      "OpenCode infrastructure naming tasks",
+      "phase 007 child 001 tasks",
+      "root infrastructure closure checklist",
+      "OpenCode infrastructure naming checklist",
+      "phase 007 child 001 verifier"
+    ],
+    "key_topics": [
+      "root",
+      "opencode",
+      "infrastructure",
+      "strays",
+      "hyphen",
+      "naming",
+      "closure",
+      "phase",
+      "infra",
+      "implementation",
+      "plan",
+      "child"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: root-and-opencode-infra-strays",
+    "key_files": [
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
+      ".opencode/install_guides/install_scripts/_utils.sh",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_feature_catalog_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_utils.sh",
+        "kind": "script",
+        "path": ".opencode/install_guides/install_scripts/_utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Infrastructure Strays",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Root-level and `.opencode` infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed filesystem-name contract before downstream component work consumes them.",
     "created_at": "2026-07-14T15:16:51Z",
-    "last_save_at": "2026-07-14T15:16:51Z",
+    "last_save_at": "2026-07-14T17:41:15.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:144dc3010d3d76c83255654028044a48f70dba4e12b682cfb68ea63a99494ba2",
+    "source_doc_hashes": {
+      "spec.md": "d0895585143e1dffe8bb4ae25c744cd0788cd42002d17af04293cb3a7931d40b",
+      "plan.md": "4b4a896fcda73d956b5d7c9198492bf99661d89419ae934eee21c4636bec73b6",
+      "tasks.md": "2115bc448a26d4d5ecd4ab0e7013e91ce99087e23267b27edeac085653ef12ba",
+      "checklist.md": "1087bbe5cb9c1ec6cee76e139e5fc71f566a803e04bef23f71595a3e1079c1c5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -2,25 +2,215 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "active specs and documents naming",
+      "hyphen naming active spec docs",
+      "phase 007 active specs",
+      "active specs documents implementation plan",
+      "spec document naming closure plan",
+      "phase 007 child 004 plan",
+      "active spec document closure tasks",
+      "spec document naming tasks",
+      "phase 007 child 004 tasks",
+      "active spec document closure checklist",
+      "spec document naming verifier",
+      "phase 007 child 004 checklist"
+    ],
+    "key_topics": [
+      "active",
+      "specs",
+      "documents",
+      "naming",
+      "hyphen",
+      "spec",
+      "docs",
+      "phase",
+      "implementation",
+      "plan",
+      "document",
+      "closure"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 4: active-specs-and-docs",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Specs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Markdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-packet",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "non-zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Active spec folders and authored documents can retain snake_case names and path references even though numeric phase folders are already structurally compliant. This child separates active authored docs from generated, frozen, and tool-mandated surfaces before applying the naming contract.",
     "created_at": "2026-07-14T15:16:53Z",
-    "last_save_at": "2026-07-14T15:16:53Z",
+    "last_save_at": "2026-07-14T17:41:15.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:1749b3a3e5408522aded83c05f4325f0e904fdfed7d72364a92c5f87a0f83e87",
+    "source_doc_hashes": {
+      "spec.md": "8f38d7f4b8e9e7cc619a1e18b821b06173228cb85efe9e1af62970d3fdc50587",
+      "plan.md": "ae1e084be69ba7d4b19dec9ac49cecac895431ec62fc9704fc9d954047c6f7d7",
+      "tasks.md": "b58f5f0c74c5d27c44d60e5e751a3657fff866ad4ee0806446278c3cc268fa46",
+      "checklist.md": "985de4f95ec1233d439a0c9632d05640ae48344c23cff0c466c9ce6e007a1357"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

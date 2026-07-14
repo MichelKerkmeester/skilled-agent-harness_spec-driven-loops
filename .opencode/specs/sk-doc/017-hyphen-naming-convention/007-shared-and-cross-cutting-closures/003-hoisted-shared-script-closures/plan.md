@@ -1,170 +1,121 @@
 ---
-title: "Implementation Plan: Phase 3: hoisted-shared-script-closures [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: hoisted shared script closures (017 phase 007 child 003)"
+description: "Execution plan for shared scripts consumed by multiple skills: construct the consumer graph, select semantic targets, update every script reference, preserve exemptions and modes, and publish component dependencies."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "shared script closure implementation plan"
+  - "hoisted script naming plan"
+  - "phase 007 child 003 plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-hoisted-shared-script-closures"
-    last_updated_at: "2026-07-14T15:16:53Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures"
+    last_updated_at: "2026-07-14T17:28:55Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the hoisted shared-script implementation plan"
+    next_safe_action: "Build the shared-script consumer graph on the pinned worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-hoisted-shared-script-closures"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/"
+      - ".opencode/skills/sk-doc/scripts/"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The phase owns only multi-skill closures; one-skill scripts are delegated to phase 008"
+      - "Python `.py` names and Python package directories remain exempt"
 ---
+# Implementation Plan: Hoisted Shared Script Closures
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 3: hoisted-shared-script-closures
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Shared script roots and their multi-skill consumers (phase 007 child 003) |
+| **Change class** | Semantic script-name and dependency-closure update |
+| **Execution** | Isolated worktree pinned to BASE, using the frozen map and reference checker |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The phase will inventory shared script roots, build a reverse consumer graph, and select only scripts whose references cross two or more skill subtrees. It will update the script and every static/dynamic consumer in one closure, preserve Python and tool-mandated exemptions, and hand off symlink edges to child 002 and single-skill scripts to phase 008.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] BASE, phase 005 tooling, and phase 006 map hash are pinned
+- [ ] Shared script roots and façade paths are enumerated
+- [ ] Consumer ownership can be resolved for imports, `require`, `source`, registries, fixtures, and test commands
+- [ ] Python/package, tool-mandated, generated, lockfile, and frozen exclusions are classified
+- [ ] Component-owned scripts have a downstream owner before this phase starts
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Every selected script has at least two skill consumers or an explicit closure exception
+- [ ] Every consumer path is updated and verified
+- [ ] Executable bits and symlink dependencies are preserved
+- [ ] The handoff gives phase 008 stable closure dependencies and evidence
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Shared-script inventory**: enumerate `shared/scripts/`, `scripts/shared/`, and equivalent shared roots.
+- **Consumer graph**: map each script to skill owners and to import, `require`, `source`, registry, fixture, and test edges.
+- **Semantic target map**: assign explicit kebab-case targets only to non-exempt names and run collision checks.
+- **Closure executor**: update script names and all consumers together; coordinate link-nodes with child 002.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Pin BASE, map hash, and reference-checker receipt.
+- [ ] Enumerate shared script roots and identify non-exempt candidate filenames.
+- [ ] Resolve consumer ownership across skill trees and mark one-skill delegations.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Create the shared-script consumer graph and semantic source-to-target map.
+- [ ] Update imports, `require`, `source`, registries, fixtures, test commands, and path-valued configuration.
+- [ ] Preserve Python/package exemptions, executable bits, and symlink handoffs.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Every selected script has multi-skill consumer evidence and one closure record.
+- [ ] Static and dynamic consumer dispositions are complete with no stale source path.
+- [ ] Script syntax, test discovery, executable modes, and phase handoff checks pass.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Compare shared-script inventory with the consumer graph and verify at least two skill subtrees per selected script |
+| REQ-002 | Inspect semantic target map and run exact/casefold/NFC collision checks |
+| REQ-003 | Run the reference checker and exercise imports, `require`, `source`, registries, fixtures, and test commands |
+| REQ-004 | Compare changed names/modes with the exemption and symlink manifests; run `node --check`/`bash -n` for affected non-Python scripts |
+| REQ-005 | Review one-skill delegation records against phase 008 ownership |
+| REQ-006 | Verify closure identifiers, consumers, evidence, and ordering in the downstream handoff |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `000-worktree-baseline-and-census` | Baseline | Required before execution | No stable script or test-discovery comparison |
+| `005-rename-and-reference-tooling` | Tooling | Required before execution | Dynamic consumers and path references cannot be dispositioned |
+| `006-inventory-and-frozen-map` | Map | Required before execution | Script scope and targets can drift |
+| `002-cross-skill-symlink-closure` | Sibling closure | Handoff consumer | Shared façade links cannot be closed atomically |
+| Phase 008 component script children | Handoff consumers | Required per delegated script | Single-skill closures lack an owner |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Revert the path-scoped shared-script closure commit as a unit if syntax, reference, discovery, or mode checks fail. Do not revert a script filename without its consumer updates; if the closure cannot be restored cleanly, discard the isolated worktree and replay from BASE.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

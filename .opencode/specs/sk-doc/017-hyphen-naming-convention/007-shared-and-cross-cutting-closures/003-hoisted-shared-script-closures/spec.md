@@ -1,182 +1,127 @@
 ---
-title: "Feature Specification: Phase 3: hoisted-shared-script-closures [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: hoisted shared script closures (017 phase 007 child 003)"
+description: "Shared scripts used by more than one skill must move with their complete import, require, source, registry, fixture, and symlink closure rather than being hidden inside one component subtree."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "hoisted shared script closures"
+  - "shared script naming closure"
+  - "phase 007 shared scripts"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-hoisted-shared-script-closures"
-    last_updated_at: "2026-07-14T15:16:53Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures"
+    last_updated_at: "2026-07-14T17:28:55Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the hoisted shared-script closure contract"
+    next_safe_action: "Build the multi-skill shared-script consumer graph from the frozen map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-hoisted-shared-script-closures"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/skill_contract.cjs"
+      - ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
+      - ".opencode/skills/sk-doc/scripts/"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Only non-exempt script filenames are rename candidates; Python `.py` scripts remain exempt"
+      - "A shared script is hoisted here when its reference closure spans two or more skill subtrees"
+      - "Symlink façades are coordinated with child 002, while component-owned script batches remain with phase 008"
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 3: hoisted-shared-script-closures
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Hoisted Shared Script Closures
 
----
+> Child adjacency under the 007 parent (grouping order, not a runtime dependency): sibling `002-cross-skill-symlink-closure`; root infrastructure and active spec/document closures are `001-root-and-opencode-infra-strays` and `004-active-specs-and-docs`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/003-hoisted-shared-script-closures` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 4 |
-| **Predecessor** | 002-cross-skill-symlink-closure |
-| **Successor** | 004-active-specs-and-docs |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | Shared script owners and all consuming skills |
+| **Origin** | Child 003 of the 007 shared and cross-cutting dependency-closures phase |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 3** of the shared and cross cutting closures (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Shared script trees are consumed through more than one skill surface. The repository has shared script locations such as `.opencode/skills/sk-doc/shared/scripts/` and `scripts/shared/`, plus façade paths under `.opencode/skills/sk-doc/scripts/`. A script filename change held inside one component subtree can therefore break imports, `require`/`source` calls, registries, fixtures, or test commands owned elsewhere.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This child hoists every multi-skill shared-script dependency closure into one manifest and execution contract. It preserves the program exemption boundary, especially the exemption for Python `.py` scripts and Python import-package directories, while requiring non-exempt script names to move with every consumer.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Non-exempt script filenames under `shared/scripts/`, `scripts/shared/`, and equivalent shared script roots.
+- Shared script consumers in two or more skill subtrees, including imports, `require`, shell `source`, registries, fixtures, test commands, and path-valued configuration.
+- Symlink façades and link-node references, coordinated with child 002's atomic contract.
+- Explicit classification of Python `.py` scripts, Python package directories, tool-mandated names, and generated outputs as exempt where applicable.
+- A closure handoff that downstream phase 008 component children can declare through `depends_on`.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Scripts owned and consumed by one component subtree; those remain with the relevant phase 008 child.
+- Python `.py` filenames and Python import-package directories.
+- Runtime/package-layout directories, manifests, lockfiles, and configuration-data filename batches owned by other phases.
+- Changelogs, `z_archive/`, completed history, code identifiers, JSON/YAML/TOML keys, frontmatter fields, and database columns.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/**/shared/scripts/**` | Rename/reference closure | Rename only non-exempt shared script names and update all consumers |
+| `.opencode/skills/**/scripts/shared/**` | Rename/reference closure | Include shared dispatch/helper scripts with cross-skill consumers |
+| Shared-script façade links and registries | Link/reference update | Keep public script paths, symlinks, imports, and registries aligned |
+| Shared-script fixtures and test commands | Reference update | Preserve execution and discovery paths without renaming Python exemptions |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Identify the complete multi-skill shared-script set | Each selected script has consumers in at least two skill subtrees, with the consumer paths recorded in the closure manifest |
+| REQ-002 | Apply explicit semantic targets to non-exempt script names | Every rename has a kebab-case target, collision evidence, and no mechanical conversion of leading or repeated underscores |
+| REQ-003 | Move all script consumers in lockstep | Imports, `require`, shell `source`, registries, fixtures, test commands, and path-valued configuration resolve to the target |
+| REQ-004 | Preserve exemption and executable/symlink semantics | Python files/package dirs and tool-mandated names are unchanged; executable bits and symlink edges are preserved through child 002 |
+| REQ-005 | Keep component ownership unambiguous | A script with only one owning skill is recorded as delegated to phase 008, not silently absorbed into this shared closure |
+| REQ-006 | Publish a dependency-ready handoff | The manifest gives phase 008 children stable closure identifiers, consumer evidence, and required ordering |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: **Given** the shared-script inventory, **when** consumer edges are resolved, **then** every selected script has at least two skill owners or is explicitly delegated to a component child.
+- **SC-002**: **Given** a non-exempt shared script filename, **when** its semantic target is selected, **then** the target is kebab-case, collision-free, and recorded in the frozen-map closure.
+- **SC-003**: **Given** imports, `require`, `source`, registries, fixtures, and test commands that reference a selected script, **when** the closure is applied, **then** every consumer resolves and no source path remains.
+- **SC-004**: **Given** a Python script, Python package directory, or tool-mandated script name, **when** the closure is applied, **then** the exemption remains intact and is evidenced in the ledger.
+- **SC-005**: **Given** a shared script with a symlink façade, **when** child 003 hands off the closure, **then** child 002 has the link edge and target mode evidence needed for atomic execution.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk / Dependency | Impact | Mitigation |
+|-------------------|--------|------------|
+| A consumer is hidden in a registry or dynamic loader | A script appears healthy while one skill still points at the old name | Use the phase 005 reference checker and disposition every dynamic site |
+| A Python exemption is mistaken for a rename candidate | Imports or test discovery can break | Classify by extension and package role before target selection |
+| A shared script is actually component-owned | Scope overlaps phase 008 and creates competing maps | Require two-skill consumer evidence or an explicit delegation record |
+| A symlink façade is moved without its target closure | Public script paths dangle | Hand every symlink edge to child 002's atomic contract |
+| A shared script is executable | Mode drift breaks dispatch | Capture and compare executable bits in the closure evidence |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. Consumer ownership is established from the reference graph; unresolved dynamic sites become explicit dispositions in the handoff rather than assumptions.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

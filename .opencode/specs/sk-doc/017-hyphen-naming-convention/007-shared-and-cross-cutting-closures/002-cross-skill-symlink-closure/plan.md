@@ -1,170 +1,121 @@
 ---
-title: "Implementation Plan: Phase 2: cross-skill-symlink-closure [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: cross-skill symlink closure (017 phase 007 child 002)"
+description: "Execution plan for the atomic symlink closure: inventory link edges, preflight target ownership and modes, update every pointer with its target, and prove no dangling link remains."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "cross-skill symlink implementation plan"
+  - "atomic symlink closure plan"
+  - "phase 007 child 002 plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-cross-skill-symlink-closure"
-    last_updated_at: "2026-07-14T15:16:52Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
+    last_updated_at: "2026-07-14T17:28:55Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the cross-skill symlink implementation plan"
+    next_safe_action: "Generate the link-node to target manifest on the pinned worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-cross-skill-symlink-closure"
-      parent_session_id: null
+    key_files:
+      - ".opencode/install_guides/install_scripts/"
+      - ".opencode/skills/sk-doc/scripts/"
+      - ".claude/"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Atomicity and ordering are governed by the child decision record"
+      - "Target content changes remain with the target-owning phase"
 ---
+# Implementation Plan: Cross-Skill Symlink Closure
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: cross-skill-symlink-closure
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Cross-skill and shared-infrastructure symlinks (phase 007 child 002) |
+| **Change class** | Atomic link-node, target, and reference closure |
+| **Execution** | Isolated worktree pinned to BASE, with manifest preflight |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The phase will build a reverse index from every symlink link-node to its resolved target, attach target ownership and frozen-map dispositions, and preflight relative-link rendering and mode preservation. The executor then treats each target plus all pointers as one closure; unresolved, colliding, or mode-changing edges abort before a partial update.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] BASE, phase 006 map hash, and phase 005 reference-checker receipt are pinned
+- [ ] The symlink manifest includes cross-skill, shared, install-guide, and runtime mirror edges
+- [ ] Target ownership and exemption/frozen dispositions are known for every edge
+- [ ] The atomicity decision in `decision-record.md` is accepted for execution
+- [ ] The candidate closure can be isolated from component target-content work
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Every target move includes all link-nodes and path references in one closure
+- [ ] Relative links resolve from each link-node and no link is dangling
+- [ ] Link mode, target type, and executable bits match the preflight manifest
+- [ ] Downstream component phases have stable closure identifiers and evidence
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Edge manifest**: capture the link path, raw link text, resolved target, target owner, target type, modes, and map disposition.
+- **Reverse target index**: group all link-nodes by target so a target cannot move without its full pointer set.
+- **Preflight transaction**: calculate every target and relative-link update, then abort on any missing edge, collision, or mode drift before writing.
+- **Postflight proof**: resolve each link from its containing directory and compare identity, mode, and target type with the manifest.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Pin BASE, the frozen map hash, and the reference-checker receipt.
+- [ ] Enumerate symlink link-nodes and resolve targets without following through the manifest boundary.
+- [ ] Record target ownership, target mode, executable bit, and frozen/exempt disposition.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Group link-nodes by target and produce one closure record per affected target.
+- [ ] Precompute relative link text and target moves from the link-node directory.
+- [ ] Apply target and pointer updates as one dependency-closed batch, aborting before writes on any failed preflight.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Resolve every changed link from its own directory with no dangling target.
+- [ ] Compare symlink mode, target type, target identity, and executable bits with the manifest.
+- [ ] Run the reference checker and verify the downstream closure handoff.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Compare the tracked symlink inventory with the edge manifest and inspect link text, target, owner, and modes |
+| REQ-002 | Inject an unresolved pointer or collision into a dry-run fixture and confirm preflight aborts before a write; inspect the candidate closure commit |
+| REQ-003 | Resolve each link from its containing directory and compare mode `120000`, target type, and target executable bits |
+| REQ-004 | Match every changed edge to the phase 006 map and run the phase 005 reference checker |
+| REQ-005 | Review dispositions for tool-mandated, Python, generated, lockfile, changelog, archive, and completed-history links |
+| REQ-006 | Verify stable closure identifiers, ordering constraints, and evidence are present for phase 008 consumers |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `000-worktree-baseline-and-census` | Baseline | Required before execution | Link modes and target identities lack a comparison point |
+| `005-rename-and-reference-tooling` | Tooling | Required before execution | No closure preflight or pointer proof |
+| `006-inventory-and-frozen-map` | Map | Required before execution | Target ownership and dispositions can drift |
+| `001-root-and-opencode-infra-strays` | Sibling closure | Handoff input where root links are involved | Root link edges can be omitted |
+| Target-owning phase 008 child | Component dependency | Required per target | Target content/path ownership is ambiguous |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+If a postflight resolution, mode comparison, or reference check fails, stop the closure batch and revert its path-scoped commit as a unit. Because the target and all link-nodes share one closure, rollback never rewrites only the pointer side; discard the isolated worktree if the candidate commit cannot be restored cleanly.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

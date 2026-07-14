@@ -16,25 +16,27 @@
   },
   "derived": {
     "trigger_phrases": [
-      "007-shared-and-cross-cutting-closures",
-      "phase parent"
+      "shared cross-cutting dependency closures",
+      "hyphen naming phase 007 closures",
+      "cross-skill symlink closure",
+      "hoisted shared script closure"
     ],
     "key_topics": [
-      "007-shared-and-cross-cutting-closures",
-      "phase",
-      "parent",
-      "phased",
-      "decomposition",
-      "tracks",
       "shared",
-      "cross",
-      "cutting",
+      "cross-cutting",
+      "dependency",
       "closures",
-      "across",
-      "independently"
+      "hyphen",
+      "naming",
+      "phase",
+      "cross-skill",
+      "symlink",
+      "closure",
+      "hoisted",
+      "script"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -47,6 +49,12 @@
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cutting Dependency Closures",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -70,29 +78,23 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Keep",
+        "name": "Problem Statement Several",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This phased decomposition tracks shared and cross cutting closures (017 parent) across independently executable child phase folders",
+    "causal_summary": "Several in-scope filesystem names are not owned by one component subtree",
     "created_at": "2026-07-14T15:16:50Z",
-    "last_save_at": "2026-07-14T15:24:34.307Z",
+    "last_save_at": "2026-07-14T17:41:15.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:beee93c00c6c4108ef547377c7fbe1075b798a5bd13bcbc3722553fd5fdd23f6",
+    "source_fingerprint": "sha256:a49a99d3f5f249962318b9b41d9411217ce3227681d4dc85ac5cd4210af2e338",
     "source_doc_hashes": {
-      "spec.md": "56280814ec26c169202716a1c9baf443a6f49ea2a4b240a773d7cb6666703f65"
+      "spec.md": "50854a897bfd5025dbf39b0fec4b12b4361dea3d5488c77b6444a54f60b492f7"
     },
     "last_active_child_id": null,
     "last_active_at": null
