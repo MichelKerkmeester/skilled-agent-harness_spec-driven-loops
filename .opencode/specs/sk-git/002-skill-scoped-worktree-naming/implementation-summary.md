@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill-Scoped Worktree and Branch Naming"
-description: "Interim closeout: the owner-first grammar and cleanup design are frozen and the first safe cleanup slice (six merged branches) is executed; the sk-git codification, allocator, wrapper/reaper hardening, enforcement, and remaining cleanup are deferred for operator review."
+description: "Closeout: the owner-first grammar is codified in sk-git and backed by a locked allocator/validator, the wrapper/reaper are hardened for safe concurrent reaping, a migration-tolerant pre-push gate is installed, and the first safe cleanup slice (six merged branches) is executed; only the remaining evidence-gated cleanup stays open behind per-item operator gates."
 trigger_phrases:
   - "skill scoped worktree summary"
   - "owner first branch summary"
@@ -11,10 +11,10 @@ status: "in-progress"
 _memory:
   continuity:
     packet_pointer: "sk-git/002-skill-scoped-worktree-naming"
-    last_updated_at: "2026-07-14T07:40:00Z"
+    last_updated_at: "2026-07-14T12:20:00Z"
     last_updated_by: "claude"
-    recent_action: "Froze the design and executed the first cleanup slice"
-    next_safe_action: "Implement the sk-git codification after operator review"
+    recent_action: "Recorded Phases 1-4 shipped and verified"
+    next_safe_action: "Run operator-gated cleanup from a clean worktree"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-git-skill-scoped-worktree-naming"
       parent_session_id: null
-    completion_pct: 25
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Packet** | `sk-git/002-skill-scoped-worktree-naming` |
 | **Level** | 3 (cross-cutting policy + executable tooling) |
-| **Status** | In Progress (design frozen; first cleanup slice executed; implementation deferred) |
+| **Status** | In Progress (Phases 1-4 shipped + verified; only operator-gated cleanup remains) |
 | **Updated** | 2026-07-14 |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
@@ -54,24 +54,33 @@ _memory:
 
 ### Delivered now
 
-- An owner-first branch/worktree naming design (grammar, migration rule, wrapper exemption) reconciling the operator's rule with the numbered counter.
-- A frozen decision record resolving the `wt/`-vs-`<skill>/` contradiction and recording the cleanup posture.
-- The first safe cleanup slice: six merged, not-checked-out branches deleted with live re-checks and a recovery record.
+- **Phase 1 — codify:** sk-git ALWAYS #4 rewritten to the owner-first grammar and a new ALWAYS #17 (reap-before-delete ordering + wrapper-only proven-inactive reap + pre-push contract); references, advisor keywords/`Owns:`, `graph-metadata.json`, and a `v1.2.0.0` changelog updated; the README worktree example + cleanup FAQ rewritten off the forbidden hand-computed counter. (`2eb1bf2974`)
+- **Phase 2 — allocator/validator:** `worktree-naming.sh` — a locked, clone-wide high-water-mark allocator plus owner/slug/branch/pair validators and `create`/`create-detached` helpers, with a 31-case hermetic harness. (`bdb31a31db`)
+- **Phase 3 — wrapper/reaper hardening:** `worktree-session.sh` gains runtime-input validation and an active-session `.pid` marker; `worktree-reaper.sh` resolves the integration tip from the primary checkout's live `HEAD` (not a stale `main`), auto-reaps ONLY clean+merged+marker-dead wrapper pairs, treats human/detached/marker-ambiguous worktrees as report-only, and never `--force`s. 9-case harness. (`925ca3c738`)
+- **Phase 4 — enforcement:** a migration-tolerant `pre-push` hook that gates only brand-new remote branch names against the allocator's validators, fails open on a broken validator, never blocks `skilled/v*`, and carries a `SPECKIT_SKIP_PREPUSH_NAMING=1` bypass; wired into the installer with an 8-case harness. (`6e6fdfb57d`)
+- **Cleanup slice:** six merged, not-checked-out branches deleted with live re-checks and a recovery record.
+- **Design of record:** a frozen decision record (ADR-001..004) resolving the `wt/`-vs-`<skill>/` contradiction and fixing the cleanup posture.
 
 ### Files Changed
 
 | File | Change | Purpose |
 |------|--------|---------|
-| `spec.md` / `plan.md` / `tasks.md` / `checklist.md` | Create | L3 charter, phased plan, task queue, QA gates |
-| `decision-record.md` | Create | ADR-001..004 (grammar, wrapper exemption, cleanup, packet) |
-| `implementation-summary.md` | Create | This interim closeout |
-| `sol-worktree-plan.md` | Add | GPT-5.6-SOL check/refine/plan artifact (analysis of record) |
-| `deleted-branches-recovery.txt` | Add | Recovery OIDs for the six deleted merged branches |
+| `.opencode/skills/sk-git/SKILL.md` | Modify | ALWAYS #4 owner-first + ALWAYS #17 reap contract; version `1.2.0.0`; advisor keywords/`Owns:` |
+| `.opencode/skills/sk-git/references/worktree_workflows.md` | Modify | Owner-first examples (v1.1.1.0) |
+| `.opencode/skills/sk-git/README.md` | Modify | Owner-first worktree example + cleanup FAQ (v1.1.0.27) |
+| `.opencode/skills/sk-git/graph-metadata.json` | Modify | Owner-first domains / intent_signals / causal_summary |
+| `.opencode/skills/sk-git/changelog/v1.2.0.0.md` | Create | Grammar, wrapper exemption, migration rule |
+| `.opencode/skills/sk-git/scripts/worktree-naming.sh` (+`tests/`) | Create | Locked allocator + validators; 31/31 harness |
+| `.opencode/bin/worktree-session.sh` | Modify | Runtime validation + session-activity marker |
+| `.opencode/bin/worktree-reaper.sh` (+`tests/`) | Modify | Live integration tip + marker gate + report-only; 9/9 harness |
+| `.opencode/scripts/git-hooks/pre-push` (+`tests/`, installer) | Create | Migration-tolerant new-branch gate; 8/8 harness |
+| `spec.md` / `plan.md` / `tasks.md` / `checklist.md` / `decision-record.md` | Create/Modify | L3 charter, phased plan, task queue, QA gates, ADRs |
+| `sol-worktree-plan.md` / `deleted-branches-recovery.txt` | Add | SOL analysis of record; recovery OIDs |
 | local branches (6) | Delete | `system-speckit/023\|024\|026`, `wt/0030\|0031\|0032` (merged into v4) |
 
-### Deferred (operator review)
+### Deferred (operator-gated)
 
-The sk-git SKILL.md/reference codification, the `worktree-naming.sh` allocator/validator, the wrapper/reaper hardening, the `pre-push` enforcement hook, and the remaining cleanup (worktree removals, detached adjudication, unmerged decisions).
+Only the remaining evidence-gated cleanup: stale registered-worktree removals, detached-worktree adjudication (preserve non-contained commits first), and per-item operator decisions on the unmerged branches (KEEP/RENAME/ARCHIVE/DISCARD, verified `git bundle` before any `-D`) — all from a clean control worktree, never the dirty/concurrent primary.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -80,9 +89,10 @@ The sk-git SKILL.md/reference codification, the `worktree-naming.sh` allocator/v
 ## How It Was Delivered
 
 1. Reconciled the operator's rule against the sk-git contract; dispatched GPT-5.6-SOL (max/fast, read-only) to check, refine, and plan against a verified branch/worktree snapshot.
-2. Independently verified SOL's load-bearing claims: the reaper tests `merge-base --is-ancestor "$branch" main` (a base ~1400 commits behind v4), the skill dir is `system-spec-kit` (so `system-speckit/*` is a wrong ID), and the six deletion candidates are ancestors of v4 and not checked out.
+2. Independently verified SOL's load-bearing claims: the reaper tested `merge-base --is-ancestor "$branch" main` (a base ~1400 commits behind v4), the skill dir is `system-spec-kit` (so `system-speckit/*` is a wrong ID), and the six deletion candidates are ancestors of v4 and not checked out.
 3. Executed the six branch deletions with per-branch live re-checks (ancestor + not-checked-out + tip-unchanged), recording OIDs; no working tree was touched.
-4. Froze the design at Level 3 under the existing `sk-git` track.
+4. Built Phases 1-4 under a sonnet-5 sub-agent workflow (one implementer per phase + three adversarial verifiers — runs-green, safety, conformance — that re-ran the harnesses rather than trusting self-reports). Verifier-found blockers were fixed before landing: the `pre-push` errexit fail-safe (`set +e`/capture/`set -e` around `source`), removal of the `backup/*` bypass wildcard, and doc drift.
+5. Reconciled all packet docs to the shipped state with commit + test evidence, repaired the provenance links the concurrent spec reorg (`a2817e2c33`) broke by moving `137` into the `sk-git` track, and regenerated metadata last.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -103,9 +113,10 @@ The sk-git SKILL.md/reference codification, the `worktree-naming.sh` allocator/v
 <!-- ANCHOR:verification -->
 ## Verification
 
-- **Design claims verified against source/live state:** reaper base bug (`.opencode/bin/worktree-reaper.sh` line 86), wrong skill ID (`system-spec-kit` exists, `system-speckit` does not), and all six delete candidates confirmed ancestor-of-v4 + not-checked-out.
+- **Harnesses (re-run at close):** `worktree-naming.test.sh` 31/31, `worktree-reaper.test.sh` 9/9, `pre-push.test.sh` 8/8; `bash -n` clean on all four shell files.
+- **Design claims verified against source/live state:** reaper base bug (`.opencode/bin/worktree-reaper.sh`, since corrected to the live primary `HEAD`), wrong skill ID (`system-spec-kit` exists, `system-speckit` does not), and all six delete candidates confirmed ancestor-of-v4 + not-checked-out.
 - **Cleanup safety:** each deletion re-checked live; OIDs recorded; ref-only deletes reachable from `origin/skilled/v4.0.0.0` (nothing orphaned); dirty primary untouched.
-- **Structural:** `validate.sh --recursive --strict` on the `sk-git` track → Errors 0 (recorded at close in `checklist.md` CHK-024).
+- **Structural:** `validate.sh --recursive --strict` → this packet Errors 0. The concurrent reorg (`a2817e2c33`) moved `137-parallel-session-git-autosync` into the `sk-git` track; its broken provenance links into this packet were repaired and its moved auto-metadata regenerated so the whole-track recursive gate is clean.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -113,8 +124,8 @@ The sk-git SKILL.md/reference codification, the `worktree-naming.sh` allocator/v
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- **Implementation deferred:** the sk-git code changes are designed but not written; they await operator approval of scope (Phases 2-4).
-- **Cleanup is partial:** only the six-branch slice ran; ~30 stale worktrees, six detached worktrees, and 11 unmerged branches remain, each behind its own operator gate.
-- **Snapshot is point-in-time:** the concurrent tree moves; the execution phase must re-check live before acting.
-- **Wrapper/reaper bugs are real but unfixed:** the reaper's stale base and missing activity marker remain until Phase 3 lands.
+- **Cleanup is partial:** only the six-branch slice ran; ~30 stale worktrees, six detached worktrees, and the unmerged branches remain, each behind its own per-item operator gate (Phase 5 remainder).
+- **Snapshot is point-in-time:** the concurrent tree moves; the cleanup phase must re-check live immediately before acting, from a clean control worktree.
+- **pre-push not yet blocking:** the hook is installed and migration-tolerant; PR head-name enforcement stays advisory until the legacy `wt/*` PR branches on origin are inventoried.
+- **`validate_document.py` not run on the doc surfaces:** its `template_rules.json` config is absent in this environment (CHK-110); README/playbook were instead grammar-consistency-reviewed manually.
 <!-- /ANCHOR:limitations -->

@@ -11,10 +11,10 @@ status: "in-progress"
 _memory:
   continuity:
     packet_pointer: "sk-git/002-skill-scoped-worktree-naming"
-    last_updated_at: "2026-07-14T07:40:00Z"
+    last_updated_at: "2026-07-14T12:20:00Z"
     last_updated_by: "claude"
-    recent_action: "Recorded the naming, exemption, and cleanup decisions"
-    next_safe_action: "Implement the sk-git codification after operator review"
+    recent_action: "Confirmed the codification shipped"
+    next_safe_action: "Run operator-gated cleanup from a clean worktree"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -32,7 +32,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
-> Provenance: refines REQ-010 / ADR-006 of `skilled-agent-orchestration/137-parallel-session-git-autosync` (frozen). The design was checked, refined, and planned by GPT-5.6-SOL (max/fast), whose load-bearing claims the orchestrator independently verified.
+> Provenance: refines REQ-010 / ADR-006 of `sk-git/137-parallel-session-git-autosync` (frozen). The design was checked, refined, and planned by GPT-5.6-SOL (max/fast), whose load-bearing claims the orchestrator independently verified.
 
 ---
 
@@ -94,7 +94,7 @@ Adopt an **owner-first** grammar: `<skill>/{NNNN}-{slug}` for skill-scoped work 
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
-Codify in sk-git SKILL.md ALWAYS #4 + references; back with `worktree-naming.sh`; enforce with a migration-tolerant `pre-push`. Deferred for operator review.
+Codify in sk-git SKILL.md ALWAYS #4 + references; back with `worktree-naming.sh`; enforce with a migration-tolerant `pre-push`. Shipped in commits `2eb1bf2974` (codify) / `bdb31a31db` (allocator) / `925ca3c738` (wrapper/reaper) / `6e6fdfb57d` (pre-push).
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -191,4 +191,4 @@ Create a standard, non-phased **Level 3** packet at `.opencode/specs/sk-git/002-
 - Charter: `spec.md`
 - Plan: `plan.md`
 - External analysis: `sol-worktree-plan.md`
-- Provenance (frozen): `../../skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements/decision-record.md`
+- Provenance (frozen): `../137-parallel-session-git-autosync/001-research-and-requirements/decision-record.md`

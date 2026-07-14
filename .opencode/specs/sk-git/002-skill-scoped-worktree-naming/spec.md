@@ -12,10 +12,10 @@ status: "in-progress"
 _memory:
   continuity:
     packet_pointer: "sk-git/002-skill-scoped-worktree-naming"
-    last_updated_at: "2026-07-14T07:40:00Z"
+    last_updated_at: "2026-07-14T12:20:00Z"
     last_updated_by: "claude"
-    recent_action: "Froze the design and executed the first safe cleanup slice"
-    next_safe_action: "Implement the sk-git codification after operator review"
+    recent_action: "Reconciled spec to shipped Phases 1-4"
+    next_safe_action: "Run operator-gated cleanup from a clean worktree"
     blockers: []
     key_files:
       - "spec.md"
@@ -27,12 +27,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-git-skill-scoped-worktree-naming"
       parent_session_id: null
-    completion_pct: 25
+    completion_pct: 85
     open_questions:
-      - "How far should Phase 3 (wrapper/reaper hardening) and Phase 4 (pre-push enforcement) go before the first PR?"
+      - "Should the legacy wt/* PR branches on origin be inventoried and migrated, or left to age out?"
     answered_questions:
       - "Branch grammar is owner-first without a wt lane: <skill>/{NNNN}-{slug} or skilled/{NNNN}-{slug}."
       - "The launch wrapper's work/{runtime}/{slug} lane is exempt from the owner-first rule."
+      - "Phases 1-4 (codify, allocator, wrapper/reaper hardening, pre-push enforcement) all landed together, verified by test harnesses, ahead of any cleanup beyond the six-branch slice."
 ---
 # Feature Specification: Skill-Scoped Worktree and Branch Naming
 
@@ -41,7 +42,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-The sk-git worktree convention drifted: branches accumulate under a flat `wt/{NNNN}-{name}` namespace with no owner, the numbered counter only scans direct `.worktrees/` names (so it can reuse numbers), the auto-reaper checks a stale local `main` that is ~1400 commits behind the live branch, and the local tree has grown to dozens of branches and worktrees the operator calls "a mess." This packet adopts an **owner-first** branch grammar — `<skill>/{NNNN}-{slug}` for skill-scoped work and `skilled/{NNNN}-{slug}` (or the release form `skilled/vA.B.C.D`) for cross-skill/system work — keeping one repository-wide counter and exempting the launch wrapper's machine-generated `work/{runtime}/{slug}` lane. It codifies the rule in the sk-git skill, adds a locked name allocator/validator, hardens the wrapper/reaper safety boundaries, and defines a conservative, evidence-gated cleanup of the existing tree. The design and first safe cleanup slice (six merged, not-checked-out branches deleted) are done; the sk-git code changes are deferred for operator review.
+The sk-git worktree convention drifted: branches accumulate under a flat `wt/{NNNN}-{name}` namespace with no owner, the numbered counter only scans direct `.worktrees/` names (so it can reuse numbers), the auto-reaper checks a stale local `main` that is ~1400 commits behind the live branch, and the local tree has grown to dozens of branches and worktrees the operator calls "a mess." This packet adopts an **owner-first** branch grammar — `<skill>/{NNNN}-{slug}` for skill-scoped work and `skilled/{NNNN}-{slug}` (or the release form `skilled/vA.B.C.D`) for cross-skill/system work — keeping one repository-wide counter and exempting the launch wrapper's machine-generated `work/{runtime}/{slug}` lane. It codifies the rule in the sk-git skill, adds a locked name allocator/validator, hardens the wrapper/reaper safety boundaries, and defines a conservative, evidence-gated cleanup of the existing tree. The codification, allocator/validator, wrapper/reaper hardening, and push enforcement are shipped and verified (harnesses 31/9/8), and the first safe cleanup slice (six merged, not-checked-out branches) is done; only the remaining evidence-gated cleanup stays open behind per-item operator gates.
 
 ---
 
@@ -52,13 +53,13 @@ The sk-git worktree convention drifted: branches accumulate under a flat `wt/{NN
 |-------|-------|
 | **Level** | 3 (cross-cutting policy + executable tooling) |
 | **Priority** | P1 |
-| **Status** | In Progress (design frozen; first cleanup slice executed; implementation deferred) |
+| **Status** | In Progress (Phases 1-4 shipped + verified; only operator-gated cleanup remains) |
 | **Created** | 2026-07-14 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Track** | `sk-git` |
 | **Predecessor** | `001-continuous-integration-workflow` |
-| **Successor** | Future sk-git implementation phase |
-| **Provenance** | Refines `skilled-agent-orchestration/137-parallel-session-git-autosync` REQ-010 / ADR-006 (frozen) |
+| **Successor** | Phase 5 cleanup (operator-gated) |
+| **Provenance** | Refines `sk-git/137-parallel-session-git-autosync` REQ-010 / ADR-006 (frozen) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -221,8 +222,8 @@ As a parallel AI session, I want the allocator to give me a collision-free numbe
 
 ## 12. OPEN QUESTIONS
 
-- How far should Phase 3 (wrapper/reaper hardening) and Phase 4 (pre-push enforcement) go before the first PR, versus landing the grammar + docs + allocator first?
-- Should the legacy `wt/*` PR branches on origin be inventoried and migrated, or left to age out?
+- **Resolved:** Phases 1-4 (grammar + docs + allocator + wrapper/reaper hardening + pre-push enforcement) all landed together, verified by test harnesses, ahead of any cleanup beyond the six-branch slice.
+- **Open:** Should the legacy `wt/*` PR branches on origin be inventoried and migrated, or left to age out? (Part of the deferred Phase 5 cleanup.)
 <!-- /ANCHOR:questions -->
 
 ---
@@ -233,4 +234,4 @@ As a parallel AI session, I want the allocator to give me a collision-free numbe
 - Tasks: `tasks.md`
 - Checklist: `checklist.md`
 - Decision record: `decision-record.md`
-- Provenance (frozen): `../../skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements/decision-record.md`
+- Provenance (frozen): `../137-parallel-session-git-autosync/001-research-and-requirements/decision-record.md`

@@ -7,7 +7,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "git worktree branch setup"
   - "pull request commit hygiene"
-version: 1.1.0.26
+version: 1.1.0.27
 ---
 
 # sk-git
@@ -58,12 +58,13 @@ Read(".opencode/skills/sk-git/SKILL.md")
 **Step 3: Confirm the workspace (setup only).** The skill asks before it creates anything. Choose an isolated worktree for parallel or long-running work, or stay on the current branch for a quick fix.
 
 ```bash
-# Worktree path: compute the next global number, then create branch + directory together
-n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))
-git worktree add -b "wt/${n}-add-oauth-login" ".worktrees/${n}-add-oauth-login" main
+# Owner-first worktree: the allocator reserves a collision-free number under a
+# clone-wide lock and creates the branch + directory together. Never hand-compute NNNN.
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git add-oauth-login
+# -> branch sk-git/{NNNN}-add-oauth-login, directory .worktrees/{NNNN}-sk-git-add-oauth-login
 ```
 
-A worktree leaves you in an isolated directory on a `wt/{NNNN}-{name}` branch, ready to code.
+A worktree leaves you in an isolated directory on an owner-first `{owner}/{NNNN}-{slug}` branch (`{owner}` = the owning skill id, or `skilled` for cross-cutting work), ready to code.
 
 ---
 
@@ -140,7 +141,7 @@ A: Use `gh` for simple PR creation and listing. Use the GitHub MCP when you need
 
 **Q: A PR merged but the worktree was never cleaned up. Now what?**
 
-A: Run `git worktree list` to find the stale one, remove it with `git worktree remove .worktrees/{NNNN}-{name}`, delete the local branch with `git branch -d wt/{NNNN}-{name}` and the remote with `git push origin --delete wt/{NNNN}-{name}`, then `git worktree prune`.
+A: Run `git worktree list` to find the stale one, remove it with `git worktree remove .worktrees/{NNNN}-{owner}-{slug}`, delete the local branch with `git branch -d {owner}/{NNNN}-{slug}` and the remote with `git push origin --delete {owner}/{NNNN}-{slug}`, then `git worktree prune`. Remove the worktree before deleting its branch — a branch checked out by a worktree cannot be deleted.
 
 ---
 

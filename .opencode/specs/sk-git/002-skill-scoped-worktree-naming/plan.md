@@ -11,10 +11,10 @@ status: "in-progress"
 _memory:
   continuity:
     packet_pointer: "sk-git/002-skill-scoped-worktree-naming"
-    last_updated_at: "2026-07-14T07:40:00Z"
+    last_updated_at: "2026-07-14T12:20:00Z"
     last_updated_by: "claude"
-    recent_action: "Recorded the phased implementation and cleanup plan"
-    next_safe_action: "Implement the sk-git codification after operator review"
+    recent_action: "Marked Phases 1-4 shipped and verified"
+    next_safe_action: "Run operator-gated cleanup from a clean worktree"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-git-skill-scoped-worktree-naming"
       parent_session_id: null
-    completion_pct: 25
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -46,11 +46,11 @@ _memory:
 | **Directory** | `.worktrees/{NNNN}-{owner}-{slug}` |
 | **Counter** | One clone-wide, locked, high-water mark |
 | **Wrapper** | `work/{runtime}/{slug}` — exempt, local-only, hardened |
-| **Method** | Design frozen; code deferred; first cleanup slice executed |
+| **Method** | Phases 1-4 shipped + verified; first cleanup slice executed; cleanup remainder gated |
 
 ### Overview
 
-Codify an owner-first branch grammar in sk-git, back it with a locked allocator/validator, correct and harden the wrapper/reaper, enforce the grammar at push time, and clean up the accumulated local tree in evidence-gated phases. The design and the lowest-risk cleanup slice are complete; the sk-git code changes await operator review.
+Codify an owner-first branch grammar in sk-git, back it with a locked allocator/validator, correct and harden the wrapper/reaper, enforce the grammar at push time, and clean up the accumulated local tree in evidence-gated phases. The codification, allocator/validator, wrapper/reaper hardening, push enforcement, and the lowest-risk cleanup slice are complete and verified; only the remaining evidence-gated cleanup awaits per-item operator gates.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -102,19 +102,19 @@ WRAPPER      := "work/" RUNTIME "/" TIMESTAMP "-" PID     (exempt, local-only)
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1 — Codify the contract (deferred to implementation)
+### Phase 1 — Codify the contract (shipped — `2eb1bf2974`)
 
 Rewrite sk-git ALWAYS #4 to the owner-first grammar; tighten cleanup ordering (worktree remove before branch delete); add rules for the allocator, migration, and active-worktree protection; update references, advisor keywords/`Owns:`, `graph-metadata.json`, manual-testing playbook, and a `v1.2.0.0` changelog.
 
-### Phase 2 — Allocator + validator (deferred)
+### Phase 2 — Allocator + validator (shipped — `bdb31a31db`, 31/31)
 
 Add `.opencode/skills/sk-git/scripts/worktree-naming.sh` (`load_skill_ids`, `validate_owner/slug/branch/pair`, `allocate_number` under a common-dir lock, `create_named_worktree`, `create_detached_worktree`) plus a shell test harness covering valid classes, invalid forms, duplicate/concurrent allocation, detached numbering, and the wrapper exemption.
 
-### Phase 3 — Wrapper/reaper hardening (deferred)
+### Phase 3 — Wrapper/reaper hardening (shipped — `925ca3c738`, 9/9)
 
 `worktree-session.sh`: validate runtime input; write a session-activity marker before `exec`; disable auto-reap on marker-write failure. `worktree-reaper.sh`: only auto-reap exact wrapper pairs; keep on live/missing/ambiguous marker; resolve the merge target from the recorded live branch (not `main`); make human worktrees report-only; never `--force`.
 
-### Phase 4 — Enforcement rollout (deferred)
+### Phase 4 — Enforcement rollout (shipped — `6e6fdfb57d`, 8/8)
 
 Versioned `pre-push` that validates only new remote-branch creation, accepts task/backup/release/reserved forms, rejects wrapper refs on push, permits legacy-branch updates with a warning, and never blocks `skilled/v*`. Wire the installer, hook README, and CI fixture matrix. PR head-name enforcement stays non-blocking until legacy PR branches are inventoried.
 
@@ -189,8 +189,8 @@ Contract (Phase 1) → allocator (Phase 2) is the gating chain for any new confo
 | Milestone | Definition of done |
 |-----------|--------------------|
 | M0 — Design frozen (done) | Grammar + phased plan + decision record; six safe branch deletions executed |
-| M1 — Contract + allocator | Phases 1-2 landed; naming harness green |
-| M2 — Governance hardened | Phase 3 landed; reaper dry-run safe on the current tree |
-| M3 — Enforcement | Phase 4 hook installed; CI fixture matrix green |
-| M4 — Cleanup complete | Worktree/unmerged cleanup finished per operator decisions |
+| M1 — Contract + allocator (done) | Phases 1-2 landed; naming harness green (31/31) |
+| M2 — Governance hardened (done) | Phase 3 landed; reaper harness green (9/9) |
+| M3 — Enforcement (done) | Phase 4 hook installed; pre-push harness green (8/8) |
+| M4 — Cleanup complete (open) | Worktree/unmerged cleanup finished per operator decisions |
 <!-- /ANCHOR:milestones -->
