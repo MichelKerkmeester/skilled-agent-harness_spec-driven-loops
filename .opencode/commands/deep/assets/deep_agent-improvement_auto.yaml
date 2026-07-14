@@ -215,7 +215,7 @@ workflow:
       step_record_mutation_coverage:
         description: "Record mutation coverage and per-dimension trajectory from the scored candidate"
         command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/mutation-coverage.cjs --record-mutation --coverage={spec_folder}/improvement/mutation-coverage.json --dimension=composite --mutation-type=candidate-proposal --candidate-id={candidate_id} --iteration={iteration} --outcome=scored && node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/mutation-coverage.cjs --record-trajectory --coverage={spec_folder}/improvement/mutation-coverage.json --score-file={score_output_path} --iteration={iteration} --weighted-score={weighted_score}"
-      step_materialize_benchmark_fixtures:
+      step_materialize_benchmark-fixtures:
         description: "Materialize static benchmark fixtures into packet-local markdown outputs"
         command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs"
       step_check_benchmark_run_cap:

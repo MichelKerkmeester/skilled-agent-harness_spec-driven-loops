@@ -37,7 +37,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-12 |
 | **Track** | sk-doc |
-| **Sibling** | 015-packet-smart-routing-conformance |
+| **Sibling** | 009-packet-smart-routing-conformance |
 <!-- /ANCHOR:metadata -->
 
 ---

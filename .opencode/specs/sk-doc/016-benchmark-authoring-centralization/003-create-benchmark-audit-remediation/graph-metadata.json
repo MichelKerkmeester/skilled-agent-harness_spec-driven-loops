@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/059-deep-alignment-mode/014-skill-doc-template-conformance",
-  "spec_folder": "system-deep-loop/059-deep-alignment-mode/014-skill-doc-template-conformance",
-  "parent_id": "system-deep-loop/059-deep-alignment-mode",
+  "packet_id": "sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation",
+  "spec_folder": "sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation",
+  "parent_id": "sk-doc/016-benchmark-authoring-centralization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,65 +11,60 @@
   },
   "derived": {
     "trigger_phrases": [
-      "deep-alignment doc conformance",
-      "deep-alignment create-skill template",
-      "deep-alignment SKILL.md smart routing",
-      "deep-alignment doc conformance plan",
-      "deep-alignment doc conformance tasks",
-      "deep-alignment doc conformance checklist",
-      "deep-alignment doc conformance summary",
-      "deep-alignment create-skill conformance summary"
+      "create-benchmark audit remediation",
+      "benchmark _shared fix",
+      "lane b hyphen underscore",
+      "create-benchmark remediation plan",
+      "benchmark audit fix plan",
+      "create-benchmark remediation tasks",
+      "benchmark audit fix tasks",
+      "create-benchmark remediation checklist",
+      "benchmark audit verification",
+      "create-benchmark remediation summary",
+      "benchmark audit fix summary"
     ],
     "key_topics": [
-      "deep-alignment",
-      "doc",
-      "conformance",
-      "create-skill",
-      "template",
-      "skill",
-      "smart",
-      "routing",
+      "create-benchmark",
+      "audit",
+      "remediation",
+      "benchmark",
+      "lane",
+      "hyphen",
+      "underscore",
       "plan",
       "tasks",
       "checklist",
+      "verification",
       "summary"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-alignment/README.md",
-      ".opencode/commands/deep/alignment.md",
-      "feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+      ".opencode/skills/sk-doc/create-benchmark/README.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/README.md",
+        "path": ".opencode/skills/sk-doc/create-benchmark/README.md",
         "source": "derived"
       },
       {
-        "name": "alignment.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/commands/deep/alignment.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -97,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -115,13 +104,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement An",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Bring",
+        "name": "Purpose Every",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -133,7 +122,7 @@
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "Smart Routing",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -151,13 +140,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Six",
+        "name": "Overview Fix",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Parallel",
+        "name": "Pattern Orchestrator",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -169,7 +158,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Template",
+        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -187,15 +176,27 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rename Lane",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-alignment skill shipped with its build phases but its authored docs drifted from the sk-doc `create-skill` templates",
-    "created_at": "2026-07-13T11:01:03.072Z",
-    "last_save_at": "2026-07-14T06:52:35.587Z",
+    "causal_summary": "An independent two-model audit (GPT-5.6 SOL max + LUNA max) of `sk-doc/create-benchmark` confirmed the packet's benchmark-family coverage is intentionally complete, but the code and docs around it carry real staleness and drift: three broken `shared` references in `SKILL.md`, a semantically stale `README.md`, a confirmed hyphen/underscore Lane B path defect where 70 committed references point at `benchmark-profiles`/`benchmark-fixtures` while the on-disk dirs are underscore, a `deep-alignment` behavior-benchmark index that contradicts its own captured baseline, and hub routing metadata that",
+    "created_at": "2026-07-14T06:43:53.836Z",
+    "last_save_at": "2026-07-14T08:25:45.924Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7a201638ed5191319933f29587e5122fe06b2236a0b73f10e3b7b7ca65a2bd2",
+    "source_fingerprint": "sha256:5b09a17835f75fb289853906e7e74e956cdf2aa370238800cdca1801c79cdea0",
     "source_doc_hashes": {
-      "spec.md": "6dfcd2cfe4b4bf8fb6f6a18efb11fa2186f5d64e869a50b6c709d6d9407e18cc",
-      "plan.md": "e7be656f80cb48f49917a979b9f81eecfc008771ffa109dbadf60eb649bd8067",
-      "tasks.md": "aa14a8a40f91f718678a7b2f25d58b0ef2781409a95d9d89d10885b17af2726f",
-      "checklist.md": "78a4747f379000e6d5ea2fcb8db472c5367eaa6d23a9b5faad1a8e9197314783",
-      "implementation-summary.md": "ab965a725112b963f4809183cb915d4f68b721caa54eef02409394e5dffa85d6"
+      "spec.md": "09445f3d4fb890f6febfcc48133537bf59ddfbc4809ed88767e47573ac32d361",
+      "plan.md": "98ae0383551a2a273fae2fb501ab89e6f20a83953307851dd42f03660fff42a5",
+      "tasks.md": "dcf601191544f34023d7c3f4e8e22f09002ccb69067572fdbaf336ec33ea55dc",
+      "checklist.md": "b55db7b995e213e53a5be20f4e0b20759c29a10fad4bf49ff194f6774163cb5c",
+      "implementation-summary.md": "c0f02823b724e9e631d9960146cf70c394883c1f87a1ff179a5090cb797227ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

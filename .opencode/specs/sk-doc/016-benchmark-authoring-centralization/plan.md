@@ -84,5 +84,5 @@ Additive template/guide files + create-benchmark SKILL/README edits + pointer-on
 
 ## RELATED DOCUMENTS
 - `./spec.md`, `./tasks.md`, `./checklist.md`, `./decision-record.md`, `./implementation-summary.md`
-- Sibling: `../015-packet-smart-routing-conformance/`
+- Sibling: `../019-sk-doc-router-alignment/009-packet-smart-routing-conformance/`
 - `.opencode/skills/sk-doc/create-benchmark/` (deliverable location)
