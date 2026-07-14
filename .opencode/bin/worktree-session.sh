@@ -47,11 +47,30 @@ if [ -z "$RUNTIME" ]; then
 fi
 shift || true
 
+# The runtime becomes `exec "$RUNTIME"`, so reject anything that is not a
+# resolvable command with a safe name — a stray metacharacter-laden value must
+# never reach exec, and a typo should fail loudly instead of launching nothing.
+case "$RUNTIME" in
+  *[!A-Za-z0-9._/-]*) echo "worktree-session: invalid runtime name: $RUNTIME" >&2; exit 2 ;;
+esac
+if ! command -v "$RUNTIME" >/dev/null 2>&1; then
+  echo "worktree-session: runtime not found on PATH: $RUNTIME" >&2
+  exit 2
+fi
+
 # ───────────────────────────────────────────────────────────────
 # 2. HELPER FUNCTIONS
 # ───────────────────────────────────────────────────────────────
 
 log() { echo "[worktree-session] $*" >&2; }
+
+# Absolute common git dir (shared across every worktree of a clone) — the stable
+# place to keep per-session state that must not live inside any worktree.
+_abs_common() {
+  local root="$1" c
+  c="$(git -C "$root" rev-parse --git-common-dir 2>/dev/null)" || return 1
+  case "$c" in /*) printf '%s\n' "$c" ;; *) ( cd "$root" && cd "$c" && pwd -P ) ;; esac
+}
 
 # Shared artifacts symlinked from main into each worktree (deps + compiled output).
 # Override with SPECKIT_WORKTREE_SHARED_PATHS (newline- or colon-separated relative paths).
@@ -160,6 +179,7 @@ if [ "$DRY_RUN" = "1" ]; then
   echo "  SPEC_KIT_DB_DIR        = $WT_DB_DIR"
   echo "  SPECKIT_CODE_GRAPH_DB_DIR = $WT_CG_DB_DIR"
   echo "  SPECKIT_IPC_SOCKET_DIR = $SOCK_DIR  (socket path len $(( ${#SOCK_DIR} + 16 )), platform limit ~104)"
+  echo "  session marker    = $(_abs_common "$MAIN_ROOT")/worktree-sessions/${RUNTIME}-${SLUG}.pid"
   echo "  symlink shared paths (those present in main):"
   while IFS= read -r rel; do
     [ -z "$rel" ] && continue
@@ -216,6 +236,19 @@ export AI_SESSION_CHILD=1
 if [ -n "$LIVE_BRANCH" ]; then
   export SPECKIT_LIVE_BRANCH="$LIVE_BRANCH"
   export SPECKIT_AUTOSYNC="${SPECKIT_AUTOSYNC:-1}"
+fi
+
+# Active-session marker: lets the reaper tell a live wrapper worktree from a
+# finished one. The PID stamped here survives the exec (exec keeps the PID), so
+# a later `kill -0` on it proves liveness. Kept under the common git dir, never
+# inside the worktree, so it cannot dirty the tree. A write failure is non-fatal:
+# the reaper treats a missing marker as "keep", so a session is never reaped out
+# from under itself even when the marker could not be recorded.
+MARKERS_DIR="$(_abs_common "$MAIN_ROOT")/worktree-sessions"
+if mkdir -p "$MARKERS_DIR" 2>/dev/null && printf '%s\n' "$$" > "$MARKERS_DIR/${RUNTIME}-${SLUG}.pid" 2>/dev/null; then
+  log "session marker written for ${RUNTIME}-${SLUG} (pid $$)"
+else
+  log "WARNING: could not write session marker; reaper will conservatively keep this worktree"
 fi
 
 log "entering $WT_REL with isolated DBs; launching $RUNTIME"
