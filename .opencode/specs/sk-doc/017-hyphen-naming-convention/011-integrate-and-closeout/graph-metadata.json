@@ -2,25 +2,215 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/011-integrate-and-closeout",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/011-integrate-and-closeout",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
+  "derived": {
+    "trigger_phrases": [
+      "integrate and close out migration",
+      "hyphen naming phase 011",
+      "rebase rerun fast forward closeout",
+      "integrate and close out implementation plan",
+      "hyphen naming phase 011 implementation plan",
+      "integrate and close out tasks",
+      "hyphen naming phase 011 tasks",
+      "integrate and close out checklist",
+      "hyphen naming phase 011 checklist"
+    ],
+    "key_topics": [
+      "integrate",
+      "close",
+      "migration",
+      "hyphen",
+      "naming",
+      "phase",
+      "rebase",
+      "rerun",
+      "fast",
+      "forward",
+      "closeout",
+      "implementation"
+    ],
+    "importance_tier": "critical",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 3: integrate-and-closeout",
+    "key_files": [
+      ".opencode/specs/sk-doc/017-hyphen-naming-convention/010-whole-repo-gate/checklist.md",
+      ".opencode/specs/sk-doc/017-hyphen-naming-convention/010-whole-repo-gate/decision-record.md",
+      ".opencode/specs/sk-doc/017-hyphen-naming-convention/spec.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "conflicts",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fast-forward-only",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The migration candidate may have passed the whole-repo gate against an earlier base while the integration target continues to move. This phase rebases the migration branch onto the latest base, reruns the exact phase 010 gate on the resulting commit, fast-forwards the integration target only after a green result, and closes the packet with a consistent parent rollup.",
     "created_at": "2026-07-14T15:22:43Z",
-    "last_save_at": "2026-07-14T15:22:43Z",
+    "last_save_at": "2026-07-14T17:41:16.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:03acfcd6e3e495b5ad3224eccea26779f150c43d56d2622df4b6133ea37ac2ca",
+    "source_doc_hashes": {
+      "spec.md": "0a0eee670e1ccee05bf46a88d95fc8f25c4e95ab2583c41e0f593d7ee02b62a6",
+      "plan.md": "7779d645cb5989935261c0a9da88849e2c4794c04973d81056baa73e23cb1d53",
+      "tasks.md": "e56a6c72249665d46e3e26693d21f761d7e85abc26bfca7780e8c345b6d984ac",
+      "checklist.md": "fec367bf2f4bedd2df32aa4b1a36e5724c761b78266b21505b35980525bda9a4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

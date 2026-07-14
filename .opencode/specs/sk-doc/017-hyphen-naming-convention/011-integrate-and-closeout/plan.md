@@ -1,170 +1,110 @@
 ---
-title: "Implementation Plan: Phase 3: integrate-and-closeout [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: integrate and close out (017 phase 011)"
+description: "Implementation Plan for phase 011 of the 017 kebab-case filesystem-naming program: rebase onto the latest base, rerun the complete phase 010 gate, fast-forward the integration target, and reconcile final packet state."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "integrate and close out implementation plan"
+  - "hyphen naming phase 011 implementation plan"
+importance_tier: "critical"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/011-integrate-and-closeout"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-integrate-and-closeout"
-    last_updated_at: "2026-07-14T15:22:44Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/011-integrate-and-closeout"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Defined the rebase, gate-rerun, fast-forward, and closeout sequence"
+    next_safe_action: "Start from the green phase 010 candidate and record the latest base SHA"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/011-integrate-and-closeout"
-      parent_session_id: null
+    key_files:
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/010-whole-repo-gate/checklist.md"
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/011-integrate-and-closeout/checklist.md"
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/spec.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The post-rebase candidate, not the pre-rebase head, is the only candidate eligible for integration."
 ---
+# Implementation Plan: Integrate and close out
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 3: integrate-and-closeout
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Migration branch, integration worktree, and 017 packet rollup (phase 011) |
+| **Change class** | Integration, final verification, and documentation closeout |
+| **Execution** | Rebase latest base, rerun phase 010, then fast-forward only |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This phase treats base integration as a new verification boundary. It records the latest base, rebases the migration branch, reruns the exact whole-repo gate on the resulting candidate, and advances the target only when that candidate passes. The final step reconciles phase and parent documentation so the packet's status reflects the integrated commit rather than an earlier branch head.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 010 has a green report with its candidate SHA, BASE SHA, map hash, and complete evidence.
+- [ ] The latest integration base can be fetched and its SHA recorded in a clean integration worktree.
+- [ ] The approved policy, frozen map, and phase 010 command matrix are available for conflict resolution and gate rerun.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] The migration branch is rebased onto the latest base with no unresolved conflicts.
+- [ ] The unchanged phase 010 gate passes on the post-rebase candidate.
+- [ ] The target advances via fast-forward-only integration and the final worktree is clean.
+- [ ] Phase and parent rollup metadata, checklists, and handoff evidence agree on the final state.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Base identity**: record `B_latest`, the pre-rebase migration head, the post-rebase candidate, and the final integrated commit.
+- **Rebase boundary**: resolve conflicts in the integration worktree using the 017 policy and frozen map; stop on ambiguous ownership or scope.
+- **Gate reuse**: invoke the phase 010 checklist and measurement contract unchanged, with all outputs tied to the post-rebase candidate.
+- **Linear integration**: use a fast-forward-only target update after the gate; a merge commit or forced update is a failure.
+- **Closeout rollup**: reconcile the child phase states and parent outcome from the final commit and evidence, then record the next packet state.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Capture the phase 010 candidate and fetch the latest integration base.
+- [ ] Create the clean integration worktree and record all pre-rebase commit identities.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Rebase the migration branch onto the latest base; resolve only conflicts required to preserve the approved migration and policy.
+- [ ] Reconcile the frozen rename map, references, exemptions, and phase documents after conflict resolution.
+- [ ] Fast-forward the integration target only after the post-rebase gate passes.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Rerun every phase 010 naming, reference, Git-history, validation, build, typecheck, test, discovery, import/path/link, and benchmark check.
+- [ ] Confirm the final integrated commit equals the gate-passed candidate and the worktree is clean.
+- [ ] Update the child evidence and parent rollup so status, completion, and continuation fields agree.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Record latest base and all pre/post-rebase SHAs; inspect the rebase result and conflict resolutions against the policy/map. |
+| REQ-002 | Run the phase 010 checklist unchanged on the post-rebase candidate; require all P0 domains and the final report to pass. |
+| REQ-003 | Perform the target update with fast-forward-only semantics and inspect history for the expected linear transition. |
+| REQ-004 | Compare phase 009/010/011 checklists, evidence, summaries, and parent rollup; resolve any conflicting status before closeout. |
+| REQ-005 | Run the final clean-state check and record the integrated commit and reproducibility inputs. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The phase depends on the green phase 010 report, the latest base ref, a clean integration worktree, the immutable baseline and frozen map, and the parent packet's phase map. A changed base, rebase conflict, gate failure, or dirty worktree blocks fast-forward and closeout.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Before rebasing or advancing the target, record the migration head and target refs. If rebase conflicts cannot be resolved unambiguously, abort the rebase and leave the target unchanged. If the post-rebase gate fails, do not fast-forward; return the candidate to the owning phase. If a fast-forward must be reverted after an external integration decision, use the recorded refs and a reviewed revert, then rerun the gate before any replacement integration.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

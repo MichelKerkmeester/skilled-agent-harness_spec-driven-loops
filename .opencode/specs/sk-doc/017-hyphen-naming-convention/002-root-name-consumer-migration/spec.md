@@ -11,10 +11,10 @@ parent: "sk-doc/017-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration"
-    last_updated_at: "2026-07-13T13:10:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase spec authored from the 16-phase decomposition"
-    next_safe_action: "Execute this phase on the pinned worktree when picked up"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Augmented the phase acceptance contract with a per-skill fail-closed coexistence matrix"
+    next_safe_action: "Execute the consumer and per-skill fail-closed fixtures during the bounded coexistence window"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -77,7 +77,30 @@ The catalog/playbook root + index names are consumed by a network of runtime pat
 | REQ-004 | The Lane C loader + generator load unchanged against the hyphenated roots | Discovered-scenario count and IDs are unchanged |
 | REQ-005 | The inverse guard and its tests are redefined to the hyphenated target | The guard rejects underscore catalog content and accepts hyphenated content |
 | REQ-006 | Root-name handling is correct on POSIX and Windows-style path separators | Matrix tests pass for both separators |
+| REQ-007 | Every affected skill consumer fails closed when it receives an un-migrated or unsupported root/index during coexistence | The per-skill matrix records an explicit refusal/error for every consumer row; no consumer silently returns `readme`, an empty scenario set, an unrelated category, or a guessed path |
 <!-- /ANCHOR:requirements -->
+
+### Coexistence-window fail-closed acceptance
+
+The bounded dual-name resolver is the only compatibility boundary during this phase. It may accept an explicitly registered legacy root for reads, but a consumer must not bypass that resolver and silently reinterpret an un-migrated or unsupported root/index. For each consumer row, the verifier supplies an unsupported or un-migrated input at the consumer boundary and requires an explicit refusal, typed error, or non-zero result before classification, discovery, routing, packaging, or emission. The result must never downgrade to `readme`, an empty benchmark corpus, an unrelated category, or a guessed path.
+
+The recognized legacy-alias case is tested separately: when a row is intentionally served through the shared resolver, old and new read inputs must produce the same typed result, and both physical roots must fail with an explicit conflict. The compatibility exception therefore remains bounded and observable rather than becoming a permissive fallback.
+
+| Active skill family | Consumer boundary covered by the fixture | Fail-closed acceptance |
+|---------------------|------------------------------------------|------------------------|
+| `sk-doc` and its `create-*` packets | Classifier, create-skill packaging/init, template and guard consumers | An un-migrated root/index is refused before document typing or emission; no generic `readme` result. |
+| `sk-code` and nested code packets | Post-edit routing, quality checks, and catalog/playbook path scopes | An unsupported path errors before routing; no fallback to another scope. |
+| `sk-design` and nested design packets | Design catalog/playbook discovery and authoring consumers | An unsupported root/index errors before discovery; no empty or unrelated design result. |
+| `sk-prompt` and `prompt-improve` | Prompt-skill playbook consumers and generated-path lookup | An un-migrated name refuses the operation; no guessed prompt path is returned. |
+| `mcp-code-mode` | Manual-playbook inventory and linked workflow consumers | An unsupported playbook root produces an explicit error; no empty workflow inventory. |
+| `mcp-tooling` and nested MCP packets | MCP catalog/playbook loaders and path-value consumers | An unsupported root/index fails before a tool scenario is selected or emitted. |
+| `system-code-graph` | Catalog/playbook evidence and graph-facing path consumers | An un-migrated path is rejected; no graph node is attached to a guessed location. |
+| `system-deep-loop` and nested deep/runtime packets | Lane C loader/generator, deep-loop dispatch, and benchmark consumers | An unsupported name errors before scenario discovery; no zero-scenario success or silent benchmark downgrade. |
+| `system-skill-advisor` | Advisor inventory, playbook tests, and graph projection consumers | An un-migrated root/index refuses inventory or projection; no empty or misrouted skill result. |
+| `system-spec-kit` | Manual-playbook runners, workflow invariance checks, and spec-facing consumers | An unsupported name errors before execution or fixture enumeration; no skipped or misclassified workflow. |
+| `cli-external-orchestration` and nested CLI packets | CLI playbook discovery and command-facing path consumers | An un-migrated name fails before dispatch; no fallback to a different CLI packet. |
+
+The verifier derives the final row set from the reviewed phase 002 consumer manifest. Any active family discovered by that manifest that is not listed above must be added to the matrix before the phase can pass; archived `z_archive` content remains governed by the frozen-surface exemption.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA

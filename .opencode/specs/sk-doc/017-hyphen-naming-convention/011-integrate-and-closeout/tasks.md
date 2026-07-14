@@ -1,36 +1,31 @@
 ---
-title: "Tasks: Phase 3: integrate-and-closeout [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: integrate and close out (017 phase 011)"
+description: "Tasks for phase 011 of the 017 kebab-case filesystem-naming program: integrate the verified migration branch and close out the packet with a consistent parent rollup."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "integrate and close out tasks"
+  - "hyphen naming phase 011 tasks"
+importance_tier: "critical"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/011-integrate-and-closeout"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-integrate-and-closeout"
-    last_updated_at: "2026-07-14T15:22:44Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/011-integrate-and-closeout"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Decomposed final integration into rebase, gate rerun, linear update, and rollup tasks"
+    next_safe_action: "Capture phase 010 and latest-base identities in a clean integration worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/011-integrate-and-closeout"
-      parent_session_id: null
+    key_files:
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/011-integrate-and-closeout/spec.md"
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/011-integrate-and-closeout/checklist.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: Integrate and close out
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 3: integrate-and-closeout
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -41,66 +36,49 @@ _memory:
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Record the green phase 010 candidate SHA, its BASE SHA, map hash, and evidence location.
+- [ ] T002 Fetch the latest integration base and record `B_latest`, the migration head, and the target ref.
+- [ ] T003 Create a clean integration worktree and preserve rollback refs before rebasing.
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Rebase the migration branch onto `B_latest` and resolve conflicts against the approved policy and frozen map.
+- [ ] T005 Reconcile path references, exemptions, phase documents, and the migration map after conflict resolution.
+- [ ] T006 Fast-forward the integration target only after the post-rebase whole-repo gate passes.
+- [ ] T007 Update final child-phase evidence and the 017 parent rollup from the integrated commit.
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Verify: the migration branch is rebased onto the latest base with no unresolved conflicts — record pre/post SHAs and the resolution review.
+- [ ] T009 Verify: the exact phase 010 gate passes on the post-rebase candidate — all P0 domains and evidence rows are green.
+- [ ] T010 Verify: integration is fast-forward-only — no merge commit, forced update, or target movement before the gate.
+- [ ] T011 Verify: the final integrated commit equals the gate-passed candidate and the worktree is clean.
+- [ ] T012 Verify: phase and parent metadata agree — no stale status, completion, handoff, or next-action field remains.
+- [ ] T013 Record the final closeout report and rollback refs for the orchestrator.
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete
+- [ ] All requirements in spec.md met with evidence
+- [ ] Phase 010 was rerun after rebase and before fast-forward
+- [ ] Parent rollup and final integrated commit are recorded consistently
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Verification contract**: See `checklist.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

@@ -2,25 +2,217 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/009-remove-transition-aliases",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/009-remove-transition-aliases",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "remove transition aliases",
+      "hyphen naming phase 009",
+      "remove snake case back compatibility",
+      "remove transition aliases implementation plan",
+      "hyphen naming phase 009 implementation plan",
+      "remove transition aliases tasks",
+      "hyphen naming phase 009 tasks",
+      "remove transition aliases checklist",
+      "hyphen naming phase 009 checklist"
+    ],
+    "key_topics": [
+      "remove",
+      "transition",
+      "aliases",
+      "hyphen",
+      "naming",
+      "phase",
+      "snake",
+      "case",
+      "back",
+      "compatibility",
+      "implementation",
+      "plan"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: remove-transition-aliases",
+    "key_files": [
+      ".opencode/specs/sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration/spec.md",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+      ".opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check_no_hyphenated_catalog_content.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The migration has completed and the bounded coexistence window from phase 002 is closed, but runtime consumers still carry compatibility paths for the old underscore catalog and playbook roots and indexes. This phase removes those aliases and makes unsupported legacy names fail explicitly without falling through to a generic document classification.",
     "created_at": "2026-07-14T15:22:41Z",
-    "last_save_at": "2026-07-14T15:22:41Z",
+    "last_save_at": "2026-07-14T17:41:15.994Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:762edd8a57eafb0bf30764a1f2de57a96151df9b38d4c4d84af1cdd4d4a42aea",
+    "source_doc_hashes": {
+      "spec.md": "e11cd330caf7460287ded9fa397434ba02cc46610916aa21346fa48f7045b7b8",
+      "plan.md": "e9f6db00b22258c891f206e14e30138e847698b9e6870d0d247fe9be09cec7c5",
+      "tasks.md": "a8ab490ffef997299b355721e18ef34de332af4cc51c572efc9f028438bdbaa9",
+      "checklist.md": "638caa1f6015e0de6383befa2d060bd2a0bf9da377d454c7aac80f46c3d3e3b7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

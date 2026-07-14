@@ -2,25 +2,220 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/010-whole-repo-gate",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/010-whole-repo-gate",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
+  "derived": {
+    "trigger_phrases": [
+      "whole-repo verification gate",
+      "hyphen naming phase 010",
+      "kebab-case migration final gate",
+      "whole-repo verification gate implementation plan",
+      "hyphen naming phase 010 implementation plan",
+      "whole-repo verification gate tasks",
+      "hyphen naming phase 010 tasks",
+      "whole-repo verification gate checklist",
+      "hyphen naming phase 010 checklist",
+      "whole-repo gate decision record",
+      "phase 010 gate criteria",
+      "rename history verification decision"
+    ],
+    "key_topics": [
+      "whole-repo",
+      "verification",
+      "gate",
+      "hyphen",
+      "naming",
+      "phase",
+      "kebab-case",
+      "migration",
+      "final",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 2: whole-repo-gate",
+    "key_files": [
+      ".opencode/specs/sk-doc/017-hyphen-naming-convention/009-remove-transition-aliases/checklist.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Verification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "immutable BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "policy",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The migration needs one evidence-based end-state gate that proves the scope-aware filesystem naming rule, reference closure, Git rename history, and the complete validation and test baseline all hold on the same candidate commit. This phase defines that gate and records exact pass measurements; it does not repair failures or perform the migration.",
     "created_at": "2026-07-14T15:22:42Z",
-    "last_save_at": "2026-07-14T15:22:42Z",
+    "last_save_at": "2026-07-14T17:55:12.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:fdb54580b96c2b9dedf6ecff7beed4a3174252cc7f04642ec40426347f7e020d",
+    "source_doc_hashes": {
+      "spec.md": "da5d4a9e1f228389574b3e3848c80451b1d8118533d634ffaa202560a4d53bb2",
+      "plan.md": "91e5ef03204083596478464ae3405e3b455bfdac3e25b6132787c8f8cf881617",
+      "tasks.md": "377aef3810a12d1d95ed94f5fd1a406298716b3e871e9939bf7a68889b22d311",
+      "checklist.md": "c3943b72917b82c7104cf59896f2cbfb80d722f8f0c51b8ed52770855c776f3a",
+      "decision-record.md": "c70aa77d76301e2c9702e683ddaf3b05d56f3993eb2c4499d98cdb9119aed1be"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -10,10 +10,10 @@ parent: "sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration"
-    last_updated_at: "2026-07-13T13:10:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "SOL verifier contract authored from the design review"
-    next_safe_action: "Execute this phase on the pinned worktree when picked up"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Added per-skill P0 fail-closed coexistence checks to the SOL verifier contract"
+    next_safe_action: "Verify every active consumer row refuses unsupported or un-migrated names"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -54,6 +54,18 @@ hash, records commands + exit codes + discovery counts, and fails on zero tests/
 - [ ] CHK-002 [P0] Verify the `sk-doc/scripts/validate_document.py` symlink and mode 120000 are preserved after the edit
 - [ ] CHK-003 [P0] Run Lane C against old-only, new-only, both, and missing-root fixtures; coexistence and missing-root fail loudly
 - [ ] CHK-004 [P0] The inverse guard + redefined tests reject underscore catalog content and accept hyphenated content
+- [ ] CHK-013 [P0] Build the fail-closed matrix from the reviewed consumer manifest; every active skill family has a named consumer row and unsupported/un-migrated input fixture
+- [ ] CHK-014 [P0] `sk-doc` and its `create-*` packets refuse an un-migrated or unsupported root/index before typing or emission; no generic `readme` result is returned
+- [ ] CHK-015 [P0] `sk-code` and nested code packets refuse an unsupported path before routing or quality handling; no unrelated scope is selected
+- [ ] CHK-016 [P0] `sk-design` and nested design packets refuse an unsupported root/index before discovery; no empty or unrelated design result is returned
+- [ ] CHK-017 [P0] `sk-prompt` and `prompt-improve` refuse an un-migrated name before lookup; no guessed prompt path is returned
+- [ ] CHK-018 [P0] `mcp-code-mode` and `mcp-tooling` consumers refuse an unsupported playbook/catalog path before workflow or tool-scenario selection
+- [ ] CHK-019 [P0] `system-code-graph` refuses an un-migrated path before graph attachment; no node is linked to a guessed location
+- [ ] CHK-020 [P0] `system-deep-loop` and nested deep/runtime packets refuse an unsupported name before scenario discovery; no zero-scenario success or benchmark downgrade occurs
+- [ ] CHK-021 [P0] `system-skill-advisor` refuses an un-migrated root/index before inventory or projection; no empty or misrouted skill result is emitted
+- [ ] CHK-022 [P0] `system-spec-kit` refuses an unsupported name before runner execution or fixture enumeration; no workflow is silently skipped or misclassified
+- [ ] CHK-023 [P0] `cli-external-orchestration` and nested CLI packets refuse an un-migrated name before dispatch; no fallback to another CLI packet occurs
+- [ ] CHK-024 [P0] For every row intentionally served by the shared dual-name resolver, recognized old/new reads have typed parity and both physical roots fail with an explicit conflict
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -83,8 +95,9 @@ hash, records commands + exit codes + discovery counts, and fails on zero tests/
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is complete when every P0 verifier check passes, the candidate report pins the SHAs + map hash, and the gate
-(validate/build/test/link/benchmark as applicable) is green with discovery-count parity against the 000 baseline.
+The phase is complete when every P0 verifier check passes, the candidate report pins the SHAs + map hash, every active
+consumer row has fail-closed evidence, and the gate (validate/build/test/link/benchmark as applicable) is green with
+discovery-count parity against the 000 baseline.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

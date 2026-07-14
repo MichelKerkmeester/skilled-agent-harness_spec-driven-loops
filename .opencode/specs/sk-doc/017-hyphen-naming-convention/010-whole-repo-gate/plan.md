@@ -1,170 +1,117 @@
 ---
-title: "Implementation Plan: Phase 2: whole-repo-gate [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: whole-repo verification gate (017 phase 010)"
+description: "Implementation Plan for phase 010 of the 017 kebab-case filesystem-naming program: evaluate the completed migration against the scope-aware naming, reference, Git-history, and full-suite gate contract."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "whole-repo verification gate implementation plan"
+  - "hyphen naming phase 010 implementation plan"
+importance_tier: "critical"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/010-whole-repo-gate"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-whole-repo-gate"
-    last_updated_at: "2026-07-14T15:22:43Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/010-whole-repo-gate"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Defined the candidate-scoped gate sequence and evidence aggregation"
+    next_safe_action: "Execute after phase 009 and use the phase 000 command matrix as the test authority"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/010-whole-repo-gate"
-      parent_session_id: null
+    key_files:
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/000-worktree-baseline-and-census"
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/010-whole-repo-gate/decision-record.md"
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/010-whole-repo-gate/checklist.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The gate is a conjunction: one failed domain fails the candidate."
+      - "The phase 000 baseline and frozen map are the measurement authorities."
 ---
+# Implementation Plan: Whole-repo verification gate
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: whole-repo-gate
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Whole repository and migration worktree (phase 010) |
+| **Change class** | Evidence-based verification gate |
+| **Execution** | Candidate SHA compared with immutable BASE and frozen rename map |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The gate runs independent naming, reference, history, and behavior checks, then evaluates them as one candidate-scoped verdict. The implementation produces evidence and a pass/fail report; it does not fix files, rewrite paths, or reinterpret a failed measurement.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 000 baseline evidence identifies BASE SHA, command matrix, discovery counts, and Lane C comparison values.
+- [ ] The classified rename map is frozen, hashed, and available for reference and Git-history comparison.
+- [ ] Phase 009 alias-removal evidence is green and the candidate worktree contains the completed migration.
+- [ ] The verifier can run the full toolchain in the isolated worktree without relying on a raced external dependency tree.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] The `--all` naming gate reports zero in-scope violations and zero unknown classifications.
+- [ ] Reference resolution reports zero unresolved targets and every dynamic site is dispositioned.
+- [ ] Git reports every mapped migration as `R`/`Rnn`, with no delete-plus-add replacement.
+- [ ] All baseline validation, build, typecheck, test, discovery, import/path/link, and benchmark checks pass.
+- [ ] The report pins all inputs and outputs and records a single final verdict.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Input identity**: BASE SHA, candidate SHA, frozen map hash, and tool-version manifest are immutable report inputs.
+- **Naming domain**: scope-aware `--all` guard over tracked filesystem names, with policy classifications for exemptions and frozen surfaces.
+- **Reference domain**: rename-map-driven resolver plus dynamic-site disposition ledger for module, path-value, shell, registry, and markdown-link references.
+- **History domain**: raw `git diff --name-status --find-renames=50%` output reconciled one-to-one with the frozen map.
+- **Behavior domain**: phase 000's strict validation and complete test/build/benchmark matrix, with discovery and scenario parity.
+- **Verdict**: an aggregator marks pass only when every P0 domain passes and the evidence report is complete.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Load and verify the phase 000 baseline, candidate SHA, frozen map hash, and phase 009 handoff evidence.
+- [ ] Confirm the worktree and verifier outputs are isolated; record tool versions and the Git rename similarity threshold.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Core Verification
+- [ ] Run the scope-aware whole-tree naming guard and reconcile every exemption/frozen result.
+- [ ] Run the reference checker, dynamic-site ledger, import/path/link checks, and fail on unresolved or zero-file scans.
+- [ ] Compare the frozen map to Git `R` statuses and reject any delete-plus-add pair or unexpected rename.
+- [ ] Run every command from the phase 000 validation/test matrix, including strict validation, builds, typechecks, tests, discovery counts, and Lane C.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Cross-check all domain outputs against the same candidate SHA and BASE SHA.
+- [ ] Confirm the candidate report contains commands, exit codes, counts, logs, and explicit failures or passes.
+- [ ] Issue the blocking verdict only after the checklist's P0 items pass and no tracked file was mutated by verification.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Run the scope-aware `--all` guard; require exit 0, zero in-scope violations, and complete exemption/frozen classifications. |
+| REQ-002 | Run the rename-map-driven reference checker and dynamic-site ledger; require zero unresolved references, all dynamic sites dispositioned, and a non-zero scan count. |
+| REQ-003 | Compare `git diff --name-status --find-renames=50% BASE CANDIDATE` with the frozen map; require one `R`/`Rnn` row per map pair and no source `D` plus target `A`. |
+| REQ-004 | Rerun the entire phase 000 validation/test command matrix; require exit 0, strict validation success, and baseline-equivalent discovery counts. |
+| REQ-005 | Compare import/path/link outputs and fixed-seed Lane C scenario IDs/scores with the phase 000 baseline; require zero broken targets and no unapproved score regression. |
+| REQ-006 | Review the report for pinned SHAs, map hash, tool versions, commands, exit codes, logs, counts, and clean tracked state. |
+| REQ-007 | Reconcile the final naming and reference outputs against the policy exemption table and frozen-surface inventory. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The gate consumes phase 000 baseline and worktree evidence, the phase 001 policy, the frozen rename map and reference tooling, all migration-phase handoffs, and phase 009 alias-removal evidence. Phase 011 depends on this report and reruns the same contract after integration.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+The gate itself is read-only with respect to tracked migration content. If a domain fails, stop and return the candidate to its owning migration phase; do not weaken the criterion or edit the report to hide the failure. Discard only generated verifier output, and retain the failed evidence for diagnosis. Integration rollback belongs to phase 011.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

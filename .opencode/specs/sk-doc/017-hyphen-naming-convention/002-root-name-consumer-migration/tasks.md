@@ -10,10 +10,10 @@ parent: "sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration"
-    last_updated_at: "2026-07-13T13:10:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Tasks authored from the 16-phase decomposition"
-    next_safe_action: "Execute this phase on the pinned worktree when picked up"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Added implementation and verification tasks for per-skill fail-closed coexistence"
+    next_safe_action: "Build the consumer-manifest matrix and run each unsupported-name fixture"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -50,17 +50,19 @@ _memory:
 - [ ] T004 `parent-skill-check.cjs`, `post-edit-router.cjs`, and `package_skill.py` root-name references
 - [ ] T005 The inverse guard `check_no_hyphenated_catalog_content.py` + its tests, plus `test_category_classification_denumbered.py`, redefined to the hyphenated target
 - [ ] T006 A bounded dual-name tolerance: accept both roots for reads, emit only hyphens, fail closed if both physical roots coexist
+- [ ] T007 A per-skill fail-closed coexistence matrix for every consumer-manifest row and active skill family; unsupported or un-migrated names refuse without silent mis-resolution
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Verify: Every runtime consumer of the catalog/playbook root/index names accepts the hyphenated roots — A reviewed consumer manifest lists each and all are updated
-- [ ] T008 Verify: The classifier change preserves the symlink and types hyphenated leaves correctly — A hyphenated catalog leaf classifies as its typed document, not `readme`; the symlink mode stays 120000
-- [ ] T009 Verify: A bounded dual-name tolerance accepts both roots but fails closed if both physically coexist — Both roots classify identically for reads; coexistence of both physical roots errors
-- [ ] T010 Verify: The Lane C loader + generator load unchanged against the hyphenated roots — Discovered-scenario count and IDs are unchanged
-- [ ] T011 Verify: The inverse guard and its tests are redefined to the hyphenated target — The guard rejects underscore catalog content and accepts hyphenated content
-- [ ] T012 Verify: Root-name handling is correct on POSIX and Windows-style path separators — Matrix tests pass for both separators
+- [ ] T008 Verify: Every runtime consumer of the catalog/playbook root/index names accepts the hyphenated roots — A reviewed consumer manifest lists each and all are updated
+- [ ] T009 Verify: The classifier change preserves the symlink and types hyphenated leaves correctly — A hyphenated catalog leaf classifies as its typed document, not `readme`; the symlink mode stays 120000
+- [ ] T010 Verify: A bounded dual-name tolerance accepts both roots but fails closed if both physically coexist — Both roots classify identically for reads; coexistence of both physical roots errors
+- [ ] T011 Verify: The Lane C loader + generator load unchanged against the hyphenated roots — Discovered-scenario count and IDs are unchanged
+- [ ] T012 Verify: The inverse guard and its tests are redefined to the hyphenated target — The guard rejects underscore catalog content and accepts hyphenated content
+- [ ] T013 Verify: Root-name handling is correct on POSIX and Windows-style path separators — Matrix tests pass for both separators
+- [ ] T014 Verify: Every consumer-manifest row and active skill family fails closed on an unsupported or un-migrated name — No row silently returns `readme`, an empty corpus, an unrelated category, or a guessed path
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

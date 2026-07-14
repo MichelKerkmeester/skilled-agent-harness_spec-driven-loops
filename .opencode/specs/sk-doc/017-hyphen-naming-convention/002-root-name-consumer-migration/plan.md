@@ -10,10 +10,10 @@ parent: "sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration"
-    last_updated_at: "2026-07-13T13:10:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Plan authored from the 16-phase decomposition"
-    next_safe_action: "Execute this phase on the pinned worktree when picked up"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Added fail-closed coexistence gates to the consumer architecture and test strategy"
+    next_safe_action: "Execute the manifest-driven per-skill matrix before accepting the phase"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -48,6 +48,7 @@ The catalog/playbook root + index names are consumed by a network of runtime pat
 - [ ] The Lane C loader + generator load unchanged against the hyphenated roots
 - [ ] The inverse guard and its tests are redefined to the hyphenated target
 - [ ] Root-name handling is correct on POSIX and Windows-style path separators
+- [ ] Every active skill consumer has a coexistence-window fail-closed case for an un-migrated or unsupported root/index
 
 ### Definition of Done
 - [ ] All consumers accept hyphenated catalog roots
@@ -62,6 +63,7 @@ The catalog/playbook root + index names are consumed by a network of runtime pat
 - `parent-skill-check.cjs`, `post-edit-router.cjs`, and `package_skill.py` root-name references.
 - The inverse guard `check_no_hyphenated_catalog_content.py` + its tests, plus `test_category_classification_denumbered.py`, redefined to the hyphenated target.
 - A bounded dual-name tolerance: accept both roots for reads, emit only hyphens, fail closed if both physical roots coexist.
+- A per-skill fail-closed matrix: unsupported or un-migrated names refuse at each consumer boundary, while recognized legacy aliases are accepted only through the shared resolver.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -76,6 +78,7 @@ The catalog/playbook root + index names are consumed by a network of runtime pat
 - `parent-skill-check.cjs`, `post-edit-router.cjs`, and `package_skill.py` root-name references.
 - The inverse guard `check_no_hyphenated_catalog_content.py` + its tests, plus `test_category_classification_denumbered.py`, redefined to the hyphenated target.
 - A bounded dual-name tolerance: accept both roots for reads, emit only hyphens, fail closed if both physical roots coexist.
+- A fail-closed coexistence matrix covering every active skill family in the reviewed consumer manifest; no unsupported name may silently become `readme`, an empty corpus, or an unrelated path.
 
 ### Phase 3: Verification
 - A reviewed consumer manifest lists each and all are updated
@@ -84,6 +87,7 @@ The catalog/playbook root + index names are consumed by a network of runtime pat
 - Discovered-scenario count and IDs are unchanged
 - The guard rejects underscore catalog content and accepts hyphenated content
 - Matrix tests pass for both separators
+- Every consumer-manifest row and active skill-family row refuses an un-migrated or unsupported root/index without silent mis-resolution
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -97,6 +101,7 @@ The catalog/playbook root + index names are consumed by a network of runtime pat
 | REQ-004 | Discovered-scenario count and IDs are unchanged |
 | REQ-005 | The guard rejects underscore catalog content and accepts hyphenated content |
 | REQ-006 | Matrix tests pass for both separators |
+| REQ-007 | Each consumer-manifest row is exercised with an unsupported or un-migrated root/index and fails closed; recognized legacy aliases are tested only through the shared resolver with typed parity |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->

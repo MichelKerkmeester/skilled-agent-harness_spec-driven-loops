@@ -99,7 +99,7 @@
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "an",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -117,14 +117,14 @@
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "zero",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview",
-        "kind": "heading",
+        "name": "typed",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All",
     "created_at": "2026-07-13T14:34:05.520Z",
-    "last_save_at": "2026-07-13T14:34:05.520Z",
+    "last_save_at": "2026-07-14T17:41:16.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7d58991097f454a6929cb606af8c22d037dc6081340e5be65a2aaa49fc5c092d",
+    "source_fingerprint": "sha256:0ef42febdf2491e3b990d2ab4c510ae5f05b5a452bb2c2c357b4ec2c1c0e058e",
     "source_doc_hashes": {
-      "spec.md": "bfe8560ddf7c632a869786cb4973a5ae595887748b4ed654e29c09a86c14b5d9",
-      "plan.md": "563de818e09e109c80b59205463687832ae88b28190f57d55339be19abccd521",
-      "tasks.md": "0778bcf7a124d69d8ba3248779d406209b7cf815ecd3eac209f13074b00fe150",
-      "checklist.md": "002001d3d1d3c037f83889508ea759b576b1a64c376d8ffc05da34e5ba2198e2"
+      "spec.md": "d87a9427e0a13f57c036e84a07cb9011452c35eb93447b227cfbba3b72a2b846",
+      "plan.md": "d2dddcf0325541c92728dae37427bc0f7a23597db3bd74e42ebb7a1bcc0e0d60",
+      "tasks.md": "b1cd5b80fb6902b9dc19dc55411334a6a9572f35dbc5636fd0db470136d29e6d",
+      "checklist.md": "7159cb248264dffb20032bfce6b1f39015d3a70d0f2f0b02b4579e6a587eecf3"
     },
     "last_active_child_id": null,
     "last_active_at": null

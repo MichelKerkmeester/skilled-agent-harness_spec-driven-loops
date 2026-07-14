@@ -1,170 +1,110 @@
 ---
-title: "Implementation Plan: Phase 1: remove-transition-aliases [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: remove transition aliases (017 phase 009)"
+description: "Implementation Plan for phase 009 of the 017 kebab-case filesystem-naming program: remove the bounded coexistence aliases after the physical migration is complete and make unsupported legacy names fail closed."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "remove transition aliases implementation plan"
+  - "hyphen naming phase 009 implementation plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/009-remove-transition-aliases"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-remove-transition-aliases"
-    last_updated_at: "2026-07-14T15:22:42Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/009-remove-transition-aliases"
+    last_updated_at: "2026-07-14T17:28:50Z"
+    last_updated_by: "codex"
+    recent_action: "Defined the alias-removal sequence, consumer sweep, and negative verification matrix"
+    next_safe_action: "Confirm phase 002 closure evidence before changing any compatibility branch"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/009-remove-transition-aliases"
-      parent_session_id: null
+    key_files:
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration/checklist.md"
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/009-remove-transition-aliases/spec.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Alias removal is allowed only after the phase 002 coexistence window and physical-root migration are proven closed."
 ---
+# Implementation Plan: Remove transition aliases
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: remove-transition-aliases
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | sk-doc consumers and their runtime/test fixtures (phase 009) |
+| **Change class** | Compatibility removal and fail-closed behavior |
+| **Execution** | Isolated migration worktree after phase 002 closure |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Phase 002's bounded dual-name resolver keeps the repository bisectable while physical roots move. After the coexistence window closes, this plan removes the underscore root/index branches from the classifier, benchmark paths, routing, packaging, and guard consumers, then proves that canonical hyphenated paths still work and every unsupported legacy input fails explicitly.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 002's checklist records a closed coexistence window and the physical canonical roots are present.
+- [ ] The complete phase 002 consumer manifest is available, including nested skill and test consumers.
+- [ ] The candidate branch is clean, based on the pinned program baseline, and scoped to alias removal.
+- [ ] The phase 009 negative-test matrix names legacy roots, legacy indexes, mismatched pairs, and near-matches.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Every manifest consumer has no live transition alias branch or emission target.
+- [ ] Canonical names pass the classifier, loader, router, package, generator, and guard paths.
+- [ ] Unsupported names and physical-root conflicts fail closed without a generic fallback.
+- [ ] The phase checklist has command, exit-code, fixture, and consumer-row evidence.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Canonical root contract**: the shared resolver treats `feature-catalog` and `manual-testing-playbook` plus their hyphenated indexes as the only live names.
+- **Consumer sweep**: the phase 002 manifest is the ownership list; each row is either edited or explicitly proven not to resolve names at runtime.
+- **Fail-closed boundary**: unsupported names return an explicit error before classification, discovery, routing, packaging, or emission; there is no `readme`, empty-corpus, or guessed-root fallback.
+- **Fixture matrix**: each consumer family runs canonical, legacy, conflict, mismatched, and near-match cases, with the expected result recorded.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Attach phase 002's closure evidence and confirm the physical-root migration is complete.
+- [ ] Reconcile the consumer manifest with the current branch and mark any stale row before editing.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Remove underscore root/index compatibility reads, writers, normalizers, and emission paths from the classifier and all manifest consumers.
+- [ ] Update tests and fixtures to make canonical hyphenated paths positive and removed aliases explicitly negative.
+- [ ] Preserve the canonical conflict check and the policy exemptions; do not alter identifiers, data keys, or frozen references.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Run the consumer matrix for canonical names and confirm typed classification/discovery remains unchanged.
+- [ ] Run legacy, mismatched, near-match, and both-root fixtures and confirm explicit fail-closed results.
+- [ ] Review the diff for residual executable alias handling and hand the evidence to phase 010.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Compare every phase 002 consumer-manifest row against the code and test diff; no live legacy lookup or emission remains. |
+| REQ-002 | Run canonical root/index fixtures through classifier, Lane C loader/generator, router, package, and guard consumers; compare typed results and scenario IDs with phase 002 evidence. |
+| REQ-003 | Run old roots, old indexes, mismatched pairs, and near-matches; assert a named error/non-zero result and assert no `readme`, empty corpus, or unrelated category output. |
+| REQ-004 | Present both physical roots and assert the resolver rejects the conflict before any leaf is processed. |
+| REQ-005 | Review changed path predicates and fixtures against the policy exemption table; verify no exempt or frozen surface was changed. |
+| REQ-006 | Confirm each removed alias has a negative fixture and each canonical path has a positive fixture with evidence pinned to the candidate SHA. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+Inherits the 017 program dependencies: the phase 000 immutable baseline and worktree, the phase 001 convention and exemption policy, the phase 002 consumer manifest and coexistence evidence, and the completed physical migration. Phase 010 consumes this phase's evidence; it is not a substitute for the alias-removal checks.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+If a still-live consumer is discovered, revert the alias-removal commit to restore the bounded phase 002 read tolerance, then fix that consumer before retrying. The rollback restores compatibility logic only; it does not restore old physical directories or broaden the naming policy. A failed fixture run stops the phase before handoff to 010.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-
