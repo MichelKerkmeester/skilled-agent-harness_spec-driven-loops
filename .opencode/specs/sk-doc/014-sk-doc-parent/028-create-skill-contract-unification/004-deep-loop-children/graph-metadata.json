@@ -39,24 +39,24 @@
       "sonnet-5"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      "tasks.md",
-      "plan.md",
       ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      "tasks.md",
+      "plan.md",
       "checklist.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
         "source": "derived"
       },
       {
@@ -72,15 +72,15 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Bring the 5 skill SKILL.md files in this batch into full conformance with the create-skill contract; each file is updated by a fresh GPT-5.6 LUNA MAX agent and independently verified by a fresh Sonnet-5 xhigh agent, then must pass its validator.",
     "created_at": "2026-07-14T04:26:33.579Z",
-    "last_save_at": "2026-07-14T04:39:12.157Z",
+    "last_save_at": "2026-07-14T05:42:41.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c6197a0fde03a66811182ca76a49493f8d2e1ef30e2961a03f55b2e45720e498",
+    "source_fingerprint": "sha256:8af6c99e88107468e2fc6bb81d110678a27592a2269deba32dbf7f37f3c48253",
     "source_doc_hashes": {
-      "spec.md": "d16c98eede57545ad49d0f6eb3ed0b1e56823a8bb27fbad4801d67da4e6d4a5f",
+      "spec.md": "41e773820e8eef604ab552ba1fd76f53afbc609fa3bc8e0a7589f3a3a495b646",
       "plan.md": "5c6f9a875bd6cb03b438309f5e724684872ce2e89c741b35e201cece94d4ae68",
-      "tasks.md": "75e4b5e64c197a5d91c922f8271725c795b765e2173211d9e8d0e591922aca72",
-      "checklist.md": "004cdf4bdad0c956989fbb6bc84d7670c88cf362b0494c1bbcb187973dbb8bc9",
-      "implementation-summary.md": "6f280b8974cc75a5f6138c9036a085749f61f1083722029ae1cc8318555ccca6"
+      "tasks.md": "6998a6928872d076ed05e35c2cd2d2eb94624b4e9b06ad86e512a33ac4aec73c",
+      "checklist.md": "a9b14353abaa519f4a8cc6fec1e2f59e28fc121630b9a15f98c19adb6836d7f5",
+      "implementation-summary.md": "71bfb53f75872e1db00120fd8306726363224c219fabbd56e6b6be9b3a76be32"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -56,12 +56,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -84,19 +78,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Enforce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repo has 46 SKILL.md files — 7 parent hubs, 34 hub-mode children, 5 standalones",
     "created_at": "2026-07-13T15:40:27.936Z",
-    "last_save_at": "2026-07-14T04:26:34.228Z",
+    "last_save_at": "2026-07-14T05:42:42.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b1546e212651338394a57c6435c16ef4578bc6f25d404cff288907f41fdb6f68",
+    "source_fingerprint": "sha256:819c3acfb25bb330d58bd1b69157efde077e164730a9942f4f6c0d0a8792cbbc",
     "source_doc_hashes": {
-      "spec.md": "818a14747399104bdb39636c6dc2fdb6ff5767fc21a91b8788430f7eca8ee74c"
+      "spec.md": "a1dd785548719d2dc88c2cc5b0f017c62f098ffd945aa7558916f03cac101079"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Each file updated by a fresh LUNA MAX dispatch
-- [ ] CHK-011 [P0] Each diff confined to contract structure (no behavioral/routing change)
-- [ ] CHK-012 [P1] No file outside this batch modified (path-scoped)
+- [x] CHK-010 [P0] Each file updated by a fresh LUNA MAX dispatch [EVIDENCE: `b01e4e29ca`; 25/25 gate PASS, Sonnet-5 verified]
+- [x] CHK-011 [P0] Each diff confined to contract structure (no behavioral/routing change) [EVIDENCE: `b01e4e29ca`; 25/25 gate PASS, Sonnet-5 verified]
+- [x] CHK-012 [P1] No file outside this batch modified (path-scoped) [EVIDENCE: `b01e4e29ca`; 25/25 gate PASS, Sonnet-5 verified]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -63,9 +63,9 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Every file passes its validator (0 errors/warnings)
-- [ ] CHK-021 [P0] Each file independently verified by a fresh Sonnet-5 xhigh agent
-- [ ] CHK-022 [P1] Owning-hub regression check stays green
+- [x] CHK-020 [P0] Every file passes its validator (0 errors/warnings) [EVIDENCE: `b01e4e29ca`; 25/25 gate PASS, Sonnet-5 verified]
+- [x] CHK-021 [P0] Each file independently verified by a fresh Sonnet-5 xhigh agent [EVIDENCE: `b01e4e29ca`; 25/25 gate PASS, Sonnet-5 verified]
+- [x] CHK-022 [P1] Owning-hub regression check stays green [EVIDENCE: `b01e4e29ca`; 25/25 gate PASS, Sonnet-5 verified]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -74,7 +74,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-024 [P1] Every contract requirement maps to a task row; no requirement dropped [EVIDENCE: `spec.md` REQUIREMENTS <-> `tasks.md` rows]
-- [ ] CHK-025 [P1] No file left partially conformant — validator-green is all-or-nothing per file
+- [x] CHK-025 [P1] No file left partially conformant — validator-green is all-or-nothing per file [EVIDENCE: `b01e4e29ca`; 25/25 gate PASS, Sonnet-5 verified]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -83,7 +83,7 @@ _memory:
 ## Security
 
 - [x] CHK-030 [P0] No capability/tool-grant/permission change (structure + docs only) [EVIDENCE: `spec.md` SCOPE out-of-scope]
-- [ ] CHK-031 [P1] `allowed-tools` arrays reflect existing grants, not new ones
+- [x] CHK-031 [P1] `allowed-tools` arrays reflect existing grants, not new ones [EVIDENCE: `b01e4e29ca`; 25/25 gate PASS, Sonnet-5 verified]
 <!-- /ANCHOR:security -->
 
 ---
@@ -91,8 +91,8 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] spec/plan/tasks/checklist reconciled to shipped state at close
-- [ ] CHK-041 [P2] Any contract N/A exemption documented in the file itself
+- [x] CHK-040 [P1] spec/plan/tasks/checklist reconciled to shipped state at close [EVIDENCE: `b01e4e29ca`; 25/25 gate PASS, Sonnet-5 verified]
+- [x] CHK-041 [P2] Any contract N/A exemption documented in the file itself [EVIDENCE: `b01e4e29ca`; 25/25 gate PASS, Sonnet-5 verified]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -101,7 +101,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P1] Packet is a phase child of 028 (`sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/003-sk-design-children`) [EVIDENCE: folder path + `parent:` frontmatter]
-- [ ] CHK-051 [P1] scratch/ clean before completion
+- [x] CHK-051 [P1] scratch/ clean before completion [EVIDENCE: `ls scratch/` clean at close; no packet-scoped temp files]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -115,6 +115,6 @@ _memory:
 | P1 Items | 6 | pending execution |
 | P2 Items | 1 | pending execution |
 
-**Verification Date**: pending (planning packet)
-**Verified By**: pending
+**Verification Date**: 2026-07-14 (executed)
+**Verified By**: LUNA MAX update + Sonnet-5 xhigh verify
 <!-- /ANCHOR:summary -->

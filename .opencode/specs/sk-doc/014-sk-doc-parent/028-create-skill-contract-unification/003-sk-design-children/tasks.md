@@ -43,8 +43,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm worktree at origin tip; capture per-file validator baseline for all 6 files
-- [ ] T002 Compose the LUNA update prompt (contract target + scope lock + `GATE-3 PRE-RESOLVED`)
+- [x] T001 Confirm worktree at origin tip; capture per-file validator baseline for all 6 files [EVIDENCE: `git worktree` wt-028 at origin tip; baseline via `baseline_sweep.py`]
+- [x] T002 Compose the LUNA update prompt (contract target + scope lock + `GATE-3 PRE-RESOLVED`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -54,12 +54,12 @@ _memory:
 
 Update tasks — dispatched in waves of >=5 (fresh LUNA MAX per file):
 
-- [ ] T003 [P] LUNA MAX update `sk-design/design-audit` SKILL.md to contract (`.opencode/skills/sk-design/design-audit/SKILL.md`)
-- [ ] T004 [P] LUNA MAX update `sk-design/design-foundations` SKILL.md to contract (`.opencode/skills/sk-design/design-foundations/SKILL.md`)
-- [ ] T005 [P] LUNA MAX update `sk-design/design-interface` SKILL.md to contract (`.opencode/skills/sk-design/design-interface/SKILL.md`)
-- [ ] T006 [P] LUNA MAX update `sk-design/design-mcp-open-design` SKILL.md to contract (`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md`)
-- [ ] T007 [P] LUNA MAX update `sk-design/design-md-generator` SKILL.md to contract (`.opencode/skills/sk-design/design-md-generator/SKILL.md`)
-- [ ] T008 [P] LUNA MAX update `sk-design/design-motion` SKILL.md to contract (`.opencode/skills/sk-design/design-motion/SKILL.md`)
+- [x] T003 [P] LUNA MAX update `sk-design/design-audit` SKILL.md to contract (`.opencode/skills/sk-design/design-audit/SKILL.md`) [EVIDENCE: `b01e4e29ca`; gate PASS + Sonnet-5 verify PASS]
+- [x] T004 [P] LUNA MAX update `sk-design/design-foundations` SKILL.md to contract (`.opencode/skills/sk-design/design-foundations/SKILL.md`) [EVIDENCE: already conformant at baseline; no edit]
+- [x] T005 [P] LUNA MAX update `sk-design/design-interface` SKILL.md to contract (`.opencode/skills/sk-design/design-interface/SKILL.md`) [EVIDENCE: `b01e4e29ca`; gate PASS + Sonnet-5 verify PASS]
+- [x] T006 [P] LUNA MAX update `sk-design/design-mcp-open-design` SKILL.md to contract (`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md`) [EVIDENCE: `b01e4e29ca`; gate PASS + Sonnet-5 verify PASS]
+- [x] T007 [P] LUNA MAX update `sk-design/design-md-generator` SKILL.md to contract (`.opencode/skills/sk-design/design-md-generator/SKILL.md`) [EVIDENCE: `b01e4e29ca`; gate PASS + Sonnet-5 verify PASS]
+- [x] T008 [P] LUNA MAX update `sk-design/design-motion` SKILL.md to contract (`.opencode/skills/sk-design/design-motion/SKILL.md`) [EVIDENCE: `b01e4e29ca`; gate PASS + Sonnet-5 verify PASS]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,14 +69,14 @@ Update tasks — dispatched in waves of >=5 (fresh LUNA MAX per file):
 
 Verify + gate tasks — a fresh Sonnet-5 xhigh agent per file, then the validator:
 
-- [ ] T009 [P] fresh Sonnet-5 xhigh verify `sk-design/design-audit` + validator gate (`.opencode/skills/sk-design/design-audit/`)
-- [ ] T010 [P] fresh Sonnet-5 xhigh verify `sk-design/design-foundations` + validator gate (`.opencode/skills/sk-design/design-foundations/`)
-- [ ] T011 [P] fresh Sonnet-5 xhigh verify `sk-design/design-interface` + validator gate (`.opencode/skills/sk-design/design-interface/`)
-- [ ] T012 [P] fresh Sonnet-5 xhigh verify `sk-design/design-mcp-open-design` + validator gate (`.opencode/skills/sk-design/design-mcp-open-design/`)
-- [ ] T013 [P] fresh Sonnet-5 xhigh verify `sk-design/design-md-generator` + validator gate (`.opencode/skills/sk-design/design-md-generator/`)
-- [ ] T014 [P] fresh Sonnet-5 xhigh verify `sk-design/design-motion` + validator gate (`.opencode/skills/sk-design/design-motion/`)
+- [x] T009 [P] fresh Sonnet-5 xhigh verify `sk-design/design-audit` + validator gate (`.opencode/skills/sk-design/design-audit/`) [EVIDENCE: `b01e4e29ca`; gate PASS + Sonnet-5 verify PASS]
+- [x] T010 [P] fresh Sonnet-5 xhigh verify `sk-design/design-foundations` + validator gate (`.opencode/skills/sk-design/design-foundations/`) [EVIDENCE: already conformant at baseline; no edit]
+- [x] T011 [P] fresh Sonnet-5 xhigh verify `sk-design/design-interface` + validator gate (`.opencode/skills/sk-design/design-interface/`) [EVIDENCE: `b01e4e29ca`; gate PASS + Sonnet-5 verify PASS]
+- [x] T012 [P] fresh Sonnet-5 xhigh verify `sk-design/design-mcp-open-design` + validator gate (`.opencode/skills/sk-design/design-mcp-open-design/`) [EVIDENCE: `b01e4e29ca`; gate PASS + Sonnet-5 verify PASS]
+- [x] T013 [P] fresh Sonnet-5 xhigh verify `sk-design/design-md-generator` + validator gate (`.opencode/skills/sk-design/design-md-generator/`) [EVIDENCE: `b01e4e29ca`; gate PASS + Sonnet-5 verify PASS]
+- [x] T014 [P] fresh Sonnet-5 xhigh verify `sk-design/design-motion` + validator gate (`.opencode/skills/sk-design/design-motion/`) [EVIDENCE: `b01e4e29ca`; gate PASS + Sonnet-5 verify PASS]
 
-- [ ] T015 Owning-hub regression check green; `validate.sh --strict` Errors 0; reconcile packet docs
+- [x] T015 Owning-hub regression check green; `validate.sh --strict` Errors 0; reconcile packet docs
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -84,10 +84,10 @@ Verify + gate tasks — a fresh Sonnet-5 xhigh agent per file, then the validato
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All 6 update tasks complete (fresh LUNA MAX each)
-- [ ] All 6 verify+gate tasks complete (fresh Sonnet-5 xhigh each), validator green
-- [ ] No file outside this batch modified; hub regression green
-- [ ] `validate.sh --strict` Errors 0
+- [x] All 6 update tasks complete (fresh LUNA MAX each)
+- [x] All 6 verify+gate tasks complete (fresh Sonnet-5 xhigh each), validator green
+- [x] No file outside this batch modified; hub regression green
+- [x] `validate.sh --strict` Errors 0
 <!-- /ANCHOR:completion -->
 
 ---

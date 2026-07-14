@@ -11,17 +11,17 @@ parent: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification"
-    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_at: "2026-07-14T05:42:42.580Z"
     last_updated_by: "claude-opus"
-    recent_action: "Scaffolded phase-parent structure for conformance sweep"
-    next_safe_action: "Validate parent + children; await go-ahead to dispatch"
+    recent_action: "Reconciled conformance sweep to shipped state"
+    next_safe_action: "Run advisor re-baseline for trimmed descriptions"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -100,12 +100,12 @@ independently verified by a fresh Sonnet-5 xhigh agent, then must pass its valid
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 000 | `000-create-skill-contract` | Machine-readable create-skill contract + validators | Complete |
-| 001 | `001-parent-hub-canon` | 7 parent hubs -> parent-hub canon | Planned |
-| 002 | `002-sk-doc-children` | 11 skills -> create-skill contract | Planned |
-| 003 | `003-sk-design-children` | 6 skills -> create-skill contract | Planned |
-| 004 | `004-deep-loop-children` | 5 skills -> create-skill contract | Planned |
-| 005 | `005-code-cli-mcp-prompt-children` | 12 skills -> create-skill contract | Planned |
-| 006 | `006-standalones` | 5 skills -> create-skill contract | Planned |
+| 001 | `001-parent-hub-canon` | 7 parent hubs -> parent-hub canon | Complete |
+| 002 | `002-sk-doc-children` | 11 skills -> create-skill contract | Complete |
+| 003 | `003-sk-design-children` | 6 skills -> create-skill contract | Complete |
+| 004 | `004-deep-loop-children` | 5 skills -> create-skill contract | Complete |
+| 005 | `005-code-cli-mcp-prompt-children` | 12 skills -> create-skill contract | Complete |
+| 006 | `006-standalones` | 5 skills -> create-skill contract | Complete |
 
 ### Phase Transition Rules
 
@@ -130,7 +130,7 @@ independently verified by a fresh Sonnet-5 xhigh agent, then must pass its valid
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Execution is gated on operator go-ahead; the per-file LUNA-MAX update + Sonnet-5 verify contract is fixed in each child's `plan.md`.
+- Execution complete: every file was updated by a fresh GPT-5.6 LUNA MAX agent and verified by a fresh Sonnet-5 xhigh agent, then passed its validator. Follow-ups (out of scope): teach `package_skill.py` to branch on `packetKind: surface` (code-opencode + code-webflow were exempted manually); run an advisor re-baseline for the ~17 trimmed descriptions.
 <!-- /ANCHOR:questions -->
 
 ---

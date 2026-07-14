@@ -39,11 +39,8 @@
       "harness"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      "tasks.md",
-      "plan.md",
       ".opencode/skills/cli-external-orchestration/SKILL.md",
       ".opencode/skills/mcp-tooling/SKILL.md",
       ".opencode/skills/sk-code/SKILL.md",
@@ -51,14 +48,17 @@
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-prompt/SKILL.md",
       ".opencode/skills/system-deep-loop/SKILL.md",
+      "tasks.md",
+      "plan.md",
       "checklist.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
         "source": "derived"
       },
       {
@@ -74,15 +74,15 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Bring the 7 parent hub SKILL.md files in this batch into full conformance with the parent-hub canon; each file is updated by a fresh GPT-5.6 LUNA MAX agent and independently verified by a fresh Sonnet-5 xhigh agent, then must pass its validator.",
     "created_at": "2026-07-14T04:25:49.673Z",
-    "last_save_at": "2026-07-14T04:39:11.525Z",
+    "last_save_at": "2026-07-14T05:42:41.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38dbccdcb62e87e9303b5a2ebbf67e4111ff8b6dbcec32fd76cbd2c130b48fca",
+    "source_fingerprint": "sha256:38c68d299a2fb3b061a352ac3e1df89a6c147dccfbd087d9452c0271d3955ba7",
     "source_doc_hashes": {
-      "spec.md": "0d721387df79a7f71342ffd9a457891118b71411e1f20d035157a828a6ef0802",
+      "spec.md": "cf5d37c9175891e0607daacb36037a684d4c894108ac1cb0e4dfeb7ccbbe0d07",
       "plan.md": "796088024d8fb3601b6c5659756bd4e228099431056b17ab7e654c8570dac959",
-      "tasks.md": "4cd9208196b00c1a61596ee33373b814a63617ca848893b28997c5f3b8bc932e",
-      "checklist.md": "1de3a19dbd8414b9c93127bef3af978153b86e00817567cfae9646a994c88bf3",
-      "implementation-summary.md": "721dce0bf6541fede29d7eb3f96a6133b82fb901b7aecfbdca14c58ede5aeaf3"
+      "tasks.md": "6c4d9379dc57e780063eba916d2fca9c35be4c17af73c7c0dd0e8300e4606685",
+      "checklist.md": "c7964e51763928b398c77450e3dfe00b64ac2de62b52663fb5d9da4c76a78ced",
+      "implementation-summary.md": "7a4db7bda19ec292d756bb5cef4bf8df7d5e38073ef720083063b0c1abd8974e"
     },
     "last_active_child_id": null,
     "last_active_at": null

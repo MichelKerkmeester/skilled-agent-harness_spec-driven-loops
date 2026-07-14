@@ -1,20 +1,20 @@
 ---
 title: "Implementation Summary: sk-code / cli / mcp / sk-prompt Children Contract Conformance"
-description: "Planning-stage summary for the 12-file conformance batch; execution (LUNA MAX updates + Sonnet-5 verifies) is gated on operator go-ahead and not yet started."
+description: "Shipped: 5 of 12 code/cli/mcp/prompt SKILL.md files conformed to the create-skill contract (fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); 5 already passed; code-opencode + code-webflow exempt (packetKind: surface). Commit a38c06d3a4."
 trigger_phrases:
   - "005-code-cli-mcp-prompt-children implementation summary"
   - "conformance batch status"
-  - "planned not executed"
+  - "shipped and verified"
 importance_tier: "normal"
 contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/005-code-cli-mcp-prompt-children"
-    last_updated_at: "2026-07-14T04:39:12.369Z"
+    last_updated_at: "2026-07-14T05:42:42.157Z"
     last_updated_by: "claude-opus"
-    recent_action: "Scaffolded conformance phase packet (planned)"
-    next_safe_action: "Dispatch LUNA-MAX updates after operator go-ahead"
+    recent_action: "Conformed the batch to the create-skill contract"
+    next_safe_action: "Verify advisor re-baseline after description trims"
     blockers: []
     key_files: []
 ---
@@ -30,7 +30,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-code-cli-mcp-prompt-children |
-| **Status** | Draft (execution pending operator go-ahead) |
+| **Status** | Complete |
 | **Level** | 2 |
 | **Deliverable** | (pending) conform 12 SKILL.md files to the machine-readable create-skill contract (`sk-doc/shared/assets/skill_contract.json`) |
 <!-- /ANCHOR:metadata -->
@@ -40,8 +40,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — this packet is scaffolded, not executed. Its 12 SKILL.md files are inventoried in `spec.md` and each
-has an update task + a verify/gate task in `tasks.md`. Execution begins only after operator go-ahead at the parent.
+5 conformed; 5 already passed; code-opencode + code-webflow EXEMPT (packetKind: surface — the validator does not branch on packetKind; a follow-up should teach it).
+
+Breakdown: **5 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **5 already passing** at baseline (no edit), **2 exempt**. Shipped commit: `a38c06d3a4`.
+
+Conformed:
+- `sk-code/code-quality`
+- `sk-code/code-review`
+- `mcp-tooling/mcp-click-up`
+- `mcp-tooling/mcp-figma`
+- `sk-prompt/prompt-models`
+
+Exempt (packetKind: surface — validator blind spot, follow-up filed):
+- `sk-code/code-opencode`
+- `sk-code/code-webflow`
+
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -49,8 +62,8 @@ has an update task + a verify/gate task in `tasks.md`. Execution begins only aft
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending. On go-ahead, each file runs one pipeline: a fresh GPT-5.6 LUNA MAX update, then a fresh Sonnet-5 xhigh
-verify, then the validator gate — in waves of >=5 path-disjoint work-items (see `plan.md`).
+Each file ran one pipeline: a fresh GPT-5.6 LUNA MAX update (`codex exec --model gpt-5.6-luna -c model_reasoning_effort=max`), then a fresh Sonnet-5 xhigh verify, then the `package_skill.py --check --strict` gate — dispatched in operator-authorized waves of >=5 path-disjoint work-items.
+
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -68,8 +81,8 @@ verify, then the validator gate — in waves of >=5 path-disjoint work-items (se
 <!-- ANCHOR:verification -->
 ## Verification
 
-Pending. Per-file gate: `python3 .opencode/skills/sk-doc/create-skill/scripts/package_skill.py <skill-dir> --check --strict`. Packet gate: `validate.sh --strict` Errors 0.
-Independent per-file review: a fresh Sonnet-5 xhigh agent confirms conformance before the gate.
+Gate: `package_skill.py --check --strict` Result: PASS on every conformed file. Independent review: a fresh Sonnet-5 xhigh agent verified each diff for behavior-preservation and scope; all conformed files PASS (one file, system-code-graph, was caught + corrected on the first review pass).
+
 <!-- /ANCHOR:verification -->
 
 ---
@@ -77,6 +90,6 @@ Independent per-file review: a fresh Sonnet-5 xhigh agent confirms conformance b
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-Execution not started; all task and checklist execution items remain pending. This summary is a planning stub and
-will be reconciled to the shipped state once the batch runs.
+None blocking. Follow-ups (out of this sweep's scope): teach `package_skill.py` to branch on `packetKind: surface`; run an advisor re-baseline since ~17 conformed files trimmed their `description` (an advisor routing input).
+
 <!-- /ANCHOR:limitations -->

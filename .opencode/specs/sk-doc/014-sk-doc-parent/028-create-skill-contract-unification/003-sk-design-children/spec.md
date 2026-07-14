@@ -41,7 +41,7 @@ _memory:
 | **Packet** | sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/003-sk-design-children |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Parent Packet** | sk-doc/014-sk-doc-parent/028-create-skill-contract-unification |
 | **Files in batch** | 6 |
@@ -155,7 +155,7 @@ Each file must satisfy (per the target):
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-None blocking. Execution is gated on operator go-ahead (see parent packet); the per-file dispatch/verify contract is fixed in `plan.md`.
+None blocking. The batch shipped; execution followed the per-file dispatch/verify contract fixed in `plan.md`. Follow-ups (out of scope): teach `package_skill.py` to branch on `packetKind: surface`; run an advisor re-baseline for the trimmed descriptions.
 <!-- /ANCHOR:questions -->
 
 ---
