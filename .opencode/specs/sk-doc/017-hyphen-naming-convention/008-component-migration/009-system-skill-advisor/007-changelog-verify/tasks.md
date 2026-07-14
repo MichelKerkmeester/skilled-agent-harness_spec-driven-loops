@@ -1,106 +1,86 @@
 ---
-title: "Tasks: Phase 7: changelog-verify [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: system-skill-advisor changelog verification"
+description: "Concrete evidence tasks for verifying the rename-set changelog entry and matching version bump without performing migration work."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "changelog verification tasks"
+  - "advisor release evidence tasks"
+  - "version bump audit tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-changelog-verify"
-    last_updated_at: "2026-07-14T15:18:12Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored changelog verification tasks"
+    next_safe_action: "Locate the canonical version source and newest release entry"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-changelog-verify"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-skill-advisor/changelog"
+      - ".opencode/skills/system-skill-advisor/SKILL.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The release version is supplied by the execution owner; this phase does not infer or create it."
 ---
+
+# Tasks: system-skill-advisor changelog verification
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 7: changelog-verify
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+Task format: T### [P?] Description (file path)
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Locate the canonical skill version source and newest changelog entry
+- [ ] T002 Collect sibling 001–006 checklist receipts and phase 008 gate evidence
+- [ ] T003 Record current version strings, release dates, links, and known documentation drift
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Perform no rename, source edit, or release-entry rewrite in this phase
+- [ ] T005 Compare the release entry's claimed rename groups and exemptions to sibling evidence
+- [ ] T006 Record missing, contradictory, or unsupported claims as blocking evidence
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T007 Confirm the entry covers MCP root, scripts, references, hooks, catalog, and playbook outcomes
+- [ ] T008 Confirm preserved exemptions, compatibility impact, and verification receipts are stated
+- [ ] T009 Confirm version/date/link metadata agrees with the canonical source and release decision
+- [ ] T010 Emit a pass/fail receipt for the subtree gate
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked [x]
+- [ ] No [B] blocked tasks remain
+- [ ] Every requirement in spec.md has pinned evidence
+- [ ] The phase checklist is fully satisfied by the central verifier
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
+- **Checklist**: See checklist.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

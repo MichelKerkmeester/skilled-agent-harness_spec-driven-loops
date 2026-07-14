@@ -1,9 +1,14 @@
 {
   "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up",
-  "description": "Phase 3: mcp-click-up",
+  "description": "The mcp-click-up component contains snake_case catalog, playbook, reference, and scenario paths that need semantic kebab-case targets and closed references.",
   "keywords": [
-    "phase",
-    "mcp-click-up"
+    "mcp-click-up",
+    "snake_case",
+    "kebab-case",
+    "feature-catalog",
+    "manual-testing",
+    "references",
+    "exemptions"
   ],
   "lastUpdated": "2026-07-14T15:17:43.734Z",
   "specId": "003",
@@ -16,5 +21,5 @@
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],
-  "level": "1"
+  "level": "2"
 }

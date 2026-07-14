@@ -1,170 +1,132 @@
 ---
-title: "Implementation Plan: Phase 3: references [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: system-skill-advisor references"
+description: "Apply a 15-file reference rename map, repair all live path links and command examples, and verify navigation and reference validation without altering runtime identifiers or document contracts."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-skill-advisor references implementation plan"
+  - "reference link closure plan"
+  - "advisor documentation path migration"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-references"
-    last_updated_at: "2026-07-14T15:18:09Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the references implementation plan"
+    next_safe_action: "Freeze the 15-file reference map and path-consumer manifest"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-references"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-skill-advisor/references"
+      - ".opencode/skills/system-skill-advisor/SKILL.md"
+      - ".opencode/skills/system-skill-advisor/README.md"
+      - ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "All reference directories are already compliant; only 15 Markdown filenames require mapping."
+      - "Cross-phase catalog/playbook links are path consumers and do not authorize content redesign."
 ---
+
+# Implementation Plan: system-skill-advisor references
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 3: references
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown, shell/Node command examples, YAML/JSON path values |
+| **Framework** | sk-doc reference and link conventions |
+| **Storage** | Version-controlled reference files |
+| **Testing** | Link/path scan, reference validation, command target checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Build one explicit source-to-target map for the 15 reference files, then update path contexts across the advisor
+surface and known external consumers. Preserve words that are identifiers, keys, tool IDs, or historical prose; only
+filesystem path segments and path-derived values move.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The 15-file list and collision report are pinned.
+- [ ] Every live path hit is classified as link, command, frontmatter path, generated metadata, identifier, or history.
+- [ ] Catalog/playbook sibling target maps are available for cross-links.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All 15 files have kebab-case targets and no reference directory was renamed.
+- [ ] Links, indexes, command paths, and path-valued metadata resolve.
+- [ ] Reference content and identifiers retain BASE semantics.
+- [ ] No stale live old-name path remains.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Path-only documentation rename with cross-surface link closure.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- Reference groups: config, decisions, graph, hooks, runtime, and scoring.
+- Navigation consumers: SKILL, README, INSTALL_GUIDE, catalog, playbook, and command assets.
+- Non-path tokens: tool IDs, frontmatter keys, classification tags, and historical mentions.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Operators enter through top-level skill docs or command examples, follow a relative reference link, and then use
+commands or cross-links from that reference. The map changes the target path at every hop without changing the
+referenced contract or runtime value.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Enumerate the 15 reference files and calculate their target paths.
+- [ ] Scan the repository for each old path and classify all hits.
+- [ ] Record link and reference counts before the rename.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename the 15 Markdown files by dependency-closed directory group.
+- [ ] Update internal links, top-level indexes, command paths, path-valued frontmatter, and cross-surface references.
+- [ ] Leave reference directories, code identifiers, tool IDs, keys, and frozen history unchanged.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Resolve every Markdown link and executable path example to an existing target.
+- [ ] Run reference/document validation and compare link counts to BASE.
+- [ ] Scan old names and classify only intentional non-path mentions.
+- [ ] Record the handoff to the hook/catalog/playbook consumers.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Inventory | 15 source/target paths and collisions | rg, filesystem manifest |
+| Link | Relative Markdown and index links | link checker or repository path resolver |
+| Command | Shell/Node/Python example targets | path existence and smoke commands |
+| Content | Identifier and frontmatter preservation | targeted diff and parser checks |
+| Boundary | Historical/non-path hits | old-name disposition ledger |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Catalog/playbook target maps | Internal | Required | Cross-links cannot be proven |
+| Root-name consumer contract | Internal | Required | Catalog/playbook classifier paths may reject targets |
+| Frozen-history policy | Internal | Required | Old-name hit classification becomes ambiguous |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Broken link, command target, parser output, or identifier drift.
+- **Procedure**: Restore the 15-file map and path-only edits in the isolated worktree, retain the disposition ledger,
+  and narrow the consumer set before retrying. Do not rewrite frozen history to hide a failed link scan.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

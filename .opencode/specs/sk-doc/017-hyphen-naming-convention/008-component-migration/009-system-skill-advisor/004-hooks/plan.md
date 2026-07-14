@@ -1,170 +1,130 @@
 ---
-title: "Implementation Plan: Phase 4: hooks [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: system-skill-advisor hooks"
+description: "Inventory advisor hook filenames, preserve the current kebab-case hook files when confirmed, repair stale registrations and references, and rename only a real non-mandated candidate found in the pinned baseline."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-skill-advisor hooks implementation plan"
+  - "hook registration path plan"
+  - "prompt submit hook verification"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-hooks"
-    last_updated_at: "2026-07-14T15:18:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the hook audit implementation plan"
+    next_safe_action: "Freeze the advisor hook inventory and registration manifest"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-hooks"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-skill-advisor/hooks"
+      - ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+      - ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/hooks"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The visible advisor hook filenames are already kebab-case."
+      - "Stale cross-skill paths must be classified by owner before any edit."
 ---
+
+# Implementation Plan: system-skill-advisor hooks
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 4: hooks
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript runtime hooks and Node CLI fallback |
+| **Framework** | Claude/OpenCode hook contracts and Vitest |
+| **Storage** | Hook source, runtime settings, and path-bearing documentation |
+| **Testing** | Filename inventory, registration resolution, hook parity/smoke tests |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The current hooks tree predicts no filename rename: user-prompt-submit.ts and skill-advisor-cli-fallback.ts already
+use kebab-case. The phase first proves that inventory, then repairs live advisor registrations and stale path examples.
+If the pinned baseline reveals another ordinary snake_case hook file, add only that file to the explicit rename map.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Every advisor hook source and registration is enumerated.
+- [ ] Advisor-owned and cross-skill hook paths are distinguished.
+- [ ] Hook event, envelope, timeout, and fail-open BASE behavior is recorded.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] No unclassified in-scope hook filename remains.
+- [ ] All live advisor registrations and references resolve.
+- [ ] A no-rename outcome includes zero-candidate evidence when applicable.
+- [ ] Hook behavior and safety checks retain BASE parity.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Evidence-first audit with conditional path rename.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- Hook sources under hooks/claude and hooks/lib.
+- Runtime registration/reference consumers in docs, settings, plugin bridge, and tests.
+- Stable behavior contract: prompt input, additional context output, timeout, fail-open, and diagnostics.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Runtime settings invoke a hook source, which probes the advisor CLI/daemon and emits a prompt-safe envelope. Path
+changes affect only source resolution and documentation; event names and response fields stay unchanged.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Inventory every hook file and every registration/path literal.
+- [ ] Classify current kebab names, exemptions, cross-skill paths, and any candidate rename.
+- [ ] Capture hook discovery and representative behavior at BASE.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] If a candidate exists, rename it with a semantic map and update registrations/references.
+- [ ] Repair stale advisor hook paths in SKILL, README, INSTALL_GUIDE, reference examples, plugin docs, and tests.
+- [ ] Preserve current kebab filenames, runtime event names, environment keys, and code identifiers.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Prove the hook inventory has zero unclassified snake_case filenames.
+- [ ] Resolve every advisor-owned registration to an existing source path.
+- [ ] Run hook parity/fail-open/timeout smoke checks and compare output shape to BASE.
+- [ ] Record the no-op or rename handoff for the subtree gate.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Inventory | Hook filenames and ownership | rg, filesystem manifest |
+| Registration | Runtime/docs/test path resolution | path resolver and targeted scan |
+| Behavior | Prompt input/output, timeout, fail-open | hook tests and smoke fixtures |
+| Boundary | Cross-skill references and event identifiers | ownership ledger and targeted diff |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Hook runtime contract | Internal | Required | A path audit cannot distinguish behavior from naming |
+| Reference-file map | Internal | Required | Reference filename and hook path updates can be confused |
+| Runtime configuration | Internal | Required | Source-only verification misses real registrations |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Wrong owner path, changed hook envelope, timeout/fail-open regression, or unexplained candidate.
+- **Procedure**: Revert only the conditional hook path edits in the isolated worktree, restore the BASE registration
+  map, and preserve the inventory ledger for the next attempt. A no-op result remains valid when all checks pass.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

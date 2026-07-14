@@ -1,170 +1,115 @@
 ---
-title: "Implementation Plan: Phase 8: skill-gate [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: mcp-tooling subtree rollup gate (017 phase 008)"
+description: "This plan aggregates the sibling SOL contracts and runs the complete exemption-aware naming and reference checks for mcp-tooling without adding a new migration batch."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-tooling subtree gate plan"
+  - "mcp tooling rollup verification"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-skill-gate"
-    last_updated_at: "2026-07-14T15:17:47Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the mcp-tooling rollup gate plan"
+    next_safe_action: "Aggregate sibling evidence before the whole-surface scan"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-skill-gate"
-      parent_session_id: null
+    key_files:
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/"
+      - ".opencode/skills/mcp-tooling/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: mcp-tooling Subtree Rollup Gate
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 8: skill-gate
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Entire .opencode/skills/mcp-tooling subtree and sibling phase evidence |
+| **Change class** | Read-only rollup verification |
+| **Execution** | Aggregate evidence, then run the exemption-aware whole-surface gate |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The rollup gate does not provide another rename batch. It first checks the P0/P1 state of phases 001-007, then scans every mcp-tooling path and reference against the frozen 017 exemption set. Any failure is returned to the owning phase; phase 008 never repairs a leftover path opportunistically.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] All sibling checklists and candidate reports are available
+- [ ] BASE SHA and final rename-map hash are recorded
+- [ ] The mcp-tooling root and all three component boundaries are known
+- [ ] Exemption and frozen-history rules are loaded
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Every sibling P0 item passes with evidence
+- [ ] Whole-surface naming and reference scans are clean
+- [ ] The gate performs no new migration mutation
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Evidence aggregation**: read phases 001-007 checklists, maps, counts, and reports; fail closed on missing P0 evidence.
+- **Naming gate**: scan all mcp-tooling descendants and classify remaining underscores through the 017 exemption boundary.
+- **Reference gate**: resolve cross-component Markdown links, path-valued metadata, route resources, catalog/playbook indexes, and benchmark references.
+- **Mutation guard**: compare the candidate tree before and after verification and reject any gate-created rename or repair.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Pin the candidate and BASE SHAs and record the final map hash
+- [ ] Load sibling checklists and confirm non-zero evidence for applicable scenario/catalog checks
+- [ ] Build the rollup path inventory with delegated/frozen/exempt classes
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Aggregate phase 001-007 status and evidence
+- [ ] Run the whole mcp-tooling naming scan
+- [ ] Run the cross-surface link, route, catalog/playbook, and benchmark reference scans
+- [ ] Do not edit or rename any target path in response to a finding
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Confirm zero in-scope snake_case filesystem names
+- [ ] Confirm all remaining underscores have approved classifications
+- [ ] Confirm all references resolve and all sibling P0 checks remain green
+- [ ] Confirm verification caused no tracked mutation
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Sibling evidence | Phases 001-007 P0/P1 state and report integrity | checklist aggregation, evidence ledger |
+| Naming | All mcp-tooling filesystem descendants and exemption classes | scope-aware guard, find, git ls-files |
+| References | Links, route resources, catalog/playbook indexes, benchmark paths | Markdown/link resolver, JSON parser, rg |
+| Mutation | Gate creates no rename or repair | git status, git diff-index |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phases 001-007 | Internal | Required | No valid rollup evidence |
+| Final 017 rename map | Internal | Required | Cannot classify the full surface |
+| Exemption/frozen-history policy | Program rule | Required | False positives or missed debt |
+| Scope-aware naming/reference gates | Internal verifier | Required | Whole-surface cleanliness cannot be proven |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Any gate-created mutation, missing sibling evidence, in-scope snake_case name, unresolved reference, or unclassified exemption.
+- **Procedure**: Discard only the gate's unauthorized mutation, route the finding to the owning phase, and rerun the rollup after that phase supplies corrected evidence.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

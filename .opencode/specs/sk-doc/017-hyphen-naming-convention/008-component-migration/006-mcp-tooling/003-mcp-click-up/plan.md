@@ -1,170 +1,118 @@
 ---
-title: "Implementation Plan: Phase 3: mcp-click-up [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: mcp-click-up naming closure (017 phase 003)"
+description: "This plan migrates the ClickUp component's catalog, playbook, reference, and index paths through a complete semantic map, then repairs links and path-derived values without changing cupt, MCP, package, or data identifiers."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-click-up naming implementation plan"
+  - "clickup catalog path repair"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-mcp-click-up"
-    last_updated_at: "2026-07-14T15:17:43Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the ClickUp execution plan"
+    next_safe_action: "Build the complete ClickUp source-to-target map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-mcp-click-up"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/"
+      - ".opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/"
+      - ".opencode/skills/mcp-tooling/mcp-click-up/references/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: mcp-click-up Naming Closure
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 3: mcp-click-up
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/mcp-tooling/mcp-click-up |
+| **Change class** | Catalog/playbook filesystem rename plus reference-graph repair |
+| **Execution** | One dependency-closed component batch from the frozen 017 map |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The ClickUp component census contains 26 snake_case directories and 137 underscored files, including both catalog and manual-playbook roots. The implementation moves the roots, category directories, indexes, scenario files, and references together, then rewrites the full local link graph. The package/server layout and ClickUp vocabulary remain unchanged.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] BASE SHA and map hash are recorded
+- [ ] The 26-directory/137-file census and collision report are attached
+- [ ] Catalog, playbook, reference, example, and frontmatter consumers are inventoried
+- [ ] Package manifests and mcp-servers directories are marked preserved
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All mapped ClickUp paths use kebab-case
+- [ ] Catalog-to-playbook links and indexes resolve with non-zero discovery
+- [ ] cupt/MCP routing and package layout checks remain green
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Catalog closure**: move feature-catalog, its categories, FEATURE_CATALOG.md, and all feature files together.
+- **Playbook closure**: move manual-testing-playbook, its categories, the root index, and all scenarios together.
+- **Reference closure**: update SKILL.md, README.md, examples, scripts, reference docs, catalog links, playbook links, and path-derived values.
+- **Semantic boundary**: keep cupt tokens, MCP operation names, JSON/YAML/TOML keys, frontmatter fields, package manifests, and Python exemptions unchanged.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Pin BASE and confirm a clean worktree
+- [ ] Produce the complete 26-directory/137-file source-to-target map
+- [ ] Capture catalog and playbook discovery counts before the move
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename feature_catalog and FEATURE_CATALOG.md to feature-catalog and feature-catalog.md
+- [ ] Rename all catalog categories and files to semantic kebab targets
+- [ ] Rename manual_testing_playbook, its categories, index, and scenarios
+- [ ] Rename cupt_commands.md, install_guide.md, mcp_tools.md, and other underscored references
+- [ ] Rewrite all links and path-derived category values
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Confirm no in-scope underscore remains under mcp-click-up
+- [ ] Resolve the catalog/playbook/reference link graph
+- [ ] Compare non-zero catalog and scenario discovery counts with the pre-rename baseline
+- [ ] Verify package/server paths and ClickUp identifiers are unchanged
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Census | All directories/files and target collisions | find, git ls-files, rename-map checker |
+| Link graph | Catalog, playbook, README, SKILL, examples, scripts, and references | rg, Markdown-link resolver |
+| Metadata | Category values versus frontmatter fields and data keys | YAML/JSON parser and focused diff |
+| Discovery | Catalog and manual scenario inventories | component loaders and playbook checks |
+| Integration | Package/server layout and hub navigation | parent-skill-check.cjs |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 001 hub boundary | Internal | Required | Root references may not follow the component path |
+| Frozen 017 rename map | Internal | Required | No safe target or collision proof |
+| Catalog/playbook discovery tools | Internal | Required | Silent feature/scenario loss |
+| ClickUp package/server manifests | Tool contract | Preserve | Install and MCP layout could break |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Any missing catalog entry, broken scenario, target collision, package-layout change, or changed identifier.
+- **Procedure**: Revert the path-scoped ClickUp batch, restore the prior links and map, and rerun both pre-rename discovery counts before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

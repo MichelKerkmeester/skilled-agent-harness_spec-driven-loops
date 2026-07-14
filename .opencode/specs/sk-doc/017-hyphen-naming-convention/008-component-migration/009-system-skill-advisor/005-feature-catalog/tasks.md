@@ -1,106 +1,88 @@
 ---
-title: "Tasks: Phase 5: feature-catalog [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: system-skill-advisor feature catalog"
+description: "Concrete tasks for the feature-catalog root, category, and file rename, path-link repair, and catalog parity verification."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "feature catalog tasks"
+  - "feature-catalog tree tasks"
+  - "catalog link closure tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-feature-catalog"
-    last_updated_at: "2026-07-14T15:18:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored feature-catalog tasks"
+    next_safe_action: "Begin with the 42-file catalog inventory"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-feature-catalog"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-skill-advisor/feature_catalog"
+      - ".opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The catalog map covers 42 files and seven category directories."
 ---
+
+# Tasks: system-skill-advisor feature catalog
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 5: feature-catalog
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+Task format: T### [P?] Description (file path)
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Enumerate the 42 catalog files, root index, and seven category directories
+- [ ] T002 Build kebab-case targets and collision report for every catalog path
+- [ ] T003 Inventory catalog, docs, generator, validator, and playbook path references
+- [ ] T004 Capture BASE feature IDs, source references, link counts, and classifier discovery
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T005 Rename feature_catalog/ to feature-catalog/ and the root index to feature-catalog.md
+- [ ] T006 Rename all seven category directories and every in-scope feature file
+- [ ] T007 Update catalog links, skill docs, generators, validators, and catalog-to-playbook path references
+- [ ] T008 Preserve classification tags, frontmatter, feature IDs, tool IDs, code identifiers, and generated metadata
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T009 Prove one physical catalog root and zero stale live old paths
+- [ ] T010 Resolve every catalog link and cross-surface playbook pointer
+- [ ] T011 Run catalog validation and compare file, ID, link, and discovery counts to BASE
+- [ ] T012 Record the catalog map and handoff evidence for the playbook and subtree-gate phases
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked [x]
+- [ ] No [B] blocked tasks remain
+- [ ] Every requirement in spec.md has pinned evidence
+- [ ] The phase checklist is fully satisfied by the central verifier
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
+- **Checklist**: See checklist.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

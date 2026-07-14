@@ -1,170 +1,118 @@
 ---
-title: "Implementation Plan: Phase 4: mcp-figma [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: mcp-figma naming closure (017 phase 004)"
+description: "This plan renames the Figma component's catalog, playbook, asset, reference, install-guide, and shared-helper paths through an explicit semantic map, then repairs Markdown and shell references while preserving transport and identifier semantics."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-figma naming implementation plan"
+  - "figma catalog helper path repair"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-mcp-figma"
-    last_updated_at: "2026-07-14T15:17:44Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the Figma execution plan"
+    next_safe_action: "Build the complete Figma source-to-target map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-mcp-figma"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-figma/feature_catalog/"
+      - ".opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/"
+      - ".opencode/skills/mcp-tooling/mcp-figma/scripts/_common.sh"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: mcp-figma Naming Closure
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 4: mcp-figma
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/mcp-tooling/mcp-figma |
+| **Change class** | Catalog/playbook/assets/scripts rename plus reference repair |
+| **Execution** | One dependency-closed component batch from the frozen 017 map |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The Figma component census contains 14 snake_case directories and 30 underscored files. The implementation moves the catalog, playbook, assets, references, install guide, and helper path together, with scripts/common.sh as the safe semantic target for scripts/_common.sh. It then repairs Markdown links and shell source paths while leaving shell variables and Figma identifiers unchanged.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] BASE SHA and map hash are recorded
+- [ ] The 14-directory/30-file census and collision report are attached
+- [ ] All Markdown, frontmatter, and shell source consumers are inventoried
+- [ ] The mcp-figma transport boundary and shell identifier exemption are recorded
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All mapped Figma paths use safe kebab-compatible targets
+- [ ] Catalog/playbook/reference links and shell source paths resolve
+- [ ] Figma transport and helper checks remain green
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Catalog closure**: move feature-catalog, its categories, feature-catalog.md, and feature files together.
+- **Playbook closure**: move manual-testing-playbook, its categories, the index, and scenario files together.
+- **Support closure**: rename assets, references, install-guide, and common.sh in the same component dependency closure.
+- **Identifier boundary**: preserve shell variables, Figma command names, Code Mode keys, frontmatter fields, package manifests, and the read-only transport policy.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Pin BASE and confirm a clean worktree
+- [ ] Produce the complete 14-directory/30-file source-to-target map
+- [ ] Capture catalog/playbook discovery and shell-source inventories
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename feature_catalog, feature_catalog.md, and all catalog categories/files
+- [ ] Rename manual_testing_playbook, its categories, index, and scenario files
+- [ ] Rename env_template.md, utcp_figma_manual.md, references, and INSTALL_GUIDE.md
+- [ ] Rename scripts/_common.sh to scripts/common.sh and update source commands
+- [ ] Rewrite links and path-derived values without changing shell variables or transport identifiers
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Confirm no in-scope underscore remains under mcp-figma
+- [ ] Resolve all Markdown links and shell source paths
+- [ ] Run shell syntax, Figma helper, discovery, and parent-hub checks
+- [ ] Confirm the transport remains workspace read-only
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Census | All directories/files, leading-underscore target, and collisions | find, git ls-files, rename-map checker |
+| Reference | Markdown links, path values, and source commands | rg, Markdown-link resolver, shell source scan |
+| Syntax | Renamed shell helper and scripts | bash -n |
+| Discovery | Catalog/playbook resources and helper binary resolution | component checks and non-zero resource scan |
+| Integration | Hub layout and transport contract | parent-skill-check.cjs |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 001 hub boundary | Internal | Required | Root Figma route references may be stale |
+| Frozen 017 rename map | Internal | Required | No safe target or collision proof |
+| bash | Runtime verifier | Required | Shared helper syntax cannot be proven |
+| mcp-figma transport contract | Tool contract | Preserve | Workspace safety boundary could change |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Shell syntax failure, wrong helper resolution, missing catalog/playbook resource, collision, or transport-policy change.
+- **Procedure**: Revert the path-scoped Figma batch, restore source commands and links, and rerun the helper and non-zero discovery checks before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

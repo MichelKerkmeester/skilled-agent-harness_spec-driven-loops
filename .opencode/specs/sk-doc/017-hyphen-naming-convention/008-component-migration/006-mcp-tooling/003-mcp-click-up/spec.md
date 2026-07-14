@@ -1,182 +1,115 @@
 ---
-title: "Feature Specification: Phase 3: mcp-click-up [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: mcp-click-up naming closure (017 phase 003)"
+description: "The mcp-click-up component contains snake_case catalog roots, catalog category directories, manual-testing categories, index files, reference files, and hundreds of links between them. This phase renames the component-local filesystem paths to kebab-case and updates path-derived references while preserving ClickUp CLI identifiers, package manifests, and data keys."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-click-up kebab-case"
+  - "clickup catalog playbook rename"
+  - "017 mcp tooling phase 003"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-mcp-click-up"
-    last_updated_at: "2026-07-14T15:17:43Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored phase 003 from the ClickUp path census"
+    next_safe_action: "Execute the ClickUp catalog/playbook rename and reference closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-mcp-click-up"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/"
+      - ".opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/"
+      - ".opencode/skills/mcp-tooling/mcp-click-up/references/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 3: mcp-click-up
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: mcp-click-up Naming Closure
 
----
+> Phase adjacency under the 006-mcp-tooling parent: predecessor 002-mcp-chrome-devtools; successor 004-mcp-figma.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/003-mcp-click-up` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 8 |
-| **Predecessor** | 002-mcp-chrome-devtools |
-| **Successor** | 004-mcp-figma |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 003 of the mcp-tooling component naming migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 3** of the mcp tooling (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The ClickUp packet has 26 snake_case directories and 137 underscored filenames across feature_catalog, manual_testing_playbook, references, and index material. Its documents already use many hyphenated display labels but retain underscored hrefs, category values, and catalog root names, so an incomplete move would break the catalog-to-playbook graph and silently lose discoverability.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phase moves the full component-local catalog and playbook closure to kebab-case, updates every path reference, and preserves the cupt command vocabulary, MCP tool names, package layout, and data identifiers.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- feature_catalog/ and its FEATURE_CATALOG.md index, including the cupt_attachments, cupt_authentication, cupt_global_flags, cupt_notes_comments, cupt_tag_management, cupt_task_completion, cupt_task_details, cupt_task_listing, cupt_time_tracking, cupt_workspace, mcp_high_priority, mcp_medium_priority, and mcp_low_priority directories.
+- manual_testing_playbook/ and manual_testing_playbook.md, including cupt_advanced_listing, cupt_lifecycle, cupt_offline_and_cache, intra_routing_recall, mcp_advanced, mcp_bulk_and_structure, mcp_documents_goals, mcp_task_crud, recovery_and_failure, task_operations, and time_and_notes.
+- Underscored feature, scenario, reference, and index files such as cupt_commands.md, install_guide.md, mcp_tools.md, add_comment.md, create_bulk_tasks.md, and manual_testing_playbook.md.
+- Catalog/playbook links, index tables, path-derived frontmatter values, and component documentation references.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- SKILL.md, README.md, changelog history, requirements.txt, setup.sh, and package/server directory names that are already tool- or layout-mandated.
+- The cupt CLI token, ClickUp operation names, MCP tool names, JSON/YAML/TOML keys, and frontmatter field names.
+- The hub-level manual-testing-playbook tree, which belongs to phase 005, and the Chrome/Figma component trees.
+- Python .py files and Python import-package directories; the component census found none.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| .opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/ | Rename | Use feature-catalog/ and kebab-case categories/files |
+| .opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/ | Rename | Use manual-testing-playbook/ and kebab-case categories/files |
+| .opencode/skills/mcp-tooling/mcp-click-up/references/ | Rename | Rename cupt_commands.md, install_guide.md, and mcp_tools.md |
+| .opencode/skills/mcp-tooling/mcp-click-up/{SKILL.md,README.md,examples/} | Modify | Repair component-local paths and path-derived values |
+| .opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/ | Preserve | Keep clickup-cli/clickup-mcp layout and package manifests exact |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Rename the complete ClickUp catalog closure | The two catalog roots, all 26 underscored directories, FEATURE_CATALOG.md, and all 137 underscored files have explicit semantic targets |
+| REQ-002 | Repair catalog/playbook references | Every catalog link, playbook link, index table, reference link, and path-derived category value resolves after the move |
+| REQ-003 | Preserve tool contracts and data semantics | SKILL.md, package manifests, cupt/MCP identifiers, JSON/YAML/TOML keys, and frontmatter field names remain unchanged |
+| REQ-004 | Honor the 017 exemption boundary | No Python path, generated/lockfile output, changelog history, or tool-mandated name is renamed |
+| REQ-005 | Prove catalog and playbook completeness | Catalog and manual scenario discovery each return non-zero counts matching the pre-rename inventory |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: No in-scope snake_case filesystem name remains under mcp-click-up.
+- **SC-002**: The feature catalog, manual playbook, references, examples, and indexes form one resolved link graph.
+- **SC-003**: cupt/MCP routing and package layout remain behaviorally unchanged.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+This is the largest child closure in the subtree. The main risk is a partial category move that leaves catalog links pointing at old directories or changes a content identifier while repairing a path. Mitigation is a complete 26-directory/137-file map, a pre/post discovery-count comparison, and a diff review that separates path segments, frontmatter values, fields, and CLI/data identifiers.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. Component-local catalog and playbook trees are owned by this phase; only the hub-level playbook tree is deferred to phase 005.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

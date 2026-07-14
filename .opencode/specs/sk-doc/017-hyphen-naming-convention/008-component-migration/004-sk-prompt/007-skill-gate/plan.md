@@ -1,170 +1,120 @@
 ---
-title: "Implementation Plan: Phase 7: skill-gate [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: sk-prompt subtree rollup gate (017 phase 004.007)"
+description: "Rollup verification plan for phase 007 of the sk-prompt kebab-case program: aggregate phases 001–006, run the final scope-aware census, and issue a reproducible pass/block result without new migration work."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-prompt rollup gate plan"
+  - "sk-prompt kebab-clean plan"
+  - "sk-prompt phase 007 plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-skill-gate"
-    last_updated_at: "2026-07-14T15:17:35Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
+    last_updated_at: "2026-07-14T18:04:33Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the final sk-prompt aggregation and naming-cleanliness plan"
+    next_safe_action: "Collect sibling verdicts and create the final scope-aware census"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-skill-gate"
-      parent_session_id: null
+    key_files:
+      - ".opencode/specs/sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/"
+      - ".opencode/skills/sk-prompt/"
+      - ".opencode/skills/sk-prompt/prompt-improve/"
+      - ".opencode/skills/sk-prompt/prompt-models/"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 7: skill-gate
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
+# Implementation Plan: sk-prompt subtree rollup gate
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Complete `.opencode/skills/sk-prompt/` tree and phases 001–006 evidence |
+| **Change class** | Read-only aggregation, scope-aware census, final gate |
+| **Execution** | Sibling verdict matrix, disposition reconciliation, stale-reference scan |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The gate first verifies that each sibling contract has passed, then reconciles their path maps and scans the final skill
+surface for any unclassified non-kebab name or stale active reference. It emits a pass only when the evidence is complete;
+it does not rename or repair anything discovered by the scan.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phases 001–006 have candidate evidence and checklist verdicts available.
+- [ ] The final candidate SHA and BASE SHA are pinned.
+- [ ] The 017 exemption record and each sibling disposition map are available.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Every sibling phase is green with no contradictory ownership or release evidence.
+- [ ] The final scope-aware census has no unknown in-scope snake_case filesystem name or stale active path.
+- [ ] The pass/block matrix and reproducible evidence are handed to central validation.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Use two joined ledgers: phase → checklist verdict/evidence, and filesystem path → final classification/owner. A final
+reference scan joins both ledgers so a path can be exempt without allowing its active consumers to remain stale.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Sibling matrix**: phases 001–006, their checklists, maps, and handoffs.
+- **Surface census**: hub root, prompt-improve, prompt-models, playbook, benchmark, and active metadata paths.
+- **Scope classifier**: authored in-scope, Python/package, tool-mandated, generated, frozen, identifier/data-key, or unknown.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Sibling evidence → map reconciliation → final filesystem census → active reference resolution → rollup verdict and handoff.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Collect sibling checklist verdicts, map hashes, release evidence, and handoff records.
+- [ ] Pin the final candidate/BASE SHAs and enumerate the complete skill surface.
+- [ ] Reconcile overlapping root-consumer ownership without creating a new rename map.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Classify each retained non-kebab filesystem name against the program exemptions and sibling evidence.
+- [ ] Check active references against the final source-target maps and target existence.
+- [ ] Record every mismatch as a blocking finding routed to the owning phase.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Re-run the census and stale-reference scan after evidence reconciliation.
+- [ ] Confirm no sibling checklist or phase 006 release contradiction remains unresolved.
+- [ ] Publish the final pass/block matrix and central-validation handoff without editing the skill surface.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Read every sibling checklist and reconcile its P0/P1 verdicts and evidence paths |
+| REQ-002 | Scan the complete skill tree and classify every retained non-kebab filesystem name; fail on unknown |
+| REQ-003 | Resolve final path maps and search active consumers for stale sources |
+| REQ-004 | Compare retained names with the 017 exemption record and each owning child disposition |
+| REQ-005 | Record SHAs, commands, exit codes, census/map hashes, verdicts, and unresolved findings |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The gate depends on all sibling path maps and phase 006 release evidence. It is not a fallback implementation phase: a failed census returns to the owning child packet, while an unresolved release contradiction returns to the release workflow.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+There is no skill-surface mutation to roll back. If the gate fails, preserve the evidence, mark the relevant child phase
+blocked, and rerun the owning verification after its explicitly authorized correction; do not patch the failure here.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

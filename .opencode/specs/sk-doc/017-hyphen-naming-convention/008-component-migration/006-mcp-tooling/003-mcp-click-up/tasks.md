@@ -1,106 +1,83 @@
 ---
-title: "Tasks: Phase 3: mcp-click-up [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: mcp-click-up naming closure (017 phase 003)"
+description: "Tasks for phase 003 of the mcp-tooling component naming migration: rename ClickUp catalog/playbook paths and repair their references."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-click-up naming tasks"
+  - "clickup catalog playbook tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-mcp-click-up"
-    last_updated_at: "2026-07-14T15:17:43Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored phase 003 tasks"
+    next_safe_action: "Create the complete ClickUp source-to-target map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-mcp-click-up"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/"
+      - ".opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: mcp-click-up Naming Closure
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 3: mcp-click-up
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Record BASE SHA and frozen map hash
+- [ ] T002 Census the 26 underscored directories and 137 underscored files under mcp-click-up
+- [ ] T003 Capture catalog, playbook, reference, and scenario discovery counts
+- [ ] T004 Inventory path links, category values, package paths, and data identifiers
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T005 Rename feature_catalog, FEATURE_CATALOG.md, and all catalog categories/files
+- [ ] T006 Rename manual_testing_playbook, its categories, index, and scenario files
+- [ ] T007 Rename cupt_commands.md, install_guide.md, mcp_tools.md, and remaining reference files
+- [ ] T008 Update SKILL.md, README.md, examples, scripts, indexes, links, and path-derived values
+- [ ] T009 Preserve package manifests, mcp-servers layout, cupt tokens, and MCP/data identifiers
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T010 Verify: every census candidate has one map target or exemption — attach the complete map
+- [ ] T011 Verify: no in-scope underscore remains — attach the post-change component census
+- [ ] T012 Verify: catalog/playbook/reference links resolve — attach resolver output and non-zero discovery counts
+- [ ] T013 Verify: package/server layout and identifiers are unchanged — attach focused diff evidence
+- [ ] T014 Verify: parent-skill-check.cjs and component checks pass — attach commands and exit codes
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete
+- [ ] All P0 checklist checks have evidence
+- [ ] No unexpected tracked mutation remains after verification
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

@@ -1,9 +1,14 @@
 {
   "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify",
-  "description": "Phase 7: changelog-verify",
+  "description": "The mcp-tooling rename set needs a read-only changelog and version verification after the sibling migration phases land.",
   "keywords": [
-    "phase",
-    "changelog-verify"
+    "mcp-tooling",
+    "changelog",
+    "version",
+    "verification",
+    "rename-set",
+    "read-only",
+    "kebab-case"
   ],
   "lastUpdated": "2026-07-14T15:17:47.136Z",
   "specId": "007",
@@ -16,5 +21,5 @@
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],
-  "level": "1"
+  "level": "2"
 }

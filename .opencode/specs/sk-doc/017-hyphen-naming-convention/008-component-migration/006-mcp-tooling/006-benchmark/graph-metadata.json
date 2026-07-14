@@ -10,17 +10,17 @@
     "related_to": []
   },
     "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": ["mcp-tooling benchmark naming", "benchmark zero-candidate census", "benchmark fixture kebab-case", "benchmark profile path verification"],
+    "key_topics": ["mcp-tooling", "benchmark", "zero-candidate", "fixtures", "profiles", "storage-guides", "kebab-case"],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
     "entities": [],
-    "causal_summary": "Phase 6: benchmark",
+    "causal_summary": "Prove the benchmark baseline, then rename only real fixture, profile, or storage-guide paths discovered within the benchmark boundary.",
     "created_at": "2026-07-14T15:17:45Z",
     "last_save_at": "2026-07-14T15:17:45Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
   }
 }

@@ -1,36 +1,34 @@
 ---
-title: "Tasks: Phase 4: manual-testing-playbook [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: sk-prompt manual-testing-playbook trees (017 phase 004.004)"
+description: "Tasks for phase 004 of the sk-prompt kebab-case program: rename both playbook trees, update active links, and verify scenario coverage."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-prompt manual testing playbook tasks"
+  - "sk-prompt phase 004 tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:17:33Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
+    last_updated_at: "2026-07-14T18:04:33Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the two-tree playbook rename and coverage tasks"
+    next_safe_action: "Run T001 against the pinned playbook trees"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-manual-testing-playbook"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-prompt/manual_testing_playbook/"
+      - ".opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/"
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/skills/sk-prompt/prompt-improve/SKILL.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Hub and prompt-improve playbooks are both in this phase; benchmark paths are not."
 ---
+# Tasks: sk-prompt manual-testing-playbook trees
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: manual-testing-playbook
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -41,52 +39,41 @@ _memory:
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Confirm the phase 003 handoff, pinned BASE, and two-tree playbook ownership boundary.
+- [ ] T002 [P] Capture hub SP-001–SP-004 and prompt-improve scenario/category manifests.
+- [ ] T003 Record exact source-target pairs for both roots, `hub_routing/`, seven categories, and all scenario files.
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Rename the hub `manual_testing_playbook/`, `hub_routing/`, root index, and four routing scenarios.
+- [ ] T005 Rename the prompt-improve `manual_testing_playbook/`, seven category directories, root index, and scenario files.
+- [ ] T006 Update active skill, README, index, and scenario cross-reference paths.
+- [ ] T007 Preserve scenario IDs, category membership, content semantics, identifiers, keys, and frozen changelog prose.
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Verify: Both playbook trees are kebab-case — Every in-scope directory/file source has one existing target.
+- [ ] T009 Verify: Active links are closed — Both indexes, skill docs, READMEs, and scenario cross-references resolve.
+- [ ] T010 Verify: Coverage is preserved — Hub SP-001–SP-004 and the prompt-improve 27-scenario set match BASE by ID and category.
+- [ ] T011 Verify: Scope is clean — Changelog/generated/exempt paths and scenario content semantics were not changed.
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete
+- [ ] All requirements in spec.md met with evidence
+- [ ] Phase gate green (path/reference and scenario-manifest checks as applicable)
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
@@ -94,13 +81,3 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

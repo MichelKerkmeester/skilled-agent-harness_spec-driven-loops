@@ -1,170 +1,113 @@
 ---
-title: "Implementation Plan: Phase 5: manual-testing-playbook [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: mcp-tooling hub manual-testing-playbook naming closure (017 phase 005)"
+description: "This plan renames the hub-level manual-testing-playbook root, hub-routing category, index, and seven scenario files, then repairs hub navigation while keeping component-local playbooks out of scope."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-tooling hub playbook implementation plan"
+  - "hub routing scenario path repair"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:17:45Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the hub playbook execution plan"
+    next_safe_action: "Build the seven-file hub playbook map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-manual-testing-playbook"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/mcp-tooling/manual_testing_playbook/"
+      - ".opencode/skills/mcp-tooling/SKILL.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: mcp-tooling Hub Manual-Testing-Playbook Naming Closure
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 5: manual-testing-playbook
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/mcp-tooling/manual_testing_playbook |
+| **Change class** | Small documentation-tree rename plus link repair |
+| **Execution** | One hub-level dependency closure from the frozen 017 map |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The hub playbook census contains 2 underscored directories and 7 underscored files. The implementation renames the root, category, index, and scenario paths together, then updates the hub SKILL.md and playbook links. Component-local playbooks remain separate dependency closures.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] BASE SHA and map hash are recorded
+- [ ] The 2-directory/7-file hub census is attached
+- [ ] Component-local playbook roots are explicitly excluded
+- [ ] Hub SKILL.md and playbook link consumers are inventoried
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All hub playbook paths use kebab-case
+- [ ] Seven scenarios are still discoverable and every link resolves
+- [ ] No component-local path or scenario semantics changed
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Root move**: rename manual-testing-playbook to manual-testing-playbook and hub_routing to hub-routing.
+- **Index move**: rename manual_testing_playbook.md to manual-testing-playbook.md.
+- **Scenario move**: rename the six named underscored scenario files and preserve their IDs/content.
+- **Reference closure**: update SKILL.md, the index, and scenario links while retaining frontmatter fields and labels.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Pin BASE and confirm a clean worktree
+- [ ] Capture the two-directory/seven-file census and seven-scenario discovery count
+- [ ] Mark all component-local manual-testing trees as excluded
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename the hub playbook root and hub-routing category
+- [ ] Rename the index and six scenario files
+- [ ] Update SKILL.md, playbook navigation, and all scenario hrefs
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Confirm no in-scope underscore remains in the hub playbook
+- [ ] Resolve all hub playbook links
+- [ ] Compare the seven-scenario discovery count and inspect component path ownership
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Census | Hub root/category/index/scenario candidates | find, git ls-files, rename-map checker |
+| Link graph | SKILL.md, index, and scenario hrefs | rg, Markdown-link resolver |
+| Discovery | Seven hub routing scenarios | playbook index checker |
+| Boundary | Component-local trees remain untouched | path-owner diff |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 001 hub boundary | Internal | Required | Root navigation may be stale |
+| Frozen 017 rename map | Internal | Required | No safe targets |
+| Component phase ownership | Internal | Required | Hub move could rewrite another phase |
+| Markdown-link resolver | Internal verifier | Required | Dead scenario links could pass unnoticed |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Missing scenario, broken hub link, changed scenario semantics, or component-tree drift.
+- **Procedure**: Revert the path-scoped hub-playbook commit, restore the prior index links, and rerun the seven-scenario census.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

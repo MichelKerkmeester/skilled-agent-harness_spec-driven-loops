@@ -1,182 +1,129 @@
 ---
-title: "Feature Specification: Phase 4: hooks [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: system-skill-advisor hooks"
+description: "Audit hook filesystem names and registrations for the system-skill-advisor surface, rename any non-tool-mandated snake_case hook filename found in the pinned baseline, and repair stale path references without changing runtime event or code identifiers."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-skill-advisor hook naming"
+  - "advisor hook registration paths"
+  - "kebab-case hook filenames"
+  - "prompt submit hook audit"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-hooks"
-    last_updated_at: "2026-07-14T15:18:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the hook naming audit contract"
+    next_safe_action: "Run the hook inventory and reference audit on the pinned BASE worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-hooks"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-skill-advisor/hooks"
+      - ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+      - ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+      - ".opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The current hooks tree already has kebab-case filenames: user-prompt-submit.ts and skill-advisor-cli-fallback.ts."
+      - "Hook event names and TypeScript identifiers are not filesystem rename targets."
+      - "A no-candidate result is valid only when the inventory and registrations are evidence-pinned."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 4: hooks
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: system-skill-advisor hooks
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/004-hooks` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 8 |
-| **Predecessor** | 003-references |
-| **Successor** | 005-feature-catalog |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 004 of the system-skill-advisor component migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 4** of the system skill advisor (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Hook paths are consumed by runtime settings, install guides, plugin bridges, and the hook reference. The current
+advisor hook tree is already kebab-case (user-prompt-submit.ts and skill-advisor-cli-fallback.ts), but related
+documentation still contains stale or cross-skill hook paths, and a future baseline may contain an unclassified
+snake_case filename. The phase therefore needs an explicit inventory and registration closure rather than assuming a
+rename is required.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Prove that every advisor hook filename is within the naming policy, rename only a non-mandated snake_case hook file if
+one exists in the pinned baseline, and repair all live registrations and path references.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts and
+  hooks/lib/skill-advisor-cli-fallback.ts as the current naming baseline.
+- Hook registrations and path references in SKILL.md, README.md, INSTALL_GUIDE.md, the hook reference,
+  plugin bridge docs, runtime configuration, and advisor tests.
+- An inventory of any additional hook runtime directories/files present at execution time.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Hook event names (UserPromptSubmit), TypeScript identifiers, environment-variable keys, MCP tool IDs, or
+  behavior changes.
+- Hook files owned by system-spec-kit, system-code-graph, or other component phases.
+- Tool-mandated runtime configuration filenames and generated dist/ output.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| .opencode/skills/system-skill-advisor/hooks/ | Audit/Rename if needed | Prove all hook filenames are canonical; rename only an in-scope candidate |
+| .opencode/skills/system-skill-advisor/{SKILL,README,INSTALL_GUIDE}.md | Modify | Repair advisor hook path references |
+| .opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md | Modify | Repair live path examples; filename itself belongs to phase 003 |
+| .opencode/skills/system-skill-advisor/mcp_server/tests/hooks/ | Modify | Update hook registration/path fixtures where required |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The hook filename inventory is explicit | The report lists every advisor hook file and classifies it as kebab-case, exempt, or rename; the current two kebab-case files are present. |
+| REQ-002 | Any real candidate is renamed safely | A non-tool-mandated snake_case hook filename, if found, has one kebab target and no old live path remains. |
+| REQ-003 | Registrations and references resolve | Runtime settings, docs, plugin bridge references, tests, and command examples point to the actual advisor hook paths. |
+| REQ-004 | Hook behavior is unchanged | Event names, stdin/stdout envelopes, fail-open behavior, timeout policy, and environment keys retain BASE semantics. |
+| REQ-005 | Cross-skill paths are not misattributed | References to another skill's hooks are either corrected to their true owner or recorded as out of scope; advisor paths are not silently substituted. |
+| REQ-006 | The no-rename result is accepted when proven | If no candidate exists, the checklist contains the inventory and zero-candidate evidence instead of fabricating a rename. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The advisor hook tree contains no unclassified in-scope snake_case filename.
+- **SC-002**: Every live advisor hook registration and reference resolves to the actual kebab-case path.
+- **SC-003**: Hook runtime behavior and fail-open safety remain unchanged.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Phase 003 reference-file rename | The hook reference filename may change while its hook path examples are repaired | Apply the reference path map independently from the hook-file inventory. |
+| Risk | A cross-skill hook is mistaken for an advisor hook | Runtime routing can point at the wrong owner | Resolve ownership from the registration and source path before changing it. |
+| Risk | A no-op phase is reported without evidence | Hidden stale paths survive into the subtree gate | Require a complete path inventory, old-name scan, and registration smoke check. |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The current tree predicts a no-rename result; execution must confirm that prediction against the pinned
+BASE and retain evidence for every hook registration.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

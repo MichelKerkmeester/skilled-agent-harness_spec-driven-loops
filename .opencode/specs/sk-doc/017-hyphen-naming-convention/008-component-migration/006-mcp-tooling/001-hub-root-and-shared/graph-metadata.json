@@ -10,17 +10,17 @@
     "related_to": []
   },
     "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": ["mcp-tooling hub root naming", "mcp-tooling shared path closure", "hub routing path references", "mcp-tooling root naming decision"],
+    "key_topics": ["mcp-tooling", "hub", "root", "shared", "kebab-case", "routing", "paths", "exemptions"],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
+    "key_files": ["spec.md","plan.md","checklist.md","tasks.md","decision-record.md"],
     "entities": [],
-    "causal_summary": "Phase 1: hub-root-and-shared",
+    "causal_summary": "Bound the hub root and any real shared support paths, then close path references without absorbing delegated child surfaces.",
     "created_at": "2026-07-14T15:17:41Z",
     "last_save_at": "2026-07-14T15:17:41Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": ["spec.md","plan.md","checklist.md","tasks.md","decision-record.md"]
   }
 }

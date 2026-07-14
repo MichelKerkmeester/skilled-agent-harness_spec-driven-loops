@@ -10,17 +10,17 @@
     "related_to": []
   },
     "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": ["mcp-figma naming", "figma feature catalog paths", "figma playbook kebab-case", "figma support path closure"],
+    "key_topics": ["mcp-figma", "snake_case", "kebab-case", "feature-catalog", "manual-testing", "assets", "references", "exemptions"],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
     "entities": [],
-    "causal_summary": "Phase 4: mcp-figma",
+    "causal_summary": "Rename the mcp-figma catalog, playbook, asset, reference, and support paths while preserving transport contracts and exempt identifiers.",
     "created_at": "2026-07-14T15:17:43Z",
     "last_save_at": "2026-07-14T15:17:43Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
   }
 }

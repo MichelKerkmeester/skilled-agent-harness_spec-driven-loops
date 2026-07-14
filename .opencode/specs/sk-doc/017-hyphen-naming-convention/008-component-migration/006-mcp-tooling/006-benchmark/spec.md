@@ -1,182 +1,112 @@
 ---
-title: "Feature Specification: Phase 6: benchmark [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: mcp-tooling benchmark naming closure (017 phase 006)"
+description: "The mcp-tooling benchmark boundary is reserved for fixtures, profiles, and storage guides, but the current worktree contains only benchmark/.gitkeep and no snake_case benchmark artifact. This phase establishes the evidence-backed census rule, renames any discovered in-scope artifact paths, and repairs benchmark references without inventing files."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-tooling benchmark naming"
+  - "benchmark fixture profile kebab-case"
+  - "017 mcp tooling phase 006"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-benchmark"
-    last_updated_at: "2026-07-14T15:17:46Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored phase 006 from the benchmark boundary census"
+    next_safe_action: "Run the benchmark census and accept zero candidates or execute the mapped artifact closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-benchmark"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/mcp-tooling/benchmark/"
+      - ".opencode/skills/mcp-tooling/benchmark/.gitkeep"
+      - ".opencode/skills/mcp-tooling/SKILL.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 6: benchmark
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: mcp-tooling Benchmark Naming Closure
 
----
+> Phase adjacency under the 006-mcp-tooling parent: predecessor 005-manual-testing-playbook; successor 007-changelog-verify.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/006-benchmark` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 8 |
-| **Predecessor** | 005-manual-testing-playbook |
-| **Successor** | 007-changelog-verify |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 006 of the mcp-tooling component naming migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 6** of the mcp tooling (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The mcp-tooling benchmark directory is part of the naming surface, but it is currently empty apart from .gitkeep. A phase that assumes fixture, profile, or storage-guide names would fabricate scope and weaken the rename map; a phase that ignores newly present artifacts would leave the whole-surface gate incomplete.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phase treats the benchmark directory as a census-and-closure boundary: preserve .gitkeep, rename every real in-scope artifact discovered at execution, update its references, and accept a zero-candidate result when the directory remains empty.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- .opencode/skills/mcp-tooling/benchmark/ and all real tracked or execution-visible descendants.
+- Fixture, profile, storage-guide, scenario, and benchmark-support directory/file names if present at execution.
+- Benchmark path references in mcp-tooling documentation, benchmark loaders, and path-valued metadata.
+- The zero-candidate evidence for the current inventory, which contains only .gitkeep.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Creating benchmark fixtures, profiles, storage guides, or scenario content.
+- Renaming benchmark data keys, scenario IDs, JSON/YAML/TOML keys, frontmatter fields, or generated/lockfile output.
+- The component-local catalog/playbook trees and changelog history.
+- .gitkeep, which is a repository-preservation marker and already contains no snake_case segment.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| .opencode/skills/mcp-tooling/benchmark/ | Inspect/Modify | Census and rename any discovered in-scope artifact paths |
+| .opencode/skills/mcp-tooling/benchmark/.gitkeep | Preserve | Keep the empty-directory marker unchanged |
+| Benchmark path consumers | Modify if needed | Update path values and links for discovered renamed artifacts |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Produce a complete benchmark census | The report proves the current directory contains only .gitkeep or lists every discovered fixture/profile/storage-guide candidate |
+| REQ-002 | Rename discovered in-scope artifacts | Every discovered snake_case benchmark path has one semantic kebab target; no files are invented to make the phase non-empty |
+| REQ-003 | Preserve benchmark data semantics | .gitkeep, scenario IDs, data keys, frontmatter fields, and generated/lockfile output remain unchanged |
+| REQ-004 | Repair benchmark references | Every benchmark loader, documentation path, and path-valued metadata reference resolves after any artifact move |
+| REQ-005 | Prove the boundary is complete | The post-change benchmark scan has zero in-scope snake_case names and records the zero-candidate condition when applicable |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The benchmark census is complete and honest about the current zero-artifact baseline.
+- **SC-002**: Any discovered in-scope benchmark names are kebab-case with resolved references.
+- **SC-003**: No benchmark content, key, scenario identity, or preservation marker is changed.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The main risk is confusing an empty benchmark boundary with missing work and creating speculative artifacts. The mitigation is a non-zero-sensitive inventory that accepts exactly one .gitkeep as the current baseline. If artifacts appear before execution, the frozen map and collision scan must expand before any rename.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The current census is a zero-candidate benchmark rename set beyond the preserved .gitkeep marker.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

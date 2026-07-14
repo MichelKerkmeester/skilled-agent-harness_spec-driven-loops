@@ -1,170 +1,123 @@
 ---
-title: "Implementation Plan: Phase 5: benchmark [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: sk-prompt benchmark artifact names (017 phase 004.005)"
+description: "Implementation plan for phase 005 of the sk-prompt kebab-case program: rename authored benchmark directories, classify generated raw output, update active paths, and preserve benchmark semantics."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-prompt benchmark implementation plan"
+  - "sk-prompt phase 005 plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-benchmark"
-    last_updated_at: "2026-07-14T15:17:33Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
+    last_updated_at: "2026-07-14T18:04:33Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the benchmark authored/generated path plan"
+    next_safe_action: "Build the full benchmark path and disposition ledger"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-benchmark"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-prompt/benchmark/"
+      - ".opencode/skills/sk-prompt/prompt-improve/benchmark/"
+      - ".opencode/skills/sk-prompt/prompt-models/benchmarks/"
+      - ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Authored candidates currently observed are live_final, router_final, and router_mode_a."
+      - "Raw run/archive output is generated and must be dispositioned before any rename."
 ---
+# Implementation Plan: sk-prompt benchmark artifact names
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 5: benchmark
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Root `benchmark/`, prompt-improve `benchmark/`, and prompt-models `benchmarks/` trees |
+| **Change class** | Authored artifact rename, generated-output disposition, benchmark reference closure |
+| **Execution** | Isolated worktree pinned to BASE; semantic map and content-contract checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The current authored path candidates are `live_final/`, `router_final/`, and `router_mode_a/`. The plan inventories
+all benchmark descendants, separates authored paths from raw generated `runs/` and `runs-archive/` output, then updates
+active path references while comparing benchmark IDs, payload keys, fixture/profile data, and scores with BASE.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 004 handoff and pinned BASE are available.
+- [ ] All benchmark/benchmarks descendants are in the path ledger, including fixtures, profiles, storage guides, reports, and run output.
+- [ ] Authored, generated, frozen, exempt, and tool-mandated classes are recorded before any filesystem operation.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Authored benchmark candidates have unique kebab-case targets and active references resolve.
+- [ ] Generated/frozen output is preserved with an evidence-backed disposition.
+- [ ] Benchmark IDs, payload keys, profile/data keys, fixtures, and scores match BASE.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Use an authored-artifact map plus a generated-output ledger. The map is path-aware and never substitutes underscores in report payloads or benchmark data keys.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Hub reports**: `benchmark/live_final/` and `benchmark/router_final/` become `live-final/` and `router-final/`.
+- **Prompt-improve report**: `benchmark/router_mode_a/` becomes `benchmark/router-mode-a/`.
+- **Prompt-models corpus**: inspect fixtures, variants, eval/state storage, profiles, and raw runs; preserve generated raw names such as `cidi__chunk.json` with a recorded disposition.
+- **Consumers**: `BENCHMARK-SUMMARY.md`, skill/README links, report references, harness paths, and storage guides.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+BASE benchmark inventory → authored/generated/frozen classification → semantic path map → filesystem rename → active reference rewrite → ID/key/score parity checks.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Confirm phase 004 handoff and capture all three benchmark roots at BASE.
+- [ ] Build the ledger for authored candidates, fixtures, profiles, storage guides, reports, runs, and archives.
+- [ ] Snapshot scenario IDs, report payload keys, fixture/profile data, and score values.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename authored `live_final`, `router_final`, and `router_mode_a` directories and any additional mapped authored candidates.
+- [ ] Update active benchmark summaries, reports, skill/README links, harness paths, and storage-guide references.
+- [ ] Preserve generated raw runs, archive names, JSON keys, fixture/profile semantics, IDs, and scores.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Re-enumerate benchmark paths and compare them with the disposition ledger.
+- [ ] Resolve active paths and compare benchmark content contracts with BASE.
+- [ ] Review the diff for generated-output or non-path semantic changes and record the map hash.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Compare authored benchmark paths with the exact source-target map |
+| REQ-002 | Resolve active summary/report/skill/README/harness/storage paths and search for stale source paths |
+| REQ-003 | Review every `runs/` and `runs-archive/` disposition; prove generated output was not mechanically renamed |
+| REQ-004 | Compare benchmark scenario IDs, report payload keys, fixture/profile keys, and score values with BASE |
+| REQ-005 | Confirm one disposition per path and a clean git-revert path for authored renames |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The phase inherits the 017 generated/frozen exemption and dependency-closed rename rules. It depends on `004-manual-testing-playbook`
+for the shared playbook references and hands release evidence to `006-changelog-verify`; prompt-models asset filenames remain
+with phase 003 even when benchmark prose mentions them.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Revert the authored benchmark rename/reference commit(s) if a target collision, stale path, or content-contract mismatch
+appears. Abort before commit on a failed generated-output classification; raw reports and archives are never rewritten as rollback work.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

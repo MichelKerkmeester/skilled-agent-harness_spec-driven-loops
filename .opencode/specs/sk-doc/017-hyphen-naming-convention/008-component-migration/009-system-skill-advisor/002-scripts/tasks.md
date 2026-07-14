@@ -1,106 +1,87 @@
 ---
-title: "Tasks: Phase 2: scripts [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: system-skill-advisor scripts"
+description: "Concrete tasks for the non-Python script filename rename, dataset reference closure, and Python exemption verification."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "advisor scripts tasks"
+  - "regression fixture rename tasks"
+  - "script reference closure tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-scripts"
-    last_updated_at: "2026-07-14T15:18:08Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored scripts tasks"
+    next_safe_action: "Begin with the non-Python script inventory"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-scripts"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Python script names and imports remain exempt."
 ---
+
+# Tasks: system-skill-advisor scripts
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 2: scripts
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+Task format: T### [P?] Description (file path)
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Enumerate all script paths and classify non-Python filenames versus Python exemptions
+- [ ] T002 Inventory every old regression-dataset path in loaders, fixtures, docs, playbooks, and metadata
+- [ ] T003 Capture BASE JSONL record count, regression result, holdout result, and collision report
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Rename skill_advisor_regression_cases.jsonl to skill-advisor-regression-cases.jsonl
+- [ ] T005 Update advisor-validate.ts and build-holdout.mjs dataset resolution
+- [ ] T006 Update holdout provenance, tests, manual playbook, references, and install commands
+- [ ] T007 Preserve the five named Python filenames, imports, module names, and JSONL fields
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Scan for stale live dataset paths and classify retained non-path mentions
+- [ ] T009 Run Python regression, routing-accuracy, holdout, and TypeScript validation checks
+- [ ] T010 Compare dataset records, output schema, and discovery counts to BASE
+- [ ] T011 Record the new dataset path for the references, playbook, and subtree-gate consumers
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked [x]
+- [ ] No [B] blocked tasks remain
+- [ ] Every requirement in spec.md has pinned evidence
+- [ ] The phase checklist is fully satisfied by the central verifier
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
+- **Checklist**: See checklist.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

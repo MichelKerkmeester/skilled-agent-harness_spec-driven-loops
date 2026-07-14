@@ -1,106 +1,87 @@
 ---
-title: "Tasks: Phase 4: hooks [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: system-skill-advisor hooks"
+description: "Concrete tasks for the advisor hook filename inventory, conditional rename, registration closure, and behavior-parity verification."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "advisor hooks tasks"
+  - "hook registration tasks"
+  - "prompt submit audit tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-hooks"
-    last_updated_at: "2026-07-14T15:18:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
+    last_updated_at: "2026-07-14T18:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored hooks tasks"
+    next_safe_action: "Begin with the advisor hook inventory and ownership scan"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-hooks"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-skill-advisor/hooks"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/hooks"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The visible hook filenames are already kebab-case; a no-rename result requires evidence."
 ---
+
+# Tasks: system-skill-advisor hooks
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: hooks
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+Task format: T### [P?] Description (file path)
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Inventory every advisor hook filename and runtime directory
+- [ ] T002 Inventory registrations and path references in settings, docs, plugin bridge, and tests
+- [ ] T003 Classify advisor-owned, cross-skill, tool-mandated, and already-compliant paths
+- [ ] T004 Capture BASE hook envelope, timeout, fail-open, and discovery behavior
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T005 Rename a real non-mandated snake_case hook filename only if the pinned inventory finds one
+- [ ] T006 Repair live advisor hook registrations and path examples
+- [ ] T007 Preserve user-prompt-submit.ts, skill-advisor-cli-fallback.ts, event names, environment keys, and code identifiers
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T008 Prove the hook inventory has zero unclassified snake_case filenames
+- [ ] T009 Resolve each advisor registration to an existing source path
+- [ ] T010 Run hook parity, timeout, fail-open, and prompt-safe output checks
+- [ ] T011 Record no-rename or rename evidence for the subtree gate
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked [x]
+- [ ] No [B] blocked tasks remain
+- [ ] Every requirement in spec.md has pinned evidence
+- [ ] The phase checklist is fully satisfied by the central verifier
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
+- **Checklist**: See checklist.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

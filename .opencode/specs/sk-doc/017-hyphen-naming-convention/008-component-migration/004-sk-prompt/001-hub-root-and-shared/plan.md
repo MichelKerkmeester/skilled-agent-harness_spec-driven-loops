@@ -1,170 +1,119 @@
 ---
-title: "Implementation Plan: Phase 1: hub-root-and-shared [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: sk-prompt hub root and shared boundary (017 phase 004.001)"
+description: "Implementation plan for phase 001 of the sk-prompt kebab-case program: census the hub root/shared boundary, apply only owned path renames, preserve exact routing files, and hand delegated trees to their child phases."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-prompt hub root implementation plan"
+  - "sk-prompt shared boundary plan"
+  - "sk-prompt phase 001 plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-hub-root-and-shared"
-    last_updated_at: "2026-07-14T15:17:31Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
+    last_updated_at: "2026-07-14T18:04:33Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the bounded root/shared implementation plan"
+    next_safe_action: "Capture the pinned root census before any filesystem operation"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-hub-root-and-shared"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/skills/sk-prompt/README.md"
+      - ".opencode/skills/sk-prompt/hub-router.json"
+      - ".opencode/skills/sk-prompt/mode-registry.json"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "No shared/ directory is present in the current root inventory."
+      - "manual_testing_playbook/ and benchmark/ are delegated child-phase surfaces."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: hub-root-and-shared
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
+# Implementation Plan: sk-prompt hub root and shared boundary
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Direct `.opencode/skills/sk-prompt/` children and an optional `shared/` subtree |
+| **Change class** | Ownership census, bounded authored rename, root reference closure |
+| **Execution** | Pinned BASE, disposition map, protected-name and routing checks |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The plan starts with a direct-child census and records the current absence of `shared/`. It then evaluates only root/shared-owned authored names, leaving delegated playbook, benchmark, prompt-improve, and prompt-models paths to their assigned phases. A zero-candidate root/shared result is valid when the census proves it.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The phase-parent map and 017 scope/exemption record are available.
+- [ ] Candidate and BASE SHAs are pinned, and the direct root census is captured.
+- [ ] Each root child has an ownership and naming disposition before any rename.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Owned root/shared names are mapped to unique kebab-case targets or the empty map is evidenced.
+- [ ] Protected hub files and routing semantics are unchanged.
+- [ ] Delegated paths are untouched and root/shared active references resolve.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Use a boundary ledger: path → owner → classification → target/reference action → evidence. The ledger prevents a root-wide underscore substitution from crossing child-phase ownership.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Hub contract**: `SKILL.md`, `hub-router.json`, `mode-registry.json`, metadata, and README entry points.
+- **Optional shared tree**: inspect only if present; do not create it.
+- **Delegated trees**: playbook, benchmark, prompt-improve, and prompt-models paths remain in their child maps.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Pinned root inventory → ownership/classification ledger → owned path map → targeted rename/reference update → routing and scope verification.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Capture root and optional shared inventories from BASE.
+- [ ] Classify protected, delegated, generated, exempt, and owned authored names.
+- [ ] Record the absence of `shared/` when absent and hash the disposition map.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename only owned authored root/shared paths to their explicit kebab-case targets.
+- [ ] Update only root/shared path-valued references.
+- [ ] Keep tool-mandated filenames, keys, identifiers, and delegated child trees unchanged.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Re-enumerate the boundary and prove every path has one disposition.
+- [ ] Parse the routing files and verify the existing modes/resources still resolve.
+- [ ] Search for stale owned source paths and inspect the diff for scope leakage.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Compare the direct-child/shared census with the disposition ledger; fail on unknown or duplicate ownership |
+| REQ-002 | Check each owned target for kebab-case and confirm no stale owned source path remains |
+| REQ-003 | Parse `hub-router.json` and `mode-registry.json`; compare protected names and routing values with BASE |
+| REQ-004 | Review the diff against the delegated child roots and confirm they are absent from the phase change set |
+| REQ-005 | Resolve every root/shared path reference from the candidate tree |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The phase consumes the 017 exemption and dependency-closure rules. Phases 002–005 may update root references for paths they own, so their checklists must use this boundary record when distinguishing a root consumer from a root-owned candidate.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Revert the bounded root/shared rename and reference changes if a protected-name, collision, routing, or delegated-scope check fails. If the census finds an unexpected shared subtree, stop before mutation and amend the disposition map rather than widening the operation implicitly.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

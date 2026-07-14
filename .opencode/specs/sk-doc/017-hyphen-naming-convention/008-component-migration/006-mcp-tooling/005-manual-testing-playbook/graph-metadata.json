@@ -10,17 +10,17 @@
     "related_to": []
   },
     "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": ["mcp-tooling manual testing playbook", "hub routing playbook naming", "manual scenario kebab-case", "manual playbook reference closure"],
+    "key_topics": ["manual-testing-playbook", "mcp-tooling", "snake_case", "kebab-case", "scenarios", "categories", "references"],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
     "entities": [],
-    "causal_summary": "Phase 5: manual-testing-playbook",
+    "causal_summary": "Rename only the hub-level manual-testing-playbook categories and scenarios, leaving component-local playbooks to their owning phases.",
     "created_at": "2026-07-14T15:17:44Z",
     "last_save_at": "2026-07-14T15:17:44Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
   }
 }

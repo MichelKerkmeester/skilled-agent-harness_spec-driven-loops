@@ -10,17 +10,17 @@
     "related_to": []
   },
     "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": ["mcp-click-up naming", "clickup feature catalog paths", "clickup playbook kebab-case", "clickup reference closure"],
+    "key_topics": ["mcp-click-up", "snake_case", "kebab-case", "feature-catalog", "manual-testing", "references", "exemptions"],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
     "entities": [],
-    "causal_summary": "Phase 3: mcp-click-up",
+    "causal_summary": "Rename the mcp-click-up catalog, playbook, reference, and scenario paths and repair their links within the component boundary.",
     "created_at": "2026-07-14T15:17:43Z",
     "last_save_at": "2026-07-14T15:17:43Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
   }
 }

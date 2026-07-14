@@ -1,106 +1,83 @@
 ---
-title: "Tasks: Phase 4: mcp-figma [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: mcp-figma naming closure (017 phase 004)"
+description: "Tasks for phase 004 of the mcp-tooling component naming migration: rename Figma paths, repair references, and preserve helper semantics."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-figma naming tasks"
+  - "figma catalog helper tasks"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-mcp-figma"
-    last_updated_at: "2026-07-14T15:17:44Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored phase 004 tasks"
+    next_safe_action: "Create the complete Figma source-to-target map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-mcp-figma"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-figma/feature_catalog/"
+      - ".opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/"
+      - ".opencode/skills/mcp-tooling/mcp-figma/scripts/_common.sh"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Tasks: mcp-figma Naming Closure
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 4: mcp-figma
-
-<!-- SPECKIT_LEVEL: 1 -->
-
----
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
+| [ ] | Pending |
+| [x] | Completed |
+| [P] | Parallelizable |
+| [B] | Blocked |
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Record BASE SHA and frozen map hash
+- [ ] T002 Census the 14 underscored directories and 30 underscored files under mcp-figma
+- [ ] T003 Inventory Markdown links, path values, shell source commands, and helper identifiers
 <!-- /ANCHOR:phase-1 -->
-
----
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Rename feature_catalog, feature_catalog.md, and all catalog categories/files
+- [ ] T005 Rename manual_testing_playbook, its categories, index, and scenario files
+- [ ] T006 Rename assets, references, and INSTALL_GUIDE.md
+- [ ] T007 Rename scripts/_common.sh to scripts/common.sh and update every source path
+- [ ] T008 Preserve shell variables, Figma/Code Mode identifiers, package paths, and transport rules
 <!-- /ANCHOR:phase-2 -->
-
----
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T009 Verify: every census candidate has one map target or exemption — attach the complete map
+- [ ] T010 Verify: no in-scope underscore remains — attach the post-change component census
+- [ ] T011 Verify: Markdown links and shell source paths resolve — attach resolver output
+- [ ] T012 Verify: bash -n, helper resolution, non-zero discovery, and parent-skill-check.cjs pass
+- [ ] T013 Verify: the mcp-figma workspace remains read-only — attach the transport contract diff
 <!-- /ANCHOR:phase-3 -->
-
----
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks complete
+- [ ] All P0 checklist checks have evidence
+- [ ] No unexpected tracked mutation remains after verification
 <!-- /ANCHOR:completion -->
-
----
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See spec.md
+- **Plan**: See plan.md
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

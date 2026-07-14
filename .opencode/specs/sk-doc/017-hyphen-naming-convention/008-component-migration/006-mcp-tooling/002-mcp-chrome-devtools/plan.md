@@ -1,170 +1,114 @@
 ---
-title: "Implementation Plan: Phase 2: mcp-chrome-devtools [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: mcp-chrome-devtools naming closure (017 phase 002)"
+description: "This plan renames the Chrome DevTools component's underscored playbook, scenario, reference, and install-guide paths using an explicit map, then repairs links and path-derived metadata while preserving identifiers and tool contracts."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-chrome-devtools naming implementation plan"
+  - "chrome devtools playbook path repair"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-mcp-chrome-devtools"
-    last_updated_at: "2026-07-14T15:17:43Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the Chrome DevTools execution plan"
+    next_safe_action: "Build the component rename map from the current path census"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-mcp-chrome-devtools"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/"
+      - ".opencode/skills/mcp-tooling/mcp-chrome-devtools/references/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: mcp-chrome-devtools Naming Closure
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: mcp-chrome-devtools
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/mcp-tooling/mcp-chrome-devtools |
+| **Change class** | Filesystem rename plus Markdown/frontmatter path repair |
+| **Execution** | Dependency-closed component batch from the frozen 017 map |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The packet's 8 snake_case directories and 28 underscored files are concentrated in its manual-testing-playbook and references trees, with INSTALL_GUIDE.md as the top-level documentation exception. The implementation renames those paths in one component closure, then updates every path reference and path-derived category value. Tool names, identifiers, and frontmatter keys remain untouched.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] BASE SHA and map hash are recorded
+- [ ] The complete 8-directory/28-file component census is attached
+- [ ] The target for INSTALL_GUIDE.md is fixed as install-guide.md
+- [ ] Component-local references and path-derived frontmatter values are inventoried
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All mapped Chrome paths use kebab-case
+- [ ] Markdown links and path-derived values resolve
+- [ ] The scenario inventory and parent-hub invariants remain green
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Directory closure**: rename manual-testing-playbook, its seven category directories, and every scenario file as one dependency-closed documentation batch.
+- **Reference closure**: update index tables, relative links, reference tables, root-relative links, and frontmatter category values after the path move.
+- **Contract boundary**: preserve SKILL.md, README.md, CLI names, CDP names, scenario IDs, and frontmatter field names.
+- **Verification boundary**: require a non-zero scenario discovery result and a clean path/link scan before handoff.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Pin BASE and confirm the worktree is clean
+- [ ] Generate the explicit source-to-target map for all 8 directories and 28 files
+- [ ] Inventory references in SKILL.md, README.md, the playbook index, scenario docs, and references
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename INSTALL_GUIDE.md to install-guide.md
+- [ ] Rename manual_testing_playbook and each category/file to its map target
+- [ ] Rename cdp_patterns.md and session_management.md
+- [ ] Rewrite links and path-derived frontmatter values without changing fields or identifiers
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Confirm no in-scope underscore remains in the component path
+- [ ] Resolve all Markdown links and path tables
+- [ ] Run Chrome scenario discovery and parent-hub checks
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Census | Every component directory/file candidate and target collision | find, git ls-files, rename-map checker |
+| Reference | Relative links, path tables, frontmatter category values | rg, Markdown-link resolver, YAML parser |
+| Scenario | Manual-testing playbook index and scenario discovery | component playbook checks |
+| Integration | Hub routing and layout invariants | parent-skill-check.cjs |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 001 hub boundary | Internal | Required | Root route references may be stale |
+| Frozen 017 rename map | Internal | Required | No safe rename targets |
+| Markdown/link resolver | Internal | Required | Broken playbook navigation can escape review |
+| Chrome scenario inventory | Internal | Required | Silent scenario loss |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Collision, missing scenario, broken link, changed identifier, or failed parent-hub check.
+- **Procedure**: Revert the path-scoped Chrome commit, restore the previous map and references, and rerun the non-zero scenario census before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

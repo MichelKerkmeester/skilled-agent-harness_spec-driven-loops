@@ -10,17 +10,17 @@
     "related_to": []
   },
     "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": ["mcp-tooling changelog verification", "mcp-tooling version bump", "rename set changelog check", "changelog verify phase"],
+    "key_topics": ["mcp-tooling", "changelog", "version", "verification", "rename-set", "read-only", "kebab-case"],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
     "entities": [],
-    "causal_summary": "Phase 7: changelog-verify",
+    "causal_summary": "Verify that the mcp-tooling changelog and component versions record the completed rename set without performing renames in this phase.",
     "created_at": "2026-07-14T15:17:46Z",
     "last_save_at": "2026-07-14T15:17:46Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
   }
 }

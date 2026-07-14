@@ -1,11 +1,14 @@
 {
   "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models",
-  "description": "Phase 3: prompt-models",
+  "description": "Prompt-models asset and reference filenames: kebab-case paths with model and JSON contract preservation.",
   "keywords": [
-    "phase",
-    "prompt-models"
+    "prompt-models",
+    "assets",
+    "references",
+    "model-data",
+    "kebab-case"
   ],
-  "lastUpdated": "2026-07-14T15:17:32.452Z",
+  "lastUpdated": "2026-07-14T18:04:33.000Z",
   "specId": "003",
   "folderSlug": "prompt-models",
   "parentChain": [
@@ -16,5 +19,5 @@
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],
-  "level": "1"
+  "level": "2"
 }

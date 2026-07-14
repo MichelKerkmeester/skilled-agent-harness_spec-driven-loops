@@ -1,218 +1,129 @@
 ---
-title: "Feature Specification: Phase 6: mcp-tooling [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: mcp-tooling component naming migration (017 component parent)"
+description: "The mcp-tooling surface contains snake_case directory and file names across its hub-level support material, three component packets, manual-testing playbooks, and benchmark boundary. This phased packet defines the independent rename and reference-rewrite scopes needed to make that surface kebab-clean while preserving tool-mandated names, Python exemptions, and component behavior."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-tooling kebab-case migration"
+  - "mcp tooling component naming"
+  - "017 mcp-tooling phase map"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-mcp-tooling"
-    last_updated_at: "2026-07-14T15:17:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
+    last_updated_at: "2026-07-14T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the mcp-tooling component phase map from the surface census"
+    next_safe_action: "Execute the selected mcp-tooling child phase against the frozen rename map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-mcp-tooling"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/mcp-tooling/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mode-registry.json"
+      - ".opencode/skills/mcp-tooling/mcp-chrome-devtools/"
+      - ".opencode/skills/mcp-tooling/mcp-click-up/"
+      - ".opencode/skills/mcp-tooling/mcp-figma/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 6: mcp-tooling
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list; detailed plans, tasks, checklists, and decisions live in child folders. -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: mcp-tooling Component Naming Migration
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/006-mcp-tooling` |
+| **Branch** | sk-doc/0042-017-authoring |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 14 |
-| **Predecessor** | 005-cli-external-orchestration |
-| **Successor** | 007-system-deep-loop |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Parent Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling |
+| **Predecessor** | 005-rename-and-reference-tooling |
+| **Successor** | 009-runtime-and-package-layout |
+| **Handoff Criteria** | All eight child phase contracts pass their blocking checks and the mcp-tooling surface is ready for the whole-repo gate |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 6** of the component migration (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The mcp-tooling hub still uses snake_case filesystem names in component-local catalogs, manual-testing trees, root playbook material, and documentation references. The three bridges are largely independent, so a single broad rename would mix unrelated dependency closures and make it difficult to prove that tool-mandated names, path-derived metadata, and component routing remain intact.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This phased packet divides the mcp-tooling naming work into one hub/shared phase, three component phases, two support-surface phases, a changelog verification phase, and a final rollup gate. Each child owns its filesystem names and reference closure; the migration itself is executed later by the implementation worker.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Hub-root routing and any physically present shared support assets or references.
+- The mcp-chrome-devtools, mcp-click-up, and mcp-figma component trees.
+- The hub-level manual-testing-playbook tree and benchmark boundary.
+- Append-only changelog verification for the rename set and version bump.
+- A rollup gate proving the subtree contains no remaining in-scope snake_case filesystem name.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Python .py files and Python import-package directories, which keep their required snake_case form.
+- SKILL.md, mode-registry.json, package manifests, and other tool-mandated names.
+- Code identifiers, JSON/YAML/TOML keys, and frontmatter field names.
+- Any other 017 component-migration subtree or the execution of the migration during this authoring pass.
 
 ### Files to Change
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| .opencode/skills/mcp-tooling/ | Modify | 001 | Rename root/shared candidates and update hub path references |
+| .opencode/skills/mcp-tooling/mcp-chrome-devtools/ | Modify | 002 | Rename component documentation and playbook paths |
+| .opencode/skills/mcp-tooling/mcp-click-up/ | Modify | 003 | Rename catalog, playbook, reference, and index paths |
+| .opencode/skills/mcp-tooling/mcp-figma/ | Modify | 004 | Rename catalog, playbook, asset, reference, and helper paths |
+| .opencode/skills/mcp-tooling/manual_testing_playbook/ | Modify | 005 | Rename hub-level scenario and category paths |
+| .opencode/skills/mcp-tooling/benchmark/ | Inspect/Modify | 006 | Rename any discovered fixture, profile, or storage-guide paths |
+| .opencode/skills/mcp-tooling/changelog/ | Append only | 007 | Verify or add the migration entry and version bump without rewriting history |
 <!-- /ANCHOR:scope -->
-
----
-
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-
-### P0 - Blockers (MUST complete)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
-<!-- /ANCHOR:requirements -->
-
----
-
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
-
----
-
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. Detailed plans, tasks, checklists, and any phase-specific decision record live in the child folders.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-hub-root-and-shared/ | [Phase 1 scope] | Pending |
-| 2 | 002-mcp-chrome-devtools/ | [Phase 2 scope] | Pending |
-| 3 | 003-mcp-click-up/ | [Phase 3 scope] | Pending |
-| 4 | 004-mcp-figma/ | [Phase 4 scope] | Pending |
-| 5 | 005-manual-testing-playbook/ | [Phase 5 scope] | Pending |
-| 6 | 006-benchmark/ | [Phase 6 scope] | Pending |
-| 7 | 007-changelog-verify/ | [Phase 7 scope] | Pending |
-| 8 | 008-skill-gate/ | [Phase 8 scope] | Pending |
+| 001 | 001-hub-root-and-shared/ | Hub root and shared support naming plus route-reference closure | Planned |
+| 002 | 002-mcp-chrome-devtools/ | Chrome DevTools component names and references | Planned |
+| 003 | 003-mcp-click-up/ | ClickUp catalog, playbook, reference, and index names | Planned |
+| 004 | 004-mcp-figma/ | Figma catalog, playbook, asset, reference, and helper names | Planned |
+| 005 | 005-manual-testing-playbook/ | Hub-level manual-testing-playbook scenarios and category directory | Planned |
+| 006 | 006-benchmark/ | Benchmark artifact census and safe path renames | Planned |
+| 007 | 007-changelog-verify/ | Append-only changelog entry and version-bump verification | Planned |
+| 008 | 008-skill-gate/ | Subtree rollup and whole-surface kebab-case gate | Planned |
 
 ### Phase Transition Rules
 
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+- Each child phase must pass its checklist contract before its rename closure is accepted.
+- A child may update only its assigned surface; shared routing changes are recorded in phase 001.
+- Phase 008 is the final gate for this subtree and performs verification only.
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-hub-root-and-shared | 002-mcp-chrome-devtools | [Criteria TBD] | [Verification TBD] |
-| 002-mcp-chrome-devtools | 003-mcp-click-up | [Criteria TBD] | [Verification TBD] |
-| 003-mcp-click-up | 004-mcp-figma | [Criteria TBD] | [Verification TBD] |
-| 004-mcp-figma | 005-manual-testing-playbook | [Criteria TBD] | [Verification TBD] |
-| 005-manual-testing-playbook | 006-benchmark | [Criteria TBD] | [Verification TBD] |
-| 006-benchmark | 007-changelog-verify | [Criteria TBD] | [Verification TBD] |
-| 007-changelog-verify | 008-skill-gate | [Criteria TBD] | [Verification TBD] |
+| 001 | 002 | Hub root path consumers and tool-name exemptions are classified | Phase 001 checklist and route-resolution evidence |
+| 002 | 003 | Chrome component rename map and reference closure are complete | Phase 002 checklist and link/reference scan |
+| 003 | 004 | ClickUp catalog/playbook closure is complete | Phase 003 checklist and catalog/playbook scan |
+| 004 | 005 | Figma component closure is complete | Phase 004 checklist and transport smoke checks |
+| 005 | 006 | Hub-level playbook names and links are clean | Phase 005 checklist and Markdown-link scan |
+| 006 | 007 | Benchmark inventory is classified, including the current zero-candidate baseline | Phase 006 checklist and benchmark census |
+| 007 | 008 | Changelog entry and version bump match the completed rename set | Phase 007 checklist and append-only history check |
 <!-- /ANCHOR:phase-map -->
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+None blocking. The child scopes, exemption boundary, and current benchmark zero-candidate condition are fixed by the surface census and the 017 program decisions.
+<!-- /ANCHOR:questions -->

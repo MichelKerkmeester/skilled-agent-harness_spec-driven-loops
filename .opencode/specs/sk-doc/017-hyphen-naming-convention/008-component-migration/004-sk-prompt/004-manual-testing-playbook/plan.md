@@ -1,170 +1,122 @@
 ---
-title: "Implementation Plan: Phase 4: manual-testing-playbook [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: sk-prompt manual-testing-playbook trees (017 phase 004.004)"
+description: "Implementation plan for phase 004 of the sk-prompt kebab-case program: rename both manual-testing-playbook trees, update active links, and prove scenario-ID and category coverage parity."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-prompt manual testing playbook implementation plan"
+  - "sk-prompt phase 004 plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:17:33Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
+    last_updated_at: "2026-07-14T18:04:33Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the two-tree playbook rename and coverage plan"
+    next_safe_action: "Capture the hub and prompt-improve scenario manifests at BASE"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-manual-testing-playbook"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-prompt/manual_testing_playbook/"
+      - ".opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/"
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/skills/sk-prompt/prompt-improve/SKILL.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The hub has four routing scenarios; prompt-improve has seven categories and 27 scenarios."
+      - "Changelog references are frozen and must be dispositioned, not rewritten."
 ---
+# Implementation Plan: sk-prompt manual-testing-playbook trees
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 4: manual-testing-playbook
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | Hub-level and prompt-improve `manual_testing_playbook/` trees |
+| **Change class** | Directory/file rename, active Markdown-link closure, scenario coverage verification |
+| **Execution** | Isolated worktree pinned to BASE; path map plus scenario manifest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This phase moves two related but independent playbook trees. It maps the roots, hub category, seven prompt-improve
+categories, and all scenario files first; then it updates active links and compares scenario IDs and category membership
+with the BASE manifest before accepting the result.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 003 handoff and pinned BASE are available.
+- [ ] Hub SP-001–SP-004 and prompt-improve scenario manifests are captured.
+- [ ] Frozen changelog and generated-output exclusions are recorded.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Both playbook roots, categories, and scenario files have complete target paths.
+- [ ] Active links resolve and no active source path remains.
+- [ ] Scenario IDs, counts, category membership, and semantics match BASE.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Use a two-root path map plus a content-independent scenario manifest. Rename path segments, not scenario identifiers or prose tokens.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Hub playbook**: `manual_testing_playbook/` → `manual-testing-playbook/`, `hub_routing/` → `hub-routing/`, and four scenario files: `ambiguous_default`, `generic_prompt_improve`, `named_model_prompt_models`, `second_model_glm`.
+- **Prompt-improve categories**: `clear_scoring`, `depth_clear_loop`, `escalation_tiers`, `format_modes`, `framework_selection`, `mode_detection`, and `smart_routing` become hyphenated directories.
+- **Active consumers**: both `SKILL.md` files, both READMEs, playbook root indexes, category indexes, and scenario cross-reference tables.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+BASE path/scenario manifests → two-tree rename map → filesystem move → active-link rewrite → scenario-ID/category parity → stale-source and scope audit.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Confirm phase 003 handoff and capture both playbook trees at BASE.
+- [ ] Record exact category/file source-target pairs and scenario IDs/counts.
+- [ ] Mark frozen changelog, generated output, and delegated benchmark exclusions.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- [ ] Rename the hub playbook root, `hub_routing/`, index, and four scenario files.
+- [ ] Rename the prompt-improve playbook root, seven category directories, index, and all scenario files.
+- [ ] Update active skill, README, index, and scenario cross-reference paths.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Resolve all active links from both playbook roots and their consumers.
+- [ ] Compare scenario IDs, counts, category membership, and required source references with BASE.
+- [ ] Review frozen changelog hits and confirm the diff contains no benchmark or content-semantic change.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Compare full two-tree path inventory with the source-to-target map |
+| REQ-002 | Resolve Markdown links/path-valued references and search active docs for stale source paths |
+| REQ-003 | Compare scenario IDs, counts, category membership, and root-index coverage before and after |
+| REQ-004 | Inspect the disposition ledger for changelog/generated/exempt names and review unchanged identifiers/data keys |
+| REQ-005 | Open both new root indexes and verify every category/scenario path; confirm git-revert closure |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+The phase inherits the 017 path naming and frozen-history rules and depends on `003-prompt-models` for sibling sequencing.
+Root skill and README references are part of this phase because they consume playbook paths; benchmark paths remain with
+phase 005 and release evidence with phase 006.
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Rollback is a git revert of the two-tree rename/reference commit(s). If any scenario disappears, link fails, or ID/category
+manifest changes, stop before commit and restore the pre-phase tree; no scenario content or generated result is rewritten.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

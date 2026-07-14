@@ -1,9 +1,16 @@
 {
   "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared",
-  "description": "Phase 1: hub-root-and-shared",
+  "description": "The mcp-tooling hub root and any real shared support paths need a bounded kebab-case rename map and reference-closure plan.",
   "keywords": [
-    "phase",
-    "hub-root-and-shared"
+    "mcp-tooling",
+    "hub",
+    "root",
+    "shared",
+    "kebab-case",
+    "rename",
+    "routing",
+    "paths",
+    "closure"
   ],
   "lastUpdated": "2026-07-14T15:17:42.403Z",
   "specId": "001",
@@ -16,5 +23,5 @@
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],
-  "level": "1"
+  "level": "2"
 }
