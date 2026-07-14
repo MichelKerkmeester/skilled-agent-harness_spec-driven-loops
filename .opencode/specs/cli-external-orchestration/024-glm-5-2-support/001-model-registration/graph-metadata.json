@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/024-glm-5-2-support/001-model-registration",
+  "spec_folder": "cli-external-orchestration/024-glm-5-2-support/001-model-registration",
+  "parent_id": "cli-external-orchestration/024-glm-5-2-support",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "glm-5.2",
+      "z.ai coding plan",
+      "glm coding plan",
+      "model registration",
+      "small model rotation",
+      "zai-coding-plan",
+      "model registration plan",
+      "adopting a new provider",
+      "tasks",
+      "model registration tasks",
+      "model registration summary",
+      "zai-coding-plan/glm-5.2"
+    ],
+    "key_topics": [
+      "glm-5",
+      "coding",
+      "plan",
+      "glm",
+      "model",
+      "registration",
+      "small",
+      "rotation",
+      "zai-coding-plan",
+      "adopting",
+      "new",
+      "provider"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coding Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "New Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Discover",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Subscription Coding Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Selection",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "GLM-5.2 (served through the Z.AI GLM Coding Plan, surfaced in opencode as \"Z.AI Coding Plan (api)\") is available to the operator but is not registered anywhere in the small-model surfaces, so it cannot be dispatched or routed by name",
+    "created_at": "2026-06-28T10:15:17.145Z",
+    "last_save_at": "2026-07-14T19:26:18.180Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5ae943e1924b472c189af09994dd9376c0936208c81e5762380ae0a8693820c4",
+    "source_doc_hashes": {
+      "spec.md": "381f2c88f01e9ffc0b57cb8107c484c09731da8b7ba6e32389792672ad487178",
+      "plan.md": "08555d3dbd74d78ef1be364b68c3156258d294e1804db49ddefd0017680f9c4c",
+      "tasks.md": "84d19790f382c77ca16465cc5d8c0c1f51001171efe3545f48f4a0d6803910e1",
+      "implementation-summary.md": "ef054a2de822d0842a78a75af968bbad54e7a316136f853dd40432c274eac9f3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/023-kimi-k2-7-code-support/002-framework-bakeoff",
+  "spec_folder": "cli-external-orchestration/023-kimi-k2-7-code-support/002-framework-bakeoff",
+  "parent_id": "cli-external-orchestration/023-kimi-k2-7-code-support",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "kimi k2.7 framework bakeoff",
+      "prompt framework benchmark",
+      "model-benchmark run 006",
+      "framework-bakeoff phase",
+      "spec core",
+      "kimi bakeoff plan",
+      "model-benchmark profile clone",
+      "framework bakeoff execution",
+      "run 006 plan",
+      "plan core",
+      "kimi bakeoff tasks",
+      "model-benchmark task list"
+    ],
+    "key_topics": [
+      "kimi",
+      "framework",
+      "bakeoff",
+      "prompt",
+      "benchmark",
+      "model-benchmark",
+      "run",
+      "framework-bakeoff",
+      "phase",
+      "spec",
+      "core",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kimi For Coding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Clone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`kimi-k2.7-code` was registered in Phase 001 with a reasoned-but-unverified prompt framework: `recommendedframeworks.primary` is `rcaf` and `status` is `default-unverified`, with every evidence field null",
+    "created_at": "2026-06-15T09:21:01Z",
+    "last_save_at": "2026-07-14T19:26:20.988Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aa31a70156722347d23d2c1beeba1413eb08c4099af4a95f3d72b82f53e301f0",
+    "source_doc_hashes": {
+      "spec.md": "2fd8b95b8ce31ef502e689952b4b9b6a5014759e9551ff3810a58a0bb47aefe7",
+      "plan.md": "9215e0bb701bb08b89c05a2ce56e70aa50825720561b63ce8652c6be500ea19f",
+      "tasks.md": "073f2d8be13d7fdeffe290b8d7630a00fe5cdce9344697c4e8287924773ca260",
+      "implementation-summary.md": "1010f2cb43a6672670557b5f37b8e937093ba6f530272dbc15a28a4617a12675"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

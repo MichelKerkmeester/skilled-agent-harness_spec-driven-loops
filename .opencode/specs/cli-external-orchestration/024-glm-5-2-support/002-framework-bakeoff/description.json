@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/024-glm-5-2-support/002-framework-bakeoff",
+  "description": "`glm-5.2` is registered in Phase 001 with a reasoned-but-unverified framework: `recommendedframeworks.primary` is `craft` and `status` is",
+  "keywords": [
+    "glm-5",
+    "registered",
+    "phase",
+    "reasoned-but-unverified",
+    "framework",
+    "recommendedframeworks",
+    "primary",
+    "craft",
+    "status"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.563Z",
+  "specId": "002",
+  "folderSlug": "framework-bakeoff",
+  "parentChain": [
+    "cli-external-orchestration",
+    "024-glm-5-2-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

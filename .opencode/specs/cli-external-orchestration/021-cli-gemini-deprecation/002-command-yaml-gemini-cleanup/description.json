@@ -1,0 +1,26 @@
+{
+  "specFolder": "cli-external-orchestration/021-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+  "description": "Phase `001-runtime-surface-and-skill-deletion` deleted the `cli-gemini` skill and the project `.gemini/` runtime surface, but it left orphaned",
+  "keywords": [
+    "phase",
+    "001-runtime-surface-and-skill-deletion",
+    "deleted",
+    "cli-gemini",
+    "skill",
+    "project",
+    "gemini",
+    "runtime",
+    "surface",
+    "left",
+    "orphaned"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.701Z",
+  "specId": "002",
+  "folderSlug": "command-yaml-gemini-cleanup",
+  "parentChain": [
+    "cli-external-orchestration",
+    "021-cli-gemini-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

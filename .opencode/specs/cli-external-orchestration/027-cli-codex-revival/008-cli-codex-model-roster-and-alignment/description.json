@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
+  "description": "The cli-codex skill documented a single-model contract — \"the skill dispatches `gpt-5.5` for every task\" — even though the `fast` service tier exposes",
+  "keywords": [
+    "cli-codex",
+    "skill",
+    "documented",
+    "single-model",
+    "contract",
+    "dispatches",
+    "gpt-5",
+    "every",
+    "task",
+    "even",
+    "though",
+    "fast",
+    "service",
+    "tier",
+    "exposes"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.551Z",
+  "specId": "008",
+  "folderSlug": "cli-codex-model-roster-and-alignment",
+  "parentChain": [
+    "cli-external-orchestration",
+    "027-cli-codex-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

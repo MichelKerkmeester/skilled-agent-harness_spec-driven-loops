@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/027-cli-codex-revival/005-codex-agent-toml-sync",
+  "description": "Historical Codex agent TOMLs no longer match the canonical OpenCode Markdown set",
+  "keywords": [
+    "historical",
+    "codex",
+    "agent",
+    "tomls",
+    "longer",
+    "match",
+    "canonical",
+    "opencode",
+    "markdown",
+    "set"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.555Z",
+  "specId": "005",
+  "folderSlug": "codex-agent-toml-sync",
+  "parentChain": [
+    "cli-external-orchestration",
+    "027-cli-codex-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

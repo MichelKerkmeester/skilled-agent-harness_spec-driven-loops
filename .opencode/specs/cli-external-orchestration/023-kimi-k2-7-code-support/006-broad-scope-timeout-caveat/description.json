@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/023-kimi-k2-7-code-support/006-broad-scope-timeout-caveat",
+  "description": "The Kimi K2.7 Code docs note `--variant high` is \"accepted-unverified\" but do NOT capture a real operational failure mode: on a broad / large-repo",
+  "keywords": [
+    "kimi",
+    "code",
+    "docs",
+    "note",
+    "variant",
+    "high",
+    "accepted-unverified",
+    "capture",
+    "real",
+    "operational",
+    "failure",
+    "mode",
+    "broad",
+    "large-repo"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.758Z",
+  "specId": "006",
+  "folderSlug": "broad-scope-timeout-caveat",
+  "parentChain": [
+    "cli-external-orchestration",
+    "023-kimi-k2-7-code-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

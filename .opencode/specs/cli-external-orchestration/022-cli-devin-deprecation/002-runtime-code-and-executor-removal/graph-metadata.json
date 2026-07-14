@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/022-cli-devin-deprecation/002-runtime-code-and-executor-removal",
+  "spec_folder": "cli-external-orchestration/022-cli-devin-deprecation/002-runtime-code-and-executor-removal",
+  "parent_id": "cli-external-orchestration/022-cli-devin-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-devin deprecation phase 2",
+      "runtime-code-and-executor-removal",
+      "phase 2 plan",
+      "runtime-code-and-executor-removal plan",
+      "phase 2 tasks",
+      "runtime-code-and-executor-removal tasks",
+      "phase 2 implementation",
+      "runtime-code-and-executor-removal summary"
+    ],
+    "key_topics": [
+      "cli-devin",
+      "deprecation",
+      "phase",
+      "runtime-code-and-executor-removal",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "wired",
+      "deep-loop",
+      "runtime",
+      "executor"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Report",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Executed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-devin was wired into the deep-loop runtime executor layer (executor-config.ts EXECUTORKINDS + DEVINSUPPORTEDMODELS + permission/validation, executor-audit.ts lookup maps, fanout-run.cjs dispatch branch), the deep-improvement model-benchmark dispatcher (two hand-synced KNOWNEXECUTORS sets), and the five deep-loop command YAMLs (ifclidevin blocks + executor enums)",
+    "created_at": "2026-06-08T16:10:28Z",
+    "last_save_at": "2026-07-14T19:26:13.626Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e8dedb4db5bc911aa3043303395da0f3ca5221c807fac82aaf95e6a30b99ca9a",
+    "source_doc_hashes": {
+      "spec.md": "ec7bfe33ce197daea40a87565e4e31233282747677c1d3c69de5dd2673d9d4bf",
+      "plan.md": "2f4687afa5e9b279f6894f6dfdf23f1d1769d6961b4f575be8e2483a50dc72ed",
+      "tasks.md": "6cec9cd9fb4e1059278778f5f986b7b4b3bba0043e87ed9ea9fddbed8bf0e974",
+      "implementation-summary.md": "c93d397252efd52e05149e4cf1b9d83f412066f8a6a916ef3d892fdd868e11ab"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

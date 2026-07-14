@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
+  "spec_folder": "cli-external-orchestration/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
+  "parent_id": "cli-external-orchestration/019-cli-opencode-minimax-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "minimax efficiency deep research",
+      "minimax-2.7 best use research",
+      "cli-opencode minimax optimization research",
+      "minimax efficiency research plan",
+      "deep-research loop minimax",
+      "cli-codex research executor minimax",
+      "minimax research tasks",
+      "deep-research loop tasks",
+      "minimax-2.7 task list",
+      "minimax deep-research summary",
+      "minimax efficiency research outcome",
+      "minimax delta list"
+    ],
+    "key_topics": [
+      "minimax",
+      "efficiency",
+      "deep",
+      "research",
+      "minimax-2",
+      "best",
+      "cli-opencode",
+      "optimization",
+      "plan",
+      "deep-research",
+      "loop",
+      "cli-codex"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/resource-map.md",
+      "spec.md",
+      "plan.md",
+      "research/iterations/iteration-001.md",
+      "research/deltas/iter-001.jsonl",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Drive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 001 wires the `minimax` provider, we still have no guidance for using MiniMax 2.7 efficiently through cli-opencode: no context-budget tuple, no output-verification recipe, no prompt-quality / `--variant` mapping, no routing heuristics vs the other small models",
+    "created_at": "2026-05-28T08:38:27Z",
+    "last_save_at": "2026-07-14T19:26:24.351Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:4adafb7a38d8b2f440418049a96b03cc1cbdc1fa9021943591a3a1ca8c7746f8",
+    "source_doc_hashes": {
+      "spec.md": "da9b8af0ba261709b26f218d527f6c8674e221e970d77c9214f2d848bd9e62af",
+      "plan.md": "64d230497a77c1dafc4d6da84c87ed0cd14428efa73253bab86c28e1eec18381",
+      "tasks.md": "3215a2a73a5a80563b7b0d9a9e38786f18e69e675b51f282c8ffe28d47a3fa23",
+      "implementation-summary.md": "65949e929ca80a68460046b5a337777e9ddf3e313d9197877bed83945259db31",
+      "research/research.md": "d93a4fbe0bf9107aa07f575e6fff7557c84167f43155304b04ff8767c009cc31"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

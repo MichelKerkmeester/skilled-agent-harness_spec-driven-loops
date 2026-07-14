@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/027-cli-codex-revival/004-codex-hook-adapter-layer",
+  "description": "Codex native hooks are stable, but no Codex adapters exist and the historical two-event configuration predates 0.144.1",
+  "keywords": [
+    "codex",
+    "native",
+    "hooks",
+    "stable",
+    "adapters",
+    "exist",
+    "historical",
+    "two-event",
+    "configuration",
+    "predates"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.559Z",
+  "specId": "004",
+  "folderSlug": "codex-hook-adapter-layer",
+  "parentChain": [
+    "cli-external-orchestration",
+    "027-cli-codex-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

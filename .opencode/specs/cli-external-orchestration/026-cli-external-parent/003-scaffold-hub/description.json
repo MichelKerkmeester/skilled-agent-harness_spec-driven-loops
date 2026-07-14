@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/026-cli-external-parent/003-scaffold-hub",
+  "description": "No parent-hub skeleton exists yet for the approved `cli-external` merge",
+  "keywords": [
+    "parent-hub",
+    "skeleton",
+    "exists",
+    "approved",
+    "cli-external",
+    "merge"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.625Z",
+  "specId": "003",
+  "folderSlug": "scaffold-hub",
+  "parentChain": [
+    "cli-external-orchestration",
+    "026-cli-external-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

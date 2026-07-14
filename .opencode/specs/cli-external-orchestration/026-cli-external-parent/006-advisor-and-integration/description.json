@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/026-cli-external-parent/006-advisor-and-integration",
+  "description": "After phases 004 and 005 move the skill content, rewrite the scorer, and dissolve the two identities, a set of documentation, advisor, and",
+  "keywords": [
+    "phases",
+    "move",
+    "skill",
+    "content",
+    "rewrite",
+    "scorer",
+    "dissolve",
+    "two",
+    "identities",
+    "set",
+    "documentation",
+    "advisor"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.648Z",
+  "specId": "006",
+  "folderSlug": "advisor-and-integration",
+  "parentChain": [
+    "cli-external-orchestration",
+    "026-cli-external-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

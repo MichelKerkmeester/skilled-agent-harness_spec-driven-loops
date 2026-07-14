@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/022-cli-devin-deprecation/004-docs-agents-governance-removal",
+  "description": "cli-devin/devin appeared in agent rosters (deep-context/research/review/improvement across 3 runtimes), governance docs (AGENTS.md, CLAUDE.md,",
+  "keywords": [
+    "cli-devin",
+    "devin",
+    "appeared",
+    "agent",
+    "rosters",
+    "deep-context",
+    "research",
+    "review",
+    "improvement",
+    "across",
+    "runtimes",
+    "governance",
+    "docs",
+    "agents",
+    "claude"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.688Z",
+  "specId": "004",
+  "folderSlug": "docs-agents-governance-removal",
+  "parentChain": [
+    "cli-external-orchestration",
+    "022-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

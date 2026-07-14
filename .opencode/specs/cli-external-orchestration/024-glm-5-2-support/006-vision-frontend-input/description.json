@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/024-glm-5-2-support/006-vision-frontend-input",
+  "description": "GLM-5.2 is the newest GLM (released 2026-06-16), is natively multimodal, and is widely cited for strong visual-frontend / \"vision-to-code\" work",
+  "keywords": [
+    "glm-5",
+    "newest",
+    "glm",
+    "released",
+    "natively",
+    "multimodal",
+    "widely",
+    "cited",
+    "strong",
+    "visual-frontend",
+    "vision-to-code",
+    "work"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.565Z",
+  "specId": "006",
+  "folderSlug": "vision-frontend-input",
+  "parentChain": [
+    "cli-external-orchestration",
+    "024-glm-5-2-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

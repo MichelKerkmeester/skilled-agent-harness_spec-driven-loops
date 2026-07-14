@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/019-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
+  "description": "120/002's research recommended a prompt framework for MiniMax 2.7 by desk analysis only — it never ran the model, so the recommendation is unvalidated",
+  "keywords": [
+    "research",
+    "recommended",
+    "prompt",
+    "framework",
+    "minimax",
+    "desk",
+    "analysis",
+    "only",
+    "never",
+    "ran",
+    "model",
+    "recommendation",
+    "unvalidated"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.787Z",
+  "specId": "003",
+  "folderSlug": "minimax-prompt-framework-benchmark",
+  "parentChain": [
+    "cli-external-orchestration",
+    "019-cli-opencode-minimax-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

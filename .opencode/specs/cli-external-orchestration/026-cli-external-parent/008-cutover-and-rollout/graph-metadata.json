@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout",
+  "spec_folder": "cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout",
+  "parent_id": "cli-external-orchestration/026-cli-external-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-external cutover",
+      "parent skill strict check",
+      "recursive spec validation",
+      "fail-open hook trigger test",
+      "phase 008 rollout",
+      "cli-external cutover plan",
+      "terminal gate plan",
+      "fail-open hook trigger test plan",
+      "parent rollup plan",
+      "phase 008 plan",
+      "cli-external cutover tasks",
+      "terminal gate tasks"
+    ],
+    "key_topics": [
+      "cli-external",
+      "cutover",
+      "parent",
+      "skill",
+      "strict",
+      "check",
+      "recursive",
+      "spec",
+      "validation",
+      "fail-open",
+      "hook",
+      "trigger"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/specs/cli-external-orchestration/026-cli-external-parent/description.json",
+      ".opencode/specs/cli-external-orchestration/026-cli-external-parent/graph-metadata.json",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Terminal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-external parent-hub merge is not provably done until it clears the same strict enforcement bar the canonical parent hubs clear, AND until the fail-open PreToolUse dispatch hook is proven to still fire from its new path",
+    "created_at": "2026-07-09T18:58:29Z",
+    "last_save_at": "2026-07-14T19:26:23.069Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:2fb574358bf1ddf16185e4b9de65452aecfe2646618ec8755036e52e2f5bea04",
+    "source_doc_hashes": {
+      "spec.md": "e34410e3807d25d28476819c190ff53cb0c37e1500100f6a18d9a52d99cb96cb",
+      "plan.md": "5dcc7d725495813f4eac22f8e2c0aa8cd3a422eab78dc373767baabf03bb75e4",
+      "tasks.md": "1e684614313e17ab6c854b03db36efe9fcb19a208d8548a5edc111b7cba196f4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/018-cli-devin-prompt-quality/005-extraction-rerun",
+  "spec_folder": "cli-external-orchestration/018-cli-devin-prompt-quality/005-extraction-rerun",
+  "parent_id": "cli-external-orchestration/018-cli-devin-prompt-quality",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "113/005 extraction rerun",
+      "cli-devin extraction layer",
+      "swe 1.6 file extraction",
+      "003 rerun with extraction",
+      "113/005 plan",
+      "113/005 tasks",
+      "113/005 checklist",
+      "113/005 decisions",
+      "113/005 summary"
+    ],
+    "key_topics": [
+      "extraction",
+      "rerun",
+      "cli-devin",
+      "layer",
+      "swe",
+      "file",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "summary",
+      "synthesis"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Single Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sidecar",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "conservative",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "output",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "new",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "113/003 synthesis.md notes a known limitation: SWE 1.6 `--print` returns markdown text rather than files",
+    "created_at": "2026-05-17T05:35:00Z",
+    "last_save_at": "2026-07-14T19:26:19.777Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c2d5ef2aba671ed77e112c7bc605306f093e248336fbab71245c2a9e3bf1a124",
+    "source_doc_hashes": {
+      "spec.md": "8f569940623cde241a6c96d38b314d2a6ef3d4fcb80258c5eb167500ff9e5b97",
+      "plan.md": "ede901fa93aa15be55a951daf0a60a6c2565b70bf3e7d07a151f8e640b3cff4f",
+      "tasks.md": "a5be34f7b0001a49d31b8799a591038392f4fe32d96800c025720f06a9848c1f",
+      "checklist.md": "f58cf1562898e889dab93bf005537e4e20bf2a56770ce0e2747ddbaf6eac0dd9",
+      "decision-record.md": "30d0d7395e65a9b12d9af14a5cf80d3fc2dac1993f47970f1ee4258c3b86f222",
+      "implementation-summary.md": "25e77944ba334aed1b5ac50366f460614686df7a4cd83454888ba7abf14100c5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

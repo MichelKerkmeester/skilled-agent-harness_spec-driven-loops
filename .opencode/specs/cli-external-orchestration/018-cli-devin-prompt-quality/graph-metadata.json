@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/018-cli-devin-prompt-quality",
+  "spec_folder": "cli-external-orchestration/018-cli-devin-prompt-quality",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/018-cli-devin-prompt-quality/001-council-design",
+    "cli-external-orchestration/018-cli-devin-prompt-quality/002-eval-rig",
+    "cli-external-orchestration/018-cli-devin-prompt-quality/003-eval-loop",
+    "cli-external-orchestration/018-cli-devin-prompt-quality/004-skill-uplift",
+    "cli-external-orchestration/018-cli-devin-prompt-quality/005-extraction-rerun",
+    "cli-external-orchestration/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
+    "cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-devin prompt quality arc",
+      "cli-devin optimization phases",
+      "swe 1.6 cross-model validation",
+      "cli-devin RCAF default",
+      "bundle-gate-aversion cross-CLI"
+    ],
+    "key_topics": [
+      "cli-devin",
+      "prompt",
+      "quality",
+      "arc",
+      "optimization",
+      "phases",
+      "swe",
+      "cross-model",
+      "validation",
+      "rcaf",
+      "default",
+      "bundle-gate-aversion"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "001-council-design/spec.md",
+      "002-eval-rig/spec.md",
+      "004-skill-uplift/implementation-summary.md",
+      "005-extraction-rerun/implementation-summary.md",
+      "006-cross-cli-rcaf-propagation/implementation-summary.md",
+      "007-cross-model-validation/analysis.md",
+      "001-council-design/ai-council/council-report.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "analysis.md",
+        "kind": "doc",
+        "path": "007-cross-model-validation/analysis.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "001-council-design/ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-devin shipped with 7 prompt templates, 5 model presets, 6 framework choices, and 3 detail levels for the pre-planning block — but no systematic evaluation of which combinations maximize output quality on real coding tasks",
+    "created_at": "2026-05-18T07:49:26.948Z",
+    "last_save_at": "2026-07-14T19:26:19.619Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0bafbd0594c420380bd68c822ff28ad3a3af5f5e71a2ee4c4f40b11707657f67",
+    "source_doc_hashes": {
+      "spec.md": "f4ef309552a3b7aee1fdd683c3a4245484f92e5284ae0115f4bf426cdef45d93"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

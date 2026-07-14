@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout",
+  "description": "The cli-external parent-hub merge is not provably done until it clears the same strict enforcement bar the canonical parent hubs clear, AND until the",
+  "keywords": [
+    "cli-external",
+    "parent-hub",
+    "merge",
+    "provably",
+    "done",
+    "until",
+    "clears",
+    "same",
+    "strict",
+    "enforcement",
+    "bar",
+    "canonical",
+    "parent",
+    "hubs",
+    "clear"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.649Z",
+  "specId": "008",
+  "folderSlug": "cutover-and-rollout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "026-cli-external-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

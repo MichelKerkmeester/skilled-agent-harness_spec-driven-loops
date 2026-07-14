@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity",
+  "description": "Child 004 shipped only the four Codex session-lifecycle adapters (SessionStart, UserPromptSubmit, Stop, PreCompact)",
+  "keywords": [
+    "child",
+    "shipped",
+    "only",
+    "four",
+    "codex",
+    "session-lifecycle",
+    "adapters",
+    "sessionstart",
+    "userpromptsubmit",
+    "stop",
+    "precompact"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.552Z",
+  "specId": "007",
+  "folderSlug": "codex-hook-parity",
+  "parentChain": [
+    "cli-external-orchestration",
+    "027-cli-codex-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

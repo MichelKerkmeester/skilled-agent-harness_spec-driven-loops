@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/018-cli-devin-prompt-quality/002-eval-rig",
+  "spec_folder": "cli-external-orchestration/018-cli-devin-prompt-quality/002-eval-rig",
+  "parent_id": "cli-external-orchestration/018-cli-devin-prompt-quality",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "113/002 eval rig",
+      "cli-devin fixtures",
+      "grader harness",
+      "deterministic-check library",
+      "113/002 plan",
+      "113/002 tasks",
+      "113/002 checklist",
+      "113/002 decisions",
+      "113/002 summary"
+    ],
+    "key_topics": [
+      "eval",
+      "rig",
+      "cli-devin",
+      "fixtures",
+      "grader",
+      "harness",
+      "deterministic-check",
+      "library",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "grader/harness.cjs",
+      "scripts/dry-run.cjs",
+      "lib/cache.cjs",
+      "grader/dispute.cjs",
+      "scripts/iter1-sanity-gate.cjs",
+      "fixtures/fix-001-hallucinated-cli-flag/task.json",
+      "scripts/deterministic/bundle-gate.cjs",
+      "scripts/deterministic/cwd-check.cjs",
+      "scripts/deterministic/preplanning-regex.cjs",
+      "scripts/deterministic/hallucination-flag.cjs",
+      "grader/prompts/system-grader.md",
+      "grader/prompts/system-skeptic.md",
+      "scripts/cache-reconstruct.cjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "cache/det/index.jsonl",
+      "cache/grader/index.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "harness.cjs",
+        "kind": "file",
+        "path": "grader/harness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dry-run.cjs",
+        "kind": "file",
+        "path": "scripts/dry-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cache.cjs",
+        "kind": "file",
+        "path": "lib/cache.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispute.cjs",
+        "kind": "file",
+        "path": "grader/dispute.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iter1-sanity-gate.cjs",
+        "kind": "file",
+        "path": "scripts/iter1-sanity-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "task.json",
+        "kind": "config",
+        "path": "fixtures/fix-001-hallucinated-cli-flag/task.json",
+        "source": "derived"
+      },
+      {
+        "name": "bundle-gate.cjs",
+        "kind": "file",
+        "path": "scripts/deterministic/bundle-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cwd-check.cjs",
+        "kind": "file",
+        "path": "scripts/deterministic/cwd-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "preplanning-regex.cjs",
+        "kind": "file",
+        "path": "scripts/deterministic/preplanning-regex.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hallucination-flag.cjs",
+        "kind": "file",
+        "path": "scripts/deterministic/hallucination-flag.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-grader.md",
+        "kind": "doc",
+        "path": "grader/prompts/system-grader.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skeptic.md",
+        "kind": "doc",
+        "path": "grader/prompts/system-skeptic.md",
+        "source": "derived"
+      },
+      {
+        "name": "cache-reconstruct.cjs",
+        "kind": "file",
+        "path": "scripts/cache-reconstruct.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.jsonl",
+        "kind": "file",
+        "path": "cache/det/index.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eval Rig",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The eval loop in 003 needs (a) a fixture set grounded in real failure modes (not synthetic), (b) a grader harness that produces reproducible scores, (c) a cache that survives free-tier rate-limit pauses, (d) deterministic checks that don't burn grader calls on regex-checkable signals",
+    "created_at": "2026-05-16T19:10:00Z",
+    "last_save_at": "2026-07-14T19:26:20.461Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:05711ab448c6a027419c9db1e67686fa15b0f4ae8f6c2ff13f923af1a804f246",
+    "source_doc_hashes": {
+      "spec.md": "8b610108f93da0603ba96c343602351e8b05e24dd566d27dd2d57bc3655f58e1",
+      "plan.md": "6014b8c9d7417160191c3736ae7388782a34ef540daf5a8d669ea077a7abd023",
+      "tasks.md": "69cc9f12c37b5c2b3ca48be431c5a15a385f58c51f9da2f5aa4802fa5cdcc720",
+      "checklist.md": "36f280f86f45900a2bd6c519792fdf2fee8c7dd42d8cdaf37ba3651e49c3cd52",
+      "decision-record.md": "7e5161ffb5280e0a9685dde54d28edb998704ba711a321b5dd38e2408f5d3c0c",
+      "implementation-summary.md": "e90239f62a788d0418ec6060d1fb370fd340d978b4f89d64cf41acc5b3694c77"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

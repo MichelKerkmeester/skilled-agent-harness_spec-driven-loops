@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/022-cli-devin-deprecation/004-docs-agents-governance-removal",
+  "spec_folder": "cli-external-orchestration/022-cli-devin-deprecation/004-docs-agents-governance-removal",
+  "parent_id": "cli-external-orchestration/022-cli-devin-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-devin deprecation phase 4",
+      "docs-agents-governance-removal",
+      "phase 4 plan",
+      "docs-agents-governance-removal plan",
+      "phase 4 tasks",
+      "docs-agents-governance-removal tasks",
+      "phase 4 implementation",
+      "docs-agents-governance-removal summary"
+    ],
+    "key_topics": [
+      "cli-devin",
+      "deprecation",
+      "phase",
+      "docs-agents-governance-removal",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "devin",
+      "appeared",
+      "agent",
+      "rosters"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "constitutional/post-implementation-deep-review.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "post-implementation-deep-review.md",
+        "kind": "doc",
+        "path": "constitutional/post-implementation-deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Report",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Executed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-devin/devin appeared in agent rosters (deep-context/research/review/improvement across 3 runtimes), governance docs (AGENTS.md, CLAUDE.md, README.md, skills index), cli- sibling skill docs, deep-context skill refs, constitutional docs (cli-dispatch-skill-preload, post-implementation-deep-review), and shared cli references",
+    "created_at": "2026-06-08T16:10:30Z",
+    "last_save_at": "2026-07-14T19:26:13.786Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e38f3023ad86e9becab45e4c96812cbcf2b24cdb8d42528663b66af8617c056d",
+    "source_doc_hashes": {
+      "spec.md": "8a7bbfe093aecca89e8586d5cce4d7175e55a9509f2eb0a8956e7b17a372591b",
+      "plan.md": "a131a042787d14f97e77d68786627aab5684f0f08c5f7bd989dd2e2aa856849e",
+      "tasks.md": "04c5a386831915b54a1f1d9cb673caeb064ca958941a4a6029639b3ad894ecc8",
+      "implementation-summary.md": "7e2ae8c54f987f3fbcb2df7e8df26afce13e1f01dd6452fa40d9a5e58da0be2d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

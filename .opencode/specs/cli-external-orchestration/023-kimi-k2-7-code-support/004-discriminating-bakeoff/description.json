@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/023-kimi-k2-7-code-support/004-discriminating-bakeoff",
+  "description": "The phase 002 bakeoff (run 006) scored every prompt framework at correctness 1.0 because its T3 fixtures were too easy for a frontier coding model, so",
+  "keywords": [
+    "phase",
+    "bakeoff",
+    "run",
+    "scored",
+    "every",
+    "prompt",
+    "framework",
+    "correctness",
+    "because",
+    "fixtures",
+    "too",
+    "easy",
+    "frontier",
+    "coding",
+    "model"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.756Z",
+  "specId": "004",
+  "folderSlug": "discriminating-bakeoff",
+  "parentChain": [
+    "cli-external-orchestration",
+    "023-kimi-k2-7-code-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

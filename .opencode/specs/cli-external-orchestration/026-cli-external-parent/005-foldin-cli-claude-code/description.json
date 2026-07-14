@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code",
+  "description": "`cli-claude-code` is still a second independent advisor identity, and the two children still carry separate `graph-metadata.json` files",
+  "keywords": [
+    "cli-claude-code",
+    "still",
+    "second",
+    "independent",
+    "advisor",
+    "identity",
+    "two",
+    "children",
+    "carry",
+    "separate",
+    "graph-metadata",
+    "json",
+    "files"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.650Z",
+  "specId": "005",
+  "folderSlug": "foldin-cli-claude-code",
+  "parentChain": [
+    "cli-external-orchestration",
+    "026-cli-external-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

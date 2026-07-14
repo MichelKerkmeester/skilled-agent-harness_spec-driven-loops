@@ -1,0 +1,36 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/028-cli-hub-rename/004-verify-closeout",
+  "description": "Targeted rename and routing checks pass, but broader suites cannot all execute because compiled artifacts are stale and unrelated graph keys are",
+  "keywords": [
+    "targeted",
+    "rename",
+    "routing",
+    "checks",
+    "pass",
+    "broader",
+    "suites",
+    "cannot",
+    "execute",
+    "because",
+    "compiled",
+    "artifacts",
+    "stale",
+    "unrelated",
+    "graph",
+    "keys"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.653Z",
+  "specId": "004",
+  "folderSlug": "verify-closeout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "028-cli-hub-rename"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "13-07-26_14-31__recorded-create-skill-conformance-pass-over-the.md",
+    "13-07-26_14-33__reconciled-004-continuity-freshness-after.md",
+    "13-07-26_14-50__fixed-pre-existing-wrong-dir-cli-opencode-links.md"
+  ]
+}

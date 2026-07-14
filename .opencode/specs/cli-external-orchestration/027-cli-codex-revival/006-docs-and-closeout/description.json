@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/027-cli-codex-revival/006-docs-and-closeout",
+  "description": "Runtime, skill, hooks, and agents can drift unless final active documentation and parity evidence describe the same supported contract",
+  "keywords": [
+    "runtime",
+    "skill",
+    "hooks",
+    "agents",
+    "drift",
+    "unless",
+    "final",
+    "active",
+    "documentation",
+    "parity",
+    "evidence",
+    "describe",
+    "same",
+    "supported",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.549Z",
+  "specId": "006",
+  "folderSlug": "docs-and-closeout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "027-cli-codex-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

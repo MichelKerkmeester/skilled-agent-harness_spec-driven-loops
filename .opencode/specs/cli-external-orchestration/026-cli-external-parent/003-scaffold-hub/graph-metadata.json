@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/026-cli-external-parent/003-scaffold-hub",
+  "spec_folder": "cli-external-orchestration/026-cli-external-parent/003-scaffold-hub",
+  "parent_id": "cli-external-orchestration/026-cli-external-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-external scaffold hub",
+      "cli parent hub scaffold",
+      "cli-opencode cli-claude-code scaffold",
+      "cli-external scaffold plan",
+      "hub skeleton plan",
+      "mode-registry hub-router scaffold",
+      "phase 003 plan",
+      "cli-external scaffold tasks",
+      "hub skeleton tasks",
+      "phase 003 tasks"
+    ],
+    "key_topics": [
+      "cli-external",
+      "scaffold",
+      "hub",
+      "cli",
+      "parent",
+      "cli-opencode",
+      "cli-claude-code",
+      "plan",
+      "skeleton",
+      "mode-registry",
+      "hub-router",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "two",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "base-three",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "empty-packet",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No parent-hub skeleton exists yet for the approved `cli-external` merge",
+    "created_at": "2026-07-09T18:58:26Z",
+    "last_save_at": "2026-07-14T19:26:22.264Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:e7c6c17f1361c2ff546cbef8a38cb360cfd5b07683732716e9a9951cefc3e63a",
+    "source_doc_hashes": {
+      "spec.md": "cdcbbfc665e60e42c4dafc50e836bf8ef62075a7529d33bc44f9e852205886b3",
+      "plan.md": "6df0077c9f34455e1a15b131ee3dfcce8c11ab4e7acdb71a4b29c749b1ec2dbc",
+      "tasks.md": "48579892e54d041c05e670ab31d0fef878166d5de3f95b66c2ce4138feef376d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/021-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+  "spec_folder": "cli-external-orchestration/021-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+  "parent_id": "cli-external-orchestration/021-cli-gemini-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command yaml gemini cleanup",
+      "cli-gemini executor branch removal",
+      "gemini surface reference cleanup",
+      "command yaml gemini cleanup plan",
+      "cli-gemini branch removal plan",
+      "command yaml gemini cleanup tasks",
+      "command yaml gemini cleanup checklist",
+      "command layer gemini cleanup implementation",
+      "cli-gemini command surface removal"
+    ],
+    "key_topics": [
+      "command",
+      "yaml",
+      "gemini",
+      "cleanup",
+      "cli-gemini",
+      "executor",
+      "branch",
+      "removal",
+      "surface",
+      "reference",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "doctor_mcp_install.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow After",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "contiguous Q-Exec",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase `001-runtime-surface-and-skill-deletion` deleted the `cli-gemini` skill and the project `.gemini/` runtime surface, but it left orphaned `cli-gemini` executor branches and stray \"Gemini\" surface references across the whole command layer: both the command-layer YAML assets and the command `.md` docs that drive them",
+    "created_at": "2026-06-08T16:11:50.615Z",
+    "last_save_at": "2026-07-14T19:26:15.570Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8eeac155f79bafea7f1e0efbb9de3b74872e8472f78b09cd2b931fe1daf23dbb",
+    "source_doc_hashes": {
+      "spec.md": "3e2411f6c1dc5276c8b7ac41899b5f6c7849d24247eaa595bbe07e1b2b844f59",
+      "plan.md": "696d03c74dd68153ae2f4c17758f53b1696c69a2d002432f66bce7d0956b23bb",
+      "tasks.md": "8cb3a664de80c5f1ffc47b0ed9864c59328f6050d32c741af0074048699f6b51",
+      "checklist.md": "47114c2d149d70809aa453d128a6b3a883cf4a1f018536d328baf3aa46105a2c",
+      "implementation-summary.md": "b540a75147cb0502509670f0be17d3e251039ee13ee86492e25f8274cfbe1ec0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

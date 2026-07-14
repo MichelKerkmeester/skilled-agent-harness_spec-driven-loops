@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/023-kimi-k2-7-code-support/001-model-registration",
+  "spec_folder": "cli-external-orchestration/023-kimi-k2-7-code-support/001-model-registration",
+  "parent_id": "cli-external-orchestration/023-kimi-k2-7-code-support",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "kimi-k2.7-code",
+      "kimi-for-coding",
+      "model registration",
+      "small model rotation",
+      "kimi-for-coding/k2p7",
+      "model registration plan",
+      "adopting a new provider",
+      "tasks",
+      "model registration tasks",
+      "model registration summary"
+    ],
+    "key_topics": [
+      "kimi-k2",
+      "7-code",
+      "kimi-for-coding",
+      "model",
+      "registration",
+      "small",
+      "rotation",
+      "k2p7",
+      "plan",
+      "adopting",
+      "new",
+      "provider"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Register Kimi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "New Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Skill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Selection",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Kimi K2.7 Code (live slug `kimi-for-coding/k2p7`) is available on the dedicated \"Kimi For Coding\" coding-plan provider but is not registered anywhere in the small-model surfaces, so it cannot be dispatched or routed by name",
+    "created_at": "2026-06-15T09:21:00Z",
+    "last_save_at": "2026-07-14T19:26:21.500Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:baff83ddc130530c9447587807a8de29bbcccf454557fcdb771988a110b7b90c",
+    "source_doc_hashes": {
+      "spec.md": "80337f24268934d1de662ce14a07a0ad2f600b4efcdfd20908c53fd3d7429bfb",
+      "plan.md": "52e4cd447cb242c9e7e9c0c1ec639b325cf428c1b39e029f29178c5f32f59513",
+      "tasks.md": "5bcf5ac53af1230a207c4be7c3b300b9453c499fa99c1a8bdf344a0e4dc70c15",
+      "implementation-summary.md": "79a41683fb67972edcb222025cc6e41fef3747d0a013f074c5c6248fc2da482b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

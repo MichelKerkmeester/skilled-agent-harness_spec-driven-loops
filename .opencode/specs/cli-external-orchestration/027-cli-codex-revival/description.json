@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/027-cli-codex-revival",
+  "description": "Codex CLI 0.144.1 now provides stable native hooks, multi-agent support, and a supported non-interactive executor, reversing the operational",
+  "keywords": [
+    "codex",
+    "cli",
+    "now",
+    "provides",
+    "stable",
+    "native",
+    "hooks",
+    "multi-agent",
+    "support",
+    "supported",
+    "non-interactive",
+    "executor",
+    "reversing",
+    "operational"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.548Z",
+  "specId": "027",
+  "folderSlug": "cli-codex-revival",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

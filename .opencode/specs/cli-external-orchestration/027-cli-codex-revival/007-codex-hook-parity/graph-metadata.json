@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity",
+  "spec_folder": "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity",
+  "parent_id": "cli-external-orchestration/027-cli-codex-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Codex hook parity",
+      "cli-codex hooks",
+      "codex parity adapters",
+      "Codex hook parity plan",
+      "Codex hook parity tasks",
+      "Codex hook parity checklist",
+      "Codex hook decisions",
+      "codex parity ADR",
+      "codex 0.144.2 hook contract",
+      "Codex hook parity summary",
+      "codex parity status"
+    ],
+    "key_topics": [
+      "codex",
+      "hook",
+      "parity",
+      "cli-codex",
+      "hooks",
+      "adapters",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr",
+      "contract"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      ".codex/hooks.json",
+      "mcp_server/hooks/codex/shared.ts",
+      ".codex/config.toml",
+      ".opencode/bin/install-codex-hooks.mjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/codex/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".opencode/bin/install-codex-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Give Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Each Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist Before",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Execution Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Format Report",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Child 004 shipped only the four Codex session-lifecycle adapters (SessionStart, UserPromptSubmit, Stop, PreCompact)",
+    "created_at": "2026-07-13T16:41:33.164Z",
+    "last_save_at": "2026-07-14T19:26:16.362Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:669ee7a76a3e303e789239e566b46360a57960264ce6ad1cd9c59944d32754cd",
+    "source_doc_hashes": {
+      "spec.md": "bb96545d69931c0032125e53b006d67c5c4b371637c76c2e17c11cdaeaa456c5",
+      "plan.md": "bc697ccac26f624115eb7d56291fc6292f0a047ed3fab558da836832cbda8f53",
+      "tasks.md": "1f6c2195933d947b4fbdc57e1fca4d1c0cb892dc31ba32abe198f1c7519aa10e",
+      "checklist.md": "1db10f63627071416d36f33df9433bb5f2eabf9f8b310d327a7215e539a4367c",
+      "decision-record.md": "d47ab9ef87e24dcb7add1dbdb4608393185716e3465a3200c8386ba8d04fc88a",
+      "implementation-summary.md": "e563a387a4d2530141c9d56e7bffed03025da196061ed6f56b57e9b33c742594"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

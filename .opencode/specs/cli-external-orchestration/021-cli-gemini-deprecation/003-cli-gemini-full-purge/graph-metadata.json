@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/021-cli-gemini-deprecation/003-cli-gemini-full-purge",
+  "spec_folder": "cli-external-orchestration/021-cli-gemini-deprecation/003-cli-gemini-full-purge",
+  "parent_id": "cli-external-orchestration/021-cli-gemini-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-gemini executor purge",
+      "cli-gemini executor removal",
+      "gemini deprecation phase 3",
+      "cli-gemini executor purge plan",
+      "gemini deprecation phase 3 plan",
+      "cli-gemini executor purge tasks",
+      "cli-gemini executor purge checklist",
+      "cli-gemini executor purge decision",
+      "cli-gemini executor purge implementation",
+      "resource map",
+      "path catalog",
+      "files touched"
+    ],
+    "key_topics": [
+      "cli-gemini",
+      "executor",
+      "purge",
+      "removal",
+      "gemini",
+      "deprecation",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "decision",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "feature_catalog/feature_catalog.md",
+      "mcp_server/matrix_runners/run-matrix.ts",
+      "mcp_server/matrix_runners/matrix-manifest.json",
+      "mcp_server/matrix_runners/README.md",
+      "mcp_server/matrix_runners/templates/README.md",
+      "scripts/tests/fixtures/multi-ai-council/council-output-full.md",
+      "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
+      "references/templates/template_guide.md",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "templates/README.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md"
+    ],
+    "entities": [
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-matrix.ts",
+        "kind": "code",
+        "path": "mcp_server/matrix_runners/run-matrix.ts",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-manifest.json",
+        "kind": "config",
+        "path": "mcp_server/matrix_runners/matrix-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp_server/matrix_runners/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-output-full.md",
+        "kind": "doc",
+        "path": "scripts/tests/fixtures/multi-ai-council/council-output-full.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-persist-artifacts.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template_guide.md",
+        "kind": "doc",
+        "path": "references/templates/template_guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Leave Gemini",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 001 and 002, `cli-gemini` still existed as a first-class executor across active source: deep-loop executor unions and audit maps, deep-improvement model-benchmark dispatch, the system-spec-kit matrix runner adapter set, the multi-AI council fixture, plus a wide spread of feature catalogs, manual testing playbooks, references, a constitutional file, and release-history changelogs",
+    "created_at": "2026-06-08T16:11:50.617Z",
+    "last_save_at": "2026-07-14T19:26:15.107Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:631ae8d8c40dc6d25675f6052a4e7beb5081a0f2c4904998ef99b355bfde941d",
+    "source_doc_hashes": {
+      "spec.md": "992ad34b138bd44afdcdce3466aa17b71e69385bcce2e6e6b3899ddea78bce11",
+      "plan.md": "b203c6979229cb2b0bdd2f3b86bb6e42e49d381934d680a2469dbeacd42da9d3",
+      "tasks.md": "7384b1cd7ddfcd10b358ce9ff35e762bc7960b37026bc841966b90f7d810c409",
+      "checklist.md": "94fd4ecd1391291dce0e6979abecbb31f23a60c97ef3989f4b37b69bed22d38a",
+      "decision-record.md": "0641a5e752af97ab3dbddd914c62f59702d89b693bf9fdb0dfb50220a1a4e714",
+      "implementation-summary.md": "aea65d96a05b6c38e84e90cb2d88cf335090c1d4ed70d38e77cb82d91c321953",
+      "resource-map.md": "726e25520becc344c0e6699f7f53c9f1407fedd05225233326e21f45f9942068"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

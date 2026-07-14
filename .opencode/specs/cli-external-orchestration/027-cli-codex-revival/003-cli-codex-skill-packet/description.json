@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/027-cli-codex-revival/003-cli-codex-skill-packet",
+  "description": "Runtime support alone does not provide a safe user-facing Codex route",
+  "keywords": [
+    "runtime",
+    "support",
+    "alone",
+    "provide",
+    "safe",
+    "user-facing",
+    "codex",
+    "route"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.560Z",
+  "specId": "003",
+  "folderSlug": "cli-codex-skill-packet",
+  "parentChain": [
+    "cli-external-orchestration",
+    "027-cli-codex-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

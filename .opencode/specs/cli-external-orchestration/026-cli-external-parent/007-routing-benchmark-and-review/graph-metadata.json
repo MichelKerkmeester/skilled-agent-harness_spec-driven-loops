@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/026-cli-external-parent/007-routing-benchmark-and-review",
+  "spec_folder": "cli-external-orchestration/026-cli-external-parent/007-routing-benchmark-and-review",
+  "parent_id": "cli-external-orchestration/026-cli-external-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-external parent benchmark",
+      "routing benchmark",
+      "delegation routing re-baseline",
+      "deep-review sign-off",
+      "router-final report",
+      "cli-external benchmark plan",
+      "routing benchmark plan",
+      "delegation re-baseline plan",
+      "deep-review plan",
+      "phase 007 plan",
+      "cli-external benchmark tasks",
+      "routing benchmark tasks"
+    ],
+    "key_topics": [
+      "cli-external",
+      "parent",
+      "benchmark",
+      "routing",
+      "delegation",
+      "re-baseline",
+      "deep-review",
+      "sign-off",
+      "router-final",
+      "report",
+      "plan",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The merged `cli-external` hub serves two modes that were previously independent skills, and its delegation routing now flows through a rewritten scorer",
+    "created_at": "2026-07-09T18:58:29Z",
+    "last_save_at": "2026-07-14T19:26:22.809Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:9a95c64ba54e105cdd641d2d05ca24aff0da4cbb18511385e8d8dbdc014f258a",
+    "source_doc_hashes": {
+      "spec.md": "a98595e5877a94d87190a5415a9ddd81f08c227411771ac300c8b7cde27137c4",
+      "plan.md": "77be09b3f26eac73a825738784ab8fabccaf040729a65ff3dcf090d068d40bbc",
+      "tasks.md": "4888402bdd5a3cc851817edd0646cfe60cf9ebbf43fb63363b9a62438e689ea0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

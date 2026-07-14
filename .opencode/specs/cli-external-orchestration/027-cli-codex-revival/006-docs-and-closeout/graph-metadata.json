@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/027-cli-codex-revival/006-docs-and-closeout",
+  "spec_folder": "cli-external-orchestration/027-cli-codex-revival/006-docs-and-closeout",
+  "parent_id": "cli-external-orchestration/027-cli-codex-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "cli-external-orchestration/027-cli-codex-revival/005-codex-agent-toml-sync",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Codex revival closeout",
+      "Codex closeout plan",
+      "Codex closeout tasks",
+      "Codex revival closeout summary"
+    ],
+    "key_topics": [
+      "codex",
+      "revival",
+      "closeout",
+      "plan",
+      "tasks",
+      "summary",
+      "runtime",
+      "skill",
+      "hooks",
+      "agents",
+      "drift",
+      "unless"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/changelog/v1.2.0.0.md",
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".codex/hooks.json",
+      ".codex/config.toml",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/changelog/v1.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Runtime",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Runtime, skill, hooks, and agents can drift unless final active documentation and parity evidence describe the same supported contract",
+    "created_at": "2026-07-13T05:38:00Z",
+    "last_save_at": "2026-07-14T19:26:16.101Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:18562ea79376b984e6af37c6733165a73eca0e1603c3212d62d2e9b545f8f8ec",
+    "source_doc_hashes": {
+      "spec.md": "87db98b9a1db3996b1f8c3e2b1f53224c538355ea2ac7bf2bb30ebdee92b7f2f",
+      "plan.md": "9d975cf5218915441db77f5a340cd5295860bff77b935abc7f801cd2b7664513",
+      "tasks.md": "d284a5e465412434a9bbd3fb23f2b7b46420ca9be89dd3c52b46e296bc72cf99",
+      "implementation-summary.md": "986b0679f76b1fa0e7fbc3d5b41893b949a608a35978342c79babc46324dd7eb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

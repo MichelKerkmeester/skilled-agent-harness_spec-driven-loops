@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/028-cli-hub-rename",
+  "description": "The external CLI router needed one canonical hub identity",
+  "keywords": [
+    "external",
+    "cli",
+    "router",
+    "needed",
+    "one",
+    "canonical",
+    "hub",
+    "identity"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.651Z",
+  "specId": "028",
+  "folderSlug": "cli-hub-rename",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

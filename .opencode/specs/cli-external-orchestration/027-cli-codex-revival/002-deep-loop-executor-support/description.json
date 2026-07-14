@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/027-cli-codex-revival/002-deep-loop-executor-support",
+  "description": "The deep-loop runtime rejects `cli-codex`, lacks its command adapter and audit metadata, and therefore cannot run Codex lineages",
+  "keywords": [
+    "deep-loop",
+    "runtime",
+    "rejects",
+    "cli-codex",
+    "lacks",
+    "command",
+    "adapter",
+    "audit",
+    "metadata",
+    "therefore",
+    "cannot",
+    "run",
+    "codex",
+    "lineages"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.556Z",
+  "specId": "002",
+  "folderSlug": "deep-loop-executor-support",
+  "parentChain": [
+    "cli-external-orchestration",
+    "027-cli-codex-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

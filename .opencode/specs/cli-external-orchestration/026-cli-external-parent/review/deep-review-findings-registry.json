@@ -1,0 +1,1681 @@
+{
+  "sessionId": "2026-07-10T03:26:38.055Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Published dispatch recipes contradict the authoritative top-level agent contract",
+      "file": ".opencode/skills/cli-opencode/README.md",
+      "line": 63,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "The sibling-boundary table directs OpenAI work to the wrong skill identity",
+      "file": ".opencode/skills/cli-opencode/README.md",
+      "line": 137,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-P1-001",
+      "severity": "P1",
+      "title": "Broad process kill can terminate unrelated operator-owned OpenCode sessions",
+      "file": ".opencode/skills/cli-opencode/SKILL.md",
+      "line": 351,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Parallel-session quick-start publishes a session without the required confirmation gate",
+      "file": ".opencode/skills/cli-opencode/README.md",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "MCP cutover leaves a known authentication/configuration disagreement outside every release gate",
+      "file": ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md",
+      "line": 113,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Phase-003 graph scaffold precedes the required scorer atomic bundle",
+      "file": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub/spec.md",
+      "line": 104,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P1-001",
+      "severity": "P1",
+      "title": "Relative cross-skill links lack a resolution-based move gate",
+      "file": ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/004-onboard-chrome-devtools/plan.md",
+      "line": 85,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Phase 006 scope boundary obscures its mcp-code-mode metadata exception",
+      "file": ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md",
+      "line": 72,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "Parent phase map leaves phase-001 write boundary implicit",
+      "file": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/spec.md",
+      "line": 128,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 2
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.8,
+  "graphConvergenceScore": 0.4,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "status": "ok",
+    "data": {
+      "decision": "STOP_BLOCKED",
+      "reason": "STOP is blocked by 1 blocker(s): uncovered_dimensions",
+      "score": 0.4,
+      "scoreDelta": null,
+      "scoreDeltaNote": "no prior snapshot",
+      "signals": {
+        "dimensionCoverage": 0,
+        "findingStability": 0,
+        "p0ResolutionRate": 1,
+        "evidenceDensity": 0,
+        "hotspotSaturation": 1,
+        "score": 0.4
+      },
+      "blockers": [
+        {
+          "type": "uncovered_dimensions",
+          "description": "Dimension coverage (0%) is below threshold (80%). 0 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+          "count": 0,
+          "severity": "blocking"
+        }
+      ],
+      "trace": [
+        {
+          "signal": "dimensionCoverage",
+          "value": 0,
+          "threshold": 0.8,
+          "passed": false,
+          "role": "blocking_guard"
+        },
+        {
+          "signal": "findingStability",
+          "value": 0,
+          "threshold": 0.7,
+          "passed": false,
+          "role": "weighted"
+        },
+        {
+          "signal": "p0ResolutionRate",
+          "value": 1,
+          "threshold": 0.9,
+          "passed": true,
+          "role": "weighted"
+        },
+        {
+          "signal": "evidenceDensity",
+          "value": 0,
+          "threshold": 1,
+          "passed": false,
+          "role": "weighted"
+        },
+        {
+          "signal": "hotspotSaturation",
+          "value": 1,
+          "threshold": 0.6,
+          "passed": true,
+          "role": "weighted"
+        }
+      ],
+      "momentum": null,
+      "namespace": {
+        "specFolder": ".opencode/specs/cli-external-orchestration/026-cli-external-parent",
+        "loopType": "review",
+        "sessionId": "2026-07-10T03:26:38.055Z"
+      },
+      "scopeMode": "session",
+      "notes": [
+        "Convergence signals were computed from the session-scoped subgraph only."
+      ],
+      "snapshotPersistence": "not_requested",
+      "nodeCount": 45,
+      "edgeCount": 164,
+      "lastIteration": null
+    },
+    "graph_decision": "STOP_BLOCKED",
+    "graph_decision_json": "\"STOP_BLOCKED\"",
+    "graph_signals_json": {
+      "dimensionCoverage": 0,
+      "findingStability": 0,
+      "p0ResolutionRate": 1,
+      "evidenceDensity": 0,
+      "hotspotSaturation": 1,
+      "score": 0.4
+    },
+    "graph_blockers_json": [
+      {
+        "type": "uncovered_dimensions",
+        "description": "Dimension coverage (0%) is below threshold (80%). 0 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+        "count": 0,
+        "severity": "blocking"
+      }
+    ],
+    "graph_blockers_csv": "uncovered_dimensions:0",
+    "graph_stop_blocked": true,
+    "graph_trace_json": [
+      {
+        "signal": "dimensionCoverage",
+        "value": 0,
+        "threshold": 0.8,
+        "passed": false,
+        "role": "blocking_guard"
+      },
+      {
+        "signal": "findingStability",
+        "value": 0,
+        "threshold": 0.7,
+        "passed": false,
+        "role": "weighted"
+      },
+      {
+        "signal": "p0ResolutionRate",
+        "value": 1,
+        "threshold": 0.9,
+        "passed": true,
+        "role": "weighted"
+      },
+      {
+        "signal": "evidenceDensity",
+        "value": 0,
+        "threshold": 1,
+        "passed": false,
+        "role": "weighted"
+      },
+      {
+        "signal": "hotspotSaturation",
+        "value": 1,
+        "threshold": 0.6,
+        "passed": true,
+        "role": "weighted"
+      }
+    ],
+    "graph_convergence_score": 0.4,
+    "graph_score_delta": null,
+    "graph_score_delta_json": "null"
+  },
+  "candidateCoverage": {
+    "covered": [
+      "agent-dispatch-documentation-contract",
+      "authentication-configuration-drift",
+      "cross-phase-atomicity",
+      "documentation_contract_conflict",
+      "graph_identity_transition",
+      "move_atomicity",
+      "phase-boundary-traceability",
+      "process_scope_termination",
+      "provider_route_misconfiguration",
+      "relative_path_resolution",
+      "scope_boundary_conflict",
+      "scope-boundary-contract",
+      "session-publication-consent"
+    ],
+    "ruledOut": [
+      "atomic_identity_scorer_transition",
+      "code_mode_registration_stability",
+      "destructive_scope_enforcement",
+      "destructive-scope-enforcement",
+      "documentation_contract_maintenance",
+      "fail_open_enforcement",
+      "fail-open-enforcement",
+      "graph_identity_transition",
+      "identity_transition",
+      "phase_ownership",
+      "scope-boundary-contract",
+      "scorer atomicity omission",
+      "scorer_output_contract",
+      "session_publication_consent",
+      "share-publication-consent",
+      "staged_identity_transition",
+      "stale-functional-referrer",
+      "state_transition",
+      "transport_classification",
+      "transport-axis omission",
+      "validation_handoff"
+    ],
+    "deferred": [
+      "authentication_configuration_drift",
+      "authentication-configuration-drift",
+      "checklist-evidence",
+      "feature-catalog-code",
+      "live_advisor_routing",
+      "live_runtime_scorer_behavior",
+      "live-runtime-authentication-behavior",
+      "playbook-capability",
+      "runtime scorer behavior",
+      "security permission enforcement"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "documentation_contract_conflict": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "provider_route_misconfiguration": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "scope_boundary_conflict": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "move_atomicity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "graph_identity_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "scorer atomicity omission": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "transport-axis omission": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "runtime scorer behavior": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "security permission enforcement": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "transport_classification": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "session-publication-consent": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "authentication-configuration-drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "fail-open-enforcement": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "live-runtime-authentication-behavior": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "cross-phase-atomicity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "scope-boundary-contract": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "agent-dispatch-documentation-contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist-evidence": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          4,
+          7,
+          8,
+          9
+        ]
+      },
+      "feature-catalog-code": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          4,
+          7,
+          8,
+          9
+        ]
+      },
+      "playbook-capability": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          4,
+          7,
+          8,
+          9
+        ]
+      },
+      "phase_ownership": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          8
+        ]
+      },
+      "identity_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "documentation_contract_maintenance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          8
+        ]
+      },
+      "staged_identity_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "scorer_output_contract": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "validation_handoff": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "live_runtime_scorer_behavior": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "live_advisor_routing": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "destructive-scope-enforcement": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "stale-functional-referrer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "share-publication-consent": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "phase-boundary-traceability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "relative_path_resolution": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "atomic_identity_scorer_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "code_mode_registration_stability": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "process_scope_termination": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "session_publication_consent": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "destructive_scope_enforcement": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "fail_open_enforcement": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "authentication_configuration_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 6,
+      "id": "SL-603",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md"
+      ],
+      "bugClass": "authentication-configuration-drift",
+      "disposition": "deferred",
+      "rationale": "The target provides no runtime authentication evidence and intentionally excludes the configuration registration.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md:109-113,137-142,160-165",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:118-122"
+      ],
+      "reason": "Requires execution-scope runtime/configuration validation outside the named files."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-702",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/review/deep-review-config.json"
+      ],
+      "bugClass": "checklist-evidence",
+      "disposition": "deferred",
+      "rationale": "The configured scope permits plan/spec/decision documentation only.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/review/deep-review-config.json:18-72"
+      ],
+      "reason": "Execution checklists and completion evidence are outside the named target files."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-703",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/review/deep-review-config.json"
+      ],
+      "bugClass": "feature-catalog-code",
+      "disposition": "deferred",
+      "rationale": "Overlay targets are absent from the declared corpus.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/review/deep-review-config.json:18-59"
+      ],
+      "reason": "Feature catalog and playbook capability checks are out of scope."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "authentication_configuration_drift",
+      "disposition": "deferred",
+      "rationale": "The known issue remains active but cannot be newly adjudicated without runtime/configuration evidence outside the named corpus.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md:109-114,139-143",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/spec.md:103-138"
+      ],
+      "reason": "Requires execution-scope authentication and configuration validation."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "The planning packet explicitly preserves the atomicity invariant.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:102-145",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:181-191"
+      ],
+      "reason": "Direct review found the invariant, acceptance criteria, and rollback all require one atomic change."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/plan.md"
+      ],
+      "bugClass": "transport_classification",
+      "disposition": "ruled_out",
+      "rationale": "The target registry documents the required transport protections.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/plan.md:128-186"
+      ],
+      "reason": "Direct review found the transport-axis, tool surface, and pairing contract."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "fail-open-enforcement",
+      "disposition": "ruled_out",
+      "rationale": "The plan contains a direct active-liveness verification requirement.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md:135-140",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md:130-137"
+      ],
+      "reason": "Active trigger acceptance criteria are specified at both onboarding and closeout."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-302",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md"
+      ],
+      "bugClass": "scope-boundary-contract",
+      "disposition": "ruled_out",
+      "rationale": "Prior P2 remains non-duplicated.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:110,130"
+      ],
+      "reason": "Detailed contract is complete."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md"
+      ],
+      "bugClass": "phase_ownership",
+      "disposition": "ruled_out",
+      "rationale": "No new ownership conflict found.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub/spec.md:101-145",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:105-153"
+      ],
+      "reason": "Direct review confirms explicit phase boundaries."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/decision-record.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md"
+      ],
+      "bugClass": "identity_transition",
+      "disposition": "ruled_out",
+      "rationale": "Existing wording ambiguity is already R1-P2-003.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/decision-record.md:350-366",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:108-120"
+      ],
+      "reason": "No duplicate finding emitted."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md",
+        ".opencode/skills/cli-opencode/README.md",
+        ".opencode/skills/cli-opencode/references/cli_reference.md"
+      ],
+      "bugClass": "documentation_contract_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "Prior issues remain separately registered.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:271-311",
+        ".opencode/skills/cli-opencode/README.md:63-145",
+        ".opencode/skills/cli-opencode/references/cli_reference.md:121-145"
+      ],
+      "reason": "No new independently actionable contradiction."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md"
+      ],
+      "bugClass": "staged_identity_transition",
+      "disposition": "ruled_out",
+      "rationale": "The staged contract preserves the atomic transition and requires the no-hub-noun negative assertion.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub/spec.md:101-145",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:105-145"
+      ],
+      "reason": "Direct review found an explicit same-commit requirement and verification for the previously identified failure mode."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/007-routing-benchmark-and-review/spec.md",
+        ".opencode/skills/cli-opencode/SKILL.md"
+      ],
+      "bugClass": "scorer_output_contract",
+      "disposition": "ruled_out",
+      "rationale": "The planned live routing re-baseline is explicitly additional to fixture coverage.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/007-routing-benchmark-and-review/spec.md:103-165",
+        ".opencode/skills/cli-opencode/SKILL.md:271-311"
+      ],
+      "reason": "Direct review found the required live validation consumer."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/003-scaffold-hub/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md"
+      ],
+      "bugClass": "graph_identity_transition",
+      "disposition": "ruled_out",
+      "rationale": "The phase ordering, reverse-edge sweep, and benchmark handoff form a complete planned correctness chain.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/003-scaffold-hub/spec.md:104-161",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:108-178",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md:102-159"
+      ],
+      "reason": "No new independent transition defect was supported by the scoped documents."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-601",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md",
+        ".opencode/skills/cli-opencode/README.md",
+        ".opencode/skills/cli-opencode/references/cli_reference.md"
+      ],
+      "bugClass": "share-publication-consent",
+      "disposition": "ruled_out",
+      "rationale": "Prior finding replay confirmed no distinct additional security issue.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/README.md:78-87",
+        ".opencode/skills/cli-opencode/SKILL.md:19-22,354-358",
+        ".opencode/skills/cli-opencode/references/cli_reference.md:331-334"
+      ],
+      "reason": "Duplicate of active R2-P1-001."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-602",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "destructive-scope-enforcement",
+      "disposition": "ruled_out",
+      "rationale": "No plan-level bypass of the documented containment and active-test requirements was found.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/references/destructive_scope_violations.md:85-97,127-164",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md:77-110,130-137"
+      ],
+      "reason": "Direct review found explicit mitigation and verification obligations."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-604",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "stale-functional-referrer",
+      "disposition": "ruled_out",
+      "rationale": "No omitted plan-level gate was found for the stale-reference security path.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:108-122,146-148,174-179",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/spec.md:103-107,127-138,156-161"
+      ],
+      "reason": "Direct review found atomic migration and terminal zero-live-hit verification requirements."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-802",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/004-onboard-chrome-devtools/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md"
+      ],
+      "bugClass": "phase_ownership",
+      "disposition": "ruled_out",
+      "rationale": "No new independently actionable ownership conflict was found.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md:103-115",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:105-115",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/004-onboard-chrome-devtools/spec.md:102-110",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md:103-113"
+      ],
+      "reason": "Explicit phase boundaries cover structural moves and integration sweeps."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-803",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md",
+        ".opencode/skills/cli-opencode/README.md",
+        ".opencode/skills/cli-opencode/references/cli_reference.md"
+      ],
+      "bugClass": "documentation_contract_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "No new independently actionable documentation defect beyond the active registry findings.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:271-311",
+        ".opencode/skills/cli-opencode/README.md:63-76,123-145",
+        ".opencode/skills/cli-opencode/references/cli_reference.md:269-296"
+      ],
+      "reason": "Prior findings cover the existing contract conflicts."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-901",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/002-architecture-decision/decision-record.md"
+      ],
+      "bugClass": "atomic_identity_scorer_transition",
+      "disposition": "ruled_out",
+      "rationale": "No new planning contradiction weakening the atomic scorer and identity transition was found.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:105-146",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:181-206"
+      ],
+      "reason": "Direct review confirms equivalent atomicity requirements across scope, acceptance criteria, and rollback."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-902",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/decision-record.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md"
+      ],
+      "bugClass": "code_mode_registration_stability",
+      "disposition": "ruled_out",
+      "rationale": "No new plan-level conflict would relocate or re-register the native MCP server.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/decision-record.md:460-465",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:105-121"
+      ],
+      "reason": "Direct review confirms the scope exception is metadata-only and preserves the registration boundary."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/README.md",
+        ".opencode/skills/cli-opencode/SKILL.md",
+        ".opencode/skills/cli-opencode/references/cli_reference.md"
+      ],
+      "bugClass": "session_publication_consent",
+      "disposition": "ruled_out",
+      "rationale": "No independent publication-consent defect beyond active finding R2-P1-001 was found.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/README.md:78-87",
+        ".opencode/skills/cli-opencode/SKILL.md:19-22,354-365",
+        ".opencode/skills/cli-opencode/references/cli_reference.md:331-334"
+      ],
+      "reason": "Duplicate direction already represented in the findings registry."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+        ".opencode/skills/cli-opencode/SKILL.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "destructive_scope_enforcement",
+      "disposition": "ruled_out",
+      "rationale": "No new plan-level bypass of the documented destructive-write containment was found.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/references/destructive_scope_violations.md:85-164",
+        ".opencode/skills/cli-opencode/SKILL.md:350",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md:103-137"
+      ],
+      "reason": "Direct review found explicit containment and verification obligations."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1005",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "fail_open_enforcement",
+      "disposition": "ruled_out",
+      "rationale": "The planning packet includes an active, not passive, liveness test.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md:103-140,153-170",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md:103-137"
+      ],
+      "reason": "Direct review found both atomic repoint and terminal active-trigger requirements."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "The planning packet explicitly preserves the atomicity invariant.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:102-145",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:181-191"
+      ],
+      "proof": "Direct review found the invariant, acceptance criteria, and rollback all require one atomic change."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/plan.md"
+      ],
+      "bugClass": "transport_classification",
+      "disposition": "ruled_out",
+      "rationale": "The target registry documents the required transport protections.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/plan.md:128-186"
+      ],
+      "proof": "Direct review found the transport-axis, tool surface, and pairing contract."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "fail-open-enforcement",
+      "disposition": "ruled_out",
+      "rationale": "The plan contains a direct active-liveness verification requirement.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md:135-140",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md:130-137"
+      ],
+      "proof": "Active trigger acceptance criteria are specified at both onboarding and closeout."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-302",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md"
+      ],
+      "bugClass": "scope-boundary-contract",
+      "disposition": "ruled_out",
+      "rationale": "Prior P2 remains non-duplicated.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:110,130"
+      ],
+      "proof": "Detailed contract is complete."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md"
+      ],
+      "bugClass": "phase_ownership",
+      "disposition": "ruled_out",
+      "rationale": "No new ownership conflict found.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub/spec.md:101-145",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:105-153"
+      ],
+      "proof": "Direct review confirms explicit phase boundaries."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/decision-record.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md"
+      ],
+      "bugClass": "identity_transition",
+      "disposition": "ruled_out",
+      "rationale": "Existing wording ambiguity is already R1-P2-003.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/decision-record.md:350-366",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:108-120"
+      ],
+      "proof": "No duplicate finding emitted."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md",
+        ".opencode/skills/cli-opencode/README.md",
+        ".opencode/skills/cli-opencode/references/cli_reference.md"
+      ],
+      "bugClass": "documentation_contract_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "Prior issues remain separately registered.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:271-311",
+        ".opencode/skills/cli-opencode/README.md:63-145",
+        ".opencode/skills/cli-opencode/references/cli_reference.md:121-145"
+      ],
+      "proof": "No new independently actionable contradiction."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md"
+      ],
+      "bugClass": "staged_identity_transition",
+      "disposition": "ruled_out",
+      "rationale": "The staged contract preserves the atomic transition and requires the no-hub-noun negative assertion.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/003-scaffold-hub/spec.md:101-145",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:105-145"
+      ],
+      "proof": "Direct review found an explicit same-commit requirement and verification for the previously identified failure mode."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/007-routing-benchmark-and-review/spec.md",
+        ".opencode/skills/cli-opencode/SKILL.md"
+      ],
+      "bugClass": "scorer_output_contract",
+      "disposition": "ruled_out",
+      "rationale": "The planned live routing re-baseline is explicitly additional to fixture coverage.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/007-routing-benchmark-and-review/spec.md:103-165",
+        ".opencode/skills/cli-opencode/SKILL.md:271-311"
+      ],
+      "proof": "Direct review found the required live validation consumer."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/003-scaffold-hub/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md"
+      ],
+      "bugClass": "graph_identity_transition",
+      "disposition": "ruled_out",
+      "rationale": "The phase ordering, reverse-edge sweep, and benchmark handoff form a complete planned correctness chain.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/003-scaffold-hub/spec.md:104-161",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:108-178",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md:102-159"
+      ],
+      "proof": "No new independent transition defect was supported by the scoped documents."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-601",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md",
+        ".opencode/skills/cli-opencode/README.md",
+        ".opencode/skills/cli-opencode/references/cli_reference.md"
+      ],
+      "bugClass": "share-publication-consent",
+      "disposition": "ruled_out",
+      "rationale": "Prior finding replay confirmed no distinct additional security issue.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/README.md:78-87",
+        ".opencode/skills/cli-opencode/SKILL.md:19-22,354-358",
+        ".opencode/skills/cli-opencode/references/cli_reference.md:331-334"
+      ],
+      "proof": "Duplicate of active R2-P1-001."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-602",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "destructive-scope-enforcement",
+      "disposition": "ruled_out",
+      "rationale": "No plan-level bypass of the documented containment and active-test requirements was found.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/references/destructive_scope_violations.md:85-97,127-164",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md:77-110,130-137"
+      ],
+      "proof": "Direct review found explicit mitigation and verification obligations."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-604",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "stale-functional-referrer",
+      "disposition": "ruled_out",
+      "rationale": "No omitted plan-level gate was found for the stale-reference security path.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:108-122,146-148,174-179",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/spec.md:103-107,127-138,156-161"
+      ],
+      "proof": "Direct review found atomic migration and terminal zero-live-hit verification requirements."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-802",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/004-onboard-chrome-devtools/spec.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md"
+      ],
+      "bugClass": "phase_ownership",
+      "disposition": "ruled_out",
+      "rationale": "No new independently actionable ownership conflict was found.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md:103-115",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:105-115",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/004-onboard-chrome-devtools/spec.md:102-110",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md:103-113"
+      ],
+      "proof": "Explicit phase boundaries cover structural moves and integration sweeps."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-803",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md",
+        ".opencode/skills/cli-opencode/README.md",
+        ".opencode/skills/cli-opencode/references/cli_reference.md"
+      ],
+      "bugClass": "documentation_contract_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "No new independently actionable documentation defect beyond the active registry findings.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:271-311",
+        ".opencode/skills/cli-opencode/README.md:63-76,123-145",
+        ".opencode/skills/cli-opencode/references/cli_reference.md:269-296"
+      ],
+      "proof": "Prior findings cover the existing contract conflicts."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-901",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/002-architecture-decision/decision-record.md"
+      ],
+      "bugClass": "atomic_identity_scorer_transition",
+      "disposition": "ruled_out",
+      "rationale": "No new planning contradiction weakening the atomic scorer and identity transition was found.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:105-146",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code/spec.md:181-206"
+      ],
+      "proof": "Direct review confirms equivalent atomicity requirements across scope, acceptance criteria, and rollback."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-902",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/decision-record.md",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md"
+      ],
+      "bugClass": "code_mode_registration_stability",
+      "disposition": "ruled_out",
+      "rationale": "No new plan-level conflict would relocate or re-register the native MCP server.",
+      "evidenceRefs": [
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/002-architecture-decision/decision-record.md:460-465",
+        ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/006-advisor-and-integration/spec.md:105-121"
+      ],
+      "proof": "Direct review confirms the scope exception is metadata-only and preserves the registration boundary."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/README.md",
+        ".opencode/skills/cli-opencode/SKILL.md",
+        ".opencode/skills/cli-opencode/references/cli_reference.md"
+      ],
+      "bugClass": "session_publication_consent",
+      "disposition": "ruled_out",
+      "rationale": "No independent publication-consent defect beyond active finding R2-P1-001 was found.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/README.md:78-87",
+        ".opencode/skills/cli-opencode/SKILL.md:19-22,354-365",
+        ".opencode/skills/cli-opencode/references/cli_reference.md:331-334"
+      ],
+      "proof": "Duplicate direction already represented in the findings registry."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+        ".opencode/skills/cli-opencode/SKILL.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "destructive_scope_enforcement",
+      "disposition": "ruled_out",
+      "rationale": "No new plan-level bypass of the documented destructive-write containment was found.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/references/destructive_scope_violations.md:85-164",
+        ".opencode/skills/cli-opencode/SKILL.md:350",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md:103-137"
+      ],
+      "proof": "Direct review found explicit containment and verification obligations."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1005",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md"
+      ],
+      "bugClass": "fail_open_enforcement",
+      "disposition": "ruled_out",
+      "rationale": "The planning packet includes an active, not passive, liveness test.",
+      "evidenceRefs": [
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode/spec.md:103-140,153-170",
+        ".opencode/specs/cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout/spec.md:103-137"
+      ],
+      "proof": "Direct review found both atomic repoint and terminal active-trigger requirements."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "process_scope_termination",
+      "session_publication_consent",
+      "authentication_configuration_drift",
+      "destructive_scope_enforcement",
+      "fail_open_enforcement"
+    ],
+    "covered": [
+      "process_scope_termination"
+    ],
+    "ruledOut": [
+      "session_publication_consent",
+      "destructive_scope_enforcement",
+      "fail_open_enforcement"
+    ],
+    "deferred": [
+      "authentication_configuration_drift"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

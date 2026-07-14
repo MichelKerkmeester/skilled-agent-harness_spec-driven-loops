@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/022-cli-devin-deprecation/001-canonical-rehome-and-ci-gate",
+  "description": "The cli-devin skill owned five canonical pattern assets (context-budget, per-model-budgets, output-verification, confidence-scoring-rubric,",
+  "keywords": [
+    "cli-devin",
+    "skill",
+    "owned",
+    "five",
+    "canonical",
+    "pattern",
+    "assets",
+    "context-budget",
+    "per-model-budgets",
+    "output-verification",
+    "confidence-scoring-rubric"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.690Z",
+  "specId": "001",
+  "folderSlug": "canonical-rehome-and-ci-gate",
+  "parentChain": [
+    "cli-external-orchestration",
+    "022-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

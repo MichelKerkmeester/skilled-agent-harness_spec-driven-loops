@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/024-glm-5-2-support",
+  "description": "The small-model rotation needs GLM-5.2 (the Zhipu/Z.AI coding-plan model, served through the Z.AI GLM Coding Plan provider — shown in opencode's auth",
+  "keywords": [
+    "small-model",
+    "rotation",
+    "needs",
+    "glm-5",
+    "zhipu",
+    "coding-plan",
+    "model",
+    "served",
+    "glm",
+    "coding",
+    "plan",
+    "provider",
+    "shown",
+    "opencode",
+    "auth"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.710Z",
+  "specId": "024",
+  "folderSlug": "glm-5-2-support",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

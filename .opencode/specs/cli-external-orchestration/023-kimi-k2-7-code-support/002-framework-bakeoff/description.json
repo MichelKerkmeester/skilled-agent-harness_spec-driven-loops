@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/023-kimi-k2-7-code-support/002-framework-bakeoff",
+  "description": "`kimi-k2.7-code` was registered in Phase 001 with a reasoned-but-unverified prompt framework: `recommendedframeworks.primary` is `rcaf` and `status`",
+  "keywords": [
+    "kimi-k2",
+    "7-code",
+    "registered",
+    "phase",
+    "reasoned-but-unverified",
+    "prompt",
+    "framework",
+    "recommendedframeworks",
+    "primary",
+    "rcaf",
+    "status"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.753Z",
+  "specId": "002",
+  "folderSlug": "framework-bakeoff",
+  "parentChain": [
+    "cli-external-orchestration",
+    "023-kimi-k2-7-code-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

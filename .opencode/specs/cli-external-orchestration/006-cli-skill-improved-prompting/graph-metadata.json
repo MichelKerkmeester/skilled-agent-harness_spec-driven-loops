@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/006-cli-skill-improved-prompting",
+  "spec_folder": "cli-external-orchestration/006-cli-skill-improved-prompting",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli skill improved prompting",
+      "skilled agent orchestration",
+      "cli skill prompt quality integration via",
+      "cli skill improved prompting spec",
+      "cli skill improved prompting plan",
+      "cli skill improved prompting tasks",
+      "cli skill improved prompting checklist",
+      "cli skill improved prompting decision record",
+      "cli skill improved prompting implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "skill",
+      "improved",
+      "prompting",
+      "skilled",
+      "agent",
+      "orchestration",
+      "prompt",
+      "quality",
+      "integration",
+      "via",
+      "spec"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/spec.md",
+      ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/plan.md",
+      ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/implementation-summary.md",
+      "implementation-summary.md",
+      ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Prompt",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Integration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mirror Cards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Packet State",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Safe Two",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tier Prompt",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The CLI orchestrator skills currently rely on static prompt templates without a lightweight framework-selection or quality-check layer",
+    "created_at": "2026-04-12T09:02:50.198Z",
+    "last_save_at": "2026-07-14T19:26:18.828Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ea6055212c243667adbb492a071f90777fbf1347973d27e4b87d288c41b094d1",
+    "source_doc_hashes": {
+      "spec.md": "491e6857af33c8fdc334a3651536d8322949c794ec3565a1b6680a127f8852a3",
+      "plan.md": "19c340e5aa5fda4787474994b215e1f41c9c3aff6e9212905b10f6c3e351417b",
+      "tasks.md": "556f9aa8b547ca4c5ef871ae888b6289c379abcf00c11975f13ebea4dfafb92e",
+      "checklist.md": "a446a6c40012019359b5c7dc3fca66ff777650c2a49a32993da185022314db70",
+      "decision-record.md": "7e5535bc7a3567634df622a3516707f5d2e758cc80f5a7fb1c3f3a400de6e510",
+      "implementation-summary.md": "d2d1a62a8af5feb1cb51d3b3827680bf840e969551da24993e6e1a6bd12c3670"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

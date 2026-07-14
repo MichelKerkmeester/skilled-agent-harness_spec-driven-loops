@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
+  "description": "After phase 001 wires the `minimax` provider, we still have no guidance for using MiniMax 2.7 efficiently through cli-opencode: no context-budget",
+  "keywords": [
+    "phase",
+    "wires",
+    "minimax",
+    "provider",
+    "still",
+    "guidance",
+    "efficiently",
+    "cli-opencode",
+    "context-budget"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.788Z",
+  "specId": "002",
+  "folderSlug": "minimax-efficiency-deep-research",
+  "parentChain": [
+    "cli-external-orchestration",
+    "019-cli-opencode-minimax-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

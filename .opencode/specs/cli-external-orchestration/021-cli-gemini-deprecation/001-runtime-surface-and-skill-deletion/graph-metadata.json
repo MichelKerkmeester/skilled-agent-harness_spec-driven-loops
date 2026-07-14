@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
+  "spec_folder": "cli-external-orchestration/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
+  "parent_id": "cli-external-orchestration/021-cli-gemini-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gemini deprecation",
+      "project .gemini",
+      "runtime surface cleanup",
+      "gemini deprecation plan",
+      "project .gemini cleanup",
+      "gemini deprecation tasks",
+      "gemini deprecation checklist",
+      "gemini deprecation decision",
+      "gemini deprecation implementation",
+      "resource map",
+      "path catalog",
+      "files touched"
+    ],
+    "key_topics": [
+      "gemini",
+      "deprecation",
+      "project",
+      "runtime",
+      "surface",
+      "cleanup",
+      "plan",
+      "tasks",
+      "checklist",
+      "decision",
+      "implementation",
+      "resource"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/setup-maintainer-filters.sh",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".opencode/agents/README.txt",
+      ".opencode/agents/deep-improvement.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/agents/prompt-improver.md",
+      ".opencode/commands/create/README.txt",
+      ".opencode/commands/create/agent.md",
+      ".opencode/commands/create/skill.md",
+      ".opencode/commands/create/assets/create_agent_auto.yaml",
+      ".opencode/commands/create/assets/create_agent_confirm.yaml",
+      ".opencode/commands/create/assets/create_changelog_auto.yaml",
+      ".opencode/commands/create/assets/create_changelog_confirm.yaml"
+    ],
+    "entities": [
+      {
+        "name": "setup-maintainer-filters.sh",
+        "kind": "script",
+        "path": "scripts/setup-maintainer-filters.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".opencode/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "create_agent_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_agent_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_agent_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_agent_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_changelog_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_changelog_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_changelog_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_changelog_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The checked-in project `.gemini/` directory is still treated as an active runtime surface by docs, command scaffolds, tests, runtime capability manifests, and MCP setup guidance",
+    "created_at": "2026-06-05T06:49:52Z",
+    "last_save_at": "2026-07-14T19:26:15.713Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:878adb58c5709fa1de02ef6c0ded4ce7e426bb7b95a5539ddeb3a5877577bc1a",
+    "source_doc_hashes": {
+      "spec.md": "6b3da3b01a28f99bd0957166e36737e8005dd0b625ecde0c5df2c6200f6e5df0",
+      "plan.md": "f06e0dc3ec6f7f68be761feddcb7efbb533299a3a2445904def5b12c635f9893",
+      "tasks.md": "c88b842c52a84a4896177dfb58c3ce51ebd3d8a989d53ed91a0b023db8cc87de",
+      "checklist.md": "7ab8f28d941be747c52303d9cc7c30115aec21f9fbf2dd4af32f3c59308a4e75",
+      "decision-record.md": "d9181d39d6dceed10050fd0781e7339100a1bc5b0eeebdcebc6bbc22fa296ab7",
+      "implementation-summary.md": "42e898121dfa6fe94663c722495e31c352cf426d168973408c8c17499115bcf8",
+      "resource-map.md": "e8dfd62ed22d1d33113db6a8588e29365c607dde2dcfef3227deb1e3b836b4cc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research",
+  "spec_folder": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research",
+  "parent_id": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mimo efficiency deep-research",
+      "mimo-v2.5-pro context budget",
+      "mimo variant behavior research",
+      "mimo efficiency research plan",
+      "mimo deep-research loop",
+      "mimo-v2.5-pro research executor",
+      "mimo research tasks",
+      "mimo deep-research tasks",
+      "mimo-v2.5-pro task list",
+      "mimo deep-research summary",
+      "mimo efficiency research outcome",
+      "mimo delta list"
+    ],
+    "key_topics": [
+      "mimo",
+      "efficiency",
+      "deep-research",
+      "mimo-v2",
+      "5-pro",
+      "context",
+      "budget",
+      "variant",
+      "behavior",
+      "research",
+      "plan",
+      "loop"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deltas/deltas.jsonl",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deltas.jsonl",
+        "kind": "file",
+        "path": "research/deltas/deltas.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Determine",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Focused",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prioritized Deltas",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "WebSearch",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "HIGH",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 registered `mimo-v2.5-pro` with placeholder capability metadata (`contextlength: null`, `--variant` unverified)",
+    "created_at": "2026-06-01T20:21:29.319Z",
+    "last_save_at": "2026-07-14T19:26:14.790Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:71c2093e9ba531c066e0787a7dcda8727e821b34fa72363bf51cf3a760824abd",
+    "source_doc_hashes": {
+      "spec.md": "65d6dcdc434080fccf177de71c2367139ed444571ae5a00ddb900077c5a70e42",
+      "plan.md": "a35b5985f00b2287b890931e8c31ce74c2c97a3664db37c65834870954b76b49",
+      "tasks.md": "07ae57abe88eb756ce8992c8f894a5dd3768ff9aeb50e78e7d8104273ae534fa",
+      "implementation-summary.md": "9c0ab4e164fd202184002e90a0a7e500d5e551e5e9ad708aeb6a7268fd55de68",
+      "research/research.md": "5621057c4eedc7afafcfb95dff66e1012a09f0dd45ceda21a1964b602b1d522f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

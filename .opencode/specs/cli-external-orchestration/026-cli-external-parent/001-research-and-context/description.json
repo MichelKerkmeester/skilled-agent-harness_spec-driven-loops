@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/026-cli-external-parent/001-research-and-context",
+  "description": "Phase 002 architecture decisions depend on current, re-verified facts about two live skills and their referrers",
+  "keywords": [
+    "phase",
+    "architecture",
+    "decisions",
+    "depend",
+    "current",
+    "re-verified",
+    "facts",
+    "about",
+    "two",
+    "live",
+    "skills",
+    "referrers"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.645Z",
+  "specId": "001",
+  "folderSlug": "research-and-context",
+  "parentChain": [
+    "cli-external-orchestration",
+    "026-cli-external-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

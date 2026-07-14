@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/026-cli-external-parent/002-architecture-decision",
+  "description": "The program has approved high-impact structural decisions for folding `.opencode/skills/cli-opencode/` and `.opencode/skills/cli-claude-code/` into a",
+  "keywords": [
+    "program",
+    "approved",
+    "high-impact",
+    "structural",
+    "decisions",
+    "folding",
+    "opencode",
+    "skills",
+    "cli-opencode",
+    "cli-claude-code"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.628Z",
+  "specId": "002",
+  "folderSlug": "architecture-decision",
+  "parentChain": [
+    "cli-external-orchestration",
+    "026-cli-external-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

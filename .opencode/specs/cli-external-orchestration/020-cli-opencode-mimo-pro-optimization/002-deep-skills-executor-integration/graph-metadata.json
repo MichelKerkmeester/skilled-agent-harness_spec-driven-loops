@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
+  "spec_folder": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
+  "parent_id": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep skills executor integration",
+      "mimo deep-review deep-research",
+      "opencode agent general fix",
+      "minimax deep loop executor",
+      "deep skills executor integration plan",
+      "mimo minimax deep loop plan",
+      "opencode agent general removal plan",
+      "deep skills executor integration tasks",
+      "mimo minimax deep loop task list",
+      "tasks",
+      "name",
+      "deep skills executor integration checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "skills",
+      "executor",
+      "integration",
+      "mimo",
+      "deep-review",
+      "deep-research",
+      "opencode",
+      "agent",
+      "general",
+      "minimax",
+      "loop"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Optional",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "injected",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "MiMo-V2.5-Pro and MiniMax cannot be cleanly used as deep-loop executors: every `cli-opencode` dispatch in the deep skills injects `--agent general`, which the current opencode rejects/falls-back-from, producing noisy warnings and (for token-plan providers) failed dispatches",
+    "created_at": "2026-06-01T20:21:29.318Z",
+    "last_save_at": "2026-07-14T19:26:14.939Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ddc3bf081fb154bc9d2a3e48a0be639d2e834d0fca35b13657e8c7e380252a71",
+    "source_doc_hashes": {
+      "spec.md": "4e1a9ef1b633a0f6b764673cec55f44b91694cfe72bb6bb28678ed55d8d1df0d",
+      "plan.md": "ee699b09e3f68bea4d687c587449451b9ae7e67bc51a20d5bb6cdf6063f334cf",
+      "tasks.md": "0ef96c344dcf69bbe19a4bda6c245218a2f93ef0018a6ac5f7e4688626544923",
+      "checklist.md": "f5336bcb0efa1ee6cfec24533ff6101443924d2dbe5863d6117afb1550801456",
+      "implementation-summary.md": "0616a1cbc1538e198c68d1ac72f85da263f255ab09787c04c6dafb627e7342f0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

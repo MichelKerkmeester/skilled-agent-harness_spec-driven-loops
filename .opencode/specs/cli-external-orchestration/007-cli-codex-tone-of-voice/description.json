@@ -1,0 +1,31 @@
+{
+  "specFolder": "cli-external-orchestration/007-cli-codex-tone-of-voice",
+  "description": "Codex-family models (GPT-5.4, GPT-5.3-codex) and the Codex APP product default to a response style that differs from Claude Opus in observable,",
+  "keywords": [
+    "codex-family",
+    "models",
+    "gpt-5",
+    "3-codex",
+    "codex",
+    "app",
+    "product",
+    "default",
+    "response",
+    "style",
+    "differs",
+    "claude",
+    "opus",
+    "observable"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.723Z",
+  "specId": "007",
+  "folderSlug": "cli-codex-tone-of-voice",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-04-26_12-24__authored-codex-tone-of-voice-personalization.md",
+    "19-04-26_14-30__closed-spec-046-after-scope-pivot-original-plan.md"
+  ]
+}

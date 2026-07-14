@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/027-cli-codex-revival",
+  "spec_folder": "cli-external-orchestration/027-cli-codex-revival",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/027-cli-codex-revival/001-codex-contract-pin",
+    "cli-external-orchestration/027-cli-codex-revival/002-deep-loop-executor-support",
+    "cli-external-orchestration/027-cli-codex-revival/003-cli-codex-skill-packet",
+    "cli-external-orchestration/027-cli-codex-revival/004-codex-hook-adapter-layer",
+    "cli-external-orchestration/027-cli-codex-revival/005-codex-agent-toml-sync",
+    "cli-external-orchestration/027-cli-codex-revival/006-docs-and-closeout",
+    "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity",
+    "cli-external-orchestration/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
+    "cli-external-orchestration/027-cli-codex-revival/009-codex-hook-install-robustness"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [
+      {
+        "packet_id": "cli-external-orchestration/025-cli-codex-deprecation",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-codex revival",
+      "Codex CLI executor",
+      "Codex hooks",
+      "Codex agents"
+    ],
+    "key_topics": [
+      "cli-codex",
+      "revival",
+      "codex",
+      "cli",
+      "executor",
+      "hooks",
+      "agents",
+      "now",
+      "provides",
+      "stable",
+      "native",
+      "multi-agent"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "001-codex-contract-pin/spec.md",
+      "002-deep-loop-executor-support/spec.md",
+      "003-cli-codex-skill-packet/spec.md",
+      "004-codex-hook-adapter-layer/spec.md",
+      "005-codex-agent-toml-sync/spec.md",
+      "006-docs-and-closeout/spec.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Codex CLI 0.144.1 now provides stable native hooks, multi-agent support, and a supported non-interactive executor, reversing the operational assumptions behind packet 122",
+    "created_at": "2026-07-13T05:38:00Z",
+    "last_save_at": "2026-07-14T19:26:15.977Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8b3314195932668350df5cf1e2d56ce8115e42271afe15902a28953474cabea2",
+    "source_doc_hashes": {
+      "spec.md": "46859bd2a9ea3b981e5e38b8902862361ea795bd8320f893f02bb0679a486bfd"
+    },
+    "last_active_child_id": "008-cli-codex-model-roster-and-alignment",
+    "last_active_at": "2026-07-14T04:11:03Z"
+  }
+}

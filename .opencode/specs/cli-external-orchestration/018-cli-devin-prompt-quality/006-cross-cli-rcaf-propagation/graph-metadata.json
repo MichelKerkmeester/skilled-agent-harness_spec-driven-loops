@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
+  "spec_folder": "cli-external-orchestration/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
+  "parent_id": "cli-external-orchestration/018-cli-devin-prompt-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "113/006 cli cross rcaf propagation",
+      "medium pre plan propagation",
+      "cross cli prompt quality card",
+      "rcaf default already present",
+      "bundle gate validation deferred",
+      "113/006 implementation plan",
+      "cross cli card propagation plan",
+      "medium pre plan implementation",
+      "held findings validation plan",
+      "113/006 propagation tasks",
+      "medium pre plan card tasks",
+      "cross cli card mirror tasks"
+    ],
+    "key_topics": [
+      "cli",
+      "cross",
+      "rcaf",
+      "propagation",
+      "medium",
+      "pre",
+      "plan",
+      "prompt",
+      "quality",
+      "card",
+      "default",
+      "already"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Master",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fill Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 113/003 cli-devin eval-loop measured that medium-density pre-planning outperformed dense pre-planning by roughly 10-15% on SWE 1.6",
+    "created_at": "2026-05-17T12:18:18Z",
+    "last_save_at": "2026-07-14T19:26:20.330Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e7fce9e225f2921132b44c52ff1bd99f83d0e3943c530753efe4d19a12dd2c27",
+    "source_doc_hashes": {
+      "spec.md": "a950b4ffe20151f4bdea848dd785ad61064eb302c3060fc495a82dfb2d28fad7",
+      "plan.md": "fa1f9857fe405e03b29c30f6491e9728e086dd0712e0f809ad6ed33671aca20d",
+      "tasks.md": "4dd16d7c2e25e4920a42bd832a22dc71bbe8bdb9430548fef76d79c73ca0d4f8",
+      "checklist.md": "ccdf3f67708cd09dbf73db5b9d6e624603ee04afe8132647347e3e4c41aa9933",
+      "decision-record.md": "7f3a8e5f8228f52d9ae02b4dcdff346b69d25c72f5cc10011083bc6ea7ae4d35",
+      "implementation-summary.md": "d55a18549ba7513a3d99cd51aa9201a3482aefb0d76a0ffda0e94fcba2e81403"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

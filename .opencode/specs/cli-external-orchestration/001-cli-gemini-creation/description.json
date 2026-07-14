@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
+  "specFolder": "cli-external-orchestration/001-cli-gemini-creation",
   "description": "Claude Code and OpenCode lack a structured way to delegate tasks to Google's Gemini CLI",
   "keywords": [
     "claude",
@@ -14,12 +14,11 @@
     "gemini",
     "cli"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.871Z",
+  "lastUpdated": "2026-07-14T19:09:00.119Z",
   "specId": "001",
   "folderSlug": "cli-gemini-creation",
   "parentChain": [
-    "skilled-agent-orchestration",
-    "z_archive"
+    "cli-external-orchestration"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

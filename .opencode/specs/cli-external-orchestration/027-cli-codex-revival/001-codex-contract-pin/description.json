@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/027-cli-codex-revival/001-codex-contract-pin",
+  "description": "Codex was deprecated after its active runtime contract became unreliable",
+  "keywords": [
+    "codex",
+    "deprecated",
+    "active",
+    "runtime",
+    "contract",
+    "became",
+    "unreliable"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.558Z",
+  "specId": "001",
+  "folderSlug": "codex-contract-pin",
+  "parentChain": [
+    "cli-external-orchestration",
+    "027-cli-codex-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

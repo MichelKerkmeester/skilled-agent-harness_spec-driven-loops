@@ -1,0 +1,25 @@
+{
+  "specFolder": "cli-external-orchestration/011-cli-skill-patterns",
+  "description": "The 5 cli- skills under `.opencode/skills/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an",
+  "keywords": [
+    "cli",
+    "skills",
+    "opencode",
+    "cli-claude-code",
+    "cli-codex",
+    "cli-gemini",
+    "cli-opencode",
+    "expose",
+    "same",
+    "intent",
+    "orchestrate"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.797Z",
+  "specId": "011",
+  "folderSlug": "cli-skill-patterns",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/027-cli-codex-revival/009-codex-hook-install-robustness",
+  "spec_folder": "cli-external-orchestration/027-cli-codex-revival/009-codex-hook-install-robustness",
+  "parent_id": "cli-external-orchestration/027-cli-codex-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Codex hook install robustness",
+      "codex installer re-anchor",
+      "codex hook dormancy",
+      "Codex hook install robustness plan",
+      "Codex hook install robustness tasks",
+      "Codex hook install robustness checklist",
+      "Codex install robustness decisions",
+      "codex installer ADR",
+      "convergent installer decision",
+      "Codex hook install robustness summary",
+      "codex re-anchor containment status"
+    ],
+    "key_topics": [
+      "codex",
+      "hook",
+      "install",
+      "robustness",
+      "installer",
+      "re-anchor",
+      "dormancy",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/install-codex-hooks.mjs",
+      ".codex/hooks.json",
+      ".claude/settings.json",
+      ".opencode/plugins/mk-codex-hooks-watchdog.js",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".opencode/bin/install-codex-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "mk-codex-hooks-watchdog.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-codex-hooks-watchdog.js",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist Before",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Execution Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Format Report",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Blocked Task Protocol The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three AI runtimes share one repo and must enforce identical guardrails: Claude Code via repo-local `.claude/settings.json` hooks, OpenCode via repo-local `.opencode/plugins/`, and Codex CLI 0.144.x via user-global `~/.codex/hooks.json` only (Codex has no repo-local hook file)",
+    "created_at": "2026-07-14T17:14:22.206Z",
+    "last_save_at": "2026-07-14T19:26:16.499Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7e04dbe351c09ddf82014b48d610806ba5bfdf597c66fd2150bab79fc370da37",
+    "source_doc_hashes": {
+      "spec.md": "fc71a3024272553b1395cdf54dfb647dd29947d44404165d3e6118af79a63147",
+      "plan.md": "276faa37552851ed610b0dd867eb0295e089df71ba11ded7da1bb6323fb6d02a",
+      "tasks.md": "94881caae336cefc2e17452c19faa348b5e0d4856fe4df514fa396099b5c7c0e",
+      "checklist.md": "6d7c67cb223ab850765766c7385a9d01a17855485eb6f95efd62e6769d89f6c3",
+      "decision-record.md": "8509a0faa9428d5e0eee7d352d23b741770e695d74b706e877822aba74eab488",
+      "implementation-summary.md": "78368ff03c1379ae4d1dadd5ec52072ca91f8a9148d8d770e23d71e8ff69ebdd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

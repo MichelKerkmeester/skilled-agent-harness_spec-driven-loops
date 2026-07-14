@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code",
+  "spec_folder": "cli-external-orchestration/026-cli-external-parent/005-foldin-cli-claude-code",
+  "parent_id": "cli-external-orchestration/026-cli-external-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "foldin cli-claude-code",
+      "identity dissolution",
+      "executor-delegation scorer rewrite",
+      "parity fixtures re-baseline",
+      "phase 005 atomic bundle",
+      "foldin cli-claude-code plan",
+      "identity dissolution plan",
+      "scorer rewrite plan",
+      "atomic bundle plan",
+      "phase 005 plan",
+      "foldin cli-claude-code tasks",
+      "identity dissolution tasks"
+    ],
+    "key_topics": [
+      "foldin",
+      "cli-claude-code",
+      "identity",
+      "dissolution",
+      "executor-delegation",
+      "scorer",
+      "rewrite",
+      "parity",
+      "fixtures",
+      "re-baseline",
+      "phase",
+      "atomic"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+      ".github/workflows/prompt-card-sync.yml",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "executor-delegation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Atomic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Delegation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-claude-code` is still a second independent advisor identity, and the two children still carry separate `graph-metadata.json` files",
+    "created_at": "2026-07-09T18:58:27Z",
+    "last_save_at": "2026-07-14T19:26:23.197Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:5788501fce51ab188ba82e251ba83ad64edb1a47c87e3b460193a7cc4c75add0",
+    "source_doc_hashes": {
+      "spec.md": "f993a3151cd52a33f2217e6ff93f6f436203d8588803dac7269426bb3888fca5",
+      "plan.md": "402911d154ea4778ba87c3a5577d5c28ac2a59789f83532f35ceaddc82b7e62d",
+      "tasks.md": "90bf431496c7d40b07eb3fee8fd00853b32b3def1612cd7938b73ed1cbbec78a",
+      "checklist.md": "0176a06c44ea22d2ac709dba3e0d450924e29c72ce565080729c900a7a420500"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/009-cli-testing-playbooks",
+  "spec_folder": "cli-external-orchestration/009-cli-testing-playbooks",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli testing playbook",
+      "cli playbook",
+      "manual testing playbook",
+      "048-cli-testing-playbooks",
+      "cli playbook validation",
+      "cli playbook plan",
+      "048 plan",
+      "cli testing playbook plan",
+      "048 tasks",
+      "cli playbook tasks",
+      "048 checklist",
+      "cli playbook checklist"
+    ],
+    "key_topics": [
+      "cli",
+      "testing",
+      "playbook",
+      "manual",
+      "048-cli-testing-playbooks",
+      "validation",
+      "plan",
+      "tasks",
+      "checklist",
+      "five",
+      "orchestrator",
+      "skills"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/spec.md",
+      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/plan.md",
+      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/decision-record.md",
+      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/tasks.md",
+      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/checklist.md",
+      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/implementation-summary.md",
+      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/description.json",
+      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/graph-metadata.json",
+      "review/review-report.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Playbooks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drafted Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Wave",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Spec",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-opencode`) lack manual testing playbooks",
+    "created_at": "2026-04-26T08:19:52.465Z",
+    "last_save_at": "2026-07-14T19:26:20.858Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:42ab2ba7a6848a2018e5b0f293a0bf49061f2404a0fb521a7cabaf6940825cf4",
+    "source_doc_hashes": {
+      "spec.md": "2bafe756da95947ba1816d151d7b8e0c1baadd2581e194b133f8bfe59762801f",
+      "plan.md": "666263e6393c77922750f7d205e95f1ec1b854fc69c40e38c30590a08481ea35",
+      "tasks.md": "a712b63ca7ed6770ebb596bcbdd031753b61e852ef9776d3f92c6137ae3f7d72",
+      "checklist.md": "8c2aaa3bc69a758b86e832bd3e3a201c295937a91e23229d76ddcbf168e4dd6c",
+      "decision-record.md": "b7d9792504cdbe326d50b8a9abddd8f4c2c8875c1da51b679a4c6a6b4c72c6a2",
+      "implementation-summary.md": "a49458e111c28c51e19535e56bd66395288e638d8d308d7cb09aaccfb1923701"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

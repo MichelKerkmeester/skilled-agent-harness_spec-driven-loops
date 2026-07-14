@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/026-cli-external-parent/007-routing-benchmark-and-review",
+  "description": "The merged `cli-external` hub serves two modes that were previously independent skills, and its delegation routing now flows through a rewritten",
+  "keywords": [
+    "merged",
+    "cli-external",
+    "hub",
+    "serves",
+    "two",
+    "modes",
+    "previously",
+    "independent",
+    "skills",
+    "delegation",
+    "routing",
+    "now",
+    "flows",
+    "rewritten"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.646Z",
+  "specId": "007",
+  "folderSlug": "routing-benchmark-and-review",
+  "parentChain": [
+    "cli-external-orchestration",
+    "026-cli-external-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

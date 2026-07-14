@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/003-cli-claude-code-creation",
+  "description": "No skill exists for external AI assistants (Gemini CLI, Codex CLI, Copilot, etc.) to delegate tasks to Claude Code CLI",
+  "keywords": [
+    "skill",
+    "exists",
+    "external",
+    "assistants",
+    "gemini",
+    "cli",
+    "codex",
+    "copilot",
+    "etc",
+    "delegate",
+    "tasks",
+    "claude",
+    "code"
+  ],
+  "lastUpdated": "2026-07-14T19:14:38.816Z",
+  "specId": "003",
+  "folderSlug": "cli-claude-code-creation",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/019-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
+  "description": "Every MiniMax reference in the repo describes the provider as the pay-per-token Direct API (`minimax` → `MINIMAXAPIKEY`, `MiniMax-M2.7`)",
+  "keywords": [
+    "every",
+    "minimax",
+    "reference",
+    "repo",
+    "describes",
+    "provider",
+    "pay-per-token",
+    "direct",
+    "api",
+    "minimaxapikey",
+    "minimax-m2"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.796Z",
+  "specId": "004",
+  "folderSlug": "minimax-token-plan-provider",
+  "parentChain": [
+    "cli-external-orchestration",
+    "019-cli-opencode-minimax-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "01-06-26_07-51__switched-the-default-minimax-dispatch-path-from.md"
+  ]
+}

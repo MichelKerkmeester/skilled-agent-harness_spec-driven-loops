@@ -1,0 +1,47 @@
+{
+  "scope": "Deprecate the cli-devin skill and remove all references from skills, commands, YAMLs, agents, AGENTS.md, CLAUDE.md, and every other place in the framework",
+  "specFolder": ".opencode/specs/cli-external-orchestration/022-cli-devin-deprecation",
+  "loopType": "context",
+  "executionMode": "auto",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxToolCallsPerIteration": 12,
+  "relevanceGate": 0.55,
+  "agreementMin": 2,
+  "fanout": {
+    "mode": "by-model-shared-scope",
+    "concurrency": 2,
+    "executors": [
+      {
+        "kind": "native",
+        "label": "native-a",
+        "model": "sonnet"
+      },
+      {
+        "kind": "native",
+        "label": "native-b",
+        "model": "sonnet"
+      }
+    ]
+  },
+  "report": {
+    "path": "context/context-report.md",
+    "jsonPath": "context/context-report.json"
+  },
+  "reducer": {
+    "enabled": true,
+    "registryFile": "context/findings-registry.json",
+    "dashboardFile": "context/deep-context-dashboard.md"
+  },
+  "createdAt": "2026-06-08T15:12:17.963Z",
+  "status": "complete",
+  "lineage": {
+    "sessionId": "ctx-142-cli-devin-20260608151217",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "completedAt": "2026-06-08T15:57:06.081Z"
+}

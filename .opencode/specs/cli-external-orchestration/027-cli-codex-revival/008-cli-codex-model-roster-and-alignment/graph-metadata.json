@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
+  "spec_folder": "cli-external-orchestration/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
+  "parent_id": "cli-external-orchestration/027-cli-codex-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-codex model roster",
+      "codex gpt-5.6 models",
+      "codex effort ceilings",
+      "codex doc alignment",
+      "cli-codex model roster plan",
+      "cli-codex model roster tasks",
+      "cli-codex model roster checklist",
+      "cli-codex model roster decisions",
+      "codex roster ADR",
+      "cli-codex model roster summary",
+      "codex roster status"
+    ],
+    "key_topics": [
+      "cli-codex",
+      "model",
+      "roster",
+      "codex",
+      "gpt-5",
+      "models",
+      "effort",
+      "ceilings",
+      "doc",
+      "alignment",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      ".codex/hooks.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Selection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Supported Models",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist Before",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Execution Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Propagate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-codex skill documented a single-model contract — \"the skill dispatches `gpt-5.5` for every task\" — even though the `fast` service tier exposes three additional GPT-5.6 models (`luna`, `terra`, `sol`) that reach reasoning-effort levels (`max`, `ultra`) the docs never named",
+    "created_at": "2026-07-13T16:41:33.164Z",
+    "last_save_at": "2026-07-14T19:26:16.232Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7a01468d1f9290a62b5a4af31163a29cc745e79f8bc3fe12cc4fddb6fb5ec2d9",
+    "source_doc_hashes": {
+      "spec.md": "62745d3d05b9c9902f33476a682e4c59af0ef6afe7fa33358b9d64a96182cfdb",
+      "plan.md": "2da9802fb46d66cf93a370c87d5ca8d7d7345e6fdeb3d0e4cd543c6e307b8d9a",
+      "tasks.md": "fd512bc8ed4607fc796a09b0423db16d3f24aba55c1e80d60ff2e90bf4bdf480",
+      "checklist.md": "a712d9f75f7fe3e364a84e27d4f5ebc42a8fe1d373e66c8b5cf1018a862785b7",
+      "decision-record.md": "00224e2fc5d61efd08a60cff99119127792e23f93b1084a1e96639d5fe619f7b",
+      "implementation-summary.md": "bcc656cf20ad07a601b830c178bbec9970a82c20f45ef267ba82870addd127a6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/028-cli-hub-rename/003-reference-sweep",
+  "description": "After a hub rename, active docs and generated prompt surfaces can continue speaking the old path",
+  "keywords": [
+    "hub",
+    "rename",
+    "active",
+    "docs",
+    "prompt",
+    "surfaces",
+    "continue",
+    "speaking",
+    "old",
+    "path"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.657Z",
+  "specId": "003",
+  "folderSlug": "reference-sweep",
+  "parentChain": [
+    "cli-external-orchestration",
+    "028-cli-hub-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

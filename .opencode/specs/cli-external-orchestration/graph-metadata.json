@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration",
+  "spec_folder": "cli-external-orchestration",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/001-cli-gemini-creation",
+    "cli-external-orchestration/002-cli-codex-creation",
+    "cli-external-orchestration/003-cli-claude-code-creation",
+    "cli-external-orchestration/004-cli-copilot-creation",
+    "cli-external-orchestration/005-cli-self-invocation-guards",
+    "cli-external-orchestration/006-cli-skill-improved-prompting",
+    "cli-external-orchestration/007-cli-codex-tone-of-voice",
+    "cli-external-orchestration/008-cli-opencode-creation",
+    "cli-external-orchestration/009-cli-testing-playbooks",
+    "cli-external-orchestration/010-cli-opencode-providers",
+    "cli-external-orchestration/011-cli-skill-patterns",
+    "cli-external-orchestration/012-cli-skill-removal-mcp-clickup",
+    "cli-external-orchestration/013-cli-copilot-hallucination-caveat",
+    "cli-external-orchestration/014-cli-copilot-deprecation-due-to-price-hike",
+    "cli-external-orchestration/015-cli-opencode-stdin-fix",
+    "cli-external-orchestration/016-cli-devin-creation",
+    "cli-external-orchestration/017-cli-devin-effectiveness-improvements",
+    "cli-external-orchestration/018-cli-devin-prompt-quality",
+    "cli-external-orchestration/019-cli-opencode-minimax-optimization",
+    "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization",
+    "cli-external-orchestration/021-cli-gemini-deprecation",
+    "cli-external-orchestration/022-cli-devin-deprecation",
+    "cli-external-orchestration/023-kimi-k2-7-code-support",
+    "cli-external-orchestration/024-glm-5-2-support",
+    "cli-external-orchestration/025-cli-codex-deprecation",
+    "cli-external-orchestration/026-cli-external-parent",
+    "cli-external-orchestration/027-cli-codex-revival",
+    "cli-external-orchestration/028-cli-hub-rename"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "cli",
+      "external",
+      "orchestration",
+      "codex",
+      "opencode",
+      "gemini",
+      "devin",
+      "copilot",
+      "executor"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Track folder consolidating every external-CLI skill spec (codex, opencode, gemini, devin, copilot, model-support) into one sequential category.",
+    "created_at": "2026-07-14T19:33:39.000Z",
+    "last_save_at": "2026-07-14T19:33:39.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_fingerprint": "sha256:26cf1a2a566c3eb1b83d037f9bcee3ba6db783a593db12a65f479f0e53dd3fa4",
+    "source_doc_hashes": {},
+    "last_active_child_id": "cli-external-orchestration/028-cli-hub-rename",
+    "last_active_at": "2026-07-14T19:33:39.000Z"
+  }
+}

@@ -100,9 +100,7 @@
     "skilled-agent-orchestration/117-parent-nested-skill-pattern",
     "skilled-agent-orchestration/118-frontmatter-versioning",
     "skilled-agent-orchestration/119-parent-skill-native-invocability",
-    "skilled-agent-orchestration/120-glm-5-2-support",
     "skilled-agent-orchestration/121-sk-prompt-models-rename",
-    "skilled-agent-orchestration/122-cli-codex-deprecation",
     "skilled-agent-orchestration/123-agent-loops-improved"
   ],
   "manual": {

@@ -1,0 +1,27 @@
+{
+  "level": "phase",
+  "specFolder": "cli-external-orchestration/026-cli-external-parent",
+  "description": "`cli-opencode` (full-runtime OpenCode dispatch orchestrator: external dispatch, parallel detached sessions, cross-AI handback) and `cli-claude-code`",
+  "keywords": [
+    "cli-opencode",
+    "full-runtime",
+    "opencode",
+    "dispatch",
+    "orchestrator",
+    "external",
+    "parallel",
+    "detached",
+    "sessions",
+    "cross-ai",
+    "handback",
+    "cli-claude-code"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.624Z",
+  "specId": "026",
+  "folderSlug": "cli-external-parent",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

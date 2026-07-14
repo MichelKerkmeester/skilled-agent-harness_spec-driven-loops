@@ -1,0 +1,25 @@
+{
+  "specFolder": "cli-external-orchestration/002-cli-codex-creation",
+  "description": "The existing `cli-gemini` skill referenced multiple Gemini model variants, which created avoidable decision overhead",
+  "keywords": [
+    "existing",
+    "cli-gemini",
+    "skill",
+    "referenced",
+    "multiple",
+    "gemini",
+    "model",
+    "variants",
+    "avoidable",
+    "decision",
+    "overhead"
+  ],
+  "lastUpdated": "2026-07-14T19:14:38.812Z",
+  "specId": "002",
+  "folderSlug": "cli-codex-creation",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

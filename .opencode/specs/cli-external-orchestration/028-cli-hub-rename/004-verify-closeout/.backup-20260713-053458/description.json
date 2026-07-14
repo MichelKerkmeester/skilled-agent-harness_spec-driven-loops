@@ -1,0 +1,26 @@
+{
+  "specFolder": "cli-external-orchestration/028-cli-hub-rename/004-verify-closeout/.backup-20260713-053458",
+  "description": "This archived snapshot predates packet finalization and is retained only because deletion was prohibited",
+  "keywords": [
+    "archived",
+    "snapshot",
+    "predates",
+    "packet",
+    "finalization",
+    "retained",
+    "only",
+    "because",
+    "deletion",
+    "prohibited"
+  ],
+  "lastUpdated": "2026-07-14T19:09:00.819Z",
+  "specId": "",
+  "folderSlug": "backup-20260713-053458",
+  "parentChain": [
+    "cli-external-orchestration",
+    "028-cli-hub-rename",
+    "004-verify-closeout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

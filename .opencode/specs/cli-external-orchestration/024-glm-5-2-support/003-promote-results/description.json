@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/024-glm-5-2-support/003-promote-results",
+  "description": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/<run-label>/`",
+  "keywords": [
+    "phase",
+    "runs",
+    "bakeoff",
+    "empirical",
+    "winner",
+    "exists",
+    "only",
+    "run",
+    "output",
+    "benchmarks",
+    "run-label"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.567Z",
+  "specId": "003",
+  "folderSlug": "promote-results",
+  "parentChain": [
+    "cli-external-orchestration",
+    "024-glm-5-2-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

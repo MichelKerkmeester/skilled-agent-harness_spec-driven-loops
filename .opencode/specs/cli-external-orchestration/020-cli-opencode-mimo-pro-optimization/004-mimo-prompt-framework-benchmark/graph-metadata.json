@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark",
+  "spec_folder": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark",
+  "parent_id": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mimo prompt framework benchmark",
+      "mimo-v2.5-pro best framework",
+      "mimo tidd-ec rcaf benchmark",
+      "mimo benchmark plan",
+      "mimo eval rig port",
+      "mimo-v2.5-pro dispatch bench",
+      "mimo benchmark tasks",
+      "mimo eval rig tasks",
+      "mimo framework bake-off tasks",
+      "verification",
+      "checklist",
+      "mimo"
+    ],
+    "key_topics": [
+      "mimo",
+      "prompt",
+      "framework",
+      "benchmark",
+      "mimo-v2",
+      "5-pro",
+      "best",
+      "tidd-ec",
+      "rcaf",
+      "plan",
+      "eval",
+      "rig"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Mirrors",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement We",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lean",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "We have no empirical evidence for which prompt framework yields the best MiMo-V2.5-Pro output when another AI drives it through cli-opencode",
+    "created_at": "2026-06-01T20:21:29.319Z",
+    "last_save_at": "2026-07-14T19:26:14.504Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7d8607c25d191355c83a25bd722a08d5deacff45158eaf3f509865fd01ca6fcd",
+    "source_doc_hashes": {
+      "spec.md": "0650b5748fca6376576180d85aa76896deefa16b4b6f4a406876ba9ff29ba212",
+      "plan.md": "1b3fa1b0beb3e62fcbcffc9f47323337cc5eb154db0e0fe215698c1630d0fe95",
+      "tasks.md": "ebdfb542cfdf01d1cf1d3771642624ddfd3e5ca4ebd0ca59f0c237e2d31a37ec",
+      "checklist.md": "557e5ecfce0bd0b2f755448b9b541f10059ef9ba6864346239b5c4cc722743d6",
+      "implementation-summary.md": "5f5ccc67f33bcaa095d4f70d7da3f912437e1c5da0106cf4b96e2936e7436764"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "title": "cli-opencode `</dev/null` stdin-redirect fix",
+  "trigger_phrases": [
+    "097 cli-opencode stdin fix",
+    "opencode run hangs",
+    "opencode dev null stdin",
+    "opencode background dispatch hang",
+    "cli-opencode automation hang"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "fix",
+  "status": "in-progress",
+  "priority": "P0",
+  "createdAt": "2026-05-08T13:30:00Z",
+  "branch": "main",
+  "parent_track": "skilled-agent-orchestration",
+  "parent_id": null,
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "in-progress",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "cli-external-orchestration/015-cli-opencode-stdin-fix",
+  "description": "`opencode run` is the entry point for cross-AI dispatch from Claude Code, Codex, Gemini, and shell automation",
+  "keywords": [
+    "opencode",
+    "run",
+    "entry",
+    "point",
+    "cross-ai",
+    "dispatch",
+    "claude",
+    "code",
+    "codex",
+    "gemini",
+    "shell",
+    "automation"
+  ],
+  "lastUpdated": "2026-07-14T19:19:05.724Z",
+  "specId": "015",
+  "folderSlug": "cli-opencode-stdin-fix",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

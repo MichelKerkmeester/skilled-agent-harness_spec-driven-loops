@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/028-cli-hub-rename/001-hub-dir-rename",
+  "description": "The external CLI hub used a directory identity that no longer matched the canonical parent-skill name",
+  "keywords": [
+    "external",
+    "cli",
+    "hub",
+    "directory",
+    "identity",
+    "longer",
+    "matched",
+    "canonical",
+    "parent-skill",
+    "name"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.659Z",
+  "specId": "001",
+  "folderSlug": "hub-dir-rename",
+  "parentChain": [
+    "cli-external-orchestration",
+    "028-cli-hub-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

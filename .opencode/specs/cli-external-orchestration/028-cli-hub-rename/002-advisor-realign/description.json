@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/028-cli-hub-rename/002-advisor-realign",
+  "description": "Moving the hub invalidates advisor paths and projections unless they are regenerated or repointed",
+  "keywords": [
+    "moving",
+    "hub",
+    "invalidates",
+    "advisor",
+    "paths",
+    "projections",
+    "unless",
+    "regenerated",
+    "repointed"
+  ],
+  "lastUpdated": "2026-07-14T19:15:06.655Z",
+  "specId": "002",
+  "folderSlug": "advisor-realign",
+  "parentChain": [
+    "cli-external-orchestration",
+    "028-cli-hub-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
