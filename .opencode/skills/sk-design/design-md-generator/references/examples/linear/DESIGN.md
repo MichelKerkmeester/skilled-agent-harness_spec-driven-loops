@@ -1,3 +1,15 @@
+---
+title: Linear Style Reference Example
+description: Gold-standard dark v3 Style Reference example for studying measured Linear design tokens, typography, surfaces, and component prose.
+trigger_phrases:
+  - Linear DESIGN.md example
+  - dark style reference example
+  - study Linear design tokens
+importance_tier: normal
+contextType: reference
+version: 1.0.0.0
+---
+
 # Linear — Style Reference
 > A near-black product canvas where content surfaces through luminance, and a single indigo is the only thing allowed to glow.
 

@@ -1,6 +1,6 @@
 ---
 name: design-audit
-description: Design QA and critique mode for accessibility, performance, responsive, theming, anti-slop detection, scoring, and production hardening.
+description: Design QA and critique: accessibility, performance, responsive, theming, anti-slop detection, scoring, production hardening.
 allowed-tools: [Read, Grep, Glob]
 version: 1.0.0.2
 metadata:

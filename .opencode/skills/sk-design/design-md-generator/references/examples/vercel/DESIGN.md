@@ -1,3 +1,15 @@
+---
+title: Vercel Style Reference Example
+description: Gold-standard light v3 Style Reference example for studying measured Vercel design tokens, typography, surfaces, and component prose.
+trigger_phrases:
+  - Vercel DESIGN.md example
+  - light developer style reference example
+  - study Vercel design tokens
+importance_tier: normal
+contextType: reference
+version: 1.0.0.0
+---
+
 # Vercel — Style Reference
 > Developer infrastructure made invisible — an achromatic field where a hairline `#ebebeb` box-shadow does the work a border would.
 

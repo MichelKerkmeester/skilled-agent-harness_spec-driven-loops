@@ -1,6 +1,6 @@
 ---
 name: design-motion
-description: Temporal interaction design for purposeful animation, micro-interactions, transitions, motion materials, AnimatePresence, and reduced motion.
+description: Temporal interaction design for animation, micro-interactions, transitions, motion materials, AnimatePresence, and reduced motion.
 allowed-tools: [Read, Grep, Glob]
 version: 1.0.0.1
 metadata:

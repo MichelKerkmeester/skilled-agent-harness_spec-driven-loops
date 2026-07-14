@@ -1,3 +1,15 @@
+---
+title: Vercel DESIGN.md Writing Notes
+description: Editorial notes explaining the measured data, fidelity decisions, and validation caveats in the Vercel v3 Style Reference example.
+trigger_phrases:
+  - Vercel DESIGN.md writing notes
+  - Vercel style reference validation
+  - Vercel extraction caveats
+importance_tier: normal
+contextType: reference
+version: 1.0.0.0
+---
+
 # Writing Notes: Vercel (v3 Style Reference)
 
 - This DESIGN.md is a **v3 Style Reference** regenerated from the existing `tokens.json` — no re-crawl, no network. Only the deterministic WRITE prompt (`build-write-prompt.ts`) was run over the extracted tokens.

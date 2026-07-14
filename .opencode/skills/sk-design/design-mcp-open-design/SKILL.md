@@ -1,6 +1,6 @@
 ---
 name: design-mcp-open-design
-description: Drive the installed Open Design desktop app from the terminal through its `od` CLI and stdio MCP server. Read local design projects and design-systems, reuse them, answer the app's prompts, and commission headless generation runs without using the in-app chat. Wires Open Design's MCP server into opencode or Claude Code. MANDATORY: any UI/design work through Open Design also requires sk-design — this skill is the transport, that skill is the non-negotiable design judgment.
+description: Open Design od CLI/MCP: wire opencode/Claude, read/reuse projects/systems, answer prompts, commission headless runs; sk-design.
 compatibility: Requires the Open Design desktop app (v0.9.0+) installed and running (it hosts the local daemon), Node.js, and the target agent CLI (opencode or claude) for MCP install.
 metadata:
   author: nexu-io (Open Design)

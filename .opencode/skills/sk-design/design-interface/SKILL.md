@@ -1,6 +1,6 @@
 ---
 name: design-interface
-description: Guidance for distinctive, intentional UI design when building or reshaping an interface. Drives deliberate palette, typography, layout and motion choices that avoid templated AI defaults, with a brainstorm-critique-build process and interface writing rules.
+description: Distinctive UI design: build/reshape interfaces with palette, typography, layout, motion, critique, and interface writing.
 allowed-tools: [Read, Grep, Glob]
 version: 1.0.1.0
 metadata:

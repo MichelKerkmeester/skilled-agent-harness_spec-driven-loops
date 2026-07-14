@@ -1,3 +1,15 @@
+---
+title: Stripe Style Reference Example
+description: Gold-standard light v3 Style Reference example for studying measured Stripe design tokens, typography, surfaces, and component prose.
+trigger_phrases:
+  - Stripe DESIGN.md example
+  - light style reference example
+  - study Stripe design tokens
+importance_tier: normal
+contextType: reference
+version: 1.0.0.0
+---
+
 # Stripe — Style Reference
 > Indigo-violet rationed against a white field — borders carry the structure, one saturated blue carries the brand.
 

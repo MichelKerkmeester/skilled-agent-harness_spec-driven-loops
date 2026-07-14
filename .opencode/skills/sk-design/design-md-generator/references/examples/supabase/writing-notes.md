@@ -1,3 +1,15 @@
+---
+title: Supabase DESIGN.md Writing Notes
+description: Editorial notes explaining the measured data, fidelity decisions, and validation caveats in the Supabase v3 Style Reference example.
+trigger_phrases:
+  - Supabase DESIGN.md writing notes
+  - Supabase style reference validation
+  - Supabase extraction caveats
+importance_tier: normal
+contextType: reference
+version: 1.0.0.0
+---
+
 # Writing Notes: Supabase DESIGN.md (v3)
 
 - This is a v3 **Style Reference**, regenerated from the existing `tokens.json` with no re-crawl. Value-bearing sections (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) are pasted verbatim from `build-write-prompt.ts`; only prose was authored.

@@ -1,3 +1,15 @@
+---
+title: Linear DESIGN.md Writing Notes
+description: Editorial notes explaining the measured data, fidelity decisions, and validation caveats in the Linear v3 Style Reference example.
+trigger_phrases:
+  - Linear DESIGN.md writing notes
+  - Linear style reference validation
+  - Linear extraction caveats
+importance_tier: normal
+contextType: reference
+version: 1.0.0.0
+---
+
 # Writing Notes: Linear DESIGN.md (v3 Style Reference)
 
 - This is a **v3 Style Reference** regenerated from the existing `tokens.json` (no re-crawl) via `build-write-prompt.ts` → author prose → `validate.ts`. The value-bearing sections (Colors, Spacing & Shapes, Surfaces, Quick Start) are pasted verbatim from the deterministic formatter.

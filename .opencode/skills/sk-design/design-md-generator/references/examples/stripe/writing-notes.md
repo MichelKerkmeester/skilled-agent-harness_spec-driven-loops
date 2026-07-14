@@ -1,3 +1,15 @@
+---
+title: Stripe DESIGN.md Writing Notes
+description: Editorial notes explaining the measured data, fidelity decisions, and validation caveats in the Stripe v3 Style Reference example.
+trigger_phrases:
+  - Stripe DESIGN.md writing notes
+  - Stripe style reference validation
+  - Stripe extraction caveats
+importance_tier: normal
+contextType: reference
+version: 1.0.0.0
+---
+
 # Writing Notes: Stripe DESIGN.md
 
 This DESIGN.md is a v3 **Style Reference**, regenerated from the existing `tokens.json` with no re-crawl — all values are deterministically pre-rendered (Colors, Spacing & Shapes, Surfaces, Quick Start pasted unchanged) and the prose is authored from the build-write-prompt FACTS block only.

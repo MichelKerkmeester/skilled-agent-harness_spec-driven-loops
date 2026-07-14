@@ -1,3 +1,15 @@
+---
+title: Supabase Style Reference Example
+description: Gold-standard dark v3 Style Reference example for studying measured Supabase design tokens, typography, surfaces, and component prose.
+trigger_phrases:
+  - Supabase DESIGN.md example
+  - dark developer style reference example
+  - study Supabase design tokens
+importance_tier: normal
+contextType: reference
+version: 1.0.0.0
+---
+
 # Supabase — Style Reference
 > Postgres infrastructure rendered in near-black — one Voltage green threading an achromatic developer canvas.
 
