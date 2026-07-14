@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
+  "description": "Phase 1: rename-engine",
+  "keywords": [
+    "phase",
+    "rename-engine"
+  ],
+  "lastUpdated": "2026-07-14T15:16:48.791Z",
+  "specId": "001",
+  "folderSlug": "rename-engine",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention",
+    "005-rename-and-reference-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

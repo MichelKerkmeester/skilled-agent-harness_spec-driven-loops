@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
+  "description": "Phase 2: cli-opencode",
+  "keywords": [
+    "phase",
+    "cli-opencode"
+  ],
+  "lastUpdated": "2026-07-14T15:17:37.037Z",
+  "specId": "002",
+  "folderSlug": "cli-opencode",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention",
+    "008-component-migration",
+    "005-cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -97,3 +97,29 @@ over-broad sweep, exemption leakage, concurrent sessions). Phase-specific risks 
 
 None blocking; resolved during this phase's execution against the pinned baseline.
 <!-- /ANCHOR:questions -->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-rename-engine/ | [Phase 1 scope] | Pending |
+| 2 | 002-reference-checker-and-disposition-ledger/ | [Phase 2 scope] | Pending |
+| 3 | 003-fixture-corpus-and-dry-run-harness/ | [Phase 3 scope] | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-rename-engine | 002-reference-checker-and-disposition-ledger | [Criteria TBD] | [Verification TBD] |
+| 002-reference-checker-and-disposition-ledger | 003-fixture-corpus-and-dry-run-harness | [Criteria TBD] | [Verification TBD] |
+<!-- /ANCHOR:phase-map -->

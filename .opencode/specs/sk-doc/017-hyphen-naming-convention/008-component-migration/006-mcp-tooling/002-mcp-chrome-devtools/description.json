@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
+  "description": "Phase 2: mcp-chrome-devtools",
+  "keywords": [
+    "phase",
+    "mcp-chrome-devtools"
+  ],
+  "lastUpdated": "2026-07-14T15:17:43.089Z",
+  "specId": "002",
+  "folderSlug": "mcp-chrome-devtools",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention",
+    "008-component-migration",
+    "006-mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

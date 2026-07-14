@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
+  "description": "Phase 3: hoisted-shared-script-closures",
+  "keywords": [
+    "phase",
+    "hoisted-shared-script-closures"
+  ],
+  "lastUpdated": "2026-07-14T15:16:53.431Z",
+  "specId": "003",
+  "folderSlug": "hoisted-shared-script-closures",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention",
+    "007-shared-and-cross-cutting-closures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

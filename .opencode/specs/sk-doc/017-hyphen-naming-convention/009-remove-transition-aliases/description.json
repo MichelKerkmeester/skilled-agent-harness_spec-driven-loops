@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/009-remove-transition-aliases",
+  "description": "Phase 1: remove-transition-aliases",
+  "keywords": [
+    "phase",
+    "remove-transition-aliases"
+  ],
+  "lastUpdated": "2026-07-14T15:22:42.639Z",
+  "specId": "009",
+  "folderSlug": "remove-transition-aliases",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

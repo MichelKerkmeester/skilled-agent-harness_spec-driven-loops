@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
+  "description": "Phase 2: mcp-server-inner-dirs",
+  "keywords": [
+    "phase",
+    "mcp-server-inner-dirs"
+  ],
+  "lastUpdated": "2026-07-14T15:17:59.254Z",
+  "specId": "002",
+  "folderSlug": "mcp-server-inner-dirs",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention",
+    "008-component-migration",
+    "008-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

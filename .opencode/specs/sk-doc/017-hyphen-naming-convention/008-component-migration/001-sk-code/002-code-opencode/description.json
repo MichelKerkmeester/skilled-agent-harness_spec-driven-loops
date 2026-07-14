@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
+  "description": "Phase 2: code-opencode",
+  "keywords": [
+    "phase",
+    "code-opencode"
+  ],
+  "lastUpdated": "2026-07-14T15:17:08.145Z",
+  "specId": "002",
+  "folderSlug": "code-opencode",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention",
+    "008-component-migration",
+    "001-sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

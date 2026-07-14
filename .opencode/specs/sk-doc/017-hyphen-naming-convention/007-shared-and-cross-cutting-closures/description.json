@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+  "description": "shared and cross cutting closures (017 parent)",
+  "keywords": [
+    "shared",
+    "cross",
+    "cutting",
+    "closures",
+    "parent"
+  ],
+  "lastUpdated": "2026-07-14T15:16:51.038Z",
+  "specId": "007",
+  "folderSlug": "shared-and-cross-cutting-closures",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

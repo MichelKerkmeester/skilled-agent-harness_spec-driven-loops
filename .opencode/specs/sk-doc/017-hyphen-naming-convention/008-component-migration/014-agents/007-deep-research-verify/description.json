@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/014-agents/007-deep-research-verify",
+  "description": "Phase 7: deep-research-verify",
+  "keywords": [
+    "phase",
+    "deep-research-verify"
+  ],
+  "lastUpdated": "2026-07-14T15:18:44.509Z",
+  "specId": "007",
+  "folderSlug": "deep-research-verify",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention",
+    "008-component-migration",
+    "014-agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

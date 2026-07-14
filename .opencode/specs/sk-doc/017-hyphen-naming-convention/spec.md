@@ -210,3 +210,30 @@ contract in its `checklist.md`.
 - **Rebase cadence**: frequent fetch/overlap audits with one controlled final integration (default) vs a single final
   rebase of the whole rename set. To be decided in 015 against the observed origin drift.
 <!-- /ANCHOR:questions -->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 9 | 009-remove-transition-aliases/ | [Phase 9 scope] | Pending |
+| 10 | 010-whole-repo-gate/ | [Phase 10 scope] | Pending |
+| 11 | 011-integrate-and-closeout/ | [Phase 11 scope] | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 008-component-migration | 009-remove-transition-aliases | [Criteria TBD] | [Verification TBD] |
+| 009-remove-transition-aliases | 010-whole-repo-gate | [Criteria TBD] | [Verification TBD] |
+| 010-whole-repo-gate | 011-integrate-and-closeout | [Criteria TBD] | [Verification TBD] |
+<!-- /ANCHOR:phase-map -->

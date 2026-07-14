@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog",
+  "description": "Phase 5: create-feature-catalog",
+  "keywords": [
+    "phase",
+    "create-feature-catalog"
+  ],
+  "lastUpdated": "2026-07-14T15:22:37.169Z",
+  "specId": "005",
+  "folderSlug": "create-feature-catalog",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc",
+    "003-create-packets"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "spec_folder": "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "parent_id": "sk-doc/017-hyphen-naming-convention/008-component-migration",
+  "children_ids": [
+    "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared",
+    "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
+    "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+    "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook",
+    "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark",
+    "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify",
+    "sk-doc/017-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "broken",
+      "missing",
+      "inefficient",
+      "sentences",
+      "describing",
+      "specific"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-07-14T15:16:56Z",
+    "last_save_at": "2026-07-14T15:24:34.903Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5161bce486bfd6b81e171168bc5d053764229633cd9d90308302e4bd57421334",
+    "source_doc_hashes": {
+      "spec.md": "8e6304161e5a0529fbac3ee80f2145e777bff9c73a8fff52b8af7f55fc5b005b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration",
+  "description": "component migration (017 parent)",
+  "keywords": [
+    "component",
+    "migration",
+    "parent"
+  ],
+  "lastUpdated": "2026-07-14T15:16:54.790Z",
+  "specId": "008",
+  "folderSlug": "component-migration",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "description": "Phase 8: system-spec-kit",
+  "keywords": [
+    "phase",
+    "system-spec-kit"
+  ],
+  "lastUpdated": "2026-07-14T15:17:01.648Z",
+  "specId": "008",
+  "folderSlug": "system-spec-kit",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/017-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify",
+  "description": "Phase 10: changelog-verify",
+  "keywords": [
+    "phase",
+    "changelog-verify"
+  ],
+  "lastUpdated": "2026-07-14T15:17:56.847Z",
+  "specId": "010",
+  "folderSlug": "changelog-verify",
+  "parentChain": [
+    "sk-doc",
+    "017-hyphen-naming-convention",
+    "008-component-migration",
+    "007-system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

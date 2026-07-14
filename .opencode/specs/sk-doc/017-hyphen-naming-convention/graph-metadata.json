@@ -4,32 +4,18 @@
   "spec_folder": "sk-doc/017-hyphen-naming-convention",
   "parent_id": null,
   "children_ids": [
-    "sk-doc/017-hyphen-naming-convention/001-convention-policy-and-scope",
-    "sk-doc/017-hyphen-naming-convention/002-sk-doc-validator-and-classifier-logic",
-    "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates",
-    "sk-doc/017-hyphen-naming-convention/004-guard-and-migration-tooling",
-    "sk-doc/017-hyphen-naming-convention/005-inventory-and-partitioning",
-    "sk-doc/017-hyphen-naming-convention/006-migrate-catalog-and-playbook",
-    "sk-doc/017-hyphen-naming-convention/007-migrate-references-and-assets",
-    "sk-doc/017-hyphen-naming-convention/008-migrate-scripts-and-imports",
-    "sk-doc/017-hyphen-naming-convention/009-migrate-specs-and-docs",
-    "sk-doc/017-hyphen-naming-convention/010-migrate-config-and-data",
-    "sk-doc/017-hyphen-naming-convention/011-validate-build-test-rebenchmark",
-    "sk-doc/017-hyphen-naming-convention/012-supersede-027-and-closeout",
     "sk-doc/017-hyphen-naming-convention/000-worktree-baseline-and-census",
+    "sk-doc/017-hyphen-naming-convention/001-convention-policy-and-scope",
     "sk-doc/017-hyphen-naming-convention/002-root-name-consumer-migration",
+    "sk-doc/017-hyphen-naming-convention/003-create-generators-and-templates",
     "sk-doc/017-hyphen-naming-convention/004-no-new-snake-guard",
     "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling",
     "sk-doc/017-hyphen-naming-convention/006-inventory-and-frozen-map",
-    "sk-doc/017-hyphen-naming-convention/007-migrate-catalog-and-playbook",
-    "sk-doc/017-hyphen-naming-convention/008-remove-transition-aliases",
-    "sk-doc/017-hyphen-naming-convention/009-runtime-and-package-layout",
-    "sk-doc/017-hyphen-naming-convention/010-migrate-references-and-assets",
-    "sk-doc/017-hyphen-naming-convention/011-migrate-scripts-and-imports",
-    "sk-doc/017-hyphen-naming-convention/012-migrate-specs-and-docs",
-    "sk-doc/017-hyphen-naming-convention/013-migrate-config-and-data",
-    "sk-doc/017-hyphen-naming-convention/014-validate-build-test-rebenchmark",
-    "sk-doc/017-hyphen-naming-convention/015-integrate-and-closeout"
+    "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+    "sk-doc/017-hyphen-naming-convention/008-component-migration",
+    "sk-doc/017-hyphen-naming-convention/009-remove-transition-aliases",
+    "sk-doc/017-hyphen-naming-convention/010-whole-repo-gate",
+    "sk-doc/017-hyphen-naming-convention/011-integrate-and-closeout"
   ],
   "manual": {
     "depends_on": [],
@@ -110,15 +96,15 @@
     ],
     "causal_summary": "The repo's filesystem naming is inconsistent and, after packet 027, actively snakecase for catalog/playbook content",
     "created_at": "2026-07-13T11:48:37.060Z",
-    "last_save_at": "2026-07-13T14:34:05.510Z",
+    "last_save_at": "2026-07-14T15:24:37.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2636ed217903b162a0cf8282c0f2dbc4d6ec75730845f06bd141d196d42a205b",
+    "source_fingerprint": "sha256:296bd55f8a9717e246ce39e468aa636780aefaafd4025c0cc82b3aef48a3d766",
     "source_doc_hashes": {
-      "spec.md": "f15938cd2c61d9629fac4daa7502fffce6d383b7ac84fccf11562b1a20c66dda"
+      "spec.md": "53453eff12509539145cfcc0c80d4ffdde8f65a4bfbcb8dbaa4a43c499fd3a6a"
     },
     "last_active_child_id": null,
     "last_active_at": null
