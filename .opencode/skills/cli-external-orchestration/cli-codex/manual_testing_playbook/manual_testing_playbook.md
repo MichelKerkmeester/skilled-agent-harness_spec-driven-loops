@@ -59,7 +59,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.5` +
 
 1. Working directory is project root and contains `.git/`.
 2. Codex CLI is installed and on PATH: `command -v codex` returns a non-empty path. If not installed, run `npm i -g @openai/codex` first.
-3. Codex CLI is authenticated: either `OPENAI_API_KEY` is exported OR `codex login` has succeeded (ChatGPT Plus/Pro/Business/Edu/Enterprise account).
+3. Codex CLI is authenticated via ChatGPT OAuth: `codex login` has succeeded (ChatGPT Plus/Pro/Business/Edu/Enterprise account).
 4. The active runtime is NOT Codex CLI itself - the self-invocation guard in SKILL.md §2 must not trip. Verify by running `env | grep -i codex_` and confirming no `CODEX_SESSION_ID` or `CODEX_*` vars are set.
 5. The skill's reference and asset files exist at `.opencode/skills/cli-external-orchestration/cli-codex/{references,assets}/` so prompt-quality and template scenarios resolve.
 6. `gpt-5.5` is the documented default model; `gpt-5.6-luna`, `gpt-5.6-terra`, and `gpt-5.6-sol` are the documented alternates (each with its own reasoning-effort ceiling — see SKILL.md §3 / `references/cli_reference.md` §5). Use the model a scenario names; do not substitute IDs outside this roster.

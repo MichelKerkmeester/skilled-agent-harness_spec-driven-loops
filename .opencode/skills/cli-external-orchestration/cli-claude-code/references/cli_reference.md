@@ -70,21 +70,12 @@ After installation, run `claude` for interactive mode or `claude -p "prompt"` fo
 
 ## 3. AUTHENTICATION
 
-Claude Code CLI supports multiple authentication methods:
+cli-claude-code authenticates through the **Claude subscription OAuth only**. It does not use an `ANTHROPIC_API_KEY`.
 
 | Method | Setup | Best For |
 |--------|-------|----------|
-| **API Key** | `export ANTHROPIC_API_KEY=sk-ant-...` | Scripts, CI/CD, automation |
 | **OAuth** | `claude auth login` (browser flow) | Personal use, interactive |
-| **Token Setup** | `claude setup-token` | Non-interactive CI/CD pipelines |
-
-**Priority order:** `ANTHROPIC_API_KEY` environment variable is checked first. If not set, OAuth credentials are used.
-
-**Set API key via environment variable:**
-
-```bash
-export ANTHROPIC_API_KEY="sk-ant-..."
-```
+| **Token Setup** | `claude setup-token` | Non-interactive CI/CD pipelines (long-lived OAuth token) |
 
 **OAuth login/logout:**
 
@@ -102,8 +93,8 @@ claude auth logout
 **Non-interactive token setup (CI/CD):**
 
 ```bash
-# Pipe token from environment
-echo "$ANTHROPIC_API_KEY" | claude setup-token
+# Generate a long-lived OAuth token for headless environments
+claude setup-token
 ```
 
 ---
@@ -208,9 +199,14 @@ claude "Start by reviewing the auth module"
 
 | Model | ID | Strengths | Cost | Best For |
 |-------|----|-----------|------|----------|
-| **Opus** | `claude-opus-4-6` | Deepest reasoning, highest quality | Highest | Architecture decisions, complex trade-offs, extended thinking |
-| **Sonnet** | `claude-sonnet-4-6` | Balanced quality and speed | Medium | General tasks, code generation, reviews — **default** |
-| **Haiku** | `claude-haiku-4-5-20251001` | Fastest, most cost-effective | Lowest | Classification, formatting, simple queries, batch ops |
+| **Opus 4.8** | `claude-opus-4-8` | Current flagship — deepest reasoning, highest quality | Highest | Architecture decisions, complex trade-offs, extended thinking |
+| **Sonnet 5** | `claude-sonnet-5` | Current balanced (Claude 5 family) | Medium | General tasks, code generation, reviews |
+| **Fable 5** | `claude-fable-5` | Claude 5 family | — | Current-generation Claude 5 dispatch |
+| **Opus 4.6** | `claude-opus-4-6` | Prior-generation deep reasoning | Highest | Architecture decisions, complex trade-offs, extended thinking |
+| **Sonnet 4.6** | `claude-sonnet-4-6` | Prior-generation balanced | Medium | General tasks, code generation, reviews — **current skill default** |
+| **Haiku 4.5** | `claude-haiku-4-5-20251001` | Fastest, most cost-effective | Lowest | Classification, formatting, simple queries, batch ops |
+
+> **Model IDs**: Opus 4.8, Sonnet 5, and Fable 5 are the current Claude generation and are selectable via `--model` where the calling environment supports them. The skill default pin elsewhere in these docs is still `claude-sonnet-4-6`; name a current-generation ID explicitly when you want it. Pin the exact ID the target CLI accepts.
 
 ### Model Selection Guide
 
@@ -345,7 +341,6 @@ claude -p "Start analyzing the auth module" --output-format json 2>&1 | jq -r '.
 
 | Variable | Purpose |
 |----------|---------|
-| `ANTHROPIC_API_KEY` | API key for authentication |
 | `CLAUDECODE` | Set when running inside Claude Code (nesting detection) |
 | `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | Disable telemetry |
 | `CLAUDE_MODEL` | Default model override |
@@ -369,7 +364,7 @@ fi
 | Issue | Diagnosis | Solution |
 |-------|-----------|----------|
 | `claude: command not found` | Not installed | `npm install -g @anthropic-ai/claude-code` |
-| `ANTHROPIC_API_KEY not set` | No authentication | `export ANTHROPIC_API_KEY=sk-ant-...` |
+| `401 Unauthorized` / not authenticated | Claude subscription OAuth not configured | Run `claude auth login` (or `claude setup-token` for CI/CD) |
 | `Already inside Claude Code` | Nesting detected | Exit current session or use different terminal |
 | Rate limit (429) | Too many requests | Wait for retry-after header; reduce frequency |
 | Budget exceeded | `--max-budget-usd` cap hit | Increase budget or simplify prompt |

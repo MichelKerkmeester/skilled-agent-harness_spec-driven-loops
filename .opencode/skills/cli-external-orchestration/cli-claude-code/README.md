@@ -127,7 +127,7 @@ Example: `claude -p "Review @src/auth.ts for security issues" --agent review --p
 
 ### Auth Pre-Flight And Memory Handback
 
-Before the first dispatch the skill checks whether `ANTHROPIC_API_KEY` is set or OAuth is configured. If the key is missing but OAuth exists, it asks before substituting. If neither is configured, it surfaces the login commands and waits. The three options are `export ANTHROPIC_API_KEY=sk-ant-...`, `claude auth login` (OAuth) and `claude setup-token` (CI/CD). When the caller needs to keep a Claude Code session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js` (full procedure in `system-spec-kit/references/cli/memory_handback.md`).
+cli-claude-code authenticates through the Claude subscription OAuth only. Before the first dispatch the skill checks whether the CLI is authenticated; if it is not, it surfaces the login command and waits rather than dispatching. It does not use an `ANTHROPIC_API_KEY`. The two OAuth options are `claude auth login` (interactive browser flow) and `claude setup-token` (a non-interactive OAuth token for CI/CD). When the caller needs to keep a Claude Code session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js` (full procedure in `system-spec-kit/references/cli/memory_handback.md`).
 
 ---
 
@@ -164,7 +164,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | What you see | Why | Fix |
 |---|---|---|
 | `command not found: claude` | CLI not installed or PATH not updated | `npm install -g @anthropic-ai/claude-code`, then restart your terminal |
-| `401 Unauthorized` | `ANTHROPIC_API_KEY` not set or expired, or OAuth invalid | `export ANTHROPIC_API_KEY=sk-ant-...` or `claude auth login` |
+| `401 Unauthorized` | Claude subscription OAuth not configured or expired | Run `claude auth login` (or `claude setup-token` for CI/CD) |
 | `Self-invocation refused` | The caller is already inside Claude Code (`$CLAUDECODE` set, `claude` ancestry or a state lock) | Use a different runtime or exit the current Claude Code session first |
 | Session ends with a budget warning | The `--max-budget-usd` cap was too low for the task | Raise the cap or switch to Haiku for batch work |
 | "Context too large" or truncated output | The prompt references broad paths instead of specific files | Name files with `@./path/to/file` and split large tasks |

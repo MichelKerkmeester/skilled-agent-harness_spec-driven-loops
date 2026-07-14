@@ -54,7 +54,7 @@ Coverage note (2026-04-26): all categories validate the orchestrator-led cross-A
 
 1. Working directory is project root.
 2. Claude Code CLI is installed and resolvable via `command -v claude`. If absent, install with `npm install -g @anthropic-ai/claude-code`.
-3. `ANTHROPIC_API_KEY` is set in the environment OR `claude auth status` reports an authenticated session.
+3. Claude Code is authenticated via the Claude subscription OAuth: `claude auth status` reports an authenticated session (`claude auth login`, or `claude setup-token` for CI/CD).
 4. The orchestrator runtime is NOT Claude Code itself - the `CLAUDECODE` environment variable MUST be unset (verify with `[ -z "$CLAUDECODE" ] && echo OK`). Cross-AI scenarios cannot run inside a nested Claude Code session.
 5. Destructive scenarios CC-006 (acceptEdits) and CC-007 (bypassPermissions) MUST only target a rebuildable scratch file under `/tmp/cli-claude-code-playbook/`.
 
@@ -98,7 +98,7 @@ Coverage note (2026-04-26): all categories validate the orchestrator-led cross-A
 
 For each executed scenario, check:
 
-1. Preconditions were satisfied (especially `CLAUDECODE` unset and `ANTHROPIC_API_KEY` resolvable).
+1. Preconditions were satisfied (especially `CLAUDECODE` unset and Claude subscription OAuth authenticated).
 2. Prompt and command sequence were executed as written, with the documented model and flags.
 3. Expected signals are present in the captured `claude` output.
 4. Evidence is complete and readable, including stderr captured via `2>&1`.

@@ -70,20 +70,7 @@ After installation, run `codex` for the full-screen TUI or `codex exec "prompt" 
 
 ## 3. AUTHENTICATION
 
-Codex CLI supports two authentication methods:
-
-| Method | Setup | Best For |
-|--------|-------|----------|
-| **OpenAI API Key** | `export OPENAI_API_KEY=your-key` | Scripts, CI/CD, automation |
-| **OAuth via ChatGPT** | `codex login` (browser flow) | Personal use; requires Plus/Pro/Business/Edu/Enterprise account |
-
-**Priority order:** `OPENAI_API_KEY` environment variable is checked first. If not set, OAuth credentials from `codex login` are used.
-
-**Set API key via environment variable:**
-
-```bash
-export OPENAI_API_KEY="sk-..."
-```
+cli-codex authenticates through **ChatGPT OAuth only** — `codex login` (browser flow). It does not use an OpenAI API key.
 
 **OAuth login/logout:**
 
@@ -92,7 +79,7 @@ export OPENAI_API_KEY="sk-..."
 codex login
 
 # View authentication status
-codex features
+codex login status
 
 # Log out and clear stored credentials
 codex logout
@@ -576,8 +563,8 @@ codex exec --session-id "$FORK_ID" "Attempt the migration" \
 
 | Problem | Cause | Solution |
 |---------|-------|----------|
-| `OPENAI_API_KEY not set` | No authentication configured | Set `OPENAI_API_KEY` env var or run `codex login` for OAuth |
-| `Authentication failed` | Expired or invalid credentials | Re-run `codex login` or regenerate API key at platform.openai.com |
+| `not authenticated` / `401 Unauthorized` | ChatGPT OAuth not configured | Run `codex login` (browser flow) |
+| `Authentication failed` | OAuth session expired or invalid | Re-run `codex login` to re-authenticate |
 | `OAuth not eligible` | Free-tier ChatGPT account | Upgrade to Plus/Pro/Business/Edu/Enterprise |
 | `Permission denied` on file | Sandbox mode too restrictive | Upgrade to `workspace-write` or `danger-full-access` as needed |
 | `Command not found: codex` | Not installed or not in PATH | Run `npm i -g @openai/codex`; verify with `which codex` |
@@ -595,7 +582,6 @@ codex exec --session-id "$FORK_ID" "Attempt the migration" \
 
 | Variable | Purpose | Example |
 |----------|---------|---------|
-| `OPENAI_API_KEY` | API key authentication (highest priority) | `sk-...` |
 | `CODEX_MODEL` | Default model override | `gpt-5.5` |
 | `CODEX_SANDBOX` | Default sandbox mode | `read-only`, `workspace-write`, `danger-full-access` |
 | `CODEX_APPROVAL` | Default approval mode | `untrusted`, `on-request`, `never` |

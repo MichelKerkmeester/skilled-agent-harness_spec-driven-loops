@@ -138,7 +138,7 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
 
 ### Auth Pre-Flight And Memory Handback
 
-Before the first dispatch the skill checks whether `OPENAI_API_KEY` is set or ChatGPT OAuth is configured. If the key is missing but OAuth exists, it asks before substituting. If neither is configured, it surfaces the login commands and waits. The two options are `export OPENAI_API_KEY=sk-...` and `codex login`. When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js` (full procedure in `system-spec-kit/references/cli/memory_handback.md`).
+cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch the skill checks whether `codex login` has been completed; if it has not, it surfaces `codex login` and waits rather than dispatching. It does not use an OpenAI API key. When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js` (full procedure in `system-spec-kit/references/cli/memory_handback.md`).
 
 ---
 
@@ -175,7 +175,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | What you see | Why | Fix |
 |---|---|---|
 | `command not found: codex` | CLI not installed or PATH not updated | `npm i -g @openai/codex`, then restart your terminal |
-| `401 Unauthorized` or `not authenticated` | `OPENAI_API_KEY` not set or expired, or OAuth invalid | `export OPENAI_API_KEY=sk-...` or `codex login` |
+| `401 Unauthorized` or `not authenticated` | ChatGPT OAuth not configured or expired | Run `codex login` (browser flow; requires a ChatGPT Plus/Pro/Business/Edu/Enterprise account) |
 | Task ran but no files changed | `codex exec` defaulted to the read-only sandbox | Add `--sandbox workspace-write` or `--full-auto` |
 | Agent asks for spec folder or approval | Non-interactive `exec` cannot answer prompts | Include `(pre-approved, skip Gate 3)` in the prompt and use `--full-auto` |
 | `Self-invocation refused` | The caller is already inside Codex (`CODEX_*` env set, `codex` ancestry or a state lock) | Use a different runtime or exit the current Codex session first |

@@ -2,7 +2,7 @@
 name: cli-codex
 description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.6.1.0
+version: 1.7.0.0
 hard_rules:
   - id: codex-availability-required
     check: command-v-codex-required
@@ -165,7 +165,7 @@ The `route_codex_resources(task)` function body lives in [`shared_smart_router.m
 
 ### Prerequisites
 
-Install with `npm i -g @openai/codex` (or `brew install --cask codex`). Authenticate with either `export OPENAI_API_KEY=your-key` (direct API) or `codex login` (ChatGPT OAuth). Full install, auth, flag, sandbox, session, and troubleshooting tables live in the ALWAYS-loaded [cli_reference.md](./references/cli_reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
+Install with `npm i -g @openai/codex` (or `brew install --cask codex`). cli-codex authenticates through **ChatGPT OAuth only** — run `codex login` and complete the browser flow (requires a ChatGPT Plus/Pro/Business/Edu/Enterprise account). It does not use an OpenAI API key. Full install, auth, flag, sandbox, session, and troubleshooting tables live in the ALWAYS-loaded [cli_reference.md](./references/cli_reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
 
 ### Execution Ownership
 
@@ -173,45 +173,32 @@ This packet owns user-facing routing, the `command -v codex` availability probe,
 
 The runtime is the single Codex execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `codex exec` snippets below are operator reference and manual-testing examples; orchestrated dispatches use the shared runtime.
 
-### Provider Auth Pre-Flight (Smart Fallback)
+### Provider Auth Pre-Flight (ChatGPT OAuth)
 
-**MANDATORY before any first dispatch in a session.** The default OpenAI auth (API key OR ChatGPT OAuth) may not be configured on this machine — silently failing with `401 Unauthorized` or `not authenticated` mid-dispatch wastes a round-trip. Run this check once per session, cache the result, and re-run it only if a dispatch fails with an auth error.
+**MANDATORY before any first dispatch in a session.** cli-codex authenticates through ChatGPT OAuth only. If `codex login` has not been completed on this machine, a dispatch fails with `401 Unauthorized` or `not authenticated` mid-round-trip. Run this check once per session, cache the result, and re-run it only if a dispatch fails with an auth error.
 
 ```bash
-# One-shot pre-flight: capture auth status for routing
-[ -n "$OPENAI_API_KEY" ] && OPENAI_KEY_OK=1 || OPENAI_KEY_OK=0
+# One-shot pre-flight: capture ChatGPT OAuth status for routing
 CODEX_AUTH=$(codex login status 2>&1)
 echo "$CODEX_AUTH" | grep -qi "logged in\|chatgpt-oauth" && CODEX_OAUTH_OK=1 || CODEX_OAUTH_OK=0
 ```
 
 **Decision tree** (apply in order — first match wins):
 
-| State | OPENAI_KEY_OK | CODEX_OAUTH_OK | Action |
-|-------|---------------|----------------|--------|
-| Default available | 1 | * | Proceed with `codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"` |
-| API key missing, OAuth ready | 0 | 1 | **ASK user** before substituting — never auto-fall-back silently. Surface options A/B/C below. |
-| Both missing | 0 | 0 | **ASK user** to configure auth — surface the login commands, do NOT dispatch. |
+| State | CODEX_OAUTH_OK | Action |
+|-------|----------------|--------|
+| OAuth ready | 1 | Proceed with `codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"` |
+| Not logged in | 0 | **ASK user** to run `codex login` — surface the command, do NOT dispatch. Never substitute an API key or a different model. |
 
-**User prompt template — API key missing, OAuth configured:**
-
-```
-`$OPENAI_API_KEY` is not set, but ChatGPT OAuth via `codex login` is configured.
-Pick one:
-  A) Use the existing ChatGPT OAuth session (works for `codex exec` if your ChatGPT plan covers the model)
-  B) Run `export OPENAI_API_KEY=sk-...` first, then retry the original dispatch
-  C) Name a different model — paste the `--model <id>` you want to use
-```
-
-**User prompt template — both missing:**
+**User prompt template — not logged in:**
 
 ```
-No OpenAI auth is configured on this machine. Run one:
-  - `export OPENAI_API_KEY=sk-...`  (recommended for direct API calls)
-  - `codex login`                    (interactive ChatGPT OAuth flow; requires ChatGPT Plus/Pro/Business)
-Which would you like to set up? Confirm when login finishes; the skill will retry the original dispatch.
+Codex is not authenticated on this machine. cli-codex uses ChatGPT OAuth only.
+Run `codex login` (browser flow; requires a ChatGPT Plus/Pro/Business/Edu/Enterprise account),
+then confirm when login finishes — the skill will retry the original dispatch.
 ```
 
-**Error-recovery contract.** If a dispatch returns an auth error after pre-flight passed (key revoked or OAuth expired), invalidate the cache, rerun the pre-flight, and apply the same decision tree before retrying. Never substitute a model the user didn't approve.
+**Error-recovery contract.** If a dispatch returns an auth error after pre-flight passed (OAuth expired or revoked), invalidate the cache, rerun `codex login`, and re-check before retrying. Never substitute a model the user didn't approve.
 
 ### Default Invocation (Skill Default)
 
@@ -317,7 +304,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 ### ⚠️ ESCALATE IF
 
 1. Codex CLI is not installed and user has not acknowledged (provide `npm i -g @openai/codex`).
-2. Rate limits are persistently exceeded (suggest checking API key quota or OAuth account limits).
+2. Rate limits are persistently exceeded (suggest checking the ChatGPT OAuth account's plan and usage limits).
 3. Codex output conflicts with existing code patterns (present both perspectives; user decides).
 4. Task requires `--sandbox danger-full-access` (describe risks; get explicit user approval). `--full-auto` does not require escalation.
 
@@ -354,8 +341,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 ### External
 
 - [Codex CLI GitHub](https://github.com/openai/codex) - Official repository
-- [OpenAI Platform](https://platform.openai.com/api-keys) - API key management
-- [OpenAI ChatGPT](https://chatgpt.com) - ChatGPT OAuth account
+- [OpenAI ChatGPT](https://chatgpt.com) - ChatGPT OAuth account (auth for cli-codex)
 
 ### Reference Loading Notes
 

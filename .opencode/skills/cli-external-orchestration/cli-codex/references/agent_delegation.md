@@ -320,7 +320,7 @@ jq '.issues[] | select(.severity == "critical")' /tmp/review.json
 
 | Scenario            | Detection                           | Recovery                                              |
 | ------------------- | ----------------------------------- | ----------------------------------------------------- |
-| Auth failure        | Non-zero exit, auth error in output | Re-run `codex login` or check `OPENAI_API_KEY`        |
+| Auth failure        | Non-zero exit, auth error in output | Re-run `codex login` (ChatGPT OAuth)                  |
 | Profile not found   | Error: profile not defined          | Verify profile name matches `[profiles.<name>]` in config.toml |
 | Sandbox restriction | Permission denied in output         | Upgrade sandbox mode or adjust task scope             |
 | Timeout / hung      | No output within expected time      | Simplify task scope; break into smaller steps         |

@@ -2,7 +2,7 @@
 name: cli-claude-code
 description: "Claude Code CLI executor for Anthropic-backed reasoning, edits, reviews, and structured cross-AI handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.1.13.0
+version: 1.2.0.0
 hard_rules:
   - id: non-interactive-permission-mode-risk
     check: non-interactive-permission-mode-risk
@@ -168,53 +168,40 @@ command -v claude || echo "Not installed. Run: npm install -g @anthropic-ai/clau
 # Self-invocation guard
 [ -n "$CLAUDECODE" ] && echo "ERROR: Already inside a Claude Code session — do not self-invoke"
 
-# Authentication — API key OR setup-token (CI/CD)
-export ANTHROPIC_API_KEY=your-key-here
-claude setup-token
+# Authentication — OAuth (Claude subscription), no API key
+claude auth login        # interactive OAuth (browser flow)
+# claude setup-token     # non-interactive OAuth token for CI/CD
 ```
 
-**Authentication options**: `ANTHROPIC_API_KEY` env var (direct API), `claude auth login` (interactive OAuth), or `claude setup-token` (non-interactive CI/CD).
+**Authentication**: cli-claude-code authenticates through the Claude subscription OAuth only — `claude auth login` (interactive browser flow) or `claude setup-token` (a non-interactive OAuth token for CI/CD). It does not use an `ANTHROPIC_API_KEY`.
 
-### Provider Auth Pre-Flight (Smart Fallback)
+### Provider Auth Pre-Flight (Claude Subscription OAuth)
 
-**MANDATORY before any first dispatch in a session.** The default Anthropic auth (API key OR OAuth OR setup-token) may not be configured on this machine — silently failing with `401 Unauthorized` mid-dispatch wastes a round-trip. Run this check once per session, cache the result, and re-run it only if a dispatch fails with an auth error.
+**MANDATORY before any first dispatch in a session.** cli-claude-code authenticates through the Claude subscription OAuth only. If neither `claude auth login` nor a `claude setup-token` session is configured on this machine, a dispatch fails with `401 Unauthorized` mid-round-trip. Run this check once per session, cache the result, and re-run it only if a dispatch fails with an auth error.
 
 ```bash
-# One-shot pre-flight: capture auth status for routing
-[ -n "$ANTHROPIC_API_KEY" ] && ANTHROPIC_KEY_OK=1 || ANTHROPIC_KEY_OK=0
-CLAUDE_AUTH=$(claude config list 2>&1)
-echo "$CLAUDE_AUTH" | grep -qi "oauth\|setup-token" && CLAUDE_OAUTH_OK=1 || CLAUDE_OAUTH_OK=0
+# One-shot pre-flight: capture OAuth status for routing
+CLAUDE_AUTH=$(claude auth status 2>&1)
+echo "$CLAUDE_AUTH" | grep -qi "authenticated\|logged in\|oauth\|setup-token" && CLAUDE_OAUTH_OK=1 || CLAUDE_OAUTH_OK=0
 ```
 
 **Decision tree** (apply in order — first match wins):
 
-| State | ANTHROPIC_KEY_OK | CLAUDE_OAUTH_OK | Action |
-|-------|------------------|-----------------|--------|
-| Default available | 1 | * | Proceed with `claude -p "<prompt>" --model claude-sonnet-4-6 --output-format text` |
-| API key missing, OAuth ready | 0 | 1 | **ASK user** before substituting — never auto-fall-back silently. Surface options A/B/C below. |
-| Both missing | 0 | 0 | **ASK user** to configure auth — surface the login commands, do NOT dispatch. |
+| State | CLAUDE_OAUTH_OK | Action |
+|-------|-----------------|--------|
+| OAuth ready | 1 | Proceed with `claude -p "<prompt>" --model claude-sonnet-4-6 --output-format text` |
+| Not authenticated | 0 | **ASK user** to run `claude auth login` — surface the command, do NOT dispatch. Never substitute an API key or a different model. |
 
-**User prompt template — API key missing, OAuth configured:**
-
-```
-`$ANTHROPIC_API_KEY` is not set, but `claude auth login` OAuth is configured.
-Pick one:
-  A) Use the existing OAuth session (works for interactive `claude` calls; non-interactive `-p` may need an env var)
-  B) Run `export ANTHROPIC_API_KEY=sk-ant-...` first, then retry the original dispatch
-  C) Name a different model — paste the `--model <id>` you want to use
-```
-
-**User prompt template — both missing:**
+**User prompt template — not authenticated:**
 
 ```
-No Anthropic auth is configured on this machine. Run one:
-  - `export ANTHROPIC_API_KEY=sk-ant-...`  (recommended for direct API calls)
-  - `claude auth login`                     (interactive OAuth flow)
-  - `claude setup-token`                    (non-interactive CI/CD)
-Which would you like to set up? Confirm when login finishes; the skill will retry the original dispatch.
+Claude Code is not authenticated on this machine. cli-claude-code uses Claude subscription OAuth only.
+Run one, then confirm — the skill will retry the original dispatch:
+  - `claude auth login`     (interactive browser OAuth flow)
+  - `claude setup-token`    (non-interactive OAuth token for CI/CD)
 ```
 
-**Error-recovery contract.** If a dispatch returns an auth error after pre-flight passed (key revoked or OAuth expired), invalidate the cache, rerun the pre-flight, and apply the same decision tree before retrying. Never substitute a model the user didn't approve.
+**Error-recovery contract.** If a dispatch returns an auth error after pre-flight passed (OAuth expired or revoked), invalidate the cache, re-run `claude auth login`, and re-check before retrying. Never substitute a model the user didn't approve.
 
 ### Default Invocation (Skill Default)
 
@@ -336,7 +323,7 @@ claude -p "Now refactor the auth module based on the review" --continue --output
 | Issue | Solution |
 |-------|----------|
 | CLI not installed | `npm install -g @anthropic-ai/claude-code` |
-| `ANTHROPIC_API_KEY` not set | `export ANTHROPIC_API_KEY=your-key` or run `claude auth login` |
+| `401 Unauthorized` / not authenticated | Run `claude auth login` (Claude subscription OAuth), or `claude setup-token` for CI/CD |
 | Nested session detected | Cannot run `claude` inside Claude Code — use a different terminal or exit first |
 | Rate limit exceeded | Wait for auto-retry or reduce request frequency |
 | Budget exceeded | Increase `--max-budget-usd` or reduce prompt complexity |
@@ -414,7 +401,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 
 ### External
 - [Claude Code GitHub](https://github.com/anthropics/claude-code) - Official repository
-- [Anthropic Console](https://console.anthropic.com/settings/keys) - API key management
+- [Claude](https://claude.ai) - Claude subscription OAuth account (auth for cli-claude-code)
 - [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code) - Official docs
 
 ### Reference Loading Notes

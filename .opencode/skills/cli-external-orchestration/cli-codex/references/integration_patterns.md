@@ -729,7 +729,7 @@ wait
 codex exec "Fix the authentication bug" --oss --model gpt-5.5
 
 # GOOD: Use --oss only for local experimentation
-# For production workflows, always use gpt-5.5 with API key or OAuth
+# For production workflows, always use gpt-5.5 with ChatGPT OAuth (codex login)
 codex exec "Fix the authentication bug" --model gpt-5.5
 ```
 
