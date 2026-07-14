@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/006-standalones",
-  "spec_folder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/006-standalones",
+  "packet_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation",
+  "spec_folder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation",
   "parent_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
   "children_ids": [],
   "manual": {
@@ -11,43 +11,43 @@
   },
   "derived": {
     "trigger_phrases": [
-      "006-standalones conformance",
-      "create-skill contract conformance",
-      "SKILL.md conformance standalones",
-      "006-standalones plan",
-      "LUNA MAX dispatch harness",
-      "Sonnet-5 verify",
-      "006-standalones tasks",
-      "per-file conformance tasks",
-      "LUNA update Sonnet verify",
-      "006-standalones checklist",
-      "conformance verification gates",
-      "per-file validator gate"
+      "fresh verify fleet remediation",
+      "sonnet-5 skill audit remediation",
+      "packetKind surface validator",
+      "fresh verify remediation plan",
+      "remediation dispatch harness",
+      "sonnet re-verify",
+      "fresh verify remediation tasks",
+      "per-defect remediation rows",
+      "surgical LUNA re-verify",
+      "fresh verify remediation checklist",
+      "remediation verification gates",
+      "re-verify defect resolution"
     ],
     "key_topics": [
-      "006-standalones",
-      "conformance",
-      "create-skill",
-      "contract",
+      "fresh",
+      "verify",
+      "fleet",
+      "remediation",
+      "sonnet-5",
       "skill",
-      "standalones",
+      "audit",
+      "packetkind",
+      "surface",
+      "validator",
       "plan",
-      "luna",
-      "max",
-      "dispatch",
-      "harness",
-      "sonnet-5"
+      "dispatch"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-code-mode/SKILL.md",
-      ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/sk-code/code-webflow/SKILL.md",
       ".opencode/skills/system-skill-advisor/SKILL.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      "tasks.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+      ".opencode/skills/sk-code/code-quality/SKILL.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
       "plan.md",
+      "tasks.md",
       "checklist.md",
       "spec.md",
       "implementation-summary.md"
@@ -56,19 +56,25 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-code-mode/SKILL.md",
+        "path": ".opencode/skills/sk-code/code-webflow/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -96,7 +102,7 @@
         "source": "derived"
       },
       {
-        "name": "Standalone Skills Contract Conformance",
+        "name": "Verify Fleet Remediation",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -108,13 +114,13 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "cli-codex",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -138,19 +144,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Each",
+        "name": "Concurrency Audit",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Concurrency Work",
+        "name": "Test Type",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Core Implementation",
+        "name": "Depends On",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -162,13 +168,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Update",
+        "name": "Implementation Surgical",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Verify",
+        "name": "Fresh Sonnet",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,12 +182,6 @@
       {
         "name": "Completion Criteria",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Bring the 5 skill SKILL.md files in this batch into full conformance with the create-skill contract; each file is updated by a fresh GPT-5.6 LUNA MAX agent and independently verified by a fresh Sonnet-5 xhigh agent, then must pass its validator.",
-    "created_at": "2026-07-14T04:26:34.009Z",
-    "last_save_at": "2026-07-14T07:15:38.745Z",
+    "causal_summary": "A fresh Sonnet-5 xhigh review of all 46 SKILL.md surfaced 11 pre-existing content defects (none from the prior conformance sweep); this phase remediates them and closes the packetKind:surface validator gap, each fix re-verified by a fresh Sonnet-5 xhigh agent.",
+    "created_at": "2026-07-14T07:00:03.277Z",
+    "last_save_at": "2026-07-14T07:12:44.469Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4f07150c3a46fe1c0244987e55aac20f6747692ab57bb11c1e4b56812c08fbc",
+    "source_fingerprint": "sha256:7c1b1d279dcc609c6f875354a8f4341a09c6cbb3c2eec571c4927a284cad132a",
     "source_doc_hashes": {
-      "spec.md": "a1740b8f467df4a4a76db51da066060ef51cc57ce92b7f5737a95e461f8b21a4",
-      "plan.md": "3e8418a24d964d1e9280c8752f5efe496b219d55b15a8470bdfc159de1bfd11e",
-      "tasks.md": "30008de8d53d97597cf69be3634a59779df577434b623c59263f07d93757d6e8",
-      "checklist.md": "23a0730d279844d9754fc60f579c17c40e8c9cce6df750e89f9cb0b75c94aa94",
-      "implementation-summary.md": "e0e1e20a9632f36d940eefec5cb87e78dcebbdc38243f9a6af3e7755cc0b9506"
+      "spec.md": "96089a6f4b58d6e67b62c3cf58035df040a3974aacbb49714a3eed127bf890d7",
+      "plan.md": "59560377daf46e8a7c6f6bd268ecab1bc5e50fe6226e888a10d3822abe46ed7b",
+      "tasks.md": "cc69c5bf9a639a31d729035816207691ca6dca5209fa7725155af7758a0d6306",
+      "checklist.md": "d1b5bf767c44a8e3c1bb13057c2dd734caa7ab63356407fa6535e0c9ed988bbe",
+      "implementation-summary.md": "81a6db4298f73205f392d929bfdd8b2c8afa19a103d0300a789602304bb38484"
     },
     "last_active_child_id": null,
     "last_active_at": null

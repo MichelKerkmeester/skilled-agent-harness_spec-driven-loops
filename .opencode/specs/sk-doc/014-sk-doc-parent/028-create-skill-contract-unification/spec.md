@@ -11,9 +11,9 @@ parent: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification"
-    last_updated_at: "2026-07-14T05:42:42.580Z"
+    last_updated_at: "2026-07-14T06:57:22Z"
     last_updated_by: "claude-opus"
-    recent_action: "Reconciled conformance sweep to shipped state"
+    recent_action: "Wired phase 007 remediation record into parent map"
     next_safe_action: "Run advisor re-baseline for trimmed descriptions"
     blockers: []
     key_files: []
@@ -106,6 +106,7 @@ independently verified by a fresh Sonnet-5 xhigh agent, then must pass its valid
 | 004 | `004-deep-loop-children` | 5 skills -> create-skill contract | Complete |
 | 005 | `005-code-cli-mcp-prompt-children` | 12 skills -> create-skill contract | Complete |
 | 006 | `006-standalones` | 5 skills -> create-skill contract | Complete |
+| 007 | `007-fresh-verify-remediation` | Remediate 11 fresh-verify FAIL defects + surface validator | Complete |
 
 ### Phase Transition Rules
 
@@ -123,6 +124,7 @@ independently verified by a fresh Sonnet-5 xhigh agent, then must pass its valid
 | 003 | 004 | batch validator green + Sonnet sign-off | `validate.sh --strict` |
 | 004 | 005 | batch validator green + Sonnet sign-off | `validate.sh --strict` |
 | 005 | 006 | batch validator green + Sonnet sign-off | `validate.sh --strict` |
+| 006 | 007 | fresh Sonnet-5 fleet verify -> all 11 defects remediated + re-verified | `validate.sh --strict` |
 <!-- /ANCHOR:phase-map -->
 
 ---
