@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-11T20:59:44.394Z",
+  "updatedAt": "2026-07-14T08:32:08.686Z",
   "entries": [
     {
       "kind": "rename",
@@ -16915,6 +16915,104 @@
       "newPath": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/023-self-healing-model-consolidation/tasks.md",
       "source": "post-commit",
       "observedAt": "2026-07-11T20:59:44.394Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/018-create-benchmark-audit-remediation/checklist.md",
+      "newPath": ".opencode/specs/sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation/checklist.md",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/018-create-benchmark-audit-remediation/description.json",
+      "newPath": ".opencode/specs/sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation/description.json",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/018-create-benchmark-audit-remediation/graph-metadata.json",
+      "newPath": ".opencode/specs/sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation/graph-metadata.json",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/018-create-benchmark-audit-remediation/implementation-summary.md",
+      "newPath": ".opencode/specs/sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation/implementation-summary.md",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/018-create-benchmark-audit-remediation/plan.md",
+      "newPath": ".opencode/specs/sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation/plan.md",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/018-create-benchmark-audit-remediation/spec.md",
+      "newPath": ".opencode/specs/sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation/spec.md",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/018-create-benchmark-audit-remediation/tasks.md",
+      "newPath": ".opencode/specs/sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation/tasks.md",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/015-packet-smart-routing-conformance/checklist.md",
+      "newPath": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/009-packet-smart-routing-conformance/checklist.md",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/015-packet-smart-routing-conformance/description.json",
+      "newPath": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/009-packet-smart-routing-conformance/description.json",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/015-packet-smart-routing-conformance/graph-metadata.json",
+      "newPath": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/009-packet-smart-routing-conformance/graph-metadata.json",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/015-packet-smart-routing-conformance/implementation-summary.md",
+      "newPath": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/009-packet-smart-routing-conformance/implementation-summary.md",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/015-packet-smart-routing-conformance/plan.md",
+      "newPath": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/009-packet-smart-routing-conformance/plan.md",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/015-packet-smart-routing-conformance/spec.md",
+      "newPath": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/009-packet-smart-routing-conformance/spec.md",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
+    },
+    {
+      "kind": "rename",
+      "oldPath": ".opencode/specs/sk-doc/015-packet-smart-routing-conformance/tasks.md",
+      "newPath": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/009-packet-smart-routing-conformance/tasks.md",
+      "source": "post-commit",
+      "observedAt": "2026-07-14T08:32:08.686Z"
     }
   ]
 }
