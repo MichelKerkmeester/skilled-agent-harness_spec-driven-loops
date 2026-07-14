@@ -1,0 +1,25 @@
+{
+  "specFolder": "skilled-agent-orchestration/138-command-agent-canon-conformance/001-command-template-conformance",
+  "description": "The seven OpenCode command families are uneven against the sk-doc `create-command` canon",
+  "keywords": [
+    "seven",
+    "opencode",
+    "command",
+    "families",
+    "uneven",
+    "against",
+    "sk-doc",
+    "create-command",
+    "canon"
+  ],
+  "lastUpdated": "2026-07-14T17:41:33.427Z",
+  "specId": "001",
+  "folderSlug": "command-template-conformance",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "138-command-agent-canon-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

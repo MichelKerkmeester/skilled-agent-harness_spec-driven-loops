@@ -10,10 +10,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/138-command-agent-canon-conformance/001-command-template-conformance"
-    last_updated_at: "2026-07-14T16:35:00Z"
+    last_updated_at: "2026-07-14T18:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored spec from canon analysis; checklist pending deep-alignment findings"
-    next_safe_action: "Populate checklist from the deep-alignment command-docs lane report, then remediate doctor + prompt-improve P0s first"
+    recent_action: "Conformed seven command families to create-command canon"
+    next_safe_action: "Orchestrator runs validate.sh --strict on this child, then rolls up the parent"
 ---
 # Feature Specification: command-template conformance — uniform create-command router vocabulary across all seven OpenCode command families
 
@@ -29,7 +29,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Branch** | `skilled/v4.0.0.0` (worktree `.worktrees/0041-skilled-command-agent-canon`) |
 | **Parent Spec** | `../spec.md` |
@@ -97,7 +97,7 @@ Bring every command family to the uniform create-command router vocabulary — t
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:success -->
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 ### Acceptance Scenarios
@@ -105,7 +105,7 @@ Bring every command family to the uniform create-command router vocabulary — t
 - Given the full family set, when each command doc is validated, then all exit 0 and a behavior diff shows only structural/vocabulary edits.
 - Given the re-audit, when the deep-alignment command-docs lane runs against the conformed files, then its verdict carries no confirmed P0 finding.
 
-<!-- /ANCHOR:success -->
+<!-- /ANCHOR:success-criteria -->
 ---
 
 <!-- ANCHOR:risks -->
@@ -116,3 +116,13 @@ Bring every command family to the uniform create-command router vocabulary — t
 - **Dependency**: 000-foundations' deep-alignment command-docs lane findings populate this phase's checklist; the `shared/scripts` `validate_document.py` entrypoint is the per-file gate.
 
 <!-- /ANCHOR:risks -->
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- **Re-audit signal (REQ-007) is a deterministic proxy.** The deep-alignment command-docs lane re-audit relies on the deterministic `validate_document.py --type command` sweep (0 blocking / 0 warnings across all 23 modified files) rather than the loop's reduced report. The loop's reducer gap is documented in 000-foundations. No confirmed P0 remains under the deterministic gate; whether the reducer would surface any non-deterministic P1 is UNKNOWN until 000's reducer gap is closed.
+- **RESOLVED — direct-dispatch asset shape.** Whether `memory/*` and `doctor/*` should carry `_auto`/`_confirm` workflow YAML was adjudicated (Fable) to the direct-dispatch canon variant: presentation-only OWNED ASSETS plus an EXECUTION TARGETS section pointing at the script/tool/route manifest (doctor keeps `_routes.yaml`). No workflow YAML was authored for direct-dispatch families.
+- **RESOLVED — behavior-preservation evidence.** A reference-set diff (every dispatch target, asset path, and `$ARGUMENTS` token in each pre-conformance HEAD file vs the conformed file) confirmed zero losses across all 23 modified files, satisfying REQ-004.
+
+<!-- /ANCHOR:questions -->

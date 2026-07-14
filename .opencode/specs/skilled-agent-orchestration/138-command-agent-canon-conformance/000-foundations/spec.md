@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/138-command-agent-canon-conformance/000-foundations"
     last_updated_at: "2026-07-14T08:10:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored + validated lane-config.json (scoping.cjs resolved 2 lanes exit 0)"
-    next_safe_action: "Run the live deep-alignment sk-doc audit (LUNA executor) and confirm real findings"
+    recent_action: "Authored 000 foundations doc set; lane-config and audit evidence recorded"
+    next_safe_action: "Orchestrator runs strict validate then rolls up the parent"
 ---
 # Feature Specification: foundations — deep-alignment lane-config authoring + live adapter confirmation for the canon-conformance audit
 
@@ -56,7 +56,7 @@ Establish the audit foundation: an immutable BASE census, a schema-valid deep-al
 ## 3. SCOPE
 
 ### In Scope
-- The immutable BASE commit hash + census of the 29 command docs / 13 agents × 3 runtimes (recorded in `implementation-summary.md`).
+- The immutable BASE commit hash + census (37 OpenCode command docs; 13 agents across `.opencode`+`.claude` = 26 `.md`, plus 13 `.codex/agents/*.toml`; Codex command prompts 0→37, built later in phase 003) recorded in `implementation-summary.md`.
 - `lane-config.json`: a schema-valid deep-alignment lane-config (2 sk-doc/docs lanes; `scoping.cjs` exit 0).
 - A live deep-alignment sk-doc audit run confirming real findings, executor `openai/gpt-5.6-luna-fast --variant xhigh`.
 
@@ -84,18 +84,22 @@ Establish the audit foundation: an immutable BASE census, a schema-valid deep-al
 
 ### P1 - Required (complete OR user-approved deferral)
 - REQ-003: The immutable BASE commit hash and the command/agent census are recorded for reproducibility.
+- REQ-004: The deep-alignment run artifacts (`alignment/deep-alignment-state.jsonl`, `alignment/deltas/iter-001.jsonl`) are persisted in this child folder so the audit is reproducible and inspectable by downstream phases 001-003.
+
+### P2 - Optional (defer with documented reason)
+- REQ-005: The audit executor is frozen and recorded (`openai/gpt-5.6-luna-fast --variant xhigh`) so any re-audit uses an identical model profile.
 
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:success -->
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 ### Acceptance Scenarios
 - Given the lane-config, when `scoping.cjs` runs, then it resolves exactly 2 sk-doc/docs lanes and exits 0.
-- Given the live audit, when the sk-doc adapter checks a known-failing doc (a `doctor/*` command), then it emits a P0/P1 finding tied to the validator's real exit code — not a blanket adapter error.
+- Given the live audit, when the sk-doc adapter checks the command-docs lane, then it emits P1 findings tied to real `validate_document.py --type command` results — not a blanket adapter error.
 
-<!-- /ANCHOR:success -->
+<!-- /ANCHOR:success-criteria -->
 ---
 
 <!-- ANCHOR:risks -->
@@ -105,3 +109,19 @@ Establish the audit foundation: an immutable BASE census, a schema-valid deep-al
 - **Dependency**: the deep-alignment engine (`deep-alignment/`) and the sk-doc `validate_document.py` (`shared/` variant) must both be runnable from repo root.
 
 <!-- /ANCHOR:risks -->
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+### Resolved / documented deviation — deep-alignment reducer did not consume the delta stream
+
+The deep-alignment loop's LEAF iteration executed and produced the 20 findings (proving the sk-doc adapter works), BUT the loop did NOT complete its convergence/reduce step: the reduced views (`alignment/alignment-report.md`, `alignment/deep-alignment-findings-registry.json`) show `NOT_APPLICABLE` / 0 iterations / 0 findings — the reducer never consumed the `iter-001` deltas. This reducer gap is a known headless deep-alignment-loop limitation and a candidate follow-up for `system-deep-loop/059-deep-alignment-mode/015-headless-model-matrix-hardening` (Phase B/C). REQ-002 is therefore satisfied by the RAW delta-stream evidence, NOT by the reduced report. Because the downstream conformance (phase 001) has since resolved all 20 findings, a fresh re-audit would now find 0 — so the pre-remediation delta stream is the historical REQ-002 evidence, and the deterministic `validate_document.py` sweep (all command files exit 0, 0/0) is the stronger re-audit-clean proof used by phases 001-003.
+
+- **CONFIRMED** (evidence): `alignment/deltas/iter-001.jsonl` has 20 finding rows keyed to `validate_document.py` results; `alignment/alignment-report.md` shows `NOT_APPLICABLE`.
+- **NOT achieved** (honest): the loop-completion / convergence claim — the reducer never rolled the deltas into the reduced report.
+
+### Genuinely open
+
+- None blocking this child. Per-lane conformance specifics are resolved by phases 001-003 consuming the audit findings, not by guesses here.
+<!-- /ANCHOR:questions -->
