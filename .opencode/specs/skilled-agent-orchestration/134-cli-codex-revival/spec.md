@@ -44,7 +44,7 @@ _memory:
 Codex CLI 0.144.1 now provides stable native hooks, multi-agent support, and a supported non-interactive executor, reversing the operational assumptions behind packet 122. Revival must restore support without repeating the former advertised-but-unusable failure mode.
 
 ### Purpose
-Restore Codex through bounded phases, beginning with a verified contract and a fail-closed deep-loop executor, and extending to full guard-hook parity with the other runtimes. Detailed implementation remains in child phases. The original six-phase revival is followed by `007-codex-hook-parity`, which gives every Claude guard hook / OpenCode plugin a Codex adapter, native equivalent, or documented gap.
+Restore Codex through bounded phases, beginning with a verified contract and a fail-closed deep-loop executor, and extending to full guard-hook parity with the other runtimes. Detailed implementation remains in child phases. The original six-phase revival is followed by `007-codex-hook-parity`, which gives every Claude guard hook / OpenCode plugin a Codex adapter, native equivalent, or documented gap, and `008-cli-codex-model-roster-and-alignment`, which expands the documented model roster to the full GPT-5.5 / GPT-5.6 set and aligns the codex-hook docs with the shipped surface.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

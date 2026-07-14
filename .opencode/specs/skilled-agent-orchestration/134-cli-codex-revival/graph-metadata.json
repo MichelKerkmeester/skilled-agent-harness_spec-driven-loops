@@ -10,7 +10,8 @@
     "skilled-agent-orchestration/134-cli-codex-revival/004-codex-hook-adapter-layer",
     "skilled-agent-orchestration/134-cli-codex-revival/005-codex-agent-toml-sync",
     "skilled-agent-orchestration/134-cli-codex-revival/006-docs-and-closeout",
-    "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity"
+    "skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity",
+    "skilled-agent-orchestration/134-cli-codex-revival/008-cli-codex-model-roster-and-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -101,17 +102,17 @@
     ],
     "causal_summary": "Codex CLI 0.144.1 now provides stable native hooks, multi-agent support, and a supported non-interactive executor, reversing the operational assumptions behind packet 122",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-07-13T18:55:16.956Z",
+    "last_save_at": "2026-07-14T04:33:30.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7c6cd0f3083974c2812e7ee461666f7b8413e1d9d733e9b68b035a927b0e00ce",
+    "source_fingerprint": "sha256:231e9025d3af7d0060075645723472a2cf305b37e5b90d513744236608c8e633",
     "source_doc_hashes": {
-      "spec.md": "b8afbbd3dbc39968d166bc58f0dbc666ab172ec281b89c3e5124c7287b20fb77"
+      "spec.md": "decc72c6b0a9b354ba922951aa81f7c1cc0d396417bf86a80abf617be5f47d04"
     },
-    "last_active_child_id": "007-codex-hook-parity",
-    "last_active_at": "2026-07-13T05:38:00Z"
+    "last_active_child_id": "008-cli-codex-model-roster-and-alignment",
+    "last_active_at": "2026-07-14T04:11:03Z"
   }
 }

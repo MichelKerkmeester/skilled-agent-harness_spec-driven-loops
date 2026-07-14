@@ -1,0 +1,28 @@
+{
+  "specFolder": "skilled-agent-orchestration/134-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
+  "description": "Expand the cli-codex documented GPT model roster from a single gpt-5.5 lock to four fast-tier models with per-model reasoning-effort ceilings, live-verify all twenty model×effort cells, and fix a stale codex-surface doc claim",
+  "keywords": [
+    "cli-codex",
+    "model",
+    "roster",
+    "gpt-5.5",
+    "gpt-5.6",
+    "luna",
+    "terra",
+    "sol",
+    "reasoning",
+    "effort",
+    "ceiling",
+    "codex"
+  ],
+  "lastUpdated": "2026-07-14T04:11:03Z",
+  "specId": "008",
+  "folderSlug": "cli-codex-model-roster-and-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-cli-codex-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}
