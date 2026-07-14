@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/066-command-surface-benchmark",
+  "description": "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a",
+  "keywords": [
+    "phase",
+    "parent",
+    "new",
+    "benchmark",
+    "hosted",
+    "deep-alignment",
+    "mode",
+    "measures",
+    "opencode",
+    "command",
+    "surface",
+    "two",
+    "non-averaged",
+    "axes"
+  ],
+  "lastUpdated": "2026-07-14T20:23:39.350Z",
+  "specId": "066",
+  "folderSlug": "command-surface-benchmark",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

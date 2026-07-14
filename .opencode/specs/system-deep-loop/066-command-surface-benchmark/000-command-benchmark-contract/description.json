@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "description": "First child of the command-surface benchmark.",
+  "keywords": [
+    "first",
+    "child",
+    "command-surface",
+    "benchmark"
+  ],
+  "lastUpdated": "2026-07-14T20:25:16.087Z",
+  "specId": "000",
+  "folderSlug": "command-benchmark-contract",
+  "parentChain": [
+    "system-deep-loop",
+    "066-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

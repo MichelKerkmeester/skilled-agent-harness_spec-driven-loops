@@ -1,0 +1,994 @@
+{
+  "sessionId": "2026-07-14T19:26:13Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Review configuration under-scopes the declared production command and prompt surface",
+      "file": ".opencode/specs/skilled-agent-orchestration/138-command-agent-canon-conformance/review/deep-review-config.json",
+      "line": 47,
+      "description": "The review cannot certify the declared 37-command/37-prompt surface because its immutable scope list contains only 28 command paths and 9 prompt paths.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Filesystem census plus sync-prompts exclusion rules produced 37 production command sources and 37 prompt outputs; the configured reviewScopeFiles count is 28 commands and 9 prompts.",
+      "affectedSurfaceHints": [
+        "reviewScopeFiles",
+        "deep command routers",
+        "agent_router.md",
+        ".codex/prompts"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "sync-agents.cjs --check is red while phase 002 claims 13/13 parity",
+      "file": ".codex/agents/ai-council.toml",
+      "line": 1,
+      "description": "Regenerate the two stale TOMLs, rerun the gate, and reconcile completion evidence.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Parent completion criteria still require home prompt installation that child 003 defers",
+      "file": ".opencode/specs/skilled-agent-orchestration/138-command-agent-canon-conformance/spec.md",
+      "line": 92,
+      "description": "Reconcile parent and child contracts before claiming the parent handoff criterion is satisfied.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "permission-boundary",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "P1-005"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-005",
+      "severity": "P1",
+      "title": "Summary P1 finding 5",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-006",
+      "severity": "P1",
+      "title": "Summary P1 finding 6",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-007",
+      "severity": "P1",
+      "title": "Summary P1 finding 7",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Representative agent validation emits a non-sequential numbering warning",
+      "file": ".opencode/agents/deep-review.md",
+      "line": 1,
+      "description": "The representative agent validator passes with a non-blocking section-number warning.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Required representative invocation only; full agent sweep is reserved for the correctness pass.",
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "HISTORICAL_SETTINGS omits deep-alignment from the explicit legacy-settings map",
+      "file": ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
+      "line": 20,
+      "description": "Make the settings policy explicit for deep-alignment.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Review configuration under-scopes the declared production command and prompt surface",
+      "file": ".opencode/specs/skilled-agent-orchestration/138-command-agent-canon-conformance/review/deep-review-config.json",
+      "line": 47,
+      "description": "The review cannot certify the declared 37-command/37-prompt surface because its immutable scope list contains only 28 command paths and 9 prompt paths.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Filesystem census plus sync-prompts exclusion rules produced 37 production command sources and 37 prompt outputs; the configured reviewScopeFiles count is 28 commands and 9 prompts.",
+      "affectedSurfaceHints": [
+        "reviewScopeFiles",
+        "deep command routers",
+        "agent_router.md",
+        ".codex/prompts"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-005",
+      "severity": "P1",
+      "title": "Summary P1 finding 5",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-006",
+      "severity": "P1",
+      "title": "Summary P1 finding 6",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-007",
+      "severity": "P1",
+      "title": "Summary P1 finding 7",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Representative agent validation emits a non-sequential numbering warning",
+      "file": ".opencode/agents/deep-review.md",
+      "line": 1,
+      "description": "The representative agent validator passes with a non-blocking section-number warning.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Required representative invocation only; full agent sweep is reserved for the correctness pass.",
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Review configuration under-scopes the declared production command and prompt surface",
+      "file": ".opencode/specs/skilled-agent-orchestration/138-command-agent-canon-conformance/review/deep-review-config.json",
+      "line": 47,
+      "description": "The review cannot certify the declared 37-command/37-prompt surface because its immutable scope list contains only 28 command paths and 9 prompt paths.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Filesystem census plus sync-prompts exclusion rules produced 37 production command sources and 37 prompt outputs; the configured reviewScopeFiles count is 28 commands and 9 prompts.",
+      "affectedSurfaceHints": [
+        "reviewScopeFiles",
+        "deep command routers",
+        "agent_router.md",
+        ".codex/prompts"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-005",
+      "severity": "P1",
+      "title": "Summary P1 finding 5",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-006",
+      "severity": "P1",
+      "title": "Summary P1 finding 6",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-007",
+      "severity": "P1",
+      "title": "Summary P1 finding 7",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Representative agent validation emits a non-sequential numbering warning",
+      "file": ".opencode/agents/deep-review.md",
+      "line": 1,
+      "description": "The representative agent validator passes with a non-blocking section-number warning.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Required representative invocation only; full agent sweep is reserved for the correctness pass.",
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 11,
+    "P2": 2
+  },
+  "openFindingsCount": 13,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

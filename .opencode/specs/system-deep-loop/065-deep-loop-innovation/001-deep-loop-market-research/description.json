@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research",
+  "description": "`system-deep-loop` improvements are currently sourced only from local incident experience; the repo has no systematic map of what the wider ecosystem",
+  "keywords": [
+    "system-deep-loop",
+    "improvements",
+    "currently",
+    "sourced",
+    "only",
+    "local",
+    "incident",
+    "experience",
+    "repo",
+    "systematic",
+    "map",
+    "wider",
+    "ecosystem"
+  ],
+  "lastUpdated": "2026-07-14T19:22:22.573Z",
+  "specId": "001",
+  "folderSlug": "deep-loop-market-research",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

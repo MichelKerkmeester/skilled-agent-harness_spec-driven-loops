@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation",
+  "description": "Innovation program for the system-deep-loop parent skill: deeply research the state of the art in loop engineering (agentic/iterative loops) across",
+  "keywords": [
+    "innovation",
+    "program",
+    "system-deep-loop",
+    "parent",
+    "skill",
+    "deeply",
+    "research",
+    "state",
+    "art",
+    "loop",
+    "engineering",
+    "agentic",
+    "iterative",
+    "loops",
+    "across"
+  ],
+  "lastUpdated": "2026-07-14T19:15:38.909Z",
+  "specId": "065",
+  "folderSlug": "deep-loop-innovation",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

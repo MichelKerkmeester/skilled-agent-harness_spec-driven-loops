@@ -1,0 +1,11 @@
+{
+  "owner_pid": 92563,
+  "started_at_iso": "2026-07-14T19:25:07.259Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-14T19:25:07.259Z",
+  "packet_id": ".opencode/specs/skilled-agent-orchestration/138-command-agent-canon-conformance",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-14T19:25:07.259Z",
+  "acquire_nonce": "92563-1784057107260-bb5e7ad6-06a9-48dd-a258-104db4946dfd"
+}

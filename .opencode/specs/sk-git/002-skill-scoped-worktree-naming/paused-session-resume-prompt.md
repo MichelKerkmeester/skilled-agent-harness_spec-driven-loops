@@ -76,3 +76,6 @@ it never blocks `skilled/v*` and never rewrites existing branches. Bypass (rarel
 - Do not recreate the removed `wt/*` worktrees by hand — allocate owner-first instead.
 - Do not delete or force-push `main`, `skilled/v*`, or any `backup/*` branch.
 - Do not touch another session's `/private/tmp/**` worktree.
+
+
+READ AND FOLLOW SK-GIT 1:1

@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "parent_id": "system-deep-loop/066-command-surface-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command benchmark contract",
+      "command census freeze",
+      "command topology taxonomy",
+      "two-axis verdict semantics"
+    ],
+    "key_topics": [
+      "command",
+      "benchmark",
+      "contract",
+      "census",
+      "freeze",
+      "topology",
+      "taxonomy",
+      "two-axis",
+      "verdict",
+      "semantics",
+      "first",
+      "child"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Parent",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "First child of the command-surface benchmark. Freezes the canonical command census (37 sources / 37 Codex mirrors), the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries between this benchmark and existing validators, and the handoff gates every downstream phase builds against.",
+    "created_at": "2026-07-14T20:25:28.765Z",
+    "last_save_at": "2026-07-14T20:25:28.765Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:783fe2d6d7980912573813eeb8eaf01ea19afee0be0aff3afd29ceba91ee3797",
+    "source_doc_hashes": {
+      "spec.md": "9943e8722743bac9d40d302763a8f46179904b89074856876af29324c8aae858",
+      "plan.md": "5cb28fa3f7ad102d09274c2ad17aaa2c657263dd77c7b2b45135fd58b2017bf6",
+      "tasks.md": "07402f42dcb490f2a9fee39c28370d70b6a5c18d6f2301558cc34accd791ec35"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
