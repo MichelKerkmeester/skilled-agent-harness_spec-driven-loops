@@ -21,32 +21,52 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "sk-code component migration",
+      "kebab-case sk-code surface",
+      "hyphenate sk-code resources",
+      "sk-code naming phases"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "sk-code",
+      "component",
+      "migration",
+      "kebab-case",
+      "surface",
+      "hyphenate",
+      "resources",
+      "naming",
+      "phases",
+      "nested",
+      "family",
+      "rather"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/mode-registry.json",
+      ".opencode/skills/sk-code/hub-router.json",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,13 +80,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -78,29 +98,29 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Purpose Define",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The sk-code surface is a nested family rather than one flat directory: a routing hub, shared references and assets, two workflow modes, two read-only surface packets, a root manual-testing playbook, and benchmark storage all participate in path resolution",
     "created_at": "2026-07-14T15:16:54Z",
-    "last_save_at": "2026-07-14T15:24:34.613Z",
+    "last_save_at": "2026-07-14T20:22:52.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:563703decd7358bb4fb0b4df82464e6c6d477023464b7c8eeb606482ab764616",
+    "source_fingerprint": "sha256:c193f1e2c1758b11198d2f878d7c23cca27ffd9344eb80947aed12452a55970d",
     "source_doc_hashes": {
-      "spec.md": "bae2dc2dc5072694c7e1e6148b16f918045f5fe7339b4feb008d0f999a7b0156"
+      "spec.md": "fd54e05508e40ddbf57e36040b252863962f6317d52c1c37230d0e5bd9b52f18"
     },
     "last_active_child_id": null,
     "last_active_at": null
