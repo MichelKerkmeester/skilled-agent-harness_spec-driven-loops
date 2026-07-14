@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/128-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router"
-    last_updated_at: "2026-07-10T06:21:30Z"
+    packet_pointer: "sk-git/007-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router"
+    last_updated_at: "2026-07-14T20:50:40Z"
     last_updated_by: "claude"
     recent_action: "Recorded verification evidence"
     next_safe_action: "Proceed to phase 004"
@@ -45,9 +45,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-001 [P0] Requirements documented in `spec.md`
   - **Evidence**: `spec.md` REQ-001 through REQ-004
-- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-002 [P0] Technical approach defined in `plan.md`
   - **Evidence**: `plan.md` §3 ARCHITECTURE, mirror-and-extend pattern
 - [x] CHK-003 [P1] Dependencies available (`001-research-and-context/spec.md`, `002-utcp-config-registration/spec.md`)
   - **Evidence**: phase 001 tool inventory + safety decision, phase 002 registered manual
@@ -71,11 +71,11 @@ _memory:
 
 - [x] CHK-010 [P0] `gitkraken_mcp_integration.md` created with all required sections
   - **Evidence**: `.opencode/skills/sk-git/references/gitkraken_mcp_integration.md` created with Overview, Safety, Tool Selection Guide, Available Tools, Usage Examples, Error Handling, Related Resources
-- [x] CHK-011 [P0] Safety carve-out (local mutations stay on Bash) documented in the new doc
+- [x] CHK-011 [P0] Safety carve-out (local mutations stay on Bash) documented in the new doc — `verified`
   - **Evidence**: `gitkraken_mcp_integration.md` §2 "SAFETY: LOCAL GIT MUTATIONS STAY ON BASH"
 - [x] CHK-012 [P0] Forbidden app-internal tools (`app_tool_box`, `app_update_user_preferences`) documented
   - **Evidence**: `gitkraken_mcp_integration.md` §2 and §4 table row "Forbidden (app-internal)"
-- [x] CHK-013 [P1] Tool table matches phase 001's verified 31-tool inventory (no invented tool names)
+- [x] CHK-013 [P1] Tool table matches phase 001's verified 31-tool inventory (no invented tool names) — `verified`
   - **Evidence**: §4 table transcribes the same 31 tools/groups captured in `001-research-and-context/spec.md` REQ-001; independently re-verified by the phase-005 adversarial review agent
 <!-- /ANCHOR:doc-quality -->
 
@@ -88,9 +88,9 @@ _memory:
   - **Evidence**: `SKILL.md` lines with `"GITKRAKEN_MCP": {"weight": 4, ...}` in `INTENT_SIGNALS` and `"GITKRAKEN_MCP": ["references/gitkraken_mcp_integration.md"]` in `RESOURCE_MAP`
 - [x] CHK-021 [P1] `gitkraken`/`gitlens` keyword triggers added to §1 "Owned" list
   - **Evidence**: `SKILL.md` §1 "Owned (route here)" list now includes `gitkraken`, `gitlens`, `gitlens launchpad`, `commit composer`
-- [x] CHK-022 [P1] References-table row added in §5
+- [x] CHK-022 [P1] References-table row added in §5 — `verified`
   - **Evidence**: `SKILL.md` §5 REFERENCES table has a `gitkraken_mcp_integration.md` row
-- [x] CHK-023 [P0] Safety rule added to §4 RULES
+- [x] CHK-023 [P0] Safety rule added to §4 RULES — `verified`
   - **Evidence**: `SKILL.md` §4 ALWAYS rule 12, "Route GitKraken MCP's local-mutation tools back to Bash"
 <!-- /ANCHOR:router -->
 
@@ -118,9 +118,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-050 [P0] No hardcoded secrets or credentials introduced
+- [x] CHK-050 [P0] No hardcoded secrets or credentials introduced — `verified`
   - **Evidence**: new doc and `SKILL.md` edits contain no tokens/keys; GitKraken auth is CLI-local (phase 001 REQ-002/REQ-004), no secret material touches these files
-- [x] CHK-051 [P1] Safety carve-out prevents the new integration from bypassing existing auth/write guardrails
+- [x] CHK-051 [P1] Safety carve-out prevents the new integration from bypassing existing auth/write guardrails — `verified`
   - **Evidence**: `gitkraken_mcp_integration.md` §2 + `SKILL.md` ALWAYS rule 12
 <!-- /ANCHOR:security -->
 
@@ -129,9 +129,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-060 [P1] Spec/plan/tasks/checklist synchronized with actual delivered content
+- [x] CHK-060 [P1] Spec/plan/tasks/checklist synchronized with actual delivered content — `verified`
   - **Evidence**: this checklist, `tasks.md`, and `implementation-summary.md` all reference the same file set and requirement IDs
-- [x] CHK-061 [P2] No README update needed
+- [x] CHK-061 [P2] No README update needed — `verified`
   - **Evidence**: `sk-git/README.md` is a top-level overview that doesn't enumerate individual reference docs; unaffected
 <!-- /ANCHOR:docs -->
 
@@ -140,7 +140,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-070 [P1] No temp/scratch files left behind
+- [x] CHK-070 [P1] No temp/scratch files left behind — `verified`
   - **Evidence**: only the intended files were created/modified (`gitkraken_mcp_integration.md`, `SKILL.md`); `git status` shows no stray files from this phase
 <!-- /ANCHOR:file-org -->
 

@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/128-gitkraken-mcp-integration",
-  "spec_folder": "skilled-agent-orchestration/128-gitkraken-mcp-integration",
+  "packet_id": "sk-git/007-gitkraken-mcp-integration",
+  "spec_folder": "sk-git/007-gitkraken-mcp-integration",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context",
-    "skilled-agent-orchestration/128-gitkraken-mcp-integration/002-utcp-config-registration",
-    "skilled-agent-orchestration/128-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
-    "skilled-agent-orchestration/128-gitkraken-mcp-integration/004-advisor-routing-update",
-    "skilled-agent-orchestration/128-gitkraken-mcp-integration/005-verify-and-rollout"
+    "sk-git/007-gitkraken-mcp-integration/001-research-and-context",
+    "sk-git/007-gitkraken-mcp-integration/002-utcp-config-registration",
+    "sk-git/007-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
+    "sk-git/007-gitkraken-mcp-integration/004-advisor-routing-update",
+    "sk-git/007-gitkraken-mcp-integration/005-verify-and-rollout"
   ],
   "manual": {
     "depends_on": [],
@@ -17,14 +17,14 @@
   },
   "derived": {
     "trigger_phrases": [
-      "128-gitkraken-mcp-integration",
+      "007-gitkraken-mcp-integration",
       "phase parent",
       "gitkraken mcp integration",
       "gitkraken mcp sk-git",
       "gitlens launchpad routing"
     ],
     "key_topics": [
-      "128-gitkraken-mcp-integration",
+      "007-gitkraken-mcp-integration",
       "phase",
       "parent",
       "gitkraken",
@@ -41,7 +41,6 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/sk-git/references/gitkraken_mcp_integration.md",
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/sk-git/graph-metadata.json",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts"
@@ -51,12 +50,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "gitkraken_mcp_integration.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/gitkraken_mcp_integration.md",
         "source": "derived"
       },
       {
@@ -116,15 +109,15 @@
     ],
     "causal_summary": "GitKraken publishes an MCP server (`gitkraken/mcp`, npm package `@gitkraken/gk`, stdio transport) exposing 31 tools spanning local git operations, GitLens AI workflows (commit composer, launchpad, PR review, start-work), and cross-platform issue/PR management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira",
     "created_at": "2026-07-10T06:17:41.006Z",
-    "last_save_at": "2026-07-10T10:15:17.683Z",
+    "last_save_at": "2026-07-14T20:49:35.471Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c351ec51f5433fa8145d77d1a767f2e06e4133a9cf044800ee67c8542ef1caf1",
+    "source_fingerprint": "sha256:b0ebf61c11997a39a019e0b6d8a9ca7f6bf7834b30f4065297ef427a22c02a25",
     "source_doc_hashes": {
-      "spec.md": "ee55c69178c356a713eee7b47146d4b4ce9f143b0432f708d64b8f4ac7153525"
+      "spec.md": "94fcbcd5e8e900aeb63c52aa7e7ee2a81f187e533e83f9b09fc9bf401b7a1d3d"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-10T10:15:17.683Z"

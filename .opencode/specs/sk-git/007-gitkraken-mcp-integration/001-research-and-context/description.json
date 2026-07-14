@@ -1,6 +1,6 @@
 {
   "level": 1,
-  "specFolder": "skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context",
+  "specFolder": "sk-git/007-gitkraken-mcp-integration/001-research-and-context",
   "description": "The GitKraken MCP integration program (see `../spec.md`) needs ground truth before any file changes: the GitHub README under-documents the real tool",
   "keywords": [
     "gitkraken",
@@ -20,12 +20,12 @@
     "real",
     "tool"
   ],
-  "lastUpdated": "2026-07-10T06:21:31.269Z",
+  "lastUpdated": "2026-07-14T20:42:35.539Z",
   "specId": "001",
   "folderSlug": "research-and-context",
   "parentChain": [
-    "skilled-agent-orchestration",
-    "128-gitkraken-mcp-integration"
+    "sk-git",
+    "007-gitkraken-mcp-integration"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

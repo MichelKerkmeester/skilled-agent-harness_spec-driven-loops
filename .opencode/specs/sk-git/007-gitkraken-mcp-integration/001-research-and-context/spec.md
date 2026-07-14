@@ -10,15 +10,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context"
-    last_updated_at: "2026-07-10T06:21:30Z"
+    packet_pointer: "sk-git/007-gitkraken-mcp-integration/001-research-and-context"
+    last_updated_at: "2026-07-14T20:48:58Z"
     last_updated_by: "claude"
     recent_action: "Captured the full 31-tool surface via gk mcp --list-tools"
     next_safe_action: "Proceed to phase 002 using the recorded config-shape decision"
     blockers: []
     key_files:
-      - ".opencode/specs/skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context/spec.md"
-      - ".opencode/specs/skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context/implementation-summary.md"
+      - ".opencode/specs/sk-git/007-gitkraken-mcp-integration/001-research-and-context/spec.md"
+      - ".opencode/specs/sk-git/007-gitkraken-mcp-integration/001-research-and-context/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-001-research-and-context"

@@ -2,7 +2,7 @@
 title: "Feature Specification: Integrate the GitKraken MCP server into sk-git and Code Mode with advisor-routed utilization"
 description: "Phase parent for registering the GitKraken MCP server (@gitkraken/gk mcp) as a Code Mode manual, documenting it inside sk-git with safety-scoped tool selection guidance, and updating sk-git's router plus the skill advisor's routing metadata so GitKraken-MCP-shaped requests reach sk-git automatically."
 trigger_phrases:
-  - "128-gitkraken-mcp-integration"
+  - "007-gitkraken-mcp-integration"
   - "phase parent"
   - "gitkraken mcp integration"
   - "gitkraken mcp sk-git"
@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/128-gitkraken-mcp-integration"
-    last_updated_at: "2026-07-10T06:21:30Z"
+    packet_pointer: "sk-git/007-gitkraken-mcp-integration"
+    last_updated_at: "2026-07-14T20:48:58Z"
     last_updated_by: "claude"
     recent_action: "All 5 phases complete; GitKraken MCP integrated end-to-end"
     next_safe_action: "Packet complete; no further action needed"
@@ -21,13 +21,13 @@ _memory:
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "128-gitkraken-mcp-integration"
+      session_id: "007-gitkraken-mcp-integration"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions:
       - "GitKraken CLI (`gk`) is already installed locally (Homebrew, /opt/homebrew/bin/gk) and authenticated to GitHub; `gk mcp --list-tools` enumerates 31 real tools, confirming the README's tool list is incomplete"
-      - "Registration target is a new top-level packet under the existing skilled-agent-orchestration track (117-127 exist), not a new hub — this adds one MCP server into the existing flat sk-git skill"
+      - "Registration target is a new top-level packet under the existing sk-git track, not a new hub — this adds one MCP server into the existing flat sk-git skill"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -56,7 +56,7 @@ _memory:
 | **Created** | 2026-07-10 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | skilled-agent-orchestration/128-gitkraken-mcp-integration |
+| **Parent Packet** | sk-git/007-gitkraken-mcp-integration |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | `.utcp_config.json` parses and Code Mode can list the `gitkraken` manual; `validate.sh --recursive --strict` passes on this whole track; the advisor's vocabulary-agreement vitest suite still passes |

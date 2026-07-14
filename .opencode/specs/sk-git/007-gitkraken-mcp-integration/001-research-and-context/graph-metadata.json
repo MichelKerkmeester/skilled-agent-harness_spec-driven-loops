@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context",
-  "spec_folder": "skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context",
-  "parent_id": "skilled-agent-orchestration/128-gitkraken-mcp-integration",
+  "packet_id": "sk-git/007-gitkraken-mcp-integration/001-research-and-context",
+  "spec_folder": "sk-git/007-gitkraken-mcp-integration/001-research-and-context",
+  "parent_id": "sk-git/007-gitkraken-mcp-integration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,8 +40,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context/implementation-summary.md",
+      ".opencode/specs/sk-git/007-gitkraken-mcp-integration/001-research-and-context/spec.md",
+      ".opencode/specs/sk-git/007-gitkraken-mcp-integration/001-research-and-context/implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -51,13 +51,13 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context/spec.md",
+        "path": ".opencode/specs/sk-git/007-gitkraken-mcp-integration/001-research-and-context/spec.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/128-gitkraken-mcp-integration/001-research-and-context/implementation-summary.md",
+        "path": ".opencode/specs/sk-git/007-gitkraken-mcp-integration/001-research-and-context/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The GitKraken MCP integration program (see `../spec.md`) needs ground truth before any file changes: the GitHub README under-documents the real tool surface (it names only 3 example tools against a real 31), the correct `.utcpconfig.json` config shape isn't obvious (the CLI's own config generator emits a machine-local form, not the repo's portable `npx` convention), and whether to register the server read-only or read+write is a real safety tradeoff against sk-git's existing ask-first/no-direct-branch/conventional-commit rules",
     "created_at": "2026-07-10T06:17:40.501Z",
-    "last_save_at": "2026-07-10T06:21:37.633Z",
+    "last_save_at": "2026-07-14T20:49:35.594Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8fcedeaf145cc0d29503a2e0786859112721d9e0beaa4de1e9ae43bf5c58914f",
+    "source_fingerprint": "sha256:0ee390a78433ef335920c3162845dcb6ffff7262294d778a1f24c3fb7a52beac",
     "source_doc_hashes": {
-      "spec.md": "c5d6278cc28357adeb3ba67960260a80419085ce17159b99be21d3a9183cfda3",
-      "plan.md": "7d25c58e2a3f4287df26bd99d2e31881ebfae90ba1f9c42d1e97b561f8b261c9",
-      "tasks.md": "7c30f4b02b18c16d2338d0e0a8497edc7d7d61d89385bf5feb88424ad1f4d4e9",
-      "implementation-summary.md": "a4a3c9d76fb9c1b1624a2649411db49da0bd7d91af1e3b5674970406138d7b42"
+      "spec.md": "a3dc37f5ebe2deaab14b2fa087d7b4ab6b508597e48a70ac9ec182657e3253dd",
+      "plan.md": "0674f6f2c1a14b4704f4e38d72b81658b357e107fee48a6241ba40f6c858dac0",
+      "tasks.md": "34b1dde28cc7bd6462c236fce0eef42171baf8a800a9743851d44e54bb0d74e6",
+      "implementation-summary.md": "2a4f4468a172bb3a1cf8f125dc96ddb192ac65f900c44e392c35abd68563706f"
     },
     "last_active_child_id": null,
     "last_active_at": null

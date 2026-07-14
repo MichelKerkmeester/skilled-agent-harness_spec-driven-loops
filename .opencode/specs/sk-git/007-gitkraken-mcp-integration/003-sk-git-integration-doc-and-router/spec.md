@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/128-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router"
-    last_updated_at: "2026-07-10T06:21:30Z"
+    packet_pointer: "sk-git/007-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router"
+    last_updated_at: "2026-07-14T20:50:40Z"
     last_updated_by: "claude"
     recent_action: "Authored the phase spec ahead of implementation"
     next_safe_action: "Write the reference doc, then update SKILL.md"

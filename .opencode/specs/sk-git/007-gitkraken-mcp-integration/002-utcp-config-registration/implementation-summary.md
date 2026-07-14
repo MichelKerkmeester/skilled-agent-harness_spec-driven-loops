@@ -8,8 +8,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/128-gitkraken-mcp-integration/002-utcp-config-registration"
-    last_updated_at: "2026-07-10T06:21:30Z"
+    packet_pointer: "sk-git/007-gitkraken-mcp-integration/002-utcp-config-registration"
+    last_updated_at: "2026-07-14T20:48:58Z"
     last_updated_by: "claude"
     recent_action: "Registered the gitkraken manual in .utcp_config.json"
     next_safe_action: "Proceed to phase 003"

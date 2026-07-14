@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/128-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
-  "spec_folder": "skilled-agent-orchestration/128-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
-  "parent_id": "skilled-agent-orchestration/128-gitkraken-mcp-integration",
+  "packet_id": "sk-git/007-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
+  "spec_folder": "sk-git/007-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
+  "parent_id": "sk-git/007-gitkraken-mcp-integration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,22 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-git/references/gitkraken_mcp_integration.md",
       ".opencode/skills/sk-git/SKILL.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
-      ".opencode/skills/sk-git/references/github_mcp_integration.md"
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "gitkraken_mcp_integration.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/gitkraken_mcp_integration.md",
-        "source": "derived"
-      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -91,12 +83,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "github_mcp_integration.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/github_mcp_integration.md",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Even after phase 002's registration, sk-git has no idea GitKraken MCP exists — nothing documents its tools, nothing routes intent to it, and nothing warns against using its local-mutation tools in place of sk-git's existing safety-gated Bash workflow",
     "created_at": "2026-07-10T06:17:40.757Z",
-    "last_save_at": "2026-07-10T06:21:38.083Z",
+    "last_save_at": "2026-07-14T20:50:40.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db85c5a1f3d08a541743884387608522556c9a9771ea377551164d8d7edb3f63",
+    "source_fingerprint": "sha256:13807b21a8323af762e9e3c250844fb25057ebdaf23c5e409f1eeb486efc6a0f",
     "source_doc_hashes": {
-      "spec.md": "5c6ed790bc39750e838c0eb3baba56cfa7e92e7aeb099f9d8298c3cdf4e2e2b3",
-      "plan.md": "26d3551e9ff8eae7ab7057ff909aed5642ef2d3ada666c8d59d8853e637fd4c4",
-      "tasks.md": "1311965afc2fb0cda961239b485a46076378c59d9dac4c7f488bfc0fefed8e99",
-      "checklist.md": "170de4bd19d27fd42f7630de9aa3eac38026be622826fb503fed4cfd366bc392",
-      "implementation-summary.md": "32d1759fecd5af427a8a417634bab091de7c241c4e3aa2f8b461b592ac7741dc"
+      "spec.md": "edff5fb53973ad653c9d7a6a12a46a1593b76f0069676865e631e6cf4820bd5c",
+      "plan.md": "6b829c59cd0b5ae1ef5d4d818a17aec808ae514d2104e8e88d46f783d692222e",
+      "tasks.md": "73ebb421220a9b5d6bdddc03f8a594377bc341c74fe020ee10c784e3236a8c7e",
+      "checklist.md": "d4c5b7a92a479f385555266a751d47b16c85ba307a06977b318364f209135267",
+      "implementation-summary.md": "93a5cf74a5718744b956b83c9245c75273ea5d2c9b0561ae98ccb1b1e80151a3"
     },
     "last_active_child_id": null,
     "last_active_at": null

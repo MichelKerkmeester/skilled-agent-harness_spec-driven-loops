@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/128-gitkraken-mcp-integration/004-advisor-routing-update"
-    last_updated_at: "2026-07-10T06:21:30Z"
+    packet_pointer: "sk-git/007-gitkraken-mcp-integration/004-advisor-routing-update"
+    last_updated_at: "2026-07-14T20:52:15Z"
     last_updated_by: "claude"
     recent_action: "Authored the phase task list ahead of implementation"
     next_safe_action: "Apply the graph-metadata.json and explicit.ts edits"
@@ -78,8 +78,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`
-- [x] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]` — `verified`
+- [x] No `[B]` blocked tasks remaining — `verified`
 - [x] `checklist.md` evidence recorded
 <!-- /ANCHOR:completion -->
 

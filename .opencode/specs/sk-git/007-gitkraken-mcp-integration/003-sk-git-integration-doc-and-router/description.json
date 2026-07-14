@@ -1,7 +1,7 @@
 {
   "level": 2,
-  "specFolder": "skilled-agent-orchestration/128-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
-  "description": "Even after phase 002's registration, sk-git has no idea GitKraken MCP exists — nothing documents its tools, nothing routes intent to it, and nothing",
+  "specFolder": "sk-git/007-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
+  "description": "Even after phase 002's registration, sk-git has no idea GitKraken MCP exists \u2014 nothing documents its tools, nothing routes intent to it, and nothing",
   "keywords": [
     "even",
     "phase",
@@ -17,12 +17,12 @@
     "routes",
     "intent"
   ],
-  "lastUpdated": "2026-07-10T06:21:31.268Z",
+  "lastUpdated": "2026-07-14T20:42:35.541Z",
   "specId": "003",
   "folderSlug": "sk-git-integration-doc-and-router",
   "parentChain": [
-    "skilled-agent-orchestration",
-    "128-gitkraken-mcp-integration"
+    "sk-git",
+    "007-gitkraken-mcp-integration"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

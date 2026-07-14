@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "skilled-agent-orchestration/128-gitkraken-mcp-integration",
+  "specFolder": "sk-git/007-gitkraken-mcp-integration",
   "description": "GitKraken publishes an MCP server (`gitkraken/mcp`, npm package `@gitkraken/gk`, stdio transport) exposing 31 tools spanning local git operations,",
   "keywords": [
     "gitkraken",
@@ -18,11 +18,11 @@
     "git",
     "operations"
   ],
-  "lastUpdated": "2026-07-10T10:15:15.762Z",
-  "specId": "128",
+  "lastUpdated": "2026-07-14T20:42:35.538Z",
+  "specId": "007",
   "folderSlug": "gitkraken-mcp-integration",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "sk-git"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

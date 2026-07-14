@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/128-gitkraken-mcp-integration/004-advisor-routing-update"
-    last_updated_at: "2026-07-10T06:21:30Z"
+    packet_pointer: "sk-git/007-gitkraken-mcp-integration/004-advisor-routing-update"
+    last_updated_at: "2026-07-14T20:52:15Z"
     last_updated_by: "claude"
     recent_action: "Updated graph-metadata.json and explicit.ts, verified live routing"
     next_safe_action: "Proceed to phase 005"

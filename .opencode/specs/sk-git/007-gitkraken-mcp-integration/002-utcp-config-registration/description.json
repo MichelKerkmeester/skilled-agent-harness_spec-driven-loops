@@ -1,6 +1,6 @@
 {
   "level": 1,
-  "specFolder": "skilled-agent-orchestration/128-gitkraken-mcp-integration/002-utcp-config-registration",
+  "specFolder": "sk-git/007-gitkraken-mcp-integration/002-utcp-config-registration",
   "description": "Code Mode has no path to the GitKraken MCP server: `.utcpconfig.json` has no `gitkraken` entry, so `calltoolchain` cannot reach it regardless of what",
   "keywords": [
     "code",
@@ -17,12 +17,12 @@
     "reach",
     "regardless"
   ],
-  "lastUpdated": "2026-07-10T06:21:31.269Z",
+  "lastUpdated": "2026-07-14T20:42:35.540Z",
   "specId": "002",
   "folderSlug": "utcp-config-registration",
   "parentChain": [
-    "skilled-agent-orchestration",
-    "128-gitkraken-mcp-integration"
+    "sk-git",
+    "007-gitkraken-mcp-integration"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

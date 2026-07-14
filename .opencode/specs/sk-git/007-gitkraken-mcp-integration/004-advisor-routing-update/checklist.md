@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/128-gitkraken-mcp-integration/004-advisor-routing-update"
-    last_updated_at: "2026-07-10T06:21:30Z"
+    packet_pointer: "sk-git/007-gitkraken-mcp-integration/004-advisor-routing-update"
+    last_updated_at: "2026-07-14T20:52:15Z"
     last_updated_by: "claude"
     recent_action: "Recorded verification evidence"
     next_safe_action: "Proceed to phase 005"
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-001 [P0] Requirements documented in `spec.md`
   - **Evidence**: `spec.md` REQ-001 through REQ-005
 - [x] CHK-002 [P0] Existing boost precedent identified in `explicit.ts` before editing shared file
   - **Evidence**: `git`/`github`/`'chrome devtools'` entries located in `explicit.ts` during phase 001 research
@@ -71,7 +71,7 @@ _memory:
   - **Evidence**: `python3 -c "import json; json.load(open('.opencode/skills/sk-git/graph-metadata.json'))"` passes; `domains` gained `gitkraken`, `intent_signals`/`derived.trigger_phrases`/`derived.key_topics` gained gitkraken/gitlens vocabulary
 - [x] CHK-011 [P0] `explicit.ts` boosts added additively (no existing entries modified/removed)
   - **Evidence**: `git diff --stat` shows 2 insertions only; `npm run typecheck` in `system-skill-advisor/mcp_server` clean
-- [x] CHK-012 [P1] No token/phrase collision with an existing skill's boost
+- [x] CHK-012 [P1] No token/phrase collision with an existing skill's boost — `verified`
   - **Evidence**: `gitkraken` and `'gitlens launchpad'` were absent from `explicit.ts` before this edit (confirmed by grep during phase 001/004 setup); both keys are new
 <!-- /ANCHOR:metadata-quality -->
 
@@ -80,7 +80,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Vocabulary-agreement vitest suite passes
+- [x] CHK-020 [P0] Vocabulary-agreement vitest suite passes — `verified`
   - **Evidence**: `npx vitest run tests/vocabulary-agreement.vitest.ts` — 1 file, 5 tests passed
 - [x] CHK-021 [P0] `advisor_validate` reports no new errors
   - **Evidence**: `advisor_status` reported `freshness: "live"`, `generation` freshly bumped by the file watcher after the edits — no stale/absent state requiring a rebuild; heavy `advisor_validate` regression bundle deferred to phase 005 as a repo-wide gate, not phase-004-specific
@@ -103,9 +103,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-050 [P0] No hardcoded secrets or credentials introduced
+- [x] CHK-050 [P0] No hardcoded secrets or credentials introduced — `verified`
   - **Evidence**: both edits are routing vocabulary only, no auth/token material
-- [x] CHK-051 [P0] Shared cross-skill file edited additively only, with awareness of concurrent live-session risk
+- [x] CHK-051 [P0] Shared cross-skill file edited additively only, with awareness of concurrent live-session risk — `verified`
   - **Evidence**: checked `git status` on the scorer directory before editing (confirmed `explicit.ts` clean, collision risk low); `git diff --stat` on `explicit.ts` after the edit shows exactly 2 insertions, 0 deletions
 <!-- /ANCHOR:security -->
 
@@ -114,7 +114,7 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-060 [P1] Spec/plan/tasks/checklist synchronized with actual delivered content
+- [x] CHK-060 [P1] Spec/plan/tasks/checklist synchronized with actual delivered content — `verified`
   - **Evidence**: this checklist, `tasks.md`, and `implementation-summary.md` all reference the same file set and requirement IDs
 <!-- /ANCHOR:docs -->
 
@@ -123,7 +123,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-070 [P1] No temp/scratch files left behind
+- [x] CHK-070 [P1] No temp/scratch files left behind — `verified`
   - **Evidence**: only the intended files were modified (`graph-metadata.json`, `explicit.ts`); `git status` shows no stray files from this phase
 <!-- /ANCHOR:file-org -->
 

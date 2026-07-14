@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/128-gitkraken-mcp-integration/004-advisor-routing-update",
-  "spec_folder": "skilled-agent-orchestration/128-gitkraken-mcp-integration/004-advisor-routing-update",
-  "parent_id": "skilled-agent-orchestration/128-gitkraken-mcp-integration",
+  "packet_id": "sk-git/007-gitkraken-mcp-integration/004-advisor-routing-update",
+  "spec_folder": "sk-git/007-gitkraken-mcp-integration/004-advisor-routing-update",
+  "parent_id": "sk-git/007-gitkraken-mcp-integration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Even with phase 003's doc and router in place, the skill advisor — the system that decides WHETHER to invoke sk-git at all before its own in-skill router ever runs — has no GitKraken vocabulary",
     "created_at": "2026-07-10T06:17:40.879Z",
-    "last_save_at": "2026-07-10T06:21:38.424Z",
+    "last_save_at": "2026-07-14T20:52:15.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2137c9b17b0021697a00968a64b3043d26ee76e7644f8b7c691b4dbe2f4253b8",
+    "source_fingerprint": "sha256:21965883be5fbab1f78a0603b0288cb69e19ca9aa3231d6c2178849e125835e3",
     "source_doc_hashes": {
-      "spec.md": "6ea6e629302baa46e8abc45435b0e72fda14fe6a97407fdbeb596efa0a43c4db",
-      "plan.md": "b958d04776f1703a276904dbe63e49417ef2a8c81a7011137b075ee1a7f92d1b",
-      "tasks.md": "e2236cb2e0c575532881166130c9f4ba93c7530d98e004a8dc7bcd3330ee4866",
-      "checklist.md": "18da3d2ed608ca388975e0781a8ed178c840c23a0b9d7bc4cf746b0f94d5408c",
-      "implementation-summary.md": "3dabc92b7056d55c7e50e235bfd42546b43ce6c28a87755f419fe5a040f719f8"
+      "spec.md": "ddffdd052c4e16bd7c4510bc3fbe04da9ce98f463f8a7e2e11a2fec4c69c026e",
+      "plan.md": "fc057fea1ef992fceb86cbb4f89c7875f6a183ad2df042e01982da069e9f6c57",
+      "tasks.md": "55eda3c2efea8485c219c3c7491b29a9017813ac9dfffbac713ecd2f8d7497e4",
+      "checklist.md": "419e7befa622a929766ea235e00cac2828dd159e0e908aba90bdf2fb67078957",
+      "implementation-summary.md": "62129743e1442b96a88da8b230d870591efabacfda98d94a1729df44068251cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

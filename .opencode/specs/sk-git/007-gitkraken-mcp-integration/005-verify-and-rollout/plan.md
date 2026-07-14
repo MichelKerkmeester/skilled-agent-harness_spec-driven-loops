@@ -8,8 +8,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/128-gitkraken-mcp-integration/005-verify-and-rollout"
-    last_updated_at: "2026-07-10T06:21:30Z"
+    packet_pointer: "sk-git/007-gitkraken-mcp-integration/005-verify-and-rollout"
+    last_updated_at: "2026-07-14T20:48:58Z"
     last_updated_by: "claude"
     recent_action: "Ran the terminal verification gate"
     next_safe_action: "Roll up the parent packet"

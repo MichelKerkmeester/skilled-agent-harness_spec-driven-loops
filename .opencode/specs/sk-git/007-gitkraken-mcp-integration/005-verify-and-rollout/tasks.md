@@ -8,8 +8,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/128-gitkraken-mcp-integration/005-verify-and-rollout"
-    last_updated_at: "2026-07-10T06:21:30Z"
+    packet_pointer: "sk-git/007-gitkraken-mcp-integration/005-verify-and-rollout"
+    last_updated_at: "2026-07-14T20:48:58Z"
     last_updated_by: "claude"
     recent_action: "Completed the terminal verification gate"
     next_safe_action: "Roll up the parent packet"
@@ -56,7 +56,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 Run `validate.sh --recursive --strict` on the parent and fix findings (`.opencode/specs/skilled-agent-orchestration/128-gitkraken-mcp-integration`)
+- [x] T002 Run `validate.sh --recursive --strict` on the parent and fix findings (`.opencode/specs/sk-git/007-gitkraken-mcp-integration`)
 - [x] T003 [P] Re-check `.utcp_config.json` JSON validity (`.utcp_config.json`)
 - [x] T004 [P] Re-check `sk-git/graph-metadata.json` JSON validity (`.opencode/skills/sk-git/graph-metadata.json`)
 - [x] T005 Run a live Code Mode discovery check (`list_tools`, `search_tools`)
