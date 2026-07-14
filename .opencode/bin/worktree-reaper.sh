@@ -73,11 +73,60 @@ INTEGRATION="$(git -C "$MAIN_TOPLEVEL" rev-parse --verify --quiet HEAD 2>/dev/nu
 _marker_says_inactive() {
   local mf pid
   mf="$MARKERS_DIR/$1.pid"
-  [ -f "$mf" ] || return 1
-  pid="$(tr -dc '0-9' < "$mf" 2>/dev/null)"
+  [ -f "$mf" ] && [ -r "$mf" ] || return 1
+  if ! pid="$(LC_ALL=C awk '
+    NR == 1 && $0 ~ /^[0-9]+$/ && ($0 + 0) >= 1 && ($0 + 0) <= 4194304 {
+      printf "%.0f\n", ($0 + 0)
+      next
+    }
+    { exit 1 }
+  ' "$mf" 2>/dev/null)"; then
+    return 1
+  fi
   [ -n "$pid" ] || return 1
   kill -0 "$pid" 2>/dev/null && return 1
   return 0
+}
+
+_wrapper_branch_matches_dir() {
+  local branch="$1" dir_basename="$2" runtime slug
+  if [[ "$branch" =~ ^work/([a-z0-9][a-z0-9-]*)/([a-z0-9][a-z0-9-]*)$ ]]; then
+    runtime="${BASH_REMATCH[1]}"
+    slug="${BASH_REMATCH[2]}"
+    [ "$dir_basename" = "$runtime-$slug" ] || return 1
+    return 0
+  fi
+  return 1
+}
+
+_daemon_worktree_path_from_cmdline() {
+  local cmdline="$1" worktree_base worktree_name worktree_path canonical_base
+  if [[ "$cmdline" =~ (/.*/\.worktrees/)([A-Za-z0-9._-]+)(/[^[:space:]]*)? ]]; then
+    worktree_base="${BASH_REMATCH[1]%/}"
+    worktree_name="${BASH_REMATCH[2]}"
+    case "$worktree_name" in
+      ''|.|..) return 1 ;;
+    esac
+    canonical_base="$(cd "$worktree_base" 2>/dev/null && pwd -P)" || return 1
+    [ "$canonical_base" = "$WT_BASE" ] || return 1
+    worktree_path="$worktree_base/$worktree_name"
+    if [ -d "$worktree_path" ]; then
+      ( cd "$worktree_path" 2>/dev/null && pwd -P )
+    else
+      printf '%s/%s\n' "$canonical_base" "$worktree_name"
+    fi
+    return 0
+  fi
+  return 1
+}
+
+_daemon_cmdline_is_orphan() {
+  local cmdline="$1" worktree_path
+  if ! worktree_path="$(_daemon_worktree_path_from_cmdline "$cmdline")"; then
+    return 1
+  fi
+  [ -e "$worktree_path" ] || [ -L "$worktree_path" ] || return 0
+  return 1
 }
 
 # ───────────────────────────────────────────────────────────────
@@ -107,7 +156,12 @@ else
       continue
     fi
     case "$branch" in
-      work/*) ;;
+      work/*)
+        if ! _wrapper_branch_matches_dir "$branch" "$bn"; then
+          log "keep (non-wrapper worktree; report-only): $wt_path [$branch]"
+          continue
+        fi
+        ;;
       *) log "keep (human worktree; report-only): $wt_path [$branch]"; continue ;;
     esac
 
@@ -149,6 +203,32 @@ while IFS= read -r pid; do
   # Resolve the process command line; match worktree DB dir references.
   cmdline="$(ps -o command= -p "$pid" 2>/dev/null || true)"
   [ -z "$cmdline" ] && continue
+  case "$cmdline" in
+    *node*context-server.js*) ;;
+    *) continue ;;
+  esac
+  if ! _daemon_cmdline_is_orphan "$cmdline"; then
+    log "skip live or unproven daemon pid=$pid"
+    continue
+  fi
+  if [ "$REAP_DAEMONS" = "1" ]; then
+    current_cmdline="$(ps -o command= -p "$pid" 2>/dev/null || true)"
+    if [ -z "$current_cmdline" ] || [ "$current_cmdline" != "$cmdline" ]; then
+      log "skip changed daemon pid=$pid"
+      continue
+    fi
+    case "$current_cmdline" in
+      *node*context-server.js*) ;;
+      *)
+        log "skip changed daemon pid=$pid"
+        continue
+        ;;
+    esac
+    if ! _daemon_cmdline_is_orphan "$current_cmdline"; then
+      log "skip live daemon pid=$pid"
+      continue
+    fi
+  fi
   ORPHANS=$((ORPHANS+1))
   if [ "$REAP_DAEMONS" = "1" ]; then
     log "reaping orphan daemon pid=$pid"

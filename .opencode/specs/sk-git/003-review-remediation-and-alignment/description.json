@@ -1,0 +1,25 @@
+{
+  "level": 3,
+  "specFolder": "sk-git/003-review-remediation-and-alignment",
+  "description": "The owner-first worktree tooling passed its own harnesses (31/9/8) but the harnesses never exercised adversarial inputs",
+  "keywords": [
+    "owner-first",
+    "worktree",
+    "tooling",
+    "passed",
+    "own",
+    "harnesses",
+    "never",
+    "exercised",
+    "adversarial",
+    "inputs"
+  ],
+  "lastUpdated": "2026-07-14T15:43:30.487Z",
+  "specId": "003",
+  "folderSlug": "review-remediation-and-alignment",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

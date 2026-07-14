@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": 3,
   "specFolder": "sk-git/002-skill-scoped-worktree-naming",
   "description": "sk-git's numbered `wt/{NNNN}-{name}` branch namespace carries no owner, so a GitKraken tree of dozens of `wt/`, `work/`, `system-speckit/`, `wip/`,",
   "keywords": [
@@ -18,7 +18,7 @@
     "system-speckit",
     "wip"
   ],
-  "lastUpdated": "2026-07-14T12:07:02.250Z",
+  "lastUpdated": "2026-07-14T15:22:42.229Z",
   "specId": "002",
   "folderSlug": "skill-scoped-worktree-naming",
   "parentChain": [

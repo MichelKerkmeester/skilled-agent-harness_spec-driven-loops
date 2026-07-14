@@ -27,7 +27,7 @@ directory: .worktrees/{runtime}-{YYYYMMDD-HHMMSS}-{pid}
 
 | Tension | Finding |
 |---|---|
-| `wt/` versus `<skill>/` | A Git branch has one first path component. It cannot simultaneously begin with `wt/` and `<skill>/`. Packet 137 records both requirements in the same sentence, so [ADR-006 (decision-record.md line 267)](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-git/137-parallel-session-git-autosync/001-research-and-requirements/decision-record.md) is not directly implementable. |
+| `wt/` versus `<skill>/` | A Git branch has one first path component. It cannot simultaneously begin with `wt/` and `<skill>/`. Packet 137 records both requirements in the same sentence, so its ADR-006 (research decision-record.md line 267) is not directly implementable. |
 | Git-UI grouping | Current branches form one top-level `wt` group. Moving ownership first produces top-level groups such as `sk-git`, `sk-doc`, and `skilled`. Retaining `wt` as the second component—`sk-git/wt/...`—preserves the lane marker while making ownership visible. |
 | Global counter | Skill-scoped refs such as `sk-git/wt/0040-x` and `sk-doc/wt/0040-y` are both legal Git refs. Git therefore cannot enforce cross-owner number uniqueness. A centralized allocator must. |
 | Current counter is not truly global | The copied shell expression scans only direct `.worktrees/` directory names. It misses external `/private/tmp/**` and `.claude/worktrees/**` worktrees, remaining branch refs after directory removal, and concurrent allocations. Removing the highest directory can also cause reuse. |

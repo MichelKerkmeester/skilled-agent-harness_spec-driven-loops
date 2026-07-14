@@ -64,7 +64,7 @@ GRAMMAR
 
 REJECTED=0
 
-while read -r local_ref local_sha remote_ref remote_sha; do
+while read -r _ _ remote_ref remote_sha; do
   [[ -n "$remote_ref" ]] || continue
 
   case "$remote_ref" in
@@ -94,6 +94,13 @@ while read -r local_ref local_sha remote_ref remote_sha; do
 
   # New remote branch — name must conform.
   if is_valid_branch "$branch_name"; then
+    continue
+  else
+    branch_rc=$?
+  fi
+
+  if [[ "$branch_rc" -eq 2 ]]; then
+    echo "⚠️  pre-push: internal validator error for '$branch_name' — allowing push (fail-open)." >&2
     continue
   fi
 

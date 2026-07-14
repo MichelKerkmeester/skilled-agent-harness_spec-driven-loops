@@ -116,7 +116,7 @@ Add `.opencode/skills/sk-git/scripts/worktree-naming.sh` (`load_skill_ids`, `val
 
 ### Phase 4 — Enforcement rollout (shipped — `6e6fdfb57d`, 8/8)
 
-Versioned `pre-push` that validates only new remote-branch creation, accepts task/backup/release/reserved forms, rejects wrapper refs on push, permits legacy-branch updates with a warning, and never blocks `skilled/v*`. Wire the installer, hook README, and CI fixture matrix. PR head-name enforcement stays non-blocking until legacy PR branches are inventoried.
+Versioned `pre-push` that validates only new remote-branch creation, accepts task/release/reserved forms, rejects wrapper and other non-conformant refs (including `backup/*` — the earlier backup wildcard was removed during implementation) on push, permits legacy-branch updates with a warning, and never blocks `skilled/v*`. Wire the installer, hook README, and CI fixture matrix. PR head-name enforcement stays non-blocking until legacy PR branches are inventoried.
 
 ### Phase 5 — Cleanup (Phase 1 done; rest gated)
 

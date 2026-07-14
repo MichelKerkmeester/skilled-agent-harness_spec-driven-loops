@@ -80,9 +80,9 @@ _memory:
 
 ### Cleanup executed (operator-authorized full declutter)
 
-- Proved every registered worktree **0 commits ahead of `origin/skilled/v4.0.0.0`** (the "dirty" trees were stale-base diff, not uncommitted work — HEADs pinned ~750 commits back, pre-rename; spot-checked untracked source already present on v4).
+- Confirmed every removed worktree was either **0 commits ahead of `origin/skilled/v4.0.0.0`** or had its branch ref preserved so every commit stays reachable (a few HEADs were ahead — `wt/0001` +4, `work/opencode/…092819` +2, detached `view-latest-v4` +1 = `main`'s tip — but none orphaned; the "dirty" trees were stale-base diff, not uncommitted work — HEADs pinned ~750 commits back, pre-rename; spot-checked untracked source already present on v4).
 - **Removed 34 stale worktrees (42→8)** — kept primary, the two active-goal worktrees (`0038-codex-hook-parity`, `0039-017-hyphen-naming`), and five external `/private/tmp/**` worktrees.
-- **Deleted 30 merged branches (45→14)** with `-d`; OIDs recorded in `deleted-branches-recovery.txt`.
+- **Deleted 31 merged branches (45→14)** with `-d` (33 candidates − 2 still-checked-out preserved); OIDs recorded in `deleted-branches-recovery.txt`.
 - **Preserved all 11 unmerged branches** + the 2 merged branches still checked out in external worktrees; authored `paused-session-resume-prompt.md`.
 
 ### Deferred (operator-gated)
@@ -135,4 +135,5 @@ Per-branch merge/archive decisions on the 11 preserved unmerged branches (KEEP/R
 - **Snapshot is point-in-time:** the concurrent tree moves; the cleanup phase must re-check live immediately before acting, from a clean control worktree.
 - **pre-push not yet blocking:** the hook is installed and migration-tolerant; PR head-name enforcement stays advisory until the legacy `wt/*` PR branches on origin are inventoried.
 - **`validate_document.py` not run on the doc surfaces:** its `template_rules.json` config is absent in this environment (CHK-110); README/playbook were instead grammar-consistency-reviewed manually.
+- **Post-ship SOL review reconciliation:** an adversarial GPT-5.6-SOL review after this ship reproduced defects in the shipped safety contracts (allocator stale-lock race, reaper marker/pair/`--reap-daemons` gaps, pre-push internal-error blocking a legal push) and flagged the blanket Phase-5 "0-ahead" wording. The code is hardened and the docs reconciled in `003-review-remediation-and-alignment/`; this record is corrected in place (reachability-based losslessness; 31 branches) and the safety-contract closeout rows point to 003.
 <!-- /ANCHOR:limitations -->

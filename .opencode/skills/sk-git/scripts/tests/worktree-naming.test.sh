@@ -22,7 +22,7 @@ expect_eq() { # expect_eq <desc> <expected> <actual>
 # ── isolated fixture repo ──────────────────────────────────────
 TMP="$(mktemp -d)"
 trap 'git -C "$TMP" worktree prune 2>/dev/null; rm -rf "$TMP"' EXIT
-cd "$TMP"
+cd "$TMP" || exit 1
 git init -q
 # Hermetic fixture: override any global core.hooksPath so the shared commit-msg /
 # pre-commit gates never run against throwaway test commits.
@@ -33,6 +33,8 @@ git commit -q --allow-empty -m init
 mkdir -p .opencode/skills/sk-git .opencode/skills/sk-doc
 printf 'name: sk-git\n' > .opencode/skills/sk-git/SKILL.md
 printf 'name: sk-doc\n' > .opencode/skills/sk-doc/SKILL.md
+git add -f .opencode/skills
+git commit -q -m 'fixture skills'
 
 # shellcheck source=/dev/null
 source "$NAMING"
@@ -42,6 +44,10 @@ expect_rc "owner sk-git valid"   0 is_valid_owner sk-git
 expect_rc "owner skilled valid"  0 is_valid_owner skilled
 expect_rc "owner bogus invalid"  1 is_valid_owner bogus
 expect_rc "owner uppercase bad"  1 is_valid_owner Sk-Git
+mkdir -p .opencode/skills/untracked-owner
+printf 'name: untracked-owner\n' > .opencode/skills/untracked-owner/SKILL.md
+expect_rc "untracked owner invalid" 1 is_valid_owner untracked-owner
+expect_rc "tracked owner still valid" 0 is_valid_owner sk-git
 
 # ── grammar: slugs ─────────────────────────────────────────────
 expect_rc "slug ok"              0 is_valid_slug add-oauth
@@ -66,6 +72,10 @@ expect_rc "wrapper recognized"   0 is_wrapper_branch work/opencode/20260101-1
 expect_rc "task not wrapper"     1 is_wrapper_branch sk-git/0001-x
 expect_rc "pair matches"         0 is_valid_pair sk-git/0040-foo .worktrees/0040-sk-git-foo
 expect_rc "pair mismatch"        1 is_valid_pair sk-git/0040-foo .worktrees/0040-sk-git-bar
+expect_rc "zero number invalid"   1 is_valid_nnnn 0000
+expect_rc "pair outside worktrees invalid" 1 is_valid_pair sk-git/0001-foo /tmp/0001-sk-git-foo
+mkdir -p .worktrees/0001-sk-git-foo
+expect_rc "pair in worktrees valid" 0 is_valid_pair sk-git/0001-foo .worktrees/0001-sk-git-foo
 
 # ── number scan / preview ──────────────────────────────────────
 git update-ref refs/heads/sk-git/0007-a HEAD
@@ -81,11 +91,56 @@ expect_eq "allocate 2" 0009 "$(allocate_number)"
 rm -f "$(_wn_highwater_file)"
 git update-ref refs/heads/skilled/0020-seed HEAD
 for i in 1 2 3 4 5 6 7 8; do
-  ( cd "$TMP"; bash -c 'source "'"$NAMING"'"; allocate_number' ) > "$TMP/alloc.$i" 2>/dev/null &
+  ( cd "$TMP" || exit; bash -c 'source "'"$NAMING"'"; allocate_number' ) > "$TMP/alloc.$i" 2>/dev/null &
 done
 wait
 DISTINCT="$(cat "$TMP"/alloc.* | sort -u | wc -l | tr -d ' ')"
 expect_eq "8 concurrent allocs distinct" 8 "$DISTINCT"
+
+# Delay every lock-directory cleanup to widen ownership-transfer interleavings.
+ORIGINAL_PATH="$PATH"
+mkdir -p "$TMP/bin"
+REAL_RM="$(command -v rm)"
+{
+  printf '%s\n' '#!/usr/bin/env bash'
+  printf '%s\n' "last=\"\${!#}\""
+  printf '%s\n' "case \"\$last\" in *worktree-number.lock*) sleep 0.05 ;; esac"
+  printf 'exec "%s" "$@"\n' "$REAL_RM"
+} > "$TMP/bin/rm"
+chmod +x "$TMP/bin/rm"
+rm -rf "$(_wn_lock_dir)" "$(_wn_highwater_file)"
+mkdir "$(_wn_lock_dir)"
+printf '2147483647\n' > "$(_wn_lock_dir)/pid"
+STALE_COUNT=16
+i=1
+while [ "$i" -le "$STALE_COUNT" ]; do
+  ( cd "$TMP" && PATH="$TMP/bin:$ORIGINAL_PATH" bash -c 'source "'"$NAMING"'"; allocate_number' ) > "$TMP/stale-alloc.$i" 2>/dev/null &
+  i=$((i+1))
+done
+wait
+STALE_DISTINCT="$(cat "$TMP"/stale-alloc.* | grep -E '^[0-9]{4}$' | sort -u | wc -l | tr -d ' ')"
+expect_eq "stale-lock concurrent allocs distinct" "$STALE_COUNT" "$STALE_DISTINCT"
+PATH="$ORIGINAL_PATH"
+export PATH
+rm -rf "${TMP:?}/bin"
+
+# A failed persistence operation must not turn a preview into a reservation.
+rm -rf "$(_wn_highwater_file)"
+mkdir "$(_wn_highwater_file)"
+FIRST_FAILED_OUT="$(allocate_number 2>/dev/null)"; FIRST_FAILED_RC=$?
+SECOND_FAILED_OUT="$(allocate_number 2>/dev/null)"; SECOND_FAILED_RC=$?
+expect_eq "directory high-water first rc" 1 "$FIRST_FAILED_RC"
+expect_eq "directory high-water first output" "" "$FIRST_FAILED_OUT"
+expect_eq "directory high-water second rc" 1 "$SECOND_FAILED_RC"
+expect_eq "directory high-water second output" "" "$SECOND_FAILED_OUT"
+rm -rf "$(_wn_highwater_file)"
+
+# Do not emit a number that cannot fit the documented four-digit namespace.
+printf '9999\n' > "$(_wn_highwater_file)"
+BOUNDARY_OUT="$(allocate_number 2>/dev/null)"; BOUNDARY_RC=$?
+expect_eq "9999 allocation rc" 1 "$BOUNDARY_RC"
+expect_eq "9999 allocation output" "" "$BOUNDARY_OUT"
+rm -f "$(_wn_highwater_file)"
 
 # ── named + detached worktree creation ─────────────────────────
 git update-ref -d refs/heads/skilled/0020-seed 2>/dev/null || true

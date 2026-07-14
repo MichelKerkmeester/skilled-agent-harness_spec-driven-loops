@@ -29,6 +29,8 @@ git -C "$TMP" commit -q --allow-empty -m init
 mkdir -p "$TMP/.opencode/skills/sk-git/scripts"
 printf 'name: sk-git\n' > "$TMP/.opencode/skills/sk-git/SKILL.md"
 ln -s "$REAL_NAMING" "$TMP/.opencode/skills/sk-git/scripts/worktree-naming.sh"
+git -C "$TMP" add -f .opencode/skills
+git -C "$TMP" commit -q -m 'fixture skills'
 
 printf -v ZERO_SHA '%040d' 0
 printf -v SHA_A '%040d' 111111
@@ -59,6 +61,11 @@ expect_hook() { # expect_hook <desc> <expected-rc> <line> [env-assignment...]
 expect_hook "valid new task branch accepted" \
   0 "refs/heads/sk-git/0041-fix-thing $SHA_A refs/heads/sk-git/0041-fix-thing $ZERO_SHA"
 
+mkdir -p "$TMP/.opencode/skills/untracked-owner"
+printf 'name: untracked-owner\n' > "$TMP/.opencode/skills/untracked-owner/SKILL.md"
+expect_hook "untracked owner branch rejected" \
+  1 "refs/heads/untracked-owner/0041-valid $SHA_A refs/heads/untracked-owner/0041-valid $ZERO_SHA"
+
 expect_hook "new wrapper ref work/opencode/x rejected" \
   1 "refs/heads/work/opencode/x $SHA_A refs/heads/work/opencode/x $ZERO_SHA"
 
@@ -79,6 +86,30 @@ expect_hook "SPECKIT_SKIP_PREPUSH_NAMING=1 bypasses the gate entirely" \
 # other non-conformant new branch (genuine backup pushes use the bypass env).
 expect_hook "new backup/* branch rejected" \
   1 "refs/heads/backup/foo $SHA_A refs/heads/backup/foo $ZERO_SHA"
+
+# An owner-discovery failure is an infrastructure error, so the hook must allow
+# a well-shaped branch while still rejecting malformed syntax before discovery.
+mkdir -p "$TMP/bin"
+REAL_GIT="$(command -v git)"
+{
+  printf '%s\n' '#!/usr/bin/env bash'
+  printf '%s\n' "if [[ \"\${1:-}\" == \"-C\" && \"\${3:-}\" == \"ls-files\" ]]; then exit 73; fi"
+  printf 'exec "%s" "$@"\n' "$REAL_GIT"
+} > "$TMP/bin/git"
+chmod +x "$TMP/bin/git"
+expect_hook "owner discovery error fails open" \
+  0 "refs/heads/sk-git/0041-valid $SHA_A refs/heads/sk-git/0041-valid $ZERO_SHA" \
+  PATH="$TMP/bin:$PATH"
+if grep -q 'internal validator error' "$TMP/last.err"; then
+  PASS=$((PASS+1))
+else
+  FAIL=$((FAIL+1))
+  echo "FAIL: owner discovery error warning missing"
+fi
+expect_hook "malformed branch still rejected during discovery error" \
+  1 "refs/heads/sk-git/0041-BAD $SHA_A refs/heads/sk-git/0041-BAD $ZERO_SHA" \
+  PATH="$TMP/bin:$PATH"
+rm -rf "${TMP:?}/bin"
 
 # Fail-safe: a broken (syntax-error) validator must NEVER hard-fail a push —
 # the gate falls open. Regression guard for the errexit-around-source fix.

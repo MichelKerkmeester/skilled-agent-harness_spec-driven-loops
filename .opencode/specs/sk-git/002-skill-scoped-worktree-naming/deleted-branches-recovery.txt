@@ -13,7 +13,7 @@ Rollback a branch:   git branch <name> <OID>
 Rollback a worktree: git worktree add <path> <branch-or-OID>
 ===================================================================
 
---- WORKTREES REMOVED (branch survives; commits all 0-ahead of v4) ---
+--- WORKTREES REMOVED (branch ref survives removal → every commit reachable; some HEADs are ahead of v4, e.g. wt/0001 +4, view-latest-v4 = main's tip) ---
   /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.claude/worktrees/goal-benchmark  [wt/0033-benchmark-authoring]  HEAD=36bba13758a56dc29ee99f721975b3c83227a00f
   /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0001-mcp-front-proxy  [wt/0001-mcp-front-proxy]  HEAD=900c96259caa984b443d6d32c510aadef8bfb4f6
   /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0002-followups  [wt/0002-followups]  HEAD=2d25ed42ea8a0a5f5567c09bc43673e99af13a2f

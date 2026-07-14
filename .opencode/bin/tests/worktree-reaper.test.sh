@@ -10,7 +10,7 @@
 # dir before the reaper ever runs, since the reaper reads/writes
 # $HOME/.spk-wt-sock and must never be allowed to see the operator's real
 # home directory.
-set -uo pipefail
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 REAPER="$SCRIPT_DIR/worktree-reaper.sh"
@@ -75,6 +75,17 @@ printf '%s\n' "$$" > "$MARKERS_DIR/rt-b.pid"
 # ── (c) WRAPPER + NO marker → expect kept ───────────────────────
 git -C "$FIXTURE" worktree add -q -b work/rt/c "$FIXTURE/.worktrees/rt-c" HEAD
 
+# ── wrapper + malformed marker → expect kept ────────────────────
+git -C "$FIXTURE" worktree add -q -b work/rt/bad-marker "$FIXTURE/.worktrees/rt-bad-marker" HEAD
+printf '%s' 'garbage99999999' > "$MARKERS_DIR/rt-bad-marker.pid"
+
+# ── invalid wrapper branch grammar → expect kept ─────────────────
+git -C "$FIXTURE" worktree add -q -b work/human "$FIXTURE/.worktrees/rt-human" HEAD
+( exit 0 ) &
+INVALID_BRANCH_DEAD_PID=$!
+wait "$INVALID_BRANCH_DEAD_PID" 2>/dev/null || true
+printf '%s\n' "$INVALID_BRANCH_DEAD_PID" > "$MARKERS_DIR/rt-human.pid"
+
 # ── (d) HUMAN numbered → expect kept (report-only) ──────────────
 git -C "$FIXTURE" worktree add -q -b sk-git/0001-human "$FIXTURE/.worktrees/0001-sk-git-human" HEAD
 
@@ -83,8 +94,11 @@ git -C "$FIXTURE" worktree add -q --detach "$FIXTURE/.worktrees/0002-detached" H
 
 # ── run the REAL reaper (not dry-run) inside the fixture ────────
 REAPER_OUT="$FIXTURE/.reaper.out"
-( cd "$FIXTURE" && bash "$REAPER" ) >"$REAPER_OUT" 2>&1
-REAPER_RC=$?
+if ( cd "$FIXTURE" && bash "$REAPER" ) >"$REAPER_OUT" 2>&1; then
+  REAPER_RC=0
+else
+  REAPER_RC=$?
+fi
 
 # ── assertions ───────────────────────────────────────────────────
 # (a) reaped: worktree dir gone AND branch deleted
@@ -99,6 +113,14 @@ expect "(b) wrapper+live: branch kept" git -C "$FIXTURE" show-ref --verify --qui
 expect "(c) wrapper+no-marker: dir kept"    test -d "$FIXTURE/.worktrees/rt-c"
 expect "(c) wrapper+no-marker: branch kept" git -C "$FIXTURE" show-ref --verify --quiet refs/heads/work/rt/c
 
+# malformed marker content is not proof of an inactive wrapper
+expect "wrapper+malformed-marker: dir kept"    test -d "$FIXTURE/.worktrees/rt-bad-marker"
+expect "wrapper+malformed-marker: branch kept" git -C "$FIXTURE" show-ref --verify --quiet refs/heads/work/rt/bad-marker
+
+# a work ref without the exact wrapper grammar is report-only
+expect "invalid wrapper branch: dir kept"    test -d "$FIXTURE/.worktrees/rt-human"
+expect "invalid wrapper branch: branch kept" git -C "$FIXTURE" show-ref --verify --quiet refs/heads/work/human
+
 # (d) kept: human numbered worktree is report-only, never auto-reaped
 expect "(d) human numbered: dir kept"    test -d "$FIXTURE/.worktrees/0001-sk-git-human"
 expect "(d) human numbered: branch kept" git -C "$FIXTURE" show-ref --verify --quiet refs/heads/sk-git/0001-human
@@ -106,9 +128,29 @@ expect "(d) human numbered: branch kept" git -C "$FIXTURE" show-ref --verify --q
 # (e) kept: detached worktree is report-only, never auto-reaped
 expect "(e) detached: dir kept" test -d "$FIXTURE/.worktrees/0002-detached"
 
+# A daemon command line can mention a worktree that is live or already gone.
+FAKE_BIN="$FIXTURE/.fake-bin"
+F6_OUT="$FIXTURE/.reaper-f6.out"
+mkdir -p "$FAKE_BIN" "$FIXTURE/.worktrees/live-session"
+printf '%s\n' \
+  '#!/usr/bin/env bash' \
+  'printf "%s\\n" 424242 424243' > "$FAKE_BIN/pgrep"
+printf '%s\n' \
+  '#!/usr/bin/env bash' \
+  'case "$*" in' \
+  "  *424242*) printf '%s\\n' 'node $FIXTURE/.worktrees/live-session/context-server.js' ;;" \
+  "  *424243*) printf '%s\\n' 'node $FIXTURE/.worktrees/gone-session/context-server.js' ;;" \
+  'esac' > "$FAKE_BIN/ps"
+chmod +x "$FAKE_BIN/pgrep" "$FAKE_BIN/ps"
+( cd "$FIXTURE" && PATH="$FAKE_BIN:$PATH" bash "$REAPER" --reap-daemons --dry-run ) >"$F6_OUT" 2>&1
+expect_not "live daemon path is not an orphan" grep -Fq 'kill -TERM 424242' "$F6_OUT"
+expect "absent daemon path is an orphan" grep -Fq 'kill -TERM 424243' "$F6_OUT"
+
 if [ "$FAIL" -ne 0 ]; then
   echo "--- reaper output (rc=$REAPER_RC) ---"
   cat "$REAPER_OUT"
+  echo "--- daemon reaper output ---"
+  cat "$F6_OUT"
   echo "--------------------------------------"
 fi
 

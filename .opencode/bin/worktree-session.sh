@@ -47,14 +47,18 @@ if [ -z "$RUNTIME" ]; then
 fi
 shift || true
 
-# The runtime becomes `exec "$RUNTIME"`, so reject anything that is not a
-# resolvable command with a safe name — a stray metacharacter-laden value must
-# never reach exec, and a typo should fail loudly instead of launching nothing.
-case "$RUNTIME" in
-  *[!A-Za-z0-9._/-]*) echo "worktree-session: invalid runtime name: $RUNTIME" >&2; exit 2 ;;
+# Keep the executable token separate from the identity used in filesystem and
+# ref names. Path-bearing tokens are not valid identities even when executable.
+RUNTIME_EXEC="$RUNTIME"
+case "$RUNTIME_EXEC" in
+  */*) echo "worktree-session: invalid runtime identity: $RUNTIME_EXEC" >&2; exit 2 ;;
 esac
-if ! command -v "$RUNTIME" >/dev/null 2>&1; then
-  echo "worktree-session: runtime not found on PATH: $RUNTIME" >&2
+RUNTIME_ID="$(printf '%s' "$RUNTIME_EXEC" | tr '[:upper:]' '[:lower:]')"
+case "$RUNTIME_ID" in
+  ''|[-]*|*[!a-z0-9-]*) echo "worktree-session: invalid runtime identity: $RUNTIME_EXEC" >&2; exit 2 ;;
+esac
+if ! command -v "$RUNTIME_EXEC" >/dev/null 2>&1; then
+  echo "worktree-session: runtime not found on PATH: $RUNTIME_EXEC" >&2
   exit 2
 fi
 
@@ -86,8 +90,56 @@ default_shared_paths() {
 PATHS
 }
 
+_canonical_existing_path() {
+  local path="$1" target parent canonical_parent
+  while [ -L "$path" ]; do
+    target="$(readlink "$path")" || return 1
+    parent="$(dirname "$path")"
+    case "$target" in
+      /*) path="$target" ;;
+      *) path="$parent/$target" ;;
+    esac
+  done
+  if [ -d "$path" ]; then
+    ( cd "$path" && pwd -P )
+  else
+    canonical_parent="$(cd "$(dirname "$path")" 2>/dev/null && pwd -P)" || return 1
+    printf '%s/%s\n' "$canonical_parent" "$(basename "$path")"
+  fi
+}
+
+_canonical_parent_dir() {
+  local path="$1" missing="" base parent canonical
+  while [ ! -d "$path" ]; do
+    base="$(basename "$path")"
+    if [ -n "$missing" ]; then missing="$base/$missing"; else missing="$base"; fi
+    parent="$(dirname "$path")"
+    [ "$parent" != "$path" ] || return 1
+    path="$parent"
+  done
+  canonical="$(cd "$path" 2>/dev/null && pwd -P)" || return 1
+  if [ -n "$missing" ]; then printf '%s/%s\n' "$canonical" "$missing"; else printf '%s\n' "$canonical"; fi
+}
+
+_is_within() {
+  local candidate="$1" root="$2"
+  case "$candidate" in
+    "$root"|"$root"/*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+_is_strictly_inside() {
+  local candidate="$1" root="$2"
+  case "$candidate" in
+    "$root"/*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
 exec_in_place() {
   local reason="$1"
+  shift
   log "child/already-isolated session ($reason) — exec'ing in place, no new worktree"
   # A dispatched child has no user turn to answer the spec-gate's Gate-3
   # question, so an enforce env inherited from the parent shell must never
@@ -96,10 +148,10 @@ exec_in_place() {
   # non-child sessions via AI_SESSION_CHILD.
   export MK_SPEC_GATE_ENFORCE=0
   if [ "$DRY_RUN" = "1" ]; then
-    echo "DRY_RUN: would exec in place: $RUNTIME $* (MK_SPEC_GATE_ENFORCE=0)"
+    echo "DRY_RUN: would exec in place: $RUNTIME_EXEC $* (MK_SPEC_GATE_ENFORCE=0)"
     exit 0
   fi
-  exec "$RUNTIME" "$@"
+  exec "$RUNTIME_EXEC" "$@"
 }
 
 # ───────────────────────────────────────────────────────────────
@@ -131,14 +183,14 @@ MAIN_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 if [ -z "$MAIN_ROOT" ]; then
   log "not inside a git repository — exec'ing in place (cannot isolate)"
   if [ "$DRY_RUN" = "1" ]; then echo "DRY_RUN: not a git repo; would exec in place"; exit 0; fi
-  exec "$RUNTIME" "$@"
+  exec "$RUNTIME_EXEC" "$@"
 fi
 
 # Short unique slug (epoch + pid). bash has no Date.now restriction.
 SLUG="$(date +%Y%m%d-%H%M%S)-$$"
-WT_REL=".worktrees/${RUNTIME}-${SLUG}"
+WT_REL=".worktrees/${RUNTIME_ID}-${SLUG}"
 WT_ABS="$MAIN_ROOT/$WT_REL"
-BRANCH="work/${RUNTIME}/${SLUG}"
+BRANCH="work/${RUNTIME_ID}/${SLUG}"
 
 # The "live" branch is whatever the primary checkout (MAIN_ROOT) currently has
 # checked out — the branch the operator's IDE follows. Basing the session worktree
@@ -159,7 +211,7 @@ WT_DB_DIR="$WT_ABS/.opencode/skills/system-spec-kit/mcp_server/database"
 WT_CG_DB_DIR="$WT_ABS/.opencode/skills/system-code-graph/mcp_server/database"
 # Short per-session socket dir under $HOME (NOT inside the deep worktree) to stay under the
 # platform sun_path limit. The reaper cleans these alongside merged worktrees.
-SOCK_DIR="$HOME/.spk-wt-sock/${RUNTIME}-${SLUG}"
+SOCK_DIR="$HOME/.spk-wt-sock/${RUNTIME_ID}-${SLUG}"
 
 # ───────────────────────────────────────────────────────────────
 # 5. DRY-RUN PREVIEW
@@ -179,13 +231,13 @@ if [ "$DRY_RUN" = "1" ]; then
   echo "  SPEC_KIT_DB_DIR        = $WT_DB_DIR"
   echo "  SPECKIT_CODE_GRAPH_DB_DIR = $WT_CG_DB_DIR"
   echo "  SPECKIT_IPC_SOCKET_DIR = $SOCK_DIR  (socket path len $(( ${#SOCK_DIR} + 16 )), platform limit ~104)"
-  echo "  session marker    = $(_abs_common "$MAIN_ROOT")/worktree-sessions/${RUNTIME}-${SLUG}.pid"
+  echo "  session marker    = $(_abs_common "$MAIN_ROOT")/worktree-sessions/${RUNTIME_ID}-${SLUG}.pid"
   echo "  symlink shared paths (those present in main):"
   while IFS= read -r rel; do
     [ -z "$rel" ] && continue
     if [ -e "$MAIN_ROOT/$rel" ]; then echo "    + $rel"; else echo "    - $rel (absent in main, skip)"; fi
   done <<< "$SHARED_RAW"
-  echo "  then: cd worktree; exec $RUNTIME $*"
+  echo "  then: cd worktree; exec $RUNTIME_EXEC $*"
   exit 0
 fi
 
@@ -199,15 +251,57 @@ git -C "$MAIN_ROOT" worktree add -b "$BRANCH" "$WT_ABS" "$WT_BASE" >&2
 # Symlink shared artifacts so the worktree reuses main's installed deps + compiled output.
 while IFS= read -r rel; do
   [ -z "$rel" ] && continue
+  case "$rel" in
+    /*) log "skipping unsafe shared path: $rel"; continue ;;
+  esac
+  case "/$rel/" in
+    */../*) log "skipping unsafe shared path: $rel"; continue ;;
+  esac
   src="$MAIN_ROOT/$rel"
   dst="$WT_ABS/$rel"
   if [ ! -e "$src" ]; then
     log "shared path absent in main, skipping: $rel"
     continue
   fi
+  if ! src_parent_resolved="$(_canonical_parent_dir "$(dirname "$src")")"; then
+    log "skipping shared path with unresolved source parent: $rel"
+    continue
+  fi
+  if ! _is_within "$src_parent_resolved" "$MAIN_ROOT"; then
+    log "skipping shared path outside main checkout: $rel"
+    continue
+  fi
+  if ! src_resolved="$(_canonical_existing_path "$src")"; then
+    log "skipping shared path with unresolved source: $rel"
+    continue
+  fi
+  if ! _is_strictly_inside "$src_resolved" "$MAIN_ROOT"; then
+    log "skipping shared path outside main checkout: $rel"
+    continue
+  fi
+  if ! dst_parent_resolved="$(_canonical_parent_dir "$(dirname "$dst")")"; then
+    log "skipping shared path with unresolved destination parent: $rel"
+    continue
+  fi
+  if ! _is_within "$dst_parent_resolved" "$WT_ABS"; then
+    log "skipping shared path outside worktree: $rel"
+    continue
+  fi
+  if [ -e "$dst" ] || [ -L "$dst" ]; then
+    if ! dst_resolved="$(_canonical_existing_path "$dst")"; then
+      log "skipping shared path with unresolved destination: $rel"
+      continue
+    fi
+  else
+    dst_resolved="$dst_parent_resolved/$(basename "$dst")"
+  fi
+  if ! _is_strictly_inside "$dst_resolved" "$WT_ABS"; then
+    log "skipping shared path outside worktree: $rel"
+    continue
+  fi
   mkdir -p "$(dirname "$dst")"
-  rm -rf "$dst"
-  ln -s "$src" "$dst"
+  rm -rf -- "$dst"
+  ln -s -- "$src" "$dst"
   log "linked $rel -> main"
 done <<< "$SHARED_RAW"
 
@@ -245,12 +339,12 @@ fi
 # the reaper treats a missing marker as "keep", so a session is never reaped out
 # from under itself even when the marker could not be recorded.
 MARKERS_DIR="$(_abs_common "$MAIN_ROOT")/worktree-sessions"
-if mkdir -p "$MARKERS_DIR" 2>/dev/null && printf '%s\n' "$$" > "$MARKERS_DIR/${RUNTIME}-${SLUG}.pid" 2>/dev/null; then
-  log "session marker written for ${RUNTIME}-${SLUG} (pid $$)"
+if mkdir -p "$MARKERS_DIR" 2>/dev/null && printf '%s\n' "$$" > "$MARKERS_DIR/${RUNTIME_ID}-${SLUG}.pid" 2>/dev/null; then
+  log "session marker written for ${RUNTIME_ID}-${SLUG} (pid $$)"
 else
   log "WARNING: could not write session marker; reaper will conservatively keep this worktree"
 fi
 
-log "entering $WT_REL with isolated DBs; launching $RUNTIME"
+log "entering $WT_REL with isolated DBs; launching $RUNTIME_EXEC"
 cd "$WT_ABS"
-exec "$RUNTIME" "$@"
+exec "$RUNTIME_EXEC" "$@"

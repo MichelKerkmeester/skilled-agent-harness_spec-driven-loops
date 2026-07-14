@@ -86,10 +86,10 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-030 [P0] REQ-001 grammar defined and legal. Evidence: `spec.md` §4 + `plan.md` §3 (`git check-ref-format` gate).
-- [x] CHK-031 [P0] REQ-002 locked clone-wide allocator. Evidence: `worktree-naming.sh` `allocate_number` (common-dir lock, high-water seed from mark + worktrees + local/remote refs); `worktree-naming.test.sh` concurrent-8-distinct case; commit `bdb31a31db`.
+- [x] CHK-031 [P0] REQ-002 locked clone-wide allocator. Evidence: `worktree-naming.sh` `allocate_number` (common-dir lock, high-water seed from mark + worktrees + local/remote refs); `worktree-naming.test.sh` concurrent-8-distinct case; commit `bdb31a31db`. **Hardened in `../003-review-remediation-and-alignment/`:** the SOL review reproduced a stale-lock TOCTOU race (contenders → a duplicate number); 003 made the lock race-safe (atomic rename-steal; N stale-lock contenders → N distinct numbers) with a contention regression case.
 - [x] CHK-032 [P0] REQ-003 cleanup slice never touched the dirty primary and orphaned nothing. Evidence: `deleted-branches-recovery.txt` (ref-only deletes, ancestors of v4).
-- [x] CHK-033 [P0] REQ-004 reaper uses live base + activity marker. Evidence: `worktree-reaper.sh` (integration tip = primary `HEAD`; marker-dead gate; never `--force`); `worktree-reaper.test.sh` 9/9; commit `925ca3c738`.
-- [x] CHK-034 [P1] REQ-005 pre-push enforcement. Evidence: `.opencode/scripts/git-hooks/pre-push` (new-remote-branch gate, migration-tolerant, never blocks `skilled/v*`); `pre-push.test.sh` 8/8; commit `6e6fdfb57d`.
+- [x] CHK-033 [P0] REQ-004 reaper uses live base + activity marker. Evidence: `worktree-reaper.sh` (integration tip = primary `HEAD`; marker-dead gate; never `--force`); `worktree-reaper.test.sh` 9/9; commit `925ca3c738`. **Hardened in `../003-review-remediation-and-alignment/`:** SOL reproduced a malformed-marker false-dead, a mis-paired `work/*` reap, and a `--reap-daemons` live-daemon signal; 003 added full-file PID-grammar, exact 3-part pair matching, and path-existence + PID recheck (harness now 15/15).
+- [x] CHK-034 [P1] REQ-005 pre-push enforcement. Evidence: `.opencode/scripts/git-hooks/pre-push` (new-remote-branch gate, migration-tolerant, never blocks `skilled/v*`); `pre-push.test.sh` 8/8; commit `6e6fdfb57d`. **Hardened in `../003-review-remediation-and-alignment/`:** SOL reproduced a validator internal error blocking a legal push and an untracked-owner authorization; 003 made validation tri-state (fail-open on internal error) and derived owners from version-controlled skills only (harness now 12/12).
 - [x] CHK-035 [P1] REQ-006 migration rule defined. Evidence: `decision-record.md` ADR-001 + `plan.md` Phase 5.
 <!-- /ANCHOR:fix-completeness -->
 
@@ -99,7 +99,7 @@ _memory:
 ## Security
 
 - [x] CHK-040 [P0] The cleanup slice cannot lose data. Evidence: every deleted ref proven ancestor of `origin/skilled/v4.0.0.0` in `deleted-branches-recovery.txt`.
-- [x] CHK-041 [P0] Unmerged-branch cleanup requires a verified bundle before any `-D`. Evidence: the full declutter deleted only `-d` merged branches (30) and removed only 0-ahead worktrees; all **11 unmerged branches were preserved** (no `-D`), so the bundle gate was honored by not deleting any unmerged ref. Gate remains in force for any future per-branch DISCARD.
+- [x] CHK-041 [P0] Unmerged-branch cleanup requires a verified bundle before any `-D`. Evidence: the full declutter deleted only `-d` merged branches (31) and removed worktrees that were 0-ahead **or** had their branch ref preserved (every commit reachable); all **11 unmerged branches were preserved** (no `-D`), so the bundle gate was honored by not deleting any unmerged ref. Gate remains in force for any future per-branch DISCARD.
 - [x] CHK-042 [P1] Allocator/validator/hooks run credential-free with no untrusted-code execution. Evidence: `worktree-naming.sh` / `pre-push` are pure local git+shell (no network, no repo-code exec); harnesses run hermetically with `core.hooksPath` neutralized.
 <!-- /ANCHOR:security -->
 
@@ -133,10 +133,10 @@ _memory:
 | Code Quality | 3 | 3 | Pass (shipped + verified) |
 | Testing | 3 | 3 | Pass (harnesses 31/9/8; validate Errors 0) |
 | Fix Completeness | 4 | 4 | Pass |
-| Security | 2 | 2 | Pass (slice + full declutter both loss-proof) |
+| Security | 2 | 2 | Pass (`-d` deletions ancestor-only; worktree removals reachability-preserved) |
 | Documentation | 1 | 1 | Pass (decision record) |
 
-Overall: design, codification, allocator, wrapper/reaper hardening, and push enforcement complete and evidenced (commits `2eb1bf2974`/`bdb31a31db`/`925ca3c738`/`6e6fdfb57d`; harnesses 31/9/8; packet validate Errors 0). Phase 5 cleanup executed as an operator-authorized full declutter (34 worktrees + 30 merged branches removed, all proven 0-ahead / OID-recorded; 42→8 worktrees, 45→14 branches). Only per-branch merge/archive decisions on the 11 preserved unmerged branches stay open.
+Overall: design, codification, allocator, wrapper/reaper hardening, and push enforcement complete and evidenced (commits `2eb1bf2974`/`bdb31a31db`/`925ca3c738`/`6e6fdfb57d`; harnesses 31/9/8; packet validate Errors 0). Phase 5 cleanup executed as an operator-authorized full declutter (34 worktrees + 31 merged branches removed; each 0-ahead of v4 or branch-ref-preserved so every commit stays reachable; OID-recorded; 42→8 worktrees, 45→14 branches). A later SOL review flagged the shipped safety contracts (allocator race, reaper grammar, pre-push fail-open) and the blanket "0-ahead" Phase-5 wording; both are reconciled and hardened in `../003-review-remediation-and-alignment/`. Only per-branch merge/archive decisions on the 11 preserved unmerged branches stay open.
 <!-- /ANCHOR:summary -->
 
 ---

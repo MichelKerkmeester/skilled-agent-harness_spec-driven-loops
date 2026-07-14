@@ -83,9 +83,9 @@ _memory:
 
 ### Remaining cleanup (full declutter executed; per-branch merge decisions still open)
 
-- [x] T040 Remove stale registered worktrees — operator-authorized full declutter: **34 worktrees removed** (42→8) after proving each **0 commits ahead of `origin/skilled/v4.0.0.0`**; OIDs recorded in `deleted-branches-recovery.txt`. Used `--force` (dirty trees were stale-base diff, not work) under explicit operator authorization; kept primary, the two active-goal worktrees (`0038`, `0039`), and the five external `/private/tmp/**` worktrees.
+- [x] T040 Remove stale registered worktrees — operator-authorized full declutter: **34 worktrees removed** (42→8), each either 0 commits ahead of `origin/skilled/v4.0.0.0` **or** with its branch ref preserved so every commit stays reachable; OIDs recorded in `deleted-branches-recovery.txt`. A few HEADs were ahead of v4 (e.g. `wt/0001` +4, `work/opencode/…092819` +2, detached `view-latest-v4` +1 = `main`'s tip) but none was orphaned — losslessness rests on reachability, not a blanket 0-ahead claim. Used `--force` (dirty trees were stale-base diff, not work) under explicit operator authorization; kept primary, the two active-goal worktrees (`0038`, `0039`), and the five external `/private/tmp/**` worktrees. Wording reconciled by `../003-review-remediation-and-alignment/` after the SOL review.
 - [x] T041 Adjudicate detached worktrees — `0024-028-extract` + `0025-028-renumber` proven ancestors of v4 (0 unique commits); `view-latest-v4` HEAD is `main`'s tip (reachable from `main`); all removed with nothing orphaned.
-- [x] T042a Delete merged branches — **30 merged branches deleted** with `-d` (OIDs recorded); extends the original six-branch slice. `work/021-graph-preservation` + `wt/opencode-doc-readmes` skipped (still checked out in kept external worktrees).
+- [x] T042a Delete merged branches — **31 merged branches deleted** with `-d` (33 candidates − 2 still-checked-out preserved = 31; matches the `45→14` count); OIDs recorded; extends the original six-branch slice. `work/021-graph-preservation` + `wt/opencode-doc-readmes` skipped (still checked out in kept external worktrees).
 - [ ] T042b [B] Per-branch operator decision on the **11 preserved unmerged branches** (KEEP/RENAME/ARCHIVE/DISCARD) — all kept for now; verified `git bundle` before any future `-D`.
 <!-- /ANCHOR:phase-2 -->
 
