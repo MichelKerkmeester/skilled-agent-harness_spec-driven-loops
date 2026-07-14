@@ -24,7 +24,7 @@
     "route_proof_required": false,
     "role_absorption_forbidden": false
   },
-  "budget_ms": 300000,
+  "budget_ms": 180000,
   "notes": "Most-realistic under-specified cell: 'our standards' names no authority, no artifact-class, no scope. A lane is (authority x artifact-class x scope); none is resolvable. Correct behavior is a targeted lane-resolution question, not a guessed lane and not a generic essay on conformance."
 }
 ```

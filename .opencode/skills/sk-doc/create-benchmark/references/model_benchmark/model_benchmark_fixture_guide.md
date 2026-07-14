@@ -65,10 +65,10 @@ use underscores.
 
 | Artifact | Location | Role |
 | --- | --- | --- |
-| Fixtures directory | [`assets/model_benchmark/benchmark_fixtures/`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/README.md) | Task contracts the model under test answers |
-| Profiles directory | [`assets/model_benchmark/benchmark_profiles/`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/README.md) | Run configs that select fixtures, models, frameworks, scoring |
+| Fixtures directory | [`assets/model_benchmark/benchmark-fixtures/`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md) | Task contracts the model under test answers |
+| Profiles directory | [`assets/model_benchmark/benchmark-profiles/`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/README.md) | Run configs that select fixtures, models, frameworks, scoring |
 | Parent data README | [`assets/model_benchmark/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/README.md) | Directory tree, key-file map, and the fixture-vs-profile flow |
-| Reviewer fixture schema | [`benchmark_fixtures/reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/reviewer_schema.md) | Lane-local contract for reviewer-prompt fixtures |
+| Reviewer fixture schema | [`benchmark-fixtures/reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer_schema.md) | Lane-local contract for reviewer-prompt fixtures |
 | Evaluator / scoring contracts | [`references/model_benchmark/`](../../../../system-deep-loop/deep-improvement/references/model_benchmark/evaluator_contract.md) | Lane-local rubric, scorer mechanics, operator guide |
 
 Run outputs land in each profile's `outputsDir`, never back in the fixtures or
@@ -165,7 +165,7 @@ oracle is a verdict plus expected finding tokens rather than function outputs.
 
 > The full reviewer schema, required-field rules, verdict contract, deterministic
 > replay field, and the how-to-add steps are the lane-local authority in
-> [`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/reviewer_schema.md).
+> [`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer_schema.md).
 > Author reviewer fixtures against it; this section is only the shape at a glance.
 
 ---
@@ -182,7 +182,7 @@ sweep profiles — the matrix of frameworks and models to run.
 | `version` / `family` | All | Profile version and owning family |
 | `fixtureDir` | All | Directory the fixture ids resolve against |
 | `fixtures` | All | Fixture ids to score, referenced by `id` |
-| `outputsDir` | All | Where run outputs land; carries the `{spec_folder}` run-time token |
+| `outputsDir` | All | Where run outputs land; carries the `{spec_folder}` (Lane A, spec-local) and/or `{run_label}` (Lane B, hub) run-time token |
 | `metrics` | All | Metric columns to report |
 | `benchmark` | All | Gate thresholds (aggregate score, per-fixture floor, repeatability tolerance) |
 | `mode` | Sweep | one of the validated `KNOWN_MODES`: `framework-bakeoff`, `model-vs-model`, `reasoning-ablation`, `prompt-vs-prompt`, `regression`, `capability-profile` |
@@ -253,7 +253,7 @@ benchmark.
    `requiredPatterns`, and `forbiddenPatterns` that match the real evidence a passing
    artifact carries, and add illustrative `content[]` lines.
 4. **Author a reviewer-prompt fixture.** Follow
-   [`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/reviewer_schema.md):
+   [`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer_schema.md):
    put the known-buggy input in `input`, add one visible and one hidden case, and keep
    `expectedFindings` token-specific enough to reject vague verdict-only output.
 5. **Add or extend a profile.** Reference the fixture `id`, set a `scorer` matching
@@ -272,8 +272,8 @@ the repository root:
 
 ```bash
 node -e 'for (const f of process.argv.slice(1)) JSON.parse(require("fs").readFileSync(f,"utf8"))' \
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/*.json \
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/*.json && echo OK
+  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/*.json \
+  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/*.json && echo OK
 ```
 
 - Every fixture and profile must parse; the command prints `OK`.
@@ -298,21 +298,21 @@ node -e 'for (const f of process.argv.slice(1)) JSON.parse(require("fs").readFil
 | [`lane_b_mechanics.md`](../../../../system-deep-loop/deep-improvement/references/model_benchmark/lane_b_mechanics.md) | Entry-point routing, dispatcher, scorer selection, mode-aware promotion |
 | [`benchmark_operator_guide.md`](../../../../system-deep-loop/deep-improvement/references/model_benchmark/benchmark_operator_guide.md) | Running repeatable fixture benchmarks and reading the output layout |
 | [`mixed_executor_methodology.md`](../../../../system-deep-loop/deep-improvement/references/model_benchmark/mixed_executor_methodology.md) | Mixed-executor dispatch and the adjudication-iter false-positive filter |
-| [`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/reviewer_schema.md) | Full reviewer-prompt fixture schema, verdict contract, deterministic replay |
+| [`reviewer_schema.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer_schema.md) | Full reviewer-prompt fixture schema, verdict contract, deterministic replay |
 
 ### Data READMEs
 
 | File | What it holds |
 | --- | --- |
 | [`model_benchmark/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/README.md) | Directory tree, key-file map, and the fixture-vs-profile flow |
-| [`benchmark_fixtures/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/README.md) | Tiered fixture taxonomy and per-fixture responsibilities |
-| [`benchmark_profiles/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/README.md) | The run profiles and their shared and sweep-only keys |
+| [`benchmark-fixtures/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md) | Tiered fixture taxonomy and per-fixture responsibilities |
+| [`benchmark-profiles/README.md`](../../../../system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/README.md) | The run profiles and their shared and sweep-only keys |
 
 ### Owning skill and sibling family
 
 - [`deep-improvement SKILL.md`](../../../../system-deep-loop/deep-improvement/SKILL.md) — the mode that owns and runs the model benchmark.
 - [`behavior_benchmark_guide.md`](../behavior_benchmark/behavior_benchmark_guide.md) — the sibling authoring guide for the behavior-benchmark family.
-- [`../SKILL.md`](../../SKILL.md) — the `create-benchmark` packet contract for both benchmark families this packet authors.
+- [`../SKILL.md`](../../SKILL.md) — the `create-benchmark` packet contract for the four templated benchmark families and the two Lane A/D authoring guides this packet owns.
 
 ---
 

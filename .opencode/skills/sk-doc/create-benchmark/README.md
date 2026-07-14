@@ -1,6 +1,6 @@
 # create-benchmark
 
-Authors the two benchmark families: MCP promotion folders (`mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/`) and behavior_benchmark packages (`<mode>/behavior_benchmark/`) for deep-loop modes.
+Authors MCP-promotion, behavior, skill-benchmark, and model-benchmark artifacts, and hosts authoring guides for the Lane A and Lane D code-owned families.
 
 ## 1. OVERVIEW
 
@@ -11,7 +11,7 @@ Authors the two benchmark families: MCP promotion folders (`mcp_server/benchmark
 - **Skill-benchmark (Lane C)** — authors a hub's `benchmark/` storage tree and its `benchmark/README.md` run-label index; the per-run `skill-benchmark-report.md` is a renderer-owned render this packet never authors. `SKILL.md` section 10 and `references/skill_benchmark/skill_benchmark_storage_guide.md` hold the contract.
 - **Model-benchmark (Lane B)** — authors the Lane B input fixtures (code-task oracle, pattern/capability, reviewer-prompt) and run profiles; the evaluator, scorers, and reviewer-verdict contract stay lane-local. `SKILL.md` section 11 and `references/model_benchmark/model_benchmark_fixture_guide.md` hold the contract.
 
-Lane A (agent-improvement) and Lane D (non-dev AI-system improvement) are code-owned families named only for router disambiguation; this packet does not template them.
+Two further families — Lane A (agent-improvement) and Lane D (non-dev AI-system improvement) — now carry an authoring guide here (`SKILL.md` section 13); their code-owned artifacts stay in-lane.
 
 The skill-local surface is the look-here-first entry point; the full audit trail stays in the owning spec packet or lane. `SKILL.md` is the authoritative contract.
 
@@ -50,7 +50,7 @@ Packet root:
 
 - `SKILL.md` — authoritative workflow contract.
 - `README.md` — human orientation for this packet.
-- `changelog/.gitkeep` — packet-local changelog placeholder.
+- `changelog/` — packet-local version history (`v1.0.0.0.md` through `v1.3.0.0.md`).
 
 References:
 
@@ -58,6 +58,8 @@ References:
 - `references/behavior_benchmark/behavior_benchmark_guide.md` — end-to-end guide for authoring a behavior_benchmark package: what it measures, package layout, scenario-matrix design, naming, and validation.
 - `references/skill_benchmark/skill_benchmark_storage_guide.md` — storage convention for a hub's `benchmark/` tree: run-label naming, the frozen `baseline/` anchor, and the renderer-owned report boundary.
 - `references/model_benchmark/model_benchmark_fixture_guide.md` — authoring guide for Lane B inputs: the fixture-family taxonomy, profile shape, and the lane boundary for scoring.
+- `references/agent_improvement/agent_improvement_authoring_guide.md` — authoring guide for Lane A (agent-improvement) doc-only inputs: the improvement charter and strategy scaffolds, target-onboarding classification, and candidate proposal format.
+- `references/non_dev_ai_system/non_dev_ai_system_authoring_guide.md` — authoring guide for Lane D (non-dev AI-system improvement) doc-only inputs: the packaging config, fixture and gold-set choices, and grader-calibration selections.
 
 Assets:
 

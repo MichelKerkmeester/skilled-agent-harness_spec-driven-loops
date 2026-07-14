@@ -26,8 +26,11 @@ Usage:
         .opencode/skills/<hub>/benchmark/README.md
   2. DELETE the "version:" line above. A shipped hub benchmark README carries the
      five frontmatter fields shown (title / description / trigger_phrases /
-     importance_tier / contextType) and NO version field. Replace the template's
-     descriptive title / description / trigger_phrases with the hub's real values.
+     importance_tier / contextType) and NO version field: it is a memory-indexed
+     DATA artifact outside the references/** and assets/** version-scope defined
+     in ../../../shared/references/frontmatter_versioning.md §1, not a versioned
+     reference doc. Replace the template's descriptive title / description /
+     trigger_phrases with the hub's real values.
   3. Fill every {{PLACEHOLDER}} and remove every <!-- guidance --> comment.
   4. Keep the RUN-LABEL INDEX table (section 2) in exact sync with the run-label
      folders on disk: one row per shipped run-label folder, one folder per row.

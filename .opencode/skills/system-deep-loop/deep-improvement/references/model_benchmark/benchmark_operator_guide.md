@@ -42,11 +42,11 @@ The copied runtime templates use the `improvement_*` asset names, but the packet
 
 ```text
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs \
-  --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/default.json \
+  --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs
 
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs \
-  --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/default.json \
+  --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs
 ```
 
@@ -56,7 +56,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/
 
 ```text
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs \
-  --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/default.json \
+  --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs \
   --scorer 5dim --grader noop
 ```
@@ -66,7 +66,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/
 When running with an integration report, add the `--integration-report` flag:
 
 ```text
-node scripts/model-benchmark/run-benchmark.cjs --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/default.json --outputs-dir=... --integration-report=integration-report.json
+node scripts/model-benchmark/run-benchmark.cjs --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir=... --integration-report=integration-report.json
 ```
 
 The integration report adds `integrationScore` and `integrationDetails` to the benchmark output:

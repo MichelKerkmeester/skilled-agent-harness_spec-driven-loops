@@ -55,7 +55,7 @@ Shared top-level keys (all three): `profileId`/`id`, `version`, `family`, `fixtu
 Run from the repository root.
 
 ```bash
-node -e "for(const f of ['default','framework_bakeoff','model_vs_model']){const p=require('./.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/'+f+'.json');console.log(f, p.profileId, p.mode||'(no mode)')}"
+node -e "for(const f of ['default','framework_bakeoff','model_vs_model']){const p=require('./.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/'+f+'.json');console.log(f, p.profileId, p.mode||'(no mode)')}"
 ```
 
 Expected result: all three profiles parse as valid JSON and print their `profileId` and mode (`default (no mode)`, `framework-bakeoff framework-bakeoff`, `model-vs-model model-vs-model`).
@@ -65,6 +65,6 @@ Expected result: all three profiles parse as valid JSON and print their `profile
 ## 5. RELATED
 
 - [`model-benchmark scripts README`](../../../scripts/model-benchmark/README.md)
-- [`benchmark-fixtures`](../benchmark_fixtures)
+- [`benchmark-fixtures`](../benchmark-fixtures)
 - [`deep-improvement SKILL.md`](../../../SKILL.md)
 - Authoring these profiles: [`sk-doc/create-benchmark`](../../../../../sk-doc/create-benchmark/SKILL.md) §11 — the run-profile template [`model_benchmark_profile_template.md`](../../../../../sk-doc/create-benchmark/assets/model_benchmark/model_benchmark_profile_template.md) and [`model_benchmark_fixture_guide.md`](../../../../../sk-doc/create-benchmark/references/model_benchmark/model_benchmark_fixture_guide.md). That packet owns the profile *authoring* template; `run-benchmark.cjs` and the scorers stay lane-local.

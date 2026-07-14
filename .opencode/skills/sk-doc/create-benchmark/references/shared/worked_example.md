@@ -19,7 +19,7 @@ A miniature rendering of the `benchmark_report.md` shape, so you can see the str
 
 ## 1. OVERVIEW
 
-The fixed ten-section contract and the report style rules live in [`../SKILL.md`](../../SKILL.md) §4. The full fillable scaffold, with every section and placeholder, is [`../assets/shared/benchmark_report_template.md`](../../assets/shared/benchmark_report_template.md) — copy that to author a real report. This file shows sections 1 to 3 in pattern so the shape is legible at a glance.
+The fixed ten-section contract and the report style rules live in [`../SKILL.md`](../../SKILL.md) §5. The full fillable scaffold, with every section and placeholder, is [`../assets/shared/benchmark_report_template.md`](../../assets/shared/benchmark_report_template.md) — copy that to author a real report. This file shows sections 1 to 3 in pattern so the shape is legible at a glance.
 
 ---
 

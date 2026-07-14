@@ -24,7 +24,7 @@
     "route_proof_required": false,
     "role_absorption_forbidden": false
   },
-  "budget_ms": 300000,
+  "budget_ms": 522129,
   "notes": "The bare E2 command names the target folder but no execution mode and no lane axes. SKILL.md ALWAYS #1 forbids guessing a scope; scoping_protocol.md's three-axis tree must be surfaced. Contract is ONE consolidated setup prompt then halt. Running anyway is setup_misbind; silence is stuck."
 }
 ```

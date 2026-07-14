@@ -109,8 +109,8 @@ Run from the repository root.
 
 ```bash
 node -e 'for (const f of process.argv.slice(1)) JSON.parse(require("fs").readFileSync(f,"utf8"))' \
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_fixtures/*.json \
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/*.json && echo OK
+  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/*.json \
+  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/*.json && echo OK
 ```
 
 Expected result: every fixture and profile parses as valid JSON and the command prints `OK`.
@@ -119,7 +119,7 @@ Expected result: every fixture and profile parses as valid JSON and the command 
 
 ## 6. RELATED
 
-- [`benchmark-profiles README`](./benchmark_profiles/README.md)
+- [`benchmark-profiles README`](./benchmark-profiles/README.md)
 - [`model-benchmark scripts README`](../../scripts/model-benchmark/README.md)
 - [`deep-improvement SKILL.md`](../../SKILL.md)
 - Authoring these inputs: [`sk-doc/create-benchmark`](../../../../sk-doc/create-benchmark/SKILL.md) §11 — the code-task and pattern/reviewer fixture templates, the run-profile template, and [`model_benchmark_fixture_guide.md`](../../../../sk-doc/create-benchmark/references/model_benchmark/model_benchmark_fixture_guide.md). That packet owns the fixture/profile *authoring* templates; this lane keeps `run-benchmark.cjs`, the scorers, and the evaluator/reviewer-verdict contract.
