@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: "sk-code family review mode: stack-agnostic code-review baseline, findings-first severity, mandatory security/correctness minimums, and sk-code evidence."
+description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
 version: 1.0.0.0
 metadata:

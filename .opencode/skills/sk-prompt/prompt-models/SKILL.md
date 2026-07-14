@@ -1,6 +1,6 @@
 ---
 name: prompt-models
-description: sk-prompt workflow packet — per-model prompt-craft profiles for small-model dispatch (DeepSeek-v4-pro + Kimi-k2.7-code + MiniMax-M3 + MiMo-V2.5-Pro + GLM-5.2 via cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model_profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-opencode. Advisor co-surfaces it with that executor.
+description: Small-model dispatch prompt-craft profiles for DeepSeek, Kimi, MiniMax, MiMo, and GLM via cli-opencode; mechanics stay there.
 allowed-tools: [Read, Grep, Glob]
 version: 0.9.0.1
 ---

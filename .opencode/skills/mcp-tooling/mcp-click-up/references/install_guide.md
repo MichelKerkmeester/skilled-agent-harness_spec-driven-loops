@@ -1,13 +1,15 @@
 ---
 title: "mcp-click-up Installation Guide"
 description: "Phase-based install for cupt CLI and official ClickUp MCP. Validation checkpoints at every phase."
-version: "1.0.0"
+version: "1.0.0.0"
 updated: "2026-05-31"
 trigger_phrases:
   - "install cupt"
   - "clickup setup"
   - "mcp-click-up install"
   - "clickup mcp config"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # mcp-click-up Installation Guide

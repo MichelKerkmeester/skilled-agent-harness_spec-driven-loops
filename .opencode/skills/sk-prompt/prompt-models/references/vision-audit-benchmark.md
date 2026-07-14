@@ -1,3 +1,16 @@
+---
+title: Vision Capability and Design-Audit Benchmark
+description: Benchmark of small-model vision capability, API transport, visual-audit accuracy, and the recommended design-vision auditor.
+trigger_phrases:
+  - "small-model vision capability"
+  - "design-audit benchmark"
+  - "visual design auditor"
+  - "vision model transport"
+importance_tier: normal
+contextType: general
+version: 0.9.0.1
+---
+
 # Vision capability + design-audit benchmark (small-model rotation)
 
 > Which rotation models accept image input, and which one is an accurate visual-design

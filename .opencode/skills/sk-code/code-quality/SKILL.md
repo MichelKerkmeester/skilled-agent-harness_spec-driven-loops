@@ -1,6 +1,6 @@
 ---
 name: code-quality
-description: Quality gate for sk-code after implementation and before verification; applies P0/P1/P2 author checks, comment hygiene, and surface checklists.
+description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
 version: 1.0.0.1
 metadata:
@@ -158,6 +158,18 @@ RESOURCE_MAP = {
     "QUALITY": ["assets/code_quality_checklist/overview_header_and_comments.md"],
 }
 ```
+
+### Machine-Readable Router Call Sequence
+
+```text
+discover_markdown_resources()
+    -> _guard_in_skill() + load_if_available()
+    -> score_intents()/select_intents() for the thin QUALITY projection
+    -> get_routing_key() from target path, then select the path-keyed checklist
+    -> UNKNOWN_FALLBACK when no routable target path is available
+```
+
+The target-path checklist map remains authoritative; the prompt-intent projection only makes the default quality resources scoreable.
 
 ---
 
