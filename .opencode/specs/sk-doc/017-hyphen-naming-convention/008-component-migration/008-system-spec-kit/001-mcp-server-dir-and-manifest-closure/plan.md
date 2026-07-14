@@ -1,170 +1,109 @@
 ---
-title: "Implementation Plan: Phase 1: mcp-server-dir-and-manifest-closure [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: MCP-server directory and manifest closure (017 subtree 008 phase 001)"
+description: "The system-spec-kit workspace still exposes mcp_server as a filesystem path even though kebab-case is canonical. The package workspace, lockfile links, package scripts, and entrypoint references must move as one path closure while manifest filenames, package names, Python files, and Python package directories remain exempt."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-server directory closure"
+  - "system-spec-kit mcp server manifest"
+  - "mcp_server to mcp-server"
+  - "kebab-case phase 001"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-mcp-server-dir-and-manifest-closure"
-    last_updated_at: "2026-07-14T15:17:58Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Planned mcp-server closure execution"
+    next_safe_action: "Execute the root closure on the pinned baseline"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-mcp-server-dir-and-manifest-closure"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: MCP-server directory and manifest closure
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: mcp-server-dir-and-manifest-closure
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/system-spec-kit (MCP-server directory and manifest closure) |
+| **Change class** | Runtime/package layout and manifest closure |
+| **Execution** | Isolated worktree pinned to BASE; planning only |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Treat the package root, workspace declarations, package-local path scripts, and lockfile links as one semantic rename unit. The source-to-target map changes only the filesystem segment and path-valued references; package names, manifest filenames, code identifiers, and exempt Python targets remain unchanged.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] The pinned BASE contains exactly one live package root at mcp_server.
+- [ ] The manifest and lockfile reference inventory is captured with line numbers.
+- [ ] Collision, symlink, executable-bit, and package-name dispositions are recorded.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] The root rename map is bijective and all package path values use mcp-server.
+- [ ] The package manifest closure and entrypoint references are internally consistent.
+- [ ] The verifier proves no exempt filename or identifier changed.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- Use a semantic map entry mcp_server -> mcp-server, then apply it to path-valued workspace and entrypoint references.
+- Keep package.json, package-lock.json, tsconfig.json, and vitest config as exact tool-facing filenames.
+- Validate the closure from the workspace root through npm metadata, package scripts, and dist entrypoints before handing off inner-directory work.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- Confirm phase 000 baseline and the current package-lock.json are available in the isolated worktree.
+- Inventory mcp_server references in package.json, package-lock.json, tsconfig files, README entrypoints, and build scripts.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- Create the root-only source-to-target map and run exact, case-fold, and NFC collision checks before any rename.
+- Rename the package root and update workspace arrays, package keys, link targets, and package-local path values atomically.
+- Reconcile dist-freshness, build, start, test, and workspace references without changing package names or manifest filenames.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- Resolve the workspace package from mcp-server and confirm no stale path remains in the manifest closure.
+- Run package metadata and entrypoint checks, then compare the changed-path manifest against the exemption list.
+- Record the map hash and clean handoff evidence for phase 002.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Map audit plus collision report shows one mcp_server source and one mcp-server target. |
+| REQ-002 | Parse package-lock.json and package.json; assert workspace and file-link path values resolve to the new root. |
+| REQ-003 | Run package entrypoint and build-resolution checks in the central worktree. |
+| REQ-004 | Compare changed names against package, Python, identifier, and key exemptions. |
+| REQ-005 | Inspect the phase report and phase-map handoff record. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Pinned BASE and phase 000 census | Internal | Required | Without the baseline, collision and clean-install evidence is not comparable. |
+| npm workspace metadata | Internal | Required | Stale paths prevent package resolution or install parity. |
+| Phase 002 inner-directory map | Internal | Downstream | The package root must be stable before inner paths are rewritten. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Stop before deleting the old root if collision or package-resolution checks fail. Revert the path-scoped commit or restore the source-to-target map in the isolated worktree; no generated dependency tree or external install is part of this authoring pass.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

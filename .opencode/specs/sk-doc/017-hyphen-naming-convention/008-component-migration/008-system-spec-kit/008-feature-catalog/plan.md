@@ -1,170 +1,110 @@
 ---
-title: "Implementation Plan: Phase 8: feature-catalog [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Feature catalog (017 subtree 008 phase 008)"
+description: "The skill’s feature_catalog tree contains 366 underscore-bearing filesystem names: the root, 17 candidate category directories, and 348 files. This phase renames the catalog root, categories, and content to kebab-case and updates catalog indexes, path-derived metadata, links, and consumers without changing frontmatter fields or code identifiers."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-spec-kit feature catalog"
+  - "feature_catalog to feature-catalog"
+  - "catalog filename kebab-case"
+  - "feature catalog phase 008"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-feature-catalog"
-    last_updated_at: "2026-07-14T15:18:03Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Planned feature-catalog execution"
+    next_safe_action: "Execute the feature-catalog map after shared/runtime is stable"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-feature-catalog"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: Feature catalog
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 8: feature-catalog
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/system-spec-kit (Feature catalog) |
+| **Change class** | Catalog tree rename and reference closure |
+| **Execution** | Isolated worktree pinned to BASE; planning only |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Freeze the 366-name candidate inventory, build a bijective semantic map, move the root/category/file tree in dependency-closed batches, and rewrite indexes and path-valued metadata alongside each batch. Verify leaf discoverability after every batch and preserve all non-filesystem contracts.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 007 shared/runtime handoff is complete.
+- [ ] The catalog inventory reports 366 underscore-bearing candidates and is hashed with BASE.
+- [ ] Active catalog consumers and frozen-history boundaries are listed.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] The root, categories, and files are kebab-case with no unknown disposition.
+- [ ] All active catalog links, indexes, loaders, and path metadata resolve.
+- [ ] Catalog leaves remain discoverable and schema/identifier boundaries are untouched.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- Use explicit root, category, and file mappings; do not substitute underscores mechanically inside arbitrary names.
+- Batch by dependency closure so index rows and content files move together.
+- Compare the catalog leaf set and category mapping before and after to catch silent loss or downgrade.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- Enumerate catalog root, category directories, and files; record 366 candidates and already-compliant names.
+- Search active consumers for feature_catalog, feature-catalog, catalog index names, and path-derived category values.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- Freeze and review the full catalog map with collision/casefold/NFC checks.
+- Rename root, categories, and files in dependency-closed batches and update indexes, links, and path-valued metadata.
+- Reconcile active loaders and validators without altering frontmatter fields or content identifiers.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- Resolve every active catalog link and consumer from the target root.
+- Compare pre/post leaf IDs, category assignments, file counts, and path-derived metadata.
+- Review all old-root matches and classify frozen, generated, identifier, or unresolved entries.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Inventory report and map hash account for 366 candidates: root, 17 directories, and 348 files. |
+| REQ-002 | Map review proves kebab targets and no exact, casefold, or NFC collisions. |
+| REQ-003 | Run catalog index, link, loader, and path-value resolution against feature-catalog. |
+| REQ-004 | Diff audit proves fields, keys, identifiers, Python targets, and frozen/generated content remain unchanged. |
+| REQ-005 | Compare catalog leaf/category discovery and retrieval results with the baseline. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 007 shared/runtime | Internal | Required | The content surface is migrated after shared/runtime paths are stable. |
+| Catalog consumer map | Internal | Required | Root consumers must be updated with the root move. |
+| Phase 009 manual playbook | Internal | Downstream | The sibling content tree is verified separately. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Stop on any leaf-count mismatch, collision, silent category loss, or unresolved consumer. Revert the current dependency-closed batch with its index and metadata rewrites; do not repair a broken catalog with broad text replacement.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

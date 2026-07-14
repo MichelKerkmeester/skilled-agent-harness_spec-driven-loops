@@ -1,182 +1,101 @@
 ---
-title: "Feature Specification: Phase 9: manual-testing-playbook [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Manual testing playbook (017 subtree 008 phase 009)"
+description: "The system-spec-kit manual_testing_playbook tree contains 440 underscore-bearing basenames: the root, 18 category directories, and 421 scenario or support files. This phase renames permitted playbook paths to kebab-case and closes every playbook link, index, runner, and path pointer while preserving scenario identity and the program exemption boundary."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-spec-kit manual testing playbook"
+  - "manual_testing_playbook to manual-testing-playbook"
+  - "playbook scenario kebab-case"
+  - "manual testing phase 009"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:18:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored manual-playbook docs"
+    next_safe_action: "Execute the manual-playbook path map after catalog evidence is available"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/009-manual-testing-playbook"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 9: manual-testing-playbook
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Manual testing playbook
 
----
+> Phase adjacency under the 008 system-spec-kit subtree (grouping order, not a runtime dependency): predecessor 008-feature-catalog; successor 010-config-checkpoints-vectors-constitutional-verify.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/009-manual-testing-playbook` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 12 |
-| **Predecessor** | 008-feature-catalog |
-| **Successor** | 010-config-checkpoints-vectors-constitutional-verify |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | system-spec-kit |
+| **Origin** | Phase 009 of the 008 system-spec-kit component migration under the 017 kebab-case program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 9** of the system spec kit (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
-
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The live playbook root is `manual_testing_playbook` and its inventory contains 440 underscore-bearing basenames: the root, 18 candidate category directories, and 421 files. Scenario names such as `causal_chain_tracing_memory_drift_why.md` and category paths such as `bug_fixes_and_data_integrity/` are addressed by indexes, links, and playbook runners, so the path tree and its consumers must move as one closure.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Rename `manual_testing_playbook` to `manual-testing-playbook` and update active root consumers.
+- Rename the 18 permitted underscore-bearing category directories, including `plugins_and_hooks`, and the 421 permitted scenario/support files using an explicit semantic map.
+- Update playbook indexes, scenario links, runner globs, catalog-to-playbook pointers, README references, and path-valued metadata.
+- Preserve scenario IDs, headings, test intent, frontmatter fields, code/data identifiers, Python targets, generated output, frozen history, test magic directories, and tool-mandated names.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- The feature-catalog tree, which phase 008 owns; this phase consumes its handoff only where a playbook path is referenced.
+- Rewriting scenario prose, changing test procedures, or renaming identifiers that merely contain underscores.
+- Python `.py` files, Python import-package directories, lockfiles, generated/checkpoint/vector artifacts, and migration execution during this authoring pass.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The playbook candidate set is frozen before any move. | The ledger accounts for 440 candidates: root, 18 directories, and 421 files, with no unknown bucket. |
+| REQ-002 | Permitted playbook paths use kebab-case targets. | Every candidate has a collision-free semantic target; compliant names and exemptions retain their disposition. |
+| REQ-003 | Playbook consumers resolve the new paths. | Indexes, links, runners, catalog handoffs, READMEs, and path-valued metadata resolve from `manual-testing-playbook`. |
+| REQ-004 | Scenario contracts remain stable. | Scenario IDs, headings, steps, expected results, and non-path identifiers are unchanged. |
+| REQ-005 | Playbook coverage is preserved. | The post-map scenario/category set has one-to-one parity with the baseline. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All 440 permitted playbook candidates have a target or explicit exemption disposition.
+- **SC-002**: Active playbook links, indexes, runners, and catalog handoffs resolve with no stale root or category paths.
+- **SC-003**: Scenario identity and procedure content remain unchanged apart from path-valued references.
+- **SC-004**: Scenario and category parity matches the pre-move inventory.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The playbook is both human-readable documentation and an executable/manual-test navigation surface. A missed category or link can hide coverage, while mechanical underscore replacement can produce ambiguous names or alter scenario identifiers. The phase depends on the phase 008 catalog handoff for cross-tree pointers but owns the playbook path closure.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+No blocking questions. Execution must record the final 440-entry map and classify any test-magic, generated, or tool-mandated path before moving it.
 <!-- /ANCHOR:questions -->
 
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

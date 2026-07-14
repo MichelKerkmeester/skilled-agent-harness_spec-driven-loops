@@ -1,182 +1,101 @@
 ---
-title: "Feature Specification: Phase 5: templates-and-examples [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Templates and examples (017 subtree 008 phase 005)"
+description: "The system-spec-kit template surface contains underscore-bearing directory and file names in the examples and stress-test layouts, including level_1, level_2, level_3, level_3+, stress_test, and EXTENSION_GUIDE.md. This phase moves permitted template paths and updates generator, renderer, and documentation pointers while preserving tool-mandated manifest templates."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-spec-kit templates and examples"
+  - "level_1 template rename"
+  - "stress_test template rename"
+  - "EXTENSION_GUIDE rename"
+  - "kebab-case phase 005"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-templates-and-examples"
-    last_updated_at: "2026-07-14T15:18:01Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored template-example docs"
+    next_safe_action: "Execute the template path map after script callers are stable"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-templates-and-examples"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 5: templates-and-examples
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Templates and examples
 
----
+> Phase adjacency under the 008 system-spec-kit subtree (grouping order, not a runtime dependency): predecessor 004-scripts-tree; successor 006-references-and-assets.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/005-templates-and-examples` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 12 |
-| **Predecessor** | 004-scripts-tree |
-| **Successor** | 006-references-and-assets |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | system-spec-kit |
+| **Origin** | Phase 005 of the 008 system-spec-kit component migration under the 017 kebab-case program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 5** of the system spec kit (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
-
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+Template selection and example links still encode underscore-bearing directory names such as templates/examples/level_1 and templates/stress_test. The manifest templates and renderer use these paths as data, so a directory or file move without pointer updates would make scaffold output incomplete or select the wrong level.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Rename template example directories level_1, level_2, level_3, and level_3+ to semantic level-1, level-2, level-3, and level-3+ paths.
+- Rename templates/stress_test to templates/stress-test and templates/manifest/EXTENSION_GUIDE.md to extension-guide.md where the policy permits.
+- Update template manifests, create/render scripts, README links, example frontmatter pointers, and any path-valued docs or tests.
+- Keep tool-mandated manifest filenames such as spec.md.tmpl, plan.md.tmpl, tasks.md.tmpl, checklist.md.tmpl, decision-record.md.tmpl, package manifests, and SKILL.md exact.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Reference and asset files outside templates, which phase 006 owns.
+- Feature-catalog and manual-playbook content trees, which phases 008 and 009 own.
+- Changing the meaning, section shape, or level semantics of a template.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every underscore-bearing template path is inventoried and classified. | The inventory covers examples, stress-test assets, manifest documentation, and all generator pointers. |
+| REQ-002 | Permitted template paths use semantic kebab targets. | level_1, level_2, level_3, level_3+, stress_test, and EXTENSION_GUIDE.md have explicit source-to-target entries. |
+| REQ-003 | Generators and renderers resolve the new template paths. | Scaffold and inline-render path selection points at the renamed directories and file. |
+| REQ-004 | Tool-mandated names remain exact. | Manifest template basenames, package manifests, SKILL.md, and test magic are not renamed. |
+| REQ-005 | Example output remains structurally equivalent. | Generated example trees retain the expected files, level markers, anchors, and cross-references. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The template and example tree has no permitted underscore-bearing filesystem name.
+- **SC-002**: Generators, renderers, and documentation select the semantic kebab paths.
+- **SC-003**: Example output is structurally identical except for approved filesystem names.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+Level directory names are consumed as template selectors, so a path rewrite can silently change which contract is rendered. The phase must compare generated trees and preserve manifest basenames. The plus suffix in level-3+ is retained as a template family marker while the underscore segment becomes a hyphen.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+No blocking questions. The execution report must record whether any additional underscore-bearing template path appears beyond the named directories and guide.
 <!-- /ANCHOR:questions -->
 
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

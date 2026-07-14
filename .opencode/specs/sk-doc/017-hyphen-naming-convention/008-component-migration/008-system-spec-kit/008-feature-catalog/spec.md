@@ -1,182 +1,100 @@
 ---
-title: "Feature Specification: Phase 8: feature-catalog [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Feature catalog (017 subtree 008 phase 008)"
+description: "The skill’s feature_catalog tree contains 366 underscore-bearing filesystem names: the root, 17 candidate category directories, and 348 files. This phase renames the catalog root, categories, and content to kebab-case and updates catalog indexes, path-derived metadata, links, and consumers without changing frontmatter fields or code identifiers."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-spec-kit feature catalog"
+  - "feature_catalog to feature-catalog"
+  - "catalog filename kebab-case"
+  - "feature catalog phase 008"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-feature-catalog"
-    last_updated_at: "2026-07-14T15:18:03Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored feature-catalog docs"
+    next_safe_action: "Execute the feature-catalog map after shared/runtime is stable"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-feature-catalog"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 8: feature-catalog
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Feature catalog
 
----
+> Phase adjacency under the 008 system-spec-kit subtree (grouping order, not a runtime dependency): predecessor 007-shared-and-runtime; successor 009-manual-testing-playbook.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/008-feature-catalog` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 12 |
-| **Predecessor** | 007-shared-and-runtime |
-| **Successor** | 009-manual-testing-playbook |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | system-spec-kit |
+| **Origin** | Phase 008 of the 008 system-spec-kit component migration under the 017 kebab-case program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 8** of the system spec kit (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
-
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The live catalog root is feature_catalog and its inventory contains 366 underscore-bearing basenames, including category directories such as bug_fixes_and_data_integrity, context_preservation, pipeline_architecture, and tooling_and_scripts. Content filenames such as canonical_id_dedup_hardening.md and database_and_schema_safety.md are path-addressed by indexes and cross-references, so the root, categories, files, and pointers must move as one content closure.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Rename the feature_catalog root to feature-catalog and update every active root/index consumer.
+- Rename the 17 underscore-bearing category directories and 348 underscore-bearing catalog files using an explicit semantic map; retain already-compliant category/file names.
+- Update feature-catalog indexes, links, category/path frontmatter values, README pointers, scripts, and references from active skills and tools.
+- Preserve frontmatter field names, code identifiers, JSON/YAML/TOML keys, Python targets, generated/lockfile content, frozen history, and tool-mandated names.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- The manual_testing_playbook tree, which phase 009 owns.
+- Changes to catalog meaning, feature classification, frontmatter schema, or content prose unrelated to path values.
+- The old catalog names inside frozen changelog/history content, which are classified rather than rewritten.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The complete catalog candidate set is frozen before renaming. | The report accounts for 366 candidates: feature_catalog, 17 candidate directories, and 348 files, with no unknown bucket. |
+| REQ-002 | Catalog roots, categories, and files use kebab-case targets. | feature_catalog -> feature-catalog and every permitted underscore basename has a collision-free semantic target. |
+| REQ-003 | Catalog indexes and consumers resolve the new paths. | Index tables, links, category/path values, scripts, loaders, and active documentation point to feature-catalog targets. |
+| REQ-004 | Schema and identifier boundaries remain intact. | Frontmatter keys, code identifiers, JSON/YAML/TOML keys, Python targets, and frozen/generated content are unchanged. |
+| REQ-005 | Catalog classification and retrieval remain addressable. | Every catalog leaf remains discoverable by its intended category/path after the rename. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All 366 permitted catalog candidates have a target or explicit exemption disposition.
+- **SC-002**: The feature-catalog root, categories, files, indexes, and active consumers resolve with no broken links.
+- **SC-003**: Catalog metadata fields and content semantics remain unchanged.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The catalog root is a runtime and indexing contract, not just a directory name. A missed consumer can silently downgrade or hide catalog leaves. The phase must use the program’s consumer map and verify every leaf remains discoverable; a blind underscore replacement can also create invalid or colliding names.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+No blocking questions. Execution must record the final candidate count and the complete root/category/file map before any move.
 <!-- /ANCHOR:questions -->
 
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

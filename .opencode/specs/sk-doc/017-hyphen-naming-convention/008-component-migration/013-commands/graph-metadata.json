@@ -22,32 +22,45 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "commands component migration",
+      "kebab-case commands surface",
+      "hyphenate OpenCode command assets",
+      "commands subtree naming gate"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "commands",
+      "component",
+      "migration",
+      "kebab-case",
+      "surface",
+      "hyphenate",
+      "opencode",
+      "command",
+      "assets",
+      "subtree",
+      "naming",
+      "gate"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/commands/README.txt",
+      ".opencode/commands/scripts/validate-command-references.cjs",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -61,13 +74,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -79,29 +92,29 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Purpose Define",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The `.opencode/commands/` surface combines seven namespaced command families, two loose root command files, shared command tooling, and asset trees",
     "created_at": "2026-07-14T15:17:04Z",
-    "last_save_at": "2026-07-14T15:24:36.668Z",
+    "last_save_at": "2026-07-14T19:30:41.518Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:cebc592d71957581059e1354ac6172e8a2079f0eb908259c4ebf488e8a240247",
+    "source_fingerprint": "sha256:b4fe9da6ab56a24a5c98e9787076922f05026bae557fd1e2d563a489be5eb9f8",
     "source_doc_hashes": {
-      "spec.md": "d4865481ba5f0e6b928778c6c30e4bc3ff9e83f5eff1939b0c082fec8f148b74"
+      "spec.md": "243e377aee92cc2b12565acf7e8d45b04681de7987bd9baf998135635c5ef8dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

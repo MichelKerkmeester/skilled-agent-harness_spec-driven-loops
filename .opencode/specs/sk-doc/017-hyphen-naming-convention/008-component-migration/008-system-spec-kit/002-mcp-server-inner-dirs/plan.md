@@ -1,170 +1,110 @@
 ---
-title: "Implementation Plan: Phase 2: mcp-server-inner-dirs [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: MCP-server inner directories (017 subtree 008 phase 002)"
+description: "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-server inner directories"
+  - "matrix_runners rename"
+  - "plugin_bridges rename"
+  - "stress_test rename"
+  - "kebab-case phase 002"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-mcp-server-inner-dirs"
-    last_updated_at: "2026-07-14T15:17:59Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Planned MCP inner-directory execution"
+    next_safe_action: "Execute the semantic inner-directory map on the renamed package root"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-mcp-server-inner-dirs"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: MCP-server inner directories
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: mcp-server-inner-dirs
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/system-spec-kit (MCP-server inner directories) |
+| **Change class** | Directory rename and intra-tree reference closure |
+| **Execution** | Isolated worktree pinned to BASE; planning only |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Rename only directories with an explicit semantic map, then rewrite the references that define compilation, test discovery, runtime stress commands, and documentation links. The map must distinguish ordinary support names from test-runner magic and Python package directories.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 001 established mcp-server as the live package root.
+- [ ] The six inner-directory candidates and their source references are inventoried.
+- [ ] Vitest and TypeScript discovery contracts are captured before any directory move.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All permitted inner directories use semantic kebab targets.
+- [ ] All intra-tree globs and links resolve, including test support setup and stress paths.
+- [ ] Exempt Python and tool-mandated names have an evidence-backed disposition.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- Use a semantic directory map: matrix_runners -> matrix-runners, plugin_bridges -> plugin-bridges, stress_test -> stress-test, __helpers__ -> helpers, _support -> support, and __fixtures__ -> fixtures.
+- Apply the map to path segments only; never alter identifiers, frontmatter fields, object keys, or Python import paths.
+- Verify the target tree through TypeScript includes, Vitest setup/discovery, npm scripts, and Markdown link resolution.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- Read the phase 001 handoff and enumerate the post-root paths under mcp-server.
+- Inspect vitest.config.ts, vitest.stress.config.ts, tsconfig.json, package.json, and test README files for discovery contracts.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- Classify each inner directory as rename, Python/package exempt, test-magic preserved, or other explicit disposition.
+- Move permitted directories with semantic targets and rewrite all intra-tree references in the same batch.
+- Update test setup paths, stress globs, bridge links, and tree diagrams without changing code identifiers.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- Run a path-resolution and test-discovery audit against new directory names.
+- Compare discovered suite and fixture counts with the phase 000 baseline where the baseline covers this surface.
+- Emit the unresolved old-path disposition ledger for phase 003.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Review the source-to-target map; assert no target begins with a mechanically produced leading or doubled hyphen. |
+| REQ-002 | Parse tsconfig and Vitest config paths and resolve every updated glob and setup file. |
+| REQ-003 | Compare changed directories with the Python, package, and test-magic exemption inventory. |
+| REQ-004 | Run default and stress discovery checks and compare intended suite counts. |
+| REQ-005 | Review the old-token disposition ledger and require zero unclassified paths. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 001 root closure | Internal | Required | Inner references cannot be interpreted until mcp-server is the package root. |
+| Vitest and TypeScript discovery configs | Internal | Required | Stale globs can silently drop tests. |
+| Phase 003 consumer rewrite | Internal | Downstream | External consumers are intentionally handled after the inner tree is stable. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Abort before the move if discovery contracts are unclear or a target collides. Revert the directory rename batch and its path rewrites together; do not leave a mixed old/new tree or a half-updated test configuration.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

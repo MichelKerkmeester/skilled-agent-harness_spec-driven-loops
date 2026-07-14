@@ -1,182 +1,121 @@
 ---
-title: "Feature Specification: Phase 8: loose-command-ids [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: loose command ID naming (017 phase 008/013/008)"
+description: "Classify the two snake_case root command files against their public slash-command and plugin contracts, then rename only filesystem names that are not tool-mandated while preserving exact command IDs."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "loose command ID naming"
+  - "root command filename migration"
+  - "agent router goal command naming"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-loose-command-ids"
-    last_updated_at: "2026-07-14T15:18:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored loose command docs"
+    next_safe_action: "Classify root command filenames against loader contracts"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-loose-command-ids"
-      parent_session_id: null
+    key_files:
+      - ".opencode/commands/agent_router.md"
+      - ".opencode/commands/goal_opencode.md"
+      - ".opencode/commands/README.txt"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    open_questions:
+      - "Whether the active command loader permits a kebab-case filename while retaining each public command ID."
+    answered_questions:
+      - "prompt-improve.md is already compliant and is not a rename candidate."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 8: loose-command-ids
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: loose command ID naming
 
----
+> Phase adjacency under the commands component parent: predecessor `007-speckit-namespace`; successor `009-command-assets`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/008-loose-command-ids` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 10 |
-| **Predecessor** | 007-speckit-namespace |
-| **Successor** | 009-command-assets |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 008 of the commands-surface migration under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 8** of the commands (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+The loose command surface contains `agent_router.md` and `goal_opencode.md`, while the program's canonical filesystem form is kebab-case. Those filenames also appear in public slash-command documentation and plugin tests. A blind filename change could silently change the command IDs or break a tool-owned path contract, so the phase must establish the loader contract and assign one disposition to each candidate before execution.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
----
+Classify both root command filenames against the active loader and plugin contracts, rename only approved filesystem names, and preserve the exact public IDs `/agent_router` and `/goal_opencode`.
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- `.opencode/commands/agent_router.md` → candidate `agent-router.md`, subject to command-ID and tool-contract evidence.
+- `.opencode/commands/goal_opencode.md` → candidate `goal-opencode.md`, subject to command-ID and tool-contract evidence.
+- `.opencode/commands/prompt-improve.md` as a compliant audit control, not a rename candidate.
+- The root command README, installation-guide command inventories, plugin tests that open `goal_opencode.md`, command-loader discovery rules, and every exact path or slash-command reference found by search.
+- Preservation of public IDs `/agent_router` and `/goal_opencode` unless an approved contract decision proves they are not IDs but incidental path spellings.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
 
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Namespaced command assets and command behavior changes.
+- Plugin API changes, broad documentation refresh, and edits outside the authored spec folder during this pass.
+- Code identifiers, plugin tool names, frontmatter fields, generated/lockfile output, and tool-mandated names governed by the program boundary.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Inventory both underscore-named root files, the compliant control, all exact path consumers, and all public command-ID occurrences | The report separates physical paths, public IDs, and tool/plugin path contracts and names an owner for each occurrence. |
+| REQ-002 | Verify the active loader and plugin contracts before moving a file | Evidence shows how filenames become command IDs and how the goal plugin locates its command document. |
+| REQ-003 | Assign exactly one disposition to each candidate | `agent_router.md` and `goal_opencode.md` are each classified as an approved kebab-case rename, a tool-mandated/exempt name, or a blocker with cited evidence. |
+| REQ-004 | Preserve semantic command and tool contracts during any approved move | Public IDs `/agent_router` and `/goal_opencode`, plugin tool names, frontmatter fields, and data keys remain exact. |
+| REQ-005 | Close every approved physical path reference | README, install-guide, loader, plugin-test, and other active path consumers point to the final target, with no active old path remaining. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The disposition map has two candidate rows and one compliant control row.
+- **SC-002**: Loader, plugin, README, and install-guide references have explicit evidence and owners.
+- **SC-003**: Every approved physical move has a target, consumer closure, collision result, and command-ID compatibility check.
+- **SC-004**: Every preserved underscore name has a cited tool-mandated or exact-ID reason.
+- **SC-005**: Final command discovery and goal-plugin tests pass with no unresolved active path.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk or Dependency | Impact | Mitigation |
+|--------------------|--------|------------|
+| Filename-derived command ID changes silently | A physical move could make a command unreachable. | Verify the loader contract and exact public command invocation before accepting a move. |
+| Plugin tests retain a stale physical path | Goal tooling could fail after an otherwise valid rename. | Inventory path consumers and require a post-move repository-wide search. |
+| Public docs confuse IDs with filenames | Semantic IDs could be rewritten as if they were paths. | Track ID spellings and filesystem spellings as separate map columns. |
+| Historical or generated references are fixed unnecessarily | Frozen evidence or generated contracts could drift. | Classify history, generated output, and tool-owned names before rewriting. |
+| Naming policy and commands rollup | The phase could move an exempt name or fail to hand off evidence. | Use `001-convention-policy-and-scope/decision-record.md` and `010-commands-gate` as the boundary and acceptance owners. |
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+The loader contract is the only blocking question: can each root file use a kebab-case basename while the command remains addressable by its exact public ID? If not, the file is tool-mandated and the rollup must record that exemption. No migration should proceed on an assumption here.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

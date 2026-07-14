@@ -1,170 +1,101 @@
 ---
-title: "Implementation Plan: Phase 8: loose-command-ids [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: loose command ID naming (017 phase 008/013/008)"
+description: "Resolve the loader contract, classify root command filenames, and close path references without changing public command IDs or tool contracts."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "loose command naming plan"
+  - "root command filename plan"
+  - "command ID preservation plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-loose-command-ids"
-    last_updated_at: "2026-07-14T15:18:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored loose command plan"
+    next_safe_action: "Build the root filename disposition map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-loose-command-ids"
-      parent_session_id: null
+    key_files:
+      - ".opencode/commands/agent_router.md"
+      - ".opencode/commands/goal_opencode.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: Loose command ID naming
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 8: loose-command-ids
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
-| Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
-
-### Overview
-[2-3 sentences: what this implements and the technical approach]
+Separate three facts for each root command: its physical basename, its public slash-command ID, and any tool/plugin path contract. Resolve those facts against the loader, classify both underscore names, perform only approved physical moves, and then update exact path consumers without rewriting IDs.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] Candidate, control, consumer, and contract inventories are complete.
+- [ ] The actual active loader or authoritative test behavior is available for review.
+- [ ] No candidate is assigned a rename before its ID and tool disposition are evidence-backed.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] Both candidate dispositions and the compliant control are recorded in the frozen map.
+- [ ] Approved path consumers resolve to final targets while public IDs and tool names remain unchanged.
+- [ ] Command discovery, exact-ID invocation, plugin tests, collision checks, and old-path search pass.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+The command filesystem is a discovery surface, while `/agent_router` and `/goal_opencode` are user-facing identifiers and `mk_goal`/`mk_goal_status` are tool contracts. The migration map must keep these namespaces distinct. A filename may move only if the loader preserves the identifier or an explicit compatibility mapping is part of the existing contract; this phase does not invent such a mapping.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Capture BASE listings and search all root command, install-guide, plugin-test, loader, and tool-path references.
+- [ ] Verify how filenames become command IDs and how the goal plugin locates its command document.
+
+### Phase 2: Implementation
+
+- [ ] Record one disposition for `agent_router.md` and `goal_opencode.md`; retain `prompt-improve.md` as the compliant control.
+- [ ] For approved moves, rename the file, update exact path consumers, and preserve public ID strings and tool names.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Run command discovery and exact invocation of each preserved public ID.
+- [ ] Run goal-plugin capability/path tests and search for active old paths.
+- [ ] Hand loader evidence, disposition rows, collision results, and path closure to `010-commands-gate`.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+Required evidence includes command-loader discovery, exact invocation of each preserved public ID, the goal plugin path/capability tests, a repository-wide search separating active paths from historical text, and a casefold/NFC collision check for each target. If either file is classified tool-mandated, the evidence must show why the exact underscore basename is exempt.
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Naming rules and exemption set | Internal | Required | A root filename could be moved despite a tool-mandated contract. |
+| Loose command inventory | Local | Required | Candidate and control rows could be incomplete. |
+| Goal plugin consumers | Local | Required | The physical goal path could remain stale or unsupported. |
+| `010-commands-gate` rollup | Internal | Required for handoff | The final disposition lacks a blocking acceptance owner. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Before any approved move, capture both source files, their consumer list, and the loader/test baseline. If command discovery or plugin tests regress, restore only the affected root file and its path references to BASE, then retain the disposition as blocked until the contract discrepancy is resolved.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

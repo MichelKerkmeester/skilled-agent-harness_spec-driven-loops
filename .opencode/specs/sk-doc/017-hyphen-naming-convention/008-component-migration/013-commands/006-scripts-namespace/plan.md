@@ -1,170 +1,101 @@
 ---
-title: "Implementation Plan: Phase 6: scripts-namespace [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: scripts command namespace naming (017 phase 008/013/006)"
+description: "Audit the already-clean scripts namespace, preserve its negative fixture contract, and produce evidence for the command-surface rollup."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "scripts namespace naming plan"
+  - "command checker naming audit plan"
+  - "scripts no-op migration plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-scripts-namespace"
-    last_updated_at: "2026-07-14T15:18:36Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored scripts namespace plan"
+    next_safe_action: "Run the scripts audit and self-test"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-scripts-namespace"
-      parent_session_id: null
+    key_files:
+      - ".opencode/commands/scripts/README.md"
+      - ".opencode/commands/scripts/fixtures/broken-command-refs.yaml"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: Scripts command namespace naming
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 6: scripts-namespace
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
-| Aspect | Value |
-|--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
-
-### Overview
-[2-3 sentences: what this implements and the technical approach]
+This is an evidence-only child. Inspect the four tracked files and two directory basenames, compare them with the frozen exemption map, and record that no physical rename is required. Keep the deliberately broken fixture unchanged, then run its documented self-test and the command-reference scan.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The inventory covers every file and directory under `.opencode/commands/scripts/`.
+- [ ] Each basename is kebab-case or has a documented exemption; no silent cleanup is allowed.
+- [ ] The negative fixture's intended broken agent, skill-asset, and runtime-directory cases are identified.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] The filesystem-name scan reports no in-scope snake_case basename.
+- [ ] The self-test, live scan, and path-scoped diff receipts are attached.
+- [ ] The no-rename disposition is ready for `010-commands-gate`.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+The checker and its fixture are shared command-surface infrastructure. The fixture's underscore-bearing path is data consumed by a negative test, not a filesystem basename. The plan therefore separates filesystem-name evidence from literal fixture content and leaves the checker contract untouched.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Capture BASE inventory, candidate inventory, and a frozen-map row for each file and directory.
+- [ ] Load the program exemption boundary and the commands-parent handoff.
+
+### Phase 2: Implementation
+
+- [ ] Scan names and path references, classifying the fixture values without changing them.
+- [ ] Record any unexpected live reference with its owner and disposition; do not create an unapproved rename.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Run `node .opencode/commands/scripts/validate-command-references.cjs --self-test` and capture the expected output and exit status.
+- [ ] Run the default live-tree checker scan and capture its output and exit status.
+- [ ] Review the scoped diff and hand the no-rename evidence to `010-commands-gate`.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+The required behavioral evidence is the documented self-test: the broken fixture must produce the expected three violation classes, and the real command tree must resolve cleanly. Add a direct filesystem-name scan and a reference search for any discovered old basename. A zero-file rename result is valid only when all receipts are present.
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Program boundary and exemptions | Internal | Required | The fixture and any Python/tool-mandated names could be misclassified. |
+| Shared command component map | Internal | Required | The scripts namespace could overlap a sibling phase. |
+| Checker behavior and fixture contract | Local | Required | The self-test cannot prove preservation without its documented baseline. |
+| `010-commands-gate` rollup | Internal | Required for handoff | The no-rename evidence has no accepting owner. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+No filesystem mutation is expected. If an accidental edit occurs, restore only the files in this child to the captured BASE state before rerunning the evidence checks; do not reset unrelated worktree changes.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

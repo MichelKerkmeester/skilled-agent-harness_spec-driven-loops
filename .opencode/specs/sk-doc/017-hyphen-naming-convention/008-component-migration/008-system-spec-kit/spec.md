@@ -1,226 +1,106 @@
 ---
-title: "Feature Specification: Phase 8: system-spec-kit [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: system-spec-kit component migration"
+description: "Lean phase parent for the kebab-case filesystem-name work across the system-spec-kit MCP surface, scripts, templates, references/assets, shared/runtime paths, feature catalog, manual testing playbook, verification evidence, and final subtree gate."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-spec-kit naming phases"
+  - "system-spec-kit kebab-case migration"
+  - "017 system-spec-kit component migration"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-system-spec-kit"
-    last_updated_at: "2026-07-14T15:17:01Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored system-spec-kit phase map"
+    next_safe_action: "Resume the selected system-spec-kit child phase"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/008-system-spec-kit"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/system-spec-kit/SKILL.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/"
+      - ".opencode/skills/system-spec-kit/scripts/"
+      - ".opencode/skills/system-spec-kit/templates/"
+      - ".opencode/skills/system-spec-kit/references/"
+      - ".opencode/skills/system-spec-kit/feature_catalog/"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Kebab-case is the canonical form for in-scope filesystem names; Python .py files and Python package directories remain exempt."
+      - "Tool-mandated names, generated/lockfile/vector/checkpoint artifacts, test magic, identifiers/keys, and frozen history remain outside rename scope."
+      - "Each child owns its path and reference closure; phases 010 and 011 verify evidence, and phase 012 is the rollup gate."
 ---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 8: system-spec-kit
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed plans, tasks, checklists, and decisions live in the children. -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: system-spec-kit component migration
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit |
+| **Level** | phase parent (Level 2) |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/008-system-spec-kit` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 14 |
-| **Predecessor** | 007-system-deep-loop |
-| **Successor** | 009-system-skill-advisor |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | system-spec-kit |
+| **Parent packet** | sk-doc/017-hyphen-naming-convention/008-component-migration |
+| **Child Count** | 12 |
+| **Handoff Criteria** | All child scopes, path maps, and blocking checklist contracts are authored |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 8** of the component migration (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The system-spec-kit surface spans an MCP package boundary, scripts, templates and examples, reference/assets, shared/runtime support, feature-catalog content, manual-testing scenarios, and adjacent verification surfaces. Its in-scope filesystem names must follow the 017 kebab-case convention while Python targets, tool-mandated names, generated artifacts, data identifiers, and frozen history remain protected.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This parent organizes twelve bounded child phases so each path family can inventory its actual baseline names, update its own references, and provide evidence to the final subtree gate. The child documents own all implementation detail.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The `mcp_server` package boundary, its permitted inner directories, and consumer/reference closure.
+- Non-Python script filenames, templates/examples, reference/assets, shared/runtime paths, feature-catalog paths, and manual-testing-playbook paths.
+- Verification of the runtime agent/config/checkpoint/vector/constitutional surfaces, changelog/version evidence, and the final scope-aware skill gate.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Migration execution during this documentation-authoring pass.
+- Python `.py` files and Python import-package directories; `SKILL.md`, `mode-registry.json`, package manifests, and other tool-mandated names.
+- Code identifiers, JSON/YAML/TOML keys, frontmatter fields, database values, generated/lockfile/vector/checkpoint artifacts, test magic, frozen history, and other 017 exemptions.
 <!-- /ANCHOR:scope -->
-
----
-
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-
-### P0 - Blockers (MUST complete)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
-<!-- /ANCHOR:requirements -->
-
----
-
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
-
----
-
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+> This parent is intentionally lean. Each child folder owns its L2 spec, plan, tasks, blocking checklist, optional decision record, and continuity.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-mcp-server-dir-and-manifest-closure/ | [Phase 1 scope] | Pending |
-| 2 | 002-mcp-server-inner-dirs/ | [Phase 2 scope] | Pending |
-| 3 | 003-mcp-server-consumer-rewrites/ | [Phase 3 scope] | Pending |
-| 4 | 004-scripts-tree/ | [Phase 4 scope] | Pending |
-| 5 | 005-templates-and-examples/ | [Phase 5 scope] | Pending |
-| 6 | 006-references-and-assets/ | [Phase 6 scope] | Pending |
-| 7 | 007-shared-and-runtime/ | [Phase 7 scope] | Pending |
-| 8 | 008-feature-catalog/ | [Phase 8 scope] | Pending |
-| 9 | 009-manual-testing-playbook/ | [Phase 9 scope] | Pending |
-| 10 | 010-config-checkpoints-vectors-constitutional-verify/ | [Phase 10 scope] | Pending |
-| 11 | 011-changelog-verify/ | [Phase 11 scope] | Pending |
-| 12 | 012-skill-gate/ | [Phase 12 scope] | Pending |
+| 001 | `001-mcp-server-dir-and-manifest-closure/` | Rename the MCP package root and permitted manifest/package-layout directories; close manifest and entrypoint references atomically. | Planned |
+| 002 | `002-mcp-server-inner-dirs/` | Rename permitted snake_case inner directories under the MCP tree and update intra-tree references while protecting Python boundaries. | Planned |
+| 003 | `003-mcp-server-consumer-rewrites/` | Rewrite every consumer, import, config, registry, and documentation reference to the renamed MCP paths without renaming exempt Python targets. | Planned |
+| 004 | `004-scripts-tree/` | Rename non-Python snake_case script filenames and update sourcing, imports, registry entries, and script references. | Planned |
+| 005 | `005-templates-and-examples/` | Rename permitted template/example directories and files and update renderer, manifest, and example pointers. | Planned |
+| 006 | `006-references-and-assets/` | Rename permitted reference, asset, MCP-document, and curated benchmark-document files and update every link and path pointer. | Planned |
+| 007 | `007-shared-and-runtime/` | Rename permitted shared/runtime filesystem names and update references while preserving tool-mandated names and Python boundaries. | Planned |
+| 008 | `008-feature-catalog/` | Rename the feature-catalog root, category directories, and catalog files and close catalog indexes and path metadata. | Planned |
+| 009 | `009-manual-testing-playbook/` | Rename the manual-testing-playbook root, category directories, and scenario/support files and close playbook navigation. | Planned |
+| 010 | `010-config-checkpoints-vectors-constitutional-verify/` | Verify the runtime agent directories and adjacent support surfaces; record the zero-candidate agent result and exemption classifications. | Planned |
+| 011 | `011-changelog-verify/` | Verify changelog coverage for phases 001-010, the exemption boundary, and a coherent version bump; perform no renames. | Planned |
+| 012 | `012-skill-gate/` | Aggregate phases 001-011 and verify the complete system-spec-kit naming surface is kebab-clean within the exemption boundary. | Planned |
 
-### Phase Transition Rules
-
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-
-### Phase Handoff Criteria
-
-| From | To | Criteria | Verification |
-|------|-----|----------|--------------|
-| 001-mcp-server-dir-and-manifest-closure | 002-mcp-server-inner-dirs | [Criteria TBD] | [Verification TBD] |
-| 002-mcp-server-inner-dirs | 003-mcp-server-consumer-rewrites | [Criteria TBD] | [Verification TBD] |
-| 003-mcp-server-consumer-rewrites | 004-scripts-tree | [Criteria TBD] | [Verification TBD] |
-| 004-scripts-tree | 005-templates-and-examples | [Criteria TBD] | [Verification TBD] |
-| 005-templates-and-examples | 006-references-and-assets | [Criteria TBD] | [Verification TBD] |
-| 006-references-and-assets | 007-shared-and-runtime | [Criteria TBD] | [Verification TBD] |
-| 007-shared-and-runtime | 008-feature-catalog | [Criteria TBD] | [Verification TBD] |
-| 008-feature-catalog | 009-manual-testing-playbook | [Criteria TBD] | [Verification TBD] |
-| 009-manual-testing-playbook | 010-config-checkpoints-vectors-constitutional-verify | [Criteria TBD] | [Verification TBD] |
-| 010-config-checkpoints-vectors-constitutional-verify | 011-changelog-verify | [Criteria TBD] | [Verification TBD] |
-| 011-changelog-verify | 012-skill-gate | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+No blocking questions. Execution must pin the candidate/base inventory and release-version evidence; each child must remain within its documented path family and the program exemption set.
+<!-- /ANCHOR:questions -->
+

@@ -24,32 +24,37 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "system-spec-kit naming phases",
+      "system-spec-kit kebab-case migration",
+      "017 system-spec-kit component migration"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "system-spec-kit",
+      "naming",
+      "phases",
+      "kebab-case",
+      "migration",
+      "component",
+      "lean",
+      "phase",
+      "parent",
+      "filesystem-name",
+      "work",
+      "across"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,13 +68,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
+        "name": "Child Count",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -81,29 +80,35 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Lean phase parent for the kebab-case filesystem-name work across the system-spec-kit MCP surface, scripts, templates, references/assets, shared/runtime paths, feature catalog, manual testing playbook, verification evidence, and final subtree gate.",
     "created_at": "2026-07-14T15:17:01Z",
-    "last_save_at": "2026-07-14T15:24:35.899Z",
+    "last_save_at": "2026-07-14T20:00:21.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6be82047df56c0732e68d011fe0c9c676a57fc0ba4a3d40f330352bdd2e7c90f",
+    "source_fingerprint": "sha256:6b283c2aff7d733f31ab1b53f858fd29fbfbdebf56c546421c125101b7dde604",
     "source_doc_hashes": {
-      "spec.md": "f8ba57c99398044dd97a683c7479d9561cd745d2856eb2bd8e53e9441737e47a"
+      "spec.md": "a0a04324d52cd9bc4d801dd247daf385a389f6af9cdd362cd61564679dcdcdb3"
     },
     "last_active_child_id": null,
     "last_active_at": null

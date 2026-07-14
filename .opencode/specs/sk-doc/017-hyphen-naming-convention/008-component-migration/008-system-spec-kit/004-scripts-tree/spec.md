@@ -1,182 +1,101 @@
 ---
-title: "Feature Specification: Phase 4: scripts-tree [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Scripts tree (017 subtree 008 phase 004)"
+description: "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names follow separate contracts. This phase renames only permitted script filenames and updates sourcing, imports, and registry references without touching Python filenames or test-runner magic."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-spec-kit scripts tree"
+  - "_utils.sh rename"
+  - "run_arm.sh rename"
+  - "kebab-case script filenames"
+  - "kebab-case phase 004"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-scripts-tree"
-    last_updated_at: "2026-07-14T15:18:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored scripts-tree docs"
+    next_safe_action: "Execute the non-Python script filename map after MCP consumers are stable"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-scripts-tree"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 4: scripts-tree
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Scripts tree
 
----
+> Phase adjacency under the 008 system-spec-kit subtree (grouping order, not a runtime dependency): predecessor 003-mcp-server-consumer-rewrites; successor 005-templates-and-examples.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/004-scripts-tree` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 12 |
-| **Predecessor** | 003-mcp-server-consumer-rewrites |
-| **Successor** | 005-templates-and-examples |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | system-spec-kit |
+| **Origin** | Phase 004 of the 008 system-spec-kit component migration under the 017 kebab-case program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 4** of the system spec kit (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
-
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The live inventory identifies .opencode/skills/system-spec-kit/scripts/setup/_utils.sh and mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh as non-Python script filenames with underscores. Their sourcing and benchmark callers are path-sensitive, while nearby run_arm.py and test_dual_threshold.py files are explicitly exempt.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Rename scripts/setup/_utils.sh to scripts/setup/utils.sh.
+- Rename mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh to run-arm.sh.
+- Update shell sourcing, benchmark launch commands, README inventories, registry entries, and import/path references to those scripts.
+- Sweep the scripts tree for additional non-Python script filenames and record the concrete zero or positive result before moving anything.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- All .py filenames, including run_arm.py, aggregate.py, generate_report.py, and test_dual_threshold.py.
+- The scripts/tests/__snapshots__ directory and timestamped memory-quality fixture files, which require test/generated-data dispositions.
+- Directory renames, template/reference files, and script-content changes unrelated to path closure.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The non-Python script inventory is complete. | The baseline search lists every script filename containing an underscore and classifies Python, test-magic, generated fixture, or rename candidates. |
+| REQ-002 | Permitted script names use semantic kebab targets. | _utils.sh maps to utils.sh and run_arm.sh maps to run-arm.sh with no leading-hyphen target. |
+| REQ-003 | Every script reference is updated in lockstep. | source commands, shell wrappers, README inventories, benchmark commands, and registry/path values resolve to the new names. |
+| REQ-004 | Python and test/generated exemptions are preserved. | No .py filename, Python package directory, test magic directory, or generated fixture basename is renamed. |
+| REQ-005 | The scripts tree remains executable and callable. | Shell syntax, executable bits, and benchmark wrapper behavior are verified centrally. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: No permitted non-Python script filename in the assigned tree contains an underscore.
+- **SC-002**: All script callers and documentation references resolve to utils.sh and run-arm.sh.
+- **SC-003**: Python, test-magic, generated, and tool-mandated names remain intact.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+Leading-underscore helper names need semantic targets; _utils.sh must become utils.sh, not -utils.sh. The benchmark wrapper is coupled to Python files that cannot be renamed, so only the shell wrapper and its references move. Fixture timestamps contain underscores but are not script filenames and must not be swept mechanically.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+No blocking questions. The execution report must record whether the live inventory contains only the two named shell candidates.
 <!-- /ANCHOR:questions -->
 
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

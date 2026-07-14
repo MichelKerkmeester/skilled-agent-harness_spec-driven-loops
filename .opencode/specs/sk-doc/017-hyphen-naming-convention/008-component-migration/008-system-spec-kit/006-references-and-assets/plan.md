@@ -1,170 +1,111 @@
 ---
-title: "Implementation Plan: Phase 6: references-and-assets [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: References and assets (017 subtree 008 phase 006)"
+description: "The system-spec-kit reference and asset surfaces contain a broad set of underscore-bearing Markdown filenames, plus MCP documentation and curated benchmark report files. This phase renames permitted reference/asset files and updates links and pointers while keeping tool-mandated names, generated artifacts, Python files, keys, and frozen history within their exemptions."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-spec-kit references and assets"
+  - "reference filename kebab-case"
+  - "asset filename rename"
+  - "benchmark_report rename"
+  - "kebab-case phase 006"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-references-and-assets"
-    last_updated_at: "2026-07-14T15:18:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Planned reference-asset execution"
+    next_safe_action: "Execute the reference and asset file map after template pointers are stable"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-references-and-assets"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: References and assets
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 6: references-and-assets
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/system-spec-kit (References and assets) |
+| **Change class** | Reference and asset filename closure |
+| **Execution** | Isolated worktree pinned to BASE; planning only |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Build a per-file semantic map for active references and assets, then update link and pointer consumers in the same dependency-closed batches. Keep a disposition ledger for generated, tool-mandated, and frozen names so the final gate can distinguish stale active links from allowed history.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 005 template pointers are stable.
+- [ ] Reference and asset inventories are captured with the observed 42 and four counts.
+- [ ] MCP documentation and benchmark report classifications are recorded.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All permitted reference/asset filenames use kebab-case.
+- [ ] Active links, maps, indexes, and path-valued metadata resolve.
+- [ ] Every non-renamed underscore file has a documented exemption or frozen/generated disposition.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- Use basename-level semantic mappings such as daemon_cli_reference.md -> daemon-cli-reference.md, environment_variables.md -> environment-variables.md, and benchmark_report.md -> benchmark-report.md.
+- Rewrite Markdown links and path-valued metadata through the same map; never change field names, keys, prose identifiers, or historical evidence.
+- Run a link resolver over active references and record every excluded path.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- Enumerate all underscore-bearing files under references and assets and classify by active, generated, tool-mandated, or frozen role.
+- Enumerate MCP reference docs and benchmark reports and inspect their index links.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- Create the per-file map and collision report.
+- Rename permitted reference/asset files and update resource maps, Markdown links, indexes, README pointers, and path-valued frontmatter.
+- Record generated/lockfile/tool/history dispositions without rewriting them.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- Run active Markdown-link and path-pointer resolution from the system-spec-kit root.
+- Re-run the candidate scan and review all remaining underscore basenames against the disposition ledger.
+- Compare changed names with key/field and frozen-content exemptions.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Inventory report has 42 reference, four asset, MCP documentation, and seven benchmark-report dispositions. |
+| REQ-002 | Map review proves each permitted target is kebab-case and collision-free. |
+| REQ-003 | Run Markdown-link, resource-map, README, index, script, and frontmatter path checks. |
+| REQ-004 | Audit generated, tool-mandated, Python, key, field, and frozen exclusions. |
+| REQ-005 | Central link checker reports zero broken active links and zero unknown old paths. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 005 template tree | Internal | Required | Template links and resource maps must have stable targets. |
+| Markdown/link resolver | Internal | Required | A filename move is incomplete if links remain broken. |
+| Phase 008 and 009 content trees | Internal | Downstream | Catalog/playbook links are excluded from this phase and handed off. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Stop on any unresolved link, collision, or ambiguous generated classification. Revert each reference/asset file with its link and index updates; do not repair by changing frontmatter fields or historical content.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

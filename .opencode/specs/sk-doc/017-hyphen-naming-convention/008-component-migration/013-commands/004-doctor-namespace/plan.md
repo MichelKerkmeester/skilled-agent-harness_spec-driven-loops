@@ -1,170 +1,123 @@
 ---
-title: "Implementation Plan: Phase 4: doctor-namespace [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: doctor command namespace naming (017 phase 008/013/004)"
+description: "Plan for renaming maintained doctor asset files, repairing route and presentation path values, and proving the exact route-manifest and Python exemptions remain intact."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "doctor namespace naming plan"
+  - "doctor asset rename plan"
+  - "doctor routes path repair"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-doctor-namespace"
-    last_updated_at: "2026-07-14T15:18:34Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored doctor namespace plan"
+    next_safe_action: "Execute the doctor asset and route closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-doctor-namespace"
-      parent_session_id: null
+    key_files:
+      - ".opencode/commands/doctor/_routes.yaml"
+      - ".opencode/commands/doctor/assets/"
+      - ".opencode/commands/doctor/scripts/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: Doctor command namespace naming
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 4: doctor-namespace
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/commands/doctor/` maintained assets and route consumers |
+| **Change class** | Maintained asset rename plus route/path repair |
+| **Execution** | Isolated worktree using the pinned BASE and frozen semantic map |
+| **Verification** | Route manifest scan, reference checker, helper parity, and exemption review |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Apply the 16 asset rows as a semantic rename closure, then update only path-valued `yaml` and presentation references. Keep `_routes.yaml` as the exact route-manifest filename and leave the Python helper untouched while proving doctor route and workflow outcomes remain equivalent.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The map lists all 16 maintained doctor assets and separately records `_routes.yaml` and `audit_descriptions.py` exclusions.
+- [ ] BASE route entries, command docs, asset pointers, helper invocations, and external consumers are inventoried.
+- [ ] Route IDs, YAML keys, Python exemption, and exact-name contract are explicit.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] All 16 maintained assets use mapped kebab-case targets and route/path consumers resolve.
+- [ ] `_routes.yaml` and `audit_descriptions.py` remain unchanged in name and contract.
+- [ ] Doctor route and presentation outcomes match BASE evidence.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Asset map**: classify each `doctor_*` asset as a maintained file with an explicit target.
+- **Route layer**: update path-valued route entries and presentation references; preserve route IDs and YAML keys.
+- **Exemption layer**: retain `_routes.yaml`, `audit_descriptions.py`, already-compliant scripts, and all tool/Python names.
+- **Evidence layer**: resolve every route, compare helper and workflow outcomes with BASE, and review the scope-bound diff.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load the 16-row doctor map, route manifest baseline, and exemption decision record.
+- [ ] Capture references to all doctor asset basenames across `_routes.yaml`, commands, assets, tests, and documentation.
+- [ ] Confirm the Python helper, exact route manifest, and already-compliant scripts are not rename candidates.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename the causal-graph, code-graph, deep-loop, embeddings, fable-mode, MCP, memory, parent-skill, skill, speckit, and update assets to kebab-case.
+- [ ] Update path-valued route, command, presentation, test, and external references in the same dependency-closed batch.
+- [ ] Keep route IDs, YAML keys, Python code, and tool-facing filenames unchanged.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Compare the final asset manifest and exact/Python exemptions with the frozen map.
+- [ ] Parse and resolve `_routes.yaml` targets, run command-reference checks, and exercise doctor route/workflow paths.
+- [ ] Compare helper results, presentation loading, modes, and route outcomes with BASE.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Candidate coverage | Map scan reports 16 maintained rows, exact/Python exclusions, and zero unknowns. |
+| Route integrity | Every path-valued `_routes.yaml` target and doctor asset pointer resolves; route IDs and keys are unchanged. |
+| Behavior parity | Doctor route selection, workflow loading, presentation selection, and helper checks match BASE. |
+| Exemption safety | Compare `_routes.yaml`, `audit_descriptions.py`, shell helpers, command IDs, generated/tool-mandated, and frozen names. |
+| Scope safety | Review a path-scoped diff limited to doctor and its proven consumers. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 017 phase 005 rename/reference tooling | Internal | Required before execution | Route/path edits could alter keys or miss dynamic consumers. |
+| 017 phase 006 frozen map | Internal | Required before execution | Maintained and exempt ownership is not fixed. |
+| 000 baseline route/helper evidence | Internal | Required before verification | Doctor parity cannot be proven. |
+| Doctor route manifest contract | Internal | Required before execution | Exact filename and route-ID boundary could be violated. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Any route parse failure, missing target, helper drift, exact/Python exemption violation, collision, or out-of-scope change.
+- **Procedure**: Stop the batch, revert only the doctor asset/reference commit, restore the route manifest baseline, and rerun route and map checks before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

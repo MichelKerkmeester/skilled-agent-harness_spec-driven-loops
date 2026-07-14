@@ -1,170 +1,110 @@
 ---
-title: "Implementation Plan: Phase 9: manual-testing-playbook [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Manual testing playbook (017 subtree 008 phase 009)"
+description: "The system-spec-kit manual_testing_playbook tree contains 440 underscore-bearing basenames: the root, 18 category directories, and 421 scenario or support files. This phase renames permitted playbook paths to kebab-case and closes every playbook link, index, runner, and path pointer while preserving scenario identity and the program exemption boundary."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-spec-kit manual testing playbook"
+  - "manual_testing_playbook to manual-testing-playbook"
+  - "playbook scenario kebab-case"
+  - "manual testing phase 009"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:18:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Planned manual-playbook execution"
+    next_safe_action: "Execute the manual-playbook path map after catalog evidence is available"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/009-manual-testing-playbook"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: Manual testing playbook
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 9: manual-testing-playbook
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | .opencode/skills/system-spec-kit (Manual testing playbook) |
+| **Change class** | Scenario/category tree rename and reference closure |
+| **Execution** | Isolated worktree pinned to BASE; planning only |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Freeze the 440-entry inventory, build a reviewed semantic map, move the root/category/scenario tree in dependency-closed batches, and update playbook navigation and runner references with each batch. Preserve scenario identity and all non-filesystem contracts.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 008 catalog handoff and the playbook baseline are available.
+- [ ] The ledger reports 440 candidates: root, 18 directories, and 421 files.
+- [ ] Active indexes, runners, cross-tree handoffs, and exemption boundaries are listed.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Every candidate has a reviewed target or explicit exemption disposition.
+- [ ] The root, categories, scenarios, indexes, links, and runners resolve under the target names.
+- [ ] Scenario/category parity and procedure-content invariants match the baseline.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- Use explicit semantic mappings for category and scenario names; do not apply a blind underscore-to-hyphen replacement.
+- Batch by path dependency so a moved scenario, index row, link, and runner glob remain coherent.
+- Compare scenario identity, category assignment, and path resolution before and after the move.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- Enumerate the root, 18 candidate category directories, 421 candidate files, compliant names, and exempt paths.
+- Search active playbook consumers for root/category/scenario paths, runner globs, catalog handoffs, and README links.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- Freeze and review the full semantic map with exact, casefold, and Unicode-normalization collision checks.
+- Rename the root, categories, and files in dependency-closed batches; update indexes, links, runners, and path values beside each batch.
+- Keep scenario IDs, headings, procedure prose, frontmatter fields, and code/data identifiers unchanged.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- Resolve every active playbook link, index entry, runner glob, and catalog handoff.
+- Compare scenario/category counts, IDs, headings, and content hashes with the baseline.
+- Classify all old-path matches as active, frozen, generated, exempt, or unresolved; unresolved matches block acceptance.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Inventory and map report account for root, 18 directories, and 421 files. |
+| REQ-002 | Map review proves permitted targets are kebab-case and collision-free. |
+| REQ-003 | Link, index, runner, README, and catalog-handoff resolution checks pass. |
+| REQ-004 | Scenario ID, heading, procedure, frontmatter, and identifier diff audit passes. |
+| REQ-005 | Pre/post category and scenario parity report matches. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 008 feature catalog | Internal | Required | Catalog-to-playbook pointers cannot be closed confidently. |
+| Playbook inventory and map | Internal | Required | A partial move cannot prove coverage preservation. |
+| Phase 010 verification | Internal | Downstream | Config/checkpoint/vector/agent boundary evidence remains separate. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+Stop on any scenario/category count mismatch, collision, missing link, or changed procedure invariant. Revert the current dependency-closed batch together with its indexes and path references; do not repair the playbook with broad text replacement.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
 

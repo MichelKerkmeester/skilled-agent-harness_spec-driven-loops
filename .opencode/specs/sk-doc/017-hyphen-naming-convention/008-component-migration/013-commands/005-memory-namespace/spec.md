@@ -1,182 +1,110 @@
 ---
-title: "Feature Specification: Phase 5: memory-namespace [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: memory command namespace naming (017 phase 008/013/005)"
+description: "The memory command namespace has compliant command markdown files but four snake_case presentation asset filenames. This phase renames those maintained assets, updates command and README pointers, and preserves memory command IDs, tool names, and data keys."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "memory command namespace naming"
+  - "kebab-case memory assets"
+  - "hyphenate memory presentation files"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-memory-namespace"
-    last_updated_at: "2026-07-14T15:18:35Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored memory namespace docs"
+    next_safe_action: "Execute the memory asset rename closure against the frozen map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-memory-namespace"
-      parent_session_id: null
+    key_files:
+      - ".opencode/commands/memory/"
+      - ".opencode/commands/memory/assets/"
+      - ".opencode/commands/memory/README.txt"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The memory command markdown files already use compliant basenames; the four presentation files are the physical candidates."
+      - "Memory tool IDs, YAML/data keys, and plugin contracts remain exact while path values change."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 5: memory-namespace
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Memory command namespace naming
 
----
+> Phase adjacency under the commands component parent: predecessor `004-doctor-namespace`; successor `006-scripts-namespace`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/005-memory-namespace` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 10 |
-| **Predecessor** | 004-doctor-namespace |
-| **Successor** | 006-scripts-namespace |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 005 of the commands-surface migration under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 5** of the commands (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+The `.opencode/commands/memory/assets/` tree contains `learn_presentation.txt`, `manage_presentation.txt`, `save_presentation.txt`, and `search_presentation.txt`. The four memory command files and `README.txt` point to those underscore filenames, leaving a maintained command asset surface outside the canonical filesystem form.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
----
+Rename the four memory presentation assets to kebab-case and update every active pointer so learn, manage, save, and search commands load the same presentation contracts and retain their tool behavior.
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- `.opencode/commands/memory/assets/learn_presentation.txt`, `manage_presentation.txt`, `save_presentation.txt`, and `search_presentation.txt`, with targets `learn-presentation.txt`, `manage-presentation.txt`, `save-presentation.txt`, and `search-presentation.txt`.
+- References from `learn.md`, `manage.md`, `save.md`, `search.md`, `README.txt`, asset-local content, tests, indexes, and external path consumers.
+- A four-row frozen-map disposition and reference closure for the memory namespace.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
 
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- The already-compliant `README.txt`, `learn.md`, `manage.md`, `save.md`, and `search.md` filenames.
+- Memory tool IDs, plugin names, YAML/data keys, frontmatter fields, generated/lockfile output, Python files/package directories, and frozen history.
+- Other command namespaces and shared asset residuals owned by sibling phases.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every memory presentation asset maps once to a kebab-case target | The map lists four sources, four distinct targets, and no unknown disposition. |
+| REQ-002 | Memory command presentation pointers remain resolvable | All four commands and README references point to existing targets with no active old path. |
+| REQ-003 | Memory tool behavior remains equivalent | Learn, manage, save, and search presentation loading and tool dispatch retain BASE outcomes. |
+| REQ-004 | Exempt content remains unchanged | Tool IDs, plugin names, YAML/data keys, frontmatter fields, Python/package names, generated output, and frozen history are preserved. |
+| REQ-005 | The closure is auditable | The report records all four rows, external consumers, link results, and the path-scoped diff. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All four maintained memory presentation assets use kebab-case and resolve from every active consumer.
+- **SC-002**: Learn, manage, save, and search commands retain BASE presentation and tool outcomes.
+- **SC-003**: No memory tool ID, key, or exemption changes.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+Memory command files repeat presentation paths in tables and setup instructions, and save/manage flows can carry additional path references in their assets. The mitigation is a four-row semantic map plus a path-only reference scan; the phase depends on the 005 tooling, 006 frozen map, and 000 baseline and must not alter tool IDs or data keys.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The executor must classify every underscore occurrence as a filesystem path, tool/data key, or prose before editing it and must attach external consumers to the memory closure.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

@@ -1,170 +1,109 @@
 ---
-title: "Implementation Plan: Phase 11: changelog-verify [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Changelog verification (017 subtree 008 phase 011)"
+description: "This verify-only phase confirms that the system-spec-kit changelog records the complete phase 001-010 filesystem rename set, the exemption boundary, and a coherent version bump above the current v3.7.1.0 baseline. It does not perform renames or rewrite historical changelog entries."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "system-spec-kit changelog verify"
+  - "system-spec-kit naming migration changelog"
+  - "system-spec-kit version bump evidence"
+  - "changelog phase 011"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-changelog-verify"
-    last_updated_at: "2026-07-14T15:18:05Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Planned changelog verification"
+    next_safe_action: "Verify the release entry against phases 001-010"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/011-changelog-verify"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: Changelog verification
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 11: changelog-verify
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/skills/system-spec-kit/changelog/` and authoritative skill/version metadata |
+| **Change class** | Release-evidence verification |
+| **Execution** | Read-only comparison pinned to BASE and candidate; no rename |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Compare the current release baseline with the candidate release entry, trace each phase 001-010 to a documented concern, verify the exemption language and version alignment, and produce a fail-closed report for the subtree gate.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] Phase 001-010 evidence and the current v3.7.1.0 baseline are available.
+- [ ] The authoritative changelog and version metadata files are identified.
+- [ ] Release-owner version selection is recorded.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] The changelog entry covers every phase 001-010 concern and the zero-candidate result.
+- [ ] Exemption language matches the program policy.
+- [ ] Changelog version and authoritative metadata are identical and greater than v3.7.1.0.
+- [ ] No release or historical file was modified by this phase.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- Build a phase-to-entry coverage matrix rather than accepting a broad summary as proof.
+- Compare version values from authoritative sources; do not derive a release version from a filename alone.
+- Treat historical entries as immutable evidence and classify old snake_case text instead of rewriting it.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+### Phase 1: Baseline
+- Read the current changelog and version metadata; record v3.7.1.0 and the candidate/base SHAs.
+- Collect phase 001-010 evidence and build the expected coverage matrix.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Verification
+- Locate the new release entry and map its wording to MCP, scripts, templates/examples, references/assets, shared/runtime, catalog, playbook, and verify-only concerns.
+- Confirm explicit exemption language and check the version is greater than v3.7.1.0 and consistent across authoritative files.
+- Check that historical entries and release files remain unchanged by this phase.
 
-### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+### Phase 3: Handoff
+- Record missing scope, stale version, or historical-edit findings as blocking failures.
+- Hand the coverage matrix and version evidence to phase 012.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Phase-to-changelog coverage matrix with evidence for every concern. |
+| REQ-002 | Text review against the canonical exemption ledger. |
+| REQ-003 | Exact version comparison across changelog and authoritative metadata. |
+| REQ-004 | Scoped diff proves verification did not mutate release/history files. |
+| REQ-005 | Coverage, exemption, version, and non-mutating diff evidence is retained for phase 012. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phases 001-010 evidence | Internal | Required | Scope coverage cannot be established. |
+| Release-owner version selection | External decision | Required | Version coherence cannot be accepted. |
+| Phase 012 skill gate | Internal | Downstream | The subtree cannot close its release evidence. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+No release rollback is applicable because this phase is read-only. If evidence conflicts, retain the candidate unchanged, report the exact mismatch, and block phase 012 until the release owner or source phase resolves it.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

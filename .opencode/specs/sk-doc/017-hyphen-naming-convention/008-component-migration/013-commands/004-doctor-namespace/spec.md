@@ -1,182 +1,113 @@
 ---
-title: "Feature Specification: Phase 4: doctor-namespace [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: doctor command namespace naming (017 phase 008/013/004)"
+description: "The doctor command namespace has maintained workflow assets with snake_case filenames, a route manifest with an exact tool-facing name, and a Python helper that is exempt by language. This phase renames only the maintained non-Python assets, repairs route path values, and preserves route IDs and tool contracts."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "doctor command namespace naming"
+  - "kebab-case doctor assets"
+  - "doctor route manifest paths"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-doctor-namespace"
-    last_updated_at: "2026-07-14T15:18:34Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored doctor namespace docs"
+    next_safe_action: "Execute the doctor asset closure against the frozen map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-doctor-namespace"
-      parent_session_id: null
+    key_files:
+      - ".opencode/commands/doctor/_routes.yaml"
+      - ".opencode/commands/doctor/assets/"
+      - ".opencode/commands/doctor/scripts/"
+      - ".opencode/commands/doctor/mcp.md"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "_routes.yaml is an exact route-manifest name and remains unchanged."
+      - "audit_descriptions.py remains unchanged under the Python filename exemption."
+      - "Route IDs and YAML keys remain exact; only filesystem path values change."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 4: doctor-namespace
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Doctor command namespace naming
 
----
+> Phase adjacency under the commands component parent: predecessor `003-design-namespace`; successor `005-memory-namespace`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/004-doctor-namespace` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 10 |
-| **Predecessor** | 003-design-namespace |
-| **Successor** | 005-memory-namespace |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 004 of the commands-surface migration under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 4** of the commands (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+The doctor asset tree contains route targets such as `doctor_mcp_debug.yaml`, `doctor_mcp_install.yaml`, `doctor_skill_graph_freshness.yaml`, and `doctor_update_presentation.txt`. The same namespace also contains the exact `_routes.yaml` manifest and `scripts/audit_descriptions.py`, so an undifferentiated rename would alter a tool-facing name or an exempt Python filename.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
----
+Rename the 16 maintained non-Python doctor asset files to kebab-case, update every route and presentation path value, and keep the route manifest name, route IDs, Python helper, and doctor behavior stable.
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- The 16 maintained asset files under `.opencode/commands/doctor/assets/`: `doctor_causal-graph.yaml`, `doctor_code-graph.yaml`, `doctor_deep-loop.yaml`, `doctor_embeddings.yaml`, `doctor_fable-mode.yaml`, `doctor_mcp_debug.yaml`, `doctor_mcp_install.yaml`, `doctor_mcp_presentation.txt`, `doctor_memory.yaml`, `doctor_parent-skill.yaml`, `doctor_skill-advisor.yaml`, `doctor_skill-budget.yaml`, `doctor_skill-graph-freshness.yaml`, `doctor_speckit_presentation.txt`, `doctor_update.yaml`, and `doctor_update_presentation.txt`.
+- Path-valued route entries in `_routes.yaml`, doctor command markdown, asset-local pointers, tests, indexes, and external consumers.
+- A disposition record proving the exact-name and Python exemptions before the asset rename.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
 
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- `.opencode/commands/doctor/_routes.yaml`, which is an exact route-manifest/tool contract.
+- `.opencode/commands/doctor/scripts/audit_descriptions.py`, which remains under the Python script exemption; all other already-compliant script names remain unchanged.
+- The already-compliant `mcp.md`, `speckit.md`, `update.md`, `scripts/` directory, command IDs, YAML keys, route IDs, frontmatter fields, generated/lockfile output, and frozen history.
+- Other commands namespaces and the shared asset rollup owned by sibling phases.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every maintained doctor asset candidate maps once to a kebab-case target | The frozen-map report lists 16 sources, 16 distinct targets, and no unknown disposition. |
+| REQ-002 | Route and command path values resolve after the rename | `_routes.yaml`, doctor markdown, asset-local pointers, and external consumers point to existing targets with no old active asset path. |
+| REQ-003 | Exact and language exemptions are preserved | `_routes.yaml` and `audit_descriptions.py` retain their exact names, modes, and content contract. |
+| REQ-004 | Doctor routing and workflow behavior remain equivalent | Route selection, doctor workflow loading, presentation loading, and helper invocation match BASE outcomes. |
+| REQ-005 | Evidence covers the full doctor closure | The report includes candidate dispositions, route/path resolution, exemption proof, and the path-scoped diff. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All 16 maintained doctor asset filenames are kebab-case and all route/path consumers resolve.
+- **SC-002**: `_routes.yaml`, `audit_descriptions.py`, route IDs, and YAML keys remain exact.
+- **SC-003**: Doctor route and workflow outcomes match the pinned BASE evidence.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+`_routes.yaml` mixes path-valued `yaml` entries with route metadata, and the doctor directory includes Python and shell helpers. The mitigation is a pre-classified map and a route-aware reference scan that edits only filesystem path values. The phase depends on the 005 tooling, 006 frozen map, 000 mode/route baseline, and the decision record below.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The executor must attach every route entry to a path/key disposition and must stop if the route loader treats a candidate basename as a public tool ID rather than a path value.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

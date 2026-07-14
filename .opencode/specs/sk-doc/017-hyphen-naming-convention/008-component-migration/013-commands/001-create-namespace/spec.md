@@ -1,182 +1,110 @@
 ---
-title: "Feature Specification: Phase 1: create-namespace [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: create command namespace naming (017 phase 008/013/001)"
+description: "The create command namespace keeps its workflow and presentation assets in snake_case filenames even though its command markdown files already use kebab-case. This phase renames the maintained create assets, repairs every path pointer, and preserves command IDs, data keys, and tool-mandated names."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "create command namespace naming"
+  - "kebab-case create assets"
+  - "hyphenate create workflow files"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-create-namespace"
-    last_updated_at: "2026-07-14T15:18:32Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored create namespace docs"
+    next_safe_action: "Execute the create asset rename closure against the frozen map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-create-namespace"
-      parent_session_id: null
+    key_files:
+      - ".opencode/commands/create/"
+      - ".opencode/commands/create/assets/"
+      - ".opencode/commands/create/README.txt"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The create command markdown files are already kebab-case; the physical candidates are maintained asset files."
+      - "Workflow YAML keys and command IDs remain exact while path values and links change."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: create-namespace
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Create command namespace naming
 
----
+> Phase adjacency under the commands component parent: predecessor `012-sk-git`; successor `002-deep-namespace`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/001-create-namespace` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 10 |
-| **Predecessor** | None |
-| **Successor** | 002-deep-namespace |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 001 of the commands-surface migration under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 1** of the commands (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+The `.opencode/commands/create/assets/` tree has maintained filenames such as `create_agent_auto.yaml`, `create_feature_catalog_confirm.yaml`, and `create_manual_testing_playbook_presentation.txt`. The command markdown files already use kebab-case, but their links and loader pointers still name the underscore assets.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
----
+Rename the 30 maintained create asset files to their exact kebab-case targets and update every active pointer so `:auto`, `:confirm`, and presentation loading retain their current behavior.
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- The 30 maintained files under `.opencode/commands/create/assets/`: `create_agent_auto.yaml`, `create_agent_confirm.yaml`, `create_agent_presentation.txt`; `create_benchmark_auto.yaml`, `create_benchmark_confirm.yaml`, `create_benchmark_presentation.txt`; `create_changelog_auto.yaml`, `create_changelog_confirm.yaml`, `create_changelog_presentation.txt`; `create_command_auto.yaml`, `create_command_confirm.yaml`, `create_command_presentation.txt`; `create_feature_catalog_auto.yaml`, `create_feature_catalog_confirm.yaml`, `create_feature_catalog_presentation.txt`; `create_flowchart_auto.yaml`, `create_flowchart_confirm.yaml`, `create_flowchart_presentation.txt`; `create_manual_testing_playbook_auto.yaml`, `create_manual_testing_playbook_confirm.yaml`, `create_manual_testing_playbook_presentation.txt`; `create_readme_auto.yaml`, `create_readme_confirm.yaml`, `create_readme_presentation.txt`; `create_skill_auto.yaml`, `create_skill_confirm.yaml`, `create_skill_presentation.txt`; and `create_skill_parent_auto.yaml`, `create_skill_parent_confirm.yaml`, `create_skill_parent_presentation.txt`.
+- References from the create command markdown files, `README.txt`, asset-local pointers, and external command indexes or tests that resolve these paths.
+- A frozen-map disposition for each listed source and target, including collision and old-reference checks.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
 
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- The already-compliant command files `agent.md`, `benchmark.md`, `changelog.md`, `command.md`, `feature-catalog.md`, `flowchart.md`, `manual-testing-playbook.md`, `readme.md`, `skill-parent.md`, and `skill.md`.
+- Command IDs, YAML keys, workflow field names, frontmatter fields, generated or lockfile output, Python files/package directories, and frozen history.
+- The `deep`, `design`, `doctor`, `memory`, `scripts`, `speckit`, loose-command, and final-gate surfaces owned by sibling phases.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every maintained create asset candidate has one semantic source-to-target row | The frozen-map report lists all 30 sources, 30 distinct kebab-case targets, and no unknown disposition. |
+| REQ-002 | Asset filenames and active path references agree | Every target exists, every old path literal is absent from the active closure, and every create command points to the target asset. |
+| REQ-003 | Create workflows preserve their public contract | `:auto`, `:confirm`, presentation loading, and the existing command IDs resolve the same workflow and presentation content as BASE. |
+| REQ-004 | Exempt content remains untouched | YAML keys, command IDs, frontmatter fields, tool-mandated names, Python/package names, generated output, and frozen history are unchanged. |
+| REQ-005 | The phase hands off an auditable closure | The report records source/target paths, external consumers, link results, and the path-scoped diff. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All 30 maintained create assets have kebab-case filenames with no collision or stale active pointer.
+- **SC-002**: Every create command still loads the same mode and presentation contract through the renamed paths.
+- **SC-003**: No command ID, data key, or exemption boundary changes as a side effect.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The create markdown files repeat asset paths in tables, instructions, and presentation-boundary sections, while the YAML assets can carry path-valued strings of their own. A partial replacement can leave a mode working only in one branch. The phase depends on the 017 frozen map, the 005 rename/reference tooling, the 006 map handoff, and the 000 baseline; the executor must scan both command-local and repository-wide consumers before accepting the batch.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The executor must use the frozen map to distinguish filesystem path values from YAML keys or command identifiers and must attach any consumer outside `.opencode/commands/create/` to the closure evidence.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

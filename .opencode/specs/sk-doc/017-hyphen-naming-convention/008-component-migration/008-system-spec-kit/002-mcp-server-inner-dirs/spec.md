@@ -1,182 +1,100 @@
 ---
-title: "Feature Specification: Phase 2: mcp-server-inner-dirs [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: MCP-server inner directories (017 subtree 008 phase 002)"
+description: "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-server inner directories"
+  - "matrix_runners rename"
+  - "plugin_bridges rename"
+  - "stress_test rename"
+  - "kebab-case phase 002"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-mcp-server-inner-dirs"
-    last_updated_at: "2026-07-14T15:17:59Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored MCP inner-directory docs"
+    next_safe_action: "Execute the semantic inner-directory map on the renamed package root"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-mcp-server-inner-dirs"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: mcp-server-inner-dirs
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: MCP-server inner directories
 
----
+> Phase adjacency under the 008 system-spec-kit subtree (grouping order, not a runtime dependency): predecessor 001-mcp-server-dir-and-manifest-closure; successor 003-mcp-server-consumer-rewrites.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/002-mcp-server-inner-dirs` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 12 |
-| **Predecessor** | 001-mcp-server-dir-and-manifest-closure |
-| **Successor** | 003-mcp-server-consumer-rewrites |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | system-spec-kit |
+| **Origin** | Phase 002 of the 008 system-spec-kit component migration under the 017 kebab-case program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 2** of the system spec kit (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
-
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+After the package root is renamed, the live MCP tree still contains matrix_runners, plugin_bridges, stress_test, tests/__helpers__, tests/_support, and tests/embedders/__fixtures__. These names are referenced by TypeScript configuration, Vitest setup, README links, and runtime commands, so a character substitution would create invalid names such as --fixtures-- and break discovery.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Rename matrix_runners to matrix-runners, plugin_bridges to plugin-bridges, and stress_test to stress-test under mcp-server.
+- Apply semantic targets tests/__helpers__ to tests/helpers, tests/_support to tests/support, and tests/embedders/__fixtures__ to tests/embedders/fixtures when the baseline confirms they are not runner magic names.
+- Update intra-tree TypeScript include/exclude globs, Vitest setup paths, README links, stress commands, and bridge references.
+- Keep .py files and Python import-package directories exact; preserve explicitly tool-mandated test magic if the verifier proves a runner contract requires the old name.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- The mcp_server to mcp-server package-root rename, which phase 001 closes.
+- Repository-wide consumers outside the MCP tree, which phase 003 rewrites.
+- Script filenames, template/reference files, and catalog/playbook trees owned by later phases.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every non-exempt inner-directory candidate has a semantic source-to-target mapping. | The map records the three runtime directories and each test-support disposition without mechanical leading-hyphen output. |
+| REQ-002 | Intra-tree references follow the renamed directories. | tsconfig includes/excludes, vitest setupFiles, npm stress scripts, README links, and relative paths resolve to the targets. |
+| REQ-003 | Python and test-runner exemptions are honored explicitly. | Evidence lists every .py/package target and proves any preserved magic directory is a deliberate tool disposition. |
+| REQ-004 | Discovery behavior remains stable. | Default and stress Vitest discovery boundaries produce the same intended suites after path updates. |
+| REQ-005 | The downstream consumer phase receives a complete disposition ledger. | Every old path token is classified as rewritten, exempt, historical, generated, or tool-mandated. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The MCP tree has kebab-case inner directory names wherever policy permits a rename.
+- **SC-002**: TypeScript, Vitest, stress commands, bridge loading, and documentation links use semantic target paths.
+- **SC-003**: No doubled or leading hyphen target is created from a test-support name.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+Test support directories can be convention-sensitive even when they are not formal runner magic names. The phase must inspect vitest.config.ts and discovery configuration before deciding whether a support directory can move. Python benchmark directories and files remain exempt, and the verifier must not infer exemption from a name alone.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+No blocking questions. The only execution-time decision is whether a specific test-support directory is tool-mandated; the verifier must record evidence rather than guess.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

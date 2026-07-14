@@ -1,182 +1,110 @@
 ---
-title: "Feature Specification: Phase 7: speckit-namespace [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: speckit command namespace naming (017 phase 008/013/007)"
+description: "The speckit command namespace has compliant command markdown files but twelve snake_case workflow and presentation asset filenames. This phase renames those maintained assets, repairs command and README pointers, and preserves the /speckit:* command IDs and workflow keys."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "speckit command namespace naming"
+  - "kebab-case speckit assets"
+  - "hyphenate speckit workflow files"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-speckit-namespace"
-    last_updated_at: "2026-07-14T15:18:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored speckit namespace docs"
+    next_safe_action: "Execute the speckit asset rename closure against the frozen map"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-speckit-namespace"
-      parent_session_id: null
+    key_files:
+      - ".opencode/commands/speckit/"
+      - ".opencode/commands/speckit/assets/"
+      - ".opencode/commands/speckit/README.txt"
     completion_pct: 0
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The four speckit command markdown files already use compliant basenames."
+      - "The /speckit:* command IDs, workflow keys, and tool contracts remain exact while asset path values change."
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 7: speckit-namespace
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: Speckit command namespace naming
 
----
+> Phase adjacency under the commands component parent: predecessor `006-scripts-namespace`; successor `008-loose-command-ids`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/007-speckit-namespace` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 10 |
-| **Predecessor** | 006-scripts-namespace |
-| **Successor** | 008-loose-command-ids |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-doc |
+| **Origin** | Phase 007 of the commands-surface migration under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 7** of the commands (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+The `.opencode/commands/speckit/assets/` tree contains `speckit_complete_auto.yaml`, `speckit_implement_presentation.txt`, `speckit_plan_confirm.yaml`, and `speckit_resume_presentation.txt`. The command markdown and README files reference these underscore filenames even though the public `/speckit:*` command IDs already use the required command syntax.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
----
+Rename the 12 maintained speckit assets to kebab-case and update every active path pointer so complete, implement, plan, and resume workflows retain their existing command IDs and behavior.
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- The 12 maintained files under `.opencode/commands/speckit/assets/`: `speckit_complete_auto.yaml`, `speckit_complete_confirm.yaml`, `speckit_complete_presentation.txt`; `speckit_implement_auto.yaml`, `speckit_implement_confirm.yaml`, `speckit_implement_presentation.txt`; `speckit_plan_auto.yaml`, `speckit_plan_confirm.yaml`, `speckit_plan_presentation.txt`; and `speckit_resume_auto.yaml`, `speckit_resume_confirm.yaml`, `speckit_resume_presentation.txt`.
+- References from `complete.md`, `implement.md`, `plan.md`, `resume.md`, `README.txt`, asset-local content, tests, indexes, and external consumers.
+- A 12-row source-to-target map and dependency-closed reference closure.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
 
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- The already-compliant `complete.md`, `implement.md`, `plan.md`, `resume.md`, `README.txt`, and `assets/` directory names.
+- `/speckit:*` command IDs, workflow/data keys, frontmatter fields, generated/lockfile output, Python files/package directories, and frozen history.
+- Other commands namespaces, loose root commands, and cross-namespace asset residuals owned by sibling phases.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Every speckit asset candidate maps once to a kebab-case target | The frozen-map report lists 12 sources, 12 distinct targets, and no unknown disposition. |
+| REQ-002 | Speckit command and README pointers remain resolvable | Every auto, confirm, and presentation path points to an existing target with no old active path. |
+| REQ-003 | Speckit command behavior remains equivalent | Complete, implement, plan, and resume mode selection and presentation loading match BASE outcomes. |
+| REQ-004 | Public and data contracts remain exact | `/speckit:*` IDs, YAML/data keys, frontmatter fields, tool names, Python/package names, generated output, and frozen history are unchanged. |
+| REQ-005 | The closure is auditable | The report records map, consumer, mode, link, and path-scoped diff evidence. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All 12 maintained speckit asset filenames are kebab-case and every active pointer resolves.
+- **SC-002**: Complete, implement, plan, and resume retain BASE mode and presentation behavior.
+- **SC-003**: `/speckit:*` command IDs and all data/key exemptions remain unchanged.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+Speckit assets are referenced from command docs, README tree examples, and workflow content that also contains many underscore-delimited data names. The mitigation is a 12-row semantic map and path-only rewrite with explicit key/prose dispositions. The phase depends on the 005 tooling, 006 frozen map, 000 baseline, and the commands parent handoff.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The executor must classify every occurrence as a filesystem path, `/speckit:*` ID, key, or prose before rewriting it and must attach external consumers to the speckit closure.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

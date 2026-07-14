@@ -1,170 +1,124 @@
 ---
-title: "Implementation Plan: Phase 2: deep-namespace [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: deep command namespace naming (017 phase 008/013/002)"
+description: "Plan for renaming maintained deep command assets and legacy bodies, repairing their references, and refreshing generated contract metadata without renaming generated output files."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "deep namespace naming plan"
+  - "deep asset rename plan"
+  - "compiled contract path repair"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-deep-namespace"
-    last_updated_at: "2026-07-14T15:18:33Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored deep namespace plan"
+    next_safe_action: "Execute the maintained deep asset closure"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-deep-namespace"
-      parent_session_id: null
+    key_files:
+      - ".opencode/commands/deep/assets/"
+      - ".opencode/commands/deep/assets/legacy/"
+      - ".opencode/commands/deep/assets/compiled/"
+      - ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+# Implementation Plan: Deep command namespace naming
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: deep-namespace
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | `.opencode/commands/deep/` maintained assets, legacy bodies, and generated-contract consumers |
+| **Change class** | Maintained asset rename plus generated metadata refresh |
+| **Execution** | Isolated worktree using the pinned BASE and frozen semantic map |
+| **Verification** | Reference checker, compiler validation, route parity, and generated-output exemption review |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
----
+Apply the 28 maintained source-to-target rows as one dependency-closed closure. Update path-valued references, then use the deep-loop compiler's supported regeneration path so compiled contracts keep their exact generated filenames while recording the new source paths and digests.
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+
+- [ ] The frozen map separates 24 maintained workflow/presentation assets, four legacy bodies, and four generated contracts.
+- [ ] The compiler command and BASE contract manifest are available.
+- [ ] All deep command IDs, workflow keys, generated-output rules, and external consumers are inventoried.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
----
+- [ ] All maintained deep sources use kebab-case targets and all active references resolve.
+- [ ] Generated contracts retain their filenames and carry current maintained source paths/digests.
+- [ ] Deep route and fallback behavior matches BASE evidence.
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Maintained source layer**: rename auto, confirm, presentation, and legacy body files through the semantic map.
+- **Generated output layer**: preserve `assets/compiled/deep_*.contract.md` filenames; regenerate rather than hand-edit generated sections.
+- **Reference layer**: update command docs, README trees, asset-local pointers, compiler inputs, tests, and external path values.
+- **Contract boundary**: keep command IDs, YAML keys, manifest fields, and generated contract schema unchanged.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+
+- [ ] Load the 28-row maintained map, the generated-output disposition, BASE contract manifest, and deep-loop compiler instructions.
+- [ ] Capture old asset/body references and source-digest paths across commands, compiled headers, tests, and documentation.
+- [ ] Confirm top-level deep command files and compiled filenames are excluded from physical rename.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+
+- [ ] Rename the eight families of deep auto/confirm/presentation assets and the four legacy bodies to kebab-case.
+- [ ] Update active path literals and links in command, README, legacy, and compiler-facing files.
+- [ ] Regenerate or validate compiled contracts through the supported compiler path and record their updated source-digest evidence.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
----
+- [ ] Compare maintained source targets and generated exemptions with the frozen map.
+- [ ] Resolve every auto, confirm, presentation, legacy, and compiled source path; run the command-reference and compiler checks.
+- [ ] Exercise deep route selection and confirm command IDs, schema keys, generated filenames, and modes match BASE.
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| Candidate coverage | Map scan reports 28 maintained rows, four generated exemptions, and zero unknowns. |
+| Reference integrity | Command-reference scan finds no active old maintained path or missing maintained target. |
+| Generated contract integrity | Compiler validation passes; compiled filenames remain exact and source digests point at the new maintained paths. |
+| Route parity | Deep command mode, fallback, injection, and contract-loading outcomes match BASE scenarios. |
+| Exemption safety | Inspect generated output, command IDs, schema keys, Python/package names, and frozen history for prohibited changes. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 017 phase 005 rename/reference tooling | Internal | Required before execution | Manual asset edits could rename generated output or miss dynamic consumers. |
+| 017 phase 006 frozen map | Internal | Required before execution | Maintained/generated ownership and target names are not proven. |
+| Deep-loop contract compiler | Internal | Required before verification | Generated source paths and digests cannot be refreshed authoritatively. |
+| 000 baseline contract and route evidence | Internal | Required before verification | Generated and behavior parity cannot be compared. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Any generated filename rename, stale digest, missing path, route drift, collision, or exemption violation.
+- **Procedure**: Stop the batch, revert the path-scoped maintained-source/reference commit, restore the prior generated contract state through the compiler, and rerun the baseline comparison.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

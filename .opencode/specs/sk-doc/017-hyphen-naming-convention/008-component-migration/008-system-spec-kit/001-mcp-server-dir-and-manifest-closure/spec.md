@@ -1,182 +1,99 @@
 ---
-title: "Feature Specification: Phase 1: mcp-server-dir-and-manifest-closure [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: MCP-server directory and manifest closure (017 subtree 008 phase 001)"
+description: "The system-spec-kit workspace still exposes mcp_server as a filesystem path even though kebab-case is canonical. The package workspace, lockfile links, package scripts, and entrypoint references must move as one path closure while manifest filenames, package names, Python files, and Python package directories remain exempt."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "mcp-server directory closure"
+  - "system-spec-kit mcp server manifest"
+  - "mcp_server to mcp-server"
+  - "kebab-case phase 001"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-mcp-server-dir-and-manifest-closure"
-    last_updated_at: "2026-07-14T15:17:58Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored mcp-server closure docs"
+    next_safe_action: "Execute the root closure on the pinned baseline"
     blockers: []
     key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-mcp-server-dir-and-manifest-closure"
-      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: mcp-server-dir-and-manifest-closure
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: MCP-server directory and manifest closure
 
----
+> Phase adjacency under the 008 system-spec-kit subtree (grouping order, not a runtime dependency): predecessor None; successor 002-mcp-server-inner-dirs.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/001-mcp-server-dir-and-manifest-closure` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 12 |
-| **Predecessor** | None |
-| **Successor** | 002-mcp-server-inner-dirs |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | system-spec-kit |
+| **Origin** | Phase 001 of the 008 system-spec-kit component migration under the 017 kebab-case program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 1** of the system spec kit (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
-
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The TypeScript MCP package is rooted at .opencode/skills/system-spec-kit/mcp_server, and the workspace lockfile records that exact directory in workspaces, package entries, and file links. A partial rename would leave npm resolution, prepare-build paths, or entrypoint documentation pointing at a directory that no longer exists.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Rename .opencode/skills/system-spec-kit/mcp_server/ to mcp-server/ as the package root.
+- Update path-bearing workspace and manifest references in package-lock.json and mcp_server/package.json in the same dependency closure.
+- Update package-local build, start, test, and dist-freshness entrypoint paths where they contain the old directory segment.
+- Preserve package.json, package-lock.json, tsconfig.json, vitest config filenames, the @spec-kit/mcp-server package name, and all .py files and Python package directories exactly.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Inner directory renames such as matrix_runners, plugin_bridges, and stress_test; phase 002 owns those semantic mappings.
+- Consumer rewrites outside the package and workspace closure; phase 003 owns the repository-wide reference sweep.
+- Any migration execution in this authoring pass.
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The package root is mapped from mcp_server to mcp-server without a second physical root. | The rename map has one source and one target, and preflight has no exact, case-fold, or Unicode collision. |
+| REQ-002 | The npm workspace and lockfile path closure is updated atomically. | workspaces, package keys, link targets, and file:../mcp_server values resolve to mcp-server after the planned rename. |
+| REQ-003 | Package entrypoints retain their existing behavior and basenames. | context-server, spec-kit-cli, spec-memory, build, start, and test commands resolve through the renamed root. |
+| REQ-004 | Exemption boundaries are preserved. | No manifest filename, package name, Python file, Python package directory, code identifier, or data key is renamed. |
+| REQ-005 | The phase leaves an evidence-pinned handoff for phase 002. | The report records the map, affected manifest paths, collision scan, and clean handoff path. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The mcp-server package resolves from the new workspace path with no stale mcp_server path in the manifest closure.
+- **SC-002**: All package entrypoint path values agree with the renamed directory and preserve existing executable names.
+- **SC-003**: The central verifier can replay the map and prove the exemption set was not touched.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The lockfile is generated data but also contains workspace path values required for reproducible installation. The plan changes path values only as a consequence of the package-root rename and never renames the lockfile itself. A second risk is that a path string can look like an identifier; the reference scan must distinguish filesystem paths from package names and object keys.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+No blocking questions. Execution must confirm the exact lockfile entries and preserve the package name @spec-kit/mcp-server.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
