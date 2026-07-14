@@ -12,20 +12,21 @@ This document combines the full manual-validation contract for the `sk-git` skil
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
-- `worktree-setup/`
-- `commit-formation/`
-- `safety-refusals/`
-- `integration-and-pr/`
-- `recovery-and-edge-cases/`
-- `cross-cli-orchestration/`
+- `worktree_setup/`
+- `commit_formation/`
+- `safety_refusals/`
+- `integration_and_pr/`
+- `recovery_and_edge_cases/`
+- `cross_cli_orchestration/`
+- `owner_first_worktree_tooling/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 22 deterministic scenarios across 6 categories validating the `sk-git` skill surface. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 41 deterministic scenarios across 7 categories validating the `sk-git` skill surface. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-05-07): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, deterministic scope inference, mixed-concern split warnings, the canonical Claude Opus co-author footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, and cross-CLI advisory handbacks.
+Coverage note (2026-07-14): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, deterministic scope inference, mixed-concern split warnings, the canonical Claude Opus co-author footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the owner-first worktree tooling safety contract: locked number allocation, owner/slug/branch/pair grammar validation, worktree creation and the wrapper-lane exemption, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only orphan-daemon scanning), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
 
 ### Realistic Test Model
 
@@ -148,6 +149,7 @@ This section records wave planning and capacity guidance for running the 22-scen
 | 2 | Safety Refusals | GIT-008..GIT-011 | Isolate dangerous commands and exact refusal strings |
 | 3 | Integration + Recovery | GIT-012..GIT-019 | Requires scratch repos and branch-state evidence |
 | 4 | Cross-CLI | GIT-020..GIT-022 | Advisory handback validation after policy baseline is trusted |
+| 5 | Owner-First Worktree Tooling | GIT-023..GIT-041 | Hermetic fixture repos per script; run after the core lifecycle baseline is trusted, since the allocator/session/reaper/pre-push scripts sit underneath every other worktree scenario |
 
 ---
 
@@ -539,7 +541,317 @@ Expected signals: External response is advisory; final command plan is filtered 
 
 ---
 
-## 13. AUTOMATED TEST CROSS-REFERENCE
+## 13. OWNER-FIRST WORKTREE TOOLING (`GIT-023..GIT-041`)
+
+This category covers 19 scenarios. The linked per-feature files remain the canonical execution contract. It validates the safety contract of the four owner-first worktree tools: the allocator (`worktree-naming.sh`), the launch-wrapper session (`worktree-session.sh`), the reaper (`worktree-reaper.sh`), and the pre-push naming gate.
+
+### GIT-023 | Locked unique number allocation
+
+#### Description
+
+Prove concurrent allocator calls each get a distinct, monotonically increasing 4-digit number seeded from every worktree, ref, and stored high-water mark already in use.
+
+#### Scenario Contract
+
+Prompt: `Allocate the next worktree number for an sk-git task, prove it is seeded from existing worktrees/refs/high-water mark, and show two concurrent allocations never collide.`
+
+Expected signals: `scan-max` returns the true maximum across all sources; sequential `allocate` calls are strictly increasing; 8 concurrent calls return 8 distinct numbers.
+
+#### Test Execution
+
+> **Feature File:** [GIT-023](owner_first_worktree_tooling/locked_unique_number_allocation.md)
+
+### GIT-024 | Owner/slug/branch/pair grammar validation
+
+#### Description
+
+Prove `validate-owner`, `validate-slug`, `validate-branch`, and `validate-pair` accept every legal owner-first form and reject every malformed one.
+
+#### Scenario Contract
+
+Prompt: `Run the worktree-naming validators against a mix of legal and illegal owners, slugs, branches, and directory pairs, and report which ones pass or fail and why.`
+
+Expected signals: every legal input prints `ok`/exit 0; every illegal input prints `invalid`/non-zero exit.
+
+#### Test Execution
+
+> **Feature File:** [GIT-024](owner_first_worktree_tooling/owner_slug_branch_pair_validation.md)
+
+### GIT-025 | Create owner-first and detached worktrees
+
+#### Description
+
+Prove `create` and `create-detached` allocate a number, create the matching branch/directory pair or a detached numbered directory, and refuse an invalid owner or slug before touching the repository.
+
+#### Scenario Contract
+
+Prompt: `Create an owner-first sk-git worktree with a fresh branch, then create a separate numbered detached worktree with no branch, and report both paths and branch names.`
+
+Expected signals: the `create` output pair passes `validate-pair`; the detached directory has no branch; an invalid owner is rejected before any `git worktree add`.
+
+#### Test Execution
+
+> **Feature File:** [GIT-025](owner_first_worktree_tooling/create_owner_first_and_detached_worktrees.md)
+
+### GIT-026 | Wrapper-lane exemption vs illegal-owner rejection
+
+#### Description
+
+Prove `is_wrapper_branch` recognizes the launch-wrapper lane as a legal-but-non-task branch while `create`/`validate-owner` still reject an owner with no tracked `SKILL.md`.
+
+#### Scenario Contract
+
+Prompt: `Validate a launch-wrapper branch name as the exempt wrapper lane, then attempt to create an owner-first worktree with a non-existent owner id and confirm it is refused.`
+
+Expected signals: the wrapper name is recognized as exempt, not malformed; the bogus owner is rejected by both `validate-owner` and `create`.
+
+#### Test Execution
+
+> **Feature File:** [GIT-026](owner_first_worktree_tooling/wrapper_lane_exemption_vs_illegal_owner.md)
+
+### GIT-027 | Top-level session isolates into its own worktree, branch, and databases
+
+#### Description
+
+Prove a top-level launch of `worktree-session.sh` allocates a brand-new worktree, a `work/<runtime>/<slug>` branch, and per-session MCP database and socket directories distinct from the main checkout.
+
+#### Scenario Contract
+
+Prompt: `Launch a session through worktree-session.sh in dry-run mode and report the planned worktree path, branch name, database directories, and socket directory, confirming none collide with the main checkout.`
+
+Expected signals: a new `.worktrees/` path, a `work/<runtime>/...` branch, and DB/socket paths scoped to that session.
+
+#### Test Execution
+
+> **Feature File:** [GIT-027](owner_first_worktree_tooling/top_level_session_isolation.md)
+
+### GIT-028 | Orchestrated child execs in place
+
+#### Description
+
+Prove a dispatched child (`AI_SESSION_CHILD=1`) or a session already inside a linked worktree execs the runtime in place instead of allocating a second nested worktree.
+
+#### Scenario Contract
+
+Prompt: `Launch worktree-session.sh with AI_SESSION_CHILD=1 set and confirm it execs the runtime in place with no new worktree, then repeat from inside an existing linked worktree and confirm the same structural backstop applies.`
+
+Expected signals: both signals produce an in-place exec with zero new worktrees and preserved CLI arguments.
+
+#### Test Execution
+
+> **Feature File:** [GIT-028](owner_first_worktree_tooling/orchestrated_child_execs_in_place.md)
+
+### GIT-029 | Runtime identity validation
+
+#### Description
+
+Prove the wrapper rejects a path-bearing or non-conforming runtime identity before allocating any worktree, and accepts a normal runtime name found on PATH.
+
+#### Scenario Contract
+
+Prompt: `Run worktree-session.sh with a path-bearing runtime argument and confirm it is refused with no worktree created, then run it with a valid lowercase runtime name and confirm it is accepted.`
+
+Expected signals: a path-bearing identity is refused before any worktree allocation; a normal identity forms a legal `work/<runtime>/...` branch.
+
+#### Test Execution
+
+> **Feature File:** [GIT-029](owner_first_worktree_tooling/runtime_identity_validation.md)
+
+### GIT-030 | Session-activity marker recorded and read
+
+#### Description
+
+Prove a launched top-level session records a PID marker under the common git dir that the reaper later uses to prove liveness or death.
+
+#### Scenario Contract
+
+Prompt: `Launch a session, confirm its session marker file is written under the shared git common dir with the session's PID, and show the marker correctly reports the process as dead once it exits.`
+
+Expected signals: the marker exists under the common dir with the correct PID and tracks the process's actual liveness.
+
+#### Test Execution
+
+> **Feature File:** [GIT-030](owner_first_worktree_tooling/session_activity_marker.md)
+
+### GIT-031 | Shared-artifact symlinks stay contained to the worktree
+
+#### Description
+
+Prove the wrapper's shared-path symlinking refuses any path that would traverse outside the new worktree or outside the main checkout.
+
+#### Scenario Contract
+
+Prompt: `Configure a shared-path entry that tries to traverse outside the worktree, launch the wrapper, and confirm the traversal entry is skipped with a warning while the destination file is left untouched.`
+
+Expected signals: a logged skip warning and a byte-identical, non-symlinked destination file.
+
+#### Test Execution
+
+> **Feature File:** [GIT-031](owner_first_worktree_tooling/shared_artifact_symlink_containment.md)
+
+### GIT-032 | Auto-reap a clean, merged, marker-dead wrapper pair
+
+#### Description
+
+Prove the reaper removes a wrapper worktree/branch pair only when the tree is clean, the branch is merged into the live integration tip, and the session marker proves the recorded PID is dead.
+
+#### Scenario Contract
+
+Prompt: `Run the worktree reaper against a fixture wrapper worktree that is clean, merged, and has a dead-PID marker, and confirm it is removed along with its branch and marker file.`
+
+Expected signals: the worktree directory, branch ref, and marker file are all removed; no sibling worktree is touched.
+
+#### Test Execution
+
+> **Feature File:** [GIT-032](owner_first_worktree_tooling/reaper_auto_reap_qualifying_wrapper.md)
+
+### GIT-033 | Keep human, detached, dirty, and marker-ambiguous worktrees
+
+#### Description
+
+Prove the reaper leaves every non-qualifying worktree alone: human owner-first, detached, dirty wrapper, live-marker wrapper, malformed-marker wrapper, and non-wrapper-grammar `work/` branches.
+
+#### Scenario Contract
+
+Prompt: `Run the worktree reaper against a fixture containing a human numbered worktree, a detached worktree, a dirty wrapper worktree, a wrapper with a live-PID marker, and a wrapper with a malformed marker, and confirm every one of them is reported kept, not removed.`
+
+Expected signals: each case logs a distinct `keep (...)` reason and remains present afterward.
+
+#### Test Execution
+
+> **Feature File:** [GIT-033](owner_first_worktree_tooling/reaper_keeps_non_qualifying_worktrees.md)
+
+### GIT-034 | Reaper dry-run changes nothing
+
+#### Description
+
+Prove `--dry-run` prints the exact prune, remove, and branch-delete actions it would take without mutating any worktree, branch, or marker.
+
+#### Scenario Contract
+
+Prompt: `Run the worktree reaper in --dry-run mode against a fixture with one reapable wrapper pair, confirm the plan names that pair, and confirm nothing on disk or in refs actually changed.`
+
+Expected signals: `DRY_RUN would:` lines naming the qualifying pair; repository state unchanged afterward.
+
+#### Test Execution
+
+> **Feature File:** [GIT-034](owner_first_worktree_tooling/reaper_dry_run_no_mutation.md)
+
+### GIT-035 | Orphan-daemon reporting stays report-only unless --reap-daemons
+
+#### Description
+
+Prove the reaper only reports a daemon whose worktree DB directory no longer exists, unless `--reap-daemons` is explicitly passed, and never touches a daemon whose worktree still exists.
+
+#### Scenario Contract
+
+Prompt: `Run the worktree reaper's orphan-daemon scan against a fixture with one live-worktree daemon and one gone-worktree daemon, first without --reap-daemons and then with it, and confirm the live daemon is always left alone.`
+
+Expected signals: default run reports the orphan only; `--reap-daemons` dry-run names the orphan as a kill target and never the live daemon.
+
+#### Test Execution
+
+> **Feature File:** [GIT-035](owner_first_worktree_tooling/reaper_orphan_daemon_report_only.md)
+
+### GIT-036 | Pre-push gates only new remote branch creation
+
+#### Description
+
+Prove the naming gate only evaluates a ref line when the remote sha is all-zeros, and does not re-validate an update to a branch that already exists on the remote.
+
+#### Scenario Contract
+
+Prompt: `As a git safety reviewer, gate a simulated push feed containing both a new-branch line and an update-to-existing-branch line. Verify only the new-branch line is evaluated against the naming grammar. Return the accept/reject decision per line and the reasoning.`
+
+Expected signals: the new-branch line is rejected; the identical name on an update line is never rejected.
+
+#### Test Execution
+
+> **Feature File:** [GIT-036](owner_first_worktree_tooling/prepush_gates_only_new_branches.md)
+
+### GIT-037 | Pre-push migration tolerance for existing legacy branches
+
+#### Description
+
+Prove a branch that already exists on the remote can always be pushed again regardless of whether its name conforms to the owner-first grammar.
+
+#### Scenario Contract
+
+Prompt: `As a git safety reviewer, evaluate an update push to a pre-existing non-conformant remote branch name. Verify the push is allowed under migration tolerance while the same name would be blocked as a brand-new branch. Return the decision and the migration-tolerance rationale.`
+
+Expected signals: the update is allowed with an advisory notice; the identical name as a new branch is blocked.
+
+#### Test Execution
+
+> **Feature File:** [GIT-037](owner_first_worktree_tooling/prepush_migration_tolerance.md)
+
+### GIT-038 | Pre-push fails open on a broken validator
+
+#### Description
+
+Prove a missing or syntactically broken `worktree-naming.sh` makes the hook skip the naming gate entirely rather than hard-failing every push.
+
+#### Scenario Contract
+
+Prompt: `As a git safety reviewer, evaluate a push feed against a fixture where worktree-naming.sh is first missing, then present but syntactically broken. Verify both cases fail open with the push allowed and a warning logged. Return the exit code and warning text for each case.`
+
+Expected signals: both cases exit 0 with a clear warning, never a hard failure of the push.
+
+#### Test Execution
+
+> **Feature File:** [GIT-038](owner_first_worktree_tooling/prepush_fail_open_on_broken_validator.md)
+
+### GIT-039 | Pre-push never blocks skilled release branches
+
+#### Description
+
+Prove `skilled/v*` release branches are exempt from the naming gate entirely, both as new branches and as updates.
+
+#### Scenario Contract
+
+Prompt: `As a git safety reviewer, push a new skilled/v* release branch and then an update to one, and verify both are exempt from the naming gate with no warning or rejection at all.`
+
+Expected signals: both cases exit 0 with no naming-related stderr output.
+
+#### Test Execution
+
+> **Feature File:** [GIT-039](owner_first_worktree_tooling/prepush_never_blocks_release_branches.md)
+
+### GIT-040 | SPECKIT_SKIP_PREPUSH_NAMING bypass
+
+#### Description
+
+Prove `SPECKIT_SKIP_PREPUSH_NAMING=1` disables the entire naming gate for the push, regardless of how malformed the branch name is.
+
+#### Scenario Contract
+
+Prompt: `As a git safety reviewer, push a maximally malformed new branch name with SPECKIT_SKIP_PREPUSH_NAMING=1 set, and verify the entire gate is skipped with an explicit bypass notice rather than a silent pass.`
+
+Expected signals: exit 0 with an explicit, logged bypass notice.
+
+#### Test Execution
+
+> **Feature File:** [GIT-040](owner_first_worktree_tooling/prepush_skip_env_bypass.md)
+
+### GIT-041 | Pre-push rejects a new wrapper-lane ref
+
+#### Description
+
+Prove a brand-new `work/<runtime>/<slug>` ref pushed to the remote is explicitly rejected with a wrapper-specific message, not just a generic naming failure.
+
+#### Scenario Contract
+
+Prompt: `As a git safety reviewer, push a brand-new work/<runtime>/<slug> ref to the remote and verify it is rejected with a message identifying it specifically as a launch-wrapper ref, distinct from a generic malformed-name rejection.`
+
+Expected signals: exit 1 with the wrapper-specific `BLOCKED` message naming it a launch-wrapper ref.
+
+#### Test Execution
+
+> **Feature File:** [GIT-041](owner_first_worktree_tooling/prepush_rejects_wrapper_ref.md)
+
+---
+
+## 14. AUTOMATED TEST CROSS-REFERENCE
 
 The current sk-doc validator checks this root document's markdown structure. It does not recurse into category folders or verify prompt synchronization, so operators must run the structural sweep described in the spec packet.
 
@@ -550,34 +862,57 @@ The current sk-doc validator checks this root document's markdown structure. It 
 | Finish policy | `references/finish_workflows.md`, `assets/pr_template.md` | Manual plus project test command |
 | Safety refusals | `SKILL.md §4`, `references/shared_patterns.md` | Manual refusal transcript required |
 | Cross-CLI | `SKILL.md`, external CLI skill docs | Manual handback and policy-filter evidence |
+| Worktree naming allocator | `scripts/worktree-naming.sh` | Automated: `scripts/tests/worktree-naming.test.sh` |
+| Launch-wrapper session | `../../../bin/worktree-session.sh` | Automated: `../../../bin/tests/worktree-session.test.sh` |
+| Worktree reaper | `../../../bin/worktree-reaper.sh` | Automated: `../../../bin/tests/worktree-reaper.test.sh` |
+| Pre-push naming gate | `../../../scripts/git-hooks/pre-push` | Automated: `../../../scripts/git-hooks/tests/pre-push.test.sh` |
 
 ---
 
-## 14. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-`sk-git` does not currently ship a dedicated `feature_catalog/` package. These scenarios anchor directly to `SKILL.md`, `README.md`, `references/`, and `assets/` until a catalog exists.
+`sk-git` ships a dedicated `feature_catalog/` package (see [`../feature_catalog/feature_catalog.md`](../feature_catalog/feature_catalog.md)); these scenarios validate the behaviors it catalogs. Each scenario anchors to `SKILL.md`, `README.md`, `references/`, and `assets/` as the executable source of truth.
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
-| Worktree Setup | GIT-001 | `worktree-setup/fresh-feature-isolated-worktree.md` | Yes |
-| Worktree Setup | GIT-002 | `worktree-setup/current-branch-no-worktree.md` | Yes |
-| Worktree Setup | GIT-003 | `worktree-setup/stay-on-main-no-feature-branches.md` | Yes |
-| Commit Formation | GIT-004 | `commit-formation/conventional-commit-from-diff.md` | Yes |
-| Commit Formation | GIT-005 | `commit-formation/scope-inference-skill-folder.md` | Yes |
-| Commit Formation | GIT-006 | `commit-formation/mixed-concerns-split-or-warn.md` | Yes |
-| Commit Formation | GIT-007 | `commit-formation/co-authored-by-footer.md` | Yes |
-| Safety Refusals | GIT-008 | `safety-refusals/no-verify-bypass-refused.md` | Yes |
-| Safety Refusals | GIT-009 | `safety-refusals/secrets-in-diff-refused.md` | Yes |
-| Safety Refusals | GIT-010 | `safety-refusals/force-push-to-main-refused.md` | Yes |
-| Safety Refusals | GIT-011 | `safety-refusals/amend-published-commit-refused.md` | Yes |
-| Integration And PR | GIT-012 | `integration-and-pr/finish-merge-to-main.md` | No |
-| Integration And PR | GIT-013 | `integration-and-pr/finish-create-pr-with-template.md` | No |
-| Integration And PR | GIT-014 | `integration-and-pr/failing-tests-block-merge.md` | No |
-| Integration And PR | GIT-015 | `integration-and-pr/branch-cleanup-after-merge.md` | No |
-| Recovery And Edge Cases | GIT-016 | `recovery-and-edge-cases/merge-conflict-resolution.md` | No |
-| Recovery And Edge Cases | GIT-017 | `recovery-and-edge-cases/accidental-commit-wrong-branch.md` | No |
-| Recovery And Edge Cases | GIT-018 | `recovery-and-edge-cases/empty-commit-or-no-changes.md` | No |
-| Recovery And Edge Cases | GIT-019 | `recovery-and-edge-cases/rebase-vs-merge-decision.md` | No |
-| Cross CLI Orchestration | GIT-020 | `cross-cli-orchestration/native-claude-code-invocation.md` | No |
-| Cross CLI Orchestration | GIT-021 | `cross-cli-orchestration/cli-opencode-delegation.md` | No |
-| Cross CLI Orchestration | GIT-022 | `cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md` | No |
+| Worktree Setup | GIT-001 | `worktree_setup/fresh_feature_isolated_worktree.md` | Yes |
+| Worktree Setup | GIT-002 | `worktree_setup/current_branch_no_worktree.md` | Yes |
+| Worktree Setup | GIT-003 | `worktree_setup/stay_on_main_no_feature_branches.md` | Yes |
+| Commit Formation | GIT-004 | `commit_formation/conventional_commit_from_diff.md` | Yes |
+| Commit Formation | GIT-005 | `commit_formation/scope_inference_skill_folder.md` | Yes |
+| Commit Formation | GIT-006 | `commit_formation/mixed_concerns_split_or_warn.md` | Yes |
+| Commit Formation | GIT-007 | `commit_formation/co_authored_by_footer.md` | Yes |
+| Safety Refusals | GIT-008 | `safety_refusals/no_verify_bypass_refused.md` | Yes |
+| Safety Refusals | GIT-009 | `safety_refusals/secrets_in_diff_refused.md` | Yes |
+| Safety Refusals | GIT-010 | `safety_refusals/force_push_to_main_refused.md` | Yes |
+| Safety Refusals | GIT-011 | `safety_refusals/amend_published_commit_refused.md` | Yes |
+| Integration And PR | GIT-012 | `integration_and_pr/finish_merge_to_main.md` | No |
+| Integration And PR | GIT-013 | `integration_and_pr/finish_create_pr_with_template.md` | No |
+| Integration And PR | GIT-014 | `integration_and_pr/failing_tests_block_merge.md` | No |
+| Integration And PR | GIT-015 | `integration_and_pr/branch_cleanup_after_merge.md` | No |
+| Recovery And Edge Cases | GIT-016 | `recovery_and_edge_cases/merge_conflict_resolution.md` | No |
+| Recovery And Edge Cases | GIT-017 | `recovery_and_edge_cases/accidental_commit_wrong_branch.md` | No |
+| Recovery And Edge Cases | GIT-018 | `recovery_and_edge_cases/empty_commit_or_no_changes.md` | No |
+| Recovery And Edge Cases | GIT-019 | `recovery_and_edge_cases/rebase_vs_merge_decision.md` | No |
+| Cross CLI Orchestration | GIT-020 | `cross_cli_orchestration/native_claude_code_invocation.md` | No |
+| Cross CLI Orchestration | GIT-021 | `cross_cli_orchestration/cli_opencode_delegation.md` | No |
+| Cross CLI Orchestration | GIT-022 | `cross_cli_orchestration/cli_opencode_and_cli_copilot_handback.md` | No |
+| Owner-First Worktree Tooling | GIT-023 | `owner_first_worktree_tooling/locked_unique_number_allocation.md` | Yes |
+| Owner-First Worktree Tooling | GIT-024 | `owner_first_worktree_tooling/owner_slug_branch_pair_validation.md` | Yes |
+| Owner-First Worktree Tooling | GIT-025 | `owner_first_worktree_tooling/create_owner_first_and_detached_worktrees.md` | Yes |
+| Owner-First Worktree Tooling | GIT-026 | `owner_first_worktree_tooling/wrapper_lane_exemption_vs_illegal_owner.md` | No |
+| Owner-First Worktree Tooling | GIT-027 | `owner_first_worktree_tooling/top_level_session_isolation.md` | Yes |
+| Owner-First Worktree Tooling | GIT-028 | `owner_first_worktree_tooling/orchestrated_child_execs_in_place.md` | Yes |
+| Owner-First Worktree Tooling | GIT-029 | `owner_first_worktree_tooling/runtime_identity_validation.md` | No |
+| Owner-First Worktree Tooling | GIT-030 | `owner_first_worktree_tooling/session_activity_marker.md` | Yes |
+| Owner-First Worktree Tooling | GIT-031 | `owner_first_worktree_tooling/shared_artifact_symlink_containment.md` | Yes |
+| Owner-First Worktree Tooling | GIT-032 | `owner_first_worktree_tooling/reaper_auto_reap_qualifying_wrapper.md` | Yes |
+| Owner-First Worktree Tooling | GIT-033 | `owner_first_worktree_tooling/reaper_keeps_non_qualifying_worktrees.md` | Yes |
+| Owner-First Worktree Tooling | GIT-034 | `owner_first_worktree_tooling/reaper_dry_run_no_mutation.md` | No |
+| Owner-First Worktree Tooling | GIT-035 | `owner_first_worktree_tooling/reaper_orphan_daemon_report_only.md` | No |
+| Owner-First Worktree Tooling | GIT-036 | `owner_first_worktree_tooling/prepush_gates_only_new_branches.md` | Yes |
+| Owner-First Worktree Tooling | GIT-037 | `owner_first_worktree_tooling/prepush_migration_tolerance.md` | Yes |
+| Owner-First Worktree Tooling | GIT-038 | `owner_first_worktree_tooling/prepush_fail_open_on_broken_validator.md` | Yes |
+| Owner-First Worktree Tooling | GIT-039 | `owner_first_worktree_tooling/prepush_never_blocks_release_branches.md` | Yes |
+| Owner-First Worktree Tooling | GIT-040 | `owner_first_worktree_tooling/prepush_skip_env_bypass.md` | No |
+| Owner-First Worktree Tooling | GIT-041 | `owner_first_worktree_tooling/prepush_rejects_wrapper_ref.md` | Yes |

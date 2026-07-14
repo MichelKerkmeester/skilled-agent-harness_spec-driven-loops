@@ -7,7 +7,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "git worktree branch setup"
   - "pull request commit hygiene"
-version: 1.1.0.27
+version: 1.1.0.28
 ---
 
 # sk-git
@@ -147,13 +147,13 @@ A: Run `git worktree list` to find the stale one, remove it with `git worktree r
 
 ## 8. VERIFICATION
 
-The skill ships a manual testing playbook with per-feature scenarios for worktree, commit and finish behavior.
+The skill ships a manual testing playbook (41 scenarios across 7 categories) and a feature catalog covering worktree, commit, finish, and the owner-first worktree tooling.
 
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-git/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md` |
-| Behavior | Run the playbook scenarios under `manual_testing_playbook/<NN>--<topic>/` in a live session |
+| Behavior | Run the playbook scenarios under `manual_testing_playbook/<topic>/` in a live session |
 
 ---
 
@@ -162,6 +162,8 @@ The skill ships a manual testing playbook with per-feature scenarios for worktre
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
+| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Catalog of every sk-git capability and its entry point (scripts + workflows) |
+| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | 41 manual-validation scenarios across 7 categories |
 | [`references/worktree_workflows.md`](./references/worktree_workflows.md) | Workspace creation, directory and branch strategy |
 | [`references/commit_workflows.md`](./references/commit_workflows.md) | Commit flow with artifact filtering and scoped staging |
 | [`references/finish_workflows.md`](./references/finish_workflows.md) | Completion: PR, merge, cleanup and release-note handling |

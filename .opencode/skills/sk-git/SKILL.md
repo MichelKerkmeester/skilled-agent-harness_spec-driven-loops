@@ -3,7 +3,7 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, finish; routes git-worktrees/git-commit/git-finish; no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 <!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, owner-first-branch, skill-scoped-worktree, worktree-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->
@@ -587,6 +587,10 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 ### Manual Testing Playbook
 
-Manual testing scenarios for this skill live in `manual_testing_playbook/manual_testing_playbook.md` (root index) plus 22 per-feature sub-files under `manual_testing_playbook/<NN>--<topic>/<NNN>-<scenario>.md`. Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook/manual_testing_playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.
+Manual testing scenarios for this skill live in `manual_testing_playbook/manual_testing_playbook.md` (root index) plus 41 per-feature scenario files (`GIT-001`..`GIT-041`) across 7 category directories under `manual_testing_playbook/<topic>/<scenario>.md` — worktree setup, commit formation, safety refusals, integration and PR, recovery and edge cases, cross-CLI orchestration, and owner-first worktree tooling. Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook/manual_testing_playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.
+
+### Feature Catalog
+
+A companion `feature_catalog/feature_catalog.md` package catalogs every sk-git capability with its entry point — the owner-first naming allocator/validators (`scripts/worktree-naming.sh`), launch-wrapper session isolation (`.opencode/bin/worktree-session.sh`), the worktree reaper (`.opencode/bin/worktree-reaper.sh`), the pre-push naming hook (`.opencode/scripts/git-hooks/pre-push`), continuous-integration autosync, and the worktree/commit/finish/GitKraken/GitHub/large-reorg workflows.
 
 Related skills: `system-spec-kit` for packet recovery and continuity, and `sk-doc` for PR, release, and documentation quality.

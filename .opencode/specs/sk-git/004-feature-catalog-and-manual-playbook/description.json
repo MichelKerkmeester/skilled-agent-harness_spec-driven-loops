@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/004-feature-catalog-and-manual-playbook",
+  "description": "The create-skill canon expects every skill to carry a feature catalog and a manual-testing playbook that covers its full surface",
+  "keywords": [
+    "create-skill",
+    "canon",
+    "expects",
+    "every",
+    "skill",
+    "carry",
+    "feature",
+    "catalog",
+    "manual-testing",
+    "playbook",
+    "covers",
+    "full",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-14T14:14:45.280Z",
+  "specId": "004",
+  "folderSlug": "feature-catalog-and-manual-playbook",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
