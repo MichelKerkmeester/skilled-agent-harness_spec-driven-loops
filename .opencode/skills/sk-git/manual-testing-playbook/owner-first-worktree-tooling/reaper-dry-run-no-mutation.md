@@ -78,5 +78,5 @@ No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md
 - Group: Owner-First Worktree Tooling
 - Playbook ID: GIT-034
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `owner_first_worktree_tooling/reaper_dry_run_no_mutation.md`
+- Feature file path: `owner-first-worktree-tooling/reaper-dry-run-no-mutation.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

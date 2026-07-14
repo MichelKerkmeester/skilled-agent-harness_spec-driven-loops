@@ -787,7 +787,7 @@ call_tool_chain({
 
 ## 10. RENAME-HEAVY MERGE VERIFICATION
 
-Merging a branch that renamed thousands of files (e.g. a `git mv`-driven spec-folder reorg/renumber) into a main that has diverged is a distinct, high-risk operation. The tree can end up *correct* while the working directory and `ls` *look* broken, and git's own rename detection can silently give up at scale. This section codifies the verification the 026 wave-4 reorg needed (the scoped-staging half of that same incident lives in `commit_workflows.md` §3 Step 7).
+Merging a branch that renamed thousands of files (e.g. a `git mv`-driven spec-folder reorg/renumber) into a main that has diverged is a distinct, high-risk operation. The tree can end up *correct* while the working directory and `ls` *look* broken, and git's own rename detection can silently give up at scale. This section codifies the verification the 026 wave-4 reorg needed (the scoped-staging half of that same incident lives in `commit-workflows.md` §3 Step 7).
 
 ### 10.1 Before the merge — prove disjointness
 
@@ -854,7 +854,7 @@ If renames show as `D`+`A` instead of `R`, rename detection was under-resourced 
 □ git ls-files <old> == 0 for every renamed-away folder (not `ls`)  [§10.3]
 □ gitignored ghost folders identified and cleaned from working tree (not in commit)  [§10.3]
 □ renames recorded as R status, not D+A churn  [§10.4]
-□ scoped-staging discipline applied if the tree held unrelated WIP  [commit_workflows.md §3 Step 7]
+□ scoped-staging discipline applied if the tree held unrelated WIP  [commit-workflows.md §3 Step 7]
 ```
 
 ---
@@ -862,10 +862,10 @@ If renames show as `D`+`A` instead of `R`, rename detection was under-resourced 
 ## 11. RELATED RESOURCES
 
 ### Reference Files
-- [worktree_workflows.md](./worktree-workflows.md) - Complete git-worktrees workflow documentation
-- [commit_workflows.md](./commit-workflows.md) - Complete git-commit workflow documentation (§3 Step 7: scoped-staging discipline)
-- [finish_workflows.md](./finish-workflows.md) - Complete git-finish workflow documentation
-- [quick_reference.md](./quick-reference.md) - One-page cheat sheet for all git workflows
+- [worktree-workflows.md](./worktree-workflows.md) - Complete git-worktrees workflow documentation
+- [commit-workflows.md](./commit-workflows.md) - Complete git-commit workflow documentation (§3 Step 7: scoped-staging discipline)
+- [finish-workflows.md](./finish-workflows.md) - Complete git-finish workflow documentation
+- [quick-reference.md](./quick-reference.md) - One-page cheat sheet for all git workflows
 
 ### External Resources
 - [Git Documentation](https://git-scm.com/doc) - Official git documentation home

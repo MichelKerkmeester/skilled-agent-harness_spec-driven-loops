@@ -511,7 +511,7 @@ Agent: "Promoting to an owner-first branch from this detached HEAD state..."
 A fresh worktree is a clean checkout of tracked files only. For a large rename/reorg
 (hundreds-to-thousands of `git mv`), this creates three sharp edges. Use the worktree
 for **file/rename ops only**; defer all toolchain + DB work to `main` after merge. The
-full step-ordered runbook lives in [large_reorg_playbook.md](./large-reorg-playbook.md).
+full step-ordered runbook lives in [large-reorg-playbook.md](./large-reorg-playbook.md).
 
 ### Caveat 1: Fresh worktrees lack gitignored build deps
 
@@ -645,10 +645,10 @@ git worktree prune
 ## 11. RELATED RESOURCES
 
 ### Reference Files
-- [commit_workflows.md](./commit-workflows.md) - Professional commit practices with Conventional Commits
-- [finish_workflows.md](./finish-workflows.md) - Complete development work with structured integration options
-- [quick_reference.md](./quick-reference.md) - One-page cheat sheet for all git workflows
-- [shared_patterns.md](./shared-patterns.md) - Common patterns and conventions across workflows
+- [commit-workflows.md](./commit-workflows.md) - Professional commit practices with Conventional Commits
+- [finish-workflows.md](./finish-workflows.md) - Complete development work with structured integration options
+- [quick-reference.md](./quick-reference.md) - One-page cheat sheet for all git workflows
+- [shared-patterns.md](./shared-patterns.md) - Common patterns and conventions across workflows
 
 ### External Resources
 - [Git Documentation: git-worktree](https://git-scm.com/docs/git-worktree) - Official git worktree documentation

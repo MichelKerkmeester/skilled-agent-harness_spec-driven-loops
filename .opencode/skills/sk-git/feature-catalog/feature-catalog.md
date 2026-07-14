@@ -36,7 +36,7 @@ A clone-wide numbered allocator plus a set of grammar validators give every AI-c
 
 #### Source Files
 
-See [`worktree_naming/owner_first_worktree_naming.md`](worktree-naming/owner-first-worktree-naming.md) for full implementation and test file listings.
+See [`worktree-naming/owner-first-worktree-naming.md`](worktree-naming/owner-first-worktree-naming.md) for full implementation and test file listings.
 
 ---
 
@@ -52,7 +52,7 @@ The hook is migration-tolerant (only a brand-new remote branch is checked; exist
 
 #### Source Files
 
-See [`worktree_naming/pre_push_naming_enforcement.md`](worktree-naming/pre-push-naming-enforcement.md) for full implementation and test file listings.
+See [`worktree-naming/pre-push-naming-enforcement.md`](worktree-naming/pre-push-naming-enforcement.md) for full implementation and test file listings.
 
 ---
 
@@ -70,7 +70,7 @@ An operator-opted-in launch wrapper places every top-level AI session in its own
 
 #### Source Files
 
-See [`session_lifecycle/launch_wrapper_session_isolation.md`](session-lifecycle/launch-wrapper-session-isolation.md) for full implementation and test file listings.
+See [`session-lifecycle/launch-wrapper-session-isolation.md`](session-lifecycle/launch-wrapper-session-isolation.md) for full implementation and test file listings.
 
 ---
 
@@ -86,7 +86,7 @@ A companion script that prunes finished launch-wrapper worktrees and reports (bu
 
 #### Source Files
 
-See [`session_lifecycle/worktree_reaper.md`](session-lifecycle/worktree-reaper.md) for full implementation and test file listings.
+See [`session-lifecycle/worktree-reaper.md`](session-lifecycle/worktree-reaper.md) for full implementation and test file listings.
 
 ---
 
@@ -102,7 +102,7 @@ Each launch-wrapper session bases its worktree on whatever branch the primary ch
 
 #### Source Files
 
-See [`session_lifecycle/continuous_integration_autosync.md`](session-lifecycle/continuous-integration-autosync.md) for full implementation and test file listings.
+See [`session-lifecycle/continuous-integration-autosync.md`](session-lifecycle/continuous-integration-autosync.md) for full implementation and test file listings.
 
 ---
 
@@ -120,7 +120,7 @@ The AI must ask the user to choose between a worktree and the current branch bef
 
 #### Source Files
 
-See [`workflow_playbooks/numbered_worktree_workflows.md`](workflow-playbooks/numbered-worktree-workflows.md) for full implementation and test file listings.
+See [`workflow-playbooks/numbered-worktree-workflows.md`](workflow-playbooks/numbered-worktree-workflows.md) for full implementation and test file listings.
 
 ---
 
@@ -136,7 +136,7 @@ Type and scope selection both follow a fixed first-match priority order; a `comm
 
 #### Source Files
 
-See [`workflow_playbooks/conventional_commit_workflows.md`](workflow-playbooks/conventional-commit-workflows.md) for full implementation and test file listings.
+See [`workflow-playbooks/conventional-commit-workflows.md`](workflow-playbooks/conventional-commit-workflows.md) for full implementation and test file listings.
 
 ---
 
@@ -152,7 +152,7 @@ Discard requires a typed `discard` confirmation after a permanent-deletion warni
 
 #### Source Files
 
-See [`workflow_playbooks/finish_and_integration_workflows.md`](workflow-playbooks/finish-and-integration-workflows.md) for full implementation and test file listings.
+See [`workflow-playbooks/finish-and-integration-workflows.md`](workflow-playbooks/finish-and-integration-workflows.md) for full implementation and test file listings.
 
 ---
 
@@ -168,7 +168,7 @@ A fresh worktree lacks gitignored build dependencies, so toolchain runs inside i
 
 #### Source Files
 
-See [`workflow_playbooks/large_reorg_playbook.md`](workflow-playbooks/large-reorg-playbook.md) for full implementation and test file listings.
+See [`workflow-playbooks/large-reorg-playbook.md`](workflow-playbooks/large-reorg-playbook.md) for full implementation and test file listings.
 
 ---
 
@@ -186,7 +186,7 @@ GitKraken MCP's local-mutation tools (`git_add_or_commit`, `git_push`, `git_bran
 
 #### Source Files
 
-See [`remote_platform_integration/gitkraken_mcp_integration.md`](remote-platform-integration/gitkraken-mcp-integration.md) for full implementation and test file listings.
+See [`remote-platform-integration/gitkraken-mcp-integration.md`](remote-platform-integration/gitkraken-mcp-integration.md) for full implementation and test file listings.
 
 ---
 
@@ -202,4 +202,4 @@ Local `git` stays the tool for commit/diff/status/log/merge/worktree operations;
 
 #### Source Files
 
-See [`remote_platform_integration/github_mcp_integration.md`](remote-platform-integration/github-mcp-integration.md) for full implementation and test file listings.
+See [`remote-platform-integration/github-mcp-integration.md`](remote-platform-integration/github-mcp-integration.md) for full implementation and test file listings.

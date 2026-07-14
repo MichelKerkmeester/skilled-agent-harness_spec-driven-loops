@@ -80,5 +80,5 @@ No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md
 - Group: Owner-First Worktree Tooling
 - Playbook ID: GIT-027
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `owner_first_worktree_tooling/top_level_session_isolation.md`
+- Feature file path: `owner-first-worktree-tooling/top-level-session-isolation.md`
 - Prompt equality requirement: SCENARIO CONTRACT prompt must equal the 9-column table Exact Prompt cell.

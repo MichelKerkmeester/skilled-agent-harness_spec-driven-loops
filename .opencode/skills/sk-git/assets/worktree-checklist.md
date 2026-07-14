@@ -424,6 +424,6 @@ Worktree creation is successful when:
 
 ## 9. RELATED RESOURCES
 
-- [worktree_workflows.md](../references/worktree-workflows.md) - Complete workflow details
-- [shared_patterns.md](../references/shared-patterns.md) - Common git patterns
-- [quick_reference.md](../references/quick-reference.md) - Command cheat sheet
+- [worktree-workflows.md](../references/worktree-workflows.md) - Complete workflow details
+- [shared-patterns.md](../references/shared-patterns.md) - Common git patterns
+- [quick-reference.md](../references/quick-reference.md) - Command cheat sheet

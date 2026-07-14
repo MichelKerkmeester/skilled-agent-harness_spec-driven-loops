@@ -473,10 +473,10 @@ call_tool_chain(`github.github_get_job_logs({ owner: 'o', repo: 'r', job_id: 123
 ## 15. RELATED RESOURCES
 
 ### Reference Files
-- [worktree_workflows.md](./worktree-workflows.md) - Complete git-worktrees workflow documentation
-- [commit_workflows.md](./commit-workflows.md) - Complete git-commit workflow documentation
-- [finish_workflows.md](./finish-workflows.md) - Complete git-finish workflow documentation
-- [shared_patterns.md](./shared-patterns.md) - Common patterns and commands across workflows
+- [worktree-workflows.md](./worktree-workflows.md) - Complete git-worktrees workflow documentation
+- [commit-workflows.md](./commit-workflows.md) - Complete git-commit workflow documentation
+- [finish-workflows.md](./finish-workflows.md) - Complete git-finish workflow documentation
+- [shared-patterns.md](./shared-patterns.md) - Common patterns and commands across workflows
 
 ### External Resources
 - [Conventional Commits](https://www.conventionalcommits.org/) - Standard commit message format

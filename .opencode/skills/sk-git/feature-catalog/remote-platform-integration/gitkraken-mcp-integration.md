@@ -57,7 +57,7 @@ Cross-provider PR review triage (`gitlens_launchpad`), AI-organized commit compo
 
 - Group: Remote Platform Integration
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `remote_platform_integration/gitkraken_mcp_integration.md`
+- Feature file path: `remote-platform-integration/gitkraken-mcp-integration.md`
 
 Related references:
-- [github_mcp_integration.md](github-mcp-integration.md) — GitHub MCP integration
+- [github-mcp-integration.md](github-mcp-integration.md) — GitHub MCP integration

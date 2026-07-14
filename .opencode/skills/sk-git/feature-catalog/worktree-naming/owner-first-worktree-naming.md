@@ -62,7 +62,7 @@ Git has no way to enforce uniqueness scoped to a single owner prefix, so the cou
 
 - Group: Worktree Naming
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `worktree_naming/owner_first_worktree_naming.md`
+- Feature file path: `worktree-naming/owner-first-worktree-naming.md`
 
 Related references:
-- [pre_push_naming_enforcement.md](pre-push-naming-enforcement.md) — Pre-push naming enforcement hook
+- [pre-push-naming-enforcement.md](pre-push-naming-enforcement.md) — Pre-push naming enforcement hook

@@ -62,8 +62,8 @@ The reaper also prunes the short per-session socket directories under `~/.spk-wt
 
 - Group: Session Lifecycle
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `session_lifecycle/worktree_reaper.md`
+- Feature file path: `session-lifecycle/worktree-reaper.md`
 
 Related references:
-- [launch_wrapper_session_isolation.md](launch-wrapper-session-isolation.md) — Launch-wrapper session isolation
-- [continuous_integration_autosync.md](continuous-integration-autosync.md) — Continuous integration autosync
+- [launch-wrapper-session-isolation.md](launch-wrapper-session-isolation.md) — Launch-wrapper session isolation
+- [continuous-integration-autosync.md](continuous-integration-autosync.md) — Continuous integration autosync

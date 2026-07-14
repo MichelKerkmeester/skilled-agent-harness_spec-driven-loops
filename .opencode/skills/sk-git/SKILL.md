@@ -3,7 +3,7 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, finish; routes git-worktrees/git-commit/git-finish; no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 <!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, owner-first-branch, skill-scoped-worktree, worktree-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->
@@ -228,7 +228,7 @@ The ask-first rule above governs **in-session** decisions: once an AI is running
 
 ### Continuous Integration — the always-current live branch
 
-Worktree isolation keeps concurrent, multi-runtime sessions safe, but it also hides each session's work from the operator's IDE (which is open on the primary checkout). The **continuous-integration workflow** resolves that without giving up isolation: each launch-wrapper session keeps its own worktree but **autosyncs** every commit to one shared **live branch** — whatever branch the primary checkout is on — and the IDE fast-forward-follows it, so the operator always sees what is currently active, seconds behind each commit. The wrapper bases the session worktree on the live branch and exports `SPECKIT_LIVE_BRANCH` + `SPECKIT_AUTOSYNC`; the `post-commit` hook then publishes via `git-sync.sh` (fetch → fast-forward-or-rebase-abort → non-force push). Visibility is at commit granularity only — never another session's un-committed buffer. Full model, safety contract, and operator setup: [continuous_integration.md](references/continuous-integration.md).
+Worktree isolation keeps concurrent, multi-runtime sessions safe, but it also hides each session's work from the operator's IDE (which is open on the primary checkout). The **continuous-integration workflow** resolves that without giving up isolation: each launch-wrapper session keeps its own worktree but **autosyncs** every commit to one shared **live branch** — whatever branch the primary checkout is on — and the IDE fast-forward-follows it, so the operator always sees what is currently active, seconds behind each commit. The wrapper bases the session worktree on the live branch and exports `SPECKIT_LIVE_BRANCH` + `SPECKIT_AUTOSYNC`; the `post-commit` hook then publishes via `git-sync.sh` (fetch → fast-forward-or-rebase-abort → non-force push). Visibility is at commit granularity only — never another session's un-committed buffer. Full model, safety contract, and operator setup: [continuous-integration.md](references/continuous-integration.md).
 
 ### Git Development Lifecycle Map
 
@@ -238,19 +238,19 @@ Git development flows through 3 phases:
 - **git-worktrees** - Create isolated workspace with short-lived temp branches
 - Prevents: Branch juggling, stash chaos, context switching
 - Output: Clean workspace ready for focused development
-- **See**: [worktree_workflows.md](./references/worktree-workflows.md)
+- **See**: [worktree-workflows.md](./references/worktree-workflows.md)
 
 **Phase 2: Work & Commit** (Make clean commits)
 - **git-commit** - Analyze changes, filter artifacts, write Conventional Commits
 - Prevents: Accidental artifact commits, unclear commit history
 - Output: Professional commit history following conventions
-- **See**: [commit_workflows.md](./references/commit-workflows.md)
+- **See**: [commit-workflows.md](./references/commit-workflows.md)
 
 **Phase 3: Complete & Integrate** (Finish the work)
 - **git-finish** - Merge, create PR, or discard work (with tests gate)
 - Prevents: Incomplete work merged, untested code integrated
 - Output: Work successfully integrated or cleanly discarded
-- **See**: [finish_workflows.md](./references/finish-workflows.md)
+- **See**: [finish-workflows.md](./references/finish-workflows.md)
 
 ### Phase Transitions
 - Setup → Work: Worktree created, ready to code
@@ -303,15 +303,15 @@ git-finish (feature A) → git-finish (feature B)
 5. **Reference spec folder in commits** - Include spec folder path in commit body when applicable
 6. **Clean up after merge** - Delete local and remote feature branches after successful merge
 7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
-8. **Defer toolchain + DB work to main on large reorgs** - For large rename/reorg, do file/`git mv` ops in the worktree but run the spec-kit toolchain (strict validate, generators, metadata regen) and ALL memory reindex/re-embed on `main` AFTER merge. A bare worktree lacks gitignored deps (`node_modules`/`dist`) and the memory/vector DBs are a single global instance — never per-worktree. See [large_reorg_playbook.md](references/large-reorg-playbook.md).
+8. **Defer toolchain + DB work to main on large reorgs** - For large rename/reorg, do file/`git mv` ops in the worktree but run the spec-kit toolchain (strict validate, generators, metadata regen) and ALL memory reindex/re-embed on `main` AFTER merge. A bare worktree lacks gitignored deps (`node_modules`/`dist`) and the memory/vector DBs are a single global instance — never per-worktree. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
 9. **Scan for gitignored leftovers after a rename wave** - After `git mv` + merge, detect dirs with disk files but 0 tracked files (`git ls-files <dir>` empty and `git status --porcelain --untracked-files=all` clean) and `rm -rf` them — they are stale ignored cruft (`.DS_Store`, `*.log`, `*.pyc`) left behind by `git mv`.
 10. **Verify rename history is preserved** - After a rename wave confirm `R`-status (not delete+add) before commit, and after merge confirm the tree has no old+new duplicate folders.
-11. **GitHub release bodies never start with an H1** - The release title field already renders `vX.X.X.X — Title`; a body-leading `# vX.X.X.X` duplicates it on the Releases page. The H1 belongs ONLY to the changelog md file in the repo. When publishing from a changelog file, strip the leading H1 (and following blank lines) into a temp notes file before `gh release create/edit --notes-file`. Full mechanics: [finish_workflows.md](references/finish-workflows.md) Step 6.
-12. **Route GitKraken MCP's local-mutation tools back to Bash** - GitKraken MCP (`gitkraken.gitkraken_*`) exposes `git_add_or_commit`, `git_push`, `git_pull`, `git_fetch`, `git_checkout`, `git_branch`, `git_worktree`, and `git_stash`, which duplicate local git mutations already gated by this skill's no-direct-branch-creation rule (❌ NEVER #2), numbered worktree naming (✅ ALWAYS #4), and the commit-message logic below. Never call these GitKraken MCP tools as a substitute for the existing Bash-based workflow; reserve GitKraken MCP for GitLens AI workflows and cross-platform issue/PR/repository operations with no local equivalent. Full detail: [gitkraken_mcp_integration.md](references/gitkraken-mcp-integration.md) §2.
+11. **GitHub release bodies never start with an H1** - The release title field already renders `vX.X.X.X — Title`; a body-leading `# vX.X.X.X` duplicates it on the Releases page. The H1 belongs ONLY to the changelog md file in the repo. When publishing from a changelog file, strip the leading H1 (and following blank lines) into a temp notes file before `gh release create/edit --notes-file`. Full mechanics: [finish-workflows.md](references/finish-workflows.md) Step 6.
+12. **Route GitKraken MCP's local-mutation tools back to Bash** - GitKraken MCP (`gitkraken.gitkraken_*`) exposes `git_add_or_commit`, `git_push`, `git_pull`, `git_fetch`, `git_checkout`, `git_branch`, `git_worktree`, and `git_stash`, which duplicate local git mutations already gated by this skill's no-direct-branch-creation rule (❌ NEVER #2), numbered worktree naming (✅ ALWAYS #4), and the commit-message logic below. Never call these GitKraken MCP tools as a substitute for the existing Bash-based workflow; reserve GitKraken MCP for GitLens AI workflows and cross-platform issue/PR/repository operations with no local equivalent. Full detail: [gitkraken-mcp-integration.md](references/gitkraken-mcp-integration.md) §2.
 13. **Honor an authorized operator's explicit direct-push directive on a protected branch** - Protected-branch rules (PR-required, verified signatures, code scanning) primarily gate EXTERNAL contributors. When the operator holds bypass rights and explicitly asks to commit/push directly to a protected branch, do a direct `git push` — do NOT default to a PR detour, re-ask whether to use a PR, or frame the bypass / resulting unsigned commit as a problem. Still apply full commit hygiene: scope the commit to the intended files only (a shared or dirty tree may hold concurrent work — never blind `git add -A`), use Conventional Commits, and report plainly that the push bypassed protection. Whether a given operator/repo grants that bypass authority is recorded in operator memory, not in this codebase-agnostic skill.
 14. **Commit substantial work before an autostash-prone operation** - `git merge|pull|rebase --autostash` (and any `pull.rebase=true` / `rebase.autoStash=true` config) stashes the uncommitted tree, runs the operation, then re-applies it — but on a re-apply CONFLICT git leaves the whole changeset stranded in the stash behind a warning that tool-driven git easily swallows, one `git stash drop`/`clear`/gc away from permanent loss. Before merging/pulling/rebasing a large or shared-branch changeset, COMMIT it (or make an explicit `git stash` you own and pop yourself) instead of relying on `--autostash` for the changeset. The `post-merge`/`post-rewrite` guard ([git-hooks/lib/autostash-orphan-guard.sh](../../scripts/git-hooks/lib/autostash-orphan-guard.sh)) is a safety net, not a substitute: it anchors every autostash under `refs/autostash-rescue/<sha>` (GC-proof) and prints a visible, logged alert. If that alert is still present after the operation completes, your work was NOT re-applied — recover with `git stash pop` and commit immediately, BEFORE any `git stash drop/clear`.
-15. **Reconcile the primary checkout after pushing a detached/worktree HEAD to a shared branch** - `git push origin HEAD:<branch>` from a detached HEAD or an isolated worktree advances the REMOTE `<branch>` but never moves the local `<branch>` ref that another checkout (typically the operator's primary tree) has checked out, so the pushed work is safe on origin yet INVISIBLE there until a separate sync — the work looks "lost" when it is not. After such a push, verify the primary checkout's `<branch>` actually contains the pushed commit; if it does not, state plainly that the work is on origin but not yet in that tree and hand over the safe sync recipe. NEVER stash/rebase/reset a primary tree that is dirty, diverged, or owned by a concurrent session (its own stash on the stack, its HEAD moving between commands) — forcing a sync there risks orphaning that session's autostash (ALWAYS #14) or clobbering its in-flight commits; give the operator the recipe to run from a clean tree instead. See [finish_workflows.md](references/finish-workflows.md) Step 5b.
-16. **Let launch-wrapper sessions autosync; never hand-roll the publish** - Under the continuous-integration model, a launch-wrapper session publishes each commit to the live branch automatically via the `post-commit` hook calling `git-sync.sh` (gated on the wrapper-injected `SPECKIT_AUTOSYNC=1` + `SPECKIT_LIVE_BRANCH`). Do NOT manually `git push origin HEAD:<live>` or manually rebase onto the live branch to "make work visible" — `git-sync.sh` already fast-forwards-or-rebases and never force-pushes; a hand-rolled push risks the exact non-force / abort-on-conflict invariants it protects. If autosync is blocked (a printed conflict), resolve per its message; do not force it. The primary checkout follows via `git-live-follow.sh` (fast-forward-only) and is never worked in. Full contract: [continuous_integration.md](references/continuous-integration.md).
+15. **Reconcile the primary checkout after pushing a detached/worktree HEAD to a shared branch** - `git push origin HEAD:<branch>` from a detached HEAD or an isolated worktree advances the REMOTE `<branch>` but never moves the local `<branch>` ref that another checkout (typically the operator's primary tree) has checked out, so the pushed work is safe on origin yet INVISIBLE there until a separate sync — the work looks "lost" when it is not. After such a push, verify the primary checkout's `<branch>` actually contains the pushed commit; if it does not, state plainly that the work is on origin but not yet in that tree and hand over the safe sync recipe. NEVER stash/rebase/reset a primary tree that is dirty, diverged, or owned by a concurrent session (its own stash on the stack, its HEAD moving between commands) — forcing a sync there risks orphaning that session's autostash (ALWAYS #14) or clobbering its in-flight commits; give the operator the recipe to run from a clean tree instead. See [finish-workflows.md](references/finish-workflows.md) Step 5b.
+16. **Let launch-wrapper sessions autosync; never hand-roll the publish** - Under the continuous-integration model, a launch-wrapper session publishes each commit to the live branch automatically via the `post-commit` hook calling `git-sync.sh` (gated on the wrapper-injected `SPECKIT_AUTOSYNC=1` + `SPECKIT_LIVE_BRANCH`). Do NOT manually `git push origin HEAD:<live>` or manually rebase onto the live branch to "make work visible" — `git-sync.sh` already fast-forwards-or-rebases and never force-pushes; a hand-rolled push risks the exact non-force / abort-on-conflict invariants it protects. If autosync is blocked (a printed conflict), resolve per its message; do not force it. The primary checkout follows via `git-live-follow.sh` (fast-forward-only) and is never worked in. Full contract: [continuous-integration.md](references/continuous-integration.md).
 17. **Reap worktrees before branches, and only the exempt wrapper lane** - When cleaning up a finished worktree, always remove the worktree directory (`git worktree remove`) BEFORE deleting its branch (`git branch -d`) — a branch still checked out by a worktree cannot be deleted, so removal must lead. `.opencode/bin/worktree-reaper.sh` auto-reaps ONLY the launch-wrapper lane (`work/{runtime}/{slug}` pairs), and only when all three hold: the tree is clean, the branch is merged into the LIVE integration tip (the primary checkout's actual `HEAD`, not a possibly-stale local `main`), and the session is proven inactive by its marker file (`<common-git-dir>/worktree-sessions/<runtime>-<slug>.pid` recording a now-dead pid). Owner-first task worktrees, detached worktrees, and any wrapper worktree with a missing/unreadable marker or a live pid are always report-only — the reaper never removes them; absence of proof is never proof of absence. Enforcement of the naming grammar itself is a migration-tolerant pre-push hook: it only gates the creation of brand-new remote branches (existing non-conformant branches are never rewritten or blocked), and it never blocks `skilled/v*` release branches.
 
 ### Commit Message Logic (Human-Clear and AI-Deterministic)
@@ -484,7 +484,7 @@ Before committing, verify in order:
 5. **CI/CD pipeline fails repeatedly** - May indicate infrastructure issues beyond code problems
 6. **Branch divergence exceeds 50 commits** - Large divergence suggests need for incremental merging strategy
 7. **Submodule conflicts detected** - Submodule updates require careful coordination
-8. **Strict-validate run inside a bare worktree** - Its exit code is meaningless (missing gitignored deps may make it silently no-op on zero files). Re-run on `main` post-merge before trusting any result. See [large_reorg_playbook.md](references/large-reorg-playbook.md).
+8. **Strict-validate run inside a bare worktree** - Its exit code is meaningless (missing gitignored deps may make it silently no-op on zero files). Re-run on `main` post-merge before trusting any result. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
 
 ---
 
@@ -493,22 +493,22 @@ Before committing, verify in order:
 ### Core Workflows
 | Document | Purpose | Key Insight |
 |----------|---------|-------------|
-| [worktree_workflows.md](references/worktree-workflows.md) | 7-step workspace creation | Directory selection, branch strategies, large-reorg caveats (§8b) |
-| [large_reorg_playbook.md](references/large-reorg-playbook.md) | Step-ordered large rename/reorg runbook | Worktree-only renames; toolchain + DB run on main post-merge |
-| [commit_workflows.md](references/commit-workflows.md) | 7-step commit workflow | Artifact filtering, Conventional Commits, scoped-staging discipline for a dirty tree / unrelated WIP (§3 Step 7) |
-| [finish_workflows.md](references/finish-workflows.md) | 5-step completion flow | PR creation, cleanup, merge |
-| [continuous_integration.md](references/continuous-integration.md) | Always-current live branch | Autosync each commit to a shared live branch the IDE follows; per-session isolation preserved; non-force / abort-on-conflict safety contract |
-| [shared_patterns.md](references/shared-patterns.md) | Reusable git patterns | Error recovery, conflict resolution, rename-heavy / large-reorg merge verification (§10) |
-| [quick_reference.md](references/quick-reference.md) | Command cheat sheet | Common operations |
-| [github_mcp_integration.md](references/github-mcp-integration.md) | GitHub MCP remote ops | PRs, issues, CI/CD via Code Mode |
-| [gitkraken_mcp_integration.md](references/gitkraken-mcp-integration.md) | GitKraken MCP cross-platform ops | GitLens AI workflows, PRs/issues across GitHub/GitLab/Azure DevOps/Bitbucket/Jira via Code Mode |
+| [worktree-workflows.md](references/worktree-workflows.md) | 7-step workspace creation | Directory selection, branch strategies, large-reorg caveats (§8b) |
+| [large-reorg-playbook.md](references/large-reorg-playbook.md) | Step-ordered large rename/reorg runbook | Worktree-only renames; toolchain + DB run on main post-merge |
+| [commit-workflows.md](references/commit-workflows.md) | 7-step commit workflow | Artifact filtering, Conventional Commits, scoped-staging discipline for a dirty tree / unrelated WIP (§3 Step 7) |
+| [finish-workflows.md](references/finish-workflows.md) | 5-step completion flow | PR creation, cleanup, merge |
+| [continuous-integration.md](references/continuous-integration.md) | Always-current live branch | Autosync each commit to a shared live branch the IDE follows; per-session isolation preserved; non-force / abort-on-conflict safety contract |
+| [shared-patterns.md](references/shared-patterns.md) | Reusable git patterns | Error recovery, conflict resolution, rename-heavy / large-reorg merge verification (§10) |
+| [quick-reference.md](references/quick-reference.md) | Command cheat sheet | Common operations |
+| [github-mcp-integration.md](references/github-mcp-integration.md) | GitHub MCP remote ops | PRs, issues, CI/CD via Code Mode |
+| [gitkraken-mcp-integration.md](references/gitkraken-mcp-integration.md) | GitKraken MCP cross-platform ops | GitLens AI workflows, PRs/issues across GitHub/GitLab/Azure DevOps/Bitbucket/Jira via Code Mode |
 
 ### Assets
 | Asset | Purpose | Usage |
 |-------|---------|-------|
-| [worktree_checklist.md](assets/worktree-checklist.md) | Worktree creation checklist | Pre-flight verification |
-| [commit_message_template.md](assets/commit-message-template.md) | Commit format guide | Conventional Commits |
-| [pr_template.md](assets/pr-template.md) | PR description template | Consistent PR format |
+| [worktree-checklist.md](assets/worktree-checklist.md) | Worktree creation checklist | Pre-flight verification |
+| [commit-message-template.md](assets/commit-message-template.md) | Commit format guide | Conventional Commits |
+| [pr-template.md](assets/pr-template.md) | PR description template | Consistent PR format |
 
 ---
 
