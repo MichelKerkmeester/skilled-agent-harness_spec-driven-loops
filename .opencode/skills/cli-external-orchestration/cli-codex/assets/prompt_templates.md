@@ -35,8 +35,8 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
 
 | Flag                           | Purpose                                                                             |
 | ------------------------------ | ----------------------------------------------------------------------------------- |
-| `--model gpt-5.5`              | Skill model — used for every delegation (code generation, review, architecture, research). Required pin. |
-| `-c model_reasoning_effort="high"` | Reasoning effort. **Required pin for templates** (`high` is the skill default). Levels: `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`. |
+| `--model gpt-5.5`              | Skill default model. Override per dispatch with `gpt-5.6-luna` / `gpt-5.6-terra` / `gpt-5.6-sol` when the task wants deeper reasoning. Required pin. |
+| `-c model_reasoning_effort="high"` | Reasoning effort. **Required pin for templates.** Levels: `none`, `minimal`, `low`, `medium` (skill default), `high`, `xhigh`, `max`, `ultra`. Ceiling is per-model: `gpt-5.5` ≤ `xhigh`; `gpt-5.6-luna` / `gpt-5.6-terra` ≤ `max`; `gpt-5.6-sol` ≤ `ultra`. |
 | `-c service_tier="fast"`        | Fast service tier — **opt-in only**. Project memory rule: never pass by default; pass explicitly per invocation when fast tier is intentional. |
 | `--sandbox read-only`          | Safe mode: read files, no writes or shell commands                                  |
 | `--sandbox workspace-write`    | Allow file writes and build commands within workspace                               |

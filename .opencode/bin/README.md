@@ -154,6 +154,7 @@ Main flow:
 | `bash .opencode/bin/worktree-session.sh <runtime> [args]` | CLI | Launch an AI session in its own git worktree + branch + isolated MCP databases. Top-level sessions isolate; orchestrated children (`AI_SESSION_CHILD=1` or already inside a linked worktree) exec in place. `--dry-run` prints the plan. |
 | `bash .opencode/bin/worktree-reaper.sh [--dry-run] [--reap-daemons]` | CLI | Prune merged + clean per-session worktrees and stale socket dirs; report orphan daemons (kill only with `--reap-daemons`). |
 | `bash .opencode/bin/worktree-guard.sh` | CLI / SessionStart hook | Detect-and-warn: prints a one-line stderr warning when a top-level session is on shared `main`/`master` instead of an isolated worktree. Non-fatal (always exits 0); silent for children, inside worktrees, non-git dirs, or with `SPECKIT_WORKTREE_GUARD=off`. |
+| `node .opencode/bin/install-codex-hooks.mjs` | CLI | Merge the repo's versioned Codex hook set (lifecycle + tool-level guards) into user-global `~/.codex/hooks.json`. Backs up to `.bak-<ts>` first, preserves Superset/user entries, substitutes the repo path, and is idempotent (re-runs add nothing). |
 
 ### Daemon-backed CLI shims
 

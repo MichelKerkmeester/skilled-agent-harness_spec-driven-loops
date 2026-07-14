@@ -39,8 +39,8 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 - [ ] Confirm the dispatch contract: who may invoke the agent, what inputs it expects, and what outputs it returns.
 - [ ] Set runtime permissions to the least authority that supports the role: OpenCode agent frontmatter uses `permission:`, while Claude mirrors use `tools:`.
 - [ ] Do not use `allowed-tools:` in agent frontmatter; current agent frontmatter uses `permission:` in `.opencode/agents/` and `tools:` in `.claude/agents/`.
-- [ ] Identify the repo-managed mirror set: `.opencode/agents/` and `.claude/agents/` only. `.codex/` is not present in this workspace.
-- [ ] Treat the `.codex/agents/` aspiration in `.opencode/agents/README.txt` as flagged to its owner, not as a live runtime mirror to teach here.
+- [ ] Identify the repo-managed mirror set: `.opencode/agents/`, `.claude/agents/`, and `.codex/agents/`. All three are live runtime mirrors — `.codex/agents/*.toml` mirrors the `.opencode/agents/` roster one-to-one, alongside `.codex/hooks.json` and `.codex/config.toml`.
+- [ ] When adding or renaming an agent, mirror it across all three surfaces; `.codex/agents/` uses TOML (`[agents.<name>]` in `.codex/config.toml` pointing at `.codex/agents/<name>.toml`), not the OpenCode/Claude frontmatter form.
 
 ---
 

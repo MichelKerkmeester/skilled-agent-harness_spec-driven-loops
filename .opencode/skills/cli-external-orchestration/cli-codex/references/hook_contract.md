@@ -8,7 +8,7 @@ trigger_phrases:
   - "codex advisor brief"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.12
+version: 1.4.0.13
 ---
 
 # Codex CLI Hook Contract
@@ -77,6 +77,33 @@ outer array plus nested `hooks` array shape:
 When appending Spec Kit Memory hooks, preserve existing Superset `notify.sh`
 entries. Multiple hooks for one event run concurrently, so hook commands must be
 idempotent and must not rely on registration order.
+
+### 3.1 Tool-Level Guard Adapters (Claude / OpenCode parity)
+
+Beyond the memory/lifecycle hooks, Codex mirrors the repo's guard hooks as thin
+adapters over the same runtime-neutral cores the Claude hooks and OpenCode plugins
+use. Each fails open (exit 0 on empty/malformed stdin); the two deny-capable guards
+emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
+
+| Event · matcher | Guard | Adapter |
+|---|---|---|
+| PreToolUse · `exec\|apply_patch\|edit` | spec-gate enforce (deny-capable) | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` |
+| UserPromptSubmit | spec-gate classify (advisory) | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` |
+| PreToolUse · `exec` | dispatch preflight lint (deny-capable) | `cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs` |
+| PostToolUse · `apply_patch\|edit` | post-edit quality | `sk-code/code-quality/scripts/hooks/codex/post-edit-quality.cjs` |
+| PostToolUse · `apply_patch\|edit` | code-graph freshness | `system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs` |
+| PostToolUse · `exec` | dispatch audit (observe) | `cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs` |
+| Stop | completion-evidence sentinel (advisory) | `system-spec-kit/mcp_server/hooks/codex/completion-evidence-stop.cjs` |
+| PreToolUse · `mcp__.*` | mcp route guard (dormant until an external MCP family registers) | `mcp-code-mode/runtime/hooks/codex/mcp-route-guard.cjs` |
+
+> Codex delivers an `apply_patch` target path inside `tool_input.command` (the
+> `*** Add/Update/Delete File:` header), not a `file_path` field — filePath-driven
+> adapters parse the path from the patch body. A Stop hook's stdout is parsed as a
+> response envelope, so neutral shell scripts wired to Stop must not emit stdout.
+
+Install/refresh the full repo hook set (lifecycle + guards) into user-global
+`~/.codex/hooks.json` with `.opencode/bin/install-codex-hooks.mjs` — it backs up,
+merges (preserving Superset/user entries), and is idempotent.
 
 ---
 

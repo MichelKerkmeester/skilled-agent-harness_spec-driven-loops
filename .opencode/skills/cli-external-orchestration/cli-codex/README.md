@@ -134,7 +134,7 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
 | `review` | Code review and security audit | `--sandbox read-only` |
 | `ai-council` | Multi-strategy planning | `--sandbox read-only` |
 
-The model stays `gpt-5.5` for every task. Only reasoning effort changes, set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high` and `xhigh`. There is no `--reasoning-effort` flag.
+`gpt-5.5` at `medium` is the skill default, but four GPT models are available on the `fast` tier via `--model`: `gpt-5.5`, `gpt-5.6-luna`, `gpt-5.6-terra`, and `gpt-5.6-sol`. Reasoning effort is set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`, `max`, and `ultra`, with a per-model ceiling: `gpt-5.5` ≤ `xhigh`, `gpt-5.6-luna` / `gpt-5.6-terra` ≤ `max`, `gpt-5.6-sol` ≤ `ultra`. There is no `--reasoning-effort` flag. The `.codex/agents/*.toml` roster above pins `gpt-5.5`; override per dispatch with `--model` when a GPT-5.6 model fits the task better (e.g. `gpt-5.6-luna max` for implementation, `gpt-5.6-sol ultra` for verification).
 
 ### Auth Pre-Flight And Memory Handback
 

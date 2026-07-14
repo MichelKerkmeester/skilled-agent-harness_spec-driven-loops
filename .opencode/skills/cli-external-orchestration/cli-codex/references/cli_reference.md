@@ -108,7 +108,7 @@ codex logout
 
 | Flag | Short | Values | Description |
 |------|-------|--------|-------------|
-| `--model` | `-m` | `gpt-5.5` | Model to use (skill dispatches `gpt-5.5` for every task) |
+| `--model` | `-m` | `gpt-5.5` | Model to use — `gpt-5.5` (default), `gpt-5.6-luna`, `gpt-5.6-terra`, `gpt-5.6-sol` |
 | `--config` | `-c` | `key=value` | Override a config.toml value (e.g., `-c model_reasoning_effort="high"`) |
 | `--sandbox` | `-s` | `read-only`, `workspace-write`, `danger-full-access` | Sandbox mode controlling file/shell access |
 | `--ask-for-approval` | `-a` | `untrusted`, `on-request`, `never` | When to prompt for approval before executing actions |
@@ -191,11 +191,16 @@ codex exec "Refactor this function" --oss
 
 ## 5. MODEL SELECTION
 
-### Supported Model
+### Supported Models
 
-| Model | ID | Reasoning Effort | Best For |
-|-------|----|-----------------|----------|
-| **GPT-5.5** | `gpt-5.5` | configurable via `-c model_reasoning_effort` (skill default: `medium`) | All delegations — code generation, review, implementation, documentation, architecture, research, security audit |
+Four GPT models are callable on the `fast` service tier via `--model` / `-m`. `gpt-5.5` at `medium` is the skill default; each model caps at a different reasoning-effort ceiling.
+
+| Model | ID | Reasoning-effort ceiling | Best For |
+|-------|----|--------------------------|----------|
+| **GPT-5.5** ★ default | `gpt-5.5` | `xhigh` (default `medium`) | General delegation — generation, review, implementation, docs, architecture, research |
+| **GPT-5.6 LUNA** | `gpt-5.6-luna` | `max` | Implementation-heavy work; the `luna-impl` profile pins `max` |
+| **GPT-5.6 TERRA** | `gpt-5.6-terra` | `max` | GPT-5.6 fast sibling; no dedicated profile — call directly via `-m gpt-5.6-terra` |
+| **GPT-5.6 SOL** | `gpt-5.6-sol` | `ultra` | Verification / review and hardest planning; only model reaching `ultra` (the `sol-verify` profile pins `xhigh`) |
 
 ### Reasoning Effort Configuration
 
@@ -208,14 +213,16 @@ Reasoning effort controls how much "thinking" the model does. There is **no `--r
 
 **Valid values** (from `codex-rs/core/config.schema.json`):
 
-| Value | Description |
-|-------|-------------|
-| `none` | No reasoning — fastest, lowest cost |
-| `minimal` | Minimal reasoning |
-| `low` | Low reasoning effort |
-| `medium` | Standard reasoning (skill default) |
-| `high` | High reasoning effort |
-| `xhigh` | Maximum reasoning depth |
+| Value | Description | Model ceiling |
+|-------|-------------|---------------|
+| `none` | No reasoning — fastest, lowest cost | all |
+| `minimal` | Minimal reasoning | all |
+| `low` | Low reasoning effort | all |
+| `medium` | Standard reasoning (skill default) | all |
+| `high` | High reasoning effort | all |
+| `xhigh` | Deep reasoning — ceiling for `gpt-5.5` | all |
+| `max` | Deeper reasoning — `gpt-5.6-luna` / `gpt-5.6-terra` / `gpt-5.6-sol` | 5.6 family |
+| `ultra` | Deepest reasoning — `gpt-5.6-sol` only | `gpt-5.6-sol` |
 
 ### Selection Strategy
 
@@ -231,7 +238,7 @@ Reasoning effort controls how much "thinking" the model does. There is **no `--r
 | Documentation | `medium` (default) | Efficient for structured doc generation |
 | Trivial lookups / formatting | `low` / `minimal` | Minimize cost and latency |
 
-Always specify `--model gpt-5.5` explicitly in scripts for predictability; omitting it relies on the CLI default, which may change across versions.
+Always specify `--model` explicitly in scripts for predictability (`gpt-5.5` is the skill default); omitting it relies on the CLI default, which may change across versions. When a task wants reasoning past `xhigh`, escalate the model: `--model gpt-5.6-luna -c model_reasoning_effort="max"` for deep implementation, `--model gpt-5.6-sol -c model_reasoning_effort="ultra"` for the hardest verification/review.
 
 ### Command-Line Specification
 
