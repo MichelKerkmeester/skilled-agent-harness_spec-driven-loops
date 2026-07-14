@@ -1,214 +1,93 @@
 ---
-title: "Feature Specification: Phase 12: sk-git [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: sk-git component migration (017 phase parent)"
+description: "The sk-git surface needs a scoped kebab-case migration plan that covers its references, assets, manual playbook, benchmark artifacts, changelog evidence, and final naming gate without expanding into code or other skills."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-git kebab-case migration"
+  - "sk-git component naming phases"
+  - "017 sk-git phase map"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
-    packet_pointer: "scaffold/012-sk-git"
-    last_updated_at: "2026-07-14T15:17:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the sk-git child phase map from the live surface inventory"
+    next_safe_action: "Execute the selected sk-git child phase on the pinned migration worktree"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/012-sk-git"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-git/SKILL.md"
+      - ".opencode/skills/sk-git/references/"
+      - ".opencode/skills/sk-git/assets/"
+      - ".opencode/skills/sk-git/manual-testing-playbook/"
+      - ".opencode/skills/sk-git/benchmark/"
+      - ".opencode/skills/sk-git/changelog/"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 12: sk-git
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only; mechanics live in the six child folders. -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: sk-git component migration
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/012-sk-git` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 12 of 14 |
-| **Predecessor** | 011-mcp-code-mode |
-| **Successor** | 013-commands |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-git |
+| **Parent packet** | sk-doc/017-hyphen-naming-convention/008-component-migration |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 12** of the component migration (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The sk-git surface spans reference material, reusable assets, a manual-testing-playbook tree, benchmark profiles, and versioned changelog evidence. Those surfaces have had mixed underscore and hyphen spellings in their history and pointers, so the component needs one bounded decomposition that applies the program rule consistently: kebab-case is the sole canonical filesystem-name form except Python scripts, Python package directories, and tool-mandated names.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+This parent partitions the work into independent child phases. The children describe the source-to-target maps, pointer closure, changelog evidence, and final rollup contract; they do not execute the migration in this authoring pass.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The references/ source-to-target map and all links or pointers to those files.
+- The assets/ source-to-target map and all links or pointers to those files.
+- Category directories and scenario files under manual-testing-playbook/.
+- Snake_case benchmark profile or artifact names under benchmark/ and their consumers.
+- The sk-git changelog entry and version-bump evidence for this component migration.
+- A subtree gate that aggregates the five work phases and checks the component naming surface against the exemption boundary.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+- Renaming code, scripts, Python .py files, Python import-package directories, or tool-mandated names.
+- Changing JSON/YAML/TOML keys, frontmatter fields, or non-path values.
+- Renaming feature-catalog paths, shared infrastructure, other skills, or any sibling 017 component subtree.
+- Executing any rename, reference rewrite, changelog edit, version bump, or validation run during this authoring pass.
 <!-- /ANCHOR:scope -->
-
----
-
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-
-### P0 - Blockers (MUST complete)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
-<!-- /ANCHOR:requirements -->
-
----
-
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
-
----
-
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
-
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-references/ | [Phase 1 scope] | Pending |
-| 2 | 002-assets/ | [Phase 2 scope] | Pending |
-| 3 | 003-manual-testing-playbook/ | [Phase 3 scope] | Pending |
-| 4 | 004-benchmark/ | [Phase 4 scope] | Pending |
-| 5 | 005-changelog-verify/ | [Phase 5 scope] | Pending |
-| 6 | 006-skill-gate/ | [Phase 6 scope] | Pending |
-
-### Phase Transition Rules
-
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-
-### Phase Handoff Criteria
-
-| From | To | Criteria | Verification |
-|------|-----|----------|--------------|
-| 001-references | 002-assets | [Criteria TBD] | [Verification TBD] |
-| 002-assets | 003-manual-testing-playbook | [Criteria TBD] | [Verification TBD] |
-| 003-manual-testing-playbook | 004-benchmark | [Criteria TBD] | [Verification TBD] |
-| 004-benchmark | 005-changelog-verify | [Criteria TBD] | [Verification TBD] |
-| 005-changelog-verify | 006-skill-gate | [Criteria TBD] | [Verification TBD] |
+| 001 | 001-references/ | Rename the reference-file source map to kebab-case and close every link and pointer to it. | Planned |
+| 002 | 002-assets/ | Rename asset/template files to kebab-case and close every link and pointer to them. | Planned |
+| 003 | 003-manual-testing-playbook/ | Rename manual-playbook category directories and scenario files, then repair the playbook index and references. | Planned |
+| 004 | 004-benchmark/ | Rename snake_case benchmark profile or artifact names and repair benchmark references without changing report data keys. | Planned |
+| 005 | 005-changelog-verify/ | Verify that the changelog records this rename set and the corresponding version bump; perform no rename. | Planned |
+| 006 | 006-skill-gate/ | Roll up sibling evidence and prove that no in-scope snake_case filesystem name remains in sk-git outside the exemption set. | Planned |
 <!-- /ANCHOR:phase-map -->
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+None blocking. Each child resolves its exact source-to-target map against the pinned execution baseline before changing files.
+<!-- /ANCHOR:questions -->

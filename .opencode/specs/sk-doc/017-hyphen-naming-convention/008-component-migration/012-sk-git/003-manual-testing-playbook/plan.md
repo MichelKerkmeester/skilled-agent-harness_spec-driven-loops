@@ -1,170 +1,117 @@
 ---
-title: "Implementation Plan: Phase 3: manual-testing-playbook [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: sk-git manual testing playbook (017 phase 008/012/003)"
+description: "Implementation plan for the sk-git manual-playbook tree rename. The executor will move the root index, seven category directories, and 41 scenarios through one semantic map, then prove link and scenario-discovery parity."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-git manual playbook implementation plan"
+  - "017 manual scenario rename plan"
+  - "playbook path closure plan"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-manual-testing-playbook"
-    last_updated_at: "2026-07-14T15:18:28Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored the manual-playbook execution plan and discovery-parity evidence path"
+    next_safe_action: "Execute the 49-entry playbook map against the pinned baseline"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-manual-testing-playbook"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-git/manual-testing-playbook/"
+      - ".opencode/skills/sk-git/SKILL.md"
+      - ".opencode/skills/sk-git/README.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+# Implementation Plan: sk-git manual testing playbook
+
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 3: manual-testing-playbook
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
-
----
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Surface** | sk-git manual-testing-playbook root, categories, and scenarios |
+| **Change class** | Directory/file rename plus path-pointer rewrite |
+| **Execution** | One dependency-closed, path-scoped batch on the pinned migration worktree |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The executor will apply a 49-entry map: one root index, seven category directories, and 41 scenario files. It will update the root index and all consumers in the same batch, then compare the scenario ID set, category membership, metadata, links, and content so the filesystem rename cannot reduce discoverability.
 <!-- /ANCHOR:summary -->
-
----
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [ ] BASE SHA and the 49-entry playbook-map hash are recorded.
+- [ ] The category and scenario inventory contains the root index, seven category directories, and 41 scenario files.
+- [ ] Every scenario has a stable GIT ID and a recorded source-to-target path.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All applicable directory/file entries are renamed once or recorded as already compliant.
+- [ ] The root index and every in-tree pointer resolve through kebab-case paths.
+- [ ] The GIT-001 through GIT-041 set and category membership are unchanged.
 <!-- /ANCHOR:quality-gates -->
-
----
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+- **Root index closure**: treats manual_testing_playbook.md as a path-bearing index, not a free-form content rename.
+- **Category closure**: renames each category directory with all nested scenarios as one dependency-closed unit.
+- **Scenario map**: maps each underscore scenario basename to one hyphenated basename while preserving its GIT ID and contract.
+- **Discovery parity**: compares the pre- and post-change scenario ID set, category counts, link targets, and package-artifact entries.
+- **Exemption filter**: excludes code identifiers, keys, fields, Python/tool-mandated names, and other 017 exclusions.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- Pin BASE and the 49-entry map hash.
+- Inventory root index, seven category directories, 41 scenarios, all links, all scenario IDs, and metadata.
+- Abort on collisions, duplicate targets, missing scenario IDs, or an unknown path.
 
-### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+### Phase 2: Implementation
+- Rename the root index and category directories through the semantic map.
+- Rename all nested scenario files in the same category-closed batch.
+- Rewrite the root index's 41-row table, category links, package-artifact list, SKILL.md/README.md pointers, and in-tree path references.
+- Preserve scenario IDs, frontmatter, commands, keys, content, modes, and symlinks; record no-op dispositions for pre-existing targets.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- Resolve every playbook link and assert the 41 scenario IDs are present exactly once.
+- Compare category membership and content/metadata parity.
+- Inspect git rename status and the path-scoped diff; record all counts and exit codes in the SOL report.
 <!-- /ANCHOR:phases -->
-
----
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-| Test Type | Scope | Tools |
-|-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Requirement | Verification |
+|-------------|--------------|
+| REQ-001 | Compare the candidate inventory with the 49-entry map and map hash; every entry has one disposition. |
+| REQ-002 | Run the rename-map checker over the root index, scenarios, SKILL.md, README.md, and package-artifact pointers; require zero broken links and zero source paths. |
+| REQ-003 | Extract GIT-001 through GIT-041 before and after; compare the set, count, category, and index multiplicity. |
+| REQ-004 | Compare scenario bytes/fields, frontmatter, commands, keys, modes, and symlinks outside approved path values. |
+| REQ-005 | Run the exemption-aware naming check and inspect the diff for sibling or exempt surface changes. |
 <!-- /ANCHOR:testing -->
-
----
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 017 frozen map and BASE | Internal | Required | No safe path classification or parity baseline. |
+| Phase 005 reference checker | Internal | Required | Link closure cannot be evidenced consistently. |
+| sk-git manual playbook validator | Internal | Required | Scenario structure and ID parity lack the canonical check. |
+| Phase 002 asset targets | Sibling | Sequenced | Cross-links from the worktree checklist must point at the asset phase's target state. |
 <!-- /ANCHOR:dependencies -->
-
----
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A missing scenario, duplicate GIT ID, broken index link, category drift, content-parity failure, or out-of-scope path appears.
+- **Procedure**: Stop before commit; restore the manual-playbook-only batch from the pinned worktree, or revert the phase commit. Recreate the 49-entry map and discovery comparison before retrying.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

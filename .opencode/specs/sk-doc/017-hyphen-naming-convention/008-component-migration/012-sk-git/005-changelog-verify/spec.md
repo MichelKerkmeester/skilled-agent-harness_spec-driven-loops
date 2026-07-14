@@ -1,182 +1,117 @@
 ---
-title: "Feature Specification: Phase 5: changelog-verify [template:level_1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: sk-git changelog verification (017 phase 008/012/005)"
+description: "The sk-git component needs changelog evidence that names the completed reference, asset, manual-playbook, and benchmark rename sets and records the version bump. This read-only phase verifies that release evidence matches the actual migration without performing a rename."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "sk-git changelog verification"
+  - "017 sk-git version bump"
+  - "migration changelog evidence"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-changelog-verify"
-    last_updated_at: "2026-07-14T15:18:30Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
+    last_updated_at: "2026-07-14T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Authored changelog-verify phase docs"
+    next_safe_action: "Verify the migration changelog entry after sibling phases land"
     blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-changelog-verify"
-      parent_session_id: null
+    key_files:
+      - ".opencode/skills/sk-git/SKILL.md"
+      - ".opencode/skills/sk-git/README.md"
+      - ".opencode/skills/sk-git/changelog/"
+      - "../001-references/checklist.md"
+      - "../002-assets/checklist.md"
+      - "../003-manual-testing-playbook/checklist.md"
+      - "../004-benchmark/checklist.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 5: changelog-verify
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+# Feature Specification: sk-git changelog verification
 
----
+> Phase adjacency under the sk-git component parent: predecessor 004-benchmark; successor 006-skill-gate. This is a read-only evidence phase; it performs no filesystem rename.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-14 |
-| **Branch** | `scaffold/005-changelog-verify` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 6 |
-| **Predecessor** | 004-benchmark |
-| **Successor** | 006-skill-gate |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Owner skill** | sk-git |
+| **Origin** | Phase 005 of the sk-git component migration under the 017 kebab-case filesystem-naming program |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 5** of the sk git (017 parent) specification.
-
-**Scope Boundary**: [To be defined during planning]
-
-**Dependencies**:
-- [To be defined during planning]
-
-**Deliverables**:
-- [To be defined during planning]
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The current sk-git version is 1.3.1.0 and the changelog inventory does not yet provide a verified release entry for the 017 component rename. A release note that mentions only a generic cleanup, the wrong source paths, or the wrong version would make the migration unauditable even if the filesystem state is correct.
 
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+The purpose is to verify a new changelog entry for version 1.3.2.0 against the actual sibling-phase evidence. The phase checks that the entry names the reference, asset, manual-testing-playbook, and benchmark work, states the exemption boundary, and matches the version exposed by SKILL.md and README.md; it performs no rename or content migration.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Verify that .opencode/skills/sk-git/changelog/v1.3.2.0.md exists and has the correct version heading and migration summary.
+- Compare the changelog entry with the 001-references, 002-assets, 003-manual-testing-playbook, and 004-benchmark SOL evidence and final maps.
+- Verify that SKILL.md and README.md expose version 1.3.2.0 consistently with the changelog.
+- Verify that the entry identifies the kebab-case rule and the exemptions for Python scripts, Python package directories, and tool-mandated names.
+- Confirm that the changelog does not claim work outside the sk-git component or claim that this read-only phase performed renames.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Renaming or editing any sk-git file, directory, script, report, or changelog content.
+- Creating a release, tag, commit, or version bump.
+- Rewriting code identifiers, keys, fields, benchmark data, or frozen history.
+- Validating sibling phases beyond consuming their evidence contracts; each sibling owns its own migration acceptance.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| .opencode/skills/sk-git/changelog/v1.3.2.0.md | Verify only | Confirm the migration entry, version heading, path map summary, and exemption statement. |
+| .opencode/skills/sk-git/SKILL.md | Verify only | Confirm the exposed version matches the changelog. |
+| .opencode/skills/sk-git/README.md | Verify only | Confirm the exposed version matches the changelog. |
+| 001-references/checklist.md through 004-benchmark/checklist.md | Read only | Consume sibling evidence and compare the changelog claims with verified scope. |
 <!-- /ANCHOR:scope -->
-
----
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | A changelog entry exists for the migration version. | changelog/v1.3.2.0.md exists, has a v1.3.2.0 heading, and is associated with the sk-git version 1.3.2.0. |
+| REQ-002 | The entry matches the actual sibling migration set. | It names the references, assets, manual-testing-playbook, and benchmark surfaces and agrees with the four sibling evidence reports and maps. |
+| REQ-003 | The entry records the naming rule and exemption boundary. | It states kebab-case as the in-scope filesystem form and does not claim Python scripts, Python package directories, or tool-mandated names were renamed. |
+| REQ-004 | Version consumers are consistent. | SKILL.md, README.md, and the changelog expose the same 1.3.2.0 version. |
+| REQ-005 | This phase remains read-only. | The candidate report shows no file mutation, rename, content rewrite, or release action from phase 005. |
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The v1.3.2.0 changelog entry exists and accurately describes the four sibling migration phases.
+- **SC-002**: SKILL.md, README.md, and the changelog agree on version 1.3.2.0.
+- **SC-003**: The changelog evidence contains no scope, exemption, or execution claim contradicted by sibling checklists.
 <!-- /ANCHOR:success-criteria -->
-
----
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+The phase depends on completed sibling evidence and the current sk-git version contract. Its main risks are a version mismatch, a changelog summary that omits the benchmark/profile map, or a claim that conflicts with the exemption boundary. The checklist requires exact version, surface, map, and no-mutation evidence.
 <!-- /ANCHOR:risks -->
-
----
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None blocking. The expected version is 1.3.2.0 because the current live version is 1.3.1.0 and this migration is a patch-level component release; any different version would be a release-policy contradiction requiring a decision before acceptance.
 <!-- /ANCHOR:questions -->
-
----
-
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->

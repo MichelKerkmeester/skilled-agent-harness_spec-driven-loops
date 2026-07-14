@@ -2,25 +2,218 @@
   "schema_version": 1,
   "packet_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
   "spec_folder": "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
-  "parent_id": null,
+  "parent_id": "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "sk-git references kebab-case",
+      "017 sk-git reference rename",
+      "reference pointer closure",
+      "sk-git references implementation plan",
+      "017 sk-git reference phase plan",
+      "reference rename pointer closure plan",
+      "sk-git references tasks",
+      "017 reference rename tasks",
+      "reference pointer closure tasks",
+      "sk-git references checklist",
+      "017 reference rename verification",
+      "reference pointer closure acceptance"
+    ],
+    "key_topics": [
+      "sk-git",
+      "references",
+      "kebab-case",
+      "reference",
+      "rename",
+      "pointer",
+      "closure",
+      "implementation",
+      "plan",
+      "phase",
+      "tasks",
+      "checklist"
+    ],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: references",
+    "key_files": [
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/sk-git/assets/worktree-checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/assets/worktree-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "history",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-git reference surface has a historical underscore-to-hyphen rename map and stale path pointers. This phase closes the reference-file rename and link graph while preserving the program's filesystem-only scope and exemption boundary.",
     "created_at": "2026-07-14T15:18:26Z",
-    "last_save_at": "2026-07-14T15:18:26Z",
+    "last_save_at": "2026-07-14T18:17:05.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:46cd39973cad312be7d307af74bc4988a2bc81b26f55086eb09d23799d49a012",
+    "source_doc_hashes": {
+      "spec.md": "57a5e9ea8b3b9feb11339dae2fbd3fddcfb48b9ba5493d49ea4d0306927b1b1d",
+      "plan.md": "4f8cfb10cc642177ebf4c3f51f5dc8e6cdd16bc823563ea53caf86a8969484af",
+      "tasks.md": "008755e0bd299351168fb56c252c595db19daef14162637056ff29eb1322c8d4",
+      "checklist.md": "88c37f0d62577c3aa9203e559c6bcec9afce684358ea5c23505cf66ddc2cbd18"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

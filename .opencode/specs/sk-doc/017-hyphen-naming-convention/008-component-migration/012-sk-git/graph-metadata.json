@@ -18,32 +18,37 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core"
+      "sk-git kebab-case migration",
+      "sk-git component naming phases",
+      "017 sk-git phase map"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "broken",
-      "missing",
-      "inefficient",
-      "sentences",
-      "describing",
-      "specific"
+      "sk-git",
+      "kebab-case",
+      "migration",
+      "component",
+      "naming",
+      "phases",
+      "phase",
+      "map",
+      "surface",
+      "needs",
+      "scoped",
+      "plan"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/sk-git/SKILL.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -57,47 +62,47 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
+        "name": "1. METADATA",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
+        "name": "3. SCOPE",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
+        "name": "Out of Scope",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The sk-git surface needs a scoped kebab-case migration plan that covers its references, assets, manual playbook, benchmark artifacts, changelog evidence, and final naming gate without expanding into code or other skills.",
     "created_at": "2026-07-14T15:17:03Z",
-    "last_save_at": "2026-07-14T15:24:36.526Z",
+    "last_save_at": "2026-07-14T18:17:05.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0727d26c45752a9f25d0ae5026dc45c8c8e0f66ac92773c26c2f1c24c6273c52",
+    "source_fingerprint": "sha256:d2b82b49d9591f29ff751ff1bbbd15948473d6bd63506ca0bd6bef6a8d16d652",
     "source_doc_hashes": {
-      "spec.md": "ff5adc46c6a283471ab32eaa12604a765dd84574a06122f870d347c6a20b4a47"
+      "spec.md": "dca25bbdaef04bd849ba55b3b60bea9b0466e972517dd21a5b8bb9a88028410b"
     },
     "last_active_child_id": null,
     "last_active_at": null
