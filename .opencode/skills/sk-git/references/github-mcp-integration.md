@@ -35,7 +35,7 @@ GitHub MCP Server provides full CRUD access to GitHub remote operations from wit
 | Create/list PRs                  | `gh` CLI OR GitHub MCP | Both work; gh CLI simpler for basic ops |
 | PR reviews, comments             | GitHub MCP             | Richer API for review workflows         |
 | Issue management                 | GitHub MCP             | Full CRUD on issues                     |
-| CI/CD status, logs               | GitHub MCP             | Access workflow runs and job logs       |
+| CI/CD status, logs               | `gh` CLI               | GitHub MCP's tool set does not cover workflow runs or job logs |
 | Search repos/code remotely       | GitHub MCP             | Cross-repo searches                     |
 
 **Best Practice**: Prefer local `git` commands for local operations (faster, offline-capable). Use GitHub MCP for remote state queries and collaboration features.

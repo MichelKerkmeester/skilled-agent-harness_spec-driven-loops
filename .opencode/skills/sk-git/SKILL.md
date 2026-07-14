@@ -474,6 +474,8 @@ Before committing, verify in order:
 6. **Create PRs without description** - Always include context, changes, and testing notes
 7. **Merge without CI passing** - Wait for all checks to complete
 8. **Rebase public/shared branches** - Only rebase local, unpushed commits
+9. **Bypass a git hook with `--no-verify`** - Never skip commit-msg, pre-commit, or pre-push validation with `--no-verify`; if a hook is genuinely wrong about a specific case, fix the hook or use its own documented override (e.g. `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1`), not a blanket hook bypass
+10. **Amend a commit that has already been pushed or merged** - Rewriting published history breaks other clones' ancestry and any autosynced live branch; commit a new change (or `git revert`) instead once a commit has left the local repo
 
 ### ⚠️ ESCALATE IF
 

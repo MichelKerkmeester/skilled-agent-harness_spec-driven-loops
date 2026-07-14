@@ -42,7 +42,7 @@ Systematically complete development work by verifying tests, presenting integrat
 5. Clean up worktree if appropriate
 
 **Key Principles**:
-- **Test gate**: Never proceed with failing tests
+- **Test gate**: Tests must pass before any integration option is presented; a failing suite blocks until the user explicitly overrides
 - **Structured choices**: Always present same 4 options
 - **Safe execution**: Verify before destructive operations
 - **Clean state**: Remove worktrees and temp branches appropriately
@@ -86,7 +86,7 @@ Tests failing (<N> failures). Must fix before completing:
 Cannot proceed with merge/PR until tests pass.
 ```
 
-**Do not proceed to Step 2 with failing tests.**
+**Do not proceed to Step 2 with failing tests unless the user explicitly overrides.**
 
 **Validation**: `tests_verified`
 

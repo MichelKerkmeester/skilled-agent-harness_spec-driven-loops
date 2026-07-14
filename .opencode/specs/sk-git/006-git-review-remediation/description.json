@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/006-git-review-remediation",
+  "description": "Two open review items remain after packet 005:",
+  "keywords": [
+    "two",
+    "open",
+    "review",
+    "items",
+    "remain",
+    "packet"
+  ],
+  "lastUpdated": "2026-07-14T18:27:14.555Z",
+  "specId": "006",
+  "folderSlug": "git-review-remediation",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

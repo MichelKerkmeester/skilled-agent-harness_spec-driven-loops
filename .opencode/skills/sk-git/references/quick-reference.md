@@ -449,13 +449,13 @@ call_tool_chain(`github.github_create_issue({
 call_tool_chain(`github.github_search_issues({ q: 'repo:o/r is:issue is:open label:bug' })`)
 ```
 
-**CI/CD**:
-```javascript
-// Check workflow status
-call_tool_chain(`github.github_list_workflow_runs({ owner: 'o', repo: 'r', branch: 'main' })`)
+**CI/CD** (routes to the `gh` CLI — GitHub MCP's tool set does not cover workflow runs or job logs):
+```bash
+# Check workflow status
+gh run list --branch main
 
-// Get job logs
-call_tool_chain(`github.github_get_job_logs({ owner: 'o', repo: 'r', job_id: 123 })`)
+# Get job logs
+gh run view <run-id> --log
 ```
 
 ### Decision Guide
@@ -466,7 +466,7 @@ call_tool_chain(`github.github_get_job_logs({ owner: 'o', repo: 'r', job_id: 123
 | Create/manage PRs | `gh` CLI or GitHub MCP |
 | PR reviews | GitHub MCP |
 | Issue tracking | GitHub MCP |
-| CI/CD monitoring | GitHub MCP |
+| CI/CD monitoring | `gh` CLI |
 
 ---
 

@@ -22,7 +22,7 @@ expect_eq() { # expect_eq <desc> <expected> <actual>
 # ── isolated fixture repo ──────────────────────────────────────
 TMP="$(mktemp -d)"
 trap 'git -C "$TMP" worktree prune 2>/dev/null; rm -rf "$TMP"' EXIT
-cd "$TMP" || exit 1
+cd "${TMP:?mktemp -d failed}"
 git init -q
 # Hermetic fixture: override any global core.hooksPath so the shared commit-msg /
 # pre-commit gates never run against throwaway test commits.
@@ -82,6 +82,15 @@ git update-ref refs/heads/sk-git/0007-a HEAD
 git update-ref refs/heads/skilled/0003-b HEAD
 expect_eq "scan-max sees refs" 7  "$(scan_max_number)"
 expect_eq "next after 7"      0008 "$(next_number)"
+
+# ── next_number boundary: preview must never promise an unallocatable
+#    number (a stubbed scan_max_number keeps this independent of real refs) ──
+NEXT_9998="$(bash -c 'source "'"$NAMING"'"; scan_max_number() { echo 9998; }; next_number')"
+expect_eq "next_number at 9998 previews 9999" 9999 "$NEXT_9998"
+NEXT_9999_OUT="$(bash -c 'source "'"$NAMING"'"; scan_max_number() { echo 9999; }; next_number' 2>/dev/null)"
+NEXT_9999_RC=$?
+expect_eq "next_number at 9999 output empty" "" "$NEXT_9999_OUT"
+expect_eq "next_number at 9999 rc" 1 "$NEXT_9999_RC"
 
 # ── locked allocation is monotonic + persistent ────────────────
 expect_eq "allocate 1" 0008 "$(allocate_number)"
@@ -152,6 +161,16 @@ expect_rc "created pair valid"    0 is_valid_pair "$BR" "$DIR"
 DET="$(create_detached_worktree probe HEAD 2>/dev/null)"
 case "$DET" in *-detached-probe) expect_eq "detached dir shape" ok ok ;; *) expect_eq "detached dir shape" ok "bad:$DET" ;; esac
 expect_rc "detached has no branch" 128 git -C "$TMP/$DET" symbolic-ref HEAD
+
+# ── regression: an empty fixture dir must abort before any git init ────
+# `cd ""` returns 0 in Bash, so a bare `cd "$TMP" || exit 1` would silently
+# fall through into the real clone if mktemp ever handed back an empty
+# string. The harness itself now guards with ${TMP:?}; this proves the
+# guard construct fires on empty input.
+_regression_empty_tmp_guard() {
+  ( TMP=""; cd "${TMP:?}" ) 2>/dev/null
+}
+expect_rc "empty TMP guard aborts before cd" 1 _regression_empty_tmp_guard
 
 # ── report ─────────────────────────────────────────────────────
 echo "worktree-naming tests: PASS=$PASS FAIL=$FAIL"

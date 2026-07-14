@@ -183,8 +183,16 @@ scan_max_number() {
   echo "$max"
 }
 
-# Non-binding preview of the next number (no lock, no write).
-next_number() { printf '%04d\n' "$(( $(scan_max_number) + 1 ))"; }
+# Non-binding preview of the next number (no lock, no write). Mirrors the
+# allocator's own >9999 refusal so a preview never promises a number the
+# locked path would then reject: at exhaustion this prints nothing and
+# returns non-zero instead of previewing an unallocatable value.
+next_number() {
+  local max
+  max="$(scan_max_number)" || return 1
+  [ "$max" -ge 9999 ] && return 1
+  printf '%04d\n' "$((max + 1))"
+}
 
 _wn_acquire_lock() {
   local ld pidf waited owner steal st stamp

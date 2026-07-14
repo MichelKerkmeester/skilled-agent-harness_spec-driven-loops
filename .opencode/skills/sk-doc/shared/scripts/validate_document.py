@@ -73,6 +73,11 @@ TEMPLATE_PATTERNS = [
     'system-spec-kit/templates/',  # Spec folder templates are minimal by design
 ]
 
+# Specialized leaf-doc root dir names — hyphen and underscore forms both accepted
+# since consumers have renamed these directories to hyphen-case over time.
+PLAYBOOK_DIR_NAMES = ('manual_testing_playbook', 'manual-testing-playbook')
+CATALOG_DIR_NAMES = ('feature_catalog', 'feature-catalog')
+
 
 def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
     """Check if file path should be excluded from validation."""
@@ -120,21 +125,21 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
     """Detect document type from file path or content."""
     path_lower = str(file_path).lower()
 
-    if '/manual_testing_playbook/' in path_lower or '\\manual_testing_playbook\\' in path_lower:
+    if any(f'/{name}/' in path_lower or f'\\{name}\\' in path_lower for name in PLAYBOOK_DIR_NAMES):
         # A per-feature playbook leaf sits one level below the category root
         # (manual_testing_playbook/<category>/<feature>.md). Classify by that structural
         # position rather than an ordinal folder-name prefix, so category folders can be
         # named by meaning alone. The root index file (whose parent IS the
         # manual_testing_playbook dir) is intentionally excluded.
-        if Path(path_lower).parent.parent.name == 'manual_testing_playbook':
+        if Path(path_lower).parent.parent.name in PLAYBOOK_DIR_NAMES:
             return 'playbook_feature'
     # Per-feature catalog leaves sit one level below the catalog root
     # (feature_catalog/<category>/<feature>.md). These carry the Validation And Tests
     # table whose Type taxonomy and placeholder rows the generic readme path misses.
     # Classify by structural position rather than an ordinal folder-name prefix; the
     # root index file (whose parent IS the feature_catalog dir) stays excluded.
-    if '/feature_catalog/' in path_lower or '\\feature_catalog\\' in path_lower:
-        if Path(path_lower).parent.parent.name == 'feature_catalog':
+    if any(f'/{name}/' in path_lower or f'\\{name}\\' in path_lower for name in CATALOG_DIR_NAMES):
+        if Path(path_lower).parent.parent.name in CATALOG_DIR_NAMES:
             return 'feature_catalog'
     if '/command/' in path_lower or '\\command\\' in path_lower or '/commands/' in path_lower or '\\commands\\' in path_lower:
         return 'command'
@@ -823,7 +828,7 @@ def main() -> None:
         epilog=__doc__
     )
     parser.add_argument('file', help='Markdown file to validate')
-    parser.add_argument('--type', choices=['readme', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'spec', 'changelog'],
+    parser.add_argument('--type', choices=['readme', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'spec', 'changelog', 'playbook', 'playbook_feature', 'feature_catalog'],
                         help='Document type (auto-detected if not specified)')
     parser.add_argument('--json', action='store_true', help='Output results as JSON')
     parser.add_argument('--blocking-only', action='store_true', help='Show only blocking errors')

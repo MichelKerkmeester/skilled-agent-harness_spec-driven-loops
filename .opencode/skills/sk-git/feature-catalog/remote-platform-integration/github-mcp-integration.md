@@ -25,7 +25,7 @@ Its role is deliberately narrow: local operations (commit, diff, status, log, me
 
 ### Tool Selection
 
-PR creation and listing work equally well through `gh` CLI or GitHub MCP; `gh` is simpler for basic operations. PR reviews and comments, issue management, and CI/CD status/logs favor GitHub MCP for its fuller API surface. Cross-repository code and repository search likewise route to GitHub MCP.
+PR creation and listing work equally well through `gh` CLI or GitHub MCP; `gh` is simpler for basic operations. PR reviews and comments and issue management favor GitHub MCP for its fuller API surface. CI/CD workflow status and logs route to the `gh` CLI instead, since GitHub MCP's tool set does not cover them. Cross-repository code and repository search route to GitHub MCP.
 
 ### Branch Creation Boundary
 

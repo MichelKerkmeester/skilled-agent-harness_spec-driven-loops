@@ -198,7 +198,7 @@ Full CRUD access to GitHub's remote PR, issue, and repository operations via Cod
 
 #### Current Reality
 
-Local `git` stays the tool for commit/diff/status/log/merge/worktree operations; GitHub MCP is preferred for PR reviews and comments, issue management, and CI/CD status/logs where its API is richer than `gh` alone. Branch creation is explicitly routed back to local `git worktree add -b ...` rather than GitHub MCP's `github_create_branch`.
+Local `git` stays the tool for commit/diff/status/log/merge/worktree operations; GitHub MCP is preferred for PR reviews and comments and issue management, where its API is richer than `gh` alone. CI/CD workflow status and logs route to the `gh` CLI instead, since GitHub MCP's tool set does not cover them. Branch creation is explicitly routed back to local `git worktree add -b ...` rather than GitHub MCP's `github_create_branch`.
 
 #### Source Files
 
