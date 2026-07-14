@@ -118,7 +118,7 @@ INTENT_SIGNALS = {
     "GRAPH": {"weight": 4, "keywords": ["skill graph", "graph", "drift", "query", "enhances", "propagate"]},
     "RUNTIME": {"weight": 4, "keywords": ["mcp", "tool id", "bridge", "standalone", "freshness", "daemon", "lease"]},
     "CONFIG": {"weight": 3, "keywords": ["database", "sqlite", "db path", "skill-graph.sqlite"]},
-    "HOOKS": {"weight": 4, "keywords": ["hook", "prompt submit", "opencode", "claude", "opencode"]},
+    "HOOKS": {"weight": 4, "keywords": ["hook", "prompt submit", "opencode", "claude", "codex"]},
     "DECISIONS": {"weight": 3, "keywords": ["deferred", "decision", "tier d", "migration rationale"]},
     "FEATURES": {"weight": 3, "keywords": ["feature catalog", "capability", "current feature"]},
     "PLAYBOOK": {"weight": 3, "keywords": ["manual test", "playbook", "scenario", "evidence"]},

@@ -107,4 +107,4 @@ The example is not a universal template. It is a compact model for validator-saf
 - [notation_and_validator.md](notation_and_validator.md) - validator mechanics, box-width notation, and common mistakes
 - `../SKILL.md` - authoritative create-flowchart workflow contract
 - `../scripts/validate_flowchart.sh` - packet-local validator and actual threshold source
-- `../assets/flowcharts/decision_tree_flow.md` - conditional branching pattern asset
+- `../assets/decision_tree_flow.md` - conditional branching pattern asset

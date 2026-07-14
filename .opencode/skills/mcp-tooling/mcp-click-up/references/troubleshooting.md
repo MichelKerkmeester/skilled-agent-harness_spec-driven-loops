@@ -21,7 +21,7 @@ Diagnostic guide for cupt CLI and official ClickUp MCP failures, covering instal
 
 ## 1. OVERVIEW
 
-Diagnostic reference for cupt CLI and official ClickUp MCP errors. Start with the Quick Diagnostics sequence (§3) before diving into specific issues. Most failures fall into four categories: installation (cupt not found), authentication (401/no credentials), status resolution (wrong status on completion), and MCP connection (manual misconfigured, OAuth not completed, or wrong tool name).
+Diagnostic reference for cupt CLI and official ClickUp MCP errors. Start with the Quick Diagnostics sequence (§3) before diving into specific issues. Most failures fall into four categories: installation (cupt not found), authentication (401/no credentials), status resolution (wrong status on completion), and MCP connection (manual misconfigured, credentials unavailable, stdio launch failure, or wrong tool name).
 
 ---
 
@@ -29,7 +29,7 @@ Diagnostic reference for cupt CLI and official ClickUp MCP errors. Start with th
 
 - cupt installed: `cupt --version`
 - Network access to ClickUp API
-- For MCP issues: the `clickup` manual registered in `.utcp_config.json`, pointed at `mcp-remote https://mcp.clickup.com/mcp`. No env vars, auth is OAuth in the browser
+- For MCP issues: the `clickup_official` manual registered in `.utcp_config.json`, launching `npx -y @clickup/mcp-server` over stdio, with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` available to Code Mode
 
 ---
 
@@ -182,8 +182,8 @@ cupt done TASK_ID --dry-run
 ```
 
 **Fix if already completed:**
-- cupt cannot reopen tasks (use ClickUp UI or MCP `clickup_update_task`)
-- For MCP: `clickup.clickup_update_task` with `{ "status": "in progress" }` to reopen
+- cupt cannot reopen tasks (use ClickUp UI or MCP `clickup_official.clickup_official_update_task`)
+- For MCP: `clickup_official.clickup_official_update_task` with `{ "status": "in progress" }` to reopen
 
 ---
 
@@ -201,7 +201,7 @@ cupt statuses TASK_ID   # List available statuses
 **Fix:**
 - Check the task's list in ClickUp UI → Settings → Statuses
 - Ensure at least one status has "closed" type enabled
-- Or use MCP: `clickup.clickup_update_task` with explicit status name
+- Or use MCP: `clickup_official.clickup_official_update_task` with explicit status name
 
 ---
 
@@ -228,7 +228,7 @@ cupt statuses TASK_ID   # List available statuses
    ```typescript
    // MCP supports server-side team filtering:
    await call_tool_chain([{
-     tool: "clickup.clickup_search_tasks",
+     tool: "clickup_official.clickup_official_search_tasks",
      input: { assignees: ["USER_ID"], team_id: "WORKSPACE_ID" }
    }]);
    ```
@@ -237,29 +237,29 @@ cupt statuses TASK_ID   # List available statuses
 
 ## 8. MCP CONNECTION ISSUES
 
-### MCP connection fails or `clickup` tools not found
+### MCP connection fails or `clickup_official` tools not found
 
 **Diagnosis:**
 ```bash
-# Check .utcp_config.json (Code Mode's config, not opencode.json) has the clickup manual:
-cat .utcp_config.json | grep -A10 '"clickup"'
-# Should show: command "npx", args ["mcp-remote", "https://mcp.clickup.com/mcp"]
+# Check .utcp_config.json (Code Mode's config, not opencode.json) has the clickup_official manual:
+cat .utcp_config.json | grep -A10 '"clickup_official"'
+# Should show: command "npx", args ["-y", "@clickup/mcp-server"], and env vars CLICKUP_API_KEY/CLICKUP_TEAM_ID
 ```
 
 **Fix:**
 1. Run `bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh --mcp-only` to print the manual snippet
-2. Add it to `.utcp_config.json` under `manual_call_templates`, no env vars needed
-3. Reconnect Code Mode and authorize in the browser when it opens (OAuth, no token to paste)
+2. Add it to `.utcp_config.json` under `manual_call_templates`, and set `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` in the environment available to Code Mode
+3. Reconnect Code Mode and verify that the stdio server starts; there is no browser authorization step
 
 ---
 
 ### MCP tool call returns 403 Forbidden
 
-**Cause:** The account that authorized in the browser has insufficient permissions for the operation
+**Cause:** The account associated with the configured API key has insufficient permissions for the operation
 
 **Diagnosis:** Check the specific tool in references/mcp_tools.md, and confirm it actually exists on the real server with `tool_info()` before assuming it's a permissions issue
 
-**Fix:** Re-authorize with an account that has appropriate workspace permissions, or use cupt for equivalent daily ops
+**Fix:** Configure an API key whose account has appropriate workspace permissions, or use cupt for equivalent daily ops
 
 ---
 
@@ -267,7 +267,7 @@ cat .utcp_config.json | grep -A10 '"clickup"'
 
 **Cause:** Wrong tool name, or the tool doesn't exist on the real official server (see the verification note at the top of `references/mcp_tools.md`)
 
-**Fix:** Run `tool_info("clickup.clickup_clickup_{tool_name}")` first to confirm the exact name, the callable form doubles the `clickup_` prefix because the underlying tool names already start with it (e.g. `clickup.clickup_clickup_create_task`, NOT `clickup.clickup_create_task`)
+**Fix:** Run `tool_info("clickup_official.clickup_official_clickup_{tool_name}")` first to confirm the exact name, the callable form doubles the `clickup_` prefix because the underlying tool names already start with it (e.g. `clickup_official.clickup_official_clickup_create_task`, NOT `clickup_official.clickup_official_create_task`)
 
 ---
 

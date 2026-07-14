@@ -63,7 +63,7 @@ Numeric scores are advisory context, not the gate. A reviewer may add an optiona
 
 Apply this skill as the baseline first, then pair it with `sk-code` surface evidence when available:
 
-- Detected code surface -> `sk-code:<surface>`
+- Detected code surface -> `sk-code:code-webflow` or `sk-code:code-opencode`; unsupported or unclear surfaces -> `sk-code:unknown`
 - Unclear surfaces -> baseline-only plus explicit uncertainty
 
 Precedence rules:

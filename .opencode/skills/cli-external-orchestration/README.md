@@ -1,9 +1,12 @@
 ---
 title: cli-external-orchestration
-description: Parent hub for external CLI dispatch, routing to cli-opencode (OpenCode CLI orchestration) and cli-claude-code (Claude Code CLI orchestration) through mode-registry.json.
+description: Parent hub for external CLI dispatch, routing to cli-opencode (OpenCode CLI orchestration), cli-claude-code (Claude Code CLI orchestration), and cli-codex (Codex CLI orchestration) through mode-registry.json.
 trigger_phrases:
   - "opencode cli"
   - "claude cli"
+  - "codex cli"
+  - "codex exec"
+  - "delegate to codex"
   - "cli dispatch"
   - "cross-ai delegation"
 version: 1.0.0.0
@@ -11,7 +14,7 @@ version: 1.0.0.0
 
 # cli-external-orchestration
 
-> One advisor identity, two workflow modes: dispatch the OpenCode CLI for full-runtime and parallel sessions, or the Claude Code CLI for Anthropic-backed reasoning and structured cross-AI handoff.
+> One advisor identity, three workflow modes: dispatch the OpenCode CLI for full-runtime and parallel sessions, the Claude Code CLI for Anthropic-backed reasoning and structured cross-AI handoff, or the Codex CLI for OpenAI-backed coding, review, and web research.
 
 ---
 
@@ -19,23 +22,24 @@ version: 1.0.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Cross-AI CLI dispatch. Full-runtime OpenCode orchestration (parallel and detached sessions, small-model dispatch) or Claude Code orchestration (extended thinking, surgical edits, structured output, agent delegation) |
-| **Invoke with** | Keyword routing through Gate 2. Neither mode has a bound slash command (`command: null` on both, per ADR-003) |
-| **Routes to** | `cli-opencode/` or `cli-claude-code/` (both mutating workflow packets, `mutatesWorkspace: true`) via `mode-registry.json` |
-| **Produces** | A dispatched OpenCode or Claude Code CLI session whose writes land in this repo's workspace. Each mode's self-invocation guard blocks a runtime from dispatching itself |
+| **Use it for** | Cross-AI CLI dispatch. Full-runtime OpenCode orchestration (parallel and detached sessions, small-model dispatch), Claude Code orchestration (extended thinking, surgical edits, structured output, agent delegation), or Codex orchestration (OpenAI-backed coding, review, web research, and cross-model validation) |
+| **Invoke with** | Keyword routing through Gate 2. None of the three modes has a bound slash command (`command: null`) |
+| **Routes to** | `cli-opencode/`, `cli-claude-code/`, or `cli-codex/` (all mutating workflow packets, `mutatesWorkspace: true`) via `mode-registry.json` |
+| **Produces** | A dispatched OpenCode, Claude Code, or Codex CLI session whose writes land in this repo's workspace. Each mode's self-invocation guard blocks a runtime from dispatching itself |
 
 ---
 
 ## 2. OVERVIEW
 
-`cli-external-orchestration` is a parent hub: it holds no packet-local logic and routes every request to exactly one of two nested workflow packets through `mode-registry.json` and `hub-router.json`.
+`cli-external-orchestration` is a parent hub: it holds no packet-local logic and routes every request to exactly one of three nested workflow packets through `mode-registry.json` and `hub-router.json`.
 
 - **`cli-opencode/`**: OpenCode CLI orchestration. Covers external dispatch, in-OpenCode parallel and detached sessions, the full plugin, skill, MCP and Spec-Kit-Memory runtime, small-model dispatch (DeepSeek, Kimi, MiniMax, MiMo, GLM). Small-model prompt-craft profiles: [`../sk-prompt/prompt-models/README.md`](../sk-prompt/prompt-models/README.md). Dispatch contract: [`cli-opencode/SKILL.md`](cli-opencode/SKILL.md). Setup and orientation: [`cli-opencode/README.md`](cli-opencode/README.md).
 - **`cli-claude-code/`**: Claude Code CLI orchestration. Covers Anthropic-backed extended thinking, surgical code editing, structured JSON-schema output, agent delegation, cross-AI second opinions. Dispatch contract: [`cli-claude-code/SKILL.md`](cli-claude-code/SKILL.md). Setup and orientation: [`cli-claude-code/README.md`](cli-claude-code/README.md).
+- **`cli-codex/`**: Codex CLI orchestration. Covers OpenAI-backed coding, repo analysis, PR review, web research, cross-model validation, and fail-closed availability/self-invocation guards. Dispatch contract: [`cli-codex/SKILL.md`](cli-codex/SKILL.md). Setup and orientation: [`cli-codex/README.md`](cli-codex/README.md).
 
-Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity, tool surface and advisor routing. `routerPolicy.tieBreak` orders `cli-opencode` before `cli-claude-code` when both are explicitly requested (an `orderedBundle` outcome), and `defaultMode` is `cli-opencode`, but genuinely unclear or contradictory dispatch intent still defers to disambiguation instead of defaulting silently.
+Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity, tool surface and advisor routing. `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, and `cli-codex` when multiple are explicitly requested (an `orderedBundle` outcome), and `defaultMode` is `cli-opencode`, but genuinely unclear or contradictory dispatch intent still defers to disambiguation instead of defaulting silently.
 
-Both packets keep their own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual_testing_playbook/` and `changelog/` (`cli-opencode/` additionally keeps `scripts/`). The hub carries the single `graph-metadata.json` advisor identity for both, unioning both former identities' intent signals, trigger phrases, domains and outward edges.
+All three packets keep their own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual_testing_playbook/` and `changelog/` (`cli-opencode/` additionally keeps `scripts/`). The hub carries the single `graph-metadata.json` advisor identity for all three, unioning their intent signals, trigger phrases, domains and outward edges.
 
 ---
 
@@ -51,6 +55,12 @@ Run this task through opencode run with the deepseek provider.
 
 ```text
 Use cli-claude-code to get an Anthropic-backed second opinion.
+```
+
+**Codex CLI dispatch:**
+
+```text
+Use cli-codex for an OpenAI-backed code review and web-research pass.
 ```
 
 ---

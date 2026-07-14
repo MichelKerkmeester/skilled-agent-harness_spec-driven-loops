@@ -7,7 +7,7 @@ trigger_phrases:
   - "task management"
   - "time tracking"
   - "click up"
-version: 1.0.0.6
+version: 1.0.0.7
 ---
 
 # mcp-click-up
@@ -22,7 +22,7 @@ version: 1.0.0.6
 |---|---|
 | **Use it for** | ClickUp task operations (list, complete, note, time, tag), documents, goals and bulk creates from an agent or terminal |
 | **Invoke with** | "clickup", "cupt", "task management", "work queue", "time tracking" or auto-routing on ClickUp keywords |
-| **Works on** | Any ClickUp workspace, cupt uses a Personal API Token or OAuth, the MCP path uses OAuth in the browser, cupt works offline after `cupt prefetch` |
+| **Works on** | Any ClickUp workspace, cupt uses a Personal API Token, the MCP path uses `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID` env vars, cupt works offline after `cupt prefetch` |
 | **Produces** | Task completions with status resolution, time logs, tagged queues and structured documents via two operation-routed paths |
 
 ---
@@ -76,13 +76,13 @@ cupt done TASK_ID --dry-run
 
 **Step 3: MCP path with Code Mode.**
 
-Code Mode servers are configured in `.utcp_config.json`, not `opencode.json` (that file is for native, non-Code-Mode MCP tools). The ClickUp manual is `clickup`, pointed at the official server (`https://mcp.clickup.com/mcp` via the `mcp-remote` bridge, OAuth in the browser on first connect), so run document and goal operations inside `call_tool_chain({ code })`:
+Code Mode servers are configured in `.utcp_config.json`, not `opencode.json` (that file is for native, non-Code-Mode MCP tools). The ClickUp manual is `clickup_official`, launched over stdio (`npx -y @clickup/mcp-server`, authenticated with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` env vars), so run document and goal operations inside `call_tool_chain({ code })`:
 
 ```typescript
 call_tool_chain({
   code: `
-    // Tool naming: clickup.clickup_{tool_name}
-    const result = await clickup.clickup_clickup_create_document({
+    // Tool naming: clickup_official.clickup_official_{tool_name}
+    const result = await clickup_official.clickup_official_create_document({
       name: "Sprint Notes",
       parent: { id: "SPACE_ID", type: "4" },
       visibility: "PRIVATE",
@@ -94,7 +94,7 @@ call_tool_chain({
 // Expected: { success: true, document_id: "...", document_url: "https://app.clickup.com/..." }
 ```
 
-The printed MCP config snippet from `install.sh` has the exact JSON block. Restart your AI client after applying it and authorize in the browser.
+The printed MCP config snippet from `install.sh` has the exact JSON block; it sets the `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` env vars. Restart your AI client after applying it.
 
 ---
 
@@ -117,7 +117,7 @@ cupt covers every daily task operation: list with server-side `--tag` filtering 
 
 ### The Official MCP Path
 
-The official server is ClickUp's own hosted MCP at `https://mcp.clickup.com/mcp`, registered through Code Mode: `.utcp_config.json` defines the `clickup` manual, pointed at that URL via the `mcp-remote` bridge, with no API key, auth is OAuth 2.1 + PKCE in the browser on first connection. It exposes tools across task CRUD, documents, time tracking, chat, reminders and workspace structure. You reach it through Code Mode with `call_tool_chain({ code: "..." })`. `list_tools()` returns names in `clickup.clickup.clickup_{tool_name}` (three-part, dotted) format, but the actual tool names already carry a `clickup_` prefix, so the callable form doubles it: `clickup.clickup_clickup_{tool_name}`, for example `clickup.clickup_clickup_get_task`, `clickup.clickup_clickup_filter_tasks`, `clickup.clickup_clickup_create_document`. Always confirm the exact name with `tool_info()` before calling, do not guess it from the tool's description.
+The official server is ClickUp's `@clickup/mcp-server`, registered through Code Mode: `.utcp_config.json` defines the `clickup_official` manual, launched over stdio via `npx -y @clickup/mcp-server` and authenticated with the `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` env vars. It exposes tools across task CRUD, documents, time tracking, chat, reminders and workspace structure. You reach it through Code Mode with `call_tool_chain({ code: "..." })`. The callable form is `clickup_official.clickup_official_{tool_name}`, for example `clickup_official.clickup_official_get_task`, `clickup_official.clickup_official_filter_tasks`, `clickup_official.clickup_official_create_document`. Always confirm the exact name with `tool_info()` before calling, do not guess it from the tool's description.
 
 The MCP path is the only surface for documents, goals and OKRs, bulk creates of five or more tasks, webhooks, chat and audit logs. Many daily operations also have an MCP fallback tool, but the routing rule keeps daily writes on cupt because the MCP has no dry-run equivalent. Use the MCP when you need its exclusive surface or when you are already in a Code Mode flow with other tools.
 
@@ -158,7 +158,7 @@ Reach for this skill when you need to list, complete, annotate or time-track Cli
 
 cupt and the MCP cover different operation sets by design. Neither is a drop-in for the other. For a "mark this task done" or "what is on my plate today", cupt is the only right answer. For "create a sprint retro document" or "bulk-create 10 tasks from this spec", only the MCP path will work.
 
-This skill uses only ClickUp's own hosted official MCP server (`https://mcp.clickup.com/mcp`). It never reaches for a community MCP server. The MCP transport and the `call_tool_chain()` invocation are owned by `mcp-code-mode`. This skill orchestrates the ClickUp surface. It does not implement the transport.
+This skill uses only ClickUp's official MCP server (`@clickup/mcp-server`, launched over stdio). It never reaches for a community MCP server. The MCP transport and the `call_tool_chain()` invocation are owned by `mcp-code-mode`. This skill orchestrates the ClickUp surface. It does not implement the transport.
 
 ### Related Skills
 
@@ -179,8 +179,8 @@ This skill uses only ClickUp's own hosted official MCP server (`https://mcp.clic
 | `cupt status` shows 401 | Expired or revoked token | Run `cupt logout && cupt auth` to refresh credentials |
 | `cupt done` wrote the wrong status | The list's closed status differs from the default | Run `cupt statuses <id>` before every completion to discover the schema |
 | `cupt list --team X` is slow (>20s) | Team filter is client-side on large workspaces | Add `--tag Y` to narrow the result set with a server-side filter |
-| MCP: connection fails | `clickup` manual in `.utcp_config.json` missing or not pointed at `mcp-remote https://mcp.clickup.com/mcp` | Fix the manual, reconnect, and authorize in the browser, no env var to set |
-| MCP: tool not found | Wrong tool name | Confirm with `tool_info()` first, the callable form is `clickup.clickup_clickup_{tool_name}` (the manual prefix doubles because tool names already start with `clickup_`) |
+| MCP: connection fails | `clickup_official` manual in `.utcp_config.json` missing or not launched via `npx -y @clickup/mcp-server` | Fix the manual, set `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID`, and reconnect |
+| MCP: tool not found | Wrong tool name | Confirm with `tool_info()` first, the callable form is `clickup_official.clickup_official_{tool_name}` |
 
 ---
 
@@ -196,7 +196,7 @@ A: Every ClickUp list defines its own status schema. "Done" in one list may not 
 
 **Q: How do I set up the MCP for ClickUp documents and goals?**
 
-A: Run `bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh`. It prints a manual for `.utcp_config.json` (Code Mode's config, not `opencode.json`) with server key `"clickup"`, pointed at ClickUp's official server via `npx mcp-remote https://mcp.clickup.com/mcp`. There is no API key or team ID to set, paste the snippet in, restart your AI client, and authorize in the browser on first connection. Full instructions are in `references/install_guide.md`.
+A: Run `bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh`. It prints a manual for `.utcp_config.json` (Code Mode's config, not `opencode.json`) with server key `"clickup_official"`, launched via `npx -y @clickup/mcp-server` with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` set. Paste the snippet in, set the two env vars, and restart your AI client. Full instructions are in `references/install_guide.md`.
 
 **Q: What is the difference between `@krodak/clickup-cli` (`cu`) and cupt?**
 
@@ -216,7 +216,7 @@ The skill ships a manual testing playbook and two example scripts that double as
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-tooling/mcp-click-up/README.md --type readme` reports zero issues |
 | cupt health | `cupt --version && cupt status && cupt list --today --json | python3 -c "import sys,json; json.load(sys.stdin); print('JSON valid')"` all pass with no errors |
-| MCP health | Confirm `clickup` tools appear in `list_tools()` and a `clickup.clickup_clickup_get_workspace_hierarchy` call via `call_tool_chain(...)` returns workspace data |
+| MCP health | Confirm `clickup` tools appear in `list_tools()` and a `clickup_official.clickup_official_get_workspace_hierarchy` call via `call_tool_chain(...)` returns workspace data |
 | Example scripts | Run `task-queue-workflow.sh --dry-run` with a valid tag and confirm exit code 0, then run `time-tracking-workflow.sh status` and confirm no errors |
 
 ---

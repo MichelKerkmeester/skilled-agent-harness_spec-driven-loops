@@ -153,8 +153,8 @@ RESOURCE_MAP = {
         "references/implementation/animation_workflows/motion_dev_and_performance.md",
         "references/implementation/animation_workflows/testing_and_common_issues.md",
         "references/implementation/animation_workflows/motion_dev_advanced.md",
-        "references/implementation/swiper_patterns/overview_timeline_and_marquee.md"
-        "references/implementation/swiper_patterns/autoplay_accessibility_and_naming.md"
+        "references/implementation/swiper_patterns/overview_timeline_and_marquee.md",
+        "references/implementation/swiper_patterns/autoplay_accessibility_and_naming.md",
         "references/implementation/swiper_patterns/initialization_and_troubleshooting.md"
     ],
     "MOTION_DEV": [
@@ -175,20 +175,20 @@ RESOURCE_MAP = {
         "references/implementation/animation_workflows/motion_dev_and_performance.md",
         "references/implementation/animation_workflows/testing_and_common_issues.md",
         "references/implementation/animation_workflows/motion_dev_advanced.md",
-        "references/verification/verification_workflows/gate_and_automated_options.md"
+        "references/verification/verification_workflows/gate_and_automated_options.md",
         "references/verification/verification_workflows/requirements_rules_and_checklist.md"
     ],
     "FORMS": [
         "references/implementation/form_upload_workflows/overview_architecture_and_filepond.md",
         "references/implementation/form_upload_workflows/state_machine_worker_and_forms.md",
         "references/implementation/form_upload_workflows/mime_troubleshooting_and_deployment.md",
-        "references/implementation/focus_management/selector_and_focus_trap.md"
+        "references/implementation/focus_management/selector_and_focus_trap.md",
         "references/implementation/focus_management/restoration_touch_and_anti_patterns.md"
     ],
     "VIDEO": [
-        "references/implementation/third_party_integrations/overview_hls_and_lenis.md"
-        "references/implementation/third_party_integrations/botpoison_and_finsweet.md"
-        "references/implementation/third_party_integrations/filepond.md"
+        "references/implementation/third_party_integrations/overview_hls_and_lenis.md",
+        "references/implementation/third_party_integrations/botpoison_and_finsweet.md",
+        "references/implementation/third_party_integrations/filepond.md",
         "references/implementation/third_party_integrations/best_practices_and_summary.md"
     ],
     "LANGUAGE_STANDARDS": [

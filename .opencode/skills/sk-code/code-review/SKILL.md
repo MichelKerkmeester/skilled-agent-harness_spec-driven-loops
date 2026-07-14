@@ -80,22 +80,24 @@ Knowledge is organized by domain mapping:
 references/review_core.md
 references/review_ux_single_pass.md
 references/pr_state_dedup.md
+references/quick_reference.md
 assets/*_checklist.md
 assets/removal_plan.md
 ```
 
 - `references/review_core.md` for shared doctrine consumed by both `@review` and `@deep-review`.
 - `references/review_ux_single_pass.md` for interactive single-pass review behavior.
-- `references/` for shared review doctrine, single-pass UX behavior, and the PR-state dedup spec.
-- `assets/` for the review checklists and the removal-plan template (security, code-quality, fix-completeness, SOLID, test-quality, removal).
+- `references/quick_reference.md` for the lightweight routing index across review references.
+- `references/` for shared doctrine, UX behavior, and PR-state dedup.
+- `assets/` for security, quality, completeness, SOLID, test-quality, and removal checklists.
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation, including security/correctness reviews | `references/review_core.md`, `references/review_ux_single_pass.md`, `assets/security_checklist.md`, `assets/code_quality_checklist.md`, `assets/fix-completeness-checklist.md` |
+| ALWAYS | Every invocation, including security/correctness reviews | `references/review_core.md`, `references/review_ux_single_pass.md`, `assets/security_checklist.md`, `assets/code_quality_checklist.md`, `assets/fix_completeness_checklist.md` |
 | CONDITIONAL | Intent score indicates need | `assets/solid_checklist.md`, `assets/code_quality_checklist.md`, `assets/removal_plan.md`, `assets/test_quality_checklist.md` |
-| CONDITIONAL | `CORE` / `COMPLETENESS` / `PR_STATE` / `SETUP` intents | `references/review_core.md`, `references/review_ux_single_pass.md`, `assets/fix-completeness-checklist.md`, `references/pr_state_dedup.md`, `references/quick_reference.md` |
+| CONDITIONAL | `CORE` / `COMPLETENESS` / `PR_STATE` / `SETUP` intents | `references/review_core.md`, `references/review_ux_single_pass.md`, `assets/fix_completeness_checklist.md`, `references/pr_state_dedup.md`, `references/quick_reference.md` |
 | ON_DEMAND | Explicit deep-dive request | Full mapped reference set |
 
 ### Precedence Matrix
@@ -131,7 +133,7 @@ DEFAULT_RESOURCES = [
     "references/review_ux_single_pass.md",
     "assets/security_checklist.md",
     "assets/code_quality_checklist.md",
-    "assets/fix-completeness-checklist.md",
+    "assets/fix_completeness_checklist.md",
 ]
 
 INTENT_SIGNALS = {
@@ -157,7 +159,7 @@ RESOURCE_MAP = {
     "REMOVAL": ["assets/removal_plan.md"],
     "TESTING": ["assets/test_quality_checklist.md"],
     "CORE": ["references/review_core.md", "references/review_ux_single_pass.md"],
-    "COMPLETENESS": ["assets/fix-completeness-checklist.md"],
+    "COMPLETENESS": ["assets/fix_completeness_checklist.md"],
     "PR_STATE": ["references/pr_state_dedup.md"],
     "SETUP": ["references/quick_reference.md"],
 }
@@ -220,12 +222,12 @@ def detect_surface_evidence(task, workspace_files=None, changed_files=None) -> s
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
     if ".opencode/" in files or keyword_present("jsonc", text) or keyword_present("mcp", text):
-        return "sk-code:<surface>"
+        return "sk-code:code-opencode"
     if any(keyword_present(term, text) for term in ["frontend", "web", "css", "dom", "browser"]) or any(
         marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
     ):
-        return "sk-code:<surface>"
-    return "sk-code:<surface>"
+        return "sk-code:code-webflow"
+    return "sk-code:unknown"
 
 def route_review_resources(task, workspace_files=None, changed_files=None):
     inventory = discover_markdown_resources()
@@ -335,7 +337,7 @@ Required output contract:
 **Files reviewed**: X files, Y lines changed
 **Overall assessment**: [APPROVE / REQUEST_CHANGES / COMMENT]
 **Baseline used**: [sk-code (`code-review`)]
-**Surface evidence used**: [sk-code:<surface>]
+**Surface evidence used**: [sk-code:code-webflow | sk-code:code-opencode | sk-code:unknown]
 
 ## Findings
 
@@ -424,6 +426,7 @@ Downstream automation parses this final line via exact string match — do not v
 - [review_core.md](./references/review_core.md) - Shared review doctrine: severity model, evidence rules, precedence, and finding schema.
 - [review_ux_single_pass.md](./references/review_ux_single_pass.md) - Interactive single-pass review flow, presentation modes, and PR/pre-commit behavior.
 - [quick_reference.md](./references/quick_reference.md) - Lightweight index for routing between shared doctrine and single-pass UX guidance.
+- [pr_state_dedup.md](./references/pr_state_dedup.md) - Content-hash deduplication for unchanged pull-request reviews.
 - [security_checklist.md](./assets/security_checklist.md) - Mandatory security and reliability checks.
 - [code_quality_checklist.md](./assets/code_quality_checklist.md) - Correctness, performance, KISS, and DRY checks.
 - [solid_checklist.md](./assets/solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
@@ -454,9 +457,9 @@ Downstream automation parses this final line via exact string match — do not v
 
 ---
 
-## 8. REFERENCES AND RELATED RESOURCES
+## 8. RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/review_core.md`, `assets/code_quality_checklist.md`, `assets/fix-completeness-checklist.md`, `assets/removal_plan.md`, `references/review_ux_single_pass.md`, `assets/security_checklist.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+Start with `references/quick_reference.md`, then load task-specific doctrine, assets, or scripts.
 
 ### Manual Testing Playbook
 
@@ -537,9 +540,5 @@ If sensitive paths ARE touched, the full review runs regardless of line count.
 The depth alias is advisory routing only; it must never be read as permission to relax a floor.
 
 ---
-
-## 10. REFERENCES: EFFICIENCY GATES
-
-- [pr_state_dedup.md](./references/pr_state_dedup.md) — Detailed M-1 signature scheme, cache format, and retention rules.
 
 Related skills: `sk-doc` for skill authoring and packaging standards, `sk-code` for surface-aware standards, and `system-spec-kit` for packet-governed review workflows.

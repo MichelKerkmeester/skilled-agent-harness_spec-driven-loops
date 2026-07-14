@@ -27,22 +27,22 @@ Do not use it when a short bullet list is clearer, or when the requested output 
 - `references/`  
   Overflow guidance beyond the inline contract, dissected into single-concern files behind a route-map: `README.md` (reference map), `worked_example.md` (a validator-passing decision-tree example), `notation_and_validator.md` (validator mechanics, box-width notation, common mistakes, and author judgment), and `pattern_selection.md` (pattern-selection detail and split heuristics).
 
-- `assets/flowcharts/simple_workflow.md`  
+- `assets/simple_workflow.md`  
   Pattern for linear setup, tutorial, installation, or operational flows.
 
-- `assets/flowcharts/decision_tree_flow.md`  
+- `assets/decision_tree_flow.md`  
   Pattern for conditional branching, validation paths, retries, failure handling, and alternate outcomes.
 
-- `assets/flowcharts/parallel_execution.md`  
+- `assets/parallel_execution.md`  
   Pattern for fan-out/fan-in work, CI/CD, batch jobs, or multi-agent execution.
 
-- `assets/flowcharts/approval_workflow_loops.md`  
+- `assets/approval_workflow_loops.md`  
   Pattern for review cycles, governance gates, sign-off loops, and rework paths.
 
-- `assets/flowcharts/system_architecture_swimlane.md`  
+- `assets/system_architecture_swimlane.md`  
   Pattern for service, layer, API, database, queue, cache, and error-path interactions.
 
-- `assets/flowcharts/user_onboarding.md`  
+- `assets/user_onboarding.md`  
   Pattern for onboarding, activation, guided setup, and support journeys.
 
 - `scripts/validate_flowchart.sh`  
@@ -55,7 +55,7 @@ For shared markdown standards and the document-level validator, this packet reus
 
 ## 4. QUICK START
 
-`SKILL.md` holds the authoritative numbered authoring workflow — read it first. In brief: pick the closest pattern from `assets/flowcharts/`, draft with real source content and labeled branches, then run the packet-local validator before delivery:
+`SKILL.md` holds the authoritative numbered authoring workflow — read it first. In brief: pick the closest pattern from `assets/`, draft with real source content and labeled branches, then run the packet-local validator before delivery:
 
 ```bash
 bash scripts/validate_flowchart.sh <target-flowchart.md>
@@ -72,7 +72,7 @@ Create an ASCII flowchart for the release approval workflow, including rejection
 Likely pattern:
 
 ```text
-assets/flowcharts/approval_workflow_loops.md
+assets/approval_workflow_loops.md
 ```
 
 ## 5. HUB RELATIONSHIP

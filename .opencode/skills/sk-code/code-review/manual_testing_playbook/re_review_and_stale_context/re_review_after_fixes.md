@@ -30,7 +30,7 @@ Operators run the exact prompt and command sequence for `CR-013` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: current diff captured; Step 2: prior findings mapped; Step 3: dispositions include evidence
 - Desired user-visible outcome: a findings disposition report that a real maintainer can act on without asking for missing scope or evidence.
-- Pass/fail: PASS if closed findings cite current evidence and fix completeness follows assets/fix-completeness-checklist.md; FAIL if prior findings are declared fixed without verification
+- Pass/fail: PASS if closed findings cite current evidence and fix completeness follows assets/fix_completeness_checklist.md; FAIL if prior findings are declared fixed without verification
 
 ---
 
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `CR-013` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-013 | Re-review after fixes | Confirm re-review verifies previous findings against the new diff instead of rubber-stamping. | `Re-review this follow-up diff against the original findings, closing each P0/P1 with current evidence or leaving it open.` | bash: git diff main...HEAD --name-only -> agent: @review prior findings plus current diff -> bash: rg -n -e "Finding class" -e "Scope proof" -e "Affected surface" /tmp/prior-review.md | Step 1: current diff captured; Step 2: prior findings mapped; Step 3: dispositions include evidence | Prior finding list, current diff, disposition report | PASS if closed findings cite current evidence and fix completeness follows assets/fix-completeness-checklist.md; FAIL if prior findings are declared fixed without verification | 1. Re-open original finding; 2. Inspect current lines; 3. Verify same-class and consumer coverage |
+| CR-013 | Re-review after fixes | Confirm re-review verifies previous findings against the new diff instead of rubber-stamping. | `Re-review this follow-up diff against the original findings, closing each P0/P1 with current evidence or leaving it open.` | bash: git diff main...HEAD --name-only -> agent: @review prior findings plus current diff -> bash: rg -n -e "Finding class" -e "Scope proof" -e "Affected surface" /tmp/prior-review.md | Step 1: current diff captured; Step 2: prior findings mapped; Step 3: dispositions include evidence | Prior finding list, current diff, disposition report | PASS if closed findings cite current evidence and fix completeness follows assets/fix_completeness_checklist.md; FAIL if prior findings are declared fixed without verification | 1. Re-open original finding; 2. Inspect current lines; 3. Verify same-class and consumer coverage |
 
 ### Optional Supplemental Checks
 
@@ -67,7 +67,7 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 
 | File | Role |
 |---|---|
-| `../../assets/fix-completeness-checklist.md` | Disposition and proof requirements for fixes |
+| `../../assets/fix_completeness_checklist.md` | Disposition and proof requirements for fixes |
 | `../../assets/code_quality_checklist.md` | Contract, KISS, DRY, and correctness checks |
 | `../../references/review_core.md` | Evidence-first severity and uncertainty discipline |
 

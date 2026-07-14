@@ -66,4 +66,4 @@ The `Real user request:` field is always natural-human regardless of which voice
 - [../SKILL.md](../SKILL.md) - § Scenario Design Rules carries the summary rule and the prompt-synchronization gate
 - [README.md](README.md) - Reference map for all overflow detail
 - [common_pitfalls.md](common_pitfalls.md) - Includes the unsynced-prompt-fields defect
-- [manual_testing_playbook_snippet_template.md](../assets/testing_playbook/manual_testing_playbook_snippet_template.md) - Per-feature scaffold carrying the `Prompt:` and `Real user request:` fields
+- [manual_testing_playbook_snippet_template.md](../assets/manual_testing_playbook_snippet_template.md) - Per-feature scaffold carrying the `Prompt:` and `Real user request:` fields

@@ -186,8 +186,8 @@ Follow this sequence:
 3. Define category directories using a descriptive `underscore_case` slug such as `category_name`.
 4. Define stable feature IDs using a consistent `{PREFIX}-{NNN}` pattern.
 5. Create the root `manual_testing_playbook/` directory.
-6. Create `manual_testing_playbook/manual_testing_playbook.md` from `assets/testing_playbook/manual_testing_playbook_template.md`.
-7. Create one per-feature file for each feature ID from `assets/testing_playbook/manual_testing_playbook_snippet_template.md`.
+6. Create `manual_testing_playbook/manual_testing_playbook.md` from `assets/manual_testing_playbook_template.md`.
+7. Create one per-feature file for each feature ID from `assets/manual_testing_playbook_snippet_template.md`.
 8. Write root package policy before writing scenario-specific exceptions.
 9. Write each per-feature prompt and execution truth before polishing root summary prose.
 10. Fill each scenario contract with the required 9 fields: Feature ID, Feature Name, Scenario Objective, Exact Prompt, Exact Command Sequence, Expected Signals, Evidence, Pass/Fail Criteria, Failure Triage.
@@ -376,8 +376,8 @@ The core executable workflow lives in this `SKILL.md`. Use these only for overfl
 - `references/prompt_voice.md` - natural-human vs RCAF decision table and voice guidelines.
 - `references/common_pitfalls.md` - recurring package defects and correct fixes.
 - `references/examples.md` - shipped reference playbooks and scaffold templates.
-- `assets/testing_playbook/manual_testing_playbook_template.md` - root playbook scaffold.
-- `assets/testing_playbook/manual_testing_playbook_snippet_template.md` - per-feature file scaffold.
+- `assets/manual_testing_playbook_template.md` - root playbook scaffold.
+- `assets/manual_testing_playbook_snippet_template.md` - per-feature file scaffold.
 - `../shared/references/core_standards.md` - shared markdown structure rules.
 - `../shared/references/validation.md` - shared validation and DQI workflow.
 - `../shared/references/frontmatter_versioning.md` - 4-part version expectations.

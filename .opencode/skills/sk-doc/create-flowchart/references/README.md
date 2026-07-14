@@ -41,7 +41,7 @@ Load the file that matches the current task:
 - [pattern_selection.md](pattern_selection.md) - Pattern selection deep dive and split heuristics
 - `../SKILL.md` - Authoritative create-flowchart workflow contract
 - `../scripts/validate_flowchart.sh` - Packet-local validator and actual threshold source
-- `../assets/flowcharts/*` - Six pattern assets, one per workflow shape
+- `../assets/*` - Six pattern assets, one per workflow shape
 
 ---
 

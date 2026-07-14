@@ -1,6 +1,6 @@
 {
   "name": "cli-external-orchestration",
-  "description": "Parent hub for external CLI dispatch: routes to two workflow modes, cli-opencode (OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback) and cli-claude-code (Claude Code CLI executor: Anthropic-backed reasoning, edits, reviews, structured cross-AI handoff), through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. Both modes orchestrate a CLI binary and their dispatched writes land in this repo's workspace, so neither is a transport packet.",
+  "description": "Parent hub for external CLI dispatch: routes to three workflow modes, cli-opencode (OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback), cli-claude-code (Claude Code CLI executor: Anthropic-backed reasoning, edits, reviews, structured cross-AI handoff), and cli-codex (Codex CLI executor: OpenAI-backed coding, review, and web research; fails closed when codex is absent), through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. All three modes orchestrate a CLI binary and their dispatched writes land in this repo's workspace, so none is a transport packet.",
   "version": "1.1.0.0",
   "importance_tier": "high",
   "keywords": [
@@ -11,6 +11,10 @@
     "packetKind",
     "cli-opencode",
     "cli-claude-code",
+    "cli-codex",
+    "codex-cli",
+    "codex-exec",
+    "openai",
     "cli dispatch",
     "cross-ai delegation",
     "executor delegation"
@@ -19,7 +23,8 @@
     "Delegate this to OpenCode for a full-runtime dispatch",
     "Use cli-claude-code to get an Anthropic-backed second opinion",
     "Run this task through opencode run with the deepseek provider",
+    "Use cli-codex for an OpenAI-backed code review and web-research pass",
     "Route this CLI dispatch request"
   ],
-  "lastUpdated": "2026-07-13T05:38:00Z"
+  "lastUpdated": "2026-07-14T06:23:02Z"
 }

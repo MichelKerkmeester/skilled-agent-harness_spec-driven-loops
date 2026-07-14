@@ -35,8 +35,8 @@ The fastest way to author a correct playbook is to model it on one that already 
 
 **Scaffold templates** (copy from these to seed a new package):
 
-- [manual_testing_playbook_template.md](../assets/testing_playbook/manual_testing_playbook_template.md) - root playbook scaffold for `manual_testing_playbook/manual_testing_playbook.md`
-- [manual_testing_playbook_snippet_template.md](../assets/testing_playbook/manual_testing_playbook_snippet_template.md) - per-feature scaffold for `manual_testing_playbook/{category_name}/{feature_name}.md`
+- [manual_testing_playbook_template.md](../assets/manual_testing_playbook_template.md) - root playbook scaffold for `manual_testing_playbook/manual_testing_playbook.md`
+- [manual_testing_playbook_snippet_template.md](../assets/manual_testing_playbook_snippet_template.md) - per-feature scaffold for `manual_testing_playbook/{category_name}/{feature_name}.md`
 
 ---
 

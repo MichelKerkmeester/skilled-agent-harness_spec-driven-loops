@@ -63,7 +63,7 @@ Read(".opencode/skills/sk-code/code-review/SKILL.md")
 **Files reviewed**: 3 files, 127 lines changed
 **Overall assessment**: REQUEST_CHANGES
 **Baseline used**: sk-code (code-review)
-**Surface evidence used**: sk-code:typescript
+**Surface evidence used**: sk-code:code-opencode
 
 ## Findings
 
@@ -204,7 +204,7 @@ The mode ships a manual testing playbook with per-feature scenarios for findings
 | [`assets/code_quality_checklist.md`](./assets/code_quality_checklist.md) | Correctness, performance, boundary handling, KISS and DRY |
 | [`assets/solid_checklist.md`](./assets/solid_checklist.md) | SOLID principles and architecture smell detection |
 | [`assets/test_quality_checklist.md`](./assets/test_quality_checklist.md) | Test coverage quality, structure and reliability |
-| [`assets/fix-completeness-checklist.md`](./assets/fix-completeness-checklist.md) | Finding classes and producer/consumer inventory for proportional fixes |
+| [`assets/fix_completeness_checklist.md`](./assets/fix_completeness_checklist.md) | Finding classes and producer/consumer inventory for proportional fixes |
 | [`assets/removal_plan.md`](./assets/removal_plan.md) | Safe-now versus deferred deletion and rollback planning |
 | [`references/pr_state_dedup.md`](./references/pr_state_dedup.md) | Content-hash dedup gate: signature scheme, cache format and retention |
 | [`references/quick_reference.md`](./references/quick_reference.md) | Lightweight routing index across all references |

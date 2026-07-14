@@ -59,4 +59,4 @@ Split before the diagram becomes a wall of branches. The script warns over 200 l
 
 - [README.md](README.md) - create-flowchart reference route-map
 - `../SKILL.md` - authoritative workflow contract, including the §3 pattern-selection table
-- `../assets/flowcharts/*` - the six pattern assets referenced above, one per workflow shape
+- `../assets/*` - the six pattern assets referenced above, one per workflow shape

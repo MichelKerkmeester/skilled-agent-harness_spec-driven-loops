@@ -9,7 +9,7 @@ version: 1.0.1.0
 
 # Create Flowchart
 
-`create-flowchart` is the `sk-doc` workflow packet for creating ASCII-style markdown flowcharts from real processes, decision trees, user journeys, approval loops, parallel pipelines, and system interactions. The core creation workflow lives here. The pattern assets under `assets/flowcharts/` are examples and shape guides, not the primary contract.
+`create-flowchart` is the `sk-doc` workflow packet for creating ASCII-style markdown flowcharts from real processes, decision trees, user journeys, approval loops, parallel pipelines, and system interactions. The core creation workflow lives here. The pattern assets under `assets/` are examples and shape guides, not the primary contract.
 
 This packet owns flowchart authoring and `scripts/validate_flowchart.sh`. It uses shared sk-doc quality standards from `../shared/` when surrounding markdown quality is in scope. It must not add packet-local advisor metadata such as `graph-metadata.json`.
 
@@ -42,14 +42,14 @@ Use another `sk-doc` packet when:
 
 If the target path is unknown and writing would be a guess, ask for the path before creating or editing a file.
 
-This packet uses simple intent and workflow-shape routing, not keyed resource discovery. Its packet-local resources are a flat `references/` route map plus pattern examples under `assets/flowcharts/`; do not infer `references/<key>/` or `assets/<key>/` subdirectories.
+This packet uses simple intent and workflow-shape routing, not keyed resource discovery. Its packet-local resources are a flat `references/` route map plus pattern examples under `assets/`; do not infer `references/<key>/` or `assets/<key>/` subdirectories.
 
 Smart routing rules:
 
 - If the request clearly asks for a flowchart, route here and select exactly one closest pattern asset from the table in section 3.
 - If the workflow shape is unclear, load `references/README.md` if it exists and use `UNKNOWN_FALLBACK`: confirm the target artifact, source process, audience, workflow shape, terminal outcomes, and validation path before drafting.
 - If a listed pattern asset or reference is missing, do not crash or invent a replacement path; use the nearest available guidance in `references/README.md` and report the missing resource.
-- Only load packet-local markdown resources under `references/` or `assets/flowcharts/`; keep shared markdown quality guidance in `../shared/` for surrounding-document validation only.
+- Only load packet-local markdown resources under `references/` or `assets/`; keep shared markdown quality guidance in `../shared/` for surrounding-document validation only.
 
 ---
 
@@ -74,12 +74,12 @@ Choose one closest pattern before drafting. Load the asset for visual guidance a
 
 | Workflow Shape | Pattern Asset | Use For |
 | --- | --- | --- |
-| Linear sequence | `assets/flowcharts/simple_workflow.md` | Installation steps, setup flows, tutorials, basic operational processes. |
-| Conditional branching | `assets/flowcharts/decision_tree_flow.md` | Decision trees, validations, retries, alternate outcomes, failure handling. |
-| Parallel execution | `assets/flowcharts/parallel_execution.md` | CI/CD, multi-agent work, batch jobs, fan-out/fan-in pipelines. |
-| Approval and revision | `assets/flowcharts/approval_workflow_loops.md` | Review cycles, governance gates, sign-off loops, rework paths, escalation. |
-| System swimlane | `assets/flowcharts/system_architecture_swimlane.md` | Layers, services, APIs, storage, caches, queues, data flows, error paths. |
-| User journey | `assets/flowcharts/user_onboarding.md` | Onboarding, activation, progressive setup, education, completion states. |
+| Linear sequence | `assets/simple_workflow.md` | Installation steps, setup flows, tutorials, basic operational processes. |
+| Conditional branching | `assets/decision_tree_flow.md` | Decision trees, validations, retries, alternate outcomes, failure handling. |
+| Parallel execution | `assets/parallel_execution.md` | CI/CD, multi-agent work, batch jobs, fan-out/fan-in pipelines. |
+| Approval and revision | `assets/approval_workflow_loops.md` | Review cycles, governance gates, sign-off loops, rework paths, escalation. |
+| System swimlane | `assets/system_architecture_swimlane.md` | Layers, services, APIs, storage, caches, queues, data flows, error paths. |
+| User journey | `assets/user_onboarding.md` | Onboarding, activation, progressive setup, education, completion states. |
 
 Use the pattern's demonstrated features, not its content. Do not copy placeholder business logic, fake timings, fake owners, or unrelated system components.
 
@@ -143,7 +143,7 @@ Follow this order for every creation or rewrite task:
 1. Identify the workflow type, target path, audience, and source material.
 2. Read the existing target document before editing, or confirm the new file path before writing.
 3. Search nearby documents for existing diagram style when editing an established docs area.
-4. Select and read exactly the closest pattern asset from `assets/flowcharts/`.
+4. Select and read exactly the closest pattern asset from `assets/`.
 5. Extract the real nodes from the source: start state, actions, decisions, branch outcomes, retries, parallel lanes, joins, terminal states, and failure paths.
 6. Remove anything not supported by the source. Mark unknowns as unknown or ask, rather than inventing steps.
 7. Draft the diagram in a fenced code block using consistent width, spacing, connectors, and branch labels.
@@ -299,4 +299,4 @@ The task is successful when:
 
 ## 11. References
 
-For long examples and visual pattern details, use `assets/flowcharts/*`. For deeper creation guidance — a worked decision-tree example, validator mechanics and notation, pattern selection, and common pitfalls — use the reference route-map at `references/README.md`, which maps each concern to a focused single-concern file. For shared markdown standards and document-level validation behavior, use `../shared/`.
+For long examples and visual pattern details, use `assets/*`. For deeper creation guidance — a worked decision-tree example, validator mechanics and notation, pattern selection, and common pitfalls — use the reference route-map at `references/README.md`, which maps each concern to a focused single-concern file. For shared markdown standards and document-level validation behavior, use `../shared/`.

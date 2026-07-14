@@ -67,7 +67,7 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 
 | File | Role |
 |---|---|
-| `../../assets/fix-completeness-checklist.md` | Disposition and proof requirements for fixes |
+| `../../assets/fix_completeness_checklist.md` | Disposition and proof requirements for fixes |
 | `../../assets/code_quality_checklist.md` | Contract, KISS, DRY, and correctness checks |
 | `../../references/review_core.md` | Evidence-first severity and uncertainty discipline |
 

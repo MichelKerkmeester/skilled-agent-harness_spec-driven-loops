@@ -46,8 +46,8 @@ Load the file that matches the current task:
 - [examples.md](examples.md) - Shipped reference playbooks and scaffold templates
 
 ### Templates
-- [manual_testing_playbook_template.md](../assets/testing_playbook/manual_testing_playbook_template.md) - Root playbook scaffold
-- [manual_testing_playbook_snippet_template.md](../assets/testing_playbook/manual_testing_playbook_snippet_template.md) - Per-feature file scaffold
+- [manual_testing_playbook_template.md](../assets/manual_testing_playbook_template.md) - Root playbook scaffold
+- [manual_testing_playbook_snippet_template.md](../assets/manual_testing_playbook_snippet_template.md) - Per-feature file scaffold
 
 ### Shared Reference Files
 - [core_standards.md](../../shared/references/core_standards.md) - Document type rules and structural requirements

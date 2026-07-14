@@ -9,7 +9,7 @@ expected_resources:
   - references/review_ux_single_pass.md
   - assets/security_checklist.md
   - assets/code_quality_checklist.md
-  - assets/fix-completeness-checklist.md
+  - assets/fix_completeness_checklist.md
   - assets/test_quality_checklist.md
 version: 1.0.0.0
 ---

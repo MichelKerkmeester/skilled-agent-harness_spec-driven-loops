@@ -1,6 +1,6 @@
 {
   "name": "sk-doc",
-  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to ten nested workflow packets: create-skill (+ create-skill-parent), create-readme (install guides folded), create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, and create-quality-control (validate/score/optimize an existing doc). The universal create-quality-control pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
+  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to eleven nested workflow packets: create-skill (+ create-skill-parent), create-readme (install guides folded), create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, create-diff (local before/after document reviews), and create-quality-control (validate/score/optimize an existing doc). The universal create-quality-control pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
   "version": "2.0.0.0",
   "importance_tier": "high",
   "keywords": [
@@ -21,6 +21,11 @@
     "create-benchmark",
     "create-flowchart",
     "create-changelog",
+    "create-diff",
+    "create diff report",
+    "document before after review",
+    "before after document diff",
+    "document change report",
     "create-quality-control",
     "shared-backbone",
     "dqi",
@@ -37,9 +42,11 @@
     "promote a benchmark folder",
     "make an ASCII flowchart",
     "write a changelog entry",
+    "review before/after changes to this document",
+    "create a document diff report",
     "validate / score / optimize this document"
   ],
-  "lastUpdated": "2026-07-06T00:00:00.000Z",
+  "lastUpdated": "2026-07-14T00:00:00.000Z",
   "supported_surfaces": [],
   "opencode_languages": []
 }

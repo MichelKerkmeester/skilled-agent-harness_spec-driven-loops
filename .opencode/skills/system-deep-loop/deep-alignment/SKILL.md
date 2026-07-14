@@ -106,7 +106,7 @@ NOISY_SYNONYMS = {
 
 # RESOURCE_MAP: state-scoped protocol references plus the config asset.
 RESOURCE_MAP = {
-    "ALIGNMENT_SCOPE":    ["references/scoping_protocol.md", "references/lane_config_schema.md", "assets/deep_alignment_config_template.json"],
+    "ALIGNMENT_SCOPE":    ["references/scoping_protocol.md", "references/lane_config_schema.md"],
     "ALIGNMENT_DISCOVER": ["references/discover_contract.md"],
     "ALIGNMENT_CHECK":    ["references/state_machine_wiring.md"],
     "ALIGNMENT_CONVERGE": ["references/state_machine_wiring.md"],

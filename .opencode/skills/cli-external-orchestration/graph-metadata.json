@@ -33,7 +33,10 @@
     "spec-kit-runtime",
     "parallel-sessions",
     "reasoning",
-    "code-editing"
+    "code-editing",
+    "web-research",
+    "openai",
+    "codex"
   ],
   "intent_signals": [
     "opencode cli",
@@ -43,7 +46,12 @@
     "spec kit runtime",
     "claude code",
     "claude cli",
-    "delegate to claude"
+    "delegate to claude",
+    "codex cli",
+    "codex exec",
+    "delegate to codex",
+    "openai cli second opinion",
+    "cli-codex"
   ],
   "derived": {
     "trigger_phrases": [
@@ -117,7 +125,19 @@
       "cli claude code",
       "claude-code",
       "claude-cli",
-      "anthropic"
+      "anthropic",
+      "codex cli",
+      "codex exec",
+      "delegate to codex",
+      "openai cli second opinion",
+      "cli-codex",
+      "cli codex",
+      "codex cli orchestration",
+      "openai coding agent",
+      "codex web search",
+      "codex diff review",
+      "codex sandbox",
+      "gpt codex dispatch"
     ],
     "key_topics": [
       "cli",
@@ -154,7 +174,15 @@
       "anthropic-backed-review",
       "deep-reasoning-handoff",
       "claude-code-cli",
-      "code-editing-escalation"
+      "code-editing-escalation",
+      "cli-codex",
+      "codex cli",
+      "codex exec",
+      "openai",
+      "openai-backed-coding",
+      "codex-web-research",
+      "codex-code-review",
+      "codex-sandbox"
     ],
     "intent_signals": [
       "delegate to opencode",
@@ -166,7 +194,13 @@
       "deep reasoning",
       "code edit handoff",
       "structured output",
-      "claude review"
+      "claude review",
+      "codex cli",
+      "codex exec",
+      "delegate to codex",
+      "codex review",
+      "codex web research",
+      "openai coding"
     ],
     "key_files": [
       ".opencode/skills/cli-external-orchestration/SKILL.md",
@@ -184,7 +218,16 @@
       ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md",
       ".opencode/skills/cli-external-orchestration/cli-claude-code/references/cli_reference.md",
       ".opencode/skills/cli-external-orchestration/cli-claude-code/references/claude_tools.md",
-      ".opencode/skills/cli-external-orchestration/cli-claude-code/references/agent_delegation.md"
+      ".opencode/skills/cli-external-orchestration/cli-claude-code/references/agent_delegation.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/references/cli_reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/references/integration_patterns.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/references/codex_tools.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/references/agent_delegation.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/references/hook_contract.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/assets/prompt_templates.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/assets/prompt_quality_card.md"
     ],
     "entities": [
       {
@@ -204,9 +247,15 @@
         "kind": "skill",
         "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
         "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "skill",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "cli-external-orchestration is the single public advisor identity for two CLI dispatch orchestrators, folded into one parent hub (packet 125-cli-external-orchestration-parent). cli-opencode enables external AI runtimes and in-OpenCode operators to invoke opencode run for full plugin, skill, and MCP runtime dispatch, plus parallel detached sessions for ablation, worker farms, and cross-AI handback, defaulting to the direct deepseek provider. cli-claude-code enables external AI assistants to invoke Anthropic's Claude Code CLI for deep reasoning, surgical code editing, structured JSON-schema output, code review, and agent delegation. It matters because it gives both dispatch paths one coherent advisor identity while each mode keeps its own dispatch contract, hard rules, and self-invocation guard; the executor-delegation scorer sources its executor alias table from this hub's mode-registry.json rather than a top-level family filter, so delegation prompts keep resolving to the correct executor-kind string after the fold-in.",
+    "causal_summary": "cli-external-orchestration is the single public advisor identity for three CLI dispatch orchestrators, folded into one parent hub. cli-opencode enables external AI runtimes and in-OpenCode operators to invoke opencode run for full plugin, skill, and MCP runtime dispatch, plus parallel detached sessions for ablation, worker farms, and cross-AI handback, defaulting to the direct deepseek provider. cli-claude-code enables external AI assistants to invoke Anthropic's Claude Code CLI for deep reasoning, surgical code editing, structured JSON-schema output, code review, and agent delegation. cli-codex enables OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation through the Codex CLI, and fails closed when codex is absent. It matters because it gives all three dispatch paths one coherent advisor identity while each mode keeps its own dispatch contract, hard rules, and self-invocation guard; the executor-delegation scorer sources its executor alias table from this hub's mode-registry.json rather than a top-level family filter, so delegation prompts keep resolving to the correct executor-kind string.",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -215,9 +264,11 @@
       "cli-opencode/SKILL.md",
       "cli-opencode/README.md",
       "cli-claude-code/SKILL.md",
-      "cli-claude-code/README.md"
+      "cli-claude-code/README.md",
+      "cli-codex/SKILL.md",
+      "cli-codex/README.md"
     ],
     "created_at": "2026-07-10T12:00:00Z",
-    "last_updated_at": "2026-07-10T12:00:00Z"
+    "last_updated_at": "2026-07-14T06:23:02Z"
   }
 }
