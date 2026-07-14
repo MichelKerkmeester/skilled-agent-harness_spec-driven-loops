@@ -1,6 +1,6 @@
 ---
 name: sk-git
-description: "Git workflow orchestrator OWNING all git/version-control intent: git worktree create/restructure (numbered wt/{NNNN}-{name} branches under .worktrees/), branch, conventional commits, pull request (PR), merge, rebase, finish work, integrate changes. Routes git-worktrees, git-commit, git-finish. NOT for spec folders / memory / save context (system-spec-kit) or code implementation / tests (sk-code)."
+description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, finish; routes git-worktrees/git-commit/git-finish; no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
 version: 1.1.3.1

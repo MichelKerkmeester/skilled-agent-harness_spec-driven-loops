@@ -1,6 +1,6 @@
 ---
 name: system-code-graph
-description: "Structural code indexing and mk-code-index MCP workflows for graph readiness, impact queries, context retrieval and structural checks."
+description: "Structural code indexing and mk-code-index MCP workflows for graph readiness, impact queries, context retrieval/structural checks."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.3.0.0
 ---
