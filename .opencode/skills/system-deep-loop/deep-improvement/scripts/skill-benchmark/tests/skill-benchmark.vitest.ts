@@ -8,6 +8,14 @@ const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
 const SB = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
 const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const SKDESIGN = join(REPO_SKILLS, 'sk-design');
+const SKDESIGN_COMMAND_RECIPE_FIXTURE = join(
+  SKILL_ROOT,
+  'assets',
+  'skill_benchmark',
+  'fixtures',
+  'sk_design',
+  'sk_design_command_recipe_valid.private.json',
+);
 
 // A genuinely router-less skill dir (no INTENT_SIGNALS/RESOURCE_MAP). The
 // deep-improvement skill itself now HAS a router (Lane B), so it cannot serve as
@@ -333,6 +341,11 @@ describe('Lane C — scorer + report render', () => {
 });
 
 function designRecipe(command = '/design:interface'): any {
+  if (command === '/design:interface') {
+    const fixture = JSON.parse(readFileSync(SKDESIGN_COMMAND_RECIPE_FIXTURE, 'utf8'));
+    return JSON.parse(JSON.stringify(fixture.expected.commandRecipe));
+  }
+
   const records = JSON.parse(readFileSync(join(SKDESIGN, 'command-metadata.json'), 'utf8'));
   const record = records.find((item: any) => item.command === command);
   return JSON.parse(JSON.stringify({
@@ -366,6 +379,22 @@ describe('Lane C — commandRecipe validity lane', () => {
     expect(res.applicable).toBe(true);
     expect(res.valid).toBe(true);
     expect(res.missReasons).toEqual([]);
+  });
+
+  it('flags an in-memory gold recipe when its argument hint drifts from live metadata', () => {
+    const driftedRecipe = designRecipe();
+    driftedRecipe.argumentHint = '<target> [--mode]';
+    const res = scoreCommandRecipe({
+      expected: { skillId: 'sk-design', commandRecipe: driftedRecipe },
+      skillRoot: SKDESIGN,
+      routerResult,
+    });
+    expect(res.applicable).toBe(true);
+    expect(res.valid).toBe(false);
+    expect(res.firstFailingSubcheck).toBe('metadata');
+    expect(res.missReasons).toEqual(expect.arrayContaining([
+      expect.objectContaining({ stage: 'metadata' }),
+    ]));
   });
 
   it('fails metadata validity before later checks when the recipe is undefined in metadata', () => {

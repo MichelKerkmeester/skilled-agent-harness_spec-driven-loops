@@ -482,24 +482,6 @@ function firstHeading(markdown) {
   return m ? m[1].trim() : null;
 }
 
-function extractSection(markdown, heading) {
-  const lines = String(markdown || '').split(/\r?\n/);
-  const start = lines.findIndex((line) => line.trim().toUpperCase() === heading.toUpperCase());
-  if (start === -1) return '';
-  const out = [];
-  for (let i = start + 1; i < lines.length; i += 1) {
-    if (/^##\s+/.test(lines[i])) break;
-    out.push(lines[i]);
-  }
-  return out.join('\n');
-}
-
-function normalizedIncludes(haystack, needle) {
-  const hay = String(haystack || '').toLowerCase().replace(/\s+/g, ' ');
-  const pin = String(needle || '').toLowerCase().replace(/\s+/g, ' ');
-  return pin.length > 0 && hay.includes(pin);
-}
-
 function validateRecipeMetadata({ recipe, metadata }) {
   const missReasons = [];
   const command = typeof recipe.command === 'string' ? recipe.command.trim() : '';
@@ -554,7 +536,7 @@ function validateRecipeWrapper({ recipe, command, record, skillRoot }) {
   const wrapperPath = wrapperPathForCommand({ command, skillRoot });
   if (!wrapperPath) {
     missReasons.push(recipeMiss('wrapper', 'wrapper path could not be resolved', { command }));
-    return { markdown, missReasons };
+    return { missReasons };
   }
   try {
     markdown = fs.readFileSync(wrapperPath, 'utf8');
@@ -562,7 +544,7 @@ function validateRecipeWrapper({ recipe, command, record, skillRoot }) {
     missReasons.push(recipeMiss('wrapper', 'command wrapper could not be loaded', {
       detail: err && err.message ? err.message : String(err),
     }));
-    return { markdown, missReasons };
+    return { missReasons };
   }
   const frontmatter = parseFrontmatter(markdown);
   if (firstHeading(markdown) !== command) {
@@ -577,7 +559,7 @@ function validateRecipeWrapper({ recipe, command, record, skillRoot }) {
       actual: frontmatter['argument-hint'],
     }));
   }
-  return { markdown, missReasons };
+  return { missReasons };
 }
 
 function validateRecipeArgument({ recipe, record }) {
@@ -615,7 +597,7 @@ function validateRecipeRoute({ recipe, routerResult }) {
   return [];
 }
 
-function validateRecipeChoreography({ recipe, record, wrapperMarkdown }) {
+function validateRecipeChoreography({ recipe, record }) {
   const missReasons = [];
   if (!record) return missReasons;
   const choreographyErrors = validateChoreographyShape(recipe.choreography);
@@ -626,27 +608,7 @@ function validateRecipeChoreography({ recipe, record, wrapperMarkdown }) {
   if (!sameJsonValue(recipe.choreography, record.choreography)) {
     missReasons.push(recipeMiss('choreography', 'commandRecipe.choreography does not match command metadata'));
   }
-  const section = extractSection(wrapperMarkdown, '## CHOREOGRAPHY');
-  if (!section) {
-    // Thin-router commands carry their choreography in the command's asset YAML
-    // step keys, not as a duplicated prose section in the wrapper; the recipe-vs-
-    // metadata match above is the substantive check, so an absent wrapper prose
-    // section is not a miss on its own.
-    return missReasons;
-  }
-  for (const step of recipe.choreography) {
-    if (!isPlainObject(step) || !Number.isInteger(step.order)) continue;
-    const line = section.split(/\r?\n/).find((candidate) => candidate.trim().startsWith(`${step.order}.`));
-    if (!line) {
-      missReasons.push(recipeMiss('choreography', 'wrapper choreography step is missing', { order: step.order }));
-      continue;
-    }
-    for (const field of ['skill', 'resource', 'action']) {
-      if (typeof step[field] === 'string' && !normalizedIncludes(line, step[field])) {
-        missReasons.push(recipeMiss('choreography', `wrapper choreography step is missing ${field}`, { order: step.order }));
-      }
-    }
-  }
+  // Thin-router commands keep choreography in asset YAML, so metadata equality is the guarantee at this layer.
   return missReasons;
 }
 
@@ -682,7 +644,6 @@ function scoreCommandRecipe({ expected, skillRoot, routerResult }) {
     ...validateRecipeChoreography({
       recipe,
       record: metadataResult.record,
-      wrapperMarkdown: wrapperResult.markdown,
     }),
   ];
   const firstFailingSubcheck = missReasons.length ? missReasons[0].stage : null;

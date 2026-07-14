@@ -3,6 +3,7 @@
 // ============================================================================
 
 import { readFile, readdir } from "node:fs/promises";
+import { pathToFileURL } from "node:url";
 
 const REQUIRED_FIELDS = [
   "command",
@@ -80,7 +81,6 @@ const HANDOFF_OPTION_FIELDS = ["command", "when"];
 const HANDOFF_STATUS_TOKENS = ["HANDOFF_REQUIRED="];
 const NEGATIVE_CORPUS_PATTERN = /negative[\s_-]?corpus/i;
 const WORD_OVERLAP_THRESHOLD = 0.7;
-const CHOREOGRAPHY_ACTION_OVERLAP_THRESHOLD = 0.5;
 const REQUIRED_RETURN_STATUS_TOKENS = [
   "STATUS=OK",
   "STATUS=ASK MISSING=<input>",
@@ -98,6 +98,16 @@ const TASK_PROJECTIONS_NEGATIVE_CORPUS_MARKER = "Negative corpus:";
 const ARGUMENT_GRAMMAR_POSITIONAL_FIELDS = ["name", "required", "kind"];
 const ARGUMENT_GRAMMAR_FLAG_FIELDS = ["name", "required", "takesValue", "kind"];
 const CHOREOGRAPHY_FIELDS = ["order", "skill", "resource", "action"];
+const WORKFLOW_STEP_FIELDS = ["purpose", "action", "output"];
+const WORKFLOW_STEP_PATTERN = /^step_(\d+)_([a-z][a-z0-9_]*)$/;
+const CONFIRM_PROMPT_STEP = "step_0_show_prompt";
+const REQUIRED_WORKFLOW_WITNESSES = ["load_hub", "load_mode", "prepare_handoff"];
+const CORE_WORKFLOW_STEP_PATTERN = /^run_[a-z0-9_]+$/;
+const HUB_SKILL_RESOURCE = ".opencode/skills/sk-design/SKILL.md";
+const HANDOFF_RESOURCE = ".opencode/skills/sk-design/shared/sk_code_handoff.md";
+const MODE_SKILL_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/SKILL\.md$/;
+const MODE_PROCEDURES_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/procedures\/$/;
+const MODE_REFERENCES_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/references\/$/;
 const DESIGN_COMMAND_PATTERN = /\/design:[a-z-]+/;
 const DESCRIPTION_ROLES = new Set(["hub-keyword-projection"]);
 const GENERIC_ARTIFACT_NAMES = new Set([
@@ -126,33 +136,37 @@ const SIBLING_DISCRIMINATOR_END = "<!-- /ANCHOR:sibling-discriminator -->";
 const REGISTER_SECTION_START = "<!-- ANCHOR:register -->";
 const REGISTER_SECTION_END = "<!-- /ANCHOR:register -->";
 
-const args = new Set(process.argv.slice(2));
-const jsonMode = args.has("--json");
-const unknownArgs = [...args].filter((arg) => arg !== "--json");
+let jsonMode = false;
 
-if (unknownArgs.length > 0) {
-  emitAndExit(
-    {
-      status: "invalid",
-      stage: "usage",
-      errors: unknownArgs.map((arg) => `unknown argument: ${arg}`),
-      drift: []
-    },
-    2
-  );
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const args = new Set(process.argv.slice(2));
+  jsonMode = args.has("--json");
+  const unknownArgs = [...args].filter((arg) => arg !== "--json");
+
+  if (unknownArgs.length > 0) {
+    emitAndExit(
+      {
+        status: "invalid",
+        stage: "usage",
+        errors: unknownArgs.map((arg) => `unknown argument: ${arg}`),
+        drift: []
+      },
+      2
+    );
+  }
+
+  main().catch((error) => {
+    emitAndExit(
+      {
+        status: "invalid",
+        stage: "runtime",
+        errors: [error instanceof Error ? error.message : String(error)],
+        drift: []
+      },
+      2
+    );
+  });
 }
-
-main().catch((error) => {
-  emitAndExit(
-    {
-      status: "invalid",
-      stage: "runtime",
-      errors: [error instanceof Error ? error.message : String(error)],
-      drift: []
-    },
-    2
-  );
-});
 
 async function main() {
   const [metadata, registry, hubRouter, interfaceSkillSource, wrapperRoster] = await Promise.all([
@@ -167,7 +181,7 @@ async function main() {
   const interfaceIntentLanes = parseInterfaceIntentSignalKeys(interfaceSkillSource);
   const metadataErrors = [
     ...validateInterfaceIntentSignalKeys(interfaceIntentLanes),
-    ...validateMetadata(metadata, workflowModes, interfaceIntentLanes, registryAliasesByMode)
+    ...validateMetadata(metadata, workflowModes, interfaceIntentLanes, registryAliasesByMode, registry)
   ];
 
   if (metadataErrors.length > 0) {
@@ -183,15 +197,15 @@ async function main() {
   }
 
   const records = [...metadata].sort((a, b) => a.command.localeCompare(b.command));
-  const transportCommands = readTransportCommands(registry);
+  const transportTokens = readTransportTokens(registry);
   const drift = [
     ...(await collectSurfaceDrift(records)),
-    ...collectRosterReconciliationDrift(records, workflowModes, hubRouter, wrapperRoster, transportCommands)
+    ...collectRosterReconciliationDrift(records, workflowModes, registry, hubRouter, wrapperRoster, transportTokens)
   ].sort(compareDrift);
 
   emitAndExit(
     {
-      status: drift.length > 0 ? "drift" : "pass",
+      status: drift.length > 0 ? "drift" : "valid",
       stage: drift.length > 0 ? "surface" : "complete",
       metadata: {
         commandCount: records.length,
@@ -284,7 +298,19 @@ function readHubRouterModes(hubRouter) {
   );
 }
 
-function readTransportCommands(registry) {
+function commandTokenForMode(mode) {
+  if (typeof mode?.command === "string" && mode.command.length > 0) {
+    return mode.command;
+  }
+
+  if (mode?.command === null && typeof mode.workflowMode === "string" && mode.workflowMode.length > 0) {
+    return mode.workflowMode;
+  }
+
+  return null;
+}
+
+function readTransportTokens(registry) {
   if (!registry || !Array.isArray(registry.modes)) {
     return new Set();
   }
@@ -292,11 +318,12 @@ function readTransportCommands(registry) {
   return new Set(
     registry.modes
       .filter((mode) => mode && mode.packetKind === "transport" && typeof mode.workflowMode === "string" && mode.workflowMode.length > 0)
-      .map((mode) => `/design:${mode.workflowMode}`)
+      .map((mode) => commandTokenForMode(mode))
+      .filter(Boolean)
   );
 }
 
-function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registryAliasesByMode) {
+function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registryAliasesByMode, registry) {
   const errors = [];
 
   if (!Array.isArray(metadata)) {
@@ -307,7 +334,7 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
   const expectedCommands = new Set(COMMANDS);
   const seenAliases = new Map();
   const seenTaskProjectionVerbs = new Map();
-  const workflowCommandSet = commandSetForModes(workflowModes);
+  const workflowCommandSet = commandSetForModes(workflowModes, registry);
 
   for (const record of metadata) {
     const command = typeof record?.command === "string" ? record.command : "<missing command>";
@@ -357,7 +384,7 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
     errors.push(...validateRegisterPolicy(record, command));
     errors.push(...validateExamples(record, command));
     errors.push(...validateOutputContract(record, command));
-    errors.push(...validateDiscriminator(record, command, workflowModes));
+    errors.push(...validateDiscriminator(record, command, workflowModes, registry));
     errors.push(...validatePipeline(record, command, expectedCommands));
     errors.push(...validateHandoff(record, command, expectedCommands));
     errors.push(
@@ -836,10 +863,11 @@ function validateRegisterPolicy(record, command) {
   return errors;
 }
 
-function validateDiscriminator(record, command, workflowModes) {
+function validateDiscriminator(record, command, workflowModes, registry) {
   const errors = [];
   const discriminator = record?.discriminator;
-  const commandSet = commandSetForModes(workflowModes);
+  const commandSet = commandSetForModes(workflowModes, registry);
+  const noCommandTokens = readNoCommandTokens(registry);
   const expectedSiblings = new Set([...commandSet].filter((sibling) => sibling !== command));
 
   if (!isPlainObject(discriminator)) {
@@ -872,19 +900,23 @@ function validateDiscriminator(record, command, workflowModes) {
       if (typeof entry.sibling !== "string" || entry.sibling.trim().length === 0) {
         errors.push(`${label}.sibling must be a non-empty string`);
       } else {
-        if (!commandSet.has(entry.sibling)) {
-          errors.push(`${label}.sibling must be one of ${[...commandSet].sort().join(",")}`);
+        const siblingReference = parseSiblingReference(entry.sibling);
+
+        if (!commandSet.has(siblingReference.token)) {
+          errors.push(`${label}.sibling token must be one of ${[...commandSet].sort().join(",")}`);
+        } else if (!isAllowedSiblingReference(siblingReference, noCommandTokens)) {
+          errors.push(`${label}.sibling must be an exact command token; only a no-command token may add one parenthetical note`);
         }
 
-        if (entry.sibling === command) {
+        if (siblingReference.token === command) {
           errors.push(`${label}.sibling must not reference its own command`);
         }
 
-        if (seenSiblings.has(entry.sibling)) {
+        if (seenSiblings.has(siblingReference.token)) {
           errors.push(`${label}.sibling is duplicated`);
         }
 
-        seenSiblings.add(entry.sibling);
+        seenSiblings.add(siblingReference.token);
       }
 
       if (typeof entry.when !== "string" || entry.when.trim().length === 0) {
@@ -900,6 +932,34 @@ function validateDiscriminator(record, command, workflowModes) {
   errors.push(...validateDiscriminatorSequence(record, command, discriminator.sequence, commandSet));
 
   return errors;
+}
+
+function readNoCommandTokens(registry) {
+  if (!registry || !Array.isArray(registry.modes)) {
+    return new Set();
+  }
+
+  return new Set(
+    registry.modes
+      .filter((mode) => mode?.command === null && typeof mode.workflowMode === "string" && mode.workflowMode.length > 0)
+      .map((mode) => mode.workflowMode)
+  );
+}
+
+function parseSiblingReference(value) {
+  const trimmed = value.trim();
+  const boundaryIndex = trimmed.search(/[\s(]/);
+  const token = boundaryIndex === -1 ? trimmed : trimmed.slice(0, boundaryIndex).trim();
+  const suffix = boundaryIndex === -1 ? "" : trimmed.slice(boundaryIndex).trim();
+  return { token, suffix };
+}
+
+function isAllowedSiblingReference(reference, noCommandTokens) {
+  if (reference.suffix.length === 0) {
+    return true;
+  }
+
+  return noCommandTokens.has(reference.token) && /^\([^()\r\n]+\)$/.test(reference.suffix);
 }
 
 function validateDiscriminatorSequence(record, command, sequence, commandSet) {
@@ -1374,13 +1434,13 @@ async function collectSurfaceDrift(records) {
   return drift.sort(compareDrift);
 }
 
-function collectRosterReconciliationDrift(records, workflowModes, hubRouter, wrappers, transportCommands) {
+function collectRosterReconciliationDrift(records, workflowModes, registry, hubRouter, wrappers, transportTokens) {
   const drift = [];
   const metadataCommands = new Set(records.map((record) => record.command));
   const wrapperCommands = new Set(wrappers.map((wrapper) => wrapper.command));
   const hubModes = readHubRouterModes(hubRouter);
-  const hubCommands = commandSetForModes(hubModes);
-  const registryCommands = commandSetForModes(workflowModes);
+  const hubCommands = commandSetForModes(hubModes, registry);
+  const registryCommands = commandSetForModes(workflowModes, registry);
   const reconciledCommands = intersectSets(metadataCommands, wrapperCommands, hubCommands, registryCommands);
 
   for (const wrapper of wrappers) {
@@ -1418,7 +1478,7 @@ function collectRosterReconciliationDrift(records, workflowModes, hubRouter, wra
   }
 
   for (const command of sortedSet(hubCommands)) {
-    if (transportCommands.has(command)) {
+    if (transportTokens.has(command)) {
       continue;
     }
 
@@ -1633,7 +1693,17 @@ function expectedInterfaceTaskLanesDrift(record, surface) {
       continue;
     }
 
-    if (["argument", "sibling-command", "internal", "hidden"].includes(task.class) && !containsPhrase(section, task.label)) {
+    const isTaskProjectionCarrier = task.class === "internal"
+      && Array.isArray(record.taskProjections)
+      && record.taskProjections.length > 0
+      && typeof task.surface === "string"
+      && task.surface.includes("taskProjections");
+
+    if (
+      ["argument", "sibling-command", "internal", "hidden"].includes(task.class)
+      && !isTaskProjectionCarrier
+      && !containsPhrase(section, task.label)
+    ) {
       drift.push({
         kind: "task-lanes",
         command: record.command,
@@ -1738,59 +1808,336 @@ function expectedUserIntentDrift(record, surface) {
 }
 
 function expectedChoreographyDrift(record, surface) {
-  const section = surface.auto || "";
+  const drift = [];
+  const autoWorkflow = parseWorkflowSurface(surface.auto, "auto");
+  const confirmWorkflow = parseWorkflowSurface(surface.confirm, "confirm");
 
-  if (!section) {
-    return [
-      {
-        kind: "choreography",
-        command: record.command,
-        field: "choreography",
-        expected: "workflow steps in the auto asset",
-        actual: "<missing asset>"
-      }
-    ];
+  drift.push(...workflowSurfaceStructureDrift(record.command, autoWorkflow));
+  drift.push(...workflowSurfaceStructureDrift(record.command, confirmWorkflow));
+  drift.push(...workflowWitnessDrift(record.command, autoWorkflow));
+  drift.push(...workflowWitnessDrift(record.command, confirmWorkflow));
+
+  const autoBusinessSteps = autoWorkflow.steps.filter((step) => step.index > 0).map((step) => step.key);
+  const confirmBusinessSteps = confirmWorkflow.steps.filter((step) => step.index > 0).map((step) => step.key);
+
+  if (!sameValue(autoBusinessSteps, confirmBusinessSteps)) {
+    drift.push({
+      kind: "choreography",
+      command: record.command,
+      field: "choreography",
+      expected: `confirm business steps [${autoBusinessSteps.join(",")}]`,
+      actual: `[${confirmBusinessSteps.join(",")}]`
+    });
   }
 
-  const drift = [];
-  const steps = Array.isArray(record.choreography) ? record.choreography : [];
+  const workflowText = autoWorkflow.steps.map((step) => step.source).join("\n");
+  const metadataSteps = Array.isArray(record.choreography) ? record.choreography : [];
 
-  for (const step of steps) {
+  for (const step of metadataSteps) {
     if (!isPlainObject(step) || !Number.isInteger(step.order)) {
       continue;
     }
 
-    if (
-      typeof step.resource === "string" &&
-      step.resource.length > 0 &&
-      !section.includes(step.resource) &&
-      !containsWholeWord(section, lastPathSegment(step.resource))
-    ) {
-      drift.push({
-        kind: "choreography",
-        command: record.command,
-        field: "choreography",
-        expected: step.resource,
-        actual: `<missing resource in step ${step.order}>`
-      });
+    if (typeof step.resource === "string" && step.resource.length > 0) {
+      const resourceToken = canonicalChoreographyResourceToken(step.resource);
+      if (!hasExactStructuredToken(workflowText, resourceToken)) {
+        drift.push({
+          kind: "choreography",
+          command: record.command,
+          field: "choreography",
+          expected: step.resource,
+          actual: `<missing exact resource token in metadata step ${step.order}>`
+        });
+      }
     }
 
-    if (
-      typeof step.action === "string" &&
-      step.action.length > 0 &&
-      wordOverlapRatio(section, step.action) < CHOREOGRAPHY_ACTION_OVERLAP_THRESHOLD
-    ) {
-      drift.push({
-        kind: "choreography",
-        command: record.command,
-        field: "choreography",
-        expected: step.action,
-        actual: `<missing or mismatched action in step ${step.order}>`
-      });
+    if (typeof step.action === "string" && step.action.length > 0) {
+      for (const error of choreographyActionContractErrors(step, autoWorkflow.steps, workflowText)) {
+        drift.push({
+          kind: "choreography",
+          command: record.command,
+          field: "choreography",
+          expected: step.action,
+          actual: `<metadata step ${step.order}: ${error}>`
+        });
+      }
     }
   }
 
   return drift;
+}
+
+function parseWorkflowSurface(source, surfaceName) {
+  const errors = [];
+  const steps = [];
+
+  if (typeof source !== "string" || source.length === 0) {
+    return { surfaceName, steps, errors: [`${surfaceName} asset is missing`] };
+  }
+
+  const lines = source.split(/\r?\n/);
+  const workflowRoots = lines
+    .map((line, index) => (/^workflow:\s*(?:#.*)?$/.test(line) ? index : -1))
+    .filter((index) => index !== -1);
+
+  if (workflowRoots.length !== 1) {
+    return {
+      surfaceName,
+      steps,
+      errors: [`${surfaceName} asset must contain exactly one workflow mapping`]
+    };
+  }
+
+  const seenKeys = new Set();
+  const seenIndices = new Set();
+  const seenNames = new Set();
+  let currentStep = null;
+
+  for (let lineIndex = workflowRoots[0] + 1; lineIndex < lines.length; lineIndex += 1) {
+    const line = lines[lineIndex];
+    const trimmed = line.trim();
+
+    if (trimmed.length > 0 && !line.startsWith(" ") && !trimmed.startsWith("#")) {
+      break;
+    }
+
+    const workflowKey = line.match(/^  ([^:\s][^:]*):\s*(?:#.*)?$/);
+    if (workflowKey) {
+      const key = workflowKey[1];
+      const stepMatch = key.match(WORKFLOW_STEP_PATTERN);
+
+      if (!stepMatch) {
+        errors.push(`${surfaceName} workflow key ${key} must match step_N_<name>`);
+        currentStep = null;
+        continue;
+      }
+
+      const index = Number(stepMatch[1]);
+      const name = stepMatch[2];
+      currentStep = { key, index, name, fields: {}, sourceLines: [line], source: "" };
+      steps.push(currentStep);
+
+      if (seenKeys.has(key)) {
+        errors.push(`${surfaceName} workflow step ${key} is duplicated`);
+      }
+      if (seenIndices.has(index)) {
+        errors.push(`${surfaceName} workflow step index ${index} is duplicated`);
+      }
+      if (seenNames.has(name)) {
+        errors.push(`${surfaceName} workflow step name ${name} is duplicated`);
+      }
+
+      seenKeys.add(key);
+      seenIndices.add(index);
+      seenNames.add(name);
+      continue;
+    }
+
+    if (!currentStep) {
+      continue;
+    }
+
+    currentStep.sourceLines.push(line);
+    const fieldMatch = line.match(/^    (purpose|action|output):(?:\s*(.*))?$/);
+    if (!fieldMatch) {
+      continue;
+    }
+
+    const [, field, rawValue = ""] = fieldMatch;
+    if (Object.hasOwn(currentStep.fields, field)) {
+      errors.push(`${surfaceName} workflow step ${currentStep.key}.${field} is duplicated`);
+    }
+    currentStep.fields[field] = unquote(rawValue.trim());
+  }
+
+  for (const step of steps) {
+    step.source = step.sourceLines.join("\n");
+    for (const field of WORKFLOW_STEP_FIELDS) {
+      if (typeof step.fields[field] !== "string" || step.fields[field].length === 0) {
+        errors.push(`${surfaceName} workflow step ${step.key}.${field} must be a non-empty scalar`);
+      }
+    }
+  }
+
+  const expectedStart = surfaceName === "confirm" ? 0 : 1;
+  steps.forEach((step, index) => {
+    const expectedIndex = expectedStart + index;
+    if (step.index !== expectedIndex) {
+      errors.push(`${surfaceName} workflow steps must be ordered and contiguous from ${expectedStart}`);
+    }
+  });
+
+  if (surfaceName === "confirm") {
+    if (steps[0]?.key !== CONFIRM_PROMPT_STEP) {
+      errors.push(`confirm workflow must start with ${CONFIRM_PROMPT_STEP}`);
+    }
+    if (steps.some((step) => step.index === 0 && step.key !== CONFIRM_PROMPT_STEP)) {
+      errors.push(`${CONFIRM_PROMPT_STEP} is the only permitted confirm-only step`);
+    }
+  } else if (steps.some((step) => step.index === 0)) {
+    errors.push(`${CONFIRM_PROMPT_STEP} is confirm-only`);
+  }
+
+  if (steps.length === 0) {
+    errors.push(`${surfaceName} workflow must contain step_N_<name> entries`);
+  }
+
+  return { surfaceName, steps, errors };
+}
+
+function workflowSurfaceStructureDrift(command, workflow) {
+  return workflow.errors.map((error) => ({
+    kind: "choreography",
+    command,
+    field: "choreography",
+    expected: `${workflow.surfaceName} workflow with ordered unique step_N_<name> entries carrying purpose/action/output`,
+    actual: error
+  }));
+}
+
+function workflowWitnessDrift(command, workflow) {
+  const drift = [];
+  const names = new Set(workflow.steps.map((step) => step.name));
+
+  for (const witness of REQUIRED_WORKFLOW_WITNESSES) {
+    if (!names.has(witness)) {
+      drift.push({
+        kind: "choreography",
+        command,
+        field: "choreography",
+        expected: `${workflow.surfaceName} workflow witness ${witness}`,
+        actual: "<missing structural witness>"
+      });
+    }
+  }
+
+  if (!workflow.steps.some((step) => CORE_WORKFLOW_STEP_PATTERN.test(step.name))) {
+    drift.push({
+      kind: "choreography",
+      command,
+      field: "choreography",
+      expected: `${workflow.surfaceName} core workflow step named run_<name>`,
+      actual: "<missing structural witness>"
+    });
+  }
+
+  return drift;
+}
+
+function canonicalChoreographyResourceToken(resource) {
+  if (MODE_PROCEDURES_RESOURCE_PATTERN.test(resource)) {
+    return "procedures/";
+  }
+  if (MODE_REFERENCES_RESOURCE_PATTERN.test(resource)) {
+    return "references/";
+  }
+  return resource;
+}
+
+function hasExactStructuredToken(text, token) {
+  if (typeof text !== "string" || typeof token !== "string" || token.length === 0) {
+    return false;
+  }
+
+  const prefix = `(^|[^A-Za-z0-9_.-])${escapeRegExp(token)}`;
+  const suffix = token.endsWith("/") ? "" : "(?=$|[^A-Za-z0-9_.-])";
+  return new RegExp(`${prefix}${suffix}`, "m").test(text);
+}
+
+function choreographyActionContractErrors(step, workflowSteps, workflowText) {
+  const errors = [];
+  const normalizedAction = normalizeContractText(step.action);
+  const stepNames = new Set(workflowSteps.map((workflowStep) => workflowStep.name));
+  const hasCoreWorkflow = workflowSteps.some((workflowStep) => CORE_WORKFLOW_STEP_PATTERN.test(workflowStep.name));
+  const modeSkill = step.resource.match(MODE_SKILL_RESOURCE_PATTERN);
+  const modeProcedures = step.resource.match(MODE_PROCEDURES_RESOURCE_PATTERN);
+  const modeReferences = step.resource.match(MODE_REFERENCES_RESOURCE_PATTERN);
+
+  if (step.resource === HUB_SKILL_RESOURCE) {
+    requireExactAction(
+      errors,
+      normalizedAction,
+      "load the parent hub routing table and shared references",
+      stepNames.has("load_hub"),
+      "load_hub"
+    );
+    return errors;
+  }
+
+  if (modeSkill) {
+    requireExactAction(
+      errors,
+      normalizedAction,
+      `load the ${modeSkill[1]} mode contract`,
+      stepNames.has("load_mode"),
+      "load_mode"
+    );
+    return errors;
+  }
+
+  if (modeProcedures) {
+    if (!/^(?:choose|select)\b.*\bprivate\b.*\bcard\b/.test(normalizedAction)) {
+      errors.push("procedure action must explicitly choose or select a private card");
+    }
+    if (!stepNames.has("select_procedure_card")) {
+      errors.push("auto workflow is missing select_procedure_card");
+    }
+
+    const markdownTokens = [...step.action.matchAll(/(?:\.\.\/)?(?:[a-z0-9_-]+\/)*[a-z0-9_-]+\.md/gi)]
+      .map((match) => match[0]);
+    if (markdownTokens.length === 0) {
+      errors.push("procedure action must name at least one exact procedure card");
+    }
+    for (const token of markdownTokens) {
+      if (!hasExactStructuredToken(workflowText, token)) {
+        errors.push(`auto workflow is missing exact action token ${token}`);
+      }
+    }
+
+    const fallbackMatch = step.action.match(/\bstate '([^']+)'/i);
+    if (!fallbackMatch || !workflowText.includes(fallbackMatch[1])) {
+      errors.push("auto workflow is missing the exact no-procedure fallback");
+    }
+    return errors;
+  }
+
+  if (modeReferences) {
+    requireExactAction(
+      errors,
+      normalizedAction,
+      `load mode references and assets as the work requires, then apply the ${modeReferences[1]} workflow to $arguments`,
+      stepNames.has("load_mode") && hasCoreWorkflow,
+      "load_mode plus run_<name>"
+    );
+    return errors;
+  }
+
+  if (step.resource === HANDOFF_RESOURCE) {
+    requireExactAction(
+      errors,
+      normalizedAction,
+      "prepare implementation handoff only when accepted design output moves to code",
+      stepNames.has("prepare_handoff"),
+      "prepare_handoff"
+    );
+    return errors;
+  }
+
+  errors.push(`resource ${step.resource} has no explicit structural action contract`);
+  return errors;
+}
+
+function requireExactAction(errors, actual, expected, hasWitness, witnessName) {
+  if (actual !== expected) {
+    errors.push(`action must equal ${expected}`);
+  }
+  if (!hasWitness) {
+    errors.push(`auto workflow is missing ${witnessName}`);
+  }
+}
+
+function normalizeContractText(value) {
+  return value.trim().toLowerCase().replace(/\s+/g, " ");
 }
 
 function expectedPipelineDrift(record, surface) {
@@ -2065,10 +2412,12 @@ function expectedDiscriminatorDrift(record, surface) {
   }
 
   const drift = [];
-  const expectedSiblings = record.discriminator.preferSiblingWhen.map((entry) => entry.sibling).sort();
+  const expectedSiblings = record.discriminator.preferSiblingWhen
+    .map((entry) => parseSiblingReference(entry.sibling).token)
+    .sort();
 
   for (const sibling of expectedSiblings) {
-    if (!section.includes(sibling)) {
+    if (!hasExactStructuredToken(section, sibling)) {
       drift.push({
         kind: "discriminator",
         command: record.command,
@@ -2182,15 +2531,6 @@ function stripTrailingPeriod(value) {
   return typeof value === "string" ? value.replace(/\.+$/, "") : value;
 }
 
-function lastPathSegment(value) {
-  if (typeof value !== "string") {
-    return "";
-  }
-
-  const segments = value.split("/").filter(Boolean);
-  return segments.length > 0 ? segments[segments.length - 1] : "";
-}
-
 function extractSuccessStatusLine(text) {
   if (typeof text !== "string") {
     return null;
@@ -2201,14 +2541,7 @@ function extractSuccessStatusLine(text) {
 }
 
 function extractPreconditionsSection(markdown) {
-  const sectionMatch = markdown.match(/^##\s+(?:\d+\.\s+)?PRECONDITIONS\s*$/im);
-  if (!sectionMatch || typeof sectionMatch.index !== "number") {
-    return null;
-  }
-
-  const bodyStart = sectionMatch.index + sectionMatch[0].length;
-  const nextSection = markdown.slice(bodyStart).search(/\r?\n##\s+/);
-  return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
+  return extractNamedSection(markdown, "PRECONDITIONS");
 }
 
 function extractInterfaceTaskLanesSection(markdown) {
@@ -2216,13 +2549,16 @@ function extractInterfaceTaskLanesSection(markdown) {
 }
 
 function extractNamedSection(markdown, sectionName) {
-  const sectionMatch = markdown.match(new RegExp(`^##\\s+(?:\\d+\\.\\s+)?${escapeRegExp(sectionName)}\\s*$`, "im"));
+  const sectionMatch = markdown.match(
+    new RegExp(`^(#{2,3})\\s+(?:\\d+\\.\\s+)?${escapeRegExp(sectionName)}\\s*$`, "im")
+  );
   if (!sectionMatch || typeof sectionMatch.index !== "number") {
     return null;
   }
 
   const bodyStart = sectionMatch.index + sectionMatch[0].length;
-  const nextSection = markdown.slice(bodyStart).search(/\r?\n##\s+/);
+  const headingLevel = sectionMatch[1].length;
+  const nextSection = markdown.slice(bodyStart).search(new RegExp(`\\r?\\n#{2,${headingLevel}}\\s+`));
   return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
 }
 
@@ -2474,8 +2810,21 @@ function uniqueDrift(drift) {
   return unique;
 }
 
-function commandSetForModes(workflowModes) {
-  return new Set([...workflowModes].map((workflowMode) => `/design:${workflowMode}`));
+function commandSetForModes(workflowModes, registry) {
+  const registryModes = new Map(
+    Array.isArray(registry?.modes)
+      ? registry.modes
+        .filter((mode) => typeof mode?.workflowMode === "string" && mode.workflowMode.length > 0)
+        .map((mode) => [mode.workflowMode, mode])
+      : []
+  );
+
+  return new Set(
+    [...workflowModes].map((workflowMode) => {
+      const registryToken = commandTokenForMode(registryModes.get(workflowMode));
+      return registryToken ?? `/design:${workflowMode}`;
+    })
+  );
 }
 
 function compareDrift(left, right) {
@@ -2543,3 +2892,14 @@ function formatValue(value) {
   }
   return JSON.stringify(value);
 }
+
+export {
+  commandSetForModes,
+  expectedChoreographyDrift,
+  parseInterfaceIntentSignalKeys,
+  readRegistryAliasesByMode,
+  readWorkflowModes,
+  validateDiscriminator,
+  validateInterfaceIntentSignalKeys,
+  validateMetadata
+};
