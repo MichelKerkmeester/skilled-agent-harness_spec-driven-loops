@@ -82,4 +82,4 @@ Additive SKILL.md notes + changelogs. Rollback = revert the commit.
 
 ## RELATED DOCUMENTS
 - `./spec.md`, `./tasks.md`, `./checklist.md`, `./implementation-summary.md`
-- Sibling: `../../015-packet-smart-routing-conformance/`
+- Sibling: `../009-packet-smart-routing-conformance/`

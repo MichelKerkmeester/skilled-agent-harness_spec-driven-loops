@@ -1,5 +1,6 @@
 {
-  "specFolder": "sk-doc/018-create-benchmark-audit-remediation",
+  "level": "2",
+  "specFolder": "sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation",
   "description": "An independent two-model audit (GPT-5.6 SOL max + LUNA max) of `sk-doc/create-benchmark` confirmed the packet's benchmark-family coverage is",
   "keywords": [
     "independent",
@@ -16,13 +17,13 @@
     "benchmark-family",
     "coverage"
   ],
-  "lastUpdated": "2026-07-14T06:40:58.495Z",
-  "specId": "018",
+  "lastUpdated": "2026-07-14T08:20:02.480Z",
+  "specId": "003",
   "folderSlug": "create-benchmark-audit-remediation",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "016-benchmark-authoring-centralization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -7,8 +7,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/015-packet-smart-routing-conformance"
-    last_updated_at: "2026-07-12T10:26:39Z"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/009-packet-smart-routing-conformance"
+    last_updated_at: "2026-07-14T08:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "All tasks complete; 9/10 packets PASS (create-benchmark deferred to 016)"
     next_safe_action: "Commit and continue with 016"

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-create-benchmark-audit-remediation"
+    packet_pointer: "sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation"
     last_updated_at: "2026-07-14T09:10:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Fixed all audit findings; gates green"
@@ -32,7 +32,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 018-create-benchmark-audit-remediation |
+| **Spec Folder** | 003-create-benchmark-audit-remediation |
 | **Completed** | 2026-07-14 |
 | **Level** | 2 |
 

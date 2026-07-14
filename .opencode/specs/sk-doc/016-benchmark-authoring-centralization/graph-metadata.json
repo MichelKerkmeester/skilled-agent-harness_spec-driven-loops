@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "sk-doc/016-benchmark-authoring-centralization/001-create-benchmark-reorg-and-routing",
-    "sk-doc/016-benchmark-authoring-centralization/002-benchmark-authoring-completion-and-crosslinks"
+    "sk-doc/016-benchmark-authoring-centralization/002-benchmark-authoring-completion-and-crosslinks",
+    "sk-doc/016-benchmark-authoring-centralization/003-create-benchmark-audit-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -195,7 +196,7 @@
     ],
     "causal_summary": "Make sk-doc/create-benchmark the single home for benchmark-DOCUMENT templates and authoring standards across all repo benchmark families. Author skill-benchmark storage/README templates and model-benchmark fixture/profile templates plus guides, add a complete family-disambiguation table (Lane A/D marked code-owned), and rewire deep-improvement consumer docs to point at create-benchmark for authoring while run/scoring logic stays in the deep-loop lanes. The Lane C report .md stays renderer-owned.",
     "created_at": "2026-07-12T10:58:43.605Z",
-    "last_save_at": "2026-07-13T14:32:43.162Z",
+    "last_save_at": "2026-07-14T08:22:39.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +207,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f4a329d084c6fc1f6d278b874b69a665d18a4bdabd716ab25893b9f2535944d",
+    "source_fingerprint": "sha256:ae68937fddaca24b86ec08257f63924c2ae20ec8873cfd42a74632b2dc7d0516",
     "source_doc_hashes": {
-      "spec.md": "235f31262749246d34d35535ad37af2d03a511e7e592a2d22c39560679784cea",
-      "plan.md": "1bc303e4d4c3a00226a1cc641e1546a3deed2ef97ed740be14abe04739e67966",
-      "tasks.md": "be65a06461782483df9357814e110f03b884258734c0069435eab66c03c2186b",
+      "spec.md": "3ae006bbfc9d3313ae5b98775b1f011501d5cd41df1cb28f48ebe237830db430",
+      "plan.md": "374902fd9128ad078b5c76ba439fa932d7ed17d8f9ed89cf4f10326f94dcb692",
+      "tasks.md": "456a86df242a162e9e96c95ed0617032ea4fa55284c010b744ba0293a46c5d08",
       "checklist.md": "20eb024c13e52d7e0f83a274628eee5cc5837cc06bd02ae70d804790df91ffb3",
       "decision-record.md": "c83fa4e2ef512279ca8a5566809fdc17f0ee06663b54cedf4a28fe876388066b",
       "implementation-summary.md": "565380117c13bb2a20e3b7a01362abd4cf75d394f7f47b66554e5a0b87f8e559"

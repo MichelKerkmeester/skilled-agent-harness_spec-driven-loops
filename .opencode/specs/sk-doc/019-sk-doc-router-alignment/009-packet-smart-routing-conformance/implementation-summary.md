@@ -7,8 +7,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/015-packet-smart-routing-conformance"
-    last_updated_at: "2026-07-12T10:26:39Z"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/009-packet-smart-routing-conformance"
+    last_updated_at: "2026-07-14T08:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "7/7 normalized + verified; committed on the goal worktree branch"
     next_safe_action: "create-benchmark normalization completes in 016; then terminal gates"
