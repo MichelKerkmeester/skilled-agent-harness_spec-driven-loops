@@ -1,6 +1,6 @@
 ---
 name: deep-alignment
-description: "Autonomous structured conformance-review loop: audits artifacts against a named standard authority's own creation rules across resolved lanes, with verify-first findings, known-deviation suppression, and a read-only default."
+description: "Autonomous standard-authority conformance: audit artifacts by lane; verify-first, known-deviation suppression, read-only default."
 allowed-tools: [Read, Grep, Glob, Task, Bash, memory_context, memory_search, code_graph_query]
 version: 1.0.0.1
 ---
