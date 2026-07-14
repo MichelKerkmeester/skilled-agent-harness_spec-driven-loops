@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-git Large-Reorg + Worktree Hardening [skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening/plan]"
+title: "Implementation Plan: sk-git Large-Reorg + Worktree Hardening [sk-git/z_archive/096-sk-git-reorg-hardening/plan]"
 description: "Harden the sk-git skill against five failure modes from the 026 wave-4 reorg by adding worktree caveats, scoped-staging discipline, rename-heavy merge verification, and a large-reorg runbook."
 trigger_phrases:
   - "sk-git reorg hardening plan"
@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening"
-    last_updated_at: "2026-05-26T19:30:00Z"
+    packet_pointer: "sk-git/z_archive/096-sk-git-reorg-hardening"
+    last_updated_at: "2026-07-14T21:40:41Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored plan.md for completed sk-git hardening"
     next_safe_action: "Author tasks/checklist/implementation-summary and validate"

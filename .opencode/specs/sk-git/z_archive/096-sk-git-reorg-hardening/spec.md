@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-git Large-Reorg + Worktree Hardening [skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening/spec]"
+title: "Feature Specification: sk-git Large-Reorg + Worktree Hardening [sk-git/z_archive/096-sk-git-reorg-hardening/spec]"
 description: "Harden the sk-git skill so large rename/reorg + worktree workflows avoid the failure modes hit during the 026 wave-4 reorg."
 trigger_phrases:
   - "sk-git reorg hardening"
@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening"
-    last_updated_at: "2026-05-26T18:00:00Z"
+    packet_pointer: "sk-git/z_archive/096-sk-git-reorg-hardening"
+    last_updated_at: "2026-07-14T21:40:41Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Created packet for sk-git hardening"
     next_safe_action: "Update sk-git skill per the five failure modes"

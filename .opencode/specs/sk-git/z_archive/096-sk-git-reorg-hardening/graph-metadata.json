@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening",
-  "spec_folder": "skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening",
+  "packet_id": "sk-git/z_archive/096-sk-git-reorg-hardening",
+  "spec_folder": "sk-git/z_archive/096-sk-git-reorg-hardening",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -39,10 +39,6 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".opencode/skills/sk-git/references/worktree_workflows.md",
-      ".opencode/skills/sk-git/references/commit_workflows.md",
-      ".opencode/skills/sk-git/references/shared_patterns.md",
-      ".opencode/skills/sk-git/references/large_reorg_playbook.md",
       ".opencode/skills/sk-git/SKILL.md",
       "plan.md",
       "tasks.md",
@@ -54,30 +50,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "worktree_workflows.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/worktree_workflows.md",
-        "source": "derived"
-      },
-      {
-        "name": "commit_workflows.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/commit_workflows.md",
-        "source": "derived"
-      },
-      {
-        "name": "shared_patterns.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/shared_patterns.md",
-        "source": "derived"
-      },
-      {
-        "name": "large_reorg_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/large_reorg_playbook.md",
         "source": "derived"
       },
       {
@@ -193,11 +165,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "comm",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 026 wave-4 reorganization (a large rename/renumber executed in a git worktree, then merged to main) hit several avoidable failure modes that the sk-git skill does not currently guard against: gitignored leftover folders after `git mv`, a fresh worktree missing gitignored build deps (breaking the spec-kit toolchain), the memory DB being a single global instance (not per-worktree), accidental staging of unrelated in-flight WIP, and rename-heavy merge verification gaps",
     "created_at": "2026-05-26T17:36:41.943Z",
-    "last_save_at": "2026-07-09T10:02:46.028Z",
+    "last_save_at": "2026-07-14T21:40:41.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2fc39662aaf06942c584e790470571d950da9dca7a6858927d86c4fd5be6e2b",
+    "source_fingerprint": "sha256:f0263b62718bafedbf8d5c4a595da1f812b29e87c7c637021e9121d228c88f7a",
     "source_doc_hashes": {
-      "spec.md": "5e2534dbaef13edfa62d7db9b9bb14384944f986f499a6e037d453a8b2330943",
-      "plan.md": "8c9998bf48aeb4261c16b83461376b06ba8c2c2fd8c7cd9c818d2839783c34d3",
-      "tasks.md": "b4bc19aadb39ee8621c1f8d4ec72cb3f9c495ebdbe850261bd56c2db7be8b4e4",
-      "checklist.md": "89426d4742b075ed281ad1132754124755b1b3c89cf6b35556091666174447a4",
-      "implementation-summary.md": "e904f0d22cf7e585ab1b1ba68bc6bbd2a0c0992cdb9d5cf730731e8cb2b24d2a"
+      "spec.md": "aa6a737d880b81c9f6d120817d6ad3f4a8eeefd84b7cd2526a1a0e64a064c765",
+      "plan.md": "73b7c6520d77fd0f6336febbfc0a1a01da317942e4adba055f7982fd8f0411d1",
+      "tasks.md": "e7910ac414ce57e109a73a7b095b4ce7405184074978b3cd25cc0f0f5a5911b2",
+      "checklist.md": "2af11f88b838db1a33ac948c172eaf227bb1f86f58ca2c6ecd263a7e133059cb",
+      "implementation-summary.md": "f3e92b42bf7451ca2d083d97dd49eb1baf2cddce418de65e76422cad48e0b3b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

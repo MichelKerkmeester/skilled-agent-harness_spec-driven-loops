@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-git Large-Reorg + Worktree Hardening [skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening/tasks]"
+title: "Tasks: sk-git Large-Reorg + Worktree Hardening [sk-git/z_archive/096-sk-git-reorg-hardening/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "sk-git reorg hardening tasks"
@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening"
-    last_updated_at: "2026-05-26T19:30:00Z"
+    packet_pointer: "sk-git/z_archive/096-sk-git-reorg-hardening"
+    last_updated_at: "2026-07-14T21:40:41Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored tasks.md for completed sk-git hardening"
     next_safe_action: "Author checklist/implementation-summary and validate"

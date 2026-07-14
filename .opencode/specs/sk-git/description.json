@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-git",
+  "description": "Track folder for the sk-git skill \u2014 Git development orchestration across workspace isolation, commit hygiene, and work completion. Hosts the live packets 000-007 (continuous-integration workflow, research and requirements, skill-scoped worktree naming, review remediation and alignment, feature catalog and manual playbook, README enrichment and hyphen naming, git review remediation, GitKraken MCP integration) plus an archive of superseded packets under z_archive (GitHub MCP integration, superset worktrees, sk-git README, commit standards and retroactive rewrite, reorg hardening, worktree convention and advisor routing).",
+  "keywords": [
+    "git",
+    "worktree",
+    "commit",
+    "pull-request",
+    "merge",
+    "rebase",
+    "conventional-commits",
+    "github",
+    "gitkraken",
+    "worktree-naming",
+    "commit-standards",
+    "sk-git"
+  ],
+  "lastUpdated": "2026-07-14T21:34:01.000Z",
+  "specId": "sk-git",
+  "folderSlug": "sk-git",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

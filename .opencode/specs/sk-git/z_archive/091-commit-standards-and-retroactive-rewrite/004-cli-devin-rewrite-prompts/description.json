@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/z_archive/091-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
+  "description": "A 2,795-commit retroactive rewrite is too large for a single cli-devin dispatch",
+  "keywords": [
+    "795-commit",
+    "retroactive",
+    "rewrite",
+    "too",
+    "large",
+    "single",
+    "cli-devin",
+    "dispatch"
+  ],
+  "lastUpdated": "2026-07-14T21:05:18.546Z",
+  "specId": "004",
+  "folderSlug": "cli-devin-rewrite-prompts",
+  "parentChain": [
+    "sk-git",
+    "z_archive",
+    "091-commit-standards-and-retroactive-rewrite"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/103-sk-git-worktree-convention-and-advisor-routing"
-    last_updated_at: "2026-06-02T00:00:00Z"
+    packet_pointer: "sk-git/z_archive/103-sk-git-worktree-convention-and-advisor-routing"
+    last_updated_at: "2026-07-14T21:40:41Z"
     last_updated_by: "claude-opus"
     recent_action: "Scaffolded the impl doc; sk-git work not yet started"
     next_safe_action: "Begin Phase 2 edits, then fill this doc with concrete outcomes"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 128-sk-git-worktree-convention-and-advisor-routing |
+| **Spec Folder** | 103-sk-git-worktree-convention-and-advisor-routing |
 | **Completed** | Pending |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

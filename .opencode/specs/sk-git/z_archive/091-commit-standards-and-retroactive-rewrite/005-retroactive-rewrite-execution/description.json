@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/z_archive/091-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
+  "description": "The 2,795 HEAD commits do not follow the standard locked in Phase 002",
+  "keywords": [
+    "head",
+    "commits",
+    "follow",
+    "standard",
+    "locked",
+    "phase"
+  ],
+  "lastUpdated": "2026-07-14T21:05:18.547Z",
+  "specId": "005",
+  "folderSlug": "retroactive-rewrite-execution",
+  "parentChain": [
+    "sk-git",
+    "z_archive",
+    "091-commit-standards-and-retroactive-rewrite"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

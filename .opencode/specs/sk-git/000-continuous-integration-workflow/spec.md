@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-git/001-continuous-integration-workflow"
-    last_updated_at: "2026-07-13T15:45:00Z"
+    packet_pointer: "sk-git/000-continuous-integration-workflow"
+    last_updated_at: "2026-07-14T21:29:36Z"
     last_updated_by: "claude"
     recent_action: "Scripts, hook, wrapper, and cross-runtime wiring implemented and verified"
     next_safe_action: "Author the sk-git skill docs; run validate.sh --strict; hand off for operator review/merge"

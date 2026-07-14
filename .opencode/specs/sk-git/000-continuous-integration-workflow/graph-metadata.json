@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/001-continuous-integration-workflow",
-  "spec_folder": "sk-git/001-continuous-integration-workflow",
+  "packet_id": "sk-git/000-continuous-integration-workflow",
+  "spec_folder": "sk-git/000-continuous-integration-workflow",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -38,7 +38,6 @@
       ".opencode/bin/worktree-session.sh",
       ".codex/hooks.json",
       ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/sk-git/references/finish_workflows.md",
       ".opencode/plugins/session-cleanup.js",
       "plan.md",
       "tasks.md",
@@ -82,12 +81,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "finish_workflows.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/finish_workflows.md",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The launch wrapper `worktree-session.sh` isolates every top-level AI session into its own worktree on a dead-end `work/<runtime>/<slug>` branch with isolated MCP databases",
-    "created_at": "2026-07-13T15:38:03.467Z",
-    "last_save_at": "2026-07-13T15:45:06.623Z",
+    "created_at": "2026-07-14T21:29:36.919Z",
+    "last_save_at": "2026-07-14T21:29:36.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71f92d8846fdb16a03617f9b1a66b3b7427fff80c374ff05a5fb7b764c8f9f56",
+    "source_fingerprint": "sha256:6e20c726d4cdfc8ae029a4ca42cf4d59d8256e0c6bf060b0ee40ec7d824a5ea6",
     "source_doc_hashes": {
-      "spec.md": "e43afea2a7b284bc6e2102047610dc23b7e3c26b1368ad262b29f30f18cdbaa1",
-      "plan.md": "3811e720c3c0a42fb21f8b80bd9e00e80be12fd97c626174ab57505a5bc55e8d",
-      "tasks.md": "71bf3d44d94f283d094edea788750dc01deff0e1fc12695f7e88a0f12c62dab3",
-      "checklist.md": "2b1c362397dd5d1a9248a0842bff40695c22efc818080403fb7746bf9efdbb0d",
-      "implementation-summary.md": "c8cc87f85a7923a03815875189dbe63e9e20fcb0420d6568ab67b64c1a7888c0"
+      "spec.md": "0e728f4fa4112a11fabbdb1931786679072eb61e22e9b3079ae3234f92089510",
+      "plan.md": "d378095f41f6bb833f197bf0324c59e8a5e5b19f190cab04e14c2c8a09405b74",
+      "tasks.md": "0904d96afadad0e861ce18b7da59a909dad54ee9b119495bde9aa53ceb3681ab",
+      "checklist.md": "190d36b7524a20ced1f440fe320952aeaeaec658f8c7bc26085e0a43597316b1",
+      "implementation-summary.md": "924a55d0e7f04a7c9a6cdaf69ff290eac5f89073034b19f62994aaea84b983ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

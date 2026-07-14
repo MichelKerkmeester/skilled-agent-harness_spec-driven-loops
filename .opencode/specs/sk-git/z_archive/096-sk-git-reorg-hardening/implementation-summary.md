@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening/implementation-summary]"
+title: "Implementation Summary [sk-git/z_archive/096-sk-git-reorg-hardening/implementation-summary]"
 description: "The sk-git skill now carries concrete guidance and a runbook for large rename/reorg + worktree workflows, closing the five failure modes hit during the 026 wave-4 reorg."
 trigger_phrases:
   - "sk-git reorg hardening summary"
@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening"
-    last_updated_at: "2026-05-26T19:30:00Z"
+    packet_pointer: "sk-git/z_archive/096-sk-git-reorg-hardening"
+    last_updated_at: "2026-07-14T21:40:41Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored implementation-summary.md for completed sk-git hardening"
     next_safe_action: "Run validate.sh --strict and report"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | skilled-agent-orchestration/z_archive/096-sk-git-reorg-hardening |
+| **Spec Folder** | 096-sk-git-reorg-hardening |
 | **Completed** | 2026-05-26 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-git/z_archive/091-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution/.backup-20260516-114328",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-05-16T09:43:28.393Z",
+  "specId": "",
+  "folderSlug": "backup-20260516-114328",
+  "parentChain": [
+    "sk-git",
+    "z_archive",
+    "091-commit-standards-and-retroactive-rewrite",
+    "005-retroactive-rewrite-execution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

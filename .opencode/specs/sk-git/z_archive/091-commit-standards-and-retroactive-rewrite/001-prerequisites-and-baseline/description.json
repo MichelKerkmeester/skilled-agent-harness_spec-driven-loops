@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/z_archive/091-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
+  "description": "Two unknowns block downstream phases: (1) `git-filter-repo` is not currently installed on this Mac (verified at planning time \u2014 Phase 005 needs it for",
+  "keywords": [
+    "two",
+    "unknowns",
+    "block",
+    "downstream",
+    "phases",
+    "git-filter-repo",
+    "currently",
+    "installed",
+    "mac",
+    "verified",
+    "planning",
+    "time",
+    "phase",
+    "needs"
+  ],
+  "lastUpdated": "2026-07-14T21:05:18.544Z",
+  "specId": "001",
+  "folderSlug": "prerequisites-and-baseline",
+  "parentChain": [
+    "sk-git",
+    "z_archive",
+    "091-commit-standards-and-retroactive-rewrite"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
