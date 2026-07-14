@@ -11,7 +11,7 @@ trigger_phrases:
   - "ephemeral session worktrees"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.9
+version: 1.1.1.0
 ---
 
 # Git Worktrees - Detailed Workflow Reference
@@ -48,19 +48,19 @@ If the user has not been prompted or selected a different option:
 
 ## 3. PROCESS OVERVIEW
 
-1. Compute the global worktree number `{NNNN}` and confirm the kebab `{name}`
+1. Confirm the owner (a skill id, or `skilled` for cross-cutting work) and the kebab `{slug}`, then allocate `{NNNN}` via the naming allocator
 2. Verify safety (`.gitignore` check for the `.worktrees/` home)
-3. Create worktree with appropriate lifecycle strategy under the unified `wt/{NNNN}-{name}` branch namespace
+3. Create worktree with appropriate lifecycle strategy under the owner-first `{OWNER}/{NNNN}-{slug}` branch grammar
 4. Run project setup (auto-detect and install dependencies)
 5. Verify clean baseline (run tests)
 6. Report location and status
 
-**Branch namespace**: every named feature worktree uses the unified `wt/{NNNN}-{name}` branch and the `.worktrees/{NNNN}-{name}` directory (see Naming Convention below). The lifecycle strategy below only changes *how the branch is managed after creation*, not how it is named.
+**Branch namespace**: every named feature worktree uses the owner-first `{OWNER}/{NNNN}-{slug}` branch and the `.worktrees/{NNNN}-{OWNER}-{slug}` directory (see Naming Convention below). `{OWNER}` is a canonical skill id (the `name:` frontmatter of an `.opencode/skills/**/SKILL.md`) or the literal `skilled` for cross-cutting/system/release work. The lifecycle strategy below only changes *how the branch is managed after creation*, not how it is named.
 
 **Lifecycle strategies**:
 - **Fast-merge (default)**: short-lived branch that merges straight back to main after testing
-- **Long-running**: same `wt/{NNNN}-{name}` branch kept across multiple days for PR review
-- **Detached experiment**: quick throwaway work with detached HEAD (no branch, so no number is assigned)
+- **Long-running**: same `{OWNER}/{NNNN}-{slug}` branch kept across multiple days for PR review
+- **Detached experiment**: quick throwaway work with detached HEAD (no branch and no owner; the directory is still numbered by the allocator)
 
 ---
 
@@ -68,18 +68,18 @@ If the user has not been prompted or selected a different option:
 
 ### Step 1: Gather User Inputs
 
-**Purpose**: Collect task description and lifecycle strategy
+**Purpose**: Collect the owner, task description, and lifecycle strategy
 
 **Actions**:
-- Ask for feature/task description and derive a short kebab `{name}` from it
+- Confirm the `{OWNER}` — a canonical skill id (the `name:` frontmatter of an `.opencode/skills/**/SKILL.md`, e.g. `sk-git`) or the literal `skilled` for cross-cutting/system/release work — and derive a short kebab `{slug}` from the feature/task description
 - Confirm lifecycle strategy (default: fast-merge for most work)
-- The branch is always `wt/{NNNN}-{name}` — only the lifecycle (how it merges) varies. `{NNNN}` is computed in Step 4.
+- The branch is always `{OWNER}/{NNNN}-{slug}` — only the lifecycle (how it merges) varies. `{NNNN}` is allocated in Step 4.
 
-**Default Strategy**: fast-merge (short-lived `wt/{NNNN}-{name}` branch merging back to main)
+**Default Strategy**: fast-merge (short-lived `{OWNER}/{NNNN}-{slug}` branch merging back to main)
 
 **When to use other strategies**:
-- Long-running: features requiring PR review across multiple days (same `wt/{NNNN}-{name}` branch)
-- Detached experiment: quick experiments with no branch (no number assigned)
+- Long-running: features requiring PR review across multiple days (same `{OWNER}/{NNNN}-{slug}` branch)
+- Detached experiment: quick experiments with no branch (no owner; the directory is still numbered)
 
 **Validation**: `inputs_collected`
 
@@ -90,8 +90,8 @@ If the user has not been prompted or selected a different option:
 **Purpose**: Confirm the worktree home (standardized on `.worktrees/`)
 
 Named feature worktrees live under the repo-local, already-gitignored `.worktrees/`
-home. Each worktree is a numbered subdirectory: `.worktrees/{NNNN}-{name}` (the
-`{NNNN}` is computed in Step 4). You normally do not need to ask — `.worktrees/` is
+home. Each worktree is a numbered subdirectory: `.worktrees/{NNNN}-{OWNER}-{slug}` (the
+`{NNNN}` is allocated in Step 4). You normally do not need to ask — `.worktrees/` is
 the default.
 
 **Priority Order**:
@@ -136,59 +136,66 @@ git check-ignore -n .worktrees 2>/dev/null || echo "NOT_IGNORED"
 
 ### Step 4: Create Worktree
 
-**Purpose**: Create the isolated workspace under the `wt/{NNNN}-{name}` namespace
+**Purpose**: Create the isolated workspace under the owner-first `{OWNER}/{NNNN}-{slug}` grammar
 
 #### Naming Convention
 
 Named feature worktrees — the ones a human creates for a feature or a parallel task —
-use one unified, numbered namespace:
+use one unified, owner-first grammar:
 
-- **Branch**: `wt/{NNNN}-{name}` — e.g. `wt/0001-add-oauth`. The `wt/` prefix groups
-  every feature-worktree branch under a single folder in Git UIs (the same way
-  `system-speckit/023-...` groups spec branches). `{name}` is a short kebab description.
-- **Directory**: `<repo-root>/.worktrees/{NNNN}-{name}` — e.g. `.worktrees/0001-add-oauth`.
-  `.worktrees/` is the repo-local, already-gitignored worktree home.
-- **`{NNNN}`** is a 4-digit zero-padded **global** counter, assigned as
-  `max(existing NNNN under .worktrees/) + 1` (the first worktree is `0001`).
+- **Branch**: `{OWNER}/{NNNN}-{slug}` — e.g. `sk-git/0001-add-oauth`. `{OWNER}` is a
+  canonical skill id (the `name:` frontmatter of any `.opencode/skills/**/SKILL.md`,
+  e.g. `sk-git`, `sk-code`) or the literal `skilled` for cross-cutting/system/release
+  work. Owner-first grouping makes every feature-worktree branch legible by owning
+  skill in a Git UI, instead of a flat pile. `{slug}` is a short kebab description.
+- **Directory**: `<repo-root>/.worktrees/{NNNN}-{OWNER}-{slug}` — e.g.
+  `.worktrees/0001-sk-git-add-oauth`. `.worktrees/` is the repo-local,
+  already-gitignored worktree home.
+- **`{NNNN}`** is a 4-digit zero-padded **clone-wide** counter. Git has no
+  cross-prefix uniqueness, so the counter cannot be enforced per-owner — it is
+  allocated by `.opencode/skills/sk-git/scripts/worktree-naming.sh`, which holds a
+  lock in the shared common git dir and seeds its max from the stored high-water
+  mark, every registered worktree basename, and all local + remote refs, so a
+  partial scan can never reissue a live number. Never hand-compute `{NNNN}`.
 
-> **Two distinct lanes.** This numbered `wt/{NNNN}-{name}` convention is for *named
+> **Two distinct lanes.** This owner-first `{OWNER}/{NNNN}-{slug}` grammar is for *named
 > feature worktrees a human creates*. It is separate from the per-session **ephemeral**
 > worktrees allocated by the launch wrapper `.opencode/bin/worktree-session.sh`, which
 > keep their own auto-managed namespace — branch `work/{runtime}/{slug}`, directory
 > `.worktrees/{runtime}-{slug}` — and are auto-reaped by `worktree-reaper.sh` (which keys
-> on the `.worktrees/` directory, not on the branch prefix). Those ephemeral session
-> worktrees are intentionally **not** numbered; do not assign them an `{NNNN}`.
+> on the branch prefix `work/`, and only when the wrapper worktree is clean, merged into
+> the live integration tip, and proven inactive by its session marker). Those ephemeral
+> session worktrees are intentionally **not** numbered or owner-scoped; do not assign
+> them an `{NNNN}` or an `{OWNER}`.
+>
+> **Legacy branches.** `wt/{NNNN}-{name}` branches created before this convention are
+> permitted-but-non-conformant. Migrate them by renaming the branch (and its directory)
+> into the owner-first form — never by rewriting history.
 
 **Actions**:
 
-1. **Compute the global number `{NNNN}`**:
+1. **Create the worktree and allocate `{NNNN}` in one step** (covers both fast-merge
+   and long-running — the creation command is identical; only downstream lifecycle
+   handling differs):
 ```bash
-# max existing NNNN under .worktrees/ + 1, zero-padded to 4 digits (first is 0001)
-n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))
+.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git add-oauth main
+# -> sk-git/0001-add-oauth .worktrees/0001-sk-git-add-oauth   (branch, then dir)
+```
+   This locks the clone-wide counter, creates the branch + worktree with
+   `git worktree add -b`, and prints `<branch> <dir>` on success. Omit the trailing
+   base argument to branch off the current checked-out branch (or `HEAD` if
+   detached) instead of an explicit `main`.
+
+2. **Detached experiment** (no branch, so no `{OWNER}`/`{NNNN}` pairing — but the
+   directory is still numbered):
+```bash
+.opencode/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
+# -> .worktrees/0002-detached-experiment
 ```
 
-2. **Set the kebab `{name}` and derive the paths**:
+3. **Navigate**:
 ```bash
-name="add-oauth"                 # short kebab description from Step 1
-branch="wt/${n}-${name}"         # e.g. wt/0001-add-oauth
-path=".worktrees/${n}-${name}"   # e.g. .worktrees/0001-add-oauth
-```
-
-3. **Create Worktree** (lifecycle-dependent; branch name is identical in both branch cases):
-
-   **Fast-merge / Long-running** (named branch `wt/{NNNN}-{name}` off main):
-```bash
-git worktree add -b "$branch" "$path" main
-```
-
-   **Detached experiment** (no branch, so no number is assigned):
-```bash
-git worktree add --detach .worktrees/experiment main
-```
-
-4. **Navigate**:
-```bash
-cd "$path"
+cd "$path"   # the directory printed by create / create-detached
 ```
 
 **Validation**: `worktree_created`
@@ -300,9 +307,10 @@ Fast mode (large repos):
 
 ## 5. BRANCH STRATEGY GUIDE
 
-All named feature worktrees share the unified `wt/{NNNN}-{name}` branch namespace and
-the `.worktrees/{NNNN}-{name}` directory (see Step 4 → Naming Convention). The strategies
-below differ only in how the branch is *managed after creation*, not in how it is named.
+All named feature worktrees share the unified `{OWNER}/{NNNN}-{slug}` branch grammar and
+the `.worktrees/{NNNN}-{OWNER}-{slug}` directory (see Step 4 → Naming Convention). The
+strategies below differ only in how the branch is *managed after creation*, not in how
+it is named.
 
 ### Fast-merge (Default - Recommended) ⭐
 
@@ -313,12 +321,13 @@ below differ only in how the branch is *managed after creation*, not in how it i
 - Immediate merge-back after testing
 - Avoid long-lived branches
 
-**Example** (`{NNNN}` computed in Step 4, e.g. `0001`):
+**Example** (`{NNNN}` allocated in Step 4, e.g. `0001`):
 ```bash
-git worktree add -b wt/0001-fix-modal .worktrees/0001-fix-modal main
+.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git fix-modal main
+# -> sk-git/0001-fix-modal .worktrees/0001-sk-git-fix-modal
 # ... make changes ...
-cd ../.. && git checkout main && git merge wt/0001-fix-modal
-git branch -d wt/0001-fix-modal
+cd ../.. && git checkout main && git merge sk-git/0001-fix-modal
+git worktree remove .worktrees/0001-sk-git-fix-modal && git branch -d sk-git/0001-fix-modal
 ```
 
 **Advantages**:
@@ -339,7 +348,8 @@ git branch -d wt/0001-fix-modal
 
 **Example**:
 ```bash
-git worktree add -b wt/0002-user-auth .worktrees/0002-user-auth main
+.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-code user-auth main
+# -> sk-code/0002-user-auth .worktrees/0002-sk-code-user-auth
 # ... develop feature ...
 # Create PR, review, merge
 ```
@@ -353,11 +363,12 @@ git worktree add -b wt/0002-user-auth .worktrees/0002-user-auth main
 - Testing ideas without creating branches
 - Throwaway work
 
-**Example** (no branch, so no `{NNNN}` is assigned):
+**Example** (no branch and no owner, but the directory is still numbered by the allocator):
 ```bash
-git worktree add --detach .worktrees/experiment main
+.opencode/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
+# -> .worktrees/{NNNN}-detached-experiment
 # ... experiment ...
-# If keeping: create a numbered wt/{NNNN}-{name} branch and commit
+# If keeping: promote to an owner-first {OWNER}/{NNNN}-{slug} branch and commit
 # If discarding: just remove the worktree
 ```
 
@@ -369,9 +380,9 @@ git worktree add --detach .worktrees/experiment main
 
 | Situation | Directory | Branch / Lifecycle |
 |-----------|-----------|--------------------|
-| Named feature worktree | `.worktrees/{NNNN}-{name}` (compute `{NNNN}`) | `wt/{NNNN}-{name}`, fast-merge by default |
-| Long-running feature | `.worktrees/{NNNN}-{name}` | `wt/{NNNN}-{name}`, kept for PR review |
-| Quick throwaway experiment | `.worktrees/experiment` | Detached HEAD (no branch, no number) |
+| Named feature worktree | `.worktrees/{NNNN}-{OWNER}-{slug}` (allocate `{NNNN}` via the naming allocator) | `{OWNER}/{NNNN}-{slug}`, fast-merge by default |
+| Long-running feature | `.worktrees/{NNNN}-{OWNER}-{slug}` | `{OWNER}/{NNNN}-{slug}`, kept for PR review |
+| Quick throwaway experiment | `.worktrees/{NNNN}-detached-{slug}` (still numbered) | Detached HEAD (no branch, no owner) |
 | Ephemeral per-session (launch wrapper) | `.worktrees/{runtime}-{slug}` (auto) | `work/{runtime}/{slug}` (auto-reaped, not numbered) |
 | `.worktrees/` not in .gitignore | Add + commit immediately | — |
 | Tests fail during baseline | Report + ask permission | — |
@@ -411,27 +422,28 @@ git worktree add --detach .worktrees/experiment main
 User: "Quick fix for modal close button"
 Agent: "I'm using the git-worktrees skill with the fast-merge strategy (default)."
 
-[Step 1: Gather inputs - lifecycle: fast-merge (default), name: modal-fix]
+[Step 1: Gather inputs - lifecycle: fast-merge (default), owner: sk-design, slug: modal-fix]
 [Step 2: Directory selection - .worktrees/ home confirmed]
 [Step 3: Safety verification - .gitignore contains .worktrees/]
-[Step 4: Compute number, then create worktree]
-> n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))   # -> 0001
-> git worktree add -b wt/0001-modal-fix .worktrees/0001-modal-fix main
+[Step 4: Allocate + create worktree via the naming allocator]
+> .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-design modal-fix main
+  -> sk-design/0001-modal-fix .worktrees/0001-sk-design-modal-fix
 [Step 5: Project setup]
 > npm install
 [Step 6: Baseline verification]
 > npm test
 ✓ All tests passing
 
-✓ Worktree ready at /Users/user/project/.worktrees/0001-modal-fix
-✓ Branch: wt/0001-modal-fix (fast-merge - merges back to main immediately)
+✓ Worktree ready at /Users/user/project/.worktrees/0001-sk-design-modal-fix
+✓ Branch: sk-design/0001-modal-fix (fast-merge - merges back to main immediately)
 ✓ Tests passing
 ✓ Ready for quick fix
 
 [After fix is committed and tested]
 User: "Fix is done and tested"
 Agent: "Merging back to main and cleaning up the branch..."
-> git checkout main && git merge wt/0001-modal-fix && git branch -d wt/0001-modal-fix
+> git checkout main && git merge sk-design/0001-modal-fix
+> git worktree remove .worktrees/0001-sk-design-modal-fix && git branch -d sk-design/0001-modal-fix
 ```
 
 ### Example 2: Long-running Work
@@ -441,20 +453,20 @@ User: "I need to implement user authentication - this will take a few days"
 
 Agent: "I'm using the git-worktrees skill with the long-running lifecycle."
 
-[Step 1: Gather inputs - lifecycle: long-running, name: user-auth]
+[Step 1: Gather inputs - lifecycle: long-running, owner: sk-code, slug: user-auth]
 [Step 2: Directory selection - .worktrees/ home confirmed]
 [Step 3: Safety verification - .gitignore contains .worktrees/]
-[Step 4: Compute number, then create worktree]
-> n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))   # -> 0002
-> git worktree add -b wt/0002-user-auth .worktrees/0002-user-auth main
+[Step 4: Allocate + create worktree via the naming allocator]
+> .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-code user-auth main
+  -> sk-code/0002-user-auth .worktrees/0002-sk-code-user-auth
 [Step 5: Project setup - detected Node.js]
 > npm install
 [Step 6: Baseline verification]
 > npm test
 ✓ 47 tests passing
 
-✓ Worktree ready at /Users/user/project/.worktrees/0002-user-auth
-✓ Branch: wt/0002-user-auth (long-running)
+✓ Worktree ready at /Users/user/project/.worktrees/0002-sk-code-user-auth
+✓ Branch: sk-code/0002-user-auth (long-running)
 ✓ Tests passing (47 tests, 0 failures)
 ✓ Ready to implement user authentication
 ```
@@ -464,29 +476,31 @@ Agent: "I'm using the git-worktrees skill with the long-running lifecycle."
 ```text
 User: "Want to experiment with a new approach, not sure if I'll keep it"
 
-Agent: "I'm using a detached HEAD worktree for experimentation (no branch, no number)."
+Agent: "I'm using a detached HEAD worktree for experimentation (no branch, no owner)."
 
-[Step 1: Gather inputs - lifecycle: detached experiment]
+[Step 1: Gather inputs - lifecycle: detached experiment, slug: new-approach]
 [Step 2: Directory selection - .worktrees/ home confirmed]
 [Step 3: Safety verification - .gitignore contains .worktrees/]
-[Step 4: Create worktree detached]
-> git worktree add --detach .worktrees/experiment main
+[Step 4: Create worktree detached via the naming allocator]
+> .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached new-approach main
+  -> .worktrees/0003-detached-new-approach
 [Step 5: Project setup]
 > npm install
 [Step 6: Baseline verification]
 > npm test
 
-✓ Worktree ready at /Users/user/project/.worktrees/experiment
-✓ Branch: detached HEAD at main (no branch created)
+✓ Worktree ready at /Users/user/project/.worktrees/0003-detached-new-approach
+✓ Branch: detached HEAD at main (no branch, no owner — the directory is still numbered)
 ✓ Tests passing
 ✓ Ready for experimentation
 
 [If keeping the changes]
 User: "This worked great, let's keep it"
-Agent: "Promoting to a numbered worktree and branch from this detached HEAD state..."
-> n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))   # -> 0003
-> git worktree add -b wt/0003-new-approach .worktrees/0003-new-approach HEAD
-> cd .worktrees/0003-new-approach
+Agent: "Promoting to an owner-first branch from this detached HEAD state..."
+> sha=$(git -C .worktrees/0003-detached-new-approach rev-parse HEAD)
+> .opencode/skills/sk-git/scripts/worktree-naming.sh create skilled new-approach-promoted "$sha"
+  -> skilled/0004-new-approach-promoted .worktrees/0004-skilled-new-approach-promoted
+> cd .worktrees/0004-skilled-new-approach-promoted
 > git add . && git commit -m "feat: experimental approach"
 ```
 
