@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/004-deep-loop-children",
+  "description": "Bring the 5 skill SKILL.md files in this batch into full conformance with the create-skill contract; each file is updated by a fresh GPT-5.6 LUNA MAX",
+  "keywords": [
+    "bring",
+    "skill",
+    "files",
+    "batch",
+    "full",
+    "conformance",
+    "create-skill",
+    "contract",
+    "file",
+    "fresh",
+    "gpt-5",
+    "luna",
+    "max"
+  ],
+  "lastUpdated": "2026-07-14T04:39:11.315Z",
+  "specId": "004",
+  "folderSlug": "deep-loop-children",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent",
+    "028-create-skill-contract-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

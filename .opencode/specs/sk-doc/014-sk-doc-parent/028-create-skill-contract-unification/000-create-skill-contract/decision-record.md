@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification"
+    packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract"
     last_updated_at: "2026-07-13T17:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored four ADRs incl. one operator fork"

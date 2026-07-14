@@ -7,8 +7,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification"
-    last_updated_at: "2026-07-13T20:30:00Z"
+    packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract"
+    last_updated_at: "2026-07-14T04:33:36.957Z"
     last_updated_by: "claude-opus"
     recent_action: "Executed all seven work units; reconciled packet docs to shipped state"
     next_safe_action: "Optional: parent negative-fixture corpus + validate_document symlink fix"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-create-skill-contract-unification |
+| **Spec Folder** | 000-create-skill-contract |
 | **Status** | Complete (executed 2026-07-13; 12 commits on skilled/v4.0.0.0) |
 | **Level** | 3 |
 | **Deliverable** | The create-skill layer now enforces its own contract: one machine-readable `skill_contract.json` consumed by dual-language loaders and the validators, a strict mode, a kind-aware completion gate, asset-rendered generation, and `--kind parent` scaffolding of a hub that passes `parent-skill-check.cjs` |
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The nine audit findings from `../create-skill-findings.md` are resolved. The create-skill create/validate/generate layer now enforces one machine-readable contract as its single source of truth. Executed as 12 commits on `skilled/v4.0.0.0`:
+The nine audit findings from `../../create-skill-findings.md` are resolved. The create-skill create/validate/generate layer now enforces one machine-readable contract as its single source of truth. Executed as 12 commits on `skilled/v4.0.0.0`:
 
 ### The seven work units (finding mapping + commit)
 

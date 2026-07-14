@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification"
+    packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract"
     last_updated_at: "2026-07-13T20:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Executed all seven work units; 12 commits shipped to skilled/v4.0.0.0"
@@ -67,7 +67,7 @@ One contract is the single source; `init_skill.py` renders from assets and suppo
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 - `./spec.md`, `./plan.md`, `./checklist.md`, `./decision-record.md`
-- `../create-skill-findings.md` (source audit)
+- `../../create-skill-findings.md` (source audit)
 - `.opencode/skills/sk-doc/create-skill/scripts/{init_skill.py,package_skill.py}`
 - `.opencode/commands/doctor/scripts/parent-skill-check.cjs`
 <!-- /ANCHOR:cross-refs -->

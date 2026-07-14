@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification"
+    packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract"
     last_updated_at: "2026-07-13T20:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Executed all work units; ticked execution gates with commit evidence"
@@ -74,7 +74,7 @@ This is a PLAN packet. Plan-quality items are verified now (with evidence); exec
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] Source audit provenance recorded [EVIDENCE: spec + plan cite `../create-skill-findings.md`]
+- [x] Source audit provenance recorded [EVIDENCE: spec + plan cite `../../create-skill-findings.md`]
 - [x] The operator fork (description budget) is surfaced with a recommended default [EVIDENCE: decision-record ADR-003]
 <!-- /ANCHOR:docs -->
 

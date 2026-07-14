@@ -3,7 +3,15 @@
   "packet_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
   "spec_folder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
   "parent_id": "sk-doc/014-sk-doc-parent",
-  "children_ids": [],
+  "children_ids": [
+    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
+    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
+    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/002-sk-doc-children",
+    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/003-sk-design-children",
+    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/004-deep-loop-children",
+    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/005-code-cli-mcp-prompt-children",
+    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/006-standalones"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -11,87 +19,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "create-skill contract unification",
-      "014 sk-doc phase 028",
-      "create-skill findings remediation",
-      "create-skill contract unification plan",
-      "014 sk-doc phase 028 plan",
-      "028 tasks create-skill contract unification",
-      "028 checklist create-skill contract unification",
-      "028 create-skill contract decisions",
-      "014 sk-doc phase 028 adr",
-      "028 create-skill contract unification summary"
+      "create-skill contract conformance",
+      "repo-wide SKILL.md conformance sweep",
+      "parent hub canon"
     ],
     "key_topics": [
       "create-skill",
       "contract",
-      "unification",
-      "sk-doc",
-      "phase",
-      "findings",
-      "remediation",
-      "plan",
-      "tasks",
-      "checklist",
-      "decisions",
-      "adr"
+      "conformance",
+      "repo-wide",
+      "skill",
+      "sweep",
+      "parent",
+      "hub",
+      "canon",
+      "repo",
+      "files",
+      "hubs"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
-      ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "init_skill.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
-        "source": "derived"
-      },
-      {
-        "name": "package_skill.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -99,13 +50,19 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -117,7 +74,7 @@
         "source": "derived"
       },
       {
-        "name": "Source Audit",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,95 +84,19 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Four Medium",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Convert",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Work Units",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Core Implementation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria One",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The create-skill creation/validation path does not enforce its documented contract",
+    "causal_summary": "The repo has 46 SKILL.md files — 7 parent hubs, 34 hub-mode children, 5 standalones",
     "created_at": "2026-07-13T15:40:27.936Z",
-    "last_save_at": "2026-07-13T19:58:21.949Z",
+    "last_save_at": "2026-07-14T04:26:34.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:6ab2f008d95f923dc9d2bc3b3f6a40f6bca229aaa4138ada254d09c8e1a3cc3d",
+    "source_fingerprint": "sha256:b1546e212651338394a57c6435c16ef4578bc6f25d404cff288907f41fdb6f68",
     "source_doc_hashes": {
-      "spec.md": "bafb18a8ae274c7d55eeb5ea8c89bb2b9ff628d2fa597d22edc57f3ba1b6a892",
-      "plan.md": "07792e9ba423949fecb7e815b42923f5cbb92a619c71f85001c2f2d370e4c25a",
-      "tasks.md": "aebdcf05bc0684841256ed9f900f6d408a96fa96887ccbe6681398c0e7d73cbf",
-      "checklist.md": "2319c1dba2396b268995bf59872c04d558867e67903de3dc969b8080eed4ff65",
-      "decision-record.md": "d072210e131c8cfa2327cbd095e214cded6695161ca23b1e940acbf56facd1a1",
-      "implementation-summary.md": "62308261d398c636cda3ee03ec98a3e23233848c74181b6b84ebeab5cc9db53e"
+      "spec.md": "818a14747399104bdb39636c6dc2fdb6ff5767fc21a91b8788430f7eca8ee74c"
     },
     "last_active_child_id": null,
     "last_active_at": null

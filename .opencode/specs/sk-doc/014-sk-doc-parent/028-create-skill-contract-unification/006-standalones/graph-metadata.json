@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/006-standalones",
+  "spec_folder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/006-standalones",
+  "parent_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-standalones conformance",
+      "create-skill contract conformance",
+      "SKILL.md conformance standalones",
+      "006-standalones plan",
+      "LUNA MAX dispatch harness",
+      "Sonnet-5 verify",
+      "006-standalones tasks",
+      "per-file conformance tasks",
+      "LUNA update Sonnet verify",
+      "006-standalones checklist",
+      "conformance verification gates",
+      "per-file validator gate"
+    ],
+    "key_topics": [
+      "006-standalones",
+      "conformance",
+      "create-skill",
+      "contract",
+      "skill",
+      "standalones",
+      "plan",
+      "luna",
+      "max",
+      "dispatch",
+      "harness",
+      "sonnet-5"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      ".opencode/skills/mcp-code-mode/SKILL.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Standalone Skills Contract Conformance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Concurrency Work",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Update",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Verify",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Bring the 5 skill SKILL.md files in this batch into full conformance with the create-skill contract; each file is updated by a fresh GPT-5.6 LUNA MAX agent and independently verified by a fresh Sonnet-5 xhigh agent, then must pass its validator.",
+    "created_at": "2026-07-14T04:26:34.009Z",
+    "last_save_at": "2026-07-14T04:39:12.585Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3352f9cccfa5d26ec11437ae30a4f3bfd288f0a51dc4bf6cf0be5ace5d179772",
+    "source_doc_hashes": {
+      "spec.md": "539efbc69bbc50c1a7485476d7ce3d3554f3955ef9e4dfaa98ad4e0f4c75e743",
+      "plan.md": "e0859d5cba1593d33480a092049b8fa1895c4cb6b797497d66faaeb6d67bd482",
+      "tasks.md": "8995c1d79b13055dd41c8b6badd46550eb58bbe78b395beb1b7163ebfae00ec4",
+      "checklist.md": "53f9e8f3b3f81d6a985a7ca657a8715b0f52f7e37e5550205c7a4b588bbc5f38",
+      "implementation-summary.md": "a7ffad8d06d3e61c1d13253c2b9d053d8fd2168173832083db6ae6ec7fb571e0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

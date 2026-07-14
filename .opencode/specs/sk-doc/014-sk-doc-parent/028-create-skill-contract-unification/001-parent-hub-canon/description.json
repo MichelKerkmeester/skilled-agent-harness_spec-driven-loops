@@ -1,0 +1,32 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
+  "description": "Bring the 7 parent hub SKILL.md files in this batch into full conformance with the parent-hub canon; each file is updated by a fresh GPT-5.6 LUNA MAX",
+  "keywords": [
+    "bring",
+    "parent",
+    "hub",
+    "skill",
+    "files",
+    "batch",
+    "full",
+    "conformance",
+    "parent-hub",
+    "canon",
+    "file",
+    "fresh",
+    "gpt-5",
+    "luna",
+    "max"
+  ],
+  "lastUpdated": "2026-07-14T04:39:11.314Z",
+  "specId": "001",
+  "folderSlug": "parent-hub-canon",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent",
+    "028-create-skill-contract-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
