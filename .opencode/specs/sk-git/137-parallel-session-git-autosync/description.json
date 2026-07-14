@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "skilled-agent-orchestration/137-parallel-session-git-autosync",
+  "specFolder": "sk-git/137-parallel-session-git-autosync",
   "description": "Several AI coding sessions run in parallel against one shared long-lived branch",
   "keywords": [
     "several",
@@ -14,11 +14,11 @@
     "long-lived",
     "branch"
   ],
-  "lastUpdated": "2026-07-14T06:18:20.332Z",
+  "lastUpdated": "2026-07-14T11:35:53.557Z",
   "specId": "137",
   "folderSlug": "parallel-session-git-autosync",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "sk-git"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

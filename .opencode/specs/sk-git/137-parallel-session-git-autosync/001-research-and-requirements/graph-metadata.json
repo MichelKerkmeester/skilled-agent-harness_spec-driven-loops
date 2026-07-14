@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements",
-  "spec_folder": "skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements",
-  "parent_id": "skilled-agent-orchestration/137-parallel-session-git-autosync",
+  "packet_id": "sk-git/137-parallel-session-git-autosync/001-research-and-requirements",
+  "spec_folder": "sk-git/137-parallel-session-git-autosync/001-research-and-requirements",
+  "parent_id": "sk-git/137-parallel-session-git-autosync",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Multiple AI coding sessions run concurrently against one shared long-lived branch",
     "created_at": "2026-07-14T04:11:52.401Z",
-    "last_save_at": "2026-07-14T06:37:26.054Z",
+    "last_save_at": "2026-07-14T11:37:51.360Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +220,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:aa37c21987baa38f401ad26da77f5655a8d4c8b1351d4d1a219e7ea49da3d62b",
+    "source_fingerprint": "sha256:ada32093432b494dcbacfd2c7eecbe89e2f6c1cf20ba7eca9a2b9a14eb77d1a6",
     "source_doc_hashes": {
-      "spec.md": "4aa604579f11556b697058aa138fca61806700c615ab771ff23ed236c3996272",
-      "plan.md": "dd89982e2c7721987a0c93ce10a57c231fc650709707c903cfc3c3f268e976a8",
-      "tasks.md": "a62ece19a02b7287b25bde37bb690acdabbecb0fbb9d591ec473e2820d031d55",
-      "checklist.md": "607477737ac0d032e8d79869b856e4b4911e0806eac91879796bb958c8478eec",
-      "decision-record.md": "e0b421d164fcf10fcbc5e96001a07b90c452a706e6db4bc84dfb748ba50d13fd",
-      "implementation-summary.md": "11a60f4b4f5fe03cd95427a968517af9091bbeaf77b81bcfd32c6fdfc1403e16",
+      "spec.md": "60884be7f70c68a31df89c0280b4697245624fc1b1020f7d1b6a56f4c10f90b3",
+      "plan.md": "905ed966ac45b66cba5a11d6c399c0a01707c89830e8dad4143f8ada6833708a",
+      "tasks.md": "e4fb873afce93f65e700d88f0a7a6e8094045b2687ba35f18bbae75ced713e3b",
+      "checklist.md": "e633820efbfc468f4b9f80533648bbe3a288a2589326ae2f8a3ad5b712fb608d",
+      "decision-record.md": "1372dca4ce0dc1144bb9a89f7de894dfcb6671cb677c98430d4db71cc65d4a78",
+      "implementation-summary.md": "fce547821b41ed24250c52cc568ef48f037ae7d19e08adef407522f8fa9bf3d7",
       "research/research.md": "647422c707f49529b2752d573a21a3e042b7e874f6d6a9e1eab0da9db8286b30"
     },
     "last_active_child_id": null,

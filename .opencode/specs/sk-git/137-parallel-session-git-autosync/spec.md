@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/137-parallel-session-git-autosync"
+    packet_pointer: "sk-git/137-parallel-session-git-autosync"
     last_updated_at: "2026-07-14T06:38:13Z"
     last_updated_by: "claude"
     recent_action: "Research phase 001 converged and the decision record is frozen"
@@ -52,7 +52,7 @@ _memory:
 | **Status** | Active |
 | **Created** | 2026-07-14 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Track** | `skilled-agent-orchestration` |
+| **Track** | `sk-git` |
 | **Predecessor** | None |
 | **Successor** | `001-research-and-requirements` |
 | **Handoff Criteria** | The research phase converges on an evidence-backed integration architecture with a chosen default and a decision record before any implementation phase is scaffolded |

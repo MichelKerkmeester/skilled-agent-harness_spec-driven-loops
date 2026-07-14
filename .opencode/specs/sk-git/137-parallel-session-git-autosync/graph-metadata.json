@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/137-parallel-session-git-autosync",
-  "spec_folder": "skilled-agent-orchestration/137-parallel-session-git-autosync",
+  "packet_id": "sk-git/137-parallel-session-git-autosync",
+  "spec_folder": "sk-git/137-parallel-session-git-autosync",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements"
+    "sk-git/137-parallel-session-git-autosync/001-research-and-requirements"
   ],
   "manual": {
     "depends_on": [],
@@ -86,15 +86,15 @@
     ],
     "causal_summary": "Several AI coding sessions run in parallel against one shared long-lived branch",
     "created_at": "2026-07-14T04:11:52.142Z",
-    "last_save_at": "2026-07-14T06:38:13.699Z",
+    "last_save_at": "2026-07-14T11:36:13.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:dc380b4e39c11a7929983a014c414fc18f98f36c6a78dac840b6a3ee65a6bcd4",
+    "source_fingerprint": "sha256:9492705cc27eaf917a7e73735a599d1ef31e070ecd9089d900d34d448e8d747a",
     "source_doc_hashes": {
-      "spec.md": "943538c81826c2aa2e2976e05e8961a4a1e4763d73a95730f6c5d432a2707e02"
+      "spec.md": "b293e7b8661d68cb5775f56fb2a379e6433534d4f0555ab806f6ee18f4a02f31"
     },
     "last_active_child_id": null,
     "last_active_at": null

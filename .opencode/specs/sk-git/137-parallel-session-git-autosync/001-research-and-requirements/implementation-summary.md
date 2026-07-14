@@ -10,8 +10,8 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/137-parallel-session-git-autosync/001-research-and-requirements"
-    last_updated_at: "2026-07-14T06:37:25Z"
+    packet_pointer: "sk-git/137-parallel-session-git-autosync/001-research-and-requirements"
+    last_updated_at: "2026-07-14T11:35:37Z"
     last_updated_by: "claude"
     recent_action: "Froze the research phase: synthesis + decision record + acceptance matrix"
     next_safe_action: "Scaffold the first implementation phase from ADR-003 BLOCKING prerequisites"
@@ -41,7 +41,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Phase** | 001-research-and-requirements (research) |
-| **Parent** | `skilled-agent-orchestration/137-parallel-session-git-autosync` |
+| **Parent** | `sk-git/137-parallel-session-git-autosync` |
 | **Level** | 2 (research scaffold) |
 | **Status** | Complete (research converged; decision record frozen) |
 | **Completed** | 2026-07-14 |
