@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/015-sk-doc-router-alignment/003-p1-trigger-scoping-and-handoffs",
+  "spec_folder": "sk-doc/015-sk-doc-router-alignment/003-p1-trigger-scoping-and-handoffs",
+  "parent_id": "sk-doc/015-sk-doc-router-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc trigger scoping",
+      "sibling packet handoffs",
+      "trigger scoping plan",
+      "packet handoff alignment",
+      "trigger scoping tasks",
+      "handoff alignment tasks",
+      "trigger scoping checklist",
+      "sibling handoff checklist",
+      "trigger specificity decision",
+      "sibling handoff decision",
+      "trigger scoping summary",
+      "handoff alignment summary"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "trigger",
+      "scoping",
+      "sibling",
+      "packet",
+      "handoffs",
+      "plan",
+      "handoff",
+      "alignment",
+      "tasks",
+      "checklist",
+      "specificity"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/hub-router.json",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Scoping",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Positive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Bare benchmark, generic documentation, command suffix, and hub-schema terms carried too little artifact intent to select a packet safely",
+    "created_at": "2026-07-13T04:45:47Z",
+    "last_save_at": "2026-07-14T18:43:48.963Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f8b44cf97f22f7eb64e36d9531712153000605283eabfb09dcc1f8731320e930",
+    "source_doc_hashes": {
+      "spec.md": "23c1434381074118b862ec7f7dba4581b89e1ec15e987008b30a2fa14ca4e3d0",
+      "plan.md": "bdbc17951ac7007ce413e9d1d79267f9a0335270ca0bbb11748083b931e91fb7",
+      "tasks.md": "1cb4f00bfd890dd87cafcd25d0bcf833f7bc7dab7b4db90077a9dcc72a3d695a",
+      "checklist.md": "171ca7256140d6e20e0512e5de3fef2985c632f97adb4298e24c75e35356bfdd",
+      "decision-record.md": "3b1d43274b0e47354133a480a38a645aa76b2b1bd4ec59a97f6a212f0c751a64",
+      "implementation-summary.md": "ad344d652eedc784c665b53da839320d84640914c37faaddb92bf0faa84ee95e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

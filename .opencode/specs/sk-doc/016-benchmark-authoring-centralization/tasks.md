@@ -70,6 +70,6 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 - `./spec.md`, `./plan.md`, `./checklist.md`, `./decision-record.md`, `./implementation-summary.md`
-- `../019-sk-doc-router-alignment/009-packet-smart-routing-conformance/` (owns the header-split canon)
+- `../015-sk-doc-router-alignment/009-packet-smart-routing-conformance/` (owns the header-split canon)
 - `.opencode/skills/sk-doc/create-benchmark/` (deliverable location)
 <!-- /ANCHOR:cross-refs -->

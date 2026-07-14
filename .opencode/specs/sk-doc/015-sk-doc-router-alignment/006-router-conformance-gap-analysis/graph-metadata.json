@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/015-sk-doc-router-alignment/006-router-conformance-gap-analysis",
+  "spec_folder": "sk-doc/015-sk-doc-router-alignment/006-router-conformance-gap-analysis",
+  "parent_id": "sk-doc/015-sk-doc-router-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-skill router marker gap",
+      "sk-doc smart-router conformance analysis",
+      "keyed discovery marker decision",
+      "006 plan router marker gap analysis",
+      "006 tasks router marker gap analysis",
+      "006 checklist router marker gap analysis",
+      "006 summary router marker gap analysis"
+    ],
+    "key_topics": [
+      "create-skill",
+      "router",
+      "marker",
+      "gap",
+      "sk-doc",
+      "smart-router",
+      "conformance",
+      "analysis",
+      "keyed",
+      "discovery",
+      "decision",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Score",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready Live",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Done Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Per",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The create-skill conformance checker (`packageskill.py --check`) emits an advisory warning — `SMART ROUTING section missing smart-router marker(s): discovermarkdownresources, guardinskill, UNKNOWNFALLBACK` — on eight of the ten `create-` packets",
+    "created_at": "2026-07-13T12:05:59.813Z",
+    "last_save_at": "2026-07-14T18:43:49.470Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5ba76d9e61de4ff457383a05bfc016151b3f85490c75fcd42f761e506d496b81",
+    "source_doc_hashes": {
+      "spec.md": "482410a95e2281a032ed6a4ec9c8427153b91255de0a1639e6a18c687d0f9810",
+      "plan.md": "b2d963584020c8bbb27b5598acde638ef8b70720a2fbdc74c823633d9d7a08ea",
+      "tasks.md": "b1693974d5f2be0a7d237bd2623caf8ed08e9e5ce9396eef647f07d55643c280",
+      "checklist.md": "d296522f47f9dd728e54e90d4c892e1212eabe637badee26b26b0efefc5d663c",
+      "implementation-summary.md": "ed526528988312f0b38dc5703d3b3e5eb4ed2929749f10f2061fb06edd6c6f4f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

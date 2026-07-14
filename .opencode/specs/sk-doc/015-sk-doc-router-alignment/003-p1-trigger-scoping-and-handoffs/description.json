@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/015-sk-doc-router-alignment/003-p1-trigger-scoping-and-handoffs",
+  "description": "Bare benchmark, generic documentation, command suffix, and hub-schema terms carried too little artifact intent to select a packet safely",
+  "keywords": [
+    "bare",
+    "benchmark",
+    "generic",
+    "documentation",
+    "command",
+    "suffix",
+    "hub-schema",
+    "terms",
+    "carried",
+    "too",
+    "little",
+    "artifact",
+    "intent",
+    "select",
+    "packet",
+    "safely"
+  ],
+  "lastUpdated": "2026-07-13T14:31:59.084Z",
+  "specId": "003",
+  "folderSlug": "p1-trigger-scoping-and-handoffs",
+  "parentChain": [
+    "sk-doc",
+    "015-sk-doc-router-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

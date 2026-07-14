@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/015-sk-doc-router-alignment/004-p2-standardization-and-regen",
+  "spec_folder": "sk-doc/015-sk-doc-router-alignment/004-p2-standardization-and-regen",
+  "parent_id": "sk-doc/015-sk-doc-router-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc router regeneration",
+      "packet trigger standardization",
+      "router regeneration plan",
+      "trigger drift verification",
+      "router regeneration tasks",
+      "trigger drift tasks",
+      "router regeneration checklist",
+      "routing drift checklist",
+      "registry synchronization decision",
+      "router hand sync",
+      "router regeneration summary",
+      "routing delta"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "router",
+      "regeneration",
+      "packet",
+      "trigger",
+      "standardization",
+      "plan",
+      "drift",
+      "verification",
+      "tasks",
+      "checklist",
+      "routing"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/SKILL.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Registry Regeneration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Standardize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The ten packets placed trigger lines and handoff boundaries inconsistently, and the JSON projections were not derived from a uniform source shape",
+    "created_at": "2026-07-13T04:45:48Z",
+    "last_save_at": "2026-07-14T18:43:49.142Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:34c7d2d54b46124ceeee594e9176309739bcd7c31706aac9ad32a4c64490657b",
+    "source_doc_hashes": {
+      "spec.md": "23e4bc6f7e2917ca1449a351e21563ebf49aa95e77b8d1ba9c19056920cbf975",
+      "plan.md": "fd10d8930a2effc53c66be4eacac23949c1c4f4c98490205574c677c34b227ca",
+      "tasks.md": "4ef57610f897d13ecf29fc6060f827fa1b6f9109b25f3ca02e13a68a9496df5e",
+      "checklist.md": "11031c6e6aebcddac215e1a1dafe3054c274c8d21fbc105be0671a61ae032f25",
+      "decision-record.md": "4961d251833a90bd4099de66c5773dbacb905d64ebcb8b3949b17ba27a07ede4",
+      "implementation-summary.md": "e7c5368f36dc5fb7b595e1c8022b8820ba2ea922e76a5ead5175183993dda17e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

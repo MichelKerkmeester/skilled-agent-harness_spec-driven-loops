@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/015-sk-doc-router-alignment/006-router-conformance-gap-analysis",
+  "description": "The create-skill conformance checker (`packageskill.py --check`) emits an advisory warning — `SMART ROUTING section missing smart-router marker(s):",
+  "keywords": [
+    "create-skill",
+    "conformance",
+    "checker",
+    "packageskill",
+    "check",
+    "emits",
+    "advisory",
+    "warning",
+    "smart",
+    "routing",
+    "section",
+    "missing",
+    "smart-router",
+    "marker"
+  ],
+  "lastUpdated": "2026-07-13T14:31:59.047Z",
+  "specId": "006",
+  "folderSlug": "router-conformance-gap-analysis",
+  "parentChain": [
+    "sk-doc",
+    "015-sk-doc-router-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/015-sk-doc-router-alignment/005-smart-routing-mechanism-notes",
+  "spec_folder": "sk-doc/015-sk-doc-router-alignment/005-smart-routing-mechanism-notes",
+  "parent_id": "sk-doc/015-sk-doc-router-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc smart routing mechanism notes",
+      "create-skill smart router N/A note",
+      "sk-doc packet keyed resource discovery",
+      "017 plan smart routing mechanism notes",
+      "017 tasks smart routing mechanism notes",
+      "017 checklist smart routing mechanism notes",
+      "017 summary smart routing mechanism notes"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "smart",
+      "routing",
+      "mechanism",
+      "notes",
+      "create-skill",
+      "router",
+      "note",
+      "packet",
+      "keyed",
+      "resource",
+      "discovery"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Routing Mechanism Notes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Give",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Done All",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Request 2 of the create-skill alignment: give the sk-doc create-* packets whose SMART ROUTING mechanism is absent an explicit, honest routing note rather than a force-fit router. Packets with real keyed resource subdirs (references/<key>/) already carry the discover_markdown_resources/_guard_in_skill/UNKNOWN_FALLBACK mechanism; the 7 flat-resource packets get a documented N/A note modeled on create-readme's precedent (does not use keyed resource discovery + router-resilience rules).",
+    "created_at": "2026-07-12T14:23:01.493Z",
+    "last_save_at": "2026-07-14T18:43:49.299Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e9bb63a1f534f9bf3621a3cb1ea326dc734740174519dbc746b39149aa100dd8",
+    "source_doc_hashes": {
+      "spec.md": "e617328e38de305a1b8fe05570cc841f151f228be864ebf458360c273ed9969a",
+      "plan.md": "8cf04e83128713481f8501e935bfdcc0797a9e01315d3d4bd1cdf33564486248",
+      "tasks.md": "c1567a7e246d93bc8ab96bdb1f57f3ba0959841e7db301aaecfe67672186425b",
+      "checklist.md": "8d281db26bd1037d750a804a2fcb78b2df51dd029492aa22111746176a2aa93a",
+      "implementation-summary.md": "5cd7d7da94d3a127b45b7d6d39f044cfcfb6f5894647af830f05934097a40d0e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

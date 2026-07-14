@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/015-sk-doc-router-alignment/009-packet-smart-routing-conformance",
+  "description": "Normalize the 8 non-conformant sk-doc packet SKILL.md files so each passes the canonical create-skill section contract (package_skill.py --check):",
+  "keywords": [
+    "normalize",
+    "non-conformant",
+    "sk-doc",
+    "packet",
+    "skill",
+    "files",
+    "passes",
+    "canonical",
+    "create-skill",
+    "section",
+    "contract",
+    "check"
+  ],
+  "lastUpdated": "2026-07-14T08:20:26.370Z",
+  "specId": "009",
+  "folderSlug": "packet-smart-routing-conformance",
+  "parentChain": [
+    "sk-doc",
+    "015-sk-doc-router-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
