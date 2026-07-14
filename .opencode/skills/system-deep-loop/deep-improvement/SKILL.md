@@ -294,7 +294,7 @@ Full stop-reason tables, the journal event-type list, the mutation-signature for
 - Keep benchmark evidence separate from mirror-drift packaging work
 - Require integration evidence to name each expected runtime mirror path explicitly (`.claude/agents`, `.opencode/agents`, plus any declared extra mirrors) before trusting `integrationGate`
 
-### ❌ NEVER
+### ⛔ NEVER
 
 - Mutate the canonical target during proposal-only mode
 - Broaden scope beyond the active boundary

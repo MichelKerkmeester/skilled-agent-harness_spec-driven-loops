@@ -353,21 +353,21 @@ The deep-loop coverage graph tools remain in `system-spec-kit` because the resea
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **ALWAYS register MCP tools under the standalone `mk-code-index` server.** Tool IDs (`code_graph_*`, `detect_changes`) are the stable surface contract.
 2. **ALWAYS use the `mcp__mk_code_index__*` namespace** for MCP-side tool calls. Direct library consumers in `system-spec-kit` handlers and hooks use in-process imports through `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`.
 3. **ALWAYS check readiness before answering structural questions.** `code_graph_status` first; if `readiness !== "fresh"`, return the `blocked` payload from the tool rather than a stale result.
 4. **ALWAYS treat `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` as the authoritative tool list.** Docs are documentation; the schema array is canonical.
 
-### NEVER
+### ⛔ NEVER
 
 1. **NEVER move shared lifecycle, memory, or hook surfaces into `system-code-graph`.** Those belong in `system-spec-kit`. Only code-graph-owned docs and source live here.
 2. **NEVER return a stale, empty, or scope-mismatched graph answer as if it were authoritative.** Read-path tools (`code_graph_query`, `code_graph_context`, `detect_changes`) refuse with `status: "blocked"` instead of false-safe empty results — preserve that contract end-to-end.
 3. **NEVER fall back to text search when MCP is unavailable.** Structural queries must report the unavailable state and stop. Ambiguous text-search results mislead more than they help.
 4. **NEVER hardcode tool lists or namespace prefixes in router or caller code.** Consult `tool-schemas.ts` at runtime; rely on the `mcp__mk_code_index__` prefix from MCP discovery.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **ESCALATE IF the scope fingerprint differs from the stored baseline** and the requested scan would replace an established graph without operator opt-in. Surface the fingerprint delta and ask for confirmation (`forceScopeChange: true`).
 2. **ESCALATE IF readiness is `blocked` and the required action is destructive** (zero-node reset, full re-scan on a populated graph). Ask before issuing the destructive flag.

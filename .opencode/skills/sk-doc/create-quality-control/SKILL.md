@@ -46,32 +46,83 @@ Use another `sk-doc` packet when:
 
 This is an independently invokable nested workflow packet under `sk-doc`. It owns existing-document validation and optimization, not artifact scaffolding. It has no packet-local `graph-metadata.json`; the advisor identity lives at the `sk-doc` hub root.
 
-### Router Resilience
+### Smart Router Pseudocode
 
-This packet routes by target document type and execution mode: report-only audit, structure validation, content optimization, or batch snapshot. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
+For this flat-reference packet, the canonical resilient router discovers resources at call
+time, guards and loads only what exists, scores the four audit/execution intents documented
+in WHEN TO USE, and returns a disambiguation checklist rather than silently loading nothing:
 
-- Load optional markdown resources only after resolving them under this packet and confirming they exist.
-- Treat `references/README.md` as the fallback route map when document type or execution mode is unclear.
-- Ask for the missing target document, document type, or execution mode instead of silently loading no resources.
-- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
+```python
+from pathlib import Path
 
-### Machine-Readable Call Sequence
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"
 
-The flat-reference router expresses its existing decisions through the shared sequence below. `get_routing_key()` represents the resolved document type and execution mode; it does not imply keyed resource subdirectories.
+# Four routing targets this packet distinguishes; keywords come from its activation triggers.
+INTENT_MODEL = {
+    "validate": {"weight": 4, "keywords": ["validate a document", "validate markdown", "audit documentation quality", "document audit"]},
+    "score_dqi": {"weight": 4, "keywords": ["doc quality", "/doc:quality", "score this document", "dqi"]},
+    "optimize": {"weight": 4, "keywords": ["optimize this doc", "ai-friendly documentation"]},
+    "extract_structure": {"weight": 4, "keywords": ["extract structure", "hvr", "human voice"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the target document and execution mode (report-only audit, structure validation, content optimization, or batch snapshot)",
+    "Confirm whether the expected output is a DQI score/report or an optimized rewrite of the document",
+    "Confirm the quality-gate or DQI expectation driving this request",
+]
 
-```text
-discover_markdown_resources()
-  -> _guard_in_skill() + load_if_available()
-  -> score_intents() / select_intents()
-  -> get_routing_key()
-  -> UNKNOWN_FALLBACK
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_quality_control_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear target/mode
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    intent = max(scores, key=scores.get)                      # Tier 2: happy path
+    # Flat resource topology: no references/<key>/ subdirectories. The intent selects the
+    # workflow step already documented below, not a keyed subtree; load the flat refs that exist.
+    for path in sorted(inventory):
+        load_if_available(path, inventory, loaded, seen)
+    return {"intent": intent, "resources": loaded}
 ```
-
-- `discover_markdown_resources()` enumerates available packet-local markdown resources.
-- `_guard_in_skill()` and `load_if_available()` load only existing, guarded resources.
-- `score_intents()` and `select_intents()` resolve the target document type and execution mode.
-- `get_routing_key()` combines those resolved routing decisions.
-- `UNKNOWN_FALLBACK` asks for the missing target document, document type, or execution mode.
 
 ---
 
@@ -339,7 +390,7 @@ Escalate instead of guessing when required content needs source evidence that is
 
 ## 6. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Read the target document before judging or editing it.
 2. Treat `/doc:quality` as report-only unless the user explicitly asks for edits.
@@ -351,7 +402,7 @@ Escalate instead of guessing when required content needs source evidence that is
 8. Keep optimization scoped to the existing target document unless the user expands scope.
 9. Report residual risks when the document remains below the requested quality bar.
 
-### NEVER
+### ⛔ NEVER
 
 1. Never create a new artifact from this packet. Route creation work to the relevant `sk-doc` workflow packet.
 2. Never add a packet-local `graph-metadata.json`.
@@ -362,7 +413,7 @@ Escalate instead of guessing when required content needs source evidence that is
 7. Never broaden an audit into unrelated cleanup across nearby docs.
 8. Never fabricate examples, claims, commands or source evidence.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. The document type is ambiguous and `--type` cannot safely resolve it.
 2. Validation reports blocking failures that require user decisions.

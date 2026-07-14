@@ -196,7 +196,7 @@ Each dimension scores 0-4. Total `/20` rating:
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Present findings before summary when doing a review or audit.
 2. Include evidence for every actionable finding: file/line, rendered behavior, prompt output, screenshot observation, or explicit limitation.
@@ -208,7 +208,7 @@ Each dimension scores 0-4. Total `/20` rating:
 8. Celebrate positive findings briefly so teams know what to preserve.
 9. Cite the selected procedure card or no-procedure fallback before substantial audit output when a private procedure trigger matches.
 
-### NEVER
+### ⛔ NEVER
 
 1. Never report vague issues without location, impact, and fix.
 2. Never claim a design is accessible without keyboard, focus, name, semantics, and contrast evidence.
@@ -218,7 +218,7 @@ Each dimension scores 0-4. Total `/20` rating:
 6. Never invent browser, screenshot, or detector evidence.
 7. Never recommend a sibling skill when it addresses zero findings.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. The target cannot be resolved to a file, URL, screenshot, or concrete design artifact.
 2. Visual evidence is required but unavailable and the score would be misleading.

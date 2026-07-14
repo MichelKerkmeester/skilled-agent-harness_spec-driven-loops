@@ -340,7 +340,7 @@ See [depth_framework.md](./references/depth_framework.md) for the DEPTH methodol
 6. **ALWAYS provide a transparency report** after delivering the enhanced prompt
    - Framework selected, DEPTH rounds applied, score breakdown, assumptions flagged
 
-### ❌ NEVER
+### ⛔ NEVER
 
 1. **NEVER answer own questions**
    - Wait for user response before proceeding with enhancement

@@ -129,19 +129,19 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 - **ALWAYS** resolve a packet through `mode-registry.json`; never hardcode a router mapping in the hub.
 - **ALWAYS** keep authoring contracts in the packets; the hub stays routing-only.
 - **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one identity.
 - **ALWAYS** keep the create-quality-control pipeline as one shared source under `shared/`, consumed by the packets.
 - **ALWAYS** keep changelogs as real files at the hub and in each packet — never symlinked.
 
-### NEVER
+### ⛔ NEVER
 - **NEVER** add a `graph-metadata.json` inside a packet or `shared/`.
 - **NEVER** put per-packet authoring logic in the hub.
 - **NEVER** add a surface axis or a `surfaceBundle` outcome — sk-doc is workflow-only.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 - A new documentation workflow is needed — extend `mode-registry.json` and open a packet; do not bolt logic onto the hub.
 - A packet would become a near-empty shell (generic doctrine, no type-specific behavior) — fold it into `shared/` instead.
 

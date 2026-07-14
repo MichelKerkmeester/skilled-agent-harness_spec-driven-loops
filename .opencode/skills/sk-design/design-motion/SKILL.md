@@ -303,7 +303,7 @@ Good motion clarifies. Bad motion decorates, delays, or competes. One well-rehea
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. State the purpose of every animation before specifying properties.
 2. Keep user-initiated feedback fast, usually under `300ms`.
@@ -315,7 +315,7 @@ Good motion clarifies. Bad motion decorates, delays, or competes. One well-rehea
 8. Keep delight earned, brief, contextual, and non-blocking.
 9. Cite the selected procedure card or no-procedure fallback before substantial motion output when a private procedure trigger matches.
 
-### NEVER
+### ⛔ NEVER
 
 1. Never animate without a user, state, hierarchy, or continuity reason.
 2. Never scatter fade-and-rise scroll reveals across every section as default choreography.
@@ -326,7 +326,7 @@ Good motion clarifies. Bad motion decorates, delays, or competes. One well-rehea
 7. Never make delight block a task or hide poor UX.
 8. Never partially migrate animation libraries inside one interaction surface.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. Performance constraints, target devices, or motion sensitivity requirements are unknown and affect the motion budget.
 2. The requested effect requires large continuous blur/filter/layout animation.

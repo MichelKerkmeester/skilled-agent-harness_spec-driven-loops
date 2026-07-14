@@ -151,20 +151,20 @@ The `surface-router` backend is the shared surface-detection router under `share
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 - **ALWAYS** resolve a mode through `mode-registry.json`; never hardcode a router mapping in the hub.
 - **ALWAYS** keep mode contracts in the mode packets; the hub stays routing-only.
 - **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill identity.
 - **ALWAYS** give every mode an `advisorRouting` block with `routingClass: "metadata"` and the correct `packetSkillName`.
 - **ALWAYS** keep the implement/debug/verify workflow doctrine as one shared source under `shared/references/`, symlinked into each surface — never fork per-surface copies.
 
-### NEVER
+### ⛔ NEVER
 - **NEVER** add a `graph-metadata.json` inside a mode packet or `shared/`.
 - **NEVER** put per-mode quality, review, or surface workflow logic in the hub.
 - **NEVER** hardcode a router mapping outside `mode-registry.json`.
 - **NEVER** reintroduce implement, debug, or verify as standalone mode packets; they are surface-owned doctrine.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 - A new code mode is needed - extend `mode-registry.json` and open a packet; do not bolt logic onto the hub.
 - Surface identity and workflow ownership conflict in a way the shared router cannot classify.
 

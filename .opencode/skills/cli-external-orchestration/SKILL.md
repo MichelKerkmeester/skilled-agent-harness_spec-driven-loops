@@ -118,7 +118,7 @@ Each mode's self-invocation guard is runtime-signal-based (env var / process anc
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Resolve packets through `mode-registry.json`; never hardcode packet roots in prose-only logic.
 - Keep `SKILL.md` thin: routing, invariants, and navigation only.
@@ -127,14 +127,14 @@ Each mode's self-invocation guard is runtime-signal-based (env var / process anc
 - Keep `hub-router.json` signal keys and registry `workflowMode` values bidirectionally aligned.
 - Read the target mode's `SKILL.md` before composing any dispatch prompt (constitutional cli-dispatch-skill-preload rule) — the advisor recommendation alone does not waive this.
 
-### NEVER
+### ⛔ NEVER
 
 - Never add a second packet array.
 - Never add packet-local `graph-metadata.json` files.
 - Never let any mode dispatch itself — the self-invocation guard is packet-owned and non-negotiable.
 - Never let the executor CLI (the HOW) override the calling skill's own workflow (the WHAT) — "use cli-opencode gpt-5.5 high" still runs inside the caller's skill-owned route.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - A packet cannot be classified as `workflow` (all three current modes are; a future mode may not be).
 - Router signals, vocabulary classes, and registry modes cannot be made bidirectionally consistent.

@@ -88,13 +88,81 @@ This packet routes by whether the target needs a stable, reviewable current-stat
 - Ask for the missing target system, feature scope, or inventory requirements instead of silently loading no resources.
 - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
-**Call sequence** (using shared smart-router helpers):
+### Smart Router Pseudocode
 
-1. `discover_markdown_resources()` — enumerate existing `.md` files in this packet's flat `references/` and `assets/` directories; do not assume keyed resource subdirectories.
-2. `_guard_in_skill()` + `load_if_available()` — sandbox each candidate to this skill, load only existing markdown resources, and suppress duplicates.
-3. `score_intents(task)` / `select_intents(scores)` — distinguish a stable feature-catalog need from README-sized, playbook, changelog, or quality-control requests using the activation and exclusion signals above.
-4. `get_routing_key(task, intents)` — derive the route from the target system and feature scope; use `references/README.md` as the fallback route map because resources are flat.
-5. `UNKNOWN_FALLBACK` — if the target system, feature scope, or inventory requirements remain unclear, ask for the missing detail rather than silently loading no resources.
+For this flat-reference packet, the canonical resilient router discovers resources at call
+time, guards and loads only what exists, scores the root-catalog vs per-feature-file intent,
+and returns a disambiguation checklist rather than silently loading nothing:
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"
+
+# Two routing targets; keywords come from this packet's activation triggers.
+INTENT_MODEL = {
+    "root_catalog": {"weight": 4, "keywords": ["root catalog", "feature catalog", "capability inventory", "catalog package"]},
+    "per_feature_file": {"weight": 4, "keywords": ["per-feature files", "source anchors", "feature inventory", "/create:feature-catalog"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the target system, skill, or surface the catalog should cover",
+    "Confirm whether the request needs the root catalog, per-feature files, or the full package",
+    "Confirm where implementation source anchors and validation/test anchors live for the claimed features",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_feature_catalog_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: low confidence
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    intent = max(scores, key=scores.get)                      # Tier 2: happy path
+    # Flat resource topology: no references/<key>/ subdirectories. The intent selects the
+    # root-catalog or per-feature template already documented below, not a keyed subtree.
+    for path in sorted(inventory):
+        load_if_available(path, inventory, loaded, seen)
+    return {"intent": intent, "resources": loaded}
+```
 
 ---
 
@@ -284,7 +352,7 @@ Validator boundary:
 
 ## 8. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Use `assets/feature_catalog/feature_catalog_template.md` for the root catalog scaffold.
 2. Use `assets/feature_catalog/feature_catalog_snippet_template.md` for per-feature files.
@@ -300,7 +368,7 @@ Validator boundary:
 12. Manually verify cross-file links, source anchors, and root-entry to feature-file parity.
 13. Consume global standards and validators from `../shared/` instead of duplicating them here.
 
-### NEVER
+### ⛔ NEVER
 
 1. Never add a packet-local `graph-metadata.json`.
 2. Never use a feature catalog as a roadmap unless future-state material is explicitly labeled.
@@ -316,7 +384,7 @@ Validator boundary:
 12. Never leave long `HOW IT WORKS` sections as unbroken walls of prose.
 13. Never omit `trigger_phrases` from per-feature frontmatter.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. The category taxonomy is unclear after reading the target system.
 2. Source anchors cannot be found for a claimed feature.

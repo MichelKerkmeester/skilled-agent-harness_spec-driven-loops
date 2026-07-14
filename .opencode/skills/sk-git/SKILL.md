@@ -464,7 +464,7 @@ Before committing, verify in order:
 8. Breaking behavior has `!` and a `BREAKING CHANGE:` footer.
 9. The same staged diff and metadata would produce the same subject again.
 
-### ❌ NEVER
+### ⛔ NEVER
 
 1. **Force push to main/master** - Protected branches must never receive force pushes
 2. **Never create branches directly** - Use `git worktree add -b ...`; never use `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`

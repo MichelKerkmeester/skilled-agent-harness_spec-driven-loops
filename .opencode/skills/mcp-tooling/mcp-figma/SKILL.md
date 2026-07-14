@@ -257,7 +257,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **ALWAYS verify the binary first.** Prefer `figma-ds-cli`, and only use `figma-cli` if it resolves to the silships tool (`--version`/`--help`), since the npm `figma-cli` package is unrelated. Fail closed with install guidance if neither is the silships tool.
 2. **ALWAYS require Figma Desktop open with a file** before any CLI or desktop operation, since the CLI drives the live session.
@@ -268,7 +268,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 7. **ALWAYS require an explicit output path for local exports** (`extract`/`export`/`export-jsx`) and never silently overwrite existing files.
 8. **ALWAYS apply `sk-design`** when a Figma read/export feeds a design decision. This skill owns the transport, and that skill owns the taste.
 
-### NEVER
+### ⛔ NEVER
 
 1. **NEVER `npm i -g figma-cli`**, because that installs the unrelated unic/figma-cli. Install `figma-ds-cli` (npm) or the silships repo.
 2. **NEVER auto-apply the yolo `app.asar` patch** without explicit consent and a stated `figma-ds-cli unpatch` rollback. Never patch during install or routine startup.
@@ -277,7 +277,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 5. **NEVER run or recommend `init-agent` by default**, because it writes `AGENTS.md`/`.cursor/rules` into the working repo.
 6. **NEVER claim the optional Figma MCP works** until Code Mode discovery (`list_tools()`/`tool_info()`) confirms the `figma` manual and its tool names.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **ESCALATE IF the binary is missing or ambiguous**, asking whether to install `figma-ds-cli` (npm) or the silships repo build. Do not guess.
 2. **ESCALATE IF Figma Desktop is not running** or daemon diagnosis fails after a reconnect.

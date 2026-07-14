@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/029-smart-router-pseudocode-retrofit",
+  "spec_folder": "sk-doc/014-sk-doc-parent/029-smart-router-pseudocode-retrofit",
+  "parent_id": "sk-doc/014-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "smart router pseudocode retrofit",
+      "014 sk-doc phase 029",
+      "sk-doc mode packet routers",
+      "smart router retrofit plan",
+      "014 sk-doc phase 029 plan",
+      "smart router retrofit tasks",
+      "014 sk-doc phase 029 tasks",
+      "smart router retrofit checklist",
+      "014 sk-doc phase 029 checklist",
+      "smart router retrofit summary",
+      "014 sk-doc phase 029 summary"
+    ],
+    "key_topics": [
+      "smart",
+      "router",
+      "pseudocode",
+      "retrofit",
+      "sk-doc",
+      "phase",
+      "mode",
+      "packet",
+      "routers",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+      ".opencode/skills/sk-doc/create-flowchart/SKILL.md",
+      ".opencode/skills/sk-doc/create-agent/SKILL.md",
+      ".opencode/skills/sk-doc/create-changelog/SKILL.md",
+      ".opencode/skills/sk-doc/create-diff/SKILL.md",
+      ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
+      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+      ".opencode/skills/sk-doc/create-quality-control/SKILL.md",
+      ".opencode/skills/sk-doc/create-readme/SKILL.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "When To Use",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router Pseudocode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The nested `sk-doc` mode packets carried simplified prose smart-router sections (call-sequence text blocks or terse routing notes) instead of the canonical `def route…` pseudocode that `create-skill` defines in `assets/skill/skillsmartrouter.md` (runtime discovery + in-skill sandbox guard + multi-tier `UNKNOWNFALLBACK`)",
+    "created_at": "2026-07-14T16:48:38.460Z",
+    "last_save_at": "2026-07-14T16:56:15.548Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a7bbad78557402c4add02a0e850fab9e49fb65d36f5d59ffbdc2bb8d91ecb169",
+    "source_doc_hashes": {
+      "spec.md": "6a1bc7376305ec3cb14042b9c370e6e35dcb6b158ca7df92ff05614035a850bf",
+      "plan.md": "3f67c29f141e61e933ba7b5a59da349ebb172c0e6937ddb9b8e8a94793f8b230",
+      "tasks.md": "05ea27c7c69439f392964491b199963369bab210ba70e87859904482d5e8d49b",
+      "checklist.md": "a63bf82acad7e82e2a75744296ff761b82b4639a61f2b29c9928e026ff0bf920",
+      "implementation-summary.md": "9fe99d0385fea5dbbfc3d8ce9331ca0a60f887232bb5cff89dcd3bb28e680a4a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

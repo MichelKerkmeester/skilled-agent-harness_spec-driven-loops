@@ -268,7 +268,7 @@ Four invariants, enforced by the engine itself and not left to individual adapte
 4. Keep the audited target read-only outside a gated remediation pass.
 5. Emit one report per lane, not one blended report across authorities.
 
-### ❌ NEVER
+### ⛔ NEVER
 
 1. Assert a finding from pattern-matching alone without a live re-probe.
 2. Flag an authority's own documented, intentional convention as drift.

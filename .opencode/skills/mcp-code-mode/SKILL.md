@@ -374,7 +374,7 @@ Run `list_tools()` through Code Mode and group returned names by the prefix befo
 - **Console.log progress** in complex workflows for debugging
 - **Structure return values** consistently: `{ success, data, errors, timestamp }`
 
-### ❌ NEVER
+### ⛔ NEVER
 
 - **Skip Code Mode for MCP tools** - Direct MCP calls cause context exhaustion
 - **Use wrong naming pattern** - `myservice.sites_list` instead of `myservice.myservice_sites_list`

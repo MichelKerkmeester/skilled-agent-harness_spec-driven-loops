@@ -159,7 +159,7 @@ When foundations sends a static system to `sk-code`, fill the shared envelope fr
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Name the system role before choosing tokens: brand, product, data, marketing, or platform adaptation.
 2. Use semantic token names for the canonical color roles (`primary/accent`, `neutral`, `semantic`, `surface`, `border`, `text`) before implementation values; `focus` is an accent state, not a separate role.
@@ -171,7 +171,7 @@ When foundations sends a static system to `sk-code`, fill the shared envelope fr
 8. Cite parent `sk-design` shared references only as vocabulary; keep foundations-specific decisions here.
 9. Cite the selected procedure card or no-procedure fallback before substantial foundations output when a private procedure trigger matches.
 
-### NEVER
+### ⛔ NEVER
 
 1. Never use color without a role: semantic meaning, hierarchy, wayfinding, brand voice, or state.
 2. Never make a palette more colorful just because the current screen is dull.
@@ -181,7 +181,7 @@ When foundations sends a static system to `sk-code`, fill the shared envelope fr
 6. Never hide core functionality on mobile or rely on hover for touch contexts.
 7. Never invent a design-system token when an existing token already carries the role.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. Brand colors, required contrast level, target platforms, or design-system source are unknown and materially change the token system.
 2. The requested palette or typography fails accessibility constraints.

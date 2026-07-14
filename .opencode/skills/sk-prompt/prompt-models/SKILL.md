@@ -223,7 +223,7 @@ Follow the single canonical checklist in [`references/pattern_index.md`](./refer
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Keep the entry surface thin; let the profiles carry the WEIGHT.** SKILL.md ≤ 300 LOC (the §2 smart-router pseudocode is the bulk; everything else stays terse), `references/models/_index.md` ≤ 100 LOC, and `pattern_index.md` ~110 LOC (it also carries the staleness policy + roadmap refs). The per-model prose lives in `references/models/<id>.md`, loaded on-demand — never inline a profile body into SKILL.md.
 2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `prompt-models/assets/model_profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
@@ -231,14 +231,14 @@ Follow the single canonical checklist in [`references/pattern_index.md`](./refer
 4. **Update the index when models ship or move.** `_index.md` and `pattern_index.md` are contracts; broken links and missing rows erode trust.
 5. **Honor the in-scope model set** — DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2 active; Haiku optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
 
-### NEVER
+### ⛔ NEVER
 
 1. **Never duplicate EXECUTOR MECHANICS here** — binary flags, invocation wrappers, budgets, and permissions stay in `cli-opencode`. A profile points at them via `pattern_index.md`; it does not restate them.
 2. **Never copy generic framework definitions here** — the closed 7-framework set (RCAF / COSTAR / RACE / CIDI / TIDD-EC / CRISPE / CRAFT) is defined once in `sk-prompt`. Profiles link to those definitions and only record the per-model choice + rationale.
 3. **Never present carried-forward evidence as fresh.** When a profile's frameworks are inherited (e.g. MiniMax-M3's TIDD-EC contract from benchmark 003, originally run on M2.7), label it carried and name the source benchmark — do not imply a fresh M3 run.
 4. **Never add runtime logic here** — no shell commands, no scripts, no agent-config recipes.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. A model becomes dispatchable from a NEW executor with conflicting MECHANICS (different flags/wrappers than the existing path). Resolve the mechanics in the owning `cli-X` first; the profile only records prompt-craft, so it must not arbitrate flag conflicts.
 2. A profile would need to RESTATE executor flags to be usable. That belongs in `cli-X` — escalate to add/extend the executor reference, then link to it.

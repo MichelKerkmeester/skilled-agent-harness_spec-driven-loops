@@ -16,9 +16,9 @@ version: 1.3.0.0
 - **Skill-benchmark (Lane C)** — author a hub's `benchmark/` storage tree and its `benchmark/README.md` run-label index; the per-run `skill-benchmark-report.md` is a renderer-owned render this packet never authors (section 10).
 - **Model-benchmark (Lane B)** — author the Lane B input fixtures (code-task oracle, pattern/capability, reviewer-prompt) and the run profiles; the evaluator, scorers, and reviewer-verdict contract stay lane-local (section 11).
 
-Lane A (agent-improvement) and Lane D (non-dev AI-system improvement) now carry an authoring guide here (section 13); their artifacts stay code-owned in-lane.
+Lane A (agent-improvement) and Lane D (non-dev AI-system improvement) carry an authoring guide here (section 13); artifacts stay code-owned in-lane.
 
-The skill-local surface is the look-here-first entry point, not the archive; the full audit trail stays in the owning spec packet or lane.
+The skill-local surface is the look-here-first entry point, not the archive.
 
 ---
 
@@ -85,7 +85,7 @@ If unsure, default to "not yet." Promotion is cheap after rigor; reverting a pre
 
 ### Benchmark Families
 
-Route to the right family before authoring; families are distinct and must not be conflated. This packet **owns** some artifacts (templates and guides live here) and **routes to** others, named for disambiguation but owned by another lane (a report renderer, a scoring contract, or the code that runs the family).
+Route to the right family before authoring. The **OWNS** column is what this packet authors; **Routes to** names a lane-owned artifact (renderer, scoring contract, runner) for disambiguation only.
 
 | Family | What it measures | Lives at | create-benchmark OWNS (here) | Routes to (lane-owned) | Section |
 | --- | --- | --- | --- | --- | --- |
@@ -98,23 +98,49 @@ Route to the right family before authoring; families are distinct and must not b
 
 ### Routing Decision
 
-Pick the family by what the task authors: shipped MCP-stack numbers into a skill's code tree → MCP promotion (§3-8); executor-model behavior at a deep-loop mode's surface → behavior (§9); where a Lane C run's report pair is stored, or a hub `benchmark/README.md` index → skill-benchmark (§10); a Lane B input fixture or run profile → model-benchmark (§11). Two hard stops: to hand-write a `skill-benchmark-report.md`, don't — it is renderer-owned; to change how any benchmark is *scored*, don't — the scoring contracts are lane-local.
+Route by the table above; two hard stops: never hand-write a `skill-benchmark-report.md` — it is renderer-owned; never change how any benchmark is *scored* — the scoring contracts are lane-local.
 
-**Lane A and Lane D.** create-benchmark hosts an authoring guide for each (section 13); their fixtures, evaluators, and configs stay code-owned in-lane (§13).
+### Smart Router Pseudocode
 
-### Smart Router Call Sequence
+Benchmark families ARE the runtime routing key. `discover_markdown_resources()` and
+`_guard_in_skill()` are the shared canonical helpers
+([skill_smart_router.md](../create-skill/assets/skill/skill_smart_router.md)); only the
+family key and tiered fallback vary:
 
-```text
-discover_markdown_resources()
-  -> _guard_in_skill() + load_if_available(family.owns_column)   # Lane A/D: guide only, assets: N/A
-  -> score_intents(task, section_1_keyword_triggers) / select_intents()
-  -> get_routing_key(task, intents)                              # -> family's Section column above
-  -> UNKNOWN_FALLBACK
+```python
+DEFAULT_RESOURCE = "references/README.md"
+FAMILIES = ["behavior_benchmark", "skill_benchmark", "model_benchmark",
+            "agent_improvement", "non_dev_ai_system", "mcp_promotion"]
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the benchmark family (MCP promotion, behavior, skill, model, agent, AI-system)",
+    "Confirm what is authored here vs lane-owned, then the storage location and run label",
+]
+
+def route_benchmark_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    routing_key = get_routing_key(request, FAMILIES)
+
+    if routing_key == "unknown":                                 # Tier 1
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {"load_level": "UNKNOWN_FALLBACK",
+                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST, "resources": loaded}
+
+    keyed = sorted(p for p in inventory if p.startswith(
+        (f"references/{routing_key}/", f"assets/{routing_key}/", "references/shared/")))
+    if not keyed:                                                # Tier 2
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {"routing_key": routing_key,
+                "notice": f"'{routing_key}' guide only; fixtures/scoring stay lane-owned", "resources": loaded}
+
+    for path in keyed:                                           # Tier 3
+        load_if_available(path, inventory, loaded, seen)
+    return {"routing_key": routing_key, "resources": loaded}
 ```
 
 ### Family Boundary
 
-This nested `sk-doc` packet owns benchmark *authoring* only (table above); it owns no measurement contract — the behavior rubric/runner, Lane C D1-D5 scoring/renderer, and Lane B evaluator/scorer/reviewer-verdict contract stay lane-local, cross-linked, never restated. For Lane A and Lane D it templates a guide only (`assets: N/A`). The single advisor identity lives at the `sk-doc` hub root; never add packet-local `graph-metadata.json`.
+This nested `sk-doc` packet owns benchmark *authoring* only — no measurement contract (rubrics, renderers, scorers, evaluator/verdict contracts stay lane-local; Lane A/D get a guide template only, `assets: N/A`). The single advisor identity lives at the `sk-doc` hub root; never add a packet-local `graph-metadata.json`.
 
 ---
 
@@ -275,7 +301,7 @@ When documents disagree:
 3. Copied CSV and JSONL files preserve the source packet evidence.
 4. `SOURCE.md` is navigation, not a duplicate audit trail.
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Read the source packet decision record, implementation summary, and benchmark evidence before writing.
 2. Use the benchmark execution date for `benchmark-<YYYY-MM-DD>/`.
@@ -284,7 +310,7 @@ When documents disagree:
 5. Preserve retired benchmark folders.
 6. Validate authored markdown before delivery.
 
-### NEVER
+### ⛔ NEVER
 
 1. Never promote an in-flight benchmark as a final skill-local record.
 2. Never compare numeric results across different MCP stacks as if equivalent.
@@ -294,7 +320,7 @@ When documents disagree:
 6. Never leave template placeholders in shipped benchmark files.
 7. Never add packet-local `graph-metadata.json`.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. The source packet has no accepted decision record or stable benchmark headline.
 2. The target skill lacks `mcp_server/` or an appropriate measurable MCP surface.
@@ -378,7 +404,7 @@ Complete these steps in order; the guide expands each.
 - Scenario files `<PREFIX>-NNN-<slug>.md`: uppercase three-letter prefix, zero-padded contiguous three-digit number from `001`, lowercase-hyphen slug.
 - ID prefix is three uppercase letters, unique per package. The framework fixes `ACB`, `IMB`, `RSB`, `RVB`; a new mode extends that table (for example `DAB` for deep-alignment) and declares the extension in the index.
 
-### ALWAYS / NEVER (behavior benchmark)
+### ✅ ALWAYS / ⛔ NEVER (behavior benchmark)
 
 - **ALWAYS** keep the shared `framework.md` as the single source for rubric, buckets, budget formula, and enums; the package instantiates, it does not redefine.
 - **ALWAYS** keep the index SCENARIO TABLE and the scenario files in exact sync.
@@ -434,7 +460,7 @@ Runs are siblings; one never overwrites another. `baseline/` is the frozen befor
 4. **Cross-link the lane authorities** (`scoring_contract.md`, `operator_guide.md`); never restate the rubric or thresholds.
 5. **Validate** the README with the shared sk-doc validator.
 
-### ALWAYS / NEVER (skill-benchmark)
+### ✅ ALWAYS / ⛔ NEVER (skill-benchmark)
 
 - **ALWAYS** keep the README run-label index in exact sync with the folders on disk — one row per folder.
 - **ALWAYS** add a new run as a fresh sibling run-label folder and index row; keep `baseline/` frozen.
@@ -494,7 +520,7 @@ Each template's fenced json block is the only thing copied into the shipped `.js
 4. **Add or extend a profile** referencing the fixture `id` (code-task/pattern only — reviewer-prompt is lane-only), with a `scorer` matching the fixture shape plus the sweep matrix, sampling, and gate.
 5. **Parse every fixture and profile as JSON**, then hand off to the lane to dispatch, score, and file the evidence.
 
-### ALWAYS / NEVER (model-benchmark)
+### ✅ ALWAYS / ⛔ NEVER (model-benchmark)
 
 - **ALWAYS** match the profile's scorer to the fixture shape — code-task → code-task scorer, evidence-contract → pattern scorer; reviewer-prompt is lane-only (`mode: reviewer`), not this profile path.
 - **ALWAYS** generate code-task oracle `expect` values from a verified reference implementation, with held-out `hidden_tests[]` guarding overfit.

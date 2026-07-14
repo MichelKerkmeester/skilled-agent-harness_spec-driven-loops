@@ -110,18 +110,18 @@ This hub declares no named extensions (no `surface-axis`, `runtime-loop`, `advis
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 - **ALWAYS** resolve a packet through `mode-registry.json`; never hardcode a router mapping in the hub.
 - **ALWAYS** keep authoring contracts in the packets; the hub stays routing-only.
 - **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one identity.
 - **ALWAYS** keep changelogs as real files at the hub and in each packet — never symlinked.
 
-### NEVER
+### ⛔ NEVER
 - **NEVER** add a `graph-metadata.json` inside `prompt-improve/` or `prompt-models/`.
 - **NEVER** put per-packet authoring logic in the hub.
 - **NEVER** duplicate executor mechanics (binary flags, invocation wrappers, budgets) inside `prompt-models/` — those stay in `cli-opencode`.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 - A new prompt-engineering workflow is needed — extend `mode-registry.json` and open a packet; do not bolt logic onto the hub.
 - `prompt-models`' routing accuracy regresses under `routingClass: "metadata"` — see the phase 124/007 Lane-C benchmark before adding a lexical carve-out.
 

@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/014-sk-doc-parent/030-rule-section-icons",
+  "description": "SKILL.md rule sections carried an inconsistent icon convention: 13 files used `✅ ALWAYS / ❌ NEVER / ⚠️ ESCALATE IF` while the remaining rule sections",
+  "keywords": [
+    "skill",
+    "rule",
+    "sections",
+    "carried",
+    "inconsistent",
+    "icon",
+    "convention",
+    "files",
+    "always",
+    "never",
+    "escalate",
+    "while",
+    "remaining"
+  ],
+  "lastUpdated": "2026-07-14T17:24:31.111Z",
+  "specId": "030",
+  "folderSlug": "rule-section-icons",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

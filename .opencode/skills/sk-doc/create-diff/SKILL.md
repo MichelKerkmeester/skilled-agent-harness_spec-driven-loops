@@ -31,14 +31,77 @@ UNKNOWN_FALLBACK: If the request is ambiguous or the engine is unavailable, conf
 
 Do not hijack routing from functional siblings when the intent is not clearly a document before/after review.
 
-For this flat packet, map the canonical smart-router sequence to the existing phrase routing and no-resource topology:
+### Smart Router Pseudocode
 
-```text
-discover_markdown_resources()
-  -> _guard_in_skill() + load_if_available()
-  -> score_intents()/select_intents()  # match conservative activation phrases
-  -> get_routing_key()                 # resolve the document before/after review route
-  -> UNKNOWN_FALLBACK                  # confirm target, baseline, and output when unresolved
+This packet ships no `references/` or `assets/` folder, so `discover_markdown_resources()` always
+returns an empty set and `load_if_available()` is a graceful no-op. Routing degrades cleanly to
+`UNKNOWN_FALLBACK` or the explicit before/after file-pair fallback described above; nothing crashes
+on the empty inventory.
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"  # packet ships no references/ or assets/; load_if_available is a graceful no-op here
+
+# Single-purpose packet: one intent, scored from this packet's conservative activation phrases.
+INTENT_MODEL = {
+    "before_after_diff": {"weight": 4, "keywords": ["create diff report", "document before/after review", "before/after document diff", "document change report"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the target document",
+    "Confirm whether a baseline exists",
+    "Confirm the output path",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_diff_request(request):
+    inventory = discover_markdown_resources()                # always empty: no packet-local refs/assets
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: target/baseline/output unclear
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)  # no-op: inventory is empty
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    intent = max(scores, key=scores.get)                      # Tier 2: before_after_diff resolved
+    # No packet-local resources ship with this packet; return the resolved route as-is.
+    return {"intent": intent, "resources": loaded}
 ```
 
 ## 3. HOW IT WORKS
@@ -64,7 +127,7 @@ PREVIEW: Until the engine exists, steps 2–4 are documented intent. Tell the us
 - Keep the report accessible.
 - Read a file before editing it.
 
-### ❌ NEVER
+### ⛔ NEVER
 
 - Never reimplement diff, parse, snapshot, or render logic in this mode.
 - Never claim the engine exists or that a diff was produced when it was not.

@@ -153,6 +153,7 @@ STRICT_PROMOTED_MARKERS = [
     "missing 'version' in frontmatter",  # versioned doc-class
     "is not 4-part",                  # bad version on doc-class
     "missing smart-router marker",    # SMART ROUTING resilience markers
+    "SMART ROUTING must be its own H2 section",  # non-standalone/merged routing heading
     "Placeholder file should be removed",  # example_*/placeholder_*/sample_* files
 ]
 
@@ -598,8 +599,18 @@ def validate_smart_router(content: str) -> Tuple[bool, str, List[str]]:
         re.DOTALL | re.IGNORECASE | re.MULTILINE,
     )
     if not section_match:
-        # validate_sections() already errors on a missing SMART ROUTING section;
-        # nothing extra to warn about here.
+        # A heading that only CONTAINS "SMART ROUTING" (e.g. "When To Use + Smart
+        # Routing") satisfies validate_sections' substring test but hides the router
+        # from the start-anchored extraction above, so the marker check below would be
+        # skipped. Flag the non-standalone heading instead of passing silently.
+        merged = re.search(r'^##\s+.*SMART ROUTING', content, re.IGNORECASE | re.MULTILINE)
+        if merged:
+            warnings.append(
+                "SMART ROUTING must be its own H2 section; found it merged into "
+                "another heading (split into a standalone '## SMART ROUTING')"
+            )
+            return True, "SMART ROUTING heading is not standalone", warnings
+        # Truly absent — validate_sections() already errors on a missing section.
         return True, "No SMART ROUTING section to validate", warnings
 
     section_body = section_match.group(1)

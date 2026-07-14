@@ -107,7 +107,7 @@ mcp-tooling/
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - Resolve packets through `mode-registry.json`; never hardcode packet roots in prose-only logic.
 - Keep `SKILL.md` thin: routing, invariants, and navigation only.
@@ -116,7 +116,7 @@ mcp-tooling/
 - Keep exactly one `graph-metadata.json`, at the hub root.
 - Keep `hub-router.json` signal keys and registry `workflowMode` values bidirectionally aligned.
 
-### NEVER
+### ⛔ NEVER
 
 - Never add a second packet array.
 - Never grant `mcp-figma` `Write`/`Edit`/`Task` — it forbids all three.
@@ -124,7 +124,7 @@ mcp-tooling/
 - Never move `mcp-code-mode` into this hub — it is shared infrastructure serving consumers beyond these three bridges (ADR-005).
 - Never let `mcp-figma` make a design decision without `sk-design`'s judgment.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - A packet cannot be classified as `workflow` or `transport`.
 - The `mcp-figma` transport needs a design decision with no `sk-design` pairing available.

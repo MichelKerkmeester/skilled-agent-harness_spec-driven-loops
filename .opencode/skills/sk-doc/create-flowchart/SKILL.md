@@ -15,7 +15,7 @@ This packet owns flowchart authoring and `scripts/validate_flowchart.sh`. It use
 
 ---
 
-## 1. When To Use + Smart Routing
+## 1. WHEN TO USE
 
 ### Activation Triggers
 
@@ -42,18 +42,101 @@ Use another `sk-doc` packet when:
 
 If the target path is unknown and writing would be a guess, ask for the path before creating or editing a file.
 
+---
+
+## 2. SMART ROUTING
+
 This packet uses simple intent and workflow-shape routing, not keyed resource discovery. Its packet-local resources are a flat `references/` route map plus pattern examples under `assets/`; do not infer `references/<key>/` or `assets/<key>/` subdirectories.
 
 Smart routing rules:
 
-- If the request clearly asks for a flowchart, route here and select exactly one closest pattern asset from the table in section 3.
+- If the request clearly asks for a flowchart, route here and select exactly one closest pattern asset from the table in section 4.
 - If the workflow shape is unclear, load `references/README.md` if it exists and use `UNKNOWN_FALLBACK`: confirm the target artifact, source process, audience, workflow shape, terminal outcomes, and validation path before drafting.
 - If a listed pattern asset or reference is missing, do not crash or invent a replacement path; use the nearest available guidance in `references/README.md` and report the missing resource.
 - Only load packet-local markdown resources under `references/` or `assets/`; keep shared markdown quality guidance in `../shared/` for surrounding-document validation only.
 
+### Smart Router Pseudocode
+
+For this flat packet, the canonical resilient router discovers resources at call time, guards
+and loads only what exists, scores the workflow-shape intent, and returns a disambiguation
+checklist rather than silently loading nothing:
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"
+
+# Workflow-shape intents; each maps to the closest pattern asset chosen in section 4.
+INTENT_MODEL = {
+    "decision_tree": {"weight": 4, "keywords": ["decision tree", "branching", "decision outcome"]},
+    "swimlane": {"weight": 4, "keywords": ["swimlane", "across services", "system interaction"]},
+    "parallel_execution": {"weight": 4, "keywords": ["parallel execution", "fan-out", "fan-in", "synchronization"]},
+    "approval_loop": {"weight": 4, "keywords": ["approval loop", "review cycle", "retry", "escalation"]},
+    "linear_workflow": {"weight": 4, "keywords": ["flowchart", "workflow diagram", "process", "user journey"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the target artifact (standalone file vs embedded section) and path",
+    "Confirm the source process, audience, and workflow shape",
+    "Confirm the terminal outcomes and the validate_flowchart.sh validation path",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_flowchart_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: workflow shape unclear
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    pattern = max(scores, key=scores.get)                    # Tier 2: closest pattern
+    # Flat topology: pattern examples live in assets/ and refs in references/ (no keyed
+    # subdirs). The pattern selects one closest asset from the table in section 4.
+    for path in sorted(inventory):
+        load_if_available(path, inventory, loaded, seen)
+    return {"pattern": pattern, "resources": loaded}
+```
+
 ---
 
-## 2. Required Inputs
+## 3. Required Inputs
 
 Before drafting, establish:
 
@@ -68,7 +151,7 @@ Read the target file before editing it. Use `Glob` or `Grep` to locate nearby di
 
 ---
 
-## 3. Pattern Selection
+## 4. Pattern Selection
 
 Choose one closest pattern before drafting. Load the asset for visual guidance and adapt it to the real workflow.
 
@@ -85,7 +168,7 @@ Use the pattern's demonstrated features, not its content. Do not copy placeholde
 
 ---
 
-## 4. Output Shape
+## 5. Output Shape
 
 For a standalone flowchart file, use this shape unless the surrounding project has a stronger local convention:
 
@@ -118,7 +201,7 @@ A valid flowchart includes:
 
 ---
 
-## 5. Notation Rules
+## 6. Notation Rules
 
 Use consistent ASCII or box-drawing notation throughout one diagram.
 
@@ -136,7 +219,7 @@ Keep widths consistent. The validator allows limited width variation, but too ma
 
 ---
 
-## 6. How It Works: Creation Workflow
+## 7. How It Works: Creation Workflow
 
 Follow this order for every creation or rewrite task:
 
@@ -167,7 +250,7 @@ python3 ../shared/scripts/validate_document.py <document.md>
 
 ---
 
-## 7. Pattern-Specific Build Rules
+## 8. Pattern-Specific Build Rules
 
 For linear workflows:
 
@@ -218,7 +301,7 @@ For user journeys:
 
 ---
 
-## 8. Validator Contract
+## 9. Validator Contract
 
 `scripts/validate_flowchart.sh` is required before delivery for any generated or edited flowchart file.
 
@@ -248,7 +331,7 @@ If the validator cannot run, report the exact command, failure, and what was man
 
 ---
 
-## 9. Rules
+## 10. Rules
 
 Always:
 
@@ -283,7 +366,7 @@ Escalate or ask when:
 
 ---
 
-## 10. Success Criteria
+## 11. Success Criteria
 
 The task is successful when:
 
@@ -297,6 +380,6 @@ The task is successful when:
 
 ---
 
-## 11. References
+## 12. References
 
 For long examples and visual pattern details, use `assets/*`. For deeper creation guidance — a worked decision-tree example, validator mechanics and notation, pattern selection, and common pitfalls — use the reference route-map at `references/README.md`, which maps each concern to a focused single-concern file. For shared markdown standards and document-level validation behavior, use `../shared/`.

@@ -59,13 +59,83 @@ Router resilience rules:
 - Ask for the missing artifact type, target folder or validation expectation instead of silently loading no resources.
 - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
-**Call sequence** for this packet's simple artifact routing:
+### Smart Router Pseudocode
 
-1. `discover_markdown_resources()` enumerates current markdown resources under the existing `references/` and `assets/` folders.
-2. `_guard_in_skill()` plus `load_if_available()` resolves optional packet-local resources, rejects paths outside this skill and skips missing files.
-3. `score_intents(task)` and `select_intents(scores, ambiguity_delta=1.0)` score the README, code-folder README and install-guide intents from the request and target-folder purpose.
-4. `get_routing_key(task, intents)` derives the selected artifact and folder-purpose route for the matching template.
-5. When no route scores, return `UNKNOWN_FALLBACK`, use `references/README.md` as the route map and ask for the missing artifact type, target folder or validation expectation.
+For this flat-reference packet, the canonical resilient router discovers resources at call
+time, guards and loads only what exists, scores the three artifact intents, and returns a
+disambiguation checklist rather than silently loading nothing:
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"
+
+# Three output artifacts; keywords come from this packet's activation triggers.
+INTENT_MODEL = {
+    "readme": {"weight": 4, "keywords": ["readme", "folder readme", "create readme", "write readme", "project readme", "skill readme"]},
+    "code_readme": {"weight": 4, "keywords": ["code folder readme", "source-code folder readme", "source code readme"]},
+    "install_guide": {"weight": 4, "keywords": ["install guide", "installation guide", "setup guide"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the artifact type (README vs code README vs install guide)",
+    "Confirm the target folder",
+    "Confirm the validation expectation",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_readme_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear artifact type
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    artifact_type = max(scores, key=scores.get)               # Tier 2: happy path
+    # references/readme/ and references/install_guide/ are artifact groups, not a runtime
+    # key-space: this packet does not use runtime keyed resource discovery. The artifact
+    # type selects the template already documented above; load the flat refs that exist.
+    for path in sorted(inventory):
+        load_if_available(path, inventory, loaded, seen)
+    return {"artifact_type": artifact_type, "resources": loaded}
+```
 
 Use this README decision tree:
 

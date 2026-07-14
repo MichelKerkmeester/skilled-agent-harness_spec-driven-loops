@@ -358,7 +358,7 @@ node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-co
    - Mixing executors within one round (e.g. one seat via OpenCode + one seat via OpenCode + one seat via Claude Code) is FORBIDDEN — it conflates orchestration boundaries, complicates rollback, and produces noisy convergence signals because per-CLI guarantees (sandbox, runtime, tool surface, output schema) differ.
    - When MULTIPLE CLIs are appropriate for a deliberation, each additional CLI is a NEW DEDICATED ROUND with its own state event, its own seats, and its own convergence pass — never folded into the same round.
 
-### ❌ NEVER
+### ⛔ NEVER
 
 1. **NEVER write application code, authored spec docs, or files outside `ai-council/**` as part of a council run**
    - The council recommends; it does not implement.

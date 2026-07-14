@@ -450,7 +450,7 @@ Use Grep/Glob for semantic/token discovery, Code Graph for structural relationsh
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Determine level (1/2/3/3+) before ANY file changes** - Count LOC, assess complexity/risk
 2. **Scaffold from contract-backed templates** - Use `create.sh` or `inline-gate-renderer`, NEVER create from scratch
@@ -474,7 +474,7 @@ Use Grep/Glob for semantic/token discovery, Code Graph for structural relationsh
 19. **Enforce ToC policy from validation rules** - Only `research/research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
 20. **Literal naming for AI-derived spec folders and phases** - When the AI (not the user) picks a spec-folder or phase slug, the name MUST describe the concrete work being built or fixed. Names must include a specific subject token (the component, behavior, or bug being addressed). Forbidden as standalone slugs: `remediation`, `cleanup`, `fix`, `phase-N`, `review-remediation`, `round-N`. Good remediation-packet examples: `fix-deep-review-p1-p2-findings-for-sk-doc-skill`, `harden-mcp-server-startup-races`, `fix-singleton-leak-in-launcher`. Good phase-decomposition examples: `data-model-design`, `api-implementation`, `ui-integration`. **Remediation-packet source/target rule** - remediation slugs MUST follow `NNN-fix-<source>-for-<target>` where: **Source** = the event or evidence that triggered the packet (e.g. `deep-review-p0-p1-findings`, `verdict-fail`, `audit-finding-NN`); **Target** = the specific component being remediated (e.g. `skill-local-benchmarks-format`, `mk-spec-memory-handler`, `launcher-cache`). The source names WHERE the work comes from; the target names WHAT is being fixed. Do not conflate them: the thing being remediated is the target, not the source. Worked example: `007-fix-deep-review-p0-p1-findings-for-skill-local-benchmarks-format` (source=`deep-review-p0-p1-findings`, target=`skill-local-benchmarks-format`). This rule is documentation-layer guidance; `validate.sh` does not lint slugs today (operator decision; may be lifted in a follow-on packet).
 
-### NEVER
+### ⛔ NEVER
 
 1. **Create documentation from scratch** - Use templates only
 2. **Skip spec folder creation** - Unless user explicitly selects D
@@ -486,7 +486,7 @@ Use Grep/Glob for semantic/token discovery, Code Graph for structural relationsh
 8. **Skip validation before completion** - Completion Verification hard block
 9. **Add ToC sections to standard spec artifacts** - `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`, and `resource-map.md` must not contain ToC headings
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Scope grows during implementation** - Run `upgrade-level.sh` to add higher-level templates (recommended), then auto-populate all placeholder content:
    - Read all existing spec files (spec.md, plan.md, tasks.md, implementation-summary.md) for context

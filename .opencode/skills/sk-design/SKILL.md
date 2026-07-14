@@ -207,7 +207,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 - **ALWAYS** resolve a mode through `mode-registry.json`; never hardcode a router mapping in the hub.
 - **ALWAYS** gather context before routing when missing facts could change the selected mode or acceptance bar.
 - **ALWAYS** make the route and proof plan visible before substantial design, build, or transport work.
@@ -217,7 +217,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 - **ALWAYS** route a generic design prompt to the smallest useful mode; default to `interface` when no other axis dominates.
 - **ALWAYS** route evidence requirements to the existing modes and consumers instead of inventing hub-local verification logic.
 
-### NEVER
+### ⛔ NEVER
 - **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or the shared reference base.
 - **NEVER** embed per-mode design instructions in this hub — that content lives in the packets.
 - **NEVER** add public micro-skill identities or a public mirror of another design skill family; preserve the single `sk-design` advisor identity.
@@ -225,7 +225,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 - **NEVER** treat `mcp-figma` or `design-mcp-open-design` as taste or critique authority; they are transports loaded after the design mode is chosen.
 - **NEVER** route pure code, backend, or data work through the design family.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 - A new design mode is needed — extend `mode-registry.json` and open a packet; do not bolt logic onto the hub.
 - A named mode conflicts with the request's actual intent, or the prompt spans more than three design axes needing an explicit workflow order.
 - Brand, accessibility, or production constraints make the requested visual direction unsafe or contradictory.

@@ -299,7 +299,7 @@ scripts/package_skill.py <path/to/skill-folder> <output-directory>
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Read existing target skill or hub files before editing them.
 2. Select `create-skill` or `create-skill-parent` before authoring.
@@ -313,7 +313,7 @@ scripts/package_skill.py <path/to/skill-folder> <output-directory>
 10. Run `scripts/validate_skill_package.py <path>` before calling the scaffold complete.
 11. Use `assets/skill/skill_procedure_template.md` for a private, triggerable internal procedure; use `assets/skill/skill_reference_template.md` when no trigger-based selection is needed.
 
-### NEVER
+### ⛔ NEVER
 
 1. Never defer the core executable creation workflow out of `SKILL.md`.
 2. Never create multiple advisor identities when the requested artifact is a parent hub.
@@ -326,7 +326,7 @@ scripts/package_skill.py <path/to/skill-folder> <output-directory>
 9. Never package or distribute a skill before validation passes.
 10. Never broaden into unrelated sk-doc artifact types.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. It is unclear whether the target should be a standalone skill or parent hub.
 2. Tool permissions, mutation authority, or advisor identity boundaries are ambiguous.

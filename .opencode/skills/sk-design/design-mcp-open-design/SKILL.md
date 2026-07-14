@@ -142,7 +142,7 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **ALWAYS locate the CLI as `node "<app>/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"`** (or the `ELECTRON_RUN_AS_NODE=1` form). Never assume a global `od` on PATH, and never hardcode `127.0.0.1:7456` or any HTTP port - the desktop daemon is socket-discovered, and its HTTP port is ephemeral and rotates on every daemon restart. Rediscover it from `GET /api/mcp/install-info` (`daemonUrl`) or the socket.
 2. **ALWAYS confirm the Open Design desktop app is running first.** The daemon it hosts answers every tool call. If it is closed, the socket is gone and calls fail.
@@ -153,7 +153,7 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 7. **ALWAYS run `mcp install ... --print --json` (dry-run) first** and read the exact `command`/`env` before writing an agent config.
 8. **ALWAYS treat generation as multi-turn.** Turn 1 (`start_run` / `od run start`) returns a discovery question-form with zero files. Answer it (`od ui respond` or a follow-up message) to fire the build that writes the design and gives the project a `previewUrl`. `od artifacts create` only adds a file and never produces a rendered design.
 
-### NEVER
+### ⛔ NEVER
 
 1. **NEVER drive Open Design's in-app chat UI** or browser-automate its canvas. This skill is the terminal alternative to that, not an automator of it.
 2. **NEVER run a destructive verb** (`delete_file`, `delete_project`) without an explicit project and `confirm:true` plus user approval, and never via the active-project fallback.
@@ -162,7 +162,7 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 5. **NEVER claim a single `start_run` or `od run start` produced a finished, visible design.** Turn 1 only returns the discovery form. A design exists only after the form is answered and the build run writes files. Never present `od artifacts create` as a way to create a rendered design.
 6. **NEVER produce or shape UI from Open Design without `sk-design`** loaded and its ground -> token-system -> critique applied (MANDATORY PAIRING banner above). Only pure WIRE / bare inventory with `openDesignExemption` is exempt.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **ESCALATE IF the desktop app is not running** and the user expected tool calls to work - offer to have them open it, or to start a standalone daemon with `od --no-open` (headless, binds `127.0.0.1:7456`).
 2. **ESCALATE IF a verb returns an auth error** - local reads work without a cloud account, but generation/media/research/plugin-publish may need a `vela login` or configured providers. Surface the requirement; do not paste credentials into prompts.

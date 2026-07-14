@@ -69,16 +69,80 @@ This packet routes by source topology and the resulting global or packet-local o
 - Ask for the missing source type, target component or packet, or version intent instead of silently loading no resources.
 - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
 
-### Smart-router Call Sequence
+### Smart Router Pseudocode
 
-For this flat-reference packet, map the canonical smart-router sequence to the existing topology and output-mode routing:
+For this flat-reference packet, the canonical resilient router discovers resources at call
+time, guards and loads only what exists, scores the two output modes, and returns a
+disambiguation checklist rather than silently loading nothing:
 
-```text
-discover_markdown_resources()
-  -> _guard_in_skill() + load_if_available()
-  -> score_intents()/select_intents()  # choose global or packet-local mode
-  -> get_routing_key()                 # resolved source topology and output mode
-  -> UNKNOWN_FALLBACK                  # ask when source, target, or version intent is unresolved
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"
+
+# Two output modes; keywords come from this packet's activation triggers.
+INTENT_MODEL = {
+    "global_component": {"weight": 4, "keywords": ["global changelog", "release notes", "component", "--release", "--bump"]},
+    "packet_local": {"weight": 4, "keywords": ["packet-local changelog", "nested changelog", "--nested", "phase child"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the change source (component hint, git history, or spec folder)",
+    "Confirm global vs packet-local (nested) output mode",
+    "Confirm the four-part version and whether --bump/--release applies",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_changelog_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear source/mode
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    output_mode = max(scores, key=scores.get)                # Tier 2: global vs packet-local
+    # Flat resource topology: no references/<key>/ subdirectories. The mode selects the
+    # generator target documented below, not a keyed subtree; load the flat refs that exist.
+    for path in sorted(inventory):
+        load_if_available(path, inventory, loaded, seen)
+    return {"output_mode": output_mode, "resources": loaded}
 ```
 
 ---
@@ -466,7 +530,7 @@ If validation fails, fix blocking issues before delivery or report the exact blo
 
 ## 10. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Always follow the seven-step workflow in order.
 2. Always read `../shared/assets/changelog_template.md` before generating global changelog content.
@@ -480,7 +544,7 @@ If validation fails, fix blocking issues before delivery or report the exact blo
 10. Always verify the written file before claiming completion.
 11. Always keep this packet self-contained and leave advisor graph identity at the `sk-doc` hub root.
 
-### NEVER
+### ⛔ NEVER
 
 1. Never add packet-local `graph-metadata.json`.
 2. Never skip version validation for global changelogs.
@@ -493,7 +557,7 @@ If validation fails, fix blocking issues before delivery or report the exact blo
 9. Never make the command router or YAML reference the only workflow contract for this packet.
 10. Never hide source-format conflicts; mark them clearly and prefer the canonical template when formatting prose.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. Source context cannot be found in a spec folder, component history, or git history.
 2. Component resolution remains ambiguous after file-count and path-segment analysis.

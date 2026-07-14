@@ -314,7 +314,7 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 9. **ALWAYS cite `procedures/design_system_extraction.md` or the no-procedure fallback** before substantial extraction planning, generation, validation, or report output.
 10. **ALWAYS, on a brief-only request with no live URL, STOP before producing any Style Reference content.** The entire response is text only: either (a) a request for the live URL to crawl, or (b) an explicit statement, citing `references/authoring_boundary.md` by path, that brief-only authoring is out of scope for this mode and naming where it routes instead (a separate design-spec decision, or `foundations`). Cite both `references/authoring_boundary.md` and `assets/source_of_truth_router_card.md` by their file paths in the response text — reading them via a tool call is not a substitute for naming them in what the user sees. **NEVER produce a partial or full DESIGN.md artifact as a byproduct of this decision** — no Tokens table, no Surfaces, no Quick Start — even with a disclaimer sentence attached or brief values Origin-labeled. A labeled or disclaimed artifact is still forward-authoring; the boundary forbids the artifact itself, not just unlabeled values inside it. There is no third option and no "boundary exception" framing that produces output anyway.
 
-### ❌ NEVER
+### ⛔ NEVER
 
 1. **NEVER estimate, round, or invent a hex, pixel, font-weight, shadow, or radius value in DESIGN.md.** Every value must trace back to a token in `tokens.json`. Even trivial-looking values like `1px` borders or `0.25rem` spacing must be confirmed.
 2. **NEVER include L4 (content) tokens in DESIGN.md.** These are image-derived or one-off values that do not represent the design system.

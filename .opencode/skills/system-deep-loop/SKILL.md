@@ -94,20 +94,20 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 - **ALWAYS** resolve a mode through `mode-registry.json` (read the `packet` key; never hardcode a router mapping or packet path in the hub).
 - **ALWAYS** keep advisor projection maps hardcoded and drift-guarded against the registry; command mode routing is still hardcoded in the command files and does not resolve through `mode-registry.json`.
 - **ALWAYS** keep each mode's convergence/state/artifact contract in its packet — the hub stays logic-free.
 - **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill identity, whether a mode is reached via `Skill(system-deep-loop)`, a `/deep:*` command, or an agent.
 - **ALWAYS** keep `Skill(system-deep-loop)` hub routing, the `/deep:*` commands, and the agent types as complementary surfaces over the same packets — never let one surface fork per-mode logic out of its packet.
 
-### NEVER
+### ⛔ NEVER
 - **NEVER** add an `improvement` `loopType` to `runtime/convergence.cjs` (improvement is host-driven; `runtimeLoopType` stays `null`).
 - **NEVER** infer `runtimeLoopType` from `workflowMode` — read it from the registry (explicit `null` is load-bearing).
 - **NEVER** let a read-only mode (research/review/ai-council/alignment) reach the improvement mutation scripts (`promote-candidate.cjs`/`rollback-candidate.cjs`).
 - **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or `shared/`.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 - A new mode is needed beyond the eight registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
 - A change would require the runtime to gain MCP tools or an improvement loopType — that contradicts the architecture; escalate.
 

@@ -54,20 +54,81 @@ Need a named runtime persona with authority and tool policy?
   NO  -> Use or create a skill, template, or command instead
 ```
 
-### Router Call Sequence
+### Smart Router Pseudocode
 
-```text
-resources = discover_markdown_resources()  # flat references/ and assets/ resources only
-for resource in resources:
-  guarded = _guard_in_skill(resource)
-  load_if_available(guarded, seen)
+For this flat-reference packet, the canonical resilient router discovers resources at call
+time, guards and loads only what exists, scores the runtime-target and agent-authoring
+intents, and returns a disambiguation checklist rather than silently loading nothing:
 
-scores = score_intents(request)  # component choice, runtime profile, and authority needs
-intents = select_intents(scores)
-routing_key = get_routing_key(request, intents)
+```python
+from pathlib import Path
 
-if routing_key is UNKNOWN:
-  return UNKNOWN_FALLBACK with the missing component type, runtime profile, or authority requirements
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"
+
+# Three routing targets; keywords come from this packet's activation triggers.
+INTENT_MODEL = {
+    "opencode_agent": {"weight": 4, "keywords": ["opencode agent", "permission object", ".opencode/agents"]},
+    "claude_agent": {"weight": 4, "keywords": ["claude code agent", ".claude/agents"]},
+    "agent_authoring": {"weight": 4, "keywords": ["create agent", "/create:agent", "agent file", "new agent", "agent persona", "agent frontmatter", "authority boundary", "agent template", "runtime agent directory"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the runtime target directory (.opencode/agents/ or .claude/agents/)",
+    "Confirm the permission or authority boundary the agent needs (tool access, task/orchestration authority)",
+    "Confirm this needs a new agent rather than a skill, command, or an existing agent",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_agent_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear component/runtime/authority
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    intent = max(scores, key=scores.get)                     # Tier 2: happy path
+    # Flat resource topology: no references/<key>/ subdirectories. The intent selects the
+    # runtime frontmatter schema and body shape already documented below, not a keyed subtree.
+    for path in sorted(inventory):
+        load_if_available(path, inventory, loaded, seen)
+    return {"intent": intent, "resources": loaded}
 ```
 
 ### Router Resilience
@@ -225,7 +286,7 @@ Required checks: frontmatter parses, filename stem matches `name`, required sect
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Decide agent vs skill vs command before writing the file.
 2. Search existing agents before creating a new one.
@@ -238,7 +299,7 @@ Required checks: frontmatter parses, filename stem matches `name`, required sect
 9. Validate with `../shared/scripts/validate_document.py` before delivery.
 10. Keep this packet self-contained and leave advisor graph identity at the `sk-doc` hub root.
 
-### NEVER
+### ⛔ NEVER
 
 1. Never add `graph-metadata.json` to this packet.
 2. Never create an agent for reusable knowledge alone.
@@ -250,7 +311,7 @@ Required checks: frontmatter parses, filename stem matches `name`, required sect
 8. Never leave placeholders from `assets/agent_template.md` in the final file.
 9. Never claim completion before validation passes or the blocker is reported.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. The requested role's authority boundary is unclear.
 2. Existing agents already cover the requested role.

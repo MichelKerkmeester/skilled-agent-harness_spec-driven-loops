@@ -227,7 +227,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Read target files before editing them.
 2. Load `assets/code_quality_checklist/overview_header_and_comments.md` before any implementation-done or quality-pass claim.
@@ -238,7 +238,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 7. Keep fixes scoped to quality-gate failures in files already in scope.
 8. Hand failures that need root-cause investigation to the surface's debugging workflow (`workflow_debug.md`) with the exact symptom and evidence.
 
-### NEVER
+### ⛔ NEVER
 
 1. Never create new files; this mode has no `Write` authority.
 2. Never dispatch subagents; this mode has no `Task` authority.
@@ -249,7 +249,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 7. Never allow ephemeral artifact labels in code comments; preserve durable WHY only.
 8. Never add a packet-local `graph-metadata.json`.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. Surface detection is ambiguous after reading `../shared/references/stack_detection.md`.
 2. The correct checklist cannot be identified from the target path.

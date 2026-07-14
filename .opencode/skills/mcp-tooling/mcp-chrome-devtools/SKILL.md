@@ -274,7 +274,7 @@ Always close browser instances when done. Wrap Code Mode browser operations in `
 5. Stop sessions after operations.
 6. Use `jq` for JSON processing.
 
-### ❌ NEVER Rules
+### ⛔ NEVER Rules
 
 1. Execute CDP commands without an active session.
 2. Hardcode CDP method lists.

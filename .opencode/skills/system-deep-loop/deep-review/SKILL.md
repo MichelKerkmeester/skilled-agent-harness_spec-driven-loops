@@ -375,7 +375,7 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
 8. Emit setup `BINDING:` lines before workflow output.
 9. Refuse nested dispatch with: `REFUSE: nested Task tool dispatch is forbidden for LEAF agents. Returning partial findings instead.`
 
-### ❌ NEVER
+### ⛔ NEVER
 
 1. **Dispatch sub-agents**, `@deep-review` is LEAF-only. It cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 14).
 2. **Hold findings in context**, Write everything to iteration files. Context is discarded after each dispatch.

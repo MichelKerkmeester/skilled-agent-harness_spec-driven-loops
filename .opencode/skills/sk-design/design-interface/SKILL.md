@@ -212,7 +212,7 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **ALWAYS ground the design in the subject** before choosing anything. Name the subject, audience, and the page's single job, then draw distinctive choices from the subject's own world.
 2. **ALWAYS make deliberate, brief-specific choices** for palette, typography, layout, and motion, and take one justifiable aesthetic risk.
@@ -224,14 +224,14 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 8. **ALWAYS decide, at the critique step, whether a real-world reference would sharpen the default to deviate from.** Take the initiative to pull ONE Mobbin or Refero reference when the brief sits in a convention-heavy category and a subscription is connected; otherwise ask the user first; otherwise fall back to the generic anti-default process. Mobbin for app/iOS surfaces, Refero for web pages and visual style. One reference, read live, never copied, never a chooser. Mobbin and Refero are Code Mode (UTCP) manuals, not tools in this skill's `allowed-tools`, so co-load `mcp-code-mode` and route the lookup through it; if Code Mode is unavailable, fall back to the generic process. See `references/design_grounding/design_references_mcp.md`.
 9. **ALWAYS cite the selected procedure card or the no-procedure fallback** before substantial output when a private procedure trigger matches.
 
-### NEVER
+### ⛔ NEVER
 
 1. **NEVER ship a templated default** (cream + serif + terracotta, near-black + one acid accent, or broadsheet hairlines) on a free axis just because it is safe.
 2. **NEVER add decoration that does not serve the brief**, including numbered markers (01 / 02 / 03) when the content is not actually a sequence.
 3. **NEVER let motion pile up**. Scattered animation reads as AI-generated, so prefer one orchestrated moment.
 4. **NEVER override a brief that pins the direction**. The brief's own words always win, even when they ask for a default look.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **ESCALATE IF the brief is too thin to ground** and you cannot reasonably pin the subject, audience, or page job yourself. State your assumed direction and confirm.
 2. **ESCALATE IF the requested direction conflicts with brand or accessibility** (for example a palette that fails contrast). Surface the trade-off before building.

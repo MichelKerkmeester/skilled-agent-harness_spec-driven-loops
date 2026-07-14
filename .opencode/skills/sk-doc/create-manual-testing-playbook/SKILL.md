@@ -69,26 +69,81 @@ NO  -> Keep test steps in spec/checklist docs
 
 This packet owns manual testing playbook packages only. It consumes shared `sk-doc` standards from `../shared`, but the advisor identity lives at the `sk-doc` hub root. Do not add a packet-local `graph-metadata.json`.
 
-### Router Resilience
+### Smart Router Pseudocode
 
-This packet routes by whether the target needs reusable manual validation with captured evidence. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
+For this flat-reference packet, the canonical resilient router discovers resources at call
+time, guards and loads only what exists, scores the two authoring scopes, and returns a
+disambiguation checklist rather than silently loading nothing:
 
-- Load optional markdown resources only after resolving them under this packet and confirming they exist.
-- Treat `references/README.md` as the fallback route map when the validation scope or evidence needs are unclear.
-- Ask for the missing target system, feature set, or evidence requirements instead of silently loading no resources.
-- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
+```python
+from pathlib import Path
 
-Router call sequence for this flat-resource packet:
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/README.md"
 
-```text
-discover_markdown_resources()
-  -> _guard_in_skill() + load_if_available()
-  -> score_intents(task) / select_intents(scores)
-  -> get_routing_key(task, intents)
-  -> UNKNOWN_FALLBACK
+# Two authoring scopes; keywords come from this packet's activation triggers.
+INTENT_MODEL = {
+    "root_playbook": {"weight": 4, "keywords": ["manual testing playbook", "/create:manual-testing-playbook", "testing playbook", "release readiness"]},
+    "per_feature_scenario": {"weight": 4, "keywords": ["deterministic scenario", "evidence collection", "operator validation", "multi-agent execution"]},
+}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the target skill or system and the feature set under test",
+    "Confirm root playbook index scope vs per-feature scenario file scope",
+    "Confirm the evidence and pass/fail validation expectations",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_manual_testing_playbook_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear scope
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    scope = max(scores, key=scores.get)                       # Tier 2: happy path
+    # Flat resource topology: no references/<key>/ subdirectories. The scope selects the
+    # authoring target documented above, not a keyed subtree; load the flat refs that exist.
+    for path in sorted(inventory):
+        load_if_available(path, inventory, loaded, seen)
+    return {"scope": scope, "resources": loaded}
 ```
-
-Here, intent selection resolves whether reusable manual validation with captured evidence is needed; the routing key remains this `sk-doc` packet. `UNKNOWN_FALLBACK` asks for the missing target system, feature set, or evidence requirements. Resource discovery is limited to existing markdown under this packet's flat `references/` and `assets/` folders.
 
 ---
 
@@ -320,7 +375,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 
 ## 7. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Use `manual_testing_playbook.md` as the root file name.
 2. Put per-feature files in root-level category folders named with the bare descriptive slug.
@@ -332,7 +387,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 8. Mark destructive scenarios and include safe recovery expectations.
 9. Validate the root playbook and manually review per-feature files before delivery.
 
-### NEVER
+### ⛔ NEVER
 
 1. Create a `snippets/` subtree for canonical per-feature files.
 2. Create separate canonical `review_protocol.md` or `subagent_utilization_ledger.md` files.
@@ -344,7 +399,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 8. Add numeric prefixes to category folder names or per-feature filenames; the root playbook index owns display order and the per-feature `stage:` field owns benchmark tier.
 9. Use hyphens in category folder or per-feature filename path segments.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. The target feature set, category boundary, or package owner is unclear.
 2. A scenario would require destructive actions without a safe recovery path.

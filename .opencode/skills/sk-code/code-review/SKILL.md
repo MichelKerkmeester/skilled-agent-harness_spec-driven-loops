@@ -402,7 +402,7 @@ Downstream automation parses this final line via exact string match — do not v
 - State assumptions when evidence is incomplete.
 - Identify `sk-code` surface evidence used for standards alignment.
 
-### ❌ NEVER
+### ⛔ NEVER
 
 - Override surface-specific conventions with generic baseline style preferences.
 - Approve code with unaddressed P0 security/correctness defects.
