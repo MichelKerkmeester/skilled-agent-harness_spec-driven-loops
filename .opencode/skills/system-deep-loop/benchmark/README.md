@@ -41,7 +41,18 @@ Note: the harness itself lives inside this hub (`deep-improvement/scripts/skill-
 - **D1-inter and D4 are unscored** in router mode by design (need live mode / `--d4`).
 - **The four MR mode-routing scenarios route out to browser class** by the harness `classifyKind` heuristic (the `MR` prefix is treated as browser-class, matching how every hub's `MR-*` scenarios behave). They are scored only in live mode; the router aggregate is computed over the 16 text-scorable scenarios.
 
-## 2. RE-RUNNING
+## 2. RUN-LABEL INDEX
+
+Every run-label folder on disk holds one run's rendered report pair (`skill-benchmark-report.json` + `.md`). One row per folder; verdicts are read from each folder's report and are not restated as a rubric here.
+
+| Run label | What it is | Verdict/Status | Evidence |
+|---|---|---|---|
+| [`baseline/`](./baseline/) | Frozen pre-optimization snapshot, router mode — the before-comparison anchor described in §1 | CONDITIONAL · 71 (router) | [report](./baseline/skill-benchmark-report.md) |
+| [`router_mode_a/`](./router_mode_a/) | Router-mode (Mode A) deterministic replay run | PASS · 100 (router) | [report](./router_mode_a/skill-benchmark-report.md) |
+| [`live_mode_b/`](./live_mode_b/) | Live-mode (Mode B) `cli-opencode` dispatch run | PASS · 93 (live) | [report](./live_mode_b/skill-benchmark-report.md) |
+| [`after_d3_proxy/`](./after_d3_proxy/) | Router-mode run after the D3-efficiency proxy adjustment | PASS · 100 (router) | [report](./after_d3_proxy/skill-benchmark-report.md) |
+
+## 3. RE-RUNNING
 
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \

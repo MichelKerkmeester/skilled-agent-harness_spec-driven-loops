@@ -58,3 +58,7 @@ lands in the **spec packet phase that executed the round**, never inside this
 package; a result cited from this index must point to its evidence in that
 executing phase. Per-scenario baseline checkpoints live in
 [./baselines/claude-baseline.md](./baselines/claude-baseline.md).
+
+## RELATED RESOURCES
+
+> Authoring: [`create-benchmark` behavior-benchmark guide](../../../sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md) owns the templates and authoring guide for this `behavior_benchmark` package, while the framework and scoring stay lane-owned here.

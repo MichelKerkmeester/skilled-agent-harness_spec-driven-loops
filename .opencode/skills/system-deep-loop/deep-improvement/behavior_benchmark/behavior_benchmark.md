@@ -37,3 +37,7 @@ persisted candidate + score.
 
 Fixture: `fixtures/fx-004-improvement-target` (a deliberately weak toy agent
 `.md` with seeded improvement opportunities). Baselines: `baselines/claude-baseline.md`.
+
+## RELATED RESOURCES
+
+> Authoring: [`create-benchmark` behavior-benchmark guide](../../../sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md) owns the templates and authoring guide for this `behavior_benchmark` package, while the framework and scoring stay lane-owned here.

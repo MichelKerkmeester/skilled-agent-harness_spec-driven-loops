@@ -38,3 +38,7 @@ diversity.
 
 Fixture: `fixtures/fx-003-council-target` (a multi-option rate-limit design
 question the council can genuinely deliberate). Baselines: `baselines/claude-baseline.md`.
+
+## RELATED RESOURCES
+
+> Authoring: [`create-benchmark` behavior-benchmark guide](../../../sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md) owns the templates and authoring guide for this `behavior_benchmark` package, while the framework and scoring stay lane-owned here.

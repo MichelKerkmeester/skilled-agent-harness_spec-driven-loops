@@ -88,6 +88,24 @@ benchmark/
 | `baseline/` | First sk-code run, kept as a before-snapshot, not reproducible |
 | `fixtures/sk-code/` | Two legacy fixtures, no longer the default corpus |
 
+### Run-Label Index
+
+Every run-label folder on disk, one row each. `Status` separates current runs from legacy sidecars: `current` is a canonical run the sections above point at, `superseded` is an earlier development run kept only as evidence, `frozen` is the immutable before-anchor, `sidecar` is an additional run kept beside the canonical pair, and `legacy` is a pre-playbook artifact. Underscore-named folders are listed exactly as they sit on disk; the hyphenated display names in the tree above (`router-final`, `live-final`, `fixtures/sk-code`) refer to the same `router_final/`, `live_final/`, and `fixtures/sk_code/` folders. Verdicts are read from each folder's report.
+
+| Run label | What it is | Verdict | Status |
+|---|---|---|---|
+| [`router_final/`](./router_final/) | Current router-mode run (the deterministic CI gate) | PASS · 84 | current |
+| [`live_final/`](./live_final/) | Current live-mode run (`cli-opencode` dispatch) | CONDITIONAL · 71 | current |
+| [`d4r_live/`](./d4r_live/) | D4-R task-outcome usefulness ablation, advisory only (see its own `README.md`) | PASS · 88 (base-live) | current · advisory |
+| [`router_baseline/`](./router_baseline/) | Router-mode sidecar run | PASS · 85 | sidecar |
+| [`live_mode_b/`](./live_mode_b/) | Live-mode (Mode B) sidecar run | CONDITIONAL · 66 | sidecar |
+| [`live_remediated/`](./live_remediated/) | Live-mode run after a remediation pass, an intermediate before `live_final/` | CONDITIONAL · 79 | superseded |
+| [`baseline/`](./baseline/) | Frozen pre-optimization snapshot; the D5 structural gate blocked this run | BLOCKED-BY-STRUCTURE | frozen |
+| [`after/`](./after/) | Earlier router-mode development run | CONDITIONAL · 69 | superseded |
+| [`full/`](./full/) | Earlier router-mode development run (full corpus) | CONDITIONAL · 55 | superseded |
+| [`live/`](./live/) | Earlier live-mode development run | CONDITIONAL · 76 | superseded |
+| [`fixtures/sk_code/`](./fixtures/sk_code/) | Legacy synthetic fixtures, superseded by the playbook corpus | n/a — see folder | legacy |
+
 ---
 
 ## 4. READING THE REPORTS
