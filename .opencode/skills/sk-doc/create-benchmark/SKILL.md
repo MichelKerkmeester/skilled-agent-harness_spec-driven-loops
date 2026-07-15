@@ -110,9 +110,11 @@ Benchmark families ARE the runtime routing key. `discover_markdown_resources()` 
 family key and tiered fallback vary:
 
 ```python
-DEFAULT_RESOURCE = "references/README.md"
+DEFAULT_RESOURCE = "references/shared/README.md"
 FAMILIES = ["behavior_benchmark", "conformance_benchmark", "skill_benchmark", "model_benchmark",
             "agent_improvement", "mcp_promotion"]
+# mcp_promotion's templates and guides live under the shared/ key, not an mcp_promotion/ dir.
+FAMILY_DISK_KEY = {"mcp_promotion": "shared"}
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the benchmark family (MCP promotion, behavior, conformance, skill, model, agent)",
     "Confirm what is authored here vs lane-owned, then the storage location and run label",
@@ -128,8 +130,9 @@ def route_benchmark_request(request):
         return {"load_level": "UNKNOWN_FALLBACK",
                 "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST, "resources": loaded}
 
+    disk_key = FAMILY_DISK_KEY.get(routing_key, routing_key)
     keyed = sorted(p for p in inventory if p.startswith(
-        (f"references/{routing_key}/", f"assets/{routing_key}/", "references/shared/")))
+        (f"references/{disk_key}/", f"assets/{disk_key}/", "references/shared/")))
     if not keyed:                                                # Tier 2
         load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
         return {"routing_key": routing_key,

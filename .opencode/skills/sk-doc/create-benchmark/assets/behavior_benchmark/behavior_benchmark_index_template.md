@@ -101,8 +101,11 @@ The runner is
 invoked per cell as one run of one scenario contract against one executor, with
 the scenario's `fixture` absorbing all writes for the run. Checkpoint and
 delegation-evidence extraction, the no-progress watchdog, scoring, and
-classification are owned by that runner; results are emitted as result JSON with
-`schemaVersion: 1`. Run evidence — transcripts, result JSONs, scorecards — lands
+classification are owned by that runner; results are emitted as result JSON whose
+`schemaVersion` echoes each scenario's contract — `1` for the schema-v1 core
+scenarios, `2` for scenarios that declare `"schema_version": 2` (adding the
+`postconditions`, `directDispatch`, and `boundary` result sections). Run
+evidence — transcripts, result JSONs, scorecards — lands
 in the **spec packet phase that executed the round**, never inside this package;
 a result cited from this index must point to its evidence in that executing phase.
 

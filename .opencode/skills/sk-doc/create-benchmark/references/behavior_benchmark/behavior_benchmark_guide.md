@@ -129,10 +129,15 @@ Complete these steps in order.
    the OVERVIEW, SCENARIO TABLE, AXIS COVERAGE, EXECUTION, and RELATED RESOURCES
    sections, and delete the availability blockquote unless the invocation surface
    is planned-but-not-built.
-6. **Write one scenario file per row.** Copy the scenario template per row. The
-   first fenced json block is the machine contract the runner parses; keep its
-   field order. Fill Rationale, Pass shape, and Failure modes as scoring context.
-   Keep every row in the index table and its scenario file in exact sync.
+6. **Write one scenario file per row.** Copy the scenario template per row, then
+   keep exactly ONE of its two JSON blocks: the schema-v1 core for the
+   research/review/ai-council/improvement/context packages, or the schema-v2 block
+   (`"schema_version": 2` with `command_topology`, direct-dispatch targets,
+   `postconditions`, and `boundary`) for command, direct-tool/plugin, and
+   conformance families. Delete the block you are not using. The remaining fenced
+   json block is the machine contract the runner parses; keep its field order. Fill
+   Rationale, Pass shape, and Failure modes as scoring context. Keep every row in
+   the index table and its scenario file in exact sync.
 7. **Write the baseline.** Copy the baseline template to
    `baselines/claude-baseline.md`. Ship every cell `pending` / `not_captured` if no
    Claude leg has run — that is a legitimate ship state, but it is never quotable

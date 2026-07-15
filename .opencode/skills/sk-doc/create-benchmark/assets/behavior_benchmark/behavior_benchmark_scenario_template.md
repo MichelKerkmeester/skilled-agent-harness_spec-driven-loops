@@ -1,14 +1,15 @@
 ---
 title: "Behavior Benchmark Scenario Template"
-description: "Fillable scaffold for one behavior-benchmark scenario contract, a PREFIX-NNN-slug.md file whose first JSON block is the machine contract scored by the shared framework."
+description: "Fillable scaffold for one behavior-benchmark scenario contract, a PREFIX-NNN-slug.md file whose first JSON block is the machine contract scored by the shared framework. Carries both the schema-v1 core scaffold and the opt-in schema-v2 scaffold (direct-dispatch targets, postconditions, boundary)."
 trigger_phrases:
   - "behavior benchmark scenario template"
   - "behavior benchmark scenario contract"
   - "DAB scenario scaffold"
   - "behavior scenario machine contract"
+  - "schema v2 scenario scaffold"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 <!--
@@ -22,13 +23,21 @@ Usage:
         .opencode/skills/system-deep-loop/<mode>/behavior_benchmark/scenarios/<PREFIX>-007-verify-first.md
   2. DELETE this template's own frontmatter and this comment. A shipped scenario
      file has NO frontmatter: it starts at the "# <PREFIX>-NNN" H1.
-  3. Fill every {{PLACEHOLDER}}. The FIRST fenced json block is the machine
+  3. Choose ONE schema version and keep only that JSON block:
+       - SCHEMA V1 (default) for the research/review/ai-council/improvement/context
+         behavior packages — no version key, no direct-dispatch/postcondition/boundary
+         evidence.
+       - SCHEMA V2 for command, direct-tool/plugin, and conformance families that
+         need direct-dispatch targets, postcondition probes, or a fixture boundary.
+     Delete the JSON block for the version you are NOT authoring.
+  4. Fill every {{PLACEHOLDER}}. The FIRST fenced json block is the machine
      contract the runner parses; keep its field order. Prose below the block is
      scoring context only and is never parsed.
 
 Field definitions and enums are normative in:
   .opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md
-  (SCENARIO CONTRACT SCHEMA, SCORING RUBRIC, CLASSIFICATION TAXONOMY)
+  (SCENARIO CONTRACT SCHEMA, SCHEMA VERSIONING, SCORING RUBRIC, DELEGATION
+   EVIDENCE KINDS, POSTCONDITION PROBES, CLASSIFICATION TAXONOMY)
 -->
 
 ## 1. OVERVIEW
@@ -36,14 +45,18 @@ Field definitions and enums are normative in:
 This section documents the scaffold and is NOT part of a shipped scenario. A
 shipped scenario file carries no frontmatter and no `## OVERVIEW` heading: it is
 exactly the region from the `# {{PREFIX}}-{{NNN}}` H1 below down through the
-Failure modes line. Copy that region only, then delete this template's frontmatter,
-the usage comment above, and this Overview. The first fenced json block in the
-copied region is the machine contract the runner parses; the prose below it is
-scoring context the runner never reads.
+Failure modes line, carrying exactly ONE JSON block — the schema-v1 core OR the
+schema-v2 block, never both. Copy that region, delete the JSON block for the
+version you are not authoring, then delete this template's frontmatter, the usage
+comment above, and this Overview. The remaining fenced json block is the machine
+contract the runner parses; the prose below it is scoring context the runner
+never reads.
 
 ---
 
 # {{PREFIX}}-{{NNN}} — {{SCENARIO_TITLE}}
+
+### Schema v1 core (default — keep this block OR the v2 block, not both)
 
 ```json
 {
@@ -64,7 +77,7 @@ scoring context the runner never reads.
     "{{MARKER_TWO_LITERAL_OR_REGEX}}"
   ],
   "expected_delegation": {
-    "leaf_agent": "{{LEAF_AGENT_OR_NULL}}",
+    "leaf_agent": {{LEAF_AGENT_STRING_OR_RAW_NULL}},
     "min_task_events": {{MIN_TASK_EVENTS}},
     "route_proof_required": {{TRUE_OR_FALSE}},
     "role_absorption_forbidden": {{TRUE_OR_FALSE}}
@@ -75,8 +88,67 @@ scoring context the runner never reads.
 }
 ```
 
+### Schema v2 (command / direct-tool / conformance families — keep this block OR the v1 block, not both)
+
+```json
+{
+  "schema_version": 2,
+  "id": "{{PREFIX}}-{{NNN}}",
+  "title": "{{SCENARIO_TITLE}}",
+  "mode": "{{MODE}}",
+  "command_topology": "{{TOPOLOGY}}",
+  "entry_surface": "{{ENTRY_SURFACE}}",
+  "clarity": "{{CLARITY}}",
+  "prompt": "{{VERBATIM_USER_PROMPT}}",
+  "invocation": {
+    "kind": "{{INVOCATION_KIND}}",
+    "command": {{COMMAND_STRING_OR_RAW_NULL}}
+  },
+  "fixture": "{{FIXTURE_PATH}}",
+  "expected_interaction": "{{AUTONOMOUS_OR_QUESTION_HALT_OR_FAIL_FAST}}",
+  "expected_presentation_markers": [
+    "{{MARKER_ONE_LITERAL_OR_REGEX}}",
+    "{{MARKER_TWO_LITERAL_OR_REGEX}}"
+  ],
+  "expected_delegation": {
+    "evidence_kind": "{{TASK_DISPATCH_OR_DIRECT_DISPATCH_OR_SEAT_ARTIFACTS}}",
+    "leaf_agent": {{LEAF_AGENT_STRING_OR_RAW_NULL}},
+    "min_task_events": {{MIN_TASK_EVENTS}},
+    "route_proof_required": {{TRUE_OR_FALSE}},
+    "role_absorption_forbidden": {{TRUE_OR_FALSE}},
+    "min_seats": {{MIN_SEATS}},
+    "expected_targets": [
+      "{{EXPECTED_TARGET_LITERAL_OR_REGEX}}"
+    ],
+    "forbidden_targets": [
+      "{{FORBIDDEN_TARGET_LITERAL_OR_REGEX}}"
+    ]
+  },
+  "artifacts_required": {{TRUE_OR_FALSE}},
+  "postconditions": [
+    {
+      "kind": "{{FILE_EXISTS_OR_TEXT_CONTAINS_OR_JSON_FIELD_EQUALS_OR_CHANGED_PATHS_WITHIN}}",
+      "path": "{{FIXTURE_RELATIVE_PATH}}"
+    },
+    {
+      "kind": "changed_paths_within",
+      "prefix": "."
+    }
+  ],
+  "boundary": {
+    "allow_prefixes": ["."]
+  },
+  "budget_ms": {{BUDGET_MS}},
+  "watchdog_ms": {{WATCHDOG_MS_OR_OMIT}},
+  "notes": "{{ONE_LINE_INTENT_PLUS_THE_INVARIANT_AND_SOURCE_FUNCTION}}"
+}
+```
+
 <!--
 Field guidance (see framework.md for the authoritative enums):
+  schema_version      : V2 ONLY. The exact int 2 opts into schema v2; omit it (or 1) for the v1 core block.
+                        v1-in => v1-out is a compatibility requirement: a v1 scenario adds no v2 keys.
+  command_topology    : V2 ONLY. "workflow router" | "subaction router" | "direct-tool/plugin router" | "monolithic".
   mode                : the package mode value (context|research|review|ai-council|improvement, or a declared extension such as alignment).
   entry_surface       : E1 command+suffix | E2 bare command (must halt) | E3 natural ask | E4 orchestrate-routed.
   clarity             : C1 vague | C2 concise-but-scoped | C3 fully specified.
@@ -90,8 +162,23 @@ Field guidance (see framework.md for the authoritative enums):
   expected_interaction: "autonomous" (runs to a terminal) | "question_halt" (must ask ONE consolidated setup question then
                         stop) | "fail_fast" (must terminate on an unmet precondition).
   presentation markers: literal strings or /regex/ (case-insensitive is always applied). Keep them minimal and mode-distinctive.
-  expected_delegation : use evidence_kind (default task_dispatch) + min_seats only when the mode delegates via seat_artifacts (ai-council).
-                        question_halt cells usually set leaf_agent:null and min_task_events:0.
+  leaf_agent          : a RAW JSON value — a quoted "agent-name" string when the cell delegates to a named LEAF, or the bare
+                        literal null (most command/direct-dispatch and question_halt cells set null).
+  expected_delegation : evidence_kind (V2, default task_dispatch) selects how delegation is measured:
+                        task_dispatch  => Agent/task tool events, min_task_events + optional route_proof to leaf_agent.
+                        direct_dispatch => V2; case-insensitive stdout-line matches of expected_targets, guarded by forbidden_targets.
+                        seat_artifacts => ai-council; distinct seat ids >= min_seats named in the persisted ai-council artifacts.
+                        min_seats applies ONLY to seat_artifacts; expected_targets/forbidden_targets apply ONLY to direct_dispatch.
+                        Each target is a literal substring or /regex/[flags]. question_halt cells usually set leaf_agent:null,
+                        min_task_events:0.
+  artifacts_required  : V2. Whether the run owes new fixture artifacts; defaults to min_task_events > 0. Set false on
+                        inline-reporting hand-off cells that produce no new files.
+  postconditions      : V2. Allowlisted post-run probes; every declared probe must pass for a `pass`. Kinds:
+                        file_exists {path} | text_contains {path, substring} | json_field_equals {path, field, value} |
+                        changed_paths_within {prefix}. A probe with "binds_setup": true that fails on an autonomous run
+                        produces setup_misbind. Relative path/prefix resolve from the fixture dir.
+  boundary            : V2. { "allow_prefixes": [dir, ...] }. Any created, rewritten, or deleted fixture path outside every
+                        allowed prefix is a boundary_violation.
   budget_ms           : provisional framework floor (180000 ms) until a baseline lands, capped by mode at 900000 ms
                         (research/review) or 1500000 ms (ai-council/improvement/alignment) — see framework.md BUDGET
                         POLICY; do not invent a per-scenario number. Recompute from tTerminal once a baseline lands.
