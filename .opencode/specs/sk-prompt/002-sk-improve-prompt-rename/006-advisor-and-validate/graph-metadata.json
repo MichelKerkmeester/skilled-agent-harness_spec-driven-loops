@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/002-sk-improve-prompt-rename/006-advisor-and-validate",
+  "spec_folder": "sk-prompt/002-sk-improve-prompt-rename/006-advisor-and-validate",
+  "parent_id": "sk-prompt/002-sk-improve-prompt-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "082 phase 006",
+      "sk-improve-prompt advisor validate",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "advisor probes",
+      "final grep gate",
+      "strict validate recursive"
+    ],
+    "key_topics": [
+      "phase",
+      "sk-improve-prompt",
+      "advisor",
+      "validate",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "core",
+      "tasks",
+      "probes",
+      "final"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The rename is complete only if advisor state, skill graph indexes, prompt-routing probes, strict spec validation, and active-scope grep all agree on `sk-prompt`",
+    "created_at": "2026-05-06T10:22:43Z",
+    "last_save_at": "2026-07-15T08:09:44.231Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ea53635d51432fb154b9ca6cde5d2c5e066c6e5966754b0419d0409c52d8a9de",
+    "source_doc_hashes": {
+      "spec.md": "cb084ea02d40d99667e02fdd443a8f79f936cde99224a2b38770f9d7556d524b",
+      "plan.md": "57f3a4ce13317a33d869657734a7da18516de05d824071bb7d3d11cb0c2b745c",
+      "tasks.md": "bb794b1ab3548959ea67ab69b3d5305cb1d9605fb752561ffebed2134e0e3bbe",
+      "implementation-summary.md": "bc7c8d5742d232d8881cbb22ef7c4c1ec90cbb558eabc20f4787cf20d8b5ef32"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

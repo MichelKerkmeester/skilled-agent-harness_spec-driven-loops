@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/004-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
+  "description": "The benchmark rename was a filesystem operation git never saw",
+  "keywords": [
+    "benchmark",
+    "rename",
+    "filesystem",
+    "operation",
+    "git",
+    "never",
+    "saw"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.722Z",
+  "specId": "011",
+  "folderSlug": "model-profiles-and-benchmark-merge",
+  "parentChain": [
+    "sk-prompt",
+    "004-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

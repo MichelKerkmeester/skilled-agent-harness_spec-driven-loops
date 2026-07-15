@@ -1,0 +1,18 @@
+SKILL ROUTING: advisor recommended `system-spec-kit` with confidence 0.9239; `.opencode` skill asset editing also routes through `customize-opencode`. I’ll read the target file first, then make only the requested line edits.
+The target is a markdown asset, so I’m also applying the documentation-editing guidance before touching it.
+I’m editing one pre-approved markdown asset only and will verify the resulting diff is scoped to that file.
+I found the three requested spots: taxonomy note, Budget Awareness model list, and Mirror Sync card list. I’m applying surgical text-only edits now.
+The requested text changes are in place. I’m checking the diff scope and whitespace validity before reporting back.
+The target file already had unrelated uncommitted changes before this edit, so the full git diff includes more than the three requested changes. My applied patch only changed the taxonomy sentence, the Budget Awareness list, and the Mirror Sync card list.
+I’m running the packet validator against the pre-approved spec folder and rereading the changed lines for exact reporting.
+Modified only `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md`.
+
+Specific edits:
+- Moved `deepseek-v4-pro` and `kimi-k2.6` out of the frontier-model parenthetical and into the small-model-hub/coding-specialized wording.
+- Added `mimo-v2.5-pro` to the Budget Awareness small-model list.
+- Updated Mirror Sync to state all five cli-* cards delegate here: `cli-claude-code`, `cli-codex`, `cli-devin`, `cli-gemini`, `cli-opencode`.
+
+Verification:
+- `git diff --check -- .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md` passed.
+- `validate.sh .opencode/specs/skilled-agent-orchestration/z_archive/004-prompt-knowledge-layering --strict` passed.
+- No files deleted; I did not edit other files. There are other pre-existing uncommitted changes in the working tree.

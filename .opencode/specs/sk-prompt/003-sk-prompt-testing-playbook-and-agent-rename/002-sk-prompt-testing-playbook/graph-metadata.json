@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
+  "spec_folder": "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
+  "parent_id": "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "085 phase 002",
+      "sk-prompt testing playbook",
+      "manual testing playbook sk-prompt",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "085 phase 002 checklist",
+      "sk-prompt playbook quality gates"
+    ],
+    "key_topics": [
+      "phase",
+      "sk-prompt",
+      "testing",
+      "playbook",
+      "manual",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "core",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-prompt/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-prompt` skill (renamed in 082) ships 12 distinct testable surfaces but has no manualtestingplaybook/ directory",
+    "created_at": "2026-05-06T13:19:26Z",
+    "last_save_at": "2026-07-15T08:09:45.258Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0834560309618386af1fd309e031519a8ac8b57c07dc20e8cea0fd4ff8f8ede8",
+    "source_doc_hashes": {
+      "spec.md": "c53d44a69da0d1509be69563c6d602ecae2da6173fe44b0130f032e3bc24af6d",
+      "plan.md": "06b99e6d4d2a65cf0482c2428f95e9111b50bf32f5478514a13e34d03c8a3fa0",
+      "tasks.md": "eb069a6ddb928f863a2e39e640eb7d05c369147c1bfcc03b6519402437cc36ef",
+      "checklist.md": "626a531bed289b5b78a9baa082b6e79078e8a4bba19a73527b083646a1c74b13",
+      "implementation-summary.md": "0096b29bbccaeaedf11f8009ef075b61215702ea5c1de0cabd93f52c73f8e501"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

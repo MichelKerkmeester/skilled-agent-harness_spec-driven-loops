@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/001-sk-prompt-initial-creation",
+  "spec_folder": "sk-prompt/001-sk-prompt-initial-creation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-improve-prompt",
+      "prompt engineering skill",
+      "prompt improvement",
+      "rcaf costar frameworks",
+      "prompt frameworks",
+      "implementation",
+      "plan",
+      "prompt",
+      "improver",
+      "initial",
+      "003",
+      "tasks"
+    ],
+    "key_topics": [
+      "sk-improve-prompt",
+      "prompt",
+      "engineering",
+      "skill",
+      "improvement",
+      "rcaf",
+      "costar",
+      "frameworks",
+      "implementation",
+      "plan",
+      "improver",
+      "initial"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prompt Improver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Prompt Improver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Project",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initial Creation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Convert",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Prompt",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Interactive Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Prompt Improver is a comprehensive, standalone Claude Project that provides advanced prompt engineering capabilities (10 frameworks, DEPTH methodology, triple scoring)",
+    "created_at": "2026-04-12T09:02:50.200Z",
+    "last_save_at": "2026-07-15T08:09:41.337Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3b8b2e0ee13ab7b6ef807481747afd425705dbafebea76c138790182617890f2",
+    "source_doc_hashes": {
+      "spec.md": "9c29444b0c769d73c623ffdc41c86838a48a43fc07dfc2f9db33500b2faf99fe",
+      "plan.md": "d6569f513dbd36ffebc1fd3d3252ac97b35a19896ca0ce16f141a49b8da6a2d2",
+      "tasks.md": "c97c9960c45fb30b51da7cced4a212abc0e28420dbbe60ec6baa22c4ebd54fc7",
+      "checklist.md": "6c20108a546d38c633b1bf4945f8668fc5403cd03fd8063b938b0fa5c1cbcc48",
+      "decision-record.md": "9f85dd689c1a5626d5e3fcd953009ec84322650e68628654e8e353f16dd4c2ae",
+      "implementation-summary.md": "4b48b3f1ca67af78816f63a6d762227b1d94304c9e0888e0be3445469f4a948f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

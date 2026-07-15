@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/002-sk-improve-prompt-rename/001-discovery-impact-map",
+  "description": "Packet 082 renames `sk-improve-prompt` to `sk-prompt` across active repo surfaces",
+  "keywords": [
+    "packet",
+    "renames",
+    "sk-improve-prompt",
+    "sk-prompt",
+    "across",
+    "active",
+    "repo",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.583Z",
+  "specId": "001",
+  "folderSlug": "discovery-impact-map",
+  "parentChain": [
+    "sk-prompt",
+    "002-sk-improve-prompt-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

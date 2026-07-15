@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/002-sk-improve-prompt-rename",
+  "spec_folder": "sk-prompt/002-sk-improve-prompt-rename",
+  "parent_id": null,
+  "children_ids": [
+    "sk-prompt/002-sk-improve-prompt-rename/001-discovery-impact-map",
+    "sk-prompt/002-sk-improve-prompt-rename/002-skill-folder-rename",
+    "sk-prompt/002-sk-improve-prompt-rename/003-opencode-internals",
+    "sk-prompt/002-sk-improve-prompt-rename/004-runtime-mirrors",
+    "sk-prompt/002-sk-improve-prompt-rename/005-root-and-config",
+    "sk-prompt/002-sk-improve-prompt-rename/006-advisor-and-validate"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "082 sk-improve-prompt rename",
+      "sk-improve-prompt to sk-prompt",
+      "rename sk-improve-prompt",
+      "skill rename sk-prompt",
+      "drop improve from skill name",
+      "082 resource map",
+      "sk-improve-prompt rename resource map",
+      "082 file ledger"
+    ],
+    "key_topics": [
+      "sk-improve-prompt",
+      "rename",
+      "sk-prompt",
+      "skill",
+      "drop",
+      "improve",
+      "name",
+      "resource",
+      "map",
+      "file",
+      "ledger",
+      "currently"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "resource-map.md",
+      "001-discovery-impact-map/spec.md",
+      "002-skill-folder-rename/spec.md",
+      "003-opencode-internals/spec.md",
+      "004-runtime-mirrors/spec.md",
+      "005-root-and-config/spec.md",
+      "006-advisor-and-validate/spec.md",
+      ".claude/CLAUDE.md",
+      ".opencode/specs/descriptions.json",
+      ".opencode/commands/README.txt",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/skills/README.md",
+      ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
+      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
+      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": ".claude/CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.4.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart-router-measurement-results.jsonl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "smart-router-measurement-report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Python",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "refs",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "historical",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command (`/prompt`) and agent (`@improve-prompt`)",
+    "created_at": "2026-05-06T10:22:39Z",
+    "last_save_at": "2026-07-15T08:09:41.757Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:b6cba32049509ac159b1818d2a378891e1f886b15033259d8b292c44b8db09c5",
+    "source_doc_hashes": {
+      "spec.md": "ddb1d18062cdaaae546d39ce57bc2d4f8be504872fbd75024a2e145dce28c652",
+      "resource-map.md": "d7de1001ce4d5115f82f3e9f064fc9d86ea202a09a3058860f5ee92cbfad29f7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

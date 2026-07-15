@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/006-sk-prompt-parent/002-architecture-decision",
+  "description": "The program has approved high-impact structural decisions for folding `.opencode/skills/sk-prompt/` and `.opencode/skills/sk-prompt-models/` into a",
+  "keywords": [
+    "program",
+    "approved",
+    "high-impact",
+    "structural",
+    "decisions",
+    "folding",
+    "opencode",
+    "skills",
+    "sk-prompt",
+    "sk-prompt-models"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.334Z",
+  "specId": "002",
+  "folderSlug": "architecture-decision",
+  "parentChain": [
+    "sk-prompt",
+    "006-sk-prompt-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
