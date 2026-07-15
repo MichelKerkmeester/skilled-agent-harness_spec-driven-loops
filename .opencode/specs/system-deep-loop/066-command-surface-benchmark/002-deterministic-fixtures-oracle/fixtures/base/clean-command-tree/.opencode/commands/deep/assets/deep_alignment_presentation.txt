@@ -1,0 +1,5 @@
+[presentation:alignment-start]
+Show the selected alignment mode.
+
+[presentation:alignment-result]
+Show the terminal alignment result.

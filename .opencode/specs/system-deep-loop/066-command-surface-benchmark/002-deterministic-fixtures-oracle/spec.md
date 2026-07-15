@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: deterministic fixtures and reference oracle — an independent, non-circular defect corpus"
 description: "Builds and verifies the independent public and held-out fixture corpus plus a reference oracle, authored before any adapter code so the deterministic adapter cannot validate itself."
-status: planned
+status: complete
 trigger_phrases:
   - "command benchmark fixtures"
   - "reference oracle"
@@ -12,10 +12,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle"
-    last_updated_at: "2026-07-14T20:45:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded the fixtures and oracle child ahead of adapter implementation"
-    next_safe_action: "Author the mutation manifest and reference oracle before any adapter code"
+    last_updated_at: "2026-07-15T06:49:12Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the independent oracle, deterministic fixture corpus, and frozen expectations"
+    next_safe_action: "Refresh generated metadata, then let phase 003 consume expectations without oracle imports"
     blockers: []
     key_files:
       - ".opencode/commands/scripts/validate-command-references.cjs"
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
@@ -93,7 +93,7 @@ A deterministic adapter that generates its own expected results would validate i
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether the compound held-out fixture should combine two or three defect classes for stronger regression pressure.
+None. The compound held-out fixture freezes three independent defects across S1, S2, and S5.
 <!-- /ANCHOR:questions -->
 
 ## PHASE SEQUENCE

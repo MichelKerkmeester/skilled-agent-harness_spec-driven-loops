@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "1.0.0",
+  "oracleId": "command-surface-independent-reference-oracle",
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "fixtureRootHash": {
+    "algorithm": "sha256",
+    "value": "0d1e6ab84ad9214a0ad6eabeb5147e99499cfea640326aeeb66503f24e537bf8"
+  },
+  "fixtureCount": 13,
+  "publicDefectCount": 8,
+  "heldOutCount": 4,
+  "cleanControlId": "clean-control",
+  "verifiedAt": "2026-07-15T06:53:18.718Z",
+  "fixtures": [
+    {
+      "id": "clean-control",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/clean-control",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/clean-control.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "d8aff46b9fd24c6046ab7a35690888b2ea4320afa53659f8a752a528ae966726"
+      },
+      "findings": []
+    },
+    {
+      "id": "public-mirror-drift",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-mirror-drift",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/public-mirror-drift.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "13214447c237b81aa6c4fa272f609eb7626fc8173348473c02372b3f26ff1606"
+      },
+      "findings": [
+        {
+          "code": "CMD-S1-MIRROR-DRIFT",
+          "severity": "P1",
+          "dimension": "S1",
+          "location": ".codex/prompts/doctor-mcp.md:2"
+        }
+      ]
+    },
+    {
+      "id": "public-missing-mirror",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-missing-mirror",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/public-missing-mirror.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "3b4de4f5db2b8d3914de4cff3d63ec891a6126915e0cfd3adbb45515dd82dcfb"
+      },
+      "findings": [
+        {
+          "code": "CMD-S1-MIRROR-MISSING",
+          "severity": "P0",
+          "dimension": "S1",
+          "location": ".codex/prompts/doctor-mcp.md:1"
+        }
+      ]
+    },
+    {
+      "id": "public-missing-workflow-target",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-missing-workflow-target",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/public-missing-workflow-target.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "8503ad1e6393e812d6ce247046be9a330ce1d18b53ff5d9cf3b6b28145df7ee4"
+      },
+      "findings": [
+        {
+          "code": "CMD-S2-WORKFLOW-TARGET-MISSING",
+          "severity": "P0",
+          "dimension": "S2",
+          "location": ".opencode/commands/doctor/mcp.md:23"
+        }
+      ]
+    },
+    {
+      "id": "public-missing-presentation-target",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-missing-presentation-target",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/public-missing-presentation-target.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "e908842ce7cecd7df094f241f53f5fc9c944155b58b1ef9f3d255611c3c0b965"
+      },
+      "findings": [
+        {
+          "code": "CMD-S2-PRESENTATION-TARGET-MISSING",
+          "severity": "P1",
+          "dimension": "S2",
+          "location": ".opencode/commands/doctor/mcp.md:21"
+        }
+      ]
+    },
+    {
+      "id": "public-route-cycle",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-route-cycle",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/public-route-cycle.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "3d9b45ce1aa04b53e866f35425808b964976b440ed997a8798c81cb5183fcb6a"
+      },
+      "findings": [
+        {
+          "code": "CMD-S3-ROUTE-CYCLE",
+          "severity": "P0",
+          "dimension": "S3",
+          "location": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml:10"
+        }
+      ]
+    },
+    {
+      "id": "public-capability-mismatch",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-capability-mismatch",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/public-capability-mismatch.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "bc53def6bd35d7ea5c226970fcbf2a7544dfb87a6d286e37b6efe7018b45f953"
+      },
+      "findings": [
+        {
+          "code": "CMD-S4-CAPABILITY-UNDECLARED",
+          "severity": "P1",
+          "dimension": "S4",
+          "location": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml:4"
+        }
+      ]
+    },
+    {
+      "id": "public-destructive-without-confirmation",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-destructive-without-confirmation",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/public-destructive-without-confirmation.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "319f68b5425a4453530f1a6f929dc421d7613aa90e2459e3fc0c0f549c791ece"
+      },
+      "findings": [
+        {
+          "code": "CMD-S4-DESTRUCTIVE-WITHOUT-CONFIRMATION",
+          "severity": "P0",
+          "dimension": "S4",
+          "location": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml:6"
+        }
+      ]
+    },
+    {
+      "id": "public-duplicated-presentation-owner",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-duplicated-presentation-owner",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/public-duplicated-presentation-owner.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "bc4a3af51dca84c033b8885773de498c43863554bfd80607eef138b8caf4ad9d"
+      },
+      "findings": [
+        {
+          "code": "CMD-S5-PRESENTATION-OWNER-DUPLICATED",
+          "severity": "P2",
+          "dimension": "S5",
+          "location": ".opencode/commands/doctor/mcp.md:37"
+        }
+      ]
+    },
+    {
+      "id": "held-out-orphan-mirror",
+      "classification": "held-out",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/held-out/held-out-orphan-mirror",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/held-out-orphan-mirror.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "c66ef28cd433470d5c6e61dd90b12dc0510916d404d7900d2ea4614da6d1c332"
+      },
+      "findings": [
+        {
+          "code": "CMD-S1-ORPHAN-MIRROR",
+          "severity": "P1",
+          "dimension": "S1",
+          "location": ".codex/prompts/orphan-command.md:6"
+        }
+      ]
+    },
+    {
+      "id": "held-out-wrong-subaction-mapping",
+      "classification": "held-out",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/held-out/held-out-wrong-subaction-mapping",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/held-out-wrong-subaction-mapping.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "751a17dd3222625a25c4979f7e35b495aa5617a86f5d3bad0e399fc73f500055"
+      },
+      "findings": [
+        {
+          "code": "CMD-S3-SUBACTION-TARGET-MISMATCH",
+          "severity": "P1",
+          "dimension": "S3",
+          "location": ".opencode/commands/doctor/mcp.md:26"
+        }
+      ]
+    },
+    {
+      "id": "held-out-destructive-boundary-contradiction",
+      "classification": "held-out",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/held-out/held-out-destructive-boundary-contradiction",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/held-out-destructive-boundary-contradiction.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "1e6c6265da9b92bdab0922dcee522fefb2de6e602982b46a312c71ba086198db"
+      },
+      "findings": [
+        {
+          "code": "CMD-S4-DESTRUCTIVE-WITHOUT-CONFIRMATION",
+          "severity": "P0",
+          "dimension": "S4",
+          "location": ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml:6"
+        }
+      ]
+    },
+    {
+      "id": "held-out-compound-multi-defect",
+      "classification": "held-out",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/held-out/held-out-compound-multi-defect",
+      "expectationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/held-out-compound-multi-defect.json",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "bf6368e9a7bef4c29251b8ae03ed2cc74714e9396e9d4e2c317ca67401a1e13b"
+      },
+      "findings": [
+        {
+          "code": "CMD-S1-MIRROR-DRIFT",
+          "severity": "P1",
+          "dimension": "S1",
+          "location": ".codex/prompts/doctor-mcp.md:2"
+        },
+        {
+          "code": "CMD-S2-WORKFLOW-TARGET-MISSING",
+          "severity": "P0",
+          "dimension": "S2",
+          "location": ".opencode/commands/doctor/mcp.md:22"
+        },
+        {
+          "code": "CMD-S5-PRESENTATION-OWNER-DUPLICATED",
+          "severity": "P2",
+          "dimension": "S5",
+          "location": ".opencode/commands/doctor/mcp.md:37"
+        }
+      ]
+    }
+  ]
+}

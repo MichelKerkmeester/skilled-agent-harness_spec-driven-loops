@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "held-out-orphan-mirror",
+  "classification": "held-out",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "c66ef28cd433470d5c6e61dd90b12dc0510916d404d7900d2ea4614da6d1c332"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S1-ORPHAN-MIRROR",
+      "severity": "P1",
+      "dimension": "S1",
+      "location": ".codex/prompts/orphan-command.md:6"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "public-missing-workflow-target",
+  "classification": "public",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "8503ad1e6393e812d6ce247046be9a330ce1d18b53ff5d9cf3b6b28145df7ee4"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S2-WORKFLOW-TARGET-MISSING",
+      "severity": "P0",
+      "dimension": "S2",
+      "location": ".opencode/commands/doctor/mcp.md:23"
+    }
+  ]
+}

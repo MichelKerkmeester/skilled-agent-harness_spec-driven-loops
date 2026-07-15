@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "public-missing-mirror",
+  "classification": "public",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "3b4de4f5db2b8d3914de4cff3d63ec891a6126915e0cfd3adbb45515dd82dcfb"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S1-MIRROR-MISSING",
+      "severity": "P0",
+      "dimension": "S1",
+      "location": ".codex/prompts/doctor-mcp.md:1"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "public-destructive-without-confirmation",
+  "classification": "public",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "319f68b5425a4453530f1a6f929dc421d7613aa90e2459e3fc0c0f549c791ece"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S4-DESTRUCTIVE-WITHOUT-CONFIRMATION",
+      "severity": "P0",
+      "dimension": "S4",
+      "location": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml:6"
+    }
+  ]
+}

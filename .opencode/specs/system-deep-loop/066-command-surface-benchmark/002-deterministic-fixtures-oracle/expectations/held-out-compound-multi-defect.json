@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "held-out-compound-multi-defect",
+  "classification": "held-out",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "bf6368e9a7bef4c29251b8ae03ed2cc74714e9396e9d4e2c317ca67401a1e13b"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S1-MIRROR-DRIFT",
+      "severity": "P1",
+      "dimension": "S1",
+      "location": ".codex/prompts/doctor-mcp.md:2"
+    },
+    {
+      "code": "CMD-S2-WORKFLOW-TARGET-MISSING",
+      "severity": "P0",
+      "dimension": "S2",
+      "location": ".opencode/commands/doctor/mcp.md:22"
+    },
+    {
+      "code": "CMD-S5-PRESENTATION-OWNER-DUPLICATED",
+      "severity": "P2",
+      "dimension": "S5",
+      "location": ".opencode/commands/doctor/mcp.md:37"
+    }
+  ]
+}

@@ -1,16 +1,16 @@
 ---
 title: "Implementation Plan: deterministic fixtures and reference oracle"
 description: "Plan for an independent fixture corpus and reference oracle that precede adapter implementation."
-status: planned
+status: complete
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle"
-    last_updated_at: "2026-07-14T20:45:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded the fixtures and oracle child ahead of adapter implementation"
-    next_safe_action: "Author the mutation manifest and reference oracle before any adapter code"
+    last_updated_at: "2026-07-15T06:49:12Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the independent oracle, deterministic fixture corpus, and frozen expectations"
+    next_safe_action: "Refresh generated metadata, then let phase 003 consume expectations without oracle imports"
     blockers: []
     key_files:
       - ".opencode/commands/scripts/validate-command-references.cjs"

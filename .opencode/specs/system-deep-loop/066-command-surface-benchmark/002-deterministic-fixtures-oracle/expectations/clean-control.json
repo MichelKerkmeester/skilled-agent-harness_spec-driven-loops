@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "clean-control",
+  "classification": "public",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "d8aff46b9fd24c6046ab7a35690888b2ea4320afa53659f8a752a528ae966726"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": []
+}

@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "1.0.0",
+  "cleanBase": {
+    "id": "clean-control",
+    "source": "fixtures/base/clean-command-tree",
+    "output": "fixtures/corpus/public/clean-control",
+    "topologies": [
+      "workflow router",
+      "subaction router",
+      "direct-tool/plugin router",
+      "monolithic"
+    ],
+    "sourceProvenance": [
+      {
+        "path": ".opencode/commands/doctor/mcp.md",
+        "role": "Subaction-router structure and asset ownership"
+      },
+      {
+        "path": ".codex/prompts/doctor-mcp.md",
+        "role": "Generated mirror wrapper shape"
+      },
+      {
+        "path": ".opencode/commands/deep/alignment.md",
+        "role": "Workflow and presentation ownership wording"
+      },
+      {
+        "path": ".opencode/commands/goal_opencode.md",
+        "role": "Direct-tool/plugin router shape"
+      },
+      {
+        "path": ".opencode/commands/agent_router.md",
+        "role": "Monolithic command shape"
+      },
+      {
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "role": "Fail-closed structural reference precedent"
+      }
+    ]
+  },
+  "fixtures": [
+    {
+      "id": "clean-control",
+      "classification": "public",
+      "kind": "control",
+      "defectClass": "none",
+      "dimension": null,
+      "output": "fixtures/corpus/public/clean-control",
+      "mutations": []
+    },
+    {
+      "id": "public-mirror-drift",
+      "classification": "public",
+      "kind": "defect",
+      "defectClass": "generated mirror content drift",
+      "dimension": "S1",
+      "output": "fixtures/corpus/public/public-mirror-drift",
+      "mutations": [
+        {
+          "id": "change-mirror-entry-name",
+          "operation": "replaceText",
+          "target": ".codex/prompts/doctor-mcp.md",
+          "description": "Change the generated entry heading while retaining the canonical source pointer.",
+          "from": "# Codex entry: /doctor-mcp",
+          "to": "# Codex entry: /doctor-mcp-drifted"
+        }
+      ]
+    },
+    {
+      "id": "public-missing-mirror",
+      "classification": "public",
+      "kind": "defect",
+      "defectClass": "missing generated mirror",
+      "dimension": "S1",
+      "output": "fixtures/corpus/public/public-missing-mirror",
+      "mutations": [
+        {
+          "id": "remove-generated-mirror",
+          "operation": "removeFile",
+          "target": ".codex/prompts/doctor-mcp.md",
+          "description": "Remove the generated mirror for a live canonical command."
+        }
+      ]
+    },
+    {
+      "id": "public-missing-workflow-target",
+      "classification": "public",
+      "kind": "defect",
+      "defectClass": "unreachable workflow target",
+      "dimension": "S2",
+      "output": "fixtures/corpus/public/public-missing-workflow-target",
+      "mutations": [
+        {
+          "id": "remove-debug-workflow",
+          "operation": "removeFile",
+          "target": ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
+          "description": "Remove one declared workflow asset while leaving its route intact."
+        }
+      ]
+    },
+    {
+      "id": "public-missing-presentation-target",
+      "classification": "public",
+      "kind": "defect",
+      "defectClass": "unreachable presentation target",
+      "dimension": "S2",
+      "output": "fixtures/corpus/public/public-missing-presentation-target",
+      "mutations": [
+        {
+          "id": "remove-presentation-contract",
+          "operation": "removeFile",
+          "target": ".opencode/commands/doctor/assets/doctor_mcp_presentation.txt",
+          "description": "Remove the router-owned presentation contract while retaining its declaration."
+        }
+      ]
+    },
+    {
+      "id": "public-route-cycle",
+      "classification": "public",
+      "kind": "defect",
+      "defectClass": "route graph cycle",
+      "dimension": "S3",
+      "output": "fixtures/corpus/public/public-route-cycle",
+      "mutations": [
+        {
+          "id": "add-workflow-back-edge",
+          "operation": "appendText",
+          "target": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+          "description": "Add a workflow edge back to the command that owns the workflow.",
+          "text": "\nback_edge: \".opencode/commands/doctor/mcp.md\"\n"
+        }
+      ]
+    },
+    {
+      "id": "public-capability-mismatch",
+      "classification": "public",
+      "kind": "defect",
+      "defectClass": "undeclared workflow capability",
+      "dimension": "S4",
+      "output": "fixtures/corpus/public/public-capability-mismatch",
+      "mutations": [
+        {
+          "id": "require-undeclared-write-tool",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+          "description": "Require a write capability that the command frontmatter does not allow.",
+          "from": "  - Bash\n",
+          "to": "  - Write\n"
+        }
+      ]
+    },
+    {
+      "id": "public-destructive-without-confirmation",
+      "classification": "public",
+      "kind": "defect",
+      "defectClass": "destructive boundary without confirmation",
+      "dimension": "S4",
+      "output": "fixtures/corpus/public/public-destructive-without-confirmation",
+      "mutations": [
+        {
+          "id": "raise-install-mutation-class",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+          "description": "Raise the workflow to destructive mutation semantics.",
+          "from": "mutation_class: mutating",
+          "to": "mutation_class: destructive"
+        },
+        {
+          "id": "remove-install-confirmation",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+          "description": "Disable confirmation for the destructive workflow.",
+          "from": "requires_confirmation: true",
+          "to": "requires_confirmation: false"
+        }
+      ]
+    },
+    {
+      "id": "public-duplicated-presentation-owner",
+      "classification": "public",
+      "kind": "defect",
+      "defectClass": "duplicated presentation ownership",
+      "dimension": "S5",
+      "output": "fixtures/corpus/public/public-duplicated-presentation-owner",
+      "mutations": [
+        {
+          "id": "duplicate-final-report-marker",
+          "operation": "appendText",
+          "target": ".opencode/commands/doctor/mcp.md",
+          "description": "Duplicate a presentation marker in the router and presentation asset.",
+          "text": "\n[presentation:final-report]\n"
+        }
+      ]
+    },
+    {
+      "id": "held-out-orphan-mirror",
+      "classification": "held-out",
+      "kind": "defect",
+      "defectClass": "orphan generated mirror",
+      "dimension": "S1",
+      "output": "fixtures/corpus/held-out/held-out-orphan-mirror",
+      "mutations": [
+        {
+          "id": "add-orphan-mirror",
+          "operation": "addFile",
+          "target": ".codex/prompts/orphan-command.md",
+          "description": "Add a generated mirror whose canonical command does not exist.",
+          "content": "<!-- Generated by sync-prompts.cjs from .opencode/commands/orphan/command.md — do not edit by hand. -->\n# Codex entry: /orphan-command\n\nThis is the Codex runtime entry point for the `/orphan-command` command. The canonical, authoritative command definition lives in the OpenCode tree at:\n\n`.opencode/commands/orphan/command.md`\n\nRead that file in full and follow it exactly as the command's instructions. It is the single source of truth for this command's routing, assets, execution targets, and presentation. Treat everything below the frontmatter there as your operating contract.\n\nArguments passed to this prompt are available as `$ARGUMENTS` and map to the canonical command's `$ARGUMENTS` / positional `$1`..`$N` inputs.\n\nUser request: $ARGUMENTS\n"
+        }
+      ]
+    },
+    {
+      "id": "held-out-wrong-subaction-mapping",
+      "classification": "held-out",
+      "kind": "defect",
+      "defectClass": "wrong subaction mapping",
+      "dimension": "S3",
+      "output": "fixtures/corpus/held-out/held-out-wrong-subaction-mapping",
+      "mutations": [
+        {
+          "id": "route-install-to-debug",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/mcp.md",
+          "description": "Route the install subaction to the debug workflow asset.",
+          "from": "- `install` -> `.opencode/commands/doctor/assets/doctor_mcp_install.yaml`",
+          "to": "- `install` -> `.opencode/commands/doctor/assets/doctor_mcp_debug.yaml`"
+        }
+      ]
+    },
+    {
+      "id": "held-out-destructive-boundary-contradiction",
+      "classification": "held-out",
+      "kind": "defect",
+      "defectClass": "destructive boundary contradiction",
+      "dimension": "S4",
+      "output": "fixtures/corpus/held-out/held-out-destructive-boundary-contradiction",
+      "mutations": [
+        {
+          "id": "raise-debug-mutation-class",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
+          "description": "Raise the debug route to destructive mutation semantics.",
+          "from": "mutation_class: read-only",
+          "to": "mutation_class: destructive"
+        },
+        {
+          "id": "remove-debug-confirmation",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
+          "description": "Disable confirmation for the destructive debug route.",
+          "from": "requires_confirmation: true",
+          "to": "requires_confirmation: false"
+        }
+      ]
+    },
+    {
+      "id": "held-out-compound-multi-defect",
+      "classification": "held-out",
+      "kind": "defect",
+      "defectClass": "compound mirror, reachability, and presentation defects",
+      "dimension": "S1+S2+S5",
+      "output": "fixtures/corpus/held-out/held-out-compound-multi-defect",
+      "mutations": [
+        {
+          "id": "drift-compound-mirror-heading",
+          "operation": "replaceText",
+          "target": ".codex/prompts/doctor-mcp.md",
+          "description": "Drift the generated mirror heading.",
+          "from": "# Codex entry: /doctor-mcp",
+          "to": "# Codex entry: /doctor-mcp-compound"
+        },
+        {
+          "id": "remove-compound-install-workflow",
+          "operation": "removeFile",
+          "target": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+          "description": "Remove the install workflow while retaining its route."
+        },
+        {
+          "id": "duplicate-compound-startup-marker",
+          "operation": "appendText",
+          "target": ".opencode/commands/doctor/mcp.md",
+          "description": "Duplicate the startup presentation marker in the router.",
+          "text": "\n[presentation:startup-menu]\n"
+        }
+      ]
+    }
+  ]
+}

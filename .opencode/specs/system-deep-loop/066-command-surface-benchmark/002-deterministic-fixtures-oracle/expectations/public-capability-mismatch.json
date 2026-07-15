@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "public-capability-mismatch",
+  "classification": "public",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "bc53def6bd35d7ea5c226970fcbf2a7544dfb87a6d286e37b6efe7018b45f953"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S4-CAPABILITY-UNDECLARED",
+      "severity": "P1",
+      "dimension": "S4",
+      "location": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml:4"
+    }
+  ]
+}

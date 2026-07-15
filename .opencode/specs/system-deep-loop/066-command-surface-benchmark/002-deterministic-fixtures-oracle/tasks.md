@@ -1,16 +1,16 @@
 ---
 title: "Tasks: deterministic fixtures and reference oracle"
 description: "Task breakdown for the independent fixture corpus and reference oracle."
-status: planned
+status: complete
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle"
-    last_updated_at: "2026-07-14T20:45:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded the fixtures and oracle child ahead of adapter implementation"
-    next_safe_action: "Author the mutation manifest and reference oracle before any adapter code"
+    last_updated_at: "2026-07-15T06:49:12Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the independent oracle, deterministic fixture corpus, and frozen expectations"
+    next_safe_action: "Refresh generated metadata, then let phase 003 consume expectations without oracle imports"
     blockers: []
     key_files:
       - ".opencode/commands/scripts/validate-command-references.cjs"
@@ -26,28 +26,28 @@ _memory:
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-`[ ]` open · `[x]` complete. Each task lists its verification evidence. This child is Planned; all tasks are open.
+`[ ]` open · `[x]` complete. Each task lists its verification evidence. This child is complete.
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 — Author the mutation manifest describing each defect fixture as a transformation. Evidence: manifest file enumerating all twelve fixtures plus the clean control.
-- [ ] T002 — Implement the independent reference oracle and verify it against the clean control. Evidence: oracle verifier exit 0 with zero findings on the clean control.
+- [x] T001 — Author the mutation manifest describing each defect fixture as a transformation. Evidence: `fixtures/mutation-manifest.json` enumerates twelve named defect transformations plus `clean-control`.
+- [x] T002 — Implement the independent reference oracle and verify it against the clean control. Evidence: `oracle/reference-oracle.cjs --verify` exits `0`, and `clean-control` reports `0 finding(s)`.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 — Materialize the eight public calibration fixtures. Evidence: eight fixtures each matching a distinct core defect class.
-- [ ] T004 — Materialize the four held-out fixtures. Evidence: four held-out fixtures with frozen expected defect sets.
-- [ ] T005 — Freeze expected defect codes and locations from the oracle. Evidence: expectation files generated from the verified oracle.
+- [x] T003 — Materialize the eight public calibration fixtures. Evidence: `fixtures/corpus/public/` contains eight defect trees spanning S1-S5 plus the clean control; each defect has an exact oracle match.
+- [x] T004 — Materialize the four held-out fixtures. Evidence: `fixtures/corpus/held-out/` contains orphan-mirror, wrong-subaction, destructive-boundary, and compound fixtures with frozen results.
+- [x] T005 — Freeze expected defect codes and locations from the oracle. Evidence: `expectations/` contains one JSON file per fixture plus `index.json`; the consuming `fixture-manifest.json` carries the same oracle-derived outcomes and hashes.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 — Confirm every fixture matches its independent expected defect set. Evidence: oracle verifier exit 0 across all fixtures.
+- [x] T006 — Confirm every fixture matches its independent expected defect set. Evidence: the verifier exits `0` across all 13 trees with `clean=0 public=8 held-out=4`; deterministic rebuild preserves fixture-root hash `0d1e6ab84ad9214a0ad6eabeb5147e99499cfea640326aeeb66503f24e537bf8`.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

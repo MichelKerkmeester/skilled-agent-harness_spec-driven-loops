@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "public-missing-presentation-target",
+  "classification": "public",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "e908842ce7cecd7df094f241f53f5fc9c944155b58b1ef9f3d255611c3c0b965"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S2-PRESENTATION-TARGET-MISSING",
+      "severity": "P1",
+      "dimension": "S2",
+      "location": ".opencode/commands/doctor/mcp.md:21"
+    }
+  ]
+}

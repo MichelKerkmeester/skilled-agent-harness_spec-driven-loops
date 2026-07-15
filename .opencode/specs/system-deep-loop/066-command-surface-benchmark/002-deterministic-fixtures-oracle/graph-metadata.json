@@ -14,7 +14,10 @@
       "command benchmark fixtures",
       "reference oracle",
       "held-out fixtures",
-      "defect calibration corpus"
+      "defect calibration corpus",
+      "command fixture oracle implementation",
+      "deterministic command fixtures complete",
+      "command surface frozen expectations"
     ],
     "key_topics": [
       "command",
@@ -26,19 +29,24 @@
       "defect",
       "calibration",
       "corpus",
-      "verifies",
-      "independent",
-      "public"
+      "fixture",
+      "implementation",
+      "deterministic"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/commands/scripts/validate-command-references.cjs",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      "oracle/reference-oracle.cjs",
+      "fixtures/build-fixtures.cjs",
+      "fixtures/mutation-manifest.json",
+      "expectations/index.json",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,6 +68,30 @@
         "source": "derived"
       },
       {
+        "name": "reference-oracle.cjs",
+        "kind": "file",
+        "path": "oracle/reference-oracle.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-fixtures.cjs",
+        "kind": "file",
+        "path": "fixtures/build-fixtures.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-manifest.json",
+        "kind": "config",
+        "path": "fixtures/mutation-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "index.json",
+        "kind": "config",
+        "path": "expectations/index.json",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -75,6 +107,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -154,53 +192,25 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria The",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "References Parent",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "zero",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "frozen",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Builds and verifies the independent public and held-out fixture corpus plus a reference oracle, authored before any adapter code so the deterministic adapter cannot validate itself.",
     "created_at": "2026-07-14T20:36:58.868Z",
-    "last_save_at": "2026-07-15T04:53:48.022Z",
+    "last_save_at": "2026-07-15T06:57:34.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b1e65f64f46292901372322d7a1aaf9d1752dc0c1df73a585c341eedea9273a",
+    "source_fingerprint": "sha256:3a0b00ced0d6346c7c52425cd3950b1e3ff1652a0bc07d8bb10fb991bd96cfbb",
     "source_doc_hashes": {
-      "spec.md": "02c30ef5167bcfa7646be1241b676961d2a82d50ad58a704f444b3852c455c24",
-      "plan.md": "59b1a6e599627c18a74e87460815b5d40a182a4bf3151f081e2512f60fd6801d",
-      "tasks.md": "103c803f5857f0315e8bfe291bad64e074a823c91088f123d1dd38d462d3eedb"
+      "spec.md": "c492742651a13247d8387557dd7c79817a009ceb28e8a76b2577584af7028943",
+      "plan.md": "a5e0e8ed424e580ffcd966eb5d07d342a540e469571b99e6a8babee222d0d36f",
+      "tasks.md": "2d9f74e525e807d55f82cf3822f242cf4f8d7c086deb782ad264672331291924",
+      "implementation-summary.md": "d075965a51b3e14d53dba524bd989b6b5d28a995877551fd6bf38ecde28a9c98"
     },
     "last_active_child_id": null,
     "last_active_at": null

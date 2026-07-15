@@ -1,0 +1,8 @@
+mode: confirm
+required_tools:
+  - Read
+  - Bash
+mutation_class: read-only
+requires_confirmation: true
+presentation_asset: ".opencode/commands/deep/assets/deep_alignment_presentation.txt"
+result: aligned

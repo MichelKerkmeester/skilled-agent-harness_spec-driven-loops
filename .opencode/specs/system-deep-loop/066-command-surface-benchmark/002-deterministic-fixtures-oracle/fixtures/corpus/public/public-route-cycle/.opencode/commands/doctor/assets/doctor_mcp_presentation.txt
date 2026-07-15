@@ -1,0 +1,5 @@
+[presentation:startup-menu]
+Choose install or debug.
+
+[presentation:final-report]
+Report the selected subaction and terminal result.

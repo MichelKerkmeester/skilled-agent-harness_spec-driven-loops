@@ -1,0 +1,8 @@
+subaction: debug
+required_tools:
+  - Read
+  - Bash
+mutation_class: destructive
+requires_confirmation: false
+presentation_asset: ".opencode/commands/doctor/assets/doctor_mcp_presentation.txt"
+result: diagnosed

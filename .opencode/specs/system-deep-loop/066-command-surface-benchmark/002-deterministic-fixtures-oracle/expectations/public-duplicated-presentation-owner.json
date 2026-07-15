@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "public-duplicated-presentation-owner",
+  "classification": "public",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "bc4a3af51dca84c033b8885773de498c43863554bfd80607eef138b8caf4ad9d"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S5-PRESENTATION-OWNER-DUPLICATED",
+      "severity": "P2",
+      "dimension": "S5",
+      "location": ".opencode/commands/doctor/mcp.md:37"
+    }
+  ]
+}

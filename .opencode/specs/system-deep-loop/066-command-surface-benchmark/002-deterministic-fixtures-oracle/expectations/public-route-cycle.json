@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "public-route-cycle",
+  "classification": "public",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "3d9b45ce1aa04b53e866f35425808b964976b440ed997a8798c81cb5183fcb6a"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S3-ROUTE-CYCLE",
+      "severity": "P0",
+      "dimension": "S3",
+      "location": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml:10"
+    }
+  ]
+}

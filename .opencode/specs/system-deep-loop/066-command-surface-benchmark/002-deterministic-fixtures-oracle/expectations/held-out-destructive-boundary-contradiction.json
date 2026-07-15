@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "held-out-destructive-boundary-contradiction",
+  "classification": "held-out",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "1e6c6265da9b92bdab0922dcee522fefb2de6e602982b46a312c71ba086198db"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S4-DESTRUCTIVE-WITHOUT-CONFIRMATION",
+      "severity": "P0",
+      "dimension": "S4",
+      "location": ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml:6"
+    }
+  ]
+}

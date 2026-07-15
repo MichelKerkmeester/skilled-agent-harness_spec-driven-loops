@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "held-out-wrong-subaction-mapping",
+  "classification": "held-out",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "751a17dd3222625a25c4979f7e35b495aa5617a86f5d3bad0e399fc73f500055"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S3-SUBACTION-TARGET-MISMATCH",
+      "severity": "P1",
+      "dimension": "S3",
+      "location": ".opencode/commands/doctor/mcp.md:26"
+    }
+  ]
+}

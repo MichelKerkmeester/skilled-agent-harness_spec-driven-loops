@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureId": "public-mirror-drift",
+  "classification": "public",
+  "fixtureHash": {
+    "algorithm": "sha256",
+    "value": "13214447c237b81aa6c4fa272f609eb7626fc8173348473c02372b3f26ff1606"
+  },
+  "oracleHash": {
+    "algorithm": "sha256",
+    "value": "fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83"
+  },
+  "findings": [
+    {
+      "code": "CMD-S1-MIRROR-DRIFT",
+      "severity": "P1",
+      "dimension": "S1",
+      "location": ".codex/prompts/doctor-mcp.md:2"
+    }
+  ]
+}
