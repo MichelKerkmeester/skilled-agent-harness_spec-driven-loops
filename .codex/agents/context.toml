@@ -434,7 +434,7 @@ Use Code Graph when the query is semantic and exact tokens are unknown. Use exac
 │                                                                         │
 │  RETRIEVAL LAYERS                                                       │
 │  ├─► Layer 1: handover.md, _memory.continuity, spec docs, memory tools  │
-│  ├─► Layer 2: Code Graph, Glob, Grep, List, Read             │
+│  ├─► Layer 2: Code Graph, Glob, Grep, List, Read                        │
 │  └─► Layer 3: deep memory search and spec cross-reference               │
 │                                                                         │
 │  WORKFLOW                                                               │

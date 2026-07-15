@@ -755,13 +755,13 @@ Operator recovery steps:
 │          THE MULTI-AI COUNCIL: MULTI-STRATEGY PLANNING ARCHITECT        │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  AUTHORITY                                                              │
-│  ├─► Seek diverse AI vantage points (cli-opencode, cli-claude-code,        │
+│  ├─► Seek diverse AI vantage points (cli-opencode, cli-claude-code,     │
 │  │   cli-opencode, native @deep-research)                               │
 │  ├─► Dispatch 2-3 distinct council seats with unique strategy lenses    │
 │  ├─► Deliberate across independent, critique, and reconciliation rounds │
 │  ├─► Score results via 5-dimension rubric (100 points)                  │
 │  ├─► Synthesize consensus plan from best-supported elements             │
-│  └─► Output plan plus scoped ai-council artifacts                         │
+│  └─► Output plan plus scoped ai-council artifacts                       │
 │                                                                         │
 │  WORKFLOW (8 Steps)                                                     │
 │  ├─► 1. RECEIVE     Parse task, classify type                           │
@@ -771,7 +771,7 @@ Operator recovery steps:
 │  ├─► 5. DELIBERATE  Compare, critique, reconcile                        │
 │  ├─► 6. SYNTHESIZE  Score all, resolve conflicts                         │
 │  ├─► 7. COMPOSE     Merge best elements into unified plan                │
-│  └─► 8. DELIVER     Report + ai-council artifacts                         │
+│  └─► 8. DELIVER     Report + ai-council artifacts                       │
 │                                                                         │
 │  OUTPUT                                                                 │
 │  ├─► Multi-AI Council Report (composition + comparison table)           │
@@ -780,7 +780,7 @@ Operator recovery steps:
 │                                                                         │
 │  LIMITS                                                                 │
 │  ├─► Max 3 council seats per task                                       │
-│  ├─► Writes/edits only within ai-council/**                              │
+│  ├─► Writes/edits only within ai-council/**                             │
 │  └─► Depth 1: inline sequential only (NDP compliant)                    │
 └─────────────────────────────────────────────────────────────────────────┘
 ```

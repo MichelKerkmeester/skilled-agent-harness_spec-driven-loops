@@ -22,6 +22,9 @@ const HISTORICAL_SETTINGS = Object.freeze({
   code: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   context: { sandboxMode: 'read-only', ...DEFAULT_SETTINGS },
   debug: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
+  // deep-alignment intentionally runs workspace-write: it writes its own JSONL state,
+  // deltas, and logs via Bash while treating every audited artifact as read-only by scope.
+  'deep-alignment': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-improvement': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-research': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-review': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
@@ -251,7 +254,18 @@ function writeOutputs(expectedOutputs) {
   let changed = 0;
   for (const [outputFile, expected] of expectedOutputs) {
     const outputPath = path.join(OUTPUT_DIR, outputFile);
-    const actual = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, 'utf8') : null;
+    // A pre-existing symlink at a generated output path would redirect the write
+    // outside the intended output root; refuse to follow it instead of writing through.
+    let stat = null;
+    try {
+      stat = fs.lstatSync(outputPath);
+    } catch (err) {
+      if (err.code !== 'ENOENT') throw err;
+    }
+    if (stat && stat.isSymbolicLink()) {
+      throw new Error(`refusing to write through a pre-existing symlink at ${outputPath}`);
+    }
+    const actual = stat ? fs.readFileSync(outputPath, 'utf8') : null;
     if (actual !== expected) {
       fs.writeFileSync(outputPath, expected, 'utf8');
       changed += 1;

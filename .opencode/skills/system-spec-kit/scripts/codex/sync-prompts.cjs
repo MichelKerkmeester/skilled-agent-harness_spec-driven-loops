@@ -142,7 +142,18 @@ function writeOutputs(expectedOutputs) {
   let changed = 0;
   for (const [outputFile, expected] of expectedOutputs) {
     const outputPath = path.join(OUTPUT_DIR, outputFile);
-    const actual = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, 'utf8') : null;
+    // A pre-existing symlink at a generated output path would redirect the write
+    // outside the intended output root; refuse to follow it instead of writing through.
+    let stat = null;
+    try {
+      stat = fs.lstatSync(outputPath);
+    } catch (err) {
+      if (err.code !== 'ENOENT') throw err;
+    }
+    if (stat && stat.isSymbolicLink()) {
+      throw new Error(`refusing to write through a pre-existing symlink at ${outputPath}`);
+    }
+    const actual = stat ? fs.readFileSync(outputPath, 'utf8') : null;
     if (actual !== expected) {
       fs.writeFileSync(outputPath, expected, 'utf8');
       changed += 1;
