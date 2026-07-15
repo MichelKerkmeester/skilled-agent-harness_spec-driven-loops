@@ -148,12 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -173,6 +167,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The `create-diff` mode ships a working engine (`creatediff.py`) and validator (`validatereport.py`), is registered in the sk-doc hub, and routes through the advisor — but it is the only one of the eleven sk-doc `create-` workflow packets with no dedicated slash command",
     "created_at": "2026-07-15T18:43:15.367Z",
-    "last_save_at": "2026-07-15T18:43:15.367Z",
+    "last_save_at": "2026-07-15T19:19:10.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:273339e7bcfefe539be9e35ea9e3dc62d2e9fdd13c7e9e9925deeb37ba59450e",
+    "source_fingerprint": "sha256:66d0063b935fe7533ff84d005c94ad0c1b3d7c006ab19929e38819ee3878f8c5",
     "source_doc_hashes": {
-      "spec.md": "2fbb521668cda0b8b2fc176ff947b5dd8281b1974306c08d9e2d0f71e5f57e93",
-      "plan.md": "662112f27a1fa6e62cbbfec09ef0c421ae62e4d0b7c3afe91111b6b26cec7f29",
-      "tasks.md": "f09cc289b61dd412cd66615375edc95bf645425babda350c1d0e63be8425f918",
-      "checklist.md": "d5c1de6fda7ab93f6ecb1bc6a0cd4df2cdf142ef4eed2249d7931caa2e69099c",
-      "implementation-summary.md": "002c95d6038a9d7741ee3fe3e33f8ae04fe6203290a3442308d8e8ae965b7aaf"
+      "spec.md": "9ef512f17fcd140bf59f5e38353d86a516f51f50e652bb8a8f80f50dfffdb0cf",
+      "plan.md": "e2fb2d99b973772f99855155381e3e9e3f1ab7302bf031242e366524f0956f4c",
+      "tasks.md": "09e5b714b325d238cc9bd3128f490cd93260d57aacd102d7f8e805835c6f5b64",
+      "checklist.md": "f1e2437c9e17269462e07381e55e62e2304ee88948a17181ebca85b61b7bddd2",
+      "implementation-summary.md": "e38c0fcaa782374142e00f6cd745af8d64e62e5e6285c588a36ab204b3428965"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -337,25 +337,6 @@ workflow:
   # ==============================================================
   # PHASE GATE: INPUTS -> COMPARISON
   # ==============================================================
-  phase_gate_inputs_to_comparison:
-    trigger: "After Step 1 and Step 2 complete"
-    enforcement: HARD_BLOCK
-    verification: |
-      BEFORE invoking the engine (Step 3):
-
-      VERIFY all input artifacts exist:
-      - [ ] Review mode resolved
-      - [ ] Document path (automatic) or --before/--after pair (explicit) confirmed to exist
-      - [ ] Report path resolved
-      - [ ] Format supported, or explicit-pair fallback selected for an unsupported format
-
-      IF any artifact missing:
-      - STOP -> Return to Step 1/Step 2 -> Complete it -> Return here
-
-      WHEN all artifacts verified:
-      - SET PHASE GATE STATUS: PASSED -> Proceed to Step 3
-    action_if_failed: "Return to incomplete step"
-
   # ==============================================================
   # STEP 2: CAPABILITY CHECK
   # ==============================================================
@@ -379,6 +360,25 @@ workflow:
         description: "Provide pre-extracted before/after text instead"
       - label: "C) Cancel"
         description: "Stop - format is unsupported for this review"
+
+  phase_gate_inputs_to_comparison:
+    trigger: "After Step 1 and Step 2 complete"
+    enforcement: HARD_BLOCK
+    verification: |
+      BEFORE invoking the engine (Step 3):
+
+      VERIFY all input artifacts exist:
+      - [ ] Review mode resolved
+      - [ ] Document path (automatic) or --before/--after pair (explicit) confirmed to exist
+      - [ ] Report path resolved
+      - [ ] Format supported, or explicit-pair fallback selected for an unsupported format
+
+      IF any artifact missing:
+      - STOP -> Return to Step 1/Step 2 -> Complete it -> Return here
+
+      WHEN all artifacts verified:
+      - SET PHASE GATE STATUS: PASSED -> Proceed to Step 3
+    action_if_failed: "Return to incomplete step"
 
   # ==============================================================
   # STEP 3: COMPARISON (ENGINE-DRIVEN)

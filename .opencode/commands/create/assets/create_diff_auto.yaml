@@ -313,6 +313,21 @@ workflow:
   # ==============================================================
   # PHASE GATE: INPUTS -> COMPARISON
   # ==============================================================
+  # ==============================================================
+  # STEP 2: CAPABILITY CHECK
+  # ==============================================================
+  step_2_capability_check:
+    purpose: Confirm format support and fidelity tier when uncertain
+    condition: "run when the input format is uncertain (e.g. DOCX or PDF) or before a first comparison"
+    activities:
+    - "Run: python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py capabilities [--json]"
+    - "Determine the fidelity tier for the input format (full / text / text*)"
+    - "IF the format is a text-layer PDF and no extractor is available (exit 3): do not claim a diff; offer the explicit-pair fallback with pre-extracted text"
+    - "Record the fidelity tier to state honestly at delivery"
+    outputs:
+    - capability_confirmed
+    - fidelity_tier
+
   phase_gate_inputs_to_comparison:
     trigger: "After Step 1 and Step 2 complete"
     enforcement: HARD_BLOCK
@@ -331,21 +346,6 @@ workflow:
       WHEN all artifacts verified:
       - SET PHASE GATE STATUS: PASSED -> Proceed to Step 3
     action_if_failed: "Return to incomplete step"
-
-  # ==============================================================
-  # STEP 2: CAPABILITY CHECK
-  # ==============================================================
-  step_2_capability_check:
-    purpose: Confirm format support and fidelity tier when uncertain
-    condition: "run when the input format is uncertain (e.g. DOCX or PDF) or before a first comparison"
-    activities:
-    - "Run: python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py capabilities [--json]"
-    - "Determine the fidelity tier for the input format (full / text / text*)"
-    - "IF the format is a text-layer PDF and no extractor is available (exit 3): do not claim a diff; offer the explicit-pair fallback with pre-extracted text"
-    - "Record the fidelity tier to state honestly at delivery"
-    outputs:
-    - capability_confirmed
-    - fidelity_tier
 
   # ==============================================================
   # STEP 3: COMPARISON (ENGINE-DRIVEN)
