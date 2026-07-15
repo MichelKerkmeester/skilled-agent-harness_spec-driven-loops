@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/052-deep-loop-unification/012-deep-command-family-parity/001-pipeline-command-parity",
+  "spec_folder": "system-deep-loop/052-deep-loop-unification/012-deep-command-family-parity/001-pipeline-command-parity",
+  "parent_id": "system-deep-loop/052-deep-loop-unification/012-deep-command-family-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep alignment render pipeline parity",
+      "compile-command-contracts deep alignment",
+      "ai-council fix rollout flip",
+      "deep alignment presentation asset",
+      "contract drift clean"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "render",
+      "pipeline",
+      "parity",
+      "compile-command-contracts",
+      "ai-council",
+      "rollout",
+      "flip",
+      "presentation",
+      "asset",
+      "contract"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_alignment_presentation.txt",
+      ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".opencode/commands/deep/assets/compiled/deep_alignment.contract.md",
+      ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+      ".opencode/commands/deep/assets/legacy/deep_alignment.body.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_alignment_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep_alignment_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_alignment.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep_alignment.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-injection-rollout.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep_alignment.body.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/legacy/deep_alignment.body.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Register",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/deep:alignment` is the only render-pipeline sibling that never joins the compiled-contract path",
+    "created_at": "2026-07-13T13:11:37.033Z",
+    "last_save_at": "2026-07-15T19:46:58.529Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:da5fe9d55e0aede100a6b5f9efff7605e3083b302e43e2bd11cac3d7f72947ef",
+    "source_doc_hashes": {
+      "spec.md": "c2c3d15c771c54d4ea7f0c6a38b1845bbdd06b6a7b4a19c413d9bbbdd6c2c1ee",
+      "plan.md": "065fc789c516fa1975ee407630b95e7b39ee32a2bada1fe9778eae57b44c43bd",
+      "tasks.md": "f9af02bdabbed0cd25d3cc2a19b6da5e229cfb5396c1167d4956ccabeafb18dc",
+      "checklist.md": "1c767f145a20ca263f34e89b941f3902100cec81d9c8650ad26f927d3cb47a18",
+      "implementation-summary.md": "3e151883209af1d7e7472e1268c67e193f5f6a1983fa7d76d3918b1b6c5b2600"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

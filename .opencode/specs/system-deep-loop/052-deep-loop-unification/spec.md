@@ -156,5 +156,12 @@ This is a phase-parent; the concrete file-change tables live in each child's own
 | 3 | `003-external-reference-migration` | Complete | Migrate every external reference (commands, agents, READMEs, advisor corpus) |
 | 4 | `004-fallback-router-wiring` | Planned — optional | Wire `fallback-router.ts` into the fan-out dispatcher (operator-gated) |
 | 5 | `005-validation-and-closeout` | Planned | Recursive strict validation + commit/push closeout |
+| 6 | `006-skillmd-template-conformance` | Complete | SKILL.md template conformance for the system-deep-loop hub |
+| 7 | `007-comprehensive-deep-review` | Complete | Comprehensive deep review of the unified hub |
+| 8 | `008-divergent-mode-dogfood` | Complete | Divergent-mode live dogfood (research + review) |
+| 9 | `009-deep-router-agent-rename` | Complete | Rename the deep router agent to `deep-loop` |
+| 10 | `010-deep-loop-parent-skill-alignment` | Complete | deep-loop parent-skill alignment (native invocability) |
+| 11 | `011-skill-frontmatter-standardization` | Complete | skill-frontmatter standardization (sub-phase-parent with its own children) |
+| 12 | `012-deep-command-family-parity` | In Progress | Uniform `/deep:*` command parity + deep-* agent reconciliation (sub-phase-parent) |
 
 Sequencing: 1 → 2 → 3 → 5, with 4 optional and runnable in parallel with 3 or deferred entirely.

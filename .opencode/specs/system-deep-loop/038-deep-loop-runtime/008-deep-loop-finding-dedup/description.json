@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/038-deep-loop-runtime/008-deep-loop-finding-dedup",
+  "description": "The deep-loop fan-out merge ships three finished, default-off capabilities behind no measured verdict",
+  "keywords": [
+    "deep-loop",
+    "fan-out",
+    "merge",
+    "ships",
+    "three",
+    "finished",
+    "default-off",
+    "capabilities",
+    "behind",
+    "measured",
+    "verdict"
+  ],
+  "lastUpdated": "2026-07-15T19:46:00.464Z",
+  "specId": "008",
+  "folderSlug": "deep-loop-finding-dedup",
+  "parentChain": [
+    "system-deep-loop",
+    "038-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

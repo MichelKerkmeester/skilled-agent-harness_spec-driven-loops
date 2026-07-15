@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/052-deep-loop-unification/012-deep-command-family-parity/001-pipeline-command-parity",
+  "description": "`/deep:alignment` is the only render-pipeline sibling that never joins the compiled-contract path",
+  "keywords": [
+    "deep",
+    "alignment",
+    "only",
+    "render-pipeline",
+    "sibling",
+    "never",
+    "joins",
+    "compiled-contract",
+    "path"
+  ],
+  "lastUpdated": "2026-07-15T19:46:00.481Z",
+  "specId": "001",
+  "folderSlug": "pipeline-command-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "052-deep-loop-unification",
+    "012-deep-command-family-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

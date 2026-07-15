@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/054-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
+  "spec_folder": "system-deep-loop/054-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
+  "parent_id": "system-deep-loop/054-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill benchmark excluded by design",
+      "D1-inter advisor-invisible reporting",
+      "D4-R fail closed scenario selection"
+    ],
+    "key_topics": [
+      "skill",
+      "benchmark",
+      "excluded",
+      "design",
+      "d1-inter",
+      "advisor-invisible",
+      "reporting",
+      "d4-r",
+      "fail",
+      "closed",
+      "scenario",
+      "selection"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Applicability Reporting",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "D1-inter",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "reason",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Lane C skill-benchmark silently normalizes D1-inter (advisor rank) and D4 out of the weighted aggregate for skills that cannot support them, so an advisor-invisible surface like code-opencode reports two 'unscored' dimensions that read as gaps rather than structural N/A.",
+    "created_at": "2026-07-11T14:10:05.865Z",
+    "last_save_at": "2026-07-15T19:47:00.567Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c01a36dac369c6083c78f13444566232eced151425f357f16b8b3baba68ecb7",
+    "source_doc_hashes": {
+      "spec.md": "db7c1bdced5f1bc57a338c37f22e8f28f4add48b09d64b964dd11282ad0d86de",
+      "plan.md": "29e49828d61ddf3150a33df90d4cc33f25d36df2b856df8dda873aaeb5087914",
+      "tasks.md": "638e391b5760f426bb0bec63e771eef3d9bdd07aa101728c4c28030e9afe1f7f",
+      "checklist.md": "c154fd8cb6925ac388c55fbac152ac985282a4ad23909946f5963f9b1c9831e1",
+      "implementation-summary.md": "d825a32a0586dcb2f3bb1278dc68621ac5c6bb9ec412ddd4b40fc81a4b59def8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

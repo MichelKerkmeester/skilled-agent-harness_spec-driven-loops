@@ -15,7 +15,8 @@
     "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation",
     "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation",
     "system-deep-loop/030-deep-loop-improved/010-documentation-truth-audit",
-    "system-deep-loop/030-deep-loop-improved/011-followup-remediation"
+    "system-deep-loop/030-deep-loop-improved/011-followup-remediation",
+    "system-deep-loop/030-deep-loop-improved/012-deep-loop-divergent-mode"
   ],
   "manual": {
     "depends_on": [],
@@ -141,16 +142,16 @@
     ],
     "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-30T10:32:21.634Z",
-    "last_save_at": "2026-07-09T10:02:47.479Z",
+    "last_save_at": "2026-07-15T19:54:51.833Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:81dcba29b40eb37867cc411055398002c1fa3c6f59f694465ae06c4958383cc2",
+    "source_fingerprint": "sha256:04c3722c2823d96eb7b6dc9de219c41be3df3a5f00fca90bf66960ed296b0ee7",
     "source_doc_hashes": {
-      "spec.md": "86d71a30553d72c7bebb90376b4f747e45a64c0efeb42fb19474df70bfde8b56",
+      "spec.md": "f58a76f59dacf4912a595863e6d7ec7fb6ab298d3f9f51d36126f4c397cc9610",
       "research/research.md": "593ff3a4953413e4456105d5cb406de665c7e486d4a1ff367eb2385a05394ac5"
     },
     "last_active_child_id": null,

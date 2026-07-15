@@ -15,7 +15,13 @@
     "system-deep-loop/054-smart-routing-benchmark-program/009-deterministic-scoring-extensions",
     "system-deep-loop/054-smart-routing-benchmark-program/010-live-anti-overfit-lane",
     "system-deep-loop/054-smart-routing-benchmark-program/011-skill-benchmark-optimize-automation",
-    "system-deep-loop/054-smart-routing-benchmark-program/012-program-closeout"
+    "system-deep-loop/054-smart-routing-benchmark-program/012-program-closeout",
+    "system-deep-loop/054-smart-routing-benchmark-program/013-router-replay-surface-slice-sync",
+    "system-deep-loop/054-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
+    "system-deep-loop/054-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
+    "system-deep-loop/054-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
+    "system-deep-loop/054-smart-routing-benchmark-program/017-stage-aware-scorer",
+    "system-deep-loop/054-smart-routing-benchmark-program/018-routed-nothing-efficiency-na"
   ],
   "manual": {
     "depends_on": [],
@@ -211,7 +217,7 @@
     ],
     "causal_summary": "Skill routing quality was only partially measured",
     "created_at": "2026-07-08T18:22:20.553Z",
-    "last_save_at": "2026-07-09T12:18:02.143Z",
+    "last_save_at": "2026-07-15T19:47:04.924Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +228,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e144012281a2f27a38b0e6c4a32b65d5a3dfd9fc6861df12f8b813bb95fc6ca4",
+    "source_fingerprint": "sha256:38e21280233a47206b91c57a472c3485e9c72643f1dd834d320ffbfc6b03a1fb",
     "source_doc_hashes": {
-      "spec.md": "d04cac05a723f2c11a5a3128ee85ea00a0b5c3274847c7b1106cfa6ac15aaec6",
+      "spec.md": "7d480ee295f98dfd8fceb728c5d13da25804e9848e227c727cbd154c08648491",
       "plan.md": "8481a846bdd420aee49db291711d60ee1c2e0d0b0d5a48842b51ada23aa9f8fd",
-      "tasks.md": "b3d7774eef0c935b4ccbea0e37127b049f4c440cdf87732eebfe409423a663d8",
+      "tasks.md": "1d99585c8af375d05317f93d2fe4716948f848ee41a7ae439f531e5a67675ae3",
       "checklist.md": "65a87c6b4acd4442da3b95da558626b12121fff56249fd037262704bc9910479",
       "decision-record.md": "f970d7c3e117e382c838dbe225bbecd14804cea73754d499e74e7df4b1afb8a7",
-      "implementation-summary.md": "b307ee8d21f32baa01d775138485b569a41ccf3e2a9c319bff6e63a6525e778d"
+      "implementation-summary.md": "69c54187e5aca7af26e83c53a0325515fe21f59821d93a5c8517e2abc6a988f3"
     },
     "last_active_child_id": null,
     "last_active_at": null

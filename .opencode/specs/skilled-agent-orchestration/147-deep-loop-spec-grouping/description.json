@@ -1,0 +1,28 @@
+{
+  "specFolder": "skilled-agent-orchestration/147-deep-loop-spec-grouping",
+  "description": "The `system-deep-loop` track had accumulated a large number of top-level packets — many of them small, single-purpose specs (6–18 files) that belong",
+  "keywords": [
+    "system-deep-loop",
+    "track",
+    "accumulated",
+    "large",
+    "number",
+    "top-level",
+    "packets",
+    "many",
+    "them",
+    "small",
+    "single-purpose",
+    "specs",
+    "files",
+    "belong"
+  ],
+  "lastUpdated": "2026-07-15T20:07:26.330Z",
+  "specId": "147",
+  "folderSlug": "deep-loop-spec-grouping",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/054-smart-routing-benchmark-program/017-stage-aware-scorer",
+  "spec_folder": "system-deep-loop/054-smart-routing-benchmark-program/017-stage-aware-scorer",
+  "parent_id": "system-deep-loop/054-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stage aware scorer",
+      "skill benchmark",
+      "holdout",
+      "generalization gap",
+      "lane c",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "stage split scoring semantics",
+      "holdout excluded from fitted aggregate"
+    ],
+    "key_topics": [
+      "stage",
+      "aware",
+      "scorer",
+      "skill",
+      "benchmark",
+      "holdout",
+      "generalization",
+      "gap",
+      "lane",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+      "decision-record.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/playbook-generator.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-report.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-generator.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/playbook-generator.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Wire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "additive",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Lane C skill-benchmark harness has a benchmark scenario `stage` axis (`routing` | `holdout` | `negative`) that is only half-wired:",
+    "created_at": "2026-07-11T20:55:10.283Z",
+    "last_save_at": "2026-07-15T19:47:00.318Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a96663cd7f1a8650e09a6cfcae8d18a6eb22bbbcf55920dfe91a99f2e680f0c6",
+    "source_doc_hashes": {
+      "spec.md": "219760b3a179651147cc84578750664e84c409b0532de2a8999b8429ab2ad22b",
+      "plan.md": "652680e9eb875f14cbe4b32b5f28ebad7390701cb9031f31e77beea923184d2a",
+      "tasks.md": "9ae3df79ccd7fa795d2dd6ddcf516af7789593558747669bf4bd0173719513d5",
+      "checklist.md": "337eb8ff0322938dce5e3e6fe33c9718340bdb1ac38a2381103fd6728f3dc212",
+      "decision-record.md": "794439b564cc746ef8053fb22d5b4ee1bed6d404bad27df37aac7f35e25abfe0",
+      "implementation-summary.md": "7196f883803eedabf4a3267e97fe28bbd7050bab1c102e904773ebde0bb90734"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

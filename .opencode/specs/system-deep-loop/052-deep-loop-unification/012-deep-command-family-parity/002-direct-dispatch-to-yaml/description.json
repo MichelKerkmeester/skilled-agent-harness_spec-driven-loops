@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/052-deep-loop-unification/012-deep-command-family-parity/002-direct-dispatch-to-yaml",
+  "description": "`/deep:skill-benchmark` (Lane C) was the remaining deep command that dispatched its loop host inline: its `command.md` declared \"direct-router family",
+  "keywords": [
+    "deep",
+    "skill-benchmark",
+    "lane",
+    "remaining",
+    "command",
+    "dispatched",
+    "loop",
+    "host",
+    "inline",
+    "declared",
+    "direct-router",
+    "family"
+  ],
+  "lastUpdated": "2026-07-15T19:46:00.481Z",
+  "specId": "002",
+  "folderSlug": "direct-dispatch-to-yaml",
+  "parentChain": [
+    "system-deep-loop",
+    "052-deep-loop-unification",
+    "012-deep-command-family-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

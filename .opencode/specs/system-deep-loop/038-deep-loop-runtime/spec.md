@@ -107,6 +107,13 @@ Research input: `research/research.md` remains the subsystem source packet for c
 | 005 | `005-stop-input-corroboration/` | Stop-input corroboration checks | Partial (runtime only) |
 | 006 | `006-continuity-threading/` | Continuity threading across iterations | Implemented |
 | 007 | `007-deep-review-followup-hardening/` | Deep-review follow-up hardening with its own four children (adopted from packet 032, re-nested from top-level 015 on 2026-07-04) | In Progress |
+| 008 | `008-deep-loop-finding-dedup/` | Deep-loop finding-dedup benchmark | Complete |
+| 009 | `009-deep-loop-gauges-dedup-scale/` | Gauge-defaults flood-test and dedup scale-test | Complete |
+| 010 | `010-deep-loop-fanout-reliability/` | Fanout reliability: worker-failure and concurrency semantics | Complete |
+| 011 | `011-deep-research-loop-instrumentation/` | Deep-research loop instrumentation | Complete |
+| 012 | `012-fix-deep-loop-workflow-state/` | Deep-loop workflow state-machine remediation | In Progress |
+| 013 | `013-deep-loop-workflow-integrity-audit/` | Workflow-integrity release-readiness audit | Complete |
+| 014 | `014-deep-loop-locks-state-and-recovery/` | Locks, state, and JSONL recovery | Planned |
 
 ### Phase Transition Rules
 

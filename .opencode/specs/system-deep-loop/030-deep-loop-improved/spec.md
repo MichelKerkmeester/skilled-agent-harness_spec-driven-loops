@@ -108,6 +108,7 @@ Audit-trail summary only; per-phase detail lives in each child's plan.md.
 | 009 | `009-research-backlog-remediation` | Implement Tier 0/1/2 of the deep-research fan-out's 19-item backlog (`research/research.md`) plus 2 generation-2 findings: fanout-merge/runtime bug fixes, claimed-vs-actual drift closure, convergence/observability hardening, synthesis-integrity + orchestrator watchdog (11 children total) | Complete |
 | 010 | `010-documentation-truth-audit` | Dispatched 10-iteration GPT-5.5-fast deep-review checking README.md/AGENTS.md/AGENTS_Barter.md drift against everything shipped in 001-009; found and fixed 4 P1 + 1 P2 findings (Spec Kit Framework rename, Goal Plugin FEATURES section, Deep Loop safety-posture disclosure, phase-metadata self-consistency, review-artifact integrity) | Complete |
 | 011 | `011-followup-remediation` | Close the 4 deferred follow-ups from phase 009: 2 active review findings (fanout session-id propagation, LEAF-identity conflation), scaffold-content authoring across phases 002-007 (~40 leaves), the validate.sh registry-bridge gap (sequenced after scaffold cleanup), and the sliding-window convergence mode (7 children) | Complete |
+| 012 | `012-deep-loop-divergent-mode` | Divergent-convergence mode: anti-mode-collapse, divergence scoring, operator-tunable convergence profile — a later cross-cutting addition extending the 001-011 anti-convergence / sliding-window improvement work | Implemented |
 
 ### Phase Transition Rules
 
