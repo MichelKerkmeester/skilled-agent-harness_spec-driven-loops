@@ -202,7 +202,44 @@ isolates, and any axis intentionally left out with its reason.
 
 ---
 
-## 7. RELATED RESOURCES
+## 7. WORKED MAPPING: PACKET 066 COMMAND SURFACE
+
+Packet `system-deep-loop/066-command-surface-benchmark` is the first consumer of
+this family. Its behavior package — the behavioral half of a two-axis command
+benchmark — maps as follows:
+
+| Package field | Packet 066 value |
+| --- | --- |
+| Owning mode | `system-deep-loop/deep-alignment` |
+| Package location | `deep-alignment/behavior_benchmark/` |
+| ID prefix | `DAB` (deep-alignment behavior) |
+| Command-surface scenarios | `DAB-012` through `DAB-027` — the schema-v2 command-behavior suite (16 cells); `DAB-001` through `DAB-011` benchmark the `/deep:alignment` loop itself and stay schema v1 |
+| Index | `deep-alignment/behavior_benchmark/behavior_benchmark.md` |
+| Baseline | `baselines/claude-baseline.md` |
+| Entry surfaces exercised | E1 command-plus-suffix, E2 bare-command halt, E3 natural-language ask — per the index AXIS COVERAGE |
+| Router-class coverage | Workflow router, subaction router, direct-tool router, and monolithic command, isolated as distinct cell clusters |
+| Runner | `shared/behavior-benchmark/behavior-bench-run.cjs` (frozen; extracts checkpoints, scores, and classifies each cell) |
+| Matrix scheduler | `deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs` |
+| Matrix manifest | `deep-alignment/assets/command_benchmark/command_benchmark_matrix.json` |
+| Driver legs | A Claude reference leg plus the OpenCode `gpt-5.5-fast` high and medium legs, as declared in the manifest |
+| Launcher | `/deep:command-benchmark` — composes both axes and reports them separately |
+| Run evidence | `<executing-spec-phase>/evidence/command-benchmark/<run-id>/`, as bound by the launcher |
+| Source packet | `.opencode/specs/system-deep-loop/066-command-surface-benchmark/` |
+
+The command-surface benchmark is deliberately **two-axis**: this behavior package
+measures how an executor model handles each command at its invocation surface,
+while the deterministic **conformance** axis checks the command documents against
+the sk-doc authority through the `sk-doc-command` peer adapter. The conformance
+half is documented in
+[`../conformance_benchmark/conformance_benchmark_authoring_guide.md`](../conformance_benchmark/conformance_benchmark_authoring_guide.md)
+section 8, "WORKED MAPPING: PACKET 066 COMMAND SURFACE". One launcher composes both
+and reports them side by side; the two subject axes are never averaged into a
+single score. The package here is the behavioral contract; the executing spec
+phase provisions fixtures and files the run evidence.
+
+---
+
+## 8. RELATED RESOURCES
 
 ### Templates
 

@@ -226,6 +226,11 @@ command-specific artifact-class value is introduced. The adapter owns mirror,
 reachability, route, capability/safety, and presentation definitions; this guide
 does not restate them.
 
+This conformance package is only one axis of packet 066: the behavioral axis — how
+executor models handle each command at its invocation surface — is documented in
+[`../behavior_benchmark/behavior_benchmark_guide.md`](../behavior_benchmark/behavior_benchmark_guide.md)
+section 7, and the `/deep:command-benchmark` launcher composes both without averaging.
+
 ## 9. RELATED RESOURCES
 
 ### Templates
