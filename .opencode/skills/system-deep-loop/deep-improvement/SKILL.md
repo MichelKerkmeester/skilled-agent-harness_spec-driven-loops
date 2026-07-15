@@ -13,11 +13,9 @@ triggers:
   - model-benchmark mode
   - benchmark a model or prompt framework
   - skill-benchmark mode
-  - non-dev-ai-system mode
-  - benchmark and refine a packaging
 ---
 
-<!-- Keywords: deep-improvement, agent-improvement, benchmark-harness, score-candidate, promote-candidate, rollback-candidate, non-dev-ai-system -->
+<!-- Keywords: deep-improvement, agent-improvement, benchmark-harness, score-candidate, promote-candidate, rollback-candidate -->
 
 # Recursive Agent: Evaluator-First Improvement Orchestrator
 
@@ -27,18 +25,17 @@ Evaluator-first workflow for testing whether a bounded agent surface can be impr
 
 ## 1. WHEN TO USE
 
-### Four Co-Equal Lanes
+### Three Co-Equal Lanes
 
-This skill supports four co-equal use-case lanes that share the same candidate, dispatcher, and scorer seams:
+This skill supports three co-equal use-case lanes that share the same candidate, dispatcher, and scorer seams:
 
 | Lane | Pick when | Command |
 | --- | --- | --- |
 | **Lane A: Agent-Improvement** | You want to improve a bounded agent `.md` file | `/deep:agent-improvement` |
 | **Lane B: Model-Benchmark** | You want to benchmark a model or prompt framework | `/deep:model-benchmark` |
 | **Lane C: Skill-Benchmark** | You want to diagnose a skill's real-world routing, discovery, efficiency, and usefulness | `/deep:skill-benchmark` |
-| **Lane D: Non-Dev-AI-System Refine** | You want to benchmark an AI-system packaging and auto-refine its technique docs behind hard guardrails | `/deep:ai-system-improvement` |
 
-Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill_benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. Lane D is documented in `references/non_dev_ai_system/operator_guide.md`; its guarded loop host lives with the packaging under test (`<packaging-root>/benchmark/_loop/loop.py`) and loop-host only adapts to it. All lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
+Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill_benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. All lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
 
 ### Activation Triggers
 
@@ -46,7 +43,6 @@ Use this skill when:
 - You want to test whether an agent prompt or instruction surface can be improved (Lane A)
 - You want to benchmark a model or prompt framework against repeatable fixtures (Lane B)
 - You want to diagnose whether a skill is well-routed, discoverable, efficient, and useful in practice (Lane C)
-- You want to benchmark a multi-packaging AI system against an independent grader and auto-refine it behind guardrails (Lane D)
 - The mutation boundary is explicit and narrow
 - You need packet-local evidence instead of ad hoc prompt tweaking
 - You need target-specific benchmark or scoring rules before any canonical mutation
@@ -57,7 +53,6 @@ Use this skill when:
 - **Lane A** — proposal-first loop for any bounded agent file: packet-local candidates, dynamic 5-dimension scoring, append-only evidence, guarded promotion/rollback with drift review kept separate. See §3.
 - **Lane B** — benchmarks a model or prompt framework (not an agent file) against a benchmark profile, scoring produced outputs; shares the candidate, dispatcher, and scorer seams with Lane A. See §4.
 - **Lane C** — diagnoses whether a *skill* is well-routed, discoverable, efficient, and useful in practice; emits a ranked Skill Benchmark Report and is diagnostic by default (no target mutation). See `references/skill_benchmark/operator_guide.md`.
-- **Lane D** — benchmarks an *AI-system packaging* (one prompt system shipped as CLI runtime, claude.ai Project, and native skill) with N-sample averaged outputs re-graded by an independent different-family grader (self-reported scores are not a safe target), proposes bounded technique-doc edits, and promotes only inside an isolated worktree when held-out grades do not regress. Dry-run is the default; new packagings onboard via the `assets/non_dev_ai_system/` kit, never by copy-editing a sibling. See `references/non_dev_ai_system/operator_guide.md`.
 
 ### When NOT to Use
 
@@ -80,7 +75,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `assets/` for reusable runtime templates such as the charter and strategy markdown files
 - `scripts/` for deterministic benchmark, scoring, reduction, promotion, rollback, and drift-check helpers
 
-**Lane awareness**: resources are organized by lane. `references/agent_improvement/` + `assets/agent_improvement/` carry Lane A guidance, `references/model_benchmark/` + `assets/model_benchmark/` carry Lane B guidance, `references/skill_benchmark/` + `assets/skill_benchmark/` carry Lane C guidance, and `references/non_dev_ai_system/` + `assets/non_dev_ai_system/` carry Lane D guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK`, `SKILL_BENCHMARK` and `NON_DEV_AI_SYSTEM` intents to their lane references, and `RUNTIME_ASSETS` loads each lane's profile only when its intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to all four lanes.
+**Lane awareness**: resources are organized by lane. `references/agent_improvement/` + `assets/agent_improvement/` carry Lane A guidance, `references/model_benchmark/` + `assets/model_benchmark/` carry Lane B guidance, and `references/skill_benchmark/` + `assets/skill_benchmark/` carry Lane C guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK` and `SKILL_BENCHMARK` intents to their lane references, and `RUNTIME_ASSETS` loads each lane's profile only when its intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to all three lanes.
 
 ### Resource Loading Levels
 
@@ -115,7 +110,6 @@ INTENT_SIGNALS = {
     "INTEGRATION_SCAN": {"weight": 4, "keywords": ["integration", "scan surfaces", "mirror sync", "dynamic profile", "5-dimension"]},
     "MODEL_BENCHMARK": {"weight": 5, "keywords": ["benchmark a model", "benchmark a prompt framework", "optimize a model", "model-benchmark", "model benchmark"]},
     "SKILL_BENCHMARK": {"weight": 5, "keywords": ["benchmark a skill", "skill benchmark", "skill routing", "unprompted discovery", "routing accuracy", "skill-benchmark"]},
-    "NON_DEV_AI_SYSTEM": {"weight": 5, "keywords": ["non-dev-ai-system", "packaging refine", "refine a packaging", "benchmark a packaging", "guarded refine", "ai-system packaging"]},
     "FULL_SETUP": {"weight": 3, "keywords": ["full setup", "initialize runtime", "charter", "strategy"]},
 }
 
@@ -128,7 +122,6 @@ RESOURCE_MAP = {
     "INTEGRATION_SCAN": ["references/agent_improvement/integration_scanning.md", "references/model_benchmark/evaluator_contract.md", "references/agent_improvement/profiling_audit_log.md"],
     "MODEL_BENCHMARK": ["references/model_benchmark/benchmark_operator_guide.md", "references/model_benchmark/evaluator_contract.md", "references/model_benchmark/lane_b_mechanics.md", "references/model_benchmark/mixed_executor_methodology.md", "assets/model_benchmark/benchmark-fixtures/reviewer_schema.md"],
     "SKILL_BENCHMARK": ["references/skill_benchmark/operator_guide.md", "references/skill_benchmark/scoring_contract.md", "references/skill_benchmark/scenario_authoring.md", "references/skill_benchmark/routing_optimization.md", "assets/skill_benchmark/fixtures/deep_loop_workflows/routing_precision.md"],
-    "NON_DEV_AI_SYSTEM": ["references/non_dev_ai_system/operator_guide.md", "references/non_dev_ai_system/loop_contract.md", "references/non_dev_ai_system/guardrails_teachings.md", "references/non_dev_ai_system/fixture_authoring.md", "references/non_dev_ai_system/grader_calibration.md"],
     "FULL_SETUP": ["assets/agent_improvement/improvement_charter.md", "assets/agent_improvement/improvement_strategy.md"],
 }
 
@@ -136,7 +129,6 @@ RUNTIME_ASSETS = {
     "ALWAYS": ["assets/agent_improvement/improvement_config.json", "assets/agent_improvement/target_manifest.jsonc"],
     "MODEL_BENCHMARK": ["assets/model_benchmark/benchmark-profiles/default.json"],
     "SKILL_BENCHMARK": ["assets/skill_benchmark/default_profile.json"],
-    "NON_DEV_AI_SYSTEM": ["assets/non_dev_ai_system/packaging_config.example.json"],
 }
 
 ON_DEMAND_KEYWORDS = ["target profile", "score candidate", "proposal loop", "benchmark", "promotion gate", "mirror drift"]
@@ -211,8 +203,6 @@ def route_recursive_agent_resources(task):
         runtime_assets.extend(RUNTIME_ASSETS.get("MODEL_BENCHMARK", []))
     if "SKILL_BENCHMARK" in intents:
         runtime_assets.extend(RUNTIME_ASSETS.get("SKILL_BENCHMARK", []))
-    if "NON_DEV_AI_SYSTEM" in intents:
-        runtime_assets.extend(RUNTIME_ASSETS.get("NON_DEV_AI_SYSTEM", []))
 
     if not loaded:
         load_if_available(DEFAULT_RESOURCE)
@@ -323,7 +313,6 @@ Core references: `README.md`, `references/shared/quick_reference.md`, `reference
 - `/deep:agent-improvement` initializes and runs the Lane A bounded workflow
 - `/deep:model-benchmark` initializes and runs the Lane B model-benchmark workflow
 - `/deep:skill-benchmark` runs the Lane C skill diagnostic
-- `/deep:ai-system-improvement` runs the Lane D guarded packaging refine (dry-run default)
 - `.opencode/agents/deep-improvement.md` provides the mutator surface for deep-improvement runs
 - `sk-doc` validators enforce package-shape, README, and markdown document consistency
 - `system-spec-kit` packet validation proves phase records remain truthful

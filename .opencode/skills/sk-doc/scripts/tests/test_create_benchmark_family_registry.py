@@ -13,7 +13,7 @@ import re
 from pathlib import Path
 
 
-GUIDE_ONLY_FAMILIES = frozenset({"agent_improvement", "non_dev_ai_system"})
+GUIDE_ONLY_FAMILIES = frozenset({"agent_improvement"})
 RESOURCE_KEY_ALIASES = {"mcp_promotion": "shared"}
 CONFORMANCE_ASSETS = frozenset(
     {

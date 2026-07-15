@@ -1,6 +1,6 @@
 ---
 name: create-benchmark
-description: Author MCP-promotion, behavior, conformance, skill-benchmark, and model-benchmark artifacts; route Lane A/D authoring guides.
+description: Author MCP-promotion, behavior, conformance, skill-benchmark, and model-benchmark artifacts; route the Lane A authoring guide.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.4.0.0
 ---
@@ -9,7 +9,7 @@ version: 1.4.0.0
 
 # create-benchmark
 
-`create-benchmark` is the benchmark-authoring workflow packet of the `sk-doc` family. It authors five benchmark families, plus an authoring guide for two more that stay code-owned:
+`create-benchmark` is the benchmark-authoring workflow packet of the `sk-doc` family. It authors four benchmark families plus MCP-promotion artifacts, and provides an authoring guide for one more lane that stays code-owned:
 
 - **MCP promotion benchmark** — turn a shipped spec packet's curated benchmark evidence into a consuming skill's `mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/` folder, so MCP operators can find the winner, fixture, caveats, replay commands, and source packet without leaving the skill tree (sections 3 through 8).
 - **Behavior benchmark** — author a `<mode>/behavior_benchmark/` package (index, per-scenario machine contracts, and a Claude baseline) that specifies executor-model behavior at a deep-loop mode's invocation surface, governed by the shared measurement framework (section 9).
@@ -17,7 +17,7 @@ version: 1.4.0.0
 - **Skill-benchmark (Lane C)** — author a hub's `benchmark/` storage tree and its `benchmark/README.md` run-label index; the per-run `skill-benchmark-report.md` is a renderer-owned render this packet never authors (section 10).
 - **Model-benchmark (Lane B)** — author the Lane B input fixtures (code-task oracle, pattern/capability, reviewer-prompt) and the run profiles; the evaluator, scorers, and reviewer-verdict contract stay lane-local (section 11).
 
-Lane A (agent-improvement) and Lane D (non-dev AI-system improvement) carry an authoring guide here (section 14); artifacts stay code-owned in-lane.
+Lane A (agent-improvement) carries an authoring guide here (section 14); artifacts stay code-owned in-lane.
 
 The skill-local surface is the look-here-first entry point, not the archive.
 
@@ -34,7 +34,7 @@ Use this packet when a completed benchmark, or a benchmark's input artifacts, ne
 - **Conformance benchmark** (section 12) — author a deterministic `conformance_benchmark` input package for a peer-adapter or deep-alignment benchmark, including the family index, contract, lane config, and fixture manifest; triggers include `conformance benchmark`, `conformance_benchmark`, `peer adapter benchmark`, `deep-alignment benchmark`, `lane-config benchmark`, and `sk-doc-command`.
 - **Skill-benchmark** (section 10) — author or update a hub's `benchmark/README.md` run-label index, or establish the `benchmark/` storage convention (sibling run-label folders, frozen `baseline/` anchor) for a Lane C tree.
 - **Model-benchmark** (section 11) — author a Lane B input fixture (code-task oracle, pattern/capability, or reviewer-prompt) or a run profile that selects fixtures, models, frameworks, scoring, and the gate.
-- **Lane A/D guides** (section 14) — author the Lane A (`agent_improvement`) or Lane D (`non_dev_ai_system`) authoring guide; rubrics, configs, and templates stay in-lane.
+- **Lane A guide** (section 14) — author the Lane A (`agent_improvement`) authoring guide; rubrics, configs, and templates stay in-lane.
 
 Keyword triggers: `benchmark_report.md`, `SOURCE.md`, `mcp_server/benchmarks`, `MCP bake-off`; `behavior benchmark`, `behavior_benchmark.md`, `scenario contract`, `claude-baseline`; `conformance benchmark`, `conformance_benchmark`, `peer adapter benchmark`, `deep-alignment benchmark`, `lane-config benchmark`, `sk-doc-command`; `skill-benchmark`, `benchmark/README.md`, `run-label folder`, `benchmark package`; `model-benchmark`, `benchmark fixture`, `benchmark profile`, `reviewer-prompt fixture`.
 
@@ -97,7 +97,6 @@ Route to the right family before authoring. The **OWNS** column is what this pac
 | Skill-benchmark (`skill_benchmark`, Lane C) | Whether a skill is well-routed, discoverable, efficient, and useful | `<skill>/benchmark/<run-label>/` | The storage guide + the hub `benchmark/README.md` index template | `skill-benchmark-report.md` render → `build-report.cjs`; D1-D5 scoring → deep-improvement `scoring_contract.md` | §10 |
 | Model-benchmark (`model_benchmark`, Lane B) | What a model or prompt framework produces against a held-out oracle | `system-deep-loop/deep-improvement/assets/model_benchmark/` | Code-task, pattern/capability, and reviewer fixture templates + the profile template + the fixture guide | Evaluator / scorer / reviewer-verdict contract → deep-improvement lane | §11 |
 | Agent-improvement (`agent_improvement`, Lane A) | An agent's quality across five dimensions | deep-improvement lane (in-lane) | Authoring guide ([guide](references/agent_improvement/agent_improvement_authoring_guide.md)) | Code-owned rubric/config; run by `/deep:agent-improvement` | §14 |
-| AI-system improvement (`non_dev_ai_system`, Lane D) | A non-dev AI-system packaging's technique docs | deep-improvement lane (in-lane) | Authoring guide ([guide](references/non_dev_ai_system/non_dev_ai_system_authoring_guide.md)) | Code-owned schema/templates; run by `/deep:ai-system-improvement` | §14 |
 
 ### Routing Decision
 
@@ -113,9 +112,9 @@ family key and tiered fallback vary:
 ```python
 DEFAULT_RESOURCE = "references/README.md"
 FAMILIES = ["behavior_benchmark", "conformance_benchmark", "skill_benchmark", "model_benchmark",
-            "agent_improvement", "non_dev_ai_system", "mcp_promotion"]
+            "agent_improvement", "mcp_promotion"]
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the benchmark family (MCP promotion, behavior, conformance, skill, model, agent, AI-system)",
+    "Confirm the benchmark family (MCP promotion, behavior, conformance, skill, model, agent)",
     "Confirm what is authored here vs lane-owned, then the storage location and run label",
 ]
 
@@ -143,7 +142,7 @@ def route_benchmark_request(request):
 
 ### Family Boundary
 
-This nested `sk-doc` packet owns benchmark *authoring* only — no measurement contract (rubrics, renderers, scorers, evaluator/verdict contracts stay lane-local; Lane A/D get a guide template only, `assets: N/A`). The single advisor identity lives at the `sk-doc` hub root; never add a packet-local `graph-metadata.json`.
+This nested `sk-doc` packet owns benchmark *authoring* only — no measurement contract (rubrics, renderers, scorers, evaluator/verdict contracts stay lane-local; Lane A gets a guide template only, `assets: N/A`). The single advisor identity lives at the `sk-doc` hub root; never add a packet-local `graph-metadata.json`.
 
 ---
 
@@ -561,7 +560,7 @@ discovery, convergence, reduction, and generated reports stay lane-owned.
 
 ## 13. INTEGRATION POINTS
 
-This packet authors inputs and indexes only, never runs a benchmark: `/deep:skill-benchmark`, `/deep:model-benchmark`, `/deep:agent-improvement`, and `/deep:ai-system-improvement` each run their lane against what is templated here (§10, §11, §14). Conformance authoring stops before its peer adapter or deep-alignment execution (§12).
+This packet authors inputs and indexes only, never runs a benchmark: `/deep:skill-benchmark`, `/deep:model-benchmark`, and `/deep:agent-improvement` each run their lane against what is templated here (§10, §11, §14). Conformance authoring stops before its peer adapter or deep-alignment execution (§12).
 
 ---
 
@@ -575,7 +574,6 @@ This packet authors inputs and indexes only, never runs a benchmark: `/deep:skil
 - [`references/skill_benchmark/skill_benchmark_storage_guide.md`](references/skill_benchmark/skill_benchmark_storage_guide.md) — skill-benchmark storage convention and renderer boundary (§10).
 - [`references/model_benchmark/model_benchmark_fixture_guide.md`](references/model_benchmark/model_benchmark_fixture_guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§11).
 - [`agent_improvement_authoring_guide.md`](references/agent_improvement/agent_improvement_authoring_guide.md) — Lane A input authoring (§2).
-- [`non_dev_ai_system_authoring_guide.md`](references/non_dev_ai_system/non_dev_ai_system_authoring_guide.md) — Lane D input authoring (§2).
 
 **Lane-owned contracts** — cross-link, never restate:
 

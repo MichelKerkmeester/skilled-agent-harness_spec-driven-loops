@@ -30,7 +30,7 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 **Why this route is expected**:
 - Hub source: system-deep-loop is for active deep-loop workflows, not single quick read/edit work.
 - Hub source: When NOT to Use includes `A single quick read/edit (no loop) - use the relevant code or doc skill directly.`
-- Registry evidence: every deep-loop mode requires a matching `workflowMode` such as `research`, `review`, `ai-council`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, or `ai-system-improvement`; the prompt does not express any of those controls.
+- Registry evidence: every deep-loop mode requires a matching `workflowMode` such as `research`, `review`, `ai-council`, `agent-improvement`, `model-benchmark`, or `skill-benchmark`; the prompt does not express any of those controls.
 
 **Desired user-visible outcome**: The advisor or orchestrator routes the prompt to `sk-code` and does not load or invoke the deep-loop hub.
 

@@ -5,8 +5,8 @@
 'use strict';
 
 /**
- * Single shared implementation of the flag dialect used by loop-host.cjs,
- * run-non-dev-ai-system.cjs and fixture-lint.cjs. One dialect, three call
+ * Single shared implementation of the flag dialect used by loop-host.cjs and
+ * fixture-lint.cjs. One dialect, two call
  * sites:
  *
  *   --key=value   =-form: binds everything after '=' (including the empty
@@ -20,7 +20,7 @@
  * space-separated args (--profile {p} --scorer 5dim --grader noop), so these
  * must bind to the following token rather than parse as booleans.
  *
- * Scope note: only the three scripts above share this dialect. Other lane
+ * Scope note: only the two scripts above share this dialect. Other lane
  * scripts (e.g. score-candidate.cjs key=value-only parsing) keep their own
  * parsers on purpose — no behavior-preserving superset exists across all of
  * them.

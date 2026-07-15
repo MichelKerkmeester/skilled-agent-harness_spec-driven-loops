@@ -778,7 +778,7 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 
 ### 🔄 Deep Loop
 
-The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Four loop families (research, review, AI council, improvement) live as nested mode packets inside one parent skill, `system-deep-loop`, and all run on one shared runtime, `runtime/`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries four co-equal lanes (agent improvement, model benchmark, skill benchmark, non-dev AI system refine), giving seven `/deep:*` loop commands in total.
+The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Four loop families (research, review, AI council, improvement) live as nested mode packets inside one parent skill, `system-deep-loop`, and all run on one shared runtime, `runtime/`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries three co-equal lanes (agent improvement, model benchmark, skill benchmark), giving six `/deep:*` loop commands in total.
 
 #### How It Works
 
@@ -858,12 +858,12 @@ Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs
 &nbsp;
 #### Agent Improvement & Benchmarking
 
-Four co-equal lanes in the `system-deep-loop` improvement mode. Lane A reviews and upgrades any of your agents: `/deep:agent-improvement` runs `@deep-improvement`. Lane B benchmarks a model or prompt framework: `/deep:model-benchmark`. Lane C diagnoses a skill's real-world routing, discovery, efficiency and usefulness: `/deep:skill-benchmark`. Lane D benchmarks an AI-system packaging and auto-refines its technique docs behind hard guardrails: `/deep:ai-system-improvement`.
+Three co-equal lanes in the `system-deep-loop` improvement mode. Lane A reviews and upgrades any of your agents: `/deep:agent-improvement` runs `@deep-improvement`. Lane B benchmarks a model or prompt framework: `/deep:model-benchmark`. Lane C diagnoses a skill's real-world routing, discovery, efficiency and usefulness: `/deep:skill-benchmark`.
 - **Objective scoring:** rates an agent across five dimensions with fixed, repeatable checks, not another AI's opinion
 - **Sees the whole footprint:** finds every place the agent lives (definition, mirrors, commands, workflows, skills) before changing anything
 - **Never breaks the original:** changes go to a sandbox copy and only get promoted after they pass scoring, benchmarks and your approval, with rollback if they don't
 - **Knows when to stop:** ends once the scores stop improving
-- **Benchmarks too (Lanes B/C/D):** models and prompt frameworks against fixtures with pattern or 5-dimension scoring (deterministic or graded), skills against real routing and discovery behavior, and non-dev AI-system packagings against a correctness-gated gauntlet
+- **Benchmarks too (Lanes B/C):** models and prompt frameworks against fixtures with pattern or 5-dimension scoring (deterministic or graded), and skills against real routing and discovery behavior
 
 For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.opencode/skills/system-deep-loop/README.md), which documents each mode.
 
@@ -1127,7 +1127,7 @@ The MCP server also ships explicit stress and matrix execution surfaces. Run `np
 &nbsp;
 #### DEEP
 
-The active autonomous loop families (the improvement family carries four lanes). See the [Deep Loop](#deep-loop) section for how they run. Use `@context` for one-shot retrieval before planning.
+The active autonomous loop families (the improvement family carries three lanes). See the [Deep Loop](#deep-loop) section for how they run. Use `@context` for one-shot retrieval before planning.
 
 **AI Council** (`/deep:ai-council`)
 - Multi-seat planning for complex decisions, planning-only. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
@@ -1146,9 +1146,6 @@ The active autonomous loop families (the improvement family carries four lanes).
 
 **Skill Benchmark** (`/deep:skill-benchmark`)
 - Diagnoses a skill's real-world routing, discovery and usefulness. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
-
-**Non-Dev AI System** (`/deep:ai-system-improvement`)
-- Benchmarks an AI-system packaging with correctness-gated auto-refinement. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
 &nbsp;
 #### DOCTOR

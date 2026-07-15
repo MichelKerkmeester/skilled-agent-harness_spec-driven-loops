@@ -5,7 +5,7 @@ description: "Routes research, review, AI Council, improvement, and named-standa
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
 
-<!-- Keywords: system-deep-loop, deep-loop, deep-research, deep-review, deep-ai-council, deep-improvement, deep-alignment, alignment, conformance, standard-authority, alignment-lane, conformance-review, read-only-default, context-gathering, reuse-catalog, autoresearch, iterative-research, review-loop, deep-review-wave, release-readiness, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, agent-improvement, benchmark-harness, model-benchmark, skill-benchmark, non-dev-ai-system, convergence-detection, externalized-state, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
+<!-- Keywords: system-deep-loop, deep-loop, deep-research, deep-review, deep-ai-council, deep-improvement, deep-alignment, alignment, conformance, standard-authority, alignment-lane, conformance-review, read-only-default, context-gathering, reuse-catalog, autoresearch, iterative-research, review-loop, deep-review-wave, release-readiness, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, agent-improvement, benchmark-harness, model-benchmark, skill-benchmark, convergence-detection, externalized-state, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
 
 # System Deep Loop
 
@@ -24,7 +24,7 @@ Use this skill (through the hub) for any active deep-loop workflow. Invoke it as
 | **research** | Outward, web + code iterative investigation → `research/research.md` | `system-deep-loop/deep-research/` | `/deep:research` | `deep-research` |
 | **review** | Iterative review loop → P0/P1/P2 findings + verdict | `system-deep-loop/deep-review/` | `/deep:review` | `deep-review` |
 | **ai-council** | Multi-seat planning deliberation → `ai-council/**` artifacts | `system-deep-loop/deep-ai-council/` | `/deep:ai-council` | `ai-council` |
-| **improvement** (4 lanes) | Evaluator-first improvement: `agent-improvement`, `model-benchmark`, `skill-benchmark`, `non-dev-ai-system-refine` | `system-deep-loop/deep-improvement/` | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement` | `deep-improvement` |
+| **improvement** (3 lanes) | Evaluator-first improvement: `agent-improvement`, `model-benchmark`, `skill-benchmark` | `system-deep-loop/deep-improvement/` | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` | `deep-improvement` |
 | **alignment** | Read-only-by-default conformance audit against a named standard authority | `system-deep-loop/deep-alignment/` | `/deep:alignment` | `deep-alignment` |
 
 ### When NOT to Use
@@ -44,9 +44,9 @@ This hub is an intent/registry router, not a keyed resource-discovery router: it
 The hub's own routing logic is read-only (classify, guard a path, load a packet). The frontmatter `allowed-tools` list is nonetheless broad because, per the two-axis hub canon contract, a hub's tool grant MUST equal the exact union of every registered mode's `toolSurface.allowed` in `mode-registry.json` — not the tool set the hub's own logic uses. This is a hard invariant enforced by `parent-skill-check.cjs` (check 3j: "hub allowed-tools equals the union of mode tool surfaces"); narrowing the frontmatter grant to only what routing-only logic needs would fail that check and break every mode whose `toolSurface` isn't a subset of the narrowed list. Treat the breadth of `allowed-tools` as evidence of the child modes' combined needs, not of mutating logic living in the hub.
 
 ### The three-tier discriminator
-- **`workflowMode`** — the public active mode key: `research`, `review`, `ai-council`, `alignment`, and the four improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`, `ai-system-improvement` (its loop-host mode stays `non-dev-ai-system-refine`).
-- **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for all four improvement lanes; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`, while `alignment` maps to `runtimeLoopType: review`.
-- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review/ai-council/alignment), `improvement-host` (`deep-improvement/scripts/shared/loop-host.cjs --mode`), or `external-adapter` (non-dev-ai-system; the loop is owned by external packaging).
+- **`workflowMode`** — the public active mode key: `research`, `review`, `ai-council`, `alignment`, and the three improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`.
+- **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for all three improvement lanes; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`, while `alignment` maps to `runtimeLoopType: review`.
+- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review/ai-council/alignment) or `improvement-host` (`deep-improvement/scripts/shared/loop-host.cjs --mode`).
 
 ### Routing rule
 ```
@@ -60,9 +60,9 @@ else:
   → guard registry[mode].packet/SKILL.md inside SKILL_ROOT and load it only if the packet directory and SKILL.md both exist
        e.g. registry["research"].packet → system-deep-loop/deep-research/SKILL.md
        e.g. registry["alignment"].packet → system-deep-loop/deep-alignment/SKILL.md
-       (the 4 improvement modes all share the system-deep-loop/deep-improvement/ packet)
+       (the 3 improvement modes all share the system-deep-loop/deep-improvement/ packet)
   → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
-     else: backend = improvement loop-host (--mode) or external adapter, per backendKind
+     else: backend = improvement loop-host (--mode), per backendKind
 ```
 
 Router-driven loads MUST use `_guard_in_skill(relative_path)` before `load()`, reject paths that escape this skill or do not end in `.md`, and check `if packet_base.exists()` plus `if packet_skill.exists()` before loading. The fallback must name the unresolved `workflowMode` when known, avoid loading any guessed packet, and ask the operator to provide one of the registered modes or the matching `/deep:*` command.
@@ -108,7 +108,7 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 - **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or `shared/`.
 
 ### ⚠️ ESCALATE IF
-- A new mode is needed beyond the eight registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
+- A new mode is needed beyond the seven registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
 - A change would require the runtime to gain MCP tools or an improvement loopType — that contradicts the architecture; escalate.
 
 ---
@@ -137,7 +137,7 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 - `research` — outward web + code iterative investigation (`research/research.md`).
 - `review` — iterative review loop, P0/P1/P2 findings + verdict.
 - `ai-council` — multi-seat planning deliberation (`ai-council/**` artifacts).
-- `improvement` (4 lanes) — evaluator-first agent/model/skill/non-dev-system improvement.
+- `improvement` (3 lanes) — evaluator-first agent/model/skill improvement.
 - `alignment` — read-only-by-default conformance audit against a named standard authority (`alignment/` artifacts).
 
 ### Surfaces and Consumers

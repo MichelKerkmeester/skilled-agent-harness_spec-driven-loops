@@ -26,12 +26,12 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 20 deterministic scenarios across 5 categories validating the `system-deep-loop` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 18 deterministic scenarios across 5 categories validating the `system-deep-loop` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`. It exercises:
 - Dominant-intent routing for the lexical modes: `research`, `review`, and `ai-council`.
 - Explicit mode-hint override routing, such as `research: <request>`.
-- The four improvement lanes that share the `deep-improvement` packet: `agent-improvement`, `model-benchmark`, `skill-benchmark`, and `ai-system-improvement`.
+- The three improvement lanes that share the `deep-improvement` packet: `agent-improvement`, `model-benchmark`, and `skill-benchmark`.
 - Advisor integration: the single advisor identity `system-deep-loop`, lexical scoring, alias-fold default behavior, command-bridge behavior, and no false fire on ordinary code-edit prompts.
 - The three-tier discriminator: `workflowMode`, `runtimeLoopType`, and `backendKind`.
 - State and convergence discipline: externalized state, artifact-root writes, convergence stop behavior, and hub logic boundaries.
@@ -129,8 +129,8 @@ For each executed scenario, check:
 
 Release is READY only when:
 1. No feature verdict is FAIL.
-2. All critical scenarios are PASS: MR-001, MR-002, MR-003, IL-001, IL-002, IL-003, IL-004, AI-001, AI-004, RB-001, RB-003, RB-004, SC-001, SC-002, SC-004.
-3. Coverage is 100% of playbook scenarios: 20 / 20.
+2. All critical scenarios are PASS: MR-001, MR-002, MR-003, IL-001, IL-002, IL-003, AI-001, AI-004, RB-001, RB-003, SC-001, SC-002, SC-004.
+3. Coverage is 100% of playbook scenarios: 18 / 18.
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -150,14 +150,13 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 | `MR-003` | AI Council Routing | Multi-seat planning deliberation resolves to `ai-council` | `mode-routing/ai-council-routing.md` | Yes |
 | `MR-004` | Mode-Hint Override | Explicit `research:` hint overrides ambiguous wording | `mode-routing/mode-hint-override.md` | No |
 
-### Improvement Lane Routing (`IL-001..IL-004`)
+### Improvement Lane Routing (`IL-001..IL-003`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
 | `IL-001` | Agent Improvement | Alias-fold default routes agent evaluation to `agent-improvement` | `improvement-lane-routing/agent-improvement.md` | Yes |
 | `IL-002` | Model Benchmark | `/deep:model-benchmark` command routes to `model-benchmark` | `improvement-lane-routing/model-benchmark.md` | Yes |
 | `IL-003` | Skill Benchmark | `/deep:skill-benchmark` command routes to `skill-benchmark` | `improvement-lane-routing/skill-benchmark.md` | Yes |
-| `IL-004` | AI System Improvement | `/deep:ai-system-improvement` command routes to `ai-system-improvement` | `improvement-lane-routing/ai-system-improvement.md` | Yes |
 
 ### Advisor Integration (`AI-001..AI-004`)
 
@@ -168,14 +167,13 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 | `AI-003` | Command-Bridge Guard | Command-bridge modes do not fire from bare advisor aliases | `advisor-integration/command-bridge-guard.md` | No |
 | `AI-004` | No False Fire | Plain code-edit prompt routes to `sk-code`, not deep-loop | `advisor-integration/no-false-fire-code-edit.md` | Yes |
 
-### Runtime and Backend (`RB-001..RB-004`)
+### Runtime and Backend (`RB-001..RB-003`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
 | `RB-001` | Runtime Loop Research | `research` resolves to `runtime-loop-type` and `runtimeLoopType: research` | `runtime-and-backend/runtime-loop-research.md` | Yes |
 | `RB-002` | Runtime Loop Council | `ai-council` resolves to `runtime-loop-type` and `runtimeLoopType: council` | `runtime-and-backend/runtime-loop-council.md` | No |
 | `RB-003` | Improvement Host | `agent-improvement` resolves to `improvement-host` and null runtime loop type | `runtime-and-backend/improvement-host.md` | Yes |
-| `RB-004` | External Adapter | `ai-system-improvement` resolves to `external-adapter` and null runtime loop type | `runtime-and-backend/external-adapter.md` | Yes |
 
 ### State and Convergence Discipline (`SC-001..SC-004`)
 
@@ -193,7 +191,7 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 Automated drift guards may exist for advisor projection maps, but this playbook is the manual validation surface for operator-observed routing behavior. Do not treat an automated guard as a substitute for the scenario transcripts unless the feature file explicitly allows the automated output as supporting evidence.
 
 Tests NOT covered by automation here:
-- End-to-end advisor prompt behavior for the 20 manual scenarios.
+- End-to-end advisor prompt behavior for the 18 manual scenarios.
 - Operator-visible command routing transcript quality.
 - Runtime response shape proving the hub stayed routing-only.
 - Artifact-root and state-discipline evidence from live iteration dry-runs.
@@ -211,7 +209,6 @@ Tests NOT covered by automation here:
 | Improvement Lane Routing | IL-001 | `improvement-lane-routing/agent-improvement.md` | Yes |
 | Improvement Lane Routing | IL-002 | `improvement-lane-routing/model-benchmark.md` | Yes |
 | Improvement Lane Routing | IL-003 | `improvement-lane-routing/skill-benchmark.md` | Yes |
-| Improvement Lane Routing | IL-004 | `improvement-lane-routing/ai-system-improvement.md` | Yes |
 | Advisor Integration | AI-001 | `advisor-integration/single-advisor-identity.md` | Yes |
 | Advisor Integration | AI-002 | `advisor-integration/lexical-mode-scoring.md` | No |
 | Advisor Integration | AI-003 | `advisor-integration/command-bridge-guard.md` | No |
@@ -219,12 +216,11 @@ Tests NOT covered by automation here:
 | Runtime and Backend | RB-001 | `runtime-and-backend/runtime-loop-research.md` | Yes |
 | Runtime and Backend | RB-002 | `runtime-and-backend/runtime-loop-council.md` | No |
 | Runtime and Backend | RB-003 | `runtime-and-backend/improvement-host.md` | Yes |
-| Runtime and Backend | RB-004 | `runtime-and-backend/external-adapter.md` | Yes |
 | State and Convergence Discipline | SC-001 | `state-and-convergence-discipline/externalized-state.md` | Yes |
 | State and Convergence Discipline | SC-002 | `state-and-convergence-discipline/artifact-root-writes.md` | Yes |
 | State and Convergence Discipline | SC-003 | `state-and-convergence-discipline/convergence-stop.md` | No |
 | State and Convergence Discipline | SC-004 | `state-and-convergence-discipline/hub-logic-boundary.md` | Yes |
 
-**Total scenarios**: 20
-**Critical-path scenarios**: 15
+**Total scenarios**: 18
+**Critical-path scenarios**: 13
 **Categories**: 5

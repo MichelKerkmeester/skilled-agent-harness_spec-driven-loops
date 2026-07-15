@@ -8,7 +8,7 @@ version: "1.1.0.0"
 
 ## 1. OVERVIEW
 
-This scenario verifies that `model-benchmark`, `skill-benchmark`, and `ai-system-improvement` are command-bridge modes. They are reached by their commands, not by a bare `deep-improvement` advisor alias.
+This scenario verifies that `model-benchmark` and `skill-benchmark` are command-bridge modes. They are reached by their commands, not by a bare `deep-improvement` advisor alias.
 
 ## 2. SCENARIO CONTRACT
 
@@ -22,18 +22,16 @@ Benchmark a model against prompt framework candidates.
 **Additional advisor probes** (bare wording must not fire a command-bridge lane without its `/deep:*` command):
 ```
 Benchmark a skill against routing prompts.
-Package an AI system benchmark for a non-dev AI system.
 ```
 
 **Expected route**:
 - Bare prompts should not claim command-bridge routing unless the matching command is present.
-- The matching commands are `/deep:model-benchmark`, `/deep:skill-benchmark`, and `/deep:ai-system-improvement`.
+- The matching commands are `/deep:model-benchmark` and `/deep:skill-benchmark`.
 - The command-bridge modes share agent `deep-improvement` and artifact root `improvement/`.
 
 **Why this route is expected**:
 - `model-benchmark` registry evidence: `advisorRouting.routingClass: "command-bridge"`, `command: "/deep:model-benchmark"`.
 - `skill-benchmark` registry evidence: `advisorRouting.routingClass: "command-bridge"`, `command: "/deep:skill-benchmark"`.
-- `ai-system-improvement` registry evidence: `advisorRouting.routingClass: "command-bridge"`, `command: "/deep:ai-system-improvement"`.
 - Advisor contract evidence: `"command-bridge" = routed by its /deep:* command, not an advisor map entry`.
 
 **Desired user-visible outcome**: The AI either asks the operator to use the explicit command or routes only after the command is present. It must not claim these lanes are selected by a bare `deep-improvement` advisor alias.
@@ -42,7 +40,7 @@ Package an AI system benchmark for a non-dev AI system.
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the three command-bridge entries.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the two command-bridge entries.
 2. Skill advisor is callable.
 
 ### Exact Command Sequence
@@ -58,7 +56,7 @@ Package an AI system benchmark for a non-dev AI system.
 |---|---|
 | 1 | Bare advisor prompts do not establish a command-bridge route by alias alone. |
 | 2 | Hub response asks for the explicit command or avoids claiming a specialized command-bridge lane. |
-| 3 | Command prompts resolve to `model-benchmark`, `skill-benchmark`, and `ai-system-improvement`. |
+| 3 | Command prompts resolve to `model-benchmark` and `skill-benchmark`. |
 | 4 | Each command route matches the registry command, agent, backend, and artifact root. |
 
 ### Pass/Fail Criteria

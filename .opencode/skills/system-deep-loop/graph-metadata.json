@@ -99,8 +99,7 @@
       "agent-improvement",
       "model benchmark",
       "benchmark a model or prompt framework",
-      "skill benchmark",
-      "non-dev ai system"
+      "skill benchmark"
     ],
     "key_topics": [
       "system-deep-loop",
@@ -117,7 +116,6 @@
       "agent-improvement",
       "model-benchmark",
       "skill-benchmark",
-      "non-dev-ai-system-refine",
       "runtime-infrastructure"
     ],
     "key_files": [

@@ -1,6 +1,6 @@
 ---
 title: "deep-improvement Manual Testing Playbook"
-description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, runtime-truth validation, and the model-benchmark, skill-benchmark and non-dev-ai-system lanes."
+description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, runtime-truth validation, and the model-benchmark and skill-benchmark lanes."
 version: 1.17.0.43
 ---
 
@@ -24,17 +24,16 @@ Canonical package artifacts:
 - `agent-discipline-stress-tests/`
 - `model-benchmark-mode/`
 - `skill-benchmark/`
-- `non-dev-ai-system/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08), the Lane B model-benchmark scenarios (09), the Lane C skill-benchmark scenarios (10), and the Lane D non-dev-ai-system scenarios (11). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
+This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08), the Lane B model-benchmark scenarios (09), and the Lane C skill-benchmark scenarios (10). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
 
 ### Lane Note
 
-Scenarios belong to one of four lanes, or are shared. Categories `integration-scanner`, `profile-generator`, `end-to-end-loop`, `runtime-truth`, and `agent-discipline-stress-tests` are Lane A (agent-improvement). Category `model-benchmark-mode` is Lane B (model-benchmark). Category `skill-benchmark` is Lane C (skill-benchmark). Category `non-dev-ai-system` is Lane D (non-dev-ai-system); its loop host is packaging-owned, so its scenarios run against a packaging that implements the `benchmark/_loop/loop.py` contract. Categories `5d-scorer`, `benchmark-integration`, and `reducer-dimensions` are shared, since the agent-improvement and model-benchmark lanes can exercise the 5-dimension scorer, benchmark runner, and reducer surfaces. When an operator runs only one lane, skip the other lanes' categories and record the skip with the lane as the reason.
+Scenarios belong to one of three lanes, or are shared. Categories `integration-scanner`, `profile-generator`, `end-to-end-loop`, `runtime-truth`, and `agent-discipline-stress-tests` are Lane A (agent-improvement). Category `model-benchmark-mode` is Lane B (model-benchmark). Category `skill-benchmark` is Lane C (skill-benchmark). Categories `5d-scorer`, `benchmark-integration`, and `reducer-dimensions` are shared, since the agent-improvement and model-benchmark lanes can exercise the 5-dimension scorer, benchmark runner, and reducer surfaces. When an operator runs only one lane, skip the other lanes' categories and record the skip with the lane as the reason.
 
 ### REALISTIC TEST MODEL
 
@@ -108,7 +107,7 @@ Release is `READY` only when:
 
 1. No feature verdict is `FAIL`.
 2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 and MB-049 (model-benchmark), E2E-050 (accept/ship promotion), and SB-043..048 (skill-benchmark) have all been executed or explicitly skipped with a sandbox blocker.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement numbered subtotal is 50 scenarios (`IS-001..SB-048` plus MB-049 and E2E-050). Lane D `PR-*` scenarios and the reviewer regression `MB-R01` scenario are tracked separately.
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement numbered subtotal is 50 scenarios (`IS-001..SB-048` plus MB-049, E2E-050, and the reviewer regression `MB-R01`).
 4. No unresolved blocking triage item remains.
 5. Drift between root summaries and per-feature files has been resolved, with the per-feature file treated as the temporary source of truth until resynchronized.
 
@@ -873,39 +872,7 @@ Expected signals: the run exits 0 and writes both `skill-benchmark-report.json` 
 
 ---
 
-## 17. NON-DEV-AI-SYSTEM MODE
-
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane D (Non-Dev-AI-System): the packaging-owned guarded refine loop, synthetic-deficit promotion evidence, red-team gauntlet behavior, and the runtime/ self-target profile guard. See `SKILL.md` "Lane D: Non-Dev-AI-System Refine" and `references/non_dev_ai_system/loop_contract.md` for the source-of-truth contract.
-
-### PR-001 | Synthetic-Deficit Promotion And Red-Team Gauntlet
-
-#### Description
-`loop-host --mode=non-dev-ai-system-refine` reaches the packaging-owned `benchmark/_loop/loop.py`; the dispatch-free gauntlet passes its attack battery; a synthetic-deficit live run journals `promote_accept` in an isolated worktree.
-
-#### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, verify Lane D dry-run conformance, the dispatch-free gauntlet, and the synthetic-deficit promotion test. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
-
-Expected signals: dry-run exits 0 with gap analysis and zero dispatches; gauntlet exits 0 with `GAUNTLET: 10/10 passed`; live run exits 0 with `event: "promote_accept"` in the loop journal and held-out independent grade at or above baseline.
-
-#### Test Execution
-> **Feature File:** [PR-001](non_dev_ai_system/synthetic_deficit_and_gauntlet.md)
-
-### PR-002 | Self-Target Packaging Profile
-
-#### Description
-The runtime/ self-target profile freezes scorer and harness surfaces, allows only technique-doc edits, keeps self-target schema fields optional for legacy packagings, and documents the command-level `--self-target` guard.
-
-#### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the Lane D self-target packaging profile for runtime/. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
-
-Expected signals: editable docs exist and are allowed; frozen surfaces exist and are not allowed; schema fields exist but are not required; command and contract docs contain the dry-run default, clean-tree live guard, single-writer lock, explicit `--parallel`, and non-forwarding to `loop-host.cjs`.
-
-#### Test Execution
-> **Feature File:** [PR-002](non_dev_ai_system/self_target_packaging_profile.md)
-
----
-
-## 18. AUTOMATED TEST CROSS-REFERENCE
+## 17. AUTOMATED TEST CROSS-REFERENCE
 
 The manual scenarios exercise the operator-visible behavior. Runtime helper coverage lives lane-locally under each lane's `tests/` (`scripts/<lane>/tests/`; see `scripts/shared/tests/README.md` for the index) and should be used as regression evidence when a scenario touches the matching helper.
 
@@ -920,11 +887,10 @@ The manual scenarios exercise the operator-visible behavior. Runtime helper cove
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts` | Benchmark-mode promotion gates, accept/ship split, rollback, and preserved-branch events used by MB-049 and E2E-050 |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts` | Lane mix and benchmark delta reducer summaries used by MB-049 |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Skill-benchmark router-replay, D5 connectivity, scoring, and dual-report helpers used by SB-043..SB-048 |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts` | Lane D self-target profile, schema, command, and contract coverage used by PR-002 |
 
 ---
 
-## 19. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 The feature catalog root is `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/feature_catalog.md`. Use it as the current-state capability index when a scenario needs source-of-truth feature context beyond the command transcript.
 
@@ -939,6 +905,5 @@ The feature catalog root is `.opencode/skills/system-deep-loop/deep-improvement/
 | Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
 | Model-Benchmark Mode | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/model_benchmark_mode/mode_switch.md`, `model-dispatcher.md`, `opt-in-5dim-scorer.md`, `mode-records-and-gates.md`, `score-delta-benchmark-gates.md` |
 | Skill-Benchmark Mode | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/skill_benchmark/mode_wiring.md`, `02-contamination-gate-and-fixtures.md`, `03-router-replay-and-advisor-probe.md`, `04-d5-connectivity-gate.md`, `05-scoring-and-funnel.md`, `06-dual-report-and-remediation.md` |
-| Non-Dev-AI-System Mode | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/non_dev_ai_system/guarded_refine_loop.md`, `self-target-packaging-profile.md` |
 
 Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model_benchmark/evaluator_contract.md`, `references/agent_improvement/integration_scanning.md`, and `references/shared/quick_reference.md`.

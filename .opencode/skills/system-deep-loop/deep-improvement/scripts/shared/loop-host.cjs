@@ -21,11 +21,6 @@
  *     node loop-host.cjs --mode=model-benchmark --profile=<path-or-id> --outputs-dir=<path> \
  *        [--output=<path>] [--state-log=<path>] [--label=<string>] [--profiles-dir=<path>] \
  *        [--scorer=<pattern|5dim>] [--grader=<noop|mock|llm>]
- *   non-dev-ai-system-refine (Lane D):
- *     node loop-host.cjs --mode=non-dev-ai-system-refine --packaging-root=<path> \
- *        [--live] [--max-iters=<n>] [--fixtures=<a,b>] [--variants=<a,b>] \
- *        [--held-out=<a,b>] [--samples=<n>] [--proposer-model=<id>] [--grader-model=<id>]
- *
  * Unknown --mode values warn to stderr and fall back to agent-improvement.
  */
 
@@ -42,7 +37,7 @@ const { parseArgs } = require('./parse-args.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SCRIPTS_ROOT = __dirname;
-const VALID_MODES = new Set(['agent-improvement', 'model-benchmark', 'skill-benchmark', 'non-dev-ai-system-refine']);
+const VALID_MODES = new Set(['agent-improvement', 'model-benchmark', 'skill-benchmark']);
 
 // Lane separation: planInvocation() returns BARE script names (e.g.
 // 'score-candidate.cjs') to keep the backward-compat identity plan
@@ -70,29 +65,6 @@ const LANE_MODEL_BENCHMARK = new Set([
 const LANE_SKILL_BENCHMARK = new Set([
   'run-skill-benchmark.cjs',
 ]);
-// Lane D (non-dev-ai-system-refine): a thin adapter that spawns the loop
-// host living WITH the packaging under test (<packaging-root>/benchmark/_loop/loop.py).
-// The guarded loop logic (frozen scoring surface, independent re-grade,
-// worktree promote-N, kill-switches) belongs to the packaging, not this skill.
-const LANE_NON_DEV_AI_SYSTEM = new Set([
-  'run-non-dev-ai-system.cjs',
-]);
-
-// Optional flags loop-host forwards to run-non-dev-ai-system.cjs, in forwarding
-// order. --packaging-root is required and handled separately. This list is
-// exactly the surface run-non-dev-ai-system.cjs consumes (--live + its
-// ENV_FORWARD map + --max-iters).
-const NON_DEV_AI_SYSTEM_RUN_OPTIONS = [
-  'live',
-  'max-iters',
-  'fixtures',
-  'variants',
-  'held-out',
-  'samples',
-  'proposer-model',
-  'grader-model',
-];
-
 // Optional flags loop-host forwards to run-skill-benchmark.cjs, in forwarding
 // order. --skill and --outputs-dir are required and handled separately. This
 // list is exactly the set run-skill-benchmark.cjs's run() reads; forwarding a
@@ -152,9 +124,6 @@ function resolveScriptPath(scriptName) {
   if (LANE_SKILL_BENCHMARK.has(scriptName)) {
     return path.join(SCRIPTS_ROOT, '..', 'skill-benchmark', scriptName);
   }
-  if (LANE_NON_DEV_AI_SYSTEM.has(scriptName)) {
-    return path.join(SCRIPTS_ROOT, '..', 'non-dev-ai-system', scriptName);
-  }
   // Other shared scripts (materialize-benchmark-fixtures, promote-candidate,
   // reduce-state, improvement-journal, mutation-coverage) live alongside this file.
   return path.join(SCRIPTS_ROOT, scriptName);
@@ -183,7 +152,7 @@ function resolveMode(rawMode) {
  * the identity gate can assert byte-identical plans for the default and explicit
  * agent-improvement routes without spawning anything.
  *
- * @param {string} mode - Resolved run mode (agent-improvement, model-benchmark, skill-benchmark, non-dev-ai-system-refine)
+ * @param {string} mode - Resolved run mode (agent-improvement, model-benchmark, skill-benchmark)
  * @param {object} args - Parsed CLI args keyed by flag name
  * @returns {{ ok: true, steps: Array<{script: string, args: string[]}> } | { ok: false, error: string }}
  */
@@ -232,22 +201,6 @@ function planInvocation(mode, args) {
     }
     return { ok: true, steps: [{ script: 'run-skill-benchmark.cjs', args: skillArgs }] };
   }
-  if (mode === 'non-dev-ai-system-refine') {
-    if (!args['packaging-root']) {
-      return { ok: false, error: 'non-dev-ai-system-refine: missing required --packaging-root=<path>' };
-    }
-    // Single adapter step (same single-orchestrator plan shape as Lane C): run-non-dev-ai-system.cjs validates the
-    // benchmark/_loop/loop.py contract and spawns the packaging's own guarded loop host.
-    // Lane D scripts use space-separated args. --live is a boolean: forwarded
-    // bare so the adapter's parser keeps it a flag, not a key/value pair.
-    const refineArgs = ['--packaging-root', String(args['packaging-root'])];
-    for (const opt of NON_DEV_AI_SYSTEM_RUN_OPTIONS) {
-      if (args[opt] === undefined) continue;
-      if (args[opt] === true) refineArgs.push(`--${opt}`);
-      else refineArgs.push(`--${opt}`, String(args[opt]));
-    }
-    return { ok: true, steps: [{ script: 'run-non-dev-ai-system.cjs', args: refineArgs }] };
-  }
   // agent-improvement (default). score-candidate.cjs uses key=value args.
   if (!args.candidate) {
     return { ok: false, error: 'agent-improvement: missing required --candidate=<path>' };
@@ -294,4 +247,4 @@ if (require.main === module) main();
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { parseArgs, resolveMode, planInvocation, resolveScriptPath, VALID_MODES, LANE_SKILL_BENCHMARK, LANE_NON_DEV_AI_SYSTEM };
+module.exports = { parseArgs, resolveMode, planInvocation, resolveScriptPath, VALID_MODES, LANE_SKILL_BENCHMARK };

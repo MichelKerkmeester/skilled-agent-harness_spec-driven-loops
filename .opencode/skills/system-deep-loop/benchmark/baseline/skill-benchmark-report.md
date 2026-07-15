@@ -6,8 +6,8 @@
 
 ## Coverage
 
-- Scored (text executors): **16** · routed out to browser harness: **4**
-- By class — routing: 16 · advisor: 0 · browser: 4
+- Scored (text executors): **14** · routed out to browser harness: **4**
+- By class — routing: 14 · advisor: 0 · browser: 4
 
 ## Dimension scores
 
@@ -29,7 +29,7 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Funnel
 
-- passed: 16
+- passed: 14
 
 ## Ranked bottlenecks
 
@@ -46,7 +46,6 @@ _None._
 | IL-001 | routing | 69/100 | passed |
 | IL-002 | routing | 69/100 | passed |
 | IL-003 | routing | 69/100 | passed |
-| IL-004 | routing | 69/100 | passed |
 | AI-001 | routing | 69/100 | passed |
 | AI-002 | routing | 69/100 | passed |
 | AI-003 | routing | 100/100 | passed |
@@ -54,7 +53,6 @@ _None._
 | RB-001 | routing | 69/100 | passed |
 | RB-002 | routing | 69/100 | passed |
 | RB-003 | routing | 69/100 | passed |
-| RB-004 | routing | 69/100 | passed |
 | SC-001 | routing | 69/100 | passed |
 | SC-002 | routing | 69/100 | passed |
 | SC-003 | routing | 69/100 | passed |
@@ -65,14 +63,12 @@ _None._
 _Playbook prompts intentionally carry trigger words; these are reported as drift signals, not scenario failures._
 - IL-002: model-benchmark, model benchmark
 - IL-003: skill-benchmark, skill benchmark, skill
-- IL-004: ai-system-improvement, non-dev ai system
 - AI-001: research
 - AI-002: research, deep-research, iterative investigation workflow
 - AI-003: benchmark a model
 - RB-001: research
 - RB-002: ai council deliberation
 - RB-003: agent-improvement
-- RB-004: ai-system-improvement
 - SC-001: review
 - SC-002: ai council deliberation
 - SC-003: research
@@ -81,4 +77,4 @@ _Playbook prompts intentionally carry trigger words; these are reported as drift
 ## Methodology / caveats
 
 - Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0).
-- Scenario count: 20.
+- Scenario count: 18.

@@ -42,7 +42,7 @@ Commands are organized into five groups plus root-level utilities:
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 10 | Scaffold OpenCode components, documentation packages, and changelogs |
-| **deep** | `commands/deep/` | 7 | Deep research, review, AI council, improvement and benchmark loops |
+| **deep** | `commands/deep/` | 6 | Deep research, review, AI council, improvement and benchmark loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
@@ -88,7 +88,6 @@ command/
 ├── deep/                     # Deep-loop commands
 │   ├── agent-improvement.md  # Evaluator-first agent improvement loop
 │   ├── ai-council.md         # Multi-seat AI council planning
-│   ├── ai-system-improvement.md # AI-system packaging improvement loop
 │   ├── model-benchmark.md    # Model/prompt-framework benchmark loop
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
@@ -160,7 +159,6 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 | Model Benchmark | `/deep:model-benchmark [profile] [:auto\|:confirm]` | Benchmark and optimize a model or prompt framework against fixtures |
 | Research Loop | `/deep:research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
-| AI System Improvement | `/deep:ai-system-improvement <target> [:auto\|:confirm]` | Benchmark and refine an AI-system packaging behind guardrails |
 | Skill Benchmark | `/deep:skill-benchmark <skill> [:auto\|:confirm]` | Benchmark a skill routing, discovery, efficiency and usefulness |
 
 ### Root Commands

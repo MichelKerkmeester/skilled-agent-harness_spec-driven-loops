@@ -5,6 +5,5 @@
   "deep/alignment": "fix",
   "deep/agent-improvement": "fallback",
   "deep/model-benchmark": "fallback",
-  "deep/skill-benchmark": "fallback",
-  "deep/ai-system-improvement": "fallback"
+  "deep/skill-benchmark": "fallback"
 }

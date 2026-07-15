@@ -151,7 +151,7 @@
     }
   },
   "funnel": {
-    "passed": 17,
+    "passed": 15,
     "browser": 3
   },
   "headlineBottleneck": "browser",
@@ -164,11 +164,11 @@
     }
   ],
   "coverage": {
-    "routing": 16,
+    "routing": 14,
     "advisor": 0,
     "browser": 4,
     "routedOut": 0,
-    "scored": 20
+    "scored": 18
   },
   "divergence": [],
   "lintFindings": [],
@@ -604,99 +604,6 @@
         ],
         "statedRoutingParsed": true,
         "responseHead": "```json\n{\"surface\":\"UNKNOWN\",\"subLanguage\":\"none\",\"resources\":[\"references/shared/quick_reference.md\",\"references/skill_benchmark/operator_guide.md\",\"references/skill_benchmark/scoring_contract.md\",\"references/skill_benchmark/scenario_authoring.md\"],\"assets\":[\"assets/agent_improvement/improvement_co"
-      },
-      "routeTelemetry": null
-    },
-    {
-      "scenarioId": "IL-004",
-      "tier": "live",
-      "dims": {
-        "d1intra": {
-          "score": 1,
-          "intentRecall": null,
-          "resourceRecall": null,
-          "negative": false,
-          "liveResourceOnly": true
-        },
-        "commandRecipe": {
-          "applicable": false,
-          "valid": true,
-          "firstFailingStage": null,
-          "firstFailingSubcheck": null,
-          "missReasons": []
-        },
-        "d2": {
-          "score": 1,
-          "proxy": "router-replay-recall",
-          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
-        },
-        "d3": {
-          "score": null,
-          "routedCount": 4,
-          "wastedCount": 0,
-          "proxy": "no-positive-gold",
-          "note": "not-applicable: no expected-resource gold to measure over-routing against"
-        },
-        "assetRecall": {
-          "score": null,
-          "note": "no expected assets for this scenario"
-        },
-        "d1inter": {
-          "score": null,
-          "unscored": "no advisor probe (run with --advisor-mode=python)"
-        },
-        "d4": {
-          "score": null,
-          "unscored": "requires skill-on/off ablation (live mode)"
-        },
-        "modePrecision": {
-          "score": null,
-          "expectedMode": null,
-          "observedMode": null,
-          "advisory": true,
-          "unscored": "fixture carries no expected.mode"
-        },
-        "relativeRanking": {
-          "score": null,
-          "pass": null,
-          "targetRank": null,
-          "violatingSkills": [],
-          "checkedSkillIds": [],
-          "ranks": {},
-          "advisory": true,
-          "unscored": "fixture carries no rankBelowSkillIds"
-        },
-        "hubRoute": {
-          "applicable": false,
-          "pass": true
-        },
-        "toolSurface": {
-          "applicable": false,
-          "pass": true,
-          "firstFailingStage": null,
-          "violations": []
-        }
-      },
-      "firstFailingStage": null,
-      "modeAScore": 100,
-      "applicable": true,
-      "recipeCapped": false,
-      "classKind": "routing",
-      "expectedSurface": null,
-      "observedSurface": "UNKNOWN",
-      "surfaceMatch": null,
-      "traceMode": "live",
-      "liveEvidence": {
-        "eventCount": 12,
-        "activated": false,
-        "toolCalls": [
-          "read",
-          "read",
-          "read"
-        ],
-        "observedReads": [],
-        "statedRoutingParsed": true,
-        "responseHead": "```json\n{\"surface\":\"UNKNOWN\",\"subLanguage\":\"none\",\"resources\":[\"references/shared/quick_reference.md\",\"references/non_dev_ai_system/operator_guide.md\",\"references/non_dev_ai_system/loop_contract.md\",\"references/non_dev_ai_system/guardrails_teachings.md\"],\"assets\":[\"assets/agent_improvement/improveme"
       },
       "routeTelemetry": null
     },
@@ -1377,104 +1284,6 @@
       "routeTelemetry": null
     },
     {
-      "scenarioId": "RB-004",
-      "tier": "live",
-      "dims": {
-        "d1intra": {
-          "score": 1,
-          "intentRecall": null,
-          "resourceRecall": null,
-          "negative": false,
-          "liveResourceOnly": true
-        },
-        "commandRecipe": {
-          "applicable": false,
-          "valid": true,
-          "firstFailingStage": null,
-          "firstFailingSubcheck": null,
-          "missReasons": []
-        },
-        "d2": {
-          "score": 1,
-          "proxy": "router-replay-recall",
-          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
-        },
-        "d3": {
-          "score": null,
-          "routedCount": 4,
-          "wastedCount": 0,
-          "proxy": "no-positive-gold",
-          "note": "not-applicable: no expected-resource gold to measure over-routing against"
-        },
-        "assetRecall": {
-          "score": null,
-          "note": "no expected assets for this scenario"
-        },
-        "d1inter": {
-          "score": null,
-          "unscored": "no advisor probe (run with --advisor-mode=python)"
-        },
-        "d4": {
-          "score": null,
-          "unscored": "requires skill-on/off ablation (live mode)"
-        },
-        "modePrecision": {
-          "score": null,
-          "expectedMode": null,
-          "observedMode": null,
-          "advisory": true,
-          "unscored": "fixture carries no expected.mode"
-        },
-        "relativeRanking": {
-          "score": null,
-          "pass": null,
-          "targetRank": null,
-          "violatingSkills": [],
-          "checkedSkillIds": [],
-          "ranks": {},
-          "advisory": true,
-          "unscored": "fixture carries no rankBelowSkillIds"
-        },
-        "hubRoute": {
-          "applicable": false,
-          "pass": true
-        },
-        "toolSurface": {
-          "applicable": false,
-          "pass": true,
-          "firstFailingStage": null,
-          "violations": []
-        }
-      },
-      "firstFailingStage": null,
-      "modeAScore": 100,
-      "applicable": true,
-      "recipeCapped": false,
-      "classKind": "routing",
-      "expectedSurface": null,
-      "observedSurface": "UNKNOWN",
-      "surfaceMatch": null,
-      "traceMode": "live",
-      "liveEvidence": {
-        "eventCount": 14,
-        "activated": true,
-        "toolCalls": [
-          "skill",
-          "read",
-          "read",
-          "glob",
-          "glob"
-        ],
-        "observedReads": [
-          "references/**/*",
-          "assets/**/*"
-        ],
-        "statedRoutingParsed": true,
-        "responseHead": "```json\n{\n  \"surface\": \"UNKNOWN\",\n  \"subLanguage\": \"none\",\n  \"workflowMode\": \"ai-system-improvement\",\n  \"backend\": \"external-adapter\",\n  \"runtimeLoopType\": null,\n  \"loopOwner\": \"external packaging (e.g. Barter Copywriter) owns the Python loop, gates, scoring, and kill-switches\",\n  \"loopHostMode\": \"n"
-      },
-      "routeTelemetry": null
-    },
-    {
       "scenarioId": "SC-001",
       "tier": "live",
       "dims": {
@@ -1863,7 +1672,7 @@
     }
   ],
   "runQuality": {
-    "scenarioCount": 20,
+    "scenarioCount": 18,
     "traceMode": "live",
     "hubRouteKnownGaps": 0,
     "relativeRanking": {

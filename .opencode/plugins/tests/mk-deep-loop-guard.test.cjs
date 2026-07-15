@@ -35,7 +35,6 @@ function writeFixtureRegistry(dir) {
         { workflowMode: 'agent-improvement', agent: 'deep-improvement' },
         { workflowMode: 'model-benchmark', agent: 'deep-improvement' },
         { workflowMode: 'skill-benchmark', agent: 'deep-improvement' },
-        { workflowMode: 'ai-system-improvement', agent: 'deep-improvement' },
         { workflowMode: 'alignment', agent: 'deep-alignment' },
       ],
     }),
@@ -110,7 +109,7 @@ async function main() {
   assert.doesNotMatch(readGuardLog(tmpDir), /mode mismatch/i);
 
   // Every workflow mode registered to a multiplexed agent remains valid.
-  for (const workflowMode of ['agent-improvement', 'model-benchmark', 'skill-benchmark', 'ai-system-improvement']) {
+  for (const workflowMode of ['agent-improvement', 'model-benchmark', 'skill-benchmark']) {
     clearGuardLog(tmpDir);
     await beforeHook(
       { tool: 'task' },
@@ -124,7 +123,7 @@ async function main() {
     { tool: 'task' },
     { args: { subagent_type: 'general', prompt: 'Deep Route: mode=nonsense; target_agent=@deep-improvement' } },
   );
-  assert.match(readGuardLog(tmpDir), /registry modes="agent-improvement\|ai-system-improvement\|model-benchmark\|skill-benchmark"/);
+  assert.match(readGuardLog(tmpDir), /registry modes="agent-improvement\|model-benchmark\|skill-benchmark"/);
 
   // The Deep Route line wins over unrelated mode tokens elsewhere in the prompt.
   clearGuardLog(tmpDir);

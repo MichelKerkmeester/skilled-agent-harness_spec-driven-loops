@@ -1,6 +1,6 @@
 # create-benchmark
 
-Authors MCP-promotion, behavior, conformance, skill-benchmark, and model-benchmark artifacts, and hosts authoring guides for the Lane A and Lane D code-owned families.
+Authors MCP-promotion, behavior, conformance, skill-benchmark, and model-benchmark artifacts, and hosts an authoring guide for the Lane A code-owned family.
 
 ## 1. OVERVIEW
 
@@ -12,13 +12,13 @@ Authors MCP-promotion, behavior, conformance, skill-benchmark, and model-benchma
 - **Skill-benchmark (Lane C)** — authors a hub's `benchmark/` storage tree and its `benchmark/README.md` run-label index; the per-run `skill-benchmark-report.md` is a renderer-owned render this packet never authors. `SKILL.md` section 10 and `references/skill_benchmark/skill_benchmark_storage_guide.md` hold the contract.
 - **Model-benchmark (Lane B)** — authors the Lane B input fixtures (code-task oracle, pattern/capability, reviewer-prompt) and run profiles; the evaluator, scorers, and reviewer-verdict contract stay lane-local. `SKILL.md` section 11 and `references/model_benchmark/model_benchmark_fixture_guide.md` hold the contract.
 
-Two further families — Lane A (agent-improvement) and Lane D (non-dev AI-system improvement) — carry an authoring guide here (`SKILL.md` section 14); their code-owned artifacts stay in-lane.
+One further family — Lane A (agent-improvement) — carries an authoring guide here (`SKILL.md` section 14); its code-owned artifacts stay in-lane.
 
 The skill-local surface is the look-here-first entry point; the full audit trail stays in the owning spec packet or lane. `SKILL.md` is the authoritative contract.
 
 ### Family Keys
 
-Seven families, keyed by their on-disk asset/reference subdirectory. `SKILL.md` section 2 names these the same way and adds the Section / Lives-at / Owns-vs-routes columns; this table is the on-disk-key lookup:
+Six families, keyed by their on-disk asset/reference subdirectory. `SKILL.md` section 2 names these the same way and adds the Section / Lives-at / Owns-vs-routes columns; this table is the on-disk-key lookup:
 
 | Family | On-disk key | Assets/references live under |
 | --- | --- | --- |
@@ -28,7 +28,6 @@ Seven families, keyed by their on-disk asset/reference subdirectory. `SKILL.md` 
 | Skill-benchmark (Lane C) | `skill_benchmark` | `assets/skill_benchmark/`, `references/skill_benchmark/` |
 | Model-benchmark (Lane B) | `model_benchmark` | `assets/model_benchmark/`, `references/model_benchmark/` |
 | Agent-improvement (Lane A) | `agent_improvement` | `references/agent_improvement/` (guide only — assets: N/A, code-owned in-lane) |
-| AI-system improvement (Lane D) | `non_dev_ai_system` | `references/non_dev_ai_system/` (guide only — assets: N/A, code-owned in-lane) |
 
 ## 2. WHEN TO USE
 
@@ -80,7 +79,6 @@ References:
 - `references/skill_benchmark/skill_benchmark_storage_guide.md` — storage convention for a hub's `benchmark/` tree: run-label naming, the frozen `baseline/` anchor, and the renderer-owned report boundary.
 - `references/model_benchmark/model_benchmark_fixture_guide.md` — authoring guide for Lane B inputs: the fixture-family taxonomy, profile shape, and the lane boundary for scoring.
 - `references/agent_improvement/agent_improvement_authoring_guide.md` — authoring guide for Lane A (agent-improvement) doc-only inputs: the improvement charter and strategy scaffolds, target-onboarding classification, and candidate proposal format.
-- `references/non_dev_ai_system/non_dev_ai_system_authoring_guide.md` — authoring guide for Lane D (non-dev AI-system improvement) doc-only inputs: the packaging config, fixture and gold-set choices, and grader-calibration selections.
 
 Assets:
 

@@ -91,9 +91,8 @@ C) behavior_benchmark
 D) skill_benchmark
 E) model_benchmark
 F) agent_improvement
-G) non_dev_ai_system
 
-Only A and B are command-bound. Selecting C-G stops with a branch-not-registered
+Only A and B are command-bound. Selecting C-F stops with a branch-not-registered
 message and routes the user to the live create-benchmark skill contract.
 
 Q1. Skill or Owning Mode Name (if missing)

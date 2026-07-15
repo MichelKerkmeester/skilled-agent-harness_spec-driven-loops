@@ -6,8 +6,8 @@
 
 ## Coverage
 
-- Scored (text executors): **10** · routed out to browser harness: **0**
-- By class — routing: 10 · advisor: 0 · browser: 0
+- Scored (text executors): **9** · routed out to browser harness: **0**
+- By class — routing: 9 · advisor: 0 · browser: 0
 
 ## Dimension scores
 
@@ -29,7 +29,7 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Funnel
 
-- passed: 10
+- passed: 9
 
 ## Ranked bottlenecks
 
@@ -55,7 +55,6 @@ _Unscored in this run (need live mode): D1inter, D4._
 | DI-R06 | routing | 100/100 | passed |
 | DI-R07 | routing | 100/100 | passed |
 | DI-R08 | routing | 100/100 | passed |
-| DI-R09 | routing | 100/100 | passed |
 | DI-R10 | routing | 100/100 | passed |
 
 ## Contamination findings (router mode — drift, not failures)
@@ -69,10 +68,9 @@ _Playbook prompts intentionally carry trigger words; these are reported as drift
 - DI-R06: integration, scan surfaces, dynamic profile, 5-dimension
 - DI-R07: benchmark, evaluator, benchmark a model, optimize a model, model-benchmark
 - DI-R08: benchmark, benchmark a skill, skill routing, unprompted discovery, routing accuracy, skill-benchmark
-- DI-R09: benchmark, non-dev-ai-system, packaging refine, guarded refine, ai-system packaging
 - DI-R10: full setup, initialize runtime, charter, strategy
 
 ## Methodology / caveats
 
 - Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0).
-- Scenario count: 10.
+- Scenario count: 9.
