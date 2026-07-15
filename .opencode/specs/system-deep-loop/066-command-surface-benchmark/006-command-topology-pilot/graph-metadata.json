@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Authors four pilot scenarios, one per command topology, and captures a Claude baseline plus one GPT driver to calibrate the upgraded evaluator before the full scenario rollout.",
     "created_at": "2026-07-14T20:36:59.962Z",
-    "last_save_at": "2026-07-15T10:18:44.740Z",
+    "last_save_at": "2026-07-15T11:23:39.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da885e069e673d9da63bd08b2f2d41a02e55d0e75c4d94bbcaee11dcb69b9c03",
+    "source_fingerprint": "sha256:bf4e8c859cafe6c1097e605cc5670c2fcf4db8477e51eec73e1e9672ccdeac24",
     "source_doc_hashes": {
       "spec.md": "9d15624c25bfa376de42ec6280b8461c9cda0f60a388ffee4bcf0233931e6eb8",
       "plan.md": "85d7b91786b452b3c8ce1066b7ca7815f650611fe7f68953426ceae41ba22187",
       "tasks.md": "8264d47a26c8c00df0740a43096a66a7d809a325eb199c0d0155c89433df0f64",
-      "implementation-summary.md": "4e7926a98386d486accae9add16eae32d3eb19247dd3b9a66f6907732d5ce402"
+      "implementation-summary.md": "b2338dfb88a6eeb3c98d0b0862644e1cc7f655966a539f9c27b345bd7ac9b707"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -23,7 +23,7 @@
   "expected_delegation": {
     "evidence_kind": "direct_dispatch",
     "leaf_agent": null,
-    "min_task_events": 1,
+    "min_task_events": 0,
     "route_proof_required": false,
     "role_absorption_forbidden": true,
     "min_seats": 0,

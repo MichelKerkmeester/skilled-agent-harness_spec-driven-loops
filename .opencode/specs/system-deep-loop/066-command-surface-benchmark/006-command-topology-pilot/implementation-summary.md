@@ -85,6 +85,8 @@ Every scenario records presentation markers, the live command source that owns t
 ## How It Was Delivered
 
 The work stayed authoring-only. Contracts were parsed through the frozen runner export, marker hashes were checked against current command sources, and the phase-owned Node test ran only its hermetic contract half. No Claude, OpenCode, or Codex executor leg was spawned, and no result or transcript evidence was created.
+
+**Post-authoring correction.** During the next phase's rollout verification the direct-dispatch pilot DAB-014 had its `min_task_events` corrected from 1 to 0. A direct-dispatch cell forbids LEAF/Task events, so the task-event floor must be zero; the required direct-hit floor is enforced separately by the D3 evaluator's own default. The stale value of 1 structurally pinned D1 to 0 and made `pass` unreachable for a flawless read-only run. The frozen runner is byte-unchanged; only the pilot contract was corrected.
 <!-- /ANCHOR:how-delivered -->
 
 ---
