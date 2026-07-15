@@ -45,10 +45,17 @@ The remediation touches three layers, each with a fixed owner boundary the fixes
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-1. **P1 fixes** — router fallback, behavior schema-v2 scaffold, conformance exemplar completion.
-2. **P2 create-benchmark-local** — command-benchmark first-classing, route-map refresh, phantom Lane D, deep-command links, Lane C fixture link.
-3. **P2 cross-tree** — MCP consumer README + template href, Lane C exemplar READMEs (hyphen-pilot-aware), behavior-index back-pointers.
-4. **Verify** — Sol Ultra Fast re-review, strict validation, scoped commit + FF-push.
+### Phase 1: P1 fixes
+Router fallback, behavior schema-v2 scaffold, conformance exemplar completion.
+
+### Phase 2: P2 create-benchmark-local
+Command-benchmark first-classing, route-map refresh, phantom Lane D, deep-command links, Lane C fixture link.
+
+### Phase 3: P2 cross-tree
+MCP consumer README + template href, Lane C exemplar READMEs (hyphen-pilot-aware), behavior-index back-pointers.
+
+### Phase 4: Verify
+Sol Ultra Fast re-review, strict validation, scoped commit + FF-push.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

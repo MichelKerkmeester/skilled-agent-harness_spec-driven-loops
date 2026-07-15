@@ -1,21 +1,22 @@
 ---
 title: "Implementation Summary: create-benchmark completeness remediation"
-description: "Tracks the remediation of the create-benchmark authoring home against the Fable 5 + Sol Ultra dual review: setup and finding-archival complete; the P1/P2 fix groups and the Sol Ultra re-review gate are in progress."
+description: "The dual-review P1/P2 fixes (T003-T013) and the Sol Ultra Fast re-review (T014) shipped; the re-review's confirmed regressions are closed, and its deeper structural findings (T016) are escalated to the operator as beyond doc-remediation scope."
 status: in_progress
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/011-create-benchmark-completeness-remediation"
-    last_updated_at: "2026-07-15T18:00:00Z"
+    last_updated_at: "2026-07-15T21:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored the remediation doc set and archived both dual-review reports"
-    next_safe_action: "Execute T003 router fix, then the remaining P1/P2 groups"
-    completion_pct: 15
-    blockers: []
+    recent_action: "Reconciled 011 docs; strict validate PASSED 0/0; structural gaps escalated"
+    next_safe_action: "Operator scope decision on the T016 structural findings (runtime/scaffold, not doc edits)"
+    completion_pct: 90
+    blockers:
+      - "T016 structural P1s (command_benchmark FAMILIES key, reviewer-profile template, Lane C corpus scaffold, conformance fixture-location doctrine) exceed doc-remediation scope and await an operator decision"
     key_files:
       - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
-      - ".opencode/skills/sk-doc/create-benchmark/references/shared/README.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/conformance_benchmark.md"
 ---
 # Implementation Summary
 
@@ -73,10 +74,11 @@ The remediation was scoped from two independent completeness reviews rather than
 
 | Check | Result |
 |-------|--------|
-| Doc set validates | PENDING: `validate.sh --strict` on this child |
-| Per-doc validation | PENDING: `validate_document.py` on each edited create-benchmark and cross-tree doc |
-| Sol Ultra re-review | PENDING: no surviving P1, no new regression |
-| Evidence archived | DONE: both review reports under `evidence/` |
+| Per-doc validation | DONE: `validate_document.py` 0 issues on every edited create-benchmark and cross-tree doc (incl. the 8 re-review fixes) |
+| Oracle verify command | DONE: corrected command verifies all 13 fixtures (`all=13 clean=0 public=8 held-out=4`) |
+| Sol Ultra re-review | DONE: verdict FAIL; every load-bearing claim verified against real files; confirmed regressions closed in `8ab89656c6`; structural findings escalated (T016). Report: `evidence/review-sol-ultra-rereview.md` |
+| Doc set validates | DONE: `validate.sh --strict` on this child is Errors:0 Warnings:0 RESULT:PASSED |
+| Evidence archived | DONE: both original reviews + the re-review under `evidence/` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -92,8 +94,10 @@ Behavior preservation is verified by scope: edits are documentation, templates, 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **In progress.** The P1/P2 fix groups and the Sol Ultra re-review are not yet executed; this summary will be finalized at closeout with the validation evidence.
-2. **Conformance exemplar is 066-adjacent.** The `command-surface` README/contract completion overlaps 066 closeout and is cross-referenced in 010.
+1. **Structural findings escalated (T016).** The re-review surfaced legitimate gaps that exceed a documentation remediation: `command_benchmark` is not a router `FAMILIES` key (runtime router change), Lane B reviewer-profile authoring is excluded although a live profile exists (needs a template + policy), the Lane C primary corpus is linked but not scaffolded end-to-end, and the conformance guide's package-local fixture doctrine conflicts with the exemplar's external `fixtureRoot`. These await an operator scope decision; they are tracked in `tasks.md` T016, not silently closed.
+2. **Commit-sweep (`cec7160e47`).** The T005 commit swept 16 already-staged concurrent-session files (`.codex/config.toml`, `cli-codex/**`, `mcp-click-up/**`) because a bare `git commit` committed the whole index. Content is intact and unaltered; the clean un-sweep needs a force-push (forbidden), so it is left as-is and disclosed. All later commits use the sweep-proof `git add <paths> && git commit --only` pattern.
+3. **Conformance exemplar is 066-adjacent.** The `command-surface` README/contract completion overlaps 066 closeout and is cross-referenced in 010. The executing phase (004) already holds a completed live convergence run (verdict FAIL); a frozen fixture-corpus run identity is still pending.
+4. **Pre-existing (not introduced here):** the four deep-mode `behavior_benchmark.md` indexes carry a `missing overview` validator warning (they use `## PURPOSE`); the phase-002 `fixture-manifest.json` records the same path-doubling oracle command this remediation corrected in its own contract.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -101,5 +105,7 @@ Behavior preservation is verified by scope: edits are documentation, templates, 
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-None yet. Any deviation surfaced during execution will be recorded here with its rationale.
+1. **A second fix round followed the re-review.** The plan expected the re-review to confirm a clean tree; instead it returned FAIL and caught real regressions in the fixes. Those were verified and closed in a follow-up commit (`8ab89656c6`) rather than deferred — the honest response to a review that found genuine defects.
+2. **T008 was over-corrected then re-fixed.** The first pass rewrote the model-guide scorer/seed sentence to say the author selects them; the profile template shows the sweep ignores the scorer field and the runtime never reads the seed, so the claim was reverted to lane-owned.
+3. **Structural findings escalated, not force-fit.** T016's P1s require runtime/scaffold changes (router `FAMILIES`, a reviewer-profile template, a corpus scaffold) that exceed this documentation remediation's frozen scope; they are surfaced for an operator decision rather than pulled in silently.
 <!-- /ANCHOR:deviations -->
