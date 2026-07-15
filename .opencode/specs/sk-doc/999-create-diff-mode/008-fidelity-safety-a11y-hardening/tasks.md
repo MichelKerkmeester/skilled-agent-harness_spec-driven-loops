@@ -7,14 +7,14 @@ trigger_phrases:
   - "validate report safety tasks"
 importance_tier: "important"
 contextType: "implementation"
-status: "draft"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-create-diff-mode/008-fidelity-safety-a11y-hardening"
-    last_updated_at: "2026-07-15T16:33:01Z"
+    last_updated_at: "2026-07-15T17:38:46Z"
     last_updated_by: "claude"
-    recent_action: "Aligned scripts to code-opencode; closed T010/T012; reconciled evidence and status"
-    next_safe_action: "Dispatch the GPT-5.6 SOL ULTRA (fast) review, then make the scoped commit"
+    recent_action: "Rewrote validator to an allowlist; added 39-test suite; reconciled all evidence"
+    next_safe_action: "Make the scoped commit and push to the v4 branch"
     blockers: []
     key_files:
       - "spec.md"
@@ -64,7 +64,7 @@ _memory:
 - [x] T002 Strict-decode `_read_text_file`/`extract`: refuse undecodable full-tier input (exit 3), drop `errors="replace"` fabrication (REQ-001) (`scripts/create_diff.py`) [EVIDENCE: `\xff` vs `\xfe` → exit 3; `test_invalid_bytes_are_refused_not_replaced`.]
 - [x] T003 Emit the fidelity warning on unknown-extension text fallback (REQ-001) (`scripts/create_diff.py`) [EVIDENCE: `.weirdext` diff prints a fidelity warning; `test_unknown_extension_warns`.]
 - [x] T004 Logical-line model (`_logical_lines`): empty text → no lines; trailing newline insignificant; interior blanks preserved (REQ-004) (`scripts/create_diff.py`) [EVIDENCE: four `LineModel` tests + CLI matrix green.]
-- [x] T005 Rewrite `validate_report.py` on `html.parser`: exact CSP directive set, URL-attribute inspection, reject `@import`/non-`data:` `url()`, catch handlers on malformed tags (REQ-003) (`scripts/validate_report.py`) [EVIDENCE: hostile payload FAILS with 5 hazards; 4 real reports PASS.]
+- [x] T005 Rewrite `validate_report.py` as an `html.parser` allowlist for the emitter's exact dialect: allowlisted tags/attributes, exact CSP directive set (rejecting non-ASCII/mis-placed/duplicate CSP), local-`#`-fragment-only URL attributes, reject `@import`/non-`data:` `url()`, catch handlers on malformed tags (REQ-003) (`scripts/validate_report.py`) [EVIDENCE: `SafetyValidatorAllowlist` — every hazard class rejected one-per-test; 4 canonical reports PASS.]
 - [x] T006 [P] Legend contrast: `.legend mark.wd{color:var(--text)}` (REQ-002) (`scripts/create_diff.py`) [EVIDENCE: `--text` on both inline tints ≥ 4.5:1 in both themes; `test_legend_swatch_contrast_*`.]
 - [x] T007 [P] Side-by-side: `.sxs` `min-width` so the scoped region scrolls; wrapper `role="region"`/`aria-label`/`tabindex="0"`/`:focus-visible` (REQ-005) (`scripts/create_diff.py`) [EVIDENCE: attributes + min-width present in regenerated report; `test_side_by_side_scroll_is_scoped_and_keyboard_operable`.]
 <!-- /ANCHOR:phase-2 -->
@@ -74,11 +74,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Author `test_create_diff.py`: REQ-001..005 plus zero-JS/CSP/escaping/byte-reproducibility/pairing/collapse — 18 tests green (REQ-006) (`scripts/test_create_diff.py`) [EVIDENCE: `python3 test_create_diff.py` → Ran 18 tests, OK.]
+- [x] T008 Author `test_create_diff.py`: one-hazard-per-case allowlist conformance, four-report conformance, CLI exit-3/exit-0 subprocess tests, REQ-001..005, plus zero-JS/CSP/escaping/byte-reproducibility/pairing/collapse — 39 tests green (REQ-006) (`scripts/test_create_diff.py`) [EVIDENCE: `python3 test_create_diff.py` → Ran 39 tests, OK.]
 - [x] T009 Regenerate the four demo reports; confirm validate + byte-reproducibility (REQ-006) [EVIDENCE: `validate_report.py` passes 4/4 reports; feed side-by-side byte-identical across two fixed-`SOURCE_DATE_EPOCH` runs.]
-- [x] T010 Adversarially verify the validator rewrite + strict decode against fresh hostile/edge inputs (REQ-003, REQ-001) [EVIDENCE: a fresh hostile report FAILS with 10 hazards (SVG `onload`, `<base>`, remote `<link>`, `@import`, remote `srcset`, `javascript:`, weakened CSP); an invalid-byte pair is refused with exit 3 (not "identical"); multibyte, EOF-newline, and empty→content line-model checks all pass.]
+- [x] T010 Adversarially verify the validator rewrite + strict decode against fresh hostile/edge inputs (REQ-003, REQ-001) [EVIDENCE: the allowlist rejects each fresh hazard — disallowed elements (`<svg>`, `<base>`, `<link>`, `<iframe>`, `<script>`), disallowed attributes (`onload`/`onerror`/`style`/`srcdoc`), remote/`data:`/`javascript:` URLs, `@import`, `url()`, and a non-ASCII CSP smuggling a directive past a naive ASCII split; an invalid-byte pair is refused with exit 3 (not "identical") at both the `extract()` and CLI layers; multibyte, EOF-newline, and empty→content line-model checks all pass.]
 - [x] T011 Reconcile docs: capabilities-and-fidelity + accessibility-contract; correct 006 summary warnings count and WCAG note; cross-link 008 (REQ-007) [EVIDENCE: edited `capabilities-and-fidelity.md`, `accessibility-contract.md`, and the `006` `implementation-summary.md` verification table.]
-- [x] T012 Run canon gates (package_skill --check, parent-skill-check, comment-hygiene) + `validate.sh --recursive --strict` on 999 [EVIDENCE: `package_skill.py --check` PASS (8 intentional 017 hyphen advisories); `parent-skill-check.cjs` 0 warnings; comment-hygiene 0 hits; `check-frontmatter-versions.sh` clean; recursive strict on 999 — 008 + parent + phases 002–007 all 0/0; lone remaining warning is a pre-existing continuity lag in sibling 001 (out of scope).]
+- [x] T012 Run canon gates (package_skill --check, parent-skill-check, comment-hygiene) + `validate.sh --recursive --strict` on 999 [EVIDENCE: `package_skill.py --check` PASS with 8 intentional advisories (6 × 017 hyphen-naming + 2 × diff-input fixtures carry no spec-doc frontmatter by design); `parent-skill-check.cjs` all hard invariants, 0 warnings; comment-hygiene 0 hits; `check-frontmatter-versions.sh` clean; recursive strict on 999 — 008 + parent + phases 002–007 all 0/0; lone remaining warning is a pre-existing continuity lag in sibling 001 (out of scope).]
 <!-- /ANCHOR:phase-3 -->
 
 ---

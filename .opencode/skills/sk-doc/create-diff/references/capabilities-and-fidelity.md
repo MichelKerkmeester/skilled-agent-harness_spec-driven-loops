@@ -19,7 +19,7 @@ A diff is only as trustworthy as the extraction behind it. `create-diff` tells t
 
 | Tier | Meaning |
 | --- | --- |
-| `full` | Exact text comparison; nothing is dropped. |
+| `full` | Highest-fidelity text comparison — after the normalization described below (Unicode NFC, line endings, per-line trailing whitespace). |
 | `text` | Visible/structural text only; formatting, styling, and non-text content are not compared. |
 | `text*` | Text layer only, and only when an optional extractor is installed. |
 | `unsupported` | No reliable local extraction available. |
@@ -28,13 +28,13 @@ A diff is only as trustworthy as the extraction behind it. `create-diff` tells t
 
 | Format | Extensions | Tier | Compared | Not compared |
 | --- | --- | --- | --- | --- |
-| text | `.txt`, `.text`, `.log`, `.csv`, unknown text-like | `full` | exact text | — |
-| markdown | `.md`, `.markdown`, `.mdown` | `full` | exact text + heading/section list | rendered-HTML output differences |
+| text | `.txt`, `.text`, `.log`, `.csv`, unknown text-like | `full` | text (after normalization) | trailing whitespace, line-ending style, a final newline, Unicode form |
+| markdown | `.md`, `.markdown`, `.mdown` | `full` | text (after normalization) | rendered-HTML output; heading/section structure |
 | html | `.html`, `.htm`, `.xhtml` | `text` | visible text, `<h1>`–`<h6>` headings | CSS, attributes, inline styles, `<script>`/`<style>` content, layout |
 | docx | `.docx` | `text` | paragraph and table text, heading-styled paragraphs | run formatting, styles, images, comments, tracked changes |
 | pdf | `.pdf` | `text*` | extracted text layer | layout, fonts, images; scanned/image-only pages |
 
-Unknown *text-like* extensions are treated as plain text, and the report carries a fidelity warning saying so, so the assumption can be corrected. Binary or unsupported formats — spreadsheets, presentations, images, and archives (`.xlsx`, `.pptx`, `.png`, `.zip`, …), or any file whose bytes are binary — are refused with exit `3` rather than raw-byte "text"-diffed into a meaningless report. A file that is not valid UTF-8 is likewise refused with exit `3` rather than decoded with replacement characters (`�`): silent replacement can make two files that differ only in undecodable bytes look identical, hiding a real difference.
+Unknown *text-like* extensions are treated as plain text, and the report carries a fidelity warning saying so, so the assumption can be corrected. Known binary or unsupported extensions — spreadsheets, presentations, images, and archives (`.xlsx`, `.pptx`, `.png`, `.zip`, …) — are refused with exit `3` rather than raw-byte "text"-diffed into a meaningless report. An *unknown* extension whose first 8 KB contains a NUL byte is treated as binary and refused the same way. A file that is not valid UTF-8 is likewise refused with exit `3` rather than decoded with replacement characters (`�`): silent replacement can make two files that differ only in undecodable bytes look identical, hiding a real difference.
 
 ## PDF dependency
 
@@ -52,4 +52,4 @@ A PDF with no text layer (a scan/image) extracts to empty text. The engine detec
 
 ## Normalization
 
-Before diffing, both sides are canonicalized so incidental encoding differences are not reported as edits: Unicode NFC, `\r\n`/`\r` → `\n`, and trailing whitespace stripped per line. Text is then split into logical lines: an empty file is zero lines (not one phantom blank line), and a single trailing newline is not treated as an extra blank line — so an empty-vs-content diff reads as a pure addition and a trailing-newline-only change is not reported as a spurious edit. Interior blank lines are preserved. Structural content (headings/sections) is surfaced in the summary but does not change the text comparison.
+Before diffing, both sides are canonicalized so incidental encoding differences are not reported as edits: Unicode NFC, `\r\n`/`\r` → `\n`, and trailing whitespace stripped per line. Text is then split into logical lines: an empty file is zero lines (not one phantom blank line), and a single trailing newline is not treated as an extra blank line — so an empty-vs-content diff reads as a pure addition and a trailing-newline-only change is not reported as a spurious edit. Interior blank lines are preserved. Markdown headings/sections are parsed but are not currently rendered into the report, and never change the text comparison.

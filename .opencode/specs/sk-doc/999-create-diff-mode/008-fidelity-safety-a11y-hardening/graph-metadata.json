@@ -201,7 +201,7 @@
     ],
     "causal_summary": "An adversarial review (GPT-5.6 SOL, ultra) of the `create-diff` engine and its redesigned HTML report, independently re-verified against the source, found real defects in three areas: (1) the engine decodes text with `errors=\"replace\"` and only sniffs a NUL byte for binary, so two files differing only in invalid bytes both become `�` and are reported identical at \"full fidelity\" — silent difference-erasure; (2) the diff line model splits on `\"\\n\"`, so empty files and trailing-newline-only differences produce phantom or mislabelled lines; (3) `validatereport.py` regex-matches tags and only",
     "created_at": "2026-07-15T15:35:12.038Z",
-    "last_save_at": "2026-07-15T16:33:02.127Z",
+    "last_save_at": "2026-07-15T17:43:15.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46fc0839300d01f6a4e2cdc628145c627faf273eb1693fd2cd1dd0a93e363b2c",
+    "source_fingerprint": "sha256:bdab65845831a8d7e3dc6ff55b8691ffc88f346dc703ffe15bbf8f2262e59528",
     "source_doc_hashes": {
-      "spec.md": "302665f3bc0bf478264c3cc64544ae713a92a1cb482053cc5b5d19b23df65ee7",
-      "plan.md": "80ec5da8060a7c50783add2786103b352fc02d9b84807a5e991a2d08bd8f5b78",
-      "tasks.md": "4a555b4d7dfc11b3d5c7bc907777a8be20f1bc82d882eb2be3e9088dc4c4b515",
-      "checklist.md": "eec18c2cf3c5e2b1331a519c789213d12aea242c0a43f92644b59c4359c47670",
-      "implementation-summary.md": "f17b9d48cc2190abdd9ac62a01410fecdfd52804b07224a660558221393c143b"
+      "spec.md": "38dc6f90bbda5a004578f140ddc5d8ce2833378b4f9992e82537429969fcc38e",
+      "plan.md": "65efee978866f7b36b0fb4b34a3b9c8f41d8cec71dd3ed532a339a8a87adde05",
+      "tasks.md": "cd210bfd7cd9bde4835880cd14b22e67ec156f184edf7cbc3aaf1c4ef74e9935",
+      "checklist.md": "0c87c1145ef4abea224927b9e7ced4d6f420e5f2e7279f17931a4d77706236c8",
+      "implementation-summary.md": "01629447477537c0938f22f37bdc1b2b4f394f2162c1e4e2cb1485021f6222c1"
     },
     "last_active_child_id": null,
     "last_active_at": null

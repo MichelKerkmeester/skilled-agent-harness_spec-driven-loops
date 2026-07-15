@@ -85,13 +85,13 @@ class CapabilityError(Exception):
 
 # Tier meanings, surfaced verbatim to the user so a comparison is never trusted
 # beyond what the extractor can actually see.
-TIER_FULL = "full"          # exact text; nothing is dropped
+TIER_FULL = "full"          # text compared after Unicode NFC + EOL + trailing-ws normalization
 TIER_TEXT = "text"          # visible/structural text only; styling not compared
 TIER_CONDITIONAL = "text*"  # works only when an optional extractor is available
 TIER_UNSUPPORTED = "unsupported"
 
 TIER_LABEL = {
-    TIER_FULL: "Full fidelity — exact text comparison.",
+    TIER_FULL: "Full fidelity — text compared after Unicode and whitespace normalization.",
     TIER_TEXT: "Text fidelity — visible/structural text only; formatting, styling, "
                "and non-text content are not compared.",
     TIER_CONDITIONAL: "Conditional — text layer only, requires an optional extractor.",
@@ -684,8 +684,8 @@ border-block:1px solid var(--hunk-border)}
 tr.collapse td{text-align:center;color:var(--text-muted);background:var(--surface);
 padding:var(--sp-1) var(--sp-2);border-block:1px solid var(--border)}
 mark.wd{padding:0 1px;border-radius:2px;color:inherit}
-mark.wd.add{background:var(--add-inline)}
-mark.wd.del{background:var(--del-inline)}
+mark.wd.add{background:var(--add-inline);text-decoration:underline}
+mark.wd.del{background:var(--del-inline);text-decoration:line-through}
 .legend mark.wd{color:var(--text)}
 footer{display:flex;flex-wrap:wrap;gap:var(--sp-2) var(--sp-4);justify-content:space-between;
 margin-top:var(--sp-8);color:var(--text-muted);font-size:var(--text-caption);

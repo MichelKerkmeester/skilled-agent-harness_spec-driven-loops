@@ -6,9 +6,14 @@
 """Regression suite for the create-diff engine, renderer, and safety validator.
 
 Stdlib-only and offline. Locks the fidelity, safety, and accessibility fixes made
-after an adversarial review, plus the invariants that must never regress (zero-JS,
-exact CSP, escaped-content inertness, byte-reproducibility, side-by-side pairing,
-collapsed-context accounting).
+after two independent adversarial reviews, plus the invariants that must never
+regress (zero-JS, exact CSP, escaped-content inertness, byte-reproducibility,
+side-by-side pairing, collapsed-context accounting).
+
+The safety gate is an ALLOWLIST for the renderer's exact HTML dialect, so the
+validator tests are one-hazard-per-case: each asserts that a single disallowed
+construct is rejected while the clean baseline passes, and a conformance test
+asserts every generated report shape passes.
 
 Run: python3 test_create_diff.py
 """
@@ -17,6 +22,7 @@ from __future__ import annotations
 
 import os
 import re
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -25,6 +31,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import create_diff as cd            # noqa: E402
 import validate_report as vr        # noqa: E402
+
+CREATE_DIFF = Path(__file__).resolve().parent / "create_diff.py"
+_CANON_CSP = ("default-src 'none'; style-src 'unsafe-inline'; img-src data:; "
+              "base-uri 'none'; form-action 'none'")
 
 
 # ───────────────────────────────────────────────────────────────
@@ -50,6 +60,33 @@ def _report(tmp: Path, a: str, b: str, *, view: str = "side-by-side") -> str:
     diff = cd.diff_lines(cd.normalize(ea.text), cd.normalize(eb.text))
     return cd.render_report(diff, label_before="a.md", label_after="b.md",
                             extraction_before=ea, extraction_after=eb, view=view)
+
+
+def _validate_html(html: str) -> list:
+    """Validate an in-memory HTML string, returning the list of safety problems."""
+    with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False,
+                                     encoding="utf-8") as f:
+        f.write(html)
+        path = Path(f.name)
+    try:
+        return vr.validate(path)
+    finally:
+        path.unlink()
+
+
+def _doc(*, head: str = "", body: str = "<p>ok</p>", csp: str = _CANON_CSP,
+         lang: str = ' lang="en"') -> str:
+    """Build a minimal report skeleton with an injectable head/body/CSP."""
+    meta = (f'<meta http-equiv="Content-Security-Policy" content="{csp}">'
+            if csp is not None else "")
+    return (f'<!doctype html><html{lang}><head>{meta}{head}<title>t</title>'
+            f'</head><body>{body}</body></html>')
+
+
+def _run_cli(*args: str) -> tuple:
+    proc = subprocess.run([sys.executable, str(CREATE_DIFF), *args],
+                          capture_output=True, text=True)
+    return proc.returncode, proc.stdout + proc.stderr
 
 
 # --- WCAG contrast helpers (self-contained; no external dependency) -------------
@@ -105,6 +142,26 @@ class StrictDecode(unittest.TestCase):
             ext = cd.extract(f)
             self.assertTrue(ext.warnings, "unknown extension should carry a fidelity warning")
 
+    def test_cli_refuses_invalid_byte_pair_with_exit3(self):
+        # The whole CLI path (not just extract()) must exit 3 on undecodable input.
+        with tempfile.TemporaryDirectory() as d:
+            a = _write(Path(d), "a.txt", b"h\n\xff\n", binary=True)
+            b = _write(Path(d), "b.txt", b"h\n\xfe\n", binary=True)
+            rc, out = _run_cli("compare-pair", "--before", str(a), "--after", str(b),
+                               "--report", str(Path(d) / "o.html"))
+        self.assertEqual(rc, cd.EXIT_UNSUPPORTED)
+        self.assertIn("decode", out.lower())
+
+    def test_cli_valid_pair_exit0_and_report_is_safe(self):
+        with tempfile.TemporaryDirectory() as d:
+            a = _write(Path(d), "a.txt", "one\ntwo\n")
+            b = _write(Path(d), "b.txt", "one\nTWO\n")
+            rep = Path(d) / "o.html"
+            rc, _ = _run_cli("compare-pair", "--before", str(a), "--after", str(b),
+                             "--report", str(rep))
+            self.assertEqual(rc, cd.EXIT_OK)
+            self.assertEqual(vr.validate(rep), [])
+
 
 class LineModel(unittest.TestCase):
     def test_empty_to_content_is_pure_addition(self):
@@ -124,32 +181,87 @@ class LineModel(unittest.TestCase):
         self.assertEqual(d.added, 1)
 
 
-class SafetyValidator(unittest.TestCase):
-    HOSTILE = (
-        "<!doctype html><html lang=\"en\"><head>"
-        "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src *\">"
-        "<style>@import url(https://evil.example/x.css)</style></head><body>"
-        "<img alt=\">\" onerror=alert(1)>"
-        "<video src=\"https://evil.example/v.mp4\"></video>"
-        "<a href=\"javascript:alert(2)\">x</a>"
-        "</body></html>"
-    )
+class SafetyValidatorAllowlist(unittest.TestCase):
+    """One hazard per case: the clean baseline passes; each disallowed construct is
+    rejected. The gate is an allowlist for the renderer's exact dialect."""
 
-    def test_hostile_payload_fails(self):
-        with tempfile.TemporaryDirectory() as d:
-            p = _write(Path(d), "evil.html", self.HOSTILE)
-            problems = vr.validate(p)
+    def test_clean_baseline_passes(self):
+        self.assertEqual(_validate_html(_doc()), [])
+
+    def _assert_flags(self, html: str, needle: str):
+        problems = _validate_html(html)
         joined = " | ".join(problems).lower()
-        self.assertIn("event handler", joined)
-        self.assertIn("import", joined)
-        self.assertTrue("external reference" in joined and "video" in joined)
-        self.assertIn("content-security-policy", joined)
+        self.assertIn(needle.lower(), joined, f"expected {needle!r} in {problems!r}")
 
-    def test_real_report_passes(self):
-        with tempfile.TemporaryDirectory() as d:
-            html = _report(Path(d), "one\ntwo\nthree", "one\nTWO\nthree", view="unified")
-            p = _write(Path(d), "r.html", html)
-            self.assertEqual(vr.validate(p), [])
+    def test_meta_refresh_rejected(self):
+        self._assert_flags(_doc(head='<meta http-equiv="refresh" content="0;url=x">'),
+                           "http-equiv 'refresh'")
+
+    def test_unknown_http_equiv_rejected(self):
+        self._assert_flags(_doc(head='<meta http-equiv="x-ua-compatible" content="IE=edge">'),
+                           "http-equiv 'x-ua-compatible'")
+
+    def test_duplicate_attribute_rejected(self):
+        html = ('<!doctype html><html lang="en"><head>'
+                f'<meta http-equiv="Content-Security-Policy" content="{_CANON_CSP}" '
+                'content="default-src *"><title>t</title></head><body></body></html>')
+        self._assert_flags(html, "duplicate attribute 'content'")
+
+    def test_non_ascii_csp_whitespace_rejected(self):
+        # A U+00A0 no-break space smuggled into the CSP tokenizes as one directive
+        # for a naive ASCII split but differently in the browser; reject it outright.
+        smuggled = _CANON_CSP.replace("img-src data:", "img-src\u00a0data:")
+        self._assert_flags(_doc(csp=smuggled), "non-ascii or control")
+
+    def test_csp_after_body_rejected(self):
+        html = ('<!doctype html><html lang="en"><head><title>t</title></head><body>'
+                f'<meta http-equiv="Content-Security-Policy" content="{_CANON_CSP}">'
+                '<p>x</p></body></html>')
+        self._assert_flags(html, "before <body>")
+
+    def test_missing_csp_rejected(self):
+        self._assert_flags(_doc(csp=None), "missing content-security-policy")
+
+    def test_multiple_csp_rejected(self):
+        self._assert_flags(_doc(head=f'<meta http-equiv="Content-Security-Policy" content="{_CANON_CSP}">'),
+                           "multiple content-security-policy")
+
+    def test_weakened_csp_rejected(self):
+        weak = _CANON_CSP.replace("default-src 'none'", "default-src *")
+        self._assert_flags(_doc(csp=weak), "does not match the required policy")
+
+    def test_disallowed_element_script(self):
+        self._assert_flags(_doc(body="<script>alert(1)</script>"), "disallowed element <script>")
+
+    def test_disallowed_element_iframe(self):
+        self._assert_flags(_doc(body='<iframe srcdoc="&lt;b&gt;"></iframe>'),
+                           "disallowed element <iframe>")
+
+    def test_disallowed_attr_event_handler(self):
+        self._assert_flags(_doc(body='<p onclick="x()">x</p>'), "disallowed attribute 'onclick'")
+
+    def test_disallowed_attr_style(self):
+        self._assert_flags(_doc(body='<p style="color:red">x</p>'), "disallowed attribute 'style'")
+
+    def test_disallowed_attr_srcdoc(self):
+        # srcdoc is rejected as a disallowed attribute even before the tag check,
+        # so a separately-parsed inline document can never enter.
+        self._assert_flags(_doc(body='<div srcdoc="x">y</div>'), "disallowed attribute 'srcdoc'")
+
+    def test_external_href_rejected(self):
+        self._assert_flags(_doc(body='<a href="https://evil.example">x</a>'), "external reference")
+
+    def test_data_uri_href_rejected(self):
+        self._assert_flags(_doc(body='<a href="data:text/html,x">x</a>'), "external reference")
+
+    def test_javascript_href_rejected(self):
+        self._assert_flags(_doc(body='<a href="javascript:alert(1)">x</a>'), "external reference")
+
+    def test_css_import_rejected(self):
+        self._assert_flags(_doc(head='<style>@import url(x)</style>'), "@import")
+
+    def test_css_url_rejected(self):
+        self._assert_flags(_doc(head='<style>.a{background:url(x)}</style>'), "url()")
 
     def test_escaped_hostile_text_is_inert(self):
         with tempfile.TemporaryDirectory() as d:
@@ -161,13 +273,28 @@ class SafetyValidator(unittest.TestCase):
             self.assertIn("&lt;script&gt;", html)
 
 
+class ReportConformance(unittest.TestCase):
+    def test_four_canonical_reports_pass_allowlist(self):
+        fixtures = [("one\ntwo\nthree", "one\nTWO\nthree"),
+                    ("alpha\nbeta", "alpha\nbeta\ngamma")]
+        with tempfile.TemporaryDirectory() as d:
+            count = 0
+            for a, b in fixtures:
+                for view in ("unified", "side-by-side"):
+                    html = _report(Path(d), a, b, view=view)
+                    p = _write(Path(d), f"r{count}.html", html)
+                    self.assertEqual(vr.validate(p), [],
+                                     f"canonical report {count} (view={view}) must pass")
+                    count += 1
+            self.assertEqual(count, 4)
+
+
 class ReportInvariants(unittest.TestCase):
     def test_zero_js_and_exact_csp(self):
         with tempfile.TemporaryDirectory() as d:
             html = _report(Path(d), "a", "b")
         self.assertNotIn("<script", html)
-        self.assertIn("default-src 'none'; style-src 'unsafe-inline'; img-src data:; "
-                      "base-uri 'none'; form-action 'none'", html)
+        self.assertIn(_CANON_CSP, html)
 
     def test_byte_reproducible(self):
         os.environ["SOURCE_DATE_EPOCH"] = "1700000000"
@@ -223,6 +350,13 @@ class LegendContrast(unittest.TestCase):
 
     def test_legend_uses_full_strength_text(self):
         self.assertIn(".legend mark.wd{color:var(--text)}", cd._CSS)
+
+    def test_inline_marks_carry_a_non_colour_decoration(self):
+        # Word-level changes must be distinguishable without colour (monochrome / colour-blind),
+        # not only in forced-colours mode: additions underlined, removals struck through.
+        css = cd._CSS
+        self.assertIn("mark.wd.add{background:var(--add-inline);text-decoration:underline}", css)
+        self.assertIn("mark.wd.del{background:var(--del-inline);text-decoration:line-through}", css)
 
 
 if __name__ == "__main__":

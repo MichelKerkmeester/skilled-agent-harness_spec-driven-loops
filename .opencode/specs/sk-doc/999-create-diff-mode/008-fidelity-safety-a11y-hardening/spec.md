@@ -12,10 +12,10 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-create-diff-mode/008-fidelity-safety-a11y-hardening"
-    last_updated_at: "2026-07-15T16:33:01Z"
+    last_updated_at: "2026-07-15T17:38:46Z"
     last_updated_by: "claude"
-    recent_action: "Aligned scripts to code-opencode; closed T010/T012; reconciled evidence and status"
-    next_safe_action: "Dispatch the GPT-5.6 SOL ULTRA (fast) review, then make the scoped commit"
+    recent_action: "Rewrote validator to an allowlist; added 39-test suite; reconciled all evidence"
+    next_safe_action: "Make the scoped commit and push to the v4 branch"
     blockers: []
     key_files:
       - "spec.md"
@@ -72,8 +72,8 @@ Make the create-diff engine honest about what it can compare, make the safety va
 
 ### In Scope
 - Strict text decoding: undecodable input is refused (exit 3) or handled explicitly, never silently normalized to `�`; unknown-extension text fallback emits the promised warning.
-- Correct logical-line model: empty text maps to no lines; trailing-newline state is tracked and rendered as a "No newline at end of file" marker rather than a spurious blank line.
-- `validate_report.py` rewritten to parse with `html.parser`, assert the exact normalized CSP directive set, inspect every URL-bearing attribute, and reject `@import` and non-`data:` `url()`.
+- Correct logical-line model: empty text maps to no lines; a trailing-newline-only difference is treated as insignificant (consistent with the trailing-whitespace normalization already applied) rather than producing a spurious blank line.
+- `validate_report.py` rewritten to an `html.parser` **allowlist** of the renderer's exact HTML dialect: only the emitter's known tags and attributes are permitted (any other fails), the exact normalized CSP directive set is asserted (rejecting non-ASCII directive smuggling and a mis-placed or duplicated CSP), every URL-bearing attribute must be a local `#` fragment, and `@import` and non-`data:` `url()` are rejected.
 - Legend contrast fix (`.legend mark.wd{color:var(--text)}`) verified in both themes.
 - Side-by-side scroll fix: a table `min-width` so the scoped region actually scrolls, plus `role`/`aria-label`/`tabindex`/`:focus-visible` so it is keyboard-operable.
 - A checked-in renderer/engine regression suite covering the above plus the already-passing invariants (zero-JS, exact CSP, escaping, byte-reproducibility, pairing, collapse accounting).
@@ -107,7 +107,7 @@ Make the create-diff engine honest about what it can compare, make the safety va
 |----|-------------|---------------------|
 | REQ-001 | Strict decode; no silent difference-erasure | Two files differing only in invalid UTF-8 bytes are NOT reported identical; undecodable full-tier input exits 3 with an encoding message. Test asserts it. |
 | REQ-002 | Legend swatch text meets WCAG AA both themes | `contrast_check.py` passes for every legend `mark.wd` pair in light and dark; test asserts the token pairs. |
-| REQ-003 | `validate_report.py` is a real safety gate | The hostile payload (live handler + remote `<video>` + `@import` + `default-src *`) FAILS; the four canonical reports still PASS. Test asserts both. |
+| REQ-003 | `validate_report.py` is a real safety gate | An allowlist of the emitter's exact dialect: every hostile hazard class (live handler, remote/`data:`/`javascript:` reference, disallowed element/attribute, `@import`, `url()`, refresh/unknown `http-equiv`, duplicate attribute, non-ASCII/mis-placed/duplicate/weakened/missing CSP) FAILS one-per-test; the four canonical reports still PASS. Test asserts both. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

@@ -1,20 +1,20 @@
 ---
 title: "Implementation Plan: create-diff fidelity, safety, and accessibility hardening"
-description: "Land the reconciled GPT-review fixes in create_diff.py and validate_report.py behind a checked-in regression suite: strict decode, correct empty/EOF-newline line model, an HTMLParser safety gate, legend contrast, and a keyboard-operable scoped side-by-side scroll."
+description: "Land the reconciled GPT-review fixes in create_diff.py and validate_report.py behind a checked-in regression suite: strict decode, correct empty/EOF-newline line model, an HTMLParser allowlist safety gate, legend contrast, and a keyboard-operable scoped side-by-side scroll."
 trigger_phrases:
   - "create-diff hardening plan"
   - "diff strict decode plan"
   - "validate report rewrite"
 importance_tier: "important"
 contextType: "implementation"
-status: "draft"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-create-diff-mode/008-fidelity-safety-a11y-hardening"
-    last_updated_at: "2026-07-15T16:33:01Z"
+    last_updated_at: "2026-07-15T17:38:46Z"
     last_updated_by: "claude"
-    recent_action: "Aligned scripts to code-opencode; closed T010/T012; reconciled evidence and status"
-    next_safe_action: "Dispatch the GPT-5.6 SOL ULTRA (fast) review, then make the scoped commit"
+    recent_action: "Rewrote validator to an allowlist; added 39-test suite; reconciled all evidence"
+    next_safe_action: "Make the scoped commit and push to the v4 branch"
     blockers: []
     key_files:
       - "spec.md"

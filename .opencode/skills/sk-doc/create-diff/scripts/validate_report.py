@@ -6,9 +6,13 @@
 """Assert a create-diff HTML report is safe and self-contained.
 
 A generated report is meant to open from `file://` with no network access and no
-scripts. This gate parses the report with the standard-library HTML parser (not a
-regex) so a malformed attribute cannot hide a live handler, and it asserts the exact
-Content-Security-Policy rather than merely its presence. Exit 0 = pass, 1 = fail.
+scripts. The create-diff renderer emits ONE fixed HTML dialect, so this gate is an
+allowlist for exactly that dialect rather than a denylist of known-bad constructs:
+a PASS means the document uses only the expected elements and attributes, carries
+exactly the required Content-Security-Policy as an early `<head>` child, and
+references nothing external. An allowlist is what makes "PASS implies inert and
+self-contained" true even against a drifted producer or a hand-edited report — a
+denylist is always one unknown construct behind. Exit 0 = pass, 1 = fail.
 
 Safety model: the parser only reacts to REAL markup. A document containing hostile
 *text* (for example ``<img onerror=...>`` pasted into the source) is escaped by the
@@ -19,18 +23,18 @@ and ``<style>`` content are inspected.
 
 from __future__ import annotations
 
-import re
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import List, Optional, Set, Tuple
 
-# The one CSP the renderer is allowed to ship, compared as a normalized directive set
-# so ordering and incidental whitespace do not matter but a weakened directive does.
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 
+# The one CSP the renderer is allowed to ship, compared as a normalized directive
+# set so ordering and incidental ASCII whitespace do not matter but a weakened
+# directive does.
 REQUIRED_CSP_DIRECTIVES: Set[str] = {
     "default-src 'none'",
     "style-src 'unsafe-inline'",
@@ -39,52 +43,83 @@ REQUIRED_CSP_DIRECTIVES: Set[str] = {
     "form-action 'none'",
 }
 
-# Attributes that can pull in an external resource. Anything not a `data:` URI or a
-# same-document `#fragment` breaks self-containment (remote fetch, relative file, or a
-# `javascript:` scheme) and is rejected.
-_URL_ATTRS = {
-    "src", "href", "poster", "data", "action", "formaction", "background",
-    "cite", "longdesc", "usemap", "manifest", "codebase", "xlink:href",
+# Every element the create-diff renderer emits. Anything outside this set —
+# <script>, <iframe>, <object>, <embed>, media, form controls, SVG/MathML — is
+# rejected structurally, so no active or fetching element can slip through.
+ALLOWED_TAGS: Set[str] = {
+    "html", "head", "meta", "title", "style", "body", "main", "header",
+    "footer", "section", "div", "h1", "h2", "p", "a", "span", "strong",
+    "mark", "ul", "li", "table", "caption", "colgroup", "col", "thead",
+    "tbody", "tr", "th", "td",
 }
 
-_URL_IN_CSS = re.compile(r"url\(\s*['\"]?\s*([^'\")]+)", re.IGNORECASE)
+# Every attribute the renderer emits. Because this is an allowlist, every unlisted
+# attribute is rejected — which covers inline event handlers (`on*`), `style`,
+# `srcset`/`imagesrcset`, `ping`, `srcdoc`, `src`, `data`, and any other
+# URL-bearing or active attribute without needing to enumerate them.
+ALLOWED_ATTRS: Set[str] = {
+    "lang", "charset", "name", "content", "http-equiv", "class", "href",
+    "id", "scope", "colspan", "aria-labelledby", "aria-label", "aria-hidden",
+    "role", "tabindex",
+}
+
+# The renderer's only URL-bearing attribute is `href`, always a same-document
+# fragment. A value that is not empty and not a `#fragment` (a remote/relative
+# reference, a `data:` URI, or a `javascript:` scheme) breaks self-containment.
+_URL_ATTRS: Set[str] = {"href"}
+
+# ASCII whitespace per the CSP grammar (tab, LF, FF, CR, space). CSP tokenizes on
+# these only; Python's str.split() would also split on Unicode whitespace, which a
+# browser treats as part of an (unknown) directive — a validator/browser split.
+_CSP_ASCII_WS = "\t\n\f\r "
 
 
 # ───────────────────────────────────────────────────────────────
 # 2. HELPERS
 # ───────────────────────────────────────────────────────────────
 
-def _directive_set(csp: str) -> Set[str]:
+def _directive_set(csp: str) -> Tuple[Optional[Set[str]], Optional[str]]:
+    """Tokenize a CSP policy with CSP's ASCII grammar.
+
+    Returns (directive_set, error). The error is set when the policy contains any
+    non-ASCII or ASCII-control character, because such a policy can normalize to the
+    expected set in Python while a browser reads a different (unknown) directive.
+    """
+    for ch in csp:
+        if ord(ch) > 0x7E or (ord(ch) < 0x20 and ch not in _CSP_ASCII_WS):
+            return None, f"contains a non-ASCII or control character (U+{ord(ch):04X})"
     out: Set[str] = set()
     for directive in csp.split(";"):
-        norm = " ".join(directive.split())
+        norm = " ".join(directive.split())  # ASCII-safe after the guard above
         if norm:
             out.add(norm)
-    return out
+    return out, None
 
 
-def _url_is_local(value: Optional[str]) -> bool:
-    """A URL is self-contained iff empty, a `data:` URI, or a same-document fragment."""
+def _href_is_local(value: Optional[str]) -> bool:
+    """An href is self-contained iff empty or a same-document `#fragment`."""
     if value is None:
         return True
     v = value.strip()
-    if v == "" or v.startswith("#"):
-        return True
-    return v.lower().startswith("data:")
+    return v == "" or v.startswith("#")
 
 
-def _css_problems(css: str, where: str) -> List[str]:
+def _style_problems(css: str, where: str) -> List[str]:
+    """Reject any external or active CSS. The emitter's stylesheet uses neither
+    `url()` nor `@import`, so both are rejected outright."""
     problems: List[str] = []
-    if "@import" in css.lower():
+    low = css.lower()
+    if "@import" in low:
         problems.append(f"CSS @import (external stylesheet) in {where}")
-    for target in _URL_IN_CSS.findall(css):
-        if not _url_is_local(target):
-            problems.append(f"CSS url({target.strip()[:48]}…) references a non-data resource in {where}")
+    if "url(" in low:
+        problems.append(f"CSS url() reference in {where}")
+    if "expression(" in low:
+        problems.append(f"CSS expression() in {where}")
     return problems
 
 
 # ───────────────────────────────────────────────────────────────
-# 3. HTML SAFETY PARSER
+# 3. HTML ALLOWLIST PARSER
 # ───────────────────────────────────────────────────────────────
 
 class _SafetyParser(HTMLParser):
@@ -94,6 +129,9 @@ class _SafetyParser(HTMLParser):
         self.saw_html_lang = False
         self.saw_doctype = False
         self.csp_content: Optional[str] = None
+        self.csp_count = 0
+        self.body_started = False
+        self.head_ended = False
         self._in_style = False
 
     def handle_decl(self, decl: str) -> None:
@@ -102,32 +140,50 @@ class _SafetyParser(HTMLParser):
 
     def _tag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]) -> None:
         low = tag.lower()
-        adict = {name.lower(): val for name, val in attrs}
 
-        if low == "script":
-            self.problems.append("contains a <script> tag (must be zero-JavaScript)")
-        if low == "html" and "lang" in adict:
-            self.saw_html_lang = True
-        if low == "meta":
-            equiv = (adict.get("http-equiv") or "").strip().lower()
-            if equiv == "content-security-policy":
-                self.csp_content = adict.get("content") or ""
+        if low not in ALLOWED_TAGS:
+            self.problems.append(
+                f"disallowed element <{low}> (not part of the report dialect)")
+            return
+
+        if low == "body":
+            self.body_started = True
         if low == "style":
             self._in_style = True
 
+        # Duplicate attribute names create a parser differential: CPython hands the
+        # callback every duplicate while the HTML tokenizer keeps only the first.
+        names = [name.lower() for name, _ in attrs]
+        for dup in sorted({n for n in names if names.count(n) > 1}):
+            self.problems.append(f"duplicate attribute '{dup}' on <{low}>")
+
+        adict = {name.lower(): val for name, val in attrs}
+
+        for name in names:
+            if name not in ALLOWED_ATTRS:
+                self.problems.append(f"disallowed attribute '{name}' on <{low}>")
+
+        if low == "html" and "lang" in adict:
+            self.saw_html_lang = True
+
+        if low == "meta":
+            equiv = (adict.get("http-equiv") or "").strip().lower()
+            if equiv:
+                if equiv != "content-security-policy":
+                    # Rejects <meta http-equiv="refresh"> (timed navigation) and any
+                    # other pragma the CSP does not backstop.
+                    self.problems.append(f"disallowed meta http-equiv '{equiv}'")
+                else:
+                    self.csp_count += 1
+                    self.csp_content = adict.get("content") or ""
+                    if self.body_started or self.head_ended:
+                        self.problems.append(
+                            "CSP meta must be a <head> child before <body>")
+
         for name, val in attrs:
-            lname = name.lower()
-            if lname.startswith("on"):
-                self.problems.append(f"inline event handler '{lname}=' on <{low}>")
-            if lname == "style" and val:
-                self.problems.extend(_css_problems(val, f"inline style on <{low}>"))
-            if lname == "srcset" and val:
-                for candidate in val.split(","):
-                    url = candidate.strip().split(" ")[0]
-                    if not _url_is_local(url):
-                        self.problems.append(f"remote srcset '{url[:48]}…' on <{low}>")
-            if lname in _URL_ATTRS and not _url_is_local(val):
-                self.problems.append(f"external reference {lname}='{(val or '')[:48]}…' on <{low}>")
+            if name.lower() in _URL_ATTRS and not _href_is_local(val):
+                self.problems.append(
+                    f"external reference {name.lower()}='{(val or '')[:48]}' on <{low}>")
 
     def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]) -> None:
         self._tag(tag, attrs)
@@ -136,12 +192,15 @@ class _SafetyParser(HTMLParser):
         self._tag(tag, attrs)
 
     def handle_endtag(self, tag: str) -> None:
-        if tag.lower() == "style":
+        low = tag.lower()
+        if low == "style":
             self._in_style = False
+        if low == "head":
+            self.head_ended = True
 
     def handle_data(self, data: str) -> None:
         if self._in_style:
-            self.problems.extend(_css_problems(data, "<style> block"))
+            self.problems.extend(_style_problems(data, "<style> block"))
 
 
 # ───────────────────────────────────────────────────────────────
@@ -149,6 +208,7 @@ class _SafetyParser(HTMLParser):
 # ───────────────────────────────────────────────────────────────
 
 def validate(path: Path) -> List[str]:
+    """Return a list of safety problems; an empty list means the report is safe."""
     html = path.read_text(encoding="utf-8", errors="replace")
     parser = _SafetyParser()
     parser.feed(html)
@@ -160,11 +220,17 @@ def validate(path: Path) -> List[str]:
         problems.append("missing <!doctype html> preamble")
     if not parser.saw_html_lang:
         problems.append("missing <html lang=...> for accessibility")
-    if parser.csp_content is None:
+
+    if parser.csp_count == 0:
         problems.append("missing Content-Security-Policy meta tag")
+    elif parser.csp_count > 1:
+        problems.append(
+            f"multiple Content-Security-Policy meta tags ({parser.csp_count})")
     else:
-        found = _directive_set(parser.csp_content)
-        if found != REQUIRED_CSP_DIRECTIVES:
+        found, csp_error = _directive_set(parser.csp_content or "")
+        if csp_error is not None:
+            problems.append(f"Content-Security-Policy {csp_error}")
+        elif found != REQUIRED_CSP_DIRECTIVES:
             missing = REQUIRED_CSP_DIRECTIVES - found
             extra = found - REQUIRED_CSP_DIRECTIVES
             detail = []
