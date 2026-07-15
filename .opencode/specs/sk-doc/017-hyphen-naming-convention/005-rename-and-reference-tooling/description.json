@@ -1,19 +1,23 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling",
-  "description": "A blind path-segment `_`->`-` substitution corrupts names (`_common.sh`->`-common.sh`, `__fixtures__`->`--fixtures--`, leading-hyphen CLI hazards) and",
+  "description": "The tooling phase defines a deterministic, exemption-aware rename engine, a read-only whole-repository reference checker with a disposition ledger,",
   "keywords": [
-    "blind",
-    "path-segment",
-    "substitution",
-    "corrupts",
-    "names",
-    "common",
-    "fixtures",
-    "leading-hyphen",
-    "cli",
-    "hazards"
+    "tooling",
+    "phase",
+    "defines",
+    "deterministic",
+    "exemption-aware",
+    "rename",
+    "engine",
+    "read-only",
+    "whole-repository",
+    "reference",
+    "checker",
+    "disposition",
+    "ledger"
   ],
-  "lastUpdated": "2026-07-13T14:31:53.808Z",
+  "lastUpdated": "2026-07-15T09:28:38.540Z",
   "specId": "005",
   "folderSlug": "rename-and-reference-tooling",
   "parentChain": [
@@ -21,6 +25,5 @@
     "017-hyphen-naming-convention"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

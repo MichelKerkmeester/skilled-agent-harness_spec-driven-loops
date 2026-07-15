@@ -106,7 +106,7 @@
         "source": "derived"
       },
       {
-        "name": "every",
+        "name": "touch-sets",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -120,6 +120,12 @@
       {
         "name": "Overview Before",
         "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -182,17 +188,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Before any rename, the in-scope surface must be frozen into a fully-classified rename map partitioned by dependency closure, pinned to the CURRENT migration tip (not the authoring SHA). Every candidate is classified exactly once (rename/exempt/frozen/generated/tool-mandated) with no 'unknown' bucket; rename entries carry a pending vs already-applied disposition because concurrent v4 work has landed part of the surface (the sk-git kebab pilot). The map is hashed with BASE so execution is reproducible, and the generated .codex/prompts surface is in scope, classified generated.",
     "created_at": "2026-07-13T14:34:05.529Z",
-    "last_save_at": "2026-07-15T05:27:31.011Z",
+    "last_save_at": "2026-07-15T09:36:16.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:8b5499f83dd099817c2e2d8f9d09a55464c30a1e3f8867a2e226bfbf81e86dcf",
+    "source_fingerprint": "sha256:4111bfdb220bc80cf0c51b17d929fe3556ccb398b87cd10f7c5444571b43cdca",
     "source_doc_hashes": {
-      "spec.md": "2813d6852f0e254906711cb83ef722f684869e689db99799c2c425d2022ac113",
+      "spec.md": "f66ec0945bf58bda9ffe7a88416abbace7fdcabba1f60ba7688a6faa34526415",
       "plan.md": "85ec25790000a8c8e576eba9743108ff74de863966ceb24385c96834c3577e32",
       "tasks.md": "0df6e50ff80f758259a36db7ce2897753d49655bcf3098fed18cac3a035a522c",
-      "checklist.md": "738edff143c20b6f3988547df9e6b3ba06e8eadba229fd58d36a061968456d39"
+      "checklist.md": "a5580d76eec67b04ed92699a243285ffc6580768bd7adfbc475918d205b8ebf2"
     },
     "last_active_child_id": null,
     "last_active_at": null
