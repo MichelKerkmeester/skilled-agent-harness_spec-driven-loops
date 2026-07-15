@@ -1,0 +1,33 @@
+{
+  "executors": [
+    {
+      "kind": "cli-codex",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "fast",
+      "label": "sol-xhigh",
+      "iterations": 10
+    },
+    {
+      "kind": "cli-codex",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "max",
+      "serviceTier": "fast",
+      "label": "terra-max",
+      "iterations": 5
+    },
+    {
+      "kind": "cli-codex",
+      "model": "gpt-5.6-luna",
+      "reasoningEffort": "max",
+      "serviceTier": "fast",
+      "label": "luna-max",
+      "iterations": 5
+    }
+  ],
+  "assignment_model": "flat_pool",
+  "concurrency": 3,
+  "maxRetries": 5,
+  "lagCeilingMs": 300000,
+  "progressHeartbeatSeconds": 60
+}
