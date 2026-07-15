@@ -384,7 +384,7 @@ function runLiveScenario({ scenario, skillRoot, model } = {}) {
 // 4. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { runLiveScenario, parseLiveResult, buildLiveDispatchPrompt, runDispatch, extractRoutingJson, proseRoutingFallback, parseRoutedDeclaration, collectBraceBalancedObjects, DEFAULT_MODEL, DEFAULT_VARIANT };
+module.exports = { runLiveScenario, parseLiveResult, buildLiveDispatchPrompt, runDispatch, extractRoutingJson, proseRoutingFallback, parseRoutedDeclaration, collectBraceBalancedObjects, hasRouteGold, DEFAULT_MODEL, DEFAULT_VARIANT };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
