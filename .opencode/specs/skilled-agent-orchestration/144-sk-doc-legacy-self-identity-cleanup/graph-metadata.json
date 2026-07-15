@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/144-sk-doc-legacy-self-identity-cleanup",
+  "spec_folder": "skilled-agent-orchestration/144-sk-doc-legacy-self-identity-cleanup",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc legacy self-identity cleanup",
+      "sk-doc stale self-identity refs",
+      "normalize sk-doc ancient path references",
+      "sk-doc self-identity cleanup plan",
+      "sk-doc self-identity cleanup tasks",
+      "sk-doc self-identity cleanup status"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "legacy",
+      "self-identity",
+      "cleanup",
+      "stale",
+      "refs",
+      "normalize",
+      "ancient",
+      "path",
+      "references",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Self",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Identity Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Normalize",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 143 sk-doc consolidation's independent LUNA audit surfaced 258 non-resolving self-identity references in the sk-doc track's nested docs (grandchildren of the moved packets)",
+    "created_at": "2026-07-15T15:19:16.959Z",
+    "last_save_at": "2026-07-15T15:24:46.735Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cce9ffbc9bf6691983700a37dbb15f8b19a58a1975e8c60d6d500c414c4fba39",
+    "source_doc_hashes": {
+      "spec.md": "ae1b44b58975adec9e635a6b9806a5c370a60d1f1945e2a27c3b8e7753c61f2c",
+      "plan.md": "d488b4f5bdfb78af122153c6a2cf1dc3a3f46b2d8047a30be4166646d1698e11",
+      "tasks.md": "4087f5a72ba850d416a67edfe12e172ecdb592f782a95eea241fb801283e7c48",
+      "implementation-summary.md": "d21c941eb3e901b1cd98d999c7760b5f688922cb0875cbcf5a085c2467158dc0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

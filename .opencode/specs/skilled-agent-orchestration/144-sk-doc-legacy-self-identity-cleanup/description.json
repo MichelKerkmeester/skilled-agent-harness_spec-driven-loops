@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/144-sk-doc-legacy-self-identity-cleanup",
+  "description": "The 143 sk-doc consolidation's independent LUNA audit surfaced 258 non-resolving self-identity references in the sk-doc track's nested docs",
+  "keywords": [
+    "sk-doc",
+    "consolidation",
+    "independent",
+    "luna",
+    "audit",
+    "surfaced",
+    "non-resolving",
+    "self-identity",
+    "references",
+    "track",
+    "nested",
+    "docs"
+  ],
+  "lastUpdated": "2026-07-15T15:21:54.070Z",
+  "specId": "144",
+  "folderSlug": "sk-doc-legacy-self-identity-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
