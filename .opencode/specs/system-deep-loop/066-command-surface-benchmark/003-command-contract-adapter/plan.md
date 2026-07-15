@@ -1,19 +1,20 @@
 ---
 title: "Implementation Plan: command contract adapter"
 description: "Plan for the deterministic sk-doc-command peer adapter and its fixture proof."
-status: planned
+status: complete
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/003-command-contract-adapter"
-    last_updated_at: "2026-07-14T20:45:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded the adapter child that implements the deterministic command axis"
-    next_safe_action: "Implement the peer adapter discover and check methods against the fixtures"
+    last_updated_at: "2026-07-15T07:22:15Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the command contract adapter"
+    next_safe_action: "Refresh generated metadata, then register the peer adapter in the successor phase"
     blockers: []
     key_files:
-      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs"
       - ".opencode/commands/scripts/validate-command-references.cjs"
       - ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"

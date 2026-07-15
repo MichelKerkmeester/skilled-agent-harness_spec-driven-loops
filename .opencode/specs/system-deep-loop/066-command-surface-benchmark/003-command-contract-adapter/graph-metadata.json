@@ -14,7 +14,10 @@
       "sk-doc-command adapter",
       "command contract adapter",
       "peer adapter deep-alignment",
-      "command reference checks"
+      "command reference checks",
+      "sk-doc-command implementation",
+      "command adapter fixture proof",
+      "command reference topology coverage"
     ],
     "key_topics": [
       "sk-doc-command",
@@ -25,27 +28,37 @@
       "deep-alignment",
       "reference",
       "checks",
-      "implements",
-      "three-method",
-      "extends",
-      "reusable"
+      "implementation",
+      "fixture",
+      "proof",
+      "topology"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs",
       ".opencode/commands/scripts/validate-command-references.cjs",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_command_adapter.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_command_known_deviations.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "sk-doc.cjs",
+        "name": "sk-doc-command.cjs",
         "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-command-adapter.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs",
         "source": "derived"
       },
       {
@@ -67,6 +80,18 @@
         "source": "derived"
       },
       {
+        "name": "sk_doc_command_adapter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_command_adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk_doc_command_known_deviations.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_command_known_deviations.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -82,6 +107,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -161,41 +192,25 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "References Parent",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "P0",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Implements the sk-doc-command peer adapter on the deep-alignment three-method contract, extends the reusable reference checks to every command topology, and proves exact fixture outcomes without duplicating generic document validation.",
     "created_at": "2026-07-14T20:36:59.179Z",
-    "last_save_at": "2026-07-15T04:48:22.771Z",
+    "last_save_at": "2026-07-15T07:29:47.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:200e394d48409f659bee1d9240ba5bd10735504f2a8a6fedb7654451fe325141",
+    "source_fingerprint": "sha256:382dcc7e8e30b187e73303ba6b78ddd5e153245479626b9aaf90832d5438f470",
     "source_doc_hashes": {
-      "spec.md": "9ca53b513d9e3d8facd0cbc150864b02281c930de34463b5b124cb7641df74d1",
-      "plan.md": "5b71d2b10913aaae620bcba877f47703c4917a208d5aba50365074ffe9094d81",
-      "tasks.md": "cc82ff73ca8397f0c905e3bf1acdbf5186fabb401a2ba198e6a0d35c8902a1eb"
+      "spec.md": "38a3e0a26ba507b82353af8f0d313049874f5cf7e4c341ab5b0b2289b7ba40ef",
+      "plan.md": "d87b258b51cd9531d78c03401fc1a39088bdacdaa0c4a554d4b1e983be123520",
+      "tasks.md": "4e13872d3d273380b12f5a390142eedef7a63ebb532d93af5effd10b522678e9",
+      "implementation-summary.md": "585d0c3474296c7de3bed92d20313bbb3452bb71ecab693fa21d2608608e98ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

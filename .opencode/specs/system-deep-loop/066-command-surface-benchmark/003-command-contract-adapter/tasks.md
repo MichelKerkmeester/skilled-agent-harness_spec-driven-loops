@@ -1,19 +1,20 @@
 ---
 title: "Tasks: command contract adapter"
 description: "Task breakdown for the deterministic sk-doc-command peer adapter."
-status: planned
+status: complete
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/003-command-contract-adapter"
-    last_updated_at: "2026-07-14T20:45:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded the adapter child that implements the deterministic command axis"
-    next_safe_action: "Implement the peer adapter discover and check methods against the fixtures"
+    last_updated_at: "2026-07-15T07:22:15Z"
+    last_updated_by: "codex"
+    recent_action: "Completed all adapter implementation and verification tasks"
+    next_safe_action: "Refresh generated metadata, then register the peer adapter in the successor phase"
     blockers: []
     key_files:
-      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs"
       - ".opencode/commands/scripts/validate-command-references.cjs"
       - ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
@@ -27,28 +28,28 @@ _memory:
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-`[ ]` open · `[x]` complete. Each task lists its verification evidence. This child is Planned; all tasks are open.
+`[ ]` open · `[x]` complete. Each task lists its verification evidence. This child is complete.
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 — Implement discover to equal the canonical source inventory. Evidence: discovery set equals the sync inventory count.
-- [ ] T002 — Implement check for dimensions S1 to S5 with P0 to P2 severities. Evidence: adapter emits severity-tagged findings for each dimension.
+- [x] T001 — Implement discover to equal the canonical source inventory. [evidence: `sync-prompts.cjs --check` and the adapter test each reported 37 canonical commands]
+- [x] T002 — Implement check for dimensions S1 to S5 with P0 to P2 severities. [evidence: the adapter test matched the exact code, severity, dimension and location sets for 13/13 fixtures]
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 — Extend the reusable reference checks to all four command topologies. Evidence: reference-checks self-test exit 0 across topologies.
-- [ ] T004 — Prove exact fixture outcomes against the oracle expectations. Evidence: adapter matches every public and held-out fixture expectation.
-- [ ] T005 — Assert no generic document-validation finding types are emitted. Evidence: finding-type scan shows zero generic types.
+- [x] T003 — Extend the reusable reference checks to all four command topologies. [evidence: the pre-edit baseline and additive post-edit `--self-test` each exited 0, with one hermetic source per topology after the edit]
+- [x] T004 — Prove exact fixture outcomes against the oracle expectations. [evidence: the adapter-only test matched 13/13 fixtures, including all public defects, held-out defects and the clean control]
+- [x] T005 — Assert no generic document-validation finding types are emitted. [evidence: the runtime scan classified 14/14 findings as command-surface findings and reported generic=0]
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 — Run the adapter node syntax check and test suite. Evidence: node check exit 0 and adapter test suite exit 0.
+- [x] T006 — Run the adapter node syntax check and test suite. [evidence: both `node --check` commands and the adapter test exited 0, and the independent verifier passed all 13 fixtures]
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

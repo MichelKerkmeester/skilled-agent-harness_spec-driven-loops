@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: command contract adapter — a deterministic sk-doc peer adapter over the whole command corpus"
 description: "Implements the sk-doc-command peer adapter on the deep-alignment three-method contract, extends the reusable reference checks to every command topology, and proves exact fixture outcomes without duplicating generic document validation."
-status: planned
+status: complete
 trigger_phrases:
   - "sk-doc-command adapter"
   - "command contract adapter"
@@ -12,13 +12,14 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/003-command-contract-adapter"
-    last_updated_at: "2026-07-14T20:45:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded the adapter child that implements the deterministic command axis"
-    next_safe_action: "Implement the peer adapter discover and check methods against the fixtures"
+    last_updated_at: "2026-07-15T07:22:15Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the command contract adapter"
+    next_safe_action: "Refresh generated metadata, then register the peer adapter in the successor phase"
     blockers: []
     key_files:
-      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs"
       - ".opencode/commands/scripts/validate-command-references.cjs"
       - ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
@@ -38,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
@@ -95,7 +96,7 @@ The deterministic axis needs an adapter that audits structural command integrity
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether route-graph integrity for subaction routers needs hermetic route fixtures beyond the defect corpus.
+None. The additive reference-checker self-test now exercises a hermetic source for each of the four command topologies.
 <!-- /ANCHOR:questions -->
 
 ## PHASE SEQUENCE
