@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/014-gitkraken-mcp-integration/005-verify-and-rollout",
+  "spec_folder": "sk-git/014-gitkraken-mcp-integration/005-verify-and-rollout",
+  "parent_id": "sk-git/014-gitkraken-mcp-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gitkraken mcp verify",
+      "gitkraken packet rollout",
+      "phase 005 verify-and-rollout",
+      "gitkraken mcp verify plan",
+      "phase 005 plan",
+      "gitkraken mcp verify tasks",
+      "phase 005 tasks",
+      "gitkraken mcp verify summary",
+      "phase 005 summary"
+    ],
+    "key_topics": [
+      "gitkraken",
+      "mcp",
+      "verify",
+      "packet",
+      "rollout",
+      "phase",
+      "verify-and-rollout",
+      "plan",
+      "tasks",
+      "summary",
+      "phases",
+      "verified"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "spec.md",
+      ".opencode/skills/sk-git/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-git/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Terminal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001-004 each verified their own scope in isolation",
+    "created_at": "2026-07-15T04:22:50.746Z",
+    "last_save_at": "2026-07-15T04:22:50.746Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0fc23f8f28b174a1599fa72313abe4833053beb2a5d1c3a05b7c9da9e62d17d5",
+    "source_doc_hashes": {
+      "spec.md": "42b5eb91f4b9072c007ea2f32fe82fa6ec3cbff98cebd46691c88515b0c90239",
+      "plan.md": "a5c022bc6cdcca26a45c7a6ae79d957a9c827f5158f4498c5ac78a66eee9cbd1",
+      "tasks.md": "aa916656fc10531b8c2c875ab3b1c6fa2dbbac608c69ddda665f4254996b53d0",
+      "implementation-summary.md": "8cf90a337aec67668dd14c97acd3b5148177af10c0b297dc04f71a6235a916b9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

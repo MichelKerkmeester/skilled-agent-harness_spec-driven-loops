@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/z_archive",
+  "spec_folder": "sk-git/z_archive",
+  "parent_id": "sk-git",
+  "children_ids": [
+    "sk-git/z_archive/001-sk-git-github-mcp-integration",
+    "sk-git/z_archive/002-sk-git-superset-worktrees",
+    "sk-git/z_archive/003-sk-git-readme",
+    "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite",
+    "sk-git/z_archive/005-sk-git-reorg-hardening",
+    "sk-git/z_archive/006-sk-git-worktree-convention-and-advisor-routing"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "archive",
+      "sk-git",
+      "superseded"
+    ],
+    "importance_tier": "reference",
+    "status": "complete",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Archive grouping for superseded sk-git packets.",
+    "created_at": "2026-07-15T04:20:33.000Z",
+    "last_save_at": "2026-07-15T04:20:33.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "source_doc_hashes": {},
+    "last_active_child_id": "sk-git/z_archive/006-sk-git-worktree-convention-and-advisor-routing",
+    "last_active_at": "2026-07-15T04:20:33.000Z"
+  }
+}

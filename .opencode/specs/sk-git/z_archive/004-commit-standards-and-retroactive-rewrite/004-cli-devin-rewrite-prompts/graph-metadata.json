@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
+  "spec_folder": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
+  "parent_id": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "112-cli-devin-rewrite-prompts",
+      "commit rewrite deep-loop",
+      "cli-devin commit rewrite iter",
+      "agent-config-commit-rewrite-iter",
+      "112-cli-devin-rewrite-prompts plan",
+      "112-cli-devin-rewrite-prompts tasks",
+      "implementation",
+      "summary",
+      "template",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "112-cli-devin-rewrite-prompts",
+      "commit",
+      "rewrite",
+      "deep-loop",
+      "cli-devin",
+      "iter",
+      "agent-config-commit-rewrite-iter",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "template"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rewrite Prompts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion_pct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A 2,795-commit retroactive rewrite is too large for a single cli-devin dispatch",
+    "created_at": "2026-07-15T04:22:53.290Z",
+    "last_save_at": "2026-07-15T04:22:53.290Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3dfc82f5a92a1df85a9c186f44ef8615f882bd8c2a19dde486eafcf6e8210b40",
+    "source_doc_hashes": {
+      "spec.md": "55cbfc5a6203f69c0d68b6860d6ac5b7da51c9ae78ec916a7c5ee4545dc1353d",
+      "plan.md": "2e6af07a94c2fd652cfc9014aa2319ae03ef1f73784c4284bc719bdf4929e2f9",
+      "tasks.md": "3b8551815450bd78e7585c795b6c169c874981859227b832f2c10d6ecd7ef024",
+      "implementation-summary.md": "92c6c9214fc4aaf072bcd19bc89fc360893d9f2eb5bd64c59746454e0c5d4452"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

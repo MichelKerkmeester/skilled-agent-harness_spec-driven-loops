@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-git/014-gitkraken-mcp-integration/005-verify-and-rollout",
+  "description": "Phases 001-004 each verified their own scope in isolation",
+  "keywords": [
+    "phases",
+    "verified",
+    "own",
+    "scope",
+    "isolation"
+  ],
+  "lastUpdated": "2026-07-15T04:22:50.632Z",
+  "specId": "005",
+  "folderSlug": "verify-and-rollout",
+  "parentChain": [
+    "sk-git",
+    "014-gitkraken-mcp-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

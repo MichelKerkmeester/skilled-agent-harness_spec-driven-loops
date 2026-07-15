@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/014-gitkraken-mcp-integration/004-advisor-routing-update",
+  "spec_folder": "sk-git/014-gitkraken-mcp-integration/004-advisor-routing-update",
+  "parent_id": "sk-git/014-gitkraken-mcp-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gitkraken advisor routing",
+      "sk-git graph metadata gitkraken",
+      "explicit lane gitkraken boost",
+      "phase 004 advisor-routing-update",
+      "gitkraken advisor routing plan",
+      "phase 004 plan",
+      "gitkraken advisor routing tasks",
+      "phase 004 tasks",
+      "gitkraken advisor routing checklist",
+      "phase 004 checklist",
+      "gitkraken advisor routing summary",
+      "phase 004 summary"
+    ],
+    "key_topics": [
+      "gitkraken",
+      "advisor",
+      "routing",
+      "sk-git",
+      "graph",
+      "metadata",
+      "explicit",
+      "lane",
+      "boost",
+      "phase",
+      "advisor-routing-update",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-git/graph-metadata.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-git/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Even",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Extend",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a GitKraken-shaped",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Even with phase 003's doc and router in place, the skill advisor — the system that decides WHETHER to invoke sk-git at all before its own in-skill router ever runs — has no GitKraken vocabulary",
+    "created_at": "2026-07-15T04:22:50.451Z",
+    "last_save_at": "2026-07-15T04:22:50.451Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e89cf9d1388036fabd5d3dca44daf1c57d703739bf1f100a3d39ed5aff979158",
+    "source_doc_hashes": {
+      "spec.md": "d6e742a67209785b78b34a3e99b717d6c58429ef34d9966c5da01e2fe1805bdc",
+      "plan.md": "814444a82bc65db08c86af2e2342a388ed39f11e87c55c3ccc70d8b63df1d2ee",
+      "tasks.md": "c891942ac4598931c754d37f086e77f1c84434b1080954cff795869e3e07a9e1",
+      "checklist.md": "c32fdf69679f3b2570f8504ffa5ceb7b63032be8004d528c833e6c3f495e1349",
+      "implementation-summary.md": "a6a942eefc45dd15dd78a8fa8514f1d5c42e8ec8f8d8b20b6504bfb3bca12a50"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

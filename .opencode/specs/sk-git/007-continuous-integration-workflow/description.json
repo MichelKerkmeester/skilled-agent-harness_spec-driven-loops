@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-git/007-continuous-integration-workflow",
+  "description": "The launch wrapper `worktree-session.sh` isolates every top-level AI session into its own worktree on a dead-end `work/<runtime>/<slug>` branch with",
+  "keywords": [
+    "launch",
+    "wrapper",
+    "worktree-session",
+    "isolates",
+    "every",
+    "top-level",
+    "session",
+    "own",
+    "worktree",
+    "dead-end",
+    "work",
+    "runtime",
+    "slug",
+    "branch"
+  ],
+  "lastUpdated": "2026-07-15T04:22:47.129Z",
+  "specId": "007",
+  "folderSlug": "continuous-integration-workflow",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

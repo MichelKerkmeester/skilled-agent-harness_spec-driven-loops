@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/007-continuous-integration-workflow",
+  "spec_folder": "sk-git/007-continuous-integration-workflow",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "continuous integration workflow",
+      "always current live branch",
+      "sk-git autosync"
+    ],
+    "key_topics": [
+      "continuous",
+      "integration",
+      "workflow",
+      "always",
+      "current",
+      "live",
+      "branch",
+      "sk-git",
+      "autosync",
+      "launch",
+      "wrapper",
+      "worktree-session"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/git-sync.sh",
+      ".opencode/bin/git-live-follow.sh",
+      ".opencode/bin/worktree-status.sh",
+      ".opencode/bin/worktree-session.sh",
+      ".codex/hooks.json",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/plugins/session-cleanup.js",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".claude/settings.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "git-sync.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-live-follow.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-live-follow.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-status.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-status.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-cleanup.js",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Share",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sessions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Trunk",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The launch wrapper `worktree-session.sh` isolates every top-level AI session into its own worktree on a dead-end `work/<runtime>/<slug>` branch with isolated MCP databases",
+    "created_at": "2026-07-15T04:22:47.296Z",
+    "last_save_at": "2026-07-15T04:22:47.296Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:686c34725938f1966a5ddec773a686ea44465789fcbbc755023a60fb364156f4",
+    "source_doc_hashes": {
+      "spec.md": "cdfd61abba0f40ec4141fa2b5a37a0c040b7c3fed2b5ccf17bc33594c2edb71a",
+      "plan.md": "d2cda667ea9e636f48a0c4de6a7962e710e8573135e00e90fa8a565db10b5eee",
+      "tasks.md": "cdf4588943202a280352047ba074162e1c505d86341336edc5cb7a2603cbb3c3",
+      "checklist.md": "85987e1a548cf4a624d25d2a16372cef71f8a3d779af43d1f0769e1cd2ac7c3f",
+      "implementation-summary.md": "a59c4572db742a2b52e6de41ac286e5aa7805dccc682866877b38773fce9a196"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

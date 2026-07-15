@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/009-skill-scoped-worktree-naming",
+  "spec_folder": "sk-git/009-skill-scoped-worktree-naming",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill scoped worktree naming",
+      "owner first branch convention",
+      "sk-git worktree cleanup",
+      "skilled branch alias",
+      "skill scoped worktree plan",
+      "owner first branch plan",
+      "sk-git cleanup plan",
+      "skill scoped worktree tasks",
+      "owner first branch tasks",
+      "sk-git cleanup tasks",
+      "skill scoped worktree checklist",
+      "owner first branch checklist"
+    ],
+    "key_topics": [
+      "skill",
+      "scoped",
+      "worktree",
+      "naming",
+      "owner",
+      "first",
+      "branch",
+      "convention",
+      "sk-git",
+      "cleanup",
+      "skilled",
+      "alias"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/sk-git/graph-metadata.json",
+      ".opencode/skills/sk-git/changelog/v1.2.0.0.md",
+      ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+      ".opencode/bin/worktree-session.sh",
+      ".opencode/bin/worktree-reaper.sh",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-git/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/changelog/v1.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoped Worktree",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Branch Naming",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Marked Phases",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Codify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cleanup Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recorded Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-git's numbered `wt/{NNNN}-{name}` branch namespace carries no owner, so a GitKraken tree of dozens of `wt/`, `work/`, `system-speckit/`, `wip/`, and `backup/` branches gives no signal of who owns what",
+    "created_at": "2026-07-15T04:22:47.978Z",
+    "last_save_at": "2026-07-15T04:22:47.978Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f0453fa3748f3f59d1f7ace44f2a2a24f999b4e1d9afa6f28a38f1e05496ec36",
+    "source_doc_hashes": {
+      "spec.md": "e93b9f8b04993098ad787d5c1e25f0f328a78c011b501c596b4e427812b963fa",
+      "plan.md": "4cfb22db613d320b3919d3d657774407b02dbb2d7ecfd3376ad5a250507e8719",
+      "tasks.md": "495b798cfdb44ead8e0ce402154b038b98998a0658365e7a02adb1331bcb8f92",
+      "checklist.md": "266b9c87bcb7fab31bbb4e780ed036cc22cdf61185d83eb951e7204db5a087dd",
+      "decision-record.md": "553d7a814de58e60b6b7327e9016f34d629a595dcdfa57d6a3360bdf305ad80c",
+      "implementation-summary.md": "711ca40d5b4dedb3ec3fc887eb69bd81ff54bb159291a574a9dffba1c4b3b491"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
+  "spec_folder": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
+  "parent_id": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "112-retroactive-rewrite-execution",
+      "git filter-repo apply",
+      "commit rewrite execution",
+      "mapping.jsonl synthesis",
+      "112-retroactive-rewrite-execution plan",
+      "112-retroactive-rewrite-execution tasks",
+      "implementation",
+      "summary",
+      "template",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "112-retroactive-rewrite-execution",
+      "git",
+      "filter-repo",
+      "apply",
+      "commit",
+      "rewrite",
+      "execution",
+      "mapping",
+      "jsonl",
+      "synthesis",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retroactive Rewrite Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preflight Verify Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Synthesis Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apply Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Count",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "init",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2,795 HEAD commits do not follow the standard locked in Phase 002",
+    "created_at": "2026-07-15T04:22:53.600Z",
+    "last_save_at": "2026-07-15T04:22:53.600Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:edaa080af99779e5256a0d4140adc730cfec9ecdd232db7f1d6623578ebab303",
+    "source_doc_hashes": {
+      "spec.md": "84904e065c84089e320d8f78ae86affad03fc00b90b2fc69e6f9d791b6adc73f",
+      "plan.md": "ec3ec0b8bfd02ff2749d653d2a665194f0ab58cbabe5b085940728075fefb9fd",
+      "tasks.md": "2da40a3968a142b0183bb361950e06b234e4f3103e1939139f16b782a5c10126",
+      "implementation-summary.md": "6f8458d8ddec8d28ae3837eb29049b6f7425ebe18d318a178e37e03f618a513c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

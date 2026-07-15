@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
+  "spec_folder": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite/002-commit-standards-definition",
+  "parent_id": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "112-commit-standards-definition",
+      "commit standards",
+      "conventional commits standard",
+      "Sequential Thinking commit standards",
+      "112-commit-standards-definition plan",
+      "112-commit-standards-definition tasks",
+      "112-commit-standards-decision-record",
+      "commit standards ADRs",
+      "112-commit-standards-definition summary",
+      "commit standards locked"
+    ],
+    "key_topics": [
+      "112-commit-standards-definition",
+      "commit",
+      "standards",
+      "conventional",
+      "commits",
+      "standard",
+      "sequential",
+      "thinking",
+      "plan",
+      "tasks",
+      "112-commit-standards-decision-record",
+      "adrs"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "evidence/sample-20.txt",
+      "evidence/sample-packet-id.txt",
+      "evidence/sample-coauthor.txt",
+      "evidence/sample-merges.txt",
+      "implementation-summary.md",
+      ".opencode/skills/sk-git/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "sample-20.txt",
+        "kind": "file",
+        "path": "evidence/sample-20.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sample-packet-id.txt",
+        "kind": "file",
+        "path": "evidence/sample-packet-id.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sample-coauthor.txt",
+        "kind": "file",
+        "path": "evidence/sample-coauthor.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sample-merges.txt",
+        "kind": "file",
+        "path": "evidence/sample-merges.txt",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Standards Definition",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Sequential Thinking",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sequential Thinking",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sequential Thinking Group",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "existing Co-Authored-By",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "date",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo has standards on paper but no decisions locked in for the cases that actually matter for a retroactive rewrite",
+    "created_at": "2026-07-15T04:22:52.593Z",
+    "last_save_at": "2026-07-15T04:22:52.593Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1bbd9cfc4676d434fadabb4446a65eab5a7160d833861c6f39b3fa4bb531aa9b",
+    "source_doc_hashes": {
+      "spec.md": "3a0ab1259497eaf4baf9b5bfa9e9e98cb5df99bb74486971accf8f53a1bcec47",
+      "plan.md": "4de40175975a5c93132029f139085a7996278898b427215eb41495b12609d1b9",
+      "tasks.md": "c3c0a99eebb24237088f559a70dcd8467a8f2300d1ce5a7ab29a4cf0c11c722c",
+      "decision-record.md": "a96efeb121269ae0ce7cba5d65e9cb1fe04340d844be5176c643adf2d8ff1cdc",
+      "implementation-summary.md": "7e5465a730d1197daf99f297b365d9e621e33d608971bc34990740fe79bbd9c0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

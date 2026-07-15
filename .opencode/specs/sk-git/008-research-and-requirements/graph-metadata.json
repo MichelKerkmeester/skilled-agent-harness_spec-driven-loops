@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/008-research-and-requirements",
+  "spec_folder": "sk-git/008-research-and-requirements",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parallel git research charter",
+      "shared branch autosync research",
+      "concurrent session push without blockers",
+      "primary checkout never behind origin",
+      "two model deep research plan",
+      "parallel git research methodology",
+      "sol luna fan-out",
+      "parallel git research tasks",
+      "two model research queue",
+      "sol luna iterations",
+      "parallel git research checklist",
+      "autosync research qa"
+    ],
+    "key_topics": [
+      "parallel",
+      "git",
+      "research",
+      "charter",
+      "shared",
+      "branch",
+      "autosync",
+      "concurrent",
+      "session",
+      "push",
+      "without",
+      "blockers"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/fanout-attribution.md",
+      "research/lineages/parallel-git-sol/iterations/iteration-001.md",
+      "research/lineages/parallel-git-sol/iterations/iteration-002.md",
+      "research/lineages/parallel-git-sol/iterations/iteration-003.md",
+      "research/lineages/parallel-git-sol/iterations/iteration-004.md",
+      "research/lineages/parallel-git-sol/iterations/iteration-005.md",
+      "research/lineages/parallel-git-luna/iterations/iteration-001.md",
+      "research/lineages/parallel-git-luna/iterations/iteration-002.md",
+      "research/lineages/parallel-git-luna/iterations/iteration-003.md",
+      "research/lineages/parallel-git-luna/iterations/iteration-004.md",
+      "research/lineages/parallel-git-luna/iterations/iteration-005.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/parallel-git-sol/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/lineages/parallel-git-sol/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/lineages/parallel-git-sol/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/lineages/parallel-git-sol/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/lineages/parallel-git-sol/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Free Concurrent Commit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Branch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Multiple",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Deep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Multiple AI coding sessions run concurrently against one shared long-lived branch",
+    "created_at": "2026-07-15T04:22:47.622Z",
+    "last_save_at": "2026-07-15T04:22:47.622Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:841a2272ab06d1a401f2dbc4ddc561ac28638a4f4d339290988cdd4c04bde24c",
+    "source_doc_hashes": {
+      "spec.md": "91a8ead5feebb580f947531f3f05ce2b5ba9c05dc820da230e2a09b2648a8333",
+      "plan.md": "2983f057e993b28e0c7e9939d3cc33d25f65bbe7ff52e9a5f08d6aae21aa33f7",
+      "tasks.md": "245fd11d0462387a71f191d159df2bb40b9915d6363e51cb31ca1e5e6bfa7c09",
+      "checklist.md": "75b542da169461bfc8b19c6fbd992bc36d8de2eb8b27fa188eab5b052a7f613a",
+      "decision-record.md": "d95f6ee2bbed8957ed786e66db28bbe279f16200db296ac5eee99f935109d34b",
+      "implementation-summary.md": "8c130b4922efed49447b9de1dc0116eed5f611b9ffadb775866c912c9d3394fd",
+      "research/research.md": "647422c707f49529b2752d573a21a3e042b7e874f6d6a9e1eab0da9db8286b30"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

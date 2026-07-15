@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/014-gitkraken-mcp-integration/001-research-and-context",
+  "spec_folder": "sk-git/014-gitkraken-mcp-integration/001-research-and-context",
+  "parent_id": "sk-git/014-gitkraken-mcp-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gitkraken mcp research",
+      "gk cli tool inventory",
+      "gitkraken mcp safety carve-out",
+      "phase 001 research-and-context",
+      "gitkraken mcp research plan",
+      "gk cli inventory plan",
+      "phase 001 plan",
+      "gitkraken mcp research tasks",
+      "phase 001 tasks",
+      "gitkraken mcp research summary",
+      "phase 001 summary"
+    ],
+    "key_topics": [
+      "gitkraken",
+      "mcp",
+      "research",
+      "cli",
+      "tool",
+      "inventory",
+      "safety",
+      "carve-out",
+      "phase",
+      "research-and-context",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/sk-git/014-gitkraken-mcp-integration/001-research-and-context/spec.md",
+      ".opencode/specs/sk-git/014-gitkraken-mcp-integration/001-research-and-context/implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-git/014-gitkraken-mcp-integration/001-research-and-context/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-git/014-gitkraken-mcp-integration/001-research-and-context/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Query",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The GitKraken MCP integration program (see `../spec.md`) needs ground truth before any file changes: the GitHub README under-documents the real tool surface (it names only 3 example tools against a real 31), the correct `.utcpconfig.json` config shape isn't obvious (the CLI's own config generator emits a machine-local form, not the repo's portable `npx` convention), and whether to register the server read-only or read+write is a real safety tradeoff against sk-git's existing ask-first/no-direct-branch/conventional-commit rules",
+    "created_at": "2026-07-15T04:22:49.551Z",
+    "last_save_at": "2026-07-15T04:22:49.551Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6fcbcef81783b752cbd593044af933590e2c4cf67af721185251749c3cb4183a",
+    "source_doc_hashes": {
+      "spec.md": "a6b59732795fca709c9837af235244d14bdfbf5881192d02a7d7d15c5cfaa3b9",
+      "plan.md": "cf386b36f160108f5838fc059b4588024f08feb58aee0ff09c0e8e1b015571b8",
+      "tasks.md": "c41bd3d248db942190d2ac50792253f3918190366f2c50ffeec97aa8b6621f07",
+      "implementation-summary.md": "322248eb2d7cf5886f73ba2d4d935ca186fc7aec918cef1e0438b9e6941d51a6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

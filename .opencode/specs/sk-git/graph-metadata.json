@@ -4,20 +4,15 @@
   "spec_folder": "sk-git",
   "parent_id": null,
   "children_ids": [
-    "sk-git/000-continuous-integration-workflow",
-    "sk-git/001-research-and-requirements",
-    "sk-git/002-skill-scoped-worktree-naming",
-    "sk-git/003-review-remediation-and-alignment",
-    "sk-git/004-feature-catalog-and-manual-playbook",
-    "sk-git/005-readme-enrichment-and-hyphen-naming",
-    "sk-git/006-git-review-remediation",
-    "sk-git/007-gitkraken-mcp-integration",
-    "sk-git/z_archive/002-sk-git-github-mcp-integration",
-    "sk-git/z_archive/006-sk-git-superset-worktrees",
-    "sk-git/z_archive/018-sk-git-readme",
-    "sk-git/z_archive/091-commit-standards-and-retroactive-rewrite",
-    "sk-git/z_archive/096-sk-git-reorg-hardening",
-    "sk-git/z_archive/103-sk-git-worktree-convention-and-advisor-routing"
+    "sk-git/007-continuous-integration-workflow",
+    "sk-git/008-research-and-requirements",
+    "sk-git/009-skill-scoped-worktree-naming",
+    "sk-git/010-review-remediation-and-alignment",
+    "sk-git/011-feature-catalog-and-manual-playbook",
+    "sk-git/012-readme-enrichment-and-hyphen-naming",
+    "sk-git/013-git-review-remediation",
+    "sk-git/014-gitkraken-mcp-integration",
+    "sk-git/z_archive"
   ],
   "manual": {
     "depends_on": [],
@@ -45,7 +40,7 @@
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "sk-git/007-gitkraken-mcp-integration",
+    "last_active_child_id": "sk-git/014-gitkraken-mcp-integration",
     "last_active_at": "2026-07-14T21:34:01.000Z"
   }
 }

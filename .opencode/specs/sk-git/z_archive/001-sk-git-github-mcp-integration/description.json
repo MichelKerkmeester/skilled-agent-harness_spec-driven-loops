@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-git/z_archive/001-sk-git-github-mcp-integration",
+  "description": "The sk-git skill documented GitHub MCP usage with incorrect call syntax, incomplete tool coverage, and weak guidance on when to use GitHub MCP instead",
+  "keywords": [
+    "sk-git",
+    "skill",
+    "documented",
+    "github",
+    "mcp",
+    "usage",
+    "incorrect",
+    "call",
+    "syntax",
+    "incomplete",
+    "tool",
+    "coverage",
+    "weak",
+    "guidance",
+    "instead"
+  ],
+  "lastUpdated": "2026-07-15T04:18:02.590Z",
+  "specId": "001",
+  "folderSlug": "sk-git-github-mcp-integration",
+  "parentChain": [
+    "sk-git",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

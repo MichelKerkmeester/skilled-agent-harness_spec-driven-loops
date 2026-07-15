@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/011-feature-catalog-and-manual-playbook",
+  "spec_folder": "sk-git/011-feature-catalog-and-manual-playbook",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-git feature catalog",
+      "sk-git manual playbook scenarios",
+      "worktree tooling documentation",
+      "sk-git feature catalog plan",
+      "sk-git playbook scenarios plan",
+      "worktree tooling documentation plan",
+      "sk-git feature catalog tasks",
+      "sk-git playbook scenarios tasks",
+      "worktree tooling documentation tasks",
+      "sk-git feature catalog checklist",
+      "sk-git playbook scenarios checklist",
+      "worktree tooling documentation checklist"
+    ],
+    "key_topics": [
+      "sk-git",
+      "feature",
+      "catalog",
+      "manual",
+      "playbook",
+      "scenarios",
+      "worktree",
+      "tooling",
+      "documentation",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      "checklist.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Bring",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "two",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-feature",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "parallel Sonnet-5",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The create-skill canon expects every skill to carry a feature catalog and a manual-testing playbook that covers its full surface",
+    "created_at": "2026-07-15T04:22:48.612Z",
+    "last_save_at": "2026-07-15T04:22:48.612Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0c6b6b4c590bf2feb2d6c811bf8a129289cbbb3ddcdaa77e082d7fedff7b6f5a",
+    "source_doc_hashes": {
+      "spec.md": "86a5b0599c74d142bf0e18e66dd5e3dbeda48cc898e64765e00b9cd72ae4403d",
+      "plan.md": "ae338f63989576ffd386bd445e7338d7f3de0c8f11afdcf81e421b0a7ee5cddb",
+      "tasks.md": "062b1b16a10a2d93e24948f2b9caf079676b3c9421cb7ebd10fb3c5fa541555d",
+      "checklist.md": "09a38b394325d2815d480d22f84f70c2c352cbd68045d76972549d3985096f8a",
+      "implementation-summary.md": "afb7f263a44953b67755e09fb6bd9432b3f3d69461cec29f078b1398b6570d7a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

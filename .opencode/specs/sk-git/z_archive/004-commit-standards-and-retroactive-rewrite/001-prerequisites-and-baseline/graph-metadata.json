@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
+  "spec_folder": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
+  "parent_id": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "112-prerequisites-and-baseline",
+      "git-filter-repo install",
+      "pre-rewrite bundle",
+      "tooling pins",
+      "112-prerequisites-and-baseline plan",
+      "112-prerequisites-and-baseline tasks",
+      "implementation",
+      "summary",
+      "template",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "112-prerequisites-and-baseline",
+      "git-filter-repo",
+      "install",
+      "pre-rewrite",
+      "bundle",
+      "tooling",
+      "pins",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "template"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "versions",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Setup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "captured_at",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "actual HEAD",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two unknowns block downstream phases: (1) `git-filter-repo` is not currently installed on this Mac (verified at planning time — Phase 005 needs it for the message-callback rewrite), and (2) no point-in-time backup of HEAD history exists, so a botched rewrite would have no easy recovery path",
+    "created_at": "2026-07-15T04:22:52.273Z",
+    "last_save_at": "2026-07-15T04:22:52.273Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5ce46b4ed6753817bbd6cf93b5ba2427f84a933bb316fc85c474cc4429437b62",
+    "source_doc_hashes": {
+      "spec.md": "01a270ff8e400ad1030ede25e55b25b6f6880ff1c4aea4951b3b2fa90b3385b0",
+      "plan.md": "5b47fca13600b2e7c9a5541f4487dc04654bfae286fc2e7f809298f922af8814",
+      "tasks.md": "611a9daa0158f7d0c3008c2242b0ec116af8bbad99a989a6123522a3e6e83abc",
+      "implementation-summary.md": "997d96c11b950b69ffde9441def67f39fda70174cd1891afbbc7d43babdcc84c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

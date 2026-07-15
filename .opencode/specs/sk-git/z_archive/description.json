@@ -1,0 +1,22 @@
+{
+  "specFolder": "sk-git/z_archive",
+  "description": "Archive of superseded sk-git packets (001-006): GitHub MCP integration, superset worktrees, the sk-git README, commit standards and retroactive rewrite, reorg hardening, and worktree convention plus advisor routing. Retained for provenance; not part of the live track surface.",
+  "keywords": [
+    "archive",
+    "superseded",
+    "sk-git",
+    "github-mcp",
+    "worktrees",
+    "commit-standards",
+    "reorg-hardening"
+  ],
+  "lastUpdated": "2026-07-15T04:20:33.000Z",
+  "specId": "sk-git/z_archive",
+  "folderSlug": "z_archive",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

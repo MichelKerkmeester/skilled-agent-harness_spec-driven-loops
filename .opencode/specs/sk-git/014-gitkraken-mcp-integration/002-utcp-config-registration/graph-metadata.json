@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/014-gitkraken-mcp-integration/002-utcp-config-registration",
+  "spec_folder": "sk-git/014-gitkraken-mcp-integration/002-utcp-config-registration",
+  "parent_id": "sk-git/014-gitkraken-mcp-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gitkraken utcp config",
+      "gitkraken manual call template",
+      "phase 002 utcp-config-registration",
+      "gitkraken utcp config plan",
+      "phase 002 plan",
+      "gitkraken utcp config tasks",
+      "phase 002 tasks",
+      "gitkraken utcp config summary",
+      "phase 002 summary"
+    ],
+    "key_topics": [
+      "gitkraken",
+      "utcp",
+      "config",
+      "manual",
+      "call",
+      "template",
+      "phase",
+      "utcp-config-registration",
+      "plan",
+      "tasks",
+      "summary",
+      "code"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Register",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Append",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Code Mode has no path to the GitKraken MCP server: `.utcpconfig.json` has no `gitkraken` entry, so `calltoolchain` cannot reach it regardless of what sk-git documents",
+    "created_at": "2026-07-15T04:22:49.852Z",
+    "last_save_at": "2026-07-15T04:22:49.852Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a1b1233fa788ec66ef48e1786e537a492ee4e0ada3557d056f707b37adad33ff",
+    "source_doc_hashes": {
+      "spec.md": "0b5c3a9dec3c214815a4446a8f517543bbcca131d107eae3825539a560113711",
+      "plan.md": "bacaaf9388e40907433b4e2198b3c95fa352b5f4cf7a387ddc2522523b89430a",
+      "tasks.md": "4346a1f53f0da895baf7c75c81f230760c82739487fa32766d09d1da37578305",
+      "implementation-summary.md": "d20c9c37f336d63e7489e4802704259a7fd002956557be6d44b8b0ba3b4a5991"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

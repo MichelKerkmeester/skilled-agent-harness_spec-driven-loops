@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/012-readme-enrichment-and-hyphen-naming",
+  "spec_folder": "sk-git/012-readme-enrichment-and-hyphen-naming",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-git readme enrichment",
+      "sk-git hyphen naming migration",
+      "sk-git code readmes",
+      "sk-git readme enrichment plan",
+      "sk-git hyphen naming plan",
+      "sk-git code readmes plan",
+      "sk-git readme enrichment tasks",
+      "sk-git hyphen naming tasks",
+      "sk-git code readmes tasks",
+      "sk-git readme enrichment checklist",
+      "sk-git hyphen naming checklist",
+      "sk-git code readmes checklist"
+    ],
+    "key_topics": [
+      "sk-git",
+      "readme",
+      "enrichment",
+      "hyphen",
+      "naming",
+      "migration",
+      "code",
+      "readmes",
+      "plan",
+      "tasks",
+      "checklist",
+      "three"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "scripts/README.md",
+      "scripts/tests/README.md",
+      ".github/workflows/README.md",
+      ".github/hooks/scripts/README.md",
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/sk-git/scripts/README.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/graph-metadata.json",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-git/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Naming Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Enrich",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three gaps: (a) `README.md` is too thin to orient a reader on what sk-git uniquely does and why; (b) the executable surfaces (`scripts/`, `scripts/tests/`, `.github/workflows/`, `.github/hooks/scripts/`) have no code READMEs; (c) the skill's filesystem names are `snakecase`, out of step with the hyphen-case direction the repo is adopting",
+    "created_at": "2026-07-15T04:22:48.908Z",
+    "last_save_at": "2026-07-15T04:22:48.908Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bc86fc9016e0eb520dc08e9f02b272e59cc9ff7982c54c77687022b8d5683d36",
+    "source_doc_hashes": {
+      "spec.md": "9afc6f0045dac3430242175d8961c90cf3ce7719ff3f7151e835457d9bee8505",
+      "plan.md": "75861ec1b07e0d712d0d5f9e89a87a2786561848b8cb1a369fe0825bda5b1bee",
+      "tasks.md": "9b8e8ed2ed7c7ad760ba300ab7ab2364be05825be3920ab9dcb94d40c8d3eba5",
+      "checklist.md": "b0b632794512f6a2740c891bcf4b076fb9f6dbfb3da1a911dee8d5cd26f42f1b",
+      "implementation-summary.md": "177733ffc2c6de3f4466599abfa2923564a1a6bb2333d0efffd30282282e5e11"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -121,7 +121,7 @@ Rewrite all 22 skill READMEs and the `.opencode/skills/README.md` index into the
 | 015 | `015-sk-code-review-readme/` | Rewrite `sk-code-review` README | Complete |
 | 016 | `016-sk-code-readme/` | Rewrite `sk-code` README | Complete |
 | 017 | `017-sk-doc-readme/` | Rewrite `sk-doc` README | Complete |
-| 018 | `.opencode/specs/sk-git/z_archive/018-sk-git-readme/` | Finalize `sk-git` README (golden example authored in 001; moved to sk-git archive) | Complete |
+| 018 | `.opencode/specs/sk-git/z_archive/003-sk-git-readme/` | Finalize `sk-git` README (golden example authored in 001; moved to sk-git archive) | Complete |
 | 019 | `019-sk-prompt-models-readme/` | Rewrite `sk-prompt-models` README | Complete |
 | 020 | `020-sk-prompt-readme/` | Rewrite `sk-prompt` README | Complete |
 | 021 | `021-system-code-graph-readme/` | Rewrite `system-code-graph` README | Complete |

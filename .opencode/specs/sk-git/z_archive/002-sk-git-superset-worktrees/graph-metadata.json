@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/z_archive/002-sk-git-superset-worktrees",
+  "spec_folder": "sk-git/z_archive/002-sk-git-superset-worktrees",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-git superset alignment",
+      "worktree superset",
+      "git skill worktree update",
+      "sk-git superset plan",
+      "worktree alignment implementation",
+      "git skill superset update",
+      "tasks",
+      "git",
+      "superset",
+      "worktree",
+      "alignment",
+      "006"
+    ],
+    "key_topics": [
+      "sk-git",
+      "superset",
+      "alignment",
+      "worktree",
+      "git",
+      "skill",
+      "plan",
+      "implementation",
+      "tasks",
+      "workflow",
+      "designed",
+      "manual"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-git/SKILL.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Superset Worktree Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Never Implemented",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Superset Model Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adapted From",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Superset Worktree",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-git skill's worktree workflow is designed for manual, single-user operation",
+    "created_at": "2026-07-15T04:22:51.655Z",
+    "last_save_at": "2026-07-15T04:22:51.655Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:b72ebb8fa2ba0823da8474acd6b370c2a8138acf42e2bc3eba92cf20e8c66dc2",
+    "source_doc_hashes": {
+      "spec.md": "a9724cec3acf80aec3f7a78c1ce34539aabead49508110bdf843f0c20c73dd85",
+      "plan.md": "72b5cc342806d7c60a146db0371a49cf993a27e4157b966a3efd4f299d4b330d",
+      "tasks.md": "72d0d56443d1e683a7582321277ce9d3ca897932d18cae2c685d4d0f930bed41",
+      "checklist.md": "fd2e341424410c862471016b7e740bb64e88c576a52ac4fb416221277a811ce0",
+      "decision-record.md": "e46174e93ad0b9143ff6a3ffa8fe415af8c62b49b3ce641455af4283737be6b1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

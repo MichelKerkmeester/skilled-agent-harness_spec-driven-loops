@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
+  "spec_folder": "sk-git/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
+  "parent_id": "sk-git/014-gitkraken-mcp-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gitkraken mcp integration doc",
+      "sk-git gitkraken router",
+      "gitkraken tool selection guide",
+      "phase 003 sk-git-integration-doc-and-router",
+      "gitkraken mcp doc plan",
+      "sk-git router update plan",
+      "phase 003 plan",
+      "gitkraken mcp doc tasks",
+      "phase 003 tasks",
+      "gitkraken mcp doc checklist",
+      "phase 003 checklist",
+      "gitkraken mcp doc summary"
+    ],
+    "key_topics": [
+      "gitkraken",
+      "mcp",
+      "integration",
+      "doc",
+      "sk-git",
+      "router",
+      "tool",
+      "selection",
+      "guide",
+      "phase",
+      "sk-git-integration-doc-and-router",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-git/SKILL.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Selection Guide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Available Tools",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Usage Examples",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Error Handling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Related Resources",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Even after phase 002's registration, sk-git has no idea GitKraken MCP exists — nothing documents its tools, nothing routes intent to it, and nothing warns against using its local-mutation tools in place of sk-git's existing safety-gated Bash workflow",
+    "created_at": "2026-07-15T04:22:50.155Z",
+    "last_save_at": "2026-07-15T04:22:50.155Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:da5b2432617893d182843e9216ae166586ec12c2e575a7e4183aee93999ebc68",
+    "source_doc_hashes": {
+      "spec.md": "5191b4741f41d7a694edea031f9b9b70e4454e75509624c2ccd603c1dd9de7da",
+      "plan.md": "71714ceb19ca4cae148496c989f2c3082f77c8e0ca9f20beb1293e66698ace33",
+      "tasks.md": "46991c58eedd7ff3743fa11055f558c075158ba17c3c77f23022c733fc741f92",
+      "checklist.md": "098f06ad40fac97027be2611fed5e2637d1027aeb550114aec7af5a4b925c2a5",
+      "implementation-summary.md": "8b5b93064cd998b31f92352a63513fade49283411564ad28166b6d2b58b75557"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

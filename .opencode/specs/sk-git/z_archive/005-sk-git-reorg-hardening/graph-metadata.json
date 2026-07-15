@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/z_archive/005-sk-git-reorg-hardening",
+  "spec_folder": "sk-git/z_archive/005-sk-git-reorg-hardening",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-git reorg hardening",
+      "git worktree gitignored deps",
+      "rename-heavy merge guidance",
+      "scoped staging discipline",
+      "sk-git reorg hardening plan",
+      "large reorg playbook",
+      "sk-git reorg hardening tasks",
+      "sk-git reorg hardening checklist",
+      "sk-git reorg hardening summary"
+    ],
+    "key_topics": [
+      "sk-git",
+      "reorg",
+      "hardening",
+      "git",
+      "worktree",
+      "gitignored",
+      "deps",
+      "rename-heavy",
+      "merge",
+      "guidance",
+      "scoped",
+      "staging"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Worktree Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Update",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Harden",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "comm",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 026 wave-4 reorganization (a large rename/renumber executed in a git worktree, then merged to main) hit several avoidable failure modes that the sk-git skill does not currently guard against: gitignored leftover folders after `git mv`, a fresh worktree missing gitignored build deps (breaking the spec-kit toolchain), the memory DB being a single global instance (not per-worktree), accidental staging of unrelated in-flight WIP, and rename-heavy merge verification gaps",
+    "created_at": "2026-07-15T04:22:54.200Z",
+    "last_save_at": "2026-07-15T04:22:54.200Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:07556e62180b36a9bef8f0963fceaef8f8f91703cc745e3f39c2f6b5a2aee3f3",
+    "source_doc_hashes": {
+      "spec.md": "726a274da66ade9cae815ccf0c111a19be4eed0187236a9d4199ecd18cc37266",
+      "plan.md": "263e5a83384276d24ef58f432cc69fc5da486854c5a47f7d92f1aeeabdfc6d89",
+      "tasks.md": "8ad861220172f496c73ff6dc2a194cb95f922bd26b7a02ae8e83979e7d1f5fe3",
+      "checklist.md": "07b97f747085bc03ca3d50bd95d27f65a6cdce11aa93ae039fd7da2bbf20470e",
+      "implementation-summary.md": "2adfa9b8e22f7987c79466dc2b776ceab955ff937486de578ee129e8c3320746"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
