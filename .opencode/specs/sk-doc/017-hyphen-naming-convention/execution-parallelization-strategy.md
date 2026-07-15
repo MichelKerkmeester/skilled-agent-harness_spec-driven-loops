@@ -235,15 +235,25 @@ that prove that lane.
 
 ---
 
-## 8. Ownership boundary — 002 / 007 / 009
+## 8. Ownership boundary — 002 / 007 / 008 / 009 (verified)
 
-Resolved to remove the ambiguity SOL flagged (and the stale "phase 008" reference corrected in `002/spec.md`):
+SOL flagged possible overlapping ownership of dual-name tolerance vs root moves vs alias removal. Verified against the 008
+child specs and the on-disk trees (`find .opencode/skills -type d -name 'feature_catalog' -o -name 'manual_testing_playbook'`):
+catalog/playbook is a **per-skill** pattern (≈49 snake dirs across ~14 skills; sk-git already piloted to hyphen), not a single
+shared root. Ownership is complete — no gap, no double-ownership:
 
-- **Add** the bounded dual-name tolerance in **002** (root-name-consumer-migration).
-- **Move** the physical root directories in **007** (shared-and-cross-cutting-closures).
-- **Remove** the transition compatibility **exactly once** in **009** (remove-transition-aliases).
+- **Add** the bounded dual-name tolerance in **002** (root-name-consumer-migration) — the shared consumers (classifier, Lane C
+  loader/generator, routers, guard) accept both roots, dissolving the cross-skill coupling.
+- **Rename** the physical catalog/playbook directories **per-skill in 008** (e.g. `008/001-sk-code/006-manual-testing-playbook`
+  owns `sk-code/manual_testing_playbook/**`; `.../002-code-opencode` owns the nested code-opencode playbook). Because 002 already
+  made consumers tolerate both names, each skill's directory rename is a local, skill-contained closure — correctly in 008, not 007.
+- **007 owns only the cross-skill catalog edges**: the symlink façade `.opencode/skills/sk-doc/scripts/` (`007/002`) and the
+  catalog command asset `create_feature_catalog_auto.yaml` (`007/001`) — never the per-skill catalog/playbook directories.
+- **Remove** the transition compatibility **exactly once** in **009** (remove-transition-aliases), after 002's window closes and
+  the 008 physical renames complete.
 
-No phase removes an alias that another phase still relies on.
+No phase removes an alias that another phase still relies on. *(Correction: an earlier draft of this section and `002/spec.md`
+attributed the directory rename to "phase 007"; verification showed the per-skill directories are renamed in 008 — both corrected.)*
 
 ---
 
@@ -251,5 +261,6 @@ No phase removes an alias that another phase still relies on.
 
 - Recompute the hot/warm/cold classification against live churn immediately before the 008 fan-out.
 - Confirm whether any component earns sub-lanes (requires 006 to prove disjoint intra-skill closures).
-- SOL also flagged possible overlapping ownership among 002/007/009 dual-name handling beyond the alias-removal number fixed here;
-  §8 records the intended boundary — re-verify 007/009 wording against it when those phases are authored/executed.
+- ~~SOL flagged possible overlapping 002/007/009 ownership.~~ **Resolved (§8):** verified against the 008 child specs and on-disk
+  trees — ownership is complete (tolerance→002, per-skill directory rename→008, cross-skill façade→007, alias removal→009); the
+  only defect was imprecise "phase 007" prose in `002` and this doc's §8, both corrected.

@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All must accept the hyphenated roots — with a bounded dual-name tolerance — before the 007 rename, or every catalog leaf silently downgrades to `readme`.
+The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All must accept the hyphenated roots — with a bounded dual-name tolerance — before the physical catalog/playbook directory renames land (per-skill in phase 008; cross-skill symlink façades in 007), or every catalog leaf silently downgrades to `readme`.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -61,7 +61,7 @@ The catalog/playbook root + index names are consumed by a network of runtime pat
 - A bounded dual-name tolerance: accept both roots for reads, emit only hyphens, fail closed if both physical roots coexist.
 
 ### Out of Scope
-- Renaming the directories (phase 007).
+- Renaming the physical catalog/playbook directories (per-skill in phase 008 component migration; cross-skill symlink façades and command assets in 007).
 - Removing the tolerance alias (phase 009-remove-transition-aliases; transition compatibility is removed exactly once, there).
 - Generator emission (003).
 <!-- /ANCHOR:scope -->
@@ -120,6 +120,8 @@ over-broad sweep, exemption leakage, concurrent sessions). Phase-specific risks 
 ## 7. OPEN QUESTIONS
 
 None blocking; resolved during this phase's execution against the pinned baseline. Ownership boundary (recorded in the packet's
-execution-parallelization-strategy.md): dual-name tolerance is ADDED here in 002, the physical root directories are MOVED in 007,
-and the transition compatibility is REMOVED exactly once in 009 — no phase removes an alias that another phase still relies on.
+execution-parallelization-strategy.md, verified against the 008 child specs and the on-disk per-skill catalog/playbook trees):
+dual-name tolerance is ADDED here in 002; the physical catalog/playbook directories are RENAMED per-skill in phase 008 (with the
+cross-skill symlink façades in 007); and the transition compatibility is REMOVED exactly once in 009 — no phase removes an alias
+that another phase still relies on.
 <!-- /ANCHOR:questions -->
