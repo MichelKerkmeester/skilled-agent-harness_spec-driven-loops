@@ -1,0 +1,23 @@
+{
+  "level": "phase",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "description": "CocoIndex code embedder stack parent.",
+  "keywords": [
+    "cocoindex",
+    "code",
+    "embedder",
+    "stack",
+    "parent"
+  ],
+  "lastUpdated": "2026-07-10T06:22:46.700Z",
+  "specId": "004",
+  "folderSlug": "code-index-stack",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

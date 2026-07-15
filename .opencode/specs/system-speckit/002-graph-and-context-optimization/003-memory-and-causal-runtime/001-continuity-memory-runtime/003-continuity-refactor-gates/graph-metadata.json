@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 6 continuity refactor gates",
+      "continuity refactor gates",
+      "gates a-f",
+      "026 graph and context optimization",
+      "six gates",
+      "phase 6 plan",
+      "continuity refactor gates plan",
+      "gates a-f plan",
+      "root coordination",
+      "phase 6 tasks",
+      "continuity refactor gates tasks",
+      "root gate packet tasks"
+    ],
+    "key_topics": [
+      "phase",
+      "continuity",
+      "refactor",
+      "gates",
+      "a-f",
+      "graph",
+      "context",
+      "optimization",
+      "six",
+      "plan",
+      "root",
+      "coordination"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "lib/resume/resume-ladder.ts",
+      "resource-map.md",
+      "research/research.md",
+      "scratch/verify-phases-review.md",
+      "scratch/phase-017-rerun-seed.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "lib/routing/content-router.ts",
+      "handover.md",
+      "prompts/research-prompt-impact.md",
+      "mcp_server/lib/resume/resume-ladder.ts",
+      "mcp_server/lib/continuity/thin-continuity-record.ts",
+      "mcp_server/handlers/session-resume.ts",
+      "mcp_server/handlers/session-bootstrap.ts",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/lib/routing/content-router.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": "lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-phases-review.md",
+        "kind": "doc",
+        "path": "scratch/verify-phases-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-017-rerun-seed.md",
+        "kind": "doc",
+        "path": "scratch/phase-017-rerun-seed.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "content-router.ts",
+        "kind": "code",
+        "path": "lib/routing/content-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-prompt-impact.md",
+        "kind": "doc",
+        "path": "prompts/research-prompt-impact.md",
+        "source": "derived"
+      },
+      {
+        "name": "thin-continuity-record.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/continuity/thin-continuity-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-resume.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-bootstrap.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-bootstrap.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Coordinate Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Continuity Refactor Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into sibling top-level phases `007` through `010`",
+    "created_at": "2026-04-12T09:02:53.476Z",
+    "last_save_at": "2026-07-10T06:23:15.076Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:2e2dcf53021b9981dc0da3e8b2dda00379c3dd0a8ea222d3fd13a2846d7da09d",
+    "source_doc_hashes": {
+      "spec.md": "3dd4d3c236b341a558714feb5fe515678ed2edb164427af57b28aaef905b182d",
+      "plan.md": "fef3c11f9ca9e2646e7a7e75ccc179619c0dbcc1a0a206255bbf8e6c6ce624f8",
+      "tasks.md": "00eb2e8d58bb97eb1272ac06d413a018bf74cabc775d8263279e9c0222982825",
+      "checklist.md": "df9be1a6cdd68e0f8256b85ec7f667eff14e5cef5ed84a8b23c44ec2875a79d4",
+      "implementation-summary.md": "d4e279e29ccc0bbe6d174b1288c0cd42ec18230248718704d96a6bd886b61f37",
+      "research/research.md": "2c40e98a07d538b790fc6e2abfcab3ca5ee28daf023bc08288fa81ae8b5a2046",
+      "handover.md": "0240f74edf12abf2abac2a186368e6f430e38df72d468d98cf61032dbb72337d",
+      "resource-map.md": "67c9bea4899433e67b62d11851f8bbc439a106ffdebd8ab1ab61dedcd35bdca9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

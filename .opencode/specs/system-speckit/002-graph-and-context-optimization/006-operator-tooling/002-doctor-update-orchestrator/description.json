@@ -1,0 +1,40 @@
+{
+  "childTopology": [
+    "001-implement-initial-doctor-command-set",
+    "002-sandbox-testing-playbook",
+    "002-fix-deep-review-findings-for-doctor-update-orchestrator",
+    "003-skill-advisor-routing-engine-consolidation",
+    "004-cutover-doctor-router-from-legacy-files"
+  ],
+  "specFolder": "system-speckit/002-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
+  "description": "A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit",
+  "keywords": [
+    "user",
+    "spec-kit",
+    "version",
+    "older",
+    "current",
+    "needs",
+    "one-shot",
+    "path",
+    "bring",
+    "every",
+    "database",
+    "index",
+    "graph"
+  ],
+  "lastUpdated": "2026-07-10T06:22:48.723Z",
+  "specId": "002",
+  "folderSlug": "doctor-update-orchestrator",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "006-operator-tooling"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "10-05-26_07-23__root-cause-invent-a-smart-solution-to-this.md",
+    "10-05-26_07-59__root-cause.md",
+    "11-05-26_11-38__manual-context-save.md"
+  ]
+}

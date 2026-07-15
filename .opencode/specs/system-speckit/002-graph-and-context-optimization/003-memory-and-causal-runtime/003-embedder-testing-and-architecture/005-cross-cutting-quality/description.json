@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality",
+  "description": "Phase parent grouping the cross-cutting quality + verification + docs work that spans multiple 016 stacks.",
+  "keywords": [
+    "phase",
+    "parent",
+    "grouping",
+    "cross-cutting",
+    "quality",
+    "verification",
+    "docs",
+    "work",
+    "spans",
+    "multiple",
+    "stacks"
+  ],
+  "lastUpdated": "2026-07-10T06:23:22.564Z",
+  "specId": "005",
+  "folderSlug": "cross-cutting-quality",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_09-06__created-005-cross-cutting-quality-phase-parent.md"
+  ]
+}

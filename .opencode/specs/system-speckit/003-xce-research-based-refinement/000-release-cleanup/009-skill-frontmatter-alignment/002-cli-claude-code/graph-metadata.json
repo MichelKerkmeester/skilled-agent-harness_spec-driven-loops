@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-claude-code frontmatter alignment",
+      "cli-claude-code reference frontmatter",
+      "skill frontmatter standardization",
+      "cli-claude-code frontmatter plan",
+      "frontmatter authoring phase",
+      "claude code doc contract plan",
+      "cli-claude-code frontmatter tasks",
+      "frontmatter authoring tasks",
+      "claude code doc contract tasks",
+      "cli-claude-code frontmatter summary",
+      "frontmatter authoring complete",
+      "claude code doc contract evidence"
+    ],
+    "key_topics": [
+      "cli-claude-code",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "authoring",
+      "phase",
+      "claude",
+      "code",
+      "doc"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-claude-code/references/agent_delegation.md",
+      ".opencode/skills/cli-claude-code/references/claude_tools.md",
+      ".opencode/skills/cli-claude-code/references/cli_reference.md",
+      ".opencode/skills/cli-claude-code/references/integration_patterns.md",
+      ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-claude-code/assets/prompt_templates.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "agent_delegation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/references/agent_delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "claude_tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/references/claude_tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/references/cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/references/integration_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-claude-code reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 4 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
+    "created_at": "2026-06-11T05:47:22Z",
+    "last_save_at": "2026-07-02T05:31:13.467Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:614e72de3154df12b28dc6ed46cd0c82045cef628d449da0d6d409cc53f5761c",
+    "source_doc_hashes": {
+      "spec.md": "4a7c02a464c27cd71c487e920558ee60cd1696e4fbca718df9b5e25abaf59051",
+      "plan.md": "5d8e355860587677e9cf110a9d7d9d477638e420e04f8a13c324e4b592d8a58d",
+      "tasks.md": "381c9b1adfbd05e2bb0318b4b696d818756bc7c77be7006b977e9963353bff36",
+      "implementation-summary.md": "5c12eb1b16d650f68aec9965f665f74779ba2862b3ecf53b066bde4ac64cb4d5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

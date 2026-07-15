@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/003-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format",
+  "description": "The presentation/router split placed each command's display contract in `.opencode/commands/<family>/assets/<name>presentation.md`",
+  "keywords": [
+    "presentation",
+    "router",
+    "split",
+    "placed",
+    "command",
+    "display",
+    "contract",
+    "opencode",
+    "commands",
+    "family",
+    "assets",
+    "name"
+  ],
+  "lastUpdated": "2026-07-10T06:23:35.974Z",
+  "specId": "007",
+  "folderSlug": "presentation-asset-format",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "002-command-presentation-workflow-separation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

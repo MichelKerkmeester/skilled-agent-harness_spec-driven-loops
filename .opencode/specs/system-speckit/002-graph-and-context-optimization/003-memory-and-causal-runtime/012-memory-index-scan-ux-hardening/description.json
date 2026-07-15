@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening",
+  "description": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
+  "keywords": [
+    "memoryindexscan",
+    "couples",
+    "scope",
+    "discovery",
+    "lexical",
+    "indexing",
+    "synchronous",
+    "vector",
+    "embedding",
+    "inside",
+    "one",
+    "mcp",
+    "request",
+    "global",
+    "lease"
+  ],
+  "lastUpdated": "2026-07-10T06:24:46.398Z",
+  "specId": "012",
+  "folderSlug": "memory-index-scan-ux-hardening",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

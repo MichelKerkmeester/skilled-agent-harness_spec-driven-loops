@@ -1,0 +1,40 @@
+{
+  "title": "persistent launcher log",
+  "trigger_phrases": [
+    "persistent launcher log",
+    "mk-spec-memory launcher log file",
+    "attributable daemon flap",
+    "launcher stderr durable trace",
+    "SPECKIT_LAUNCHER_LOG"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log",
+  "status": "complete",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "importance_tier": "high",
+  "created_at": "2026-06-07T16:30:00Z",
+  "completed_at": "2026-06-07T16:30:00Z",
+  "is_phase_parent": false,
+  "children": [],
+  "specFolder": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log",
+  "description": "The launcher's `log()` writes only to `process.stderr`",
+  "keywords": [
+    "launcher",
+    "log",
+    "writes",
+    "only",
+    "process",
+    "stderr"
+  ],
+  "lastUpdated": "2026-07-10T06:22:27.204Z",
+  "specId": "018",
+  "folderSlug": "persistent-launcher-log",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

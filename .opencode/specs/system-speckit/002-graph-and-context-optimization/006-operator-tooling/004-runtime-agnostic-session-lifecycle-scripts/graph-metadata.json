@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/006-operator-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime-agnostic session lifecycle scripts",
+      "session-cleanup orphan-sweeper multi-runtime",
+      "opencode run sweeper kill gap",
+      "de-claude lifecycle scripts",
+      "runtime-agnostic lifecycle plan",
+      "runtime-agnostic lifecycle tasks",
+      "runtime-agnostic lifecycle checklist",
+      "session-cleanup verification",
+      "runtime-agnostic lifecycle summary"
+    ],
+    "key_topics": [
+      "runtime-agnostic",
+      "session",
+      "lifecycle",
+      "scripts",
+      "session-cleanup",
+      "orphan-sweeper",
+      "multi-runtime",
+      "opencode",
+      "run",
+      "sweeper",
+      "kill",
+      "gap"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/scripts/orphan-mcp-sweeper.sh",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/scripts/claude-session-cleanup.sh",
+      ".opencode/plugins/session-cleanup.js",
+      ".opencode/scripts/README.md",
+      ".claude/settings.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "claude-session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/claude-session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-cleanup.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Stop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The session-lifecycle shell scripts under `.opencode/scripts/` were written for Claude Code only",
+    "created_at": "2026-05-30T10:12:02.933Z",
+    "last_save_at": "2026-07-10T06:24:52.025Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2934cf66678e43c35131bcb81ea5a987ee0f03c13a6c09575edf2ecf2017aca7",
+    "source_doc_hashes": {
+      "spec.md": "ab1a588d297627f9200ec05517e97babfc8dd44039b29cc5fa7398bd69080b1e",
+      "plan.md": "e078fb809c9a802b8f1322d7e6112587477f532d180bf727d213d85cd296576c",
+      "tasks.md": "8cffb52cde4d127745cbcd0677ac7e407a5688af3ed9c386bcde750ee66edf95",
+      "checklist.md": "708347528187d09c2d48efe014729d4a3f268f0a6a10543a80717d8d07416e85",
+      "implementation-summary.md": "59d9dbcad24bb600ab5b0a889a721cbbb6a85ece3a2fe3dfad035563184b6baa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

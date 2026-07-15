@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
+  "parent_id": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/001-on-write-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "surface provenance fields",
+      "source kind json",
+      "content type freshness",
+      "causal summary source docs",
+      "metadata json governance",
+      "surface provenance fields plan",
+      "source kind json plan",
+      "content type freshness plan",
+      "causal summary source docs plan",
+      "metadata json governance plan",
+      "surface provenance fields tasks",
+      "source kind json tasks"
+    ],
+    "key_topics": [
+      "surface",
+      "provenance",
+      "fields",
+      "source",
+      "kind",
+      "json",
+      "content",
+      "type",
+      "freshness",
+      "causal",
+      "summary",
+      "docs"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/write-provenance.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "write-provenance.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/write-provenance.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "description-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surface Provenance Fields",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Expose",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Schema",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The memory side already computes provenance and `sourcekind` for every saved row, but the two metadata JSONs never expose them as first-class fields",
+    "created_at": "2026-06-27T17:15:34.677Z",
+    "last_save_at": "2026-07-09T10:02:56.371Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:790ee68a26e0f51e3cc9be27a0bcfd7c81a29929dce7c9dd5def04211c3f73ce",
+    "source_doc_hashes": {
+      "spec.md": "24da92dfab099cddc489ed9b05a843942e9b5c4e2033a8d1d6732cac5258e180",
+      "plan.md": "348f75bdd666d676d151ccdb8c5e2fb417753bb76d512d18fb3965998af9f239",
+      "tasks.md": "a77850a1603ad131194cac58ba420eac95f6e705ca581905040683daf72010b6",
+      "checklist.md": "9c2d7bc3471b6cc760bf2d3d0d680ec305b0de6950ae5d562ad3aec5d911b969",
+      "implementation-summary.md": "06c6509ce03289a313141f9026d26f4c3235f8ebdb677892c67133434a9580db"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

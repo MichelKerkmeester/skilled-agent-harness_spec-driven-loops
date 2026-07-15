@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018/002 baseline fixture",
+      "code-retrieval fixture authoring",
+      "cocoindex measurement fixture",
+      "018/002 plan",
+      "018/002 tasks",
+      "018/002 summary"
+    ],
+    "key_topics": [
+      "baseline",
+      "fixture",
+      "code-retrieval",
+      "authoring",
+      "cocoindex",
+      "measurement",
+      "plan",
+      "tasks",
+      "summary",
+      "author",
+      "deterministic",
+      "query"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "evidence/code-retrieval-fixture.json",
+      "evidence/fixture-validate.sh",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-retrieval-fixture.json",
+        "kind": "config",
+        "path": "evidence/code-retrieval-fixture.json",
+        "source": "derived"
+      },
+      {
+        "name": "fixture-validate.sh",
+        "kind": "script",
+        "path": "evidence/fixture-validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. SUCCESS CRITERIA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. RISKS & DEPENDENCIES",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "json",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mixed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Author 10-20 deterministic query→expected-source pairs for CocoIndex embedder benchmarking",
+    "created_at": "2026-05-18T08:18:02.786Z",
+    "last_save_at": "2026-07-10T06:21:53.009Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eb7e21c9742bcaff13e027b033bf01ed01f3609c8bc8b2d40ae2d2827292fad0",
+    "source_doc_hashes": {
+      "spec.md": "ba0a6834ff9f0d4d826efa51228100a1c8879938de2baffdd3e2942da37663f3",
+      "plan.md": "ed083a9bff8e3a864534ae235c89c0c912ff5148ec2c9e032579dd746ea1aece",
+      "tasks.md": "5c8996d0796f148a491c58a4f84158b2defcc0c1f078a01489d0bb78a1749d80",
+      "implementation-summary.md": "952d359f889a1ab048c7fe30fbaeb9e9b66da7c2667ce7c99462e5e1a33f5eba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

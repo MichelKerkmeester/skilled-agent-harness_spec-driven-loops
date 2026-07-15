@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum",
+  "description": "The generated-JSON contract is weak, so bad statuses leak in and no real gate catches them",
+  "keywords": [
+    "generated-json",
+    "contract",
+    "weak",
+    "bad",
+    "statuses",
+    "leak",
+    "real",
+    "gate",
+    "catches",
+    "them"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.638Z",
+  "specId": "036",
+  "folderSlug": "metadata-validator-status-enum",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "002-spec-data-quality",
+    "006-generated-metadata-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

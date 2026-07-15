@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core",
+      "implementation",
+      "plan",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "implementation",
+      "plan",
+      "tasks",
+      "summary",
+      "impl",
+      "compressed"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/cosine-topn-reorder.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts",
+      "mcp_server/lib/search/hybrid-search.ts",
+      "mcp_server/lib/search/search-flags.ts",
+      "mcp_server/tests/cosine-topn-reorder.vitest.ts",
+      "mcp_server/tests/hybrid-search.vitest.ts",
+      "tests/cosine-topn-reorder.vitest.ts",
+      "tests/hybrid-search.vitest.ts",
+      "tests/token-budget-skip-and-floor.vitest.ts",
+      "tests/adaptive-ranking-e2e.vitest.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cosine-topn-reorder.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/cosine-topn-reorder.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "token-budget-skip-and-floor.vitest.ts",
+        "kind": "test",
+        "path": "tests/token-budget-skip-and-floor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adaptive-ranking-e2e.vitest.ts",
+        "kind": "test",
+        "path": "tests/adaptive-ranking-e2e.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Compressed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Library",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Compressed RRF fusion magnitudes buried the most semantically-on-target memory below position 1, because ordering ignored the one absolute relevance signal the corpus carries (cosine)",
+    "created_at": "2026-06-17T19:57:25.105Z",
+    "last_save_at": "2026-07-10T06:24:20.778Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7964038f7689f73382a3dc580f393062d2371238ffb724fe788731f41a1cfe12",
+    "source_doc_hashes": {
+      "spec.md": "e8b6b0d48900f2e4de8a4d0a86a0b6824e86c57c99a01386c1c0d87023ddb9f8",
+      "plan.md": "ec9eacfda2dca162b9e51648966aa4609505823bff5b05b19b33e22632e3b51f",
+      "tasks.md": "d7cf5ffa5e17a5726762c34115af82575454f4d3aee59667ffa8fac39ee89955",
+      "implementation-summary.md": "ca5848fbfb798b646ead5e6adde1b1901b2f32f28d0d374dbfaea7e1c85c30c3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

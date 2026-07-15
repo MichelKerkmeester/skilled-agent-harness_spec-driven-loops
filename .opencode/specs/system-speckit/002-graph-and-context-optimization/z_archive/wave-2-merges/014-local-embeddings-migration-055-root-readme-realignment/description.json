@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-055-root-readme-realignment",
+  "description": "Audit the README's factual claims (tool counts, file paths, server names, integration patterns) against current reality",
+  "keywords": [
+    "audit",
+    "readme",
+    "factual",
+    "claims",
+    "tool",
+    "counts",
+    "file",
+    "paths",
+    "server",
+    "names",
+    "integration",
+    "patterns",
+    "against",
+    "current",
+    "reality"
+  ],
+  "lastUpdated": "2026-07-10T06:23:07.670Z",
+  "specId": "014",
+  "folderSlug": "local-embeddings-migration-055-root-readme-realignment",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "z_archive",
+    "wave-2-merges"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/002-runtime-wiring-enterprise-readiness-audit",
+  "description": "Phase F found that W3-W7 exist as useful local artifacts, but runtime decisions remain fragmented: W3 and W6 are test-only, W5 is response-only, W7 is",
+  "keywords": [
+    "phase",
+    "found",
+    "w3-w7",
+    "exist",
+    "useful",
+    "local",
+    "artifacts",
+    "runtime",
+    "decisions",
+    "remain",
+    "fragmented",
+    "test-only",
+    "response-only"
+  ],
+  "lastUpdated": "2026-07-10T06:24:21.691Z",
+  "specId": "002",
+  "folderSlug": "runtime-wiring-enterprise-readiness-audit",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "002-audit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

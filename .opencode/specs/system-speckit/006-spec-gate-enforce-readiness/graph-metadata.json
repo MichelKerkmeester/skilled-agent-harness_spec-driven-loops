@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/006-spec-gate-enforce-readiness",
+  "spec_folder": "system-speckit/006-spec-gate-enforce-readiness",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/006-spec-gate-enforce-readiness/001-advise-telemetry",
+    "system-speckit/006-spec-gate-enforce-readiness/002-trigger-turn-self-binding",
+    "system-speckit/006-spec-gate-enforce-readiness/003-scaffolded-folder-acceptance",
+    "system-speckit/006-spec-gate-enforce-readiness/004-headless-enforce-scoping",
+    "system-speckit/006-spec-gate-enforce-readiness/005-answer-grammar-hardening"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-spec-gate-enforce-readiness",
+      "spec gate enforce readiness",
+      "spec mutation gate remediation",
+      "phase parent"
+    ],
+    "key_topics": [
+      "006-spec-gate-enforce-readiness",
+      "spec",
+      "gate",
+      "enforce",
+      "readiness",
+      "mutation",
+      "remediation",
+      "phase",
+      "parent",
+      "ships",
+      "advise-only",
+      "harmless"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".claude/settings.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Mutation Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec Mutation Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec Mutation Gate ships advise-only and harmless, but a fresh independent review reproduced three structural \"stuck-open\" defects in its close path plus a telemetry gap: if an operator set `MKSPECGATEENFORCE=1` today, it would block the common happy paths — a prompt that names a valid folder in the same breath, answering \"new folder\" before a save writes the metadata trio, and dispatched/headless sessions that have no user to answer",
+    "created_at": "2026-07-11T10:44:11Z",
+    "last_save_at": "2026-07-15T16:51:23.615Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:311cee325d930bbf8b1558ea91f1beb44dbe8ca4e8516af1d35dfa2e0772eeb9",
+    "source_doc_hashes": {
+      "spec.md": "96922612fd4972901e54fddeff188668834f666bf8d9348c95bb0ff5b49b15dc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

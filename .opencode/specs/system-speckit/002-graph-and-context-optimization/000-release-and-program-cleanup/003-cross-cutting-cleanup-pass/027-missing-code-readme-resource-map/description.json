@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/027-missing-code-readme-resource-map",
+  "description": "The release-cleanup packet needed bounded code-folder README coverage",
+  "keywords": [
+    "release-cleanup",
+    "packet",
+    "needed",
+    "bounded",
+    "code-folder",
+    "readme",
+    "coverage"
+  ],
+  "lastUpdated": "2026-07-10T06:22:24.703Z",
+  "specId": "027",
+  "folderSlug": "missing-code-readme-resource-map",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

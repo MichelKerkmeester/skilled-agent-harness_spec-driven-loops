@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
+  "description": "After phase 002 ships a runnable sidecar, neither MCP launcher knows to start it or attach to it",
+  "keywords": [
+    "phase",
+    "ships",
+    "runnable",
+    "sidecar",
+    "mcp",
+    "launcher",
+    "knows",
+    "start",
+    "attach"
+  ],
+  "lastUpdated": "2026-07-10T06:24:13.782Z",
+  "specId": "003",
+  "folderSlug": "ensure-sidecar-from-launchers",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

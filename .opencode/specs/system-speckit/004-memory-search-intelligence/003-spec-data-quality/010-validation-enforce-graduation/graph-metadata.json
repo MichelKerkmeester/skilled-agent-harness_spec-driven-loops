@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/010-validation-enforce-graduation",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/010-validation-enforce-graduation",
+  "parent_id": "system-speckit/004-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validation enforce graduation",
+      "status cross-doc enforce flip",
+      "metadata disk consistency enforce flip",
+      "child drift enforce flip",
+      "advisory to enforce flag graduation",
+      "validation enforce graduation plan",
+      "status cross-doc enforce flip plan",
+      "metadata disk consistency enforce flip plan",
+      "child drift enforce flip plan",
+      "dist presence freshness guard plan",
+      "validation enforce graduation tasks",
+      "status cross-doc enforce flip tasks"
+    ],
+    "key_topics": [
+      "validation",
+      "enforce",
+      "graduation",
+      "status",
+      "cross-doc",
+      "flip",
+      "metadata",
+      "disk",
+      "consistency",
+      "child",
+      "drift",
+      "advisory"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-child-drift.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "spec.md",
+      "scripts/tests/check-graph-metadata-child-drift.sh",
+      "scripts/regen-worker.sh",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scripts/fix-packet-pointer.mjs",
+      "mcp_server/lib/config/capability-flags.ts",
+      "scripts/census-validation-rule.sh",
+      "scripts/census-worker.sh",
+      ".opencode/bin/worktree-session.sh",
+      "scripts/rules/check-status-cross-doc-consistency.sh"
+    ],
+    "entities": [
+      {
+        "name": "check-status-cross-doc-consistency.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-metadata-disk-consistency.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-child-drift.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-child-drift.sh",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "regen-worker.sh",
+        "kind": "script",
+        "path": "scripts/regen-worker.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fix-packet-pointer.mjs",
+        "kind": "file",
+        "path": "scripts/fix-packet-pointer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "census-validation-rule.sh",
+        "kind": "script",
+        "path": "scripts/census-validation-rule.sh",
+        "source": "derived"
+      },
+      {
+        "name": "census-worker.sh",
+        "kind": "script",
+        "path": "scripts/census-worker.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation Advisory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enforce Graduation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Cross",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Disk",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Drift",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three validation rules exist, run on every `validate.sh --strict` invocation, and correctly detect real drift — but none of them can actually fail validation today, because each is gated by its own default-`false` enforce flag:",
+    "created_at": "2026-07-09T20:32:08.332Z",
+    "last_save_at": "2026-07-11T18:40:36.247Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d04e804da894f68cd3a00bdac52343f03eaa053703269f18394a36ffab150f8b",
+    "source_doc_hashes": {
+      "spec.md": "0e6ebfc6757b654739796997dc784727ac6c3efd3823f6b5934c4537c3cb91b1",
+      "plan.md": "9890286782000de9443d6a891811d18fcc74cd308fb84d669906ce3cac43dcb7",
+      "tasks.md": "32ea66390c05a08a85d929d5aae502f216890a3766b4c89e38b6b1f67b68bb68",
+      "checklist.md": "78328cdfb8b40dcaf2b47cabe8f44aa2afa7087070935561f55f1ccc6feeb1ed",
+      "decision-record.md": "12709c07b161dc7e8542e382b035babee440f6b877dc1caf085dce0b09677d8c",
+      "implementation-summary.md": "551cdf7683d3ec6d858dadb4c8e56042d5cbe217b69877d5f9fbd257d2bdbf94"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "005 substrate-stability-instrumentation",
+  "schema_version": 1,
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
+  "summary": "Add memory_health.process.rss_mb, memory_health.embeddingRetry.flapping, daemon-startup RSS log, and a resource-map.md documenting kill-switch thresholds. Observability only, no behavior change.",
+  "tags": [
+    "observability",
+    "instrumentation",
+    "memory-health",
+    "rss",
+    "circuit-flap"
+  ],
+  "created_at": "2026-05-14T11:10:00Z",
+  "updated_at": "2026-05-14T11:25:36Z",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
+  "description": "Substrate flap incidents are difficult to diagnose when the only visible signal is a degraded `memoryhealth` response",
+  "keywords": [
+    "substrate",
+    "flap",
+    "incidents",
+    "difficult",
+    "diagnose",
+    "only",
+    "visible",
+    "signal",
+    "degraded",
+    "memoryhealth",
+    "response"
+  ],
+  "lastUpdated": "2026-07-10T06:23:00.029Z",
+  "specId": "005",
+  "folderSlug": "stability-instrumentation",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation",
+    "032-substrate-repair-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

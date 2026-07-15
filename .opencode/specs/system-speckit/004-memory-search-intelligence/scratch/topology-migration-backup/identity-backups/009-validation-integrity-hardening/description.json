@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/004-memory-search-intelligence/009-validation-integrity-hardening",
+  "description": "Four independent gaps let bad spec-folder data pass `validate.sh` clean:",
+  "keywords": [
+    "four",
+    "independent",
+    "gaps",
+    "let",
+    "bad",
+    "spec-folder",
+    "data",
+    "pass",
+    "validate",
+    "clean"
+  ],
+  "lastUpdated": "2026-07-10T08:09:04.846Z",
+  "specId": "009",
+  "folderSlug": "validation-integrity-hardening",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

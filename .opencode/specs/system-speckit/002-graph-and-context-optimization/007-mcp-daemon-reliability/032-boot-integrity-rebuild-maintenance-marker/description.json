@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/032-boot-integrity-rebuild-maintenance-marker",
+  "description": "`scheduleBootFtsIntegrityCheck()` fires (`context-server.ts:2467`, right before the daemon",
+  "keywords": [
+    "schedulebootftsintegritycheck",
+    "fires",
+    "context-server",
+    "right",
+    "daemon"
+  ],
+  "lastUpdated": "2026-07-09T10:02:54.595Z",
+  "specId": "032",
+  "folderSlug": "boot-integrity-rebuild-maintenance-marker",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-07-26_11-51__runbootftsintegritycheck-in-context-server-ts.md"
+  ]
+}

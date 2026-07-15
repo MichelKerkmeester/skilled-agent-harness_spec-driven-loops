@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002-cocoindex-embedder-doc-drift-resync",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002-cocoindex-embedder-doc-drift-resync",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/002 embedder doc drift",
+      "embeddinggemma doc resync",
+      "embedder-pluggability historical annotation",
+      "022/002 plan",
+      "022/002 tasks",
+      "022/002 checklist",
+      "022/002 shipped"
+    ],
+    "key_topics": [
+      "embedder",
+      "doc",
+      "drift",
+      "embeddinggemma",
+      "resync",
+      "embedder-pluggability",
+      "historical",
+      "annotation",
+      "plan",
+      "tasks",
+      "checklist",
+      "shipped"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedder Doc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Resync",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "prose",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "supersession",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "lower",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. VERIFICATION PROTOCOL",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PRE-IMPLEMENTATION",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. CODE QUALITY",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. TESTING",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "4 doc edits closing the embedder-side P0 doc drift from packet 021: config_templates.md _NOTE_2 (3 sites) + embedder-pluggability.md historical annotation + ENV_REFERENCE.md date refresh + SKILL.md keywords. Reranker-side doc edits (BAAI/bge-reranker-v2-m3 → Qwen/Qwen3-Reranker-0.6B prose) deferred to follow-on packet because they need Qwen3 disk-footprint + daemon-log behavior verification beyond the mechanical-edit threshold.",
+    "created_at": "2026-05-23T16:15:00.000000Z",
+    "last_save_at": "2026-07-10T06:22:56.299Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:08d8e28e4726de36a4ed6e746247e352f355b5dc131420b01b5a5eb5827f8d27",
+    "source_doc_hashes": {
+      "spec.md": "9394f6b03240e03447697c220248d10d731f81cb503d0e2c4ecb408d9eee74d2",
+      "plan.md": "f192c8d8ad2913eb731314ae27fd01f7f06209a462b7e7a329fae1bbcb7d6497",
+      "tasks.md": "34d56d9536443013af2f116caa86bdfcb0e56ecb1b18ddf2a0d96c59a60de745",
+      "checklist.md": "26f135eee24e15a1ebfbc7c600bd289bb23e8e0d3b772413bd5e5ab48e15c725",
+      "implementation-summary.md": "df00e5cdb87db5e9e759a65a756c76d4eb948ea41ea50fbc914512d841bfe584"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

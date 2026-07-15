@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc",
+  "description": "The benchmark format mechanics for MCP skill-local benchmark folders were split across two separate files in sk-doc (`references/benchmarks/FORMAT.md`",
+  "keywords": [
+    "benchmark",
+    "format",
+    "mechanics",
+    "mcp",
+    "skill-local",
+    "folders",
+    "split",
+    "across",
+    "two",
+    "separate",
+    "files",
+    "sk-doc",
+    "references",
+    "benchmarks"
+  ],
+  "lastUpdated": "2026-07-10T06:23:08.620Z",
+  "specId": "006",
+  "folderSlug": "benchmark-format-to-sk-doc",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "005-cross-cutting-quality"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-05-26_13-49__implementation-mid-flight-redesign-of-packet-006.md"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/006-spec-gate-enforce-readiness/004-headless-enforce-scoping",
+  "description": "`export MKSPECGATEENFORCE=1` in the operator shell propagates into every dispatched `opencode run` (and `claude -p`) child",
+  "keywords": [
+    "export",
+    "mkspecgateenforce",
+    "operator",
+    "shell",
+    "propagates",
+    "every",
+    "dispatched",
+    "opencode",
+    "run",
+    "claude",
+    "child"
+  ],
+  "lastUpdated": "2026-07-11T11:05:59.530Z",
+  "specId": "004",
+  "folderSlug": "headless-enforce-scoping",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "006-spec-gate-enforce-readiness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

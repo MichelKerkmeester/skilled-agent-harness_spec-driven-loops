@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune",
+  "description": "If Phases 1 and 2 both fail to land an acceptable rerank path, the remaining hypothesis is that no off-the-shelf cross-encoder is well-aligned to the",
+  "keywords": [
+    "phases",
+    "fail",
+    "land",
+    "acceptable",
+    "rerank",
+    "path",
+    "remaining",
+    "hypothesis",
+    "off-the-shelf",
+    "cross-encoder",
+    "well-aligned"
+  ],
+  "lastUpdated": "2026-07-10T06:24:53.058Z",
+  "specId": "003",
+  "folderSlug": "domain-tuned-finetune",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc",
+    "011-spec-memory-rerank-decision-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

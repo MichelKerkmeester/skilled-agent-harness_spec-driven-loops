@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 006/003",
+      "reviewer focus advisory field",
+      "spec drift write-back",
+      "self_assessed_quality hint",
+      "planner review focus drift",
+      "planner reviewer focus",
+      "spec drift hint",
+      "update_recommended field",
+      "reviewer_focus advisory"
+    ],
+    "key_topics": [
+      "phase",
+      "reviewer",
+      "focus",
+      "advisory",
+      "field",
+      "spec",
+      "drift",
+      "write-back",
+      "hint",
+      "planner",
+      "review",
+      "attention"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".opencode/agents/review.md",
+      ".claude/agents/review.md",
+      ".opencode/agents/code.md",
+      ".claude/agents/code.md",
+      ".opencode/commands/memory/save.md",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-io-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".opencode/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planner Reviewer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Hint",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Layer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Advisory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Proposal",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Review attention is not steered to the areas most likely to harbor defects: `@review` derives scope from the target and changed files alone, with no signal from the planner about where the risk concentrates",
+    "created_at": "2026-06-06T10:11:10.201Z",
+    "last_save_at": "2026-07-10T06:24:31.984Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ddb908ee30d4d55f67c09314ac4579334c9baa8ee573d10b0f77d1a6007b6c09",
+    "source_doc_hashes": {
+      "spec.md": "d6d2fc374b915456791433d87eeaa389e7d122ca4c1531a378ca50bb430c305a",
+      "plan.md": "b1936a91dfa2a677ee9caced28c3690c31c9976ee29d437995504ddcbbf8f5b5",
+      "tasks.md": "69d675ae78c8c470f357d0ff3d1c538b339c4ac7d48949cedf3fbd7168463095",
+      "implementation-summary.md": "48aef5d7b736c3d5621b354df9f27f18f6627640b72053a8c3bf49e90e0ce297"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/002-telemetry-and-process-verification-harness",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/002-telemetry-and-process-verification-harness",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "telemetry-and-process-verification-harness",
+      "memory leak 2"
+    ],
+    "key_topics": [
+      "telemetry-and-process-verification-harness",
+      "memory",
+      "leak",
+      "research",
+      "packets",
+      "defer",
+      "live",
+      "proof",
+      "several",
+      "claims",
+      "spec",
+      "telemetry"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts",
+      "scripts/ops/process-memory-harness.ts",
+      ".opencode/skills/system-spec-kit/scripts/tsconfig.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "process-memory-harness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "process-memory-harness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "Process Verification Harness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Capture Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Both research packets defer live proof for several memory claims",
+    "created_at": "2026-05-22T10:20:00Z",
+    "last_save_at": "2026-07-02T05:31:12.194Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e293ba4bfbf99a64d323e7a7275042f83d2f1caa28fe84a02ed36ebb944ca074",
+    "source_doc_hashes": {
+      "spec.md": "8aab95cf26349e68bd67ffa18857ed559a7a7a4a718b1f0b52e3ca3b3e54d7bb",
+      "plan.md": "031f26dbb5ff073f6e039dea73a814534fb2ee2aaaa51bf2f9db8850d3fa2385",
+      "tasks.md": "fafdf0037c2276ba65c34616497c86aa8a5de8aba1b62f331f74908594463ebf",
+      "implementation-summary.md": "7121e77cce71cf681991da7d89f3a75065d570c6a89177342754cdec768ea90b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

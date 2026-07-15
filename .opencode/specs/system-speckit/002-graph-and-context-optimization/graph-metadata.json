@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup",
+    "system-speckit/002-graph-and-context-optimization/001-research-and-baseline",
+    "system-speckit/002-graph-and-context-optimization/002-spec-kit-internals",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime",
+    "system-speckit/002-graph-and-context-optimization/005-graph-impact-and-affordance",
+    "system-speckit/002-graph-and-context-optimization/006-operator-tooling",
+    "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability",
+    "system-speckit/002-graph-and-context-optimization/008-runtime-defect-fixes"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026 graph and context optimization",
+      "026 root packet",
+      "graph context optimization program",
+      "026 phase map"
+    ],
+    "key_topics": [
+      "graph",
+      "context",
+      "optimization",
+      "root",
+      "packet",
+      "program",
+      "phase",
+      "map",
+      "spec-kit",
+      "memory",
+      "operator-tooling",
+      "subsystems"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fixes",
+    "created_at": "2026-04-12T09:02:53.443Z",
+    "last_save_at": "2026-07-15T16:51:22.337Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b5471fe1f0209862194a95406221723b77434cef0845a59c6787e4c00a8476ca",
+    "source_doc_hashes": {
+      "spec.md": "6fc8234d373ea3e231603a4c7c9a98584e3e35c4c59771c78ee91dbaa44b6ea7"
+    },
+    "last_active_child_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup",
+    "last_active_at": "2026-06-05T15:12:00+02:00"
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ipc socket dir canonicalize",
+      "resolveIpcSocketPath missing dir",
+      "mk-code-index -32000 socket",
+      "code-graph socket reboot",
+      "allowed socket root check",
+      "ipc socket dir canonicalize plan",
+      "resolveIpcSocketPath ancestor realpath",
+      "code-graph socket reboot fix",
+      "ipc socket dir canonicalize tasks",
+      "code-graph socket fix tasks",
+      "ipc socket dir canonicalize summary",
+      "mk-code-index -32000 fix"
+    ],
+    "key_topics": [
+      "ipc",
+      "socket",
+      "dir",
+      "canonicalize",
+      "resolveipcsocketpath",
+      "missing",
+      "mk-code-index",
+      "code-graph",
+      "reboot",
+      "allowed",
+      "root",
+      "check"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/ipc-socket-resolve.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ipc-socket-resolve.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/ipc-socket-resolve.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mkcodeindex` (system-code-graph) MCP server failed to connect with `MCP error -32000: Connection closed`",
+    "created_at": "2026-05-28T16:38:37Z",
+    "last_save_at": "2026-07-10T06:22:29.068Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:709a623f551694965409a2534b66da3a67d0d8c3883e102beae006bffcba72e0",
+    "source_doc_hashes": {
+      "spec.md": "bc9db6007e294c54d49211c233b7becfbf24e4a92e0c3cafdb53442183cd746f",
+      "plan.md": "4494ae2e710a109bc6dc3dfe8c02cde9fc5f2ca7fba90cc248bbeeed70f4e755",
+      "tasks.md": "fda641ef2150040553d9f9139e1e9b4aa9eb6a532dc9450a6dbb210672781da6",
+      "implementation-summary.md": "897612685d0297b2b47185660159a1443746156175d5883fabcba8900f9df755"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

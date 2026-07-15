@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli freshness and smoke",
+      "spec-memory stale dist gate",
+      "cli list-tools smoke 37 8 9",
+      "stale dist plugin status",
+      "001-cli-freshness-and-smoke plan",
+      "001-cli-freshness-and-smoke tasks",
+      "001-cli-freshness-and-smoke summary"
+    ],
+    "key_topics": [
+      "cli",
+      "freshness",
+      "smoke",
+      "spec-memory",
+      "stale",
+      "dist",
+      "gate",
+      "list-tools",
+      "plugin",
+      "status",
+      "001-cli-freshness-and-smoke",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/spec-memory.cjs",
+      ".opencode/bin/code-index.cjs",
+      ".opencode/bin/skill-advisor.cjs",
+      ".opencode/bin/cli-offline-smoke.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
+      ".opencode/bin/cli-offline-smoke.test.cjs",
+      ".opencode/bin/worktree-guard.sh",
+      "mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs",
+      "manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "code-index.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/code-index.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-offline-smoke.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/cli-offline-smoke.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "finalize-dist.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-offline-smoke.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/cli-offline-smoke.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-guard.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-bridge.mjs",
+        "kind": "file",
+        "path": "mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-list-tools-parity.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Freshness Gate Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Offline Smoke",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-memory shim's mtime-based freshness gate (`.opencode/bin/spec-memory.cjs:24-42`, guard observed at `:29-40`) exits `69` (\"spec-memory dist entrypoint is stale...\") and blocks dispatch even when dist content is current",
+    "created_at": "2026-06-10T20:38:53.995Z",
+    "last_save_at": "2026-07-02T05:31:13.968Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5c6a2dc51f8c70906f3472c006a63c310c9bfccf6fc33e44a30b1b2dc332f8f7",
+    "source_doc_hashes": {
+      "spec.md": "7c03b994f5bc80f2f5d9ad9f2d9a5d63c00219099b0e1462c18969cd14473745",
+      "plan.md": "fef00027d6b1625a8003d0649387d00e5d0c21dc65b1abb16d1b704194f88f7d",
+      "tasks.md": "a06783e102eb25b4e99b1be9b0ea4eef0b1bb14b9ddcf4e5353b7ef73955bf1d",
+      "implementation-summary.md": "3b212df118bf7ec3b46eb2dc2ca27b8a7acc146c148333dda4a01a1fb500164a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

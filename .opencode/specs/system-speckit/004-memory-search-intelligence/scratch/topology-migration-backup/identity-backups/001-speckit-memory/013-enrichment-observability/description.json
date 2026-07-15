@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/004-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
+  "description": "The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async,",
+  "keywords": [
+    "memory",
+    "mcp",
+    "splits",
+    "write",
+    "path",
+    "background",
+    "post-insert",
+    "enrichment",
+    "row",
+    "commits",
+    "immediately",
+    "marked",
+    "enrichment-pending",
+    "async"
+  ],
+  "lastUpdated": "2026-07-04T17:51:05.120Z",
+  "specId": "013",
+  "folderSlug": "enrichment-observability",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

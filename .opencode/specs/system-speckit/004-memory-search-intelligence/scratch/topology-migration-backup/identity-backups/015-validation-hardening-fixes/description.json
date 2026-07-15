@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/004-memory-search-intelligence/015-validation-hardening-fixes",
+  "description": "F6 — the evidence \"substance\" checker has two live defects, a false-negative loophole and a false-positive regression, both in",
+  "keywords": [
+    "evidence",
+    "substance",
+    "checker",
+    "two",
+    "live",
+    "defects",
+    "false-negative",
+    "loophole",
+    "false-positive",
+    "regression"
+  ],
+  "lastUpdated": "2026-07-10T08:09:04.851Z",
+  "specId": "015",
+  "folderSlug": "validation-hardening-fixes",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

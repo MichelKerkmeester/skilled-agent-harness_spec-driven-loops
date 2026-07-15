@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/004-review-remediation/006-review-record-packet-type",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/004-review-remediation/006-review-record-packet-type",
+  "parent_id": "system-speckit/004-memory-search-intelligence/004-review-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review record packet type",
+      "SPECKIT_LEVEL review marker",
+      "lean review spec validator",
+      "review-report.md validation",
+      "deep-review packet retrofit",
+      "review packet type plan",
+      "SPECKIT_LEVEL review path plan",
+      "additive validator change plan",
+      "lean review template plan",
+      "review packet type tasks",
+      "review path validator tasks",
+      "review-record fixture tasks"
+    ],
+    "key_topics": [
+      "review",
+      "record",
+      "packet",
+      "type",
+      "marker",
+      "lean",
+      "spec",
+      "validator",
+      "review-report",
+      "validation",
+      "deep-review",
+      "retrofit"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+      "scripts/spec/validate.sh",
+      "scripts/utils/template-structure.js",
+      "templates/manifest/spec-kit-docs.json",
+      "templates/manifest/review.spec.md.tmpl",
+      "mcp_server/lib/templates/level-contract-resolver.ts",
+      "mcp_server/lib/validation/orchestrator.ts",
+      "mcp_server/lib/validation/spec-doc-structure.ts",
+      "scripts/rules/check-files.sh",
+      "scripts/tests/review-record-validation.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/manifest/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "review.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/manifest/review.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "level-contract-resolver.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/templates/level-contract-resolver.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-files.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-files.sh",
+        "source": "derived"
+      },
+      {
+        "name": "review-record-validation.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/review-record-validation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gated Review Packet Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Lean",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Marker",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Lean review-record spec packets carry a spec.md plus a review report under `review/review-report.md` and nothing else: no plan, no tasks, no checklist, no implementation-summary",
+    "created_at": "2026-06-24T15:54:41.278Z",
+    "last_save_at": "2026-07-11T18:40:36.311Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fb0404c2f47b511d780593da9e77ed5a069abb3d9c3dab802e8e24fb14c1265b",
+    "source_doc_hashes": {
+      "spec.md": "f9d9875878979ae094fb1e4f239c179d3b36169d8847fe9db011a888cc4fedd6",
+      "plan.md": "729b8bed2a686412759e83e57ef031b892783437cfc2af3bc648794d3f1ad185",
+      "tasks.md": "a7f91a43b0f4050b223ff43fcf3d41a7f09a58e72718a3d7a41dd97584c14e02",
+      "implementation-summary.md": "a73af7de42e92915f0e017d0edf4b5490032c016fd3768b66d8fc8a38aa863a2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

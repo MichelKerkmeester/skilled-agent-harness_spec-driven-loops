@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/017-phase-reorg-and-renumber",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/017-phase-reorg-and-renumber",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026 wave-4 reorg",
+      "026 phase renumber",
+      "026 close reorganization",
+      "017 phase reorg and renumber"
+    ],
+    "key_topics": [
+      "wave-4",
+      "reorg",
+      "phase",
+      "renumber",
+      "close",
+      "reorganization",
+      "accumulated",
+      "flat",
+      "top-level",
+      "phases",
+      "repeated",
+      "ad-hoc"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "scratch/rename-plan.json",
+      ".opencode/specs/descriptions.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename-plan.json",
+        "kind": "config",
+        "path": "scratch/rename-plan.json",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Reorg",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reorganize",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "026 accumulated 17 flat top-level phases through repeated ad-hoc restructures",
+    "created_at": "2026-05-26T16:51:06.296Z",
+    "last_save_at": "2026-07-10T06:24:01.976Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e5acb9676ba2cb4856395b625361f7d7ec76cb6681169f476ccfecee2a105bee",
+    "source_doc_hashes": {
+      "spec.md": "f56f76193f8a7914c6682edd9b39861543ebcb0229426f2d2aae84327e444032"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

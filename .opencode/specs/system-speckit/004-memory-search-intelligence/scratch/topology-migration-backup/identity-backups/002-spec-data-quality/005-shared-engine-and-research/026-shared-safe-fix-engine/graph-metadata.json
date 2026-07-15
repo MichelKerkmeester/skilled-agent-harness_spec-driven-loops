@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine",
+  "parent_id": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared safe-fix engine",
+      "detector registry",
+      "fixClass allow-list",
+      "dq-engine runDetectors",
+      "content_hash idempotency"
+    ],
+    "key_topics": [
+      "shared",
+      "safe-fix",
+      "engine",
+      "detector",
+      "registry",
+      "fixclass",
+      "allow-list",
+      "dq-engine",
+      "rundetectors",
+      "idempotency",
+      "five",
+      "keystone"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      "scripts/core/post-save-review.ts",
+      "scripts/evals/import-policy-rules.ts",
+      "scripts/evals/check-no-mcp-lib-imports.ts",
+      "mcp_server/api/index.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-save-review.ts",
+        "kind": "code",
+        "path": "scripts/core/post-save-review.ts",
+        "source": "derived"
+      },
+      {
+        "name": "import-policy-rules.ts",
+        "kind": "code",
+        "path": "scripts/evals/import-policy-rules.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-mcp-lib-imports.ts",
+        "kind": "code",
+        "path": "scripts/evals/check-no-mcp-lib-imports.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Safe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Engine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Five",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five keystone consumers converge on one shared core that does not exist yet (`research.md` section 4)",
+    "created_at": "2026-06-27T17:15:39.553Z",
+    "last_save_at": "2026-07-10T06:23:15.869Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:be744959534edf7aecb541b32a81d4908371236c40df2fc14c93e1e168cff855",
+    "source_doc_hashes": {
+      "spec.md": "c1e4b42e5bcabe8ea42bce0bcf1dd48ab0c6f45bebf57140862ec99119b3ae2f",
+      "plan.md": "82ebd560006c2e3e055d1baa438a56f1c7852c32d5f17067e93982604c919ed3",
+      "tasks.md": "a551bfa550577cbe7c95e65bc3fcf6bef44f7e2f2f47c63192462aa8e8dd7091",
+      "checklist.md": "6319e48ade9efca945525aa116458e4144aa1af25389b2fc85619ab962ce6f2c",
+      "implementation-summary.md": "ea4cd71e0ea13c4f47c948cfb32b229e8c80f63b2a77cbc21562e2f1d78a8301"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "level": "phase",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "description": "Phase parent for memory and process lifecycle remediation across Spec Kit Memory, deep-loop CLI dispatch, CocoIndex, Code Graph, rerank sidecars, and",
+  "keywords": [
+    "phase",
+    "parent",
+    "memory",
+    "process",
+    "lifecycle",
+    "remediation",
+    "across",
+    "spec",
+    "kit",
+    "deep-loop",
+    "cli",
+    "dispatch",
+    "cocoindex",
+    "code",
+    "graph",
+    "rerank",
+    "sidecars"
+  ],
+  "lastUpdated": "2026-07-10T06:22:50.060Z",
+  "specId": "009",
+  "folderSlug": "memory-leak-remediation",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture"
+  ],
+  "memorySequence": 9,
+  "memoryNameHistory": []
+}

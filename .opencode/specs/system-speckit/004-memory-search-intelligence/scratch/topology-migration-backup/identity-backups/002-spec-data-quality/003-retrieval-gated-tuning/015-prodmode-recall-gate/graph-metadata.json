@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
+  "parent_id": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/003-retrieval-gated-tuning",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "prod mode recall gate",
+      "complete recall at 3",
+      "spec corpus golden",
+      "run spec recall gate",
+      "retrieval regression gate"
+    ],
+    "key_topics": [
+      "prod",
+      "mode",
+      "recall",
+      "gate",
+      "complete",
+      "spec",
+      "corpus",
+      "golden",
+      "run",
+      "retrieval",
+      "regression",
+      "path"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+      "dist/lib/eval/eval-metrics.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js",
+      "dist/lib/eval/ground-truth-data.js",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "run-eval-v2.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.js",
+        "kind": "code",
+        "path": "dist/lib/eval/eval-metrics.js",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth-data.js",
+        "kind": "code",
+        "path": "dist/lib/eval/ground-truth-data.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Recall Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap",
+    "created_at": "2026-06-27T17:15:36.570Z",
+    "last_save_at": "2026-07-09T10:02:56.398Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:db528cf24092b6cec224fa91daa707e9e1b23d80ac808426ba4aac9b3bc76345",
+    "source_doc_hashes": {
+      "spec.md": "c4b65909376fa19934050677023c7bf9df7d2f680ceef9209b6200fc1e3f3142",
+      "plan.md": "99d44bbaf675c6339068dd5b894a3b981075da605364d4cc8b15cfbbb3c4d1ba",
+      "tasks.md": "a0ec77a49f8182e840dffbf7cad8386d312f83dfcdfb20cbfac3306c2fae34e1",
+      "checklist.md": "9e103d4a93e29edf92cdd748f022f489ba8478d4e6f5045146e9d8420a1e22fc",
+      "implementation-summary.md": "a268e8b3b79c38310630df5a9f5f80974f0c1691c8dd44800e33bf74f9fae689"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel",
+  "description": "After a checkpoint-v2 restore, `runPostRestoreRebuilds()` (`mcpserver/lib/storage/checkpoints.ts`, approx lines 1701-1772) rebuilds derived artifacts",
+  "keywords": [
+    "checkpoint-v2",
+    "restore",
+    "runpostrestorerebuilds",
+    "mcpserver",
+    "lib",
+    "storage",
+    "checkpoints",
+    "approx",
+    "lines",
+    "rebuilds",
+    "derived",
+    "artifacts"
+  ],
+  "lastUpdated": "2026-07-10T06:22:37.422Z",
+  "specId": "005",
+  "folderSlug": "checkpoint-needs-rebuild-sentinel",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "013-memory-index-scan-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

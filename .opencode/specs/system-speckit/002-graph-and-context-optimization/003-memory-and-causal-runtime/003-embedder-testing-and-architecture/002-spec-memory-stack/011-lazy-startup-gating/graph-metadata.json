@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lazy startup gating",
+      "memory runtime guard",
+      "runtime_initialized memory_health",
+      "context server lazy init",
+      "lazy startup gating plan",
+      "memory runtime guard plan",
+      "context server lazy init plan",
+      "lazy startup gating tasks",
+      "memory runtime guard tasks",
+      "runtime_initialized task checklist",
+      "lazy startup gating summary",
+      "runtime_initialized implementation summary"
+    ],
+    "key_topics": [
+      "lazy",
+      "startup",
+      "gating",
+      "memory",
+      "runtime",
+      "guard",
+      "context",
+      "server",
+      "init",
+      "plan",
+      "tasks",
+      "task"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/memory-runtime-guard.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-guard.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts",
+      ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-runtime-guard.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/memory-runtime-guard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-surface.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-runtime-guard.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-extended.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder_architecture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lazy Startup Gating",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handler Verification Blocked",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Split",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Expected Result",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Ready",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Done",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`context-server.ts` opens SQLite and starts memory-owned background work during MCP startup",
+    "created_at": "2026-05-18T22:53:49.699Z",
+    "last_save_at": "2026-07-02T05:31:11.768Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4040383351690c93ac788ebd5b7b28fa41a952934b754ba36e2ffcc04392ab01",
+    "source_doc_hashes": {
+      "spec.md": "6bad40674ff4970876750d6510d8d2f0908187f232a94287f18fe94fb0f739b5",
+      "plan.md": "f7c19ea8bd97eb04f4a8ecebc00e7654ee5743e38fd25c72d847ff4473e7e616",
+      "tasks.md": "9bb7ce9ca6c5eaaaea31f0dc4d6f257afe89493f38667fb2afc01a87fc94e823",
+      "implementation-summary.md": "b096149f064854181b3845cb46402cc30873f82ef3405265399d0d78e8cd44f3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

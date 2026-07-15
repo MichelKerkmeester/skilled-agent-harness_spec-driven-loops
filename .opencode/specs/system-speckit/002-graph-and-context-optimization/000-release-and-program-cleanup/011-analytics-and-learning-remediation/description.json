@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
+  "description": "Three deliberate Tier-2 backlog items in the analytics + learning subsystems each carried a distinct defect class",
+  "keywords": [
+    "three",
+    "deliberate",
+    "tier-2",
+    "backlog",
+    "items",
+    "analytics",
+    "learning",
+    "subsystems",
+    "carried",
+    "distinct",
+    "defect",
+    "class"
+  ],
+  "lastUpdated": "2026-07-10T06:22:13.693Z",
+  "specId": "011",
+  "folderSlug": "analytics-and-learning-remediation",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

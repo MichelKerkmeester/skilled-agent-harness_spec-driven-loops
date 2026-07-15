@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research sidecar drift simplification",
+      "system-spec-kit mcp sidecar research",
+      "arc 010 phase 001",
+      "sidecar deep research plan",
+      "drift simplification research strategy",
+      "sidecar research tasks",
+      "arc 010 iteration ledger",
+      "sidecar research checklist",
+      "arc 010 validation checklist",
+      "sidecar research implementation summary",
+      "arc 010 phase 001 summary",
+      "sidecar investigation report"
+    ],
+    "key_topics": [
+      "deep-research",
+      "sidecar",
+      "drift",
+      "simplification",
+      "system-spec-kit",
+      "mcp",
+      "research",
+      "arc",
+      "phase",
+      "deep",
+      "plan",
+      "strategy"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      "research/deep-research-dashboard.md",
+      "research/findings-registry.json",
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
+      "research/iterations/iteration-006.md",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md",
+      "research/iterations/iteration-009.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-009.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Investigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dead Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-spec-kit MCP sidecar surface has grown quickly across TypeScript client/worker code, a Node ensure helper, and supporting embedder lifecycle logic",
+    "created_at": "2026-05-22T21:00:18Z",
+    "last_save_at": "2026-07-10T06:23:27.213Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:9db51bd701c64d19ad84c10e3a30e8bdca5f7f57787c998b6e62a6b0318adaaf",
+    "source_doc_hashes": {
+      "spec.md": "ac2080b10286513e3d3bfe0febf4ce3d039a91f03495998f07e58fe44574ab5e",
+      "plan.md": "50950d938c0b38eb8bc849206d323a47032d97017d399ec4e3c70a4c04c03af4",
+      "tasks.md": "8053df4181b2600422ea3d3c8ed7b3da65e07788a89f9e4130dffb436c54cc97",
+      "checklist.md": "c4cd53ddc64f8996fc9392f5301fda502a2d8435c1085d76e27389ac058bc1c1",
+      "implementation-summary.md": "50e0f9ab12b890279563d5328e9683b50b4b3ef1c20e17449dcaeb57aa9e77ea",
+      "research/research.md": "8ac40c52f3cb423da8a46f15d161b969a0967fba93ca482fa894d2ac0fa69158"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

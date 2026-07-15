@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "020 001 F44 F109",
+      "test-only barrel export cleanup",
+      "listSupportedDimensions EmbedderManifest",
+      "020 001 plan",
+      "F44 F109 direct imports",
+      "020 001 tasks",
+      "F44 F109 tasks",
+      "020 001 checklist",
+      "F44 F109 verification",
+      "020 001 ADR",
+      "F44 F109 barrel decision",
+      "020 001 implementation summary"
+    ],
+    "key_topics": [
+      "f44",
+      "f109",
+      "test-only",
+      "barrel",
+      "export",
+      "cleanup",
+      "listsupporteddimensions",
+      "embeddermanifest",
+      "plan",
+      "direct",
+      "imports",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedder-registry.vitest.ts",
+      "spec.md",
+      "mcp_server/lib/embedders/registry.ts",
+      "mcp_server/lib/embedders/index.ts",
+      "decision-record.md",
+      "shared/embeddings/registry.ts",
+      "shared/embeddings/types.ts",
+      "mcp_server/tests/embedder-registry.vitest.ts",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-registry.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedder-registry.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/embeddings/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Barrel Export Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Public",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Production",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Scope",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "F44 and F109 were deferred by arc 017/005 because current tests imported production-dead symbols through public barrels",
+    "created_at": "2026-05-23T10:01:51Z",
+    "last_save_at": "2026-07-10T06:21:58.635Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0ac48aeb1a0b55ca3f5cebdd10a5a31e4c0915d2145c1a47c862bd285ce9e00e",
+    "source_doc_hashes": {
+      "spec.md": "0a4dca81b80167facfdd1bd933e2dd316358c50a21f30af468dd9f82a6b9e723",
+      "plan.md": "3bb5f586c5929c438bcded0aed31aa6b1b59d0f871bad6f00584372c014372e6",
+      "tasks.md": "af014fc7969fb9aa08b2e05ce2880434fe0e4f1c903658b23074fa3a7730afff",
+      "checklist.md": "2ac156cc8252d48037ae0af232ee81308ec924c1b9d2be089e86a84fa4b59d6b",
+      "decision-record.md": "6cc0f37ebabc8b1bcb78c217eeb6fad2640b94e80a2ad5f75ba80ddbceac7354",
+      "implementation-summary.md": "7dfc6a0339028fed97b7fb790cd8926c2ecb8b9047c05b28f47b9035afc06ec1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

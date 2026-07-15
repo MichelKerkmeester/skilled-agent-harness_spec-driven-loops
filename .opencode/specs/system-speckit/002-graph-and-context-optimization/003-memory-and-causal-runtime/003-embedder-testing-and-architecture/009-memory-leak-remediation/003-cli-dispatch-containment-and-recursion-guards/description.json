@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards",
+  "description": "The broad memory audit found raw shell branches, inconsistent timeout handling, and prose-only self-invocation guards",
+  "keywords": [
+    "broad",
+    "memory",
+    "audit",
+    "found",
+    "raw",
+    "shell",
+    "branches",
+    "inconsistent",
+    "timeout",
+    "handling",
+    "prose-only",
+    "self-invocation",
+    "guards"
+  ],
+  "lastUpdated": "2026-07-10T06:24:12.116Z",
+  "specId": "003",
+  "folderSlug": "cli-dispatch-containment-and-recursion-guards",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": []
+}

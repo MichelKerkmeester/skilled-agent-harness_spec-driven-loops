@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-055-root-readme-realignment",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-055-root-readme-realignment",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "055 spec",
+      "root readme realignment",
+      "Phase D root readme audit",
+      "055 plan",
+      "phase D plan",
+      "055 tasks",
+      "055 implementation",
+      "phase D summary",
+      "055 resource map"
+    ],
+    "key_topics": [
+      "spec",
+      "root",
+      "readme",
+      "realignment",
+      "phase",
+      "audit",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "resource",
+      "map"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      "research/root-readme-context-bundle.json",
+      "research/root-readme-delta-verified.md",
+      "research/root-readme-edit-evidence.md",
+      "README.md",
+      "plan.md",
+      "tasks.md",
+      "resource-map.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "root-readme-context-bundle.json",
+        "kind": "config",
+        "path": "research/root-readme-context-bundle.json",
+        "source": "derived"
+      },
+      {
+        "name": "root-readme-delta-verified.md",
+        "kind": "doc",
+        "path": "research/root-readme-delta-verified.md",
+        "source": "derived"
+      },
+      {
+        "name": "root-readme-edit-evidence.md",
+        "kind": "doc",
+        "path": "research/root-readme-edit-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Pass",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Task",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compose Pass",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Audit the README's factual claims (tool counts, file paths, server names, integration patterns) against current reality",
+    "created_at": "2026-05-15T12:55:00Z",
+    "last_save_at": "2026-07-10T06:23:06.776Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:61bcbe5e2fd78bd83b0fb1a5ee4dc251256c0555eab2ebe95a8899616682bbdb",
+    "source_doc_hashes": {
+      "spec.md": "7bc19627a899d20f67a49464900e0281e8cab8beadd442a40eed28d05ef7890a",
+      "plan.md": "8ae75a031ff8af8f9255f41dba17cf4ebbc01559a6bad6e68804b03ecd64254d",
+      "tasks.md": "9dcc5e46025e5b1b3da664ef703ca41495c54d635ba0e55c4b0a040d24a8728b",
+      "implementation-summary.md": "c282af9911338e07bf18fe9e487f4f83d9832b92c202b3a2e93d011f7d2e3f40",
+      "resource-map.md": "33f949ff365521738e12e8fcf566450cc8d93b3543ae11c19a13ae1759cc4a4b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

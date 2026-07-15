@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry",
+  "description": "023A1 persisted query/document prompt metadata and 023D added license metadata, but consumers still had to know which optional helper or metadata",
+  "keywords": [
+    "023a1",
+    "persisted",
+    "query",
+    "document",
+    "prompt",
+    "metadata",
+    "023d",
+    "license",
+    "consumers",
+    "still",
+    "know",
+    "optional",
+    "helper"
+  ],
+  "lastUpdated": "2026-07-10T06:23:37.116Z",
+  "specId": "006",
+  "folderSlug": "prompt-license-registry",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "004-code-index-stack",
+    "023-deep-research-arc-blind-spots"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

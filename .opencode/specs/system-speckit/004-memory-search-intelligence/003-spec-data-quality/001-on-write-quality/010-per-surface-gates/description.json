@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/010-per-surface-gates",
+  "description": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time",
+  "keywords": [
+    "three",
+    "authoring",
+    "surfaces",
+    "beyond",
+    "spec-doc",
+    "json",
+    "ship",
+    "machinery",
+    "never",
+    "enforced",
+    "write",
+    "time"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.665Z",
+  "specId": "010",
+  "folderSlug": "per-surface-gates",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "003-spec-data-quality",
+    "001-on-write-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

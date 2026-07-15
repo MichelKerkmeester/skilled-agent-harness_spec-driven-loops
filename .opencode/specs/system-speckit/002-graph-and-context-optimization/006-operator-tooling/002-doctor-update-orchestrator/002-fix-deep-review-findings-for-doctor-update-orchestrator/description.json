@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
+  "description": "The 013 deep-review identified that 013 + 001 + 002 spec docs lie about completion state (checklists 100% unchecked while implementation-summaries",
+  "keywords": [
+    "deep-review",
+    "identified",
+    "spec",
+    "docs",
+    "lie",
+    "about",
+    "completion",
+    "state",
+    "checklists",
+    "unchecked",
+    "while",
+    "implementation-summaries"
+  ],
+  "lastUpdated": "2026-07-10T06:24:19.514Z",
+  "specId": "002",
+  "folderSlug": "fix-deep-review-findings-for-doctor-update-orchestrator",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "006-operator-tooling",
+    "002-doctor-update-orchestrator"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/001-release-cleanup/011-daemon-skills-playbook-validation",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/001-release-cleanup/011-daemon-skills-playbook-validation",
+  "parent_id": "system-speckit/004-memory-search-intelligence/001-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "daemon skills playbook validation",
+      "028 playbook benchmark findings",
+      "spec-kit advisor code-graph model validation",
+      "daemon skills playbook validation plan",
+      "028 playbook benchmark harness",
+      "per-clone daemon isolation recipe",
+      "daemon skills playbook validation tasks",
+      "028 playbook benchmark task list",
+      "playbook validation run tasks",
+      "daemon skills playbook validation checklist",
+      "028 playbook benchmark verification",
+      "playbook validation QA"
+    ],
+    "key_topics": [
+      "daemon",
+      "skills",
+      "playbook",
+      "validation",
+      "benchmark",
+      "findings",
+      "spec-kit",
+      "advisor",
+      "code-graph",
+      "model",
+      "plan",
+      "harness"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "plan.md",
+      "spec.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Daemon Skills Playbook Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Stress",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stress Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-clone",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 028 shipped a large body of work into three daemon-backed system skills (system-spec-kit, system-skill-advisor and system-code-graph)",
+    "created_at": "2026-06-22T04:40:16.647Z",
+    "last_save_at": "2026-07-11T18:40:35.763Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b480b41938fb51a1d6a62659c3ddd807321bfee32370688df8189f0760d9348d",
+    "source_doc_hashes": {
+      "spec.md": "a1177c16b81efcadd682caa4f84585e06b9d254c445f13fc7d164c35ca0a6fa4",
+      "plan.md": "8c74a3eb0c5d921e2425e8d5b85829a669dbabfa99f7629cb1637bda69b9cb62",
+      "tasks.md": "cdb56aa2a4f7da65fa97845bd491c75faec25b1d7ca44b69b90927a49a9c28ea",
+      "checklist.md": "18ff573dea393f3d7a3f4e11c7baa4a2abfec9a29efdb4a0dd75cf9a4f109f37",
+      "implementation-summary.md": "af5b4ceb3fb3a7e85acb0ae507f6a8dba8752dfc32e14069ce9dee36ad0e3d44"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

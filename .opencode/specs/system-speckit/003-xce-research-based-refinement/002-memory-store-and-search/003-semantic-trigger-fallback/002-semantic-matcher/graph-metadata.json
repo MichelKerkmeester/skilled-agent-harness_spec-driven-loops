@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 004 semantic matcher",
+      "semantic-trigger-matcher.ts",
+      "cosine trigger matching",
+      "trigger embedding cache",
+      "027 phase 004 semantic matcher plan",
+      "cosine trigger matcher plan",
+      "027 phase 004 semantic matcher tasks",
+      "semantic matcher checklist",
+      "semantic trigger verification",
+      "implementation",
+      "summary",
+      "template"
+    ],
+    "key_topics": [
+      "phase",
+      "semantic",
+      "matcher",
+      "semantic-trigger-matcher",
+      "cosine",
+      "trigger",
+      "matching",
+      "embedding",
+      "cache",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "mcp_server/lib/triggers/semantic-trigger-matcher.ts",
+      "mcp_server/handlers/memory-triggers.ts",
+      "mcp_server/handlers/mutation-hooks.ts",
+      "mcp_server/tests/semantic-trigger-matcher.vitest.ts",
+      "mcp_server/tests/handler-memory-triggers.vitest.ts",
+      "mcp_server/ENV_REFERENCE.md",
+      "mcp_server/lib/search/memory-summaries.ts",
+      "tests/semantic-trigger-matcher.vitest.ts",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-trigger-matcher.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/triggers/semantic-trigger-matcher.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-hooks.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/mutation-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-trigger-matcher.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/semantic-trigger-matcher.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-triggers.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/handler-memory-triggers.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-summaries.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/memory-summaries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Matcher",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "With cached trigger embeddings available, the system still needs a similarity matcher to score a prompt embedding against trigger embeddings",
+    "created_at": "2026-06-06T13:35:45Z",
+    "last_save_at": "2026-07-10T06:22:21.713Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b5bc574edc0966888d39f1998204b50fbe5adf7474e326edcfd35410a4698cb1",
+    "source_doc_hashes": {
+      "spec.md": "2220810618d031771f57a5ec5c6f74a41c46256765ba34513a64e32a466e1acb",
+      "plan.md": "79ab5833d9cc001afe23df6eb5255958f822539235146ecba4058a634999734c",
+      "tasks.md": "4032bc1a3a2bf368cafcfdfe1645ec149ccaa49bab0d979ca04f5ebeeb103e88",
+      "checklist.md": "dd0a4e8c5449f79e45add7f1a2419f5dfa0c5ef01e4a177c07985fa3e3e49f39",
+      "implementation-summary.md": "5699856edf87d56a1f64e1964f05dfc33db4d3e8fd13c7aee766c609cc9dea0e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

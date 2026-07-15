@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "011/004 retrieval audit",
+      "fixture freshness audit spec-memory",
+      "rerank decision gate",
+      "candidate coverage audit",
+      "011/004 plan",
+      "011/004 tasks",
+      "011/004 summary"
+    ],
+    "key_topics": [
+      "retrieval",
+      "audit",
+      "fixture",
+      "freshness",
+      "spec-memory",
+      "rerank",
+      "decision",
+      "gate",
+      "candidate",
+      "coverage",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+      "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+      "lib/search/pipeline/stage3-rerank.ts",
+      "evidence/probe-classification-2026-05-21.json",
+      "dist/handlers/memory-search.js",
+      "evidence/candidate-coverage-2026-05-21.json",
+      "evidence/handler-parity-2026-05-21.md",
+      "evidence/rerank-effect-2026-05-21.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "rerank-ab-fixture.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/stage3-rerank.ts",
+        "source": "derived"
+      },
+      {
+        "name": "probe-classification-2026-05-21.json",
+        "kind": "config",
+        "path": "evidence/probe-classification-2026-05-21.json",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.js",
+        "kind": "code",
+        "path": "dist/handlers/memory-search.js",
+        "source": "derived"
+      },
+      {
+        "name": "candidate-coverage-2026-05-21.json",
+        "kind": "config",
+        "path": "evidence/candidate-coverage-2026-05-21.json",
+        "source": "derived"
+      },
+      {
+        "name": "handler-parity-2026-05-21.md",
+        "kind": "doc",
+        "path": "evidence/handler-parity-2026-05-21.md",
+        "source": "derived"
+      },
+      {
+        "name": "rerank-effect-2026-05-21.json",
+        "kind": "config",
+        "path": "evidence/rerank-effect-2026-05-21.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrieval Architect",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eval Methodologist",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope For",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Branch Decision",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Probe Classification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Candidate Coverage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handler Parity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rerank Effect",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) produced identical retrieval metrics to three sig figs:",
+    "created_at": "2026-05-23T11:55:15.634Z",
+    "last_save_at": "2026-07-10T06:24:07.408Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b3317e849414a8cc855e29c1fbab1406e30572623e779302ecb685af568f7b3e",
+    "source_doc_hashes": {
+      "spec.md": "f6ac530f674a1456ff9e253f1ada0bfdbe128d6c1392f404c7331dfafaaa0ea9",
+      "plan.md": "37fee5e94307c366416c6a18323f39052c09028fe45c0dfa8091346f013d9fa5",
+      "tasks.md": "b038b6c205dc8f72f3f03d84674688e1682af8db2213e462e7e472eef1c83bcb",
+      "implementation-summary.md": "a788c13ff57e32b2a5f9160fee3a597851c9012af278ae19a9b1ac97b2c006a0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

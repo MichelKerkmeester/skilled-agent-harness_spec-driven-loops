@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/004-memory-search-intelligence/002-speckit-memory/008-search-index-integrity-sweep",
+  "description": "The mk-spec-memory search backend (`memoryindex` + `vec768`) has drifted from the current on-disk spec corpus, primarily as a side effect of the July",
+  "keywords": [
+    "mk-spec-memory",
+    "search",
+    "backend",
+    "memoryindex",
+    "vec768",
+    "drifted",
+    "current",
+    "on-disk",
+    "spec",
+    "corpus",
+    "primarily",
+    "side",
+    "effect",
+    "july"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.503Z",
+  "specId": "008",
+  "folderSlug": "search-index-integrity-sweep",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "002-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

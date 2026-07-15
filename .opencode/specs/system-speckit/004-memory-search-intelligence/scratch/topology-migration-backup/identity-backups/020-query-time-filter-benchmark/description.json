@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-speckit/004-memory-search-intelligence/020-query-time-filter-benchmark",
+  "description": "Four narrow, evidence-backed gaps remain open around an otherwise-complete, already-tested feature:",
+  "keywords": [
+    "four",
+    "narrow",
+    "evidence-backed",
+    "gaps",
+    "remain",
+    "open",
+    "around",
+    "otherwise-complete",
+    "already-tested",
+    "feature"
+  ],
+  "lastUpdated": "2026-07-09T20:29:56.756Z",
+  "specId": "020",
+  "folderSlug": "query-time-filter-benchmark",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

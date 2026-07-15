@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/009-content-hash-integrity",
+  "description": "The `contenthash` column on `memoryindex` is written once at save time and used only as an embedding-cache key and an idempotency receipt key",
+  "keywords": [
+    "contenthash",
+    "column",
+    "memoryindex",
+    "written",
+    "save",
+    "time",
+    "only",
+    "embedding-cache",
+    "key",
+    "idempotency",
+    "receipt"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.675Z",
+  "specId": "009",
+  "folderSlug": "content-hash-integrity",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "003-spec-data-quality",
+    "001-on-write-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

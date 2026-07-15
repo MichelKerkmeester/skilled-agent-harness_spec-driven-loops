@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reverse parent research review folders",
+      "rollback child deep-loop packet placement",
+      "local owner artifact rollback",
+      "013/001 reverse parent folders",
+      "013/001 rollback plan",
+      "reverse parent folders plan",
+      "013/001 rollback tasks",
+      "reverse parent folders tasks",
+      "013/001 checklist",
+      "reverse parent folders checklist",
+      "013/001 implementation summary",
+      "reverse parent folders implementation"
+    ],
+    "key_topics": [
+      "reverse",
+      "parent",
+      "research",
+      "review",
+      "folders",
+      "rollback",
+      "child",
+      "deep-loop",
+      "packet",
+      "placement",
+      "local",
+      "owner"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+      ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      ".opencode/agents/deep-research.md",
+      ".claude/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-review.md",
+      ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "review-research-paths.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-deep-loop-local-owner.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-deep-loop-legacy-owner-map.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder_structure.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-contract-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-contract-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reverse Parent Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Folder Placement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Restore",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The centralized parent-root placement policy made child-phase deep-research and deep-review artifacts land under ancestor/root `research/` and `review/` folders",
+    "created_at": "2026-04-24T12:32:52.475Z",
+    "last_save_at": "2026-07-02T05:31:11.053Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:27c66973ea0b438422e00052c719c444b7378395b4673905cdd450e0f91678bb",
+    "source_doc_hashes": {
+      "spec.md": "13c4a8d1ac47f75b5e173761815c9778c5ff977afe1f0a58d459cd168332650a",
+      "plan.md": "9b53360f42a8e625c81746b5796acb82be8fbdc57c62a5809b610eb52ca19249",
+      "tasks.md": "70194ad8e79b925784ab800da43f7e9faf60b70c622ce513c177f05717b8d1ec",
+      "checklist.md": "045f0882074b5e6299bdbeacfba4aa56eda161ba6c96674a26d17809915d1b48",
+      "implementation-summary.md": "dfa845433e445d576ff1e2ed3439bb7c59b173a277bc666a63a1f4e4e8e77d3f",
+      "resource-map.md": "0ae0aac767f3d7bcf6166ec70263ad1c88235ef2b2043e99f7c837d3c3327171"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

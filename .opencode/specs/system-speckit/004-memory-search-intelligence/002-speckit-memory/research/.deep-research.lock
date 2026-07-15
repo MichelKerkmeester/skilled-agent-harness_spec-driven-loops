@@ -1,0 +1,8 @@
+{
+  "owner_pid": 47453,
+  "started_at_iso": "2026-06-16T17:46:01.011Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-06-16T17:46:01.011Z",
+  "packet_id": ".opencode/specs/system-speckit/004-memory-search-intelligence/001-speckit-memory",
+  "runtime_kind": "main"
+}

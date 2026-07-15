@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/005-spec-memory-p1-registry-consolidation",
+  "description": "cli-opencode + deepseek-v4-pro --variant high dispatched: extended registry.ts with RerankerProvider type + RERANKER_CANONICAL frozen object +",
+  "keywords": [
+    "cli-opencode",
+    "deepseek-v4-pro",
+    "variant",
+    "high",
+    "dispatched",
+    "extended",
+    "registry",
+    "rerankerprovider",
+    "type",
+    "frozen",
+    "object"
+  ],
+  "lastUpdated": "2026-07-10T06:24:43.494Z",
+  "specId": "005",
+  "folderSlug": "spec-memory-p1-registry-consolidation",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "002-spec-memory-stack",
+    "022-hardcoded-default-remediation-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

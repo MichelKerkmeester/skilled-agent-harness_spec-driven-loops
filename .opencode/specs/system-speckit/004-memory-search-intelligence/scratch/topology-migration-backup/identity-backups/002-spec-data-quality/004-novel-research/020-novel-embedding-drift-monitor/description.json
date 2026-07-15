@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/004-novel-research/020-novel-embedding-drift-monitor",
+  "description": "The re-index path has no mixed-vector guard and never specified one",
+  "keywords": [
+    "re-index",
+    "path",
+    "mixed-vector",
+    "guard",
+    "never",
+    "specified",
+    "one"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.565Z",
+  "specId": "020",
+  "folderSlug": "novel-embedding-drift-monitor",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "002-spec-data-quality",
+    "004-novel-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

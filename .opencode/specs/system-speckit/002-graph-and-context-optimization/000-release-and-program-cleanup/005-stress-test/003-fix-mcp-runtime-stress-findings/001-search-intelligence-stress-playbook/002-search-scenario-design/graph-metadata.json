@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-design",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-design",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "002-search-scenario-design",
+      "scenario corpus design",
+      "9 scenario test corpus",
+      "search query intelligence rubric",
+      "cli dispatch matrix",
+      "scenario design plan",
+      "rubric methodology",
+      "dispatch matrix authoring",
+      "scenario design tasks",
+      "corpus authoring",
+      "dispatch script tasks",
+      "scenario design summary"
+    ],
+    "key_topics": [
+      "002-search-scenario-design",
+      "scenario",
+      "corpus",
+      "design",
+      "test",
+      "search",
+      "query",
+      "intelligence",
+      "rubric",
+      "cli",
+      "dispatch",
+      "matrix"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/dispatch-cli-codex.sh",
+      ".opencode/commands/memory/search.md",
+      "scripts/dispatch-cli-copilot.sh",
+      "scripts/dispatch-cli-opencode.sh",
+      "scripts/run-all.sh",
+      ".opencode/skills/cli-opencode/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-cli-codex.sh",
+        "kind": "script",
+        "path": "scripts/dispatch-cli-codex.sh",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-cli-copilot.sh",
+        "kind": "script",
+        "path": "scripts/dispatch-cli-copilot.sh",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-cli-opencode.sh",
+        "kind": "script",
+        "path": "scripts/dispatch-cli-opencode.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run-all.sh",
+        "kind": "script",
+        "path": "scripts/run-all.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Design Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Version",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Corpus",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Without a fixed corpus + rubric + dispatch matrix, \"stress-test\" devolves into ad-hoc prompting — non-reproducible, partial, and impossible to compare across CLIs or over time",
+    "created_at": "2026-04-26T14:55:00Z",
+    "last_save_at": "2026-07-02T05:31:10.725Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3c87e3aa0bb342cb6647c1cd1e570067a1107a37b247a33de6435598bfa8d660",
+    "source_doc_hashes": {
+      "spec.md": "49b9623429c020bbc1881b2c40adb358b05038180f59b2df6700c3d378ea876e",
+      "plan.md": "35b3f7fc0598a6f125b7b27009c03a1fec386085cce4b21ad5daa5b4e6fb2db6",
+      "tasks.md": "99a490fbbc2cecf8f504c4a91bfdd221e954eca3ec297ef1e267d2636c09e176",
+      "implementation-summary.md": "45afa4d69fc888de42660958b6f3da53ebb872a552a476f8091e8c096b8fed8d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/004-memory-search-intelligence/006-speckit-surface-alignment/001-false-now-doc-corrections",
+  "description": "Four false-now surfaces could mislead readers about current packet 028 behavior: a stale retention flag suffix, an earlier Track-C proposed-only",
+  "keywords": [
+    "four",
+    "false-now",
+    "surfaces",
+    "mislead",
+    "readers",
+    "about",
+    "current",
+    "packet",
+    "behavior",
+    "stale",
+    "retention",
+    "flag",
+    "suffix",
+    "earlier",
+    "track-c",
+    "proposed-only"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.629Z",
+  "specId": "001",
+  "folderSlug": "false-now-doc-corrections",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "006-speckit-surface-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

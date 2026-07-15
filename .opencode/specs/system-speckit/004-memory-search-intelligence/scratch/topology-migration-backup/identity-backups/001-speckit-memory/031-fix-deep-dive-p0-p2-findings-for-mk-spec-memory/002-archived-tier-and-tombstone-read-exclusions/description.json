@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/004-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/002-archived-tier-and-tombstone-read-exclusions",
+  "description": "Non-active rows dominate search results because read exclusion is channel-inconsistent",
+  "keywords": [
+    "non-active",
+    "rows",
+    "dominate",
+    "search",
+    "results",
+    "because",
+    "read",
+    "exclusion",
+    "channel-inconsistent"
+  ],
+  "lastUpdated": "2026-07-05T20:23:17.594Z",
+  "specId": "002",
+  "folderSlug": "archived-tier-and-tombstone-read-exclusions",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "001-speckit-memory",
+    "031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
+  "description": "spec-kit ships verification-discipline rules and gates (the 009 freshness/anti-softening/read-budget rules, the 011 AC-coverage gate) onto reviewer",
+  "keywords": [
+    "spec-kit",
+    "ships",
+    "verification-discipline",
+    "rules",
+    "gates",
+    "freshness",
+    "anti-softening",
+    "read-budget",
+    "ac-coverage",
+    "gate",
+    "onto",
+    "reviewer"
+  ],
+  "lastUpdated": "2026-07-10T06:23:27.277Z",
+  "specId": "005",
+  "folderSlug": "reviewer-prompt-benchmark-substrate",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "001-research-and-doctrine",
+    "001-peck-teachings-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

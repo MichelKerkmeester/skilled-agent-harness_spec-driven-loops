@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature catalog update checkpoint v2 front proxy",
+      "catalog schema version history error codes enrichment",
+      "feature catalog vacuum into front proxy sk-git",
+      "feature catalog update plan",
+      "catalog v2 front proxy schema error codes plan",
+      "register feature files feature_catalog phases",
+      "feature catalog update tasks",
+      "catalog v2 front proxy error codes tasks",
+      "register feature files tasks",
+      "feature catalog update checklist",
+      "catalog accuracy verification gates",
+      "feature catalog register validate checklist"
+    ],
+    "key_topics": [
+      "feature",
+      "catalog",
+      "checkpoint",
+      "front",
+      "proxy",
+      "schema",
+      "version",
+      "history",
+      "error",
+      "codes",
+      "enrichment",
+      "vacuum"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "feature_catalog/feature_catalog.md",
+      "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md",
+      "lib/storage/checkpoints.ts",
+      "lib/search/vector-index-schema.ts",
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "lib/errors/core.ts",
+      "mcp_server/ENV_REFERENCE.md",
+      "feature_catalog/05--lifecycle/checkpoint-restore-checkpointrestore.md",
+      "feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md",
+      "feature_catalog/13--memory-quality-and-indexing/post-insert-enrichment-marker.md",
+      "feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md",
+      "feature_catalog/08--bug-fixes-and-data-integrity/error-code-reference.md",
+      "feature_catalog/16--tooling-and-scripts/sk-git-worktree-convention.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoint-creation-checkpointcreate.md",
+        "kind": "doc",
+        "path": "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": "lib/storage/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "core.ts",
+        "kind": "code",
+        "path": "lib/errors/core.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoint-restore-checkpointrestore.md",
+        "kind": "doc",
+        "path": "feature_catalog/05--lifecycle/checkpoint-restore-checkpointrestore.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-launcher-front-proxy.md",
+        "kind": "doc",
+        "path": "feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-insert-enrichment-marker.md",
+        "kind": "doc",
+        "path": "feature_catalog/13--memory-quality-and-indexing/post-insert-enrichment-marker.md",
+        "source": "derived"
+      },
+      {
+        "name": "schema-version-history-v28-v30.md",
+        "kind": "doc",
+        "path": "feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md",
+        "source": "derived"
+      },
+      {
+        "name": "error-code-reference.md",
+        "kind": "doc",
+        "path": "feature_catalog/08--bug-fixes-and-data-integrity/error-code-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-git-worktree-convention.md",
+        "kind": "doc",
+        "path": "feature_catalog/16--tooling-and-scripts/sk-git-worktree-convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog Update",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema History",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Error Codes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The feature catalog (`featurecatalog/featurecatalog.md` plus the per-capability files under `NN--category/`) is the inventory operators read to discover and reason about server behavior",
+    "created_at": "2026-06-02T00:00:00.000Z",
+    "last_save_at": "2026-07-10T06:22:56.296Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ed5917ff4bb1556cb25dacd51285bed1632828b50fca6b693405e5fe952d42c7",
+    "source_doc_hashes": {
+      "spec.md": "c3fe7c85bb12d9a4b36d9ec741632fcbc4717828f99ddaf7ae26201e419d4906",
+      "plan.md": "a710bd8d139a9f155a8cd4dec815db605b02f1d3f968b876a11601042898ba8f",
+      "tasks.md": "5e6531821a0c280859584025b3d035a8ae4cb9ee63883961236b8b3114a77d46",
+      "checklist.md": "4038449e1a8758ddb3fdc3b818e2b896542a943a048336f0f9e501ef6a400a4a",
+      "decision-record.md": "d2f6b63c0545a7a7bb140d9fd44b5ae924344f5a668f841fc3334503d4cc0152",
+      "implementation-summary.md": "6519daa926b5342ce1bebe760cbd325074d75536788d149866e4dc86d9de5e8a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

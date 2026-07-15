@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/001-chunk-prefix",
+  "description": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector",
+  "keywords": [
+    "embed",
+    "path",
+    "strips",
+    "highest-value",
+    "curated",
+    "retrieval",
+    "signal",
+    "ever",
+    "reaches",
+    "vector"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.715Z",
+  "specId": "001",
+  "folderSlug": "chunk-prefix",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "003-spec-data-quality",
+    "003-retrieval-gated-tuning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

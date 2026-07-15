@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "multi-client launcher bridge",
+      "stdio socket bridge",
+      "010 bridge",
+      "010 bridge plan",
+      "010 bridge tasks",
+      "010 bridge implementation summary"
+    ],
+    "key_topics": [
+      "multi-client",
+      "launcher",
+      "bridge",
+      "stdio",
+      "socket",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "secondary",
+      "mcp",
+      "instances"
+    ],
+    "importance_tier": "useful",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      "mcp_server/lib/ipc/socket-server.ts",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "LEASE_HELD_BY",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "at",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an IPC",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Unix",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a launcher bridge so secondary MCP launcher instances can attach to the primary daemon over an IPC socket instead of exiting with LEASE_HELD_BY.",
+    "created_at": "2026-05-19T05:54:24.166Z",
+    "last_save_at": "2026-07-10T06:21:56.907Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:016f9f318cfe9e4dbac08bb6cdcbcb90ac4e8bdb7fe72a67a1d58cfde8e77507",
+    "source_doc_hashes": {
+      "spec.md": "eccf11e9510d07e98ebe92943ec37e4010d59c193287918db90408c2829f33c4",
+      "plan.md": "1d1e8eab60a44b19be038c54351f0e65133b0d96be436a97110e9b3d73325697",
+      "tasks.md": "e7b4fa6385de5225620ced256e994f1cc143ba5e645d24a3dc30b1e2dae58c2a",
+      "implementation-summary.md": "47e17b074d4136e22af140f2139ee472b1c25944f489aa1f14da622c377257ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

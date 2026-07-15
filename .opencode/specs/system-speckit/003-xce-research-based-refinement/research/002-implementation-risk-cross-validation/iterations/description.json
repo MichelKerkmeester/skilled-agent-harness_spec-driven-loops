@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/003-xce-research-based-refinement/research/002-implementation-risk-cross-validation/iterations",
+  "description": "Research iteration artifacts for 002-implementation-risk-cross-validation.",
+  "keywords": [
+    "research",
+    "iteration",
+    "artifacts",
+    "002-implementation-risk-cross-validation",
+    "system-spec-kit",
+    "003-xce-research-based-refinement",
+    "iterations"
+  ],
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
+  "specId": "002",
+  "folderSlug": "implementation-risk-cross-validation-iterations",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "research",
+    "002-implementation-risk-cross-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

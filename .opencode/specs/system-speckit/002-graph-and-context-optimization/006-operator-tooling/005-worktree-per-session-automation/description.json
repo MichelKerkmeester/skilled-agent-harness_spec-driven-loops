@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/006-operator-tooling/005-worktree-per-session-automation",
+  "description": "Multiple AI sessions (Claude Code, OpenCode, Codex, Devin, Gemini) all operate in the same working tree on `main`, with shared, gitignored MCP",
+  "keywords": [
+    "multiple",
+    "sessions",
+    "claude",
+    "code",
+    "opencode",
+    "codex",
+    "devin",
+    "gemini",
+    "operate",
+    "same",
+    "working",
+    "tree",
+    "main",
+    "shared",
+    "gitignored",
+    "mcp"
+  ],
+  "lastUpdated": "2026-07-10T06:23:24.999Z",
+  "specId": "005",
+  "folderSlug": "worktree-per-session-automation",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "006-operator-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

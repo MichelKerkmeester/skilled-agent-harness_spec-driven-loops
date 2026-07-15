@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "causal relation backfill not implemented",
+      "relation coverage misleading hint",
+      "memory_causal_stats autorepair no-op",
+      "causal graph optimize stub"
+    ],
+    "key_topics": [
+      "causal",
+      "relation",
+      "backfill",
+      "implemented",
+      "coverage",
+      "misleading",
+      "hint",
+      "autorepair",
+      "no-op",
+      "graph",
+      "optimize",
+      "stub"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/relation-coverage-unit.vitest.ts",
+      "mcp_server/lib/causal/relation-coverage.ts",
+      "mcp_server/tests/relation-coverage-unit.vitest.ts",
+      "mcp_server/tests/causal-stats-output.vitest.ts",
+      "lib/causal/relation-coverage.ts",
+      "handlers/causal-graph.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "relation-coverage.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relation-coverage-unit.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/relation-coverage-unit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-stats-output.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/causal-stats-output.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Causal Relation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coverage Reporting Honesty",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Reporter",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "tests",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Corrected",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`memorycausalstats` reports a `relationCoverage` block whose `backfillJob.command` is `memoryhealth({ autoRepair: true, confirmed: true })` and whose `remediationHint` says \"Run … to backfill relation coverage; prioritize caused.\" A code review of the 2026-06-04 \"optimize causal graph\" request found this is a no-op: `lib/causal/relation-coverage.ts` is a pure reporter (no edge writes), and the autoRepair handler (`memory-crud-health.ts`) only does FTS rebuild + orphaned-edge/vector cleanup — it never balances relations",
+    "created_at": "2026-06-04T09:45:00Z",
+    "last_save_at": "2026-07-10T06:23:54.075Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fe370749b05e05d191dc19020dd30f0f09ca5c9a1dd46cb62fc5c363eb8bbb98",
+    "source_doc_hashes": {
+      "spec.md": "7fa0bb7a9161dd8c6ca879ecf05ddca0d2e34354b8026f58a2f25afc184e36c6",
+      "plan.md": "1854771f0f5d9ddeff73d70532a797a59e1afa92ee24580feb5f75ed8704e504",
+      "tasks.md": "94487a859506675e5e5b25c6c4e6871e93be6ed05b255f87794e5eaaf1d71c1b",
+      "implementation-summary.md": "ab5b4d04cff2e19707114b744735c6311407bcb5b721df91582df97f9144e4fd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

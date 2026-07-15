@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/012-spec-kit-coco-sk-code-research",
+  "description": "Three OpenCode skill ecosystem surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — have grown organically and",
+  "keywords": [
+    "three",
+    "opencode",
+    "skill",
+    "ecosystem",
+    "surfaces",
+    "system-spec-kit",
+    "mcp-coco-index",
+    "sk-code",
+    "side",
+    "specifically",
+    "grown",
+    "organically"
+  ],
+  "lastUpdated": "2026-07-15T16:40:27.134Z",
+  "specId": "012",
+  "folderSlug": "spec-kit-coco-sk-code-research",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/006-operator-tooling",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
+    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
+    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files",
+    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop",
+    "system-speckit/002-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
+    "system-speckit/002-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
+    "system-speckit/002-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+    "system-speckit/002-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files",
+    "system-speckit/002-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "010-doctor-update-orchestrator",
+      "doctor command surface",
+      "/doctor:update",
+      "/doctor memory",
+      "/doctor causal-graph",
+      "/doctor deep-loop",
+      "/doctor cocoindex",
+      "doctor update orchestrator",
+      "spec-kit version migration",
+      "001-implement-initial-doctor-command-set",
+      "002-sandbox-testing-playbook",
+      "002-fix-deep-review-findings-for-doctor-update-orchestrator"
+    ],
+    "key_topics": [
+      "010-doctor-update-orchestrator",
+      "doctor",
+      "command",
+      "surface",
+      "memory",
+      "causal-graph",
+      "deep-loop",
+      "cocoindex",
+      "orchestrator",
+      "spec-kit",
+      "version",
+      "migration"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "001-implement-initial-doctor-command-set/spec.md",
+      "001-implement-initial-doctor-command-set/decision-record.md",
+      "002-fix-deep-review-findings-for-doctor-update-orchestrator/spec.md",
+      "004-cutover-doctor-router-from-legacy-files/spec.md",
+      "spec.md",
+      "handover.md",
+      "resource-map.md",
+      ".opencode/commands/doctor/assets/doctor_update.yaml",
+      ".opencode/commands/doctor/update.md",
+      "001-implement-initial-doctor-command-set/implementation-summary.md",
+      "001-implement-initial-doctor-command-set/description.json",
+      "001-implement-initial-doctor-command-set/handover.md",
+      "001-implement-initial-doctor-command-set/ai-council/council-report.md",
+      ".opencode/skills/system-spec-kit/package-lock.json",
+      "mcp_server/package.json",
+      "dist/context-server.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
+      ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/sk-doc/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_update.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_update.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "001-implement-initial-doctor-command-set/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "001-implement-initial-doctor-command-set/ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-bootstrap.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doctor Update Orchestrator",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Superseded By",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Group",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "From Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Opus",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "To Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Completed",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit ecosystem into alignment with their current codebase and skill set",
+    "created_at": "2026-05-10T06:24:00.129Z",
+    "last_save_at": "2026-07-10T06:22:47.721Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:639e09297bab9248a2fb18e66f9f7a8b4123cbad8881e163de9ac23dd526b452",
+    "source_doc_hashes": {
+      "spec.md": "4b5c7632d27791325ef6aec23ec3f77fee1a95c6f0259211349d36f8b7949292",
+      "handover.md": "af2432b20f28065e4304c058e0e8c0f651efd7a028e9b00df86bef9871251a77",
+      "resource-map.md": "51e3c5fc00f999bc2126e8277c7c490ddd44a9f02613daf9fdd39298d76d50e7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

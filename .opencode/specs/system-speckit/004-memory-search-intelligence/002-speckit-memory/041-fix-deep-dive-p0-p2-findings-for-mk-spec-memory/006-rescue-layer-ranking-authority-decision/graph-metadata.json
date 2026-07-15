@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision",
+  "parent_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rescue layer ranking authority",
+      "lexical grounding dominance",
+      "eval production parity",
+      "retrieval rescue overwrite",
+      "signal theater decision",
+      "completeRecall at 3",
+      "executePipeline eval routing",
+      "ablation db swap rebind",
+      "signal ordering contract",
+      "verify first tasks",
+      "ablation rebind fix",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "rescue",
+      "layer",
+      "ranking",
+      "authority",
+      "lexical",
+      "grounding",
+      "dominance",
+      "eval",
+      "production",
+      "parity",
+      "retrieval",
+      "overwrite"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts",
+      "lib/search/pipeline/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "handlers/eval-reporting.ts",
+      "lib/search/pipeline/stage2-fusion.ts",
+      "lib/search/rerank/retrieval-rescue.ts",
+      "lib/search/hybrid-search.ts",
+      "core/db-state.ts",
+      "lib/scoring/composite-scoring.ts",
+      "lib/scoring/interference-scoring.ts",
+      "lib/search/vector-index-store.ts",
+      "lib/cognitive/attention-decay.ts",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "retrieval-rescue.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-reporting.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/search/pipeline/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "composite-scoring.ts",
+        "kind": "code",
+        "path": "lib/scoring/composite-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "interference-scoring.ts",
+        "kind": "code",
+        "path": "lib/scoring/interference-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "attention-decay.ts",
+        "kind": "code",
+        "path": "lib/cognitive/attention-decay.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Layer Ranking Authority Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Retrieval-rescue (default ON) overwrites the final score of every candidate with `0.03base + 0.78lexicalOverlap` (`retrieval-rescue.ts:210`, applied at `stage2-fusion.ts:1425`), so learned trigger boosts (+0.7), negative demotions (x0.3), graph, recency, and co-activation signals are compressed to at most 3.7% of ranking mass (a +0.7 learned boost lands as <=0.021); only the validation multiplier at `stage2-fusion.ts:1470` runs after rescue and survives (deep-dive report Chain D; ledger Agent G P1)",
+    "created_at": "2026-07-03T09:44:21Z",
+    "last_save_at": "2026-07-11T18:40:36.029Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6716bfae302c97d840d4110a8fbf316b9615a38dd420332c5b054bc38aad8607",
+    "source_doc_hashes": {
+      "spec.md": "510d12352e562faefd083c5555f8c513db5c5b0f626c4b366f0a738b10e011e9",
+      "plan.md": "6e5ce5ce35755907e5ed019889be0fc6a918dee26613f7b20e9cf6647986e8f4",
+      "tasks.md": "0b6f3204b8a1aa46ef301d2f5d16353d63e24eba0618709951f85bbddacefabf",
+      "checklist.md": "f47faedb1eb72bdfef06ff603301f531d6629f7c5df0819f84fae34cf439da1f",
+      "decision-record.md": "82d11cf556e4e0635859afd66c28aff25026c5a6e013de46a146ae7192c04f6f",
+      "implementation-summary.md": "e2c0f6b6467097de2cccb018520e702cf4e3f0a75d85faaed5455dedd960de36"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

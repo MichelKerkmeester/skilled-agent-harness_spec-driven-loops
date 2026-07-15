@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/017-last-50-commits-review-remediation",
+  "description": "The sibling deep-review packet `016-last-50-commits-deep-review` returned a CONDITIONAL verdict over the last 50 commits: 0 active P0, 3 actionable P1",
+  "keywords": [
+    "sibling",
+    "deep-review",
+    "packet",
+    "016-last-50-commits-deep-review",
+    "returned",
+    "conditional",
+    "verdict",
+    "last",
+    "commits",
+    "active",
+    "actionable"
+  ],
+  "lastUpdated": "2026-07-10T06:22:16.434Z",
+  "specId": "017",
+  "folderSlug": "last-50-commits-review-remediation",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "title": "017: Deep-Review Campaign 010-016",
+  "status": "complete",
+  "urgency": "normal",
+  "derived": {
+    "last_active_child_id": null,
+    "phase_count": 0,
+    "completion_percentage": 100
+  },
+  "tags": [
+    "deep-review",
+    "code-graph",
+    "mk-code-index",
+    "mcp-rename",
+    "assessment"
+  ],
+  "specFolder": "system-speckit/002-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-031-deep-review-campaign-010-016",
+  "description": "|",
+  "keywords": [],
+  "lastUpdated": "2026-07-10T06:23:41.970Z",
+  "specId": "007",
+  "folderSlug": "031-deep-review-campaign-010-016",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "z_archive",
+    "wave-3-deep-archives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

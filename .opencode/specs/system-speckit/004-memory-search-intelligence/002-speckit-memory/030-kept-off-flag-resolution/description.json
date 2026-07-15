@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/004-memory-search-intelligence/002-speckit-memory/030-kept-off-flag-resolution",
+  "description": "The 028 build epoch shipped most of its new search and memory behavior behind default-off flags and closed with no flag flipped",
+  "keywords": [
+    "epoch",
+    "shipped",
+    "new",
+    "search",
+    "memory",
+    "behavior",
+    "behind",
+    "default-off",
+    "flags",
+    "closed",
+    "flag",
+    "flipped"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.539Z",
+  "specId": "030",
+  "folderSlug": "kept-off-flag-resolution",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "002-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

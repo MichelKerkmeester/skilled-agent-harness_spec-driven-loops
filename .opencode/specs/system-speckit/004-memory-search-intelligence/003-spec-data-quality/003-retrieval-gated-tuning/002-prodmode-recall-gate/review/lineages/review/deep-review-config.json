@@ -1,0 +1,35 @@
+{
+  "mode": "review",
+  "status": "complete",
+  "sessionId": "fanout-review-1782055949478-i1h3i4",
+  "parentSessionId": "fanout-review-1782055949478-i1h3i4",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "releaseReadinessState": "converged",
+  "reviewTarget": ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
+  "reviewTargetType": "spec-folder",
+  "executor": {
+    "kind": "cli-claude-code",
+    "model": "opus"
+  },
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "dimensionOrder": ["correctness", "security", "traceability", "maintainability"],
+  "traceabilityProtocols": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "maxIterations": 6,
+  "convergence": {
+    "rollingStopThreshold": 0.08,
+    "noProgressThreshold": 0.05,
+    "minStabilizationPasses": 1,
+    "configuredDimensions": 4
+  },
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "fanoutLineage": "review",
+  "artifactDir": ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate/review/lineages/review"
+}

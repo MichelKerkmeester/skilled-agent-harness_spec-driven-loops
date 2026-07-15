@@ -1,0 +1,37 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/008-launcher-race-window-and-debug-log-hygiene",
+  "description": "Closes 2 P2 findings from 007 deep-review: move skill-advisor PID guard write inside the bootstrap-lock critical section, and gate verbose error/path",
+  "keywords": [
+    "closes",
+    "findings",
+    "deep-review",
+    "move",
+    "skill-advisor",
+    "pid",
+    "guard",
+    "write",
+    "inside",
+    "bootstrap-lock",
+    "critical",
+    "section",
+    "gate",
+    "verbose",
+    "error",
+    "path"
+  ],
+  "lastUpdated": "2026-07-10T06:21:58.662Z",
+  "specId": "008",
+  "folderSlug": "launcher-race-window-and-debug-log-hygiene",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_19-05__phase-008-p2-closeout-moved-skill-advisor-pid.md"
+  ]
+}

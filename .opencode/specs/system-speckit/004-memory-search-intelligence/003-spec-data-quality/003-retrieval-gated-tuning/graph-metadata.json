@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning",
+  "parent_id": "system-speckit/004-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [
+    "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/001-chunk-prefix",
+    "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/002-prodmode-recall-gate",
+    "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/003-answerable-questions-tags",
+    "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/004-metadata-fusion",
+    "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/005-llm-judge-scorer"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retrieval gated tuning",
+      "spec data quality retrieval-gated tuning",
+      "retrieval-gated tuning phase parent"
+    ],
+    "key_topics": [
+      "retrieval",
+      "gated",
+      "tuning",
+      "spec",
+      "data",
+      "quality",
+      "retrieval-gated",
+      "phase",
+      "parent",
+      "subgroup",
+      "spec-data-quality",
+      "track"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gated Tuning Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gated Tuning",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrieval Gated Tuning Groups",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chunk Prefix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prodmode Recall Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Retrieval-Gated Tuning subgroup of the spec-data-quality track: retrieval-tuning items gated behind benchmarks.",
+    "created_at": "2026-06-27T17:25:40.245Z",
+    "last_save_at": "2026-07-11T18:40:36.122Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f1df0178de07e213e1d1b89a5df50139406063a4e5ad51ecc2514feb47451b3a",
+    "source_doc_hashes": {
+      "spec.md": "5c626b01ee83d0c6e92b61332ca5046784b994f772a290faed7e859760baa7dd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

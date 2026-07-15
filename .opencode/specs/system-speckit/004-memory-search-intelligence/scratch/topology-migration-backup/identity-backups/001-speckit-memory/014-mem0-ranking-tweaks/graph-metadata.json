@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks",
+  "parent_id": "system-speckit/004-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mem0 ranking tweaks 028",
+      "bm25 sigmoid calibration memory",
+      "entity cardinality penalty",
+      "spacy lemmatization fts",
+      "cascade extraction memory mcp",
+      "mem0 ranking tweaks plan 028",
+      "bm25 calibration sequencing",
+      "entity store boost shared infra",
+      "cascade extraction plan",
+      "mem0 ranking tweaks tasks 028",
+      "bm25 calibration tasks",
+      "cascade extraction tasks"
+    ],
+    "key_topics": [
+      "mem0",
+      "ranking",
+      "tweaks",
+      "bm25",
+      "sigmoid",
+      "calibration",
+      "memory",
+      "entity",
+      "cardinality",
+      "penalty",
+      "spacy",
+      "lemmatization"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "mcp_server/lib/extraction/entity-extractor.ts",
+      "mcp_server/lib/extraction/entity-extraction-rules.json",
+      "mcp_server/lib/search/graph-search-fn.ts",
+      "mcp_server/lib/search/search-flags.ts",
+      "mcp_server/tests/mem0-ranking-tweaks.vitest.ts",
+      "shared/algorithms/rrf-fusion.ts",
+      "lib/search/sqlite-fts.ts",
+      "lib/eval/bm25-baseline.ts",
+      "lib/extraction/entity-extractor.ts",
+      "handlers/causal-graph.ts",
+      "lib/search/hybrid-search.ts",
+      "handlers/save/dedup.ts",
+      "lib/extraction/entity-extraction-rules.json",
+      "lib/search/graph-search-fn.ts",
+      "tests/mem0-ranking-tweaks.vitest.ts",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "entity-extractor.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/extraction/entity-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-extraction-rules.json",
+        "kind": "config",
+        "path": "mcp_server/lib/extraction/entity-extraction-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-search-fn.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/graph-search-fn.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mem0-ranking-tweaks.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/mem0-ranking-tweaks.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sqlite-fts.ts",
+        "kind": "code",
+        "path": "lib/search/sqlite-fts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25-baseline.ts",
+        "kind": "code",
+        "path": "lib/eval/bm25-baseline.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dedup.ts",
+        "kind": "code",
+        "path": "handlers/save/dedup.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extraction Bundle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Wave",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 028 campaign's external-memory-systems child (`007-memory-systems`, 22 iterations across Mem0 / Graphiti / Letta / Cognee) surfaced a bundle of cheap ranking and extraction improvements for the Spec-Kit Memory MCP, mostly mined from Mem0 scoring/extraction plus two Cognee extraction-config wins",
+    "created_at": "2026-06-19T05:40:37.448Z",
+    "last_save_at": "2026-07-09T10:02:56.144Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1d18a9fdbee8a6bcca89f5026c24ec1bc8e780c3c8a1d6123ae1f4b788210c88",
+    "source_doc_hashes": {
+      "spec.md": "6ae2182b531b669ba78270257beccabbfe58ffbabcfa8cb3abd518f509813322",
+      "plan.md": "91ab452276eb581cdfc6b5158f799fdccdece55b9f3b48ca16821392e60ac6ad",
+      "tasks.md": "2ef8be7350cd6e98c0fc8b22808a1adbd9e863b87ced46678971bc9aa580dd2f",
+      "checklist.md": "ee3df582535346bcdc8ec3078f35d501cf8a534a2fa972c98001e46c3c0e1f03",
+      "implementation-summary.md": "a36b62743e06ab7bd731b76da241820de0025c5f6f7eaa6123e94ae95af2d4f8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

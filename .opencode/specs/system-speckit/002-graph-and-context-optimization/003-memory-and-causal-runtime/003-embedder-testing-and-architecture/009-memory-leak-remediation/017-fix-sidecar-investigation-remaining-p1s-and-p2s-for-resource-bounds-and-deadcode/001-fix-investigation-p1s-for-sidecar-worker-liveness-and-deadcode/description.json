@@ -1,0 +1,39 @@
+{
+  "level": "2",
+  "status": "draft",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-deep-research-drift-and-simplification"
+    ],
+    "related_to": []
+  },
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode",
+  "description": "sidecar-worker.ts has 7 P1 findings from arc 010/001 deep-research covering: dead model-name fallback (F5), incorrect parent-liveness detection (F14),",
+  "keywords": [
+    "sidecar-worker",
+    "findings",
+    "arc",
+    "deep-research",
+    "covering",
+    "dead",
+    "model-name",
+    "fallback",
+    "incorrect",
+    "parent-liveness",
+    "detection",
+    "f14"
+  ],
+  "lastUpdated": "2026-07-10T06:22:40.814Z",
+  "specId": "001",
+  "folderSlug": "fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

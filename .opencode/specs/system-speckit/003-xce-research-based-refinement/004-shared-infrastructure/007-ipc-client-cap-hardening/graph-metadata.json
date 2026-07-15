@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/004-shared-infrastructure",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ipc client cap hardening",
+      "max secondary clients 64",
+      "bridge skipped banner silenced",
+      "ipc cap plan",
+      "max clients 64 plan",
+      "banner suppression plan",
+      "ipc cap tasks",
+      "banner suppression tasks",
+      "max clients tasks",
+      "ipc cap hardening summary",
+      "max clients 64 shipped",
+      "bridge banner silenced summary"
+    ],
+    "key_topics": [
+      "ipc",
+      "client",
+      "cap",
+      "hardening",
+      "max",
+      "secondary",
+      "clients",
+      "bridge",
+      "skipped",
+      "banner",
+      "silenced",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+      ".opencode/plugins/mk-code-graph.js",
+      ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
+      ".claude/mcp.json",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "shared/ipc/socket-server.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-code-graph.js",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Client Cap Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Silent Bridge Skip",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fresh Fable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fresh Fable 5 debug seat root-caused the persistent `[mk-code-graph] Bridge skipped … (exit=75)` banner empirically: the shared daemon IPC socket server caps concurrent clients at 8 (`DEFAULTMAXSECONDARYCLIENTS`) and refuses excess connections by accepting then immediately closing them",
+    "created_at": "2026-06-11T17:40:00Z",
+    "last_save_at": "2026-07-10T06:21:09.862Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3b5d940e0106219cde151a28040c97c9b3b6eaecfd1ffb9a13aa9ec9421398d3",
+    "source_doc_hashes": {
+      "spec.md": "85ba5975988c66957695abb49f43ad64522acbcfd479f4c3eff698e7f1bf540e",
+      "plan.md": "a892a1e8a38785175b8fc2b47b42bb113c30c9e26ac446920cf5411e70cc9bc5",
+      "tasks.md": "84c244ae275a6dbf7ea80d2cde37cae5c79a670f1ba5cfe7afc4821a06023c03",
+      "implementation-summary.md": "b848ac0b7b6a5ae46304522a9671d58acd85fe32ecccc9361946e2ea3e79b8a2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

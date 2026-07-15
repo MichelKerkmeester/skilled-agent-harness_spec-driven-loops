@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/003-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/003-runtime-integration",
+  "description": "A working CLI that no runtime is permitted to call does not close the incident class that motivated this program: when the MCP transport dies",
+  "keywords": [
+    "working",
+    "cli",
+    "runtime",
+    "permitted",
+    "call",
+    "close",
+    "incident",
+    "class",
+    "motivated",
+    "program",
+    "mcp",
+    "transport",
+    "dies"
+  ],
+  "lastUpdated": "2026-07-10T06:23:55.333Z",
+  "specId": "003",
+  "folderSlug": "runtime-integration",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "001-mcp-to-cli-tool-transition",
+    "001-spec-memory-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

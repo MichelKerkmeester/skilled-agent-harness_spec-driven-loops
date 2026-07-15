@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint",
+  "description": "Review attention is not steered to the areas most likely to harbor defects: `@review` derives scope from the target and changed files alone, with no",
+  "keywords": [
+    "review",
+    "attention",
+    "steered",
+    "areas",
+    "likely",
+    "harbor",
+    "defects",
+    "derives",
+    "scope",
+    "target",
+    "changed",
+    "files",
+    "alone"
+  ],
+  "lastUpdated": "2026-07-10T06:24:33.359Z",
+  "specId": "003",
+  "folderSlug": "planner-review-focus-and-drift-hint",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "001-research-and-doctrine",
+    "002-gem-team-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/004-memory-search-intelligence/002-speckit-memory/004-graceful-degradation",
+  "description": "When the embedder is unavailable and `generateQueryEmbedding` returns a null/empty embedding, Memory recall throws instead of degrading to lexical",
+  "keywords": [
+    "embedder",
+    "unavailable",
+    "generatequeryembedding",
+    "returns",
+    "null",
+    "empty",
+    "embedding",
+    "memory",
+    "recall",
+    "throws",
+    "instead",
+    "degrading",
+    "lexical"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.494Z",
+  "specId": "004",
+  "folderSlug": "graceful-degradation",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "002-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

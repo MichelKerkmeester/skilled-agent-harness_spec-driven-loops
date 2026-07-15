@@ -1,0 +1,22 @@
+{
+  "level": "archive",
+  "importance_tier": "archived",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/z_archive",
+  "description": "Cold-tier archive container under system-speckit/002-graph-and-context-optimization. Holds archived wave/reorg groupings. Archived tier: excluded from default recall, retrievable via includeArchived.",
+  "keywords": [
+    "archive",
+    "cold-tier",
+    "system-speckit",
+    "graph-and-context-optimization",
+    "waves"
+  ],
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
+  "specId": "",
+  "folderSlug": "z_archive",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

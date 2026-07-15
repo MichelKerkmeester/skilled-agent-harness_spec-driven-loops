@@ -1,0 +1,45 @@
+{
+  "title": "Command Alignment",
+  "trigger_phrases": [
+    "command",
+    "alignment",
+    "align",
+    "command-doc",
+    "content"
+  ],
+  "level": 1,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+  "status": "complete",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "importance_tier": "important",
+  "specFolder": "system-speckit/003-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+  "description": "Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership",
+  "keywords": [
+    "align",
+    "command-doc",
+    "content",
+    "accuracy",
+    "flags",
+    "behavior",
+    "cli",
+    "front",
+    "doors",
+    "without",
+    "changing",
+    "structural",
+    "router",
+    "presentation",
+    "ownership"
+  ],
+  "lastUpdated": "2026-07-10T06:21:48.678Z",
+  "specId": "006",
+  "folderSlug": "command-alignment",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

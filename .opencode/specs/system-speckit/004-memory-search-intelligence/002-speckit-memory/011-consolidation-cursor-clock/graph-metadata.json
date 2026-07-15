@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory/011-consolidation-cursor-clock",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/002-speckit-memory/011-consolidation-cursor-clock",
+  "parent_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory consolidation cursor",
+      "idempotency receipts default on",
+      "consolidation clock driver",
+      "contiguous prefix stop consolidation",
+      "enrichment dead letter retry budget",
+      "consolidation cursor plan",
+      "c4-a c4-c c-g1 sequencing",
+      "idempotent async consolidation plan",
+      "enrichment dead letter plan",
+      "durable retry budget plan",
+      "consolidation cursor tasks",
+      "c4-a c4-c c-g1 tasks"
+    ],
+    "key_topics": [
+      "memory",
+      "consolidation",
+      "cursor",
+      "idempotency",
+      "receipts",
+      "default",
+      "clock",
+      "driver",
+      "contiguous",
+      "prefix",
+      "stop",
+      "enrichment"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "mcp_server/lib/storage/idempotency-receipts.ts",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/lib/cognitive/pressure-monitor.ts",
+      "mcp_server/lib/enrichment/retry-budget.ts",
+      "mcp_server/handlers/save/post-insert.ts",
+      "mcp_server/handlers/pe-gating.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "idempotency-receipts.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/idempotency-receipts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pressure-monitor.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/cognitive/pressure-monitor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-budget.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/enrichment/retry-budget.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-insert.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/save/post-insert.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pe-gating.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/pe-gating.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Consolidation Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Land",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Idempotent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Memory MCP's async-consolidation path is half-built and not crash-safe",
+    "created_at": "2026-06-19T05:40:37.446Z",
+    "last_save_at": "2026-07-12T13:24:49.984Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5382ce3cb7dd0791e2823a1b7879740429a6858ddb169bfc0ec7cb060d7a6096",
+    "source_doc_hashes": {
+      "spec.md": "dc6e1dd9e51f379df41b7602f502772796bbbc0834c8533de061152d7fd69312",
+      "plan.md": "2758e68816e59ed503057b87c6398dfcc368a151a401b36c96a6f9f11419cf9a",
+      "tasks.md": "388979799281b76fcbfbb211a64c95b0c2223e1e20090951e35dd569ec198a77",
+      "checklist.md": "ff28bdbd60a9ae572a77ccdf1a01724a87b0b749f2300ab098dc366287e6ee26",
+      "decision-record.md": "52318bcea840d55c19dee960a78b21255a7940fe94dd20b6cce3108870761911",
+      "implementation-summary.md": "3feecd0fe7f93f3e3ab17ab673fefe3dd128117e83d997bc6357b2106c63667a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
