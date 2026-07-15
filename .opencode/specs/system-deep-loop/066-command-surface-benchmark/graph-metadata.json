@@ -120,15 +120,15 @@
     ],
     "causal_summary": "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across all 37 commands, and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself.",
     "created_at": "2026-07-14T20:25:28.626Z",
-    "last_save_at": "2026-07-14T20:25:28.626Z",
+    "last_save_at": "2026-07-14T20:41:35.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d55165492e978996185f2bf186866891934b3be312bc0fcebf98feed1958f877",
+    "source_fingerprint": "sha256:2cac1810ac08d784b74320bfdd1724804eda3f5c718b89f790c620c34314222d",
     "source_doc_hashes": {
-      "spec.md": "4468e0a73ad58845f7d65e1106cbe01cdd43e3e49557c772269a5e92c972488a"
+      "spec.md": "6034114b580dd8edb84d1d9d4ac0068a4e4e3362a39fe6ebb5d5bb49cbf4749f"
     },
     "last_active_child_id": null,
     "last_active_at": null

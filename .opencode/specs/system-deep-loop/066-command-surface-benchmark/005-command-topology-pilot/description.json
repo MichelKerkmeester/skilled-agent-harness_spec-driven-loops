@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-deep-loop/066-command-surface-benchmark/005-command-topology-pilot",
+  "description": "Authors four pilot scenarios, one per command topology, and captures a Claude baseline plus one GPT driver to calibrate the upgraded evaluator before",
+  "keywords": [
+    "authors",
+    "four",
+    "pilot",
+    "scenarios",
+    "one",
+    "per",
+    "command",
+    "topology",
+    "captures",
+    "claude",
+    "baseline",
+    "plus",
+    "gpt",
+    "driver",
+    "calibrate",
+    "upgraded",
+    "evaluator"
+  ],
+  "lastUpdated": "2026-07-14T20:36:58.386Z",
+  "specId": "005",
+  "folderSlug": "command-topology-pilot",
+  "parentChain": [
+    "system-deep-loop",
+    "066-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

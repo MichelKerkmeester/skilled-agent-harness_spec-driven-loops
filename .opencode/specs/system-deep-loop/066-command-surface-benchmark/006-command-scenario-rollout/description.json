@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/066-command-surface-benchmark/006-command-scenario-rollout",
+  "description": "Expands the pilot into the full sixteen-scenario suite DAB-012 to 027, reconciles the index and baseline rows, and captures a complete pinned Claude",
+  "keywords": [
+    "expands",
+    "pilot",
+    "full",
+    "sixteen-scenario",
+    "suite",
+    "dab-012",
+    "reconciles",
+    "index",
+    "baseline",
+    "rows",
+    "captures",
+    "complete",
+    "pinned",
+    "claude"
+  ],
+  "lastUpdated": "2026-07-14T20:36:58.386Z",
+  "specId": "006",
+  "folderSlug": "command-scenario-rollout",
+  "parentChain": [
+    "system-deep-loop",
+    "066-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

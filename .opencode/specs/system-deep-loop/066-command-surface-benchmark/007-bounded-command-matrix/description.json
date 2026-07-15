@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/066-command-surface-benchmark/007-bounded-command-matrix",
+  "description": "Runs both GPT drivers across all command scenarios plus eligible leaf sentinels with explicit skips and contested-cell reruns, building or verifying",
+  "keywords": [
+    "runs",
+    "gpt",
+    "drivers",
+    "across",
+    "command",
+    "scenarios",
+    "plus",
+    "eligible",
+    "leaf",
+    "sentinels",
+    "explicit",
+    "skips",
+    "contested-cell",
+    "reruns",
+    "verifying"
+  ],
+  "lastUpdated": "2026-07-14T20:36:58.386Z",
+  "specId": "007",
+  "folderSlug": "bounded-command-matrix",
+  "parentChain": [
+    "system-deep-loop",
+    "066-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

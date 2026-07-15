@@ -60,6 +60,8 @@ _memory:
 | **Track** | system-deep-loop |
 | **Host mode** | deep-alignment |
 
+<!-- /ANCHOR:metadata -->
+
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
@@ -76,6 +78,8 @@ This packet designs and builds that benchmark **inside the deep-alignment mode**
 partitioning, convergence, reducer, and severity machinery rather than standing up a parallel engine. The
 design is the reconciled output of a three-model congregation (GLM-5.2, GPT-5.6-Luna, GPT-5.6-Sol) whose
 load-bearing claims were verified against the repository.
+
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
@@ -95,6 +99,8 @@ load-bearing claims were verified against the repository.
 - A universal driver × leaf cross-product matrix.
 - Remediating any command the benchmark measures as failing (that is downstream `/speckit:plan` work).
 - Changing command behavior; the benchmark is observation-only.
+
+<!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
@@ -118,6 +124,8 @@ load-bearing claims were verified against the repository.
   D1–D5 terminal buckets — and distinguishes instrument validity from command conformance (a valid benchmark
   may publish a real FAIL subject result).
 
+<!-- /ANCHOR:requirements -->
+
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
@@ -128,6 +136,8 @@ load-bearing claims were verified against the repository.
   scores are unchanged.
 - The bounded matrix records every required cell as a result or a predeclared skip.
 - A two-axis scorecard plus remediation backlog is published and all packet status metadata reconciles.
+
+<!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
@@ -145,6 +155,8 @@ load-bearing claims were verified against the repository.
 - **Dependencies:** deep-alignment mode (adapters, scoping, convergence), the shared behavior-benchmark
   framework, `create-benchmark` authoring canon, and the 033 / 059-015 precedents.
 
+<!-- /ANCHOR:risks -->
+
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
@@ -153,7 +165,9 @@ load-bearing claims were verified against the repository.
   evidence is trustworthy.
 - Whether legacy monolithic commands require explicit topology exceptions surfaced early by held-out fixtures.
 
-## SUB-PHASE MAP
+<!-- /ANCHOR:questions -->
+
+## PHASE DOCUMENTATION MAP
 
 | Child | Purpose |
 |-------|---------|

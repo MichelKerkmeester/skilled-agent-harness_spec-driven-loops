@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
-  "spec_folder": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/007-bounded-command-matrix",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/007-bounded-command-matrix",
   "parent_id": "system-deep-loop/066-command-surface-benchmark",
   "children_ids": [],
   "manual": {
@@ -11,52 +11,45 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command benchmark contract",
-      "command census freeze",
-      "command topology taxonomy",
-      "two-axis verdict semantics"
+      "bounded command matrix",
+      "model matrix executor variance",
+      "leaf sentinels",
+      "alignment fan-out wiring"
     ],
     "key_topics": [
+      "bounded",
       "command",
-      "benchmark",
-      "contract",
-      "census",
-      "freeze",
-      "topology",
-      "taxonomy",
-      "two-axis",
-      "verdict",
-      "semantics",
-      "freezes",
-      "canonical"
+      "matrix",
+      "model",
+      "executor",
+      "variance",
+      "leaf",
+      "sentinels",
+      "alignment",
+      "fan-out",
+      "wiring",
+      "runs"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-      ".opencode/commands/scripts/validate-command-references.cjs",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
       {
-        "name": "sync-prompts.cjs",
+        "name": "behavior-bench-run.cjs",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
         "source": "derived"
       },
       {
-        "name": "validate-command-references.cjs",
+        "name": "fanout-run.cjs",
         "kind": "file",
-        "path": ".opencode/commands/scripts/validate-command-references.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "scoping.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
@@ -90,7 +83,7 @@
         "source": "derived"
       },
       {
-        "name": "exact",
+        "name": "explicit",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -102,26 +95,20 @@
         "source": "derived"
       },
       {
-        "name": "behavioral",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
+        "name": "1. METADATA",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -144,13 +131,19 @@
         "source": "derived"
       },
       {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria All",
+        "name": "Completion Criteria Fan",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,15 +155,21 @@
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "required",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "provenance",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against.",
-    "created_at": "2026-07-14T20:25:28.765Z",
-    "last_save_at": "2026-07-14T20:36:58.624Z",
+    "causal_summary": "Runs both GPT drivers across all command scenarios plus eligible leaf sentinels with explicit skips and contested-cell reruns, building or verifying the alignment fan-out wiring that is not shipped today.",
+    "created_at": "2026-07-14T20:37:00.448Z",
+    "last_save_at": "2026-07-14T20:37:00.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,11 +177,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:5764dd8325861759666dc710f4af504d08bfaa1bd7bb5aa414f05a70698db351",
+    "source_fingerprint": "sha256:b4dd12e748e59c58c0b0af9fb2e56dd83723018c7ef6f6fd5e60d66c53fa3bb6",
     "source_doc_hashes": {
-      "spec.md": "cd6542367b9084d5ef77c4c73850de1062c0a748829444fb6aaadbd557da735a",
-      "plan.md": "622f9ae1e41c6587b2743cd47f8f5ff76fa9216ab4d590b79ee99c2e97d8497c",
-      "tasks.md": "4b238e1e1715b84a117de87900611000ba9f7610994b81f384857d148412b93d"
+      "spec.md": "5f44e12489c3d2f87efcb62f1aae04d76fed8a0e83bab4439b25d25b3ffebecc",
+      "plan.md": "3d6d3f19624dfc101e06e6ca9462b5e171d5901e8aad5b4a7bf15b7ce8a47eaa",
+      "tasks.md": "0070eb425b6c86254f77c6d0b722bcd9fafeb3314b342d59a66d85d82a4f6004"
     },
     "last_active_child_id": null,
     "last_active_at": null

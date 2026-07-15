@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
-  "spec_folder": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/001-deterministic-fixtures-oracle",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/001-deterministic-fixtures-oracle",
   "parent_id": "system-deep-loop/066-command-surface-benchmark",
   "children_ids": [],
   "manual": {
@@ -11,30 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command benchmark contract",
-      "command census freeze",
-      "command topology taxonomy",
-      "two-axis verdict semantics"
+      "command benchmark fixtures",
+      "reference oracle",
+      "held-out fixtures",
+      "defect calibration corpus"
     ],
     "key_topics": [
       "command",
       "benchmark",
-      "contract",
-      "census",
-      "freeze",
-      "topology",
-      "taxonomy",
-      "two-axis",
-      "verdict",
-      "semantics",
-      "freezes",
-      "canonical"
+      "fixtures",
+      "reference",
+      "oracle",
+      "held-out",
+      "defect",
+      "calibration",
+      "corpus",
+      "verifies",
+      "independent",
+      "public"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
       "spec.md",
       "plan.md",
@@ -42,15 +42,15 @@
     ],
     "entities": [
       {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-        "source": "derived"
-      },
-      {
         "name": "validate-command-references.cjs",
         "kind": "file",
         "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
         "source": "derived"
       },
       {
@@ -90,26 +90,26 @@
         "source": "derived"
       },
       {
-        "name": "exact",
+        "name": "public",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "1. METADATA",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "behavioral",
-        "kind": "key_phrase",
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
+        "name": "3. SCOPE",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
@@ -120,7 +120,7 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "expectations",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -144,13 +144,19 @@
         "source": "derived"
       },
       {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria All",
+        "name": "Completion Criteria The",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -166,11 +172,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "frozen",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against.",
-    "created_at": "2026-07-14T20:25:28.765Z",
-    "last_save_at": "2026-07-14T20:36:58.624Z",
+    "causal_summary": "Builds and verifies the independent public and held-out fixture corpus plus a reference oracle, authored before any adapter code so the deterministic adapter cannot validate itself.",
+    "created_at": "2026-07-14T20:36:58.868Z",
+    "last_save_at": "2026-07-14T20:36:58.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,11 +196,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:5764dd8325861759666dc710f4af504d08bfaa1bd7bb5aa414f05a70698db351",
+    "source_fingerprint": "sha256:690f20d7bf59b05a2c90aea6ab6269b6fe1846cb039ad8d3302d5870eab7c816",
     "source_doc_hashes": {
-      "spec.md": "cd6542367b9084d5ef77c4c73850de1062c0a748829444fb6aaadbd557da735a",
-      "plan.md": "622f9ae1e41c6587b2743cd47f8f5ff76fa9216ab4d590b79ee99c2e97d8497c",
-      "tasks.md": "4b238e1e1715b84a117de87900611000ba9f7610994b81f384857d148412b93d"
+      "spec.md": "e99d0265cd9ad8fe5385b8c194fcdd93c42c28f14c54c2616be4d4b7aca780c1",
+      "plan.md": "36868b2d9a6c4f22cdaa79555850fa4580bfcea35cef9b205a181ab3bcbb1010",
+      "tasks.md": "2736f461900dcf5ae95314dd13dcef7f5c307737df08719500df776ef521892d"
     },
     "last_active_child_id": null,
     "last_active_at": null
