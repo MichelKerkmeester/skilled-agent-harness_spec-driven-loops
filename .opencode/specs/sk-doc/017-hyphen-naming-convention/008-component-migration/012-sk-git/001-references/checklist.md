@@ -33,7 +33,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 001. The verifier pins the candidate SHA, BASE SHA, and rename-map hash, records commands, exit codes, discovery counts, and dispositions, and fails on zero-file scans or unexpected tracked mutation.
+This checklist is the blocking SOL verifier contract for phase 001. **This phase is VERIFY-ONLY — v4 already committed the rename set; the verifier proves the completed kebab state, it does not accept any new rename.** The verifier pins the current SHA and the reference map, records commands, exit codes, discovery counts, and dispositions, and fails on a surviving source spelling, an unresolved pointer, or a reversed path.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
@@ -47,15 +47,15 @@ This checklist is the blocking SOL verifier contract for phase 001. The verifier
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-004 [P0] Each applicable reference rename follows one semantic source-to-target map entry; no mechanical or ambiguous substitution is accepted.
+- [ ] CHK-004 [P0] Each of the nine reference targets exists on v4 and its source name is absent — the map is fully applied (v4 committed it), not re-executed.
 - [ ] CHK-005 [P1] No code identifier, JSON/YAML/TOML key, frontmatter field, or non-path value changed.
-- [ ] CHK-006 [P1] File bytes, mode, symlink target, and Git rename history are preserved for every applicable rename.
+- [ ] CHK-006 [P1] v4's rename history is preserved (R-status, not delete+add) and file bytes, mode, and symlink targets are intact; no path is reversed.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-007 [P0] All nine reference entries have exactly one rename or baseline no-op disposition; no source and target coexist.
+- [ ] CHK-007 [P0] All nine reference entries are already kebab on v4; no source and target coexist and nothing requires renaming.
 - [ ] CHK-008 [P0] The active pointer scan resolves every reference in SKILL.md, README.md, assets/worktree-checklist.md, and references/ with zero broken targets.
 - [ ] CHK-009 [P0] No active pointer retains a source spelling such as references/commit_workflows.md or references/worktree_workflows.md.
 <!-- /ANCHOR:testing -->

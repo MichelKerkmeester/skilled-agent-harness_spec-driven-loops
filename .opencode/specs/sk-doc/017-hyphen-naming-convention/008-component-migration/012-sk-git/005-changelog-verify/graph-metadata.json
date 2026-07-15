@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-git component needs changelog evidence that names the completed reference, asset, manual-playbook, and benchmark rename sets and records the version bump. This read-only phase verifies that release evidence matches the actual migration without performing a rename.",
+    "causal_summary": "v4 already shipped sk-git version 1.3.2.0 and its changelog entry as part of the kebab pilot, covering the reference, asset, and manual-playbook renames. This read-only phase verifies that shipped release evidence matches the actual migration; benchmark (004) is not yet migrated on v4, so its changelog coverage is deferred until that phase executes.",
     "created_at": "2026-07-14T15:18:29Z",
-    "last_save_at": "2026-07-14T18:18:11.640Z",
+    "last_save_at": "2026-07-15T05:27:31.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:903a6889a596e080b1d4a5fa5050777c7cd8977fc8ebedb3d31faa0d089f856a",
+    "source_fingerprint": "sha256:69a400e938c133a953e5ae61e7d084f6bbfe12cde705df1c5af67a35f5c16867",
     "source_doc_hashes": {
-      "spec.md": "73a7d866d7698df4292b524ec09d026bbd6617345fcb29063347a328cdbbec1d",
+      "spec.md": "77895a41553c4bc3a9de94a5a61e9c779c68ae451cdb8aacb5e2cedff53ea183",
       "plan.md": "30807396f5c7b66fb9cd56ad5dd99d5dc670b56aa02db2062b4f37aa1d565968",
       "tasks.md": "d79e21b83ce8fd57e216bb572936f8c4342f5432c70328337a0d484fcbfc0a31",
       "checklist.md": "77ce167fb18dbf4746e898113ddc13d48edb5d3956667ae53ae84ca0df930b34"

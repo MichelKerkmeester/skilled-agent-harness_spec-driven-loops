@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored scripts-tree docs"
-    next_safe_action: "Execute the non-Python script filename map after MCP consumers are stable"
+    recent_action: "Reconciled to v4 - noted scripts/codex sync producers (already kebab, governed by 013/004)"
+    next_safe_action: "Execute the non-Python script filename map; leave codex sync producers as-is"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -31,6 +31,8 @@ _memory:
 # Feature Specification: Scripts tree
 
 > Phase adjacency under the 008 system-spec-kit subtree (grouping order, not a runtime dependency): predecessor 003-mcp-server-consumer-rewrites; successor 005-templates-and-examples.
+
+> **RECONCILED — v4 reconciliation (2026-07-15).** This tree contains `scripts/codex/sync-prompts.cjs` and `scripts/codex/sync-agents.cjs` — the producers of the generated `.codex/` mirror. Both are already kebab (NOT rename candidates here). Their OUTPUT naming correctness (the 2 `.codex/prompts/` snake regressions) is governed by the source command names in 013-commands and by the guard treating `.codex/` as generated (004) — not by any filename change in this phase. See the packet's v4-reconciliation-inventory.md.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

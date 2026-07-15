@@ -33,7 +33,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 002. The verifier pins the candidate SHA, BASE SHA, and asset-map hash, records commands, exit codes, discovery counts, parity results, and dispositions, and fails on zero-file scans or unexpected tracked mutation.
+This checklist is the blocking SOL verifier contract for phase 002. **This phase is VERIFY-ONLY — v4 already committed the three asset renames; the verifier proves the completed kebab state, it does not accept any new rename.** The verifier pins the current SHA and the asset-map, records commands, exit codes, discovery counts, parity results, and dispositions, and fails on a surviving source spelling, an unresolved pointer, or a reversed path.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
@@ -47,7 +47,7 @@ This checklist is the blocking SOL verifier contract for phase 002. The verifier
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-004 [P0] Each asset rename follows one semantic source-to-target map entry; no blind substitution or ambiguous target is accepted.
+- [ ] CHK-004 [P0] Each of the three asset targets exists on v4 and its source name is absent — the map is fully applied (v4 committed it), not re-executed.
 - [ ] CHK-005 [P0] Asset bytes, modes, symlink targets, frontmatter fields, data keys, examples, and template structure are unchanged except approved path values.
 - [ ] CHK-006 [P1] No code identifier, tool-mandated name, or non-path value changed.
 <!-- /ANCHOR:code-quality -->
@@ -55,7 +55,7 @@ This checklist is the blocking SOL verifier contract for phase 002. The verifier
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-007 [P0] All three asset entries have exactly one rename or baseline no-op disposition; no source and target coexist.
+- [ ] CHK-007 [P0] All three asset entries are already kebab on v4; no source and target coexist and nothing requires renaming or reversing.
 - [ ] CHK-008 [P0] Active pointers in SKILL.md, README.md, assets/, and references/ resolve to hyphenated targets with zero broken links.
 - [ ] CHK-009 [P0] No active pointer retains a source spelling such as assets/commit_message_template.md or assets/worktree_checklist.md.
 <!-- /ANCHOR:testing -->

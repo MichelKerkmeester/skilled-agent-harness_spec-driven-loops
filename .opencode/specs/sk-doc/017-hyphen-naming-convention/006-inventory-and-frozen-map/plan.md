@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/006-inventory-and-frozen-map"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Plan authored for the 017 phased tree"
-    next_safe_action: "Execute this phase on the pinned worktree when picked up"
+    recent_action: "Reconciled to v4 (current-tip BASE, pending/already-applied, .codex generated)"
+    next_safe_action: "Pin BASE to current tip, reconcile already-applied, classify .codex"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -21,6 +21,8 @@ _memory:
     answered_questions: []
 ---
 # Implementation Plan: Inventory and frozen rename map
+
+> **RECONCILED — v4 reconciliation (2026-07-15).** BASE re-pins to the current migration tip (not the authoring SHA); rename entries carry a pending vs already-applied disposition (v4 already landed the sk-git kebab pilot); the generated `.codex/prompts/` surface is classified `generated` (fix at the `sync-prompts.cjs` producer, never hand-rename). See spec.md's reconciliation note and the packet's v4-reconciliation-inventory.md.
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -32,10 +34,10 @@ _memory:
 |--------|-------|
 | **Surface** | sk-doc + repo (phase 006) |
 | **Change class** | Rename map |
-| **Execution** | Isolated worktree pinned to BASE (established in phase 000) |
+| **Execution** | Isolated worktree pinned to the current migration tip (re-pinned from phase 000's BASE) |
 
 ### Overview
-Before any rename, the in-scope surface must be frozen into a bijective, fully-classified rename map partitioned by dependency closure. Detailed design is finalized when this phase is picked up for execution against the pinned baseline.
+Before any rename, the in-scope surface must be frozen into a fully-classified rename map (pending vs already-applied dispositions) partitioned by dependency closure, pinned to the current migration tip. Detailed design is finalized when this phase is picked up for execution against the pinned baseline.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -43,13 +45,13 @@ Before any rename, the in-scope surface must be frozen into a bijective, fully-c
 
 ### Definition of Ready
 - [ ] The inventory counts only in-scope names with every exemption applied
-- [ ] The rename map is bijective
+- [ ] Each rename entry is pending (source exists, target absent) or already-applied on v4 (source absent, target present) — no both-present/both-absent
 - [ ] Every candidate has exactly one classification with no "unknown" bucket
-- [ ] Batches are dependency-closed (reference-graph SCCs)
-- [ ] The map is hashed together with BASE for reproducibility
+- [ ] Batches are dependency-closed (reference-graph SCCs) and exclude already-applied surfaces
+- [ ] The map is hashed together with the current-tip BASE for reproducibility
 
 ### Definition of Done
-- [ ] A trustworthy, frozen, bijective, classified rename map exists
+- [ ] A trustworthy, frozen, classified rename map exists with pending/already-applied dispositions
 - [ ] Execution batches are dependency-closed and reproducible
 <!-- /ANCHOR:quality-gates -->
 
@@ -57,9 +59,9 @@ Before any rename, the in-scope surface must be frozen into a bijective, fully-c
 ## 3. ARCHITECTURE
 
 - A full repo inventory (recomputed independently of 000) with every exemption applied.
-- A bijective source->target rename map: every source exists, every target is unique and absent.
-- A complete classification: every candidate is exactly one of rename/exempt/frozen/generated/tool-mandated; no "unknown".
-- Partition into dependency-closed batches (reference-graph SCCs), hashed together with BASE.
+- A source->target rename map where each entry is pending (source exists, target unique and absent) or already-applied on v4 (source absent, target present), plus the generated `.codex/prompts/` surface classified `generated` (fix at the `sync-prompts.cjs` producer, never hand-rename outputs).
+- A complete classification: every candidate is exactly one of rename/exempt/frozen/generated/tool-mandated; no "unknown". Rename entries additionally record a pending vs already-applied disposition.
+- Partition into dependency-closed batches (reference-graph SCCs) that exclude already-applied surfaces, hashed together with the current-tip BASE.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -70,16 +72,16 @@ Before any rename, the in-scope surface must be frozen into a bijective, fully-c
 
 ### Phase 2: Implementation
 - A full repo inventory (recomputed independently of 000) with every exemption applied.
-- A bijective source->target rename map: every source exists, every target is unique and absent.
-- A complete classification: every candidate is exactly one of rename/exempt/frozen/generated/tool-mandated; no "unknown".
-- Partition into dependency-closed batches (reference-graph SCCs), hashed together with BASE.
+- A source->target rename map where each entry is pending (source exists, target unique and absent) or already-applied on v4 (source absent, target present), plus the generated `.codex/prompts/` surface classified `generated` (fix at the `sync-prompts.cjs` producer, never hand-rename outputs).
+- A complete classification: every candidate is exactly one of rename/exempt/frozen/generated/tool-mandated; no "unknown". Rename entries additionally record a pending vs already-applied disposition.
+- Partition into dependency-closed batches (reference-graph SCCs) that exclude already-applied surfaces, hashed together with the current-tip BASE.
 
 ### Phase 3: Verification
 - Vendored/.py/package-dir/generated/tool-mandated names are excluded
-- Every source exists; every target is unique and currently absent
-- The classification report has 0 un-classified candidates
+- Each rename entry is pending (source exists, target absent) or already-applied on v4 (source absent, target present)
+- The classification report has 0 un-classified candidates; `.codex/prompts/*` is classified `generated`
 - No batch references a rename in another un-landed batch
-- A stored digest binds the map to the exact BASE SHA
+- A stored digest binds the map to the current-tip BASE SHA
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -88,10 +90,12 @@ Before any rename, the in-scope surface must be frozen into a bijective, fully-c
 | Requirement | Verification |
 |-------------|--------------|
 | REQ-001 | Vendored/.py/package-dir/generated/tool-mandated names are excluded |
-| REQ-002 | Every source exists; every target is unique and currently absent |
-| REQ-003 | The classification report has 0 un-classified candidates |
+| REQ-002 | Each rename entry is pending (source exists, target absent) or already-applied on v4 (source absent, target present) |
+| REQ-003 | The classification report has 0 un-classified candidates; `.codex/prompts/*` classified `generated` |
 | REQ-004 | No batch references a rename in another un-landed batch |
-| REQ-005 | A stored digest binds the map to the exact BASE SHA |
+| REQ-005 | A stored digest binds the map to the current-tip BASE SHA |
+| REQ-006 | `.codex/prompts/*` is classified `generated`; the 2 snake regressions are flagged for a `sync-prompts.cjs` producer fix |
+| REQ-007 | The sk-git kebab-pilot surfaces are recorded `already-applied` and excluded from pending batches |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->

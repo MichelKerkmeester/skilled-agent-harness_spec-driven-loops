@@ -33,6 +33,8 @@ _memory:
 
 # Feature Specification: sk-git component migration
 
+> **SUPERSEDED IN PART — v4 reconciliation (2026-07-15).** Concurrent v4 work already committed the sk-git kebab pilot (the "hyphen-case pilot" made authoritative in AGENTS.md), which renamed the **references**, **assets**, and **manual-testing-playbook** surfaces and shipped version **1.3.2.0** with its changelog entry. As a result, children **001, 002, 003 are now VERIFY-ONLY** and **005** verifies the already-shipped changelog. The **benchmark** surface (child **004**) is still snake on v4 and remains a real, unexecuted rename — this component is therefore NOT complete, and the **006-skill-gate** rollup cannot pass until 004 executes. Full inventory and rationale: the packet's v4-reconciliation-inventory.md.
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
@@ -78,12 +80,12 @@ This parent partitions the work into independent child phases. The children desc
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | 001-references/ | Rename the reference-file source map to kebab-case and close every link and pointer to it. | Planned |
-| 002 | 002-assets/ | Rename asset/template files to kebab-case and close every link and pointer to them. | Planned |
-| 003 | 003-manual-testing-playbook/ | Rename manual-playbook category directories and scenario files, then repair the playbook index and references. | Planned |
-| 004 | 004-benchmark/ | Rename snake_case benchmark profile or artifact names and repair benchmark references without changing report data keys. | Planned |
-| 005 | 005-changelog-verify/ | Verify that the changelog records this rename set and the corresponding version bump; perform no rename. | Planned |
-| 006 | 006-skill-gate/ | Roll up sibling evidence and prove that no in-scope snake_case filesystem name remains in sk-git outside the exemption set. | Planned |
+| 001 | 001-references/ | VERIFY-ONLY (v4 renamed it): confirm reference files are kebab and every link/pointer resolves. | Verify-only (v4 shipped) |
+| 002 | 002-assets/ | VERIFY-ONLY (v4 renamed it): confirm asset/template files are kebab and every link/pointer resolves. | Verify-only (v4 shipped) |
+| 003 | 003-manual-testing-playbook/ | VERIFY-ONLY (v4 renamed it): confirm category dirs and scenario files are kebab, IDs intact, index resolves; re-count vs v4's tree. | Verify-only (v4 shipped) |
+| 004 | 004-benchmark/ | ACTIVE RENAME (not done on v4): rename snake_case benchmark profile or artifact names and repair references without changing report data keys. | Planned |
+| 005 | 005-changelog-verify/ | Verify the already-shipped 1.3.2.0 changelog entry for the reference/asset/playbook renames; benchmark coverage deferred; perform no rename. | Verify-only (v4 shipped 1.3.2.0) |
+| 006 | 006-skill-gate/ | Roll up sibling evidence and prove no in-scope snake_case filesystem name remains in sk-git outside the exemption set. BLOCKED until 004 executes. | Planned (blocked on 004) |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:questions -->

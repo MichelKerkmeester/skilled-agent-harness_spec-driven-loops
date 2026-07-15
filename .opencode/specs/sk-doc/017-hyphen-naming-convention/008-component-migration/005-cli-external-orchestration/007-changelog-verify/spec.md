@@ -28,6 +28,7 @@ _memory:
     answered_questions:
       - "The current root metadata reports version 1.1.0.0 while root changelog history includes v1.2.0.0; this is a required verification point, not an authoring fix."
       - "This phase performs verification only and does not create or edit changelog entries."
+      - "Actual per-surface baselines on v4: hub 1.1.0.0/changelog v1.2.0.0, cli-opencode v1.3.15.3, cli-claude-code v1.3.0.0, cli-codex v1.7.1.0; the verifier anchors on these, not a uniform version."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -37,6 +38,8 @@ _memory:
 # Feature Specification: cli-external-orchestration changelog and version verification
 
 > Phase adjacency under the cli-external-orchestration component parent: predecessor `006-benchmark`; successor `008-skill-gate`.
+
+> **RECONCILED — v4 reconciliation (2026-07-15).** Actual current release baselines on v4 (verified in-tree): hub `description.json` `1.1.0.0` with hub changelog latest `v1.2.0.0` (the known, still-present mismatch); `cli-opencode` `v1.3.15.3`; `cli-claude-code` `v1.3.0.0`; `cli-codex` `v1.7.1.0`. The verifier anchors on THESE per-surface baselines when checking for a new migration entry — the four surfaces are at different versions and it must not assume a uniform pre-migration version. See the packet's v4-reconciliation-inventory.md.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -55,7 +58,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The path phases can complete while release records omit the rename set or point at the wrong version. The live surface has separate changelog histories for the hub, cli-opencode, cli-claude-code, and cli-codex, and the root `description.json` currently reports `1.1.0.0` while root changelog history includes `v1.2.0.0`. This phase verifies the post-migration evidence and reports contradictions without rewriting frozen history or silently normalizing metadata.
+The path phases can complete while release records omit the rename set or point at the wrong version. The live surface has separate changelog histories for the hub (`description.json` `1.1.0.0`, changelog latest `v1.2.0.0`), cli-opencode (`v1.3.15.3`), cli-claude-code (`v1.3.0.0`), and cli-codex (`v1.7.1.0`) — four independently-versioned surfaces, plus the root metadata/history mismatch. This phase verifies the post-migration evidence and reports contradictions without rewriting frozen history or silently normalizing metadata.
 
 The purpose is to hand phase 008 a release-evidence matrix proving that each surface has a matching rename entry, version bump, exemption statement, and file-list coverage.
 <!-- /ANCHOR:problem -->

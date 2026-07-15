@@ -32,7 +32,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 003. The verifier pins the candidate SHA, BASE SHA, and 49-entry map hash, records commands, exit codes, path counts, scenario discovery counts, and dispositions, and fails on zero scenarios or unexpected tracked mutation.
+This checklist is the blocking SOL verifier contract for phase 003. **This phase is VERIFY-ONLY — v4 already committed the manual-playbook kebab rename; the verifier proves the completed state, it does not accept any new rename.** The verifier pins the current SHA and the map, records commands, exit codes, path counts, scenario discovery counts, and dispositions, and fails on a surviving source spelling, an unresolved pointer, or a reversed path. **Re-count required:** reconcile the 49-entry authoring map against v4's actual tree (v4 release evidence records 42 files across 8 directories) before treating any discrepancy as a defect.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
@@ -46,7 +46,7 @@ This checklist is the blocking SOL verifier contract for phase 003. The verifier
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-004 [P0] Directory and scenario renames follow the semantic map; no blind substitution or ambiguous target is accepted.
+- [ ] CHK-004 [P0] Every category directory and scenario file is kebab on v4 and its source name is absent — the map is fully applied (v4 committed it), not re-executed or reversed.
 - [ ] CHK-005 [P0] Scenario IDs, frontmatter fields, commands, keys, content, modes, symlinks, and non-path values are unchanged.
 - [ ] CHK-006 [P1] No feature-catalog path, code identifier, Python/tool-mandated name, or sibling-surface file changed.
 <!-- /ANCHOR:code-quality -->
@@ -54,7 +54,7 @@ This checklist is the blocking SOL verifier contract for phase 003. The verifier
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-007 [P0] The 49-entry map has exactly one rename or baseline no-op disposition per path and no source/target coexistence.
+- [ ] CHK-007 [P0] The tree is already kebab on v4 with no source/target coexistence; the 49-entry map is reconciled against v4's actual entry count (42 files / 8 dirs) and nothing requires renaming or reversing.
 - [ ] CHK-008 [P0] The root index and all in-tree playbook links resolve to hyphenated targets with zero broken links.
 - [ ] CHK-009 [P0] Discovery parity holds: GIT-001 through GIT-041 each appear exactly once, with unchanged category membership.
 <!-- /ANCHOR:testing -->

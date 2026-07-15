@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-git changelog verification (017 phase 008/012/005)"
-description: "The sk-git component needs changelog evidence that names the completed reference, asset, manual-playbook, and benchmark rename sets and records the version bump. This read-only phase verifies that release evidence matches the actual migration without performing a rename."
+description: "v4 already shipped sk-git version 1.3.2.0 and its changelog entry as part of the kebab pilot, covering the reference, asset, and manual-playbook renames. This read-only phase verifies that shipped release evidence matches the actual migration; benchmark (004) is not yet migrated on v4, so its changelog coverage is deferred until that phase executes."
 trigger_phrases:
   - "sk-git changelog verification"
   - "017 sk-git version bump"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored changelog-verify phase docs"
-    next_safe_action: "Verify the migration changelog entry after sibling phases land"
+    recent_action: "Reconciled baseline - v4 shipped 1.3.2.0 + changelog for ref/asset/playbook renames"
+    next_safe_action: "Verify shipped 1.3.2.0 entry vs the three surfaces; benchmark coverage deferred"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/SKILL.md"
@@ -36,6 +36,8 @@ _memory:
 
 > Phase adjacency under the sk-git component parent: predecessor 004-benchmark; successor 006-skill-gate. This is a read-only evidence phase; it performs no filesystem rename.
 
+> **RECONCILED — BASELINE UPDATE (v4 reconciliation, 2026-07-15).** Concurrent v4 work already shipped sk-git **version 1.3.2.0** and its changelog entry `changelog/v1.3.2.0.md` as part of the kebab pilot, covering the completed **references, assets, and manual-testing-playbook** renames. This phase therefore verifies an **already-shipped** entry (not one authored after siblings land). The **benchmark** surface (phase 004) is still snake on v4, so it is NOT part of the 1.3.2.0 entry; its changelog coverage is deferred until 004 executes (a later version bump). See the packet's v4-reconciliation-inventory.md.
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
@@ -53,17 +55,17 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The current sk-git version is 1.3.1.0 and the changelog inventory does not yet provide a verified release entry for the 017 component rename. A release note that mentions only a generic cleanup, the wrong source paths, or the wrong version would make the migration unauditable even if the filesystem state is correct.
+v4 already shipped sk-git **version 1.3.2.0** and its changelog entry `changelog/v1.3.2.0.md` as part of the kebab pilot. That entry records the completed reference, asset, and manual-testing-playbook renames. A shipped release note that mentions only a generic cleanup, the wrong source paths, or the wrong version would make the migration unauditable even if the filesystem state is correct, so it must be verified against the real evidence.
 
-The purpose is to verify a new changelog entry for version 1.3.2.0 against the actual sibling-phase evidence. The phase checks that the entry names the reference, asset, manual-testing-playbook, and benchmark work, states the exemption boundary, and matches the version exposed by SKILL.md and README.md; it performs no rename or content migration.
+The purpose is to verify the **shipped** 1.3.2.0 changelog entry against the actual sibling-phase evidence. The phase checks that the entry names the reference, asset, and manual-testing-playbook work, states the exemption boundary, and matches the version exposed by SKILL.md and README.md; it performs no rename or content migration. The benchmark surface (phase 004) is still snake on v4 and is therefore NOT expected in this entry — its changelog coverage is deferred to a later version bump when 004 executes.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- Verify that .opencode/skills/sk-git/changelog/v1.3.2.0.md exists and has the correct version heading and migration summary.
-- Compare the changelog entry with the 001-references, 002-assets, 003-manual-testing-playbook, and 004-benchmark SOL evidence and final maps.
+- Verify that the shipped .opencode/skills/sk-git/changelog/v1.3.2.0.md exists and has the correct version heading and migration summary.
+- Compare the changelog entry with the 001-references, 002-assets, and 003-manual-testing-playbook SOL evidence and final maps. Benchmark (004) is still snake on v4 and is expected to be ABSENT from this entry; confirm the entry does not falsely claim benchmark coverage.
 - Verify that SKILL.md and README.md expose version 1.3.2.0 consistently with the changelog.
 - Verify that the entry identifies the kebab-case rule and the exemptions for Python scripts, Python package directories, and tool-mandated names.
 - Confirm that the changelog does not claim work outside the sk-git component or claim that this read-only phase performed renames.
@@ -90,7 +92,7 @@ The purpose is to verify a new changelog entry for version 1.3.2.0 against the a
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | A changelog entry exists for the migration version. | changelog/v1.3.2.0.md exists, has a v1.3.2.0 heading, and is associated with the sk-git version 1.3.2.0. |
-| REQ-002 | The entry matches the actual sibling migration set. | It names the references, assets, manual-testing-playbook, and benchmark surfaces and agrees with the four sibling evidence reports and maps. |
+| REQ-002 | The entry matches the actual completed migration set. | It names the references, assets, and manual-testing-playbook surfaces and agrees with those three sibling evidence reports and maps. It does not claim benchmark coverage, which v4 has not yet migrated. |
 | REQ-003 | The entry records the naming rule and exemption boundary. | It states kebab-case as the in-scope filesystem form and does not claim Python scripts, Python package directories, or tool-mandated names were renamed. |
 | REQ-004 | Version consumers are consistent. | SKILL.md, README.md, and the changelog expose the same 1.3.2.0 version. |
 | REQ-005 | This phase remains read-only. | The candidate report shows no file mutation, rename, content rewrite, or release action from phase 005. |
@@ -99,7 +101,7 @@ The purpose is to verify a new changelog entry for version 1.3.2.0 against the a
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The v1.3.2.0 changelog entry exists and accurately describes the four sibling migration phases.
+- **SC-001**: The shipped v1.3.2.0 changelog entry exists and accurately describes the three completed sibling migration phases (references, assets, manual-testing-playbook), without claiming benchmark coverage.
 - **SC-002**: SKILL.md, README.md, and the changelog agree on version 1.3.2.0.
 - **SC-003**: The changelog evidence contains no scope, exemption, or execution claim contradicted by sibling checklists.
 <!-- /ANCHOR:success-criteria -->
@@ -113,5 +115,5 @@ The phase depends on completed sibling evidence and the current sk-git version c
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking. The expected version is 1.3.2.0 because the current live version is 1.3.1.0 and this migration is a patch-level component release; any different version would be a release-policy contradiction requiring a decision before acceptance.
+None blocking. The live version is now 1.3.2.0 — v4 shipped it as the patch-level release for the reference/asset/playbook kebab pilot. When benchmark (004) later executes, it will need its own version bump and changelog entry; that is out of scope for this phase, which only verifies the already-shipped 1.3.2.0 evidence.
 <!-- /ANCHOR:questions -->

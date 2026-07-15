@@ -45,6 +45,9 @@
       ".opencode/commands/goal_opencode.md",
       ".opencode/commands/README.txt",
       ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+      ".codex/prompts/agent_router.md",
+      ".codex/prompts/goal_opencode.md",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/commands/prompt-improve.md",
       "spec.md",
       "plan.md",
@@ -75,6 +78,12 @@
         "name": "mk-goal-tool-path.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
         "source": "derived"
       },
       {
@@ -144,7 +153,7 @@
         "source": "derived"
       },
       {
-        "name": "cited",
+        "name": "producer",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -190,17 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The loose command surface contains `agentrouter.md` and `goalopencode.md`, while the program's canonical filesystem form is kebab-case",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-07-14T20:19:14.019Z",
+    "last_save_at": "2026-07-15T05:27:31.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,9 +213,9 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:4a77f81d994b577f12a01d37805def1c66f856584f62f63868182c77630ffdc1",
+    "source_fingerprint": "sha256:2ecdb1c351c839a13ec030a1b9095ec76823f062cf197c70099c4449c2df4813",
     "source_doc_hashes": {
-      "spec.md": "a1f019df579a8b5827fa1e563038b4459fd316e1056a801062ae2a9f69725600",
+      "spec.md": "ae4f40a2ec3d2405ca9a99e99f6cbaaaaa43eb552c0c1b1ef808a78465d88029",
       "plan.md": "6c46ad1af9798941b54679843f630cbe7832b7a964b66b9f5505b9b22916ffba",
       "tasks.md": "dea660f81c7f3ba7b95823bbe07129ebbcf5684cc50344d084538adee5af0576",
       "checklist.md": "2922b5fad33ae2886981ff85ea2c59c1942bc0bad65c11de799db80d2f573adc",

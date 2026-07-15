@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays"
     last_updated_at: "2026-07-14T17:28:55Z"
     last_updated_by: "codex"
-    recent_action: "Authored the root and OpenCode infrastructure closure contract"
-    next_safe_action: "Execute the root-infrastructure closure from the frozen rename map"
+    recent_action: "Reconciled to v4 - added .opencode/bin family (already kebab; entry points tool-mandated)"
+    next_safe_action: "Verify .opencode/bin is already kebab on v4; classify daemon entry points exempt"
     blockers: []
     key_files:
       - ".opencode/commands/doctor/_routes.yaml"
@@ -36,6 +36,8 @@ _memory:
 # Feature Specification: Root and OpenCode Infrastructure Strays
 
 > Child adjacency under the 007 parent (grouping order, not a runtime dependency): sibling `002-cross-skill-symlink-closure`; shared-script and active-spec closures are `003-hoisted-shared-script-closures` and `004-active-specs-and-docs`.
+
+> **RECONCILED — v4 reconciliation (2026-07-15).** The `.opencode/bin/**` daemon/launcher family is in this child's census. On v4 its top-level names are ALREADY kebab-compliant (verify, no rename); the daemon entry-point names (`spec-memory.cjs`, `code-index.cjs`, `skill-advisor.cjs`, the `mk-*-launcher.cjs` set, `worktree-session.sh`, `git-sync.sh`, etc.) are **tool-mandated** — referenced by the CLAUDE.md daemon-CLI dispatch tables — and are exempt. See the packet's v4-reconciliation-inventory.md.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -64,7 +66,7 @@ This child defines the census, semantic rename map, reference closure, and downs
 
 ### In Scope
 - Root-level filesystem-name candidates selected by the frozen 017 map.
-- `.opencode/commands/**`, `.opencode/install_guides/**`, and adjacent `.opencode` infrastructure names not owned by one skill subtree.
+- `.opencode/commands/**`, `.opencode/install_guides/**`, `.opencode/bin/**`, and adjacent `.opencode` infrastructure names not owned by one skill subtree. `.opencode/bin/**` is already kebab-compliant on v4 (verify, no rename); its daemon `.cjs`/launcher entry-point names referenced by the CLAUDE.md dispatch tables are classified tool-mandated/exempt.
 - Command assets, install-guide scripts, shell sources, registries, and path-valued documentation that point at those candidates.
 - Explicit classification of every observed candidate as rename, exempt, frozen, generated, or tool-mandated.
 - A handoff of any cross-skill symlink edge to `002-cross-skill-symlink-closure`.

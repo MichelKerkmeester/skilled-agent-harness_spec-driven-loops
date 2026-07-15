@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-git manual testing playbook (017 phase 008/012/003)"
-description: "The sk-git manual-testing-playbook tree has seven historical underscore category directories and 41 underscore scenario filenames, plus a root index with stale path pointers. This phase renames that tree to kebab-case and preserves scenario identity and discoverability."
+description: "SUPERSEDED by concurrent v4 work, which already renamed the sk-git manual-testing-playbook tree to kebab-case (committed on skilled/v4). This phase is now VERIFY-ONLY: confirm the seven category dirs and scenario files are kebab, the GIT-001..041 identities are intact, and every index/link resolves. Re-verify the entry count against v4's actual tree (v4 release evidence = 42 files / 8 dirs vs the 49-entry authoring map)."
 trigger_phrases:
   - "sk-git manual testing kebab-case"
   - "017 manual playbook rename"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the manual-playbook phase from the 41-scenario surface inventory"
-    next_safe_action: "Execute the 49-entry manual-playbook rename map on the pinned worktree"
+    recent_action: "Reconciled to verify-only after v4 committed the sk-git kebab migration"
+    next_safe_action: "Verify the manual-playbook tree is already kebab on v4 and re-count against its actual entries"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md"
@@ -33,6 +33,8 @@ _memory:
 
 > Phase adjacency under the sk-git component parent: predecessor 002-assets; successor 004-benchmark. The siblings are independently scoped; the adjacency is an execution ordering hint for the component rollup.
 
+> **SUPERSEDED — VERIFY-ONLY (v4 reconciliation, 2026-07-15).** Concurrent v4 work already renamed this tree to kebab-case (committed on `skilled/v4.0.0.0`); the live sk-git manual-testing-playbook is fully kebab. This phase performs **no rename** — it VERIFIES the completed state (kebab category dirs + scenario files, GIT-001..041 identities intact, root index `manual-testing-playbook.md` and every link resolving) and adopts v4's names as the baseline. **Re-count required:** the 49-entry authoring map must be reconciled with v4's actual tree (v4 release evidence records 42 files across 8 directories). Rationale and full inventory: the packet's v4-reconciliation-inventory.md.
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
@@ -50,20 +52,20 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The manual-testing-playbook tree contains seven historical snake_case category directories and 41 scenario files whose source names use underscores. The current checkout contains the hyphenated directory and file targets from a prior pre-adoption change, but the root index and scenario cross-references still expose source spellings such as manual_testing_playbook/, worktree_setup/, and fresh_feature_isolated_worktree.md. Without a complete path-graph rewrite, the playbook can look populated while its scenario index points at missing files.
+The manual-testing-playbook tree contains seven historical snake_case category directories and 41 scenario files whose source names used underscores. **Concurrent v4 work has now committed the full kebab rename of this tree**, so the live checkout contains only hyphenated directory and file names, including the root index `manual-testing-playbook.md`. This phase therefore verifies — rather than executes — the completed migration: the tree is fully kebab, the root index and scenario cross-references resolve (no surviving `manual_testing_playbook/`, `worktree_setup/`, or `fresh_feature_isolated_worktree.md` spellings), and the playbook is not populated-yet-broken.
 
-The purpose is to make the entire manual-testing-playbook tree kebab-case, preserve all GIT-001 through GIT-041 scenario identities and content, and update every index, link, package-artifact entry, and path-valued pointer that reaches the tree.
+The purpose is to prove the entire manual-testing-playbook tree is kebab-case, all GIT-001 through GIT-041 scenario identities and content are intact, and every index, link, package-artifact entry, and path-valued pointer resolves. The phase performs no rename and must NOT reverse any of v4's already-migrated paths. The authoring-time 49-entry map is a verification reference and must be reconciled against v4's actual entry count.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- Rename the root index manual_testing_playbook.md to manual-testing-playbook.md when present.
-- Rename the seven category directories: commit_formation -> commit-formation; cross_cli_orchestration -> cross-cli-orchestration; integration_and_pr -> integration-and-pr; owner_first_worktree_tooling -> owner-first-worktree-tooling; recovery_and_edge_cases -> recovery-and-edge-cases; safety_refusals -> safety-refusals; worktree_setup -> worktree-setup.
-- Rename all 41 scenario files in those directories to their hyphenated basenames, preserving the GIT-001 through GIT-041 IDs and scenario metadata.
-- Rewrite the root playbook index, category links, scenario links, package-artifact lists, SKILL.md/README.md pointers, and in-tree Markdown paths.
-- Keep the manual-playbook rename and pointer rewrite as one dependency-closed map, with explicit no-op dispositions for targets already present at BASE.
+- Verify the root index is `manual-testing-playbook.md` (v4 renamed it from `manual_testing_playbook.md`).
+- Verify the seven category directories are kebab (v4 renamed them): commit_formation -> commit-formation; cross_cli_orchestration -> cross-cli-orchestration; integration_and_pr -> integration-and-pr; owner_first_worktree_tooling -> owner-first-worktree-tooling; recovery_and_edge_cases -> recovery-and-edge-cases; safety_refusals -> safety-refusals; worktree_setup -> worktree-setup.
+- Verify all 41 scenario files are kebab with GIT-001 through GIT-041 IDs and scenario metadata intact.
+- Confirm the root playbook index, category links, scenario links, package-artifact lists, SKILL.md/README.md pointers, and in-tree Markdown paths all resolve — no active source spelling survives.
+- Reconcile the authoring-time 49-entry map against v4's actual tree (v4 release evidence = 42 files / 8 dirs); adopt v4's names as baseline; do NOT re-rename or reverse any path.
 
 ### Observed Scenario Basenames
 The 41 source basenames observed in the sk-git history are grouped by their source category directory:
@@ -85,10 +87,10 @@ The 41 source basenames observed in the sk-git history are grouped by their sour
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skills/sk-git/manual-testing-playbook/manual_testing_playbook.md | Rename/Modify | Rename the root index and update its 41-entry path table. |
-| .opencode/skills/sk-git/manual-testing-playbook/{seven underscore category dirs} | Rename | Rename category directories to their hyphenated targets. |
-| .opencode/skills/sk-git/manual-testing-playbook/{41 scenario files} | Rename/Modify | Rename scenario files and repair their in-tree links without changing IDs or contracts. |
-| .opencode/skills/sk-git/SKILL.md and README.md | Modify | Repair pointers into the playbook tree. |
+| .opencode/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md | Verify | Confirm the root index exists (renamed by v4) and its path table resolves. |
+| .opencode/skills/sk-git/manual-testing-playbook/{seven category dirs} | Verify | Confirm category directories are kebab (v4 renamed them). |
+| .opencode/skills/sk-git/manual-testing-playbook/{41 scenario files} | Verify | Confirm scenario files are kebab with IDs/contracts intact. |
+| .opencode/skills/sk-git/SKILL.md and README.md | Verify | Confirm pointers into the playbook tree resolve. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->

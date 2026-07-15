@@ -109,7 +109,7 @@
         "source": "derived"
       },
       {
-        "name": "active",
+        "name": "hub",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "active",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "versions",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This verification-only phase confirms that the cli-external-orchestration hub and its three CLI workflow release surfaces record the completed kebab-case rename set and coherent version bumps. It does not rename files, rewrite historical changelogs, or repair metadata contradictions.",
     "created_at": "2026-07-14T15:17:39Z",
-    "last_save_at": "2026-07-14T20:22:55.455Z",
+    "last_save_at": "2026-07-15T05:19:49.376Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,9 +204,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e5147b8d1de4b843c2787855c83f57fc0f195a1272ed9a4ba394af741fc7c6c0",
+    "source_fingerprint": "sha256:eae03dba7c15488bb14b32aa3da09d54e9974957195211831286867306fe0580",
     "source_doc_hashes": {
-      "spec.md": "51284649bf5199c26fd4f881d9e47864151c348aa99853d6ecda20a36b277e50",
+      "spec.md": "fd3748c070530fadd56ffce27e709b02cf69cd2956c8f9a4543b84678fb046ad",
       "plan.md": "cdcc23fa2dc49fe35983708aea90988e61d4096466f70852c1f09c512bc2bcaf",
       "tasks.md": "cbd1bcc4109b15d0d0f97aee0a8c5df6cb005b143238788983351c52830b015f",
       "checklist.md": "59f99b8ee550e18f0674c61b57ec4c4a6d3f258f2abdc62ec6bf2398c25334e0"

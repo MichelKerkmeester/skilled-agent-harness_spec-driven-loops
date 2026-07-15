@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored the assets execution plan and content-parity evidence path"
-    next_safe_action: "Execute the semantic asset map against the pinned baseline"
+    next_safe_action: "Verify the asset surface is already kebab on v4 and all pointers resolve"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/assets/"
@@ -26,6 +26,8 @@ _memory:
     answered_questions: []
 ---
 # Implementation Plan: sk-git assets
+
+> **SUPERSEDED — VERIFY-ONLY (v4 reconciliation, 2026-07-15).** Concurrent v4 work already committed this rename (on `skilled/v4.0.0.0`). The steps below are now the VERIFICATION procedure for the completed kebab state — not rename execution. Do NOT re-run or reverse any rename; adopt v4's kebab names as the baseline. See the packet's v4-reconciliation-inventory.md.
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

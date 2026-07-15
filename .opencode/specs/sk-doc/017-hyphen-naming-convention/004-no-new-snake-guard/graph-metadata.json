@@ -38,12 +38,19 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -93,13 +100,13 @@
         "source": "derived"
       },
       {
-        "name": "1. METADATA",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. PROBLEM & PURPOSE",
+        "name": "1. METADATA",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
@@ -181,17 +188,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nothing prevents snake_case from re-entering in-scope filesystem names. The program needs an exemption-aware guard with a debt-tolerant changed-only mode during migration and a whole-tree mode after, so intermediate commits stay green while the end state is enforced.",
     "created_at": "2026-07-13T14:34:05.525Z",
-    "last_save_at": "2026-07-15T03:47:06.159Z",
+    "last_save_at": "2026-07-15T05:19:30.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +201,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7e821872ec585b6271ca12471a39cd747f9dfba6583217cb3e56af546657d648",
+    "source_fingerprint": "sha256:3a5e15918114f4862aef3edd8615ab638f14389785af76bc3f10b11adabac076",
     "source_doc_hashes": {
-      "spec.md": "ef67acb0a0f8f521c8c9ed52696f016084c84142730ae92b2a148651765f41bc",
+      "spec.md": "6458aea01d09333bb2d63a87833ba4ab706e71e5ce3683239327da52f1b88b94",
       "plan.md": "005369e58ee5131f55774f2c34af82399ed9c8c07e5ca01dd5d2e29551f043ef",
       "tasks.md": "b7fb8ca8bb3988421d828978ff81e8f28da3541727b73a240cabc3b43eb55f3d",
       "checklist.md": "419f1705e2b5c187d534cd858199e42cd30d72e326a0d97ca6e7a28089599d11"

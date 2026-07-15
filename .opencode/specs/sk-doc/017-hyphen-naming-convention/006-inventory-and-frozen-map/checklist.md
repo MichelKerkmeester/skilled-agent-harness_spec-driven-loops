@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/006-inventory-and-frozen-map"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "SOL verifier contract authored from the design review"
-    next_safe_action: "Execute this phase on the pinned worktree when picked up"
+    recent_action: "Reconciled to v4 (current-tip BASE, pending/already-applied, .codex generated)"
+    next_safe_action: "Pin BASE to current tip, reconcile already-applied, classify .codex"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -21,6 +21,8 @@ _memory:
     answered_questions: []
 ---
 # Checklist: Inventory and frozen rename map
+
+> **RECONCILED — v4 reconciliation (2026-07-15).** BASE re-pins to the current migration tip; rename entries are pending OR already-applied on v4 (the sk-git kebab pilot landed source-absent/target-present) — never fail an already-applied entry as a missing source; the generated `.codex/prompts/` surface is classified `generated`. See spec.md's reconciliation note and the packet's v4-reconciliation-inventory.md.
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -37,7 +39,7 @@ hash, records commands + exit codes + discovery counts, and fails on zero tests/
 ## Pre-Implementation
 
 - [ ] CHK-005 [P0] Predecessor phases have landed and the worktree is clean, pinned to BASE, with an isolated git index
-- [ ] CHK-006 [P2] The pinned BASE SHA and rename-map hash for this phase are recorded in the candidate report
+- [ ] CHK-006 [P2] The pinned current-tip BASE SHA and rename-map hash for this phase are recorded in the candidate report
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -50,9 +52,10 @@ hash, records commands + exit codes + discovery counts, and fails on zero tests/
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-001 [P0] Independently recompute the census; assert all sources exist and all targets are unique and absent
-- [ ] CHK-002 [P0] Assert the mapping is bijective and every candidate has exactly one classification (no unknowns)
-- [ ] CHK-003 [P0] Assert batches are dependency-closed; hash the map together with BASE
+- [ ] CHK-001 [P0] Independently recompute the census; assert each rename entry is pending (source exists, target unique and absent) or already-applied on v4 (source absent, target present) — never fail an already-applied entry as a missing source
+- [ ] CHK-002 [P0] Assert every candidate has exactly one classification (no unknowns), rename entries carry a pending/already-applied disposition, and `.codex/prompts/*` is classified `generated`
+- [ ] CHK-003 [P0] Assert batches are dependency-closed and exclude already-applied surfaces; hash the map together with the current-tip BASE
+- [ ] CHK-012 [P1] Assert the 2 `.codex/prompts/` snake regressions (`agent_router.md`, `goal_opencode.md`) are flagged for a `sync-prompts.cjs` producer fix, not enqueued for a manual rename
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

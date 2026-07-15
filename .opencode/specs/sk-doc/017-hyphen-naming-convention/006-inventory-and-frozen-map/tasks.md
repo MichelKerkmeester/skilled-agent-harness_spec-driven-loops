@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/006-inventory-and-frozen-map"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Tasks authored for the 017 phased tree"
-    next_safe_action: "Execute this phase on the pinned worktree when picked up"
+    recent_action: "Reconciled to v4 (current-tip BASE, pending/already-applied, .codex generated)"
+    next_safe_action: "Pin BASE to current tip, reconcile already-applied, classify .codex"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -21,6 +21,8 @@ _memory:
     answered_questions: []
 ---
 # Tasks: Inventory and frozen rename map
+
+> **RECONCILED — v4 reconciliation (2026-07-15).** BASE re-pins to the current migration tip (not the authoring SHA); rename entries carry a pending vs already-applied disposition (v4 already landed the sk-git kebab pilot); the generated `.codex/prompts/` surface is classified `generated` (fix at the `sync-prompts.cjs` producer). See spec.md's reconciliation note and the packet's v4-reconciliation-inventory.md.
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -45,20 +47,21 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 A full repo inventory (recomputed independently of 000) with every exemption applied
-- [ ] T003 A bijective source->target rename map: every source exists, every target is unique and absent
-- [ ] T004 A complete classification: every candidate is exactly one of rename/exempt/frozen/generated/tool-mandated; no "unknown"
-- [ ] T005 Partition into dependency-closed batches (reference-graph SCCs), hashed together with BASE
+- [ ] T002 A full repo inventory (recomputed independently of 000) with every exemption applied, taken against the current migration tip
+- [ ] T003 A source->target rename map where each entry is pending (source exists, target unique and absent) or already-applied on v4 (source absent, target present)
+- [ ] T004 A complete classification: every candidate is exactly one of rename/exempt/frozen/generated/tool-mandated; no "unknown"; rename entries record a pending/already-applied disposition
+- [ ] T005 Classify the generated `.codex/prompts/` surface as `generated` (fix at the `sync-prompts.cjs` producer, never hand-rename); flag the 2 snake regressions (`agent_router.md`, `goal_opencode.md`) for a producer fix
+- [ ] T006 Partition into dependency-closed batches (reference-graph SCCs) that exclude already-applied surfaces, hashed together with the current-tip BASE
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Verify: The inventory counts only in-scope names with every exemption applied — Vendored/.py/package-dir/generated/tool-mandated names are excluded
-- [ ] T007 Verify: The rename map is bijective — Every source exists; every target is unique and currently absent
-- [ ] T008 Verify: Every candidate has exactly one classification with no "unknown" bucket — The classification report has 0 un-classified candidates
-- [ ] T009 Verify: Batches are dependency-closed (reference-graph SCCs) — No batch references a rename in another un-landed batch
-- [ ] T010 Verify: The map is hashed together with BASE for reproducibility — A stored digest binds the map to the exact BASE SHA
+- [ ] T007 Verify: The inventory counts only in-scope names with every exemption applied — Vendored/.py/package-dir/generated/tool-mandated names are excluded
+- [ ] T008 Verify: Each rename entry is pending or already-applied — pending entries have source present + target absent; already-applied entries (v4's sk-git pilot) have source absent + target present, recorded as such, never flagged as missing sources
+- [ ] T009 Verify: Every candidate has exactly one classification with no "unknown" bucket — 0 un-classified candidates; `.codex/prompts/*` classified `generated`
+- [ ] T010 Verify: Batches are dependency-closed (reference-graph SCCs) and exclude already-applied surfaces — No batch references a rename in another un-landed batch
+- [ ] T011 Verify: The map is hashed together with the current-tip BASE for reproducibility — A stored digest binds the map to the current-tip BASE SHA
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

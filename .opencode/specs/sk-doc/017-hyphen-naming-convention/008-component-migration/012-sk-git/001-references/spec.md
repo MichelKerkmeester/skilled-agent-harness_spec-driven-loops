@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-git references (017 phase 008/012/001)"
-description: "The sk-git reference surface has a historical underscore-to-hyphen rename map and stale path pointers. This phase closes the reference-file rename and link graph while preserving the program's filesystem-only scope and exemption boundary."
+description: "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm zero underscore-bearing reference paths remain and every active pointer resolves, adopting v4's kebab names as the baseline."
 trigger_phrases:
   - "sk-git references kebab-case"
   - "017 sk-git reference rename"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/008-component-migration/012-sk-git/001-references"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored the references phase from the sk-git path history and live pointer inventory"
-    next_safe_action: "Execute the references rename map and pointer closure on the pinned worktree"
+    recent_action: "Reconciled to verify-only after v4 committed the sk-git kebab migration"
+    next_safe_action: "Verify the references surface is already kebab on v4 and all pointers resolve"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/SKILL.md"
@@ -33,6 +33,8 @@ _memory:
 
 > Phase adjacency under the sk-git component parent: predecessor 008-component-migration/011-mcp-code-mode; successor 002-assets. The siblings are independently scoped; the adjacency is an execution ordering hint for the component rollup.
 
+> **SUPERSEDED — VERIFY-ONLY (v4 reconciliation, 2026-07-15).** Concurrent v4 work already executed this rename set (committed on `skilled/v4.0.0.0`); the live sk-git reference surface is fully kebab-case with zero underscore-bearing paths. This phase performs **no rename** — it VERIFIES the completed state (the nine targets exist, no source spelling survives in any active pointer, every link resolves) and adopts v4's kebab names as the baseline. The map below is retained as the verification reference. Rationale and full inventory: the packet's v4-reconciliation-inventory.md.
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
@@ -50,19 +52,19 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The reference surface's source history contains nine snake_case filenames: commit_workflows.md, continuous_integration.md, finish_workflows.md, github_mcp_integration.md, gitkraken_mcp_integration.md, large_reorg_playbook.md, quick_reference.md, shared_patterns.md, and worktree_workflows.md. The live checkout already contains their hyphenated targets from a prior pre-adoption change, but active SKILL.md and asset pointers still expose several source spellings. The execution phase must therefore use a semantic source-to-target map and close the entire pointer graph, recording already-compliant targets as such when the pinned baseline contains them.
+The reference surface's source history contains nine snake_case filenames: commit_workflows.md, continuous_integration.md, finish_workflows.md, github_mcp_integration.md, gitkraken_mcp_integration.md, large_reorg_playbook.md, quick_reference.md, shared_patterns.md, and worktree_workflows.md. **Concurrent v4 work has now committed all nine renames** (the "hyphen-case pilot", made authoritative in AGENTS.md), so the live checkout contains only the hyphenated targets and zero source spellings. This phase therefore verifies — rather than executes — the completed rename: it confirms each target exists, no active SKILL.md/asset/router pointer retains a source spelling, and every link resolves.
 
-The purpose is to leave sk-git/references/ addressable only through kebab-case filesystem paths, with every active link, router entry, table entry, and path-valued pointer updated in the same dependency-closed change. The phase does not alter code identifiers, data keys, frontmatter fields, or prose that is not a path.
+The purpose is to prove sk-git/references/ is addressable only through kebab-case filesystem paths, with every active link, router entry, table entry, and path-valued pointer already resolving to a kebab target. The phase performs no rename and does not alter code identifiers, data keys, frontmatter fields, or prose that is not a path. It must NOT reverse any of v4's already-migrated paths.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- Apply the following semantic map when the source names are present: commit_workflows.md -> commit-workflows.md; continuous_integration.md -> continuous-integration.md; finish_workflows.md -> finish-workflows.md; github_mcp_integration.md -> github-mcp-integration.md; gitkraken_mcp_integration.md -> gitkraken-mcp-integration.md; large_reorg_playbook.md -> large-reorg-playbook.md; quick_reference.md -> quick-reference.md; shared_patterns.md -> shared-patterns.md; worktree_workflows.md -> worktree-workflows.md.
-- Update path references in SKILL.md, README.md, the reference files, and any tracked sk-git consumer that points at these files, including the asset checklist's reference links.
-- Preserve file contents, executable or symlink modes if encountered, Git rename history, and the reference document's frontmatter fields and values except for path-valued references.
-- Record an explicit no-op disposition for a source name that is absent because its target already exists at the pinned baseline; do not silently omit it from the map.
+- Verify the following semantic map is fully applied on v4 (each target exists, each source is absent): commit_workflows.md -> commit-workflows.md; continuous_integration.md -> continuous-integration.md; finish_workflows.md -> finish-workflows.md; github_mcp_integration.md -> github-mcp-integration.md; gitkraken_mcp_integration.md -> gitkraken-mcp-integration.md; large_reorg_playbook.md -> large-reorg-playbook.md; quick_reference.md -> quick-reference.md; shared_patterns.md -> shared-patterns.md; worktree_workflows.md -> worktree-workflows.md.
+- Confirm path references in SKILL.md, README.md, the reference files, and any tracked sk-git consumer resolve to the kebab targets — no active pointer retains a source spelling.
+- Confirm Git rename history is preserved for v4's renames (R-status, not delete+add) and that no exempt name, key, or frontmatter field was altered by the migration.
+- Adopt v4's kebab names as the baseline; do NOT re-rename or reverse any path.
 
 ### Out of Scope
 - Files under assets/, manual-testing-playbook/, benchmark/, or changelog/; their child phases own those surfaces.
@@ -73,10 +75,10 @@ The purpose is to leave sk-git/references/ addressable only through kebab-case f
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skills/sk-git/references/*.md | Rename/Modify | Apply the nine-entry source-to-target map and repair internal links. |
-| .opencode/skills/sk-git/SKILL.md | Modify | Replace reference path pointers and router/resource table paths. |
-| .opencode/skills/sk-git/README.md | Modify | Replace reference path pointers and verification commands. |
-| .opencode/skills/sk-git/assets/worktree-checklist.md | Modify | Repair links into references/. |
+| .opencode/skills/sk-git/references/*.md | Verify | Confirm the nine kebab targets exist and no source name survives (v4 renamed them). |
+| .opencode/skills/sk-git/SKILL.md | Verify | Confirm reference path pointers and router/resource table paths resolve to kebab targets. |
+| .opencode/skills/sk-git/README.md | Verify | Confirm reference path pointers and verification commands resolve to kebab targets. |
+| .opencode/skills/sk-git/assets/worktree-checklist.md | Verify | Confirm links into references/ resolve to kebab targets. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->

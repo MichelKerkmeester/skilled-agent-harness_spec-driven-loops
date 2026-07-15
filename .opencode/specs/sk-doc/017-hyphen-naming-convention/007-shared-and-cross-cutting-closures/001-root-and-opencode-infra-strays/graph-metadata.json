@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Root-level and `.opencode` infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed filesystem-name contract before downstream component work consumes them.",
     "created_at": "2026-07-14T15:16:51Z",
-    "last_save_at": "2026-07-14T17:41:15.460Z",
+    "last_save_at": "2026-07-15T05:27:31.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:144dc3010d3d76c83255654028044a48f70dba4e12b682cfb68ea63a99494ba2",
+    "source_fingerprint": "sha256:127ba2451052315cbfde322d49891fe659d3c0b9d6ee63c98492249f691a3766",
     "source_doc_hashes": {
-      "spec.md": "d0895585143e1dffe8bb4ae25c744cd0788cd42002d17af04293cb3a7931d40b",
+      "spec.md": "0882c236d5e6edda795ec3b4fd5448a12c8541440c08f511e4d3ce36d537c6fb",
       "plan.md": "4b4a896fcda73d956b5d7c9198492bf99661d89419ae934eee21c4636bec73b6",
       "tasks.md": "2115bc448a26d4d5ecd4ab0e7013e91ce99087e23267b27edeac085653ef12ba",
       "checklist.md": "1087bbe5cb9c1ec6cee76e139e5fc71f566a803e04bef23f71595a3e1079c1c5"

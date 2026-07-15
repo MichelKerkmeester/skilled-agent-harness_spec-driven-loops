@@ -68,6 +68,12 @@
         "source": "derived"
       },
       {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "1. METADATA",
         "kind": "heading",
         "path": "spec.md",
@@ -84,25 +90,19 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Out of Scope",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-git surface needs a scoped kebab-case migration plan that covers its references, assets, manual playbook, benchmark artifacts, changelog evidence, and final naming gate without expanding into code or other skills.",
     "created_at": "2026-07-14T15:17:03Z",
-    "last_save_at": "2026-07-14T18:17:05.586Z",
+    "last_save_at": "2026-07-15T05:19:50.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d2b82b49d9591f29ff751ff1bbbd15948473d6bd63506ca0bd6bef6a8d16d652",
+    "source_fingerprint": "sha256:3479c5bd12275d00c097b355778414a2fb497dcdb22f67cd989a03a505f7e9fd",
     "source_doc_hashes": {
-      "spec.md": "dca25bbdaef04bd849ba55b3b60bea9b0466e972517dd21a5b8bb9a88028410b"
+      "spec.md": "a90721599c2ad31c191a5fc736abe47f7fdadec3e40bb322063054a3d3418ddf"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -38,12 +38,19 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -117,8 +124,14 @@
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "pending",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -177,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Before any rename, the in-scope surface must be frozen into a bijective, fully-classified rename map partitioned by dependency closure. Every candidate must be classified exactly once (rename/exempt/frozen/generated/tool-mandated) with no 'unknown' bucket, and the map hashed with BASE so execution is reproducible.",
+    "causal_summary": "Before any rename, the in-scope surface must be frozen into a fully-classified rename map partitioned by dependency closure, pinned to the CURRENT migration tip (not the authoring SHA). Every candidate is classified exactly once (rename/exempt/frozen/generated/tool-mandated) with no 'unknown' bucket; rename entries carry a pending vs already-applied disposition because concurrent v4 work has landed part of the surface (the sk-git kebab pilot). The map is hashed with BASE so execution is reproducible, and the generated .codex/prompts surface is in scope, classified generated.",
     "created_at": "2026-07-13T14:34:05.529Z",
-    "last_save_at": "2026-07-15T03:47:06.279Z",
+    "last_save_at": "2026-07-15T05:27:31.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,12 +201,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:4dd63e1964bf05adb4c7f17a23c0f6c61de875842f449d43ecb147be4aa5495f",
+    "source_fingerprint": "sha256:8b5499f83dd099817c2e2d8f9d09a55464c30a1e3f8867a2e226bfbf81e86dcf",
     "source_doc_hashes": {
-      "spec.md": "e9d51761ca45f6d332c0a136041ec7571ab1944a9406b509420e7815eab52588",
-      "plan.md": "b5ac764a60ffcc24968884ea52a37f1ee286cbb4590aae06a17031b5cef31d12",
-      "tasks.md": "d0f71fd942ed26855f5bad0ee9f489f303dc9e2911e86494457829957b63cd53",
-      "checklist.md": "453340abaaa50578b45368d980d9ccff7f895d341caff48e9df06c9e26df8930"
+      "spec.md": "2813d6852f0e254906711cb83ef722f684869e689db99799c2c425d2022ac113",
+      "plan.md": "85ec25790000a8c8e576eba9743108ff74de863966ceb24385c96834c3577e32",
+      "tasks.md": "0df6e50ff80f758259a36db7ce2897753d49655bcf3098fed18cac3a035a522c",
+      "checklist.md": "738edff143c20b6f3988547df9e6b3ba06e8eadba229fd58d36a061968456d39"
     },
     "last_active_child_id": null,
     "last_active_at": null

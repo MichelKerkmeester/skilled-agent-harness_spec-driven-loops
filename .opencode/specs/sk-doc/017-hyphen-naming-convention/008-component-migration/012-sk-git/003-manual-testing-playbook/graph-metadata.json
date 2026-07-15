@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-git manual-testing-playbook tree has seven historical underscore category directories and 41 underscore scenario filenames, plus a root index with stale path pointers. This phase renames that tree to kebab-case and preserves scenario identity and discoverability.",
+    "causal_summary": "SUPERSEDED by concurrent v4 work, which already renamed the sk-git manual-testing-playbook tree to kebab-case (committed on skilled/v4). This phase is now VERIFY-ONLY: confirm the seven category dirs and scenario files are kebab, the GIT-001..041 identities are intact, and every index/link resolves. Re-verify the entry count against v4's actual tree (v4 release evidence = 42 files / 8 dirs vs the 49-entry authoring map).",
     "created_at": "2026-07-14T15:18:28Z",
-    "last_save_at": "2026-07-14T18:17:05.965Z",
+    "last_save_at": "2026-07-15T05:19:49.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:4c8bdbbebfeb01b06891471582789102ad04c5205fd2f034b90e470395530abb",
+    "source_fingerprint": "sha256:2d6396aa1cf7dbd26c6871c31eae1ff1397e7f741942ad7db3544c4a7cd7edf8",
     "source_doc_hashes": {
-      "spec.md": "5e257a2ec154d5a80198f612133796bdfe992c88925f48fc6cacdd56ba27b2cf",
-      "plan.md": "6d0d95aafad5a20ff381e36d71b79aa4ebb9c4efd8e64b8ec3759f179f0655dd",
-      "tasks.md": "3859e4dd24f1bac5d1dd7fc99d9e95a952f07ef94a1aabb34f00a4630d0e6189",
-      "checklist.md": "f99c2c0886584a44f90439cfe88e32e2ccce31d7d60d5e17bb06d76db790aefe"
+      "spec.md": "7e1a2000f7fce7155fcc0c62986df8b3d7db9785aeb3e2e0731e3a97a711c2cd",
+      "plan.md": "6f4cfd1cb519b5a8fc659bb825770d6d639c4ca70fe24b5cba4d10780b9a13d0",
+      "tasks.md": "8a4acb74d858d5a2fa58a8a1c3ff5876588fe5ac0ec38b197ef1136b3e621ba0",
+      "checklist.md": "7ba4a274d2231d3671303896aa8c273f35b36a0b96d0d21de8f3885bef12273f"
     },
     "last_active_child_id": null,
     "last_active_at": null

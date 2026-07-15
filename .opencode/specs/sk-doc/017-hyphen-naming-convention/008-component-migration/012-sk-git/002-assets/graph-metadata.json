@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-git asset surface has three historical underscore-to-hyphen file renames and lingering asset pointers. This phase closes the asset/template rename and all links to the resulting kebab-case files without touching tool-mandated names or asset content contracts.",
+    "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the three sk-git asset renames (committed on skilled/v4); the live asset surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm the three kebab targets exist, no source spelling survives in any active pointer, and template content contracts are intact.",
     "created_at": "2026-07-14T15:18:27Z",
-    "last_save_at": "2026-07-14T18:17:05.837Z",
+    "last_save_at": "2026-07-15T05:19:49.792Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e3557dec03f3952aed074b530ea4056866cd1c56c7115befd7182578ff6dd7c2",
+    "source_fingerprint": "sha256:6c97bf0dfff5199e6c5d53e6a0cefa5f3664d2659b4ad20d90cf79fb46b1451d",
     "source_doc_hashes": {
-      "spec.md": "ab1c0b2baabd72315c5ad0bba3b3432bf39edca19b2a01180aa919934050c6b4",
-      "plan.md": "ae1daf3c6e7200b8fb7df9388865b459ea8f38f81381725b5a8ff99d869a8184",
-      "tasks.md": "beaced5cb865273bfe82c1084611f0a23b2cfd25706e731282abd0d21595ad01",
-      "checklist.md": "840d861dfdff44c2857358caa5501e3705c7dce8aa79919807e2ad7c571b42c8"
+      "spec.md": "bfdcfe3e55bdf86cbc909f9a07ec8ff1eb24f561af07a4c614fadc5c051bae92",
+      "plan.md": "94c9869dc2393b3fc9270ccc6e577c4319503f19ee857421085915ee080a5e4a",
+      "tasks.md": "c473b3f76ba5bdd1857cfa6486241b48ecc56b77815029faceb4f26454827cc3",
+      "checklist.md": "0725c6a613d9b340835059a99d1fa63afb790ca96a20e1d38a24bf2e71ddc2d7"
     },
     "last_active_child_id": null,
     "last_active_at": null

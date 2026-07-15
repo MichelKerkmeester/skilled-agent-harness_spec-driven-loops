@@ -105,6 +105,12 @@
         "source": "derived"
       },
       {
+        "name": "Confirm Git",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -119,12 +125,6 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "every",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-git reference surface has a historical underscore-to-hyphen rename map and stale path pointers. This phase closes the reference-file rename and link graph while preserving the program's filesystem-only scope and exemption boundary.",
+    "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm zero underscore-bearing reference paths remain and every active pointer resolves, adopting v4's kebab names as the baseline.",
     "created_at": "2026-07-14T15:18:26Z",
-    "last_save_at": "2026-07-14T18:17:05.707Z",
+    "last_save_at": "2026-07-15T05:19:49.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:46cd39973cad312be7d307af74bc4988a2bc81b26f55086eb09d23799d49a012",
+    "source_fingerprint": "sha256:4382feefa048193a0a4d033fbd83f9316047e10f7144da293871d97466d073f2",
     "source_doc_hashes": {
-      "spec.md": "57a5e9ea8b3b9feb11339dae2fbd3fddcfb48b9ba5493d49ea4d0306927b1b1d",
-      "plan.md": "4f8cfb10cc642177ebf4c3f51f5dc8e6cdd16bc823563ea53caf86a8969484af",
-      "tasks.md": "008755e0bd299351168fb56c252c595db19daef14162637056ff29eb1322c8d4",
-      "checklist.md": "88c37f0d62577c3aa9203e559c6bcec9afce684358ea5c23505cf66ddc2cbd18"
+      "spec.md": "cb953ce6f7a0c82fe87f3f832eb1fe26773680e1f0c691babe84f22d69a871ae",
+      "plan.md": "7558a41e6c7dc33796014ced5ca93724ab0b1d4a6efefb6587df758223a6caba",
+      "tasks.md": "a49bd1d8b47c8011ea39428ed9c5efb6f440dfce481b4212e02120c4cb64b086",
+      "checklist.md": "5b27ad3974cc45c8423dfabb4807977b4d39b6d31faffddd0896e8e16b083a79"
     },
     "last_active_child_id": null,
     "last_active_at": null

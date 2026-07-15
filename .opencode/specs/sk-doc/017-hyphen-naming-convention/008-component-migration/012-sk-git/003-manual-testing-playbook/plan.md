@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored the manual-playbook execution plan and discovery-parity evidence path"
-    next_safe_action: "Execute the 49-entry playbook map against the pinned baseline"
+    next_safe_action: "Verify the manual-playbook tree is already kebab on v4 and re-count against its actual entries"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/manual-testing-playbook/"
@@ -25,6 +25,8 @@ _memory:
     answered_questions: []
 ---
 # Implementation Plan: sk-git manual testing playbook
+
+> **SUPERSEDED — VERIFY-ONLY (v4 reconciliation, 2026-07-15).** Concurrent v4 work already committed this rename (on `skilled/v4.0.0.0`). The steps below are now the VERIFICATION procedure for the completed kebab state — not rename execution. Do NOT re-run or reverse any rename; adopt v4's kebab names as the baseline. Re-count the 49-entry map against v4's actual tree (42 files / 8 dirs). See the packet's v4-reconciliation-inventory.md.
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
