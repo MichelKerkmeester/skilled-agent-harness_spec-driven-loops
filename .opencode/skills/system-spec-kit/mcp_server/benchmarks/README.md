@@ -115,7 +115,7 @@ The flow assumes the bench has already completed inside a spec packet.
    9. Reproducibility
    10. Related resources
 6. **Add a row to the table in Section 2 of this README** with the date, folder link, winner, status, and spec-packet path.
-7. **Validate** with `python3 .opencode/skills/sk-doc/scripts/validate_document.py <file>` for the report and this README. Fix any blocking issues.
+7. **Validate** with `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file>` for the report and this README. Fix any blocking issues.
 8. **Disambiguate same-day runs** by suffixing a topic slug: `benchmark-<YYYY-MM-DD>-<slug>/`. Otherwise keep the pure-date name.
 
 ---
@@ -129,7 +129,7 @@ A re-run that does not change the headline does not need a new dated folder. Upd
 3. **If the headline flips**, treat the re-run as a new bench. Open a new spec packet, ship it, and promote a new `benchmark-<YYYY-MM-DD>/` folder per Section 5.
 4. **CSV and JSONL artifacts** should be appended or replaced to match the new evidence. Do not delete historical rows; mark them with a `Re-run` note in the report.
 
-The bake-off promotion flow is documented in Section 6 of `.opencode/skills/sk-doc/create-benchmark/references/shared/README.md`.
+The bake-off promotion flow is documented in `.opencode/skills/sk-doc/create-benchmark/SKILL.md` (the MCP promotion family, sections 4 through 8: authoring workflow, report contract, naming, gates, and success criteria).
 
 ---
 

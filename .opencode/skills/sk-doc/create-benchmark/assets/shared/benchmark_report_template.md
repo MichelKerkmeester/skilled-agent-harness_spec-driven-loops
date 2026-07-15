@@ -323,7 +323,7 @@ Expected outcome: {{EXPECTED_OUTCOME_LINE}}.
 | [`results.csv`](./results.csv) | Raw aggregate scores, one row per candidate. |
 | [`per-probe.jsonl`](./per-probe.jsonl) | Per-probe rows. |
 | [`runtime-measurements.md`](./runtime-measurements.md) | RAM, residency, raw inference latency for the final candidates. |
-| [`../README.md`](../../README.md) | Index of all `{{SKILL_NAME}}` benchmarks. |
+| [`../README.md`](../README.md) | Index of all `{{SKILL_NAME}}` benchmarks. |
 | `.opencode/skills/sk-doc/create-benchmark/SKILL.md` | Convention these files follow. |
 
 ### Authoritative spec packet
