@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: bounded command matrix — driver and leaf executor variance across the scenario suite"
 description: "Runs both GPT drivers across all command scenarios plus eligible leaf sentinels with explicit skips and contested-cell reruns, building or verifying the alignment fan-out wiring that is not shipped today."
-status: planned
+status: in-progress
 trigger_phrases:
   - "bounded command matrix"
   - "model matrix executor variance"
@@ -12,11 +12,12 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/008-bounded-command-matrix"
-    last_updated_at: "2026-07-14T20:45:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded the matrix child measuring executor variance across scenarios"
-    next_safe_action: "Build or verify alignment fan-out wiring before running matrix cells"
-    blockers: []
+    last_updated_at: "2026-07-15T11:58:18Z"
+    last_updated_by: "codex"
+    recent_action: "Built bounded scheduler, 52-cell manifest, and hermetic reconciliation gate"
+    next_safe_action: "Run operator-approved live driver cells, then contested reruns"
+    blockers:
+      - "Live capture requires operator green-light"
     key_files:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
@@ -36,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In progress; live capture deferred |
 | **Created** | 2026-07-14 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
@@ -44,7 +45,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The benchmark should measure whether command adherence is stable across executors, without a full cross-product. This phase runs a bounded matrix of two GPT drivers over the scenario suite plus a few leaf sentinels, with explicit skips and contested reruns, and must build or verify alignment fan-out wiring since it is not shipped today.
+The benchmark should measure whether command adherence is stable across executors, without a full cross-product. The bounded scheduler and manifest now exist and reconcile without a live model run. Driver capture, leaf capture, and any evidence-driven contested reruns remain deferred until an operator gives the green light.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -54,7 +55,7 @@ The benchmark should measure whether command adherence is stable across executor
 - Run the scenario suite across Claude baseline, one high-effort GPT driver, and one fast GPT driver.
 - Add a thin scheduler that invokes the runner once per manifest cell, restores fixtures, and records explicit skips.
 - Add leaf sentinels over the workflow scenarios that expose an executor choice.
-- Build or verify any required alignment fan-out wiring within this packet.
+- Verify the alignment fan-out wiring state and predeclare leaf skips when the wiring is absent.
 - Freeze the exact matrix assets the launcher phase consumes: `deep-alignment/assets/command_benchmark/command_benchmark_matrix.json` and `deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs`.
 
 **Out of scope:**
@@ -84,7 +85,7 @@ The benchmark should measure whether command adherence is stable across executor
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- Fan-out infrastructure is not shipped, mitigated by building or verifying wiring in this packet.
+- Alignment fan-out is not shipped: `ACTIVE_FANOUT_LOOP_TYPES` contains only `research` and `review`, so the four alignment leaf sentinels remain explicit skips.
 - Matrix cost, mitigated by a bounded cell count and single-sample default.
 - Dependencies: the scenario suite, the runner, and the fan-out runtime.
 <!-- /ANCHOR:risks -->
