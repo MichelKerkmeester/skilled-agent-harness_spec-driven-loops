@@ -256,6 +256,15 @@ def validate(path: Path) -> List[str]:
 # ───────────────────────────────────────────────────────────────
 
 def main(argv: List[str]) -> int:
+    """Validate one or more report files and print a PASS/FAIL line for each.
+
+    Args:
+        argv: Report file paths to check.
+
+    Returns:
+        0 when every report is safe; 1 when any report is unsafe, missing, or no
+        paths were given.
+    """
     if not argv:
         print("usage: validate_report.py <report.html> [more.html ...]", file=sys.stderr)
         return 1

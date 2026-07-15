@@ -44,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "scripts/README.md",
       ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
       ".opencode/skills/sk-doc/create-diff/scripts/validate_report.py",
       ".opencode/skills/sk-doc/create-diff/scripts/test_create_diff.py",
@@ -70,6 +71,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An adversarial review (GPT-5.6 SOL, ultra) of the `create-diff` engine and its redesigned HTML report, independently re-verified against the source, found real defects in three areas: (1) the engine decodes text with `errors=\"replace\"` and only sniffs a NUL byte for binary, so two files differing only in invalid bytes both become `�` and are reported identical at \"full fidelity\" — silent difference-erasure; (2) the diff line model splits on `\"\\n\"`, so empty files and trailing-newline-only differences produce phantom or mislabelled lines; (3) `validatereport.py` regex-matches tags and only",
     "created_at": "2026-07-15T15:35:12.038Z",
-    "last_save_at": "2026-07-15T17:43:15.909Z",
+    "last_save_at": "2026-07-15T18:47:50.396Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bdab65845831a8d7e3dc6ff55b8691ffc88f346dc703ffe15bbf8f2262e59528",
+    "source_fingerprint": "sha256:a4343d1b0d8dadae57e6bdc672ea7b910ff5a5a8dd9e868b50e77990949521cd",
     "source_doc_hashes": {
-      "spec.md": "38dc6f90bbda5a004578f140ddc5d8ce2833378b4f9992e82537429969fcc38e",
-      "plan.md": "65efee978866f7b36b0fb4b34a3b9c8f41d8cec71dd3ed532a339a8a87adde05",
-      "tasks.md": "cd210bfd7cd9bde4835880cd14b22e67ec156f184edf7cbc3aaf1c4ef74e9935",
-      "checklist.md": "0c87c1145ef4abea224927b9e7ced4d6f420e5f2e7279f17931a4d77706236c8",
-      "implementation-summary.md": "01629447477537c0938f22f37bdc1b2b4f394f2162c1e4e2cb1485021f6222c1"
+      "spec.md": "6bbcef003a4c51e3fe950f585d2da0a6fef503344547d3ffca57f4e319341afe",
+      "plan.md": "8715126057b50da2a063a4896761ae2133f6037f76398851d46d90b12b3e6af4",
+      "tasks.md": "42545f8e201413cea4615b8e6677016833d9613bd491f4727b0b0de165b57a05",
+      "checklist.md": "757abb3f2edf641b31add186c8371814caa5b234881115bd0129d1fa209cb61c",
+      "implementation-summary.md": "5f1c8febc5e91e2d0bed6af0f256c3d3fd1dff4258609071fdaafbcf01145ccb"
     },
     "last_active_child_id": null,
     "last_active_at": null

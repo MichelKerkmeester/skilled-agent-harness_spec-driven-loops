@@ -41,7 +41,7 @@ _CANON_CSP = ("default-src 'none'; style-src 'unsafe-inline'; img-src data:; "
 # 1. TEST HELPERS
 # ───────────────────────────────────────────────────────────────
 
-def _write(tmp: Path, name: str, data, *, binary: bool = False) -> Path:
+def _write(tmp: Path, name: str, data: str | bytes, *, binary: bool = False) -> Path:
     p = tmp / name
     if binary:
         p.write_bytes(data)

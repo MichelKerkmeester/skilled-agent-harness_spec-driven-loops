@@ -11,10 +11,10 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-create-diff-mode/008-fidelity-safety-a11y-hardening"
-    last_updated_at: "2026-07-15T17:38:46Z"
+    last_updated_at: "2026-07-15T18:46:00Z"
     last_updated_by: "claude"
-    recent_action: "Rewrote validator to an allowlist; added 39-test suite; reconciled all evidence"
-    next_safe_action: "Make the scoped commit and push to the v4 branch"
+    recent_action: "Completed P1 code-opencode alignment; added scripts/README; wired 009 successor"
+    next_safe_action: "Commit the alignment + command work and push to v4"
     blockers: []
     key_files:
       - "spec.md"
@@ -63,6 +63,7 @@ Fixes for the reconciled review findings, each locked by a checked-in test.
 | `scripts/create_diff.py` | Modify | Strict decode (refuse undecodable UTF-8 instead of `errors="replace"`); unknown-extension fidelity warning; logical-line model (`_logical_lines`) so empty files and trailing newlines stop producing phantom/spurious lines; legend contrast rule `.legend mark.wd{color:var(--text)}`; side-by-side `.sxs{min-width:60rem}` plus a `role="region"`/`aria-label`/`tabindex="0"`/`:focus-visible` scroll wrapper. |
 | `scripts/validate_report.py` | Rewrite | Real safety gate, an **allowlist** for the renderer's exact HTML dialect: parses with `html.parser`, permits only the emitter's known tags and attributes (any other element/attribute fails), asserts the exact CSP directive set (rejecting non-ASCII directive smuggling and a mis-placed or duplicated CSP), and requires every URL-bearing attribute to be a local `#` fragment — so `@import`/non-`data:` `url()`, remote/`data:`/`javascript:` references, and live handlers all fail. |
 | `scripts/test_create_diff.py` | Create | 39-test stdlib regression suite: one-hazard-per-case allowlist conformance, four-report conformance, CLI exit-3/exit-0 subprocess tests, plus REQ-001..005 and zero-JS/CSP/escaping/byte-reproducibility/pairing/collapse. |
+| `scripts/README.md` | Create | Code-navigation README for the scripts directory (overview, quick start, structure, CLI entrypoints deferring to `../references/cli-reference.md`, exit-code and report-contract tables). |
 | `references/capabilities-and-fidelity.md` | Modify | States strict-decode refusal, the unknown-extension warning, and the logical-line model. |
 | `references/accessibility-contract.md` | Modify | Accurate relative-unit wording; keyboard-operable scoped-scroll description. |
 | `../006-opencode-skill-and-accessibility/implementation-summary.md` | Modify | Corrected warnings count (8), added the WCAG/scroll remediation note, cross-linked 008. |
@@ -105,7 +106,7 @@ Each finding was treated as a hypothesis and re-verified against the source befo
 | Scoped scroll a11y (REQ-005) | PASS: `.sxs{min-width:60rem}` + `role="region"`/`aria-label`/`tabindex="0"`/`:focus-visible` present in the regenerated report. |
 | Byte-reproducibility + zero-JS | PASS: reports byte-identical across runs under fixed `SOURCE_DATE_EPOCH`; `scripts=0` on all four. |
 | Comment hygiene | PASS: 0 ephemeral artifact labels across all three scripts. |
-| code-opencode alignment | PASS: `# COMPONENT:` header + numbered section dividers added to all three scripts; `py_compile` and the 39-test suite still green after. |
+| code-opencode alignment | PASS: full P0 structural (`# COMPONENT:` header, numbered section dividers, shebang, snake_case/UPPER_SNAKE naming) plus P1 type hints on every signature and Google-style docstrings on the public functions; one dead `import` removed; verified by an adversarial code-opencode audit (8 confirmed findings fixed, 10 false positives correctly rejected); `py_compile` and the 39-test suite green after; `scripts/README.md` added. |
 | Canon gates | PASS: `package_skill.py --check` PASS with 8 intentional advisories (6 × 017 hyphen-naming on reference/fixture filenames + 2 × the diff-input fixtures carry no spec-doc frontmatter by design); `parent-skill-check.cjs` all hard invariants, 0 warnings (12 modes, create-diff registered); `check-frontmatter-versions.sh` clean (2823/2842 ok, rest skip-no-frontmatter). |
 | Strict recursive validation | PASS: `validate.sh --recursive --strict` on 999 — 008, the parent, and phases 002–007 all Errors 0 / Warnings 0; the sole remaining tree warning is a pre-existing continuity-freshness lag in sibling 001-research (out of scope, untouched). |
 | Phase-chain integration | PASS: added 008 parent back-reference + predecessor (007), and 007 successor → 008, so `PHASE_LINKS` on the parent is clean. |

@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-doc/999-create-diff-mode/009-create-diff-command",
+  "description": "The `create-diff` mode ships a working engine (`creatediff.py`) and validator (`validatereport.py`), is registered in the sk-doc hub, and routes",
+  "keywords": [
+    "create-diff",
+    "mode",
+    "ships",
+    "working",
+    "engine",
+    "creatediff",
+    "validator",
+    "validatereport",
+    "registered",
+    "sk-doc",
+    "hub",
+    "routes"
+  ],
+  "lastUpdated": "2026-07-15T18:41:15.110Z",
+  "specId": "009",
+  "folderSlug": "create-diff-command",
+  "parentChain": [
+    "sk-doc",
+    "999-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 2
+}

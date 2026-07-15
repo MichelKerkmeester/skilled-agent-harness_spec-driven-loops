@@ -1,0 +1,183 @@
+# /create:diff Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/create:diff`: startup questions, setup/status dashboards, and result display. The command router owns asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Phase 0 Verification Display
+
+Run this automatic self-check before setup. This is not a user question.
+
+```text
+SELF-CHECK: Are create-diff packet resources available?
+
+Indicators:
+- `.opencode/skills/sk-doc/create-diff/SKILL.md` is readable
+- `.opencode/skills/sk-doc/create-diff/scripts/create_diff.py` exists
+- `.opencode/skills/sk-doc/create-diff/scripts/validate_report.py` exists
+- `.opencode/skills/sk-doc/create-diff/references/cli-reference.md` is readable
+
+If all indicators are present:
+- create_diff_verified = true
+- Continue to setup
+
+If any indicator is missing or uncertain:
+- Stop before loading workflow YAML
+- Display the hard-block message below
+```
+
+Hard-block message:
+
+```text
+CREATE-DIFF RESOURCES REQUIRED
+
+This command requires the create-diff packet for:
+- Local, Git-free before/after document comparison
+- Baseline snapshot capture and self-contained HTML report rendering
+- Report safety/self-containment validation
+
+Required engine:
+python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py capabilities
+
+Required validator:
+python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py <report.html>
+
+STATUS=FAIL ERROR="create-diff resources unavailable"
+```
+
+## 2. Auto Setup Resolution
+
+For `:auto`, resolve setup using the system auto-mode contract, then load `create_diff_auto.yaml` only when every required field is available.
+
+Resolution tiers:
+
+| Tier | Use When | Output |
+| --- | --- | --- |
+| Tier 1 | `$ARGUMENTS`, flags, pre-bound answers, and defaults resolve all required fields | Persist config and load auto workflow |
+| Tier 2 | One or two required fields remain genuinely ambiguous | Ask one narrow question per missing field |
+| Tier 3 | Required fields remain unresolved | Emit missing-inputs error and do not load YAML |
+
+Pre-bound setup schema:
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  review_mode: automatic
+  target_document: docs/notes/proposal.md
+  before_file: ""
+  after_file: ""
+  report_path: proposal.diff.html
+  view: unified
+  execution_mode: AUTONOMOUS
+```
+
+Default resolution table:
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+| --- | --- | --- | --- | --- |
+| `review_mode` | Yes | marker `review_mode`, `--before`/`--after` pair (implies `explicit-pair`), or a single document target (implies `automatic`) | derive when confidence >=80% | Yes, when ambiguous |
+| `target_document` | Conditional | Positional document path or marker `target_document` (required when `review_mode=automatic`) | none | Yes, when missing in automatic mode |
+| `before_file` | Conditional | `--before` flag or marker `before_file` (required when `review_mode=explicit-pair`) | none | Yes, when missing in explicit-pair mode |
+| `after_file` | Conditional | `--after` flag or marker `after_file` (required when `review_mode=explicit-pair`) | none | Yes, when missing in explicit-pair mode |
+| `report_path` | No | `--report`/marker `report_path`, or engine default | `<document-stem>.diff.html` in the current directory | No |
+| `view` | No | `--view`/marker `view` | `unified` | No |
+| `execution_mode` | Yes | `:auto`, `:confirm`, or marker `execution_mode` | `AUTONOMOUS` under `:auto` | No |
+
+## 3. Consolidated Startup Prompt
+
+Ask one prompt containing only applicable questions. Do not split these questions across turns.
+
+```text
+Before proceeding, please answer:
+
+Q0. Document Under Review (if not provided)
+Which document is being reviewed, and what changed in it?
+Format: workspace-relative path, for example docs/notes/proposal.md.
+Supported: plain text, Markdown, HTML, DOCX, and text-layer PDF.
+
+Q1. Review Mode (if not clear)
+A) Automatic baseline - snapshot the current file now, then compare after an edit is made
+B) Explicit before/after pair - compare a known old file and new file (--before old --after new)
+
+Q2. Report Output Path (if not provided)
+Where should the self-contained HTML report be written?
+Format: workspace-relative `.html` path, for example proposal.diff.html.
+Leave blank to use the engine default `<document-stem>.diff.html`.
+
+Q3. View (if not clear)
+A) Unified (default)
+B) Side-by-side
+
+Q4. Execution Mode (if no :auto/:confirm suffix)
+A) Interactive - confirm at each step
+B) Autonomous - execute without prompts
+
+Reply with answers, for example: docs/notes/proposal.md, A, proposal.diff.html, A, A
+```
+
+Hard stops:
+
+- Do not proceed until all applicable questions are answered.
+- Do not run a comparison without an explicit document target (automatic mode) or an explicit `--before`/`--after` pair (explicit-pair mode).
+- Do not auto-select execution mode without suffix or explicit choice.
+- Do not guess an unknown document path, baseline state, or report path from context, screenshots, or conversation history.
+
+## 4. Setup Dashboard
+
+After parsing setup, display or maintain this dashboard internally before loading YAML.
+
+| Field | Required | Value | Source |
+| --- | --- | --- | --- |
+| `create_diff_verified` | Yes | `[value]` | Phase 0 self-check |
+| `review_mode` | Yes | `[value]` | Q1, derived mode, or pre-bound marker |
+| `target_document` | Conditional | `[value]` | Q0 or `$ARGUMENTS` (automatic mode) |
+| `before_file` | Conditional | `[value]` | `--before` or marker (explicit-pair mode) |
+| `after_file` | Conditional | `[value]` | `--after` or marker (explicit-pair mode) |
+| `report_path` | No | `[value]` | Q2, `--report`, or engine default |
+| `view` | No | `[value]` | Q3 or `--view` |
+| `execution_mode` | Yes | `[value]` | Suffix or Q4 |
+
+Proceed only when every required field (and every conditional field the selected mode makes required) has a value.
+
+## 5. Completion Result Template
+
+```text
+Document Diff Complete
+
+Review Mode: [automatic-baseline | explicit-pair]
+Report: [report-path]
+
+Compared:
+- Automatic: [target-document] (baseline [snapshot-id-or-latest] -> current)
+- Explicit pair: before=[before-file] after=[after-file]
+
+Changes:
+- Added:   [+N]
+- Removed: [-N]
+- Changed: [~N]
+- Possible moves: [N]
+- Fidelity tier: [full | text | text*]
+
+Validation:
+- Command: python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py [report-path]
+- Result: PASS
+
+Output:
+- Single self-contained HTML report (no scripts, no network)
+- Source document unchanged
+
+Next Steps:
+- Open the report to review the before/after changes
+- Re-run compare after further edits, or capture a fresh baseline before the next edit
+
+STATUS=OK PATH=[report-path]
+```
+
+Failure display:
+
+```text
+Document Diff Failed
+
+Error: [error]
+Step: [failed step]
+Exit code: [0 ok | 2 usage | 3 unsupported/limited format | 4 missing baseline | 5 IO/extraction | validator FAIL]
+
+STATUS=FAIL ERROR="[error message]"
+```

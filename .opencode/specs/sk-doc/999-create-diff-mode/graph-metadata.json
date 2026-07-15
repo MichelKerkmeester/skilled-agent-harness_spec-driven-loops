@@ -11,7 +11,8 @@
     "sk-doc/999-create-diff-mode/005-pdf-cli-and-cross-platform-state",
     "sk-doc/999-create-diff-mode/006-opencode-skill-and-accessibility",
     "sk-doc/999-create-diff-mode/007-optional-ocr-adapter",
-    "sk-doc/999-create-diff-mode/008-fidelity-safety-a11y-hardening"
+    "sk-doc/999-create-diff-mode/008-fidelity-safety-a11y-hardening",
+    "sk-doc/999-create-diff-mode/009-create-diff-command"
   ],
   "manual": {
     "depends_on": [],
@@ -98,15 +99,15 @@
     ],
     "causal_summary": "AI-assisted document edits often happen outside a Git repository",
     "created_at": "2026-07-15T09:48:17.080Z",
-    "last_save_at": "2026-07-15T15:35:12.235Z",
+    "last_save_at": "2026-07-15T18:47:50.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f2509fe0c169357e2ca91d6d94a30f6047457f7f9b87377256de3d08862da46c",
+    "source_fingerprint": "sha256:0583c1865f00ebad60aa7916085610d4879ab5ee8a92d75ef1a776261d05bf2f",
     "source_doc_hashes": {
-      "spec.md": "2f0c6bb6341c97212c80b22c1ac01500cb57dbac1d8ab550ecb8677cc8ea0a05"
+      "spec.md": "e385f2b43252f7ad59cb830654ff37681e2c65a9e2e4bd6a7d91c4246596456c"
     },
     "last_active_child_id": "sk-doc/999-create-diff-mode/006-opencode-skill-and-accessibility",
     "last_active_at": "2026-07-15T14:32:10.891Z"

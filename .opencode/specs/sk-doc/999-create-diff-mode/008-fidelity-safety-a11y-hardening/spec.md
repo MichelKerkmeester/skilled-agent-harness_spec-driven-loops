@@ -12,10 +12,10 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-create-diff-mode/008-fidelity-safety-a11y-hardening"
-    last_updated_at: "2026-07-15T17:38:46Z"
+    last_updated_at: "2026-07-15T18:46:00Z"
     last_updated_by: "claude"
-    recent_action: "Rewrote validator to an allowlist; added 39-test suite; reconciled all evidence"
-    next_safe_action: "Make the scoped commit and push to the v4 branch"
+    recent_action: "Completed P1 code-opencode alignment; added scripts/README; wired 009 successor"
+    next_safe_action: "Commit the alignment + command work and push to v4"
     blockers: []
     key_files:
       - "spec.md"
@@ -50,7 +50,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../007-optional-ocr-adapter/spec.md` |
-| **Successor** | None; post-review remediation terminal child |
+| **Successor** | `../009-create-diff-command/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

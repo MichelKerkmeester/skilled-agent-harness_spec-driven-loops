@@ -38,7 +38,6 @@ fallback; 4 missing baseline snapshot; 5 I/O or extraction failure.
 from __future__ import annotations
 
 import argparse
-import base64
 import datetime as _dt
 import hashlib
 import html
@@ -137,6 +136,15 @@ def _looks_binary(path: Path, sample_bytes: int = 8192) -> bool:
 
 
 def detect_format(path: Path) -> str:
+    """Map a file extension to a known format name.
+
+    Args:
+        path: File whose suffix selects the format.
+
+    Returns:
+        A supported format name ("text", "markdown", "html", "docx", "pdf");
+        unknown extensions fall back to "text".
+    """
     fmt = EXTENSION_FORMAT.get(path.suffix.lower())
     if fmt:
         return fmt
@@ -155,6 +163,8 @@ def detect_format(path: Path) -> str:
 
 @dataclass
 class Extraction:
+    """Extracted text plus its format, fidelity tier, warnings, and headings."""
+
     text: str
     fmt: str
     tier: str
@@ -164,7 +174,18 @@ class Extraction:
 
 
 def normalize(text: str, *, strip_trailing_ws: bool = True) -> str:
-    """Canonicalize so incidental encoding differences are not reported as edits."""
+    """Canonicalize so incidental encoding differences are not reported as edits.
+
+    Applies Unicode NFC, normalizes CRLF/CR line endings to LF, and optionally
+    strips trailing whitespace from each line.
+
+    Args:
+        text: Raw extracted text.
+        strip_trailing_ws: When True, remove trailing whitespace per line.
+
+    Returns:
+        The canonicalized text.
+    """
     text = unicodedata.normalize("NFC", text)
     text = text.replace("\r\n", "\n").replace("\r", "\n")
     if strip_trailing_ws:
@@ -220,7 +241,7 @@ class _TextExtractingParser(HTMLParser):
         self._heading_level: Optional[int] = None
         self._heading_buf: List[str] = []
 
-    def handle_starttag(self, tag: str, attrs) -> None:
+    def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]) -> None:
         if tag in ("script", "style"):
             self._skip += 1
             return
@@ -292,7 +313,7 @@ def _extract_docx(path: Path) -> Extraction:
     if body is None:
         body = root
 
-    def paragraph_text(p_el) -> str:
+    def paragraph_text(p_el: ET.Element) -> str:
         buf: List[str] = []
         for node in p_el.iter():
             if node.tag == f"{_W_NS}t":
@@ -303,7 +324,7 @@ def _extract_docx(path: Path) -> Extraction:
                 buf.append("\n")
         return "".join(buf)
 
-    def para_style(p_el) -> str:
+    def para_style(p_el: ET.Element) -> str:
         ppr = p_el.find(f"{_W_NS}pPr")
         if ppr is None:
             return ""
@@ -389,6 +410,19 @@ def _extract_pdf(path: Path) -> Extraction:
 
 
 def extract(path: Path, *, fmt: Optional[str] = None) -> Extraction:
+    """Extract comparable text from a file at the best available fidelity.
+
+    Args:
+        path: File to read.
+        fmt: Force a format name; when None the format is detected from the path.
+
+    Returns:
+        An Extraction carrying the text, format, fidelity tier, and any warnings.
+
+    Raises:
+        CapabilityError: When the file is missing, its format is unsupported, or
+            its content cannot be decoded/extracted at usable fidelity.
+    """
     if not path.exists():
         raise CapabilityError(f"File not found: {path}")
     suffix = path.suffix.lower()
@@ -437,6 +471,8 @@ def extract(path: Path, *, fmt: Optional[str] = None) -> Extraction:
 
 @dataclass
 class Row:
+    """One rendered diff row: its kind, line numbers, and escaped HTML cells."""
+
     kind: str                 # 'context' | 'add' | 'remove' | 'collapse'
     old_no: Optional[int]
     new_no: Optional[int]
@@ -447,6 +483,8 @@ class Row:
 
 @dataclass
 class DiffResult:
+    """A completed line diff: the rows plus aggregate change and line counts."""
+
     rows: List[Row]
     added: int
     removed: int
@@ -522,6 +560,15 @@ def _logical_lines(text: str) -> List[str]:
 
 
 def diff_lines(a_text: str, b_text: str) -> DiffResult:
+    """Compute a line-level diff with inline word highlighting and move detection.
+
+    Args:
+        a_text: Normalized "before" text.
+        b_text: Normalized "after" text.
+
+    Returns:
+        A DiffResult with rendered rows and aggregate add/remove/change counts.
+    """
     a_lines = _logical_lines(a_text)
     b_lines = _logical_lines(b_text)
     sm = SequenceMatcher(a=a_lines, b=b_lines, autojunk=False)
@@ -714,6 +761,20 @@ def _now_iso() -> str:
 def render_report(diff: DiffResult, *, label_before: str, label_after: str,
                   extraction_before: Extraction, extraction_after: Extraction,
                   view: str = "unified", title: str = "Document Diff") -> str:
+    """Render a diff as a self-contained, zero-JavaScript, accessible HTML report.
+
+    Args:
+        diff: The computed line diff to render.
+        label_before: Human label for the "before" version.
+        label_after: Human label for the "after" version.
+        extraction_before: Extraction for the "before" version (source of warnings).
+        extraction_after: Extraction for the "after" version (source of format/tier).
+        view: "unified" or "side-by-side" layout.
+        title: Report title and document title.
+
+    Returns:
+        The complete HTML document as a string.
+    """
     warnings: List[str] = []
     for e in (extraction_before, extraction_after):
         for w in e.warnings:
@@ -804,7 +865,7 @@ def _num(n: Optional[int]) -> str:
     return "" if n is None else str(n)
 
 
-def _hunks(rows: List[Row]):
+def _hunks(rows: List[Row]) -> List[Tuple[str, object]]:
     """Split diff rows into contiguous change hunks separated by collapsed-context gaps.
 
     Returns a list of ('hunk', [rows]) and ('gap', note) segments, so each hunk can carry
@@ -988,6 +1049,18 @@ def _atomic_copy(src: Path, dst: Path) -> None:
 
 
 def capture_snapshot(path: Path, state: Path) -> dict:
+    """Copy a file into the snapshot store as a new baseline and record its manifest.
+
+    Args:
+        path: Source file to snapshot; never mutated.
+        state: State directory root under which snapshots are stored.
+
+    Returns:
+        The manifest entry describing the captured snapshot.
+
+    Raises:
+        CapabilityError: When the source file does not exist.
+    """
     if not path.exists():
         raise CapabilityError(f"Cannot snapshot missing file: {path}")
     digest = _sha256_file(path)
@@ -1030,6 +1103,15 @@ def _write_json(path: Path, data: dict) -> None:
 
 
 def latest_snapshot(path: Path, state: Path) -> Optional[dict]:
+    """Return the most recent snapshot manifest entry for a file, if any.
+
+    Args:
+        path: File whose baseline history is queried.
+        state: State directory root holding the snapshot store.
+
+    Returns:
+        The newest manifest entry, or None when no snapshot exists.
+    """
     manifest = _snap_dir(state, path) / "manifest.json"
     data = _load_manifest(manifest)
     snaps = data.get("snapshots") or []
@@ -1062,7 +1144,15 @@ def _summary_dict(diff: DiffResult, report: Optional[Path], fmt: str, tier: str)
 # 7. COMMAND-LINE INTERFACE
 # ───────────────────────────────────────────────────────────────
 
-def cmd_capabilities(args) -> int:
+def cmd_capabilities(args: argparse.Namespace) -> int:
+    """Print the supported-format matrix and fidelity tiers.
+
+    Args:
+        args: Parsed CLI arguments (honors --json).
+
+    Returns:
+        Process exit code.
+    """
     pdf_kind, _ = _pdf_extractor()
     rows = [
         ("text", TIER_FULL, True, "Plain text, logs, CSV."),
@@ -1085,7 +1175,15 @@ def cmd_capabilities(args) -> int:
     return EXIT_OK
 
 
-def cmd_snapshot(args) -> int:
+def cmd_snapshot(args: argparse.Namespace) -> int:
+    """Capture a baseline snapshot of a file before it is edited.
+
+    Args:
+        args: Parsed CLI arguments (file, --state-dir).
+
+    Returns:
+        Process exit code.
+    """
     path = Path(args.file)
     state = _state_dir(args.state_dir)
     try:
@@ -1124,7 +1222,15 @@ def _compare_and_report(ext_a: Extraction, ext_b: Extraction, *, label_before: s
     return EXIT_OK
 
 
-def cmd_compare(args) -> int:
+def cmd_compare(args: argparse.Namespace) -> int:
+    """Compare a file against its most recent stored baseline snapshot.
+
+    Args:
+        args: Parsed CLI arguments (file, --report, --view, --state-dir, --json).
+
+    Returns:
+        Process exit code.
+    """
     path = Path(args.file)
     state = _state_dir(args.state_dir)
     snap = latest_snapshot(path, state)
@@ -1147,7 +1253,16 @@ def cmd_compare(args) -> int:
         as_json=args.json, title=f"Diff — {path.name}")
 
 
-def cmd_compare_pair(args) -> int:
+def cmd_compare_pair(args: argparse.Namespace) -> int:
+    """Compare two explicit files with no stored state.
+
+    Args:
+        args: Parsed CLI arguments (--before, --after, --report, --view,
+            --label-before, --label-after, --json).
+
+    Returns:
+        Process exit code.
+    """
     a = Path(args.before)
     b = Path(args.after)
     try:
@@ -1164,7 +1279,15 @@ def cmd_compare_pair(args) -> int:
         as_json=args.json, title=f"Diff — {label_before} → {label_after}")
 
 
-def cmd_status(args) -> int:
+def cmd_status(args: argparse.Namespace) -> int:
+    """List stored snapshots, optionally filtered to one source file.
+
+    Args:
+        args: Parsed CLI arguments (file, --state-dir, --json).
+
+    Returns:
+        Process exit code.
+    """
     state = _state_dir(args.state_dir)
     root = state / "snapshots"
     if not root.exists():
@@ -1193,7 +1316,15 @@ def cmd_status(args) -> int:
     return EXIT_OK
 
 
-def cmd_cleanup(args) -> int:
+def cmd_cleanup(args: argparse.Namespace) -> int:
+    """Remove stored snapshots, optionally by file or age, with a dry-run mode.
+
+    Args:
+        args: Parsed CLI arguments (--file, --older-than, --state-dir, --dry-run).
+
+    Returns:
+        Process exit code.
+    """
     state = _state_dir(args.state_dir)
     root = state / "snapshots"
     if not root.exists():
@@ -1235,6 +1366,12 @@ def cmd_cleanup(args) -> int:
 # --------------------------------------------------------------------------- #
 
 def build_parser() -> argparse.ArgumentParser:
+    """Build the argparse parser with every subcommand and its options.
+
+    Returns:
+        The configured ArgumentParser (each subcommand sets its handler via
+        set_defaults(func=...)).
+    """
     p = argparse.ArgumentParser(prog="create_diff.py", description=__doc__.splitlines()[0])
     sub = p.add_subparsers(dest="command", required=True)
 
@@ -1281,6 +1418,14 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Optional[List[str]] = None) -> int:
+    """CLI entrypoint: parse arguments, dispatch the subcommand, map errors to codes.
+
+    Args:
+        argv: Argument list to parse; defaults to sys.argv when None.
+
+    Returns:
+        Process exit code (0 success; 3 for a CapabilityError raised during dispatch).
+    """
     parser = build_parser()
     args = parser.parse_args(argv)
     try:

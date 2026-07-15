@@ -142,7 +142,7 @@
       "packet": "create-diff",
       "packetSkillName": "create-diff",
       "grandfatheredFolderMismatch": false,
-      "command": null,
+      "command": "/create:diff",
       "aliases": ["create diff report", "document before after review", "before after document diff", "document change report"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-diff" }
     },

@@ -1,0 +1,629 @@
+# -----------------------------------------------------------------
+# OPENCODE CREATE: DOCUMENT DIFF WORKFLOW (CONFIRM MODE)
+# -----------------------------------------------------------------
+# Mode: confirm-only (interactive step-by-step approval)
+# Note: This workflow follows the same creation path as :auto, with
+#       explicit approval checkpoints between major decisions.
+#       All executions use interactive confirmation gates.
+# -----------------------------------------------------------------
+role: Expert Document Diff Author using sk-doc create-diff packet
+purpose: Produce a validated, self-contained before/after document diff HTML report with a 5-step workflow
+action: Wrap the create-diff engine from input verification through comparison, report validation, and delivery
+
+# -----------------------------------------------------------------
+# PREREQUISITE: CREATE-DIFF PACKET VERIFICATION
+# -----------------------------------------------------------------
+# This workflow REQUIRES the create-diff packet for:
+#   - Local, Git-free before/after document comparison
+#   - Baseline snapshot capture and self-contained HTML rendering
+#   - Report safety/self-containment validation
+#
+# PHASE 0 in the presentation contract verifies the packet resources
+# BEFORE this YAML workflow loads. If you're executing this workflow,
+# create-diff verification has already passed.
+#
+# NEVER re-implement diffing, extraction, snapshotting, or rendering;
+# always call the engine. Run it from the workspace root so the report
+# and the local `.create-diff` snapshot store resolve against the root.
+#
+# To invoke correctly: /create:diff <target-document | --before old --after new> [--report out.html]
+# -----------------------------------------------------------------
+
+operating_mode:
+  workflow: sequential_5_step
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: step_by_step
+  tracking: progressive_task_checklists
+  validation: checkpoint_based_with_report_validation
+  output_configuration: self_contained_html_report
+  description: |
+    Executes the 5-step document diff workflow with approval gates at each checkpoint.
+    User confirms, reviews, or modifies at each step before the workflow advances.
+
+development_philosophy:
+  principle: "Capture the real before-state, then let the engine report the change"
+  approach: "Verify inputs -> Check capability -> Compare via engine -> Validate report -> Deliver"
+  mandate: "Never mutate the source document; never present a limited-fidelity comparison as complete"
+
+report_path_resolution:
+  default: "<document-stem>.diff.html in the current directory"
+  required_extension: .html
+
+# -----------------------------------------------------------------
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# -----------------------------------------------------------------
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+
+  scoring_weights:
+    document_path_clarity: 0.30
+    review_mode_clarity: 0.30
+    format_supported: 0.20
+    report_path_clarity: 0.20
+
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present options to user with current findings"
+
+# -----------------------------------------------------------------
+# REQUEST ANALYSIS FRAMEWORK
+# -----------------------------------------------------------------
+request_analysis_framework:
+  code_search_note: "Use Glob/Grep to locate the target document and any prior report. Read files before comparing. Do not use memory search for arbitrary code or docs."
+  solution_flow:
+  - "Parse carefully: Is this a document before/after review, and in which mode (automatic baseline vs explicit pair)?"
+  - "Gather Context: Confirm the document path(s) exist and are readable"
+  - "Identify Approach: SIMPLEST engine invocation that answers the change question"
+  - "Validate Choice: Confirm the format is supported at a stated fidelity tier"
+  - "Clarify If Needed: If <80% confidence or a path is unknown, ask"
+  - "Scope Check: Producing ONLY the requested HTML report, leaving the source unchanged?"
+  - "Execute: Compare via engine, validate the report, and report the change summary"
+
+  pre_change_validation:
+    items:
+    - "Document path (automatic) or --before/--after pair (explicit) provided and existing?"
+    - "Review mode determined (automatic baseline vs explicit pair)?"
+    - "Report output path resolved (explicit or engine default)?"
+    - "Format supported, or explicit-pair fallback available for an unsupported format?"
+    - "Confidence >=80%? (if not: ask)"
+    stop_conditions: [ "Any item unchecked", "Unknown document or report path that would be a guess" ]
+    stop_action: "STOP and address before proceeding"
+
+# -----------------------------------------------------------------
+# USER INPUTS (From gate outputs)
+# -----------------------------------------------------------------
+user_inputs:
+  review_mode: |
+    [REVIEW_MODE]
+    Either 'automatic' (snapshot the current file, then compare after an edit) or
+    'explicit-pair' (compare a known --before file against a --after file).
+    FROM UNIFIED SETUP PHASE (Q1 or derived from arguments).
+
+  target_document: |
+    [TARGET_DOCUMENT]
+    Workspace-relative path of the document under review. Required when review_mode=automatic.
+    FROM UNIFIED SETUP PHASE (Q0 or command argument).
+
+  before_file: |
+    [BEFORE_FILE]
+    Old version path. Required when review_mode=explicit-pair.
+    FROM UNIFIED SETUP PHASE (--before or marker).
+
+  after_file: |
+    [AFTER_FILE]
+    New version path. Required when review_mode=explicit-pair.
+    FROM UNIFIED SETUP PHASE (--after or marker).
+
+  report_path: |
+    [REPORT_PATH]
+    Output HTML path. Defaults to <document-stem>.diff.html when omitted.
+    FROM UNIFIED SETUP PHASE (Q2, --report, or engine default).
+
+  view: |
+    [VIEW]
+    Report layout: 'unified' (default) or 'side-by-side'.
+    FROM UNIFIED SETUP PHASE (Q3 or --view).
+
+# -----------------------------------------------------------------
+# FIELD HANDLING
+# -----------------------------------------------------------------
+field_handling:
+  review_mode:
+    validation: "must be one of: automatic, explicit-pair"
+    default: "derive_from_arguments"
+    note: "--before/--after implies explicit-pair; a single document target implies automatic"
+
+  report_path:
+    validation: "workspace-relative path ending in .html, or omitted for the engine default"
+    required: false
+
+  view:
+    validation: "must be one of: unified, side-by-side"
+    default: "unified"
+
+  defaults:
+    output_format: "single self-contained HTML report (inlined CSS, no scripts, no network)"
+    engine_command: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py"
+    validator_command: "python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py [report_path]"
+
+input_contract:
+  required:
+    - create_diff_verified
+    - review_mode
+  conditional:
+    - target_document   # required when review_mode=automatic
+    - before_file       # required when review_mode=explicit-pair
+    - after_file        # required when review_mode=explicit-pair
+  optional:
+    - report_path
+    - view
+
+# -----------------------------------------------------------------
+# DOCUMENTATION LEVEL
+# -----------------------------------------------------------------
+documentation_level:
+  default: "No separate spec packet for ordinary document diff review"
+  required_files:
+  - report_path
+  note: "The command output is a single self-contained HTML report unless the user explicitly asks for surrounding documentation."
+
+# -----------------------------------------------------------------
+# CREATE-DIFF RESOURCES
+# -----------------------------------------------------------------
+diff_resources:
+  skill_contract: .opencode/skills/sk-doc/create-diff/SKILL.md
+
+diff_scripts:
+  create_diff_engine: .opencode/skills/sk-doc/create-diff/scripts/create_diff.py
+  validate_report: .opencode/skills/sk-doc/create-diff/scripts/validate_report.py
+
+diff_references:
+  route_map: .opencode/skills/sk-doc/create-diff/references/README.md
+  cli_reference: .opencode/skills/sk-doc/create-diff/references/cli-reference.md
+  capabilities_and_fidelity: .opencode/skills/sk-doc/create-diff/references/capabilities-and-fidelity.md
+  workflow: .opencode/skills/sk-doc/create-diff/references/workflow.md
+  accessibility_contract: .opencode/skills/sk-doc/create-diff/references/accessibility-contract.md
+  worked_example: .opencode/skills/sk-doc/create-diff/references/worked-example.md
+
+# -----------------------------------------------------------------
+# ENGINE COMMAND REFERENCE (authoritative flags from cli-reference.md)
+# -----------------------------------------------------------------
+engine_commands:
+  capabilities: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py capabilities [--json]"
+  snapshot: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py snapshot <file> [--state-dir DIR]"
+  compare: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py compare <file> [--report OUT] [--view unified|side-by-side] [--state-dir DIR] [--json]"
+  compare_pair: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py compare-pair --before A --after B [--report OUT] [--view unified|side-by-side] [--label-before L] [--label-after L] [--json]"
+  status: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py status [<file>] [--state-dir DIR] [--json]"
+  validate: "python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py <report.html> [more.html ...]"
+
+# -----------------------------------------------------------------
+# CHECKPOINT OPTIONS
+# -----------------------------------------------------------------
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve and continue to next step"
+  - label: "Review"
+    description: "Show more details"
+  - label: "Modify"
+    description: "Make changes before proceeding"
+  - label: "Skip"
+    description: "Skip this step (if optional)"
+
+# -----------------------------------------------------------------
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# -----------------------------------------------------------------
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  phase_gate:
+    location: "Between Step 1 and Step 3 (comparison)"
+    purpose: "Verify inputs and format capability before invoking the engine"
+    requirements:
+    - "Document path(s) confirmed to exist"
+    - "Review mode resolved"
+    - "Format supported or explicit-pair fallback selected"
+    action_if_failed: "STOP and return to the incomplete step"
+
+  critical_steps:
+    step_1_input_verification:
+      enforcement: "MUST confirm document path(s), review mode, report path, and view; never guess an unknown path"
+      verification: "Cannot proceed without user confirmation of inputs"
+    step_3_comparison:
+      enforcement: "MUST call the engine (snapshot+compare or compare-pair); NEVER re-implement diffing"
+      verification: "Engine exit code captured and mapped to an actionable message"
+    step_4_report_validation:
+      enforcement: "MUST run validate_report.py on the generated report"
+      verification: "Validator exits 0, or the failure is fixed/reported before delivery"
+
+gate_logic:
+  hard:
+    H0_diff_verified:
+      description: "create-diff packet resource verification must have passed in Phase 0"
+      fail_action: "STOP and return to the command setup phase"
+    H1_required_fields:
+      description: "Required setup fields for the resolved review mode must be present before comparison"
+      fail_action: "STOP and collect missing inputs"
+    H2_source_immutable:
+      description: "The source document must never be modified by capture or comparison"
+      fail_action: "STOP if any engine step would write to the source; comparison is read-only against it"
+    H3_report_validation:
+      description: "Generated report must pass validate_report.py before delivery"
+      fail_action: "Fix the renderer output or report the failure; do not claim a clean self-contained report"
+  soft:
+    S1_low_fidelity:
+      description: "Warn when the format resolves to a text-only tier (html, docx, pdf text layer)"
+      fail_action: "State the fidelity tier; never present it as capturing formatting/layout/tracked changes"
+    S2_existing_report:
+      description: "Warn when the report path already exists"
+      fail_action: "Proceed only after explicit overwrite intent"
+
+# -----------------------------------------------------------------
+# CONTEXT LOADING
+# -----------------------------------------------------------------
+context_loading:
+  trigger: "During UNIFIED SETUP PHASE, when baseline/report context may exist"
+  applies_when: "an existing baseline may be present for the target document, OR a prior report exists at the report path, OR the request names specific before/after files"
+  tool_integration:
+    primary: "Glob/Grep to locate the target document, before/after files, and any prior report; Read matches before reuse"
+    engine_state_probe: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py status [<file>] --json"
+  behavior:
+    automatic_mode: "Run `status <file>` to detect an existing baseline; if one exists, compare against it, else snapshot first"
+    explicit_pair_mode: "Load only the named --before/--after files; no stored state is used"
+  when_to_skip: ["New document with no prior baseline and no prior report", "User says 'skip context' or 'fresh start'"]
+  output: baseline_state
+
+# -----------------------------------------------------------------
+# WORKFLOW (5 STEPS WITH CHECKPOINTS)
+# -----------------------------------------------------------------
+workflow_overview:
+  steps:
+    - id: step_1_input_verification
+      purpose: "Confirm document path(s), review mode, report path, and view; refuse to guess unknown paths"
+    - id: step_2_capability_check
+      purpose: "Optionally confirm format support and fidelity tier before comparing"
+    - id: step_3_comparison
+      purpose: "Run the engine: automatic snapshot+compare, or explicit compare-pair"
+    - id: step_4_report_validation
+      purpose: "Validate the generated report is safe and self-contained"
+    - id: step_5_delivery
+      purpose: "Emit final status with report path, change summary, fidelity tier, and validator result"
+
+workflow:
+  # ==============================================================
+  # STEP 1: INPUT VERIFICATION
+  # ==============================================================
+  step_1_input_verification:
+    purpose: Confirm inputs from the UNIFIED SETUP PHASE and validate paths (DO NOT GUESS)
+    activities:
+    - Confirm review_mode from UNIFIED SETUP PHASE (Q1 or derived from arguments)
+    - "IF review_mode=automatic: confirm target_document exists and is readable"
+    - "IF review_mode=explicit-pair: confirm before_file and after_file exist and are readable"
+    - Resolve report_path (explicit .html path or the engine default <document-stem>.diff.html)
+    - Resolve view (unified default or side-by-side)
+    - Probe baseline_state via `status` when review_mode=automatic
+    validation:
+      path_existence: "each named document path must exist on disk"
+      report_format: "report_path, when explicit, ends in .html"
+      refuse_guess: "STOP if any required path is unknown; ask rather than assume"
+    outputs:
+    - inputs_confirmed
+    - review_mode_resolved
+    - baseline_state
+    - report_path_resolved
+    checkpoint:
+      question: "Reviewing '[target-document | before -> after]' in [review-mode] mode, report -> [report-path], view [view]. Proceed?"
+      options:
+      - label: "A) Proceed"
+        description: "Compare with these settings"
+      - label: "B) Change inputs"
+        description: "Use a different document, pair, or report path"
+      - label: "C) Change mode/view"
+        description: "Switch review mode or report view"
+
+  # ==============================================================
+  # PHASE GATE: INPUTS -> COMPARISON
+  # ==============================================================
+  phase_gate_inputs_to_comparison:
+    trigger: "After Step 1 and Step 2 complete"
+    enforcement: HARD_BLOCK
+    verification: |
+      BEFORE invoking the engine (Step 3):
+
+      VERIFY all input artifacts exist:
+      - [ ] Review mode resolved
+      - [ ] Document path (automatic) or --before/--after pair (explicit) confirmed to exist
+      - [ ] Report path resolved
+      - [ ] Format supported, or explicit-pair fallback selected for an unsupported format
+
+      IF any artifact missing:
+      - STOP -> Return to Step 1/Step 2 -> Complete it -> Return here
+
+      WHEN all artifacts verified:
+      - SET PHASE GATE STATUS: PASSED -> Proceed to Step 3
+    action_if_failed: "Return to incomplete step"
+
+  # ==============================================================
+  # STEP 2: CAPABILITY CHECK
+  # ==============================================================
+  step_2_capability_check:
+    purpose: Confirm format support and fidelity tier when uncertain
+    condition: "run when the input format is uncertain (e.g. DOCX or PDF) or before a first comparison"
+    activities:
+    - "Run: python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py capabilities [--json]"
+    - "Determine the fidelity tier for the input format (full / text / text*)"
+    - "IF the format is a text-layer PDF and no extractor is available (exit 3): do not claim a diff; offer the explicit-pair fallback with pre-extracted text"
+    - "Record the fidelity tier to state honestly at delivery"
+    outputs:
+    - capability_confirmed
+    - fidelity_tier
+    checkpoint:
+      question: "Format [format] resolves to fidelity tier [tier]. Continue to comparison?"
+      options:
+      - label: "A) Continue"
+        description: "Proceed at the stated fidelity tier"
+      - label: "B) Switch to explicit-pair"
+        description: "Provide pre-extracted before/after text instead"
+      - label: "C) Cancel"
+        description: "Stop - format is unsupported for this review"
+
+  # ==============================================================
+  # STEP 3: COMPARISON (ENGINE-DRIVEN)
+  # ==============================================================
+  step_3_comparison:
+    purpose: Invoke the create-diff engine to compare versions and render the report
+    enforcement: MANDATORY
+    activities:
+    - "NEVER re-implement diffing, extraction, or rendering; always call the engine"
+    branch_automatic_baseline:
+      when: "review_mode=automatic"
+      steps:
+      - "IF a baseline already exists (from baseline_state): skip snapshot"
+      - "ELSE capture a baseline BEFORE the edit: python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py snapshot <target_document> [--state-dir DIR]"
+      - "... allow the edit to happen (AI or human) between snapshot and compare ..."
+      - "AFTER the edit, compare and render: python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py compare <target_document> --report <report_path> [--view side-by-side] [--state-dir DIR] --json"
+      invariant: "The baseline must be captured before the edit; a compare with no baseline exits 4"
+    branch_explicit_pair:
+      when: "review_mode=explicit-pair"
+      steps:
+      - "Compare two explicit files (no stored state): python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py compare-pair --before <before_file> --after <after_file> --report <report_path> [--view side-by-side] [--label-before L] [--label-after L] --json"
+    exit_code_handling:
+      "0": "Success - capture the JSON change summary and continue to Step 4"
+      "2": "Usage error (bad arguments) - fix the invocation and re-run"
+      "3": "Unsupported/limited format with no fallback (e.g. PDF with no extractor) - STOP with an actionable message; offer explicit-pair with pre-extracted text"
+      "4": "Missing baseline snapshot for compare - capture a snapshot first, or switch to compare-pair"
+      "5": "I/O or extraction failure - STOP and report the failing path/cause"
+    outputs:
+    - comparison_complete
+    - change_summary   # added / removed / changed / possible_moves / total_changes / identical
+    - report_written
+    validation: engine_exit_zero
+    checkpoint:
+      question: "Comparison complete (exit [code]): +[added] -[removed] ~[changed], tier [tier]. Report at [report-path]. Continue to validation?"
+      options:
+      - label: "A) Continue to validation"
+        description: "Validate the generated report"
+      - label: "B) Review change summary"
+        description: "Show the added/removed/changed counts and possible moves"
+      - label: "C) Re-run"
+        description: "Adjust view or inputs and compare again"
+
+  # ==============================================================
+  # STEP 4: REPORT VALIDATION
+  # ==============================================================
+  step_4_report_validation:
+    purpose: Validate the generated report is safe and self-contained
+    enforcement: HARD_BLOCK
+    activities:
+    - "Run: python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py <report_path>"
+    - "Expect exit 0 (asserts doctype, <html lang>, a Content-Security-Policy meta tag, zero <script> tags, no inline event handlers, no remote href/src)"
+    - "IF the validator exits 1: STOP - do not claim a clean self-contained report; report the specific failure"
+    - "Confirm the source document is byte-for-byte unchanged (comparison is read-only against it)"
+    validation_command: |
+      python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py [report_path]
+    quality_gates:
+      validator_exit: "must be 0 before clean delivery"
+      source_immutable: "source document unchanged by capture or comparison"
+      enforcement: HARD_BLOCK
+    fix_workflow: |
+      IF validation fails:
+      1. Review the exact validator output.
+      2. Fix the renderer output or re-run the comparison.
+      3. Re-run the validator command.
+      4. Repeat until passing, or report the failure explicitly.
+    outputs:
+    - report_validation_result: pass_or_fail
+    - validation_errors: list_if_failed
+    validation: report_safe
+    checkpoint:
+      question: "Report validation [PASS/FAIL]. Source document unchanged: [yes/no]. Proceed?"
+      options:
+      - label: "A) Continue to delivery"
+        description: "Validation passed, finalize the report"
+      - label: "B) Review errors"
+        description: "Show detailed validation errors"
+      - label: "C) Fix issues"
+        description: "Address validation failures and revalidate"
+
+  # ==============================================================
+  # STEP 5: DELIVERY
+  # ==============================================================
+  step_5_delivery:
+    purpose: Emit completion status with report path and evidence
+    condition: "report_path is not null and report validation passed"
+    activities:
+    - Ensure the output remains a single self-contained HTML report
+    - Record review mode, report path, change summary, fidelity tier, and validator result in the delivery summary
+    - State the fidelity tier honestly; never present a text-tier comparison as capturing formatting or layout
+    - Do not create packet-local advisor metadata or extra output files
+    outputs:
+    - delivery_summary: "report path, change summary, fidelity tier, and validation evidence"
+    validation: delivery_ready
+    checkpoint:
+      question: "Validation evidence recorded. Document diff complete!"
+      options:
+      - label: "Done"
+        description: "Complete workflow"
+      - label: "View summary"
+        description: "Show final summary"
+
+    validation_evidence:
+      validator: .opencode/skills/sk-doc/create-diff/scripts/validate_report.py
+      invocation: |
+        python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py [report_path]
+      critical_note: "Run the report validator directly before delivery. Do not claim a clean, self-contained report if the command fails or exits non-zero."
+      when: "Immediately after the report is written"
+
+    anchor_requirements:
+      enforcement: NOT_APPLICABLE
+      rationale: "The command creates a single HTML report, not a memory packet."
+
+    importance_tier:
+      assign: normal
+      rationale: "Document diff review is artifact-scoped unless the user requests durable project memory."
+      promotion_note: "Promote only if the report becomes authoritative project documentation."
+
+# -----------------------------------------------------------------
+# CIRCUIT BREAKER
+# -----------------------------------------------------------------
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures - pause and report to user"
+    half_open: "Test with single retry before resuming"
+  on_open:
+    action: "Report failures to user with summary"
+    suggest: "Review inputs and try again, or escalate"
+
+# -----------------------------------------------------------------
+# ERROR RECOVERY (maps engine exit codes to actionable messages)
+# -----------------------------------------------------------------
+error_recovery:
+  unknown_document_path:
+    action: "Show valid format (workspace-relative path), prompt for the correct document; never guess"
+    example: "Expected: docs/notes/proposal.md"
+  usage_error:
+    exit_code: 2
+    action: "Correct the arguments per references/cli-reference.md and re-run"
+  unsupported_or_limited_format:
+    exit_code: 3
+    action: "Explain the format is unsupported/limited with no fallback (e.g. a PDF with no text extractor); offer compare-pair with pre-extracted text"
+  missing_baseline:
+    exit_code: 4
+    action: "No baseline snapshot exists for compare; capture one with `snapshot <file>` first, or use compare-pair --before/--after"
+  io_or_extraction_failure:
+    exit_code: 5
+    action: "Report the failing path or extraction cause; do not claim a diff was produced"
+  report_validation_failure:
+    validator_exit: 1
+    action: "Report is not safe/self-contained; fix the renderer output or report the failure. Never claim a clean report"
+  scanned_pdf:
+    action: "A PDF with no text layer would yield an empty comparison; OCR is out of scope - escalate"
+
+# -----------------------------------------------------------------
+# INTERACTIVE EXECUTION
+# -----------------------------------------------------------------
+interactive_execution:
+  principle: "Execute workflow steps with user approval at each checkpoint"
+  user_feedback_handling:
+    approve: "Continue to next step"
+    review: "Show detailed output before proceeding"
+    modify: "Apply requested changes and re-validate"
+    skip: "Mark step as skipped with reason, continue"
+
+# -----------------------------------------------------------------
+# QUALITY STANDARDS
+# -----------------------------------------------------------------
+quality_standards:
+  report_validation: MANDATORY
+  validation_enforcement: HARD_BLOCK
+  validation_pipeline:
+    stage_1: "Engine comparison exits 0"
+    stage_2: "Report safety/self-containment validator exits 0"
+    stage_3: "Source document confirmed unchanged"
+    stage_4: "Fidelity tier stated honestly"
+  template_adherence: required
+  core_standards_reference: ".opencode/skills/sk-doc/create-diff/SKILL.md"
+
+# -----------------------------------------------------------------
+# COMPLETION REPORT TEMPLATE
+# -----------------------------------------------------------------
+completion_report:
+  template: |
+    Document Diff Complete
+
+    Review Mode: [automatic-baseline | explicit-pair]
+    Report: [report-path]
+
+    Compared:
+    - Automatic: [target-document] (baseline -> current)
+    - Explicit pair: before=[before-file] after=[after-file]
+
+    Changes:
+    - Added:   [+N]
+    - Removed: [-N]
+    - Changed: [~N]
+    - Possible moves: [N]
+    - Fidelity tier: [full | text | text*]
+
+    Validation:
+    - Command: python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py [report-path]
+    - Result: PASS
+
+    Output:
+    - Single self-contained HTML report (no scripts, no network)
+    - Source document unchanged
+
+    STATUS=OK PATH=[report-path]
+
+# -----------------------------------------------------------------
+# TERMINATION
+# -----------------------------------------------------------------
+termination:
+  after_step: step_5_delivery
+  message: "Document diff workflow complete."
+  next_steps:
+    - condition: "Further edits are planned"
+      action: "Capture a fresh baseline before the next edit, then compare again"
+    - condition: "The report should be shared"
+      action: "The HTML report is self-contained and safe to open or send as-is"
+    - condition: "A limited-fidelity tier was used"
+      action: "Note what was not compared (formatting, layout, tracked changes) to the reader"
+
+# -----------------------------------------------------------------
+# RULES
+# -----------------------------------------------------------------
+rules:
+  ALWAYS:
+    - "Call the create-diff engine for all comparison, extraction, snapshotting, and rendering"
+    - "Capture the baseline before the edit in automatic mode"
+    - "Run validate_report.py before claiming delivery"
+    - "Pause at checkpoints for user approval"
+    - "State the fidelity tier and any warnings honestly"
+    - "Keep everything local - no network, upload, or telemetry"
+    - "Read a file before editing; never modify the source document during comparison"
+    - "Map engine exit codes (2/3/4/5) to actionable messages"
+    - "Report the exact validation command and result"
+  NEVER:
+    - "Re-implement diffing, extraction, snapshotting, or rendering"
+    - "Guess an unknown document, baseline state, or report path"
+    - "Proceed without user approval at checkpoints"
+    - "Mutate, overwrite, or fix up the source document"
+    - "Present a text-tier comparison as if it captured formatting, layout, or tracked changes"
+    - "Claim a diff was produced when the format was unsupported and no fallback ran"
+    - "Claim a clean report when validate_report.py fails"
+    - "Create packet-local advisor metadata"
