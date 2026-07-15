@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/140-mcp-spec-consolidation",
-  "spec_folder": "skilled-agent-orchestration/140-mcp-spec-consolidation",
-  "parent_id": null,
+  "packet_id": "mcp-tooling/003-mcp-figma-transfer/002-public-figma-agent",
+  "spec_folder": "mcp-tooling/003-mcp-figma-transfer/002-public-figma-agent",
+  "parent_id": "mcp-tooling/003-mcp-figma-transfer",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,47 +11,44 @@
   },
   "derived": {
     "trigger_phrases": [
-      "mcp spec consolidation",
-      "mcp-tooling track",
-      "mcp spec folder renumber",
-      "consolidate mcp specs",
-      "mcp consolidation plan",
-      "mcp-tooling migration",
-      "mcp consolidation tasks",
-      "mcp consolidation checklist",
-      "mcp consolidation summary",
-      "mcp-tooling result"
+      "public-figma-agent",
+      "phase 2 figma",
+      "AI_Systems Public Figma",
+      "Public README §8",
+      "phase 2 plan",
+      "public figma plan",
+      "phase 2 tasks",
+      "public figma tasks",
+      "phase 2 checklist",
+      "public figma checklist",
+      "phase 2 decisions",
+      "public figma adr"
     ],
     "key_topics": [
-      "mcp",
-      "spec",
-      "consolidation",
-      "mcp-tooling",
-      "track",
-      "folder",
-      "renumber",
-      "consolidate",
-      "specs",
+      "public-figma-agent",
+      "phase",
+      "figma",
+      "public",
+      "readme",
       "plan",
-      "migration",
-      "tasks"
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr",
+      "produced",
+      "internal-team-framed"
     ],
-    "importance_tier": "normal",
-    "status": "complete",
+    "importance_tier": "important",
+    "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -71,6 +68,18 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -83,31 +92,31 @@
         "source": "derived"
       },
       {
-        "name": "Spec Consolidation",
+        "name": "Barter Figma",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Scope Public",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Code Mode",
+        "name": "Patch Public",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Consolidate",
+        "name": "Figma Agent",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Public Figma",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -119,31 +128,25 @@
         "source": "derived"
       },
       {
-        "name": "fast-forward",
-        "kind": "key_phrase",
+        "name": "Original Authored Content",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "file",
-        "kind": "key_phrase",
+        "name": "Technical Context",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "Overview Duplicate Phase",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Breakdown",
+        "name": "Task Notation Template",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -155,20 +158,8 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Edit Public",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "All Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "explicit-path",
-        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -179,21 +170,33 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Each",
+        "name": "Public Figma Agent",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol Template",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Template",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality Template",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "MCP-tooling skill specs were scattered across `skilled-agent-orchestration/` top-level with unrelated numbering and stale self-identity metadata pointing at deleted `zarchive/<n>-<slug>` origins",
-    "created_at": "2026-07-15T06:06:45.786Z",
-    "last_save_at": "2026-07-15T07:50:40.966Z",
+    "causal_summary": "Phase 1 produced an internal-team-framed Barter Figma agent (commit 690b498 with 16 files, ~234K markdown)",
+    "created_at": "2026-05-05T07:49:58Z",
+    "last_save_at": "2026-07-15T07:48:13.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,15 +204,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:93b2cbf19bef038d3770a41abbbc7a87daf8946894cf5921676530a9ff1fc498",
+    "source_fingerprint": "sha256:4d892c9e2866bdb877758e3fd644114772658361dec2178292a03e3fb1d242ce",
     "source_doc_hashes": {
-      "spec.md": "76a1f30585bb57665e4649d761c533e6f5e7279c5b8599e377fcd0e4094ec6db",
-      "plan.md": "3b176594ff4e0814d2c081e95b30b29a074cd70f0aaf77da82f990c93e77464c",
-      "tasks.md": "7c663980d4257110793c23e49ccbdd5eb97cbdb210c8c5fe0e5c493c411e8dae",
-      "checklist.md": "74fcea26e332cc73b26c45ebe30af9491702e6f67545f083d98d8c0630d87881",
-      "implementation-summary.md": "aa6b420b0819a9ef305d306dfab3b43ac68008c9f3547585b0ff20b6a0c5f76d"
+      "spec.md": "cd4d95fbc92e8c110d87d9836e4727f2fc143e7612d74e82535780d3d19250ea",
+      "plan.md": "d9d723a3e495203c733441910c6d6aee66f9c1275401513091d686c9d03e095d",
+      "tasks.md": "2d518f67dfb75f589e691fab08d8ef0b6c06d14944f645880196ffb2b22d85c6",
+      "checklist.md": "4cdf8945cf204c73cb275497a41bd5da0411ef6079c17535654c49f6d9460c8a",
+      "decision-record.md": "ad40de9f8773175d7f83c57daa63dc75c56c1068d8665c03245a3d8c7be7bd8a",
+      "implementation-summary.md": "ed968992b1651e13d4d3c87ec0be667342dcdaf9c3c8d05c5657300dbcfc8da7"
     },
     "last_active_child_id": null,
     "last_active_at": null

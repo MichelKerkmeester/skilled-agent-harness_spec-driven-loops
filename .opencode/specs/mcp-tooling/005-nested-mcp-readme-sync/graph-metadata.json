@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/140-mcp-spec-consolidation",
-  "spec_folder": "skilled-agent-orchestration/140-mcp-spec-consolidation",
+  "packet_id": "mcp-tooling/005-nested-mcp-readme-sync",
+  "spec_folder": "mcp-tooling/005-nested-mcp-readme-sync",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -11,45 +11,48 @@
   },
   "derived": {
     "trigger_phrases": [
-      "mcp spec consolidation",
-      "mcp-tooling track",
-      "mcp spec folder renumber",
-      "consolidate mcp specs",
-      "mcp consolidation plan",
-      "mcp-tooling migration",
-      "mcp consolidation tasks",
-      "mcp consolidation checklist",
-      "mcp consolidation summary",
-      "mcp-tooling result"
+      "nested mcp readme sync",
+      "nested code readme freshness",
+      "nested mcp readme sync plan",
+      "nested mcp readme sync tasks",
+      "nested mcp readme sync shipped"
     ],
     "key_topics": [
+      "nested",
       "mcp",
-      "spec",
-      "consolidation",
-      "mcp-tooling",
-      "track",
-      "folder",
-      "renumber",
-      "consolidate",
-      "specs",
+      "readme",
+      "sync",
+      "code",
+      "freshness",
       "plan",
-      "migration",
-      "tasks"
+      "tasks",
+      "shipped",
+      "packet-135",
+      "audit",
+      "two"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/tools/README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/handlers/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/README.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "implementation-summary.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tools/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -65,15 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -83,25 +80,13 @@
         "source": "derived"
       },
       {
-        "name": "Spec Consolidation",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Mode",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Consolidate",
+        "name": "Purpose Sync",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -113,43 +98,61 @@
         "source": "derived"
       },
       {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "fast-forward",
-        "kind": "key_phrase",
+        "name": "Technical Context",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "file",
-        "kind": "key_phrase",
+        "name": "Overview Apply",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
+        "name": "Key Components",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Task Breakdown",
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -161,55 +164,47 @@
         "source": "derived"
       },
       {
-        "name": "All Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "explicit-path",
+        "name": "their",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Each",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "MCP-tooling skill specs were scattered across `skilled-agent-orchestration/` top-level with unrelated numbering and stale self-identity metadata pointing at deleted `zarchive/<n>-<slug>` origins",
-    "created_at": "2026-07-15T06:06:45.786Z",
-    "last_save_at": "2026-07-15T07:50:40.966Z",
+    "causal_summary": "The packet-135 QA audit (two read-only gpt-5.5-fast reviewers) found three nested `mcpserver` READMEs that had drifted behind their real tool sets",
+    "created_at": "2026-06-07T18:40:00Z",
+    "last_save_at": "2026-07-15T07:48:14.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:93b2cbf19bef038d3770a41abbbc7a87daf8946894cf5921676530a9ff1fc498",
+    "source_fingerprint": "sha256:02bd3869378a5b705a85305b6907ff3984cc4e384c732920e5643c684de07039",
     "source_doc_hashes": {
-      "spec.md": "76a1f30585bb57665e4649d761c533e6f5e7279c5b8599e377fcd0e4094ec6db",
-      "plan.md": "3b176594ff4e0814d2c081e95b30b29a074cd70f0aaf77da82f990c93e77464c",
-      "tasks.md": "7c663980d4257110793c23e49ccbdd5eb97cbdb210c8c5fe0e5c493c411e8dae",
-      "checklist.md": "74fcea26e332cc73b26c45ebe30af9491702e6f67545f083d98d8c0630d87881",
-      "implementation-summary.md": "aa6b420b0819a9ef305d306dfab3b43ac68008c9f3547585b0ff20b6a0c5f76d"
+      "spec.md": "979acaacd2c4d7997647dbc9159f016d1addc78dd04bf487fca18cbc73b0e68a",
+      "plan.md": "eb0dcb6d7b88fe72d6318ca708c4af6a281565f88087bb79d902f124d8fabb94",
+      "tasks.md": "83b56b1ab96c4361a633440539bf6f5311b2e66299c824eb0ffcb30b3821569b",
+      "implementation-summary.md": "e340dfeb6f83a68c74e936c087f7dae200be8e3a4f55e37cebbc72475fd6c06c"
     },
     "last_active_child_id": null,
     "last_active_at": null

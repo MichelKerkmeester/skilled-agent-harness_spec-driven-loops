@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/140-mcp-spec-consolidation",
-  "spec_folder": "skilled-agent-orchestration/140-mcp-spec-consolidation",
-  "parent_id": null,
+  "packet_id": "mcp-tooling/003-mcp-figma-transfer/001-barter-figma-agent",
+  "spec_folder": "mcp-tooling/003-mcp-figma-transfer/001-barter-figma-agent",
+  "parent_id": "mcp-tooling/003-mcp-figma-transfer",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,45 +11,48 @@
   },
   "derived": {
     "trigger_phrases": [
-      "mcp spec consolidation",
-      "mcp-tooling track",
-      "mcp spec folder renumber",
-      "consolidate mcp specs",
-      "mcp consolidation plan",
-      "mcp-tooling migration",
-      "mcp consolidation tasks",
-      "mcp consolidation checklist",
-      "mcp consolidation summary",
-      "mcp-tooling result"
+      "barter-figma-agent",
+      "phase 1 figma",
+      "AI_Systems Barter Figma",
+      "Figma MCP Agent",
+      "barter figma plan",
+      "phase 1 implementation",
+      "barter figma tasks",
+      "phase 1 tasks",
+      "phase 1 checklist",
+      "barter figma checklist",
+      "phase 1 decisions",
+      "barter figma adr"
     ],
     "key_topics": [
+      "barter-figma-agent",
+      "phase",
+      "figma",
+      "barter",
       "mcp",
-      "spec",
-      "consolidation",
-      "mcp-tooling",
-      "track",
-      "folder",
-      "renumber",
-      "consolidate",
-      "specs",
+      "agent",
       "plan",
-      "migration",
-      "tasks"
+      "implementation",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr"
     ],
-    "importance_tier": "normal",
-    "status": "complete",
+    "importance_tier": "important",
+    "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
+      "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md"
+      "spec.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "implementation-summary.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -77,37 +80,43 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Spec Consolidation",
+        "name": "Author Barter Figma",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Barter Figma",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Code Mode",
+        "name": "Original Authored Content",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Consolidate",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -119,31 +128,31 @@
         "source": "derived"
       },
       {
-        "name": "fast-forward",
-        "kind": "key_phrase",
+        "name": "Barter Figma Agent",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "file",
-        "kind": "key_phrase",
+        "name": "Technical Context",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "Overview This",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
+        "name": "System Prompt",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Task Breakdown",
+        "name": "Task Notation Template",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -155,20 +164,14 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Knowledge Base",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "All Phase",
+        "name": "Sequential Thinking Protocol",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "explicit-path",
-        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -179,21 +182,21 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Each",
+        "name": "Verification Date",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol Template",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "MCP-tooling skill specs were scattered across `skilled-agent-orchestration/` top-level with unrelated numbering and stale self-identity metadata pointing at deleted `zarchive/<n>-<slug>` origins",
-    "created_at": "2026-07-15T06:06:45.786Z",
-    "last_save_at": "2026-07-15T07:50:40.966Z",
+    "causal_summary": "The Figma MCP capability lives as a developer-grade skill (`mcp-figma`) inside the Public skill repo",
+    "created_at": "2026-05-05T07:49:57Z",
+    "last_save_at": "2026-07-15T07:48:13.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,15 +204,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:93b2cbf19bef038d3770a41abbbc7a87daf8946894cf5921676530a9ff1fc498",
+    "source_fingerprint": "sha256:9926a82e1295a4e59a9ec6f29536bd3a37291c8160c3d2f34cd774aabd7218dc",
     "source_doc_hashes": {
-      "spec.md": "76a1f30585bb57665e4649d761c533e6f5e7279c5b8599e377fcd0e4094ec6db",
-      "plan.md": "3b176594ff4e0814d2c081e95b30b29a074cd70f0aaf77da82f990c93e77464c",
-      "tasks.md": "7c663980d4257110793c23e49ccbdd5eb97cbdb210c8c5fe0e5c493c411e8dae",
-      "checklist.md": "74fcea26e332cc73b26c45ebe30af9491702e6f67545f083d98d8c0630d87881",
-      "implementation-summary.md": "aa6b420b0819a9ef305d306dfab3b43ac68008c9f3547585b0ff20b6a0c5f76d"
+      "spec.md": "564ffed52599b89747707becfcf49c2f9a8228a373a29a99cdb9002810c685a0",
+      "plan.md": "d16ca07ff467b5d284492e840abd5d841f940f1713c07c6e6a60a228484c77f3",
+      "tasks.md": "0ecb066eeee1af504fd2ad312983350763e64666925d1774d98e45e818ff9942",
+      "checklist.md": "9995e8248df013df5d030a889e80e611a44d990a6a6b6cab1ce37c16da46d930",
+      "decision-record.md": "e30a39a912d0f48a4848c42d94c1f20981741ffcae06be0938926b88181d0ea1",
+      "implementation-summary.md": "d125db41eeab288472254707ce56143436b33014c691a1dee413d26dc161607e"
     },
     "last_active_child_id": null,
     "last_active_at": null

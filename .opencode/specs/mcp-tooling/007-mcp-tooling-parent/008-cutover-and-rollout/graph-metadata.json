@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout",
+  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout",
+  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-tooling cutover rollout",
+      "parent-skill-check strict gate",
+      "final stale-reference sweep",
+      "mcp-tooling parent rollup",
+      "phase 008 cutover-and-rollout",
+      "cutover rollout plan",
+      "parent-skill-check strict plan",
+      "final sweep parent rollup",
+      "phase 008 plan",
+      "cutover rollout tasks",
+      "parent-skill-check strict tasks",
+      "final sweep tasks"
+    ],
+    "key_topics": [
+      "mcp-tooling",
+      "cutover",
+      "rollout",
+      "parent-skill-check",
+      "strict",
+      "gate",
+      "final",
+      "stale-reference",
+      "sweep",
+      "parent",
+      "rollup",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/spec.md",
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/plan.md",
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/tasks.md",
+      "implementation-summary.md",
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Note",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Terminal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fold-in is functionally complete and benchmarked, but it is not canon-clean until the strict parent-hub check passes with zero warnings, the whole track validates recursively, and a final sweep confirms no stale reference survived",
+    "created_at": "2026-07-09T20:18:26Z",
+    "last_save_at": "2026-07-15T07:48:17.583Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:479ddd1af4779410bcee6e86fd8bb9934aaaa2705bca7510671b89f9f102245b",
+    "source_doc_hashes": {
+      "spec.md": "a75b6c545aa75771fac0fa9c50b34edbe7cc9860194b4b11b462417323a2d8b6",
+      "plan.md": "69e92630b99e9ddb6dba592f4c558f54abf844ad0e315ef8f05ca11721d89fbe",
+      "tasks.md": "44e131ddd91dcfc7fb1d1581b9089bf988cdb7efc7e41035ea54b1a73234e4f4",
+      "implementation-summary.md": "0ec12af20ea24320fa2c5a1d971d61567a1f718ccb414ae276f86de5b4372802"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

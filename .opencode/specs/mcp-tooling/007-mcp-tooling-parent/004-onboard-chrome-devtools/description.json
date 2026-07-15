@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools",
+  "description": "The hub skeleton exists but has no packet content",
+  "keywords": [
+    "hub",
+    "skeleton",
+    "exists",
+    "packet",
+    "content"
+  ],
+  "lastUpdated": "2026-07-15T07:46:45.501Z",
+  "specId": "004",
+  "folderSlug": "onboard-chrome-devtools",
+  "parentChain": [
+    "mcp-tooling",
+    "007-mcp-tooling-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

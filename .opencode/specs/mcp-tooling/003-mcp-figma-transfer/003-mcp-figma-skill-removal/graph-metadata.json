@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/140-mcp-spec-consolidation",
-  "spec_folder": "skilled-agent-orchestration/140-mcp-spec-consolidation",
-  "parent_id": null,
+  "packet_id": "mcp-tooling/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
+  "spec_folder": "mcp-tooling/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
+  "parent_id": "mcp-tooling/003-mcp-figma-transfer",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,45 +11,49 @@
   },
   "derived": {
     "trigger_phrases": [
-      "mcp spec consolidation",
-      "mcp-tooling track",
-      "mcp spec folder renumber",
-      "consolidate mcp specs",
-      "mcp consolidation plan",
-      "mcp-tooling migration",
-      "mcp consolidation tasks",
-      "mcp consolidation checklist",
-      "mcp consolidation summary",
-      "mcp-tooling result"
+      "mcp-figma-skill-removal",
+      "phase 3 figma",
+      "advisor regen mcp-figma",
+      "phase 3 plan",
+      "mcp-figma removal plan",
+      "phase 3 tasks",
+      "mcp-figma removal tasks",
+      "phase 3 checklist",
+      "mcp-figma removal checklist",
+      "phase 3 decisions",
+      "mcp-figma removal adr",
+      "phase 3 summary"
     ],
     "key_topics": [
-      "mcp",
-      "spec",
-      "consolidation",
-      "mcp-tooling",
-      "track",
-      "folder",
-      "renumber",
-      "consolidate",
-      "specs",
+      "mcp-figma-skill-removal",
+      "phase",
+      "figma",
+      "advisor",
+      "regen",
+      "mcp-figma",
       "plan",
-      "migration",
-      "tasks"
+      "removal",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr"
     ],
-    "importance_tier": "normal",
-    "status": "complete",
+    "importance_tier": "important",
+    "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
+      ".opencode/skills/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
       {
-        "name": "implementation-summary.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
@@ -71,6 +75,18 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -83,31 +99,31 @@
         "source": "derived"
       },
       {
-        "name": "Spec Consolidation",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Code Mode",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Consolidate",
+        "name": "Original Authored Content",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -119,31 +135,25 @@
         "source": "derived"
       },
       {
-        "name": "fast-forward",
-        "kind": "key_phrase",
+        "name": "Technical Context",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "file",
-        "kind": "key_phrase",
+        "name": "Explore Agent",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "Overview Apply",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Breakdown",
+        "name": "Task Notation Template",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -155,19 +165,13 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
+        "name": "user",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "All Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "explicit-path",
+        "name": "Edit",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -179,21 +183,21 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Each",
+        "name": "Verification Protocol Template",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Implementation Template",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "MCP-tooling skill specs were scattered across `skilled-agent-orchestration/` top-level with unrelated numbering and stale self-identity metadata pointing at deleted `zarchive/<n>-<slug>` origins",
-    "created_at": "2026-07-15T06:06:45.786Z",
-    "last_save_at": "2026-07-15T07:50:40.966Z",
+    "causal_summary": "The `mcp-figma` developer skill at `CodeEnvironment/Public/.opencode/skills/mcp-figma/` has been superseded by the new Figma MCP Agent in AISystems/Barter (Phase 1) and AISystems/Public (Phase 2)",
+    "created_at": "2026-05-05T07:49:59Z",
+    "last_save_at": "2026-07-15T07:48:13.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,15 +205,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:93b2cbf19bef038d3770a41abbbc7a87daf8946894cf5921676530a9ff1fc498",
+    "source_fingerprint": "sha256:0e039b4fca3fe01d3d77dab05b988523d943c650c76d691568ee95cb368d069a",
     "source_doc_hashes": {
-      "spec.md": "76a1f30585bb57665e4649d761c533e6f5e7279c5b8599e377fcd0e4094ec6db",
-      "plan.md": "3b176594ff4e0814d2c081e95b30b29a074cd70f0aaf77da82f990c93e77464c",
-      "tasks.md": "7c663980d4257110793c23e49ccbdd5eb97cbdb210c8c5fe0e5c493c411e8dae",
-      "checklist.md": "74fcea26e332cc73b26c45ebe30af9491702e6f67545f083d98d8c0630d87881",
-      "implementation-summary.md": "aa6b420b0819a9ef305d306dfab3b43ac68008c9f3547585b0ff20b6a0c5f76d"
+      "spec.md": "248c9feaea9e5bdd12cf7d24bd47e309ab56c5ca0dab29508b7fb0e9439bdb64",
+      "plan.md": "e0863d630de72af5e2fad7f0dd7a06002b96edaa8911f7669933f9d2a684ad2f",
+      "tasks.md": "925d49c8410aa5ebe3ecfdf8a6c9a60e3d5d0b17fa96ab540b45e0b7a14bbeed",
+      "checklist.md": "6f76570f9b2501bc081724b0c42f15b85ce82cb0f2dc94bfaaca1e03dbb4c9d6",
+      "decision-record.md": "6d3efeea7878d45a0b6206e6043a796db175d6668fe6d925ce261c7833fab0c8",
+      "implementation-summary.md": "cb0c1633d78cfe6b5e7beed6bc6efda7b2bd646e3369b0fa93305f074b1c4b3a"
     },
     "last_active_child_id": null,
     "last_active_at": null

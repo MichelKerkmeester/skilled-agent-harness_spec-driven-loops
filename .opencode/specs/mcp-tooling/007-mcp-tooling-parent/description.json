@@ -1,0 +1,26 @@
+{
+  "level": "phase",
+  "specFolder": "mcp-tooling/007-mcp-tooling-parent",
+  "description": "`mcp-chrome-devtools`, `mcp-click-up`, and `mcp-figma` are three flat, independently advisor-routable MCP tool-bridge skills, all `family: mcp`, that",
+  "keywords": [
+    "mcp-chrome-devtools",
+    "mcp-click-up",
+    "mcp-figma",
+    "three",
+    "flat",
+    "independently",
+    "advisor-routable",
+    "mcp",
+    "tool-bridge",
+    "skills",
+    "family"
+  ],
+  "lastUpdated": "2026-07-15T07:46:45.440Z",
+  "specId": "007",
+  "folderSlug": "mcp-tooling-parent",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

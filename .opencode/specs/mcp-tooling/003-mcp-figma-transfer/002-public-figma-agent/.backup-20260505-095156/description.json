@@ -1,0 +1,24 @@
+{
+  "specFolder": "mcp-tooling/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-07-15T05:51:41.121Z",
+  "specId": "",
+  "folderSlug": "backup-20260505-095156",
+  "parentChain": [
+    "mcp-tooling",
+    "003-mcp-figma-transfer",
+    "002-public-figma-agent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

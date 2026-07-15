@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/007-mcp-tooling-parent/002-architecture-decision",
+  "description": "The program has operator-locked structural decisions for bringing `.opencode/skills/mcp-chrome-devtools/`, `.opencode/skills/mcp-click-up/`, and",
+  "keywords": [
+    "program",
+    "operator-locked",
+    "structural",
+    "decisions",
+    "bringing",
+    "opencode",
+    "skills",
+    "mcp-chrome-devtools",
+    "mcp-click-up"
+  ],
+  "lastUpdated": "2026-07-15T07:46:45.498Z",
+  "specId": "002",
+  "folderSlug": "architecture-decision",
+  "parentChain": [
+    "mcp-tooling",
+    "007-mcp-tooling-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
