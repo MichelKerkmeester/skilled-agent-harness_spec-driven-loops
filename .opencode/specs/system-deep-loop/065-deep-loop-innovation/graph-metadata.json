@@ -4,7 +4,8 @@
   "spec_folder": "system-deep-loop/065-deep-loop-innovation",
   "parent_id": null,
   "children_ids": [
-    "system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research"
+    "system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research",
+    "system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout"
   ],
   "manual": {
     "depends_on": [],
@@ -17,14 +18,7 @@
       "loop engineering research",
       "deep loop market research",
       "improve system-deep-loop",
-      "loop engineering state of the art",
-      "parent",
-      "deep-loop",
-      "innovation",
-      "program",
-      "system-deep-loop",
-      "skill",
-      "deeply"
+      "loop engineering state of the art"
     ],
     "key_topics": [
       "deep",
@@ -40,9 +34,12 @@
       "program",
       "parent"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
+      "001-deep-loop-market-research/research/research.md",
+      "005-deep-loop-effectiveness-and-fanout/research/research.md",
+      "005-deep-loop-effectiveness-and-fanout/implementation-summary.md",
       "spec.md"
     ],
     "entities": [
@@ -91,14 +88,17 @@
     ],
     "causal_summary": "Innovation program for the system-deep-loop parent skill: deeply research the state of the art in loop engineering (agentic/iterative loops) across the open ecosystem, mine 10+ GitHub repos for transferable techniques, then rank findings, design spec-ready improvement proposals, and optionally implement them across the deep-loop children/modes and the shared runtime loop engine.",
     "created_at": "2026-07-14T19:23:47.084Z",
-    "last_save_at": "2026-07-14T19:23:47.084Z",
+    "last_save_at": "2026-07-15T06:08:10.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
+    "source_fingerprint": "sha256:d59bcc993a7e9ca4e414aa0d585470c160f671dee290927ea2530b5c0b60c7d3",
+    "source_doc_hashes": {
+      "spec.md": "7f3817b9aabc6b7f90eaa7d384d66311cd0461fb56b3db6b8ea07785f0c3de6a"
+    },
     "last_active_child_id": "system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research",
-    "last_active_at": "2026-07-14T19:23:47.084Z",
-    "source_fingerprint": "sha256:adfd7b5bfe994ebd91a2a10a440e6d0c53131e0032bdd66ffff0c94cabe2d80a"
+    "last_active_at": "2026-07-14T19:23:47.084Z"
   }
 }

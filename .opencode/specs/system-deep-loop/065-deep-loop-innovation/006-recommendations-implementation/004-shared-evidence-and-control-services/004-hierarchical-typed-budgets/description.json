@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/004-hierarchical-typed-budgets",
+  "description": "Plan token, cost, iteration, and wall-time budgets that nest from program to iteration, reserve atomically, settle against ledgered spend, and fail",
+  "keywords": [
+    "plan",
+    "token",
+    "cost",
+    "iteration",
+    "wall-time",
+    "budgets",
+    "nest",
+    "program",
+    "reserve",
+    "atomically",
+    "settle",
+    "against",
+    "ledgered",
+    "spend",
+    "fail"
+  ],
+  "lastUpdated": "2026-07-15T14:01:52.695Z",
+  "specId": "004",
+  "folderSlug": "hierarchical-typed-budgets",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-recommendations-implementation",
+    "004-shared-evidence-and-control-services"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

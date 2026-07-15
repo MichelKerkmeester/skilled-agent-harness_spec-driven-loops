@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/002-cross-mode-closures",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/002-cross-mode-closures",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross-mode closures",
+      "shared deep-loop mode closures",
+      "phase 009 closure modules",
+      "deep-loop shared behavior hoisting",
+      "cross-mode closures implementation plan",
+      "deep-loop shared closure plan",
+      "phase 009 closure implementation",
+      "cross-mode closures tasks",
+      "deep-loop shared closure tasks",
+      "phase 009 closure fixtures",
+      "cross-mode closures checklist",
+      "deep-loop closure verification"
+    ],
+    "key_topics": [
+      "cross-mode",
+      "closures",
+      "shared",
+      "deep-loop",
+      "mode",
+      "phase",
+      "closure",
+      "modules",
+      "behavior",
+      "hoisting",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Closures",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "shipped",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Hoist recurring evidence, receipt, adjudication, budget, and projection behavior into reusable closures so all phase-010 mode migrations share one implementation while retaining explicit mode-owned policies and state reducers.",
+    "created_at": "2026-07-15T16:06:59.320Z",
+    "last_save_at": "2026-07-15T16:06:59.320Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:0be197164f47fd01344bf90d6f88c294f46a6b83ea04ab4f5731caa29b66242f",
+    "source_doc_hashes": {
+      "spec.md": "8e99a67eb7682c10c9234e175924b93aad5bf98bc2d8335412f4fbbe59141625",
+      "plan.md": "4fd8f98786f81ef0eb902e6034e883b4ff1534c958015f0c11b4f558bbe135d2",
+      "tasks.md": "fa87c4befc9fbf425cb46290fe2250b0d70b442d5e6c6ece5dbadb0030bed1c2",
+      "checklist.md": "83c6c0138f7968898c1cb455eb0948cdb4e20bb478689908b77064c28ffc14df"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

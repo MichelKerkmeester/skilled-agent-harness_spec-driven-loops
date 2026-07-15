@@ -1,0 +1,39 @@
+{
+  "run": "per-mode-deepening-sol (005 run-2)",
+  "note": "Extension of 005. Single-lineage SOL xhigh, findings-seeded from 001 + 005 run-1. 9 deep-loop modes x 5 angles. Non-converging (divergent within each mode). Dual question per iter: improve the mode + sharpen its unique value.",
+  "max_iterations": 45,
+  "stop_policy": "max-iterations",
+  "convergence_mode": "divergent",
+  "generations": [
+    {
+      "label": "sol",
+      "kind": "cli-codex",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "fast",
+      "iterations": 45
+    }
+  ],
+  "modes": [
+    "deep-research",
+    "deep-review",
+    "deep-ai-council",
+    "deep-improvement",
+    "deep-alignment",
+    "agent-improvement",
+    "model-benchmark",
+    "skill-benchmark",
+    "ai-system-improvement"
+  ],
+  "angles_per_mode": [
+    "A1-sota",
+    "A2-moat",
+    "A3-mech",
+    "A4-fail",
+    "A5-synth"
+  ],
+  "seeded_from": "001 (216 repos) + 005 run-1 (74 repos) do-not-re-list; run-1 recs were runtime-centric so this run is mode-centric",
+  "web_search": "codex top-level --search (live GitHub/web mining)",
+  "transport_mandate": "GPT via cli-codex only",
+  "created_at": "2026-07-15T07:59:54.642Z"
+}

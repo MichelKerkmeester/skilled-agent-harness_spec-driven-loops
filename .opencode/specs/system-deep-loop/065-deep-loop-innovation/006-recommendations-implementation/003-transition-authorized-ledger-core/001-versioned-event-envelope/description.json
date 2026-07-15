@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/003-transition-authorized-ledger-core/001-versioned-event-envelope",
+  "description": "Define the canonical wire envelope, type/version registry, per-type required-field contracts, and deterministic read-time upcaster entry points that",
+  "keywords": [
+    "define",
+    "canonical",
+    "wire",
+    "envelope",
+    "type",
+    "version",
+    "registry",
+    "per-type",
+    "required-field",
+    "contracts",
+    "deterministic",
+    "read-time",
+    "upcaster",
+    "entry",
+    "points"
+  ],
+  "lastUpdated": "2026-07-15T13:46:04.119Z",
+  "specId": "001",
+  "folderSlug": "versioned-event-envelope",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-recommendations-implementation",
+    "003-transition-authorized-ledger-core"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

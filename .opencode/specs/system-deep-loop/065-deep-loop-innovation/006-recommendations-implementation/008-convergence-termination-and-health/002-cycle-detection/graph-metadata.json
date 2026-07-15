@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health/002-cycle-detection",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health/002-cycle-detection",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop cycle detection",
+      "repeated claim and focus signatures",
+      "convergence degeneration signal",
+      "cycle detection implementation plan",
+      "deep-loop repeated-state detector plan",
+      "cycle detection tasks",
+      "deep-loop fingerprint history tasks",
+      "cycle detection checklist",
+      "deep-loop cycle verifier contract"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "cycle",
+      "detection",
+      "repeated",
+      "claim",
+      "focus",
+      "signatures",
+      "convergence",
+      "degeneration",
+      "signal",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs",
+      ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/003-claim-continuity/spec.md",
+      ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/004-next-focus-semantics/spec.md",
+      ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+      ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cycle Detection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "progress-gated",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "run",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "three",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "monotonic",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "state",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "three-traversal",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated thresholds that surface degeneration as a health signal and stopping-clock input.",
+    "created_at": "2026-07-15T16:06:38.650Z",
+    "last_save_at": "2026-07-15T16:06:38.650Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:94211db7674b7aee298f8451b2d7b1c05aa02cd981c65e7d26a9c82077cb1e25",
+    "source_doc_hashes": {
+      "spec.md": "795dee0ae1217a01707311717a6ea4cd86782cdfc6eb2f198494aff6dd1d4e10",
+      "plan.md": "35c73a7bc4a1b1be2e301f9ed775b3cbf5eb5fe483cfcedfc5ca9902bbb36767",
+      "tasks.md": "5cf20634f5b0e24c848dbec528593c9a7327aabdf84d2c70422b66cadabc91a5",
+      "checklist.md": "332dd7f078a92664c62c1772f30e5d4848ba036092d7067777a5b651bbc0a4db"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

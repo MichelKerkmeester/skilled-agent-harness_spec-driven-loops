@@ -1,0 +1,37 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures",
+  "description": "Plan a sealed fixture corpus that mixes old and new event and state versions within one deep-loop run, exercising upcasters, mode reducers, replay,",
+  "keywords": [
+    "plan",
+    "sealed",
+    "fixture",
+    "corpus",
+    "mixes",
+    "old",
+    "new",
+    "event",
+    "state",
+    "versions",
+    "within",
+    "one",
+    "deep-loop",
+    "run",
+    "exercising",
+    "upcasters",
+    "mode",
+    "reducers",
+    "replay"
+  ],
+  "lastUpdated": "2026-07-15T15:57:27.013Z",
+  "specId": "003",
+  "folderSlug": "mixed-version-fixtures",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-recommendations-implementation",
+    "009-shared-mode-contracts-and-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/002-fanout-live-tools-unblock",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/002-fanout-live-tools-unblock",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fan-out live-tools unblock",
+      "fanout live web search",
+      "codex search exec fanout",
+      "fan-out live-tools implementation plan",
+      "fanout search adapter plan",
+      "fan-out live-tools tasks",
+      "fanout search adapter tasks",
+      "fan-out live-tools checklist",
+      "fanout live search verification"
+    ],
+    "key_topics": [
+      "fan-out",
+      "live-tools",
+      "unblock",
+      "fanout",
+      "live",
+      "web",
+      "search",
+      "codex",
+      "exec",
+      "implementation",
+      "plan",
+      "adapter"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-prototype.cjs",
+        "kind": "file",
+        "path": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tools Unblock",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "invocation",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SOL",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "top-level",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-search",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ship the early, backward-compatible fan-out live-tools unblock on fanout-run.cjs: a typed liveTools.webSearch policy, a fail-closed executor capability matrix, per-kind command adapters with invocation fingerprints, and models-by-branches-by-replicas manifest expansion. The phase changes dispatch only and preserves every canonical persisted state and event shape.",
+    "created_at": "2026-07-15T13:10:15.091Z",
+    "last_save_at": "2026-07-15T13:10:15.091Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:837bf59418e35087f0be4404131393cf20c24cf7baf35efcb37c5396358c2d47",
+    "source_doc_hashes": {
+      "spec.md": "e18c0f98607e45ed71f37a5d01a4606f30bb4c7952f3a79a74b1bd26a86d32f4",
+      "plan.md": "547137c8982f29e7fade43b6d98ecf661fcfae091cbefbbdcd25fee1e29c6543",
+      "tasks.md": "5e581353921ee644187782aa819a16b1c294ee3a41e7cf5d956d9a066fce710b",
+      "checklist.md": "760220898093f72132f755488ae2b4fc414e5919a45966ede3e63a06efe9cb77"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

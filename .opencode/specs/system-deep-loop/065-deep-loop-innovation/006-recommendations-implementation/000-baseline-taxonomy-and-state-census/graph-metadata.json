@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/000-baseline-taxonomy-and-state-census",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/000-baseline-taxonomy-and-state-census",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "baseline taxonomy and state census",
+      "deep-loop recommendations phase 000",
+      "deep-loop immutable BASE census",
+      "baseline taxonomy and state census implementation plan",
+      "deep-loop recommendations phase 000 plan",
+      "baseline taxonomy and state census tasks",
+      "deep-loop recommendations phase 000 tasks",
+      "baseline taxonomy and state census checklist",
+      "deep-loop recommendations phase 000 checklist"
+    ],
+    "key_topics": [
+      "baseline",
+      "taxonomy",
+      "state",
+      "census",
+      "deep-loop",
+      "recommendations",
+      "phase",
+      "immutable",
+      "base",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/references/state_format.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "state_format.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/runtime/references/state_format.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "live",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "entry",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "executable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "owners",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 006 phase must preserve.",
+    "created_at": "2026-07-15T13:10:11.279Z",
+    "last_save_at": "2026-07-15T13:10:11.279Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:a07abd12c9b2db576d87ff6356fd4c7501a61f0f90cd9838422e4ce28eee7625",
+    "source_doc_hashes": {
+      "spec.md": "0911405f45dc3cfc4d190ca93fe3df5cf15a4d98bbda1aa64e1f187c499f3ee7",
+      "plan.md": "6c65ae22906e2e990447fc8e74b9f685d66fa03576748a481aefaaf8749b1b4f",
+      "tasks.md": "3473f778b9fd82066e3093e7ae09c82d821fd4a8095a2259613b685d603defc7",
+      "checklist.md": "7bb3227314f8c15a650a56c5499f7ad924e579c77e4489397331760d7d8d9d89"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

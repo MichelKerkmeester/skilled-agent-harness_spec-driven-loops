@@ -1,0 +1,35 @@
+{
+  "run": "manual-shape-b",
+  "note": "Hand-rolled realization of the plan.md Shape B (sequential generations, findings-seeded). Runs because the fan-out codex executor cannot pass codex top-level --search; patching it is out of scope. See decision-record ADR-002.",
+  "max_iterations": 45,
+  "stop_policy": "max-iterations",
+  "convergence_mode": "divergent",
+  "generations": [
+    {
+      "label": "luna",
+      "kind": "cli-codex",
+      "model": "gpt-5.6-luna",
+      "reasoningEffort": "max",
+      "serviceTier": "fast",
+      "iterations": 25
+    },
+    {
+      "label": "sol",
+      "kind": "cli-codex",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "ultra",
+      "serviceTier": "fast",
+      "iterations": 10
+    },
+    {
+      "label": "glm",
+      "kind": "cli-opencode",
+      "model": "zai-coding-plan/glm-5.2",
+      "variant": "max",
+      "iterations": 10
+    }
+  ],
+  "web_search": "codex top-level --search (live GitHub/web mining); opencode native browsing",
+  "transport_mandate": "GPT via cli-codex only; GLM via cli-opencode",
+  "created_at": "2026-07-14T21:11:00.820Z"
+}

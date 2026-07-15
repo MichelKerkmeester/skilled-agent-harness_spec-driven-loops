@@ -1,0 +1,1149 @@
+{
+  "note": "Manual SOL-high authoring swarm work-list for the 006 implementation tree. Each item = one spec-folder doc set, authored by a cli-codex SOL(high,fast) agent mirroring a real 017 example (leaf or parent), then metadata-generated + strict-validated by the driver. kind='leaf' -> full {spec,plan,tasks,checklist}; kind='parent' -> lean spec.md only (children carry the heavy docs). Waves are dispatched + verified one at a time.",
+  "templates": {
+    "leaf_l2": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+    "parent": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold"
+  },
+  "items": [
+    {
+      "id": "000",
+      "wave": 1,
+      "kind": "leaf",
+      "done": true,
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/000-baseline-taxonomy-and-state-census",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Baseline, Taxonomy & State Census",
+      "status": "Planned",
+      "outcome": "Pin an immutable BASE; normalize the taxonomy; census the runtime subsystems, event schemas + readers/writers, in-flight state + backends, defects-vs-protected-contracts, replay fixtures, and rollback anchors; extend the packet-033 behavior benchmarks as the no-regression baseline.",
+      "depends_on": [],
+      "content_brief": "(authored + validated in wave 1)",
+      "research_refs": []
+    },
+    {
+      "id": "002",
+      "wave": 1,
+      "kind": "leaf",
+      "done": true,
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/002-fanout-live-tools-unblock",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Fan-out Live-Tools Unblock (early, backward-compatible)",
+      "status": "Planned",
+      "outcome": "Ship a typed liveTools.webSearch policy + capability matrix + per-kind executor adapters + manifest expansion on fanout-run.cjs; dispatch-only, no canonical-persistence change.",
+      "depends_on": ["001"],
+      "content_brief": "(authored + validated in wave 1)",
+      "research_refs": []
+    },
+
+    {
+      "id": "001",
+      "wave": 2,
+      "kind": "parent",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "title": "Architecture, Coverage & Transition Contract",
+      "status": "Planned",
+      "predecessor": "000-baseline-taxonomy-and-state-census",
+      "successor": "003-transition-authorized-ledger-core",
+      "handoff_criteria": "The spine is ratified as an ADR, the 178-row recommendation ledger is proven bijective and single-disposition, and the transition/versioning/rollback policy is frozen — before any writer is built in phase 003.",
+      "outcome": "Ratify the spine (ADR); freeze the bijective 178-row classified rec ledger (stable IDs, normalized targets, single disposition); define transition/versioning/compat/cutover/rollback policy before any writer.",
+      "depends_on": ["000"],
+      "children": [
+        { "slug": "001-spine-architecture-adr", "focus": "Ratify the single cross-mode spine (typed append-only event ledger + fail-closed transition-authorization gateway + sealed reference artifacts + versioned replay fingerprints + receipts/certificates + blinded/counterfactual adjudication) as an architecture decision governing phases 003-011; record the alternatives considered and rejected, and the consequences.", "status": "Planned" },
+        { "slug": "002-recommendation-ledger-bijective-map", "focus": "Freeze all 178 recommendations (8 run-a + 59 run-b + 111 run-c) into one classified ledger: a stable ID, a normalized target (subsystem/mode/phase), and a single disposition per rec; prove the bijective 178-total, single-disposition, and full phase-coverage properties.", "status": "Planned" },
+        { "slug": "003-transition-versioning-and-rollback-policy", "focus": "Define, before any writer exists, the event-envelope versioning + upcaster rules, the fail-closed transition-authorization semantics, the per-mode authority-cutover protocol, and the rollback-window policy that every later phase (003-012) must obey.", "status": "Planned" }
+      ],
+      "content_brief": "This is a PHASE PARENT. Author ONLY spec.md (lean phase-parent form: the METADATA table, PROBLEM & PURPOSE, and a PHASE DOCUMENTATION MAP table with one row per child below). Do NOT write plan.md, tasks.md, or checklist.md - the children carry those. Include the CONTENT DISCIPLINE PHASE PARENT marker comment from the template. The phase's role: this is the last planning gate before any code is written. It ratifies the cross-mode architecture spine as an ADR, freezes the 178-recommendation corpus into one bijective single-disposition ledger that makes coverage auditable, and fixes the transition/versioning/compat/cutover/rollback policy that governs every writer built in 003-012. Its three children are independent planning contracts and are listed in the PHASE DOCUMENTATION MAP. Cite the 006 parent spec.md and manifest/phase-tree.json for the spine definition and the rec_corpus counts (8/59/111/178).",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "001-001",
+      "wave": 2,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Spine Architecture ADR",
+      "status": "Planned",
+      "outcome": "Ratify the single cross-mode architecture spine as an architecture decision that governs every later 006 phase, with alternatives considered/rejected and consequences recorded.",
+      "depends_on": [],
+      "content_brief": "This phase RATIFIES (as an architecture decision) the single cross-mode 'spine' that the 45+59+111-iteration research converged on: (1) a typed, append-only, versioned event LEDGER as the one source of truth; (2) a fail-closed TRANSITION-AUTHORIZATION gateway that must authorize every state transition (default-deny); (3) SEALED/frozen reference artifacts (immutable inputs referenced by digest); (4) versioned REPLAY FINGERPRINTS so any run is deterministically reproducible; (5) RECEIPTS/certificates emitted at phase and mode boundaries; (6) a BLINDED/counterfactual ADJUDICATION service for scoring/convergence decisions. The spec must: state the decision, enumerate each primitive and the problem it solves (grounded in the run-2 synthesis section 12 cross-mode spine), list the ALTERNATIVES considered and why they were rejected (e.g. ad-hoc per-mode JSONL, mutable state, unversioned events, self-scoring), and record the CONSEQUENCES and the phases that consume the decision (003 builds the ledger core, 004 the shared services, 005 the compat bridge). This is a planning/decision phase, Status Planned, Level 2. The heaviest content belongs in plan.md (the decision rationale) and checklist.md (ratification acceptance). Cite the 006 parent spec.md, manifest/phase-tree.json (architecture + migration_model fields), and 005/research/research-modes.md section 12.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md"
+      ]
+    },
+    {
+      "id": "001-002",
+      "wave": 2,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Recommendation Ledger — Bijective Classified Map",
+      "status": "Planned",
+      "outcome": "Freeze all 178 recommendations into one classified ledger (stable ID + normalized target + single disposition per rec) and prove the bijective-total, single-disposition, and full-phase-coverage properties that make program coverage auditable.",
+      "depends_on": [],
+      "content_brief": "This phase produces the traceability spine of the whole 006 program: ONE ledger that classifies every one of the 178 recommendations exactly once. The corpus is three research runs: 8 (run-a, the 45-iteration survey R1-R8), 59 (run-b, the 20-iteration run-1), and 111 (run-c, the 40-iteration per-mode run) = 178 total. The spec must plan to: assign each rec a STABLE ID (the registries currently lack durable IDs - this phase mints them so downstream references never break); a NORMALIZED TARGET (which subsystem / mode / phase it lands in, using the phase-000 taxonomy); and a SINGLE DISPOSITION (one of: adopt-as-phase-NNN, merge-into-<id>, defer-with-reason, reject-with-reason). Acceptance (checklist) must assert the ledger is BIJECTIVE and single-disposition: exactly 178 rows, every ID unique, every rec in exactly one disposition bucket, no bucket silently empty, and every 'adopt' rec maps to a real phase in manifest/phase-tree.json. The literal 178-row ledger is an execution ARTIFACT this phase emits (e.g. a JSON/CSV under the phase folder) - the spec/plan/tasks/checklist PLAN and gate its construction; do not hand-type all 178 rows into the spec prose. Note the source registries: 001/005 findings-registry JSON files under the sibling research packets. This is Level 2, Status Planned. Cite the 006 parent spec.md, manifest/phase-tree.json (rec_corpus + notes.bijective_coverage), and both research packets' findings registries.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json"
+      ]
+    },
+    {
+      "id": "001-003",
+      "wave": 2,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Transition, Versioning & Rollback Policy",
+      "status": "Planned",
+      "outcome": "Fix, before any writer is built, the event-envelope versioning + upcaster rules, the fail-closed transition-authorization semantics, the per-mode authority-cutover protocol, and the rollback-window policy that every phase 003-012 must obey.",
+      "depends_on": [],
+      "content_brief": "This phase writes the CONTRACT every later writer obeys, before any writer exists (so the ledger core in 003 is built to a frozen policy, not a moving one). It must define: (1) the EVENT-ENVELOPE VERSIONING scheme - how every event carries a version + type discriminator, and the UPCASTER rules that let new code read old events (forward/backward compatibility); (2) the FAIL-CLOSED TRANSITION-AUTHORIZATION semantics - the gateway defaults to deny, what an authorization decision consists of, and how an unauthorized transition is rejected and recorded; (3) the per-mode AUTHORITY-CUTOVER protocol - how authority moves from the legacy path to the new spine one mode at a time (consumed by phase 011), including the shadow-parity precondition; (4) the ROLLBACK-WINDOW policy - how long a cutover stays reversible, what evidence authorizes the flip, and how a rollback is executed. The point is that 003-012 inherit these rules rather than reinventing them. This is a policy/planning phase, Level 2, Status Planned - it defines rules, it does not implement them. Cite the 006 parent spec.md (Sequencing Invariants) and manifest/phase-tree.json (migration_model + phases 003/005/011 outcomes).",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+
+    {
+      "id": "003",
+      "wave": 3,
+      "kind": "parent",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/003-transition-authorized-ledger-core",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "title": "Transition-Authorized Ledger Core",
+      "status": "Planned",
+      "predecessor": "001-architecture-coverage-and-transition-contract",
+      "successor": "004-shared-evidence-and-control-services",
+      "handoff_criteria": "The versioned event envelope, the typed append-only ledger, the replay-fingerprint scheme, and the fail-closed transition-authorization gateway are planned and co-landed as one dark (non-authoritative) substrate; legacy writers remain the source of truth until phase 011.",
+      "outcome": "Versioned event envelope + typed append-only ledger + replay fingerprints + fail-closed transition-authorization gateway, co-landed; dark, legacy authoritative.",
+      "depends_on": ["001"],
+      "children": [
+        { "slug": "001-versioned-event-envelope", "focus": "The wire format for every event: an explicit schema version + type discriminator + required-field contract + upcast entry points, per the phase-001 transition policy; the single shape all later events use.", "status": "Planned" },
+        { "slug": "002-typed-append-only-ledger", "focus": "The append-only ledger writer/reader over the envelope: monotonic append, no in-place mutation, typed events, integrity + ordering guarantees; the one source of truth the spine records into (dark).", "status": "Planned" },
+        { "slug": "003-replay-fingerprints", "focus": "Versioned replay fingerprints derived from the ledger so any run is deterministically reproducible and verifiable; fingerprint derivation, storage, and mismatch detection.", "status": "Planned" },
+        { "slug": "004-transition-authorization-gateway", "focus": "The fail-closed (default-deny) gateway that must authorize every state transition before it is recorded, co-landed with the ledger; authorized/denied decisions are themselves ledger events.", "status": "Planned" }
+      ],
+      "content_brief": "PHASE PARENT (author spec.md only; children carry the heavy docs). This phase plans the CORE SUBSTRATE the whole spine records into. All four children co-land as ONE dark unit: the runtime writes these events in parallel with the legacy path but they are NOT authoritative until the per-mode cutover in phase 011. Grounded in the phase-001 ADR (the six-primitive spine) and the phase-001 transition/versioning policy, and in the shipped runtime under .opencode/skills/system-deep-loop/runtime/ (the current JSONL state/checkpoint writers this substrate will eventually replace). The four children are: the versioned event envelope, the typed append-only ledger, the replay-fingerprint scheme, and the fail-closed transition-authorization gateway. Note in PROBLEM & PURPOSE that this is additive-dark (legacy authoritative) per the migration model. Cite the 006 parent spec.md, manifest/phase-tree.json, and the phase-001 ADR + transition-policy children.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md"
+      ]
+    },
+    {
+      "id": "003-001",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/003-transition-authorized-ledger-core/001-versioned-event-envelope",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Versioned Event Envelope",
+      "status": "Planned",
+      "pred_sibling": null,
+      "succ_sibling": "002-typed-append-only-ledger",
+      "outcome": "Define the single wire format every spine event uses: explicit schema version + type discriminator + required-field contract + upcast entry points, conforming to the phase-001 transition/versioning policy.",
+      "depends_on": [],
+      "content_brief": "Plan the EVENT ENVELOPE: the common outer shape every event on the append-only ledger carries. It MUST include an explicit schema version, a type discriminator (which event kind), a required-field contract per type, and the entry points where an UPCASTER converts an older-versioned event to the current shape on read (so new code reads old events). This is the foundation the typed ledger (sibling 002) and every later mode schema build on. Conform to the versioning + upcaster rules fixed in phase 001's transition-versioning-and-rollback-policy child. This is a Level-2 planning phase (Status Planned) for runtime code that will be built additive-dark; it plans the schema + contracts, not the implementation. Cite the phase-001 transition policy, the shipped runtime JSONL writers under .opencode/skills/system-deep-loop/runtime/ that this envelope generalizes, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md"
+      ]
+    },
+    {
+      "id": "003-002",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/003-transition-authorized-ledger-core/002-typed-append-only-ledger",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Typed Append-Only Ledger",
+      "status": "Planned",
+      "pred_sibling": "001-versioned-event-envelope",
+      "succ_sibling": "003-replay-fingerprints",
+      "outcome": "Define the append-only ledger writer/reader over the envelope: monotonic append, no in-place mutation, typed events, and integrity + ordering guarantees; the dark source of truth the spine records into.",
+      "depends_on": [],
+      "content_brief": "Plan the TYPED APPEND-ONLY LEDGER: the writer/reader that persists envelope events (sibling 001) as an immutable, monotonically-appended log - no in-place mutation, strong ordering, per-event integrity, and typed decode. This is the ONE source of truth the whole spine records into, running DARK (in parallel with, and non-authoritative versus, the legacy JSONL writers) until phase 011. Address: append semantics + idempotency, ordering/sequence guarantees, integrity (per-event + log-level), typed read/reduce, and how it coexists with the legacy path without changing canonical authority. Level-2 planning (Status Planned) for additive-dark runtime code. Cite sibling 001 (envelope), the phase-001 ADR + transition policy, the shipped runtime JSONL state/checkpoint writers under .opencode/skills/system-deep-loop/runtime/, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md"
+      ]
+    },
+    {
+      "id": "003-003",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/003-transition-authorized-ledger-core/003-replay-fingerprints",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Replay Fingerprints",
+      "status": "Planned",
+      "pred_sibling": "002-typed-append-only-ledger",
+      "succ_sibling": "004-transition-authorization-gateway",
+      "outcome": "Define versioned replay fingerprints derived from the ledger so any run is deterministically reproducible and verifiable; fingerprint derivation, storage, and mismatch detection.",
+      "depends_on": [],
+      "content_brief": "Plan REPLAY FINGERPRINTS: a versioned, deterministic digest derived from the ledger's event sequence (sibling 002) that lets any run be re-derived and verified byte-for-byte - the basis for the later shadow-parity harness (phase 005) and the whole-system replay gate (phase 013). Address: what inputs the fingerprint covers, how it is versioned alongside the envelope, where it is stored, and how a mismatch is detected and surfaced (fail-closed). Level-2 planning (Status Planned). Cite sibling 002 (ledger), the phase-001 transition/versioning policy, and manifest/phase-tree.json (phases 005/013 consume this).",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "003-004",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/003-transition-authorized-ledger-core/004-transition-authorization-gateway",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Transition-Authorization Gateway",
+      "status": "Planned",
+      "pred_sibling": "003-replay-fingerprints",
+      "succ_sibling": null,
+      "outcome": "Define the fail-closed (default-deny) gateway that must authorize every state transition before it is recorded, co-landed with the ledger; authorized and denied decisions are themselves ledger events.",
+      "depends_on": [],
+      "content_brief": "Plan the TRANSITION-AUTHORIZATION GATEWAY: a fail-closed (default-DENY) checkpoint that every state transition must pass before it is written to the ledger (sibling 002). Per the phase-001 transition-authorization semantics: what an authorization decision consists of (inputs, policy, verdict), how an unauthorized transition is rejected, and how BOTH authorized and denied decisions are recorded as first-class ledger events (auditable). It co-lands with the ledger core as one dark unit. Address: the default-deny stance, the decision record shape, replay/audit of decisions, and how it stays non-authoritative until phase 011. Level-2 planning (Status Planned). Cite sibling 002 (ledger), the phase-001 ADR + transition policy, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md"
+      ]
+    },
+
+    {
+      "id": "004",
+      "wave": 3,
+      "kind": "parent",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "title": "Shared Evidence & Control Services",
+      "status": "Planned",
+      "predecessor": "003-transition-authorized-ledger-core",
+      "successor": "005-compatibility-shadow-and-rollback-bridge",
+      "handoff_criteria": "The seven shared services (receipts + effect-recovery, sealed reference artifacts, blinded adjudication, hierarchical typed budgets, stream-fold gauges, locks/fencing, continuity identities) are each planned behind the phase-003 envelope contract and ready for the compatibility bridge and the mode migrations to consume.",
+      "outcome": "Receipts + effect-recovery gateway; sealed reference-artifact mechanism; blinded/counterfactual adjudication service; hierarchical typed budgets; stream-fold gauges; locks/fencing; continuity identities.",
+      "depends_on": ["003"],
+      "children": [
+        { "slug": "001-receipts-and-effect-recovery", "focus": "Receipts/certificates emitted at phase and mode boundaries, plus an effect-recovery gateway that makes external effects idempotent and replay-safe after a crash or resume.", "status": "Planned" },
+        { "slug": "002-sealed-reference-artifacts", "focus": "The sealed/frozen reference-artifact mechanism: immutable inputs referenced by content digest so any run pins the exact artifacts it consumed.", "status": "Planned" },
+        { "slug": "003-blinded-adjudication-service", "focus": "A blinded/counterfactual adjudication service for scoring and convergence decisions, controlling positional and identity bias in multi-candidate judgement.", "status": "Planned" },
+        { "slug": "004-hierarchical-typed-budgets", "focus": "Hierarchical typed budgets (token/cost/iteration/time) that nest by scope and fail closed when exhausted, consumed by fan-out and convergence.", "status": "Planned" },
+        { "slug": "005-stream-fold-gauges", "focus": "Stream-fold gauges: observability metrics computed as a deterministic fold over the ledger event stream, so gauges are reproducible from the log.", "status": "Planned" },
+        { "slug": "006-locks-and-fencing", "focus": "Locks and fencing tokens for safe concurrent writers and resume, preventing split-brain between legacy and dark paths and between fan-out workers.", "status": "Planned" },
+        { "slug": "007-continuity-identities", "focus": "Stable continuity identities threaded across resume, handover, and mode boundaries, so a claim or lineage keeps one identity across the whole loop.", "status": "Planned" }
+      ],
+      "content_brief": "PHASE PARENT (author spec.md only). This phase plans the SHARED SERVICES every mode reuses, each built behind the phase-003 event-envelope contract and largely independent of one another (they parallelize). The seven children are listed in the phase map. These services are what turn the bare ledger into a usable substrate: receipts + idempotent effect recovery, sealed reference artifacts, a blinded adjudicator (the review's added primitive), hierarchical typed budgets, stream-fold gauges, locks/fencing, and continuity identities. Grounded in the run-2 synthesis (research-modes.md, especially the cross-mode spine section and the AI-council adjudication findings) and the shipped runtime's current gauges/budget/lock/continuity code under .opencode/skills/system-deep-loop/runtime/. Note additive-dark (legacy authoritative). Cite the 006 parent spec.md, manifest/phase-tree.json, the phase-001 ADR, and research-modes.md.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md"
+      ]
+    },
+    {
+      "id": "004-001",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Receipts & Effect Recovery",
+      "status": "Planned",
+      "pred_sibling": null,
+      "succ_sibling": "002-sealed-reference-artifacts",
+      "outcome": "Plan receipts/certificates emitted at phase and mode boundaries, plus an effect-recovery gateway that makes external effects idempotent and replay-safe across crashes and resumes.",
+      "depends_on": [],
+      "content_brief": "Plan RECEIPTS + EFFECT RECOVERY. Receipts: signed/certified records emitted at phase and mode boundaries (proof a boundary was crossed with a given result), stored as ledger events. Effect-recovery gateway: a mechanism that wraps external side effects (subprocess dispatch, file writes, API calls) so that after a crash or resume they are idempotent and replay-safe - each effect is recorded intended-then-confirmed on the ledger, and recovery reconciles interrupted effects rather than double-applying them. Address: the receipt shape + boundary points, the effect record lifecycle (intent -> confirm -> recover), and idempotency keys. Level-2 planning (Status Planned) behind the phase-003 envelope. Cite the phase-003 ledger + gateway, the shipped runtime salvage/recovery code under .opencode/skills/system-deep-loop/runtime/, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "004-002",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/002-sealed-reference-artifacts",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Sealed Reference Artifacts",
+      "status": "Planned",
+      "pred_sibling": "001-receipts-and-effect-recovery",
+      "succ_sibling": "003-blinded-adjudication-service",
+      "outcome": "Plan the sealed/frozen reference-artifact mechanism: immutable inputs referenced by content digest so any run pins the exact artifacts it consumed.",
+      "depends_on": [],
+      "content_brief": "Plan SEALED REFERENCE ARTIFACTS: a mechanism that freezes an input artifact (a prompt set, a fixture, a prior run's output, a config) as immutable and content-addressed, so a run references it by digest and can never be silently changed underneath. This underpins deterministic replay (phase 003 fingerprints) and shadow parity (phase 005): if the sealed inputs match, the run must reproduce. Address: sealing (digest + freeze), reference-by-digest, verification on read (fail-closed on mismatch), and lifecycle/retention. Level-2 planning (Status Planned). Cite the phase-003 replay fingerprints, the phase-001 ADR (sealed-artifacts primitive), and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md"
+      ]
+    },
+    {
+      "id": "004-003",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/003-blinded-adjudication-service",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Blinded Adjudication Service",
+      "status": "Planned",
+      "pred_sibling": "002-sealed-reference-artifacts",
+      "succ_sibling": "004-hierarchical-typed-budgets",
+      "outcome": "Plan a blinded/counterfactual adjudication service for scoring and convergence decisions that controls positional and identity bias in multi-candidate judgement.",
+      "depends_on": [],
+      "content_brief": "Plan the BLINDED ADJUDICATION SERVICE - the primitive the SOL-ultra design review added because self-scoring and identity-visible judging bias convergence. It provides bias-controlled adjudication for any multi-candidate decision (deep-review severity, ai-council pairwise ranking, improvement/benchmark scoring): candidates are presented blinded (identities/positions hidden or randomized), and counterfactual checks probe whether a verdict flips under re-labeling. Address: the blinding protocol, pairwise/counterfactual adjudication, how verdicts are recorded (ledger events + retained raw scores), and how modes consume it. Grounded in the run-2 AI-council findings (blinded pairwise adjudicator, effective-independence, Dawid-Skene cautions) in research-modes.md. Level-2 planning (Status Planned). Cite research-modes.md, the phase-001 ADR (adjudication primitive), and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md"
+      ]
+    },
+    {
+      "id": "004-004",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/004-hierarchical-typed-budgets",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Hierarchical Typed Budgets",
+      "status": "Planned",
+      "pred_sibling": "003-blinded-adjudication-service",
+      "succ_sibling": "005-stream-fold-gauges",
+      "outcome": "Plan hierarchical typed budgets (token/cost/iteration/time) that nest by scope and fail closed when exhausted, consumed by fan-out and convergence.",
+      "depends_on": [],
+      "content_brief": "Plan HIERARCHICAL TYPED BUDGETS: a budget model where token, cost, iteration, and wall-time budgets are typed and NEST by scope (program > mode > lineage > iteration), so a child can never exceed its parent's remaining allotment, and exhaustion fails closed (stops dispatch) rather than silently overrunning. This is what phase 006 fan-out and phase 008 convergence's value-of-computation allocation consume. Address: the budget types, nesting/inheritance + reservation semantics, fail-closed exhaustion, and how spend is recorded on the ledger. Grounded in the shipped runtime's current budget/cost subsystem and the run-2 budget findings. Level-2 planning (Status Planned). Cite the shipped runtime budget code under .opencode/skills/system-deep-loop/runtime/, research-modes.md, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "004-005",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/005-stream-fold-gauges",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Stream-Fold Gauges",
+      "status": "Planned",
+      "pred_sibling": "004-hierarchical-typed-budgets",
+      "succ_sibling": "006-locks-and-fencing",
+      "outcome": "Plan stream-fold gauges: observability metrics computed as a deterministic fold over the ledger event stream, so every gauge is reproducible from the log.",
+      "depends_on": [],
+      "content_brief": "Plan STREAM-FOLD GAUGES: replace ad-hoc mutable counters with gauges defined as a deterministic FOLD over the ledger event stream (sibling of phase-003 ledger), so any gauge value is reproducible by replaying the log and cannot drift from the events it summarizes. Address: the gauge-as-fold model, the standard gauge set (progress, novelty, cost, health inputs), incremental vs full recomputation, and determinism guarantees. Grounded in the shipped runtime's gauges/observability subsystem and the run-2 observability findings. Level-2 planning (Status Planned). Cite the shipped runtime gauges code under .opencode/skills/system-deep-loop/runtime/, the phase-003 ledger, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "004-006",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/006-locks-and-fencing",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Locks & Fencing",
+      "status": "Planned",
+      "pred_sibling": "005-stream-fold-gauges",
+      "succ_sibling": "007-continuity-identities",
+      "outcome": "Plan locks and fencing tokens for safe concurrent writers and resume, preventing split-brain between legacy and dark paths and between fan-out workers.",
+      "depends_on": [],
+      "content_brief": "Plan LOCKS & FENCING: the concurrency-safety layer that prevents two writers from corrupting shared state - a legacy writer and the dark spine writer during the shadow period, or multiple fan-out workers, or a stale resumed process racing a live one. Use fencing tokens (monotonic) so a stale holder's writes are rejected. Address: what is locked (ledger append, projections, per-lineage state), lock acquisition/lease/expiry, fencing-token rejection of stale writers, and deadlock/timeout policy. Grounded in the shipped runtime's current lock/pause-marker code. Level-2 planning (Status Planned). Cite the shipped runtime locks/recovery code under .opencode/skills/system-deep-loop/runtime/, the phase-003 ledger, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "004-007",
+      "wave": 3,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/007-continuity-identities",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Continuity Identities",
+      "status": "Planned",
+      "pred_sibling": "006-locks-and-fencing",
+      "succ_sibling": null,
+      "outcome": "Plan stable continuity identities threaded across resume, handover, and mode boundaries, so a claim or lineage keeps one identity across the whole loop.",
+      "depends_on": [],
+      "content_brief": "Plan CONTINUITY IDENTITIES: stable, durable identifiers for the things a loop tracks across time - a lineage, a claim, a candidate, a mode session - so that resume, handover, and cross-mode reference all point to the SAME identity rather than a fragile array index or regenerated key (the run-2 continuity-threading finding). Address: identity minting + stability rules, how identities survive resume/handover, cross-mode identity references, and how they are recorded on the ledger. This underpins phase 007 (claim continuity) and phase 011 (per-mode cutover). The shipped runtime already has runtime/lib/deep-loop/continuity-thread.cjs - read it and state what this generalizes. Level-2 planning (Status Planned). Cite continuity-thread.cjs, research-modes.md, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md"
+      ]
+    },
+
+    {
+      "id": "005",
+      "wave": 4,
+      "kind": "parent",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/005-compatibility-shadow-and-rollback-bridge",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "title": "Compatibility, Shadow & Rollback Bridge",
+      "status": "Planned",
+      "predecessor": "004-shared-evidence-and-control-services",
+      "successor": "006-fanout-fanin-durable-orchestration",
+      "handoff_criteria": "Upcasters, dual-read/single-write adapters, and legacy projections are planned; the shadow-parity harness can prove the dark path reproduces legacy behavior; in-flight state is classified; and rollback drills are defined - all WITHOUT moving authority (that is phase 011).",
+      "outcome": "Upcasters + dual-read/single-write adapters + legacy projections; shadow-parity harness; in-flight-state classification (upcast/pin/fork/migrate/block); rollback drills. No authority cutover.",
+      "depends_on": ["003", "004"],
+      "children": [
+        { "slug": "001-upcasters-and-dual-read-adapters", "focus": "Upcasters (old event/state versions -> current) plus dual-read/single-write adapters that read both legacy and dark shapes but write the dark ledger only during the shadow period.", "status": "Planned" },
+        { "slug": "002-legacy-projections", "focus": "Projections that render the dark ledger back into the legacy JSONL/JSON shapes so every existing reader keeps working unchanged while the spine runs dark.", "status": "Planned" },
+        { "slug": "003-shadow-parity-harness", "focus": "The harness that runs the dark path and the legacy path on the same sealed inputs and proves identical results via replay fingerprints - the precondition any mode must pass before phase 011 cutover.", "status": "Planned" },
+        { "slug": "004-inflight-state-classification", "focus": "Classify every in-flight state shape from the phase-000 census into one of upcast / pin / fork / migrate / block, so a running loop is handled correctly at cutover.", "status": "Planned" },
+        { "slug": "005-rollback-drills", "focus": "Executable rollback drills that prove a cutover can be reversed within the phase-001 rollback window, with integrity checks, before any real authority flip is attempted.", "status": "Planned" }
+      ],
+      "content_brief": "PHASE PARENT (author spec.md only). This phase builds the BRIDGE that makes the dark substrate safe to eventually make authoritative - WITHOUT moving authority yet (that is phase 011). It is the heart of the additive-dark migration model: upcasters + dual-read/single-write adapters keep old and new readable; legacy projections keep existing readers working; the shadow-parity harness proves the dark path reproduces legacy behavior byte-for-byte (using phase-003 replay fingerprints + phase-004 sealed artifacts); in-flight-state classification (from the phase-000 census) decides how each running-loop state is handled; and rollback drills prove reversibility within the phase-001 rollback window. Emphasize in PROBLEM & PURPOSE: NO authority cutover here - this phase only makes cutover provably safe. The five children are listed in the phase map. Cite the 006 parent spec.md, execution-sequencing-strategy.md (the additive-dark rule), the phase-000 census, phase-001 rollback policy, and phase-003 fingerprints.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/execution-sequencing-strategy.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "005-001",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/005-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Upcasters & Dual-Read/Single-Write Adapters",
+      "status": "Planned",
+      "pred_sibling": null,
+      "succ_sibling": "002-legacy-projections",
+      "outcome": "Plan upcasters (old event/state versions -> current) and dual-read/single-write adapters that read both legacy and dark shapes but write only the dark ledger during the shadow period.",
+      "depends_on": [],
+      "content_brief": "Plan UPCASTERS + DUAL-READ/SINGLE-WRITE ADAPTERS. Upcasters: pure functions that convert an older-versioned event or state record to the current envelope version (per the phase-001 versioning policy), so new code reads old data. Dual-read/single-write adapters: during the shadow period the runtime READS from both the legacy path and the dark ledger (reconciling), but WRITES canonical authority only to legacy (dark is written in parallel, non-authoritative). Address: upcaster registration + chaining across versions, the dual-read reconciliation rule, the single-write invariant, and how this stays reversible. Level-2 planning (Status Planned). Cite the phase-001 transition-versioning policy, the phase-003 envelope + ledger, runtime/lib/deep-loop/atomic-state.ts (current state shapes), and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts"
+      ]
+    },
+    {
+      "id": "005-002",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/005-compatibility-shadow-and-rollback-bridge/002-legacy-projections",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Legacy Projections",
+      "status": "Planned",
+      "pred_sibling": "001-upcasters-and-dual-read-adapters",
+      "succ_sibling": "003-shadow-parity-harness",
+      "outcome": "Plan projections that render the dark ledger back into the legacy JSONL/JSON shapes so every existing reader keeps working unchanged while the spine runs dark.",
+      "depends_on": [],
+      "content_brief": "Plan LEGACY PROJECTIONS: deterministic transforms that fold the dark append-only ledger (phase 003) back into the exact legacy on-disk shapes (the current JSONL state files, dashboards, registries) so that EVERY existing reader - dashboards, resume ladder, other tooling - keeps working with zero changes during the shadow period. This is what lets the substrate run dark without breaking anything. Address: the projection-as-fold model, which legacy shapes are projected (from the phase-000 schema census), refresh/consistency timing, and byte-identity with today's outputs. Level-2 planning (Status Planned). Cite the phase-000 schema census, the phase-003 ledger, runtime/lib/deep-loop/atomic-state.ts, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/000-baseline-taxonomy-and-state-census/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts"
+      ]
+    },
+    {
+      "id": "005-003",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/005-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Shadow-Parity Harness",
+      "status": "Planned",
+      "pred_sibling": "002-legacy-projections",
+      "succ_sibling": "004-inflight-state-classification",
+      "outcome": "Plan the harness that runs the dark and legacy paths on the same sealed inputs and proves identical results via replay fingerprints - the precondition any mode must pass before phase-011 cutover.",
+      "depends_on": [],
+      "content_brief": "Plan the SHADOW-PARITY HARNESS: the mechanism that runs the dark spine and the legacy path over the SAME sealed inputs (phase-004 sealed artifacts) and proves they produce identical observable results, compared by replay fingerprint (phase-003) and by projected legacy shape (sibling 002). This parity proof is the HARD PRECONDITION every mode must pass before its authority is flipped in phase 011 - no parity, no cutover. Address: the parity run protocol, what counts as a divergence, how divergences are surfaced + triaged, and the parity certificate emitted on success. Level-2 planning (Status Planned). Cite the phase-003 replay fingerprints, phase-004 sealed artifacts, the phase-000 behavior baseline, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/000-baseline-taxonomy-and-state-census/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/003-transition-authorized-ledger-core/003-replay-fingerprints/spec.md"
+      ]
+    },
+    {
+      "id": "005-004",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/005-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "In-Flight State Classification",
+      "status": "Planned",
+      "pred_sibling": "003-shadow-parity-harness",
+      "succ_sibling": "005-rollback-drills",
+      "outcome": "Plan the classification of every in-flight state shape from the phase-000 census into upcast / pin / fork / migrate / block, so a running loop is handled correctly at cutover.",
+      "depends_on": [],
+      "content_brief": "Plan IN-FLIGHT STATE CLASSIFICATION: for every persisted in-flight state shape the phase-000 census found, decide how a loop that is MID-RUN at cutover time is handled - one of: UPCAST (convert in place), PIN (keep on legacy until it finishes), FORK (branch a dark copy), MIGRATE (move to the ledger), or BLOCK (refuse cutover while this state is live). This prevents the migration from corrupting or losing an in-progress loop. Address: the five-way decision criteria, which census state shapes map to which class, and the default (safest) class. This feeds phase 011's staged migration. Level-2 planning (Status Planned). Cite the phase-000 in-flight-state census, the phase-001 rollback policy, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/000-baseline-taxonomy-and-state-census/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "005-005",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/005-compatibility-shadow-and-rollback-bridge/005-rollback-drills",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Rollback Drills",
+      "status": "Planned",
+      "pred_sibling": "004-inflight-state-classification",
+      "succ_sibling": null,
+      "outcome": "Plan executable rollback drills that prove a cutover can be reversed within the phase-001 rollback window, with integrity checks, before any real authority flip is attempted.",
+      "depends_on": [],
+      "content_brief": "Plan ROLLBACK DRILLS: rehearsed, executable procedures that prove a mode's authority cutover can be REVERSED (back to legacy authoritative) within the phase-001 rollback window, with full state integrity, BEFORE any real flip is attempted in phase 011. A drill exercises: flip forward (in a test lane), detect a simulated regression, execute rollback, and verify the loop resumes correctly on legacy with no data loss. Address: the drill script shape, the integrity checks (fingerprint + projection match after rollback), the pass/fail bar, and the drill evidence a cutover requires. Level-2 planning (Status Planned). Cite the phase-001 rollback-window policy, the sibling shadow-parity harness, phase-004 receipts, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+
+    {
+      "id": "006",
+      "wave": 4,
+      "kind": "parent",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/006-fanout-fanin-durable-orchestration",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "title": "Fan-out / Fan-in Durable Orchestration",
+      "status": "Planned",
+      "predecessor": "005-compatibility-shadow-and-rollback-bridge",
+      "successor": "007-novelty-claims-continuity-and-projections",
+      "handoff_criteria": "Canonical dispatch receipts, typed result envelopes, resume/salvage, logical branch IDs + leases + waves, conditional budget-aware fan-in, partial-failure policy, and provenance-balanced reduction are planned over the ledger substrate, generalizing the shipped fanout-run.cjs pool.",
+      "outcome": "Canonical dispatch receipts, result envelopes, resume/salvage, logical branch IDs, leases, waves, conditional budget-aware fan-in, partial-failure policy, provenance-balanced reduction.",
+      "depends_on": ["002", "003", "004", "005"],
+      "children": [
+        { "slug": "001-canonical-dispatch-receipts", "focus": "Every leaf dispatch is a canonical ledger event (receipt) with its invocation fingerprint, generalizing the phase-002 adapter fingerprint into durable state.", "status": "Planned" },
+        { "slug": "002-result-envelopes-and-resume-salvage", "focus": "Typed result envelopes per leaf plus resume/salvage that recovers an interrupted fan-out from the ledger without re-running completed leaves.", "status": "Planned" },
+        { "slug": "003-logical-branch-ids-leases-waves", "focus": "Stable logical branch IDs, worker leases (fenced), and wave scheduling over the existing work-conserving pool, so fan-out is durable and resumable.", "status": "Planned" },
+        { "slug": "004-conditional-budget-aware-fanin", "focus": "Conditional fan-in gated by the phase-004 typed budgets: decide how many results to await and when to stop early under budget or sufficiency.", "status": "Planned" },
+        { "slug": "005-partial-failure-policy", "focus": "An explicit partial-failure policy: how many leaf failures are tolerated, how degradation is recorded, and when fan-in proceeds vs aborts.", "status": "Planned" },
+        { "slug": "006-provenance-balanced-reduction", "focus": "Provenance-balanced reduction that merges leaf results weighting by source/model provenance, generalizing the run-2 fan-out prototype's provenance merge.", "status": "Planned" }
+      ],
+      "content_brief": "PHASE PARENT (author spec.md only). This phase makes FAN-OUT/FAN-IN durable and canonical over the ledger substrate. Today the shipped runtime/scripts/fanout-run.cjs + fanout-pool.cjs run a capped work-conserving pool but persist little canonically; this phase records dispatch + results as ledger events so fan-out is resumable, budget-aware, and provenance-balanced. It builds on phase 002 (the live-tools dispatch adapters + manifest expansion), phase 003 (ledger), phase 004 (receipts, budgets, locks/fencing), and phase 005 (compat). The six children are listed in the phase map. The run-2 fan-out prototype (065/005/scratch/fanout-prototype.cjs) is the proven reference for provenance-preserving multi-model reduction. Cite the 006 parent spec.md, runtime/scripts/fanout-run.cjs, the phase-002 spec, and the 005 prototype.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "006-001",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/006-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Canonical Dispatch Receipts",
+      "status": "Planned",
+      "pred_sibling": null,
+      "succ_sibling": "002-result-envelopes-and-resume-salvage",
+      "outcome": "Plan every leaf dispatch as a canonical ledger event (receipt) carrying its invocation fingerprint, promoting the phase-002 adapter fingerprint into durable state.",
+      "depends_on": [],
+      "content_brief": "Plan CANONICAL DISPATCH RECEIPTS: when fan-out launches a leaf, emit a durable ledger event (a dispatch receipt) recording the resolved launch contract - executor kind, model, effort, search policy, and the invocation fingerprint that phase 002's adapters already return - BEFORE the subprocess starts. This is what phase 002 deliberately deferred ('the fingerprint is an adapter return value in this phase, not a new ledger event'); this phase makes it canonical. Address: the receipt event shape (building on phase-004 receipts + receipt-crypto.ts), when it is written (pre-spawn), and how resume uses it to detect already-dispatched leaves. Level-2 planning (Status Planned). Cite the phase-002 fanout-live-tools spec, runtime/lib/deep-loop/receipt-crypto.ts, the phase-003 ledger, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/002-fanout-live-tools-unblock/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts"
+      ]
+    },
+    {
+      "id": "006-002",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/006-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Result Envelopes & Resume/Salvage",
+      "status": "Planned",
+      "pred_sibling": "001-canonical-dispatch-receipts",
+      "succ_sibling": "003-logical-branch-ids-leases-waves",
+      "outcome": "Plan typed result envelopes per leaf plus resume/salvage that recovers an interrupted fan-out from the ledger without re-running completed leaves.",
+      "depends_on": [],
+      "content_brief": "Plan RESULT ENVELOPES + RESUME/SALVAGE. Result envelope: a typed record per leaf capturing its outcome (parsed result, status, evidence, cost) as a ledger event paired with its dispatch receipt (sibling 001). Resume/salvage: reconstruct fan-out progress from the ledger so a crashed or resumed run continues WITHOUT re-running completed leaves and salvages partial output from interrupted ones. The shipped runtime already has salvage logic in the fanout scripts - read it and state what this generalizes. Address: the envelope shape, receipt<->envelope pairing, resume reconstruction from the ledger, and salvage of partial results. Level-2 planning (Status Planned). Cite runtime/scripts/fanout-run.cjs (+ any fanout salvage/merge module), the phase-003 ledger, phase-004 effect-recovery, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md"
+      ]
+    },
+    {
+      "id": "006-003",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/006-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Logical Branch IDs, Leases & Waves",
+      "status": "Planned",
+      "pred_sibling": "002-result-envelopes-and-resume-salvage",
+      "succ_sibling": "004-conditional-budget-aware-fanin",
+      "outcome": "Plan stable logical branch IDs, fenced worker leases, and wave scheduling over the existing work-conserving pool, so fan-out is durable and resumable.",
+      "depends_on": [],
+      "content_brief": "Plan LOGICAL BRANCH IDs + LEASES + WAVES. Logical branch IDs: stable, directory-safe identifiers for each fan-out branch (from phase 002's manifest expansion) that survive resume, so results always map to the right branch. Leases: a worker claims a branch under a fenced lease (phase-004 locks/fencing) so a stale/duplicate worker cannot double-process it. Waves: schedule branches in ordered waves through the existing capped pool. Address: ID derivation + stability, lease acquire/renew/expire + fencing, wave ordering, and how all three record on the ledger for resume. Level-2 planning (Status Planned). Cite runtime/scripts/fanout-pool.cjs (the capped pool), phase-004 locks/fencing, phase-002 manifest expansion, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/006-locks-and-fencing/spec.md"
+      ]
+    },
+    {
+      "id": "006-004",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/006-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Conditional Budget-Aware Fan-in",
+      "status": "Planned",
+      "pred_sibling": "003-logical-branch-ids-leases-waves",
+      "succ_sibling": "005-partial-failure-policy",
+      "outcome": "Plan conditional fan-in gated by the phase-004 typed budgets: decide how many results to await and when to stop early under budget or sufficiency.",
+      "depends_on": [],
+      "content_brief": "Plan CONDITIONAL BUDGET-AWARE FAN-IN: instead of always waiting for all N leaves, fan-in decides dynamically how many results to await based on the phase-004 hierarchical typed budgets and a sufficiency condition (enough agreeing results, or budget nearly exhausted), then stops early and reduces what it has. Address: the await condition (quorum / sufficiency / budget-floor), early-stop semantics, how outstanding leaves are cancelled or left to salvage, and how the decision is recorded. This is where value-of-computation from phase 008 will later plug in. Level-2 planning (Status Planned). Cite the phase-004 typed-budgets spec, runtime/scripts/fanout-run.cjs, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/004-hierarchical-typed-budgets/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ]
+    },
+    {
+      "id": "006-005",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/006-fanout-fanin-durable-orchestration/005-partial-failure-policy",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Partial-Failure Policy",
+      "status": "Planned",
+      "pred_sibling": "004-conditional-budget-aware-fanin",
+      "succ_sibling": "006-provenance-balanced-reduction",
+      "outcome": "Plan an explicit partial-failure policy: how many leaf failures are tolerated, how degradation is recorded, and when fan-in proceeds vs aborts.",
+      "depends_on": [],
+      "content_brief": "Plan the PARTIAL-FAILURE POLICY: fan-out leaves fail (executor error, timeout, parse failure); this phase makes the response EXPLICIT and typed instead of ad-hoc. Define failure classes, the tolerance threshold (how many/what fraction of leaves may fail before fan-in aborts), how a degraded-but-sufficient result is marked, and how each failure + the overall degradation verdict is recorded on the ledger. This composes with sibling 004 (fan-in decision) and sibling 006 (reduction weighting). Address: failure taxonomy, tolerance thresholds, degraded-result marking, and abort criteria. Level-2 planning (Status Planned). Cite runtime/scripts/fanout-run.cjs (current executor-failure handling), the phase-000 defects-vs-contracts split, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "006-006",
+      "wave": 4,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/006-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Provenance-Balanced Reduction",
+      "status": "Planned",
+      "pred_sibling": "005-partial-failure-policy",
+      "succ_sibling": null,
+      "outcome": "Plan provenance-balanced reduction that merges leaf results weighting by source/model provenance, generalizing the run-2 fan-out prototype's provenance merge.",
+      "depends_on": [],
+      "content_brief": "Plan PROVENANCE-BALANCED REDUCTION: how fan-in MERGES the surviving leaf results into one output while preserving and weighting by provenance (which model/executor/lineage produced each), so a single over-productive source cannot dominate and every merged claim keeps its origin. The run-2 fan-out prototype (065/005/scratch/fanout-prototype.cjs) already demonstrated provenance-preserving merge across SOL + LUNA + GLM - read it as the reference. Address: the merge/dedup rule, provenance weighting (balance across sources), retained per-item provenance, and determinism. Level-2 planning (Status Planned). Cite the 005 fanout-prototype.cjs, the phase-004 blinded adjudication (for contested merges), and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/003-blinded-adjudication-service/spec.md"
+      ]
+    },
+
+    {
+      "id": "007",
+      "wave": 5,
+      "kind": "parent",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "title": "Novelty, Claims, Continuity & Projections",
+      "status": "Planned",
+      "predecessor": "006-fanout-fanin-durable-orchestration",
+      "successor": "008-convergence-termination-and-health",
+      "handoff_criteria": "Semantic communities, contradiction/supersession events, claim continuity, next-focus semantics, and deterministic transactional projections/gauges are planned over the ledger + fan-in substrate, ready for convergence to consume.",
+      "outcome": "Semantic communities, contradiction + supersession events, claim continuity, next-focus semantics, deterministic transactional projections/gauges.",
+      "depends_on": ["005", "006"],
+      "children": [
+        { "slug": "001-semantic-communities", "focus": "Cluster findings/claims into semantic communities so novelty and dedup work at the concept level, not string equality.", "status": "Planned" },
+        { "slug": "002-contradiction-and-supersession-events", "focus": "Contradiction and supersession as first-class ledger events, so a later finding can typed-ly overturn or replace an earlier one with an audit trail.", "status": "Planned" },
+        { "slug": "003-claim-continuity", "focus": "Track each claim's lifecycle under a stable continuity identity across iterations, so a claim's support, contradiction, and status evolve without losing its identity.", "status": "Planned" },
+        { "slug": "004-next-focus-semantics", "focus": "Typed next-focus / where-to-look-next semantics that pick the next region to explore from coverage and novelty signals, generalizing the divergent-pivot logic.", "status": "Planned" },
+        { "slug": "005-transactional-projections-and-gauges", "focus": "Deterministic, transactional projections and gauges updated atomically from the ledger so derived views never partially apply or drift.", "status": "Planned" }
+      ],
+      "content_brief": "PHASE PARENT (author spec.md only). This phase plans the INTELLIGENCE layer over the durable substrate: how the loop understands what is new, what conflicts, what a claim's history is, where to look next, and how derived views stay consistent. It consumes phase 006 fan-in results and phase 004/005 services. The shipped runtime has real anchors: runtime/lib/deep-loop/divergent-pivot.ts + pivot-candidates.ts (next-focus), runtime/lib/coverage-graph/* (coverage/semantic signals), runtime/lib/deep-loop/observability-events.cjs (gauges) - the children read these and state what they generalize. Grounded in the run-2 novelty/dedup findings in research-modes.md. Five children in the phase map. Cite the 006 parent spec.md, research-modes.md, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "007-001",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/001-semantic-communities",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Semantic Communities",
+      "status": "Planned",
+      "pred_sibling": null,
+      "succ_sibling": "002-contradiction-and-supersession-events",
+      "outcome": "Plan clustering of findings/claims into semantic communities so novelty and dedup operate at the concept level rather than string equality.",
+      "depends_on": [],
+      "content_brief": "Plan SEMANTIC COMMUNITIES: group findings/claims by meaning (embedding/graph community detection) so the loop recognizes that two differently-worded findings are the SAME idea - making novelty scoring and dedup work at the concept level, not string match (a core run-2 novelty finding). Address: the community model (nodes = claims, edges = semantic similarity), how communities are formed + updated incrementally as claims arrive, and how community membership feeds novelty. The shipped runtime/lib/coverage-graph/* already maintains a coverage graph - read it and state what this adds. Level-2 planning (Status Planned). Cite runtime/lib/coverage-graph/coverage-graph-signals.ts, research-modes.md, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md"
+      ]
+    },
+    {
+      "id": "007-002",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Contradiction & Supersession Events",
+      "status": "Planned",
+      "pred_sibling": "001-semantic-communities",
+      "succ_sibling": "003-claim-continuity",
+      "outcome": "Plan contradiction and supersession as first-class ledger events, so a later finding can typed-ly overturn or replace an earlier one with an audit trail.",
+      "depends_on": [],
+      "content_brief": "Plan CONTRADICTION + SUPERSESSION EVENTS: today contradictions are counted loosely; this phase makes them first-class typed ledger events. A CONTRADICTION event links two claims that cannot both hold; a SUPERSESSION event marks one claim as replaced by a newer, stronger one. Both carry evidence and preserve history (nothing is deleted - the ledger is append-only). Address: the two event shapes, the detection inputs (semantic communities from sibling 001 + evidence), how a claim's effective status is derived from its contradiction/supersession events, and audit/replay. Level-2 planning (Status Planned). Cite sibling 001, the phase-003 ledger, the run-2 contradiction findings in research-modes.md, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/001-semantic-communities/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md"
+      ]
+    },
+    {
+      "id": "007-003",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/003-claim-continuity",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Claim Continuity",
+      "status": "Planned",
+      "pred_sibling": "002-contradiction-and-supersession-events",
+      "succ_sibling": "004-next-focus-semantics",
+      "outcome": "Plan tracking of each claim's lifecycle under a stable continuity identity across iterations, so support, contradiction, and status evolve without losing identity.",
+      "depends_on": [],
+      "content_brief": "Plan CLAIM CONTINUITY: give every claim a stable continuity identity (phase-004 continuity identities) so that across iterations its accumulating support, its contradictions/supersessions (sibling 002), and its status all attach to ONE durable claim rather than fragmenting into near-duplicates. Address: claim identity minting + matching (via semantic communities, sibling 001), the claim lifecycle states, how status is recomputed as events arrive, and continuity across resume. Level-2 planning (Status Planned). Cite the phase-004 continuity-identities spec, siblings 001/002, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/007-continuity-identities/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "007-004",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/004-next-focus-semantics",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Next-Focus Semantics",
+      "status": "Planned",
+      "pred_sibling": "003-claim-continuity",
+      "succ_sibling": "005-transactional-projections-and-gauges",
+      "outcome": "Plan typed next-focus / where-to-look-next semantics that select the next region to explore from coverage and novelty signals, generalizing the divergent-pivot logic.",
+      "depends_on": [],
+      "content_brief": "Plan NEXT-FOCUS SEMANTICS: how the loop decides WHERE to look next - which gap, contradiction, or under-covered community to target in the next iteration - as a typed, recorded decision rather than an implicit prompt behavior. The shipped runtime already has runtime/lib/deep-loop/divergent-pivot.ts + pivot-candidates.ts; read them and state what this generalizes. Address: the focus-candidate model, the scoring inputs (coverage gaps, novelty decay, open contradictions), the selection + tie-break rule, and how the chosen focus is recorded on the ledger for replay. Level-2 planning (Status Planned). Cite runtime/lib/deep-loop/divergent-pivot.ts, runtime/lib/deep-loop/pivot-candidates.ts, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts"
+      ]
+    },
+    {
+      "id": "007-005",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Transactional Projections & Gauges",
+      "status": "Planned",
+      "pred_sibling": "004-next-focus-semantics",
+      "succ_sibling": null,
+      "outcome": "Plan deterministic, transactional projections and gauges updated atomically from the ledger so derived views never partially apply or drift.",
+      "depends_on": [],
+      "content_brief": "Plan TRANSACTIONAL PROJECTIONS + GAUGES: the derived views (dashboards, registries, claim tables, gauges) must update ATOMICALLY from the ledger - a projection either reflects an event fully or not at all, never half-applied - and must be deterministically rebuildable by replay. This composes phase-004 stream-fold gauges with transactional apply. Address: the transactional projection model (apply-in-a-unit, idempotent, resumable), consistency between related projections, and rebuild-from-ledger. Level-2 planning (Status Planned). Cite the phase-004 stream-fold-gauges spec, runtime/lib/deep-loop/observability-events.cjs, the phase-003 ledger, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/005-stream-fold-gauges/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs"
+      ]
+    },
+
+    {
+      "id": "008",
+      "wave": 5,
+      "kind": "parent",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "title": "Convergence, Termination & Health",
+      "status": "Planned",
+      "predecessor": "007-novelty-claims-continuity-and-projections",
+      "successor": "009-shared-mode-contracts-and-fixtures",
+      "handoff_criteria": "Path-covering termination, cycle detection, stopping clocks, value-of-computation allocation, and a generic health/degeneration harness are planned as consumers of fan-in (006) and novelty (007), replacing count-based stopping.",
+      "outcome": "Path-covering termination, cycle detection, stopping clocks, value-of-computation + adaptive allocation, generic health + degeneration harness. After fan-in + novelty because it consumes them.",
+      "depends_on": ["003", "004", "006", "007"],
+      "children": [
+        { "slug": "001-path-covering-termination", "focus": "Terminate on proven coverage of the search paths/space rather than a raw iteration count, using the coverage + community signals.", "status": "Planned" },
+        { "slug": "002-cycle-detection", "focus": "Detect when the loop is going in circles - revisiting states, claims, or foci - and treat that as a termination/health signal.", "status": "Planned" },
+        { "slug": "003-stopping-clocks", "focus": "Multiple independent stopping clocks (budget, novelty-decay, coverage, wall-time) whose earliest firing stops the loop, each recorded.", "status": "Planned" },
+        { "slug": "004-value-of-computation-allocation", "focus": "Value-of-computation scoring + adaptive allocation: spend more iterations where marginal value is high, gated by the phase-004 typed budgets.", "status": "Planned" },
+        { "slug": "005-health-and-degeneration-harness", "focus": "A generic health + degeneration harness that detects mode collapse, repetition, and quality decay across any mode.", "status": "Planned" }
+      ],
+      "content_brief": "PHASE PARENT (author spec.md only). This phase plans WHEN and HOW WELL the loop stops - deliberately AFTER fan-in (006) and novelty (007) because it consumes their signals (the design review moved it here). It replaces count-based stopping with path-covering termination, cycle detection, multiple stopping clocks, value-of-computation allocation (spend where it pays), and a generic health/degeneration harness. The shipped runtime/lib/council/convergence.cjs is the current convergence anchor - children read it and state what they generalize across all modes. Grounded in the run-2 convergence/termination findings in research-modes.md. Five children in the phase map. Cite the 006 parent spec.md, runtime/lib/council/convergence.cjs, research-modes.md, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md"
+      ]
+    },
+    {
+      "id": "008-001",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health/001-path-covering-termination",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Path-Covering Termination",
+      "status": "Planned",
+      "pred_sibling": null,
+      "succ_sibling": "002-cycle-detection",
+      "outcome": "Plan termination on proven coverage of the search paths/space rather than a raw iteration count, using coverage + community signals.",
+      "depends_on": [],
+      "content_brief": "Plan PATH-COVERING TERMINATION: stop the loop when the space it is meant to explore is provably COVERED (all major regions/communities addressed, open contradictions resolved) rather than merely when an iteration counter hits a number. Uses the phase-007 semantic communities + coverage signals. Address: the coverage definition per mode, the termination predicate, how partial coverage is reported, and why this beats count-based stopping (a run-2 finding). Level-2 planning (Status Planned). Cite the phase-007 semantic-communities spec, runtime/lib/coverage-graph/coverage-graph-signals.ts, runtime/lib/council/convergence.cjs, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/001-semantic-communities/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs"
+      ]
+    },
+    {
+      "id": "008-002",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health/002-cycle-detection",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Cycle Detection",
+      "status": "Planned",
+      "pred_sibling": "001-path-covering-termination",
+      "succ_sibling": "003-stopping-clocks",
+      "outcome": "Plan detection of the loop going in circles - revisiting states, claims, or foci - as a termination/health signal.",
+      "depends_on": [],
+      "content_brief": "Plan CYCLE DETECTION: recognize when the loop is REVISITING the same states, claims, or next-foci without new progress (a degeneration mode), and surface it as a stop/health signal. Uses claim continuity (phase 007) + focus history. Address: what a 'cycle' is (repeated focus/claim signatures within a window), the detection method (fingerprint history over the ledger), the sensitivity threshold, and the action (flag health, contribute to a stopping clock). Level-2 planning (Status Planned). Cite the phase-007 claim-continuity + next-focus specs, runtime/lib/council/convergence.cjs, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/004-next-focus-semantics/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs"
+      ]
+    },
+    {
+      "id": "008-003",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health/003-stopping-clocks",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Stopping Clocks",
+      "status": "Planned",
+      "pred_sibling": "002-cycle-detection",
+      "succ_sibling": "004-value-of-computation-allocation",
+      "outcome": "Plan multiple independent stopping clocks (budget, novelty-decay, coverage, wall-time) whose earliest firing stops the loop, each recorded.",
+      "depends_on": [],
+      "content_brief": "Plan STOPPING CLOCKS: replace a single stop condition with several INDEPENDENT clocks - budget exhaustion (phase-004 typed budgets), novelty decay (phase-007), coverage reached (sibling 001), wall-time, and cycle detection (sibling 002) - where the FIRST to fire stops the loop and the reason is recorded. Address: each clock's condition + inputs, the earliest-fires composition rule, per-mode configuration, and how the firing clock is logged as the termination cause. Level-2 planning (Status Planned). Cite the phase-004 typed-budgets spec, siblings 001/002, runtime/lib/council/convergence.cjs, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/004-hierarchical-typed-budgets/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs"
+      ]
+    },
+    {
+      "id": "008-004",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health/004-value-of-computation-allocation",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Value-of-Computation Allocation",
+      "status": "Planned",
+      "pred_sibling": "003-stopping-clocks",
+      "succ_sibling": "005-health-and-degeneration-harness",
+      "outcome": "Plan value-of-computation scoring + adaptive allocation: spend more iterations where marginal value is high, gated by the phase-004 typed budgets.",
+      "depends_on": [],
+      "content_brief": "Plan VALUE-OF-COMPUTATION (VOC) ALLOCATION: instead of spending iterations/fan-out uniformly, estimate the marginal VALUE of more computation per region/mode (expected new coverage or resolved contradiction per unit cost) and ALLOCATE the remaining budget where it pays most, gated by phase-004 typed budgets and feeding phase-006 conditional fan-in. Address: the VOC estimate, the allocation policy (greedy/proportional), fairness/starvation limits, and how allocation decisions are recorded. Grounded in the run-2 adaptive-allocation findings. Level-2 planning (Status Planned). Cite the phase-004 typed-budgets spec, the phase-006 conditional-fan-in spec, research-modes.md, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/006-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md"
+      ]
+    },
+    {
+      "id": "008-005",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health/005-health-and-degeneration-harness",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Health & Degeneration Harness",
+      "status": "Planned",
+      "pred_sibling": "004-value-of-computation-allocation",
+      "succ_sibling": null,
+      "outcome": "Plan a generic health + degeneration harness that detects mode collapse, repetition, and quality decay across any mode.",
+      "depends_on": [],
+      "content_brief": "Plan the HEALTH + DEGENERATION HARNESS: a generic, mode-agnostic monitor that watches for the loop going BAD - mode collapse (all outputs converging to sameness), repetition (cycle detection, sibling 002), novelty starvation, quality decay, or budget thrash - and raises typed health signals that can pause, re-seed, or stop the loop. This is the safety net across all eight modes. Address: the health-signal set, detection inputs (gauges, novelty, cycles), thresholds, and the response actions. Grounded in the run-2 degeneration/health findings. Level-2 planning (Status Planned). Cite sibling 002 (cycle detection), the phase-007 gauges, research-modes.md, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health/002-cycle-detection/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/research-modes.md"
+      ]
+    },
+
+    {
+      "id": "009",
+      "wave": 5,
+      "kind": "parent",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "title": "Shared Mode Contracts & Fixtures",
+      "status": "Planned",
+      "predecessor": "008-convergence-termination-and-health",
+      "successor": "010-mode-and-lane-migrations",
+      "handoff_criteria": "Shared mode interfaces are frozen, cross-mode closures hoisted, mixed-version fixtures authored, and the executable write-set conflict graph is built - so phase 010's eight mode migrations know exactly what is shared and which can run in parallel.",
+      "outcome": "Freeze shared mode interfaces, hoist cross-mode closures, mixed-version fixtures, executable dependency + write-set conflict graph for parallel-safe mode work.",
+      "depends_on": ["005", "006", "007", "008"],
+      "children": [
+        { "slug": "001-shared-mode-interfaces", "focus": "Freeze the typed interface every mode implements against the substrate (ledger, services, fan-out, convergence), so mode work is uniform.", "status": "Planned" },
+        { "slug": "002-cross-mode-closures", "focus": "Hoist logic shared across modes into common closures/modules so each mode migration reuses rather than re-implements shared behavior.", "status": "Planned" },
+        { "slug": "003-mixed-version-fixtures", "focus": "Fixtures that exercise mixed-version scenarios (old and new events/state coexisting) so upcasters and shadow parity are tested under realistic drift.", "status": "Planned" },
+        { "slug": "004-write-set-conflict-graph", "focus": "The executable dependency + write-set conflict graph that declares which phase-010 modes touch which files/state, deciding parallel-safe vs serialized migration.", "status": "Planned" }
+      ],
+      "content_brief": "PHASE PARENT (author spec.md only). This phase is the LAST shared gate before the eight per-mode migrations (phase 010). It freezes the shared mode interface (what every mode implements against the substrate), hoists cross-mode shared logic into closures (so eight migrations reuse not re-write), authors mixed-version fixtures (old+new coexistence), and - critically - builds the executable WRITE-SET CONFLICT GRAPH that the execution-sequencing-strategy defers to this phase: it declares which modes touch which files/state so phase 010 knows what can run in parallel vs must serialize (e.g. deep-improvement-common before its three benchmark variants; deep-review and deep-alignment share the review loop). Four children in the phase map. Cite the 006 parent spec.md, execution-sequencing-strategy.md (the deferred 010 parallelism decision), manifest/phase-tree.json (mode_workstreams_phase_010), and research-modes.md.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/execution-sequencing-strategy.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "009-001",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Shared Mode Interfaces",
+      "status": "Planned",
+      "pred_sibling": null,
+      "succ_sibling": "002-cross-mode-closures",
+      "outcome": "Plan the frozen typed interface every mode implements against the substrate (ledger, services, fan-out, convergence), so mode migrations are uniform.",
+      "depends_on": [],
+      "content_brief": "Plan SHARED MODE INTERFACES: the typed contract every one of the eight modes implements against the substrate - how a mode declares its event schema, its reducers, its sealed artifacts, its certificates, its convergence hooks, and its resume adapter. Freezing this BEFORE phase 010 means the eight migrations are uniform variations on one interface, not eight bespoke rewrites. Address: the interface surface (methods/types a mode provides + consumes), versioning of the interface itself, and conformance criteria. Level-2 planning (Status Planned). Cite the phase-003/004 substrate specs, the phase-008 convergence spec, manifest/phase-tree.json (the 8 mode_workstreams), and the 006 parent spec.md.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+      ]
+    },
+    {
+      "id": "009-002",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/002-cross-mode-closures",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Cross-Mode Closures",
+      "status": "Planned",
+      "pred_sibling": "001-shared-mode-interfaces",
+      "succ_sibling": "003-mixed-version-fixtures",
+      "outcome": "Plan hoisting logic shared across modes into common closures/modules so each mode migration reuses rather than re-implements shared behavior.",
+      "depends_on": [],
+      "content_brief": "Plan CROSS-MODE CLOSURES: identify the behavior that recurs across modes (evidence handling, receipt emission, adjudication calls, budget checks, projection updates) and hoist it into shared closures/modules that all mode migrations call, so phase 010 reuses one implementation instead of copying it eight times. Address: which shared behaviors are hoisted, the closure boundaries (what is shared vs mode-specific), and how a mode overrides where it must differ. Level-2 planning (Status Planned). Cite the sibling shared-mode-interfaces spec, the phase-004 services, the shipped runtime council/deep-loop shared libs, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "009-003",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Mixed-Version Fixtures",
+      "status": "Planned",
+      "pred_sibling": "002-cross-mode-closures",
+      "succ_sibling": "004-write-set-conflict-graph",
+      "outcome": "Plan fixtures that exercise mixed-version scenarios (old and new events/state coexisting) so upcasters and shadow parity are tested under realistic drift.",
+      "depends_on": [],
+      "content_brief": "Plan MIXED-VERSION FIXTURES: a fixture corpus that deliberately mixes old-version and new-version events/state in one run, so the upcasters (phase 005), shadow-parity harness (phase 005), and mode reducers are all tested under the realistic condition where a loop spans a version change. Address: the fixture scenarios (pure-old, pure-new, mid-upgrade, interrupted-migration), how they are sealed (phase-004 sealed artifacts) for deterministic replay, and the expected outcomes each asserts. Level-2 planning (Status Planned). Cite the phase-005 upcasters + shadow-parity specs, the phase-004 sealed-artifacts spec, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/005-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "009-004",
+      "wave": 5,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Write-Set Conflict Graph",
+      "status": "Planned",
+      "pred_sibling": "003-mixed-version-fixtures",
+      "succ_sibling": null,
+      "outcome": "Plan the executable dependency + write-set conflict graph that declares which phase-010 modes touch which files/state, deciding parallel-safe vs serialized migration.",
+      "depends_on": [],
+      "content_brief": "Plan the WRITE-SET CONFLICT GRAPH: an EXECUTABLE declaration of which files/state each of the eight phase-010 mode migrations reads and writes, so the orchestrator can compute which modes are parallel-safe and which must serialize (the execution-sequencing-strategy explicitly defers this decision to phase 009; default is serial-single-writer). Known hard constraints to encode: deep-improvement-common precedes agent-improvement/model-benchmark/skill-benchmark (shared packet + scoring backend); deep-review and deep-alignment share the review loop (fence); research and council are independent. Address: the graph schema (nodes = mode migrations, edges = write-set conflicts), how it is derived + kept honest, and how the phase-010 orchestrator consumes it. Level-2 planning (Status Planned). Cite execution-sequencing-strategy.md, manifest/phase-tree.json (mode_workstreams + notes), and the 006 parent spec.md.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/execution-sequencing-strategy.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+
+    {
+      "id": "011",
+      "wave": 6,
+      "kind": "parent",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/011-staged-state-migration-and-authority-cutover",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "title": "Staged State Migration & Authority Cutover",
+      "status": "Planned",
+      "predecessor": "010-mode-and-lane-migrations",
+      "successor": "012-legacy-writer-retirement",
+      "handoff_criteria": "Eligible in-flight state is migrated, and authority flips from legacy to the dark spine one mode at a time - each flip gated by shadow parity + rollback drill and recorded by a cutover certificate inside a monitored rollback window.",
+      "outcome": "Classify + migrate eligible in-flight state; flip authority one mode at a time behind a rollback window + cutover certificate.",
+      "depends_on": ["010"],
+      "children": [
+        { "slug": "001-inflight-state-migration", "focus": "Execute the migration of eligible in-flight state per the phase-005 classification (upcast/fork/migrate), guarded so a running loop is never corrupted or lost.", "status": "Planned" },
+        { "slug": "002-per-mode-authority-flip", "focus": "Flip canonical authority from legacy to the dark spine one mode at a time, each flip gated by that mode's shadow-parity proof and a passing rollback drill.", "status": "Planned" },
+        { "slug": "003-cutover-certificate-and-rollback-window", "focus": "The cutover certificate (the evidence bundle that authorizes a flip) plus enforcement of the monitored rollback window during which a flip stays reversible.", "status": "Planned" }
+      ],
+      "content_brief": "PHASE PARENT (author spec.md only). This is the ONLY phase that moves canonical authority. Everything before it was additive-dark; here, per the phase-001 cutover protocol, in-flight state is migrated (using the phase-005 classification) and authority flips legacy->dark ONE MODE AT A TIME, each flip gated by that mode's shadow-parity proof (phase 005) and a passing rollback drill (phase 005), recorded by a cutover certificate, inside a monitored rollback window during which reversal is guaranteed. Emphasize: per-mode, evidence-gated, reversible. Three children in the phase map. Cite the 006 parent spec.md, the phase-001 cutover + rollback policy, the phase-005 shadow-parity + rollback-drills + state-classification specs, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "011-001",
+      "wave": 6,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/011-staged-state-migration-and-authority-cutover/001-inflight-state-migration",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "In-Flight State Migration",
+      "status": "Planned",
+      "pred_sibling": null,
+      "succ_sibling": "002-per-mode-authority-flip",
+      "outcome": "Plan the guarded execution of migrating eligible in-flight state per the phase-005 classification (upcast/fork/migrate), so a running loop is never corrupted or lost.",
+      "depends_on": [],
+      "content_brief": "Plan IN-FLIGHT STATE MIGRATION: the actual, guarded operations that transform live in-flight state at cutover per the phase-005 classification - upcast in place, fork a dark copy, or migrate to the ledger - while BLOCK-classified states defer the flip. This is delicate: a loop may be mid-iteration. Address: the per-class migration procedure, the guards (lock/fence via phase-004, integrity checks before+after), atomicity + resumability of the migration itself, and abort/rollback if a migration fails. Level-2 planning (Status Planned). Cite the phase-005 in-flight-state-classification spec, the phase-004 locks/fencing spec, runtime/lib/deep-loop/atomic-state.ts, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/005-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification/spec.md",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts"
+      ]
+    },
+    {
+      "id": "011-002",
+      "wave": 6,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/011-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Per-Mode Authority Flip",
+      "status": "Planned",
+      "pred_sibling": "001-inflight-state-migration",
+      "succ_sibling": "003-cutover-certificate-and-rollback-window",
+      "outcome": "Plan flipping canonical authority from legacy to the dark spine one mode at a time, each flip gated by that mode's shadow-parity proof and a passing rollback drill.",
+      "depends_on": [],
+      "content_brief": "Plan the PER-MODE AUTHORITY FLIP: the switch that makes the dark spine CANONICAL (authoritative) for a single mode, leaving all other modes on legacy. Each flip is gated: the mode must have a green shadow-parity certificate (phase 005) and a passing rollback drill (phase 005) before its flip is allowed; the flip itself is a recorded ledger event. Address: the authority-selection mechanism (how the runtime chooses legacy vs dark per mode), the pre-flip gate checks, the single-mode blast radius, and the ordering across the eight modes. Level-2 planning (Status Planned). Cite the phase-005 shadow-parity + rollback-drills specs, the phase-001 cutover protocol, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/005-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "011-003",
+      "wave": 6,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/011-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Cutover Certificate & Rollback Window",
+      "status": "Planned",
+      "pred_sibling": "002-per-mode-authority-flip",
+      "succ_sibling": null,
+      "outcome": "Plan the cutover certificate (the evidence bundle authorizing a flip) plus enforcement of the monitored rollback window during which a flip stays reversible.",
+      "depends_on": [],
+      "content_brief": "Plan the CUTOVER CERTIFICATE + ROLLBACK WINDOW. Certificate: the signed evidence bundle that authorizes a mode's authority flip - it bundles the shadow-parity proof, the rollback-drill result, the migration receipts, and the approving policy - and is itself a ledger event. Rollback window: the monitored period AFTER a flip during which the system watches for regressions and can revert to legacy within the phase-001 window; only after the window closes clean is the flip permanent (and phase 012 may retire the legacy writer). Address: the certificate contents + verification, the window duration policy, the monitoring signals (health, parity drift), and the revert trigger. Level-2 planning (Status Planned). Cite the phase-001 rollback-window policy, the phase-004 receipts spec, sibling 002, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/004-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md"
+      ]
+    },
+
+    {
+      "id": "012",
+      "wave": 6,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/012-legacy-writer-retirement",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Legacy Writer Retirement",
+      "status": "Planned",
+      "pred_sibling": "011-staged-state-migration-and-authority-cutover",
+      "succ_sibling": "013-whole-system-gate",
+      "outcome": "Plan removing old live emitters + replaced logic after zero-use telemetry + rollback evidence, while retaining required archival readers.",
+      "depends_on": [],
+      "content_brief": "Plan LEGACY WRITER RETIREMENT: the LAST-and-only deletion phase. After every mode's authority is flipped (phase 011) and its rollback window has closed clean, remove the old live emitters and the logic the spine replaced - but ONLY when zero-use telemetry proves nothing still writes/reads them live, and the rollback evidence is retained. Archival READERS needed to read historical legacy data are KEPT (removing them would orphan old runs). Address: the zero-use telemetry gate (how absence-of-use is proven before deletion), the retire-order (per mode, writers before shared), what is deleted vs retained (archival readers), and the reversibility until deletion. This phase touches shipped runtime code - honor comment hygiene (no spec/task IDs in code comments). Level-2 planning (Status Planned). Cite the phase-011 cutover specs, the phase-000 readers/writers census, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/000-baseline-taxonomy-and-state-census/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/manifest/phase-tree.json"
+      ]
+    },
+    {
+      "id": "013",
+      "wave": 6,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/013-whole-system-gate",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Whole-System Gate",
+      "status": "Planned",
+      "pred_sibling": "012-legacy-writer-retirement",
+      "succ_sibling": "014-integrate-latest-and-closeout",
+      "outcome": "Plan the final whole-system gate: exact-SHA baselines, mode gates, mixed-version replay, crash injection, counterfactual + degeneration tests, parity, blocking SOL review, recursive strict validation.",
+      "depends_on": [],
+      "content_brief": "Plan the WHOLE-SYSTEM GATE: the comprehensive acceptance gate the entire 006 program must pass before closeout. It runs against a frozen exact SHA and includes: per-mode gates (each mode's behavior + parity), mixed-version replay (phase-009 fixtures), crash injection (recovery via phase-004 effect-recovery), counterfactual + degeneration tests (phase-004 adjudication + phase-008 health), full parity vs the phase-000 baseline, a BLOCKING SOL verifier review bound to the exact commit (the 017 discipline), and recursive strict spec validation (validate.sh --strict --recursive Errors:0 Warnings:0). Address: the gate's checklist, the pass bar for each, the exact-SHA freeze, and what a failure reopens. Level-2 planning (Status Planned). Cite the phase-000 baseline, the phase-005 parity harness, execution-sequencing-strategy.md (the per-phase gate contract), and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/000-baseline-taxonomy-and-state-census/spec.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/execution-sequencing-strategy.md"
+      ]
+    },
+    {
+      "id": "014",
+      "wave": 6,
+      "kind": "leaf",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/014-integrate-latest-and-closeout",
+      "level": 2,
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "title": "Integrate Latest & Closeout",
+      "status": "Planned",
+      "pred_sibling": "013-whole-system-gate",
+      "succ_sibling": null,
+      "outcome": "Plan integrating latest origin, reopening affected phases on drift, rerunning the whole-system gate on the final SHA, and reconciling 065 open items + changelogs + packet metadata.",
+      "depends_on": [],
+      "content_brief": "Plan INTEGRATE-LATEST + CLOSEOUT: the final phase that lands the program on the moving mainline. Because other lanes commit while 006 runs, this phase integrates the latest origin into a clean worktree, RE-CENSUSES the contracts the program touched, and REOPENS any earlier phase whose inputs drifted (per the execution-sequencing-strategy) before rerunning the whole-system gate (phase 013) on the FINAL SHA. Then it reconciles the parent 065 open items, updates changelogs, and finalizes packet metadata (description.json/graph-metadata.json across the tree). Address: the integrate-and-recensus loop, the drift-reopen criteria, the final-SHA gate rerun, and the closeout checklist. Level-2 planning (Status Planned). Cite execution-sequencing-strategy.md (integrate-latest + reopen-on-drift), the phase-013 gate, the parent 065 spec, and manifest/phase-tree.json.",
+      "research_refs": [
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/execution-sequencing-strategy.md",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/013-whole-system-gate/spec.md"
+      ]
+    }
+  ]
+}

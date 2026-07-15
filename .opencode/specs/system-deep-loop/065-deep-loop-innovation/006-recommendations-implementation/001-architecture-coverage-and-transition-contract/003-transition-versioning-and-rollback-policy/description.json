@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/001-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy",
+  "description": "Freeze the event-envelope versioning and upcaster contract, deny-by-default transition authorization, per-mode authority cutover, and rollback-window",
+  "keywords": [
+    "freeze",
+    "event-envelope",
+    "versioning",
+    "upcaster",
+    "contract",
+    "deny-by-default",
+    "transition",
+    "authorization",
+    "per-mode",
+    "authority",
+    "cutover",
+    "rollback-window"
+  ],
+  "lastUpdated": "2026-07-15T13:30:03.583Z",
+  "specId": "003",
+  "folderSlug": "transition-versioning-and-rollback-policy",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-recommendations-implementation",
+    "001-architecture-coverage-and-transition-contract"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

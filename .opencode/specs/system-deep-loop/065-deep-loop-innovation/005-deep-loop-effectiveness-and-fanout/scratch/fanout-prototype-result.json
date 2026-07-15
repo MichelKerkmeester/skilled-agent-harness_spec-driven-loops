@@ -1,0 +1,63 @@
+{
+  "codexVersion": "codex-cli 0.144.4",
+  "fleet": [
+    {
+      "id": "sol-xhigh",
+      "kind": "cli-codex",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "search": true
+    },
+    {
+      "id": "luna-max",
+      "kind": "cli-codex",
+      "model": "gpt-5.6-luna",
+      "effort": "max",
+      "search": true
+    },
+    {
+      "id": "glm-max",
+      "kind": "cli-opencode",
+      "model": "zai-coding-plan/glm-5.2",
+      "effort": "max",
+      "search": true
+    }
+  ],
+  "concurrency": 1,
+  "leaves": [
+    {
+      "id": "sol-xhigh",
+      "exit": 0,
+      "bytes": 260,
+      "fingerprint": "inv:cb84f0a73371b1a9"
+    },
+    {
+      "id": "luna-max",
+      "exit": 0,
+      "bytes": 269,
+      "fingerprint": "inv:f3ef504908d35f22"
+    },
+    {
+      "id": "glm-max",
+      "exit": 0,
+      "bytes": 338,
+      "fingerprint": "inv:ffa6414af083b9f4"
+    }
+  ],
+  "reduce": {
+    "parsedOk": 3,
+    "totalLeaves": 3,
+    "mergedRepos": [
+      {
+        "name": "langchain-ai/langgraph",
+        "url": "https://github.com/langchain-ai/langgraph",
+        "contributed_by": "sol-xhigh"
+      },
+      {
+        "name": "temporalio/temporal",
+        "url": "https://github.com/temporalio/temporal",
+        "contributed_by": "glm-max"
+      }
+    ]
+  }
+}

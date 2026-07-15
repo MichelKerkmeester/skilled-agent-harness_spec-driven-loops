@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health/001-path-covering-termination",
+  "description": "Plan replay-stable termination on proven, mode-specific search-space coverage: every major path or semantic community is addressed, required",
+  "keywords": [
+    "plan",
+    "replay-stable",
+    "termination",
+    "proven",
+    "mode-specific",
+    "search-space",
+    "coverage",
+    "every",
+    "major",
+    "path",
+    "semantic",
+    "community",
+    "addressed",
+    "required"
+  ],
+  "lastUpdated": "2026-07-15T15:50:15.650Z",
+  "specId": "001",
+  "folderSlug": "path-covering-termination",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-recommendations-implementation",
+    "008-convergence-termination-and-health"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

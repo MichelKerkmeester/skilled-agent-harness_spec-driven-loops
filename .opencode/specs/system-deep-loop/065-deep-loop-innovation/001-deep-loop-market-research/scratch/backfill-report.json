@@ -1,0 +1,110 @@
+{
+  "generatedAt": "2026-07-15T01:12:40.471Z",
+  "mode": "dry-run",
+  "options": {
+    "includeArchive": false,
+    "skipTemplates": true,
+    "allowMalformed": false,
+    "roots": [
+      "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/065-deep-loop-innovation"
+    ]
+  },
+  "summary": {
+    "total": 8,
+    "changed": 8,
+    "unchanged": 0,
+    "failed": 0,
+    "malformedSkipped": 0,
+    "skippedDirs": 0
+  },
+  "byKind": {
+    "spec_doc:checklist": {
+      "total": 1,
+      "changed": 1
+    },
+    "spec_doc:decision_record": {
+      "total": 1,
+      "changed": 1
+    },
+    "spec_doc:implementation_summary": {
+      "total": 1,
+      "changed": 1
+    },
+    "spec_doc:plan": {
+      "total": 1,
+      "changed": 1
+    },
+    "spec_doc:research": {
+      "total": 1,
+      "changed": 1
+    },
+    "spec_doc:spec": {
+      "total": 2,
+      "changed": 2
+    },
+    "spec_doc:tasks": {
+      "total": 1,
+      "changed": 1
+    }
+  },
+  "changedFiles": [
+    {
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/checklist.md",
+      "kind": "spec_doc",
+      "documentType": "checklist",
+      "title": "Verification Checklist: Deep-Loop [system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/checklist]",
+      "hadFrontmatter": true
+    },
+    {
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/decision-record.md",
+      "kind": "spec_doc",
+      "documentType": "decision_record",
+      "title": "Decision Record: Deep-Loop [system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/decision-record]",
+      "hadFrontmatter": true
+    },
+    {
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/implementation-summary.md",
+      "kind": "spec_doc",
+      "documentType": "implementation_summary",
+      "title": "Implementation [system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/implementation-summary]",
+      "hadFrontmatter": true
+    },
+    {
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/plan.md",
+      "kind": "spec_doc",
+      "documentType": "plan",
+      "title": "Implementation Plan: Deep-Loop Market [system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/plan]",
+      "hadFrontmatter": true
+    },
+    {
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/research/research.md",
+      "kind": "spec_doc",
+      "documentType": "research",
+      "title": "Deep-Loop Market Research — The [system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/research]",
+      "hadFrontmatter": false
+    },
+    {
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/spec.md",
+      "kind": "spec_doc",
+      "documentType": "spec",
+      "title": "Feature Specification: Deep-Loop Market [system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/spec]",
+      "hadFrontmatter": true
+    },
+    {
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/tasks.md",
+      "kind": "spec_doc",
+      "documentType": "tasks",
+      "title": "Tasks: Deep-Loop Market Research [system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research/tasks]",
+      "hadFrontmatter": true
+    },
+    {
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md",
+      "kind": "spec_doc",
+      "documentType": "spec",
+      "title": "Phase Parent: Deep-Loop Innovation Program [system-deep-loop/065-deep-loop-innovation/spec]",
+      "hadFrontmatter": true
+    }
+  ],
+  "failedFiles": [],
+  "skippedDirs": []
+}

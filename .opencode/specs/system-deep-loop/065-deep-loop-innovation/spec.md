@@ -12,23 +12,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/065-deep-loop-innovation"
-    last_updated_at: "2026-07-14T21:00:00Z"
+    last_updated_at: "2026-07-15T08:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded parent lean trio and phase-001 Level-3 doc set"
-    next_safe_action: "Set session goal, then launch the phase-001 deep-research run"
+    recent_action: "Phases 001 + 005 COMPLETE; 005 added targeted SOL-xhigh follow-on (74 repos)"
+    next_safe_action: "Operator review 001 + 005 research.md; begin phase 002 ranking + mapping"
     blockers: []
     key_files:
-      - "001-deep-loop-market-research/spec.md"
-      - "001-deep-loop-market-research/plan.md"
-      - "001-deep-loop-market-research/decision-record.md"
+      - "001-deep-loop-market-research/research/research.md"
+      - "005-deep-loop-effectiveness-and-fanout/research/research.md"
+      - "005-deep-loop-effectiveness-and-fanout/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "065-parent-init"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Execution shape for phase 001: Shape A (parallel 3-lineage fan-out, needs operator OK for parallelism) vs Shape B (sequential batches LUNA then SOL then GLM) -- decided at execution start. See 001-deep-loop-market-research/decision-record.md ADR-002."
-      - "GLM exact provider prefix (e.g. zai-coding-plan/glm-5.2) and whether GLM supports a max variant -- confirm at execution."
+    completion_pct: 40
+    open_questions: []
     answered_questions:
       - "Research state lives INSIDE the phase child at 001-deep-loop-market-research/research/, created at execution by the /deep:research loop -- never pre-scaffolded."
       - "GPT lineages run ONLY via cli-codex; GLM runs via cli-opencode (operator mandate)."
@@ -69,7 +67,8 @@ This packet is the innovation program that closes the gap. Phase 001 runs a 45-i
 
 | Phase | Status | Purpose |
 |-------|--------|---------|
-| `001-deep-loop-market-research` | Active | 45-iteration non-converging (broadening) `/deep:research` run over the loop-engineering landscape, split LUNA 25 / SOL 10 / GLM 10. Catalogues 10+ GitHub repos (links + what each teaches) and maps insights to specific system-deep-loop subsystems/children/modes. Deliverable: `research/research.md` synthesis (17-section, incl. Eliminated Alternatives) + repo catalogue + mapped insights. Research only; no code or skill changes. |
+| `001-deep-loop-market-research` | Complete | 45-iteration non-converging (broadening) `/deep:research` run over the loop-engineering landscape, split LUNA 25 / SOL 10 / GLM 10. **Done 2026-07-15:** 216 repos catalogued, 222 insights, 134 contradictions, all 13 subsystems mapped; `research/research.md` synthesized (17-section incl. Eliminated Alternatives). Executed via a manual Shape-B driver (fanout codex leaves lack `--search`; ADR-002). Research only; no code or skill changes. |
+| `005-deep-loop-effectiveness-and-fanout` | Complete | Targeted single-lineage SOL-xhigh (20-iteration, non-converging) follow-on to 001 — three threads: fan-out automation + recommendation deep-dive + AI-council depth. **Done 2026-07-15:** 74 new repos, 83 insights, 59 recommendations, 64 contradictions, 14 subsystems mapped; `research/research.md` synthesized. A live 3-model `scratch/` prototype proves an automated multi-model + `--search` fanout is feasible; the shipped `fanout-run.cjs` is unmodified (the small fix is a gated follow-on). Research + scratch-prototype only; no runtime changes. |
 | `002-synthesis-and-improvement-mapping` | Planned | Rank and dedup phase-001 findings, map each finding to a system-deep-loop subsystem/child/mode, prioritize by impact x effort. |
 | `003-improvement-proposals` | Planned | Design concrete, spec-ready changes for the selected improvements. |
 | `004-implementation` | Planned | Optional; gated on 003 outcomes. Implement the approved proposals. |

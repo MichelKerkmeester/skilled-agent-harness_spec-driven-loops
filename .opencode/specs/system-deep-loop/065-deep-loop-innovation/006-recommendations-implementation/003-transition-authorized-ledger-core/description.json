@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/003-transition-authorized-ledger-core",
+  "description": "The versioned event envelope, typed append-only ledger, replay fingerprints, and fail-closed transition-authorization gateway must co-land as one dark",
+  "keywords": [
+    "versioned",
+    "event",
+    "envelope",
+    "typed",
+    "append-only",
+    "ledger",
+    "replay",
+    "fingerprints",
+    "fail-closed",
+    "transition-authorization",
+    "gateway",
+    "must",
+    "co-land",
+    "one",
+    "dark"
+  ],
+  "lastUpdated": "2026-07-15T13:44:01.106Z",
+  "specId": "003",
+  "folderSlug": "transition-authorized-ledger-core",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-recommendations-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

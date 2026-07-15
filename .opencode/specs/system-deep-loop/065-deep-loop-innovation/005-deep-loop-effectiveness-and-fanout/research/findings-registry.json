@@ -1,0 +1,3226 @@
+{
+  "repos": {
+    "github.com/openai/codex": {
+      "name": "openai/codex",
+      "url": "https://github.com/openai/codex",
+      "stars": "~98.1k",
+      "what": "Codex CLI with global live-search configuration and root-option propagation into exec; active 2026-07-14.",
+      "lesson": "Compile a typed leaf search mode into top-level --search or an explicit web_search override instead of accepting arbitrary argv.",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 1,
+      "thread": "fan-out-automation"
+    },
+    "github.com/google-gemini/gemini-cli": {
+      "name": "google-gemini/gemini-cli",
+      "url": "https://github.com/google-gemini/gemini-cli",
+      "stars": "~106k",
+      "what": "Subagent definitions carry model and tool configuration that is compiled into an isolated per-agent registry; active 2026-07-14.",
+      "lesson": "Represent leaf capabilities as validated data and construct the effective tool surface before execution.",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 1,
+      "thread": "fan-out-automation"
+    },
+    "github.com/anomalyco/opencode": {
+      "name": "anomalyco/opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "stars": "~186k",
+      "what": "Child sessions receive resolved per-agent model, variant, options, and websearch/webfetch permissions; release activity 2026-07-14.",
+      "lesson": "Derive and persist effective child permissions rather than relying on prompt-only tool restrictions.",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 1,
+      "thread": "fan-out-automation"
+    },
+    "github.com/anthropics/claude-agent-sdk-typescript": {
+      "name": "anthropics/claude-agent-sdk-typescript",
+      "url": "https://github.com/anthropics/claude-agent-sdk-typescript",
+      "stars": "~1.6k",
+      "what": "Structured leaf definitions expose model, effort, tool restrictions, permission mode, and execution limits; release activity 2026-07-14.",
+      "lesson": "Keep auto-approval, actual capability restriction, and execution limits as separate leaf-level concepts.",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 1,
+      "thread": "fan-out-automation"
+    },
+    "github.com/microsoft/conductor": {
+      "name": "microsoft/conductor",
+      "url": "https://github.com/microsoft/conductor",
+      "stars": "~320",
+      "what": "Multi-provider workflow engine with per-agent models, parallel/for_each scheduling, typed output envelopes, explicit failure modes, and a v0.1.21 release on 2026-07-13.",
+      "lesson": "Compile model-by-branch manifests into stable logical leaves and validate recursive typed envelopes before fan-in; retain system-deep-loop's work-conserving pool instead of Conductor's barrier batches.",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/fan-out-fan-in",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 2,
+      "thread": "fan-out-automation"
+    },
+    "github.com/massgen/massgen": {
+      "name": "massgen/MassGen",
+      "url": "https://github.com/massgen/MassGen",
+      "stars": "~1.1k",
+      "what": "Heterogeneous multi-model coordinator using normalized stream chunks, FIRST_COMPLETED processing, answer sharing, restarts, voting, and winner presentation; README reports v0.1.97 on 2026-06-12.",
+      "lesson": "Normalize provider-specific streams into attributed events, but place answer sharing and voting after an isolated discovery phase so heterogeneous leaves remain effectively independent.",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/gauges-observability",
+        "deep-ai-council"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 2,
+      "thread": "fan-out-automation"
+    },
+    "github.com/lastmile-ai/mcp-agent": {
+      "name": "lastmile-ai/mcp-agent",
+      "url": "https://github.com/lastmile-ai/mcp-agent",
+      "stars": "~8.4k",
+      "what": "Parallel LLM workflow accepting independently configured agents or AugmentedLLMs, callable or model fan-in, Pydantic structured generation, and per-agent tracing; latest tagged release v0.0.21 was 2025-05-09.",
+      "lesson": "Keep deterministic contract validation and aggregation callable as ordinary code rather than forcing heterogeneous raw outputs directly through another LLM.",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/gauges-observability",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 2,
+      "thread": "fan-out-automation"
+    },
+    "github.com/etcd-io/etcd": {
+      "name": "etcd-io/etcd",
+      "url": "https://github.com/etcd-io/etcd",
+      "stars": "~51.7k",
+      "what": "Linearizable key-value store with compare-and-swap transactions, global revisions, and revision-indexed watches; v3.6.11 released 2026-05-01.",
+      "lesson": "Use Txn compare/version for exact-hash claims and Watch(fromRevision) for incremental leaf caches, while checkpointing a snapshot plus revision for compaction-safe resume.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/dedup-novelty",
+        "runtime/locks-recovery",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 3,
+      "thread": "fan-out-automation"
+    },
+    "github.com/delta-io/delta-rs": {
+      "name": "delta-io/delta-rs",
+      "url": "https://github.com/delta-io/delta-rs",
+      "stars": "unknown",
+      "what": "Rust Delta transaction implementation using versioned log commits, conditional writes, conflict checks, and bounded retries; changelog active through 2026-05-15.",
+      "lesson": "Store immutable per-leaf segments and protect only the small registry manifest with optimistic concurrency; after a version collision, inspect intervening events before retrying the projection update.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/fan-out-fan-in",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 3,
+      "thread": "fan-out-automation"
+    },
+    "github.com/holepunchto/autobase": {
+      "name": "holepunchto/autobase",
+      "url": "https://github.com/holepunchto/autobase",
+      "stars": "~152",
+      "what": "Multiwriter append-only logs whose causal DAG is deterministically linearized into a replayable derived view, with a quorum-stable signedLength frontier.",
+      "lesson": "Give every leaf an independent writer log, permit provisional reorder and replay, and expose a stable finalized frontier separately from the latest observed frontier.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/dedup-novelty",
+        "runtime/continuity-threading",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 3,
+      "thread": "fan-out-automation"
+    },
+    "github.com/cadence-workflow/cadence": {
+      "name": "cadence-workflow/cadence",
+      "url": "https://github.com/cadence-workflow/cadence",
+      "stars": "~9.3k",
+      "what": "Durable event-history replay with independently retried child workflows; v1.4.0 was released 2026-02-27.",
+      "lesson": "Record version markers in leaf history so replay compatibility is decided from persisted evidence rather than the currently installed workflow definition.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/fan-out-automation",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 4,
+      "thread": "fan-out-automation"
+    },
+    "github.com/nextflow-io/nextflow": {
+      "name": "nextflow-io/nextflow",
+      "url": "https://github.com/nextflow-io/nextflow",
+      "stars": "unknown",
+      "what": "Task-hash cache plus retained work artifacts, independent retry of failed job-array children, and opt-in input-ordered output emission; repository activity was visible within the last month.",
+      "lesson": "Separate reuse eligibility, artifact availability, retry scope, and deterministic emission order; none is implied by the others.",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/fan-out-automation",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 4,
+      "thread": "fan-out-automation"
+    },
+    "github.com/snakemake/snakemake": {
+      "name": "snakemake/snakemake",
+      "url": "https://github.com/snakemake/snakemake",
+      "stars": "unknown",
+      "what": "Marks incomplete outputs and reruns leaves based on code, input, parameter, environment, and timestamp provenance; current 9.23.1 documentation was visible within the last month.",
+      "lesson": "A reusable success receipt needs a provenance fingerprint and artifact-completeness check, not merely a prior terminal status.",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/state-jsonl-checkpointing",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 4,
+      "thread": "fan-out-automation"
+    },
+    "github.com/jshiv/cronicle": {
+      "name": "jshiv/cronicle",
+      "url": "https://github.com/jshiv/cronicle",
+      "stars": "unknown",
+      "what": "Its resume endpoint uses the original stored payload, skips successful tasks, and strips dependencies on skipped tasks; the repository was published or updated within the last month.",
+      "lesson": "Make replay of the original manifest and execution of a changed manifest distinct operations with different compatibility rules.",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/continuity-threading",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 4,
+      "thread": "fan-out-automation"
+    },
+    "github.com/minishlab/semhash": {
+      "name": "MinishLab/semhash",
+      "url": "https://github.com/MinishLab/semhash",
+      "stars": "~945",
+      "what": "Inspectable semantic deduplication with custom encoders, exact or ANN backends, representative sampling, and v0.4.1 released 2026-01-20.",
+      "lesson": "Use semantic search only for candidate generation; preserve duplicate-to-original mappings and select a deterministic exact backend for small fan-outs.",
+      "maps_to": [
+        "runtime/dedup-novelty",
+        "runtime/fan-out-fan-in",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 5,
+      "thread": "fan-out-automation"
+    },
+    "github.com/allenai/olmes": {
+      "name": "allenai/olmes",
+      "url": "https://github.com/allenai/olmes",
+      "stars": "unknown",
+      "what": "Reproducible multi-model evaluation with detailed instance predictions, configurable metrics, task-suite aggregation, and HuggingFace/vLLM/LiteLLM backends; exact stars and last commit were not verified.",
+      "lesson": "Keep instance-level raw outputs and frozen model/task configurations so calibration and aggregation can be recomputed without rerunning leaves.",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/gauges-observability",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 5,
+      "thread": "fan-out-automation"
+    },
+    "github.com/smartyfh/llm-uncertainty-bench": {
+      "name": "smartyfh/LLM-Uncertainty-Bench",
+      "url": "https://github.com/smartyfh/LLM-Uncertainty-Bench",
+      "stars": "unknown",
+      "what": "Implements calibration/test splitting and conformal prediction over logits across several LLM tasks; exact stars and repository recency were not verified.",
+      "lesson": "Calibrate each model and task stratum on held-out adjudications, expose coverage and set size, and abstain when no reliable calibration exists.",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/gauges-observability",
+        "deep-ai-council"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 5,
+      "thread": "fan-out-automation"
+    },
+    "github.com/browser-use/browser-use": {
+      "name": "browser-use/browser-use",
+      "url": "https://github.com/browser-use/browser-use",
+      "stars": "~105k",
+      "what": "Browser automation agent; repository showed release 0.13.4 dated 2026-07-11, with a soft loop detector combining action hashes and page-state fingerprints.",
+      "lesson": "Separate cycle candidacy from termination: repeated normalized actions become actionable only when the observable environment also stagnates.",
+      "maps_to": [
+        "runtime/convergence",
+        "runtime/gauges-observability",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/sahilshrivastava-dev/semantic-halting-problem": {
+      "name": "SahilShrivastava-Dev/semantic-halting-problem",
+      "url": "https://github.com/SahilShrivastava-Dev/semantic-halting-problem",
+      "stars": "0",
+      "what": "New research implementation, with 28 commits observed and an arXiv v1 posted 2026-06-25, centralizing semantic-distance, quality, and budget stopping policies.",
+      "lesson": "Use one pure halt-policy function for live decisions, offline policy replay, and post-hoc explanations; calibrate epsilon and patience per mode rather than hard-coding paper defaults.",
+      "maps_to": [
+        "runtime/convergence",
+        "runtime/budget-cost",
+        "runtime/gauges-observability",
+        "deep-review"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/grpc/grpc": {
+      "name": "grpc/grpc",
+      "url": "https://github.com/grpc/grpc",
+      "stars": "~45.2k",
+      "what": "Production RPC runtime; repository showed release v1.82.1 dated 2026-07-08 and implements deadlines, retry commitment, attempt accounting, backoff, and retry throttling.",
+      "lesson": "Propagate one root deadline and attempt budget through every child operation; never reset a timeout or retry allowance at a handoff boundary.",
+      "maps_to": [
+        "runtime/budget-cost",
+        "runtime/fan-out-fan-in",
+        "runtime/state-jsonl-checkpointing",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/temporalio/sdk-go": {
+      "name": "temporalio/sdk-go",
+      "url": "https://github.com/temporalio/sdk-go",
+      "stars": "unknown",
+      "what": "Go SDK implementing event-history replay, Activity command state, recorded side effects, and workflow compatibility machinery; repository push recency could not be verified.",
+      "lesson": "Separate deterministic orchestration replay from at-least-once external Activities, and preserve stable Activity identity independently from retry attempts.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/restatedev/sdk-typescript": {
+      "name": "restatedev/sdk-typescript",
+      "url": "https://github.com/restatedev/sdk-typescript",
+      "stars": "unknown",
+      "what": "TypeScript SDK exposing journal-backed ctx.run durable steps and invocation idempotency; official mechanism docs were current in June-July 2026, but repository push recency was not verified.",
+      "lesson": "Journal completed results for reuse, detect command-stream mismatch during replay, and retain an explicit uncertain state for effects that ran before their result was committed.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/azure/azure-functions-durable-extension": {
+      "name": "Azure/azure-functions-durable-extension",
+      "url": "https://github.com/Azure/azure-functions-durable-extension",
+      "stars": "unknown",
+      "what": "Durable Functions extension with replay-aware orchestration context, history-driven task scheduling, and replay-safe logging; star and last-push metadata were not verified.",
+      "lesson": "Expose replay state to adapters and suppress non-semantic duplicate emissions while keeping external activities outside deterministic orchestration code.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/scikit-learn-contrib/deslib": {
+      "name": "scikit-learn-contrib/DESlib",
+      "url": "https://github.com/scikit-learn-contrib/DESlib",
+      "stars": "~505",
+      "what": "Implements Q-statistic, error correlation, disagreement, double-fault, and dynamic competence selection in deslib/util/diversity.py; GitHub shows 283 commits, but the retrieved page did not expose the latest commit date.",
+      "lesson": "Measure council diversity from correctness/error vectors, especially joint failures, then dynamically select competent non-redundant judges instead of counting configured seats.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/gauges-observability",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/toloka/crowd-kit": {
+      "name": "Toloka/crowd-kit",
+      "url": "https://github.com/Toloka/crowd-kit",
+      "stars": "~250",
+      "what": "Provides Dawid-Skene and related truth-inference algorithms; crowdkit/aggregation/classification/dawid_skene.py exposes inferred labels, per-worker confusion matrices, probabilities, and loss history. GitHub showed an update on 2025-12-01.",
+      "lesson": "Estimate per-judge confusion matrices and latent target truth from repeated council observations, but do not mistake Dawid-Skene's conditional-independence assumption for a correlation correction.",
+      "maps_to": [
+        "deep-ai-council",
+        "deep-alignment",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/arjunpanickssery/self_recognition": {
+      "name": "ArjunPanickssery/self_recognition",
+      "url": "https://github.com/ArjunPanickssery/self_recognition",
+      "stars": "~10",
+      "what": "Experiment code for the NeurIPS 2024 study connecting evaluator self-recognition to self-preference; GitHub reports no releases and did not expose a latest-commit date.",
+      "lesson": "Blind generator identity and model-family provenance from detectors and scorers; logical role prompts alone do not prevent self-preference.",
+      "maps_to": [
+        "deep-ai-council",
+        "deep-alignment",
+        "deep-improvement"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/lm-sys/fastchat": {
+      "name": "lm-sys/FastChat",
+      "url": "https://github.com/lm-sys/FastChat",
+      "stars": "~39.5k",
+      "what": "Its fastchat/llm_judge package separates answer generation, judgment, and human-agreement analysis and publishes MT-Bench human judgments; the judge README's latest visible commit was 2024-07-31.",
+      "lesson": "Persist blinded candidate generation separately from scoring, run order-swapped judgments, and calibrate judge-human agreement on a held-out corpus.",
+      "maps_to": [
+        "deep-ai-council",
+        "deep-alignment",
+        "runtime/fan-out-fan-in"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/kubernetes/kubernetes": {
+      "name": "kubernetes/kubernetes",
+      "url": "https://github.com/kubernetes/kubernetes",
+      "stars": "~124k",
+      "what": "Indexed Jobs implement ordered success and failure policies over stable completion indexes; GitHub reports v1.36.2 released 2026-06-12.",
+      "lesson": "Represent council branches with stable logical indexes and evaluate qualified success rules over specific subsets, not first-k completion order.",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/fan-out-automation",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/volcano-sh/volcano": {
+      "name": "volcano-sh/volcano",
+      "url": "https://github.com/volcano-sh/volcano",
+      "stars": "~5.8k",
+      "what": "Scheduler with gang MinAvailable readiness and progressive topology-gradient search; GitHub reports v1.15.0 released 2026-06-01.",
+      "lesson": "Run canonical stages and skip broader stages when the current stage satisfies readiness; widen only after a persisted failed readiness test.",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost",
+        "deep-ai-council"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/tektoncd/pipeline": {
+      "name": "tektoncd/pipeline",
+      "url": "https://github.com/tektoncd/pipeline",
+      "stars": "~9k",
+      "what": "Pipeline reconciler supports conditional execution and consumer-sensitive missing-result failures; GitHub's repository page reports a 2026-06 release.",
+      "lesson": "Partial failure is acceptable only when the selected reducer does not require the failed branch's evidence or results.",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/continuity-threading",
+        "deep-review"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/lm-sys/routellm": {
+      "name": "lm-sys/RouteLLM",
+      "url": "https://github.com/lm-sys/RouteLLM",
+      "stars": "~5.2k",
+      "what": "Calibrated router chooses a stronger model above a quality threshold and fails safe when scoring is invalid; last verified commit was 2024-08-10.",
+      "lesson": "Choose WIDEN by expected marginal quality per reserved cost, using first-stage disagreement and coverage; invalid policy scores should widen safely.",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/taskflow/taskflow": {
+      "name": "taskflow/taskflow",
+      "url": "https://github.com/taskflow/taskflow",
+      "stars": "~12k",
+      "what": "C++ task-graph scheduler with single- and multi-successor conditional tasks; GitHub showed a release dated 2026-06-20, although tag display was inconsistent.",
+      "lesson": "Conditional scheduling is compact, but ordinal successor identity is construction-order-sensitive and duplicate activation needs a branch lease.",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/locks-recovery",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/google/clusterfuzz": {
+      "name": "google/clusterfuzz",
+      "url": "https://github.com/google/clusterfuzz",
+      "stars": "~5.6k",
+      "what": "Crash triage backend with testcase minimization, deduplication and regression bisection; GitHub showed release v2.34.0 on 2026-07-14.",
+      "lesson": "Minimize and fingerprint the original failure before repair, then bind every repair receipt to that reproducer and its regression range.",
+      "maps_to": [
+        "deep-improvement",
+        "runtime/state-jsonl-checkpointing",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/google/syzkaller": {
+      "name": "google/syzkaller",
+      "url": "https://github.com/google/syzkaller",
+      "stars": "~6.3k",
+      "what": "Kernel fuzzer and automated bug tracker with reproducer testing, cause/fix bisection and multi-build fix tracking; master showed commits in June 2026.",
+      "lesson": "Use asymmetric flaky evidence: one observed regression can veto promotion, while absence requires repeated trials and coverage across required branches.",
+      "maps_to": [
+        "deep-improvement",
+        "runtime/convergence",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/swe-bench/swe-bench": {
+      "name": "SWE-bench/SWE-bench",
+      "url": "https://github.com/SWE-bench/SWE-bench",
+      "stars": "~5.4k",
+      "what": "Software-repair evaluation harness separating FAIL_TO_PASS resolution from PASS_TO_PASS maintenance; main showed a commit on 2026-03-19.",
+      "lesson": "Represent target repair, preserved behavior and baseline-known failures separately; selected regression tests are not proof of whole-system non-regression.",
+      "maps_to": [
+        "deep-review",
+        "deep-improvement",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/aider-ai/aider": {
+      "name": "Aider-AI/aider",
+      "url": "https://github.com/Aider-AI/aider",
+      "stars": "~47.4k",
+      "what": "Coding-agent loop with automatic lint/test feedback and bounded reflection; main showed commits on 2026-05-22.",
+      "lesson": "Feed deterministic failures back into a bounded repair loop, but make successful re-run receipts mandatory because a retry cap alone proves nothing.",
+      "maps_to": [
+        "deep-improvement",
+        "runtime/budget-cost",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/graspologic-org/graspologic": {
+      "name": "graspologic-org/graspologic",
+      "url": "https://github.com/graspologic-org/graspologic",
+      "stars": "~1k",
+      "what": "Graph-statistics library containing GraphRAG's hierarchical Leiden implementation; latest verified release v3.4.4 on 2025-09-08.",
+      "lesson": "Persist the returned hierarchy as a versioned snapshot, warm-start with prior communities, fix the seed, and add stable-ID matching because native cluster integers are not continuity identifiers.",
+      "maps_to": [
+        "runtime/dedup-novelty",
+        "runtime/gauges-observability",
+        "deep-research"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/xtdb/xtdb": {
+      "name": "xtdb/xtdb",
+      "url": "https://github.com/xtdb/xtdb",
+      "stars": "~3k",
+      "what": "Immutable bitemporal SQL database with automatic valid-time and system-time history; latest verified release v2.1.0 on 2025-12-01.",
+      "lesson": "Model a claim's domain validity separately from the JSONL sequence at which the runtime learned or resolved it, enabling reproducible as-of continuity projections.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/continuity-threading",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/terminusdb/terminusdb": {
+      "name": "terminusdb/terminusdb",
+      "url": "https://github.com/terminusdb/terminusdb",
+      "stars": "~3.4k",
+      "what": "Version-controlled document graph using immutable delta layers and deletion masks; latest verified server release v12.0.6 on 2026-06-24.",
+      "lesson": "Resolution should append a delta or masking event over prior assertions, preserving provenance and permitting time-travel, diff and rollback without mutating evidence.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/continuity-threading",
+        "deep-alignment"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/feldera/feldera": {
+      "name": "feldera/feldera",
+      "url": "https://github.com/feldera/feldera",
+      "stars": "~2k",
+      "what": "Incremental computation engine implementing DBSP; latest verified release v0.321.0 on 2026-07-14.",
+      "lesson": "Model inserts, deletions, and supersessions as signed changes and maintain materialized gauges from deltas rather than replaying history.",
+      "maps_to": [
+        "runtime/gauges-observability",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/arize-ai/phoenix": {
+      "name": "Arize-ai/phoenix",
+      "url": "https://github.com/Arize-ai/phoenix",
+      "stars": "~10.6k",
+      "what": "AI tracing and evaluation platform with span-linked HUMAN, LLM, and CODE annotations; latest verified release v18.0.0 on 2026-07-14.",
+      "lesson": "Keep execution traces separate from later judgments and correlate annotations through stable target IDs and evaluator identities.",
+      "maps_to": [
+        "runtime/gauges-observability",
+        "deep-review",
+        "deep-ai-council"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/open-telemetry/opentelemetry-ebpf-instrumentation": {
+      "name": "open-telemetry/opentelemetry-ebpf-instrumentation",
+      "url": "https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation",
+      "stars": "~511",
+      "what": "Development-stage OpenTelemetry eBPF instrumentation with BPF probes, collector integration, and a Weaver-compatible schema; latest verified release v0.10.0 on 2026-06-30.",
+      "lesson": "Add an independently observed side-effect telemetry plane to cross-check semantic agent events, while treating it as optional corroboration.",
+      "maps_to": [
+        "runtime/gauges-observability",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/datadog/sketches-js": {
+      "name": "DataDog/sketches-js",
+      "url": "https://github.com/DataDog/sketches-js",
+      "stars": "~11",
+      "what": "TypeScript DDSketch implementation with relative-error quantiles and merge support; latest verified release 2.1.1 on 2024-04-23.",
+      "lesson": "Use mergeable sketches for append-only latency and cost distributions, but not for projections that require judgment retractions.",
+      "maps_to": [
+        "runtime/gauges-observability",
+        "runtime/fan-out-fan-in"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/openmeterio/openmeter": {
+      "name": "openmeterio/openmeter",
+      "url": "https://github.com/openmeterio/openmeter",
+      "stars": "~2k",
+      "what": "Event-based metering and entitlement engine with real-time balances, priority-ordered grants, rollover, expiration, and threshold notifications; docs updated July 2026.",
+      "lesson": "Model budget additions and resets as immutable grants consumed in deterministic priority order, with burn-down history retained for replay and audit.",
+      "maps_to": [
+        "runtime/budget-cost",
+        "runtime/state-jsonl-checkpointing",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/envoyproxy/ratelimit": {
+      "name": "envoyproxy/ratelimit",
+      "url": "https://github.com/envoyproxy/ratelimit",
+      "stars": "unknown",
+      "what": "Redis-backed gRPC rate-limit service with nested descriptors, multiple limits per request, near-limit metrics, and shadow enforcement; repository crawled last month.",
+      "lesson": "Evaluate every applicable scope and deny when any hard constraint fails; introduce budget policy first in shadow mode and expose soft-threshold telemetry before enforcement.",
+      "maps_to": [
+        "runtime/budget-cost",
+        "runtime/fan-out-fan-in",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/bucket4j/bucket4j": {
+      "name": "bucket4j/bucket4j",
+      "url": "https://github.com/bucket4j/bucket4j",
+      "stars": "unknown",
+      "what": "Java token-bucket library supporting multiple simultaneous bandwidths, greedy or interval refill, distributed state, and diagnostic consumption probes; current README references 8.18.0.",
+      "lesson": "Represent burst and sustained windows as concurrent constraints and return an admission probe containing remaining capacity and reset delay, not a bare boolean.",
+      "maps_to": [
+        "runtime/budget-cost",
+        "runtime/fan-out-automation",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/chosolbee/stop-rag": {
+      "name": "chosolbee/Stop-RAG",
+      "url": "https://github.com/chosolbee/Stop-RAG",
+      "stars": "~0",
+      "what": "Finite-horizon MDP controller for iterative RAG; 4 commits, with paper/code released in late 2025.",
+      "lesson": "Separate the stop decider from the loop pipeline, train continuation values from complete trajectories with Q(lambda), and calibrate the final decision threshold independently.",
+      "maps_to": [
+        "deep-research",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/paulaoak/certified_self_consistency": {
+      "name": "paulaoak/certified_self_consistency",
+      "url": "https://github.com/paulaoak/certified_self_consistency",
+      "stars": "~0",
+      "what": "Implementation of Martingale Majority Certificate stopping and test-time training; 7 commits, latest verified commit 2025-11-02.",
+      "lesson": "Use anytime-valid confidence rather than repeated fixed-horizon tests when stopping parallel LLM samples or council votes.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/kapilan-balagopalan/brakebooster": {
+      "name": "Kapilan-Balagopalan/Brakebooster",
+      "url": "https://github.com/Kapilan-Balagopalan/Brakebooster",
+      "stars": "~0",
+      "what": "Reference implementation for converting best-arm identification procedures toward exponential stopping-time tails; 2 commits, associated ICML 2025 paper.",
+      "lesson": "Bound the tail of total stopping time, not only its expectation, so retries, salvage, handoffs, and slow branches cannot create a heavy-tailed runtime.",
+      "maps_to": [
+        "runtime/convergence",
+        "runtime/fan-out-fan-in",
+        "runtime/locks-recovery",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/golemcloud/golem": {
+      "name": "golemcloud/golem",
+      "url": "https://github.com/golemcloud/golem",
+      "stars": "~1.6k",
+      "what": "Wasm durable-execution runtime with an oplog and explicit durability, idempotency, retry, and unknown-outcome controls; v1.5.4 released 2026-06-04.",
+      "lesson": "Record nondeterministic host-function invocations and make recovery policy explicit per effect; durable idempotency keys and receipt replication are separate mechanisms.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/thousandbirdsinc/chidori": {
+      "name": "ThousandBirdsInc/chidori",
+      "url": "https://github.com/ThousandBirdsInc/chidori",
+      "stars": "~1.3k",
+      "what": "LLM-specific Starlark runtime whose v3 design records prompt/tool/http results and replays without new LLM calls; latest visible tagged release is from 2023.",
+      "lesson": "Put all nondeterminism behind logged host calls, but strengthen positional sequence matching with logical step IDs, invocation hashes, and replay-version fingerprints.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/apache/burr": {
+      "name": "apache/burr",
+      "url": "https://github.com/apache/burr",
+      "stars": "~2k",
+      "what": "AI application state machine with pluggable persisters keyed by partition, application, and sequence; documentation was current in July 2026, but exact latest commit time was not verified.",
+      "lesson": "A latest-completed-action checkpoint is useful for coarse resume but does not close the crash window between a nondeterministic effect and state persistence.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    "github.com/ryanliu112/genprm": {
+      "name": "RyanLiu112/GenPRM",
+      "url": "https://github.com/RyanLiu112/GenPRM",
+      "stars": "~100",
+      "what": "AAAI 2026 codebase for generative process verification; its 2025 release uses relative-progress labels, verification rationales, and code-assisted judging.",
+      "lesson": "Treat verification as an independently scalable reasoning phase, but invoke it only after cheap deterministic and scalar checks fail.",
+      "maps_to": [
+        "deep-review",
+        "deep-ai-council",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/rucbm/tops": {
+      "name": "RUCBM/TOPS",
+      "url": "https://github.com/RUCBM/TOPS",
+      "stars": "~2",
+      "what": "NeurIPS 2025 thinking-optimal test-time-scaling implementation with src/sft code, test data, and scripts/run_eval.sh; repository was still visible in June 2026.",
+      "lesson": "Make reasoning allowance a controller-selected variable and evaluate quality against consumed compute, rather than assigning every branch the same token ceiling.",
+      "maps_to": [
+        "runtime/budget-cost",
+        "runtime/convergence",
+        "deep-improvement"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/prime-rl/ttrl": {
+      "name": "PRIME-RL/TTRL",
+      "url": "https://github.com/PRIME-RL/TTRL",
+      "stars": "unknown",
+      "what": "NeurIPS 2025 test-time reinforcement-learning implementation using majority-derived pseudo-rewards; its August 2025 verl integration exposes +ttrl.enable=True.",
+      "lesson": "Use completed-loop consensus as offline training data for controller policies, but version and regression-test learned policies instead of mutating live policy inside a replayable lineage.",
+      "maps_to": [
+        "deep-improvement",
+        "runtime/convergence",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/mukhal/thinkprm": {
+      "name": "mukhal/ThinkPRM",
+      "url": "https://github.com/mukhal/ThinkPRM",
+      "stars": "unknown",
+      "what": "TMLR generative process-reward-model repository; test-time-scaling code was released July 2, 2025 and supports longer or parallel verifier reasoning.",
+      "lesson": "Expose judge compute as its own typed budget and increase it only when cheap checks leave high decision uncertainty.",
+      "maps_to": [
+        "deep-review",
+        "deep-ai-council",
+        "runtime/fan-out-fan-in"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/joyyang158/reasoning-bias-detector": {
+      "name": "Joyyang158/Reasoning-Bias-Detector",
+      "url": "https://github.com/Joyyang158/Reasoning-Bias-Detector",
+      "stars": "~7",
+      "what": "Official NeurIPS 2025 implementation; 19 commits visible when checked in July 2026, with scripts for position, verbosity, bandwagon, and sentiment bias plus detector-guided judge revision.",
+      "lesson": "Keep bias detection outside the scorer and attach detector reasoning to the original immutable judgment before requesting a revised verdict.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/ucl-dark/llm_debate": {
+      "name": "ucl-dark/llm_debate",
+      "url": "https://github.com/ucl-dark/llm_debate",
+      "stars": "~131",
+      "what": "2024 scalable-oversight code release; 21 commits visible when checked in July 2026, implementing blind, consultancy, debate, interactive-debate, and expert-judge protocols.",
+      "lesson": "Make debate a typed escalation with separate debate, judge, accuracy, and tournament modules rather than another free-form council round.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/lmarena/arena-hard-auto": {
+      "name": "lmarena/arena-hard-auto",
+      "url": "https://github.com/lmarena/arena-hard-auto",
+      "stars": "~1,000",
+      "what": "Active benchmark implementation with 182 commits visible, style control added October 2024, and Arena-Hard v2.0 announced April 2025.",
+      "lesson": "Judge every consequential pair in both orders and treat length and formatting as measured covariates rather than allowing presentation to leak into quality.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/lmarena/ppe": {
+      "name": "lmarena/PPE",
+      "url": "https://github.com/lmarena/PPE",
+      "stars": "~65",
+      "what": "Preference Proxy Evaluations repository; 27 commits visible when checked in July 2026, with 2024 paper provenance and judge metrics including Brier score, confidence agreement, separability, and domain accuracy.",
+      "lesson": "Calibrate each model-plus-prompt judge profile offline against human preference and verifiable correctness data before using reliability weights in council aggregation.",
+      "maps_to": [
+        "deep-ai-council",
+        "deep-improvement",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/cimo-labs/cje": {
+      "name": "cimo-labs/cje",
+      "url": "https://github.com/cimo-labs/cje",
+      "stars": "~43",
+      "what": "Causal Judge Evaluation; v0.5.1 released 2026-07-07, with JudgeCalibrator, cross-fitting, transport audits, confidence intervals, and refusal diagnostics.",
+      "lesson": "Calibrate each model-prompt-rubric-domain seat against a small oracle slice and abstain when the deployment distribution falls outside calibration support.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/gauges-observability",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/yale-nlp/bay-calibration-llm-evaluators": {
+      "name": "yale-nlp/bay-calibration-llm-evaluators",
+      "url": "https://github.com/yale-nlp/bay-calibration-llm-evaluators",
+      "stars": "~4",
+      "what": "EMNLP 2024 implementation of Bayesian Win-Rate Sampling and Bayesian Dawid-Skene; last visible commit 2024-11-18.",
+      "lesson": "Use posterior judge reliability and uncertainty instead of equal votes when only a sparse human calibration set is available.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/convergence",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/scikit-activeml/scikit-activeml": {
+      "name": "scikit-activeml/scikit-activeml",
+      "url": "https://github.com/scikit-activeml/scikit-activeml",
+      "stars": "~196",
+      "what": "Active-learning library with multi-annotator query strategies; release 1.0.0 dated 2025-12-11.",
+      "lesson": "Model seat dispatch as selection of a task-annotator pair with an explicit utility matrix; adapt IntervalEstimationThreshold and expected-error-reduction strategies to judge reliability, cost, and availability.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/cleanlab/cleanlab": {
+      "name": "cleanlab/cleanlab",
+      "url": "https://github.com/cleanlab/cleanlab",
+      "stars": "~11.6k",
+      "what": "Label-quality library with multi-annotator consensus, annotator-quality estimates, and active-learning scores; last visible commit 2026-01-13.",
+      "lesson": "Maintain per-seat quality estimates and identify which disputed cases need another annotation, while treating its classification assumptions as an adaptation boundary for open-ended council judgments.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/haizelabs/verdict": {
+      "name": "haizelabs/verdict",
+      "url": "https://github.com/haizelabs/verdict",
+      "stars": "~345",
+      "what": "Declarative compound-judge pipelines with repeated judge layers, verifier chains, reducers, concurrency, and rate limiting; last visible commit 2025-11-05.",
+      "lesson": "Represent seats, verifiers, and reducers as an explicit execution graph, but place calibrated selection and dependence-aware weighting ahead of its aggregation units.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/ml-research/llms-gaming-verifiers": {
+      "name": "ml-research/llms-gaming-verifiers",
+      "url": "https://github.com/ml-research/llms-gaming-verifiers",
+      "stars": "~1",
+      "what": "Updated 2026-05-19; implements Isomorphic Perturbation Testing as a standalone evaluate module for detecting verifier shortcuts.",
+      "lesson": "Run cheap logically equivalent perturbations before accepting judge or verifier success; record original-pass/perturbed-fail as proxy-capture evidence.",
+      "maps_to": [
+        "deep-review",
+        "deep-improvement",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/ukgovernmentbeis/reward-hacking-misalignment": {
+      "name": "UKGovernmentBEIS/reward-hacking-misalignment",
+      "url": "https://github.com/UKGovernmentBEIS/reward-hacking-misalignment",
+      "stars": "~23",
+      "what": "Current 2026 reproduction artifact with reward-hackable RL environments, training configurations, and separate misalignment evaluations.",
+      "lesson": "Optimization success and alignment health must remain separate measurement channels; reward-hack events should trigger cross-domain canaries before promotion.",
+      "maps_to": [
+        "deep-improvement",
+        "deep-alignment",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/emergent-misalignment/emergent-misalignment": {
+      "name": "emergent-misalignment/emergent-misalignment",
+      "url": "https://github.com/emergent-misalignment/emergent-misalignment",
+      "stars": "unknown",
+      "what": "Artifact for the 2025 Emergent Misalignment paper; includes secure, insecure, educational, backdoor, deception, and preregistered evaluation sets across a 14-commit repository history.",
+      "lesson": "A narrowly improved target can cause broad behavioral drift, so every self-improvement promotion needs frozen cross-domain alignment canaries rather than target-task scoring alone.",
+      "maps_to": [
+        "deep-improvement",
+        "deep-alignment",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/hmuto/algorithmic-groupthink-paper": {
+      "name": "hmuto/algorithmic-groupthink-paper",
+      "url": "https://github.com/hmuto/algorithmic-groupthink-paper",
+      "stars": "unknown",
+      "what": "Code and data for measuring semantic convergence in multi-agent systems; v1.1.0 was archived on Zenodo in June 2026, but GitHub stars and module layout could not be independently loaded.",
+      "lesson": "Treat rapid semantic convergence as a possible groupthink signal and preserve minority-community survival alongside aggregate agreement.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/dedup-novelty",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "low",
+      "first_seen_iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/cedar-policy/cedar": {
+      "name": "cedar-policy/cedar",
+      "url": "https://github.com/cedar-policy/cedar",
+      "stars": "~1.6k",
+      "what": "Schema-validated authorization engine with cedar-policy-symcc counterexample generation; latest visible release was v4.11.2 on 2026-06-22.",
+      "lesson": "Put state-changing JSONL transitions behind a separately versioned authorization decision instead of allowing mode reducers to authorize their own recovery.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/locks-recovery",
+        "deep-alignment"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/quint-co/quint": {
+      "name": "quint-co/quint",
+      "url": "https://github.com/quint-co/quint",
+      "stars": "~1.5k",
+      "what": "Executable specification language based on temporal logic; repository moved from informalsystems/quint to quint-co/quint, but release recency was not verified.",
+      "lesson": "Model accepted JSONL events as transitions and check replay, quarantine, retry, budget, and eventual-terminal-state invariants over adversarial interleavings.",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/locks-recovery",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "first_seen_iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/vowpalwabbit/vowpal_wabbit": {
+      "name": "VowpalWabbit/vowpal_wabbit",
+      "url": "https://github.com/VowpalWabbit/vowpal_wabbit",
+      "stars": "unknown",
+      "what": "Online-learning and contextual-bandit system with documented IPS, direct-method, and doubly-robust offline policy evaluation; current star count and latest release were not verified.",
+      "lesson": "Log adjudication-action propensities and evaluate alternative council routers counterfactually before allowing adaptive seat selection to replace fixed councils.",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/py-why/dowhy": {
+      "name": "py-why/dowhy",
+      "url": "https://github.com/py-why/dowhy",
+      "stars": "unknown",
+      "what": "Causal-inference library centered on explicit causal graphs, identification, estimation, and refutation; current star count and release recency were not verified.",
+      "lesson": "Represent injected degeneration mechanisms as interventions and require refutation tests before interpreting correlated health gauges as causal evidence.",
+      "maps_to": [
+        "runtime/convergence",
+        "deep-improvement",
+        "deep-alignment"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    "github.com/online-ml/river": {
+      "name": "online-ml/river",
+      "url": "https://github.com/online-ml/river",
+      "stars": "unknown",
+      "what": "Online machine-learning library containing streaming drift detectors including ADWIN; current star count and release recency were not verified.",
+      "lesson": "Run incremental change detectors over raw gauge streams, attaching alarm judgments as later events without mutating historical measurements.",
+      "maps_to": [
+        "runtime/gauges-observability",
+        "runtime/convergence"
+      ],
+      "confidence": "med",
+      "first_seen_iter": 20,
+      "thread": "general-effectiveness-and-council"
+    }
+  },
+  "insights": [
+    {
+      "insight": "The missing abstraction is a normalized per-lineage capability descriptor, not generic per-lineage CLI arguments; model and reasoning effort are already lineage-scoped locally.",
+      "evidence": "runtime/lib/deep-loop/executor-config.ts and runtime/scripts/fanout-run.cjs",
+      "maps_to": [
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "iter": 1,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Web search needs at least inherit, disabled, cached, and live states because --search expresses only the live transition and cannot explicitly defeat inherited configuration.",
+      "evidence": "https://developers.openai.com/codex/cli/reference/ and https://developers.openai.com/codex/config-reference/",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "iter": 1,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Production child isolation is enforced by constructing an effective tool registry or permission set before invocation, not by telling the child in its prompt which tools it may use.",
+      "evidence": "https://github.com/google-gemini/gemini-cli/blob/main/packages/core/src/agents/local-executor.ts and https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/tool/task.ts",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "iter": 1,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "A resolved invocation fingerprint should be a pre-spawn JSONL receipt so retries and resumes can prove they reused the same model, effort, tool policy, and sandbox contract.",
+      "evidence": "Transfer from the structured spawn contracts in openai/codex, google-gemini/gemini-cli, and anomalyco/opencode",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/gauges-observability",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "iter": 1,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "The required LUNA/SOL/GLM substrate already exists: per-lineage kind and model dispatch can mix them in one run; the actual gap is Cartesian manifest compilation and stable logical branch identity.",
+      "evidence": "system-deep-loop runtime/lib/deep-loop/executor-config.ts and runtime/scripts/fanout-run.cjs",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/fan-out-fan-in"
+      ],
+      "confidence": "high",
+      "iter": 2,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Use two normalization layers: provider streams become a common event algebra, while completed artifacts separately undergo versioned domain-schema validation.",
+      "evidence": "https://github.com/massgen/MassGen/blob/main/massgen/orchestrator.py and https://github.com/microsoft/conductor/blob/main/src/conductor/config/schema.py",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/gauges-observability",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "iter": 2,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Fan-in should first be deterministic code: schema validation, attribution, deduplication, failure-policy evaluation, and usage reconciliation; model synthesis is an optional later consumer.",
+      "evidence": "https://github.com/lastmile-ai/mcp-agent/blob/main/src/mcp_agent/workflows/parallel/parallel_llm.py",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/dedup-novelty",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "iter": 2,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Heterogeneous coordination and effective independence are compatible only as phases: isolated generation first, normalized cross-review second, and separately scored selection last.",
+      "evidence": "https://github.com/massgen/MassGen and https://github.com/microsoft/conductor",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "iter": 2,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Split registry semantics into monotone observation events and non-monotone novelty adjudication. Findings, evidence, hashes, and similarity edges can merge without coordination; canonical representatives and final novelty credit require ordered fan-in or a coordinated commit.",
+      "evidence": "Keeping CALM: https://arxiv.org/abs/1901.01930",
+      "maps_to": [
+        "runtime/dedup-novelty",
+        "runtime/fan-out-fan-in",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "iter": 3,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Maintain two registry frontiers: observedRevision for low-latency hints and finalizedRevision for convergence math and cross-iteration seeding. A leaf may react to provisional claims, but only the finalized prefix supplies durable novelty credit.",
+      "evidence": "Autobase signedLength and replay model: https://github.com/holepunchto/autobase",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/convergence",
+        "runtime/gauges-observability",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "iter": 3,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Make semantic clustering independent of process arrival order: sort immutable events by logical branch and sequence, use approximate search only for candidate generation, recompute exact similarity edges, then fold the fixed edge set with deterministic union-find and a stable representative tie-breaker.",
+      "evidence": "Autobase deterministic apply/replay contract: https://github.com/holepunchto/autobase",
+      "maps_to": [
+        "runtime/dedup-novelty",
+        "runtime/fan-out-fan-in",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "iter": 3,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Use a two-speed duplicate path: exact normalized hashes can be reserved atomically with CAS, while semantic similarity remains an append-only claim followed by reducer adjudication. This avoids serializing every embedding comparison through a global lock.",
+      "evidence": "etcd transaction and watch APIs: https://etcd.io/docs/v3.6/learning/api/",
+      "maps_to": [
+        "runtime/dedup-novelty",
+        "runtime/locks-recovery",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "iter": 3,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Deterministic fan-in has two layers: freeze a deterministic admission snapshot of committed leaf receipts, then fold that snapshot in logical-leaf-ID order. Stable sorting alone covers only the second layer.",
+      "evidence": "nextflow-io/nextflow docs/reference/process.md fair and cache contracts; local runtime/scripts/fanout-merge.cjs",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "A leaf receipt should be a content-addressed commit binding logical identity, manifest revision, inputs, prompt, executor/model/tool capabilities, artifact schema, and artifact digest. Reuse requires both fingerprint compatibility and artifact verification.",
+      "evidence": "https://github.com/nextflow-io/nextflow/blob/master/docs/reference/process.md; https://snakemake.readthedocs.io/en/stable/executing/cli.html; https://arxiv.org/abs/2606.20989",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/fan-out-automation",
+        "runtime/dedup-novelty"
+      ],
+      "confidence": "high",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Resume needs an explicit per-leaf decision algebra: reuse, reexecute, compensate, or reject. A changed manifest cannot safely inherit the original run's success and retry ledger by label alone.",
+      "evidence": "https://cadenceworkflow.io/docs/go-client/workflow-versioning; https://github.com/jshiv/cronicle; local runtime/scripts/fanout-pool.cjs",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/locks-recovery",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Stdout salvage is safe only when output is framed by logical leaf, attempt, sequence, artifact kind, and digest. One unframed subprocess transcript cannot prove which missing iteration produced which bytes.",
+      "evidence": "local runtime/scripts/fanout-salvage.cjs",
+      "maps_to": [
+        "runtime/fan-out-automation",
+        "runtime/gauges-observability",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Semantic dedup must be a reversible projection: immutable raw findings remain in JSONL, while equivalence, contradiction, cluster membership, and rank are attached as versioned judgments.",
+      "evidence": "https://github.com/MinishLab/semhash and local runtime/scripts/fanout-merge.cjs",
+      "maps_to": [
+        "runtime/dedup-novelty",
+        "runtime/state-jsonl-checkpointing",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "iter": 5,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Separate claim equivalence from evidence aggregation; equivalent claims should form one cluster whose evidence is the union of every member's source receipts, not one canonical leaf record.",
+      "evidence": "https://github.com/MinishLab/semhash",
+      "maps_to": [
+        "deep-research",
+        "runtime/fan-out-fan-in",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "iter": 5,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Model agreement should be capped by effective-independence group and used only as a score bonus; held-out task-stratified calibration should govern model reliability, with uncalibrated models marked unknown rather than assigned a guessed weight.",
+      "evidence": "https://ojs.aaai.org/index.php/AAAI/article/view/5860 and https://github.com/smartyfh/LLM-Uncertainty-Bench",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-automation",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "iter": 5,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "Lossless consensus requires separate consensus, minority-unique, and contradiction projections; a single majority-ranked list creates preference-collapse pressure even when every input was initially retained.",
+      "evidence": "https://arxiv.org/abs/2405.16455 and https://www.vldb.org/pvldb/vol13/p2706-kuhlman.pdf",
+      "maps_to": [
+        "deep-research",
+        "deep-ai-council",
+        "runtime/dedup-novelty",
+        "runtime/fan-out-fan-in"
+      ],
+      "confidence": "high",
+      "iter": 5,
+      "thread": "fan-out-automation"
+    },
+    {
+      "insight": "A robust stuck detector needs two fingerprints: a canonical transition fingerprint for period-1/2/3 repetition and a progress-state fingerprint for changed artifacts, evidence, execution results, or environment state. Repetition without state stagnation is not a hard stop.",
+      "evidence": "https://github.com/OpenHands/software-agent-sdk/blob/main/openhands-sdk/openhands/sdk/conversation/stuck_detector.py ; https://github.com/browser-use/browser-use/blob/main/browser_use/agent/views.py",
+      "maps_to": [
+        "runtime/convergence",
+        "runtime/locks-recovery",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Termination should be conjunctive for correctness but staged for cost: cheap novelty, cycle, coverage, and execution checks first; invoke a critic only for a plausible stop candidate, then require quality and execution evidence before declaring convergence.",
+      "evidence": "https://arxiv.org/abs/2606.27009",
+      "maps_to": [
+        "runtime/convergence",
+        "runtime/budget-cost",
+        "deep-review",
+        "deep-improvement"
+      ],
+      "confidence": "med",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Path-covering termination is a graph property: each reachable SCC containing a retry, handoff, callback, tool invocation, model call, or state-growing operation must consume a monotone root lease and expose a terminal exit.",
+      "evidence": "https://arxiv.org/abs/2607.01641",
+      "maps_to": [
+        "runtime/convergence",
+        "runtime/fan-out-automation",
+        "runtime/continuity-threading",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Absolute deadline propagation plus separate attempt throttling prevents child calls from laundering elapsed time or failure history; JSONL should reconstruct both the root lease and per-transition attempt receipts.",
+      "evidence": "https://grpc.io/docs/guides/deadlines/ ; https://grpc.io/docs/guides/retry/",
+      "maps_to": [
+        "runtime/budget-cost",
+        "runtime/fan-out-fan-in",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "A durable receipt must distinguish effect completion from workflow completion: completed journal entries are reusable, but an effect that began before its result was committed remains potentially duplicated and must project to unknown.",
+      "evidence": "https://docs.restate.dev/develop/ts/durable-steps ; https://www.restate.dev/blog/why-we-built-restate ; https://docs.dbos.dev/python/tutorials/workflow-tutorial",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Logical effect identity and attempt identity must be separate. The logical ID and downstream idempotency key remain stable across retries, handoffs, salvage, and process restarts; attempt IDs change and preserve forensic history.",
+      "evidence": "temporalio/sdk-go Activity identity model; https://docs.dbos.dev/python/tutorials/workflow-tutorial ; https://docs.restate.dev/references/architecture",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/fan-out-automation",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Replay compatibility is an event-level contract, not a single runtime version. Restate blocks journal mismatches, Temporal routes or patches in-flight histories, and LangGraph warns that reordered positional task or interrupt calls can bind old results to the wrong operation.",
+      "evidence": "https://docs.restate.dev/services/versioning ; https://github.com/temporalio/temporal/blob/main/docs/worker-versioning.md ; https://docs.langchain.com/oss/python/langgraph/backward-compatibility",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Checkpoint recovery should preserve branch-local successes. LangGraph pending writes retain completed siblings in a failed parallel superstep, implying that system-deep-loop should receipt each logical fan-out branch rather than replaying an entire wave or merged iteration.",
+      "evidence": "https://docs.langchain.com/oss/javascript/langgraph/persistence ; https://reference.langchain.com/python/langgraph.checkpoint/base/CheckpointTuple",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/state-jsonl-checkpointing",
+        "deep-ai-council"
+      ],
+      "confidence": "high",
+      "iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Effective independence must be estimated from correctness-conditioned error vectors: retain per-task errors and compute pairwise Q, phi correlation, disagreement, and double-fault; model/provider diversity is only a prior.",
+      "evidence": "https://github.com/scikit-learn-contrib/DESlib/blob/master/deslib/util/diversity.py and https://research.bangor.ac.uk/en/publications/measures-of-diversity-in-classifier-ensembles-and-their-relations/",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/gauges-observability",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "A correlation-adjusted weighted vote count can be reported as N_eff=(sum(w))^2/(w^T R w); it distinguishes three nominal seats from three independent pieces of evidence and naturally incorporates unequal judge competence.",
+      "evidence": "https://mc-stan.org/docs/2_31/reference-manual/effective-sample-size.html and https://journals.ametsoc.org/view/journals/clim/24/9/2010jcli3814.1.xml",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/gauges-observability",
+        "runtime/budget-cost"
+      ],
+      "confidence": "med",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Seat admission should require positive held-out marginal gain in log loss or Brier score, with a bootstrap interval, because low correlation without competence is noise rather than useful independence.",
+      "evidence": "https://arxiv.org/abs/1907.07384 and https://github.com/scikit-learn-contrib/DESlib",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost"
+      ],
+      "confidence": "med",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Generator, detector, scorer, orchestrator, and target must have separate capabilities and blinded information surfaces; self-recognition evidence shows that assigning different role names inside one shared context is not sufficient.",
+      "evidence": "https://arxiv.org/abs/2404.13076 and https://github.com/ArjunPanickssery/self_recognition",
+      "maps_to": [
+        "deep-ai-council",
+        "deep-alignment",
+        "deep-improvement",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Panel composition and aggregation are separate problems: cross-family panels reduce ordinary bias, while robust aggregation such as a geometric median protects against a biased or collapsed minority that averaging cannot tolerate.",
+      "evidence": "https://arxiv.org/abs/2404.18796 and https://arxiv.org/abs/2606.30931",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Deterministic sorting after merge is insufficient: stable logical branch IDs and barriered policy evaluation are required because first-k success remains arrival-order-dependent.",
+      "evidence": "https://taskflow.github.io/taskflow/ConditionalTasking.html",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Conditional fan-in should be staged: evaluate a cheap seed wave, skip later waves on qualified agreement, and reserve the next wave's budget only when a persisted WIDEN transition fires.",
+      "evidence": "https://github.com/volcano-sh/volcano/blob/master/docs/design/Network%20Topology%20Aware%20Scheduling.md",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost",
+        "deep-ai-council"
+      ],
+      "confidence": "high",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "A quorum must be qualified by required branch subsets, evidence classes, and veto findings; a raw success count can accept an evidentially incomplete or unsafe council.",
+      "evidence": "https://kubernetes.io/docs/concepts/workloads/controllers/job/",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "deep-review",
+        "deep-ai-council"
+      ],
+      "confidence": "high",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Progressive fan-in needs immutable provisional projections and a separate final ACCEPT barrier; cancellations and late completions must be recorded without altering the frozen projection.",
+      "evidence": "https://docs.aws.amazon.com/step-functions/latest/dg/state-map-distributed.html",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/gauges-observability",
+        "runtime/locks-recovery",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Use a three-region weighted policy: deterministic reject, deterministic low-risk accept, and an uncertainty band routed to judges; keep hard vetoes outside the weighted average.",
+      "evidence": "https://github.com/promptfoo/promptfoo/blob/main/src/assertions/assertionsResult.ts; https://doc.opencompass.org.cn/advanced_guides/llm_judge.html",
+      "maps_to": [
+        "deep-review",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "A real cheap-first cascade must defer scheduling expensive nodes until prerequisites resolve; merely throwing after concurrent assertions start does not guarantee cost short-circuiting.",
+      "evidence": "https://github.com/promptfoo/promptfoo/blob/main/src/assertions/index.ts",
+      "maps_to": [
+        "deep-review",
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Promotion proof is a receipt lattice: target-failure repair, preservation of baseline-pass behavior, explicit baseline-known failures, and environment-policy freshness are independent requirements.",
+      "evidence": "https://github.com/SWE-bench/SWE-bench/blob/main/swebench/harness/grading.py; https://github.com/SWE-bench/SWE-bench/issues/280",
+      "maps_to": [
+        "deep-improvement",
+        "runtime/state-jsonl-checkpointing",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "For nondeterministic regressions, positive reproduction and clean evidence have different evidentiary strength; UNKNOWN must remain distinct from PASS throughout reduction and promotion.",
+      "evidence": "https://github.com/google/syzkaller/blob/master/docs/syzbot.md; https://google.github.io/oss-fuzz/advanced-topics/bug-fixing-guidance",
+      "maps_to": [
+        "deep-improvement",
+        "runtime/convergence",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Use a two-layer graph: Leiden clusters unsigned topical affinity, while CONTRADICTS, SUPERSEDES and validity events form a separate epistemic overlay. Feeding contradiction edges into ordinary Leiden as positive weights would cluster opposition as agreement.",
+      "evidence": "https://github.com/graspologic-org/graspologic/blob/main/graspologic/partition/leiden.py ; https://arxiv.org/abs/1810.08473",
+      "maps_to": [
+        "runtime/dedup-novelty",
+        "runtime/convergence",
+        "deep-research"
+      ],
+      "confidence": "high",
+      "iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Community IDs require a lifecycle independent of Leiden's integer labels: match adjacent snapshots by maximum-weight Jaccard overlap and append born, retained, split, merged and retired events with a clustering-input fingerprint.",
+      "evidence": "https://github.com/graspologic-org/graspologic/blob/main/graspologic/partition/leiden.py ; https://github.com/microsoft/graphrag/blob/main/graphrag/index/operations/cluster_graph.py",
+      "maps_to": [
+        "runtime/dedup-novelty",
+        "runtime/state-jsonl-checkpointing",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Separate settledNovelty from divergencePressure. Coverage and resolved uncertainty advance the former; under-covered communities, boundary uncertainty and unresolved critical contradictions drive the latter. This prevents a loop from manufacturing novelty by accumulating unresolved conflict.",
+      "evidence": "https://github.com/getzep/graphiti ; https://docs.xtdb.com/intro/what-is-xtdb.html",
+      "maps_to": [
+        "runtime/dedup-novelty",
+        "runtime/convergence",
+        "runtime/fan-out-automation",
+        "deep-research"
+      ],
+      "confidence": "high",
+      "iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Append assertions before resolving them, but make resolution an explicit bitemporal event. Exact-hash or embedding dedup is evidence consolidation, not truth maintenance, and cannot safely decide whether two scoped claims coexist or one supersedes another.",
+      "evidence": "https://github.com/mem0ai/mem0/blob/main/mem0/memory/main.py ; https://github.com/getzep/graphiti/blob/main/graphiti_core/edges.py",
+      "maps_to": [
+        "runtime/dedup-novelty",
+        "runtime/continuity-threading",
+        "deep-review",
+        "deep-alignment"
+      ],
+      "confidence": "high",
+      "iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "A gauge projection can remain immutable at the evidence layer while supporting corrections by folding signed insertion and retraction events; judgment supersession becomes -old + new rather than record mutation.",
+      "evidence": "https://www.vldb.org/pvldb/vol16/p1601-budiu.pdf",
+      "maps_to": [
+        "runtime/gauges-observability",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Judgments need a separate identity from their execution target: use a Phoenix-like key of name, target event ID, and evaluator identifier, extended with revision and supersedes fields for immutable history.",
+      "evidence": "https://arize.com/docs/phoenix/sdk-api-reference/typescript/packages/phoenix-client/span-annotations",
+      "maps_to": [
+        "runtime/gauges-observability",
+        "deep-review",
+        "deep-ai-council"
+      ],
+      "confidence": "high",
+      "iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Semantic telemetry and observed side effects should remain distinct trust planes joined through causal links; disagreement between them is itself a gauge, not an ingestion error to normalize away.",
+      "evidence": "https://github.com/open-telemetry/opentelemetry-ebpf-instrumentation",
+      "maps_to": [
+        "runtime/gauges-observability",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Gauge algebra must be declared per metric: counters and means support exact signed updates, whereas merge-only quantile sketches are safe only for append-only measurements unless a signed-bin or bounded-rebuild strategy is added.",
+      "evidence": "https://github.com/DataDog/sketches-js",
+      "maps_to": [
+        "runtime/gauges-observability",
+        "runtime/fan-out-fan-in"
+      ],
+      "confidence": "high",
+      "iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Budget enforcement needs a two-phase lease: atomically reserve estimated usage across the complete scope ancestry before a model or tool side effect, then settle actual receipt values and release unused reservation.",
+      "evidence": "https://pydantic.dev/docs/ai/api/pydantic-ai/usage/",
+      "maps_to": [
+        "runtime/budget-cost",
+        "runtime/state-jsonl-checkpointing",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Ancestor budgets should compose conjunctively rather than through precedence: a leaf call must fit its attempt, lineage, mode, and session limits simultaneously; one exceeded hard limit rejects the lease.",
+      "evidence": "https://github.com/envoyproxy/ratelimit and https://docs.litellm.ai/docs/proxy/users",
+      "maps_to": [
+        "runtime/budget-cost",
+        "runtime/fan-out-fan-in",
+        "deep-ai-council"
+      ],
+      "confidence": "high",
+      "iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Soft exhaustion should be an immutable transition with continued shadow or degraded admission, while hard exhaustion blocks descendants until a versioned reset, grant, or override event reopens the scope.",
+      "evidence": "https://github.com/envoyproxy/ratelimit and https://openmeter.io/docs/billing/entitlements/grant",
+      "maps_to": [
+        "runtime/budget-cost",
+        "runtime/gauges-observability",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Reasoning-token allowance must remain a separate resource from financial spend and output size: s1 demonstrates that changing the reasoning budget changes answer quality, while DRF supplies the vector-resource model needed to avoid lossy scalarization.",
+      "evidence": "https://github.com/simplescaling/s1 and https://www.usenix.org/conference/nsdi11/dominant-resource-fairness-fair-allocation-multiple-resource-types",
+      "maps_to": [
+        "runtime/budget-cost",
+        "deep-improvement",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "The closest direct RL bridge is Stop-RAG's learned STOP-versus-CONTINUE value function, but its published contribution is empirical rather than a regret, sample-complexity, or delta-correct stopping theorem.",
+      "evidence": "https://openreview.net/pdf?id=fN4PJNYgs3",
+      "maps_to": [
+        "deep-research",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Anytime-valid LLM stopping guarantees exist for repeated terminal samples: MMC certifies the modal answer and CGES stops on posterior concentration, but neither handles a state-changing agent trajectory.",
+      "evidence": "https://arxiv.org/abs/2510.17472 ; https://arxiv.org/abs/2511.02603",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "A concrete rule is to model STOP as an arm and stop when every continuation arm's anytime upper confidence bound, net of typed cost and risk, is below the lower confidence bound of stopping plus epsilon.",
+      "evidence": "https://arxiv.org/abs/1602.04589",
+      "maps_to": [
+        "runtime/convergence",
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Statistical evidence must be scoped to a versioned state-policy-evaluator fingerprint; after evidence, prompt, tool, or evaluator drift, prior arm samples are not automatically exchangeable and the certificate must reset or use an explicitly justified Markovian model.",
+      "evidence": "https://papers.neurips.cc/paper_files/paper/2019/hash/71887f62f073a78511cbac56f8cab53f-Abstract.html",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/continuity-threading",
+        "runtime/convergence",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Temporal-style replay survives LLM nondeterminism when the LLM output is treated as an immutable history observation; replay determinism applies to the orchestration consuming that observation, not to regenerating it.",
+      "evidence": "https://learn.microsoft.com/en-us/azure/durable-task/common/durable-task-orchestrations",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "high",
+      "iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Exactly-once must be decomposed into provider invocation, accepted outcome, logical state commit, and external effect; only logical commit is locally enforceable without cooperation from the remote endpoint.",
+      "evidence": "https://arxiv.org/abs/1907.06250",
+      "maps_to": [
+        "runtime/locks-recovery",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "An effect-started record without a receipt is an intrinsically ambiguous recovery state; the runtime needs a typed policy of rerun, retry-with-key, query, compensate, or quarantine rather than a universal retry rule.",
+      "evidence": "https://learn.golem.cloud/v1.5/how-to-guides/moonbit/golem-atomic-block-moonbit",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/locks-recovery",
+        "runtime/fan-out-fan-in"
+      ],
+      "confidence": "high",
+      "iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "A sequence-indexed cached-call log is sufficient only while host-call order and invocation identity remain compatible; safe reuse across prompt, model, tool-schema, or code changes needs a versioned replay fingerprint and logical branch-step key.",
+      "evidence": "https://github.com/ThousandBirdsInc/chidori",
+      "maps_to": [
+        "runtime/state-jsonl-checkpointing",
+        "runtime/continuity-threading",
+        "deep-ai-council"
+      ],
+      "confidence": "med",
+      "iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "insight": "Split each expensive branch into plan selection and execution, with separate reward distributions and budgets; execute only plans whose expected utility or upper confidence bound remains competitive.",
+      "evidence": "Adaptive Test-Time Reasoning via Reward-Guided Dual-Phase Search — https://arxiv.org/abs/2509.25420",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Replace count-based council quorum with a two-stage gate: calibrated single-leaf acceptance followed by confidence-weighted evidence accumulation, discounted by shared model, prompt, evidence, and ancestry.",
+      "evidence": "Reliability-Aware Adaptive Self-Consistency — https://arxiv.org/abs/2601.02970",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/convergence",
+        "runtime/dedup-novelty"
+      ],
+      "confidence": "high",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "A budget controller can consume reward-distribution shape, reward sparsity, remaining budget, and branch history, then emit sampling width, depth, verifier effort, or stop as explicit actions.",
+      "evidence": "Reward Model Generalization for Compute-Aware Test-Time Reasoning — https://arxiv.org/abs/2505.18065",
+      "maps_to": [
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Predicted failure need not mean termination: preserve the logical branch and hotswap its accumulated context to a stronger executor, while retaining the original attempt as censored evidence with a recovery receipt.",
+      "evidence": "Atropos — https://arxiv.org/abs/2604.15075",
+      "maps_to": [
+        "runtime/locks-recovery",
+        "runtime/continuity-threading",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "med",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Verifier compute is a separate scaling axis: store raw cheap scores first, attach generative verification rationales later, and spend verifier tokens only near decision boundaries or on high-impact claims.",
+      "evidence": "GenPRM https://github.com/RyanLiu112/GenPRM and ThinkPRM https://github.com/mukhal/ThinkPRM",
+      "maps_to": [
+        "deep-review",
+        "deep-ai-council",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Bandwagon mitigation requires information isolation, not a stronger anti-sycophancy prompt: blind author identity, model identity, seat scores, and vote counts until all independent judgments are committed.",
+      "evidence": "https://github.com/Joyyang158/Reasoning-Bias-Detector",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "A swapped-order pair should be the atomic adjudication unit; disagreement between the two orders is an abstention or escalation signal, not a tie to break arbitrarily.",
+      "evidence": "https://arena.ai/blog/arena-hard/",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in"
+      ],
+      "confidence": "high",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Bayesian reliability and bias coefficients cannot be learned reliably from a single 2-3-seat council; they need persistent calibration profiles versioned by model, judge prompt, rubric, and schema fingerprint.",
+      "evidence": "https://arxiv.org/abs/2607.02104 and https://github.com/lmarena/PPE",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/convergence",
+        "runtime/continuity-threading"
+      ],
+      "confidence": "med",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Debate is most justified when generators have evidence or reasoning capacity unavailable to the judge; route to bounded debate on high expected value of information, then let a separately instantiated judge decide.",
+      "evidence": "https://arxiv.org/abs/2402.06782 and https://github.com/ucl-dark/llm_debate",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/budget-cost",
+        "runtime/fan-out-automation"
+      ],
+      "confidence": "high",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Constitutional adjudication should be a versioned hard-constraint layer with principle-specific findings and lexicographic precedence, authored independently from the judge; it should not substitute for factual or execution evidence.",
+      "evidence": "https://arxiv.org/abs/2406.07814",
+      "maps_to": [
+        "deep-ai-council",
+        "deep-alignment",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "med",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Nominal council size is misleading: record dependence-adjusted effective seat count from held-out residual correlations and use it in the convergence gate.",
+      "evidence": "https://machinelearning.apple.com/research/correlated-llm-evaluation-panels",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/convergence",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Inter-judge agreement must not count as alignment unless effective-rank and human-oracle-subspace diagnostics also pass; correlated agreement can encode shared bias.",
+      "evidence": "https://www.microsoft.com/en-us/research/publication/the-geometry-of-llm-as-judge-why-inter-llm-consensus-is-not-human-alignment/",
+      "maps_to": [
+        "deep-ai-council",
+        "deep-alignment",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "high",
+      "iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Council dispatch should be selective: calibrated risk-coverage curves can decide when a cheap seat is sufficient and when escalation buys enough expected agreement to justify its cost.",
+      "evidence": "https://arxiv.org/abs/2407.18370",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "When oracle labels are absent, judge-specific discrimination inferred from pairwise probabilities and cycle consistency is a better fallback than uniform weighting, but remains an unsupervised proxy rather than human calibration.",
+      "evidence": "https://arxiv.org/abs/2602.16610",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/convergence"
+      ],
+      "confidence": "high",
+      "iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Convergence must be a two-key decision: internal exhaustion or agreement nominates STOP, while an independent held-out or invariant witness authorizes it.",
+      "evidence": "https://github.com/ml-research/llms-gaming-verifiers; https://arxiv.org/abs/2604.15149",
+      "maps_to": [
+        "runtime/convergence",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Council degeneration is detectable from stance trajectories: classify every flip as toward evidence, the previous majority, the user, or a specific peer, then derive pairwise influence concentration and effective independent-seat count.",
+      "evidence": "https://arxiv.org/abs/2604.02668",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/gauges-observability"
+      ],
+      "confidence": "med",
+      "iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Aggregate checkpoint scores can conceal localized reward hacking; retain item-level and transition-level proxy score, witness score, diversity, repetition, and judge disagreement before computing dashboard summaries.",
+      "evidence": "https://arxiv.org/abs/2606.03238",
+      "maps_to": [
+        "runtime/gauges-observability",
+        "runtime/state-jsonl-checkpointing",
+        "deep-improvement"
+      ],
+      "confidence": "med",
+      "iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Loop failure should be classified by causal mechanism—epistemic collapse, proxy capture, conformity cascade, objective drift, or operational degeneration—not merely by terminal symptoms such as low novelty or high cost.",
+      "evidence": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/Taxonomy-of-Failure-Modes-in-Agentic-AI-Systems-v2-0.pdf",
+      "maps_to": [
+        "runtime/convergence",
+        "runtime/continuity-threading",
+        "runtime/locks-recovery"
+      ],
+      "confidence": "high",
+      "iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Termination legality and recovery authority are different control problems: a loop may correctly refuse STOP while still being unsafe if it can authorize its own unquarantine, rollback, or verifier replacement.",
+      "evidence": "https://github.com/cedar-policy/cedar and https://github.com/quint-co/quint",
+      "maps_to": [
+        "runtime/locks-recovery",
+        "runtime/state-jsonl-checkpointing",
+        "deep-alignment"
+      ],
+      "confidence": "high",
+      "iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Council adjudication is naturally a cost-sensitive contextual-bandit problem whose action value is expected downstream-loss reduction minus execution and latency cost, not disagreement or entropy reduction alone.",
+      "evidence": "https://vowpalwabbit.org/docs/vowpal_wabbit/python/latest/tutorials/off_policy_evaluation.html",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/fan-out-fan-in",
+        "runtime/budget-cost"
+      ],
+      "confidence": "high",
+      "iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "Adaptive seat routing makes naive before-versus-after evaluation invalid; every seat_selected event needs its available-action set, selection propensity, router version, and eventual outcome, with deployment blocked when overlap diagnostics fail.",
+      "evidence": "https://vowpalwabbit.org/docs/vowpal_wabbit/python/latest/tutorials/off_policy_evaluation.html",
+      "maps_to": [
+        "deep-ai-council",
+        "runtime/gauges-observability",
+        "runtime/state-jsonl-checkpointing"
+      ],
+      "confidence": "high",
+      "iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "insight": "A degeneration witness should separate detection from diagnosis: online drift raises an alarm, while causal fault injection and invariant probes determine whether to gather evidence, quarantine, branch from a healthy checkpoint, or escalate.",
+      "evidence": "https://riverml.xyz/latest/api/drift/ADWIN/ and https://www.pywhy.org/dowhy/v0.13/",
+      "maps_to": [
+        "runtime/convergence",
+        "runtime/gauges-observability",
+        "runtime/locks-recovery",
+        "deep-improvement"
+      ],
+      "confidence": "high",
+      "iter": 20,
+      "thread": "general-effectiveness-and-council"
+    }
+  ],
+  "contradictions": [
+    {
+      "claim": "fanout-run cannot pass per-lineage model or reasoning effort.",
+      "counter": "The current lineage schema already carries both, and buildLineageCommand emits them separately for every spawned child; live-tool policy is the missing part.",
+      "evidence": "runtime/lib/deep-loop/executor-config.ts and runtime/scripts/fanout-run.cjs",
+      "iter": 1,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "The shared local effort enum is an authoritative Codex effort contract.",
+      "counter": "It includes none, max, and ultra, while the public Codex configuration reference documents minimal, low, medium, high, and xhigh; support may therefore depend on CLI and model version.",
+      "evidence": "https://developers.openai.com/codex/config-reference/",
+      "iter": 1,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Anthropic allowedTools is a restrictive capability allowlist.",
+      "counter": "The SDK documentation says it auto-approves listed tools while unlisted tools continue through the permission system; restriction requires separate controls.",
+      "evidence": "https://code.claude.com/docs/en/agent-sdk/typescript",
+      "iter": 1,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Mixing LUNA, SOL, and GLM requires a new heterogeneous scheduler.",
+      "counter": "The current fan-out schema and command builder already dispatch a distinct executor kind and model per lineage; it lacks a matrix compiler and contract adapter, not scheduling support.",
+      "evidence": "system-deep-loop runtime/lib/deep-loop/executor-config.ts and runtime/scripts/fanout-run.cjs",
+      "iter": 2,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Scheduling model-by-branch expansion in max_concurrent batches is sufficient.",
+      "counter": "Barrier batches create head-of-line blocking when one model is slow; system-deep-loop's existing capped queue is work-conserving and should receive compiled matrix leaves directly.",
+      "evidence": "https://github.com/microsoft/conductor/blob/main/src/conductor/engine/workflow.py",
+      "iter": 2,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Real-time sharing among heterogeneous agents automatically improves ensemble quality.",
+      "counter": "MassGen gains iterative refinement through sharing and restarts, but that coupling weakens independent evidence; sharing belongs in an explicit post-discovery phase.",
+      "evidence": "https://github.com/massgen/MassGen/blob/main/massgen/orchestrator.py",
+      "iter": 2,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "A shared CRDT set can make the whole novelty registry coordination-free.",
+      "counter": "CRDTs can merge observations and similarity edges, but permanent novel/canonical status is retractable when later evidence arrives and is therefore non-monotone; it needs coordination or deterministic finalization.",
+      "evidence": "https://arxiv.org/abs/1901.01930",
+      "iter": 3,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Optimistic concurrency automatically detects concurrent semantic duplicates.",
+      "counter": "OCC detects only declared read/write or version conflicts. Two semantically equivalent findings with different hashes do not conflict unless similarity edges and adjudication are explicitly part of the transaction model.",
+      "evidence": "https://github.com/delta-io/delta-rs/tree/main/crates/core/src/operations/transaction",
+      "iter": 3,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Every leaf should immediately consume the latest shared novelty score.",
+      "counter": "Live scores can change under causal reordering or late arrivals. Leaves may consume provisional duplicate hints, but convergence and cross-iteration state need a finalized frontier and versioned projection fingerprint.",
+      "evidence": "https://github.com/holepunchto/autobase",
+      "iter": 3,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "A prior successful leaf status is sufficient to skip that leaf on resume.",
+      "counter": "Nextflow requires a matching task cache plus retained artifacts, while Snakemake includes code, inputs, parameters, software environment, and completeness in rerun decisions.",
+      "evidence": "https://github.com/nextflow-io/nextflow/blob/master/docs/reference/process.md; https://snakemake.readthedocs.io/en/stable/executing/cli.html",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Stable sorting in the merger makes the resumed fan-out deterministic.",
+      "counter": "Sorting stabilizes only the fold order. Cache validity, deadline policy, and partial failures can still change which leaves are admitted; Nextflow exposes output ordering as a separate fair directive.",
+      "evidence": "local runtime/scripts/fanout-merge.cjs; https://github.com/nextflow-io/nextflow/blob/master/docs/reference/process.md",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Resume should automatically apply the latest manifest to unfinished work.",
+      "counter": "Cronicle deliberately resumes from the stored original payload and treats execution of current configuration as a fresh trigger; Cadence similarly requires explicit workflow version markers.",
+      "evidence": "https://github.com/jshiv/cronicle; https://cadenceworkflow.io/docs/go-client/workflow-versioning",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Captured stdout is sufficient evidence to reconstruct every missing leaf artifact.",
+      "counter": "The local salvage implementation has one recovered text value for all missing iterations, so it lacks the per-leaf and per-attempt provenance required to assign bytes safely.",
+      "evidence": "local runtime/scripts/fanout-salvage.cjs",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "More cross-model agreement makes a finding safe to retain and rank.",
+      "counter": "Agreement is useful evidence but cannot be an admission gate; correlated model families amplify shared errors and majority-only selection suppresses well-supported singleton findings.",
+      "evidence": "https://arxiv.org/abs/2405.16455",
+      "iter": 5,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Semantic deduplication should select one representative record and discard the rest.",
+      "counter": "Selection is acceptable only as a presentation projection; merge correctness requires reversible membership mappings and the union of member evidence and provenance.",
+      "evidence": "https://github.com/MinishLab/semhash",
+      "iter": 5,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Learning per-model weights automatically removes heterogeneous-model noise.",
+      "counter": "Weights estimated from the same batch encode majority conformity as reliability; they need held-out calibration, shrinkage, frozen versions, and visible raw scores.",
+      "evidence": "https://ojs.aaai.org/index.php/AAAI/article/view/5860",
+      "iter": 5,
+      "thread": "fan-out-automation"
+    },
+    {
+      "claim": "Repeated action patterns are sufficient evidence to terminate a stuck agent.",
+      "counter": "browser-use treats the same evidence as a soft nudge because repeated actions can be intentional; a hard stop needs corroborating state stagnation or lost progress.",
+      "evidence": "https://docs.openhands.dev/sdk/guides/agent-stuck-detector ; https://github.com/browser-use/browser-use/blob/main/browser_use/agent/views.py",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "The Semantic Halting Problem policy combines semantic convergence with quality evidence.",
+      "counter": "Its published priority cascade can halt on semantic convergence before the information-gain judge runs, so copying the cascade literally would not implement a fused conjunctive gate.",
+      "evidence": "https://arxiv.org/abs/2606.27009",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "A max-iteration counter or per-lineage retry cap proves a loop is bounded.",
+      "counter": "The bound is ineffective when an outer retry, callback, handoff, resume, or tool re-entry can recreate that local counter; coverage must be established over the full feedback graph.",
+      "evidence": "https://arxiv.org/abs/2607.01641",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Running an expensive quality judge every round is the safest stopping policy.",
+      "counter": "The Semantic Halting Problem experiment found the fully quality-gated policy's judge overhead could dominate the savings; deterministic candidate checks should precede judge invocation.",
+      "evidence": "https://arxiv.org/abs/2606.27009",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Durable execution makes external side effects exactly once.",
+      "counter": "Completed journal results can be reused, but an external step may execute more than once when failure occurs before its completion receipt is durable; DBOS only gives exactly-once commit to transactions sharing its database boundary.",
+      "evidence": "https://www.restate.dev/blog/why-we-built-restate ; https://docs.dbos.dev/python/tutorials/workflow-tutorial",
+      "iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Resuming from a checkpoint continues at the precise interrupted instruction.",
+      "counter": "LangGraph restarts an interrupted node from its beginning, while checkpoint replay re-executes every node after the selected checkpoint. Side effects therefore need task-level receipts or idempotency.",
+      "evidence": "https://docs.langchain.com/oss/python/langgraph/interrupts ; https://docs.langchain.com/oss/javascript/langgraph/persistence",
+      "iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "A single session or runtime version is sufficient to decide replay compatibility.",
+      "counter": "Compatibility can break at one reordered task, interrupt, journal command, codec, or adapter while the rest of the session remains reusable; the decision must be per logical operation or journal segment.",
+      "evidence": "https://docs.restate.dev/services/versioning ; https://docs.langchain.com/oss/python/langgraph/backward-compatibility",
+      "iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "A larger cross-family panel is reliably safer because averaging cancels individual judge bias.",
+      "counter": "PoLL supports heterogeneous panels empirically, but RoPoLL proves ordinary mean aggregation can have unbounded bias under any positive biased contamination and therefore panel size alone is not a robustness guarantee.",
+      "evidence": "https://arxiv.org/abs/2404.18796 versus https://arxiv.org/abs/2606.30931",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "High judge diversity is sufficient evidence that an ensemble will improve.",
+      "counter": "Kuncheva and Whitaker found that no single diversity measure has a universal monotonic relationship with ensemble accuracy; competence and held-out marginal gain must accompany diversity.",
+      "evidence": "https://research.bangor.ac.uk/en/publications/measures-of-diversity-in-classifier-ensembles-and-their-relations/",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Dawid-Skene solves dependent judge votes by learning each judge's confusion matrix.",
+      "counter": "Its likelihood multiplies worker-response probabilities conditional on latent truth, so correlated residual errors can make the posterior overconfident; it estimates competence but does not itself model shared failure causes.",
+      "evidence": "https://github.com/Toloka/crowd-kit/blob/main/crowdkit/aggregation/classification/dawid_skene.py",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Ordered pool results and content-sorted merge make fan-in deterministic.",
+      "counter": "They make serialization stable, but branch identity and first-k acceptance can still depend on mutable labels, construction order, and completion timing.",
+      "evidence": "https://taskflow.github.io/taskflow/ConditionalTasking.html",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Quorum means any k successful branches are sufficient.",
+      "counter": "Kubernetes success policies can require particular indexes or a count within a specified subset; deep-loop likewise needs required roles, evidence coverage, and veto rules.",
+      "evidence": "https://kubernetes.io/docs/concepts/workloads/controllers/job/",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Partial failure can be represented by a single run-level success flag.",
+      "counter": "Tekton permits continued execution yet still fails consumers of missing required results, so tolerance depends on the selected reducer's evidence dependencies.",
+      "evidence": "https://tekton.dev/docs/pipelines/tasks/",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Once a deadline or failure threshold decides fan-in, remaining executions are effectively stopped.",
+      "counter": "AWS documents that child workflows may continue after a threshold is exceeded, requiring separate decision, cancellation, and late-result receipts.",
+      "evidence": "https://docs.aws.amazon.com/step-functions/latest/dg/state-map-distributed.html",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "[deep-review] A weighted aggregate above threshold is sufficient for promotion.",
+      "counter": "Hard schema, build, security and regression failures must remain vetoes; otherwise strong soft scores can conceal a broken invariant.",
+      "evidence": "https://github.com/promptfoo/promptfoo/blob/main/src/assertions/assertionsResult.ts",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "[deep-review] A rule failure should always be sent to an LLM judge that may rescue it.",
+      "counter": "Rescue is appropriate for ambiguous answer matching, but an LLM must not overturn deterministic hard gates; only soft or uncertain nodes should be judge-rescuable.",
+      "evidence": "https://github.com/open-compass/opencompass/blob/main/opencompass/evaluator/cascade_evaluator.py",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "[deep-improvement] Passing FAIL_TO_PASS and a selected PASS_TO_PASS set proves no regression.",
+      "counter": "SWE-bench issue #280 shows unchanged tests can still regress outside the selected set, so promotion needs an impacted or full-suite baseline delta.",
+      "evidence": "https://github.com/SWE-bench/SWE-bench/issues/280",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "[runtime/convergence] Failure to reproduce means the defect is fixed.",
+      "counter": "OSS-Fuzz and syzkaller explicitly account for nondeterministic and environment-sensitive failures; non-reproduction without sufficient trials is UNKNOWN.",
+      "evidence": "https://google.github.io/oss-fuzz/advanced-topics/bug-fixing-guidance; https://github.com/google/syzkaller/blob/master/docs/syzbot.md",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "A fixed-seed hierarchical Leiden partition provides stable semantic-community identifiers for continuity.",
+      "counter": "A seed improves repeatability for an unchanged graph, but added nodes and edges can split, merge or relabel communities; durable IDs require explicit cross-snapshot matching and lifecycle events.",
+      "evidence": "https://github.com/graspologic-org/graspologic/blob/main/graspologic/partition/leiden.py ; https://arxiv.org/abs/2601.08554",
+      "iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Append-only memory is sufficient to preserve contradictions safely.",
+      "counter": "Append-only storage preserves evidence but, without an as-of projector and explicit resolution events, retrieval can surface mutually incompatible versions and count both as novelty.",
+      "evidence": "https://github.com/mem0ai/mem0/blob/main/mem0/memory/main.py ; https://docs.xtdb.com/intro/what-is-xtdb.html",
+      "iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Every newly detected contradiction should increase the novelty score.",
+      "counter": "A contradiction should increase divergent-search pressure, but it should increase settled novelty only when it opens genuinely new semantic territory or is resolved with evidence; otherwise loops are rewarded for unresolved conflict.",
+      "evidence": "https://github.com/getzep/graphiti ; https://github.com/getzep/graphiti/blob/main/graphiti_core/edges.py",
+      "iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "The deep-research protocol says reducer refresh is delta-based rather than a replay of historical JSONL.",
+      "counter": "The live reducer reads the complete state log and reparses every iteration markdown file, while heartbeat emitters also parse the full log.",
+      "evidence": "local:.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1525,2692-2745; local:.opencode/commands/deep/assets/deep_research_auto.yaml:1470-1488,1832-1856",
+      "iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Late judgments can be attached without mutating immutable execution evidence.",
+      "counter": "Phoenix separates annotations from spans, but repeated writes to the same name, spanId, and identifier are idempotent upserts that update the annotation in place; deep-loop needs append-only revisions instead.",
+      "evidence": "https://arize.com/docs/phoenix/sdk-api-reference/typescript/packages/phoenix-client/span-annotations",
+      "iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "One mergeable quantile sketch can maintain every gauge distribution incrementally.",
+      "counter": "DDSketch supports insertion and merging but its documented TypeScript API has no retraction operation, so it cannot directly maintain current-version quantiles after judgments are superseded.",
+      "evidence": "https://github.com/DataDog/sketches-js",
+      "iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "[runtime/budget-cost] A hierarchical budget should enforce every applicable ancestor and child cap.",
+      "counter": "LiteLLM documents replacement semantics for personal versus team budgets: when a key belongs to a team, the team budget applies instead of the user's personal budget.",
+      "evidence": "https://docs.litellm.ai/docs/proxy/users and https://github.com/BerriAI/litellm/issues/12905",
+      "iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "[runtime/budget-cost] A lower reasoning-token ceiling is always a safe degradation when financial budget becomes scarce.",
+      "counter": "s1 budget forcing deliberately increases or truncates reasoning tokens and reports quality changes, so reasoning allowance is part of the quality policy rather than merely an accounting unit.",
+      "evidence": "https://github.com/simplescaling/s1 and https://arxiv.org/abs/2501.19393",
+      "iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "[runtime/state-jsonl-checkpointing] A metering backend can provide exact synchronous rolling-window admission directly.",
+      "counter": "OpenMeter pre-aggregates historical entitlement usage into minute-sized chunks and floors grant/reset timestamps, making its historical ledger valuable for audit but too coarse for the local pre-call critical path.",
+      "evidence": "https://openmeter.io/docs/billing/entitlements/grant",
+      "iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "RL convergence theory directly supplies a termination rule for an executing LLM agent.",
+      "counter": "RL convergence normally concerns learned policy or value estimates across training; online termination of one stateful execution is an optimal-stopping or sequential-testing problem and needs a separate stopping-time contract.",
+      "evidence": "https://openreview.net/pdf?id=fN4PJNYgs3 ; https://arxiv.org/abs/1602.04589",
+      "iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Anytime-valid self-consistency stopping can be copied unchanged into iterative agent loops.",
+      "counter": "Self-consistency samples terminal outputs from a fixed model distribution, whereas an agent loop changes its state, prompts, evidence, tools, and often evaluator after every iteration; exchangeability and stationarity must be re-established per versioned epoch.",
+      "evidence": "https://arxiv.org/abs/2510.17472 ; https://papers.neurips.cc/paper_files/paper/2019/hash/71887f62f073a78511cbac56f8cab53f-Abstract.html",
+      "iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Expected sample complexity or a max-iteration cap adequately bounds operational completion time.",
+      "counter": "Stopping time can remain heavy-tailed even for delta-correct algorithms; retries and handoffs enlarge the operational path, motivating exponential-tail control over the complete logical run.",
+      "evidence": "https://openreview.net/forum?id=DF2JV03T6q",
+      "iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Deterministic workflow replay makes an LLM workflow deterministic.",
+      "counter": "It makes control flow deterministic only after freezing nondeterministic outputs as history; fresh model execution and an unrecorded response remain nondeterministic.",
+      "evidence": "https://learn.microsoft.com/en-us/azure/durable-task/common/durable-task-orchestrations",
+      "iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "A durable runtime can guarantee exactly-once tool execution by checkpointing and retrying.",
+      "counter": "After a lost response, the runtime cannot know whether the remote effect happened; exactly-once effect requires endpoint deduplication, reconciliation, or a shared transaction. Durable external events themselves may be delivered at least once.",
+      "evidence": "https://learn.microsoft.com/en-us/azure/durable-task/common/durable-task-external-events",
+      "iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "Persisting the latest completed action is equivalent to recording every nondeterministic effect.",
+      "counter": "Action-level persistence leaves a crash window after an effect returns but before the action checkpoint commits; effect receipts close more of that window and expose the remaining ambiguity.",
+      "evidence": "https://burr.apache.org/docs/reference/persister/",
+      "iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "claim": "For deep-ai-council, more agreeing samples provide stronger evidence and can safely trigger quorum.",
+      "counter": "ReASC shows that responses should contribute according to reliability, while R3 implies correlated seats are not independent evidence; quorum needs confidence and effective-independence weighting.",
+      "evidence": "https://arxiv.org/abs/2601.02970",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "For deep-review, cheap checks should always precede and largely replace expensive judges.",
+      "counter": "GenPRM and ThinkPRM show that additional verifier-side reasoning can improve difficult judgments; the reconciled policy is conditional escalation rather than judge elimination.",
+      "evidence": "https://github.com/RyanLiu112/GenPRM and https://github.com/mukhal/ThinkPRM",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "For runtime/convergence, online adaptation from majority pseudo-rewards should make each successive iteration more effective.",
+      "counter": "Live TTRL-style updates change the decision policy during replay and can amplify correlated majority errors; adaptation must be checkpoint-versioned, evaluated off-policy, and promoted through deep-improvement.",
+      "evidence": "https://github.com/PRIME-RL/TTRL",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "More votes eventually wash out judge bias.",
+      "counter": "The July 2026 Bayesian-ranking study reports naive aggregation plateauing at the wrong top-k under systematically biased judges; additional correlated votes reinforce the bias.",
+      "evidence": "https://arxiv.org/abs/2607.02104",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "Debate with a judge is categorically superior to majority vote.",
+      "counter": "Debate helps under specific information and capability asymmetries, while comparative work finds task- and protocol-dependent outcomes; it should be an escalation policy, not the universal reducer.",
+      "evidence": "https://arxiv.org/abs/2402.06782 and https://github.com/deeplearning-wisc/debate-or-vote",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "A constitutional judge is more objective because its principles are explicit.",
+      "counter": "Explicitness improves auditability, but the constitution can encode contested priorities or omit factual criteria; principle authorship and empirical correctness still require separate evaluation.",
+      "evidence": "https://arxiv.org/abs/2406.07814",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "deep-ai-council/runtime-convergence: selecting different model families and accepting two-of-three agreement supplies multiple independent votes.",
+      "counter": "Nine frontier judges from seven families yielded only about two effective votes; the strongest single judge matched or exceeded the complete panel.",
+      "evidence": "https://machinelearning.apple.com/research/correlated-llm-evaluation-panels",
+      "iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "deep-ai-council/deep-alignment: stronger inter-LLM consensus is evidence that a recommendation is closer to human judgment.",
+      "counter": "Across 41 judges, inter-LLM correlation exceeded LLM-human correlation and dominant judge axes were nearly orthogonal to human score axes on subjective rubrics.",
+      "evidence": "https://www.microsoft.com/en-us/research/publication/the-geometry-of-llm-as-judge-why-inter-llm-consensus-is-not-human-alignment/",
+      "iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "deep-ai-council/runtime-convergence: a more robust reducer is sufficient to make a larger council reliable.",
+      "counter": "Robust aggregation can suppress isolated corrupted seats, but Apple reports that improved aggregators recover at most 11% of the gap caused by correlated errors.",
+      "evidence": "https://machinelearning.apple.com/research/correlated-llm-evaluation-panels",
+      "iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "Falling novelty and rising agreement indicate successful convergence.",
+      "counter": "They also occur during semantic collapse and conformity; only an independent quality or invariance witness distinguishes the two.",
+      "evidence": "https://arxiv.org/abs/2604.02668; https://zenodo.org/records/20828735",
+      "iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "More discussion rounds make a council more reliable.",
+      "counter": "Unmitigated discussion can lower accuracy while opinions converge; sycophancy-aware influence control improved the reported trajectory.",
+      "evidence": "https://arxiv.org/abs/2604.02668",
+      "iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "Improving aggregate reward or checkpoint quality means the optimization loop is healthy.",
+      "counter": "Localized reward-hacking transitions can be hidden by aggregate checkpoint means, and narrow optimization can generalize into unrelated misalignment.",
+      "evidence": "https://arxiv.org/abs/2606.03238; https://arxiv.org/abs/2502.17424",
+      "iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "A policy engine can make the JSONL runtime safe by itself.",
+      "counter": "Per-transition authorization does not prove temporal liveness, replay determinism, or safe behavior across retries and reordered events; those require an executable transition model and invariant checking.",
+      "evidence": "https://github.com/cedar-policy/cedar and https://github.com/quint-co/quint",
+      "iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "Logged fixed-council trajectories can directly compare any adaptive seat router.",
+      "counter": "Off-policy estimates require logged action propensities and adequate support for the target router; unsupported actions make the comparison unidentified regardless of estimator sophistication.",
+      "evidence": "https://vowpalwabbit.org/docs/vowpal_wabbit/python/latest/tutorials/off_policy_evaluation.html",
+      "iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "claim": "A stream-drift alarm is sufficient evidence that the loop has degenerated.",
+      "counter": "Drift detection establishes a distributional change, not its cause or harmfulness; causal assumptions, injected interventions, refuters, and mechanistic invariants are needed before destructive recovery.",
+      "evidence": "https://riverml.xyz/latest/api/drift/ADWIN/ and https://www.pywhy.org/dowhy/v0.13/",
+      "iter": 20,
+      "thread": "general-effectiveness-and-council"
+    }
+  ],
+  "recommendations": [
+    {
+      "rec": "Add strict liveTools.webSearch with inherit|disabled|cached|live to executorConfigSchema and an executor-kind capability matrix; reject unsupported combinations before fan-out.",
+      "target": "runtime/fan-out-automation",
+      "rationale": "This preserves portability and prevents arbitrary flags from bypassing sandbox, approval, and budget invariants.",
+      "effort": "S",
+      "impact": "high",
+      "evidence": "https://developers.openai.com/codex/config-reference/",
+      "iter": 1,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Refactor buildLineageCommand into executor adapters that return command, argv, input, effectiveConfig, and invocationFingerprint; compile Codex live search as ['--search','exec',...].",
+      "target": "runtime/fan-out-automation",
+      "rationale": "The adapter becomes the single testable boundary for per-leaf model, effort, live tools, sandbox, and future executor-specific flags.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/openai/codex/blob/main/codex-rs/cli/src/main.rs",
+      "iter": 1,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Append a lineage_dispatch_resolved event before spawn and require retries to reuse its canonical fingerprint, including CLI version and effective capability state.",
+      "target": "runtime/state-jsonl-checkpointing",
+      "rationale": "This turns tool enablement into a replayable side-effect contract and makes configuration drift observable.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/google-gemini/gemini-cli/blob/main/packages/core/src/agents/local-executor.ts",
+      "iter": 1,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Add a fanout-manifest compiler accepting models[], branches[], and replicas, producing stable logical_branch_id values and existing executor entries; send the result through the current work-conserving pool.",
+      "target": "runtime/fan-out-automation",
+      "rationale": "This enables one declarative LUNA/SOL/GLM run without replacing proven scheduling, and makes N-model by M-branch expansion deterministic across retries and resume.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/microsoft/conductor/blob/main/src/conductor/engine/workflow.py",
+      "iter": 2,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Introduce a versioned leaf-result@1 envelope and per-executor adapters; validate executor capability fingerprint, logical branch ID, findings schema, usage receipt, artifact references, and raw-output digest before merge.",
+      "target": "runtime/fan-out-fan-in",
+      "rationale": "Differing CLI and model outputs become replay-compatible records, malformed leaves can enter the declared partial-failure policy, and usage/tool accounting remains attributable.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/microsoft/conductor/blob/main/src/conductor/config/schema.py",
+      "iter": 2,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Add coordination_phase=isolated|peer-review|vote; permit answer exchange only after isolated leaves have emitted validated envelopes, and run scoring through a distinct evaluator identity and budget.",
+      "target": "deep-ai-council",
+      "rationale": "This captures MassGen-style heterogeneous synthesis without destroying the effective independence required for reliable ensemble evidence.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://github.com/massgen/MassGen/blob/main/massgen/orchestrator.py",
+      "iter": 2,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Add immutable finding_observed, similarity_edge_observed, novelty_adjudicated, and novelty_superseded JSONL event types. Include eventId, logicalBranchId, leafSeq, baseRegistryRevision, contentHash, sourceHash, rawNoveltyScore, and adjudicatorFingerprint; never rewrite the original observation.",
+      "target": "runtime/state-jsonl-checkpointing + runtime/dedup-novelty",
+      "rationale": "This makes retries and resume idempotent, preserves raw pre-reduction scores, and turns changed semantic judgments into auditable versioned events.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/holepunchto/autobase",
+      "iter": 3,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Create fanout-registry-fold.cjs: leaves append only to segments/<logicalBranchId>.jsonl; the coordinator tails each shard by complete-line byte offset and atomically emits registry.snapshot.json with observedRevision, finalizedRevision, per-leaf high-watermarks, and projectionFingerprint.",
+      "target": "runtime/fan-out-automation + runtime/fan-out-fan-in",
+      "rationale": "Per-leaf ownership removes write races and lock contention, while the coordinator retains deterministic fan-in, crash reconstruction, and an explicit partial-leaf policy.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://github.com/delta-io/delta-rs/tree/main/crates/core/src/operations/transaction",
+      "iter": 3,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Add an optional coordinator-local claimExact(hash, expectedRevision) and watchRegistry(fromRevision) interface patterned on etcd Txn and Watch. Restrict it to exact hashes and small metadata; keep evidence blobs in leaf shards and semantic adjudication in fan-in.",
+      "target": "runtime/dedup-novelty + runtime/locks-recovery",
+      "rationale": "It prevents the most expensive exact duplicate work without putting the non-monotone semantic clustering path behind a global coordination bottleneck.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://etcd.io/docs/v3.6/learning/api/",
+      "iter": 3,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Replace the shared-stdout salvage path with an attempt spool containing framed records keyed by logicalLeafId and attemptId. Salvage only a digest-verified terminal artifact; emit salvage_failed without creating an artifact-shaped placeholder when validation fails.",
+      "target": "runtime/fan-out-automation/fanout-salvage.cjs",
+      "rationale": "The current sweep can copy one transcript into multiple missing iteration files, weakening artifact identity and allowing file existence to mask failed recovery.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "local runtime/scripts/fanout-salvage.cjs; https://github.com/nextflow-io/nextflow/blob/master/docs/reference/process.md",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Add a resume planner that folds the ledger into per-leaf reuse, reexecute, compensate, or reject decisions using a versioned replay fingerprint. Pass only reexecute leaves to the pool and key retry history by manifestRevision plus logicalLeafId.",
+      "target": "runtime/fan-out-automation/fanout-pool.cjs",
+      "rationale": "This reruns only failed or invalidated leaves while preventing stale label-based retry credit and unsafe reuse after executor, model, prompt, tool, or topology changes.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://cadenceworkflow.io/docs/go-client/workflow-versioning; https://snakemake.readthedocs.io/en/stable/executing/cli.html; https://github.com/jshiv/cronicle",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Make merge consume a frozen admission manifest containing finalizedRevision, policy, included receipt digests, and excluded-leaf reasons. Sort by logicalLeafId before reduction and append a superseding merge revision for progressive fan-in.",
+      "target": "runtime/fan-out-fan-in/fanout-merge.cjs",
+      "rationale": "The existing canonical content sort is deterministic for fixed inputs but cannot guarantee the same admitted set across crashes, deadlines, or manifest evolution.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "local runtime/scripts/fanout-merge.cjs; https://github.com/nextflow-io/nextflow/blob/master/docs/reference/process.md",
+      "iter": 4,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Add a provenance-balanced-v1 reducer to fanout-merge.cjs: append immutable raw findings, generate semantic candidates, attach typed pair relations, apply contradiction-constrained equivalence clustering, select a medoid, and union evidence receipts. Emit raw-findings.jsonl, claim-clusters.json, and aggregation-report.json.",
+      "target": "runtime/fan-out-fan-in",
+      "rationale": "The current canonical-record replacement retains lineage labels but can discard variant evidence and has no explicit minority or contradiction projection.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://github.com/MinishLab/semhash",
+      "iter": 5,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Add a frozen fan-out manifest to fanout-run.cjs with logicalBranchId, requested/resolved model, executor kind, reasoning effort, search capability, prompt hash, iteration cap, and budget; pass --search through the CLI-Codex command builder and persist the resolved invocation as an executor receipt.",
+      "target": "runtime/fan-out-automation",
+      "rationale": "This converts manual run 001 into a replayable command-owned experiment and makes model alias or tool-capability drift detectable.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "local runtime/scripts/fanout-run.cjs buildLineageCommand and buildLoopPrompt",
+      "iter": 5,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Introduce a versioned calibration registry keyed by model fingerprint and task stratum; learn reliability only from held-out adjudicated fixtures, cap support at one contribution per independence group, retain raw pre-calibration scores, and route unsupported strata to an explicit uncalibrated state.",
+      "target": "runtime/fan-out-automation",
+      "rationale": "Raw confidence scales are not comparable across models, while weights learned from the current merge batch reward conformity and recreate model-preference bias.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://ojs.aaai.org/index.php/AAAI/article/view/5860",
+      "iter": 5,
+      "thread": "fan-out-automation"
+    },
+    {
+      "rec": "Implement a versioned pure evaluateTermination policy returning continue, recover, stop_converged, stop_nonconverged, or blocked. Require novelty-or-completion plus quality_pass plus execution_pass for converged termination, while hard lease exhaustion always produces a distinct non-converged result.",
+      "target": "runtime/convergence",
+      "rationale": "One replayable authority prevents live execution, resume, gauges, and offline analysis from applying different stop semantics.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/SahilShrivastava-Dev/semantic-halting-problem ; https://arxiv.org/abs/2606.27009",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Persist a root RunLease in JSONL and debit it before every iteration, model call, tool call, retry, handoff, recovery pivot, salvage, and merge re-entry. Propagate the lease ID and remaining deadline through fanout-run, fanout-pool, fanout-salvage, and fanout-merge; never allocate a fresh lease during resume.",
+      "target": "runtime/budget-cost, runtime/state-jsonl-checkpointing, runtime/fan-out-fan-in, runtime/fan-out-automation",
+      "rationale": "Local max-iteration and retry counters do not bound outer feedback paths when re-entry can recreate their state.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://arxiv.org/abs/2607.01641 ; https://grpc.io/docs/guides/deadlines/",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add a dual-fingerprint cycle detector and fixtures for period-1, period-2, period-3, repeated errors, intentional repeated actions with progress, and cycle recurrence after recovery. Seed warning thresholds from OpenHands and browser-use, then calibrate them from historical deep-loop JSONL trajectories.",
+      "target": "runtime/convergence, runtime/locks-recovery, runtime/gauges-observability",
+      "rationale": "Exact repetition catches cheap deterministic loops, while the progress fingerprint and recovery recurrence test control false positives.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/OpenHands/software-agent-sdk/blob/main/openhands-sdk/openhands/sdk/conversation/stuck_detector.py ; https://github.com/browser-use/browser-use/blob/main/browser_use/agent/views.py",
+      "iter": 6,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add effect_prepared, effect_dispatched, effect_result, effect_unknown, effect_reconciled, and effect_compensated event schemas. Require stable effectId/logicalBranchId/idempotencyKey, changing attemptId, request and response hashes, provider receipt, verification status, and prevEventHash. Flush effect_prepared before invoking any side-effecting adapter.",
+      "target": "runtime/state-jsonl-checkpointing",
+      "rationale": "This closes the current dispatch-to-JSONL ambiguity without pretending an external effect and local append can be atomic. The unavoidable crash window becomes an explicit recoverable state.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://docs.restate.dev/references/architecture ; https://docs.dbos.dev/python/tutorials/workflow-tutorial",
+      "iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Implement a replay planner that folds receipts into reuse, reconcile, re-execute, compensate, or block. Adapter capabilities must declare supportsIdempotencyKey, supportsReceiptLookup, compensationOperation, and unknownEffectPolicy; never automatically retry an unknown irreversible effect.",
+      "target": "runtime/locks-recovery",
+      "rationale": "Retry safety varies by adapter. Central capability-driven planning prevents fan-out scripts and individual modes from making inconsistent or unsafe replay decisions.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://docs.langchain.com/oss/python/langgraph/interrupts ; https://docs.restate.dev/develop/ts/durable-steps",
+      "iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Create a versioned replay-compatibility registry. Compute a canonical fingerprint from logical operation ID, input/output schema hashes, adapter version, reducer version, result codec, and replay policy; allow exact, compatible, migrate, pin-old-runtime, and blocked outcomes. Persist the chosen recovery decision as a new immutable event.",
+      "target": "runtime/continuity-threading",
+      "rationale": "A code hash is too strict for harmless changes and too weak for reordered semantic operations. Explicit compatibility makes old JSONL histories auditable and prevents silent reuse under a changed contract.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://docs.restate.dev/services/versioning ; https://docs.langchain.com/oss/python/langgraph/backward-compatibility ; https://github.com/temporalio/temporal/blob/main/docs/worker-versioning.md",
+      "iter": 7,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add runtime/lib/council/effective-independence.cjs plus append-only judge_observation and independence_snapshot JSONL events. Record blinded judge ID, family/prompt/context/tool hashes, target hash, raw score vector, confidence, gold or verified outcome, error, cost, pairwise Q/phi/double-fault, weighted N_eff, and cross-validated marginal log-loss gain. Start in shadow mode; after at least 100 calibrated targets, block convergence when N_eff<1.5 or no additional seat has positive marginal gain.",
+      "target": "deep-ai-council/runtime/gauges-observability",
+      "rationale": "This converts seat diversity from a declared prompt property into a replayable empirical gauge and stops three correlated votes from satisfying a nominal quorum.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/scikit-learn-contrib/DESlib and https://mc-stan.org/docs/2_31/reference-manual/effective-sample-size.html",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Refactor council execution into target_freeze -> generator fan-out -> provenance blinding -> detector fan-out -> scorer-only adjudication -> deterministic robust aggregation. Enforce capability schemas: generators cannot score, detectors cannot revise or rank, scorers cannot see generator identity/rationale/peer scores, orchestrators cannot author semantic outputs, and target mutation always creates a new targetVersion.",
+      "target": "deep-ai-council/runtime/fan-out-fan-in",
+      "rationale": "Hard information-flow boundaries address self-preference, position leakage, correlated cross-critique, and the current tendency for adjudication and synthesis to collapse into one model context.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://arxiv.org/abs/2404.13076 and https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Apply the same five-role schema to deep-alignment: immutable artifact target; adapter-owned discovery only; blinded detector findings; scorer severity based on frozen authority plus live re-probe receipts; optional remediation generator only after audit close. A remediation candidate receives a new targetVersion and must be rescored in a fresh execution. Use confusion-matrix competence weights, but retain residual-correlation and raw-score gauges outside Dawid-Skene.",
+      "target": "deep-alignment/runtime/state-jsonl-checkpointing",
+      "rationale": "It preserves alignment's verify-first/read-only contract while preventing discovery, detection, remediation, and pass/fail scoring from validating one another inside the same context.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/Toloka/crowd-kit/blob/main/crowdkit/aggregation/classification/dawid_skene.py",
+      "iter": 8,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add a versioned fan-in policy evaluator that appends WAIT, ACCEPT, WIDEN, or BLOCK events and makes fanout-merge require an ACCEPT receipt containing the exact selected logical branch IDs.",
+      "target": "runtime/fan-out-fan-in",
+      "rationale": "This prevents merge from silently treating missing registries as success and makes partial acceptance replayable and auditable.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/kubernetes/kubernetes/blob/master/pkg/controller/job/success_policy.go",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Introduce immutable branch_key and logical_branch_id fields, separate attempt IDs from branch identity, and evaluate final policies only at stage, deadline, budget, or impossibility barriers.",
+      "target": "runtime/fan-out-fan-in",
+      "rationale": "Labels, replica ordinals, and completion order are not durable identities; barriered evaluation makes selection invariant to worker timing.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://taskflow.github.io/taskflow/ConditionalTasking.html",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Activate the dormant wave model as canonical seed and dissent stages: reserve only seed cost initially, run cheap agreement and evidence checks, then atomically reserve and enqueue the next stage on WIDEN.",
+      "target": "runtime/fan-out-fan-in",
+      "rationale": "This implements skip-on-agreement and widen-on-disagreement without paying worst-case cost up front.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://github.com/volcano-sh/volcano/blob/master/docs/design/Network%20Topology%20Aware%20Scheduling.md",
+      "iter": 9,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add a versioned Eval-DAG policy with hard, weighted-soft and judge nodes; schedule nodes topologically by cost and append an immutable receipt for every verdict while retaining raw component scores.",
+      "target": "deep-review/runtime/state-jsonl-checkpointing",
+      "rationale": "This provides actual cheap-check short-circuiting, prevents weighted scores or judges from hiding invariant failures, and makes every aggregate replayable.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/promptfoo/promptfoo/blob/main/src/assertions/assertionsResult.ts; https://github.com/open-compass/opencompass/blob/main/opencompass/evaluator/cascade_evaluator.py",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Make candidate promotion require a fingerprint-matched verification bundle containing original-reproducer, target-fix, impacted-regression and risk-selected full-gate receipts; timeout, flakiness or missing evidence yields UNVERIFIED.",
+      "target": "deep-improvement/runtime/convergence",
+      "rationale": "A repair is only established by rerunning the failing behavior and proving a baseline delta; a generated patch or exhausted retry loop is not evidence.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://github.com/SWE-bench/SWE-bench/blob/main/swebench/harness/grading.py; https://github.com/google/syzkaller/blob/master/docs/syzbot.md",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Expose deterministic-reject rate, judge-escalation rate, judge cost per promoted candidate, stale-receipt count, flaky-unknown count and regression delta as stream-fold gauges.",
+      "target": "runtime/gauges-observability",
+      "rationale": "These gauges reveal whether the cascade is saving judge cost without silently increasing unverified promotions or regression escapes.",
+      "effort": "S",
+      "impact": "med",
+      "evidence": "https://doc.opencompass.org.cn/advanced_guides/llm_judge.html",
+      "iter": 10,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add semantic-community-projection.ts behind coverage-graph-signals.ts. It should consume active claim versions, produce deterministic hierarchical snapshots, remap stable community IDs, and append raw coverageGain, communityBirthGain, resolutionGain, duplicatePenalty and per-community divergencePressure before deriving compatibility newInfoRatio.",
+      "target": "runtime/dedup-novelty",
+      "rationale": "The existing graph signal corroborates an agent scalar but cannot distinguish repeated claims, new semantic territory, partition churn or contradiction obligations.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://github.com/graspologic-org/graspologic/blob/main/graspologic/partition/leiden.py",
+      "iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Extend JSONL with claim_asserted.v1, contradiction_detected.v1, contradiction_resolved.v1, claim_validity_closed.v1 and community_snapshot.v1. Update continuity-thread.cjs to carry lastAppliedSeq, activeClaimVersionIds, openContradictionIds, communitySnapshotId and projectionFingerprint.",
+      "target": "runtime/continuity-threading",
+      "rationale": "Resume must reconstruct what was believed at a specific runtime sequence without deleting old evidence or flattening unresolved contradictions into current truth.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://docs.xtdb.com/intro/what-is-xtdb.html ; https://terminusdb.org/docs/immutability-explanation/",
+      "iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Change deep-research next-focus selection from prose-only Next Focus to an auditable argmax over per-community divergencePressure, with visit cooldown, expected-cost normalization and a critical-contradiction obligation queue. Recluster only after configured graph-drift thresholds; otherwise use provisional assignments.",
+      "target": "runtime/fan-out-automation",
+      "rationale": "This turns semantic-community state into deliberate within-thread broadening while controlling recomputation cost and preventing oscillation between the same communities.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://arxiv.org/abs/2601.08554",
+      "iter": 11,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add runtime/lib/deep-loop/gauge-fold.ts and a transactional gauge-store backed by SQLite/WAL. Persist per-plane byte cursors, inode and prefix fingerprints, seen event IDs, keyed entity state, and materialized gauges in one transaction; projection fingerprint changes must emit rebuild_required.",
+      "target": "runtime/gauges-observability",
+      "rationale": "The live heartbeat and reducer paths currently rescan complete JSONL and iteration history, so the documented delta-refresh claim is not implemented.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://github.com/feldera/feldera",
+      "iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Version the observability envelope to v2 with deterministic event IDs, producer sequence, logical branch ID, plane, causal links, receipt references, and immutable judgment_attached and judgment_superseded events.",
+      "target": "runtime/gauges-observability",
+      "rationale": "Stable replay and late evaluation require durable correlation and explicit revisions; random UUIDs and mutable annotation upserts cannot establish deterministic projections.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://arize.com/docs/phoenix/sdk-api-reference/typescript/packages/phoenix-client/span-annotations",
+      "iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Ship a typed gauge catalog with exact transition tests: branches_in_flight, judgments_pending, judgment_coverage, unresolved_contradictions, semantic_without_receipt, unlinked_observed_effects, receipt_completion_rate, current_score_mean, and append-only latency p50/p95/p99. Compare every incremental projection against a clean full replay in fixtures and sampled completion audits.",
+      "target": "runtime/gauges-observability",
+      "rationale": "Typed algebra prevents double-decrement, stale-score, and non-retractable-sketch errors while the full-replay oracle detects projection drift.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://www.vldb.org/pvldb/vol16/p1601-budiu.pdf",
+      "iter": 12,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Create runtime/budget-cost with BudgetPolicy, BudgetLease, UsageEstimate, and UsageReceipt types. Policies carry budget_id, parent_budget_id, resource dimension, soft and hard limits, window kind, action, and policy fingerprint. Implement reserve(), settle(), cancel(), and project() so one locked reservation charges every applicable ancestor atomically.",
+      "target": "runtime/budget-cost",
+      "rationale": "This unifies currently fragmented timeout, retry, quota-pool, council, and fan-out caps while bounding concurrent overshoot through reservations rather than delayed accounting.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://pydantic.dev/docs/ai/api/pydantic-ai/usage/ and https://github.com/envoyproxy/ratelimit",
+      "iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Require fanout-pool to obtain a lease before every spawn and retry. Use scope paths session/mode/lineage/iteration/attempt, charge retries separately, and map hard exhaustion to explicit strict, quorum, deadline, or progressive fan-in behavior instead of generic rejection.",
+      "target": "runtime/fan-out-fan-in",
+      "rationale": "Pre-dispatch leasing makes the parent bound cover retries, parallel attempts, handoffs, and fallback routes while preserving deterministic logical branch IDs.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/bucket4j/bucket4j and https://docs.litellm.ai/docs/proxy/users",
+      "iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Append budget_reserved, budget_settled, budget_released, budget_soft_exhausted, budget_hard_exhausted, budget_reset, budget_granted, and budget_compensated JSONL events. Fold them into per-resource and per-window gauges, retaining policy version, lease ID, scope path, estimate, receipt, and reset_at.",
+      "target": "runtime/state-jsonl-checkpointing",
+      "rationale": "Explicit events make exhaustion resumable and replayable, allow judgments and cost corrections to attach later, and let incremental gauges be differential-tested against full replay.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://openmeter.io/docs/billing/entitlements/entitlement",
+      "iter": 13,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add a shadow-only evaluateValueOfComputationCertificate path to runtime/scripts/convergence.cjs. Emit stateFingerprint, policy/evaluator versions, STOP and continuation confidence bounds, delta, epsilon, typed costs, effective sample count, assumptions, and STOP_ELIGIBLE|CONTINUE|INDETERMINATE; keep existing legal-stop gates authoritative until replay calibration passes.",
+      "target": "runtime/convergence",
+      "rationale": "This introduces a principled continuation-value signal without allowing an initially uncalibrated model to terminate live loops.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://openreview.net/pdf?id=fN4PJNYgs3 ; https://arxiv.org/abs/2510.17472",
+      "iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Extend runtime/fan-out-fan-in to allocate rollout samples by logical branch ID using fixed-confidence elimination, with STOP as an arm; count all retry, salvage, handoff, and tool re-entry attempts in one global stopping clock and expose an empirical stopping-tail gauge.",
+      "target": "runtime/fan-out-fan-in",
+      "rationale": "Best-arm allocation reduces wasted leaves, while a path-covering tail bound closes the gap left by per-attempt iteration caps.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://arxiv.org/abs/1602.04589 ; https://openreview.net/forum?id=DF2JV03T6q",
+      "iter": 14,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add a central durable-effect gateway emitting step_planned, effect_started, effect_receipt, and step_committed events. Require each operation to declare pure-rerunnable, idempotent, queryable, compensatable, or non-idempotent-unqueryable recovery policy.",
+      "target": "runtime/state-jsonl-checkpointing + runtime/locks-recovery",
+      "rationale": "This preserves exact accepted LLM outputs while making the only unsafe crash window explicit and recoverable without pretending all retries are equivalent.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://learn.golem.cloud/v1.5/how-to-guides/moonbit/golem-atomic-block-moonbit",
+      "iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Make fanout-merge.cjs the sole canonical JSONL writer. Leaves write immutable branch receipts; merge commits only after checking generation, fencingEpoch, logicalBranchId, stepKey, and previousTailHash. Route expired started-without-receipt attempts through fanout-salvage.cjs.",
+      "target": "runtime/fan-out-fan-in + runtime/fan-out-automation",
+      "rationale": "Single-writer linearization gives exactly-once logical commits while preserving concurrent execution and preventing stale workers from committing after lock recovery.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://learn.microsoft.com/en-us/azure/durable-task/common/durable-task-orchestrations",
+      "iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add crash-injection replay tests at every boundary: before effect start, after remote acceptance, after receipt append, after fsync, and before logical commit. Assert zero duplicate commits, explicit ambiguous_effect states, and fingerprint rejection after prompt/model/tool-schema changes.",
+      "target": "runtime/state-jsonl-checkpointing + runtime/locks-recovery",
+      "rationale": "Normal replay tests cannot expose the response-loss window; boundary fault injection verifies the claimed guarantee rather than only successful checkpoint restoration.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/ThousandBirdsInc/chidori",
+      "iter": 15,
+      "thread": "recommendation-deep-dive"
+    },
+    {
+      "rec": "Add an append-only adaptive_compute_decision event containing logicalBranchId, phase, calibrated support and opposition mass, disagreement, predicted success, controllerVersion, action, typed budget delta, and replay fingerprint. Support stop_accept, sample_peer, deepen_verifier, escalate_model, hotswap, and abandon_with_receipt.",
+      "target": "runtime/fan-out-fan-in + runtime/budget-cost + runtime/state-jsonl-checkpointing",
+      "rationale": "This converts fixed fan-out and binary stop decisions into replayable compute allocation while preserving R1 path coverage, R2 receipts, and R8 typed budgets.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://arxiv.org/abs/2509.25420 and https://arxiv.org/abs/2505.18065",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Implement a three-tier verification ladder: deterministic tests and schema checks, lightweight calibrated scorer, then generative process verifier. Persist every raw score before reduction and require verifier escalation only for uncertainty-band or high-impact cases.",
+      "target": "deep-review + deep-ai-council + runtime/gauges-observability",
+      "rationale": "It combines R5 cheap-first checking with newer verifier-time scaling without paying generative-judge cost on obvious passes or failures.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/RyanLiu112/GenPRM and https://github.com/mukhal/ThinkPRM",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Run controller learning in shadow mode over complete paired replays: log the action a learned controller would take, compare it with the live policy, and promote only versioned policies that pass quality-cost Pareto and replay-determinism gates.",
+      "target": "deep-improvement + runtime/convergence",
+      "rationale": "TTRL-style pseudo-rewards can improve allocation without allowing within-lineage online updates to invalidate deterministic replay or reinforce correlated council errors.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/PRIME-RL/TTRL",
+      "iter": 16,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Add a blinded pairwise adjudicator that emits candidate_blinded, pairwise_judgment, bias_audit, adjudication_inconsistent, and adjudication_decision JSONL events; use deterministic shuffling, reversed-order comparisons, bounded structured briefs, and abstention on inconsistency.",
+      "target": "deep-ai-council/runtime/state-jsonl-checkpointing",
+      "rationale": "This closes the current position, verbosity, and bandwagon-bias gap while preserving raw proposals and immutable audit history.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/lmarena/arena-hard-auto and https://github.com/Joyyang158/Reasoning-Bias-Detector",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Replace two-of-three as the final rule with a protocol router: objective evidence gate first, blinded swapped pairwise judging second, detector-guided revision on bias flags, bounded debate only for unresolved high-value uncertainty, and constitutional vetoes for frozen hard constraints.",
+      "target": "deep-ai-council/runtime/convergence",
+      "rationale": "Different disagreements require different evidence; a single popularity rule conflates correctness, persuasion, presentation, and policy compliance.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://arxiv.org/abs/2402.06782 and https://arxiv.org/abs/2406.07814",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Create a versioned judge-profile registry calibrated offline with human-preference and verifiable-correctness fixtures; store Brier score, domain accuracy, swap consistency, bias coefficients, effective sample size, and compatibility fingerprints, then use posterior best-candidate probability plus expected regret as the council stop signal.",
+      "target": "deep-improvement/deep-ai-council/runtime/convergence",
+      "rationale": "Reliability weighting is useful only when derived from enough calibration evidence and invalidated whenever model, prompt, rubric, or schema changes.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://github.com/lmarena/PPE and https://arxiv.org/abs/2607.02104",
+      "iter": 17,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Replace fixed two-of-three dispatch with a sequential seat router maximizing expected calibrated loss reduction per cost minus residual-correlation redundancy; dispatch an executable or human verifier when remaining LLM seats are redundant.",
+      "target": "deep-ai-council/runtime/fan-out-fan-in",
+      "rationale": "It spends budget only on marginal evidence and prevents nominally heterogeneous but behaviorally correlated seats from manufacturing confidence.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://machinelearning.apple.com/research/correlated-llm-evaluation-panels",
+      "iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Create a versioned seat-calibration registry keyed by model version, prompt hash, rubric, domain, and tool schema; store selective-risk curves, Brier/ECE, residual vectors, bias coefficients, cost, latency, and transport-support bounds.",
+      "target": "deep-ai-council/runtime/gauges-observability",
+      "rationale": "Judge reliability is conditional, and stale or out-of-support calibration should cause abstention rather than an equal vote.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/cimo-labs/cje",
+      "iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Add immutable JSONL events seat_profile_calibrated, seat_selected, seat_judgment_attached, and council_stopped, including all candidate utilities and the calibration fingerprint used for each adaptive decision.",
+      "target": "runtime/state-jsonl-checkpointing",
+      "rationale": "This makes adaptive selection deterministic under replay, preserves raw judgments, and enables later comparison of fixed, learned, and oracle seat policies on identical trajectories.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://scikit-activeml.github.io/development/generated/api/skactiveml.pool.multiannotator.IntervalEstimationThreshold.html",
+      "iter": 18,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Add convergence_candidate, verification_pending, converged, degeneration_detected, and quarantined_inconclusive events. Require a health-witness reducer over held-out quality, invariance probes, objective drift, semantic-community survival, and council independence before converged is legal.",
+      "target": "runtime/convergence + runtime/state-jsonl-checkpointing",
+      "rationale": "This prevents low novelty or high agreement from laundering semantic collapse into successful convergence and provides replay-safe fail-closed terminal states.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://arxiv.org/abs/2604.15149",
+      "iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Emit immutable per-round council_stance and stance_flip events, then derive flip_to_majority_rate, flip_to_evidence_rate, pairwise influence, influence concentration, and effective independent seats. Block agreement-based STOP when independence falls below a calibration-derived threshold.",
+      "target": "deep-ai-council + runtime/gauges-observability",
+      "rationale": "Agreement caused by one influential or sycophantic seat is not independent corroboration; direction-aware flips distinguish correction from conformity.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://arxiv.org/abs/2604.02668",
+      "iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Insert a cheap metamorphic gate before generative judging: rerun deterministic checks under candidate-label permutations, evidence-order changes, identifier renaming, and equivalent tool-result transforms; after candidate selection, require frozen cross-domain alignment canaries before promotion.",
+      "target": "deep-review + deep-improvement",
+      "rationale": "The first stage detects verifier gaming cheaply; the second detects narrow improvements that produce broad objective drift.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/ml-research/llms-gaming-verifiers; https://github.com/emergent-misalignment/emergent-misalignment",
+      "iter": 19,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Add a transition-authorization kernel before the JSONL append boundary. Require transition_proposed followed by transition_authorized or transition_denied carrying actor_role, policy_version, projection_hash, health_state, budget_snapshot, receipt_refs, decision_id, and reasons. Encode the transition system in Quint and model-check at least: no effect without a receipt, deterministic replay, quarantine cannot self-clear, recovery authority is external to the quarantined lineage, and every bounded retry path eventually terminates or escalates.",
+      "target": "runtime/state-jsonl-checkpointing + runtime/locks-recovery + deep-alignment",
+      "rationale": "This closes the self-judging-recovery gap while making R2 and R8 enforceable rather than documentary. Cedar supplies fast policy admission and schema validation; Quint covers temporal properties Cedar cannot prove.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://github.com/cedar-policy/cedar and https://github.com/quint-co/quint",
+      "iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Introduce an adjudication_broker that chooses among accept, abstain, add_judge, execute_evidence, bounded_debate, and human_escalation using estimated downstream-loss reduction minus typed cost. Persist context, candidate actions, chosen action, selection propensity, policy version, and delayed outcome on every decision. Evaluate replacements with IPS and doubly-robust estimators, but fail closed to the fixed council when support or effective-sample diagnostics are inadequate.",
+      "target": "deep-ai-council + runtime/fan-out-fan-in + runtime/budget-cost + runtime/gauges-observability",
+      "rationale": "This operationalizes the unresolved value-of-information question and prevents adaptive council selection from becoming an unmeasurable source of bias.",
+      "effort": "M",
+      "impact": "high",
+      "evidence": "https://vowpalwabbit.org/docs/vowpal_wabbit/python/latest/tutorials/off_policy_evaluation.html",
+      "iter": 20,
+      "thread": "general-effectiveness-and-council"
+    },
+    {
+      "rec": "Build a read-only loop_health_witness plus a causal degeneration benchmark. Stream raw gauges through change detectors, append immutable health_alarm attachments, and inject proxy capture, semantic collapse, conformity cascades, verifier corruption, and objective drift into replayed trajectories. Use precommitted recovery rules: single statistical alarm requests evidence; alarm plus mechanistic invariant failure quarantines; receipt or state-integrity violation quarantines immediately; only the transition kernel can authorize rollback, branch, seat rotation, verifier rotation, or human escalation.",
+      "target": "runtime/convergence + runtime/gauges-observability + runtime/locks-recovery + deep-improvement",
+      "rationale": "Aggregate convergence gauges can remain stable during causal degeneration. Independent detection plus injected-mechanism tests prevents the failing loop from grading and repairing itself.",
+      "effort": "L",
+      "impact": "high",
+      "evidence": "https://riverml.xyz/latest/api/drift/ADWIN/ and https://www.pywhy.org/dowhy/v0.13/",
+      "iter": 20,
+      "thread": "general-effectiveness-and-council"
+    }
+  ],
+  "anglesCovered": [
+    "Per-leaf CLI flag + model + live-tool parametrization",
+    "Heterogeneous multi-model fan-out orchestration",
+    "Cross-iteration shared state for parallel research leaves",
+    "Resumable externalized-state fan-out with salvage/merge",
+    "Bias-free reduction of heterogeneous multi-model leaves",
+    "R1 multi-signal path-covering termination — mechanisms",
+    "R2 side-effect-receipt resume contract — mechanisms",
+    "R3 effective-independence + 5-role evaluator separation",
+    "R4 conditional budget-aware fan-in + determinism",
+    "R5 cheap-checks-before-judges + regression-gated self-repair",
+    "R6 semantic-community novelty + contradiction-as-version",
+    "R7 incremental stream-fold gauges + immutable observability",
+    "R8 hierarchical typed budgets + exhaustion-as-state",
+    "Open gap: RL convergence theory to loop termination",
+    "Open gap: durable-execution guarantees under LLM nondeterminism",
+    "2025-2026 SOTA techniques for more-effective agent loops",
+    "AI-council depth: adjudication + bias mitigation",
+    "AI-council depth: calibration, diversity, seat selection",
+    "Loop failure taxonomy + degeneration vs convergence",
+    "Synthesis pass: highest-leverage NEW recommendations"
+  ],
+  "nextAngleSuggestions": [
+    "Version-aware executor capability negotiation: probe and cache codex --help/config-schema so unsupported effort and search combinations fail before fan-out.",
+    "Per-leaf live-tool accounting: determine whether codex exec --json or app-server events expose search-call counts that can feed hierarchical tool budgets.",
+    "Capability-preserving resume: specify whether a resumed leaf must pin the original CLI binary/version or may migrate through an explicit replay-compatibility event.",
+    "Capability-aware matrix compilation: probe and cache each executor's model, structured-output, live-tool, usage-event, and reasoning controls, then deterministically reject or reroute incompatible matrix cells.",
+    "Provider event algebra: map Codex, Claude Code, OpenCode/LUNA/SOL/GLM streams into common tool-start, tool-end, usage, artifact, retry, and terminal events suitable for incremental gauges.",
+    "Manifest-evolution resume: define when a logical leaf can reuse its receipt after model alias, CLI version, prompt contract, or branch topology changes, and when migration requires re-execution.",
+    "Topology benchmark: compare same-model replicas, model-per-branch specialization, full model-by-branch cross-products, and isolated-then-peer-review using novelty, contradiction retention, cost, and tail latency.",
+    "Benchmark snapshot-only, exact-CAS-plus-watch, and per-leaf-shard-plus-progressive-fold modes under controlled duplicate rates, leaf counts, crashes, and tail-latency budgets.",
+    "Investigate deterministic semantic-index behavior across concurrent insertion order, embedding-model upgrades, approximate-neighbor candidate loss, and replay-compatible projection fingerprints.",
+    "Specify compaction and garbage-collection rules: when a finalized snapshot can replace old shard prefixes without breaking receipt replay, contradiction history, or resumed leaves.",
+    "Define partial-failure finalization semantics for observedRevision versus finalizedRevision under strict, quorum, deadline, and progressive fan-in policies.",
+    "Build a replay-compatibility lattice and fixture matrix for prompt-schema changes, resolved model aliases, CLI upgrades, tool-capability changes, and branch-topology changes.",
+    "Crash-test strict, quorum, deadline, and progressive fan-in at every boundary between leaf commit, receipt append, admission freeze, artifact read, and merge-finalized append.",
+    "Study orphaned side-effect handling: idempotency-key receipts, compensation handles, and the exact transition from reexecute to compensate-or-block.",
+    "Benchmark journal-per-leaf versus one shared JSONL ledger under high completion concurrency, duplicate terminal events, torn appends, and manifest compaction.",
+    "Build a permutation-invariance fixture suite for constrained semantic clustering: vary leaf insertion order, embedding batch order, equivalent-chain topology, and contradictory endpoints.",
+    "Benchmark exact cosine candidate generation against ANN under realistic 3-32 leaf runs, measuring candidate recall specifically for minority-model singleton findings.",
+    "Design the calibration dataset and hierarchical shrinkage rule for sparse model-by-task strata, including alias upgrades and models with no adjudicated history.",
+    "Reconstruct the exact phase-001 executor, resolved-model, prompt, and --search receipts, then define which missing fields make automated replay incompatible rather than approximate.",
+    "Construct a typed transition manifest for system-deep-loop and run SCC analysis to identify every retry, handoff, callback, tool-reentry, salvage, and merge cycle that currently lacks a root-lease debit or terminal exit.",
+    "Replay historical JSONL trajectories to calibrate semantic epsilon, patience, repetition periods, and recovery limits separately for deep-research, deep-review, deep-ai-council, deep-improvement, and deep-alignment.",
+    "Design crash-consistent lease debit, commit, refund, and orphan-block semantics around side-effecting tools so a crash cannot either double-spend budget or silently abandon an uncertain effect.",
+    "Benchmark judge-on-candidate against every-round judging using both operational tokens and evaluation tokens, while measuring false convergence and intentional-repetition false positives.",
+    "Build a crash-injection fixture matrix for fanout-run, fanout-pool, fanout-salvage, and fanout-merge: kill before prepared-event flush, after remote dispatch, after provider completion, after receipt append, and after projection refresh; assert reuse/reconcile/re-execute/compensate/block outcomes.",
+    "Inventory every side-effecting system-deep-loop adapter and classify native idempotency-key support, receipt lookup, transactional coupling, reversibility, compensation support, and safe unknown-effect policy.",
+    "Design replay-compatibility fixtures that add, remove, reorder, rename, and schema-migrate effect calls, comparing the proposed registry against Temporal command replay, Restate RT0016 journal mismatch, and LangGraph positional task matching.",
+    "Specify how effect leases interact with hierarchical budgets: prepared effects reserve cost, verified results commit it, provably absent reconciliations refund it, and unknown effects remain charged and block automatic lease reuse.",
+    "Build a factorial calibration experiment that independently varies model family, prompt template, evidence set, context snapshot, decoding seed, and role to decompose error correlation into provider, prompt, context, and task-difficulty variance components.",
+    "Compare static three-seat councils with task-conditional judge routing: select the next detector by expected marginal log-loss reduction per token, then test whether this improves N_eff-per-dollar without suppressing rare dissent.",
+    "Study online drift detection for judge independence: rolling error-correlation matrices, confidence sequences for marginal gain, and explicit invalidation when a model or prompt version changes.",
+    "Design a hierarchical dependence model for judges sharing provider, base model, fine-tuning lineage, retrieval corpus, or tool receipts, and compare it with the simple weighted N_eff estimator.",
+    "Design model-checking properties for the fan-in state machine: no merge before ACCEPT, one terminal decision per policy version, and invariant selected sets under every completion-order permutation.",
+    "Calibrate seed-stage agreement thresholds against false-consensus risk, comparing raw vote agreement with semantic-cluster agreement and critical-contradiction vetoes.",
+    "Specify atomic budget reservation and cancellation accounting for WIDEN, including races between deadline, late completion, and next-stage lease acquisition.",
+    "Calibrate the two weighted thresholds from logged ROC and cost curves, separately by artifact risk class, rather than choosing universal constants.",
+    "Specify an Eval-DAG cache-compatibility fingerprint covering candidate, dependency artifacts, evaluator code, prompt, model, policy, toolchain and environment.",
+    "Design sequential tests for flaky repair verification: compare fixed replay counts, confidence sequences and SPRT-style early stopping under asymmetric false-pass costs.",
+    "Measure judge-selection bias introduced by uncertainty-band routing, because judges will see a harder and distribution-shifted sample than the overall review stream.",
+    "Calibrate stable-community matching under splits and merges: compare weighted Jaccard plus Hungarian matching against centroid matching and lineage-aware overlap on replayed research graphs.",
+    "Design signed epistemic subgraphs inside each topical community so SUPPORTS and CONTRADICTS form stance/version groups without corrupting Leiden's unsigned modularity objective.",
+    "Specify reclustering triggers and provisional-assignment error bounds, comparing full hierarchical Leiden, warm starts and HIT-Leiden-style affected-region maintenance.",
+    "Define contradiction-resolution policy precedence when source validity, temporal validity and logical entailment disagree, including who may close a critical contradiction.",
+    "Specify the gauge projection schema and transaction protocol, including crash points between evidence append, cursor advance, signed update, and snapshot publication.",
+    "Design a differential test harness that compares incremental folds against full replay across duplicate events, concurrent judgments, supersession forks, truncation, rotation, and schema-fingerprint changes.",
+    "Calibrate semantic-versus-side-effect discrepancy gauges: determine which executor receipts are authoritative, which eBPF observations are corroborative, and how platform blind spots affect false discrepancy rates.",
+    "For runtime/budget-cost, compare single-writer JSONL locking, SQLite WAL transactions, and optimistic CAS for atomic ancestor-chain reservations under concurrent fan-out; quantify the maximum overshoot of each.",
+    "For runtime/budget-cost, specify exact sliding-log, bucketized sliding-window, token-bucket, and calendar-window semantics, including replay behavior across clock rollback, downtime, and reset-event duplication.",
+    "For deep-improvement and runtime/convergence, calibrate degradation order on a quality-cost Pareto frontier: reduce fan-out width, switch model, lower reasoning allowance, skip judges, or stop, while measuring which action causes the least quality regression.",
+    "Derive an anytime confidence sequence for evaluator-scored incremental utility under bounded evaluator drift, including explicit reset rules for model, prompt, evidence, and replay-fingerprint changes.",
+    "Build an offline paired-replay study comparing Stop-RAG-style learned Q stopping, fixed-confidence STOP-as-arm selection, and the current novelty-plus-gates rule on identical complete system-deep-loop trajectories.",
+    "Formalize a path-covering stopping-time theorem where one logical pull may contain retries, salvage, handoffs, and side-effect compensation, and determine which tail assumptions survive adaptive fan-out.",
+    "Specify and model-check the durable-step state machine, especially competing receipts, lease expiry, stale fencing epochs, compensation failure, and winner selection between divergent LLM attempts.",
+    "Test which LLM and tool providers support durable idempotency keys or request-status lookup, and define provider-specific recovery capabilities instead of one generic retry policy.",
+    "Design replay compatibility rules separating orchestration-code compatibility, prompt/model identity, tool-schema compatibility, and reducer projection compatibility.",
+    "Calibrate confidence-weighted council stopping under correlated heterogeneous seats: compare conformal calibration, effective-sample-size corrections, and dependence-aware evidence accumulation.",
+    "Specify an off-policy evaluator for adaptive_compute_decision events so fixed, learned, and oracle controllers can be compared on identical complete JSONL trajectories.",
+    "Test context hotswap portability across model providers, tool schemas, and prompt versions, including what state must be summarized versus replayed verbatim.",
+    "Derive decision boundaries for escalating from scalar scorer to generative verifier using expected value of information under a typed verifier budget.",
+    "Design and power-analyze an offline calibration corpus for council judges: how many swapped comparisons per model-prompt-domain cell are needed before reliability and bias coefficients are stable?",
+    "Derive the adjudication router's value-of-information thresholds: when should an inconsistent pair trigger another judge, RBD revision, evidence execution, bounded debate, or human escalation?",
+    "Specify a model-checkable JSONL state machine for blinded candidate identity, delayed unblinding, detector attachments, constitutional vetoes, abstentions, and replay-safe adjudication revisions.",
+    "Power-analyze the smallest blinded and swap-balanced calibration corpus needed per model-prompt-domain cell for stable residual-correlation, bias, and selective-risk estimates.",
+    "Design an off-policy evaluator for adaptive seat_selected events, including support diagnostics that determine whether logged fixed-council trajectories can validly compare alternative seat routers.",
+    "Compare marginal-information objectives for open-ended councils: entropy reduction, expected Brier reduction, probability of changing the final action, and expected reduction in downstream execution loss.",
+    "Design a calibrated loop-health witness: determine which combinations of held-out quality loss, invariance failures, community extinction, objective drift, and influence concentration should quarantine rather than merely request another iteration.",
+    "Build a causal degeneration benchmark from full JSONL trajectories, comparing transition-level detectors against aggregate convergence gauges under injected proxy capture, semantic collapse, and conformity cascades.",
+    "Specify recovery semantics for degeneration_detected: rollback, branch from the last healthy checkpoint, replace a council seat, rotate the verifier, or escalate without allowing the failing loop to judge its own recovery.",
+    "Write the minimal Quint model for candidate_event, authorized_event, side_effect_receipt, quarantine, recovery_authorized, replay_revision, budget_exhausted, and terminal events; model-check safety and liveness under duplicate, reordered, and missing receipts.",
+    "Derive the adjudication broker's utility function from measured downstream execution loss, latency, token cost, and human-escalation cost; compare entropy reduction, expected Brier reduction, action-change probability, and execution-loss reduction on the same traces.",
+    "Design the randomized shadow-traffic and power analysis needed for propensity support across model-prompt-domain cells, including minimum effective sample size and abstention criteria rather than a universal sample-count threshold.",
+    "Create a causal fault-injection library for proxy capture, semantic-community extinction, conformity cascades, verifier corruption, and objective drift, then compare transition-level witnesses against aggregate convergence gauges.",
+    "Specify policy-version migration and human-override semantics: which historical events remain replay-compatible, which require projection migration, and which overrides need two independent authorization keys."
+  ]
+}

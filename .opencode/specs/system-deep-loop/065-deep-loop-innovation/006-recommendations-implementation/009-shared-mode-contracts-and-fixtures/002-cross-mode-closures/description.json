@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/002-cross-mode-closures",
+  "description": "Hoist recurring evidence, receipt, adjudication, budget, and projection behavior into reusable closures so all phase-010 mode migrations share one",
+  "keywords": [
+    "hoist",
+    "recurring",
+    "evidence",
+    "receipt",
+    "adjudication",
+    "budget",
+    "projection",
+    "behavior",
+    "reusable",
+    "closures",
+    "phase-010",
+    "mode",
+    "migrations",
+    "share",
+    "one"
+  ],
+  "lastUpdated": "2026-07-15T15:57:46.221Z",
+  "specId": "002",
+  "folderSlug": "cross-mode-closures",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-recommendations-implementation",
+    "009-shared-mode-contracts-and-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

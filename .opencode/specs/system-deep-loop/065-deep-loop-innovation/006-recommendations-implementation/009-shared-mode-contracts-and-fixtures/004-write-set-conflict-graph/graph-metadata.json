@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/009-shared-mode-contracts-and-fixtures",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "write-set conflict graph",
+      "phase-010 migration scheduling",
+      "deep-loop mode write ownership",
+      "parallel-safe mode migrations",
+      "write-set conflict graph implementation plan",
+      "phase-010 dependency graph plan",
+      "deep-loop lane scheduling plan",
+      "write-set conflict graph tasks",
+      "phase-010 scheduling tasks",
+      "deep-loop write ownership tasks",
+      "write-set conflict graph checklist",
+      "phase-010 graph verification"
+    ],
+    "key_topics": [
+      "write-set",
+      "conflict",
+      "graph",
+      "phase-010",
+      "migration",
+      "scheduling",
+      "deep-loop",
+      "mode",
+      "write",
+      "ownership",
+      "parallel-safe",
+      "migrations"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Set Conflict Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "schema",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "kind",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the executable dependency and write-set conflict graph for the eight phase-010 mode migrations, including canonical read/write resources, derived conflict edges, hard ordering fences, freshness checks, and orchestrator consumption.",
+    "created_at": "2026-07-15T16:07:07.775Z",
+    "last_save_at": "2026-07-15T16:07:07.775Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:145c2b330dd87934e0ab1856e356f0cf88fa33cc88db6034b973ac0e2f92d3a7",
+    "source_doc_hashes": {
+      "spec.md": "c67b7c33497cd33ea6b747dfa8380b84328f4b81eac08ffe383b418ee59daaf5",
+      "plan.md": "6df3ed93e1af12ac148f0247320af4edecaf0df88229364833a9c404f06dca1a",
+      "tasks.md": "bc9d32357c27e88431e1790a0e5e839596a55151cd8d65fc8321ab6b12c50aa2",
+      "checklist.md": "f83a4566590b661c6e84602c9738631ffe99787d3b21bad1a73d533fecbfbe5b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

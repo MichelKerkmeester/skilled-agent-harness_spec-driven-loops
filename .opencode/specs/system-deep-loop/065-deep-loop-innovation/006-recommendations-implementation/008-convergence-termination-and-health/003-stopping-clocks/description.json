@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/008-convergence-termination-and-health/003-stopping-clocks",
+  "description": "Plan independent budget, novelty-decay, coverage, wall-time, and cycle clocks whose deterministic earliest firing terminates the loop and records a",
+  "keywords": [
+    "plan",
+    "independent",
+    "budget",
+    "novelty-decay",
+    "coverage",
+    "wall-time",
+    "cycle",
+    "clocks",
+    "whose",
+    "deterministic",
+    "earliest",
+    "firing",
+    "terminates",
+    "loop",
+    "records"
+  ],
+  "lastUpdated": "2026-07-15T15:50:15.656Z",
+  "specId": "003",
+  "folderSlug": "stopping-clocks",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-recommendations-implementation",
+    "008-convergence-termination-and-health"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

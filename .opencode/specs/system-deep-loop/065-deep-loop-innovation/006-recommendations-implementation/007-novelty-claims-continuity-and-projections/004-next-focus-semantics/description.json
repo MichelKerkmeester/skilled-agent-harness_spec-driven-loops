@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/007-novelty-claims-continuity-and-projections/004-next-focus-semantics",
+  "description": "Plan typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from",
+  "keywords": [
+    "plan",
+    "typed",
+    "deterministic",
+    "next-focus",
+    "semantics",
+    "rank",
+    "coverage",
+    "gaps",
+    "open",
+    "contradictions",
+    "under-covered",
+    "semantic",
+    "communities"
+  ],
+  "lastUpdated": "2026-07-15T15:50:15.642Z",
+  "specId": "004",
+  "folderSlug": "next-focus-semantics",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-recommendations-implementation",
+    "007-novelty-claims-continuity-and-projections"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

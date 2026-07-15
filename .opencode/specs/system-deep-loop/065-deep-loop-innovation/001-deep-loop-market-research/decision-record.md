@@ -12,19 +12,19 @@ _memory:
     packet_pointer: "system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research"
     last_updated_at: "2026-07-14T21:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "ADR-001/002/003 recorded at planning time; ADR-002 stays Proposed until execution start"
-    next_safe_action: "Resolve ADR-002 (shape) and the ADR-003 GLM probe at execution start"
+    recent_action: "Run 45/45 done; ADR-002 flipped to Accepted (manual); ADR-003 GLM probe recorded"
+    next_safe_action: "Finish close-out: checklist evidence, implementation-summary, strict recursive validate"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "065-001-dr"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "ADR-002: Shape A vs Shape B, decided at execution start."
-      - "ADR-003 note: GLM provider prefix + max-variant support, probed at execution start."
-    answered_questions: []
+    completion_pct: 90
+    open_questions: []
+    answered_questions:
+      - "ADR-002: Shape B, realized as a manual hand-rolled driver because the fan-out codex executor lacks top-level --search (cannot mine live repos) and patching it is out of scope; operator-authorized."
+      - "ADR-003: GLM provider = zai-coding-plan/glm-5.2 (confirmed via opencode models); --variant max dispatches and GLM web-mines via opencode WebFetch."
 ---
 # Decision Record: Deep-Loop Market Research (Loop-Engineering Landscape)
 
@@ -139,7 +139,7 @@ We need 45 iterations of BROADENING research. The loop's default behavior conver
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (execution-start decision; recommendation: Shape B) |
+| **Status** | Accepted — Shape B, realized as a manual hand-rolled loop (see Decision + Execution Amendment) |
 | **Date** | 2026-07-14 |
 | **Deciders** | Operator (parallelism OK) + orchestrator |
 
@@ -162,9 +162,13 @@ Per-iteration in-lineage model switching is NOT native to the loop: executor con
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: Nothing yet. Both shapes are documented as faithful; the recommendation is Shape B (sequential batches). The final call happens at execution start and this ADR flips to Accepted with the chosen shape.
+**We chose**: **Shape B (sequential, findings-seeded generations)** — LUNA 25 → SOL 10 → GLM 10, each generation seeded by the accumulated findings registry, with orchestrator review gates between generations.
 
-**How it works**: Shape A is ONE `/deep:research` run with the fan-out `--executors` JSON from `plan.md` (3 independent parallel lineages under `research/lineages/{label}/`, reduced at the end). Shape B is three successive generations (LUNA 25, then SOL 10, then GLM 10) accumulating in one growing effort, later batches seeded by earlier findings, via `--lineage-mode=restart` between generations OR successive invocations.
+**How it works (as executed)**: Shape B was realized as a **manual hand-rolled driver** (`scratch/deep-loop-driver.cjs` + `scratch/angle-schedule.json`), not the `/deep:research` fan-out loop. The driver dispatches one iteration at a time (`codex --search exec` for LUNA/SOL; `opencode run` for GLM), accumulates a deduplicated `findings-registry.json` that seeds each subsequent iteration to broaden, and emits loop-equivalent state (`deep-research-config.json`, `deep-research-state.jsonl`, `iterations/iteration-NNN.md`, `deep-research-dashboard.md`).
+
+### Execution Amendment (why manual, not the loop)
+
+At planning time (Alternatives, below) hand-rolled loop mechanics were scored 1/10 ("the skill forbids"). Execution surfaced a blocker planning did not anticipate: **the fan-out loop's codex executor builds its command without codex's top-level `--search` flag** (confirmed by reading `runtime/scripts/fanout-run.cjs`), so its leaves have no live web access and cannot mine external GitHub repos — the entire point of this phase. Enabling `--search` there would require editing `fanout-run.cjs`, which is **out of scope** (research-only; zero writes outside the spec folder — SC-005). The operator therefore explicitly authorized running the loop manually via cli-codex / cli-opencode. The manual driver is the faithful realization of Shape B under that constraint and additionally delivers the true cross-iteration seeding Shape B calls for. Recorded per the PLAN-WORKFLOW LOCK: the blocker was verified against the executor's actual code, flagged to the operator, and authorized — not a silent substitution. A separate finding from the same investigation (codex 0.144.4 moved `--search` to a top-level-only flag; `codex exec --search` now fails) was captured in the cli-codex skill docs.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -266,6 +270,8 @@ Three executor lineages need transports. The operator mandates that GPT models r
 **We chose**: LUNA and SOL on cli-codex (`gpt-5.6-luna` reasoningEffort `max` serviceTier `fast`; `gpt-5.6-sol` reasoningEffort `ultra` serviceTier `fast`); GLM on cli-opencode (`glm-5.2`, reasoningEffort `max`, no serviceTier).
 
 **How it works**: The loop's executor configs carry kind + model + effort per lineage; cli-codex fronts both GPT lineages, cli-opencode fronts GLM. The GLM exact provider prefix (e.g. `zai-coding-plan/glm-5.2`) and whether GLM supports a `max` variant are probed via `opencode models` at execution start and recorded below.
+
+**Probe result (execution):** `opencode models zai-coding-plan` confirmed `zai-coding-plan/glm-5.2` is available. `opencode run --model zai-coding-plan/glm-5.2 --variant max` dispatched successfully, and GLM performed live web mining via opencode's WebFetch tool (its trace shows it self-correcting guessed URLs against live fetch: guess → 404 → search → correct URL). All GLM iterations 36–45 completed with parseable output; codex `--search` remained the GPT lineages' live-search mechanism (top-level flag, preceding `exec`).
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
