@@ -47,7 +47,6 @@
       ".opencode/skills/sk-doc/mode-registry.json",
       ".claude/agents/deep-improvement.md",
       ".codex/agents/deep-improvement.toml",
-      ".codex/prompts/deep-ai-system-improvement.md",
       ".opencode/agents/deep-improvement.md",
       ".opencode/commands/README.txt",
       ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
@@ -60,7 +59,8 @@
       ".opencode/skills/system-deep-loop/benchmark/live_mode_b/skill-benchmark-report.json",
       ".opencode/skills/system-deep-loop/benchmark/router_mode_a/skill-benchmark-report.json",
       ".opencode/skills/system-deep-loop/benchmark/router_mode_a/skill-benchmark-report.md",
-      ".opencode/skills/system-deep-loop/deep-ai-council/README.md"
+      ".opencode/skills/system-deep-loop/deep-ai-council/README.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/README.md"
     ],
     "entities": [
       {
@@ -91,12 +91,6 @@
         "name": "deep-improvement.toml",
         "kind": "file",
         "path": ".codex/agents/deep-improvement.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-ai-system-improvement.md",
-        "kind": "doc",
-        "path": ".codex/prompts/deep-ai-system-improvement.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The operator no longer wants the `/deep:ai-system-improvement` mode, also known as the AI-system packaging or non-development AI-system lane",
     "created_at": "2026-07-15T09:35:26.920Z",
-    "last_save_at": "2026-07-15T10:22:05.725Z",
+    "last_save_at": "2026-07-15T12:54:09.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7467e5a6662ab5c3960b9b848a4ec64d0a7177a949c1f1df946e1744f12de0ce",
+    "source_fingerprint": "sha256:a7ce7007faedfa5afae0092b4a9dfdb2e48a0371b237486dfd3a9d62250aff41",
     "source_doc_hashes": {
       "spec.md": "d8999585cb19e186002fdfe71a8946f638e5ada89b2ad210d089422b7e1fb38f",
       "plan.md": "f050e82e8df60c5c110eb5cd431bbadb400f539e753c57d5ba6356fcbba86826",
       "tasks.md": "424fe140f84108c2991ebad7d6f1f9ee855023908df39eb84e4e6419be24e178",
       "checklist.md": "d65d55563643cfbff405dbfb1d80db3c3542c3e27c973903ecf4915bcaec2562",
-      "implementation-summary.md": "f1c302d0ded079312f45a13321e38f4870373d152b7d2660c1728265d07656a0"
+      "implementation-summary.md": "4d7192c444861e7a8c535d7ea3d647e50f08d04138f761e50f115cfed7b7e4aa"
     },
     "last_active_child_id": null,
     "last_active_at": null

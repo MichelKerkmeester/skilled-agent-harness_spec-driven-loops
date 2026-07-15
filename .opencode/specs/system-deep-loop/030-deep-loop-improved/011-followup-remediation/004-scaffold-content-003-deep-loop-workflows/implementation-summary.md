@@ -63,9 +63,7 @@ All 12 leaf children under `003-deep-loop-workflows` now have real `plan.md` and
 | `007-ideas-backlog-lifecycle` | Rewritten | Rewritten | Regenerated |
 | `008-code-graph-coverage-bridge` | Rewritten | Rewritten | Regenerated |
 | `009-loop-quality-benchmark` | Rewritten | Rewritten | Regenerated |
-| `010-deep-improvement-accepted-vs-shipped` | Rewritten | Rewritten | Regenerated |
-| `011-meta-loop-lane-d-packaging` | Rewritten | Rewritten | Regenerated |
-| `012-push-wave-fanout` | Rewritten | Rewritten | Regenerated |
+| `010-deep-improvement-accepted-vs-shipped` | Rewritten | Rewritten | Regenerated || `012-push-wave-fanout` | Rewritten | Rewritten | Regenerated |
 <!-- /ANCHOR:what-built -->
 
 ---

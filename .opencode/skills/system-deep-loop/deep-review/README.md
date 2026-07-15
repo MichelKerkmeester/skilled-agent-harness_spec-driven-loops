@@ -121,7 +121,7 @@ Skip it for a single-pass review, where `sk-code`'s code-review mode is faster. 
 |---|---|
 | `deep-research` | Investigates outward knowledge with web access. `deep-review` audits inward code with no web access. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Run it before implementation, then `deep-review` after. |
-| `deep-improvement` | Runs evaluator-first improvement across four lanes: agent improvement, model benchmark, skill benchmark and AI-system improvement. |
+| `deep-improvement` | Runs evaluator-first improvement across three lanes: agent improvement, model benchmark and skill benchmark. |
 
 `sk-code`'s code-review mode handles a single-pass review with no convergence gating. `deep-review` is the multi-iteration loop. `system-spec-kit` owns the spec folder, validation and memory continuity.
 

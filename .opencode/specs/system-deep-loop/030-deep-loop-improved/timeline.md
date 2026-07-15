@@ -99,9 +99,7 @@ Epoch five runs on 2026-07-02, follow-up remediation. The two active fan-out rev
 
  7c218ee33d  feat(system-spec-kit): speckit :autopilot/:unattended lifecycle
  c92390d8ec  feat(skill-advisor): registry-projection drift guard + workflowMode
- 356c92f0bb  feat(deep-improvement): loop-quality benchmark (outcome score-delta)
- 4888db2fdf  feat(deep-improvement): lane-D self-improvement packaging profile
- 91e04a892b  feat(deep-loop-runtime): record-replay cassette harness
+ 356c92f0bb  feat(deep-improvement): loop-quality benchmark (outcome score-delta) 91e04a892b  feat(deep-loop-runtime): record-replay cassette harness
  1b3a721a31  feat(deep-improvement): accepted-vs-shipped promotion split + rollback
 
 ---

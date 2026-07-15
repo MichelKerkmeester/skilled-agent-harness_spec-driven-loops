@@ -75,7 +75,7 @@ const sk_prompt = hubSkill('004-sk-prompt', ['prompt-improve', 'prompt-models'],
 const cli_ext = hubSkill('005-cli-external-orchestration', ['cli-opencode', 'cli-claude-code', 'cli-codex'], { hasFeatureCatalog: false });
 const mcp_tooling = hubSkill('006-mcp-tooling', ['mcp-chrome-devtools', 'mcp-click-up', 'mcp-figma'], { hasFeatureCatalog: false });
 
-// system-deep-loop: 5 mode dirs + runtime + shared; agent/model/skill/ai-system improvements live inside deep-improvement.
+// system-deep-loop: 5 mode dirs + runtime + shared; agent/model/skill improvements live inside deep-improvement.
 const system_deep_loop = parent('007-system-deep-loop', [
   leaf('hub-root-and-shared', 2),
   leaf('runtime', 3, { note: 'system-deep-loop/runtime: 271 files, 108 snake — biggest shared-code hotspot; dependency backbone for all modes' }),

@@ -10,16 +10,16 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/067-ai-system-improvement-removal"
-    last_updated_at: "2026-07-15T10:14:02Z"
-    last_updated_by: "codex"
-    recent_action: "Closed the Wave 1b runtime removal gates and recorded the combined evidence"
-    next_safe_action: "Orchestrator review and one commit; rollback with git revert <sha>"
+    last_updated_at: "2026-07-15T12:54:09Z"
+    last_updated_by: "claude"
+    recent_action: "Completion pass removed the orphan Lane-D files and doc references the first scan missed"
+    next_safe_action: "Commit the completion pass; rollback with git revert if needed"
     blockers: []
     key_files:
       - ".opencode/specs/system-deep-loop/067-ai-system-improvement-removal/checklist.md"
     completion_pct: 100
     open_questions:
-      - "Wave 2 historical specs/** scrub is deferred."
+      - "Some Lane-D mentions remain in frozen research-delta artifacts and concurrent-owned 065 specs."
     answered_questions: []
 ---
 # Implementation Summary: Remove the Deep AI-System Improvement Lane
@@ -45,7 +45,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Wave 1 and Wave 1b remove the deprecated AI-system packaging improvement lane from the runtime surface. The packet records the primary seven dedicated deletions and 29 shared-file scrubs plus Wave 1b's eleven dedicated deletions and 20 shared-file scrubs, for 18 dedicated files and 49 shared files across 67 runtime targets. In particular, `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs` now dispatches only the remaining supported modes, and `.opencode/skills/sk-doc/mode-registry.json` no longer advertises the retired family. All remaining deep-loop lanes are preserved, while historical spec cleanup remains deferred to Wave 2.
+Wave 1 and Wave 1b remove the deprecated AI-system packaging improvement lane from the runtime surface. The packet records the primary seven dedicated deletions and 29 shared-file scrubs plus Wave 1b's eleven dedicated deletions and 20 shared-file scrubs, for 18 dedicated files and 49 shared files across 67 runtime targets. In particular, `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs` now dispatches only the remaining supported modes, and `.opencode/skills/sk-doc/mode-registry.json` no longer advertises the retired family. All remaining deep-loop lanes are preserved. **The intro above is superseded by the Wave 2 and completion-pass records below.**
+
+### Wave 2 — historical spec scrub
+
+Wave 2 scrubbed the deprecated lane out of the historical `.opencode/specs/**` docs, deleted its run-artifacts, and removed two dedicated Lane-D packets, with packet metadata regenerated. It landed as its own commit.
+
+### Completion pass (2026-07-15) — verification-gap remediation
+
+The Wave 1/1b residual scans used a separator-only `lane[-_]d` pattern that silently missed the space-form "Lane D" — the commonest prose spelling and the one the lane's own docs used in their titles. That gap left the entire `assets/non_dev_ai_system/` subtree (11 files) and `references/non_dev_ai_system/` (2 files) undeleted, and four live docs (`deep-review/README.md`, the shared `heldout_and_gold_sets.md`, and changelogs `create-benchmark/v1.2.0.0` + `deep-improvement/v1.16.0.0`) still naming the lane. Re-scanning with a corrected space-inclusive pattern, this pass deleted the 13 orphan files and scrubbed 9 doc references across the runtime and canonical surfaces, re-verifying 0 residual. Left intact and deferred: six research-delta `.jsonl` artifacts in unrelated packets (029/030/117) that carry incidental historical Lane-D mentions as frozen research state, and the concurrent-session-owned `065` residuals.
 
 ### Files Changed
 
@@ -98,9 +106,9 @@ The work is executed on the shared branch without switching, stashing, resetting
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Historical records remain**. Wave 2 must scrub deprecated references under historical `.opencode/specs/**` in a separately scoped packet.
+1. **Historical scrub done**. Wave 2 scrubbed the historical `.opencode/specs/**` references and the completion pass cleared the runtime orphans; the only Lane-D mentions left are in frozen research-delta artifacts of unrelated packets and concurrent-owned `065` specs.
 2. **Commit SHA is not yet available**. The orchestrator will commit after review; rollback is recorded as `git revert <sha>` until then.
-3. **Git index write was unavailable in this sandbox**. The eighteen deletions are unstaged workspace deletions and should be staged by the orchestrator.
+3. **Runtime removal committed**. The Wave 1/1b deletions are committed; the completion pass adds a second commit that deletes the 13 orphan files the first pass missed.
 4. **No in-scope file could not be cleanly scrubbed**. The dispatcher and parser were edited surgically and their remaining-mode tests pass.
-5. **Alternate projections remain outside this manifest**. `.claude/agents/deep-improvement.md`, `.codex/agents/deep-improvement.toml`, and `.codex/prompts/deep-ai-system-improvement.md` retain legacy references; the user’s hard boundary prohibits editing them, while the scoped `.opencode` runtime scan is clean.
+5. **Alternate projections reconciled**. `.claude/agents/deep-improvement.md` and `.codex/agents/deep-improvement.toml` were scrubbed and `.codex/prompts/deep-ai-system-improvement.md` deleted in a later wave; the full runtime scan, including `.claude` and `.codex`, is clean.
 <!-- /ANCHOR:limitations -->

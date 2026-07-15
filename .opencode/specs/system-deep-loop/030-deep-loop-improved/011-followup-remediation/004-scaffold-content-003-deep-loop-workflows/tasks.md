@@ -66,9 +66,7 @@ _memory:
 - [x] T009 [P] Author real `plan.md` + `tasks.md` for `007-ideas-backlog-lifecycle`, grounded in its `spec.md`; fix frontmatter.
 - [x] T010 [P] Author real `plan.md` + `tasks.md` for `008-code-graph-coverage-bridge`, grounded in its `spec.md`; fix frontmatter.
 - [x] T011 [P] Author real `plan.md` + `tasks.md` for `009-loop-quality-benchmark`, grounded in its `spec.md`; fix frontmatter.
-- [x] T012 [P] Author real `plan.md` + `tasks.md` for `010-deep-improvement-accepted-vs-shipped`, grounded in its `spec.md`; fix frontmatter.
-- [x] T013 [P] Author real `plan.md` + `tasks.md` for `011-meta-loop-lane-d-packaging`, grounded in its `spec.md`; fix frontmatter.
-- [x] T014 [P] Author real `plan.md` + `tasks.md` for `012-push-wave-fanout`, grounded in its `spec.md`; fix frontmatter.
+- [x] T012 [P] Author real `plan.md` + `tasks.md` for `010-deep-improvement-accepted-vs-shipped`, grounded in its `spec.md`; fix frontmatter.- [x] T014 [P] Author real `plan.md` + `tasks.md` for `012-push-wave-fanout`, grounded in its `spec.md`; fix frontmatter.
 <!-- /ANCHOR:phase-2 -->
 
 ---
