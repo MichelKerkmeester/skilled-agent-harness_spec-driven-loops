@@ -1,6 +1,6 @@
 # create-benchmark
 
-Authors MCP-promotion, behavior, skill-benchmark, and model-benchmark artifacts, and hosts authoring guides for the Lane A and Lane D code-owned families.
+Authors MCP-promotion, behavior, conformance, skill-benchmark, and model-benchmark artifacts, and hosts authoring guides for the Lane A and Lane D code-owned families.
 
 ## 1. OVERVIEW
 
@@ -8,21 +8,23 @@ Authors MCP-promotion, behavior, skill-benchmark, and model-benchmark artifacts,
 
 - **MCP promotion benchmark** — moves a shipped spec packet's curated benchmark evidence into the consuming skill's `mcp_server/benchmarks/` tree so MCP operators find the winner, fixture, caveats, and replay commands without leaving the skill. `SKILL.md` sections 3 through 8 hold the contract.
 - **Behavior benchmark** — authors a `<mode>/behavior_benchmark/` package (index, per-scenario machine contracts, and a Claude baseline) that specifies executor-model behavior at a deep-loop mode's invocation surface, governed by the shared measurement framework. `SKILL.md` section 9 and `references/behavior_benchmark/behavior_benchmark_guide.md` hold the contract.
+- **Conformance benchmark** — authors a `<mode>/assets/conformance_benchmark/<benchmark-id>/` package containing a family index, benchmark contract, lane config, and fixture manifest for a deterministic deep-alignment peer-adapter check. It validates the inputs and stops without invoking the adapter or deep-alignment. `SKILL.md` section 12 and `references/conformance_benchmark/conformance_benchmark_authoring_guide.md` hold the contract.
 - **Skill-benchmark (Lane C)** — authors a hub's `benchmark/` storage tree and its `benchmark/README.md` run-label index; the per-run `skill-benchmark-report.md` is a renderer-owned render this packet never authors. `SKILL.md` section 10 and `references/skill_benchmark/skill_benchmark_storage_guide.md` hold the contract.
 - **Model-benchmark (Lane B)** — authors the Lane B input fixtures (code-task oracle, pattern/capability, reviewer-prompt) and run profiles; the evaluator, scorers, and reviewer-verdict contract stay lane-local. `SKILL.md` section 11 and `references/model_benchmark/model_benchmark_fixture_guide.md` hold the contract.
 
-Two further families — Lane A (agent-improvement) and Lane D (non-dev AI-system improvement) — now carry an authoring guide here (`SKILL.md` section 13); their code-owned artifacts stay in-lane.
+Two further families — Lane A (agent-improvement) and Lane D (non-dev AI-system improvement) — carry an authoring guide here (`SKILL.md` section 14); their code-owned artifacts stay in-lane.
 
 The skill-local surface is the look-here-first entry point; the full audit trail stays in the owning spec packet or lane. `SKILL.md` is the authoritative contract.
 
 ### Family Keys
 
-Six families, keyed by their on-disk asset/reference subdirectory. `SKILL.md` section 2 names these the same way and adds the Section / Lives-at / Owns-vs-routes columns; this table is the on-disk-key lookup:
+Seven families, keyed by their on-disk asset/reference subdirectory. `SKILL.md` section 2 names these the same way and adds the Section / Lives-at / Owns-vs-routes columns; this table is the on-disk-key lookup:
 
 | Family | On-disk key | Assets/references live under |
 | --- | --- | --- |
 | MCP promotion | `shared` | `assets/shared/`, `references/shared/` |
 | Behavior benchmark | `behavior_benchmark` | `assets/behavior_benchmark/`, `references/behavior_benchmark/` |
+| Conformance benchmark | `conformance_benchmark` | `assets/conformance_benchmark/`, `references/conformance_benchmark/` |
 | Skill-benchmark (Lane C) | `skill_benchmark` | `assets/skill_benchmark/`, `references/skill_benchmark/` |
 | Model-benchmark (Lane B) | `model_benchmark` | `assets/model_benchmark/`, `references/model_benchmark/` |
 | Agent-improvement (Lane A) | `agent_improvement` | `references/agent_improvement/` (guide only — assets: N/A, code-owned in-lane) |
@@ -30,7 +32,7 @@ Six families, keyed by their on-disk asset/reference subdirectory. `SKILL.md` se
 
 ## 2. WHEN TO USE
 
-Use this packet when a completed MCP benchmark or bake-off needs to move into the consuming skill tree, when a deep-loop mode needs a behavior_benchmark package, when a hub needs a skill-benchmark storage tree or index, or when a Lane B model-benchmark needs input fixtures or a run profile.
+Use this packet when a completed MCP benchmark or bake-off needs to move into the consuming skill tree, when a deep-loop mode needs a behavior_benchmark package, when deterministic artifact conformance needs a peer-adapter input package, when a hub needs a skill-benchmark storage tree or index, or when a Lane B model-benchmark needs input fixtures or a run profile.
 
 MCP promotion jobs:
 
@@ -44,6 +46,11 @@ Behavior benchmark jobs:
 
 - Author or extend a `behavior_benchmark` package for a deep-loop mode: a `behavior_benchmark.md` index, per-scenario `<PREFIX>-NNN-<slug>.md` machine contracts, and a `baselines/claude-baseline.md`.
 - Design the entry-surface and clarity scenario matrix for a mode's executor behavior.
+
+Conformance benchmark jobs:
+
+- Author or update a family `README.md`, per-benchmark `conformance_benchmark.md`, `lane-config.json`, and `fixtures/fixture-manifest.json` under an owning mode's `assets/conformance_benchmark/` tree.
+- Validate the authored Markdown and JSON, reconcile package paths and evidence pointers, and hand execution to the owning deep-alignment lane without invoking it.
 
 Skill-benchmark jobs (Lane C):
 
@@ -63,12 +70,13 @@ Packet root:
 
 - `SKILL.md` — authoritative workflow contract.
 - `README.md` — human orientation for this packet.
-- `changelog/` — packet-local version history (`v1.0.0.0.md` through `v1.3.0.0.md`).
+- `changelog/` — packet-local version history (`v1.0.0.0.md` through `v1.4.0.0.md`).
 
 References:
 
 - `references/shared/README.md` — overflow route-map to case studies, the report worked example, and common pitfalls. `SKILL.md` is the authoritative contract.
 - `references/behavior_benchmark/behavior_benchmark_guide.md` — end-to-end guide for authoring a behavior_benchmark package: what it measures, package layout, scenario-matrix design, naming, and validation.
+- `references/conformance_benchmark/conformance_benchmark_authoring_guide.md` — authoring guide for deterministic peer-adapter packages, fixture independence, deep-alignment handoff, and the no-execution boundary.
 - `references/skill_benchmark/skill_benchmark_storage_guide.md` — storage convention for a hub's `benchmark/` tree: run-label naming, the frozen `baseline/` anchor, and the renderer-owned report boundary.
 - `references/model_benchmark/model_benchmark_fixture_guide.md` — authoring guide for Lane B inputs: the fixture-family taxonomy, profile shape, and the lane boundary for scoring.
 - `references/agent_improvement/agent_improvement_authoring_guide.md` — authoring guide for Lane A (agent-improvement) doc-only inputs: the improvement charter and strategy scaffolds, target-onboarding classification, and candidate proposal format.
@@ -81,6 +89,10 @@ Assets:
 - `assets/behavior_benchmark/behavior_benchmark_index_template.md` — template for a `behavior_benchmark.md` package index.
 - `assets/behavior_benchmark/behavior_benchmark_scenario_template.md` — template for one `<PREFIX>-NNN-<slug>.md` scenario contract.
 - `assets/behavior_benchmark/behavior_benchmark_baseline_template.md` — template for `baselines/claude-baseline.md`.
+- `assets/conformance_benchmark/conformance_benchmark_readme_template.md` — template for the family `README.md` index.
+- `assets/conformance_benchmark/conformance_benchmark_contract_template.md` — template for one `conformance_benchmark.md` contract.
+- `assets/conformance_benchmark/conformance_benchmark_lane_config_template.md` — source for a shipped one-lane `lane-config.json`.
+- `assets/conformance_benchmark/conformance_benchmark_fixture_manifest_template.md` — source for a shipped `fixtures/fixture-manifest.json`.
 - `assets/skill_benchmark/skill_benchmark_readme_template.md` — template for a hub `benchmark/README.md` run-label index (skill-benchmark).
 - `assets/model_benchmark/model_benchmark_code_task_fixture_template.md` — template for one code-task oracle fixture (model-benchmark).
 - `assets/model_benchmark/model_benchmark_pattern_fixture_template.md` — template for a pattern/capability or reviewer-prompt fixture (model-benchmark).

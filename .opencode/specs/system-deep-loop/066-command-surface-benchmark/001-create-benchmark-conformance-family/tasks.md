@@ -1,16 +1,16 @@
 ---
 title: "Tasks: create-benchmark conformance_benchmark family"
 description: "Task breakdown for authoring the conformance_benchmark family, its guide, routing projections, authoring-command branch, and parity test."
-status: planned
+status: complete
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/001-create-benchmark-conformance-family"
-    last_updated_at: "2026-07-15T05:30:00Z"
-    last_updated_by: "claude"
-    recent_action: "Reserved conformance-family child in the renumbered decomposition"
-    next_safe_action: "Author the conformance_benchmark templates, guide, routing, and parity test"
+    last_updated_at: "2026-07-15T06:28:57Z"
+    last_updated_by: "codex"
+    recent_action: "Completed all conformance family tasks with verification evidence"
+    next_safe_action: "Orchestrator refreshes description and graph metadata"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
@@ -28,29 +28,29 @@ _memory:
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-`[ ]` open · `[x]` complete. Each task lists its verification evidence. This child is Planned; all tasks are open.
+`[ ]` open · `[x]` complete. Each task lists its verification evidence. This child is complete.
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 — Relocate duplicated create-benchmark SKILL prose into references to reclaim word budget. Evidence: package_skill.py --check word count with headroom below 5000.
-- [ ] T002 — Add the conformance_benchmark FAMILIES key and the empty assets and references directories. Evidence: directories present and the family key listed in the router.
+- [x] T001 — Relocate duplicated create-benchmark SKILL prose into references to reclaim word budget. Evidence: [EVIDENCE: `package_skill.py --check` passes at 4,972 words, down from 4,993, after delegating a 411-word block to the existing behavior guide.]
+- [x] T002 — Add the conformance_benchmark FAMILIES key and the empty assets and references directories. Evidence: [EVIDENCE: `FAMILIES` lists `conformance_benchmark` after `behavior_benchmark`, and both registered resource directories exist.]
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 — Author the four conformance_benchmark asset templates. Evidence: README, contract, lane-config, and fixture-manifest templates each passing document validation.
-- [ ] T004 — Author the conformance_benchmark authoring guide holding the procedural depth. Evidence: guide passes document validation and cross-links the four templates.
-- [ ] T005 — Add the SKILL family-table row, triggers, concise package section, version bump, and synchronize the README, mode-registry, hub-router, and changelog. Evidence: routing projections list the family and package_skill.py --check passes.
+- [x] T003 — Author the four conformance_benchmark asset templates. Evidence: [EVIDENCE: `validate_document.py --type readme` exits 0 for 4/4 pre-authored templates, and 2/2 fenced JSON values parse.]
+- [x] T004 — Author the conformance_benchmark authoring guide holding the procedural depth. Evidence: [EVIDENCE: `validate_document.py --type readme` exits 0 with zero issues for the preserved pre-authored guide.]
+- [x] T005 — Add the SKILL family-table row, triggers, concise package section, version bump, and synchronize the README, mode-registry, hub-router, and changelog. Evidence: [EVIDENCE: `json.tool` parses both registries, SKILL validation exits 0, and packaging passes at 4,972 words.]
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 — Add the /create:benchmark --family=conformance_benchmark authoring branch. Evidence: dry run authors and validates a package with no adapter or benchmark run.
-- [ ] T007 — Add the family-parity regression test. Evidence: test passes and fails closed when an asset directory is removed.
+- [x] T006 — Add the /create:benchmark --family=conformance_benchmark authoring branch. Evidence: [EVIDENCE: `yaml.safe_load` parses 2/2 workflows, and static branch assertions prove four outputs, validation, termination, and retained MCP promotion.]
+- [x] T007 — Add the family-parity regression test. Evidence: [EVIDENCE: `test_create_benchmark_family_registry.py` passes for 7/7 families; removing the conformance asset directory produces a nonzero assertion before restoration.]
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

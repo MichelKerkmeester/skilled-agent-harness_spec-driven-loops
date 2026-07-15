@@ -1,16 +1,16 @@
 ---
 title: "Implementation Plan: create-benchmark conformance_benchmark family"
 description: "Plan for adding the conformance_benchmark authoring family to create-benchmark: four asset templates, an authoring guide, routing projections, a minimal /create:benchmark branch, and a family-parity test, all authoring-only with no adapter or scoring logic."
-status: planned
+status: complete
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/001-create-benchmark-conformance-family"
-    last_updated_at: "2026-07-15T05:30:00Z"
-    last_updated_by: "claude"
-    recent_action: "Reserved conformance-family child in the renumbered decomposition"
-    next_safe_action: "Author the conformance_benchmark templates, guide, routing, and parity test"
+    last_updated_at: "2026-07-15T06:28:57Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the planned conformance family implementation and verification"
+    next_safe_action: "Orchestrator refreshes description and graph metadata"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"

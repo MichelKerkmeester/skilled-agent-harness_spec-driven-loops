@@ -27,7 +27,7 @@ Hard-block message:
 
 ```text
 This command requires @markdown for template-first benchmark authoring and sk-doc validation.
-Restart with: @markdown /create:benchmark <skill-name> <spec-packet> [create|update]
+Restart with: @markdown /create:benchmark <skill-or-mode> <spec-packet> [create|update] --family=<FAMILIES-key>
 
 STATUS=FAIL ERROR="Markdown agent required"
 ```
@@ -40,6 +40,7 @@ Pre-bound setup schema:
 
 ```yaml
 PRE-BOUND SETUP ANSWERS:
+  benchmark_family: mcp_promotion
   skill_name: system-spec-kit
   source_packet_path: .opencode/specs/example-benchmark-packet
   operation: create
@@ -56,16 +57,25 @@ Default resolution table:
 
 | Field | Required | Resolves Via | Default | Tier-2 Candidate |
 | --- | --- | --- | --- | --- |
+| `benchmark_family` | Yes | `--family=<FAMILIES-key>`, marker, or family choice | none | Yes |
 | `skill_name` | Yes | First positional token or marker | none | No |
 | `source_packet_path` | Yes | Second positional token or marker | none | No |
 | `operation` | Yes | positional token, marker, or target existence | none | Yes |
-| `source_strategy` | Yes | marker or targeted promotion type choice | `promote-benchmark` | Yes |
-| `benchmark_date` | Yes | `--date`, marker, or benchmark evidence date | none | Yes |
+| `source_strategy` | MCP only | marker or targeted promotion type choice | `promote-benchmark` | Yes |
+| `benchmark_date` | MCP only | `--date`, marker, or benchmark evidence date | none | Yes |
+| `benchmark_id` | Conformance only | `--benchmark-id`, marker, or branch question | none | Yes |
 | `skill_path` | Yes | `--path`, marker, or default | `.opencode/skills/` | No |
-| `benchmarks_root` | Yes | marker or derived from skill path/name | derived | No |
-| `benchmark_folder` | Yes | marker or derived from root/date | derived | No |
+| `benchmarks_root` | MCP only | marker or derived from skill path/name | derived | No |
+| `benchmark_folder` | MCP only | marker or derived from root/date | derived | No |
+| `target_mode_path` | Conformance only | derived from skill path/name | derived | No |
+| `conformance_package_root` | Conformance only | derived as `<target_mode_path>/assets/conformance_benchmark` | derived | No |
+| `benchmark_package` | Conformance only | derived from package root and benchmark ID | derived | No |
 | `execution_mode` | Yes | `:auto`, `:confirm`, or marker | `AUTONOMOUS` under `:auto` | No |
 | `memory_choice` | No | marker, prior-work detection, or default | `skip` when no prior continuity exists | No |
+
+Command-bound families are `mcp_promotion` and `conformance_benchmark`. Other
+keys remain valid create-benchmark skill routes but stop at this command boundary
+until their authoring branches are registered.
 
 ## 3. Consolidated Startup Prompt
 
@@ -74,30 +84,46 @@ Ask one prompt containing only applicable questions. Do not split these question
 ```text
 Before proceeding, please answer:
 
-Q0. Skill Name (if missing)
-Required format: hyphen-case folder name for a skill that has mcp_server/.
+Q0. Benchmark Family (if missing)
+A) mcp_promotion
+B) conformance_benchmark
+C) behavior_benchmark
+D) skill_benchmark
+E) model_benchmark
+F) agent_improvement
+G) non_dev_ai_system
 
-Q1. Source Spec Packet (if missing)
+Only A and B are command-bound. Selecting C-G stops with a branch-not-registered
+message and routes the user to the live create-benchmark skill contract.
+
+Q1. Skill or Owning Mode Name (if missing)
+Required format: hyphen-case folder name. MCP promotion requires `mcp_server/`;
+conformance authoring requires a mode that owns `assets/`.
+
+Q2. Source Spec Packet (if missing)
 Provide the .opencode/specs/... packet path that owns the benchmark decision and evidence.
 
-Q2. Operation (if missing)
+Q3. Operation (if missing)
 A) create
 B) update
 
-Q3. Promotion Type
+Q4. Promotion Type (MCP promotion only)
 A) promote-benchmark: create a skill-local folder from accepted benchmark evidence
 B) rerun-update: update an existing folder after a confirming re-run
 C) retirement-update: mark an existing benchmark retired while preserving the folder
 
-Q4. Benchmark Execution Date (if missing)
+Q5. Benchmark Execution Date (MCP promotion only, if missing)
 Required format: YYYY-MM-DD. Use the date the benchmark ran, not today's date.
 
-Q5. Prior Work Context (when the existing spec has prior continuity)
+Q6. Benchmark ID (conformance only, if missing)
+Required format: stable lowercase-hyphen ID describing the corpus, not a date or run.
+
+Q7. Prior Work Context (when the existing spec has prior continuity)
 A) Load handover plus implementation-summary continuity
 B) Load canonical spec docs up to a recent cap
 C) Skip
 
-Q6. Execution Mode (if no :auto/:confirm suffix)
+Q8. Execution Mode (if no :auto/:confirm suffix)
 A) Interactive (:confirm)
 B) Autonomous (:auto)
 ```
@@ -105,22 +131,28 @@ B) Autonomous (:auto)
 Hard stops:
 
 - Do not infer missing operation from context.
+- Do not infer a missing benchmark family.
 - Do not split setup across multiple prompts.
 - Do not continue with missing required fields.
+- Do not enter a workflow for a FAMILIES key without a registered command branch.
 
 ## 4. Setup Dashboard
 
 | Field | Required | Rule | Value |
 | --- | --- | --- | --- |
 | `create_benchmark_verified` | Yes | `true` | `[value]` |
+| `benchmark_family` | Yes | exact create-benchmark `FAMILIES` key | `[value]` |
 | `skill_name` | Yes | explicit, hyphen-case | `[value]` |
 | `source_packet_path` | Yes | existing spec packet path | `[value]` |
 | `operation` | Yes | `create` or `update` | `[value]` |
-| `source_strategy` | Yes | one normalized choice | `[value]` |
-| `benchmark_date` | Yes | `YYYY-MM-DD` execution date | `[value]` |
+| `source_strategy` | MCP only | one normalized choice | `[value or N/A]` |
+| `benchmark_date` | MCP only | `YYYY-MM-DD` execution date | `[value or N/A]` |
+| `benchmark_id` | Conformance only | lowercase-hyphen | `[value or N/A]` |
 | `skill_path` | Yes | default if omitted | `[value]` |
-| `benchmarks_root` | Yes | derived from skill name and path | `[value]` |
-| `benchmark_folder` | Yes | derived from root and benchmark date | `[value]` |
+| `benchmarks_root` | MCP only | derived from skill name and path | `[value or N/A]` |
+| `benchmark_folder` | MCP only | derived from root and benchmark date | `[value or N/A]` |
+| `target_mode_path` | Conformance only | derived from skill name and path | `[value or N/A]` |
+| `benchmark_package` | Conformance only | `<target_mode_path>/assets/conformance_benchmark/<benchmark_id>` | `[value or N/A]` |
 | `execution_mode` | Yes | `:auto` or `:confirm` | `[value]` |
 
 Proceed only when every required field validates.
@@ -131,19 +163,21 @@ Proceed only when every required field validates.
 Benchmark Command Complete
 
 Skill: [skill_name]
+Family: [benchmark_family]
 Operation: [operation]
-Source strategy: [source_strategy]
+Source strategy: [source_strategy or N/A]
 Mode: [:auto|:confirm]
-Target: [benchmark_folder]
+Target: [benchmark_folder or benchmark_package]
 
 Validation:
-- Report validation: [PASSED|FAILED]
-- README index validation: [PASSED|FAILED]
-- SOURCE/artifact consistency checks: [PASSED|FAILED]
+- Markdown validation: [PASSED|FAILED]
+- JSON/artifact validation: [PASSED|FAILED|N/A]
+- Index and path consistency checks: [PASSED|FAILED]
+- Authoring-only stop enforced: [YES|N/A]
 
 Context:
 - Source packet: [source_packet_path]
 - Memory loaded: [yes/no]
 
-STATUS=[OK|CANCELLED|FAIL] PATH=[benchmark_folder]
+STATUS=[OK|CANCELLED|FAIL] PATH=[benchmark_folder or benchmark_package]
 ```

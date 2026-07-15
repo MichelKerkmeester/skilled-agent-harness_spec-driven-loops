@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: create-benchmark conformance_benchmark family — canonical authoring for deterministic peer-adapter conformance benchmarks"
 description: "Adds a fifth authored create-benchmark family, conformance_benchmark, that templates the input scaffolding for deterministic artifact-conformance benchmarks run through a deep-alignment peer adapter, plus routing projections, a minimal authoring-command branch, and a family-parity regression test."
-status: planned
+status: complete
 trigger_phrases:
   - "conformance benchmark family"
   - "conformance_benchmark template"
@@ -12,10 +12,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/001-create-benchmark-conformance-family"
-    last_updated_at: "2026-07-15T05:30:00Z"
-    last_updated_by: "claude"
-    recent_action: "Reserved conformance-family child in the renumbered decomposition"
-    next_safe_action: "Author the conformance_benchmark templates, guide, routing, and parity test"
+    last_updated_at: "2026-07-15T06:28:57Z"
+    last_updated_by: "codex"
+    recent_action: "Completed conformance family routing, command authoring, and parity validation"
+    next_safe_action: "Orchestrator refreshes description and graph metadata"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
@@ -99,7 +99,7 @@ The create-benchmark skill templates four authored benchmark families — MCP pr
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether /create:benchmark should be generalized to every family now or kept to the conformance branch plus the existing MCP route with broader parity tracked as debt.
+None. `/create:benchmark` keeps the existing MCP route and adds only the conformance branch; broader command-family parity remains outside this packet.
 <!-- /ANCHOR:questions -->
 
 ## PHASE SEQUENCE
