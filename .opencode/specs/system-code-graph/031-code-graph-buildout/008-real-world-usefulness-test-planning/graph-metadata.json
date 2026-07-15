@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "parent_id": "system-code-graph/031-code-graph-buildout",
+  "children_ids": [
+    "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/001-usefulness-test-methodology",
+    "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials",
+    "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun",
+    "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research",
+    "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/005-fix-zero-node-and-parser-issues",
+    "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/006-scope-change-scan-guard",
+    "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish",
+    "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "real world usefulness test phase parent",
+      "code graph usefulness campaign",
+      "usefulness test methodology trials"
+    ],
+    "key_topics": [
+      "real",
+      "world",
+      "usefulness",
+      "test",
+      "phase",
+      "parent",
+      "code",
+      "graph",
+      "campaign",
+      "methodology",
+      "trials",
+      "earlier"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "World Usefulness Test",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Earlier code-graph phases shipped capability and resilience for the tooling, hooks, and runtime integration surfaces",
+    "created_at": "2026-05-05T00:00:00.000Z",
+    "last_save_at": "2026-07-15T18:49:30.171Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9e7de47c3c6089a3049ba3594c5af88033dbd6ea6099707ad116d67fd05b9c8b",
+    "source_doc_hashes": {
+      "spec.md": "620f690f9e3de07ae7b066bbaf6c2ec04f37814be9d389efc5be52921a413a14"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

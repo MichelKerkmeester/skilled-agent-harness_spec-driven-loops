@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor/004-iteration-quality-meta-research",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor/004-iteration-quality-meta-research",
+  "parent_id": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix iteration quality",
+      "class of bug vs finding",
+      "cross-cutting consumer detection",
+      "fix completeness checklist",
+      "FIX-010-v2",
+      "Planning Packet",
+      "verification checklist",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "iteration",
+      "quality",
+      "class",
+      "bug",
+      "finding",
+      "cross-cutting",
+      "consumer",
+      "detection",
+      "completeness",
+      "checklist",
+      "fix-010-v2",
+      "planning"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "review/deep-review-strategy.md",
+      "review/iterations/iteration-005.md",
+      "review/iterations/iteration-001.md",
+      "review/iterations/iteration-002.md",
+      "review/iterations/iteration-003.md",
+      "review/iterations/iteration-004.md",
+      "review/deep-review-state.jsonl",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "research/deep-research-state.jsonl",
+      ".opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl",
+      "checklist.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": "review/deep-review-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iteration Quality Meta",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Review Session",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Count Before Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Prior fix cycles closed cited sites but missed sibling producers, downstream consumers, matrix rows, or algorithm invariants",
+    "created_at": "2026-05-09T19:30:52.609Z",
+    "last_save_at": "2026-07-15T18:49:14.930Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:92ceaca95e9242a8b95421851554fc11b4578b5033f4a1e251e130771e0122fd",
+    "source_doc_hashes": {
+      "spec.md": "e3312eb380d54136631c79e0244712aadffb35c221c1dd5e12d6bab6e113b4f9",
+      "plan.md": "286a1c65217d507ced2819c977d21dd3ee85306efc1f22be789bf1b468e37936",
+      "tasks.md": "c532cf65675ef2e1772937b6cf28c0d9eb38d5b609ccf1ade48d123e4f31528c",
+      "checklist.md": "f0f120d7b7f7f0a3076ff5145d4ae1746701d4466dc5794951cd786bf16cee19",
+      "decision-record.md": "29e1e9975973566c942d8979d06a514b591c0823e6148f43e89b246b74b7634d",
+      "implementation-summary.md": "91904a1ba3b6ee604bebf7f51360738bdc23a4ebce9a8013717cf98620f8ea3f",
+      "research/research.md": "54538b11da0641d70cd73283031055dc2660454df99137714883e854cd97f855"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

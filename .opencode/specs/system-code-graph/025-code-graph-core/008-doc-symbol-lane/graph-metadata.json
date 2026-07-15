@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/025-code-graph-core/008-doc-symbol-lane",
+  "spec_folder": "system-code-graph/025-code-graph-core/008-doc-symbol-lane",
+  "parent_id": "system-code-graph/025-code-graph-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph doc symbol lane",
+      "q5-c1 doc symbol extractor",
+      "markdown heading config key nodes",
+      "code graph lease classification telemetry",
+      "symbolkind non code render tolerance",
+      "code graph doc symbol lane plan",
+      "q5-c1 doc symbol extractor sequencing",
+      "lease classification telemetry plan",
+      "code graph doc symbol lane tasks",
+      "q5-c1 doc symbol extractor tasks",
+      "lease classification telemetry tasks",
+      "code graph doc symbol lane checklist"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "doc",
+      "symbol",
+      "lane",
+      "q5-c1",
+      "extractor",
+      "markdown",
+      "heading",
+      "config",
+      "key",
+      "nodes"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/doc-symbol-extractor.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "indexer-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "structural-indexer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doc-symbol-extractor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/doc-symbol-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Symbol Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lease Telemetry",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph doc lane is hash-only: `'doc'` is excluded from the tree-sitter parser type (`tree-sitter-parser.ts:67` `type ParserLanguage = Exclude<SupportedLanguage,'doc'>`), and when `language === 'doc'` the indexer short-circuits to an empty result (`structural-indexer.ts:1237-1249` returns `{nodes:[], edges:[], contentHash, parseHealth:'clean'…}`)",
+    "created_at": "2026-06-19T05:53:16.600Z",
+    "last_save_at": "2026-07-15T18:49:33.444Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0cf1b6a616be01e710f0c9a270909208bb144fc19f7b809bad101c8b6f9376ef",
+    "source_doc_hashes": {
+      "spec.md": "da7ded0723530149b76f4952ababcef97828a5352e77f1619eb804945adf0422",
+      "plan.md": "bed233d1f8fcf3eedd3b474a21973ad4486ae3951da2688eb8ff172a6d1fb4a6",
+      "tasks.md": "101019e3fee41891fc77779aa79a825d54f63b51429ff1059a321992549a4db2",
+      "checklist.md": "328f098060f6a7b20dd7cc1ee9bc62f0962d1cd53f7d117a29858c3b729cd8ee",
+      "implementation-summary.md": "d4a5c3d9d68eb2f10e273853d65ebabd9d35393981c343d71647c6c27cebd1f5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
+  "parent_id": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "blast radius include transitive",
+      "f-022-1 fix",
+      "029 phase 008 blast radius flag",
+      "blast radius transitive plan",
+      "f-022-1 fix plan",
+      "029 phase 008 plan",
+      "blast radius transitive tasks",
+      "f-022-1 fix tasks",
+      "029 phase 008 tasks",
+      "blast radius transitive checklist",
+      "f-022-1 fix checklist",
+      "029 phase 008 checklist"
+    ],
+    "key_topics": [
+      "blast",
+      "radius",
+      "include",
+      "transitive",
+      "f-022-1",
+      "phase",
+      "flag",
+      "plan",
+      "tasks",
+      "checklist",
+      "finding",
+      "codegraphquery"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "query.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Finding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Introduce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Localized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Finding F-022-1 (phase 007): `codegraphquery` blastradius ignores the `includeTransitive` flag",
+    "created_at": "2026-05-27T04:57:41.642Z",
+    "last_save_at": "2026-07-15T18:49:06.127Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3a8b586c5bb14fc810a59047c9d0ecf032ec63cee9e9445a4ceae3ae7a889c96",
+    "source_doc_hashes": {
+      "spec.md": "9af1e99ee5236293cff93568f9bdf1e706a31225bfff89d60055d44c8901cc28",
+      "plan.md": "f78e4028630ddfc4f7bb2a5cad197c962a6c9ba082e3101dd2df173ffbe46045",
+      "tasks.md": "7f28bbf8c9e781e98b823842551a6065249fa0dee26654e3143cd131cdb45082",
+      "checklist.md": "e968be82b5763be17c758ff0125aa7f8d1cc17495a4fcbaf8fa7ee7abbf00123",
+      "implementation-summary.md": "7c8b9f9571d938860c6162e6cd2708ed98e708ec38e9d380c313c32466c835a0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

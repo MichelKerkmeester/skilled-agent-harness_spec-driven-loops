@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/034-code-graph-scatter-from-027/004-system-code-graph-frontmatter-alignment",
+  "spec_folder": "system-code-graph/034-code-graph-scatter-from-027/004-system-code-graph-frontmatter-alignment",
+  "parent_id": "system-code-graph/034-code-graph-scatter-from-027",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph frontmatter alignment",
+      "system-code-graph reference frontmatter",
+      "system-code-graph skill frontmatter standardization",
+      "system-code-graph frontmatter plan",
+      "code graph doc contract plan",
+      "skill doc frontmatter phase 20",
+      "system-code-graph frontmatter tasks",
+      "code graph doc contract tasks",
+      "doc contract normalization tasks",
+      "system-code-graph frontmatter summary",
+      "code graph frontmatter complete",
+      "code graph doc contract evidence"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "code",
+      "graph",
+      "doc",
+      "contract",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/references/config/database_path_policy.md",
+      ".opencode/skills/system-code-graph/references/readiness/code_graph_readiness_check.md",
+      ".opencode/skills/system-code-graph/references/readiness/readiness_and_scope_fingerprint.md",
+      ".opencode/skills/system-code-graph/references/runtime/launcher_lease.md",
+      ".opencode/skills/system-code-graph/references/runtime/naming_conventions.md",
+      ".opencode/skills/system-code-graph/references/runtime/ownership_boundary.md",
+      ".opencode/skills/system-code-graph/references/runtime/tool_surface.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "database_path_policy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/config/database_path_policy.md",
+        "source": "derived"
+      },
+      {
+        "name": "code_graph_readiness_check.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/readiness/code_graph_readiness_check.md",
+        "source": "derived"
+      },
+      {
+        "name": "readiness_and_scope_fingerprint.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/readiness/readiness_and_scope_fingerprint.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher_lease.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/runtime/launcher_lease.md",
+        "source": "derived"
+      },
+      {
+        "name": "naming_conventions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/runtime/naming_conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "ownership_boundary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/runtime/ownership_boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool_surface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/runtime/tool_surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "system-code-graph reference/asset frontmatter is inconsistent with the repo-wide contract: 6 of 7 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
+    "created_at": "2026-06-11T05:47:38Z",
+    "last_save_at": "2026-07-15T18:49:21.608Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8d539612349a8769d3ef923514ca2305728d647312279cbf11d91ecdeece2c46",
+    "source_doc_hashes": {
+      "spec.md": "0d77e1b566e07764cd875d376a198ec1943397a47d5f3d6d81cce3208ff46b02",
+      "plan.md": "948cc4b125c6c56b6f7a3e24beb52e7bc4a20d710ebe4a7381133c402d4d2081",
+      "tasks.md": "47651ef430db8027253b51d52e4da801236807579e0bbf68f8e9c1953459df8c",
+      "implementation-summary.md": "e61722ce8cd31766aaf7a22370eec4cb4308081da830fcb67ec192ec330535e0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

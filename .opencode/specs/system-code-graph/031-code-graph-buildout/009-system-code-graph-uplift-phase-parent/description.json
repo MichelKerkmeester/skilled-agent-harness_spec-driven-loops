@@ -1,0 +1,24 @@
+{
+  "level": "phase-parent",
+  "specFolder": "system-code-graph/031-code-graph-buildout/009-system-code-graph-uplift-phase-parent",
+  "description": "The `system-code-graph` skill ships a runtime that works but a doc surface that under-sells it",
+  "keywords": [
+    "system-code-graph",
+    "skill",
+    "ships",
+    "runtime",
+    "works",
+    "doc",
+    "surface",
+    "under-sells"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.844Z",
+  "specId": "009",
+  "folderSlug": "system-code-graph-uplift-phase-parent",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

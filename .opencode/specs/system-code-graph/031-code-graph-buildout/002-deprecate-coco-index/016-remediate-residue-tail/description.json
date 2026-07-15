@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/016-remediate-residue-tail",
+  "description": "After packets `014-remediate-codegraph-naming` + `015-remediate-cross-surface-residue`, an exhaustive verify-first sweep was run to prove the 014",
+  "keywords": [
+    "packets",
+    "014-remediate-codegraph-naming",
+    "015-remediate-cross-surface-residue",
+    "exhaustive",
+    "verify-first",
+    "sweep",
+    "run",
+    "prove"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.785Z",
+  "specId": "016",
+  "folderSlug": "remediate-residue-tail",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "002-deprecate-coco-index"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

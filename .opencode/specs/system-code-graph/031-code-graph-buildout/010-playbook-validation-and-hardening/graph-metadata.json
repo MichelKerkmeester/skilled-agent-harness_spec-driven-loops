@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening",
+  "parent_id": "system-code-graph/031-code-graph-buildout",
+  "children_ids": [
+    "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+    "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+    "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/003-release-readiness-synthesis",
+    "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/004-hook-and-doc-fixes",
+    "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/005-db-binding-cleanup",
+    "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
+    "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022",
+    "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph playbook validation",
+      "system-code-graph manual testing run",
+      "029 code graph playbook validation"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "playbook",
+      "validation",
+      "system-code-graph",
+      "manual",
+      "testing",
+      "run",
+      "skill",
+      "ships",
+      "22-scenario",
+      "manualtestingplaybook"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Playbook Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-code-graph` skill ships a 22-scenario manual testing playbook (`manualtestingplaybook/`) that validates the `mk-code-index` MCP runtime: read-path freshness, manual scan/verify/status, detectchanges, context retrieval, coverage graph, MCP tool surface, doctor-code-graph policy, post-rename infrastructure, and the Devin SessionStart hook",
+    "created_at": "2026-05-26T19:43:14.031Z",
+    "last_save_at": "2026-07-15T18:49:29.653Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:63c639f8f1361bc2dd8f13998b919502588823eae908355d373c054fa98307b4",
+    "source_doc_hashes": {
+      "spec.md": "00c3b27e7bb1e257ed1da5cb9cef4d70bdb143df651db202b5e2f65cb2f8ecce"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

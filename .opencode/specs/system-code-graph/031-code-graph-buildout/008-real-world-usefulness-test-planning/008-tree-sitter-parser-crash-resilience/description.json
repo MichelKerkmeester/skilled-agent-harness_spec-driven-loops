@@ -1,0 +1,49 @@
+{
+  "title": "Tree-sitter parser resilience",
+  "trigger_phrases": [
+    "026/007/012/007",
+    "tree-sitter parser crash",
+    "memory access out of bounds",
+    "broad scope scan",
+    "parser skip-list",
+    "wasm grammar bug",
+    "code graph parser resilience"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience",
+  "status": "phase_2_complete",
+  "parent_id": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "importance_tier": "important",
+  "created_at": "2026-05-06T13:40:00Z",
+  "specFolder": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience",
+  "description": "Live testing of the code-graph (after F-002/F-003/F-018/F-019 remediation landed) showed that broad-scope scans (`agents+commands+specs+plugins=all`)",
+  "keywords": [
+    "live",
+    "testing",
+    "code-graph",
+    "f-002",
+    "f-003",
+    "f-018",
+    "f-019",
+    "remediation",
+    "landed",
+    "showed",
+    "broad-scope",
+    "scans",
+    "agents",
+    "commands",
+    "specs",
+    "plugins"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.838Z",
+  "specId": "008",
+  "folderSlug": "tree-sitter-parser-crash-resilience",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "008-real-world-usefulness-test-planning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

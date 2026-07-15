@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022",
+  "parent_id": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook doc reconciliation",
+      "022 transitive re-verify",
+      "029 phase 007 followup",
+      "hook doc reconciliation plan",
+      "022 transitive plan",
+      "029 phase 007 plan",
+      "hook doc reconciliation tasks",
+      "022 transitive tasks",
+      "029 phase 007 tasks",
+      "hook doc reconciliation checklist",
+      "022 transitive checklist",
+      "029 phase 007 checklist"
+    ],
+    "key_topics": [
+      "hook",
+      "doc",
+      "reconciliation",
+      "transitive",
+      "re-verify",
+      "phase",
+      "followup",
+      "plan",
+      "tasks",
+      "checklist",
+      "two",
+      "non-blocking"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/references/decisions/deferred_decisions.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deferred_decisions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/references/decisions/deferred_decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Transitive Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Correct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two non-blocking follow-ups remained after the 029 remediation",
+    "created_at": "2026-05-27T04:03:04.114Z",
+    "last_save_at": "2026-07-15T18:49:06.388Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:44f605d93472e5ac4d26ca0e03ab4205395d01d39bbaa8ca51094aa1e0fc1fc6",
+    "source_doc_hashes": {
+      "spec.md": "0572d15faa2855605a204b4d53f863c44fd237140b6ddea5f5409e87ddb642fc",
+      "plan.md": "a24d3037b525f2d08ba992dc16ca4b3a82f6dff7267ac2a7ac1d8a73a395afb1",
+      "tasks.md": "5435bdd24e2cbec5d24bc80a3ef967d941e670b3d60cf3218ea63586673b2ab9",
+      "checklist.md": "618a8854e4eb26b20286bbd705e00950b146ea9a298b255dd286f99255abfd42",
+      "implementation-summary.md": "3fdd1656f2576cce7df65d3fd1b8e51bf6e2846da1e93f0c19d654f67cb13153"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

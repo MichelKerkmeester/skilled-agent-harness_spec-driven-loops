@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a",
+  "description": "Code graph operations have no doctor surface",
+  "keywords": [
+    "code",
+    "graph",
+    "operations",
+    "doctor",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.823Z",
+  "specId": "001",
+  "folderSlug": "doctor-diagnostic-command-phase-a",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "007-docs-and-readmes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/005-fix-zero-node-and-parser-issues",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/005-fix-zero-node-and-parser-issues",
+  "parent_id": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/007/012/004",
+      "code graph remediation",
+      "zero_node_scan_rejected",
+      "parse diagnostics",
+      "stale but valid graph",
+      "026/007/012/004 plan",
+      "zero-node guard plan",
+      "parse diagnostics plan",
+      "candidate manifest regression",
+      "026/007/012/004 tasks",
+      "code graph remediation tasks",
+      "F-002 tasks"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "remediation",
+      "parse",
+      "diagnostics",
+      "stale",
+      "valid",
+      "plan",
+      "zero-node",
+      "guard",
+      "candidate",
+      "manifest"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts",
+      "schemas/tool-input-schemas.ts",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tests/tool-input-schema.vitest.ts",
+      "tasks.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Bug Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The real-world usefulness research found two end-user-facing P0 code graph bugs",
+    "created_at": "2026-05-06T06:02:52Z",
+    "last_save_at": "2026-07-15T18:49:10.034Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1798f5d210d41f95eafddb4e74a3314712cb33479b8ad190bff0d65a7ccdd18d",
+    "source_doc_hashes": {
+      "spec.md": "2b18940e5e423b0f807c0b78c6d28229b19c23b7d17457a62cc9eb32c3762874",
+      "plan.md": "036b977d49b09b82542bf9231114e515200d8dd7ff98de85e3e6fac1f6cfe926",
+      "tasks.md": "b27bbd1e217b660c1cca1d355780af2b96f884cf4d183358f95eb61bec8e8ada",
+      "checklist.md": "30561ae88937293414ae1bbf4da443606de16ef23329f3a3681d4b8dd5722fad",
+      "decision-record.md": "abef8fc23ec4bc745a0e115ca341518e636d153326ca3eebab9e0a86cd32e4b1",
+      "implementation-summary.md": "6dd68a7045c691090f9ec1f4d79ef95c4e943c9b7056c738a76cbce28951bd1a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

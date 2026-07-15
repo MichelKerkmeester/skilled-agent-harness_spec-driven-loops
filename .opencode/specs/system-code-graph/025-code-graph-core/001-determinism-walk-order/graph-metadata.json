@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/025-code-graph-core/001-determinism-walk-order",
+  "spec_folder": "system-code-graph/025-code-graph-core/001-determinism-walk-order",
+  "parent_id": "system-code-graph/025-code-graph-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph determinism walk order",
+      "code-graph-context finalize tiebreak",
+      "fuseResultsMulti code graph adapter",
+      "Q4-C1 rank-time trust tuning",
+      "028 code-graph impl phase",
+      "code graph determinism walk order plan",
+      "code-graph-context finalize tiebreak sequencing",
+      "fuseResultsMulti code graph adapter plan",
+      "028 code-graph determinism impl",
+      "tasks code graph determinism walk order",
+      "code-graph-context tiebreak task breakdown",
+      "028 code-graph determinism tasks"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "determinism",
+      "walk",
+      "order",
+      "code-graph-context",
+      "finalize",
+      "tiebreak",
+      "fuseresultsmulti",
+      "adapter",
+      "q4-c1",
+      "rank-time"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts",
+      "shared/algorithms/rrf-fusion.ts",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-context-handler.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Determinism",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Structural Retrieval Intelligence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before this pass, the code-graph impact/dependency walk ranked callers/callees on a single seam, `rankContextEdges` feeding `finalize()` in `code-graph-context.ts:365-378, :436, :712`, and its ordering was not reproducible across scan rebuilds",
+    "created_at": "2026-06-19T05:52:29.579Z",
+    "last_save_at": "2026-07-15T18:49:35.319Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3758098c6f670c73eef641e7b6f78a6a0d14bc62f285b43dc58ef1dac55930f2",
+    "source_doc_hashes": {
+      "spec.md": "f7f2c0ffbbd3340becd02e2c787ad24e9c2efa2f24deefb9a599ce4db4ffe63c",
+      "plan.md": "243db3fbf241542c541b90a562b83d15feda1c5ef4de873a15d796ab36743ba1",
+      "tasks.md": "c83da127dac03c013d85da7a2b39dcb53ed9236fe20f497ca551b66a056fef93",
+      "checklist.md": "2a1769e21cfd0fef879695f7c3603ac3abbaf471b69868f9f44488e8aaea6432",
+      "implementation-summary.md": "8cf52d863be83bffca370c2a1c34338c4a21fdf386c8afcf50afbb410e3ef192"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation",
+  "parent_id": "system-code-graph/031-code-graph-buildout",
+  "children_ids": [
+    "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation/001-system-code-graph-extraction",
+    "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation/002-extraction-design-and-decision-record",
+    "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
+    "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation/004-three-way-isolation-finalize"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph extraction and isolation",
+      "system-code-graph extraction",
+      "standalone mcp isolation"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "extraction",
+      "isolation",
+      "system-code-graph",
+      "standalone",
+      "mcp",
+      "standalone-mcp",
+      "track",
+      "design",
+      "decision",
+      "record"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Extraction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-code-graph extraction and standalone-MCP isolation track: extraction, extraction design and decision record, standalone-MCP topology pivot, and three-way isolation",
+    "created_at": "2026-05-26T16:51:06.191Z",
+    "last_save_at": "2026-07-15T18:49:30.864Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:641c9f412cd5f2422756e823b20813044befcf08856a3fc78879355a4ef52916",
+    "source_doc_hashes": {
+      "spec.md": "39c43e6b64d3dfc64e93594827d9226bf564918a97aced3c5e337155830531f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

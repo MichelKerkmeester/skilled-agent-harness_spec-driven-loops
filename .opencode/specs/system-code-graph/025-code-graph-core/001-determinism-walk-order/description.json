@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-code-graph/025-code-graph-core/001-determinism-walk-order",
+  "description": "Before this pass, the code-graph impact/dependency walk ranked callers/callees on a single seam, `rankContextEdges` feeding `finalize()` in",
+  "keywords": [
+    "pass",
+    "code-graph",
+    "impact",
+    "dependency",
+    "walk",
+    "ranked",
+    "callers",
+    "callees",
+    "single",
+    "seam",
+    "rankcontextedges",
+    "feeding",
+    "finalize"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.739Z",
+  "specId": "001",
+  "folderSlug": "determinism-walk-order",
+  "parentChain": [
+    "system-code-graph",
+    "025-code-graph-core"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

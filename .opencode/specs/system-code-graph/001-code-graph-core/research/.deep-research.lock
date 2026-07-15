@@ -1,8 +1,0 @@
-{
-  "owner_pid": 47457,
-  "started_at_iso": "2026-06-16T17:46:01.188Z",
-  "ttl_ms": 300000,
-  "last_heartbeat_iso": "2026-06-16T17:46:01.188Z",
-  "packet_id": ".opencode/specs/system-code-graph/001-code-graph-core",
-  "runtime_kind": "main"
-}

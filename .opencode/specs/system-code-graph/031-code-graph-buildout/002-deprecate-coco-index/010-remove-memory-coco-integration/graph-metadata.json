@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/010-remove-memory-coco-integration",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/010-remove-memory-coco-integration",
+  "parent_id": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remove memory cocoindex integration",
+      "deprecate cocoindex phase 010",
+      "memory coco scope gap"
+    ],
+    "key_topics": [
+      "remove",
+      "memory",
+      "cocoindex",
+      "integration",
+      "deprecate",
+      "phase",
+      "coco",
+      "scope",
+      "gap",
+      "system-spec-kit",
+      "carries",
+      "live"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "lib/search/vector-index.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "vector-index.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Excise",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Approx",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "system-spec-kit (memory) carries a live CocoIndex integration the research missed: `lib/cocoindex/daemon-probe.ts`, `lib/utils/cocoindex-path.ts` (`isCocoIndexAvailable`/`getCocoIndexBinaryPath`), `lib/search/cocoindex-calibration.ts` (post-fetch overfetch telemetry), `cocoIndexAvailable` threaded through `context-server.ts`/`session-snapshot.ts`/`memory-surface.ts`/both `session-prime` hooks/`code-graph-boundary.ts`, the `cocoIndex` MergeInput hint in `compact-inject.ts`, and a coco-keyed `\"vector channel unavailable, lexical-only\"` warning in `memory-search.ts`",
+    "created_at": "2026-05-25T00:00:00.000Z",
+    "last_save_at": "2026-07-09T10:02:46.803Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2222dfecdce02f242dc56b950eeabcdac65f515235acf67e655f34c3ac74a074",
+    "source_doc_hashes": {
+      "spec.md": "3b05d48a5d144123b565bf6bbabf845dbdf0e306dcf845f83f956dd9f8cca6b9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/001-touchpoint-research",
+  "description": "Deprecating mcp-coco-index + system-rerank-sidecar and decoupling system-code-graph touches a large, dispersed surface (skills, commands, agents,",
+  "keywords": [
+    "deprecating",
+    "mcp-coco-index",
+    "system-rerank-sidecar",
+    "decoupling",
+    "system-code-graph",
+    "touches",
+    "large",
+    "dispersed",
+    "surface",
+    "skills",
+    "commands",
+    "agents"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.779Z",
+  "specId": "001",
+  "folderSlug": "touchpoint-research",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "002-deprecate-coco-index"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

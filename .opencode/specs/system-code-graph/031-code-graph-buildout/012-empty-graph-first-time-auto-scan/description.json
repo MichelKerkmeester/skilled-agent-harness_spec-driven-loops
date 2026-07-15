@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-code-graph/031-code-graph-buildout/012-empty-graph-first-time-auto-scan",
+  "description": "When the code graph is empty (never built, or reset), the read tools (`codegraphquery`, `codegraphcontext`) return `status:\"blocked\"` with",
+  "keywords": [
+    "code",
+    "graph",
+    "empty",
+    "never",
+    "reset",
+    "read",
+    "tools",
+    "codegraphquery",
+    "codegraphcontext",
+    "return",
+    "status",
+    "blocked"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.857Z",
+  "specId": "012",
+  "folderSlug": "empty-graph-first-time-auto-scan",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "29-05-26_12-03__audited-the-system-code-graph-skill-with-two.md"
+  ]
+}

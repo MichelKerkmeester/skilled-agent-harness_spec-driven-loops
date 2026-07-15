@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor/001-code-graph-advisor-refinement",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor/001-code-graph-advisor-refinement",
+  "parent_id": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph advisor refinement",
+      "code graph research",
+      "skill advisor research",
+      "026/009/015",
+      "code graph skill advisor refinement",
+      "code graph advisor refinement plan",
+      "026/009/015 remediation plan",
+      "015 implementation plan",
+      "10-PR remediation roadmap",
+      "code graph advisor refinement tasks",
+      "026/009/015 tasks",
+      "015 remediation tasks"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "advisor",
+      "refinement",
+      "research",
+      "skill",
+      "plan",
+      "remediation",
+      "implementation",
+      "10-pr",
+      "roadmap",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "applied/B1.md",
+      "applied/B2.md",
+      "applied/B3.md",
+      "applied/B4.md",
+      "applied/B5.md",
+      "applied/F35-calibration.md",
+      "applied/B6.md",
+      "mcp_server/tests/promotion-positive-validation-semantics.vitest.ts",
+      "research/001-code-graph-advisor-refinement-roadmap/research.md",
+      "research/001-code-graph-advisor-refinement-roadmap/resource-map.md",
+      "mcp_server/package.json",
+      "handlers/index.ts",
+      "tests/promotion-positive-validation-semantics.vitest.ts",
+      "research/001-code-graph-advisor-refinement-roadmap/iterations/iteration-018.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "B1.md",
+        "kind": "doc",
+        "path": "applied/B1.md",
+        "source": "derived"
+      },
+      {
+        "name": "B2.md",
+        "kind": "doc",
+        "path": "applied/B2.md",
+        "source": "derived"
+      },
+      {
+        "name": "B3.md",
+        "kind": "doc",
+        "path": "applied/B3.md",
+        "source": "derived"
+      },
+      {
+        "name": "B4.md",
+        "kind": "doc",
+        "path": "applied/B4.md",
+        "source": "derived"
+      },
+      {
+        "name": "B5.md",
+        "kind": "doc",
+        "path": "applied/B5.md",
+        "source": "derived"
+      },
+      {
+        "name": "F35-calibration.md",
+        "kind": "doc",
+        "path": "applied/F35-calibration.md",
+        "source": "derived"
+      },
+      {
+        "name": "B6.md",
+        "kind": "doc",
+        "path": "applied/B6.md",
+        "source": "derived"
+      },
+      {
+        "name": "promotion-positive-validation-semantics.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/promotion-positive-validation-semantics.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-018.md",
+        "kind": "doc",
+        "path": "research/001-code-graph-advisor-refinement-roadmap/iterations/iteration-018.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Refinement Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Code Graph system (AST-based structural indexer) and the Skill Advisor system (5-lane fusion scorer) each carry known limitations discovered piecemeal across prior packets",
+    "created_at": "2026-04-24T00:00:00Z",
+    "last_save_at": "2026-07-15T18:49:15.764Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d3e040e9886b35f0b0d3dee9bd3168bb24e3036dcdccd2e7494f23ac8fd96dc1",
+    "source_doc_hashes": {
+      "spec.md": "3376423a6e2b5104db61e3fa3823ed162e98adc7f683f9a46683930591934107",
+      "plan.md": "76d892d0ca40c98c8ad6f101d57e2c4a1636d242fe9b4f96eb52fc8de0b617a4",
+      "tasks.md": "86e8336f249f4ead92b7c5712b8e2e83818aac288299a7f036e02ec32d0ff6c6",
+      "checklist.md": "5d8367f1cfb02d481a82abe362fb215b382fa59cde84831d59e8f6fbde0f5271",
+      "decision-record.md": "97ae273ef5f21a2217e3495a442de7873e900f74ec8328aca7a75c34b7935bfe",
+      "implementation-summary.md": "85139f4c3710c2021eac1f25de63b35253914d8f50707b9e3fa1c3e5d60e5ea8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

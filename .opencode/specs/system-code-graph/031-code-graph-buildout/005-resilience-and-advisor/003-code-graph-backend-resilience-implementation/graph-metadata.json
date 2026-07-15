@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation",
+  "parent_id": "system-code-graph/031-code-graph-buildout/005-resilience-and-advisor",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph backend resilience",
+      "005-code-graph-backend-resilience",
+      "code graph hash predicate",
+      "code_graph_verify MCP tool",
+      "edge-weight tuning code graph",
+      "code graph backend resilience plan",
+      "005-code-graph-backend-resilience plan",
+      "code graph backend resilience tasks",
+      "005-code-graph-backend-resilience tasks",
+      "code graph backend resilience checklist",
+      "005-code-graph-backend-resilience checklist",
+      "code graph backend resilience implementation"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "backend",
+      "resilience",
+      "005-code-graph-backend-resilience",
+      "hash",
+      "predicate",
+      "mcp",
+      "tool",
+      "edge-weight",
+      "tuning",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "handlers/index.ts",
+      "mcp_server/tool-schemas.ts",
+      "mcp_server/lib/architecture/layer-definitions.ts",
+      "mcp_server/tests/context-server.vitest.ts",
+      "scratch/codex-runner.sh",
+      "tests/context-server.vitest.ts",
+      "tests/layer-definitions.vitest.ts",
+      "shared/embeddings/factory.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "layer-definitions.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/architecture/layer-definitions.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "codex-runner.sh",
+        "kind": "script",
+        "path": "scratch/codex-runner.sh",
+        "source": "derived"
+      },
+      {
+        "name": "layer-definitions.vitest.ts",
+        "kind": "test",
+        "path": "tests/layer-definitions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Backend Resilience",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Live",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Patch Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 007 resilience-research packet identified five concrete backend resilience gaps and produced design-ready patch plans for each (iter 8-12 markdowns)",
+    "created_at": "2026-04-25T22:00:00Z",
+    "last_save_at": "2026-07-15T18:49:15.226Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4d283c8d06ac85323399b9ea8183db0a531f0d257849c716f61609192705095a",
+    "source_doc_hashes": {
+      "spec.md": "22d00eb893d5c54a42885c55f7ba17d957e89b8e062ded248f340d57ff167690",
+      "plan.md": "dc818cd6e208ba5069709d8324d62b259f4d0d54032602b602486678a320c601",
+      "tasks.md": "26dab2920dbce5423c403356a181d602dbb0c26a415071815947615cdf3d737c",
+      "checklist.md": "83ea22979046899526c6f901d0cd967bf920eaac2bf533b0d48ca287d8ac6dc8",
+      "implementation-summary.md": "961f5e6947adf807463f7db0c26919581481ab0ad07c61f3ca9a5b7f64652a5a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

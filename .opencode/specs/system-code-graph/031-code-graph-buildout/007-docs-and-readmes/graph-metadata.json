@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes",
+  "parent_id": "system-code-graph/031-code-graph-buildout",
+  "children_ids": [
+    "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a",
+    "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/002-system-code-graph-readmes-update",
+    "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/003-code-folder-readmes-poc",
+    "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/004-doc-drift-alignment",
+    "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/005-cross-skill-doc-polish",
+    "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/006-reference-template-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph docs and readmes",
+      "system-code-graph readmes",
+      "code graph doc drift"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "docs",
+      "readmes",
+      "system-code-graph",
+      "doc",
+      "drift",
+      "code-graph",
+      "documentation",
+      "track",
+      "doctor",
+      "diagnostic"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph documentation track: doctor diagnostic command phase-a, system-code-graph READMEs, code-folder READMEs, doc-drift alignment, cross-skill doc polish, and reference-template alignment",
+    "created_at": "2026-05-26T16:51:06.201Z",
+    "last_save_at": "2026-07-15T18:49:30.478Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:bcc16ae872c2f39d5f412e906d140f9f0cb806fdc2404dfd322bf41a4d0bf9b1",
+    "source_doc_hashes": {
+      "spec.md": "2f053516bd91f5370eb6e3cd9b09fc9b14b5a9ed22793e02d3d35b9d9948417c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

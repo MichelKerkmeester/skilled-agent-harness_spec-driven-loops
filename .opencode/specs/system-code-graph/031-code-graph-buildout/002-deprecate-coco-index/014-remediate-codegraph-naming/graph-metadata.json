@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/014-remediate-codegraph-naming",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/014-remediate-codegraph-naming",
+  "parent_id": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-graph ccc residue",
+      "remove ccc references code-graph",
+      "code-graph naming remediation",
+      "ccc doc cleanup",
+      "code-graph ccc residue plan",
+      "ccc doc cleanup plan",
+      "code-graph ccc residue tasks",
+      "ccc doc cleanup tasks",
+      "code-graph ccc residue checklist",
+      "ccc doc cleanup verification",
+      "code-graph ccc residue summary",
+      "code-graph naming remediation summary"
+    ],
+    "key_topics": [
+      "code-graph",
+      "ccc",
+      "residue",
+      "remove",
+      "references",
+      "naming",
+      "remediation",
+      "doc",
+      "cleanup",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/README.md",
+      "mcp_server/handlers/README.md",
+      "feature_catalog/feature_catalog.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "mcp_server/tools/README.md",
+      "mcp_server/tests/README.md",
+      "mcp_server/tests/lib/README.md",
+      ".opencode/bin/lib/sidecar-env-allowlist.cjs",
+      "mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/README.md",
+      ".opencode/skills/system-code-graph/references/runtime/tool_surface.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-code-graph/mcp_server/tools/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/shared/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/tests/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/tests/lib/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/stress_test/code-graph/README.md",
+      ".opencode/skills/system-code-graph/ARCHITECTURE.md"
+    ],
+    "entities": [
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-env-allowlist.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/sidecar-env-allowlist.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool_surface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/runtime/tool_surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 014 deprecation renamed code-graph's handlers and tools to their own clean identifiers — handlers are `status.ts` / `scan.ts` / `verify.ts` (+ `query.ts`, `context.ts`, `apply.ts`, `detect-changes.ts`, `index.ts`), tools are `codegraph`, the engine is tree-sitter, and `lib/` is `{ipc,shared,utils}/`",
+    "created_at": "2026-05-25T14:58:18Z",
+    "last_save_at": "2026-07-15T18:49:18.182Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b2d420500e91ce150b76fc3eafafa28aac2c09e0b0b6b0eb2f9ef29b303f3e45",
+    "source_doc_hashes": {
+      "spec.md": "d5048cb7ee5aee6f0b74d16b56930d3083d5b73d482631da44a9d546d79a50af",
+      "plan.md": "dfb6e5888ca10bc943298c495679c8d7835e851e343879e15d546bee482a2d82",
+      "tasks.md": "3c4a8d23a1b47ca45e5c5319547023684f2b44ebe95d752be0439f810be019c7",
+      "checklist.md": "35ae4916d90b3900094063121f0cfb9da11aef00a0d5a3cfdcc09466430f4be5",
+      "implementation-summary.md": "c33a3108517414a5f00895c9becffe2b8a6d170d9570c0c6d474b24f9d2b6c47"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

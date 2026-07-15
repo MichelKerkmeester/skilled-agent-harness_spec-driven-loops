@@ -1,0 +1,34 @@
+{
+  "level": 2,
+  "name": "Real-World Usefulness Test Execution",
+  "specFolder": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials",
+  "description": "The parent packet designed a 58-cell usefulness campaign, but many cells require authenticated external CLIs, network access, native Claude",
+  "keywords": [
+    "parent",
+    "packet",
+    "designed",
+    "58-cell",
+    "usefulness",
+    "campaign",
+    "many",
+    "cells",
+    "require",
+    "authenticated",
+    "external",
+    "clis",
+    "network",
+    "access",
+    "native",
+    "claude"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.828Z",
+  "specId": "002",
+  "folderSlug": "sandbox-usefulness-trials",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "008-real-world-usefulness-test-planning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

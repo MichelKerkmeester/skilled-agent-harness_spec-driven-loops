@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-code-graph/026-code-graph-seeded-ppr",
+  "description": "The code-graph impact path shipped a bounded seeded personalized PageRank mechanism behind the default-off flag `SPECKITCODEGRAPHSEEDEDPPRRANKING` in",
+  "keywords": [
+    "code-graph",
+    "impact",
+    "path",
+    "shipped",
+    "bounded",
+    "seeded",
+    "personalized",
+    "pagerank",
+    "mechanism",
+    "behind",
+    "default-off",
+    "flag",
+    "speckitcodegraphseededpprranking"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.773Z",
+  "specId": "026",
+  "folderSlug": "code-graph-seeded-ppr",
+  "parentChain": [
+    "system-code-graph"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-06-26_05-55__the-flag-and-the-ppr-code-were-already-removed.md"
+  ]
+}

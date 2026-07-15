@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/032-code-graph-scatter/015-code-graph-launcher-and-db-lifecycle",
+  "spec_folder": "system-code-graph/032-code-graph-scatter/015-code-graph-launcher-and-db-lifecycle",
+  "parent_id": "system-code-graph/032-code-graph-scatter",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-graph-launcher-and-db-lifecycle",
+      "memory leak 7"
+    ],
+    "key_topics": [
+      "code-graph-launcher-and-db-lifecycle",
+      "memory",
+      "leak",
+      "code-index",
+      "audit",
+      "found",
+      "stale",
+      "orphan-prone",
+      "launcher",
+      "server",
+      "ownership",
+      "spec"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-code-graph/mcp_server/lib/canonical-db-dir.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      ".opencode/skills/system-code-graph/mcp_server/index.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/lib/canonical-db-dir.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/lib/owner-lease.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/lib/close-db.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-db-dir.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/canonical-db-dir.ts",
+        "source": "derived"
+      },
+      {
+        "name": "owner-lease.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-db-dir.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/lib/canonical-db-dir.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "owner-lease.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/lib/owner-lease.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "close-db.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/lib/close-db.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Launcher",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Enforce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-index audit found stale/orphan-prone launcher and server ownership",
+    "created_at": "2026-05-22T10:20:00Z",
+    "last_save_at": "2026-07-15T18:49:24.064Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aa90850b4f6a482a7e02a2cd569bdb7dfe5dfd8c21edcc6cd1c4a6fa25041a00",
+    "source_doc_hashes": {
+      "spec.md": "aab0446e7ef2cfc8774a9b842319451ba7de920563334cf42668edbed51fda43",
+      "plan.md": "ce912d91649779248bc62421d94cf5d0e03f5c819185d51f68b69f2810467efb",
+      "tasks.md": "e29767582ede3a1657a69bd696d8c37b99056ae696093fe257a99ec744ed1b03",
+      "implementation-summary.md": "c26890263d5b67ddc762b63e23a13ed5bf96f91b6d4cf011ca821ae10058b5ca"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

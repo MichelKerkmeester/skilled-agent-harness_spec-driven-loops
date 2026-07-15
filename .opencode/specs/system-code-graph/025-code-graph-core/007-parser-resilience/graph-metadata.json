@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/025-code-graph-core/007-parser-resilience",
+  "spec_folder": "system-code-graph/025-code-graph-core/007-parser-resilience",
+  "parent_id": "system-code-graph/025-code-graph-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Q2-C1 parser transient fatal skip-list",
+      "code graph parser bounded retry max_retries",
+      "tree-sitter WASM crash poison file wedge",
+      "parser skip-list auto-unskip self-heal reversal",
+      "attempt_count durable retry budget code graph",
+      "Q2-C1 plan parser transient fatal",
+      "code graph bounded retry sequencing",
+      "parser skip-list self-heal plan",
+      "Q2-C1 tasks parser transient fatal",
+      "code graph bounded retry tasks",
+      "parser skip-list self-heal tasks",
+      "Q2-C1 implementation summary parser transient fatal"
+    ],
+    "key_topics": [
+      "q2-c1",
+      "parser",
+      "transient",
+      "fatal",
+      "skip-list",
+      "code",
+      "graph",
+      "bounded",
+      "retry",
+      "tree-sitter",
+      "wasm",
+      "crash"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/parser-skip-list.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parser-skip-list.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/parser-skip-list.ts",
+        "source": "derived"
+      },
+      {
+        "name": "structural-indexer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fatal Parser Skip",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bounded Retry",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Durable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shipped In",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A single crashing file is permanently removed from the code graph with no bounded-retry escape",
+    "created_at": "2026-06-19T05:52:29.582Z",
+    "last_save_at": "2026-07-15T18:49:33.705Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7785a0a6266709f85fbb2f70ff22c1955560cf285118809e8729c1abeb912ef4",
+    "source_doc_hashes": {
+      "spec.md": "5c18c9811f96cb8d13d7935bce2b471a9bedcfd6b70f66353ddecddb860eccb7",
+      "plan.md": "99c4cbd879d505b5624836f901fb81595b8610fa91dbaa5cd691b9d62fba25b4",
+      "tasks.md": "34d26cec3c3899f0804bfd0a8e6ea79a18fe71fa8a0ac41751f6d9168caa5de7",
+      "implementation-summary.md": "b8582458ee49f228057e3386e2d6c309ee30a25fd19810b6446b06dafd9bb8d4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

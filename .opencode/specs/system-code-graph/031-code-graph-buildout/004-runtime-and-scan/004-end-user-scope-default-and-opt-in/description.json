@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "system-code-graph/031-code-graph-buildout/004-runtime-and-scan/004-end-user-scope-default-and-opt-in",
+  "description": "Latest scan: 1,619 files / 34,844 nodes / 17,846 edges, with hundreds of those nodes being spec-kit MCP server internals (skilladvisor, codegraph",
+  "keywords": [
+    "latest",
+    "scan",
+    "files",
+    "nodes",
+    "edges",
+    "hundreds",
+    "spec-kit",
+    "mcp",
+    "server",
+    "internals",
+    "skilladvisor",
+    "codegraph"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.801Z",
+  "specId": "004",
+  "folderSlug": "end-user-scope-default-and-opt-in",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "004-runtime-and-scan"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

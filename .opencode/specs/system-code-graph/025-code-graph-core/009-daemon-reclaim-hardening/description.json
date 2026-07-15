@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/025-code-graph-core/009-daemon-reclaim-hardening",
+  "description": "The launcher decides daemon liveness from `process.kill(pid,0)` plus a launcher-written heartbeat — with zero socket-health correlation",
+  "keywords": [
+    "launcher",
+    "decides",
+    "daemon",
+    "liveness",
+    "process",
+    "kill",
+    "pid",
+    "plus",
+    "launcher-written",
+    "heartbeat",
+    "zero",
+    "socket-health",
+    "correlation"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.760Z",
+  "specId": "009",
+  "folderSlug": "daemon-reclaim-hardening",
+  "parentChain": [
+    "system-code-graph",
+    "025-code-graph-core"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "29-06-26_13-45__phase-009-daemon-reclaim-hardening-the-code-index.md"
+  ]
+}

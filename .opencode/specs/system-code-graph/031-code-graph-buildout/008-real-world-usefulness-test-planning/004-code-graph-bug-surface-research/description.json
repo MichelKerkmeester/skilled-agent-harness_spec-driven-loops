@@ -1,0 +1,34 @@
+{
+  "level": 2,
+  "name": "Deep Research Issues",
+  "specFolder": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research",
+  "description": "The native rerun downgraded code graph from useful to overhead after broad scans, read-path drift blocks, parser crashes, and a zero-node persistence",
+  "keywords": [
+    "native",
+    "rerun",
+    "downgraded",
+    "code",
+    "graph",
+    "useful",
+    "overhead",
+    "broad",
+    "scans",
+    "read-path",
+    "drift",
+    "blocks",
+    "parser",
+    "crashes",
+    "zero-node",
+    "persistence"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.834Z",
+  "specId": "004",
+  "folderSlug": "code-graph-bug-surface-research",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "008-real-world-usefulness-test-planning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

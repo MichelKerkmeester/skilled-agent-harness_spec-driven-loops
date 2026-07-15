@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-code-graph/032-code-graph-scatter/010-code-graph-status-readiness-snapshot",
+  "description": "v1.0.2 stress test pre-flight detected a 4-hour staleness drift on the live code graph (`010 findings.md` lines 123-126)",
+  "keywords": [
+    "stress",
+    "test",
+    "pre-flight",
+    "detected",
+    "4-hour",
+    "staleness",
+    "drift",
+    "live",
+    "code",
+    "graph",
+    "findings",
+    "lines"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.867Z",
+  "specId": "010",
+  "folderSlug": "code-graph-status-readiness-snapshot",
+  "parentChain": [
+    "system-code-graph",
+    "032-code-graph-scatter"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "system-code-graph/025-code-graph-core/004-code-edge-bitemporal",
+  "description": "The code-graph reindex mutates edges destructively",
+  "keywords": [
+    "code-graph",
+    "reindex",
+    "mutates",
+    "edges",
+    "destructively"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.742Z",
+  "specId": "004",
+  "folderSlug": "code-edge-bitemporal",
+  "parentChain": [
+    "system-code-graph",
+    "025-code-graph-core"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

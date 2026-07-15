@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/013-owner-lease-election-race",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/013-owner-lease-election-race",
+  "parent_id": "system-code-graph/031-code-graph-buildout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "owner lease election race",
+      "OR-R-01 launcher single writer",
+      "writeLeaseFile reprobe non-atomic",
+      "026 004 013 election race",
+      "OR-R-01 fix plan",
+      "atomic launch election launcher",
+      "exclusive writeLeaseFile plan",
+      "OR-R-01 tasks",
+      "election race fix tasks",
+      "OR-R-01 investigation summary",
+      "launcher 4-layer election analysis"
+    ],
+    "key_topics": [
+      "owner",
+      "lease",
+      "election",
+      "race",
+      "or-r-01",
+      "launcher",
+      "single",
+      "writer",
+      "writeleasefile",
+      "reprobe",
+      "non-atomic",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts",
+      "tests/launcher-lease.vitest.ts",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lease Single",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Writer Election Race",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Decide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lease Election Race",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The launcher (`mk-code-index-launcher.cjs`) elects the single writer through several gates before spawning the daemon, but two of them are non-atomic: the owner-lease reclaim (`acquireOwnerLeaseFile`, lines 373-386) and the `writeLeaseFile()` + `readLeaseFile()` reprobe (lines 948-954) both detect only overlapping concurrent writes via a read-after-write, not sequential ones",
+    "created_at": "2026-05-29T16:10:52.725Z",
+    "last_save_at": "2026-07-15T18:49:28.779Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:01bdf672c48fcd0b26fb129be81db4f0b7a6c6535fb67a881ed82b5f1bb62b5d",
+    "source_doc_hashes": {
+      "spec.md": "5d9fa1fbd5696a8871da8ce21b81a1269ad222b374059e986ffb7ff3d52e59f6",
+      "plan.md": "e9ef2cf6e396b5b0518a7bb567c92bc251f4941cd54a0931c5b0bdb6e6408b57",
+      "tasks.md": "23049b775c72a1f9be8d8723e9c47a2464bf0310ed7161572f9e85ff1057fa9c",
+      "implementation-summary.md": "a7df0a43253dd7863c07cc6dbe6dc8df6bd289e2856930315bec7ea8a8f22b9a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

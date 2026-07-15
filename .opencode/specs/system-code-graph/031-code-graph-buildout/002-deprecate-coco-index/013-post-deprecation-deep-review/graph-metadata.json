@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/013-post-deprecation-deep-review",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/013-post-deprecation-deep-review",
+  "parent_id": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post-deprecation deep review",
+      "014 deep review 30 surfaces",
+      "cli-devin deep review coco"
+    ],
+    "key_topics": [
+      "post-deprecation",
+      "deep",
+      "review",
+      "surfaces",
+      "cli-devin",
+      "coco",
+      "deprecation",
+      "declared",
+      "complete",
+      "session",
+      "repeatedly",
+      "found"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "review/deep-review-strategy.md",
+      "review/review-report.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": "review/deep-review-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deprecation Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rerank Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Find",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`→`ccc`→`ccc`), and a pre-review sweep confirmed 4 more misses",
+    "created_at": "2026-05-25T00:00:00.000Z",
+    "last_save_at": "2026-07-09T10:02:46.809Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:29979ce09e24c52a571db28a6fd89afb228767de6ab07354da636f5a86543aab",
+    "source_doc_hashes": {
+      "spec.md": "f8363d38636f5f739cc5baa417f7915a89350a2defc29c5cfaf5a8903dbc9f02"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
