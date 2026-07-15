@@ -17,6 +17,8 @@ const { spawnSync } = require('node:child_process');
 const RUNNER = path.join(__dirname, '..', 'behavior-bench-run.cjs');
 const FAKE_LEG = path.join(__dirname, 'fixtures', 'fake-leg.js');
 const SMOKE_SCENARIO = path.join(__dirname, 'fixtures', 'SMOKE-000-fake.md');
+const DAB_GOLDEN = path.join(__dirname, 'fixtures', 'dab-v1-golden.json');
+const DAB_SCENARIOS = path.join(__dirname, '..', '..', '..', 'deep-alignment', 'behavior_benchmark', 'scenarios');
 
 function loadSmokeContract() {
   const md = fs.readFileSync(SMOKE_SCENARIO, 'utf8');
@@ -38,6 +40,23 @@ function runBench(args, env) {
   });
 }
 
+function fixedDabObservation() {
+  return {
+    spawnError: null,
+    exitCode: 0,
+    killedBy: 'none',
+    stdoutNonEmptyLines: 2,
+    stdoutText: 'alignment lane conformance run complete',
+    taskEvents: [{ t: 100, line: '{"tool":"task","subagent_type":"deep-alignment"}' }],
+    routeProofRecords: [{ target_agent: 'deep-alignment' }],
+    seatArtifacts: 0,
+    candidateArtifacts: 0,
+    markerHits: [],
+    fixtureGained: true,
+    checkpoints: { tFirstOutputMs: 10, tSetupMs: null, tFirstDispatchMs: 100, tTerminalMs: 1000 },
+  };
+}
+
 async function main() {
   const bench = require(RUNNER);
   assert.equal(typeof bench.classify, 'function');
@@ -45,11 +64,43 @@ async function main() {
   assert.equal(typeof bench.extractRenderedBlock, 'function');
   assert.equal(typeof bench.buildBudgetEdgeSignals, 'function');
   assert.equal(typeof bench.classifyVagueAsk, 'function');
+  assert.equal(typeof bench.countTargetHits, 'function');
+  assert.equal(typeof bench.evaluatePostconditions, 'function');
+  assert.equal(typeof bench.scoreDirectDispatch, 'function');
+  assert.equal(typeof bench.directDispatchEvidence, 'function');
+  assert.equal(typeof bench.evaluateBoundary, 'function');
   assert.deepEqual(Object.keys(bench.LEG_TABLE).sort(), ['claude-cli', 'deepseek', 'glm-max', 'gpt-fast-high', 'gpt-fast-med']);
   assert.deepEqual(bench.LOCKED_MULTI_CAUSE_CELL_IDS, ['ACB-004', 'ACB-005', 'CXB-004']);
   const deepseekArgs = bench.buildSpawnArgs('deepseek', loadSmokeContract());
   assert.deepEqual(deepseekArgs.slice(0, 4), ['opencode', 'run', '--model', 'deepseek/deepseek-v4-pro']);
   assert.ok(deepseekArgs.includes('--format'), 'deepseek leg uses opencode JSON format');
+
+  // ── frozen v1 regression map ────────────────────────────────────────────
+  const dabGolden = JSON.parse(fs.readFileSync(DAB_GOLDEN, 'utf8'));
+  const dabFiles = fs.readdirSync(DAB_SCENARIOS)
+    .filter((name) => /^DAB-\d+.*\.md$/.test(name))
+    .sort();
+  assert.equal(dabFiles.length, 11, 'all eleven DAB scenarios are frozen');
+  assert.equal(Object.keys(dabGolden).length, 11, 'golden contains all eleven DAB entries');
+  for (const file of dabFiles) {
+    const contract = bench.parseScenario(path.join(DAB_SCENARIOS, file));
+    assert.ok(contract, file + ' parses');
+    assert.ok(
+      contract.schema_version === undefined || contract.schema_version === 1,
+      contract.id + ' remains a v1 contract',
+    );
+    const obs = fixedDabObservation();
+    const causes = bench.classificationCauses(contract, obs);
+    const selected = bench.selectResultCauses(contract, causes);
+    const fingerprint = {
+      schemaVersion: contract.schema_version === 2 ? 2 : 1,
+      dimensions: bench.score(contract, obs, null),
+      classification: causes[0],
+      primaryCause: selected.primaryCause,
+      secondaryCause: selected.secondaryCause,
+    };
+    assert.deepEqual(fingerprint, dabGolden[contract.id], contract.id + ' matches the pre-edit golden');
+  }
 
   // ── measurement helpers ─────────────────────────────────────────────────
   assert.equal(
@@ -147,7 +198,7 @@ async function main() {
   const envSlowObs = { ...envObs, checkpoints: { tTerminalMs: 149000 } };
   assert.notEqual(bench.classify(envAuto, envSlowObs), 'env_error');
 
-  // ── D-010 delegation evidence kinds ──────────────────────────────────────
+  // ── delegation evidence kinds ────────────────────────────────────────────
   // Seats are distinct canonical ids in the council's artifact CONTENT, not
   // separate files (the real council writes one deliberation.md per round with
   // per-seat sections plus a state JSONL naming each seat by canonical id).
@@ -202,7 +253,7 @@ async function main() {
   assert.equal(bench.scoreD3(impContract, impOk), 2, 'improvement candidate+score -> D3 2');
   assert.notEqual(bench.classify(impContract, impOk), 'role_absorption', 'improvement with evidence NOT absorption');
 
-  // task_dispatch stays byte-identical: same absorption gate as before D-010.
+  // task_dispatch keeps the established absorption gate.
   const tdContract = {
     expected_interaction: 'autonomous',
     expected_delegation: { min_task_events: 1, role_absorption_forbidden: true },
@@ -214,6 +265,138 @@ async function main() {
   assert.equal(bench.classify(tdContract, tdAbsorbed), 'role_absorption', 'task_dispatch absorption unchanged');
   const tdOk = { ...tdAbsorbed, taskEvents: [{ t: 1, line: 'x' }] };
   assert.notEqual(bench.classify(tdContract, tdOk), 'role_absorption', 'task_dispatch with dispatch not absorption');
+
+  // direct_dispatch counts expected and forbidden stdout target events.
+  const directContract = {
+    schema_version: 2,
+    expected_interaction: 'autonomous',
+    artifacts_required: false,
+    expected_delegation: {
+      evidence_kind: 'direct_dispatch',
+      expected_targets: ['deep-research'],
+      forbidden_targets: ['/deep-review/i'],
+      min_task_events: 1,
+      role_absorption_forbidden: true,
+    },
+  };
+  const directOk = {
+    spawnError: null, exitCode: 0, killedBy: 'none', stdoutNonEmptyLines: 1,
+    stdoutText: 'Dispatch target: DEEP-RESEARCH', taskEvents: [], routeProofRecords: [],
+    fixtureGained: false, markerHits: [], postconditions: [], boundary: { clean: true, escapes: [] },
+  };
+  assert.equal(bench.countTargetHits(['deep-research'], directOk.stdoutText), 1, 'literal target matching is case-insensitive');
+  assert.equal(bench.scoreD3(directContract, directOk), 2, 'expected target without forbidden target -> D3 2');
+  const directForbidden = { ...directOk, stdoutText: directOk.stdoutText + '\nDispatch target: deep-review' };
+  assert.equal(bench.scoreD3(directContract, directForbidden), 1, 'forbidden target caps D3 at 1');
+  const directMissing = { ...directOk, stdoutText: 'no matching target' };
+  assert.equal(bench.scoreD3(directContract, directMissing), 0, 'zero expected targets -> D3 0');
+  const directAbsorbed = { ...directMissing, fixtureGained: true };
+  assert.equal(bench.classify(directContract, directAbsorbed), 'role_absorption');
+  const directHalt = { ...directContract, expected_interaction: 'question_halt' };
+  assert.equal(bench.scoreD3(directHalt, directMissing), null, 'direct-dispatch halt -> D3 null');
+
+  // Postcondition probes are allowlisted and fail closed.
+  const probeTmp = fs.mkdtempSync(path.join(os.tmpdir(), 'bench-probes-'));
+  fs.mkdirSync(path.join(probeTmp, 'allowed'), { recursive: true });
+  fs.writeFileSync(path.join(probeTmp, 'allowed', 'data.json'), JSON.stringify({ nested: { value: 7 } }));
+  fs.writeFileSync(path.join(probeTmp, 'allowed', 'report.txt'), 'command completed successfully\n');
+  const probeContract = {
+    schema_version: 2,
+    postconditions: [
+      { kind: 'file_exists', path: 'allowed/report.txt' },
+      { kind: 'file_exists', path: 'missing.txt' },
+      { kind: 'json_field_equals', path: 'allowed/data.json', field: 'nested.value', value: 7 },
+      { kind: 'json_field_equals', path: 'allowed/data.json', field: 'nested.value', value: 8 },
+      { kind: 'text_contains', path: 'allowed/report.txt', substring: 'completed successfully' },
+      { kind: 'text_contains', path: 'allowed/report.txt', substring: 'not present' },
+      { kind: 'changed_paths_within', prefix: 'allowed' },
+      { kind: 'changed_paths_within', prefix: 'restricted' },
+      { kind: 'not_allowlisted' },
+    ],
+  };
+  const probeResults = bench.evaluatePostconditions(probeContract, probeTmp, {
+    changedFixturePaths: ['allowed/report.txt'],
+  });
+  assert.equal(probeResults[0].ok, true, 'file_exists passes for an existing path');
+  assert.equal(probeResults[1].ok, false, 'file_exists fails for a missing path');
+  assert.equal(probeResults[2].ok, true, 'json_field_equals passes for equal nested value');
+  assert.equal(probeResults[3].ok, false, 'json_field_equals fails for a different value');
+  assert.equal(probeResults[4].ok, true, 'text_contains passes for a present substring');
+  assert.equal(probeResults[5].ok, false, 'text_contains fails for a missing substring');
+  assert.equal(probeResults[6].ok, true, 'changed_paths_within passes inside its prefix');
+  assert.equal(probeResults[7].ok, false, 'changed_paths_within fails outside its prefix');
+  assert.deepEqual(probeResults[8], { kind: 'not_allowlisted', ok: false, reason: 'unknown probe kind' });
+
+  const postconditionObs = {
+    spawnError: null, exitCode: 0, killedBy: 'none', stdoutNonEmptyLines: 1, stdoutText: 'done',
+    taskEvents: [], routeProofRecords: [], fixtureGained: false, markerHits: [],
+    changedFixturePaths: [], boundary: { clean: true, escapes: [] },
+  };
+  const partialPostconditionContract = {
+    schema_version: 2,
+    expected_interaction: 'autonomous',
+    artifacts_required: false,
+    expected_delegation: {},
+    postconditions: [{ kind: 'file_exists', path: 'missing.txt' }],
+  };
+  assert.equal(
+    bench.classify(partialPostconditionContract, {
+      ...postconditionObs,
+      postconditions: [{ kind: 'file_exists', ok: false, reason: 'path does not exist' }],
+    }),
+    'partial',
+    'a failing non-setup postcondition blocks pass',
+  );
+  const setupProbeContract = {
+    ...partialPostconditionContract,
+    postconditions: [{ kind: 'file_exists', path: 'missing.txt', binds_setup: true }],
+  };
+  assert.equal(
+    bench.classify(setupProbeContract, {
+      ...postconditionObs,
+      postconditions: [{ kind: 'file_exists', ok: false, reason: 'path does not exist' }],
+    }),
+    'setup_misbind',
+    'a failing setup-binding probe on an autonomous run is setup_misbind',
+  );
+
+  const boundaryContract = {
+    schema_version: 2,
+    expected_interaction: 'autonomous',
+    artifacts_required: false,
+    expected_delegation: {},
+    boundary: { allow_prefixes: ['allowed'] },
+  };
+  const escapedBoundary = bench.evaluateBoundary(boundaryContract, {
+    fixtureDir: probeTmp,
+    changedFixturePaths: ['outside/leak.txt'],
+  });
+  assert.equal(
+    bench.classify(boundaryContract, {
+      ...postconditionObs,
+      fixtureGained: true,
+      changedFixturePaths: ['outside/leak.txt'],
+      postconditions: [],
+      boundary: escapedBoundary,
+    }),
+    'boundary_violation',
+  );
+  const cleanBoundary = bench.evaluateBoundary(boundaryContract, {
+    fixtureDir: probeTmp,
+    changedFixturePaths: ['allowed/result.txt'],
+  });
+  assert.equal(cleanBoundary.clean, true);
+  assert.notEqual(
+    bench.classify(boundaryContract, {
+      ...postconditionObs,
+      fixtureGained: true,
+      changedFixturePaths: ['allowed/result.txt'],
+      postconditions: [],
+      boundary: cleanBoundary,
+    }),
+    'boundary_violation',
+  );
+  fs.rmSync(probeTmp, { recursive: true, force: true });
 
   // ── score d5 baseline ratio cutoffs ──────────────────────────────────────
   const baseContract = { expected_interaction: 'autonomous', expected_delegation: { min_task_events: 1 }, expected_presentation_markers: [] };
@@ -268,6 +451,50 @@ async function main() {
   assert.equal(typeof normalResult.budgetEdge.progressCadence.eventCount, 'number');
   assert.ok(normalResult.budgetEdge.progressCadence.gapsMs.length > 0, 'cadence includes observed gaps');
   assert.equal(typeof normalResult.budgetEdge.preCapFinalizerRemainingMs, 'number');
+  assert.equal('postconditions' in normalResult, false, 'v1 result omits postconditions');
+  assert.equal('directDispatch' in normalResult, false, 'v1 result omits directDispatch');
+  assert.equal('boundary' in normalResult, false, 'v1 result omits boundary');
+
+  // ── integration: schema v2 emits probe, dispatch, and boundary evidence ─
+  const v2FixtureDir = path.join(rootTmp, 'fixture-v2');
+  fs.mkdirSync(v2FixtureDir, { recursive: true });
+  const v2Contract = loadSmokeContract();
+  v2Contract.id = 'SMOKE-V2';
+  v2Contract.schema_version = 2;
+  v2Contract.fixture = v2FixtureDir;
+  v2Contract.expected_delegation = {
+    evidence_kind: 'direct_dispatch',
+    expected_targets: ['deep-research'],
+    forbidden_targets: ['deep-review'],
+    min_task_events: 1,
+    role_absorption_forbidden: true,
+  };
+  v2Contract.postconditions = [
+    { kind: 'file_exists', path: 'artifact.txt' },
+    { kind: 'text_contains', path: 'artifact.txt', substring: 'smoke' },
+    { kind: 'changed_paths_within', prefix: 'artifact.txt' },
+  ];
+  v2Contract.boundary = { allow_prefixes: ['artifact.txt'] };
+  const v2ScenarioPath = writeScenario(rootTmp, v2Contract);
+  const v2Out = path.join(rootTmp, 'out-v2');
+  const v2Run = runBench(
+    ['--scenario', v2ScenarioPath, '--leg', 'smoke', '--out-dir', v2Out, '--repo-root', rootTmp, '--watchdog-ms', '60000'],
+    { BEHAVIOR_BENCH_SPAWN_JSON: spawnJson, FAKE_LEG_FIXTURE: v2FixtureDir },
+  );
+  assert.equal(v2Run.status, 0, 'v2 runner must exit 0; stderr: ' + v2Run.stderr);
+  const v2Result = JSON.parse(fs.readFileSync(path.join(v2Out, v2Contract.id + '-smoke.result.json'), 'utf8'));
+  assert.equal(v2Result.schemaVersion, 2);
+  assert.equal(v2Result.classification, 'pass');
+  assert.equal(v2Result.dimensions.d3, 2);
+  assert.equal(v2Result.postconditions.length, 3);
+  assert.ok(v2Result.postconditions.every((probe) => probe.ok), 'all v2 probes pass');
+  assert.deepEqual(v2Result.directDispatch, {
+    expectedTargetHits: 1,
+    forbiddenTargetHits: 0,
+    expectedTargets: ['deep-research'],
+    forbiddenTargets: ['deep-review'],
+  });
+  assert.deepEqual(v2Result.boundary, { clean: true, escapes: [] });
 
   // ── integration: vague-ask telemetry is written into result JSON ─────────
   const vagueContract = loadSmokeContract();
@@ -347,6 +574,10 @@ async function main() {
   );
   assert.equal(sampled.status, 0, 'sample runner must exit 0; stderr: ' + sampled.stderr);
   const sampledResult = JSON.parse(fs.readFileSync(path.join(sampleOut, sampleContract.id + '-smoke.result.json'), 'utf8'));
+  assert.equal(sampledResult.schemaVersion, 1);
+  assert.equal('postconditions' in sampledResult, false);
+  assert.equal('directDispatch' in sampledResult, false);
+  assert.equal('boundary' in sampledResult, false);
   assert.equal(sampledResult.singleSample, false);
   assert.equal(sampledResult.samplesRequested, 3);
   assert.equal(sampledResult.samplesCompleted, 3);
@@ -356,6 +587,31 @@ async function main() {
   assert.equal(sampledResult.stability.classificationCounts.pass, 3);
   assert.equal(sampledResult.stability.stuckNoProgressRate.value, 0);
   assert.ok(fs.existsSync(path.join(sampleOut, sampleContract.id + '-smoke.sample-001.result.json')));
+
+  const sampleV2FixtureDir = path.join(rootTmp, 'fixture-samples-v2');
+  fs.mkdirSync(sampleV2FixtureDir, { recursive: true });
+  const sampleV2Contract = { ...v2Contract };
+  sampleV2Contract.id = 'SMOKE-SAMPLES-V2';
+  sampleV2Contract.fixture = sampleV2FixtureDir;
+  sampleV2Contract.postconditions = [
+    { kind: 'file_exists', path: 'artifact.txt' },
+    { kind: 'changed_paths_within', prefix: 'artifact.txt' },
+  ];
+  const sampleV2ScenarioPath = writeScenario(rootTmp, sampleV2Contract);
+  const sampleV2Out = path.join(rootTmp, 'out-samples-v2');
+  const sampledV2 = runBench(
+    ['--scenario', sampleV2ScenarioPath, '--leg', 'smoke', '--out-dir', sampleV2Out, '--repo-root', rootTmp, '--watchdog-ms', '60000', '--samples', '2'],
+    { BEHAVIOR_BENCH_SPAWN_JSON: JSON.stringify([process.execPath, sampleLeg]), FAKE_LEG_FIXTURE: sampleV2FixtureDir },
+  );
+  assert.equal(sampledV2.status, 0, 'v2 sample runner must exit 0; stderr: ' + sampledV2.stderr);
+  const sampledV2Result = JSON.parse(
+    fs.readFileSync(path.join(sampleV2Out, sampleV2Contract.id + '-smoke.result.json'), 'utf8'),
+  );
+  assert.equal(sampledV2Result.schemaVersion, 2);
+  assert.equal(sampledV2Result.postconditions.length, 2);
+  assert.equal(sampledV2Result.directDispatch.expectedTargetHits, 2);
+  assert.deepEqual(sampledV2Result.boundary, { clean: true, escapes: [] });
+  assert.ok(sampledV2Result.samples.every((sample) => sample.directDispatch.expectedTargetHits === 1));
 
   fs.rmSync(rootTmp, { recursive: true, force: true });
   console.log('behavior-bench-run.test.cjs: all assertions passed');

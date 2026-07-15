@@ -50,10 +50,25 @@ the machine contract**; everything below it is human context for the author and
 reviewer. The runner parses only the first JSON block. Additional JSON blocks in
 the same file are ignored by the runner and treated as prose illustrations.
 
+## SCHEMA VERSIONING
+
+Schema v1 remains the default. A scenario opts into schema v2 only by declaring
+`"schema_version": 2`; missing values, `1`, and every other value use the v1
+path. A v1 scenario emits `schemaVersion: 1` through the established scorer and
+result shape, with no v2 keys added. This v1-in to v1-out identity is a
+compatibility requirement for every shared-framework consumer.
+
+Schema v2 adds direct-dispatch targets, postcondition probes, and fixture
+boundary evidence. A v2 scenario emits `schemaVersion: 2` plus the
+`postconditions`, `directDispatch`, and `boundary` result sections. Consumers
+must handle the `schemaVersion` they are given and reject unknown versions
+rather than guessing their shape.
+
 ### Machine-contract fields
 
 | Field | Type | Value |
 | --- | --- | --- |
+| `schema_version` | int (optional) | Defaults to `1`. Only the exact value `2` opts the scenario into schema v2. |
 | `id` | string | Scenario identifier, e.g. `RVB-001`. Prefixes are fixed per package (see PACKAGE CONVENTIONS). |
 | `title` | string | Short human title. |
 | `mode` | enum | `context` \| `research` \| `review` \| `ai-council` \| `improvement` \| `alignment`. |
@@ -64,9 +79,11 @@ the same file are ignored by the runner and treated as prose illustrations.
 | `fixture` | string | Repo-relative directory that absorbs all writes for the run. |
 | `expected_interaction` | enum | `autonomous` \| `question_halt` \| `fail_fast`. |
 | `expected_presentation_markers` | array | Literal strings or `/regex/` (optionally `/regex/flags`; case-insensitivity always applied) the visible output must contain. |
-| `expected_delegation` | object | `{ "evidence_kind": enum, "leaf_agent": string \| null, "min_task_events": int, "route_proof_required": bool, "role_absorption_forbidden": bool, "min_seats": int }`. `evidence_kind` (optional, default `task_dispatch`) selects how delegation is measured — see DELEGATION EVIDENCE KINDS. `min_seats` applies only to `seat_artifacts`. |
+| `expected_delegation` | object | `{ "evidence_kind": enum, "leaf_agent": string \| null, "min_task_events": int, "route_proof_required": bool, "role_absorption_forbidden": bool, "min_seats": int, "expected_targets": array, "forbidden_targets": array }`. `evidence_kind` (optional, default `task_dispatch`) selects how delegation is measured. `min_seats` applies only to `seat_artifacts`; target arrays apply only to schema-v2 `direct_dispatch`. |
 | `budget_ms` | int | Per-scenario hard budget (see BUDGET POLICY for how it is derived). |
 | `artifacts_required` | bool (optional) | Declares whether the run owes new fixture artifacts. Defaults to `min_task_events > 0`; set `false` on inline-reporting hand-off cells. |
+| `postconditions` | array (optional, v2) | Allowlisted post-run probes. Every declared probe must pass for a `pass` result. |
+| `boundary` | object (optional, v2) | `{ "allow_prefixes": [dir, ...] }`. Any created, rewritten, or deleted fixture path outside every allowed prefix is a boundary escape. |
 | `watchdog_ms` | int (optional) | Overrides the default 120000 ms no-progress window. Cells that delegate to subagents legitimately go quiet for minutes while the LEAF works; calibrated to 480000 ms for autonomous deep-review cells. |
 | `notes` | string | Free text for the scorer. |
 
@@ -157,7 +174,11 @@ Scored only when a baseline result exists for the same scenario cell.
 
 ## CLASSIFICATION TAXONOMY
 
-> Ordering note: role_absorption is checked before refused — a run that produced the expected artifacts with zero dispatches did the work inline, and refusal-shaped words inside its own report must not relabel it (absorption is checked before refusal).
+> Ordering note: role_absorption is checked before refused, so refusal-shaped
+> words inside absorbed work cannot relabel it. In schema v2,
+> `boundary_violation` is checked after environment/runtime failures,
+> role absorption, and refusal, but before setup, route, and missing-artifact
+> symptoms.
 
 Each run is assigned **exactly one** terminal bucket. Buckets are mutually
 exclusive; the scorer picks the one whose detection rule is satisfied. The
@@ -175,6 +196,7 @@ them (e.g. a `crash` run should also score D4 = 0).
 | `stuck_no_progress` | Killed by the no-progress watchdog: no new output event **and** no artifact `mtime` change for the watchdog window. |
 | `timeout_latency` | Killed by the hard budget while still visibly progressing. |
 | `refused` | Declined a legitimate invocation citing policy or convention, with no dispatch. |
+| `boundary_violation` | Schema v2 declares `boundary.allow_prefixes` or a `changed_paths_within` probe and at least one created, rewritten, or deleted fixture path escapes the declared prefix set. Ordered after `env_error`, `crash`, `stuck_no_progress`, `timeout_latency`, `role_absorption`, and `refused`, and before `setup_misbind`, `route_mismatch`, and `missing_artifact`. |
 | `missing_artifact` | Claimed or implied completion, but expected artifacts absent. |
 | `crash` | Spawn failure, or nonzero exit with no meaningful output. |
 | `env_error` | Provider quota/rate-limit rejection: the model never saw the prompt. Checked FIRST; dimensions are nulled, the runner exits `75` (retryable), and the cell MUST be re-run after the quota resets — an `env_error` result is never quotable as behavior. Guarded against false positives from a run that merely READ a file quoting a rejection: the rejection must be UNESCAPED top-level stream text (a backslash-escaped match inside a tool result is rejected, the same discriminator dispatch detection uses), the run must terminate within `ENV_ERROR_MAX_TERMINAL_MS` (15 s — genuine rejections die in seconds), and it must show zero dispatches and zero fixture writes. |
@@ -234,6 +256,7 @@ selects how D3 (delegation) is measured and what counts as `role_absorption`:
 | `task_dispatch` (default) | research, review | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
 | `seat_artifacts` | ai-council | Distinct seat ids (`seat-001`, `seat-002`, …) named in the persisted `ai-council/` artifacts (deliberation, council-report, state JSONL) — seats are sections/identifiers WITHIN the artifacts, not separate files | distinct seats ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced naming ZERO seats |
 | `candidate_evidence` | improvement | A packet-local candidate (`improvement/candidates/*.md` or `proposals/`) AND an evaluator score (`*score*.json` / `.score-cache/`), counted separately | BOTH a candidate and a score are present (a complete evaluator-first run) | `role_absorption_forbidden` and a work product was produced with NEITHER a candidate nor a score |
+| `direct_dispatch` (v2) | command and direct-dispatch families | Case-insensitive stdout-line events matching `expected_targets`, checked against `forbidden_targets`; each target is a literal substring or `/regex/[flags]` matcher | expected-target events ≥ `min_task_events` (default `1`) and ZERO forbidden-target events | `role_absorption_forbidden`, fixture work was produced, and expected-target evidence is absent |
 
 The critical property: the **common ai-council case is IN-CLI** — its seats are the active
 runtime's own models, so a correct council run has ZERO task-dispatch events. Scoring council
@@ -241,6 +264,31 @@ delegation on task events would flag every correct run as absorption. `seat_arti
 the persisted seat outputs instead, so a legit in-CLI council that convened and persisted its
 seats has evidence and is NOT flagged; a council that emitted a plan without seat diversity is.
 `task_dispatch` behavior is unchanged — contracts without `evidence_kind` score exactly as before.
+
+---
+
+## POSTCONDITION PROBES
+
+Schema v2 accepts only these postcondition kinds:
+
+| Kind | Contract | Pass condition |
+| --- | --- | --- |
+| `file_exists` | `{ "kind": "file_exists", "path": string }` | The resolved path exists. |
+| `json_field_equals` | `{ "kind": "json_field_equals", "path": string, "field": string, "value": any }` | The file parses as JSON and the dot-path field deeply equals `value`. |
+| `text_contains` | `{ "kind": "text_contains", "path": string, "substring": string }` | The readable text contains the declared substring. |
+| `changed_paths_within` | `{ "kind": "changed_paths_within", "prefix": string }` | Every created, rewritten, or deleted fixture path is within the prefix. |
+
+Relative `path` and `prefix` values resolve from the fixture directory; a
+relative path falls back to the repository root when no fixture directory is
+available, and an absolute path remains absolute. Read, parse, and validation
+failures return `{ kind, ok: false, reason }` instead of throwing. An unknown
+`kind` fails closed with reason `unknown probe kind`.
+
+Every declared postcondition must pass before a schema-v2 run can be `pass`.
+A failing non-boundary probe lowers an otherwise passing run to `partial`. A
+probe with `binds_setup: true` that fails on an autonomous run produces
+`setup_misbind`. A failing `changed_paths_within` probe with an actual escape
+produces `boundary_violation` under the ordering above.
 
 ---
 
@@ -315,6 +363,19 @@ The reference implementation of this contract is
 no-progress watchdog, checkpoint extraction (`tFirstOutput`, `tSetup`,
 `tFirstDispatch`, `tTerminal`), delegation-evidence extraction from the
 captured transcript, isolation reporting for the run's `fixture`, and scoring
-against the rubric above. Results are emitted as result JSON with
-`schemaVersion: 1`; any consumer that does not recognize `schemaVersion: 1`
-must reject the document rather than guess its shape.
+against the rubric above.
+
+The stable CLI contract consumed by matrix schedulers is:
+
+```text
+node behavior-bench-run.cjs --scenario <file> --leg <name> --out-dir <dir>
+  [--samples <count>] [--baseline <file>] [--repo-root <dir>]
+  [--timeout-ms <ms>] [--watchdog-ms <ms>]
+```
+
+The required flag names are `--scenario`, `--leg`, and `--out-dir`; the
+optional flag names above are also stable. A v1 input emits
+`schemaVersion: 1` with the v1 result shape. An input that explicitly declares
+`schema_version: 2` emits `schemaVersion: 2` with v2 evidence sections. A
+consumer must handle the `schemaVersion` it is given and reject unknown
+versions.

@@ -11,6 +11,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const { isDeepStrictEqual } = require('node:util');
 const { spawn, execFileSync } = require('node:child_process');
 
 // ── Exit codes ───────────────────────────────────────────────────────────────
@@ -105,6 +106,10 @@ function parseScenario(filePath) {
   return obj;
 }
 
+function isV2Contract(contract) {
+  return !!contract && contract.schema_version === 2;
+}
+
 // ── Presentation markers: /regex/ or /regex/flags (always case-insensitive),
 //    otherwise a literal substring ────────────────────────────────────────────
 function markerMatches(marker, text) {
@@ -118,6 +123,159 @@ function markerMatches(marker, text) {
     }
   }
   return text.includes(marker);
+}
+
+function targetMatcherMatches(marker, text) {
+  if (typeof marker !== 'string') return false;
+  if (/^\/(.+)\/([a-z]*)$/.test(marker)) return markerMatches(marker, text);
+  return markerMatches(marker.toLowerCase(), String(text || '').toLowerCase());
+}
+
+/**
+ * Count stdout lines that match at least one direct-dispatch target marker.
+ *
+ * @param {Array<string>} targets - Literal or regex target matchers.
+ * @param {string|Array<string>} stdout - Captured stdout text or stored lines.
+ * @returns {number} Matching stdout-line count.
+ */
+function countTargetHits(targets, stdout) {
+  if (!Array.isArray(targets) || targets.length === 0) return 0;
+  const lines = Array.isArray(stdout) ? stdout : String(stdout || '').split(/\r?\n/);
+  return lines.filter((line) => targets.some((target) => targetMatcherMatches(target, line))).length;
+}
+
+function resolveProbePath(fixtureDir, rawPath, obs) {
+  if (typeof rawPath !== 'string' || rawPath.length === 0) {
+    throw new Error('path must be a non-empty string');
+  }
+  if (path.isAbsolute(rawPath)) return path.resolve(rawPath);
+  const base = fixtureDir || (obs && obs.repoRoot);
+  if (!base) throw new Error('fixture directory is unavailable');
+  return path.resolve(base, rawPath);
+}
+
+function readDotPath(value, field) {
+  if (typeof field !== 'string' || field.length === 0) return { found: false, value: undefined };
+  let current = value;
+  for (const part of field.split('.')) {
+    if (current == null || (typeof current !== 'object' && typeof current !== 'function')
+        || !Object.prototype.hasOwnProperty.call(current, part)) {
+      return { found: false, value: undefined };
+    }
+    current = current[part];
+  }
+  return { found: true, value: current };
+}
+
+function comparableFixturePath(rawPath, fixtureDir) {
+  if (path.isAbsolute(String(rawPath || ''))) return path.resolve(String(rawPath));
+  return path.resolve(fixtureDir || path.parse(process.cwd()).root, String(rawPath || '.'));
+}
+
+function fixturePathWithinPrefix(changedPath, prefix, fixtureDir) {
+  if (typeof prefix !== 'string' || prefix.length === 0) return false;
+  const changed = comparableFixturePath(changedPath, fixtureDir);
+  const allowed = comparableFixturePath(prefix, fixtureDir);
+  return changed === allowed || changed.startsWith(allowed + path.sep);
+}
+
+function escapedFixturePaths(changedPaths, prefixes, fixtureDir) {
+  const allowed = Array.isArray(prefixes) ? prefixes : [];
+  return (changedPaths || []).filter((changedPath) => (
+    !allowed.some((prefix) => fixturePathWithinPrefix(changedPath, prefix, fixtureDir))
+  ));
+}
+
+/**
+ * Evaluate the schema-v2 postcondition allowlist without throwing on probe errors.
+ *
+ * @param {Object} contract - Parsed scenario contract.
+ * @param {string|null} fixtureDir - Absolute fixture directory when available.
+ * @param {Object} obs - Observation carrying changed fixture paths and repo root.
+ * @returns {Array<{kind: string|null, ok: boolean, reason: string}>} Probe results.
+ */
+function evaluatePostconditions(contract, fixtureDir, obs = {}) {
+  if (!isV2Contract(contract) || !Array.isArray(contract.postconditions)) return [];
+  const changedPaths = Array.isArray(obs.changedFixturePaths) ? obs.changedFixturePaths : [];
+
+  return contract.postconditions.map((probe) => {
+    const kind = probe && typeof probe.kind === 'string' ? probe.kind : null;
+    try {
+      if (kind === 'file_exists') {
+        const probePath = resolveProbePath(fixtureDir, probe.path, obs);
+        const ok = fs.existsSync(probePath);
+        return { kind, ok, reason: ok ? 'path exists' : 'path does not exist' };
+      }
+      if (kind === 'json_field_equals') {
+        const probePath = resolveProbePath(fixtureDir, probe.path, obs);
+        const parsed = JSON.parse(fs.readFileSync(probePath, 'utf8'));
+        const field = readDotPath(parsed, probe.field);
+        if (!field.found) return { kind, ok: false, reason: 'field not found' };
+        const ok = isDeepStrictEqual(field.value, probe.value);
+        return { kind, ok, reason: ok ? 'field equals expected value' : 'field value differs' };
+      }
+      if (kind === 'text_contains') {
+        const probePath = resolveProbePath(fixtureDir, probe.path, obs);
+        if (typeof probe.substring !== 'string') {
+          return { kind, ok: false, reason: 'substring must be a string' };
+        }
+        const ok = fs.readFileSync(probePath, 'utf8').includes(probe.substring);
+        return { kind, ok, reason: ok ? 'substring found' : 'substring not found' };
+      }
+      if (kind === 'changed_paths_within') {
+        if (typeof probe.prefix !== 'string' || probe.prefix.length === 0) {
+          return { kind, ok: false, reason: 'prefix must be a non-empty string' };
+        }
+        const escapes = escapedFixturePaths(changedPaths, [probe.prefix], fixtureDir);
+        const ok = escapes.length === 0;
+        return {
+          kind,
+          ok,
+          reason: ok ? 'all changed paths are within prefix' : 'changed paths escaped prefix: ' + escapes.join(', '),
+        };
+      }
+      return { kind, ok: false, reason: 'unknown probe kind' };
+    } catch (error) {
+      return { kind, ok: false, reason: error && error.message ? error.message : 'probe evaluation failed' };
+    }
+  });
+}
+
+function hasBoundaryDeclaration(contract) {
+  if (!isV2Contract(contract)) return false;
+  if (contract.boundary && typeof contract.boundary === 'object') return true;
+  return Array.isArray(contract.postconditions)
+    && contract.postconditions.some((probe) => probe && probe.kind === 'changed_paths_within');
+}
+
+/**
+ * Compare changed fixture paths with every schema-v2 boundary declaration.
+ *
+ * @param {Object} contract - Parsed scenario contract.
+ * @param {Object} obs - Observation carrying fixture directory and changed paths.
+ * @returns {{clean: boolean, escapes: Array<string>}} Boundary result.
+ */
+function evaluateBoundary(contract, obs = {}) {
+  if (!isV2Contract(contract)) return { clean: true, escapes: [] };
+  const changedPaths = Array.isArray(obs.changedFixturePaths) ? obs.changedFixturePaths : [];
+  const fixtureDir = obs.fixtureDir || null;
+  const escapes = new Set();
+
+  if (contract.boundary && typeof contract.boundary === 'object') {
+    for (const changedPath of escapedFixturePaths(
+      changedPaths,
+      contract.boundary.allow_prefixes,
+      fixtureDir,
+    )) escapes.add(changedPath);
+  }
+  for (const probe of contract.postconditions || []) {
+    if (!probe || probe.kind !== 'changed_paths_within') continue;
+    for (const changedPath of escapedFixturePaths(changedPaths, [probe.prefix], fixtureDir)) {
+      escapes.add(changedPath);
+    }
+  }
+
+  return { clean: escapes.size === 0, escapes: [...escapes] };
 }
 
 function matchMarkers(markers, text) {
@@ -149,7 +307,7 @@ function extractRenderedBlock(markers, stdoutLines) {
 // ║ SCORING -- pure functions, exported for direct unit testing.              ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-// Delegation evidence has three shapes across the deep-loop modes (see D-010):
+// Delegation evidence has distinct shapes across the deep-loop modes:
 //   task_dispatch    -- a LEAF sub-agent dispatch (research/review/context).
 //   seat_artifacts   -- ai-council seat outputs; the common council case is
 //                       IN-CLI (seats are the runtime's own models, zero task
@@ -209,9 +367,57 @@ function evidenceKind(deleg) {
   return (deleg && deleg.evidence_kind) || 'task_dispatch';
 }
 
+/**
+ * Summarize expected and forbidden direct-dispatch target events.
+ *
+ * @param {Object} deleg - Expected delegation contract.
+ * @param {Object} obs - Captured observation.
+ * @returns {Object} Target hit counts and declared matcher arrays.
+ */
+function directDispatchEvidence(deleg, obs) {
+  const expectedTargets = Array.isArray(deleg && deleg.expected_targets)
+    ? deleg.expected_targets
+    : [];
+  const forbiddenTargets = Array.isArray(deleg && deleg.forbidden_targets)
+    ? deleg.forbidden_targets
+    : [];
+  const stdout = Array.isArray(obs && obs.stdoutLines)
+    ? obs.stdoutLines
+    : (obs && obs.stdoutText) || '';
+  return {
+    expectedTargetHits: countTargetHits(expectedTargets, stdout),
+    forbiddenTargetHits: countTargetHits(forbiddenTargets, stdout),
+    expectedTargets,
+    forbiddenTargets,
+  };
+}
+
+/**
+ * Score direct-dispatch target evidence for a schema-v2 scenario.
+ *
+ * @param {Object} deleg - Expected delegation contract.
+ * @param {Object} obs - Captured observation.
+ * @returns {0|1|2} Direct-dispatch score.
+ */
+function scoreDirectDispatch(deleg, obs) {
+  const evidence = obs && obs.directDispatch
+    ? obs.directDispatch
+    : directDispatchEvidence(deleg, obs || {});
+  const minimum = (deleg && deleg.min_task_events) || 1;
+  if (evidence.expectedTargetHits >= minimum && evidence.forbiddenTargetHits === 0) return 2;
+  if (evidence.expectedTargetHits > 0) return 1;
+  return 0;
+}
+
 // True when the run shows the delegation evidence its mode requires.
-function hasDelegationEvidence(deleg, obs) {
+function hasDelegationEvidence(deleg, obs, isV2 = false) {
   const kind = evidenceKind(deleg);
+  if (isV2 && kind === 'direct_dispatch') {
+    const evidence = obs && obs.directDispatch
+      ? obs.directDispatch
+      : directDispatchEvidence(deleg, obs || {});
+    return evidence.expectedTargetHits >= (deleg.min_task_events || 1);
+  }
   if (kind === 'seat_artifacts') {
     return (obs.seatArtifacts || 0) >= (deleg.min_seats || 1);
   }
@@ -259,6 +465,7 @@ function scoreD2(contract, obs) {
 function scoreD3(contract, obs) {
   const deleg = contract.expected_delegation || {};
   const kind = evidenceKind(deleg);
+  const isV2 = isV2Contract(contract);
 
   // A halt/fail-fast cell is CORRECT to produce no delegation, so delegation is
   // not applicable there for the artifact-evidence kinds (mirrors how a
@@ -284,6 +491,10 @@ function scoreD3(contract, obs) {
     if (arts >= 2) return 2;
     if (arts > 0) return 1;
     return 0;
+  }
+  if (isV2 && kind === 'direct_dispatch') {
+    if (isHalt) return null;
+    return scoreDirectDispatch(deleg, obs);
   }
 
   // task_dispatch (default) -- unchanged.
@@ -356,10 +567,19 @@ function applicableAllTwo(dims) {
   return true;
 }
 
+function postconditionFailures(contract, obs) {
+  if (!isV2Contract(contract) || !Array.isArray(contract.postconditions)) return [];
+  const results = Array.isArray(obs.postconditions) ? obs.postconditions : [];
+  return contract.postconditions
+    .map((probe, index) => ({ probe, result: results[index] }))
+    .filter(({ result }) => !result || result.ok !== true);
+}
+
 // First matching bucket wins, in this exact order.
 function classificationCauses(contract, obs) {
   const ei = contract.expected_interaction;
   const deleg = contract.expected_delegation || {};
+  const isV2 = isV2Contract(contract);
   const taskEvents = obs.taskEvents || [];
   const stdoutText = obs.stdoutText || '';
   const nonzeroNoOutput = obs.exitCode != null && obs.exitCode !== 0 && (obs.stdoutNonEmptyLines || 0) === 0;
@@ -374,7 +594,7 @@ function classificationCauses(contract, obs) {
   // Absorption is checked BEFORE refusal: a run that produced the expected
   // artifacts without the mode's delegation evidence did the work inline, and
   // refusal-shaped words inside its own report text must not relabel it. The
-  // evidence check is mode-aware (D-010): task_dispatch wants task events,
+  // evidence check is mode-aware: task_dispatch wants task events,
   // seat_artifacts wants persisted seats, candidate_evidence wants a candidate
   // + score. A legit in-CLI council persists seats, so it has evidence and is
   // NOT flagged; a council that produced a plan with no seat diversity is.
@@ -385,11 +605,26 @@ function classificationCauses(contract, obs) {
     ? (deleg.min_task_events || 0) > 0
     : true;
   if (deleg.role_absorption_forbidden && expectsDelegation && obs.fixtureGained
-      && !hasDelegationEvidence(deleg, obs)) {
+      && !hasDelegationEvidence(deleg, obs, isV2)) {
     causes.push('role_absorption');
   }
-  if (REFUSAL_RE.test(stdoutText) && !hasDelegationEvidence(deleg, obs) && ei === 'autonomous' && !obs.fixtureGained) causes.push('refused');
-  if ((ei === 'question_halt' || ei === 'fail_fast') && taskEvents.length > 0) causes.push('setup_misbind');
+  if (REFUSAL_RE.test(stdoutText) && !hasDelegationEvidence(deleg, obs, isV2) && ei === 'autonomous' && !obs.fixtureGained) causes.push('refused');
+
+  // Boundary escapes are correctness failures, but runtime failure, absorption,
+  // and refusal remain stronger explanations. Boundary therefore outranks route
+  // and artifact symptoms without hiding those earlier terminal causes.
+  const boundary = isV2
+    ? (obs.boundary || evaluateBoundary(contract, obs))
+    : { clean: true, escapes: [] };
+  if (isV2 && hasBoundaryDeclaration(contract) && boundary.escapes.length > 0) {
+    causes.push('boundary_violation');
+  }
+
+  const failingPostconditions = postconditionFailures(contract, obs);
+  const setupProbeFailed = isV2 && ei === 'autonomous'
+    && failingPostconditions.some(({ probe }) => probe && probe.binds_setup === true);
+  if (((ei === 'question_halt' || ei === 'fail_fast') && taskEvents.length > 0)
+      || setupProbeFailed) causes.push('setup_misbind');
   if (deleg.route_proof_required && (obs.routeProofRecords || []).length > 0) {
     const leaf = deleg.leaf_agent;
     const noneMatch = !obs.routeProofRecords.some((r) => r && r.target_agent === leaf);
@@ -402,7 +637,8 @@ function classificationCauses(contract, obs) {
     causes.push('missing_artifact');
   }
   if (causes.length > 0) return causes;
-  if (applicableAllTwo(score(contract, obs, null))) return ['pass'];
+  if (applicableAllTwo(score(contract, obs, null))
+      && (!isV2 || failingPostconditions.length === 0)) return ['pass'];
   return ['partial'];
 }
 
@@ -555,6 +791,17 @@ function fixtureContentChanged(beforeHashes, afterHashes) {
   return false;
 }
 
+function collectChangedFixturePaths(beforeHashes, afterHashes) {
+  const paths = new Set();
+  for (const [rel, beforeHash] of beforeHashes) {
+    if (!afterHashes.has(rel) || afterHashes.get(rel) !== beforeHash) paths.add(rel);
+  }
+  for (const [rel, afterHash] of afterHashes) {
+    if (!beforeHashes.has(rel) || beforeHashes.get(rel) !== afterHash) paths.add(rel);
+  }
+  return [...paths].sort();
+}
+
 function fixtureMutationTimes(dir, beforeHashes, afterHashes, originMs) {
   const times = [];
   if (!dir) return times;
@@ -627,7 +874,7 @@ function classifyVagueAsk(contract, obs, bucket) {
   if (!isVagueAskCell(contract)) return null;
 
   const deleg = contract.expected_delegation || {};
-  const evidence = hasDelegationEvidence(deleg, obs);
+  const evidence = hasDelegationEvidence(deleg, obs, isV2Contract(contract));
   const hasDispatch = (obs.taskEvents || []).length > 0;
   const hasRouteProof = (obs.routeProofRecords || []).length > 0;
   const markerMatched = (obs.markerHits || []).length > 0;
@@ -787,7 +1034,48 @@ function summarizeSampleResult(result, resultPath) {
     terminal: result.terminal,
     resultPath,
     transcriptPath: result.transcriptPath,
+    ...(result.schemaVersion === 2 ? {
+      postconditions: result.postconditions,
+      directDispatch: result.directDispatch,
+      boundary: result.boundary,
+    } : {}),
   };
+}
+
+function aggregateV2Sections(samples, contract) {
+  const postconditions = (contract.postconditions || []).map((probe, index) => {
+    const results = samples.map((sample) => sample.postconditions && sample.postconditions[index]);
+    const failure = results.find((result) => !result || result.ok !== true);
+    return {
+      kind: probe && typeof probe.kind === 'string' ? probe.kind : null,
+      ok: samples.length > 0 && !failure,
+      reason: samples.length === 0
+        ? 'no samples completed'
+        : (failure ? (failure.reason || 'sample postcondition failed') : 'all samples passed'),
+    };
+  });
+  const deleg = contract.expected_delegation || {};
+  const expectedTargets = Array.isArray(deleg.expected_targets) ? deleg.expected_targets : [];
+  const forbiddenTargets = Array.isArray(deleg.forbidden_targets) ? deleg.forbidden_targets : [];
+  const directDispatch = {
+    expectedTargetHits: samples.reduce((sum, sample) => (
+      sum + ((sample.directDispatch && sample.directDispatch.expectedTargetHits) || 0)
+    ), 0),
+    forbiddenTargetHits: samples.reduce((sum, sample) => (
+      sum + ((sample.directDispatch && sample.directDispatch.forbiddenTargetHits) || 0)
+    ), 0),
+    expectedTargets,
+    forbiddenTargets,
+  };
+  const boundaryEscapes = new Set();
+  for (const sample of samples) {
+    for (const escape of (sample.boundary && sample.boundary.escapes) || []) boundaryEscapes.add(escape);
+  }
+  const boundary = {
+    clean: samples.every((sample) => sample.boundary && sample.boundary.clean === true),
+    escapes: [...boundaryEscapes],
+  };
+  return { postconditions, directDispatch, boundary };
 }
 
 function parseArgs(argv) {
@@ -819,6 +1107,7 @@ async function runOnce(args) {
     console.error('behavior-bench-run: unparseable scenario: ' + args.scenario);
     return EXIT_CONTRACT;
   }
+  const isV2 = isV2Contract(contract);
 
   const repoRoot = path.resolve(args.repoRoot || process.cwd());
   const outDir = path.resolve(args.outDir);
@@ -1016,6 +1305,7 @@ async function runOnce(args) {
   const afterFixtureHashes = snapshotFixtureContentHashes(fixtureDir);
   const fixtureMutationTimesMs = fixtureMutationTimes(fixtureDir, beforeFixtureHashes, afterFixtureHashes, spawnTime);
   const fixtureGained = newFixtureFiles.length > 0 || fixtureContentChanged(beforeFixtureHashes, afterFixtureHashes);
+  const changedFixturePaths = collectChangedFixturePaths(beforeFixtureHashes, afterFixtureHashes);
 
   const routeProofRecords = collectRouteProof(fixtureDir);
   const { seatArtifacts, candidateArtifacts } = countModeArtifacts(fixtureDir, newFixtureFiles);
@@ -1033,6 +1323,16 @@ async function runOnce(args) {
     fixtureMutationTimesMs,
     progressTimestampsMs: [...progressTimestampsMs, ...fixtureMutationTimesMs],
   });
+  const directDispatch = directDispatchEvidence(contract.expected_delegation || {}, {
+    stdoutText,
+    stdoutLines,
+  });
+  const postconditions = isV2
+    ? evaluatePostconditions(contract, fixtureDir, { changedFixturePaths, repoRoot })
+    : [];
+  const boundary = isV2
+    ? evaluateBoundary(contract, { changedFixturePaths, fixtureDir })
+    : { clean: true, escapes: [] };
 
   const obs = {
     spawnError,
@@ -1047,6 +1347,7 @@ async function runOnce(args) {
     markerHits,
     fixtureGained,
     checkpoints,
+    ...(isV2 ? { changedFixturePaths, fixtureDir, postconditions, directDispatch, boundary } : {}),
   };
 
   const causes = classificationCauses(contract, obs);
@@ -1060,7 +1361,7 @@ async function runOnce(args) {
   const stuckNoProgressRate = buildStuckNoProgressRate(contract, obs);
 
   const result = {
-    schemaVersion: 1,
+    schemaVersion: isV2 ? 2 : 1,
     scenarioId: contract.id,
     leg: args.leg,
     ...(sampleCount > 1 ? { sampleIndex, sampleCount } : {}),
@@ -1071,6 +1372,7 @@ async function runOnce(args) {
     budgetEdge,
     vagueAskOutcome: classifyVagueAsk(contract, obs, bucket),
     delegation: { taskEvents, routeProofRecords, seatArtifacts, candidateArtifacts, guardWarnings },
+    ...(isV2 ? { postconditions, directDispatch, boundary } : {}),
     isolation: { clean: violations.length === 0, violations },
     terminal: { exitCode, killedBy },
     classification: bucket,
@@ -1098,6 +1400,7 @@ async function runSamples(args) {
     console.error('behavior-bench-run: unparseable scenario: ' + args.scenario);
     return EXIT_CONTRACT;
   }
+  const isV2 = isV2Contract(contract);
 
   const outDir = path.resolve(args.outDir);
   fs.mkdirSync(outDir, { recursive: true });
@@ -1135,11 +1438,12 @@ async function runSamples(args) {
   const startedAt = samples.length > 0 ? samples[0].startedAt : new Date().toISOString();
   const endedAt = samples.length > 0 ? samples[samples.length - 1].endedAt : startedAt;
   const aggregate = {
-    schemaVersion: 1,
+    schemaVersion: isV2 ? 2 : 1,
     scenarioId: contract.id,
     leg: args.leg,
     startedAt,
     endedAt,
+    ...(isV2 ? aggregateV2Sections(samples, contract) : {}),
     classification: stableClassification || 'mixed',
     primaryCause: stablePrimaryCause || 'mixed',
     secondaryCause: stableSecondaryCause,
@@ -1192,8 +1496,13 @@ module.exports = {
   scoreD3,
   scoreD4,
   scoreD5,
+  scoreDirectDispatch,
   countModeArtifacts,
   countSeatIdsInText,
+  countTargetHits,
+  directDispatchEvidence,
+  evaluatePostconditions,
+  evaluateBoundary,
   hasDelegationEvidence,
   evidenceKind,
   buildSpawnArgs,

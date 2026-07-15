@@ -1,7 +1,7 @@
 ---
 title: "Implementation Plan: command behavior evaluator"
 description: "Plan for framework schema v2 evidence kinds and terminal buckets, preserving v1 scores."
-status: planned
+status: complete
 importance_tier: "important"
 contextType: "planning"
 _memory:

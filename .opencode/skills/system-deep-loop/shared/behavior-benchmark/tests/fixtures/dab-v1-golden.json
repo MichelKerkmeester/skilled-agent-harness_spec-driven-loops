@@ -1,0 +1,145 @@
+{
+  "DAB-001": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 2,
+      "d2": 0,
+      "d3": 2,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "partial",
+    "primaryCause": "partial",
+    "secondaryCause": null
+  },
+  "DAB-002": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 1,
+      "d2": 0,
+      "d3": null,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "setup_misbind",
+    "primaryCause": "setup_misbind",
+    "secondaryCause": null
+  },
+  "DAB-003": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 1,
+      "d2": 0,
+      "d3": null,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "setup_misbind",
+    "primaryCause": "setup_misbind",
+    "secondaryCause": null
+  },
+  "DAB-004": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 1,
+      "d2": 0,
+      "d3": null,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "setup_misbind",
+    "primaryCause": "setup_misbind",
+    "secondaryCause": null
+  },
+  "DAB-005": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 2,
+      "d2": 0,
+      "d3": 2,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "partial",
+    "primaryCause": "partial",
+    "secondaryCause": null
+  },
+  "DAB-006": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 2,
+      "d2": 0,
+      "d3": 2,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "partial",
+    "primaryCause": "partial",
+    "secondaryCause": null
+  },
+  "DAB-007": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 2,
+      "d2": 0,
+      "d3": 2,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "partial",
+    "primaryCause": "partial",
+    "secondaryCause": null
+  },
+  "DAB-008": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 2,
+      "d2": 0,
+      "d3": 2,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "partial",
+    "primaryCause": "partial",
+    "secondaryCause": null
+  },
+  "DAB-009": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 1,
+      "d2": 0,
+      "d3": null,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "setup_misbind",
+    "primaryCause": "setup_misbind",
+    "secondaryCause": null
+  },
+  "DAB-010": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 1,
+      "d2": 0,
+      "d3": null,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "setup_misbind",
+    "primaryCause": "setup_misbind",
+    "secondaryCause": null
+  },
+  "DAB-011": {
+    "schemaVersion": 1,
+    "dimensions": {
+      "d1": 2,
+      "d2": 0,
+      "d3": 2,
+      "d4": 2,
+      "d5": null
+    },
+    "classification": "partial",
+    "primaryCause": "partial",
+    "secondaryCause": null
+  }
+}

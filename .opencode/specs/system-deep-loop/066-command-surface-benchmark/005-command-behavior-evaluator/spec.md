@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: command behavior evaluator — shared framework schema v2 with dispatch and boundary evidence"
 description: "Adds shared behavior-benchmark framework schema v2 with direct-dispatch evidence, outcome probes, setup-misbind detection, and fixture-boundary evidence, while preserving the existing DAB-001 to 011 scores under backward-compatible v1 parsing."
-status: planned
+status: complete
 trigger_phrases:
   - "command behavior evaluator"
   - "behavior framework schema v2"
@@ -36,7 +36,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
