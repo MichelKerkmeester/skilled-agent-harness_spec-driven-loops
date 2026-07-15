@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
+  "spec_folder": "mcp-tooling/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
+  "parent_id": "mcp-tooling/003-mcp-figma-transfer",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-figma-skill-removal",
+      "phase 3 figma",
+      "advisor regen mcp-figma",
+      "phase 3 plan",
+      "mcp-figma removal plan",
+      "phase 3 tasks",
+      "mcp-figma removal tasks",
+      "phase 3 checklist",
+      "mcp-figma removal checklist",
+      "phase 3 decisions",
+      "mcp-figma removal adr",
+      "phase 3 summary"
+    ],
+    "key_topics": [
+      "mcp-figma-skill-removal",
+      "phase",
+      "figma",
+      "advisor",
+      "regen",
+      "mcp-figma",
+      "plan",
+      "removal",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Original Authored Content",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Explore Agent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "user",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Template",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Template",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcp-figma` developer skill at `CodeEnvironment/Public/.opencode/skills/mcp-figma/` has been superseded by the new Figma MCP Agent in AISystems/Barter (Phase 1) and AISystems/Public (Phase 2)",
+    "created_at": "2026-05-05T07:49:59Z",
+    "last_save_at": "2026-07-15T07:48:13.718Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0e039b4fca3fe01d3d77dab05b988523d943c650c76d691568ee95cb368d069a",
+    "source_doc_hashes": {
+      "spec.md": "248c9feaea9e5bdd12cf7d24bd47e309ab56c5ca0dab29508b7fb0e9439bdb64",
+      "plan.md": "e0863d630de72af5e2fad7f0dd7a06002b96edaa8911f7669933f9d2a684ad2f",
+      "tasks.md": "925d49c8410aa5ebe3ecfdf8a6c9a60e3d5d0b17fa96ab540b45e0b7a14bbeed",
+      "checklist.md": "6f76570f9b2501bc081724b0c42f15b85ce82cb0f2dc94bfaaca1e03dbb4c9d6",
+      "decision-record.md": "6d3efeea7878d45a0b6206e6043a796db175d6668fe6d925ce261c7833fab0c8",
+      "implementation-summary.md": "cb0c1633d78cfe6b5e7beed6bc6efda7b2bd646e3369b0fa93305f074b1c4b3a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

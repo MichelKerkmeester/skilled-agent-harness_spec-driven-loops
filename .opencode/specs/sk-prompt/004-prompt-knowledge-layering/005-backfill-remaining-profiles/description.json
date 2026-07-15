@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/004-prompt-knowledge-layering/005-backfill-remaining-profiles",
+  "description": "After phase 4, the sk-prompt-models hub had a scaffold and two priority profiles but was missing authoritative prompt-craft documentation for six",
+  "keywords": [
+    "phase",
+    "sk-prompt-models",
+    "hub",
+    "scaffold",
+    "two",
+    "priority",
+    "profiles",
+    "missing",
+    "authoritative",
+    "prompt-craft",
+    "documentation",
+    "six"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.738Z",
+  "specId": "005",
+  "folderSlug": "backfill-remaining-profiles",
+  "parentChain": [
+    "sk-prompt",
+    "004-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

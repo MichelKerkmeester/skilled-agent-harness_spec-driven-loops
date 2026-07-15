@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/002-sk-improve-prompt-rename/003-opencode-internals",
+  "spec_folder": "sk-prompt/002-sk-improve-prompt-rename/003-opencode-internals",
+  "parent_id": "sk-prompt/002-sk-improve-prompt-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "082 phase 003",
+      "sk-improve-prompt opencode internals",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "082 phase 003 tasks",
+      "opencode internals rename tasks",
+      "082 phase 003 checklist",
+      "opencode internals verification",
+      "082 phase 003 implementation summary"
+    ],
+    "key_topics": [
+      "phase",
+      "sk-improve-prompt",
+      "opencode",
+      "internals",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "core",
+      "tasks",
+      "rename",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/README.txt",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Opencode Internals",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rotate Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rotate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Should Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validate Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the skill folder is renamed, active `.opencode/` consumers still load, score, document, or test the old skill ID",
+    "created_at": "2026-05-06T10:22:40Z",
+    "last_save_at": "2026-07-15T08:09:43.101Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a0a019911cef477f2fc92fddad4017128387a30c3806cb0f7df00fe81627d4e8",
+    "source_doc_hashes": {
+      "spec.md": "50b9e491062a63679455c8b19932b3bb5cde942c2ee735efb5dabc73eb361aa2",
+      "plan.md": "372b471a330d70533b9c89edb151cd22d6ca154a52a9cbc3122a206329473e11",
+      "tasks.md": "4413ab91fb9bcbef5e9c8fb65349ad45a8884e65d7e82a73a21c0e653b7b1886",
+      "checklist.md": "8c8ae38b08720f6c27f61855cfe54dc6efc9c76b359e6a2c3bd4cc2f7fa12d0b",
+      "implementation-summary.md": "e5b4086a3db3d5f9e62234d5f3b7cd372947f1c71d3669410b30c82c96aa62d2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

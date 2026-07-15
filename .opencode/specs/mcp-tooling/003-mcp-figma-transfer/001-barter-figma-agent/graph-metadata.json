@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/003-mcp-figma-transfer/001-barter-figma-agent",
+  "spec_folder": "mcp-tooling/003-mcp-figma-transfer/001-barter-figma-agent",
+  "parent_id": "mcp-tooling/003-mcp-figma-transfer",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "barter-figma-agent",
+      "phase 1 figma",
+      "AI_Systems Barter Figma",
+      "Figma MCP Agent",
+      "barter figma plan",
+      "phase 1 implementation",
+      "barter figma tasks",
+      "phase 1 tasks",
+      "phase 1 checklist",
+      "barter figma checklist",
+      "phase 1 decisions",
+      "barter figma adr"
+    ],
+    "key_topics": [
+      "barter-figma-agent",
+      "phase",
+      "figma",
+      "barter",
+      "mcp",
+      "agent",
+      "plan",
+      "implementation",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Barter Figma",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Barter Figma",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Original Authored Content",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Barter Figma Agent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Prompt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Knowledge Base",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sequential Thinking Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Template",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Figma MCP capability lives as a developer-grade skill (`mcp-figma`) inside the Public skill repo",
+    "created_at": "2026-05-05T07:49:57Z",
+    "last_save_at": "2026-07-15T07:48:13.175Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9926a82e1295a4e59a9ec6f29536bd3a37291c8160c3d2f34cd774aabd7218dc",
+    "source_doc_hashes": {
+      "spec.md": "564ffed52599b89747707becfcf49c2f9a8228a373a29a99cdb9002810c685a0",
+      "plan.md": "d16ca07ff467b5d284492e840abd5d841f940f1713c07c6e6a60a228484c77f3",
+      "tasks.md": "0ecb066eeee1af504fd2ad312983350763e64666925d1774d98e45e818ff9942",
+      "checklist.md": "9995e8248df013df5d030a889e80e611a44d990a6a6b6cab1ce37c16da46d930",
+      "decision-record.md": "e30a39a912d0f48a4848c42d94c1f20981741ffcae06be0938926b88181d0ea1",
+      "implementation-summary.md": "d125db41eeab288472254707ce56143436b33014c691a1dee413d26dc161607e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
+  "spec_folder": "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
+  "parent_id": "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "085 phase 001",
+      "improve-prompt to prompt-improver agent rename",
+      "noun-form agent name",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "085 phase 001 summary",
+      "improve-prompt to prompt-improver complete"
+    ],
+    "key_topics": [
+      "phase",
+      "improve-prompt",
+      "prompt-improver",
+      "agent",
+      "rename",
+      "noun-form",
+      "name",
+      "implementation",
+      "plan",
+      "template",
+      "core",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".codex/config.toml",
+      ".codex/agents/prompt-improver.toml",
+      ".opencode/agents/prompt-improver.md",
+      ".claude/agents/prompt-improver.md",
+      ".opencode/commands/README.txt",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/agents/README.txt",
+      ".claude/agents/README.txt",
+      ".opencode/specs/descriptions.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.toml",
+        "kind": "file",
+        "path": ".codex/agents/prompt-improver.toml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".opencode/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `@improve-prompt` agent name is verb-object phrasing — an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`, `@deep-research`, `@deep-review`)",
+    "created_at": "2026-05-06T13:19:25Z",
+    "last_save_at": "2026-07-15T08:09:44.924Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:880c2a40c2aad6459c542d576b2e8ad358cb16ddda3cf26988693a750fc394cb",
+    "source_doc_hashes": {
+      "spec.md": "55eea95ba3be6a8d568471bc0b9ea4bf3f09a45065534ef42aab9ce943523958",
+      "plan.md": "e91e3d79edd84a18c04c6b039af4d4ae07ef83130a4798ef858211822876d961",
+      "tasks.md": "9c9a1f97a4885154ad9d73a21113e750443069c9229455da7e0d62fd4438e36e",
+      "implementation-summary.md": "1d30b1540da347c5b00dccf1781823c7202a6b2d1aef014c8feeb6fe886593cc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

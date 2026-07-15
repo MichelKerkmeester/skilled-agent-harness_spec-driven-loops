@@ -1,0 +1,32 @@
+{
+  "level": "phase",
+  "specFolder": "sk-prompt/002-sk-improve-prompt-rename",
+  "description": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command",
+  "keywords": [
+    "skill",
+    "currently",
+    "named",
+    "sk-improve-prompt",
+    "carries",
+    "redundant",
+    "improve",
+    "segment",
+    "duplicates",
+    "intent",
+    "already",
+    "encoded",
+    "dispatcher",
+    "command"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.257Z",
+  "specId": "002",
+  "folderSlug": "sk-improve-prompt-rename",
+  "parentChain": [
+    "sk-prompt"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "06-05-26_12-38__manual-context-save.md",
+    "06-05-26_13-56__manual-context-save.md"
+  ]
+}

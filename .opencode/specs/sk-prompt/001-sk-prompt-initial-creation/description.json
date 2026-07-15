@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-prompt/001-sk-prompt-initial-creation",
+  "description": "The Prompt Improver is a comprehensive, standalone Claude Project that provides advanced prompt engineering capabilities (10 frameworks, DEPTH",
+  "keywords": [
+    "prompt",
+    "improver",
+    "comprehensive",
+    "standalone",
+    "claude",
+    "project",
+    "provides",
+    "advanced",
+    "engineering",
+    "capabilities",
+    "frameworks",
+    "depth"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.245Z",
+  "specId": "001",
+  "folderSlug": "sk-prompt-initial-creation",
+  "parentChain": [
+    "sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

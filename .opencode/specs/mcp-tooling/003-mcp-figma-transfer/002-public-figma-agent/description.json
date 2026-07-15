@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/003-mcp-figma-transfer/002-public-figma-agent",
+  "description": "Phase 1 produced an internal-team-framed Barter Figma agent (commit 690b498 with 16 files, ~234K markdown)",
+  "keywords": [
+    "phase",
+    "produced",
+    "internal-team-framed",
+    "barter",
+    "figma",
+    "agent",
+    "commit",
+    "690b498",
+    "files",
+    "234k",
+    "markdown"
+  ],
+  "lastUpdated": "2026-07-15T07:46:45.484Z",
+  "specId": "002",
+  "folderSlug": "public-figma-agent",
+  "parentChain": [
+    "mcp-tooling",
+    "003-mcp-figma-transfer"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

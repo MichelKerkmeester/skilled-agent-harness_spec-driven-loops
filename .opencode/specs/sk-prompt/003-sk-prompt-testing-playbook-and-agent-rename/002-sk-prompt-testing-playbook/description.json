@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
+  "description": "The `sk-prompt` skill (renamed in 082) ships 12 distinct testable surfaces but has no manualtestingplaybook/ directory",
+  "keywords": [
+    "sk-prompt",
+    "skill",
+    "renamed",
+    "ships",
+    "distinct",
+    "testable",
+    "surfaces",
+    "manualtestingplaybook",
+    "directory"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.606Z",
+  "specId": "002",
+  "folderSlug": "sk-prompt-testing-playbook",
+  "parentChain": [
+    "sk-prompt",
+    "003-sk-prompt-testing-playbook-and-agent-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

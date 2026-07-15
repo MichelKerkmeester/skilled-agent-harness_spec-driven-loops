@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/002-sk-improve-prompt-rename/005-root-and-config",
+  "description": "After code and runtime consumers are renamed, user-facing docs and active config surfaces may still advertise `sk-improve-prompt`",
+  "keywords": [
+    "code",
+    "runtime",
+    "consumers",
+    "renamed",
+    "user-facing",
+    "docs",
+    "active",
+    "config",
+    "surfaces",
+    "still",
+    "advertise",
+    "sk-improve-prompt"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.564Z",
+  "specId": "005",
+  "folderSlug": "root-and-config",
+  "parentChain": [
+    "sk-prompt",
+    "002-sk-improve-prompt-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

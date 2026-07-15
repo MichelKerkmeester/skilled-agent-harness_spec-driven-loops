@@ -1,0 +1,34 @@
+I’ll keep this scoped to the four named files, first loading the packet/skill context and then making surgical text edits only where the review findings point.
+SKILL ROUTING: Advisor recommends `sk-code` with confidence 0.877; because these are `.opencode/skills` files, I’m also applying `customize-opencode` scope rules.
+These are markdown/prose-only skill edits, so I’m applying `sk-doc` for the actual document-editing conventions while keeping the `.opencode` scope constraints.
+I’ll now read the four target files and locate the existing Tier 3 wording so the edits stay minimal and consistent.
+I found the canonical card already names the full Tier 3 trigger set; I’m using that exact phrasing rather than inventing a new list.
+I’m patching only the requested prose: Gemini/Codex Tier 3 wording, Claude Haiku optional-unverified guidance, and the small-model trigger ids.
+The patches are in place. I’m checking the changed snippets and running scoped markdown/OpenCode verification next.
+Verification will be limited to the modified markdown/OpenCode scope: comment hygiene, markdown validation where available, alignment drift, and a scoped diff check.
+Two validation commands needed reruns with their actual interfaces: the comment hygiene helper is Python-backed despite the `.sh` suffix, and `quick_validate.py` takes a skill directory, not individual files. Alignment drift passed with warnings outside the requested files.
+The spec folder is a phase parent under `.opencode/specs/...`; I’m running the strict spec validator against that parent path for packet-level evidence.
+The strict spec-folder validation passed for the phase parent and all child phases. I’m doing one last scoped search for the old problematic phrases.
+Implemented only the requested scoped edits.
+
+**Edits Made**
+- `.opencode/skills/cli-gemini/assets/prompt_quality_card.md`
+  - Labeled the `ENHANCED_PROMPT` runtime one-liner as `Tier 3-only`.
+  - Replaced the narrow escalation wording with the full canonical Tier 3 trigger set.
+
+- `.opencode/skills/cli-codex/assets/prompt_quality_card.md`
+  - Changed the escalation sentence to: `Escalate on any canonical Tier 3 trigger.`
+
+- `.opencode/skills/cli-claude-code/SKILL.md`
+  - Changed Haiku guidance to optional-unverified: use only when explicitly requested or after adoption.
+  - Updated both model-selection guidance spots that previously treated Haiku as the normal fast/cheap route.
+
+- `.opencode/skills/sk-prompt-models/SKILL.md`
+  - Normalized `deepseek-v4` to `deepseek-v4-pro`.
+  - Normalized `gemini flash` to `gemini-flash`.
+
+**Verification**
+- Comment hygiene: passed.
+- `quick_validate.py`: all four skills valid; one existing soft warning remains for long `sk-prompt-models` description.
+- `verify_alignment_drift.py --root .opencode/skills`: passed with non-blocking warnings outside these requested edits.
+- Strict spec validation for `.opencode/specs/skilled-agent-orchestration/z_archive/004-prompt-knowledge-layering`: passed.

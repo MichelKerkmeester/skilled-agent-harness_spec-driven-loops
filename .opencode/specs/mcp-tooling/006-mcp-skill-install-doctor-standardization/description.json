@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/006-mcp-skill-install-doctor-standardization",
+  "description": "The five mcp- skills had drifted out of a shared shape",
+  "keywords": [
+    "five",
+    "mcp",
+    "skills",
+    "drifted",
+    "shared",
+    "shape"
+  ],
+  "lastUpdated": "2026-07-15T07:46:45.450Z",
+  "specId": "006",
+  "folderSlug": "mcp-skill-install-doctor-standardization",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/005-sk-prompt-models-rename/007-memory-reindex",
+  "description": "The spec-memory index was built before the rename, so the live packets' rows (157 GLM-5.2, 158 rename) still carry pre-rename content / paths",
+  "keywords": [
+    "spec-memory",
+    "index",
+    "rename",
+    "live",
+    "packets",
+    "rows",
+    "glm-5",
+    "still",
+    "carry",
+    "pre-rename",
+    "content",
+    "paths"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.286Z",
+  "specId": "007",
+  "folderSlug": "memory-reindex",
+  "parentChain": [
+    "sk-prompt",
+    "005-sk-prompt-models-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

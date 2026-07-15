@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/003-mcp-figma-transfer/002-public-figma-agent",
+  "spec_folder": "mcp-tooling/003-mcp-figma-transfer/002-public-figma-agent",
+  "parent_id": "mcp-tooling/003-mcp-figma-transfer",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "public-figma-agent",
+      "phase 2 figma",
+      "AI_Systems Public Figma",
+      "Public README §8",
+      "phase 2 plan",
+      "public figma plan",
+      "phase 2 tasks",
+      "public figma tasks",
+      "phase 2 checklist",
+      "public figma checklist",
+      "phase 2 decisions",
+      "public figma adr"
+    ],
+    "key_topics": [
+      "public-figma-agent",
+      "phase",
+      "figma",
+      "public",
+      "readme",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr",
+      "produced",
+      "internal-team-framed"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Barter Figma",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Public",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Patch Public",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Figma Agent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Public Figma",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Original Authored Content",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Duplicate Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edit Public",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Public Figma Agent",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Template",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Template",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality Template",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 1 produced an internal-team-framed Barter Figma agent (commit 690b498 with 16 files, ~234K markdown)",
+    "created_at": "2026-05-05T07:49:58Z",
+    "last_save_at": "2026-07-15T07:48:13.462Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4d892c9e2866bdb877758e3fd644114772658361dec2178292a03e3fb1d242ce",
+    "source_doc_hashes": {
+      "spec.md": "cd4d95fbc92e8c110d87d9836e4727f2fc143e7612d74e82535780d3d19250ea",
+      "plan.md": "d9d723a3e495203c733441910c6d6aee66f9c1275401513091d686c9d03e095d",
+      "tasks.md": "2d518f67dfb75f589e691fab08d8ef0b6c06d14944f645880196ffb2b22d85c6",
+      "checklist.md": "4cdf8945cf204c73cb275497a41bd5da0411ef6079c17535654c49f6d9460c8a",
+      "decision-record.md": "ad40de9f8773175d7f83c57daa63dc75c56c1068d8665c03245a3d8c7be7bd8a",
+      "implementation-summary.md": "ed968992b1651e13d4d3c87ec0be667342dcdaf9c3c8d05c5657300dbcfc8da7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

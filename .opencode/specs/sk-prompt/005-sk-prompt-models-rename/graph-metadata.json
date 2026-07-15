@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/005-sk-prompt-models-rename",
+  "spec_folder": "sk-prompt/005-sk-prompt-models-rename",
+  "parent_id": null,
+  "children_ids": [
+    "sk-prompt/005-sk-prompt-models-rename/001-reference-inventory",
+    "sk-prompt/005-sk-prompt-models-rename/002-core-rename",
+    "sk-prompt/005-sk-prompt-models-rename/003-cross-skill-and-code-refs",
+    "sk-prompt/005-sk-prompt-models-rename/004-commands-scripts-data",
+    "sk-prompt/005-sk-prompt-models-rename/005-specs-history-sweep",
+    "sk-prompt/005-sk-prompt-models-rename/006-regenerate-verify",
+    "sk-prompt/005-sk-prompt-models-rename/007-memory-reindex",
+    "sk-prompt/005-sk-prompt-models-rename/008-graph-symmetry-cleanup",
+    "sk-prompt/005-sk-prompt-models-rename/009-filename-residual-cleanup"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "158-sk-prompt-models-rename",
+      "phase parent",
+      "sk-prompt-models rename",
+      "rename sk-prompt-small-model"
+    ],
+    "key_topics": [
+      "158-sk-prompt-models-rename",
+      "phase",
+      "parent",
+      "sk-prompt-models",
+      "rename",
+      "sk-prompt-small-model",
+      "skill",
+      "per-model",
+      "prompt-craft",
+      "hub",
+      "non-frontier",
+      "models"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill `sk-prompt-small-model` is the per-model prompt-craft hub for the non-frontier models dispatched out via the cli- executors (DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2)",
+    "created_at": "2026-06-28T13:47:20.752Z",
+    "last_save_at": "2026-07-15T08:09:52.684Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f3c465c05ae232f0b34704d26d7958fdbaeefb6eb5ac4bfb957b381791315a61",
+    "source_doc_hashes": {
+      "spec.md": "76414a9c24136073c5c41c02c76ad65662bb7e0b66002d16a4f0018c6ed9a54f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

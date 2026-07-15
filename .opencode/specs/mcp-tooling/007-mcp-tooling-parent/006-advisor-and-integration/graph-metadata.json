@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration",
+  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration",
+  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-tooling advisor integration",
+      "hub graph-metadata union",
+      "referrer sweep repoint",
+      "labeled-prompts retarget",
+      "phase 006 advisor-and-integration",
+      "advisor integration plan",
+      "hub graph union plan",
+      "referrer sweep plan",
+      "phase 006 plan",
+      "advisor integration tasks",
+      "hub graph union tasks",
+      "referrer sweep tasks"
+    ],
+    "key_topics": [
+      "mcp-tooling",
+      "advisor",
+      "integration",
+      "hub",
+      "graph-metadata",
+      "union",
+      "referrer",
+      "sweep",
+      "repoint",
+      "labeled-prompts",
+      "retarget",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/spec.md",
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/plan.md",
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/tasks.md",
+      ".opencode/skills/mcp-tooling/graph-metadata.json",
+      ".opencode/skills/README.md",
+      ".opencode/skills/mcp-code-mode/graph-metadata.json",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+      "implementation-summary.md",
+      ".claude/mcp.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_mcp_install.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Note",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Identity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the DB",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 004-005 the content lives under the hub, but the advisor still sees three graph identities and every external referrer still points at the old flat skill-folder paths",
+    "created_at": "2026-07-09T20:18:25Z",
+    "last_save_at": "2026-07-15T07:48:16.933Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9972ef9f6463d27a386e34b19bf87097bd086ed42f6e09dec15edae70e731c59",
+    "source_doc_hashes": {
+      "spec.md": "f2a7c017fffba12803377cc3776b822ad1c9f26d4de9fc282a49e91a12ee5eaf",
+      "plan.md": "b43092e6ec17dd0301a52d24f0964a240bc6aeaff3e93bab11a221a5ce39b0f2",
+      "tasks.md": "3002f8088ede1842a8695cd426e9d998a833489dd386e7e0e73ecfe414dad84d",
+      "checklist.md": "0d99ca0abb7231cdab7f536a2ee2cddee8b70f4453cedb73c2ef14af43dafa61",
+      "implementation-summary.md": "7583efb21657db46b2ba1a30b60bd3da6e0e58fb5a3c913063ac8412833a50e5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

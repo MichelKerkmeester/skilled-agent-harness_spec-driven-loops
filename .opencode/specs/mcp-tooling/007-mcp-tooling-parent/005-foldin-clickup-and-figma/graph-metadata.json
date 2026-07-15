@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
+  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
+  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "foldin clickup and figma",
+      "mcp-click-up git mv",
+      "mcp-figma transport fold-in",
+      "figma transport-axis handling",
+      "phase 005 foldin-clickup-and-figma",
+      "clickup figma fold-in plan",
+      "mcp-figma transport move plan",
+      "mcp-click-up move plan",
+      "phase 005 plan",
+      "clickup figma fold-in tasks",
+      "mcp-figma transport move tasks",
+      "phase 005 tasks"
+    ],
+    "key_topics": [
+      "foldin",
+      "clickup",
+      "figma",
+      "mcp-click-up",
+      "git",
+      "mcp-figma",
+      "transport",
+      "fold-in",
+      "transport-axis",
+      "handling",
+      "phase",
+      "foldin-clickup-and-figma"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md",
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/plan.md",
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/tasks.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Note",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "internal",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "disk-verified",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub has one workflow packet (chrome-devtools) but still needs its second workflow bridge (click-up) and its transport (figma)",
+    "created_at": "2026-07-09T20:18:24Z",
+    "last_save_at": "2026-07-15T07:48:16.587Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b94205ae1603c7e04072b622a64c90e1bcbfee37c5bee8874ef4a3303bc0c186",
+    "source_doc_hashes": {
+      "spec.md": "2073f230b35bd9d3a229c98ab0a98742253c115cec8bc0717debc87de4b97b68",
+      "plan.md": "55011404dc8365d7567baccda4c8ee3778ab7ffa9f5f28d67c06269b4db742f4",
+      "tasks.md": "e2ff0f47aed2b1090038ca73ea1be9e3a646f16f60fa103a070b3016e6bf4719",
+      "checklist.md": "b4ce80760032fdb0da3828cf04337cef66badc0b4aa9bb279265f44e44cc5891",
+      "implementation-summary.md": "78750304043be0143767a746e59bef6aa6290756dfafcefc19e72ab33d673988"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

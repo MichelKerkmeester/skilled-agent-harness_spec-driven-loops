@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/006-sk-prompt-parent/001-research-and-context",
+  "description": "Phase 002 architecture decisions depend on current, re-verified facts about two live skills and their referrers",
+  "keywords": [
+    "phase",
+    "architecture",
+    "decisions",
+    "depend",
+    "current",
+    "re-verified",
+    "facts",
+    "about",
+    "two",
+    "live",
+    "skills",
+    "referrers"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.382Z",
+  "specId": "001",
+  "folderSlug": "research-and-context",
+  "parentChain": [
+    "sk-prompt",
+    "006-sk-prompt-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

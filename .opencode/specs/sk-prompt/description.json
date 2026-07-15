@@ -1,0 +1,22 @@
+{
+  "specFolder": "sk-prompt",
+  "description": "Track folder for sk-prompt packets — the prompt-improvement skill family (formerly sk-improve-prompt): initial skill creation, the sk-improve-prompt → sk-prompt rename, testing-playbook + agent rename, prompt-knowledge layering across CLI skills, the sk-prompt-models sub-hub, and the parent-hub merge. Hosts spec folders 001-006.",
+  "keywords": [
+    "sk-prompt",
+    "prompt",
+    "prompt-improvement",
+    "prompt-engineering",
+    "sk-improve-prompt",
+    "rcaf",
+    "prompt-models",
+    "prompt-knowledge-layering",
+    "track"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00.000Z",
+  "specId": "sk-prompt",
+  "folderSlug": "sk-prompt",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

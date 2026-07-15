@@ -1,0 +1,55 @@
+I’ll verify the packet context and skill routing first, then read the two target profiles plus their benchmark synthesis sources before editing only those profile files.
+SKILL ROUTING: `sk-prompt-models` matched at 0.95 confidence and owns the per-model profile sources; I’m loading that guidance before making the markdown edits.
+I’ll now read the two profiles, the model index, `model-profiles.json`, and both synthesis documents to decide which §3 claims are actually supported.
+The synthesis docs support the core benchmark numbers, but a few profile phrasings overstate them: MiMo has 5 frameworks, not 6; the 2.4x claim applies to the hard fixture, not every run; and the synthesis does not show `--variant high` for the 10-run benchmark. I’m patching only the two requested profile files to align §2 with the registry and source §3 to `120/003` / `126/004`.
+The edit is applied to only the requested profiles. I’m now checking the diff, rereading the changed sections, and running packet validation before reporting outcomes.
+`git status` shows a very dirty worktree with many unrelated existing changes and untracked directories. I only applied patches to the two requested profile paths; I’m leaving all unrelated status entries untouched.
+The first validation invocation used the user’s shorthand path and the script rejected it as not found. I’m rerunning against the actual `.opencode/specs/...` folder path.
+Verification passed: target diff has no whitespace errors, and strict validation passed for the actual packet path after rerunning with `.opencode/specs/...`.
+Updated only:
+
+- `.opencode/skills/sk-prompt-models/references/models/minimax-m3.md`
+- `.opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md`
+
+**MiniMax-M3**
+Kept with `120/003` synthesis citation:
+
+- TIDD-EC medium score: `0.7671`
+- RCAF medium score: `0.7419`
+- Dense vs medium: `0.7750` vs `0.7671`
+- 7-fixture / 49-dispatch sample
+- TIDD-EC Do's/Don'ts curbing scope/format drift
+- Dense pre-planning helping MiniMax rather than slowing it
+
+Deleted/replaced:
+
+- §3 JSON-sourced `Confidence: Medium`; replaced with synthesis caveat.
+- Rounded/less precise scores (`0.767`, `0.742`) replaced with synthesis values.
+- Unsupported discriminator wording about “correctness + format adherence, not token efficiency”, prose disclaimers, and incorrect step ordering.
+
+**MiMo-V2.5-Pro**
+Kept with `126/004` synthesis citation:
+
+- 10/10 real dispatches succeeded, framed as `5 frameworks × 2 fixtures`
+- COSTAR composite `1.0000`
+- RACE composite `0.9934`
+- TIDD-EC ranked last
+- Hard-fixture output: TIDD-EC `151` words vs COSTAR `62` words, `2.4×`
+- 2 fixtures × 5 framework passes
+- All five benchmarked frameworks had 100% correct assertions
+- COSTAR/RACE 100% format adherence vs RCAF 50%
+
+Deleted/replaced:
+
+- Removed `--variant high` from §3 benchmark-run claim because the synthesis command does not show it.
+- Changed “all six frameworks” to “all five benchmarked frameworks”.
+- Replaced “~2.4× longer per run” with the verified hard-fixture comparison.
+- Replaced “10-15% format gap” with the synthesis-backed 100% vs 50% format-adherence comparison.
+- Removed §3 JSON-sourced `Confidence: high`.
+- Removed the “all 10 runs” TIDD-EC consistency claim.
+
+**Verification**
+
+- `git diff --check -- <two target files>` passed.
+- First spec validation with shorthand path failed: `ERROR: Folder not found: skilled-agent-orchestration/z_archive/004-prompt-knowledge-layering`.
+- Reran with `.opencode/specs/skilled-agent-orchestration/z_archive/004-prompt-knowledge-layering --strict`: passed with 0 errors and 0 warnings.

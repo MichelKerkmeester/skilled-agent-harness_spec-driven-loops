@@ -1,0 +1,28 @@
+{
+  "specFolder": "skilled-agent-orchestration/141-sk-prompt-spec-consolidation",
+  "description": "sk-prompt skill specs were split across two locations: three already lived in the `sk-prompt` track (at non-contiguous numbers 003/068/105) while",
+  "keywords": [
+    "sk-prompt",
+    "skill",
+    "specs",
+    "split",
+    "across",
+    "two",
+    "locations",
+    "three",
+    "already",
+    "lived",
+    "track",
+    "non-contiguous",
+    "numbers",
+    "while"
+  ],
+  "lastUpdated": "2026-07-15T08:19:59.111Z",
+  "specId": "141",
+  "folderSlug": "sk-prompt-spec-consolidation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

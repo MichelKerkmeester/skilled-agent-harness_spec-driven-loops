@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/004-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+  "spec_folder": "sk-prompt/004-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+  "parent_id": "sk-prompt/004-prompt-knowledge-layering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "divider sweep",
+      "h2 section divider",
+      "sk-prompt card reference cleanup",
+      "divider sweep plan",
+      "fence-aware divider insertion",
+      "sk-prompt card scrub",
+      "divider sweep tasks",
+      "name",
+      "tasks core",
+      "divider sweep summary",
+      "sk-prompt card scrub summary"
+    ],
+    "key_topics": [
+      "divider",
+      "sweep",
+      "section",
+      "sk-prompt",
+      "card",
+      "reference",
+      "cleanup",
+      "plan",
+      "fence-aware",
+      "insertion",
+      "scrub",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-prompt/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deterministic Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Insert",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-doc template requires a standalone `---` thematic break before every H2 section except the",
+    "created_at": "2026-07-15T08:09:51.434Z",
+    "last_save_at": "2026-07-15T08:09:51.434Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8b660f0292efb3e40c700f15554dd34872bd854d717e270296e0902031a8c3f4",
+    "source_doc_hashes": {
+      "spec.md": "c2977c11fbb1767026a658ad6bf0ba4a2d2d05d34fc998bb32afea84619d4395",
+      "plan.md": "7b8961cf37fd49e0d6b67e0b7d83c6b5726e4ee4b3afde7bdd5b1c959bb49c0f",
+      "tasks.md": "9ee9693b775f9acaa0b905f28176491353667592a234707826246317d37486bc",
+      "implementation-summary.md": "a5767bd1983240c4fbeb27dbc328920bbf9b8e661a962d5f172d90023fcbff6f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -6,7 +6,6 @@
   "children_ids": [
     "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
     "skilled-agent-orchestration/z_archive/002-sk-git-github-mcp-integration",
-    "skilled-agent-orchestration/z_archive/003-sk-prompt-initial-creation",
     "skilled-agent-orchestration/z_archive/004-skill-advisor-refinement",
     "skilled-agent-orchestration/z_archive/005-cli-codex-creation",
     "skilled-agent-orchestration/z_archive/006-sk-git-superset-worktrees",
@@ -51,7 +50,6 @@
     "skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename",
     "skilled-agent-orchestration/z_archive/069-skill-description-budget-trim",
     "skilled-agent-orchestration/z_archive/070-ambiguity-window-confidence-fix",
-    "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename",
     "skilled-agent-orchestration/z_archive/072-skill-description-guardrails",
     "skilled-agent-orchestration/z_archive/074-agent-description-trim",
     "skilled-agent-orchestration/z_archive/075-command-description-trim",
@@ -93,7 +91,6 @@
     "skilled-agent-orchestration/117-parent-nested-skill-pattern",
     "skilled-agent-orchestration/118-frontmatter-versioning",
     "skilled-agent-orchestration/119-parent-skill-native-invocability",
-    "skilled-agent-orchestration/121-sk-prompt-models-rename",
     "skilled-agent-orchestration/123-agent-loops-improved"
   ],
   "manual": {

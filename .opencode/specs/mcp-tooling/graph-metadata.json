@@ -5,13 +5,12 @@
   "parent_id": null,
   "children_ids": [
     "mcp-tooling/001-mcp-coco-integration",
-    "mcp-tooling/002-sk-coco-index-cmd-integration",
-    "mcp-tooling/003-mcp-testing-playbooks",
-    "mcp-tooling/004-mcp-figma-transfer",
-    "mcp-tooling/005-mcp-click-up-task-management",
-    "mcp-tooling/006-nested-mcp-readme-sync",
-    "mcp-tooling/007-mcp-skill-install-doctor-standardization",
-    "mcp-tooling/008-mcp-tooling-parent"
+    "mcp-tooling/002-mcp-testing-playbooks",
+    "mcp-tooling/003-mcp-figma-transfer",
+    "mcp-tooling/004-mcp-click-up-task-management",
+    "mcp-tooling/005-nested-mcp-readme-sync",
+    "mcp-tooling/006-mcp-skill-install-doctor-standardization",
+    "mcp-tooling/007-mcp-tooling-parent"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +43,7 @@
     "source_docs": [],
     "source_fingerprint": "sha256:9f3862ec62f314914aec7b340bdfebef2fda48ad02451677e40ac07cbdf0e570",
     "source_doc_hashes": {},
-    "last_active_child_id": "mcp-tooling/008-mcp-tooling-parent",
+    "last_active_child_id": "mcp-tooling/007-mcp-tooling-parent",
     "last_active_at": "2026-07-15T05:54:26.000Z"
   }
 }

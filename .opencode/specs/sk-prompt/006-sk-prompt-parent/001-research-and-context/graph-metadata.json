@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/006-sk-prompt-parent/001-research-and-context",
+  "spec_folder": "sk-prompt/006-sk-prompt-parent/001-research-and-context",
+  "parent_id": "sk-prompt/006-sk-prompt-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt parent research",
+      "research gate",
+      "referrer inventory",
+      "sk-prompt-models fold-in",
+      "phase 001 research-and-context",
+      "sk-prompt parent plan",
+      "research gate plan",
+      "referrer inventory plan",
+      "prompt-models fold-in planning",
+      "phase 001 plan",
+      "sk-prompt parent tasks",
+      "research gate tasks"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "parent",
+      "research",
+      "gate",
+      "referrer",
+      "inventory",
+      "sk-prompt-models",
+      "fold-in",
+      "phase",
+      "research-and-context",
+      "plan",
+      "prompt-models"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/sk-prompt/006-sk-prompt-parent/001-research-and-context/spec.md",
+      ".opencode/specs/sk-prompt/006-sk-prompt-parent/001-research-and-context/plan.md",
+      ".opencode/specs/sk-prompt/006-sk-prompt-parent/001-research-and-context/tasks.md",
+      ".github/workflows/prompt-card-sync.yml",
+      ".opencode/commands/deep/model-benchmark.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-prompt/006-sk-prompt-parent/001-research-and-context/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-prompt/006-sk-prompt-parent/001-research-and-context/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-prompt/006-sk-prompt-parent/001-research-and-context/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "model-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/model-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 architecture decisions depend on current, re-verified facts about two live skills and their referrers",
+    "created_at": "2026-07-09T13:34:32Z",
+    "last_save_at": "2026-07-15T08:09:56.758Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d77203c9ad9a3f037246f6de4c530469fe2f46b90acffff094e7cf26abf3a1be",
+    "source_doc_hashes": {
+      "spec.md": "ef7d6a4b0e58cc5facf6d35713a211cf427472512ad4d79c5845a6e406f3b461",
+      "plan.md": "6709e2771eb7281240abf12bd4c8554168d4bfbfd3f52c47f7e70336c6c1229d",
+      "tasks.md": "f5405dc5605dabbbfc4006b538e2f9f6fbd2e95f8699532f58e13cfee5b75411",
+      "implementation-summary.md": "5bf0f183a9cde808dd2308977e95bdd27c082710f5992e8d5b4f41906befe970"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

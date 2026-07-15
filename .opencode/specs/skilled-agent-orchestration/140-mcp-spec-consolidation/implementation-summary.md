@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/140-mcp-spec-consolidation"
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Migration executed, regenerated, and validated regression-neutral"
+    recent_action: "Post-landing: removed 002-sk-coco-index-cmd-integration, renumbered to 001-007, regenerated + revalidated regression-neutral"
     next_safe_action: "Fast-forward push to origin/skilled/v4.0.0.0"
     blockers: []
     completion_pct: 100
@@ -42,6 +42,8 @@ _memory:
 ## What Was Built
 
 A new `mcp-tooling` spec track consolidating the MCP tool-routing / Code Mode family:
+
+> **Post-landing correction (2026-07-15):** packet `002-sk-coco-index-cmd-integration` was removed per operator and the remaining packets renumbered to close the gap (`003→002 … 008→007`). The track is now **7 packets, `001`–`007`**; all per-folder + root metadata was regenerated and re-validated regression-neutral (12 tree errors, unchanged). The move map below records the original 8-packet consolidation; on-disk numbering is one lower for every packet from the former `003` onward.
 
 - **8 packets moved + renumbered to 001–008** (chronological by original number) from `skilled-agent-orchestration/`: 022-mcp-coco-integration→001, 025-sk-coco-index-cmd-integration→002, 037-mcp-testing-playbooks→003, 053-mcp-figma-transfer→004 (4 children), 099-mcp-click-up-task-management→005, 110-nested-mcp-readme-sync→006, 115-mcp-skill-install-doctor-standardization→007, 126-mcp-tooling-parent→008 (8 children).
 - **Single-phase `git mv`** (collision-free — fresh category) preserved rename history (184 `R`-status entries).

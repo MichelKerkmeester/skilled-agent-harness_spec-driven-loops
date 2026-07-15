@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/006-sk-prompt-parent/006-advisor-and-integration",
+  "spec_folder": "sk-prompt/006-sk-prompt-parent/006-advisor-and-integration",
+  "parent_id": "sk-prompt/006-sk-prompt-parent",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt parent phase 006",
+      "advisor integration sweep",
+      "sk-prompt-models referrer sweep",
+      "prompt card sync gate",
+      "skill graph regeneration",
+      "phase 006 implementation plan",
+      "sk-prompt-models referrers",
+      "prompt card sync",
+      "phase 006 tasks",
+      "advisor integration tasks",
+      "prompt card sync verification",
+      "advisor integration summary"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "parent",
+      "phase",
+      "advisor",
+      "integration",
+      "sweep",
+      "sk-prompt-models",
+      "referrer",
+      "prompt",
+      "card",
+      "sync",
+      "gate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-prompt/README.md",
+      ".opencode/skills/README.md",
+      ".github/workflows/prompt-card-sync.yml",
+      ".opencode/install_guides/README.md",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 004 and 005 move the skill content and functional write targets, roughly 50 active documentation and prose referrers can still point at the old flat `.opencode/skills/sk-prompt-models/` identity",
+    "created_at": "2026-05-21T06:22:25Z",
+    "last_save_at": "2026-07-15T08:09:58.559Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8c41a8e3b0b72a62dd8405c78c0c1bd08d90dd888d824b162942dcb2194af910",
+    "source_doc_hashes": {
+      "spec.md": "29b6b4b4a188f4be1fec9ce6b7222f7e5abb3da4ecdca38caa9370b32fa825e0",
+      "plan.md": "0db0079dd75aaa2106db27faef1ecb79a7a0fe09e85d24ddd4f23e5c9cff1399",
+      "tasks.md": "27a0ee2b138139ce6ec69e88ce16544ba799f713b09c02dce6f48f1ebe6e0c6f",
+      "implementation-summary.md": "f4b80992417bac05f20477b7df577f3b9788c35749f0be9b50c183476f27860b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

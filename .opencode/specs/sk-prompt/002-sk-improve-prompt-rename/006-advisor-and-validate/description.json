@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/002-sk-improve-prompt-rename/006-advisor-and-validate",
+  "description": "The rename is complete only if advisor state, skill graph indexes, prompt-routing probes, strict spec validation, and active-scope grep all agree on",
+  "keywords": [
+    "rename",
+    "complete",
+    "only",
+    "advisor",
+    "state",
+    "skill",
+    "graph",
+    "indexes",
+    "prompt-routing",
+    "probes",
+    "strict",
+    "spec",
+    "validation",
+    "active-scope",
+    "grep",
+    "agree"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.556Z",
+  "specId": "006",
+  "folderSlug": "advisor-and-validate",
+  "parentChain": [
+    "sk-prompt",
+    "002-sk-improve-prompt-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

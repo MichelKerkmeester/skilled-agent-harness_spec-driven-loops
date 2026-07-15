@@ -1,0 +1,1887 @@
+{
+  "sessionId": "2026-07-09T17:30:43.446Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Prompt-improver agents still route integration metadata to removed `/prompt` command",
+      "file": ".opencode/agents/prompt-improver.md",
+      "line": 62,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Custom save path lacks containment and overwrite guard",
+      "file": ".opencode/commands/prompt-improve.md",
+      "line": 454,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P1-001",
+      "severity": "P1",
+      "title": "prompt-models packet denies read tools required by its router contract",
+      "file": ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
+      "line": 4,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R6-P1-001",
+      "severity": "P1",
+      "title": "New spec-folder save branch derives a shell-created path from unsanitized topic text",
+      "file": ".opencode/commands/prompt-improve.md",
+      "line": 450,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P1-001",
+      "severity": "P1",
+      "title": "prompt-improve manual-testing scenarios still verify pre-fold hub-root resource paths",
+      "file": ".opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md",
+      "line": 53,
+      "description": "The prompt-improve manual-testing playbook still points scenario evidence at .opencode/skills/sk-prompt/SKILL.md and .opencode/skills/sk-prompt/references/* even though live packet resources are under .opencode/skills/sk-prompt/prompt-improve/.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R9-P1-001",
+      "severity": "P1",
+      "title": "/prompt-improve save-location workflow still discovers and creates legacy specs/ paths",
+      "file": ".opencode/commands/prompt-improve.md",
+      "line": 93,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "prompt-models README quick-start and verification commands point at a non-existent top-level skill path",
+      "file": ".opencode/skills/sk-prompt/prompt-models/README.md",
+      "line": 55,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Closeout follow-up text points at a live dispatch that later evidence shows is insufficient",
+      "file": ".opencode/specs/sk-prompt/006-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md",
+      "line": 122,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "prompt-models README omits GLM-5.2 from its maintainer-facing framework map",
+      "file": ".opencode/skills/sk-prompt/prompt-models/README.md",
+      "line": 84,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-002",
+      "severity": "P2",
+      "title": "context_budget verification command still points at the removed top-level prompt-models path",
+      "file": ".opencode/skills/sk-prompt/prompt-models/references/context_budget.md",
+      "line": 243,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 4
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.4,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "status": "ok",
+    "data": {
+      "decision": "STOP_BLOCKED",
+      "reason": "STOP is blocked by 1 blocker(s): uncovered_dimensions",
+      "score": 0.4,
+      "scoreDelta": null,
+      "scoreDeltaNote": "no prior snapshot",
+      "signals": {
+        "dimensionCoverage": 0,
+        "findingStability": 0,
+        "p0ResolutionRate": 1,
+        "evidenceDensity": 0,
+        "hotspotSaturation": 1,
+        "score": 0.4
+      },
+      "blockers": [
+        {
+          "type": "uncovered_dimensions",
+          "description": "Dimension coverage (0%) is below threshold (80%). 0 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+          "count": 0,
+          "severity": "blocking"
+        }
+      ],
+      "trace": [
+        {
+          "signal": "dimensionCoverage",
+          "value": 0,
+          "threshold": 0.8,
+          "passed": false,
+          "role": "blocking_guard"
+        },
+        {
+          "signal": "findingStability",
+          "value": 0,
+          "threshold": 0.7,
+          "passed": false,
+          "role": "weighted"
+        },
+        {
+          "signal": "p0ResolutionRate",
+          "value": 1,
+          "threshold": 0.9,
+          "passed": true,
+          "role": "weighted"
+        },
+        {
+          "signal": "evidenceDensity",
+          "value": 0,
+          "threshold": 1,
+          "passed": false,
+          "role": "weighted"
+        },
+        {
+          "signal": "hotspotSaturation",
+          "value": 1,
+          "threshold": 0.6,
+          "passed": true,
+          "role": "weighted"
+        }
+      ],
+      "momentum": null,
+      "namespace": {
+        "specFolder": ".opencode/specs/sk-prompt/006-sk-prompt-parent",
+        "loopType": "review",
+        "sessionId": "2026-07-09T17:30:43.446Z"
+      },
+      "scopeMode": "session",
+      "notes": [
+        "Convergence signals were computed from the session-scoped subgraph only."
+      ],
+      "snapshotPersistence": "not_requested",
+      "nodeCount": 77,
+      "edgeCount": 292,
+      "lastIteration": null
+    },
+    "graph_decision": "STOP_BLOCKED",
+    "graph_decision_json": "\"STOP_BLOCKED\"",
+    "graph_signals_json": {
+      "dimensionCoverage": 0,
+      "findingStability": 0,
+      "p0ResolutionRate": 1,
+      "evidenceDensity": 0,
+      "hotspotSaturation": 1,
+      "score": 0.4
+    },
+    "graph_blockers_json": [
+      {
+        "type": "uncovered_dimensions",
+        "description": "Dimension coverage (0%) is below threshold (80%). 0 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+        "count": 0,
+        "severity": "blocking"
+      }
+    ],
+    "graph_blockers_csv": "uncovered_dimensions:0",
+    "graph_stop_blocked": true,
+    "graph_trace_json": [
+      {
+        "signal": "dimensionCoverage",
+        "value": 0,
+        "threshold": 0.8,
+        "passed": false,
+        "role": "blocking_guard"
+      },
+      {
+        "signal": "findingStability",
+        "value": 0,
+        "threshold": 0.7,
+        "passed": false,
+        "role": "weighted"
+      },
+      {
+        "signal": "p0ResolutionRate",
+        "value": 1,
+        "threshold": 0.9,
+        "passed": true,
+        "role": "weighted"
+      },
+      {
+        "signal": "evidenceDensity",
+        "value": 0,
+        "threshold": 1,
+        "passed": false,
+        "role": "weighted"
+      },
+      {
+        "signal": "hotspotSaturation",
+        "value": 1,
+        "threshold": 0.6,
+        "passed": true,
+        "role": "weighted"
+      }
+    ],
+    "graph_convergence_score": 0.4,
+    "graph_score_delta": null,
+    "graph_score_delta_json": "null"
+  },
+  "candidateCoverage": {
+    "covered": [
+      "active_model_index_drift",
+      "agent_cross_runtime_mismatch",
+      "benchmark_claim_mismatch",
+      "checklist_evidence_gap",
+      "custom_artifact_path_escape",
+      "metadata_rollup_drift",
+      "new_spec_topic_path_escape",
+      "overlay_agent_cross_runtime",
+      "overlay_playbook_capability",
+      "overlay_skill_agent",
+      "playbook_capability",
+      "resource_loading_contract",
+      "router_contract_drift",
+      "spec_code_mismatch",
+      "spec_folder_root_drift",
+      "stale_command_path",
+      "stale_followup_guidance",
+      "stale_reference_regression",
+      "stale_skill_path",
+      "terminal_sweep_false_negative",
+      "tool_surface_contract_drift"
+    ],
+    "ruledOut": [
+      "agent_boundary_escape",
+      "agent_tool_boundary",
+      "benchmark_claim_mismatch",
+      "duplicate_prior_finding",
+      "duplicate_relation_docs",
+      "hub_router_contract",
+      "metadata_rollup_drift",
+      "overlay_playbook_capability",
+      "overlay_skill_agent",
+      "playbook_capability_gap",
+      "prompt_injection_execution_boundary",
+      "readonly_packet_mutation",
+      "resource_escape",
+      "router_contract_drift",
+      "router_resource_path_escape",
+      "secret_exposure",
+      "spec_code_mismatch",
+      "stale_command_path",
+      "stale_reference_regression",
+      "stale_runtime_agent_reference",
+      "unsafe_execution"
+    ],
+    "deferred": [
+      "active_model_index_drift",
+      "benchmark_artifact_semantics",
+      "benchmark_followup_clarity",
+      "bundle_route_gap",
+      "path_traversal",
+      "playbook_capability",
+      "playbook_capability_security_coverage"
+    ],
+    "blocked": [
+      "checklist_evidence_gap",
+      "graph_structural_relationships"
+    ],
+    "byBugClass": {
+      "stale_command_path": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          9
+        ]
+      },
+      "stale_skill_path": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "agent_cross_runtime_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "terminal_sweep_false_negative": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "hub_router_contract": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          7
+        ]
+      },
+      "benchmark_artifact_semantics": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "playbook_capability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1,
+          7
+        ]
+      },
+      "custom_artifact_path_escape": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "prompt_injection_execution_boundary": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "agent_tool_boundary": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "router_resource_path_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "readonly_packet_mutation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "playbook_capability_security_coverage": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2,
+          6
+        ]
+      },
+      "spec_code_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          7
+        ]
+      },
+      "checklist_evidence_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          3,
+          7
+        ]
+      },
+      "stale_followup_guidance": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "overlay_skill_agent": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "overlay_agent_cross_runtime": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "overlay_playbook_capability": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "tool_surface_contract_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "resource_loading_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_runtime_agent_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "graph_structural_relationships": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          4,
+          6
+        ]
+      },
+      "playbook_capability_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "router_contract_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5,
+          8,
+          9
+        ]
+      },
+      "benchmark_claim_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "metadata_rollup_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_reference_regression": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5,
+          7,
+          8
+        ]
+      },
+      "bundle_route_gap": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "new_spec_topic_path_escape": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "active_model_index_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          8,
+          9
+        ]
+      },
+      "duplicate_relation_docs": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "benchmark_followup_clarity": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "spec_folder_root_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "unsafe_execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "resource_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "agent_boundary_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "duplicate_prior_finding": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 2,
+      "id": "SL-SEC-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md"
+      ],
+      "bugClass": "playbook_capability_security_coverage",
+      "disposition": "deferred",
+      "rationale": "This iteration found the coverage gap but did not audit the full playbook corpus as a maintainability/traceability artifact.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:59"
+      ],
+      "reason": "Defer broader playbook capability coverage to traceability or maintainability dimension."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/hub-router.json",
+        ".opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.json"
+      ],
+      "bugClass": "bundle_route_gap",
+      "disposition": "deferred",
+      "rationale": "this is a coverage gap, not a confirmed behavior failure, because no scoped spec or gold scenario requires an ordered bundle route",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/hub-router.json:8-14",
+        ".opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.json:108-117"
+      ],
+      "reason": "author a bundle gold scenario before severity escalation"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md",
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/008-cutover-and-rollout/checklist.md"
+      ],
+      "bugClass": "checklist_evidence_gap",
+      "disposition": "blocked",
+      "rationale": "no phase-local checklist exists to audit; this is not itself a finding because phase 008 documents the Level-1 exemption",
+      "evidenceRefs": [
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md:118-122",
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md:118-122"
+      ],
+      "reason": "checklist artifact absent by documented Level-1 phase decision"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md"
+      ],
+      "bugClass": "benchmark_followup_clarity",
+      "disposition": "deferred",
+      "rationale": "The follow-ups are real but intentionally non-blocking; this iteration focused on stale maintainer docs with direct fix paths.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:41-47"
+      ],
+      "reason": "covered as benchmark hardening follow-up, not an additional iteration-008 finding"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/prompt-models/README.md"
+      ],
+      "bugClass": "active_model_index_drift",
+      "disposition": "deferred",
+      "rationale": "potential same-class README cleanup should be folded into existing R8-P2-001 remediation rather than raised as a new correctness finding here",
+      "evidenceRefs": [
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/review/deep-review-findings-registry.json:214-228"
+      ],
+      "reason": "duplicate-class maintainer-doc drift already registered"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/commands/prompt-improve.md:437-457",
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/review/deep-review-findings-registry.json:40-124"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "deferred",
+      "rationale": "Risk remains active but is already represented by prior findings; re-raising would duplicate the registry.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/review/deep-review-findings-registry.json:40-67",
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/review/deep-review-findings-registry.json:97-124",
+        ".opencode/commands/prompt-improve.md:437-457"
+      ],
+      "reason": "covered by active findings R2-P1-001 and R6-P1-001"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/hub-router.json"
+      ],
+      "bugClass": "hub_router_contract",
+      "disposition": "ruled_out",
+      "rationale": "No router-shape correctness mismatch found in this slice.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:32-85",
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40",
+        ".opencode/skills/sk-prompt/hub-router.json:4-26"
+      ],
+      "reason": "Direct reads show registry and router match the approved two-workflow-mode contract."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/agents/prompt-improver.md",
+        ".claude/agents/prompt-improver.md"
+      ],
+      "bugClass": "prompt_injection_execution_boundary",
+      "disposition": "ruled_out",
+      "rationale": "The live agent contracts keep prompt content as output-only and forbid execution/mutation in this slice.",
+      "evidenceRefs": [
+        ".opencode/agents/prompt-improver.md:6-19",
+        ".opencode/agents/prompt-improver.md:101-103",
+        ".opencode/agents/prompt-improver.md:151-158",
+        ".claude/agents/prompt-improver.md:1-5",
+        ".claude/agents/prompt-improver.md:86-88",
+        ".claude/agents/prompt-improver.md:136-143"
+      ],
+      "reason": "Verified by direct reads of both runtime agent definitions."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/prompt-models/SKILL.md"
+      ],
+      "bugClass": "router_resource_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The resource-load path traversal class is guarded in the reviewed router pseudocode.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:47-57",
+        ".opencode/skills/sk-prompt/SKILL.md:151-156",
+        ".opencode/skills/sk-prompt/prompt-models/SKILL.md:136-140"
+      ],
+      "reason": "Verified skill-root relative path guards by direct read."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/prompt-models/SKILL.md"
+      ],
+      "bugClass": "readonly_packet_mutation",
+      "disposition": "ruled_out",
+      "rationale": "The prompt-models packet remains a read-only profile guidance surface in this slice.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/mode-registry.json:29-40",
+        ".opencode/skills/sk-prompt/prompt-models/SKILL.md:234-240"
+      ],
+      "reason": "Verified by direct read of registry and packet rules."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/spec.md",
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/hub-router.json"
+      ],
+      "bugClass": "spec_code_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "live topology matches the root spec claim",
+      "evidenceRefs": [
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/spec.md:88-93",
+        ".opencode/skills/sk-prompt/SKILL.md:20-23",
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40",
+        ".opencode/skills/sk-prompt/hub-router.json:4-27"
+      ],
+      "reason": "verified by direct read and glob"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/spec.md"
+      ],
+      "bugClass": "overlay_playbook_capability",
+      "disposition": "ruled_out",
+      "rationale": "hub-level and packet-local playbook ownership is traceable",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23-48"
+      ],
+      "reason": "live playbook files and spec decision align"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/agents/prompt-improver.md",
+        ".claude/agents/prompt-improver.md"
+      ],
+      "bugClass": "stale_runtime_agent_reference",
+      "disposition": "ruled_out",
+      "rationale": "Already covered by active prior P1 finding; re-raising would duplicate severity rather than improve maintainability coverage.",
+      "evidenceRefs": [
+        ".opencode/agents/prompt-improver.md:62-83",
+        ".claude/agents/prompt-improver.md:47-68"
+      ],
+      "reason": "duplicate of R1-P1-001"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md"
+      ],
+      "bugClass": "playbook_capability_gap",
+      "disposition": "ruled_out",
+      "rationale": "Routing playbook scope is adequate for hub workflowMode selection; the new finding is a contract parity issue outside that playbook's declared purpose.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23-41"
+      ],
+      "reason": "playbook scope is routing behavior, not packet permission metadata parity"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/hub-router.json",
+        ".opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.md",
+        ".opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.md"
+      ],
+      "bugClass": "router_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "current router config and both benchmark reports confirm named-model routing works",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/hub-router.json:16-25",
+        ".opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.md:40-45",
+        ".opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.md:40-45"
+      ],
+      "reason": "direct file and benchmark evidence showed the guard remains in place"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md",
+        ".opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.json",
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md"
+      ],
+      "bugClass": "benchmark_claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "current benchmark summary and JSON preserve the unscored limitation; prior stale closeout wording remains covered by R3-P2-001",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:12-16",
+        ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:41-47",
+        ".opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.json:29-60"
+      ],
+      "reason": "no new contradiction beyond already-registered advisory"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/graph-metadata.json",
+        ".opencode/skills/sk-prompt/SKILL.md"
+      ],
+      "bugClass": "metadata_rollup_drift",
+      "disposition": "ruled_out",
+      "rationale": "reviewed metadata matches the identity-dissolution invariant",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/graph-metadata.json:6-19",
+        ".opencode/skills/sk-prompt/SKILL.md:104-107"
+      ],
+      "reason": "direct read found the folded edge and single-identity contract intact"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/agents/prompt-improver.md",
+        ".claude/agents/prompt-improver.md"
+      ],
+      "bugClass": "prompt_injection_execution_boundary",
+      "disposition": "ruled_out",
+      "rationale": "Agent prompt-injection-to-execution class remains blocked by read-only/no-execution contracts.",
+      "evidenceRefs": [
+        ".opencode/agents/prompt-improver.md:1-19",
+        ".opencode/agents/prompt-improver.md:101-103",
+        ".opencode/agents/prompt-improver.md:151-158",
+        ".claude/agents/prompt-improver.md:1-5",
+        ".claude/agents/prompt-improver.md:86-88",
+        ".claude/agents/prompt-improver.md:136-143"
+      ],
+      "reason": "verified by direct reads of both runtime agent definitions"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+        ".opencode/skills/sk-prompt/hub-router.json"
+      ],
+      "bugClass": "router_resource_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "Resource path traversal was already guarded and no new resource escape was found.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:47-57",
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md:151-156",
+        ".opencode/skills/sk-prompt/hub-router.json:13-18"
+      ],
+      "reason": "verified by direct read of router/resource guard pseudocode"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md"
+      ],
+      "bugClass": "readonly_packet_mutation",
+      "disposition": "ruled_out",
+      "rationale": "No additional read-only packet mutation class was found in this security pass.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40"
+      ],
+      "reason": "verified by direct read of registry tool surfaces"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+        ".opencode/skills/sk-prompt/prompt-improve/README.md"
+      ],
+      "bugClass": "spec_code_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "the live packet docs are internally traceable; the defect is isolated to manual-testing playbook scenario anchors",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md:76-99",
+        ".opencode/skills/sk-prompt/prompt-improve/README.md:213-221"
+      ],
+      "reason": "direct read found correct packet-local references"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/hub-router.json",
+        ".opencode/skills/sk-prompt/graph-metadata.json"
+      ],
+      "bugClass": "hub_router_contract",
+      "disposition": "ruled_out",
+      "rationale": "router topology remains traceable and is not the cause of the stale playbook anchors",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:32-85",
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40",
+        ".opencode/skills/sk-prompt/hub-router.json:16-27",
+        ".opencode/skills/sk-prompt/graph-metadata.json:127-136"
+      ],
+      "reason": "direct read confirms registry/router/graph identity alignment"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/hub-router.json"
+      ],
+      "bugClass": "router_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "No new maintainability finding in router topology; issues are documentation drift in packet references.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:32-85",
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40",
+        ".opencode/skills/sk-prompt/hub-router.json:16-27"
+      ],
+      "reason": "direct reads show router metadata remains coherent"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/prompt-improve/README.md"
+      ],
+      "bugClass": "duplicate_relation_docs",
+      "disposition": "ruled_out",
+      "rationale": "The duplicate row is cosmetic and does not obscure a required routing or verification contract.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/prompt-improve/README.md:143-158"
+      ],
+      "reason": "boundary remains understandable and lower than P2 threshold for this review"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/hub-router.json"
+      ],
+      "bugClass": "router_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "no new router-shape correctness defect found in this pass",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:32-85",
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40",
+        ".opencode/skills/sk-prompt/hub-router.json:16-27"
+      ],
+      "reason": "direct reads match the approved two-mode hub contract"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/agents/prompt-improver.md",
+        ".claude/agents/prompt-improver.md"
+      ],
+      "bugClass": "stale_command_path",
+      "disposition": "ruled_out",
+      "rationale": "re-raising would duplicate an active prior P1",
+      "evidenceRefs": [
+        ".opencode/agents/prompt-improver.md:62-83",
+        ".claude/agents/prompt-improver.md:47-68",
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/review/deep-review-findings-registry.json:10-38"
+      ],
+      "reason": "covered by R1-P1-001"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt",
+        ".opencode/commands/prompt-improve.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "The only match is an explicit placeholder in benchmark documentation and no command file secret pattern matched.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md:28"
+      ],
+      "reason": "verified by scoped Grep with direct placeholder evidence"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md"
+      ],
+      "bugClass": "resource_escape",
+      "disposition": "ruled_out",
+      "rationale": "Both reviewed routers include containment guards before resource loading.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:47-57",
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md:151-156"
+      ],
+      "reason": "guard present in both hub and packet pseudocode"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/agents/prompt-improver.md",
+        ".claude/agents/prompt-improver.md"
+      ],
+      "bugClass": "agent_boundary_escape",
+      "disposition": "ruled_out",
+      "rationale": "Both runtime agent surfaces preserve read-only, prompt-package-only boundaries.",
+      "evidenceRefs": [
+        ".opencode/agents/prompt-improver.md:6-19",
+        ".opencode/agents/prompt-improver.md:151-160",
+        ".claude/agents/prompt-improver.md:1-5",
+        ".claude/agents/prompt-improver.md:136-147"
+      ],
+      "reason": "permissions and rules deny mutation/execution paths"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/hub-router.json"
+      ],
+      "bugClass": "hub_router_contract",
+      "disposition": "ruled_out",
+      "rationale": "No router-shape correctness mismatch found in this slice.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:32-85",
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40",
+        ".opencode/skills/sk-prompt/hub-router.json:4-26"
+      ],
+      "proof": "Direct reads show registry and router match the approved two-workflow-mode contract."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/agents/prompt-improver.md",
+        ".claude/agents/prompt-improver.md"
+      ],
+      "bugClass": "prompt_injection_execution_boundary",
+      "disposition": "ruled_out",
+      "rationale": "The live agent contracts keep prompt content as output-only and forbid execution/mutation in this slice.",
+      "evidenceRefs": [
+        ".opencode/agents/prompt-improver.md:6-19",
+        ".opencode/agents/prompt-improver.md:101-103",
+        ".opencode/agents/prompt-improver.md:151-158",
+        ".claude/agents/prompt-improver.md:1-5",
+        ".claude/agents/prompt-improver.md:86-88",
+        ".claude/agents/prompt-improver.md:136-143"
+      ],
+      "proof": "Verified by direct reads of both runtime agent definitions."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/prompt-models/SKILL.md"
+      ],
+      "bugClass": "router_resource_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The resource-load path traversal class is guarded in the reviewed router pseudocode.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:47-57",
+        ".opencode/skills/sk-prompt/SKILL.md:151-156",
+        ".opencode/skills/sk-prompt/prompt-models/SKILL.md:136-140"
+      ],
+      "proof": "Verified skill-root relative path guards by direct read."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/prompt-models/SKILL.md"
+      ],
+      "bugClass": "readonly_packet_mutation",
+      "disposition": "ruled_out",
+      "rationale": "The prompt-models packet remains a read-only profile guidance surface in this slice.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/mode-registry.json:29-40",
+        ".opencode/skills/sk-prompt/prompt-models/SKILL.md:234-240"
+      ],
+      "proof": "Verified by direct read of registry and packet rules."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/spec.md",
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/hub-router.json"
+      ],
+      "bugClass": "spec_code_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "live topology matches the root spec claim",
+      "evidenceRefs": [
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/spec.md:88-93",
+        ".opencode/skills/sk-prompt/SKILL.md:20-23",
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40",
+        ".opencode/skills/sk-prompt/hub-router.json:4-27"
+      ],
+      "proof": "verified by direct read and glob"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/spec.md"
+      ],
+      "bugClass": "overlay_playbook_capability",
+      "disposition": "ruled_out",
+      "rationale": "hub-level and packet-local playbook ownership is traceable",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23-48"
+      ],
+      "proof": "live playbook files and spec decision align"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/agents/prompt-improver.md",
+        ".claude/agents/prompt-improver.md"
+      ],
+      "bugClass": "stale_runtime_agent_reference",
+      "disposition": "ruled_out",
+      "rationale": "Already covered by active prior P1 finding; re-raising would duplicate severity rather than improve maintainability coverage.",
+      "evidenceRefs": [
+        ".opencode/agents/prompt-improver.md:62-83",
+        ".claude/agents/prompt-improver.md:47-68"
+      ],
+      "proof": "duplicate of R1-P1-001"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md"
+      ],
+      "bugClass": "playbook_capability_gap",
+      "disposition": "ruled_out",
+      "rationale": "Routing playbook scope is adequate for hub workflowMode selection; the new finding is a contract parity issue outside that playbook's declared purpose.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23-41"
+      ],
+      "proof": "playbook scope is routing behavior, not packet permission metadata parity"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "declared review scope"
+      ],
+      "bugClass": "feature_catalog_code",
+      "disposition": "not_applicable",
+      "rationale": "No feature-catalog artifact was part of this review target.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/review/deep-review-config.json:18-91"
+      ],
+      "proof": "feature catalog file absent from declared scope"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/hub-router.json",
+        ".opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.md",
+        ".opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.md"
+      ],
+      "bugClass": "router_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "current router config and both benchmark reports confirm named-model routing works",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/hub-router.json:16-25",
+        ".opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.md:40-45",
+        ".opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.md:40-45"
+      ],
+      "proof": "direct file and benchmark evidence showed the guard remains in place"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md",
+        ".opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.json",
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md"
+      ],
+      "bugClass": "benchmark_claim_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "current benchmark summary and JSON preserve the unscored limitation; prior stale closeout wording remains covered by R3-P2-001",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:12-16",
+        ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:41-47",
+        ".opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.json:29-60"
+      ],
+      "proof": "no new contradiction beyond already-registered advisory"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/graph-metadata.json",
+        ".opencode/skills/sk-prompt/SKILL.md"
+      ],
+      "bugClass": "metadata_rollup_drift",
+      "disposition": "ruled_out",
+      "rationale": "reviewed metadata matches the identity-dissolution invariant",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/graph-metadata.json:6-19",
+        ".opencode/skills/sk-prompt/SKILL.md:104-107"
+      ],
+      "proof": "direct read found the folded edge and single-identity contract intact"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/agents/prompt-improver.md",
+        ".claude/agents/prompt-improver.md"
+      ],
+      "bugClass": "prompt_injection_execution_boundary",
+      "disposition": "ruled_out",
+      "rationale": "Agent prompt-injection-to-execution class remains blocked by read-only/no-execution contracts.",
+      "evidenceRefs": [
+        ".opencode/agents/prompt-improver.md:1-19",
+        ".opencode/agents/prompt-improver.md:101-103",
+        ".opencode/agents/prompt-improver.md:151-158",
+        ".claude/agents/prompt-improver.md:1-5",
+        ".claude/agents/prompt-improver.md:86-88",
+        ".claude/agents/prompt-improver.md:136-143"
+      ],
+      "proof": "verified by direct reads of both runtime agent definitions"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+        ".opencode/skills/sk-prompt/hub-router.json"
+      ],
+      "bugClass": "router_resource_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "Resource path traversal was already guarded and no new resource escape was found.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:47-57",
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md:151-156",
+        ".opencode/skills/sk-prompt/hub-router.json:13-18"
+      ],
+      "proof": "verified by direct read of router/resource guard pseudocode"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-006-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md"
+      ],
+      "bugClass": "readonly_packet_mutation",
+      "disposition": "ruled_out",
+      "rationale": "No additional read-only packet mutation class was found in this security pass.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40"
+      ],
+      "proof": "verified by direct read of registry tool surfaces"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+        ".opencode/skills/sk-prompt/prompt-improve/README.md"
+      ],
+      "bugClass": "spec_code_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "the live packet docs are internally traceable; the defect is isolated to manual-testing playbook scenario anchors",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md:76-99",
+        ".opencode/skills/sk-prompt/prompt-improve/README.md:213-221"
+      ],
+      "proof": "direct read found correct packet-local references"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/hub-router.json",
+        ".opencode/skills/sk-prompt/graph-metadata.json"
+      ],
+      "bugClass": "hub_router_contract",
+      "disposition": "ruled_out",
+      "rationale": "router topology remains traceable and is not the cause of the stale playbook anchors",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:32-85",
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40",
+        ".opencode/skills/sk-prompt/hub-router.json:16-27",
+        ".opencode/skills/sk-prompt/graph-metadata.json:127-136"
+      ],
+      "proof": "direct read confirms registry/router/graph identity alignment"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/hub-router.json"
+      ],
+      "bugClass": "router_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "No new maintainability finding in router topology; issues are documentation drift in packet references.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:32-85",
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40",
+        ".opencode/skills/sk-prompt/hub-router.json:16-27"
+      ],
+      "proof": "direct reads show router metadata remains coherent"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/prompt-improve/README.md"
+      ],
+      "bugClass": "duplicate_relation_docs",
+      "disposition": "ruled_out",
+      "rationale": "The duplicate row is cosmetic and does not obscure a required routing or verification contract.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/prompt-improve/README.md:143-158"
+      ],
+      "proof": "boundary remains understandable and lower than P2 threshold for this review"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/mode-registry.json",
+        ".opencode/skills/sk-prompt/hub-router.json"
+      ],
+      "bugClass": "router_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "no new router-shape correctness defect found in this pass",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:32-85",
+        ".opencode/skills/sk-prompt/mode-registry.json:16-40",
+        ".opencode/skills/sk-prompt/hub-router.json:16-27"
+      ],
+      "proof": "direct reads match the approved two-mode hub contract"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/agents/prompt-improver.md",
+        ".claude/agents/prompt-improver.md"
+      ],
+      "bugClass": "stale_command_path",
+      "disposition": "ruled_out",
+      "rationale": "re-raising would duplicate an active prior P1",
+      "evidenceRefs": [
+        ".opencode/agents/prompt-improver.md:62-83",
+        ".claude/agents/prompt-improver.md:47-68",
+        ".opencode/specs/sk-prompt/006-sk-prompt-parent/review/deep-review-findings-registry.json:10-38"
+      ],
+      "proof": "covered by R1-P1-001"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt",
+        ".opencode/commands/prompt-improve.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "The only match is an explicit placeholder in benchmark documentation and no command file secret pattern matched.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md:28"
+      ],
+      "proof": "verified by scoped Grep with direct placeholder evidence"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md",
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md"
+      ],
+      "bugClass": "resource_escape",
+      "disposition": "ruled_out",
+      "rationale": "Both reviewed routers include containment guards before resource loading.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-prompt/SKILL.md:47-57",
+        ".opencode/skills/sk-prompt/prompt-improve/SKILL.md:151-156"
+      ],
+      "proof": "guard present in both hub and packet pseudocode"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/agents/prompt-improver.md",
+        ".claude/agents/prompt-improver.md"
+      ],
+      "bugClass": "agent_boundary_escape",
+      "disposition": "ruled_out",
+      "rationale": "Both runtime agent surfaces preserve read-only, prompt-package-only boundaries.",
+      "evidenceRefs": [
+        ".opencode/agents/prompt-improver.md:6-19",
+        ".opencode/agents/prompt-improver.md:151-160",
+        ".claude/agents/prompt-improver.md:1-5",
+        ".claude/agents/prompt-improver.md:136-147"
+      ],
+      "proof": "permissions and rules deny mutation/execution paths"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "secret_exposure",
+      "path_traversal",
+      "unsafe_execution",
+      "resource_escape",
+      "agent_boundary_escape",
+      "duplicate_prior_finding"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "secret_exposure",
+      "unsafe_execution",
+      "resource_escape",
+      "agent_boundary_escape",
+      "duplicate_prior_finding"
+    ],
+    "deferred": [
+      "path_traversal"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

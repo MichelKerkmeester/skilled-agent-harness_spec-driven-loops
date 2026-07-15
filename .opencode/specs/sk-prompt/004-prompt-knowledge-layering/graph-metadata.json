@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/004-prompt-knowledge-layering",
+  "spec_folder": "sk-prompt/004-prompt-knowledge-layering",
+  "parent_id": null,
+  "children_ids": [
+    "sk-prompt/004-prompt-knowledge-layering/001-design-architecture-and-data-contract",
+    "sk-prompt/004-prompt-knowledge-layering/002-repair-and-extend-sync-substrate",
+    "sk-prompt/004-prompt-knowledge-layering/003-land-recommended-frameworks-data",
+    "sk-prompt/004-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
+    "sk-prompt/004-prompt-knowledge-layering/005-backfill-remaining-profiles",
+    "sk-prompt/004-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
+    "sk-prompt/004-prompt-knowledge-layering/007-wire-precedence-and-crosslinks",
+    "sk-prompt/004-prompt-knowledge-layering/008-validate-sweep-changelog-reindex",
+    "sk-prompt/004-prompt-knowledge-layering/009-refine-hub-cli-connections",
+    "sk-prompt/004-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
+    "sk-prompt/004-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
+    "sk-prompt/004-prompt-knowledge-layering/012-cli-doc-alignment",
+    "sk-prompt/004-prompt-knowledge-layering/013-card-relocation-and-guard",
+    "sk-prompt/004-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+    "sk-prompt/004-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
+    "sk-prompt/004-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "130-prompt-knowledge-layering",
+      "phase parent"
+    ],
+    "key_topics": [
+      "130-prompt-knowledge-layering",
+      "phase",
+      "parent",
+      "prompt-engineering",
+      "knowledge",
+      "across",
+      "skills",
+      "system",
+      "duplicated",
+      "structurally",
+      "inconsistent",
+      "poorly"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Prompt",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Research question",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Method",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Prompt-engineering knowledge across the skills system is duplicated, structurally inconsistent, and poorly connected",
+    "created_at": "2026-06-02T18:04:09Z",
+    "last_save_at": "2026-07-15T08:29:49.822Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:f6452cd07253dfc2679d73d47fe017f1ff5e55b4ed8e32d49a8243752aec1026",
+    "source_doc_hashes": {
+      "spec.md": "4e4bffc9b188c86c1194792eb1edf9f73b2507379b6ca0d326806f86b7bfa4a7",
+      "research/research.md": "02849bc394500e94894669761f30036d89f02b8920606a07dbd10ef41a516cac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-03T07:05:23.009Z"
+  }
+}
