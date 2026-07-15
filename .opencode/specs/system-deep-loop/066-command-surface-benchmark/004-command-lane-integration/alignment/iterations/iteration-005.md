@@ -1,0 +1,69 @@
+# Alignment Iteration 005
+
+## Dispatcher
+
+- Deterministic ITERATE executor (native, sk-doc-command adapter). No reasoning LEAF.
+- Resolved route: mode=alignment target_agent=deep-alignment (generation 1, session command-lane-integration-20260715T083956Z).
+
+## Lane
+
+- Lane Id: sk-doc::docs::.opencode/commands
+- Authority: sk-doc / Class: docs / Adapter: sk-doc-command
+- Scope: {"type":"paths","values":[".opencode/commands"]}
+
+## Artifacts Checked
+
+- `.opencode/commands/design/foundations.md`
+- `.opencode/commands/design/interface.md`
+- `.opencode/commands/design/md-generator.md`
+- `.opencode/commands/design/motion.md`
+- `.opencode/commands/doctor/mcp.md`
+
+Remaining after this slice: 12
+
+## Findings - New
+
+- Raw findings this iteration: 0 (P0 0 / P1 0 / P2 0)
+- New distinct finding identities this iteration: 0
+- newFindingsRatio: 0
+
+### P0
+
+None.
+
+### P1
+
+None.
+
+### P2
+
+None.
+
+## Verify-First Evidence
+
+- Findings are produced by the deterministic adapter check() against the live command surface (validate-command-references.cjs inventory + parsed source text), not pattern-guessed.
+
+## Known-Deviation Suppressions Applied
+
+- Suppression handled inside adapter.check() via standardSource().knownDeviations (loadKnownDeviations()).
+
+## Edge Cases
+
+- Findings may be located at cross-referenced target files (e.g. workflow .yaml) rather than the checked source; those are genuine cross-artifact integrity findings.
+
+## Confirmed-Clean Artifacts
+
+- `.opencode/commands/design/foundations.md`
+- `.opencode/commands/design/interface.md`
+- `.opencode/commands/design/md-generator.md`
+- `.opencode/commands/design/motion.md`
+- `.opencode/commands/doctor/mcp.md`
+
+## Ruled Out
+
+- No adapter/runtime errors encountered this iteration.
+
+## Next Focus
+
+- Echo of partition-corpus.cjs: next unaudited slice for lane sk-doc::docs::.opencode/commands (batch 5); 12 remaining after this slice.
+

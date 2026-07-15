@@ -1,0 +1,111 @@
+{
+  "alignmentTarget": ".opencode/commands",
+  "lanes": [
+    {
+      "laneId": "sk-doc::docs::.opencode/commands",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/commands"
+        ]
+      },
+      "iterationsRun": 8,
+      "artifactsChecked": 37,
+      "checkedArtifactIds": [
+        ".opencode/commands/agent_router.md",
+        ".opencode/commands/create/agent.md",
+        ".opencode/commands/create/benchmark.md",
+        ".opencode/commands/create/changelog.md",
+        ".opencode/commands/create/command.md",
+        ".opencode/commands/create/feature-catalog.md",
+        ".opencode/commands/create/flowchart.md",
+        ".opencode/commands/create/manual-testing-playbook.md",
+        ".opencode/commands/create/readme.md",
+        ".opencode/commands/create/skill-parent.md",
+        ".opencode/commands/create/skill.md",
+        ".opencode/commands/deep/agent-improvement.md",
+        ".opencode/commands/deep/ai-council.md",
+        ".opencode/commands/deep/ai-system-improvement.md",
+        ".opencode/commands/deep/alignment.md",
+        ".opencode/commands/deep/model-benchmark.md",
+        ".opencode/commands/deep/research.md",
+        ".opencode/commands/deep/review.md",
+        ".opencode/commands/deep/skill-benchmark.md",
+        ".opencode/commands/design/audit.md",
+        ".opencode/commands/design/foundations.md",
+        ".opencode/commands/design/interface.md",
+        ".opencode/commands/design/md-generator.md",
+        ".opencode/commands/design/motion.md",
+        ".opencode/commands/doctor/mcp.md",
+        ".opencode/commands/doctor/speckit.md",
+        ".opencode/commands/doctor/update.md",
+        ".opencode/commands/goal_opencode.md",
+        ".opencode/commands/memory/learn.md",
+        ".opencode/commands/memory/manage.md",
+        ".opencode/commands/memory/save.md",
+        ".opencode/commands/memory/search.md",
+        ".opencode/commands/prompt-improve.md",
+        ".opencode/commands/speckit/complete.md",
+        ".opencode/commands/speckit/implement.md",
+        ".opencode/commands/speckit/plan.md",
+        ".opencode/commands/speckit/resume.md"
+      ],
+      "openFindings": [
+        {
+          "code": "CMD-S3-ROUTE-CYCLE",
+          "severity": "P0",
+          "dimension": "S3",
+          "location": ".opencode/commands/create/assets/create_readme_auto.yaml:37",
+          "type": "CMD-S3-ROUTE-CYCLE",
+          "artifactPath": ".opencode/commands/create/assets/create_readme_auto.yaml",
+          "message": "CMD-S3-ROUTE-CYCLE at line 37 (.opencode/commands/create/assets/create_readme_auto.yaml:37)"
+        },
+        {
+          "code": "CMD-S3-ROUTE-CYCLE",
+          "severity": "P0",
+          "dimension": "S3",
+          "location": ".opencode/commands/create/assets/create_readme_confirm.yaml:9",
+          "type": "CMD-S3-ROUTE-CYCLE",
+          "artifactPath": ".opencode/commands/create/assets/create_readme_confirm.yaml",
+          "message": "CMD-S3-ROUTE-CYCLE at line 9 (.opencode/commands/create/assets/create_readme_confirm.yaml:9)"
+        },
+        {
+          "code": "CMD-S3-ROUTE-CYCLE",
+          "severity": "P0",
+          "dimension": "S3",
+          "location": ".opencode/commands/doctor/_routes.yaml:5",
+          "type": "CMD-S3-ROUTE-CYCLE",
+          "artifactPath": ".opencode/commands/doctor/_routes.yaml",
+          "message": "CMD-S3-ROUTE-CYCLE at line 5 (.opencode/commands/doctor/_routes.yaml:5)"
+        }
+      ],
+      "findingsBySeverity": {
+        "P0": 3,
+        "P1": 0,
+        "P2": 0
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 30,
+      "verdict": "FAIL"
+    }
+  ],
+  "overall": {
+    "laneCount": 1,
+    "applicableLaneCount": 1,
+    "findingsBySeverity": {
+      "P0": 3,
+      "P1": 0,
+      "P2": 0
+    },
+    "compositeScore": 30,
+    "verdict": "FAIL",
+    "nothingToConverge": false,
+    "incompleteCoverage": false,
+    "integrityFault": false,
+    "invalidSeverityCount": 0
+  },
+  "corruptionWarnings": [],
+  "hasCorruption": false
+}

@@ -14,7 +14,9 @@
       "command lane integration",
       "peer adapter registration",
       "alignment convergence gate",
-      "raw-delta reducer agreement"
+      "raw-delta reducer agreement",
+      "sk-doc-command lane registration",
+      "command adapter convergence run"
     ],
     "key_topics": [
       "command",
@@ -31,14 +33,15 @@
       "agreement"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
       ".opencode/commands/scripts/validate-command-references.cjs",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -75,6 +78,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -182,19 +191,21 @@
     ],
     "causal_summary": "Registers and configures the sk-doc-command peer adapter as a lane, runs all canonical commands to convergence, and hard-gates raw-delta and reducer agreement so the deterministic verdict is trustworthy.",
     "created_at": "2026-07-14T20:36:59.449Z",
-    "last_save_at": "2026-07-15T04:48:23.032Z",
+    "last_save_at": "2026-07-15T08:47:37.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9c7653dd226d3e423aebe59cbbeee2248dfb69f1c7a3f6f06319dc49b6cbc5a",
+    "source_fingerprint": "sha256:31fc2848df89986dd2d2abfe2c82f3508cc093f012e9dad914feb4d247f681a5",
     "source_doc_hashes": {
-      "spec.md": "af79bfe93a7d0f5b957d95730c26e92290f5ad5b8585b0cb91915a4b0a689044",
+      "spec.md": "a80f0657ef462f384a1f5d2c2b60ad574db625563493515c6ea974666565ac9e",
       "plan.md": "0f544810a7560f47c00d3c61369808b776831578e9920d43b4a1216f662d6566",
-      "tasks.md": "d9672e2d53d1a88ad17b0a61ea6b507d3a881a0f6bc8bd615c7fa88238a83bec"
+      "tasks.md": "043b5cdd06962a8d105f5db61cbe9f13de9b7d078898db5a7da7c25b7058b35b",
+      "implementation-summary.md": "59eec8f056b731bf84c6523319a52353527792e051127e0914647f8026a63de3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -83,11 +83,62 @@ function testFixtureExpectations() {
       { path: '.' },
       { rootDir: path.join(REPO_ROOT, fixture.path), fullCorpus: true },
     );
-    assert.deepEqual(actual, expected, `${fixture.id} must match its frozen finding set`);
+    const coreFindings = actual.map(({ code, severity, dimension, location }) => ({
+      code,
+      severity,
+      dimension,
+      location,
+    }));
+    assert.deepEqual(coreFindings, expected, `${fixture.id} must match its frozen finding set`);
     assert.ok(
       actual.every((finding) => /^CMD-S[1-5]-/.test(finding.code)),
       `${fixture.id} emitted a finding outside the command adapter vocabulary`,
     );
+    for (const finding of actual) {
+      assert.ok(
+        typeof finding.type === 'string' && finding.type.length > 0,
+        `${fixture.id} emitted a finding without a reducer-compatible type`,
+      );
+      assert.ok(
+        typeof finding.artifactPath === 'string' && finding.artifactPath.length > 0,
+        `${fixture.id} emitted a finding without a reducer-compatible artifactPath`,
+      );
+      assert.ok(
+        typeof finding.message === 'string' && finding.message.length > 0,
+        `${fixture.id} emitted a finding without a reducer-compatible message`,
+      );
+      assert.equal(
+        finding.type,
+        finding.code,
+        `${fixture.id} finding type must preserve its code`,
+      );
+      assert.equal(
+        finding.artifactPath,
+        finding.location.replace(/:\d+$/, ''),
+        `${fixture.id} finding artifactPath must preserve its POSIX location path`,
+      );
+      assert.ok(
+        finding.message.includes(finding.code)
+          && finding.message.includes(finding.location),
+        `${fixture.id} finding message must render its code and location`,
+      );
+      assert.equal(
+        /[\r\n]/.test(finding.message),
+        false,
+        `${fixture.id} finding message must remain one line`,
+      );
+    }
+    if (fixture.id === 'held-out-compound-multi-defect') {
+      const dedupKeys = actual.map((finding) => (
+        `fl:${finding.severity}|${finding.type}|${finding.artifactPath}|${finding.message}`
+      ));
+      assert.equal(actual.length, 3, 'compound fixture must emit three findings');
+      assert.equal(
+        new Set(dedupKeys).size,
+        3,
+        'compound fixture findings must retain three distinct reducer fallback keys',
+      );
+    }
     outcomes.push({
       id: fixture.id,
       classification: fixture.classification,

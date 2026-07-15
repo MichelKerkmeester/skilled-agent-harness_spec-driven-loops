@@ -34,15 +34,15 @@ function writeJson(filePath, value) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
-function seedLane(alignmentDir, artifacts) {
-  const lanes = resolveLanesFromConfig([
-    { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/'] } },
-  ]);
+function seedLane(alignmentDir, artifacts, adapter) {
+  const rawLane = { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/'] } };
+  if (adapter) rawLane.adapter = adapter;
+  const lanes = resolveLanesFromConfig([rawLane]);
   const lane = lanes[0];
   const id = laneKey(lane);
   writeJson(path.join(alignmentDir, 'deep-alignment-config.json'), { alignmentTarget: 'partition fixture', lanes });
   writeJson(path.join(alignmentDir, 'deep-alignment-corpus.json'), {
-    lanes: [{ laneId: id, authority: lane.authority, artifactClass: lane.artifactClass, scope: lane.scope, artifacts }],
+    lanes: [{ laneId: id, authority: lane.authority, artifactClass: lane.artifactClass, adapter: lane.adapter, scope: lane.scope, artifacts }],
   });
   return id;
 }
@@ -91,7 +91,21 @@ function testResolveNextSliceUnit() {
   assert.deepEqual(resolveNextSlice(corpusLanes, allChecked, 5), { done: true });
 }
 
+// 4. A peer-adapter lane retains its adapter discriminator through partitioning.
+function testPeerAdapterLaneWalksPartition() {
+  const { specFolder, alignmentDir } = makeSpecFolder('peer-adapter');
+  const artifacts = [{ path: '.opencode/commands/deep/alignment.md' }];
+  seedLane(alignmentDir, artifacts, 'sk-doc-command');
+
+  const slice = partitionCorpus(specFolder, { batchSize: 5 });
+  assert.equal(slice.done, false);
+  assert.equal(slice.authority, 'sk-doc');
+  assert.equal(slice.adapter, 'sk-doc-command');
+  assert.deepEqual(slice.artifactsSlice, artifacts);
+}
+
 testIdentityProgressReoffersSkipped();
 testCountOnlyFallbackKeepsPrefixCursor();
 testResolveNextSliceUnit();
+testPeerAdapterLaneWalksPartition();
 console.log('[deep-alignment] partition identity-progress regression passed');

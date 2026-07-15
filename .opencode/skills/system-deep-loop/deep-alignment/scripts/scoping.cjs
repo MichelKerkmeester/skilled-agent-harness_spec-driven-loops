@@ -62,7 +62,7 @@ const AUTHORITY_ARTIFACT_CLASSES = Object.freeze({
 // adapters/<adapter-or-authority>.cjs; the loop still never branches on which
 // authority produced a finding, it only loads the module the lane names.
 const AUTHORITY_ADAPTERS = Object.freeze({
-  'sk-doc': Object.freeze(['sk-doc']),
+  'sk-doc': Object.freeze(['sk-doc', 'sk-doc-command']),
   'sk-git': Object.freeze(['sk-git']),
   'sk-design': Object.freeze(['sk-design', 'sk-design-live-render']),
   'sk-code': Object.freeze(['sk-code']),

@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: command lane integration — register the peer adapter and prove full-corpus convergence"
 description: "Registers and configures the sk-doc-command peer adapter as a lane, runs all canonical commands to convergence, and hard-gates raw-delta and reducer agreement so the deterministic verdict is trustworthy."
-status: planned
+status: complete
 trigger_phrases:
   - "command lane integration"
   - "peer adapter registration"
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->

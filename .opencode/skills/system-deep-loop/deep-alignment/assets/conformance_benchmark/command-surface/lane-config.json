@@ -1,0 +1,13 @@
+[
+  {
+    "authority": "sk-doc",
+    "artifactClass": "docs",
+    "adapter": "sk-doc-command",
+    "scope": {
+      "type": "paths",
+      "values": [
+        ".opencode/commands"
+      ]
+    }
+  }
+]

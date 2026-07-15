@@ -64,21 +64,21 @@ This skill is invoked EXCLUSIVELY through the `/deep:alignment` command. The com
 
 ## 2. SMART ROUTING
 
-`deep-alignment` is a nested mode-packet dispatched by the `system-deep-loop` hub, not a standalone skill; its own `references/` and `assets/` are private to this packet and are what this section routes across. `references/adapters/` holds one adapter spec plus one known-deviation list per registered authority; the remaining `references/*.md` hold the state-agnostic lane-resolution and state-machine protocol docs; `assets/` holds the runtime config template.
+`deep-alignment` is a nested mode-packet dispatched by the `system-deep-loop` hub, not a standalone skill; its own `references/` and `assets/` are private to this packet and are what this section routes across. `references/adapters/` holds each registered adapter's spec and known-deviation list; the remaining `references/*.md` hold the state-agnostic lane-resolution and state-machine protocol docs; `assets/` holds the runtime config template.
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 |-------|-------------|-----------|
 | ALWAYS | Every skill invocation | `references/scoping_protocol.md` |
-| CONDITIONAL | If intent/state signals match | Lane config schema, discover contract, state-machine wiring, the active lane's authority adapter + known-deviation pair |
-| ON_DEMAND | Only on explicit request | Adapter specs for authorities outside the active lane, `assets/deep_alignment_config_template.json` |
+| CONDITIONAL | If intent/state signals match | Lane config schema, discover contract, state-machine wiring, the active lane's selected adapter + known-deviation pair |
+| ON_DEMAND | Only on explicit request | Adapter specs outside the active lane, `assets/deep_alignment_config_template.json` |
 
 ### Smart Router Pseudocode
 
 - Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively inventories `references/` and `assets/`.
 - Pattern 2: Existence-Check Before Load - `load_if_available()` guards markdown paths, checks `inventory`, and uses `seen`.
-- Pattern 3: Extensible Routing Key - `get_routing_key()` derives the active state from dispatch context; `get_authority_key()` derives the active lane's authority.
+- Pattern 3: Extensible Routing Key - `get_routing_key()` derives the active state from dispatch context; `get_adapter_key()` prefers the lane's selected adapter and falls back to its authority.
 - Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` returns lane/state disambiguation and an unresolved state returns a "no alignment resources" notice.
 
 ```python
@@ -113,13 +113,14 @@ RESOURCE_MAP = {
     "ALIGNMENT_REPORT":   ["references/state_machine_wiring.md"],
 }
 
-# AUTHORITY_ADAPTER_MAP: per-authority adapter + known-deviation pair, keyed by the
-# active lane's authority (not by intent) -- a run audits N lanes, each naming
-# exactly one of these four registered authorities.
-AUTHORITY_ADAPTER_MAP = {
+# ADAPTER_RESOURCE_MAP: adapter + known-deviation prompt pack, keyed by the
+# active lane's selected adapter. Default adapters keep their authority name.
+ADAPTER_RESOURCE_MAP = {
     "sk-doc":    ["references/adapters/sk_doc_adapter.md", "references/adapters/sk_doc_known_deviations.md"],
+    "sk-doc-command": ["references/adapters/sk_doc_command_adapter.md", "references/adapters/sk_doc_command_known_deviations.md"],
     "sk-git":    ["references/adapters/sk_git_adapter.md", "references/adapters/sk_git_known_deviations.md"],
     "sk-design": ["references/adapters/sk_design_adapter.md", "references/adapters/sk_design_known_deviations.md", "references/adapters/sk_design_live_render_adapter.md"],
+    "sk-design-live-render": ["references/adapters/sk_design_adapter.md", "references/adapters/sk_design_known_deviations.md", "references/adapters/sk_design_live_render_adapter.md"],
     "sk-code":   ["references/adapters/sk_code_adapter.md", "references/adapters/sk_code_known_deviations.md"],
 }
 
@@ -169,12 +170,20 @@ def get_routing_key(dispatch_context) -> str:
 
 def get_authority_key(dispatch_context) -> str:
     authority = str(getattr(dispatch_context, "authority", "")).strip().lower()
-    return authority if authority in AUTHORITY_ADAPTER_MAP else ""
+    return authority if authority in {"sk-doc", "sk-git", "sk-design", "sk-code"} else ""
+
+def get_adapter_key(dispatch_context) -> str:
+    adapter = str(getattr(dispatch_context, "adapter", "")).strip().lower()
+    authority = get_authority_key(dispatch_context)
+    if adapter:
+        return adapter if adapter in ADAPTER_RESOURCE_MAP else ""
+    return authority if authority in ADAPTER_RESOURCE_MAP else ""
 
 def route_alignment_resources(task, dispatch_context):
     inventory = discover_markdown_resources()
     routing_key = get_routing_key(dispatch_context)
     authority_key = get_authority_key(dispatch_context)
+    adapter_key = get_adapter_key(dispatch_context)
     scores = score_intents(task, INTENT_SIGNALS, NOISY_SYNONYMS)
     intents = select_intents(scores, ambiguity_delta=1.0)
 
@@ -214,12 +223,13 @@ def route_alignment_resources(task, dispatch_context):
     for relative_path in phase_resources:
         load_if_available(relative_path)
 
-    for relative_path in AUTHORITY_ADAPTER_MAP.get(authority_key, []):
+    for relative_path in ADAPTER_RESOURCE_MAP.get(adapter_key, []):
         load_if_available(relative_path)
 
     return {
         "routing_key": routing_key,
         "authority_key": authority_key or "unspecified",
+        "adapter_key": adapter_key or "unspecified",
         "intents": intents,
         "resources": loaded,
     }
@@ -230,7 +240,7 @@ def route_alignment_resources(task, dispatch_context):
 | State | Signal | Resources to Load |
 |-------|--------|-------------------|
 | SCOPE | No `deep-alignment-config.json` yet, or lane-resolution/`--lane-config` keywords | `scoping_protocol.md`, `lane_config_schema.md` |
-| DISCOVER | Config frozen, corpus not yet built | `discover_contract.md`, the active lane's `references/adapters/<authority>_adapter.md` |
+| DISCOVER | Config frozen, corpus not yet built | `discover_contract.md`, the active lane's selected adapter spec |
 | ITERATE | Corpus exists, `deep-alignment-state.jsonl` advancing | the active lane's adapter + known-deviations pair |
 | CONVERGE | `check-convergence.cjs` dispatch context | `state_machine_wiring.md` (convergence formula) |
 | REPORT | Convergence returned `CONVERGED`/`STOP_MAX_ITERATIONS`/`NOTHING_TO_CONVERGE` | `state_machine_wiring.md` (reducer wiring) |
@@ -355,15 +365,15 @@ This skill operates within the behavioral framework defined in the active runtim
 
 ### Knowledge Base Dependencies
 
-**Required**: `references/scoping_protocol.md` and `references/lane_config_schema.md` for lane resolution; `references/discover_contract.md` and the active lane's `references/adapters/<authority>_adapter.md` for discovery and checking; `references/state_machine_wiring.md` for convergence and reducer wiring.
+**Required**: `references/scoping_protocol.md` and `references/lane_config_schema.md` for lane resolution; `references/discover_contract.md` and the active lane's selected adapter spec for discovery and checking; `references/state_machine_wiring.md` for convergence and reducer wiring.
 
-**Optional**: the remaining per-authority adapter and known-deviation docs, loaded only when a lane names that authority.
+**Optional**: the remaining adapter and known-deviation docs, loaded only when a lane selects that adapter.
 
 ---
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference and asset docs dynamically under `references/` and `assets/`. Start with `references/scoping_protocol.md`, `references/lane_config_schema.md`, `references/discover_contract.md`, and `references/state_machine_wiring.md`, then load the active lane's `references/adapters/<authority>_adapter.md` and `<authority>_known_deviations.md` pair, and `assets/deep_alignment_config_template.json` when the config shape is needed.
+The router discovers reference and asset docs dynamically under `references/` and `assets/`. Start with `references/scoping_protocol.md`, `references/lane_config_schema.md`, `references/discover_contract.md`, and `references/state_machine_wiring.md`, then load the active lane's selected adapter and known-deviation pair, and `assets/deep_alignment_config_template.json` when the config shape is needed.
 
 Scripts: `scripts/scoping.cjs`, `scripts/check-convergence.cjs`, `scripts/partition-corpus.cjs`, `scripts/remediate-hook.cjs`, and `scripts/adapters/<authority>.cjs`.
 

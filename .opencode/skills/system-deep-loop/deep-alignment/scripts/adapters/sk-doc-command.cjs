@@ -109,7 +109,17 @@ function lineNumber(text, offset) {
 }
 
 function makeFinding(code, severity, dimension, file, line) {
-  return { code, severity, dimension, location: `${toPosix(file)}:${line}` };
+  const artifactPath = toPosix(file);
+  const location = `${artifactPath}:${line}`;
+  return {
+    code,
+    severity,
+    dimension,
+    location,
+    type: code,
+    artifactPath,
+    message: `${code} at line ${line} (${location})`,
+  };
 }
 
 function compareFindings(left, right) {

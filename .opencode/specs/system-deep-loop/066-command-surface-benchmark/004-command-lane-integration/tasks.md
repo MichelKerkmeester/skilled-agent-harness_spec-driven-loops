@@ -1,7 +1,7 @@
 ---
 title: "Tasks: command lane integration"
 description: "Task breakdown for lane registration and full-corpus convergence."
-status: planned
+status: complete
 importance_tier: "important"
 contextType: "planning"
 _memory:
@@ -26,28 +26,32 @@ _memory:
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-`[ ]` open · `[x]` complete. Each task lists its verification evidence. This child is Planned; all tasks are open.
+`[ ]` open · `[x]` complete. Each task lists its verification evidence. Part A (source/config/tests) and Part B (the convergence run) are both complete.
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 — Author the lane-config entry selecting the command adapter over the command scope. Evidence: lane-config resolves without a scoping error.
-- [ ] T002 — Confirm scoping resolves sk-doc over docs with the command adapter. Evidence: scoping JSON output shows the resolved adapter, exit 0.
+- [x] T001 — Author the lane-config entry selecting the command adapter over the command scope. Evidence: the command-surface lane config contains one `sk-doc` / `docs` lane with `adapter: sk-doc-command` and scope `.opencode/commands`.
+- [x] T002 — Confirm scoping resolves sk-doc over docs with the command adapter. Evidence: `node scripts/scoping.cjs --lane-config assets/conformance_benchmark/command-surface/lane-config.json --json` exits 0 and returns `adapter: sk-doc-command`.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 — Run all canonical commands through the deterministic lane. Evidence: run covers the full discovered corpus.
-- [ ] T004 — Prove convergence over the full corpus. Evidence: run reaches converged true.
-- [ ] T005 — Hard-gate raw-delta and reduced-report agreement. Evidence: raw-delta and reduced counts and codes agree exactly.
+- [x] T003 — Run all canonical commands through the deterministic lane. Evidence: the run checked 37 of 37 discovered artifacts (8 slices at batch size 5: 5×7 + 2), `artifactsChecked` ratio 1.0.
+- [x] T004 — Prove convergence over the full corpus. Evidence: `check-convergence.cjs` returned `CONVERGED` at iteration 8 — coverage 37/37 = 1.0 ≥ threshold AND the last two iterations both reported `newFindingsRatio` 0.
+- [x] T005 — Hard-gate raw-delta and reduced-report agreement. Evidence: the delta finding lines (3, three distinct dedup keys over the reducer's own fallback key) equal the reduced registry's open findings (3, P0:3/P1:0/P2:0) exactly — proven on the adapter's verbatim `check()` output after its finding shape was made reducer-compatible.
+
+Convergence run driven through the deep-alignment workflow (its plan-workflow lock forbids a hand-rolled dispatcher), writing state only under `alignment/`.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 — Confirm the generic lane runs separately from the peer lane. Evidence: no single run places both adapters over the same scope.
+- [x] T006 — Confirm the generic lane runs separately from the peer lane. Evidence: the run resolved `1/1` lanes — `sk-doc:docs:sk-doc-command` over `.opencode/commands` — and the generic `sk-doc` adapter never audited that scope (config isolation + runtime proof in the two sub-items below).
+  - [x] Config isolation: the benchmark lane config contains only `sk-doc-command`, so the peer adapter and generic `sk-doc` adapter do not share the command scope in this config.
+  - [x] No-single-run runtime proof: the convergence run resolved exactly one lane (`sk-doc`/`docs`/`sk-doc-command`); the generic `sk-doc` adapter never audited the command scope in the run — the corpus and every iteration record carry only the peer adapter's lane id.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
