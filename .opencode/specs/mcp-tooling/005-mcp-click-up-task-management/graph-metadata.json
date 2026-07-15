@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/005-mcp-click-up-task-management",
+  "spec_folder": "mcp-tooling/005-mcp-click-up-task-management",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "mcp-chrome-devtools",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "clickup",
+      "cupt",
+      "mcp-click-up",
+      "task management skill",
+      "clickup skill",
+      "mcp-click-up plan",
+      "clickup skill implementation",
+      "mcp-click-up tasks",
+      "clickup skill tasks",
+      "mcp-click-up checklist",
+      "clickup skill verification",
+      "mcp-click-up decisions"
+    ],
+    "key_topics": [
+      "clickup",
+      "cupt",
+      "mcp-click-up",
+      "task",
+      "management",
+      "skill",
+      "plan",
+      "implementation",
+      "tasks",
+      "checklist",
+      "verification",
+      "decisions"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Target",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Skill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Routing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Creation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No `mcp-click-up` skill exists in `.opencode/skills/`",
+    "created_at": "2026-05-31T00:00:00Z",
+    "last_save_at": "2026-07-15T06:31:35.544Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": "2026-05-31T10:00:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c75de6391fe4cb0b25e9b2c27b95a3379c07c73c5ded56d4f9178a8062d2ddfb",
+    "source_doc_hashes": {
+      "spec.md": "62c062d457f8fec85dca7ea2d655ba4b5fc96faf13b7320c1802db0769b727f7",
+      "plan.md": "55ec98865ef72a5075ef6c6168ef77f728401551db40920639bd33bd63f4ba14",
+      "tasks.md": "0c93bc9fe06009b6e851a86b483e71348d2c6dd74f662b8a19f2cab148015c3f",
+      "checklist.md": "b769e666d4d7b0966b738e98a5ebd5a427bdee86f06e3880ddd8aa8d7390bf20",
+      "decision-record.md": "ee7378d84ad835844ca1f254fa7fbfb3f40330c16c4af8e3e16d7b8106c0fa1b",
+      "implementation-summary.md": "be8e3391415d1d2fcb2f5235e083a8e9b5fe5ae5c2f83256d074c346ba278874"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

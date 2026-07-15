@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/008-mcp-tooling-parent/002-architecture-decision",
+  "spec_folder": "mcp-tooling/008-mcp-tooling-parent/002-architecture-decision",
+  "parent_id": "mcp-tooling/008-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-tooling parent architecture decision",
+      "mcp-tooling mode registry",
+      "figma transport axis decision",
+      "code-mode exclusion rationale",
+      "phase 002 architecture-decision",
+      "mcp-tooling architecture plan",
+      "mcp bridge decision gate",
+      "mode-registry transport-axis target",
+      "hub-router target mcp-tooling",
+      "phase 002 decision plan",
+      "mcp-tooling architecture tasks",
+      "mcp bridge decision gate tasks"
+    ],
+    "key_topics": [
+      "mcp-tooling",
+      "parent",
+      "architecture",
+      "decision",
+      "mode",
+      "registry",
+      "figma",
+      "transport",
+      "axis",
+      "code-mode",
+      "exclusion",
+      "rationale"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/002-architecture-decision/spec.md",
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/002-architecture-decision/decision-record.md",
+      "decision-record.md",
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/002-architecture-decision/plan.md",
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/002-architecture-decision/checklist.md",
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/002-architecture-decision/tasks.md",
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/mcp-tooling/graph-metadata.json",
+      ".opencode/skills/mcp-code-mode/graph-metadata.json",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".claude/mcp.json",
+      ".opencode/skills/mcp-tooling/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/002-architecture-decision/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/002-architecture-decision/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/002-architecture-decision/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/002-architecture-decision/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/002-architecture-decision/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mixed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Figma Desktop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The program has operator-locked structural decisions for bringing `.opencode/skills/mcp-chrome-devtools/`, `.opencode/skills/mcp-click-up/`, and `.opencode/skills/mcp-figma/` under a single `.opencode/skills/mcp-tooling/` parent hub, but phase 003 cannot safely scaffold the hub until those decisions are frozen in one architecture record",
+    "created_at": "2026-07-09T20:18:22Z",
+    "last_save_at": "2026-07-15T05:54:00.412Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:9fc23b867526ad27bbdb8c2d9ba3828030fe57ea8b63a669efda807af0534c9b",
+    "source_doc_hashes": {
+      "spec.md": "1b4a653e543d38e29eb6c7c89ce54b6a17b09017b6b5b986619217571c194919",
+      "plan.md": "0f9fb6c5404301cb83ef5872da3502200bac9eda140eafe73f26f04cf9124105",
+      "tasks.md": "2c1683dfe281da68f7d44b1063e66c16c6092cc7c1f68e34f2ae8b9b24a41f99",
+      "checklist.md": "f2feefec2a2ffd7bb67b6282a13da77d458116cffd4dfd746a0ae72ae8047093",
+      "decision-record.md": "4321a4179abfd4930e7ea8d3a8836c7ae13e92c8fe69968e3e391e0184c82a2d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

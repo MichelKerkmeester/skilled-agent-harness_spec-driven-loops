@@ -1,0 +1,25 @@
+{
+  "specFolder": "mcp-tooling",
+  "description": "Track folder for mcp-tooling packets \u2014 the MCP tool-routing / Code Mode skill family and the external MCP integrations it orchestrates (coco semantic code search + index, Figma, ClickUp, code-mode), plus MCP skill install-doctor standardization and nested MCP README sync. Hosts spec folders 001-008.",
+  "keywords": [
+    "mcp",
+    "mcp-tooling",
+    "code-mode",
+    "coco",
+    "code-index",
+    "semantic-search",
+    "figma",
+    "clickup",
+    "install-doctor",
+    "readme-sync",
+    "track",
+    "external-mcp"
+  ],
+  "lastUpdated": "2026-07-15T05:54:26.000Z",
+  "specId": "mcp-tooling",
+  "folderSlug": "mcp-tooling",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

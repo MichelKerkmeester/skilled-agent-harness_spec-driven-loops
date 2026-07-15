@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/008-mcp-tooling-parent",
+  "spec_folder": "mcp-tooling/008-mcp-tooling-parent",
+  "parent_id": null,
+  "children_ids": [
+    "mcp-tooling/008-mcp-tooling-parent/001-research-and-context",
+    "mcp-tooling/008-mcp-tooling-parent/002-architecture-decision",
+    "mcp-tooling/008-mcp-tooling-parent/003-scaffold-hub",
+    "mcp-tooling/008-mcp-tooling-parent/004-onboard-chrome-devtools",
+    "mcp-tooling/008-mcp-tooling-parent/005-foldin-clickup-and-figma",
+    "mcp-tooling/008-mcp-tooling-parent/006-advisor-and-integration",
+    "mcp-tooling/008-mcp-tooling-parent/007-routing-benchmark-and-review",
+    "mcp-tooling/008-mcp-tooling-parent/008-cutover-and-rollout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008-mcp-tooling-parent",
+      "phase parent",
+      "mcp-tooling parent hub",
+      "mcp tool bridges hub",
+      "figma transport axis"
+    ],
+    "key_topics": [
+      "008-mcp-tooling-parent",
+      "phase",
+      "parent",
+      "mcp-tooling",
+      "hub",
+      "mcp",
+      "tool",
+      "bridges",
+      "figma",
+      "transport",
+      "axis",
+      "mcp-chrome-devtools"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/mcp-tooling/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`mcp-chrome-devtools`, `mcp-click-up`, and `mcp-figma` are three flat, independently advisor-routable MCP tool-bridge skills, all `family: mcp`, that already share a router-and-gating pattern and reach external tools through the shared Code Mode substrate — but have no structural relationship: no shared registry, no single advisor identity, no hub",
+    "created_at": "2026-07-09T20:18:21Z",
+    "last_save_at": "2026-07-15T06:01:29.751Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e0ff090b758f3ed89f3093f4b9d11e3fa106e830fe825f2ced7a1ca1e2c06be9",
+    "source_doc_hashes": {
+      "spec.md": "94af64260d20c44a0048b501091cc7372f660c844e5d44a6b764ca45e44d3ab5"
+    },
+    "last_active_child_id": "mcp-tooling/008-mcp-tooling-parent/008-cutover-and-rollout",
+    "last_active_at": "2026-07-10T07:36:17Z"
+  }
+}

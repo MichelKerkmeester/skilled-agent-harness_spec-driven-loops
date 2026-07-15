@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/008-mcp-tooling-parent/001-research-and-context",
+  "spec_folder": "mcp-tooling/008-mcp-tooling-parent/001-research-and-context",
+  "parent_id": "mcp-tooling/008-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-tooling parent research",
+      "research gate",
+      "mcp bridge referrer inventory",
+      "mcp-figma transport fold-in",
+      "phase 001 research-and-context",
+      "mcp-tooling parent plan",
+      "research gate plan",
+      "mcp bridge referrer inventory plan",
+      "figma transport eligibility",
+      "phase 001 plan",
+      "mcp-tooling parent tasks",
+      "research gate tasks"
+    ],
+    "key_topics": [
+      "mcp-tooling",
+      "parent",
+      "research",
+      "gate",
+      "mcp",
+      "bridge",
+      "referrer",
+      "inventory",
+      "mcp-figma",
+      "transport",
+      "fold-in",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/001-research-and-context/spec.md",
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/001-research-and-context/plan.md",
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/001-research-and-context/tasks.md",
+      ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+      ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      ".claude/mcp.json",
+      ".opencode/skills/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/001-research-and-context/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/001-research-and-context/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/001-research-and-context/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_mcp_install.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_mcp_debug.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "State Snapshot",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Referrer Inventory",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 architecture decisions depend on current, re-verified facts about three live bridge skills and their referrers",
+    "created_at": "2026-07-09T20:18:21Z",
+    "last_save_at": "2026-07-15T05:54:00.787Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:16c1f5f7711328233da6332f64800118b27e9d3cb92d393a8ad6b61aeed58453",
+    "source_doc_hashes": {
+      "spec.md": "beda6bd0bf63be518646163bd035196cfb92b8e2b60d04744311b79758d134a5",
+      "plan.md": "b144443de4ed76c9680213fac7bf439e57cd0a12619a3c86f40444fd89ae58bb",
+      "tasks.md": "10972ae2b760a2dda022c9a61721d7d301d63c49453050cd30356c19c34b3558"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

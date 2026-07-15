@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/001-mcp-coco-integration",
+  "spec_folder": "mcp-tooling/001-mcp-coco-integration",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cocoindex",
+      "semantic code search",
+      "coco-index integration",
+      "code search mcp",
+      "cocoindex_code",
+      "coco-index plan",
+      "semantic code search plan",
+      "cocoindex_code mcp config",
+      "cocoindex tasks",
+      "coco-index tasks",
+      "cocoindex_code tasks",
+      "semantic search tasks"
+    ],
+    "key_topics": [
+      "cocoindex",
+      "semantic",
+      "code",
+      "search",
+      "coco-index",
+      "integration",
+      "mcp",
+      "plan",
+      "config",
+      "tasks",
+      "opencode",
+      "capability"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      "research/research.md",
+      ".opencode/agents/context.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "scratch/cross-cli-auto-usage-test-results.md",
+      "implementation-summary.md",
+      "scripts/common.sh",
+      "scripts/doctor.sh",
+      ".claude/agents/context.md",
+      ".codex/agents/context.toml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-cli-auto-usage-test-results.md",
+        "kind": "doc",
+        "path": "scratch/cross-cli-auto-usage-test-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "common.sh",
+        "kind": "script",
+        "path": "scripts/common.sh",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "context.toml",
+        "kind": "file",
+        "path": ".codex/agents/context.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adoption Boosting",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Install",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Code Search Protocol",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Server Registration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode had no semantic code search capability",
+    "created_at": "2026-04-12T09:02:50.170Z",
+    "last_save_at": "2026-07-15T06:01:28.408Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:5fb400cac2caa82029d367c9e7ffcb093a9f393aed878c6ec0df0c3fb969dcae",
+    "source_doc_hashes": {
+      "spec.md": "fac1671bae67827f24fec082e7ab70eabe1466afd8d4d623874fbbac9eb081dc",
+      "plan.md": "19dde1817d67e8ff7060abcbc48cbcc7bff91d6575b7ff9f7aee24df5f088447",
+      "tasks.md": "1370130107b65fb5ff26f1fef780c423a7d91991ff19c50fd2b45b8ad8af2b0a",
+      "checklist.md": "4f96b1485944a3dd2594cd0de7fb2798c145d9890dfeee4b9ac8ae66d37ed41b",
+      "implementation-summary.md": "cba627eace0935ac437160a9474fe4e601b8897d4ce2399bdbd6b6ee057e368e",
+      "research/research.md": "c19163b2133a063265c9d7301e330bfaa1487eb70d54930c08874bf75f870824"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

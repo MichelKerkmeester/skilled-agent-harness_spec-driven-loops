@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/140-mcp-spec-consolidation",
+  "spec_folder": "skilled-agent-orchestration/140-mcp-spec-consolidation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp spec consolidation",
+      "mcp-tooling track",
+      "mcp spec folder renumber",
+      "consolidate mcp specs",
+      "mcp consolidation plan",
+      "mcp-tooling migration",
+      "mcp consolidation tasks",
+      "mcp consolidation checklist",
+      "mcp consolidation summary",
+      "mcp-tooling result"
+    ],
+    "key_topics": [
+      "mcp",
+      "spec",
+      "consolidation",
+      "mcp-tooling",
+      "track",
+      "folder",
+      "renumber",
+      "consolidate",
+      "specs",
+      "plan",
+      "migration",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Consolidate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fast-forward",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit-path",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "MCP-tooling skill specs were scattered across `skilled-agent-orchestration/` top-level with unrelated numbering and stale self-identity metadata pointing at deleted `zarchive/<n>-<slug>` origins",
+    "created_at": "2026-07-15T06:06:45.786Z",
+    "last_save_at": "2026-07-15T06:06:45.786Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:78c693f67355d1bddc7a89ad55e14ab911d19b8ad489b5ad1ee5fe3d7add7545",
+    "source_doc_hashes": {
+      "spec.md": "76a1f30585bb57665e4649d761c533e6f5e7279c5b8599e377fcd0e4094ec6db",
+      "plan.md": "3b176594ff4e0814d2c081e95b30b29a074cd70f0aaf77da82f990c93e77464c",
+      "tasks.md": "7c663980d4257110793c23e49ccbdd5eb97cbdb210c8c5fe0e5c493c411e8dae",
+      "checklist.md": "74fcea26e332cc73b26c45ebe30af9491702e6f67545f083d98d8c0630d87881",
+      "implementation-summary.md": "9afdeb55f78c0c42fa5afc38959c6776970f5116b4a9cdf83e789ca16bf34f05"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

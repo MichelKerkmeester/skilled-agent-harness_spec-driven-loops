@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/140-mcp-spec-consolidation",
+  "description": "MCP-tooling skill specs were scattered across `skilled-agent-orchestration/` top-level with unrelated numbering and stale self-identity metadata",
+  "keywords": [
+    "mcp-tooling",
+    "skill",
+    "specs",
+    "scattered",
+    "across",
+    "skilled-agent-orchestration",
+    "top-level",
+    "unrelated",
+    "numbering",
+    "stale",
+    "self-identity",
+    "metadata"
+  ],
+  "lastUpdated": "2026-07-15T06:06:35.869Z",
+  "specId": "140",
+  "folderSlug": "mcp-spec-consolidation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
