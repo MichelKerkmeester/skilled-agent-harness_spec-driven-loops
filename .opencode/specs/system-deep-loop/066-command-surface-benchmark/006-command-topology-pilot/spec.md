@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: command topology pilot — four scenarios calibrating the evaluator across topologies"
 description: "Authors four pilot scenarios, one per command topology, and captures a Claude baseline plus one GPT driver to calibrate the upgraded evaluator before the full scenario rollout."
-status: planned
+status: in_progress
 trigger_phrases:
   - "command topology pilot"
   - "pilot scenarios"
@@ -12,10 +12,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot"
-    last_updated_at: "2026-07-14T20:45:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded the pilot child that calibrates the evaluator across topologies"
-    next_safe_action: "Author one pilot scenario per topology and capture a Claude baseline"
+    last_updated_at: "2026-07-15T10:01:39Z"
+    last_updated_by: "codex"
+    recent_action: "Authored four schema-v2 topology scenarios and dedicated fixtures"
+    next_safe_action: "Capture the deferred Claude and GPT pilot legs after operator green-light"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
@@ -36,7 +36,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-14 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
@@ -45,6 +45,8 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 Before authoring the full scenario suite, the upgraded evaluator needs calibration against real command behavior across every topology. This phase authors four pilot scenarios, one per topology, and captures a Claude baseline plus one GPT driver to confirm the evidence kinds and buckets behave as designed.
+
+Scenario authoring is complete. Live dual-driver capture and calibration remain deferred pending operator green-light, so the phase is intentionally still in progress.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

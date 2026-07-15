@@ -1,0 +1,26 @@
+{
+  "skill": "parent-skill-fixture",
+  "modes": [
+    {
+      "workflowMode": "quality",
+      "packetKind": "workflow",
+      "backendKind": "fixture",
+      "packet": "quality",
+      "toolSurface": {
+        "allowed": [
+          "Read"
+        ],
+        "forbidden": [
+          "Write",
+          "Edit"
+        ],
+        "mutatesWorkspace": false
+      },
+      "grandfatheredFolderMismatch": false,
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "quality"
+      }
+    }
+  ]
+}

@@ -14,7 +14,10 @@
       "command topology pilot",
       "pilot scenarios",
       "evaluator calibration",
-      "topology coverage"
+      "topology coverage",
+      "command topology pilot implementation",
+      "pilot scenario authoring status",
+      "deferred command capture"
     ],
     "key_topics": [
       "command",
@@ -24,20 +27,21 @@
       "evaluator",
       "calibration",
       "coverage",
-      "authors",
-      "four",
-      "one",
-      "per",
-      "captures"
+      "implementation",
+      "scenario",
+      "authoring",
+      "status",
+      "deferred"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
       ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,7 +75,19 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -101,12 +117,6 @@
         "source": "derived"
       },
       {
-        "name": "3. SCOPE",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -119,20 +129,20 @@
         "source": "derived"
       },
       {
-        "name": "resolved",
+        "name": "dedicated",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
+        "name": "resolved",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -161,33 +171,41 @@
         "source": "derived"
       },
       {
-        "name": "pinned",
+        "name": "provenance",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "provenance",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Authors four pilot scenarios, one per command topology, and captures a Claude baseline plus one GPT driver to calibrate the upgraded evaluator before the full scenario rollout.",
     "created_at": "2026-07-14T20:36:59.962Z",
-    "last_save_at": "2026-07-15T04:48:23.498Z",
+    "last_save_at": "2026-07-15T10:18:44.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df51b095264ef7941b4dff79b9c489bbd9517ef1f3963c4442253303791d0423",
+    "source_fingerprint": "sha256:da885e069e673d9da63bd08b2f2d41a02e55d0e75c4d94bbcaee11dcb69b9c03",
     "source_doc_hashes": {
-      "spec.md": "0fd1d36786b5b7c42bb3c963fde7312efe1683db536771956bd5bd9c2d2c5be0",
-      "plan.md": "fb851e8bb8a30ebd17a5915f39ee26adc10050486bc5ad2c4a27a609d0f2d832",
-      "tasks.md": "965239e779e2c50a332b7ffb21d83e555b80a25d653fa99ae7df6631e8f05b77"
+      "spec.md": "9d15624c25bfa376de42ec6280b8461c9cda0f60a388ffee4bcf0233931e6eb8",
+      "plan.md": "85d7b91786b452b3c8ce1066b7ca7815f650611fe7f68953426ceae41ba22187",
+      "tasks.md": "8264d47a26c8c00df0740a43096a66a7d809a325eb199c0d0155c89433df0f64",
+      "implementation-summary.md": "4e7926a98386d486accae9add16eae32d3eb19247dd3b9a66f6907732d5ce402"
     },
     "last_active_child_id": null,
     "last_active_at": null

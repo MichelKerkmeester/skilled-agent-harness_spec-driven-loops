@@ -1,16 +1,16 @@
 ---
 title: "Implementation Plan: command topology pilot"
 description: "Plan for four topology pilot scenarios and dual-driver calibration."
-status: planned
+status: in_progress
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot"
-    last_updated_at: "2026-07-14T20:45:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded the pilot child that calibrates the evaluator across topologies"
-    next_safe_action: "Author one pilot scenario per topology and capture a Claude baseline"
+    last_updated_at: "2026-07-15T10:01:39Z"
+    last_updated_by: "codex"
+    recent_action: "Completed contract and fixture authoring for all four command topologies"
+    next_safe_action: "Capture the deferred Claude and GPT pilot legs after operator green-light"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
@@ -25,7 +25,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-Author one pilot scenario per topology and calibrate the schema v2 evaluator with a Claude baseline plus one GPT driver before the full rollout.
+Author one pilot scenario per topology, then calibrate the schema v2 evaluator with a Claude baseline plus one GPT driver before the full rollout. Contract and fixture authoring is complete; live capture remains deferred.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -46,16 +46,16 @@ Each pilot scenario pins command path and topology, entry surface, fixture and a
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Scenario authoring
-Author four pilot scenarios, one per topology, on framework schema v2.
+Authored four pilot scenarios, one per topology, on framework schema v2, with dedicated fixtures and pinned marker provenance.
 
 ### Phase 2: Dual-driver capture
-Capture a pinned Claude baseline and one GPT driver run per pilot and reconcile the evidence.
+Capture a pinned Claude baseline and one GPT driver run per pilot and reconcile the evidence. This phase remains deferred pending operator green-light.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Run each pilot scenario under Claude and one GPT driver and confirm every scenario yields a complete evidence set with resolved environment status.
+First parse all four contracts hermetically and run the phase-owned reconciliation test with the result-record half pending. After operator green-light, run each pilot scenario under Claude and one GPT driver and confirm every scenario yields a complete evidence set with resolved environment status.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->

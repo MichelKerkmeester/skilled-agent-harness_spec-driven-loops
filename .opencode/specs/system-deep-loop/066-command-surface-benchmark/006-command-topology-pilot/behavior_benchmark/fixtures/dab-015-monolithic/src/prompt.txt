@@ -1,0 +1,1 @@
+Rewrite a release note for clarity while preserving the token PILOT_SENTINEL.
