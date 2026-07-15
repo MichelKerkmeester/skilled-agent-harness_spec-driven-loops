@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/005-rollback-drills",
+  "description": "Plan executable, mode-scoped rollback drills that simulate a test-lane authority flip, detect a controlled regression, restore legacy authority within",
+  "keywords": [
+    "plan",
+    "executable",
+    "mode-scoped",
+    "rollback",
+    "drills",
+    "simulate",
+    "test-lane",
+    "authority",
+    "flip",
+    "detect",
+    "controlled",
+    "regression",
+    "restore",
+    "legacy",
+    "within"
+  ],
+  "lastUpdated": "2026-07-15T18:52:48.783Z",
+  "specId": "005",
+  "folderSlug": "rollback-drills",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "008-compatibility-shadow-and-rollback-bridge"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

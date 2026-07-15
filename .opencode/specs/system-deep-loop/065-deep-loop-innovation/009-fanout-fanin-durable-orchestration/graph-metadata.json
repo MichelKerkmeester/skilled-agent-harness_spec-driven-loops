@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/005-partial-failure-policy",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fan-out fan-in durable orchestration",
+      "durable fanout ledger",
+      "resumable provenance-balanced fan-in"
+    ],
+    "key_topics": [
+      "fan-out",
+      "fan-in",
+      "durable",
+      "orchestration",
+      "fanout",
+      "ledger",
+      "resumable",
+      "provenance-balanced",
+      "canonical",
+      "dispatch",
+      "receipts",
+      "result"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-fanout-live-tools-unblock/spec.md",
+      ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-prototype.cjs",
+        "kind": "file",
+        "path": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Durable Orchestration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "budgets",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make fan-out and fan-in durable over the canonical ledger through dispatch receipts, result envelopes, resumable branch orchestration, budget-aware completion policy, and provenance-balanced reduction.",
+    "created_at": "2026-07-15T19:00:48.469Z",
+    "last_save_at": "2026-07-15T19:00:48.469Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0496969df53988b3e410665aa3e5348115e368b20e69467cc04d19c5050ecc4b",
+    "source_doc_hashes": {
+      "spec.md": "09711491302e498ad086814be8c85e4b873ab97a9f2d4b7a286a8c6b8ddcbcc7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

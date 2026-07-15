@@ -1,0 +1,35 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/014-staged-state-migration-and-authority-cutover/001-inflight-state-migration",
+  "description": "Plan the guarded migration of eligible in-flight deep-loop state at staged cutover: logically upcast safe rows, fork isolated dark copies, migrate",
+  "keywords": [
+    "plan",
+    "guarded",
+    "migration",
+    "eligible",
+    "in-flight",
+    "deep-loop",
+    "state",
+    "staged",
+    "cutover",
+    "logically",
+    "upcast",
+    "safe",
+    "rows",
+    "fork",
+    "isolated",
+    "dark",
+    "copies",
+    "migrate"
+  ],
+  "lastUpdated": "2026-07-15T18:29:57.409Z",
+  "specId": "001",
+  "folderSlug": "inflight-state-migration",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "014-staged-state-migration-and-authority-cutover"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

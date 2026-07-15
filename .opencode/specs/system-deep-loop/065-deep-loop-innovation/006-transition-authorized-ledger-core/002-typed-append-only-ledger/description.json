@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-transition-authorized-ledger-core/002-typed-append-only-ledger",
+  "description": "Define the immutable typed ledger writer and reader over versioned envelope events, including monotonic ordering, idempotent append, hash-chain",
+  "keywords": [
+    "define",
+    "immutable",
+    "typed",
+    "ledger",
+    "writer",
+    "reader",
+    "versioned",
+    "envelope",
+    "events",
+    "including",
+    "monotonic",
+    "ordering",
+    "idempotent",
+    "append",
+    "hash-chain"
+  ],
+  "lastUpdated": "2026-07-15T18:29:57.372Z",
+  "specId": "002",
+  "folderSlug": "typed-append-only-ledger",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-transition-authorized-ledger-core"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

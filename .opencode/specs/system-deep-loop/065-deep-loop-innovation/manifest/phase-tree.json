@@ -1,0 +1,37 @@
+{
+  "packet": "system-deep-loop/065-deep-loop-innovation",
+  "kind": "phase-parent",
+  "generated_from": "GPT-5.6-sol (ultra) design review, verdict REQUESTED_CHANGES, folded in",
+  "architecture": "single cross-mode spine: typed append-only event ledger + fail-closed transition-authorization gateway + sealed reference artifacts + versioned replay fingerprints + receipts/certificates + blinded/counterfactual adjudication",
+  "migration_model": "additive-dark substrate -> compatibility adapters + shadow parity -> staged per-mode authority cutover behind rollback window -> gated legacy retirement",
+  "rec_corpus": { "run_a_45iter": 8, "run_b_20iter": 59, "run_c_40iter": 111, "total": 178 },
+  "phases": [
+    { "phase": "001", "slug": "deep-loop-market-research", "kind": "research", "depends_on": [], "outcome": "Read-only research input: 8 ranked recommendations (R1-R8) and the market/landscape analysis consumed by the phase-004 ledger." },
+    { "phase": "002", "slug": "deep-loop-effectiveness-and-fanout", "kind": "research", "depends_on": [], "outcome": "Read-only research input: 59 runtime recommendations + fan-out finding (run 1) and 111 per-mode recommendations (run 2), consumed by the phase-004 ledger." },
+    { "phase": "003", "slug": "baseline-taxonomy-and-state-census", "kind": "leaf", "depends_on": [], "outcome": "Pin BASE; normalize taxonomy; census subsystems, event schemas, in-flight state, backends, defects-vs-contracts, replay fixtures, rollback anchors." },
+    { "phase": "004", "slug": "architecture-coverage-and-transition-contract", "kind": "parent", "depends_on": ["003"], "outcome": "Ratify the spine (ADR); freeze the bijective 178-row classified rec ledger (stable IDs, normalized targets, single disposition); define transition/versioning/compat/cutover/rollback policy before any writer." },
+    { "phase": "005", "slug": "fanout-live-tools-unblock", "kind": "leaf", "depends_on": ["004"], "outcome": "Early backward-compatible liveTools.webSearch policy + capability matrix + executor adapters + manifest expansion on fanout-run.cjs; dispatch-only, no canonical-persistence change." },
+    { "phase": "006", "slug": "transition-authorized-ledger-core", "kind": "parent", "depends_on": ["004"], "outcome": "Versioned event envelope + typed append-only ledger + replay fingerprints + fail-closed transition-authorization gateway, co-landed; dark, legacy authoritative." },
+    { "phase": "007", "slug": "shared-evidence-and-control-services", "kind": "parent", "depends_on": ["006"], "outcome": "Receipts + effect-recovery gateway; sealed reference-artifact mechanism; blinded/counterfactual adjudication service; hierarchical typed budgets; stream-fold gauges; locks/fencing; continuity identities." },
+    { "phase": "008", "slug": "compatibility-shadow-and-rollback-bridge", "kind": "parent", "depends_on": ["006", "007"], "outcome": "Upcasters + dual-read/single-write adapters + legacy projections; shadow-parity harness; in-flight-state classification (upcast/pin/fork/migrate/block); rollback drills. No authority cutover." },
+    { "phase": "009", "slug": "fanout-fanin-durable-orchestration", "kind": "parent", "depends_on": ["005", "006", "007", "008"], "outcome": "Canonical dispatch receipts, result envelopes, resume/salvage, logical branch IDs, leases, waves, conditional budget-aware fan-in, partial-failure policy, provenance-balanced reduction." },
+    { "phase": "010", "slug": "novelty-claims-continuity-and-projections", "kind": "parent", "depends_on": ["008", "009"], "outcome": "Semantic communities, contradiction + supersession events, claim continuity, next-focus semantics, deterministic transactional projections/gauges." },
+    { "phase": "011", "slug": "convergence-termination-and-health", "kind": "parent", "depends_on": ["006", "007", "009", "010"], "outcome": "Path-covering termination, cycle detection, stopping clocks, value-of-computation + adaptive allocation, generic health + degeneration harness. After fan-in + novelty because it consumes them." },
+    { "phase": "012", "slug": "shared-mode-contracts-and-fixtures", "kind": "parent", "depends_on": ["008", "009", "010", "011"], "outcome": "Freeze shared mode interfaces, hoist cross-mode closures, mixed-version fixtures, executable dependency + write-set conflict graph for parallel-safe mode work." },
+    { "phase": "013", "slug": "mode-and-lane-migrations", "kind": "parent", "children_count": 8, "depends_on": ["012"], "outcome": "Eight per-mode workstreams (deep-research, deep-review, deep-ai-council, deep-improvement, deep-alignment, agent-improvement, model-benchmark, skill-benchmark), each a fractal parent with full behavior + typed schema + reducers + sealed artifacts + certificates + resume adapters + shadow parity + rollback switch + mode gate; deep-improvement common precedes its 3 variants." },
+    { "phase": "014", "slug": "staged-state-migration-and-authority-cutover", "kind": "parent", "depends_on": ["013"], "outcome": "Classify + migrate eligible in-flight state; flip authority one mode at a time behind a rollback window + cutover certificate." },
+    { "phase": "015", "slug": "legacy-writer-retirement", "kind": "leaf", "depends_on": ["014"], "outcome": "Remove old live emitters + replaced logic after zero-use telemetry + rollback evidence; retain required archival readers." },
+    { "phase": "016", "slug": "whole-system-gate", "kind": "leaf", "depends_on": ["015"], "outcome": "Exact-SHA baselines, mode gates, mixed-version replay, crash injection, counterfactual + degeneration tests, parity, blocking SOL review, recursive strict validation." },
+    { "phase": "017", "slug": "integrate-latest-and-closeout", "kind": "leaf", "depends_on": ["016"], "outcome": "Integrate latest origin, reopen affected phases on drift, rerun the whole-system gate on the final SHA, reconcile 065 open items + changelogs + packet metadata." }
+  ],
+  "mode_workstreams_phase_013": [
+    "001-deep-research", "002-deep-review", "003-deep-ai-council", "004-deep-improvement-common",
+    "005-agent-improvement", "006-model-benchmark", "007-skill-benchmark", "008-deep-alignment"
+  ],
+  "notes": [
+    "Research phases 001-002 are read-only inputs; the implementation program is phases 003-017.",
+    "ai-system-improvement mode is deliberately excluded (operator, run-2).",
+    "deep-improvement common (mode 004) precedes the three benchmark variants (modes 005/006/007) because they share its packet + scoring backend.",
+    "bijective_coverage is validated in phase 004; until then the 178-row single-disposition property is unproven."
+  ]
+}

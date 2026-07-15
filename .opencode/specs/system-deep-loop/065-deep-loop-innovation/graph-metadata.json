@@ -5,7 +5,22 @@
   "parent_id": null,
   "children_ids": [
     "system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research",
-    "system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout"
+    "system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout",
+    "system-deep-loop/065-deep-loop-innovation/003-baseline-taxonomy-and-state-census",
+    "system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract",
+    "system-deep-loop/065-deep-loop-innovation/005-fanout-live-tools-unblock",
+    "system-deep-loop/065-deep-loop-innovation/006-transition-authorized-ledger-core",
+    "system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services",
+    "system-deep-loop/065-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration",
+    "system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections",
+    "system-deep-loop/065-deep-loop-innovation/011-convergence-termination-and-health",
+    "system-deep-loop/065-deep-loop-innovation/012-shared-mode-contracts-and-fixtures",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations",
+    "system-deep-loop/065-deep-loop-innovation/014-staged-state-migration-and-authority-cutover",
+    "system-deep-loop/065-deep-loop-innovation/015-legacy-writer-retirement",
+    "system-deep-loop/065-deep-loop-innovation/016-whole-system-gate",
+    "system-deep-loop/065-deep-loop-innovation/017-integrate-latest-and-closeout"
   ],
   "manual": {
     "depends_on": [],
@@ -14,35 +29,39 @@
   },
   "derived": {
     "trigger_phrases": [
-      "deep loop innovation",
-      "loop engineering research",
-      "deep loop market research",
-      "improve system-deep-loop",
-      "loop engineering state of the art"
+      "deep-loop recommendations implementation",
+      "implement the 178 deep-loop recs",
+      "evidence-ledger runtime for system-deep-loop",
+      "per-mode migration deep-loop",
+      "transition-authorized ledger core"
     ],
     "key_topics": [
-      "deep",
-      "loop",
-      "innovation",
-      "engineering",
-      "research",
-      "market",
-      "improve",
+      "deep-loop",
+      "recommendations",
+      "implementation",
+      "implement",
+      "recs",
+      "evidence-ledger",
+      "runtime",
       "system-deep-loop",
-      "state",
-      "art",
-      "program",
-      "parent"
+      "per-mode",
+      "migration",
+      "transition-authorized",
+      "ledger"
     ],
-    "importance_tier": "high",
+    "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      "001-deep-loop-market-research/research/research.md",
-      "005-deep-loop-effectiveness-and-fanout/research/research.md",
-      "005-deep-loop-effectiveness-and-fanout/implementation-summary.md",
+      "002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "fanout-prototype.cjs",
+        "kind": "file",
+        "path": "002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -50,55 +69,55 @@
         "source": "derived"
       },
       {
-        "name": "Phase Parent",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Loop Innovation Program",
+        "name": "Recommendations Implementation",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Packet",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Eliminated Alternatives",
+        "name": "Problem Statement Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Transition Rules",
+        "name": "Purpose Land",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Handoff Criteria",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Innovation program for the system-deep-loop parent skill: deeply research the state of the art in loop engineering (agentic/iterative loops) across the open ecosystem, mine 10+ GitHub repos for transferable techniques, then rank findings, design spec-ready improvement proposals, and optionally implement them across the deep-loop children/modes and the shared runtime loop engine.",
-    "created_at": "2026-07-14T19:23:47.084Z",
-    "last_save_at": "2026-07-15T06:08:10.310Z",
+    "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
+    "created_at": "2026-07-15T19:07:16.730Z",
+    "last_save_at": "2026-07-15T19:07:16.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d59bcc993a7e9ca4e414aa0d585470c160f671dee290927ea2530b5c0b60c7d3",
+    "source_fingerprint": "sha256:6dd459e126330efd51ca6e88ccecc31cafbc03e9005880fe009e700450b128c4",
     "source_doc_hashes": {
-      "spec.md": "7f3817b9aabc6b7f90eaa7d384d66311cd0461fb56b3db6b8ea07785f0c3de6a"
+      "spec.md": "56ccfc6218068b1b0f2e04ad0599620037432b3b9eecb0341573aa235573c105"
     },
-    "last_active_child_id": "system-deep-loop/065-deep-loop-innovation/001-deep-loop-market-research",
-    "last_active_at": "2026-07-14T19:23:47.084Z"
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

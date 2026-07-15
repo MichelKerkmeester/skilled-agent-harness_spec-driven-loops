@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration",
+  "description": "Make fan-out and fan-in durable over the canonical ledger through dispatch receipts, result envelopes, resumable branch orchestration, budget-aware",
+  "keywords": [
+    "fan-out",
+    "fan-in",
+    "durable",
+    "canonical",
+    "ledger",
+    "dispatch",
+    "receipts",
+    "result",
+    "envelopes",
+    "resumable",
+    "branch",
+    "orchestration",
+    "budget-aware"
+  ],
+  "lastUpdated": "2026-07-15T18:52:48.785Z",
+  "specId": "009",
+  "folderSlug": "fanout-fanin-durable-orchestration",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

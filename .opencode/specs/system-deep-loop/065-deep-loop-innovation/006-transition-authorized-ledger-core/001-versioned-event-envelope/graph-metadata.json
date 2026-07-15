@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/006-transition-authorized-ledger-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "versioned event envelope",
+      "deep-loop event type registry",
+      "read-time event upcaster",
+      "versioned event envelope implementation plan",
+      "deep-loop upcaster registry plan",
+      "versioned event envelope tasks",
+      "deep-loop upcaster implementation tasks",
+      "versioned event envelope checklist",
+      "deep-loop upcaster verification"
+    ],
+    "key_topics": [
+      "versioned",
+      "event",
+      "envelope",
+      "deep-loop",
+      "type",
+      "registry",
+      "read-time",
+      "upcaster",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts",
+      ".opencode/specs/system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md",
+      ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "observability-events.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "round-state-jsonl.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "jsonl-repair.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Versioned Event Envelope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "duplicate",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-version",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define the canonical wire envelope, type/version registry, per-type required-field contracts, and deterministic read-time upcaster entry points that every future deep-loop ledger event uses while the new substrate remains additive, dark, and non-authoritative.",
+    "created_at": "2026-07-15T19:00:34.084Z",
+    "last_save_at": "2026-07-15T19:00:34.084Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:6943b9e7bdf14531e94b6a8d5af335b24195357df4790e0682279ea206c9adf6",
+    "source_doc_hashes": {
+      "spec.md": "5ec9a98fc5cd982bb4736f74d0f1957ca3c28b497ddbe4d1b899de4661129c0f",
+      "plan.md": "9005bcc6f1569747a01fc527cc510987c8b760ac2f7cfb4f9c7c3e7fc404f241",
+      "tasks.md": "35a204d71756dda0c9ac80b1b53acc64dfee263acc7cb17f05e1085079345696",
+      "checklist.md": "9d94f9317ca7404d7c924cef56d4840854dd19d48d01bf7d3998ffa695f79dbf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

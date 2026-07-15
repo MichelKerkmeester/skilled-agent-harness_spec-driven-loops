@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/005-fanout-live-tools-unblock",
+  "description": "Ship the early, backward-compatible fan-out live-tools unblock on fanout-run.cjs: a typed liveTools.webSearch policy, a fail-closed executor",
+  "keywords": [
+    "ship",
+    "early",
+    "backward-compatible",
+    "fan-out",
+    "live-tools",
+    "unblock",
+    "fanout-run",
+    "cjs",
+    "typed",
+    "livetools",
+    "websearch",
+    "policy",
+    "fail-closed",
+    "executor"
+  ],
+  "lastUpdated": "2026-07-15T18:59:03.717Z",
+  "specId": "005",
+  "folderSlug": "fanout-live-tools-unblock",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

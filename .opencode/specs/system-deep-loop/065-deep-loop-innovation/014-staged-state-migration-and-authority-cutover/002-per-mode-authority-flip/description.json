@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/014-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
+  "description": "Plan the fail-closed switch that makes the dark spine canonical for one mode at a time, after current shadow-parity and rollback-drill evidence pass,",
+  "keywords": [
+    "plan",
+    "fail-closed",
+    "switch",
+    "dark",
+    "spine",
+    "canonical",
+    "one",
+    "mode",
+    "time",
+    "current",
+    "shadow-parity",
+    "rollback-drill",
+    "evidence",
+    "pass"
+  ],
+  "lastUpdated": "2026-07-15T18:52:48.790Z",
+  "specId": "002",
+  "folderSlug": "per-mode-authority-flip",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "014-staged-state-migration-and-authority-cutover"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

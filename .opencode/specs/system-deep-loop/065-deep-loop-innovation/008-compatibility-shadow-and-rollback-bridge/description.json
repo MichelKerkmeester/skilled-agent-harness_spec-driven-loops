@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge",
+  "description": "Define the five compatibility, shadow-parity, in-flight-state, and rollback child contracts that make the dark deep-loop substrate provably safe for a",
+  "keywords": [
+    "define",
+    "five",
+    "compatibility",
+    "shadow-parity",
+    "in-flight-state",
+    "rollback",
+    "child",
+    "contracts",
+    "dark",
+    "deep-loop",
+    "substrate",
+    "provably",
+    "safe"
+  ],
+  "lastUpdated": "2026-07-15T18:52:48.783Z",
+  "specId": "008",
+  "folderSlug": "compatibility-shadow-and-rollback-bridge",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
