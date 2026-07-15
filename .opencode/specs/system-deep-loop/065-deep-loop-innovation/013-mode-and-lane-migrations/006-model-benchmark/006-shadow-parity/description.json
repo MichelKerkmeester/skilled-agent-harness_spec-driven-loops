@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
+  "description": "Plan the Model Benchmark variant's shadow-parity harness over the typed event-ledger substrate: run multi-model benchmark executions and",
+  "keywords": [
+    "plan",
+    "model",
+    "benchmark",
+    "variant",
+    "shadow-parity",
+    "harness",
+    "typed",
+    "event-ledger",
+    "substrate",
+    "run",
+    "multi-model",
+    "executions"
+  ],
+  "lastUpdated": "2026-07-15T21:13:21.578Z",
+  "specId": "006",
+  "folderSlug": "shadow-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "006-model-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

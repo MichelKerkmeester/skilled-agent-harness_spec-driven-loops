@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections",
+  "description": "Define the model-benchmark reducers and projections on top of the deep-improvement-common services from mode 004",
+  "keywords": [
+    "define",
+    "model-benchmark",
+    "reducers",
+    "projections",
+    "top",
+    "deep-improvement-common",
+    "services",
+    "mode"
+  ],
+  "lastUpdated": "2026-07-15T21:04:42.675Z",
+  "specId": "002",
+  "folderSlug": "reducers-and-projections",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "006-model-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

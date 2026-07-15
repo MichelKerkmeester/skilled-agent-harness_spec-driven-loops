@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent improvement resume adapter",
+      "agent improvement ledger resume",
+      "agent loop idempotent re-entry",
+      "AgentIR continuity ladder",
+      "agent improvement resume adapter implementation plan",
+      "agent improvement ledger resume plan",
+      "agent improvement resume adapter tasks",
+      "agent improvement idempotent re-entry tasks",
+      "agent improvement resume adapter checklist",
+      "agent improvement replay verification"
+    ],
+    "key_topics": [
+      "agent",
+      "improvement",
+      "resume",
+      "adapter",
+      "ledger",
+      "loop",
+      "idempotent",
+      "re-entry",
+      "agentir",
+      "continuity",
+      "ladder",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defining Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement Resume Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "AgentIR-specific",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Agent Improvement",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Agent Improvement resume adapter over the sealed typed event ledger: rebuild agent-loop proposal and scoring state through deterministic reducers, map it onto the continuity ladder, and re-enter idempotently without double-applying events, losing branch evidence, or replaying uncertain effects. Reuse the deep-improvement-common resume, evaluator, canary, certificate, and promotion services.",
+    "created_at": "2026-07-15T21:44:45.635Z",
+    "last_save_at": "2026-07-15T21:44:45.635Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:e3388d791ce499380b7ad6fe9340a1df2b46e6fea7937292dbf10dd9c2c96a87",
+    "source_doc_hashes": {
+      "spec.md": "167b85ec039f0c6f2a9628bbcf5534199627c312d224a389121e9be10320c584",
+      "plan.md": "40c7fca712f1a7de14618bfbf7b84573f0392cafe1c73afb90c0be44a4e6cf45",
+      "tasks.md": "36caa0a0cea8606420c7d7aaf9b96791c2e1f9edccfd86c8134da0cd8d0e52b6",
+      "checklist.md": "faceb528fede91e7c585ccb1bad7d67a7dfe60bf7fb6d71155544af573d39eb5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

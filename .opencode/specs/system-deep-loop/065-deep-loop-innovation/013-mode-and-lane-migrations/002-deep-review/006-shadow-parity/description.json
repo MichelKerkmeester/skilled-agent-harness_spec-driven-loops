@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
+  "description": "Plan the Deep Review migration from the legacy scope -> per-dimension passes -> P0/P1/P2 findings -> convergence -> review-report flow to the typed",
+  "keywords": [
+    "plan",
+    "deep",
+    "review",
+    "migration",
+    "legacy",
+    "scope",
+    "per-dimension",
+    "passes",
+    "findings",
+    "convergence",
+    "review-report",
+    "flow",
+    "typed"
+  ],
+  "lastUpdated": "2026-07-15T20:17:46.592Z",
+  "specId": "006",
+  "folderSlug": "shadow-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "002-deep-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

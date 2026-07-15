@@ -6,8 +6,8 @@
  * from an 8x7 matrix rather than hand-written, keeping briefs consistent while
  * still carrying mode-specific and concern-specific context.
  *
- * Idempotent: strips any pre-existing 010-* items before re-appending.
- * Waves: 7 = all 56 leaves, 8 = the 8 mode parents, 9 = the top 010 parent
+ * Idempotent: strips any previously generated mode-subtree items before re-appending.
+ * Waves: 7 = all 56 leaves, 8 = the 8 mode parents, 9 = the top mode-migration parent
  * (leaves must exist before a parent validates AS a phase parent).
  */
 const fs = require('fs');
@@ -15,11 +15,11 @@ const path = require('path');
 
 const HERE = __dirname;
 const WORKLIST = path.join(HERE, 'author-worklist.json');
-const BASE_REL = '.opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation';
-const TOP_REL = `${BASE_REL}/010-mode-and-lane-migrations`;
+const BASE_REL = '.opencode/specs/system-deep-loop/065-deep-loop-innovation';
+const TOP_REL = `${BASE_REL}/013-mode-and-lane-migrations`;
 const LEAF_MOLD = `${BASE_REL}/scratch/templates/leaf-mold`;
 const PARENT_MOLD = `${BASE_REL}/scratch/templates/parent-mold`;
-const REG = '.opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research';
+const REG = '.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research';
 const RESEARCH_REFS = [`${REG}/findings-registry.json`, `${REG}/findings-registry-modes.json`, `${BASE_REL}/spec.md`];
 
 // Each mode's run behaviour and its cross-mode coupling. The coupling text is
@@ -138,7 +138,7 @@ MODES.forEach((mode, i) => {
   });
 });
 
-// Wave 9 - the top 010 parent over the 8 mode parents.
+// Wave 9 - the top mode-migration parent over the 8 mode parents.
 items.push({
   id: '010',
   wave: 9,
@@ -148,11 +148,11 @@ items.push({
   template: PARENT_MOLD,
   title: 'Mode & Lane Migrations',
   status: 'Planned',
-  predecessor: '009-shared-mode-contracts-and-fixtures',
-  successor: '011-staged-state-migration-and-authority-cutover',
+  predecessor: '012-shared-mode-contracts-and-fixtures',
+  successor: '014-staged-state-migration-and-authority-cutover',
   handoff_criteria: 'Every one of the eight modes is migrated and green behind its own mode gate: shadow-parity passing, sealed artifacts and a certificate per mode, rollback switch armed. deep-improvement-common (004) landed before its three variants (005/006/007).',
   outcome: 'The per-mode fan-out: eight mode migrations, each a fractal parent implementing that mode’s full run behavior on the typed event-ledger substrate and ending in an independent mode gate.',
-  depends_on: ['009'],
+  depends_on: ['012'],
   children: MODES.map((mode) => ({
     slug: `${mode.n}-${mode.slug}`,
     focus: `Migrate ${mode.blurb} to the typed event-ledger substrate, ending in an independent mode gate.${mode.couple ? ' ' + mode.couple : ''}`,
@@ -161,7 +161,9 @@ items.push({
   research_refs: RESEARCH_REFS,
 });
 
-// Merge: drop any prior 010-* entries, append the freshly generated set.
+// Merge: drop any prior mode-subtree entries, append the freshly generated set.
+// Item ids keep their original numeric prefix as a stable key (distinct from the
+// on-disk phase number) to avoid colliding with other phases' worklist entries.
 const wl = JSON.parse(fs.readFileSync(WORKLIST, 'utf8'));
 const before = wl.items.length;
 wl.items = wl.items.filter((x) => !String(x.id).startsWith('010'));

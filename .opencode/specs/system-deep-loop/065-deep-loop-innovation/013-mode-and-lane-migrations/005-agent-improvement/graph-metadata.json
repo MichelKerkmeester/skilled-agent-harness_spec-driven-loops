@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/003-sealed-artifacts",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent improvement migration",
+      "agent-improvement event ledger",
+      "agent improvement mode gate",
+      "agent loop proposal scoring"
+    ],
+    "key_topics": [
+      "agent",
+      "improvement",
+      "migration",
+      "agent-improvement",
+      "event",
+      "ledger",
+      "mode",
+      "gate",
+      "loop",
+      "proposal",
+      "scoring",
+      "migrate"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Migrate the agent-improvement variant of the deep-improvement evaluator loop onto the typed event-ledger substrate through seven concern children, reusing the shared evaluator, canary, and promotion backbone and ending in an independent mode gate.",
+    "created_at": "2026-07-15T21:58:09.759Z",
+    "last_save_at": "2026-07-15T21:58:09.759Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5c5f8a07a40dc926408f7f5aa91c1d49ff21ffc519be93d0f5b1d6417a4323ad",
+    "source_doc_hashes": {
+      "spec.md": "bb9799c32219fff20e9dffb4f8f876d06fd1cf24e657965d97aa3bffc3123018"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep AI Council sealed reference artifacts",
+      "deep-ai-council seal-on-write",
+      "deep-ai-council tamper-evident artifact reads",
+      "content-addressed council artifacts",
+      "Deep AI Council sealed artifacts implementation plan",
+      "deep-ai-council content-addressed seal plan",
+      "deep-ai-council artifact verification plan",
+      "Deep AI Council sealed artifacts tasks",
+      "deep-ai-council seal-on-write tasks",
+      "Deep AI Council sealed artifacts checklist",
+      "deep-ai-council tamper-evident read gate"
+    ],
+    "key_topics": [
+      "deep",
+      "council",
+      "sealed",
+      "reference",
+      "artifacts",
+      "deep-ai-council",
+      "seal-on-write",
+      "tamper-evident",
+      "artifact",
+      "reads",
+      "content-addressed",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep AI Council sealing boundary for immutable inputs and outputs across seats deliberate, critique rounds, convergence, ai-council artifacts, and the council test gate. Reuse the phase-003 sealing primitives and phase-009 shared contracts for content-addressed digests, seal-on-write, replay identity, and tamper-evident reads; do not create a second sealing scheme.",
+    "created_at": "2026-07-15T21:43:57.363Z",
+    "last_save_at": "2026-07-15T21:43:57.363Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:e5089db29d192d3c9713c7183a72e54b324ea84729e20f290ae551121c6cf03f",
+    "source_doc_hashes": {
+      "spec.md": "aa386b16e772054afaa362fb392e84afa07d5bdfea874c10adb0dc5c4a268c73",
+      "plan.md": "3032bd91a7b045b99dca5fe4dd7c86bc0cc6f0b8266285ad721ed4dbcecc93ff",
+      "tasks.md": "35df30dcdd939b9e235af07ade9d0dcf958c7f050dd19ed57c58ef8446d30e4a",
+      "checklist.md": "4274d1f5e433908434fb582e95d6a3e7d5da3177c9ce2387d916afc65968b102"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

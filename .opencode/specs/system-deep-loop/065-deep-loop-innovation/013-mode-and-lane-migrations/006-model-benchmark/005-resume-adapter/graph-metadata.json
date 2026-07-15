@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Model Benchmark resume adapter",
+      "model-benchmark sealed-ledger resume",
+      "idempotent model benchmark re-entry",
+      "Model Benchmark resume adapter implementation plan",
+      "sealed ledger model benchmark resume plan",
+      "model benchmark idempotent re-entry plan",
+      "Model Benchmark resume adapter tasks",
+      "sealed ledger resume tasks",
+      "model benchmark re-entry task set",
+      "Model Benchmark resume adapter checklist",
+      "sealed ledger resume verification",
+      "model benchmark idempotent replay gate"
+    ],
+    "key_topics": [
+      "model",
+      "benchmark",
+      "resume",
+      "adapter",
+      "model-benchmark",
+      "sealed-ledger",
+      "idempotent",
+      "re-entry",
+      "implementation",
+      "plan",
+      "sealed",
+      "ledger"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-004",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Define Model Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "version",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Model Benchmark resume adapter for the typed event-ledger substrate",
+    "created_at": "2026-07-15T21:45:06.735Z",
+    "last_save_at": "2026-07-15T21:45:06.735Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:e039e04adc283b46deb8a9fef76d1bec9e009cc4b0d87fac800c284d25e8bfc1",
+    "source_doc_hashes": {
+      "spec.md": "48a91aad37601256dfa41f57cf001fca14540b1f7d2a7a8bff288794250cf82e",
+      "plan.md": "cc7ffc55710ef00b41b1baac12ef4b6d56d28bcb76e579b602b624dd57b3825f",
+      "tasks.md": "21d36cc41d9c4c695ab9c49d970a87102e6843c18c50269b51ac3a54b7d871c0",
+      "checklist.md": "bde223848f659ee65395079a27e34d746c1bd7cf48a77271c1a94dd901afdf73"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

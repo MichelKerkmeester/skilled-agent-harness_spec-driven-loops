@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts",
+  "description": "Plan the Skill Benchmark certificates and receipts over the deep-improvement-common backbone: attest paired skill scenarios, scoring evidence, replay",
+  "keywords": [
+    "plan",
+    "skill",
+    "benchmark",
+    "certificates",
+    "receipts",
+    "deep-improvement-common",
+    "backbone",
+    "attest",
+    "paired",
+    "scenarios",
+    "scoring",
+    "evidence",
+    "replay"
+  ],
+  "lastUpdated": "2026-07-15T21:22:17.083Z",
+  "specId": "004",
+  "folderSlug": "certificates-and-receipts",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "007-skill-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

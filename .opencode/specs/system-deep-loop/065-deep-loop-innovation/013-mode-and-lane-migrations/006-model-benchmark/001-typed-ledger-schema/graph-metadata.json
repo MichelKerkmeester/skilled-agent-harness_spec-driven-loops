@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
+  "spec_folder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
+  "parent_id": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Model Benchmark typed ledger schema",
+      "model-benchmark event vocabulary",
+      "typed ledger model benchmark migration",
+      "Model Benchmark typed ledger schema implementation plan",
+      "model-benchmark event schema plan",
+      "typed ledger phase 006 model benchmark",
+      "Model Benchmark typed ledger schema tasks",
+      "model-benchmark event vocabulary tasks",
+      "typed ledger model benchmark task set",
+      "Model Benchmark typed ledger schema checklist",
+      "model-benchmark event schema verification",
+      "typed ledger model benchmark gate"
+    ],
+    "key_topics": [
+      "model",
+      "benchmark",
+      "typed",
+      "ledger",
+      "schema",
+      "model-benchmark",
+      "event",
+      "vocabulary",
+      "migration",
+      "implementation",
+      "plan",
+      "phase"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Framed Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark Typed Ledger Schema",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Model Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extract Model Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "successor",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Model Benchmark variant's typed append-only event vocabulary over the shared deep-improvement-common backbone. The phase defines the mode envelope specialization, concrete run and scoring-matrix event types, field-level types, provenance and contamination lineage, normalized usage, versioned envelope policy, and upcaster hooks. It stops before reducer and projection design in 002-reducers-and-projections and does not re-implement shared evaluator, canary, or promotion services.",
+    "created_at": "2026-07-15T21:44:54.627Z",
+    "last_save_at": "2026-07-15T21:44:54.627Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:ce15f642a16da6ef0550383f92c8131b0cfe88eddb9d0fc03c6100d1fefb897b",
+    "source_doc_hashes": {
+      "spec.md": "63aa8e14d5d3ed2dc9511d7699694c9917cad7d4a61605b1ae69dd2934977944",
+      "plan.md": "843ddab9f0d960390cb6aa9d880896f3092d5715176baf1451c2f52b83e841aa",
+      "tasks.md": "08311b524c0e41aacba630e555de0195e19beb66ef21d6ef660db67f551211e6",
+      "checklist.md": "b1b765c9f5004ea28f0ed3a33300b565951ab1d85be15d450c8027e8e263df83"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

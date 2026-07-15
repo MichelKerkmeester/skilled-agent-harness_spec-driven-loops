@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 /**
- * Manual SOL-high authoring swarm for the 006 implementation tree.
+ * Manual authoring swarm for the deep-loop recommendations implementation-planning tree.
  *
- * Dispatches one cli-codex SOL (high, fast) agent per phase-folder in the
- * work-list, workspace-write, each mirroring a real 017 phase leaf as its
- * structural template. After an agent returns, the driver deterministically
+ * Dispatches one agent per phase-folder in the work-list, workspace-write,
+ * each mirroring a real validated phase leaf as its structural template.
+ * After an agent returns, the driver deterministically
  * generates description.json + graph-metadata.json and runs strict validation
  * on that folder, recording pass/fail. Operator-authorized parallel dispatch
  * (rule-15 swarm exception); concurrency-capped to be gentle on the shared OAuth.
@@ -17,8 +17,8 @@ const path = require('path');
 const { spawn, spawnSync } = require('child_process');
 
 const ROOT = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public';
-const SPEC006 = path.join(ROOT, '.opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation');
-const SCRATCH = path.join(SPEC006, 'scratch');
+const PACKET_ROOT = path.join(ROOT, '.opencode/specs/system-deep-loop/065-deep-loop-innovation');
+const SCRATCH = path.join(PACKET_ROOT, 'scratch');
 const WORKLIST = path.join(SCRATCH, 'author-worklist.json');
 const LOGDIR = path.join(SCRATCH, 'swarm-logs');
 const RESULTS = path.join(SCRATCH, 'swarm-results.jsonl');
@@ -61,8 +61,8 @@ function buildParentBrief(item) {
     `Copy its structure precisely: the YAML frontmatter shape; the <!-- SPECKIT_TEMPLATE_SOURCE -->, <!-- SPECKIT_LEVEL -->, and the "<!-- CONTENT DISCIPLINE: PHASE PARENT ... -->" marker comment; and its exact section set — METADATA (with a Predecessor / Successor / Handoff Criteria row), PROBLEM & PURPOSE, and a PHASE DOCUMENTATION MAP table inside <!-- ANCHOR:phase-map -->…<!-- /ANCHOR:phase-map -->. Replace the example's CONTENT with your phase's; keep its FORM. Root purpose and child map ONLY — no mechanics (those live in the children).`,
     ``,
     `## Read for context`,
-    `  - ${path.join(SPEC006, 'spec.md')}  (the parent program plan — invariants, success criteria, phase map)`,
-    `  - ${path.join(SPEC006, 'manifest/phase-tree.json')}  (this phase's outcome + depends_on + siblings)`,
+    `  - ${path.join(PACKET_ROOT, 'spec.md')}  (the parent program plan — invariants, success criteria, phase map)`,
+    `  - ${path.join(PACKET_ROOT, 'manifest/phase-tree.json')}  (this phase's outcome + depends_on + siblings)`,
     refs ? `  - Research inputs:\n${refs}` : '',
     ``,
     `## Your phase (parent)`,
@@ -83,7 +83,7 @@ function buildParentBrief(item) {
     item.content_brief,
     ``,
     `## Spec-kit rules you MUST honor (validated)`,
-    `- Frontmatter: title, description, trigger_phrases, importance_tier (low|medium|high|critical — use "critical" only for the keystone), contextType "planning", parent "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation", and a _memory.continuity block like the template's.`,
+    `- Frontmatter: title, description, trigger_phrases, importance_tier (low|medium|high|critical — use "critical" only for the keystone), contextType "planning", parent "system-deep-loop/065-deep-loop-innovation", and a _memory.continuity block like the template's.`,
     `- _memory.continuity.recent_action and .next_safe_action: EACH <= 96 characters, single line, NO URLs, NO newlines, plainly declarative (avoid the words because / so that / which means / the reason / details / summary).`,
     `- Keep the <!-- SPECKIT_LEVEL: ${item.level} --> and <!-- SPECKIT_TEMPLATE_SOURCE --> and the PHASE PARENT CONTENT DISCIPLINE markers.`,
     ``,
@@ -110,8 +110,8 @@ function buildBrief(item) {
     `Copy its structure precisely: the YAML frontmatter shape, the <!-- ANCHOR:name -->…<!-- /ANCHOR:name --> blocks, the <!-- SPECKIT_TEMPLATE_SOURCE --> and <!-- SPECKIT_LEVEL --> and <!-- HVR_REFERENCE --> marker comments, and the section layout of each of its spec.md/plan.md/tasks.md/checklist.md. Replace the example's CONTENT with your phase's content; keep its FORM.`,
     ``,
     `## Read for context`,
-    `  - ${path.join(SPEC006, 'spec.md')}  (the parent program plan — your phase's role, invariants, success criteria)`,
-    `  - ${path.join(SPEC006, 'manifest/phase-tree.json')}  (your phase's outcome + depends_on + siblings)`,
+    `  - ${path.join(PACKET_ROOT, 'spec.md')}  (the parent program plan — your phase's role, invariants, success criteria)`,
+    `  - ${path.join(PACKET_ROOT, 'manifest/phase-tree.json')}  (your phase's outcome + depends_on + siblings)`,
     refs ? `  - Research inputs:\n${refs}` : '',
     ``,
     `## Your phase`,

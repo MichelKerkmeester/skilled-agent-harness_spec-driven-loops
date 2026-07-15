@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts",
+  "description": "Plan the Deep Alignment per-run certificate and per-transition receipt contract over the typed event-ledger substrate.",
+  "keywords": [
+    "plan",
+    "deep",
+    "alignment",
+    "per-run",
+    "certificate",
+    "per-transition",
+    "receipt",
+    "contract",
+    "typed",
+    "event-ledger",
+    "substrate"
+  ],
+  "lastUpdated": "2026-07-15T21:38:41.696Z",
+  "specId": "004",
+  "folderSlug": "certificates-and-receipts",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "008-deep-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

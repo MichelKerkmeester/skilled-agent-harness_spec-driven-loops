@@ -1338,9 +1338,9 @@
       "id": "010-001-001",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Research — Typed Ledger Schema",
       "status": "Planned",
       "pred_sibling": "",
@@ -1349,18 +1349,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Research: plan the Typed Ledger Schema for the autonomous deep-research loop (init -> iterate: gather/analyze -> convergence detection -> synthesize -> memory-save handoff). Define the TYPED APPEND-ONLY EVENT SCHEMA Deep Research emits during its run: the event-envelope specialization, the concrete event types for Deep Research's run behavior, field-level types, and the versioned-envelope plus upcaster hooks. Consumes the phase-003 transition-authorized ledger core and the phase-009 shared event contracts. Output is Deep Research's event VOCABULARY only - the reducers belong to the next sibling. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-001-002",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Research — Reducers & Projections",
       "status": "Planned",
       "pred_sibling": "001-typed-ledger-schema",
@@ -1369,18 +1369,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Research: plan the Reducers & Projections for the autonomous deep-research loop (init -> iterate: gather/analyze -> convergence detection -> synthesize -> memory-save handoff). Define the DETERMINISTIC REDUCERS that replay Deep Research's typed event log (the previous sibling's schema) into its live state projections (iteration/convergence state, artifact index, per-mode status). A pure fold with no side effects: an identical event sequence must always yield an identical projection. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-001-003",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Research — Sealed Reference Artifacts",
       "status": "Planned",
       "pred_sibling": "002-reducers-and-projections",
@@ -1389,18 +1389,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Research: plan the Sealed Reference Artifacts for the autonomous deep-research loop (init -> iterate: gather/analyze -> convergence detection -> synthesize -> memory-save handoff). Define how Deep Research SEALS its reference artifacts - the immutable inputs and outputs it must be able to reproduce: content-addressed digests, seal-on-write, and a tamper-evident read path. Consumes the phase-003 sealing primitives; do not invent a second sealing scheme. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-001-004",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Research — Certificates & Receipts",
       "status": "Planned",
       "pred_sibling": "003-sealed-artifacts",
@@ -1409,18 +1409,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Research: plan the Certificates & Receipts for the autonomous deep-research loop (init -> iterate: gather/analyze -> convergence detection -> synthesize -> memory-save handoff). Define Deep Research's per-run CERTIFICATE and per-transition RECEIPTS: what each attests, the replay-fingerprint inputs, and how an independent verifier re-checks them offline. Consumes the phase-003 receipt and certificate primitives. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-001-005",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Research — Resume Adapter",
       "status": "Planned",
       "pred_sibling": "004-certificates-and-receipts",
@@ -1429,18 +1429,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Research: plan the Resume Adapter for the autonomous deep-research loop (init -> iterate: gather/analyze -> convergence detection -> synthesize -> memory-save handoff). Define Deep Research's RESUME ADAPTER: how a mid-run interruption rebuilds live state purely from the sealed ledger via the reducers, the continuity-ladder mapping, and an idempotent re-entry contract (no double-apply, no lost or replayed events). This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-001-006",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/001-deep-research/006-shadow-parity",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/006-shadow-parity",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Research — Shadow Parity",
       "status": "Planned",
       "pred_sibling": "005-resume-adapter",
@@ -1449,18 +1449,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Research: plan the Shadow Parity for the autonomous deep-research loop (init -> iterate: gather/analyze -> convergence detection -> synthesize -> memory-save handoff). Define Deep Research's SHADOW-PARITY harness: run the new ledger path in shadow alongside the legacy emitter, diff the projections event-for-event, and state the parity acceptance criteria that MUST be green before any authority cutover. Consumes the phase-011 shadow framework. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-001-007",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Research — Rollback & Mode Gate",
       "status": "Planned",
       "pred_sibling": "006-shadow-parity",
@@ -1469,18 +1469,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Research: plan the Rollback & Mode Gate for the autonomous deep-research loop (init -> iterate: gather/analyze -> convergence detection -> synthesize -> memory-save handoff). Define Deep Research's ROLLBACK SWITCH and independent Deep Research GATE: the fail-closed authority-cutover toggle, the bounded rollback window, and the mode-gate checklist that certifies THIS mode migrated (shadow-parity green, artifacts sealed, certificate emitted). This is the mode's exit gate into phase 011. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-002-001",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Review — Typed Ledger Schema",
       "status": "Planned",
       "pred_sibling": "",
@@ -1489,18 +1489,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Review: plan the Typed Ledger Schema for the deep-review loop (scope -> per-dimension passes emitting P0/P1/P2 findings -> convergence -> review-report). Define the TYPED APPEND-ONLY EVENT SCHEMA Deep Review emits during its run: the event-envelope specialization, the concrete event types for Deep Review's run behavior, field-level types, and the versioned-envelope plus upcaster hooks. Consumes the phase-003 transition-authorized ledger core and the phase-009 shared event contracts. Output is Deep Review's event VOCABULARY only - the reducers belong to the next sibling. This mode shares its loop backbone with deep-alignment (mode 008): consume the shared review-loop contract frozen in phase 009 rather than forking it. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-002-002",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Review — Reducers & Projections",
       "status": "Planned",
       "pred_sibling": "001-typed-ledger-schema",
@@ -1509,18 +1509,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Review: plan the Reducers & Projections for the deep-review loop (scope -> per-dimension passes emitting P0/P1/P2 findings -> convergence -> review-report). Define the DETERMINISTIC REDUCERS that replay Deep Review's typed event log (the previous sibling's schema) into its live state projections (iteration/convergence state, artifact index, per-mode status). A pure fold with no side effects: an identical event sequence must always yield an identical projection. This mode shares its loop backbone with deep-alignment (mode 008): consume the shared review-loop contract frozen in phase 009 rather than forking it. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-002-003",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Review — Sealed Reference Artifacts",
       "status": "Planned",
       "pred_sibling": "002-reducers-and-projections",
@@ -1529,18 +1529,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Review: plan the Sealed Reference Artifacts for the deep-review loop (scope -> per-dimension passes emitting P0/P1/P2 findings -> convergence -> review-report). Define how Deep Review SEALS its reference artifacts - the immutable inputs and outputs it must be able to reproduce: content-addressed digests, seal-on-write, and a tamper-evident read path. Consumes the phase-003 sealing primitives; do not invent a second sealing scheme. This mode shares its loop backbone with deep-alignment (mode 008): consume the shared review-loop contract frozen in phase 009 rather than forking it. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-002-004",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Review — Certificates & Receipts",
       "status": "Planned",
       "pred_sibling": "003-sealed-artifacts",
@@ -1549,18 +1549,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Review: plan the Certificates & Receipts for the deep-review loop (scope -> per-dimension passes emitting P0/P1/P2 findings -> convergence -> review-report). Define Deep Review's per-run CERTIFICATE and per-transition RECEIPTS: what each attests, the replay-fingerprint inputs, and how an independent verifier re-checks them offline. Consumes the phase-003 receipt and certificate primitives. This mode shares its loop backbone with deep-alignment (mode 008): consume the shared review-loop contract frozen in phase 009 rather than forking it. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-002-005",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/002-deep-review/005-resume-adapter",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/005-resume-adapter",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Review — Resume Adapter",
       "status": "Planned",
       "pred_sibling": "004-certificates-and-receipts",
@@ -1569,18 +1569,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Review: plan the Resume Adapter for the deep-review loop (scope -> per-dimension passes emitting P0/P1/P2 findings -> convergence -> review-report). Define Deep Review's RESUME ADAPTER: how a mid-run interruption rebuilds live state purely from the sealed ledger via the reducers, the continuity-ladder mapping, and an idempotent re-entry contract (no double-apply, no lost or replayed events). This mode shares its loop backbone with deep-alignment (mode 008): consume the shared review-loop contract frozen in phase 009 rather than forking it. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-002-006",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Review — Shadow Parity",
       "status": "Planned",
       "pred_sibling": "005-resume-adapter",
@@ -1589,18 +1589,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Review: plan the Shadow Parity for the deep-review loop (scope -> per-dimension passes emitting P0/P1/P2 findings -> convergence -> review-report). Define Deep Review's SHADOW-PARITY harness: run the new ledger path in shadow alongside the legacy emitter, diff the projections event-for-event, and state the parity acceptance criteria that MUST be green before any authority cutover. Consumes the phase-011 shadow framework. This mode shares its loop backbone with deep-alignment (mode 008): consume the shared review-loop contract frozen in phase 009 rather than forking it. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-002-007",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Review — Rollback & Mode Gate",
       "status": "Planned",
       "pred_sibling": "006-shadow-parity",
@@ -1609,18 +1609,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Review: plan the Rollback & Mode Gate for the deep-review loop (scope -> per-dimension passes emitting P0/P1/P2 findings -> convergence -> review-report). Define Deep Review's ROLLBACK SWITCH and independent Deep Review GATE: the fail-closed authority-cutover toggle, the bounded rollback window, and the mode-gate checklist that certifies THIS mode migrated (shadow-parity green, artifacts sealed, certificate emitted). This is the mode's exit gate into phase 011. This mode shares its loop backbone with deep-alignment (mode 008): consume the shared review-loop contract frozen in phase 009 rather than forking it. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-003-001",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep AI Council — Typed Ledger Schema",
       "status": "Planned",
       "pred_sibling": "",
@@ -1629,18 +1629,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep AI Council: plan the Typed Ledger Schema for the multi-seat council deliberation (seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate). Define the TYPED APPEND-ONLY EVENT SCHEMA Deep AI Council emits during its run: the event-envelope specialization, the concrete event types for Deep AI Council's run behavior, field-level types, and the versioned-envelope plus upcaster hooks. Consumes the phase-003 transition-authorized ledger core and the phase-009 shared event contracts. Output is Deep AI Council's event VOCABULARY only - the reducers belong to the next sibling. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-003-002",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/003-deep-ai-council/002-reducers-and-projections",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/002-reducers-and-projections",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep AI Council — Reducers & Projections",
       "status": "Planned",
       "pred_sibling": "001-typed-ledger-schema",
@@ -1649,18 +1649,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep AI Council: plan the Reducers & Projections for the multi-seat council deliberation (seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate). Define the DETERMINISTIC REDUCERS that replay Deep AI Council's typed event log (the previous sibling's schema) into its live state projections (iteration/convergence state, artifact index, per-mode status). A pure fold with no side effects: an identical event sequence must always yield an identical projection. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-003-003",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep AI Council — Sealed Reference Artifacts",
       "status": "Planned",
       "pred_sibling": "002-reducers-and-projections",
@@ -1669,18 +1669,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep AI Council: plan the Sealed Reference Artifacts for the multi-seat council deliberation (seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate). Define how Deep AI Council SEALS its reference artifacts - the immutable inputs and outputs it must be able to reproduce: content-addressed digests, seal-on-write, and a tamper-evident read path. Consumes the phase-003 sealing primitives; do not invent a second sealing scheme. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-003-004",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/003-deep-ai-council/004-certificates-and-receipts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/004-certificates-and-receipts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep AI Council — Certificates & Receipts",
       "status": "Planned",
       "pred_sibling": "003-sealed-artifacts",
@@ -1689,18 +1689,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep AI Council: plan the Certificates & Receipts for the multi-seat council deliberation (seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate). Define Deep AI Council's per-run CERTIFICATE and per-transition RECEIPTS: what each attests, the replay-fingerprint inputs, and how an independent verifier re-checks them offline. Consumes the phase-003 receipt and certificate primitives. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-003-005",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep AI Council — Resume Adapter",
       "status": "Planned",
       "pred_sibling": "004-certificates-and-receipts",
@@ -1709,18 +1709,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep AI Council: plan the Resume Adapter for the multi-seat council deliberation (seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate). Define Deep AI Council's RESUME ADAPTER: how a mid-run interruption rebuilds live state purely from the sealed ledger via the reducers, the continuity-ladder mapping, and an idempotent re-entry contract (no double-apply, no lost or replayed events). This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-003-006",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep AI Council — Shadow Parity",
       "status": "Planned",
       "pred_sibling": "005-resume-adapter",
@@ -1729,18 +1729,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep AI Council: plan the Shadow Parity for the multi-seat council deliberation (seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate). Define Deep AI Council's SHADOW-PARITY harness: run the new ledger path in shadow alongside the legacy emitter, diff the projections event-for-event, and state the parity acceptance criteria that MUST be green before any authority cutover. Consumes the phase-011 shadow framework. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-003-007",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep AI Council — Rollback & Mode Gate",
       "status": "Planned",
       "pred_sibling": "006-shadow-parity",
@@ -1749,18 +1749,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep AI Council: plan the Rollback & Mode Gate for the multi-seat council deliberation (seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate). Define Deep AI Council's ROLLBACK SWITCH and independent Deep AI Council GATE: the fail-closed authority-cutover toggle, the bounded rollback window, and the mode-gate checklist that certifies THIS mode migrated (shadow-parity green, artifacts sealed, certificate emitted). This is the mode's exit gate into phase 011. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-004-001",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Improvement Common Services — Typed Ledger Schema",
       "status": "Planned",
       "pred_sibling": "",
@@ -1769,18 +1769,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Improvement Common Services: plan the Typed Ledger Schema for the shared deep-improvement backbone (evaluator-first loop -> candidate generation -> scoring -> guarded promotion) plus the shared evaluator, canary, and promotion services. Define the TYPED APPEND-ONLY EVENT SCHEMA Deep Improvement Common Services emits during its run: the event-envelope specialization, the concrete event types for Deep Improvement Common Services's run behavior, field-level types, and the versioned-envelope plus upcaster hooks. Consumes the phase-003 transition-authorized ledger core and the phase-009 shared event contracts. Output is Deep Improvement Common Services's event VOCABULARY only - the reducers belong to the next sibling. This mode PRECEDES and is consumed by agent-improvement (005), model-benchmark (006), and skill-benchmark (007): it OWNS the shared evaluator/canary/promotion services those three variants reuse, so define them here as the single source. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-004-002",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Improvement Common Services — Reducers & Projections",
       "status": "Planned",
       "pred_sibling": "001-typed-ledger-schema",
@@ -1789,18 +1789,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Improvement Common Services: plan the Reducers & Projections for the shared deep-improvement backbone (evaluator-first loop -> candidate generation -> scoring -> guarded promotion) plus the shared evaluator, canary, and promotion services. Define the DETERMINISTIC REDUCERS that replay Deep Improvement Common Services's typed event log (the previous sibling's schema) into its live state projections (iteration/convergence state, artifact index, per-mode status). A pure fold with no side effects: an identical event sequence must always yield an identical projection. This mode PRECEDES and is consumed by agent-improvement (005), model-benchmark (006), and skill-benchmark (007): it OWNS the shared evaluator/canary/promotion services those three variants reuse, so define them here as the single source. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-004-003",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Improvement Common Services — Sealed Reference Artifacts",
       "status": "Planned",
       "pred_sibling": "002-reducers-and-projections",
@@ -1809,18 +1809,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Improvement Common Services: plan the Sealed Reference Artifacts for the shared deep-improvement backbone (evaluator-first loop -> candidate generation -> scoring -> guarded promotion) plus the shared evaluator, canary, and promotion services. Define how Deep Improvement Common Services SEALS its reference artifacts - the immutable inputs and outputs it must be able to reproduce: content-addressed digests, seal-on-write, and a tamper-evident read path. Consumes the phase-003 sealing primitives; do not invent a second sealing scheme. This mode PRECEDES and is consumed by agent-improvement (005), model-benchmark (006), and skill-benchmark (007): it OWNS the shared evaluator/canary/promotion services those three variants reuse, so define them here as the single source. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-004-004",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/004-deep-improvement-common/004-certificates-and-receipts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/004-certificates-and-receipts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Improvement Common Services — Certificates & Receipts",
       "status": "Planned",
       "pred_sibling": "003-sealed-artifacts",
@@ -1829,18 +1829,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Improvement Common Services: plan the Certificates & Receipts for the shared deep-improvement backbone (evaluator-first loop -> candidate generation -> scoring -> guarded promotion) plus the shared evaluator, canary, and promotion services. Define Deep Improvement Common Services's per-run CERTIFICATE and per-transition RECEIPTS: what each attests, the replay-fingerprint inputs, and how an independent verifier re-checks them offline. Consumes the phase-003 receipt and certificate primitives. This mode PRECEDES and is consumed by agent-improvement (005), model-benchmark (006), and skill-benchmark (007): it OWNS the shared evaluator/canary/promotion services those three variants reuse, so define them here as the single source. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-004-005",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Improvement Common Services — Resume Adapter",
       "status": "Planned",
       "pred_sibling": "004-certificates-and-receipts",
@@ -1849,18 +1849,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Improvement Common Services: plan the Resume Adapter for the shared deep-improvement backbone (evaluator-first loop -> candidate generation -> scoring -> guarded promotion) plus the shared evaluator, canary, and promotion services. Define Deep Improvement Common Services's RESUME ADAPTER: how a mid-run interruption rebuilds live state purely from the sealed ledger via the reducers, the continuity-ladder mapping, and an idempotent re-entry contract (no double-apply, no lost or replayed events). This mode PRECEDES and is consumed by agent-improvement (005), model-benchmark (006), and skill-benchmark (007): it OWNS the shared evaluator/canary/promotion services those three variants reuse, so define them here as the single source. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-004-006",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Improvement Common Services — Shadow Parity",
       "status": "Planned",
       "pred_sibling": "005-resume-adapter",
@@ -1869,18 +1869,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Improvement Common Services: plan the Shadow Parity for the shared deep-improvement backbone (evaluator-first loop -> candidate generation -> scoring -> guarded promotion) plus the shared evaluator, canary, and promotion services. Define Deep Improvement Common Services's SHADOW-PARITY harness: run the new ledger path in shadow alongside the legacy emitter, diff the projections event-for-event, and state the parity acceptance criteria that MUST be green before any authority cutover. Consumes the phase-011 shadow framework. This mode PRECEDES and is consumed by agent-improvement (005), model-benchmark (006), and skill-benchmark (007): it OWNS the shared evaluator/canary/promotion services those three variants reuse, so define them here as the single source. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-004-007",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Improvement Common Services — Rollback & Mode Gate",
       "status": "Planned",
       "pred_sibling": "006-shadow-parity",
@@ -1889,18 +1889,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Improvement Common Services: plan the Rollback & Mode Gate for the shared deep-improvement backbone (evaluator-first loop -> candidate generation -> scoring -> guarded promotion) plus the shared evaluator, canary, and promotion services. Define Deep Improvement Common Services's ROLLBACK SWITCH and independent Deep Improvement Common Services GATE: the fail-closed authority-cutover toggle, the bounded rollback window, and the mode-gate checklist that certifies THIS mode migrated (shadow-parity green, artifacts sealed, certificate emitted). This is the mode's exit gate into phase 011. This mode PRECEDES and is consumed by agent-improvement (005), model-benchmark (006), and skill-benchmark (007): it OWNS the shared evaluator/canary/promotion services those three variants reuse, so define them here as the single source. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-005-001",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Agent Improvement — Typed Ledger Schema",
       "status": "Planned",
       "pred_sibling": "",
@@ -1909,18 +1909,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Agent Improvement: plan the Typed Ledger Schema for the agent-improvement variant (agent-loop proposal generation + scoring) layered on the deep-improvement-common backbone. Define the TYPED APPEND-ONLY EVENT SCHEMA Agent Improvement emits during its run: the event-envelope specialization, the concrete event types for Agent Improvement's run behavior, field-level types, and the versioned-envelope plus upcaster hooks. Consumes the phase-003 transition-authorized ledger core and the phase-009 shared event contracts. Output is Agent Improvement's event VOCABULARY only - the reducers belong to the next sibling. BUILD ON the deep-improvement-common services from mode 004 (evaluator/canary/promotion): reuse them, do NOT re-implement them; add only what is agent-improvement-specific. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-005-002",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Agent Improvement — Reducers & Projections",
       "status": "Planned",
       "pred_sibling": "001-typed-ledger-schema",
@@ -1929,18 +1929,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Agent Improvement: plan the Reducers & Projections for the agent-improvement variant (agent-loop proposal generation + scoring) layered on the deep-improvement-common backbone. Define the DETERMINISTIC REDUCERS that replay Agent Improvement's typed event log (the previous sibling's schema) into its live state projections (iteration/convergence state, artifact index, per-mode status). A pure fold with no side effects: an identical event sequence must always yield an identical projection. BUILD ON the deep-improvement-common services from mode 004 (evaluator/canary/promotion): reuse them, do NOT re-implement them; add only what is agent-improvement-specific. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-005-003",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/005-agent-improvement/003-sealed-artifacts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/003-sealed-artifacts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Agent Improvement — Sealed Reference Artifacts",
       "status": "Planned",
       "pred_sibling": "002-reducers-and-projections",
@@ -1949,18 +1949,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Agent Improvement: plan the Sealed Reference Artifacts for the agent-improvement variant (agent-loop proposal generation + scoring) layered on the deep-improvement-common backbone. Define how Agent Improvement SEALS its reference artifacts - the immutable inputs and outputs it must be able to reproduce: content-addressed digests, seal-on-write, and a tamper-evident read path. Consumes the phase-003 sealing primitives; do not invent a second sealing scheme. BUILD ON the deep-improvement-common services from mode 004 (evaluator/canary/promotion): reuse them, do NOT re-implement them; add only what is agent-improvement-specific. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-005-004",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Agent Improvement — Certificates & Receipts",
       "status": "Planned",
       "pred_sibling": "003-sealed-artifacts",
@@ -1969,18 +1969,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Agent Improvement: plan the Certificates & Receipts for the agent-improvement variant (agent-loop proposal generation + scoring) layered on the deep-improvement-common backbone. Define Agent Improvement's per-run CERTIFICATE and per-transition RECEIPTS: what each attests, the replay-fingerprint inputs, and how an independent verifier re-checks them offline. Consumes the phase-003 receipt and certificate primitives. BUILD ON the deep-improvement-common services from mode 004 (evaluator/canary/promotion): reuse them, do NOT re-implement them; add only what is agent-improvement-specific. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-005-005",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Agent Improvement — Resume Adapter",
       "status": "Planned",
       "pred_sibling": "004-certificates-and-receipts",
@@ -1989,18 +1989,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Agent Improvement: plan the Resume Adapter for the agent-improvement variant (agent-loop proposal generation + scoring) layered on the deep-improvement-common backbone. Define Agent Improvement's RESUME ADAPTER: how a mid-run interruption rebuilds live state purely from the sealed ledger via the reducers, the continuity-ladder mapping, and an idempotent re-entry contract (no double-apply, no lost or replayed events). BUILD ON the deep-improvement-common services from mode 004 (evaluator/canary/promotion): reuse them, do NOT re-implement them; add only what is agent-improvement-specific. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-005-006",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Agent Improvement — Shadow Parity",
       "status": "Planned",
       "pred_sibling": "005-resume-adapter",
@@ -2009,18 +2009,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Agent Improvement: plan the Shadow Parity for the agent-improvement variant (agent-loop proposal generation + scoring) layered on the deep-improvement-common backbone. Define Agent Improvement's SHADOW-PARITY harness: run the new ledger path in shadow alongside the legacy emitter, diff the projections event-for-event, and state the parity acceptance criteria that MUST be green before any authority cutover. Consumes the phase-011 shadow framework. BUILD ON the deep-improvement-common services from mode 004 (evaluator/canary/promotion): reuse them, do NOT re-implement them; add only what is agent-improvement-specific. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-005-007",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Agent Improvement — Rollback & Mode Gate",
       "status": "Planned",
       "pred_sibling": "006-shadow-parity",
@@ -2029,18 +2029,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Agent Improvement: plan the Rollback & Mode Gate for the agent-improvement variant (agent-loop proposal generation + scoring) layered on the deep-improvement-common backbone. Define Agent Improvement's ROLLBACK SWITCH and independent Agent Improvement GATE: the fail-closed authority-cutover toggle, the bounded rollback window, and the mode-gate checklist that certifies THIS mode migrated (shadow-parity green, artifacts sealed, certificate emitted). This is the mode's exit gate into phase 011. BUILD ON the deep-improvement-common services from mode 004 (evaluator/canary/promotion): reuse them, do NOT re-implement them; add only what is agent-improvement-specific. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-006-001",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Model Benchmark — Typed Ledger Schema",
       "status": "Planned",
       "pred_sibling": "",
@@ -2049,18 +2049,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Model Benchmark: plan the Typed Ledger Schema for the model-benchmark variant (multi-model runs + a scoring matrix) layered on the deep-improvement-common backbone. Define the TYPED APPEND-ONLY EVENT SCHEMA Model Benchmark emits during its run: the event-envelope specialization, the concrete event types for Model Benchmark's run behavior, field-level types, and the versioned-envelope plus upcaster hooks. Consumes the phase-003 transition-authorized ledger core and the phase-009 shared event contracts. Output is Model Benchmark's event VOCABULARY only - the reducers belong to the next sibling. BUILD ON the deep-improvement-common services from mode 004: add only model-benchmark-specific run and scoring logic; do NOT re-implement the shared evaluator/canary/promotion. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-006-002",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Model Benchmark — Reducers & Projections",
       "status": "Planned",
       "pred_sibling": "001-typed-ledger-schema",
@@ -2069,18 +2069,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Model Benchmark: plan the Reducers & Projections for the model-benchmark variant (multi-model runs + a scoring matrix) layered on the deep-improvement-common backbone. Define the DETERMINISTIC REDUCERS that replay Model Benchmark's typed event log (the previous sibling's schema) into its live state projections (iteration/convergence state, artifact index, per-mode status). A pure fold with no side effects: an identical event sequence must always yield an identical projection. BUILD ON the deep-improvement-common services from mode 004: add only model-benchmark-specific run and scoring logic; do NOT re-implement the shared evaluator/canary/promotion. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-006-003",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/006-model-benchmark/003-sealed-artifacts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/003-sealed-artifacts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Model Benchmark — Sealed Reference Artifacts",
       "status": "Planned",
       "pred_sibling": "002-reducers-and-projections",
@@ -2089,18 +2089,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Model Benchmark: plan the Sealed Reference Artifacts for the model-benchmark variant (multi-model runs + a scoring matrix) layered on the deep-improvement-common backbone. Define how Model Benchmark SEALS its reference artifacts - the immutable inputs and outputs it must be able to reproduce: content-addressed digests, seal-on-write, and a tamper-evident read path. Consumes the phase-003 sealing primitives; do not invent a second sealing scheme. BUILD ON the deep-improvement-common services from mode 004: add only model-benchmark-specific run and scoring logic; do NOT re-implement the shared evaluator/canary/promotion. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-006-004",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/006-model-benchmark/004-certificates-and-receipts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/004-certificates-and-receipts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Model Benchmark — Certificates & Receipts",
       "status": "Planned",
       "pred_sibling": "003-sealed-artifacts",
@@ -2109,18 +2109,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Model Benchmark: plan the Certificates & Receipts for the model-benchmark variant (multi-model runs + a scoring matrix) layered on the deep-improvement-common backbone. Define Model Benchmark's per-run CERTIFICATE and per-transition RECEIPTS: what each attests, the replay-fingerprint inputs, and how an independent verifier re-checks them offline. Consumes the phase-003 receipt and certificate primitives. BUILD ON the deep-improvement-common services from mode 004: add only model-benchmark-specific run and scoring logic; do NOT re-implement the shared evaluator/canary/promotion. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-006-005",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Model Benchmark — Resume Adapter",
       "status": "Planned",
       "pred_sibling": "004-certificates-and-receipts",
@@ -2129,18 +2129,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Model Benchmark: plan the Resume Adapter for the model-benchmark variant (multi-model runs + a scoring matrix) layered on the deep-improvement-common backbone. Define Model Benchmark's RESUME ADAPTER: how a mid-run interruption rebuilds live state purely from the sealed ledger via the reducers, the continuity-ladder mapping, and an idempotent re-entry contract (no double-apply, no lost or replayed events). BUILD ON the deep-improvement-common services from mode 004: add only model-benchmark-specific run and scoring logic; do NOT re-implement the shared evaluator/canary/promotion. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-006-006",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Model Benchmark — Shadow Parity",
       "status": "Planned",
       "pred_sibling": "005-resume-adapter",
@@ -2149,18 +2149,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Model Benchmark: plan the Shadow Parity for the model-benchmark variant (multi-model runs + a scoring matrix) layered on the deep-improvement-common backbone. Define Model Benchmark's SHADOW-PARITY harness: run the new ledger path in shadow alongside the legacy emitter, diff the projections event-for-event, and state the parity acceptance criteria that MUST be green before any authority cutover. Consumes the phase-011 shadow framework. BUILD ON the deep-improvement-common services from mode 004: add only model-benchmark-specific run and scoring logic; do NOT re-implement the shared evaluator/canary/promotion. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-006-007",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Model Benchmark — Rollback & Mode Gate",
       "status": "Planned",
       "pred_sibling": "006-shadow-parity",
@@ -2169,18 +2169,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Model Benchmark: plan the Rollback & Mode Gate for the model-benchmark variant (multi-model runs + a scoring matrix) layered on the deep-improvement-common backbone. Define Model Benchmark's ROLLBACK SWITCH and independent Model Benchmark GATE: the fail-closed authority-cutover toggle, the bounded rollback window, and the mode-gate checklist that certifies THIS mode migrated (shadow-parity green, artifacts sealed, certificate emitted). This is the mode's exit gate into phase 011. BUILD ON the deep-improvement-common services from mode 004: add only model-benchmark-specific run and scoring logic; do NOT re-implement the shared evaluator/canary/promotion. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-007-001",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Skill Benchmark — Typed Ledger Schema",
       "status": "Planned",
       "pred_sibling": "",
@@ -2189,18 +2189,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Skill Benchmark: plan the Typed Ledger Schema for the skill-benchmark variant (skill scenario runs + scoring) layered on the deep-improvement-common backbone. Define the TYPED APPEND-ONLY EVENT SCHEMA Skill Benchmark emits during its run: the event-envelope specialization, the concrete event types for Skill Benchmark's run behavior, field-level types, and the versioned-envelope plus upcaster hooks. Consumes the phase-003 transition-authorized ledger core and the phase-009 shared event contracts. Output is Skill Benchmark's event VOCABULARY only - the reducers belong to the next sibling. BUILD ON the deep-improvement-common services from mode 004: add only skill-benchmark-specific scenario and scoring logic; do NOT re-implement the shared services. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-007-002",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Skill Benchmark — Reducers & Projections",
       "status": "Planned",
       "pred_sibling": "001-typed-ledger-schema",
@@ -2209,18 +2209,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Skill Benchmark: plan the Reducers & Projections for the skill-benchmark variant (skill scenario runs + scoring) layered on the deep-improvement-common backbone. Define the DETERMINISTIC REDUCERS that replay Skill Benchmark's typed event log (the previous sibling's schema) into its live state projections (iteration/convergence state, artifact index, per-mode status). A pure fold with no side effects: an identical event sequence must always yield an identical projection. BUILD ON the deep-improvement-common services from mode 004: add only skill-benchmark-specific scenario and scoring logic; do NOT re-implement the shared services. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-007-003",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Skill Benchmark — Sealed Reference Artifacts",
       "status": "Planned",
       "pred_sibling": "002-reducers-and-projections",
@@ -2229,18 +2229,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Skill Benchmark: plan the Sealed Reference Artifacts for the skill-benchmark variant (skill scenario runs + scoring) layered on the deep-improvement-common backbone. Define how Skill Benchmark SEALS its reference artifacts - the immutable inputs and outputs it must be able to reproduce: content-addressed digests, seal-on-write, and a tamper-evident read path. Consumes the phase-003 sealing primitives; do not invent a second sealing scheme. BUILD ON the deep-improvement-common services from mode 004: add only skill-benchmark-specific scenario and scoring logic; do NOT re-implement the shared services. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-007-004",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Skill Benchmark — Certificates & Receipts",
       "status": "Planned",
       "pred_sibling": "003-sealed-artifacts",
@@ -2249,18 +2249,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Skill Benchmark: plan the Certificates & Receipts for the skill-benchmark variant (skill scenario runs + scoring) layered on the deep-improvement-common backbone. Define Skill Benchmark's per-run CERTIFICATE and per-transition RECEIPTS: what each attests, the replay-fingerprint inputs, and how an independent verifier re-checks them offline. Consumes the phase-003 receipt and certificate primitives. BUILD ON the deep-improvement-common services from mode 004: add only skill-benchmark-specific scenario and scoring logic; do NOT re-implement the shared services. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-007-005",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Skill Benchmark — Resume Adapter",
       "status": "Planned",
       "pred_sibling": "004-certificates-and-receipts",
@@ -2269,18 +2269,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Skill Benchmark: plan the Resume Adapter for the skill-benchmark variant (skill scenario runs + scoring) layered on the deep-improvement-common backbone. Define Skill Benchmark's RESUME ADAPTER: how a mid-run interruption rebuilds live state purely from the sealed ledger via the reducers, the continuity-ladder mapping, and an idempotent re-entry contract (no double-apply, no lost or replayed events). BUILD ON the deep-improvement-common services from mode 004: add only skill-benchmark-specific scenario and scoring logic; do NOT re-implement the shared services. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-007-006",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Skill Benchmark — Shadow Parity",
       "status": "Planned",
       "pred_sibling": "005-resume-adapter",
@@ -2289,18 +2289,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Skill Benchmark: plan the Shadow Parity for the skill-benchmark variant (skill scenario runs + scoring) layered on the deep-improvement-common backbone. Define Skill Benchmark's SHADOW-PARITY harness: run the new ledger path in shadow alongside the legacy emitter, diff the projections event-for-event, and state the parity acceptance criteria that MUST be green before any authority cutover. Consumes the phase-011 shadow framework. BUILD ON the deep-improvement-common services from mode 004: add only skill-benchmark-specific scenario and scoring logic; do NOT re-implement the shared services. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-007-007",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Skill Benchmark — Rollback & Mode Gate",
       "status": "Planned",
       "pred_sibling": "006-shadow-parity",
@@ -2309,18 +2309,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Skill Benchmark: plan the Rollback & Mode Gate for the skill-benchmark variant (skill scenario runs + scoring) layered on the deep-improvement-common backbone. Define Skill Benchmark's ROLLBACK SWITCH and independent Skill Benchmark GATE: the fail-closed authority-cutover toggle, the bounded rollback window, and the mode-gate checklist that certifies THIS mode migrated (shadow-parity green, artifacts sealed, certificate emitted). This is the mode's exit gate into phase 011. BUILD ON the deep-improvement-common services from mode 004: add only skill-benchmark-specific scenario and scoring logic; do NOT re-implement the shared services. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-008-001",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Alignment — Typed Ledger Schema",
       "status": "Planned",
       "pred_sibling": "",
@@ -2329,18 +2329,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Alignment: plan the Typed Ledger Schema for the deep-alignment loop (per-lane conformance checks against a named authority, verify-first findings). Define the TYPED APPEND-ONLY EVENT SCHEMA Deep Alignment emits during its run: the event-envelope specialization, the concrete event types for Deep Alignment's run behavior, field-level types, and the versioned-envelope plus upcaster hooks. Consumes the phase-003 transition-authorized ledger core and the phase-009 shared event contracts. Output is Deep Alignment's event VOCABULARY only - the reducers belong to the next sibling. This mode shares the review-loop backbone with deep-review (mode 002): reuse the shared review-loop contract frozen in phase 009. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-008-002",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Alignment — Reducers & Projections",
       "status": "Planned",
       "pred_sibling": "001-typed-ledger-schema",
@@ -2349,18 +2349,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Alignment: plan the Reducers & Projections for the deep-alignment loop (per-lane conformance checks against a named authority, verify-first findings). Define the DETERMINISTIC REDUCERS that replay Deep Alignment's typed event log (the previous sibling's schema) into its live state projections (iteration/convergence state, artifact index, per-mode status). A pure fold with no side effects: an identical event sequence must always yield an identical projection. This mode shares the review-loop backbone with deep-review (mode 002): reuse the shared review-loop contract frozen in phase 009. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-008-003",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Alignment — Sealed Reference Artifacts",
       "status": "Planned",
       "pred_sibling": "002-reducers-and-projections",
@@ -2369,18 +2369,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Alignment: plan the Sealed Reference Artifacts for the deep-alignment loop (per-lane conformance checks against a named authority, verify-first findings). Define how Deep Alignment SEALS its reference artifacts - the immutable inputs and outputs it must be able to reproduce: content-addressed digests, seal-on-write, and a tamper-evident read path. Consumes the phase-003 sealing primitives; do not invent a second sealing scheme. This mode shares the review-loop backbone with deep-review (mode 002): reuse the shared review-loop contract frozen in phase 009. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-008-004",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Alignment — Certificates & Receipts",
       "status": "Planned",
       "pred_sibling": "003-sealed-artifacts",
@@ -2389,18 +2389,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Alignment: plan the Certificates & Receipts for the deep-alignment loop (per-lane conformance checks against a named authority, verify-first findings). Define Deep Alignment's per-run CERTIFICATE and per-transition RECEIPTS: what each attests, the replay-fingerprint inputs, and how an independent verifier re-checks them offline. Consumes the phase-003 receipt and certificate primitives. This mode shares the review-loop backbone with deep-review (mode 002): reuse the shared review-loop contract frozen in phase 009. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-008-005",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Alignment — Resume Adapter",
       "status": "Planned",
       "pred_sibling": "004-certificates-and-receipts",
@@ -2409,18 +2409,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Alignment: plan the Resume Adapter for the deep-alignment loop (per-lane conformance checks against a named authority, verify-first findings). Define Deep Alignment's RESUME ADAPTER: how a mid-run interruption rebuilds live state purely from the sealed ledger via the reducers, the continuity-ladder mapping, and an idempotent re-entry contract (no double-apply, no lost or replayed events). This mode shares the review-loop backbone with deep-review (mode 002): reuse the shared review-loop contract frozen in phase 009. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-008-006",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Alignment — Shadow Parity",
       "status": "Planned",
       "pred_sibling": "005-resume-adapter",
@@ -2429,18 +2429,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Alignment: plan the Shadow Parity for the deep-alignment loop (per-lane conformance checks against a named authority, verify-first findings). Define Deep Alignment's SHADOW-PARITY harness: run the new ledger path in shadow alongside the legacy emitter, diff the projections event-for-event, and state the parity acceptance criteria that MUST be green before any authority cutover. Consumes the phase-011 shadow framework. This mode shares the review-loop backbone with deep-review (mode 002): reuse the shared review-loop contract frozen in phase 009. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-008-007",
       "wave": 7,
       "kind": "leaf",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/leaf-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/leaf-mold",
       "title": "Deep Alignment — Rollback & Mode Gate",
       "status": "Planned",
       "pred_sibling": "006-shadow-parity",
@@ -2449,18 +2449,18 @@
       "depends_on": [],
       "content_brief": "MODE MIGRATION - Deep Alignment: plan the Rollback & Mode Gate for the deep-alignment loop (per-lane conformance checks against a named authority, verify-first findings). Define Deep Alignment's ROLLBACK SWITCH and independent Deep Alignment GATE: the fail-closed authority-cutover toggle, the bounded rollback window, and the mode-gate checklist that certifies THIS mode migrated (shadow-parity green, artifacts sealed, certificate emitted). This is the mode's exit gate into phase 011. This mode shares the review-loop backbone with deep-review (mode 002): reuse the shared review-loop contract frozen in phase 009. This is PLANNING only; the 010 migrations are the per-mode fan-out that lands AFTER phase 009 freezes the shared contracts and emits the write-set conflict graph. Keep scope to THIS concern for THIS mode - the six sibling concerns and the mode gate integrate the rest.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-001",
       "wave": 8,
       "kind": "parent",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/001-deep-research",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/parent-mold",
       "title": "Deep Research Migration",
       "status": "Planned",
       "predecessor": "",
@@ -2500,18 +2500,18 @@
       ],
       "content_brief": "MODE MIGRATION PARENT - Deep Research. Decompose the autonomous deep-research loop (init -> iterate: gather/analyze -> convergence detection -> synthesize -> memory-save handoff) into seven concern children that together migrate the mode to the typed event-ledger substrate: typed schema, reducers, sealed artifacts, certificates and receipts, resume adapter, shadow parity, and rollback plus mode gate. Author ONLY the lean parent trio (spec.md root purpose plus a PHASE DOCUMENTATION MAP over the seven children); the children own the mechanics.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-002",
       "wave": 8,
       "kind": "parent",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/002-deep-review",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/parent-mold",
       "title": "Deep Review Migration",
       "status": "Planned",
       "predecessor": "001-deep-research",
@@ -2551,18 +2551,18 @@
       ],
       "content_brief": "MODE MIGRATION PARENT - Deep Review. Decompose the deep-review loop (scope -> per-dimension passes emitting P0/P1/P2 findings -> convergence -> review-report) into seven concern children that together migrate the mode to the typed event-ledger substrate: typed schema, reducers, sealed artifacts, certificates and receipts, resume adapter, shadow parity, and rollback plus mode gate. This mode shares its loop backbone with deep-alignment (mode 008): consume the shared review-loop contract frozen in phase 009 rather than forking it. Author ONLY the lean parent trio (spec.md root purpose plus a PHASE DOCUMENTATION MAP over the seven children); the children own the mechanics.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-003",
       "wave": 8,
       "kind": "parent",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/003-deep-ai-council",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/parent-mold",
       "title": "Deep AI Council Migration",
       "status": "Planned",
       "predecessor": "002-deep-review",
@@ -2602,18 +2602,18 @@
       ],
       "content_brief": "MODE MIGRATION PARENT - Deep AI Council. Decompose the multi-seat council deliberation (seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate) into seven concern children that together migrate the mode to the typed event-ledger substrate: typed schema, reducers, sealed artifacts, certificates and receipts, resume adapter, shadow parity, and rollback plus mode gate. Author ONLY the lean parent trio (spec.md root purpose plus a PHASE DOCUMENTATION MAP over the seven children); the children own the mechanics.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-004",
       "wave": 8,
       "kind": "parent",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/004-deep-improvement-common",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/parent-mold",
       "title": "Deep Improvement Common Services Migration",
       "status": "Planned",
       "predecessor": "003-deep-ai-council",
@@ -2653,18 +2653,18 @@
       ],
       "content_brief": "MODE MIGRATION PARENT - Deep Improvement Common Services. Decompose the shared deep-improvement backbone (evaluator-first loop -> candidate generation -> scoring -> guarded promotion) plus the shared evaluator, canary, and promotion services into seven concern children that together migrate the mode to the typed event-ledger substrate: typed schema, reducers, sealed artifacts, certificates and receipts, resume adapter, shadow parity, and rollback plus mode gate. This mode PRECEDES and is consumed by agent-improvement (005), model-benchmark (006), and skill-benchmark (007): it OWNS the shared evaluator/canary/promotion services those three variants reuse, so define them here as the single source. Author ONLY the lean parent trio (spec.md root purpose plus a PHASE DOCUMENTATION MAP over the seven children); the children own the mechanics.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-005",
       "wave": 8,
       "kind": "parent",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/005-agent-improvement",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/parent-mold",
       "title": "Agent Improvement Migration",
       "status": "Planned",
       "predecessor": "004-deep-improvement-common",
@@ -2706,18 +2706,18 @@
       ],
       "content_brief": "MODE MIGRATION PARENT - Agent Improvement. Decompose the agent-improvement variant (agent-loop proposal generation + scoring) layered on the deep-improvement-common backbone into seven concern children that together migrate the mode to the typed event-ledger substrate: typed schema, reducers, sealed artifacts, certificates and receipts, resume adapter, shadow parity, and rollback plus mode gate. BUILD ON the deep-improvement-common services from mode 004 (evaluator/canary/promotion): reuse them, do NOT re-implement them; add only what is agent-improvement-specific. Author ONLY the lean parent trio (spec.md root purpose plus a PHASE DOCUMENTATION MAP over the seven children); the children own the mechanics.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-006",
       "wave": 8,
       "kind": "parent",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/006-model-benchmark",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/parent-mold",
       "title": "Model Benchmark Migration",
       "status": "Planned",
       "predecessor": "005-agent-improvement",
@@ -2759,18 +2759,18 @@
       ],
       "content_brief": "MODE MIGRATION PARENT - Model Benchmark. Decompose the model-benchmark variant (multi-model runs + a scoring matrix) layered on the deep-improvement-common backbone into seven concern children that together migrate the mode to the typed event-ledger substrate: typed schema, reducers, sealed artifacts, certificates and receipts, resume adapter, shadow parity, and rollback plus mode gate. BUILD ON the deep-improvement-common services from mode 004: add only model-benchmark-specific run and scoring logic; do NOT re-implement the shared evaluator/canary/promotion. Author ONLY the lean parent trio (spec.md root purpose plus a PHASE DOCUMENTATION MAP over the seven children); the children own the mechanics.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-007",
       "wave": 8,
       "kind": "parent",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/007-skill-benchmark",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/parent-mold",
       "title": "Skill Benchmark Migration",
       "status": "Planned",
       "predecessor": "006-model-benchmark",
@@ -2812,18 +2812,18 @@
       ],
       "content_brief": "MODE MIGRATION PARENT - Skill Benchmark. Decompose the skill-benchmark variant (skill scenario runs + scoring) layered on the deep-improvement-common backbone into seven concern children that together migrate the mode to the typed event-ledger substrate: typed schema, reducers, sealed artifacts, certificates and receipts, resume adapter, shadow parity, and rollback plus mode gate. BUILD ON the deep-improvement-common services from mode 004: add only skill-benchmark-specific scenario and scoring logic; do NOT re-implement the shared services. Author ONLY the lean parent trio (spec.md root purpose plus a PHASE DOCUMENTATION MAP over the seven children); the children own the mechanics.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010-008",
       "wave": 8,
       "kind": "parent",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/008-deep-alignment",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/parent-mold",
       "title": "Deep Alignment Migration",
       "status": "Planned",
       "predecessor": "007-skill-benchmark",
@@ -2865,26 +2865,26 @@
       ],
       "content_brief": "MODE MIGRATION PARENT - Deep Alignment. Decompose the deep-alignment loop (per-lane conformance checks against a named authority, verify-first findings) into seven concern children that together migrate the mode to the typed event-ledger substrate: typed schema, reducers, sealed artifacts, certificates and receipts, resume adapter, shadow parity, and rollback plus mode gate. This mode shares the review-loop backbone with deep-review (mode 002): reuse the shared review-loop contract frozen in phase 009. Author ONLY the lean parent trio (spec.md root purpose plus a PHASE DOCUMENTATION MAP over the seven children); the children own the mechanics.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     },
     {
       "id": "010",
       "wave": 9,
       "kind": "parent",
-      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations",
+      "folder": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations",
       "level": 2,
-      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/scratch/templates/parent-mold",
+      "template": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/scratch/templates/parent-mold",
       "title": "Mode & Lane Migrations",
       "status": "Planned",
-      "predecessor": "009-shared-mode-contracts-and-fixtures",
-      "successor": "011-staged-state-migration-and-authority-cutover",
+      "predecessor": "012-shared-mode-contracts-and-fixtures",
+      "successor": "014-staged-state-migration-and-authority-cutover",
       "handoff_criteria": "Every one of the eight modes is migrated and green behind its own mode gate: shadow-parity passing, sealed artifacts and a certificate per mode, rollback switch armed. deep-improvement-common (004) landed before its three variants (005/006/007).",
       "outcome": "The per-mode fan-out: eight mode migrations, each a fractal parent implementing that mode’s full run behavior on the typed event-ledger substrate and ending in an independent mode gate.",
       "depends_on": [
-        "009"
+        "012"
       ],
       "children": [
         {
@@ -2922,9 +2922,9 @@
       ],
       "content_brief": "TOP MODE-MIGRATION PARENT (010). This phase parent fans out into eight mode migrations - deep-research, deep-review, deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark, deep-alignment - each a fractal parent that migrates one mode’s full run behavior to the typed event-ledger substrate and ends in its own mode gate. deep-improvement-common precedes the agent-improvement, model-benchmark, and skill-benchmark variants; deep-alignment shares the review loop with deep-review. Author ONLY the lean parent trio (spec.md root purpose plus a PHASE DOCUMENTATION MAP over the eight mode children); the mode parents and their children own the mechanics.",
       "research_refs": [
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
-        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/spec.md"
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        ".opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md"
       ]
     }
   ]

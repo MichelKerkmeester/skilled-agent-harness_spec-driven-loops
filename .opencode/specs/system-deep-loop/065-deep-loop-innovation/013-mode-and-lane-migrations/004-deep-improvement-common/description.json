@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common",
+  "description": "Migrate the shared deep-improvement evaluator-first loop, candidate generation, scoring, canary, and guarded promotion services onto the typed",
+  "keywords": [
+    "migrate",
+    "shared",
+    "deep-improvement",
+    "evaluator-first",
+    "loop",
+    "candidate",
+    "generation",
+    "scoring",
+    "canary",
+    "guarded",
+    "promotion",
+    "services",
+    "onto",
+    "typed"
+  ],
+  "lastUpdated": "2026-07-15T21:50:10.427Z",
+  "specId": "004",
+  "folderSlug": "deep-improvement-common",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "013-mode-and-lane-migrations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
