@@ -10,9 +10,9 @@ status: "active"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-create-diff-mode/006-opencode-skill-and-accessibility"
-    last_updated_at: "2026-07-15T11:00:47Z"
+    last_updated_at: "2026-07-15T13:52:51Z"
     last_updated_by: "claude"
-    recent_action: "Built the create-diff embedded engine and passed gates"
+    recent_action: "Refined the engine: binary/unsupported refusal and a code-diff report redesign; re-ran all gates"
     next_safe_action: "Add the optional command or extend format fidelity"
     blockers: []
     key_files:
@@ -58,7 +58,7 @@ The `create-diff` nested sk-doc mode, delivered as a self-contained embedded eng
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `scripts/create_diff.py` | Created | Comparison engine: extraction (text, Markdown, HTML, DOCX, text-PDF), deterministic line + inline word diff, content-addressed snapshots, and the self-contained HTML report renderer (Python 3 stdlib). |
+| `scripts/create_diff.py` | Created / Refined | Comparison engine: extraction (text, Markdown, HTML, DOCX, text-PDF), deterministic line + inline word diff, content-addressed snapshots, and the self-contained HTML report renderer (Python 3 stdlib). Refined: honest refusal of binary/unsupported formats (NUL-byte content sniff + extension denylist → exit 3) and a code-diff report redesign (GitHub-style `@@` hunk headers, change-summary stat strip, cell-level add/remove tinting, verified WCAG-AA palette, paired change rows and scoped horizontal scroll in side-by-side). |
 | `scripts/validate_report.py` | Created | Asserts a report is safe/self-contained (doctype, lang, CSP, zero-JS, no inline handlers, no remote refs). |
 | `SKILL.md` | Rewritten | Functional contract; removed preview gating; added INTEGRATION POINTS and RELATED RESOURCES. |
 | `README.md`, `changelog/v1.1.0.0.md` | Updated / Created | Functional overview and version bump to 1.1.0.0. |
@@ -101,11 +101,15 @@ Fidelity tiers: text and Markdown (full), HTML and DOCX (visible/structural text
 |-------|--------|
 | Cross-format engine suite | PASS: 27/27 checks across text, Markdown, HTML, DOCX, and PDF (diff correctness, snapshot flow, explicit-pair fallback, XSS-safe escaping, source-unchanged). |
 | Report safety validator | PASS: `validate_report.py` confirms self-contained, zero-JS, CSP, no remote refs. |
-| `package_skill.py --check` | PASS (2 warnings, both the intentional bare data fixtures). |
+| `package_skill.py --check` | PASS (8 warnings: 6 are the intentional 017 hyphen-naming advisories on `references/`+`assets/` names, 2 are the bare data fixtures). |
 | `parent-skill-check.cjs` | PASS: all hard invariants, 0 warnings. |
 | `check-frontmatter-versions.sh` | Exit 0. |
 | Spec-folder strict validation | `validate.sh --recursive --strict` on the parent — Errors 0, Warnings 0. |
+| Binary/unsupported refusal | PASS: `.xlsx` and NUL-byte content refused with exit 3 (`EXIT_UNSUPPORTED`) instead of a misleading text fallback. |
+| Report redesign structure | PASS: hunk headers, stat strip, legend, and paired side-by-side change rows render; hostile `<script>`/`onerror=` stays escaped-inert (0 live handlers); output byte-reproducible under fixed `SOURCE_DATE_EPOCH`. |
 <!-- /ANCHOR:verification -->
+
+> **Post-review remediation (see `../008-fidelity-safety-a11y-hardening/`).** An adversarial GPT-5.6 review, independently re-verified, found that this phase's "WCAG-AA both themes" claim did not hold for the legend inline swatches (three pairs failed) and that the "scoped horizontal scroll" for side-by-side wrapped instead of scrolling and was not keyboard-reachable; it also surfaced pre-existing engine gaps (replacement-character decoding erasing byte-level differences; a validator that only checked CSP presence). All were fixed and locked with a checked-in `test_create_diff.py` suite in packet 008. Treat the contrast and scroll claims above as accurate only as of that remediation.
 
 ---
 

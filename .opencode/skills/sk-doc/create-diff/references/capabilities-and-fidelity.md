@@ -34,7 +34,7 @@ A diff is only as trustworthy as the extraction behind it. `create-diff` tells t
 | docx | `.docx` | `text` | paragraph and table text, heading-styled paragraphs | run formatting, styles, images, comments, tracked changes |
 | pdf | `.pdf` | `text*` | extracted text layer | layout, fonts, images; scanned/image-only pages |
 
-Unknown *text-like* extensions are treated as plain text, and the report states that assumption so it can be corrected. Binary or unsupported formats — spreadsheets, presentations, images, and archives (`.xlsx`, `.pptx`, `.png`, `.zip`, …), or any file whose bytes are binary — are refused with exit `3` rather than raw-byte "text"-diffed into a meaningless report.
+Unknown *text-like* extensions are treated as plain text, and the report carries a fidelity warning saying so, so the assumption can be corrected. Binary or unsupported formats — spreadsheets, presentations, images, and archives (`.xlsx`, `.pptx`, `.png`, `.zip`, …), or any file whose bytes are binary — are refused with exit `3` rather than raw-byte "text"-diffed into a meaningless report. A file that is not valid UTF-8 is likewise refused with exit `3` rather than decoded with replacement characters (`�`): silent replacement can make two files that differ only in undecodable bytes look identical, hiding a real difference.
 
 ## PDF dependency
 
@@ -52,4 +52,4 @@ A PDF with no text layer (a scan/image) extracts to empty text. The engine detec
 
 ## Normalization
 
-Before diffing, both sides are canonicalized so incidental encoding differences are not reported as edits: Unicode NFC, `\r\n`/`\r` → `\n`, and trailing whitespace stripped per line. Structural content (headings/sections) is surfaced in the summary but does not change the text comparison.
+Before diffing, both sides are canonicalized so incidental encoding differences are not reported as edits: Unicode NFC, `\r\n`/`\r` → `\n`, and trailing whitespace stripped per line. Text is then split into logical lines: an empty file is zero lines (not one phantom blank line), and a single trailing newline is not treated as an extra blank line — so an empty-vs-content diff reads as a pure addition and a trailing-newline-only change is not reported as a spurious edit. Interior blank lines are preserved. Structural content (headings/sections) is surfaced in the summary but does not change the text comparison.

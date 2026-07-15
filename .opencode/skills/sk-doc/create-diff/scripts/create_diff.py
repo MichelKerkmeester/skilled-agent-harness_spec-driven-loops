@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: CREATE-DIFF ENGINE (SK-DOC)
+# ───────────────────────────────────────────────────────────────
+
 """Local, Git-free before/after document diff engine.
 
 Compares two versions of a document and renders a single self-contained,
@@ -55,6 +59,10 @@ from typing import Iterable, List, Optional, Tuple
 from xml.etree import ElementTree as ET
 
 # Exit codes as named constants so callers (the skill wrapper, tests) can map them.
+# ───────────────────────────────────────────────────────────────
+# 1. CONFIGURATION & EXIT CODES
+# ───────────────────────────────────────────────────────────────
+
 EXIT_OK = 0
 EXIT_USAGE = 2
 EXIT_UNSUPPORTED = 3
@@ -110,6 +118,10 @@ UNSUPPORTED_EXTENSIONS = {
 }
 
 
+# ───────────────────────────────────────────────────────────────
+# 2. FORMAT DETECTION
+# ───────────────────────────────────────────────────────────────
+
 def _looks_binary(path: Path, sample_bytes: int = 8192) -> bool:
     """Heuristic binary sniff: a NUL byte in the leading bytes marks binary content.
 
@@ -137,6 +149,10 @@ def detect_format(path: Path) -> str:
 # Extraction
 # --------------------------------------------------------------------------- #
 
+# ───────────────────────────────────────────────────────────────
+# 3. TEXT EXTRACTION
+# ───────────────────────────────────────────────────────────────
+
 @dataclass
 class Extraction:
     text: str
@@ -159,9 +175,16 @@ def normalize(text: str, *, strip_trailing_ws: bool = True) -> str:
 def _read_text_file(path: Path) -> str:
     try:
         return path.read_text(encoding="utf-8")
-    except UnicodeDecodeError:
-        # Fall back to a permissive decode so a stray byte does not abort review.
-        return path.read_bytes().decode("utf-8", errors="replace")
+    except UnicodeDecodeError as exc:
+        # Refuse rather than decode with errors="replace": mapping undecodable bytes to
+        # U+FFFD lets two files that differ only in invalid bytes collapse to the same
+        # text and be reported identical, silently erasing a real difference. Honest
+        # failure over a fabricated "no changes".
+        raise CapabilityError(
+            f"Cannot decode {path.name} as UTF-8 (byte offset {exc.start}): create-diff "
+            f"compares text and will not silently replace undecodable bytes, which would "
+            f"hide real differences between two files. Convert it to UTF-8 first."
+        ) from exc
 
 
 _HEADING_RE = re.compile(r"^(#{1,6})\s+(.*\S)\s*$")
@@ -376,14 +399,21 @@ def extract(path: Path, *, fmt: Optional[str] = None) -> Extraction:
             f"supported matrix.")
     fmt = fmt or detect_format(path)
     if fmt == "text":
-        if suffix not in EXTENSION_FORMAT and _looks_binary(path):
-            raise CapabilityError(
-                f"Refusing to diff {path.name}: unknown extension "
-                f"'{path.suffix or '(none)'}' with binary content and no text extractor. "
-                f"Convert it to a supported text format, or rename it to a supported "
-                f"extension.")
+        warnings: List[str] = []
+        if suffix not in EXTENSION_FORMAT:
+            if _looks_binary(path):
+                raise CapabilityError(
+                    f"Refusing to diff {path.name}: unknown extension "
+                    f"'{path.suffix or '(none)'}' with binary content and no text extractor. "
+                    f"Convert it to a supported text format, or rename it to a supported "
+                    f"extension.")
+            # Text-like unknown extension: comparable, but say so rather than imply the
+            # tier means the format was understood.
+            warnings.append(
+                f"Unknown extension '{path.suffix or '(none)'}' compared as plain UTF-8 "
+                f"text; document structure and formatting are not interpreted.")
         text = _read_text_file(path)
-        return Extraction(text=text, fmt="text", tier=TIER_FULL)
+        return Extraction(text=text, fmt="text", tier=TIER_FULL, warnings=warnings)
     if fmt == "markdown":
         text = _read_text_file(path)
         return Extraction(text=text, fmt="markdown", tier=TIER_FULL,
@@ -400,6 +430,10 @@ def extract(path: Path, *, fmt: Optional[str] = None) -> Extraction:
 # --------------------------------------------------------------------------- #
 # Diffing
 # --------------------------------------------------------------------------- #
+
+# ───────────────────────────────────────────────────────────────
+# 4. DIFF ENGINE
+# ───────────────────────────────────────────────────────────────
 
 @dataclass
 class Row:
@@ -470,9 +504,26 @@ def _detect_moves(a_lines: List[str], b_lines: List[str],
     return moves
 
 
+def _logical_lines(text: str) -> List[str]:
+    """Split normalized text into logical lines.
+
+    Empty text is zero lines, not one phantom blank line, and a single trailing newline
+    does not add a blank line. So an empty-vs-content diff reads as a pure addition,
+    empty-vs-empty is "no differences", and a trailing-newline-only change is not
+    reported as a spurious added blank line. Interior blank lines are preserved. This is
+    consistent with the trailing-whitespace normalization already applied by `normalize`.
+    """
+    if text == "":
+        return []
+    lines = text.split("\n")
+    if lines and lines[-1] == "":
+        lines.pop()
+    return lines
+
+
 def diff_lines(a_text: str, b_text: str) -> DiffResult:
-    a_lines = a_text.split("\n")
-    b_lines = b_text.split("\n")
+    a_lines = _logical_lines(a_text)
+    b_lines = _logical_lines(b_text)
     sm = SequenceMatcher(a=a_lines, b=b_lines, autojunk=False)
 
     rows: List[Row] = []
@@ -546,46 +597,102 @@ def diff_lines(a_text: str, b_text: str) -> DiffResult:
 # Report rendering (self-contained, zero-JS, accessible)
 # --------------------------------------------------------------------------- #
 
+# ───────────────────────────────────────────────────────────────
+# 5. HTML REPORT RENDERER
+# ───────────────────────────────────────────────────────────────
+
 _CSS = """
-:root{color-scheme:light dark;--bg:#fff;--fg:#1a1a1a;--muted:#5a5a5a;
---line:#d0d0d0;--add-bg:#e6ffed;--add-fg:#046a1e;--del-bg:#ffeef0;--del-fg:#b31d28;
---wd-add:#a6f3bf;--wd-del:#ffc0cb;--head:#f4f4f4;--focus:#0b62d6}
-@media(prefers-color-scheme:dark){:root{--bg:#0f1115;--fg:#e6e6e6;--muted:#a0a0a0;
---line:#333;--add-bg:#0f2e18;--add-fg:#6fd08a;--del-bg:#3a1416;--del-fg:#f2969c;
---wd-add:#1c5a30;--wd-del:#6e2329;--head:#1a1d24;--focus:#5aa2ff}}
+:root{color-scheme:light dark;
+--canvas:#fff;--surface:#f6f8fa;--surface-raised:#fff;
+--text:#1f2328;--text-muted:#59636e;--border:#d0d7de;--border-strong:#afb8c1;
+--gutter-bg:#f6f8fa;--gutter-text:#57606a;--empty-bg:#f6f8fa;
+--hunk-bg:#ddf4ff;--hunk-text:#0550ae;--hunk-border:#b6e3ff;
+--add-bg:#dafbe1;--add-inline:#aceebb;--add-marker:#116329;
+--del-bg:#ffebe9;--del-inline:#ffcecb;--del-marker:#a40e26;
+--warn-bg:#fff8c5;--warn-border:#d4a72c;--warn-text:#4d2d00;--focus:#0969da;
+--sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-6:24px;--sp-8:32px;
+--text-caption:.8125rem;
+--font-ui:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--font-code:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+@media(prefers-color-scheme:dark){:root{
+--canvas:#0d1117;--surface:#161b22;--surface-raised:#1c2128;
+--text:#e6edf3;--text-muted:#9da7b3;--border:#30363d;--border-strong:#484f58;
+--gutter-bg:#161b22;--gutter-text:#9da7b3;--empty-bg:#161b22;
+--hunk-bg:#13233a;--hunk-text:#a5d6ff;--hunk-border:#1f6feb;
+--add-bg:#12261e;--add-inline:#1f6f43;--add-marker:#7ee787;
+--del-bg:#2d1718;--del-inline:#7d252c;--del-marker:#ff7b72;
+--warn-bg:#2b2111;--warn-border:#9e6a03;--warn-text:#f0c36a;--focus:#58a6ff}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);
-font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-main{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 4rem}
-h1{font-size:1.5rem;margin:0 0 .25rem}
-.skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:.5rem;
-background:var(--bg);padding:.5rem;border:2px solid var(--focus);z-index:2}
-.meta{color:var(--muted);font-size:.9rem;margin:0 0 1rem}
-.warn{border:1px solid var(--del-fg);background:var(--del-bg);color:var(--fg);
-padding:.75rem 1rem;border-radius:6px;margin:1rem 0}
-.warn h2{margin:.1rem 0 .4rem;font-size:1rem}
-.summary{border-collapse:collapse;margin:1rem 0;font-size:.95rem}
-.summary th,.summary td{border:1px solid var(--line);padding:.35rem .7rem;text-align:left}
-.summary th{background:var(--head)}
-.legend{font-size:.85rem;color:var(--muted);margin:.5rem 0 1rem}
-table.diff{border-collapse:collapse;width:100%;font:13px/1.55 ui-monospace,
-SFMono-Regular,Menlo,Consolas,monospace;table-layout:fixed}
-table.diff th{background:var(--head);text-align:left;padding:.3rem .5rem;
-border-bottom:2px solid var(--line);position:sticky;top:0}
-td.no{width:3.2rem;text-align:right;color:var(--muted);
-user-select:none;padding:.1rem .5rem;border-right:1px solid var(--line);white-space:nowrap}
-td.mark{width:1.4rem;text-align:center;user-select:none;font-weight:700}
-td.txt{padding:.1rem .5rem;white-space:pre-wrap;overflow-wrap:anywhere}
-tr.add td.txt{background:var(--add-bg)}tr.add td.mark{color:var(--add-fg)}
-tr.remove td.txt{background:var(--del-bg)}tr.remove td.mark{color:var(--del-fg)}
-tr.collapse td{text-align:center;color:var(--muted);background:var(--head);
-padding:.3rem;font-style:italic}
-mark.wd{padding:0 1px;border-radius:2px}
-mark.wd.add{background:var(--wd-add);color:inherit}
-mark.wd.del{background:var(--wd-del);color:inherit}
-.sxs td.txt{width:calc(50% - 2.3rem)}
-footer{margin-top:2rem;color:var(--muted);font-size:.82rem;
-border-top:1px solid var(--line);padding-top:1rem}
+body{margin:0;background:var(--canvas);color:var(--text);font:1rem/1.5 var(--font-ui)}
+main{max-width:100rem;margin:0 auto;padding:var(--sp-6) var(--sp-4) var(--sp-8)}
+.report-header,.summary-sec,.warn,footer{max-width:72rem}
+h1{font-size:1.5rem;line-height:1.25;font-weight:600;letter-spacing:-.01em;margin:0 0 var(--sp-1)}
+h2{font-size:1.0625rem;line-height:1.3;font-weight:650;margin:var(--sp-6) 0 var(--sp-3)}
+.skip{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+clip:rect(0 0 0 0);white-space:nowrap;border:0}
+a.skip:focus{position:static;width:auto;height:auto;margin:0;clip:auto;
+display:inline-block;background:var(--surface);padding:var(--sp-2);
+border:2px solid var(--focus);border-radius:6px}
+.meta{color:var(--text-muted);font-size:var(--text-caption);margin:0}
+.warn{border:1px solid var(--warn-border);background:var(--warn-bg);color:var(--warn-text);
+padding:var(--sp-3) var(--sp-4);border-radius:6px;margin:var(--sp-4) 0}
+.warn h2{margin:0 0 var(--sp-1);font-size:1rem;color:var(--warn-text)}
+.warn ul{margin:0;padding-left:1.2rem}
+.stat-strip{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin:var(--sp-3) 0;padding:0}
+.stat{font:600 var(--text-caption)/1.4 var(--font-code);font-variant-numeric:tabular-nums;
+padding:var(--sp-1) var(--sp-2);border-radius:2rem;border:1px solid var(--border)}
+.stat-add{color:var(--add-marker);background:var(--add-bg);border-color:var(--add-inline)}
+.stat-del{color:var(--del-marker);background:var(--del-bg);border-color:var(--del-inline)}
+.stat-chg,.stat-move,.stat-eq{color:var(--text-muted);background:var(--surface)}
+.summary{border-collapse:separate;border-spacing:0;border:1px solid var(--border);
+border-radius:6px;overflow:hidden;font-size:.875rem;margin:var(--sp-3) 0}
+.summary th,.summary td{padding:var(--sp-2) var(--sp-3);text-align:left;
+border-bottom:1px solid var(--border)}
+.summary tr:last-child th,.summary tr:last-child td{border-bottom:0}
+.summary th{background:var(--surface);color:var(--text-muted);font-weight:500;width:9rem}
+.legend{display:flex;flex-wrap:wrap;gap:var(--sp-2) var(--sp-4);list-style:none;padding:0;
+margin:var(--sp-3) 0;font-size:var(--text-caption);color:var(--text-muted)}
+.legend li{display:flex;align-items:center;gap:var(--sp-2)}
+.key{font:700 .8125rem/1.4 var(--font-code);min-width:1.4rem;text-align:center;border-radius:3px}
+.key-add{color:var(--add-marker);background:var(--add-bg)}
+.key-del{color:var(--del-marker);background:var(--del-bg)}
+.diff-frame{border:1px solid var(--border);border-radius:6px;background:var(--surface-raised)}
+.diff-scroll{overflow-x:auto}
+.diff-scroll:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+table.diff{border-collapse:collapse;width:100%;font:.8125rem/1.5 var(--font-code);
+table-layout:fixed;font-variant-ligatures:none;tab-size:4}
+.diff .col-no{width:calc(5ch + 1rem)}.diff .col-mark{width:1.6rem}
+.diff thead th{background:var(--surface);color:var(--text-muted);text-align:left;
+padding:var(--sp-2);border-bottom:1px solid var(--border-strong);
+font-family:var(--font-ui);font-size:var(--text-caption);font-weight:600}
+.diff td,.diff th{vertical-align:top}
+td.no{text-align:right;color:var(--gutter-text);background:var(--gutter-bg);user-select:none;
+padding:1px var(--sp-2);white-space:nowrap;font-variant-numeric:tabular-nums;
+border-right:1px solid var(--border)}
+td.mark{text-align:center;user-select:none;font-weight:700;padding:1px 0}
+td.txt{padding:1px var(--sp-2);white-space:pre-wrap;overflow-wrap:anywhere}
+td.is-add{background:var(--add-bg)}td.mark.is-add{color:var(--add-marker)}
+td.no.is-add{background:var(--add-bg);color:var(--add-marker)}
+td.is-remove{background:var(--del-bg)}td.mark.is-remove{color:var(--del-marker)}
+td.no.is-remove{background:var(--del-bg);color:var(--del-marker)}
+td.is-empty{background:var(--empty-bg)}
+.sxs{min-width:60rem}
+.sxs td:nth-child(4),.sxs th:nth-child(4){border-left:2px solid var(--border-strong)}
+tr.hunk-head th{background:var(--hunk-bg);color:var(--hunk-text);text-align:left;
+font-family:var(--font-code);font-weight:600;padding:var(--sp-1) var(--sp-2);
+border-block:1px solid var(--hunk-border)}
+tr.collapse td{text-align:center;color:var(--text-muted);background:var(--surface);
+padding:var(--sp-1) var(--sp-2);border-block:1px solid var(--border)}
+mark.wd{padding:0 1px;border-radius:2px;color:inherit}
+mark.wd.add{background:var(--add-inline)}
+mark.wd.del{background:var(--del-inline)}
+.legend mark.wd{color:var(--text)}
+footer{display:flex;flex-wrap:wrap;gap:var(--sp-2) var(--sp-4);justify-content:space-between;
+margin-top:var(--sp-8);color:var(--text-muted);font-size:var(--text-caption);
+border-top:1px solid var(--border);padding-top:var(--sp-4)}
+footer p{margin:0}
+@media(forced-colors:active){mark.wd{outline:1px solid CanvasText}
+td.mark{color:CanvasText}}
 """
 
 
@@ -622,19 +729,22 @@ def render_report(diff: DiffResult, *, label_before: str, label_after: str,
         warn_html = (f'<section class="warn" aria-labelledby="wtitle">'
                      f'<h2 id="wtitle">Fidelity notes</h2><ul>{items}</ul></section>')
 
+    stat_strip = (
+        '<p class="stat-strip">'
+        f'<span class="stat stat-add">+{diff.added} added</span>'
+        f'<span class="stat stat-del">−{diff.removed} removed</span>'
+        f'<span class="stat stat-chg">±{diff.changed} changed</span>'
+        f'<span class="stat stat-move">↔{diff.moves} moved</span>'
+        f'<span class="stat stat-eq">={diff.unchanged} unchanged</span>'
+        '</p>'
+    )
     summary = (
-        '<table class="summary"><caption class="skip">Change summary</caption>'
-        '<tbody>'
+        '<table class="summary"><caption class="skip">Change summary</caption><tbody>'
         f'<tr><th scope="row">Before</th><td>{_esc(label_before)} '
         f'({diff.a_lines} lines)</td></tr>'
         f'<tr><th scope="row">After</th><td>{_esc(label_after)} '
         f'({diff.b_lines} lines)</td></tr>'
         f'<tr><th scope="row">Format</th><td>{_esc(fmt)} — {_esc(TIER_LABEL.get(tier, tier))}</td></tr>'
-        f'<tr><th scope="row">Lines added</th><td>{diff.added}</td></tr>'
-        f'<tr><th scope="row">Lines removed</th><td>{diff.removed}</td></tr>'
-        f'<tr><th scope="row">Lines changed</th><td>{diff.changed}</td></tr>'
-        f'<tr><th scope="row">Possible moves</th><td>{diff.moves}</td></tr>'
-        f'<tr><th scope="row">Unchanged</th><td>{diff.unchanged}</td></tr>'
         '</tbody></table>'
     )
 
@@ -660,26 +770,29 @@ def render_report(diff: DiffResult, *, label_before: str, label_after: str,
 <body>
 <a class="skip" href="#diff">Skip to differences</a>
 <main>
-<header>
+<header class="report-header">
 <h1>{_esc(title)}</h1>
-<p class="meta">Generated {_esc(_now_iso())} by {_esc(GENERATOR)} · local only, no network.</p>
+<p class="meta">Generated {_esc(_now_iso())} by {_esc(GENERATOR)} · {_esc(fmt)} · local only, no network.</p>
 </header>
 {warn_html}
-<section aria-labelledby="stitle">
+<section class="summary-sec" aria-labelledby="stitle">
 <h2 id="stitle">Summary</h2>
+{stat_strip}
 {summary}
-<p class="legend"><strong>+</strong> added · <strong>−</strong> removed ·
-changed lines show both, with word-level <mark class="wd add">additions</mark> and
-<mark class="wd del">removals</mark> highlighted. Markers are shown as text as well as
-colour.</p>
+<ul class="legend" aria-label="Diff legend">
+<li><span class="key key-add" aria-hidden="true">+</span> Added line</li>
+<li><span class="key key-del" aria-hidden="true">−</span> Removed line</li>
+<li><mark class="wd add">text</mark> Inline addition</li>
+<li><mark class="wd del">text</mark> Inline removal</li>
+</ul>
 </section>
 <section aria-labelledby="dtitle" id="diff">
 <h2 id="dtitle">Differences ({_esc('unified' if view != 'side-by-side' else 'side by side')} view)</h2>
-{table}
+<div class="diff-frame">{table}</div>
 </section>
 <footer>
-<p>All processing happened on this machine. This report is a single self-contained
-file with no scripts and no external requests.</p>
+<p>All processing happened on this machine.</p>
+<p>Self-contained HTML · zero JavaScript · no external requests.</p>
 </footer>
 </main>
 </body>
@@ -687,58 +800,160 @@ file with no scripts and no external requests.</p>
 """
 
 
+def _num(n: Optional[int]) -> str:
+    return "" if n is None else str(n)
+
+
+def _hunks(rows: List[Row]):
+    """Split diff rows into contiguous change hunks separated by collapsed-context gaps.
+
+    Returns a list of ('hunk', [rows]) and ('gap', note) segments, so each hunk can carry
+    its own @@ header and the omitted-context markers read as real section breaks rather
+    than a run of generic status rows.
+    """
+    segments = []
+    current: List[Row] = []
+    for r in rows:
+        if r.kind == "collapse":
+            if current:
+                segments.append(("hunk", current))
+                current = []
+            segments.append(("gap", r.note))
+        else:
+            current.append(r)
+    if current:
+        segments.append(("hunk", current))
+    return segments
+
+
+def _hunk_header(hunk: List[Row]) -> str:
+    # A human-facing @@ range derived from the visible line numbers — a scan anchor, not a
+    # machine-applicable patch header.
+    olds = [r.old_no for r in hunk if r.old_no is not None]
+    news = [r.new_no for r in hunk if r.new_no is not None]
+    o_start = olds[0] if olds else 0
+    n_start = news[0] if news else 0
+    return f"@@ -{o_start},{len(olds)} +{n_start},{len(news)} @@"
+
+
 def _render_unified(diff: DiffResult) -> str:
-    out = ['<table class="diff"><thead><tr>',
+    out = ['<table class="diff">',
+           '<colgroup><col class="col-no"><col class="col-no">'
+           '<col class="col-mark"><col></colgroup>',
+           '<caption class="skip">Unified differences</caption>',
+           '<thead><tr>',
            '<th scope="col" class="no">Old</th>',
            '<th scope="col" class="no">New</th>',
            '<th scope="col" class="mark"><span class="skip">Change</span></th>',
-           '<th scope="col">Content</th></tr></thead><tbody>']
-    for r in diff.rows:
-        if r.kind == "collapse":
-            out.append(f'<tr class="collapse"><td colspan="4">⋯ {_esc(r.note)} ⋯</td></tr>')
+           '<th scope="col">Content</th></tr></thead>']
+    for kind, payload in _hunks(diff.rows):
+        if kind == "gap":
+            out.append('<tbody class="gap"><tr class="collapse">'
+                       f'<td colspan="4">⋯ {_esc(payload)} ⋯</td></tr></tbody>')
             continue
-        old = "" if r.old_no is None else str(r.old_no)
-        new = "" if r.new_no is None else str(r.new_no)
-        if r.kind == "add":
-            out.append(f'<tr class="add"><td class="no"></td><td class="no">{new}</td>'
-                       f'<td class="mark" aria-label="added">+</td>'
-                       f'<td class="txt">{r.new_html}</td></tr>')
-        elif r.kind == "remove":
-            out.append(f'<tr class="remove"><td class="no">{old}</td><td class="no"></td>'
-                       f'<td class="mark" aria-label="removed">−</td>'
-                       f'<td class="txt">{r.old_html}</td></tr>')
-        else:
-            out.append(f'<tr class="context"><td class="no">{old}</td><td class="no">{new}</td>'
-                       f'<td class="mark"></td><td class="txt">{r.old_html}</td></tr>')
-    out.append("</tbody></table>")
+        out.append('<tbody class="hunk">'
+                   '<tr class="hunk-head"><th scope="rowgroup" colspan="4">'
+                   f'{_esc(_hunk_header(payload))}</th></tr>')
+        for r in payload:
+            old, new = _num(r.old_no), _num(r.new_no)
+            if r.kind == "add":
+                out.append('<tr class="add"><td class="no is-add"></td>'
+                           f'<td class="no is-add">{new}</td>'
+                           '<td class="mark is-add" aria-label="added">+</td>'
+                           f'<td class="txt is-add">{r.new_html}</td></tr>')
+            elif r.kind == "remove":
+                out.append(f'<tr class="remove"><td class="no is-remove">{old}</td>'
+                           '<td class="no is-remove"></td>'
+                           '<td class="mark is-remove" aria-label="removed">−</td>'
+                           f'<td class="txt is-remove">{r.old_html}</td></tr>')
+            else:
+                out.append(f'<tr class="context"><td class="no">{old}</td>'
+                           f'<td class="no">{new}</td><td class="mark"></td>'
+                           f'<td class="txt">{r.old_html}</td></tr>')
+        out.append("</tbody>")
+    out.append("</table>")
     return "".join(out)
 
 
+def _sxs_change(rm: Row, ad: Row) -> str:
+    return ('<tr class="change">'
+            f'<td class="no is-remove">{_num(rm.old_no)}</td>'
+            '<td class="mark is-remove" aria-label="removed">−</td>'
+            f'<td class="txt is-remove">{rm.old_html}</td>'
+            f'<td class="no is-add">{_num(ad.new_no)}</td>'
+            '<td class="mark is-add" aria-label="added">+</td>'
+            f'<td class="txt is-add">{ad.new_html}</td></tr>')
+
+
+def _sxs_single(r: Row) -> str:
+    if r.kind == "remove":
+        return ('<tr class="remove">'
+                f'<td class="no is-remove">{_num(r.old_no)}</td>'
+                '<td class="mark is-remove" aria-label="removed">−</td>'
+                f'<td class="txt is-remove">{r.old_html}</td>'
+                '<td class="no is-empty"></td><td class="mark is-empty"></td>'
+                '<td class="txt is-empty"><span class="skip">'
+                'No corresponding line in the after version.</span></td></tr>')
+    if r.kind == "add":
+        return ('<tr class="add">'
+                '<td class="no is-empty"></td><td class="mark is-empty"></td>'
+                '<td class="txt is-empty"><span class="skip">'
+                'No corresponding line in the before version.</span></td>'
+                f'<td class="no is-add">{_num(r.new_no)}</td>'
+                '<td class="mark is-add" aria-label="added">+</td>'
+                f'<td class="txt is-add">{r.new_html}</td></tr>')
+    return ('<tr class="context">'
+            f'<td class="no">{_num(r.old_no)}</td><td class="mark"></td>'
+            f'<td class="txt">{r.old_html}</td>'
+            f'<td class="no">{_num(r.new_no)}</td><td class="mark"></td>'
+            f'<td class="txt">{r.new_html}</td></tr>')
+
+
 def _render_side_by_side(diff: DiffResult, label_before: str, label_after: str) -> str:
-    out = ['<table class="diff sxs"><thead><tr>',
+    out = ['<div class="diff-scroll" role="region" aria-label="Side-by-side differences" '
+           'tabindex="0"><table class="diff sxs">',
+           '<colgroup><col class="col-no"><col class="col-mark"><col>'
+           '<col class="col-no"><col class="col-mark"><col></colgroup>',
+           '<caption class="skip">Side-by-side differences</caption>',
+           '<thead><tr>',
            '<th scope="col" class="no">#</th>',
+           '<th scope="col" class="mark"><span class="skip">Change (before)</span></th>',
            f'<th scope="col">{_esc(label_before)}</th>',
            '<th scope="col" class="no">#</th>',
-           f'<th scope="col">{_esc(label_after)}</th></tr></thead><tbody>']
-    for r in diff.rows:
-        if r.kind == "collapse":
-            out.append(f'<tr class="collapse"><td colspan="4">⋯ {_esc(r.note)} ⋯</td></tr>')
+           '<th scope="col" class="mark"><span class="skip">Change (after)</span></th>',
+           f'<th scope="col">{_esc(label_after)}</th></tr></thead>']
+    for kind, payload in _hunks(diff.rows):
+        if kind == "gap":
+            out.append('<tbody class="gap"><tr class="collapse">'
+                       f'<td colspan="6">⋯ {_esc(payload)} ⋯</td></tr></tbody>')
             continue
-        old = "" if r.old_no is None else str(r.old_no)
-        new = "" if r.new_no is None else str(r.new_no)
-        cls = "" if r.kind == "context" else r.kind
-        left = r.old_html if r.kind != "add" else ""
-        right = r.new_html if r.kind != "remove" else ""
-        out.append(
-            f'<tr class="{cls}"><td class="no">{old}</td><td class="txt">{left}</td>'
-            f'<td class="no">{new}</td><td class="txt">{right}</td></tr>')
-    out.append("</tbody></table>")
+        out.append('<tbody class="hunk">'
+                   '<tr class="hunk-head"><th scope="rowgroup" colspan="6">'
+                   f'{_esc(_hunk_header(payload))}</th></tr>')
+        i = 0
+        while i < len(payload):
+            r = payload[i]
+            nxt = payload[i + 1] if i + 1 < len(payload) else None
+            # difflib emits a replace opcode's paired old/new lines adjacently (remove then
+            # add); pairing them here is what makes a changed line one aligned row.
+            if r.kind == "remove" and nxt is not None and nxt.kind == "add":
+                out.append(_sxs_change(r, nxt))
+                i += 2
+            else:
+                out.append(_sxs_single(r))
+                i += 1
+        out.append("</tbody>")
+    out.append("</table></div>")
     return "".join(out)
 
 
 # --------------------------------------------------------------------------- #
 # Snapshot store
 # --------------------------------------------------------------------------- #
+
+# ───────────────────────────────────────────────────────────────
+# 6. SNAPSHOT & STATE
+# ───────────────────────────────────────────────────────────────
 
 def _state_dir(explicit: Optional[str]) -> Path:
     return Path(explicit) if explicit else Path.cwd() / STATE_DIR_NAME
@@ -842,6 +1057,10 @@ def _summary_dict(diff: DiffResult, report: Optional[Path], fmt: str, tier: str)
         "report": str(report) if report else None,
     }
 
+
+# ───────────────────────────────────────────────────────────────
+# 7. COMMAND-LINE INTERFACE
+# ───────────────────────────────────────────────────────────────
 
 def cmd_capabilities(args) -> int:
     pdf_kind, _ = _pdf_extractor()

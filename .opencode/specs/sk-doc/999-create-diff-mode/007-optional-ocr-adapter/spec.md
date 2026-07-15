@@ -53,7 +53,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 7 of 7 |
 | **Predecessor** | `../006-opencode-skill-and-accessibility/spec.md` |
-| **Successor** | None; optional terminal phase |
+| **Successor** | `../008-fidelity-safety-a11y-hardening/spec.md` (post-review remediation) |
 | **Handoff Criteria** | Either ship a bounded local OCR capability with visible confidence and fidelity warnings, or record a no-go and keep scanned input explicitly unsupported |
 <!-- /ANCHOR:metadata -->
 

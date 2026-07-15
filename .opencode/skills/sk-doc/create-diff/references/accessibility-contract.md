@@ -29,13 +29,13 @@ The report is meant to be reviewable by everyone, from `file://`, forever, with 
 - The change summary is a real `<table>` with row headers (`<th scope="row">`); the diff is a `<table>` with column headers.
 - **Colour is never the only signal.** Added lines carry a `+`, removed lines a `−`, in a dedicated marker column with an `aria-label` ("added"/"removed"); word-level changes are marked with `<mark>` in addition to background colour. This keeps the diff readable for colour-blind users and in monochrome.
 - Contrast targets WCAG AA in both light and dark themes (`prefers-color-scheme`), using `color-scheme: light dark`.
-- Relative units throughout, so browser zoom and text scaling work; content wraps (`overflow-wrap: anywhere`) rather than forcing horizontal scroll.
+- Relative units govern typography and content/column sizing so browser zoom and text scaling work (the 4px spacing scale, hairline borders, and radii use fixed pixel tokens). In the **unified** view, content wraps (`overflow-wrap: anywhere`) so the page itself never scrolls sideways. The **side-by-side** view keeps its two code columns aligned inside a scoped `overflow-x: auto` container that is given a `min-width`, so on a narrow viewport that diff region actually scrolls horizontally instead of collapsing the columns — while the surrounding page (header, summary, legend, footer) still reflows and never forces the whole document to scroll. That scroll container is keyboard-operable: it is a labelled `role="region"` with `tabindex="0"` and a visible focus ring, so a keyboard-only user can focus and scroll it.
 - Long runs of unchanged lines are collapsed to a labelled "N unchanged lines" row to keep the report scannable.
 
 ## Views
 
 - **Unified** (default): old/new line numbers, a marker column, and content in one column.
-- **Side-by-side** (`--view side-by-side`): before and after in two columns, each with its own line numbers.
+- **Side-by-side** (`--view side-by-side`): before and after in two columns, each with its own line numbers. The two-column grid is held in a scoped horizontal-scroll region so columns stay aligned rather than wrapping into each other on narrow viewports.
 
 Both views share the same summary, fidelity notes, and legend.
 

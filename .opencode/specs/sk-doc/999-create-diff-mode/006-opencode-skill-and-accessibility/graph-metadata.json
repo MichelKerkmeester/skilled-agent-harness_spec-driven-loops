@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A portable CLI alone does not capture the moment before an AI edit or guide users through review inside OpenCode",
     "created_at": "2026-07-15T10:56:00.016Z",
-    "last_save_at": "2026-07-15T10:56:00.016Z",
+    "last_save_at": "2026-07-15T16:20:24.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee344b03fba56ad329b2767e949f616db8373681bd8c2b549636f9aee572a3b9",
+    "source_fingerprint": "sha256:ab2f4b3297394d4b3799f4ae065782e171b7330d62356117e0db5a52487783fe",
     "source_doc_hashes": {
       "spec.md": "014f9299ed85fb604a00f6f5b5d43a29fd05f8ea840f67a3b989b339f430536d",
       "plan.md": "6ad533c33a8af81741ff4fdbeab68fcb85916632fb3a16a0a19d77a0c37ea798",
       "tasks.md": "2c542ebcbe7e69f72dc68f014a5bdccb47d14245a5f2ca905dfec68c949cb9c8",
-      "implementation-summary.md": "34fccb97a39a47f29c935212a65a4e6eab0b79a283b4679356e38578a0b4b7cb"
+      "implementation-summary.md": "aa2b70b73fe95bfbf4c9ec8c6912b2c1e6e7d8aab1e7a6ce7206a4f02320b407"
     },
     "last_active_child_id": null,
     "last_active_at": null
