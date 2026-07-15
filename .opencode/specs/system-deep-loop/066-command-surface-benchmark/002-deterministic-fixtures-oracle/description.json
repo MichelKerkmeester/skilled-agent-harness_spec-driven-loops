@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle",
+  "description": "Builds and verifies the independent public and held-out fixture corpus plus a reference oracle, authored before any adapter code so the deterministic",
+  "keywords": [
+    "verifies",
+    "independent",
+    "public",
+    "held-out",
+    "fixture",
+    "corpus",
+    "plus",
+    "reference",
+    "oracle",
+    "authored",
+    "adapter",
+    "code",
+    "deterministic"
+  ],
+  "lastUpdated": "2026-07-15T04:53:31.651Z",
+  "specId": "002",
+  "folderSlug": "deterministic-fixtures-oracle",
+  "parentChain": [
+    "system-deep-loop",
+    "066-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

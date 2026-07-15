@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
-  "spec_folder": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot",
   "parent_id": "system-deep-loop/066-command-surface-benchmark",
   "children_ids": [],
   "manual": {
@@ -11,52 +11,45 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command benchmark contract",
-      "command census freeze",
-      "command topology taxonomy",
-      "two-axis verdict semantics"
+      "command topology pilot",
+      "pilot scenarios",
+      "evaluator calibration",
+      "topology coverage"
     ],
     "key_topics": [
       "command",
-      "benchmark",
-      "contract",
-      "census",
-      "freeze",
       "topology",
-      "taxonomy",
-      "two-axis",
-      "verdict",
-      "semantics",
-      "freezes",
-      "canonical"
+      "pilot",
+      "scenarios",
+      "evaluator",
+      "calibration",
+      "coverage",
+      "authors",
+      "four",
+      "one",
+      "per",
+      "captures"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-      ".opencode/commands/scripts/validate-command-references.cjs",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
       {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "name": "framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
         "source": "derived"
       },
       {
-        "name": "validate-command-references.cjs",
+        "name": "behavior-bench-run.cjs",
         "kind": "file",
-        "path": ".opencode/commands/scripts/validate-command-references.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "scoping.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
         "source": "derived"
       },
       {
@@ -90,26 +83,26 @@
         "source": "derived"
       },
       {
-        "name": "exact",
+        "name": "source",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "1. METADATA",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "behavioral",
-        "kind": "key_phrase",
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
+        "name": "3. SCOPE",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
@@ -120,7 +113,13 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "a Claude",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "resolved",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -138,19 +137,19 @@
         "source": "derived"
       },
       {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria All",
+        "name": "Reconcile Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Four",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,15 +161,21 @@
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "pinned",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "provenance",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against.",
-    "created_at": "2026-07-14T20:25:28.765Z",
-    "last_save_at": "2026-07-15T04:53:47.786Z",
+    "causal_summary": "Authors four pilot scenarios, one per command topology, and captures a Claude baseline plus one GPT driver to calibrate the upgraded evaluator before the full scenario rollout.",
+    "created_at": "2026-07-14T20:36:59.962Z",
+    "last_save_at": "2026-07-15T04:48:23.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,11 +183,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:aaead354f21dde212bd4c6f0f67d4a31919b5b205258a346ea85f428772e3ffb",
+    "source_fingerprint": "sha256:df51b095264ef7941b4dff79b9c489bbd9517ef1f3963c4442253303791d0423",
     "source_doc_hashes": {
-      "spec.md": "0666d91c0059ecc58d412429be8b71254bff1d5b54fc6f3d94256fe0e79f34ca",
-      "plan.md": "622f9ae1e41c6587b2743cd47f8f5ff76fa9216ab4d590b79ee99c2e97d8497c",
-      "tasks.md": "2cac5953360b89e0ab3b1f4e682033c82823926780af48885bd50a1a37005de2"
+      "spec.md": "0fd1d36786b5b7c42bb3c963fde7312efe1683db536771956bd5bd9c2d2c5be0",
+      "plan.md": "fb851e8bb8a30ebd17a5915f39ee26adc10050486bc5ad2c4a27a609d0f2d832",
+      "tasks.md": "965239e779e2c50a332b7ffb21d83e555b80a25d653fa99ae7df6631e8f05b77"
     },
     "last_active_child_id": null,
     "last_active_at": null

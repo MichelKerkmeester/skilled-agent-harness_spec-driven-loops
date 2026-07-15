@@ -5,14 +5,16 @@
   "parent_id": null,
   "children_ids": [
     "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
-    "system-deep-loop/066-command-surface-benchmark/001-deterministic-fixtures-oracle",
-    "system-deep-loop/066-command-surface-benchmark/002-command-contract-adapter",
-    "system-deep-loop/066-command-surface-benchmark/003-command-lane-integration",
-    "system-deep-loop/066-command-surface-benchmark/004-command-behavior-evaluator",
-    "system-deep-loop/066-command-surface-benchmark/005-command-topology-pilot",
-    "system-deep-loop/066-command-surface-benchmark/006-command-scenario-rollout",
-    "system-deep-loop/066-command-surface-benchmark/007-bounded-command-matrix",
-    "system-deep-loop/066-command-surface-benchmark/008-scorecard-and-closeout"
+    "system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle",
+    "system-deep-loop/066-command-surface-benchmark/003-command-contract-adapter",
+    "system-deep-loop/066-command-surface-benchmark/004-command-lane-integration",
+    "system-deep-loop/066-command-surface-benchmark/005-command-behavior-evaluator",
+    "system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot",
+    "system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout",
+    "system-deep-loop/066-command-surface-benchmark/008-bounded-command-matrix",
+    "system-deep-loop/066-command-surface-benchmark/010-scorecard-and-closeout",
+    "system-deep-loop/066-command-surface-benchmark/001-create-benchmark-conformance-family",
+    "system-deep-loop/066-command-surface-benchmark/009-command-benchmark-command"
   ],
   "manual": {
     "depends_on": [],
@@ -118,17 +120,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across all 37 commands, and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself.",
+    "causal_summary": "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across the full command corpus (37 baseline, 38 after the launcher ships), and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself.",
     "created_at": "2026-07-14T20:25:28.626Z",
-    "last_save_at": "2026-07-14T20:41:35.014Z",
+    "last_save_at": "2026-07-15T04:48:24.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2cac1810ac08d784b74320bfdd1724804eda3f5c718b89f790c620c34314222d",
+    "source_fingerprint": "sha256:0703bcdb9d0d1520c23745eff48286319ee1f28358fff14f093a2d11f0345194",
     "source_doc_hashes": {
-      "spec.md": "6034114b580dd8edb84d1d9d4ac0068a4e4e3362a39fe6ebb5d5bb49cbf4749f"
+      "spec.md": "a68a012096ee1f9afe463cafd4cef74527b26f22d6a4761d2f517b3d895847bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

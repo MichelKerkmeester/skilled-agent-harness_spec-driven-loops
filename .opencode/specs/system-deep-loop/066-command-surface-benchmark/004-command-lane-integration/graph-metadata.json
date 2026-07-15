@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
-  "spec_folder": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/004-command-lane-integration",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/004-command-lane-integration",
   "parent_id": "system-deep-loop/066-command-surface-benchmark",
   "children_ids": [],
   "manual": {
@@ -11,52 +11,52 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command benchmark contract",
-      "command census freeze",
-      "command topology taxonomy",
-      "two-axis verdict semantics"
+      "command lane integration",
+      "peer adapter registration",
+      "alignment convergence gate",
+      "raw-delta reducer agreement"
     ],
     "key_topics": [
       "command",
-      "benchmark",
-      "contract",
-      "census",
-      "freeze",
-      "topology",
-      "taxonomy",
-      "two-axis",
-      "verdict",
-      "semantics",
-      "freezes",
-      "canonical"
+      "lane",
+      "integration",
+      "peer",
+      "adapter",
+      "registration",
+      "alignment",
+      "convergence",
+      "gate",
+      "raw-delta",
+      "reducer",
+      "agreement"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-      ".opencode/commands/scripts/validate-command-references.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
+      ".opencode/commands/scripts/validate-command-references.cjs",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
       {
-        "name": "sync-prompts.cjs",
+        "name": "scoping.cjs",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
         "source": "derived"
       },
       {
         "name": "validate-command-references.cjs",
         "kind": "file",
         "path": ".opencode/commands/scripts/validate-command-references.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "scoping.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
         "source": "derived"
       },
       {
@@ -90,38 +90,32 @@
         "source": "derived"
       },
       {
-        "name": "exact",
+        "name": "trustworthy",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "behavioral",
+        "name": "zero",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
+        "name": "1. METADATA",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -144,13 +138,25 @@
         "source": "derived"
       },
       {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Lane registration",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria All",
+        "name": "Completion Criteria Scoping",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,15 +168,21 @@
         "source": "derived"
       },
       {
-        "name": "zero",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against.",
-    "created_at": "2026-07-14T20:25:28.765Z",
-    "last_save_at": "2026-07-15T04:53:47.786Z",
+    "causal_summary": "Registers and configures the sk-doc-command peer adapter as a lane, runs all canonical commands to convergence, and hard-gates raw-delta and reducer agreement so the deterministic verdict is trustworthy.",
+    "created_at": "2026-07-14T20:36:59.449Z",
+    "last_save_at": "2026-07-15T04:48:23.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,11 +190,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:aaead354f21dde212bd4c6f0f67d4a31919b5b205258a346ea85f428772e3ffb",
+    "source_fingerprint": "sha256:f9c7653dd226d3e423aebe59cbbeee2248dfb69f1c7a3f6f06319dc49b6cbc5a",
     "source_doc_hashes": {
-      "spec.md": "0666d91c0059ecc58d412429be8b71254bff1d5b54fc6f3d94256fe0e79f34ca",
-      "plan.md": "622f9ae1e41c6587b2743cd47f8f5ff76fa9216ab4d590b79ee99c2e97d8497c",
-      "tasks.md": "2cac5953360b89e0ab3b1f4e682033c82823926780af48885bd50a1a37005de2"
+      "spec.md": "af79bfe93a7d0f5b957d95730c26e92290f5ad5b8585b0cb91915a4b0a689044",
+      "plan.md": "0f544810a7560f47c00d3c61369808b776831578e9920d43b4a1216f662d6566",
+      "tasks.md": "d9672e2d53d1a88ad17b0a61ea6b507d3a881a0f6bc8bd615c7fa88238a83bec"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
-  "spec_folder": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/010-scorecard-and-closeout",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/010-scorecard-and-closeout",
   "parent_id": "system-deep-loop/066-command-surface-benchmark",
   "children_ids": [],
   "manual": {
@@ -11,30 +11,29 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command benchmark contract",
-      "command census freeze",
-      "command topology taxonomy",
-      "two-axis verdict semantics"
+      "command benchmark scorecard",
+      "two-axis scorecard",
+      "remediation backlog",
+      "packet closeout"
     ],
     "key_topics": [
       "command",
       "benchmark",
-      "contract",
-      "census",
-      "freeze",
-      "topology",
-      "taxonomy",
+      "scorecard",
       "two-axis",
-      "verdict",
-      "semantics",
-      "freezes",
-      "canonical"
+      "remediation",
+      "backlog",
+      "packet",
+      "closeout",
+      "publishes",
+      "reconciles",
+      "status",
+      "metadata"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-      ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
       "spec.md",
       "plan.md",
@@ -42,15 +41,9 @@
     ],
     "entities": [
       {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate-command-references.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "name": "framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
         "source": "derived"
       },
       {
@@ -90,38 +83,32 @@
         "source": "derived"
       },
       {
-        "name": "exact",
+        "name": "non-averaged",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "command",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "behavioral",
-        "kind": "key_phrase",
+        "name": "1. METADATA",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -144,13 +131,25 @@
         "source": "derived"
       },
       {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Scorecard and backlog",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria All",
+        "name": "Completion Criteria The",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,15 +161,27 @@
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "the",
         "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against.",
-    "created_at": "2026-07-14T20:25:28.765Z",
-    "last_save_at": "2026-07-15T04:53:47.786Z",
+    "causal_summary": "Publishes the two-axis scorecard and remediation backlog, reconciles all packet status metadata, and runs recursive strict validation so the benchmark ships as a coherent, evidence-backed packet.",
+    "created_at": "2026-07-14T20:37:00.688Z",
+    "last_save_at": "2026-07-15T04:53:48.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,11 +189,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:aaead354f21dde212bd4c6f0f67d4a31919b5b205258a346ea85f428772e3ffb",
+    "source_fingerprint": "sha256:06623ba27133297c54b2ea352d5d8646dab6e104431f5dc36feec56056fc6acc",
     "source_doc_hashes": {
-      "spec.md": "0666d91c0059ecc58d412429be8b71254bff1d5b54fc6f3d94256fe0e79f34ca",
-      "plan.md": "622f9ae1e41c6587b2743cd47f8f5ff76fa9216ab4d590b79ee99c2e97d8497c",
-      "tasks.md": "2cac5953360b89e0ab3b1f4e682033c82823926780af48885bd50a1a37005de2"
+      "spec.md": "43dea54544ff61afa5ce590ed4e66a7359c495bfe959b0b587332ffd7990c8a3",
+      "plan.md": "8fccd7e5949eadeffc7f8e24095abd04efed6303082b4ece0075cae01ba66815",
+      "tasks.md": "599b1c4c9b20b8b8988ffa5a9b6c6d46409fdd0ab7152f0c4192d55d742f484d"
     },
     "last_active_child_id": null,
     "last_active_at": null

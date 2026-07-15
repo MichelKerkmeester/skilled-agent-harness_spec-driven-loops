@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
-  "spec_folder": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/003-command-contract-adapter",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/003-command-contract-adapter",
   "parent_id": "system-deep-loop/066-command-surface-benchmark",
   "children_ids": [],
   "manual": {
@@ -11,30 +11,31 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command benchmark contract",
-      "command census freeze",
-      "command topology taxonomy",
-      "two-axis verdict semantics"
+      "sk-doc-command adapter",
+      "command contract adapter",
+      "peer adapter deep-alignment",
+      "command reference checks"
     ],
     "key_topics": [
+      "sk-doc-command",
+      "adapter",
       "command",
-      "benchmark",
       "contract",
-      "census",
-      "freeze",
-      "topology",
-      "taxonomy",
-      "two-axis",
-      "verdict",
-      "semantics",
-      "freezes",
-      "canonical"
+      "peer",
+      "deep-alignment",
+      "reference",
+      "checks",
+      "implements",
+      "three-method",
+      "extends",
+      "reusable"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
       ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
       "spec.md",
       "plan.md",
@@ -42,15 +43,21 @@
     ],
     "entities": [
       {
-        "name": "sync-prompts.cjs",
+        "name": "sk-doc.cjs",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
         "source": "derived"
       },
       {
         "name": "validate-command-references.cjs",
         "kind": "file",
         "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
         "source": "derived"
       },
       {
@@ -90,25 +97,25 @@
         "source": "derived"
       },
       {
-        "name": "exact",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "sk-doc-command",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "behavioral",
+        "name": "discover",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "generic",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -120,7 +127,7 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "S1",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -150,7 +157,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria All",
+        "name": "Completion Criteria The",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,15 +169,21 @@
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "P0",
         "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against.",
-    "created_at": "2026-07-14T20:25:28.765Z",
-    "last_save_at": "2026-07-15T04:53:47.786Z",
+    "causal_summary": "Implements the sk-doc-command peer adapter on the deep-alignment three-method contract, extends the reusable reference checks to every command topology, and proves exact fixture outcomes without duplicating generic document validation.",
+    "created_at": "2026-07-14T20:36:59.179Z",
+    "last_save_at": "2026-07-15T04:48:22.771Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,11 +191,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:aaead354f21dde212bd4c6f0f67d4a31919b5b205258a346ea85f428772e3ffb",
+    "source_fingerprint": "sha256:200e394d48409f659bee1d9240ba5bd10735504f2a8a6fedb7654451fe325141",
     "source_doc_hashes": {
-      "spec.md": "0666d91c0059ecc58d412429be8b71254bff1d5b54fc6f3d94256fe0e79f34ca",
-      "plan.md": "622f9ae1e41c6587b2743cd47f8f5ff76fa9216ab4d590b79ee99c2e97d8497c",
-      "tasks.md": "2cac5953360b89e0ab3b1f4e682033c82823926780af48885bd50a1a37005de2"
+      "spec.md": "9ca53b513d9e3d8facd0cbc150864b02281c930de34463b5b124cb7641df74d1",
+      "plan.md": "5b71d2b10913aaae620bcba877f47703c4917a208d5aba50365074ffe9094d81",
+      "tasks.md": "cc82ff73ca8397f0c905e3bf1acdbf5186fabb401a2ba198e6a0d35c8902a1eb"
     },
     "last_active_child_id": null,
     "last_active_at": null

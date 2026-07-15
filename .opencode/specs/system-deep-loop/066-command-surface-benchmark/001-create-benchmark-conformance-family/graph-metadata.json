@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
-  "spec_folder": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/001-create-benchmark-conformance-family",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/001-create-benchmark-conformance-family",
   "parent_id": "system-deep-loop/066-command-surface-benchmark",
   "children_ids": [],
   "manual": {
@@ -11,52 +11,66 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command benchmark contract",
-      "command census freeze",
-      "command topology taxonomy",
-      "two-axis verdict semantics"
+      "conformance benchmark family",
+      "conformance_benchmark template",
+      "peer adapter benchmark authoring",
+      "create-benchmark conformance family"
     ],
     "key_topics": [
-      "command",
+      "conformance",
       "benchmark",
-      "contract",
-      "census",
-      "freeze",
-      "topology",
-      "taxonomy",
-      "two-axis",
-      "verdict",
-      "semantics",
-      "freezes",
-      "canonical"
+      "family",
+      "template",
+      "peer",
+      "adapter",
+      "authoring",
+      "create-benchmark",
+      "fifth",
+      "authored",
+      "templates",
+      "input"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-      ".opencode/commands/scripts/validate-command-references.cjs",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+      ".opencode/skills/sk-doc/create-benchmark/README.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/commands/create/benchmark.md",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
       {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "validate-command-references.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/README.md",
         "source": "derived"
       },
       {
-        "name": "scoping.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/benchmark.md",
         "source": "derived"
       },
       {
@@ -90,7 +104,7 @@
         "source": "derived"
       },
       {
-        "name": "exact",
+        "name": "procedural",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -102,13 +116,13 @@
         "source": "derived"
       },
       {
-        "name": "behavioral",
+        "name": "the SKILL",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -120,7 +134,7 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "no",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -138,19 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria All",
+        "name": "Completion Criteria The",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,15 +170,21 @@
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "headroom",
         "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against.",
-    "created_at": "2026-07-14T20:25:28.765Z",
-    "last_save_at": "2026-07-15T04:53:47.786Z",
+    "causal_summary": "Adds a fifth authored create-benchmark family, conformance_benchmark, that templates the input scaffolding for deterministic artifact-conformance benchmarks run through a deep-alignment peer adapter, plus routing projections, a minimal authoring-command branch, and a family-parity regression test.",
+    "created_at": "2026-07-15T04:42:13.321Z",
+    "last_save_at": "2026-07-15T04:42:13.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,11 +192,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:aaead354f21dde212bd4c6f0f67d4a31919b5b205258a346ea85f428772e3ffb",
+    "source_fingerprint": "sha256:2835521b4265e6cd6be495d5516de2f8f9cf093a8e083a83dbc538e367d49eae",
     "source_doc_hashes": {
-      "spec.md": "0666d91c0059ecc58d412429be8b71254bff1d5b54fc6f3d94256fe0e79f34ca",
-      "plan.md": "622f9ae1e41c6587b2743cd47f8f5ff76fa9216ab4d590b79ee99c2e97d8497c",
-      "tasks.md": "2cac5953360b89e0ab3b1f4e682033c82823926780af48885bd50a1a37005de2"
+      "spec.md": "b426c7c6de80e9ac6cf63efee545b4f2b8908a5af44fc6e8c9c0d8788fc86a49",
+      "plan.md": "37bfbbcc9581605e13b5df2ce819fd54bd23f7817704a16830ede786a84ea9d9",
+      "tasks.md": "3f857c8631a86461bc084b6f49f3adac344a5bd9175b9c7656c099d1c67c91ad"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/066-command-surface-benchmark/003-command-contract-adapter",
+  "description": "Implements the sk-doc-command peer adapter on the deep-alignment three-method contract, extends the reusable reference checks to every command",
+  "keywords": [
+    "implements",
+    "sk-doc-command",
+    "peer",
+    "adapter",
+    "deep-alignment",
+    "three-method",
+    "contract",
+    "extends",
+    "reusable",
+    "reference",
+    "checks",
+    "every",
+    "command"
+  ],
+  "lastUpdated": "2026-07-15T04:47:41.419Z",
+  "specId": "003",
+  "folderSlug": "command-contract-adapter",
+  "parentChain": [
+    "system-deep-loop",
+    "066-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

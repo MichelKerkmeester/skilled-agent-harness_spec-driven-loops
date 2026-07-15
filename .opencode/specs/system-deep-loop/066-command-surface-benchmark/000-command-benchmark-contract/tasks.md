@@ -59,5 +59,5 @@ All tasks checked with evidence, the contract references cross-linked from downs
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-Parent: `system-deep-loop/066-command-surface-benchmark`. Predecessor: parent packet root. Successor: 001-deterministic-fixtures-oracle.
+Parent: `system-deep-loop/066-command-surface-benchmark`. Predecessor: parent packet root. Successor: 001-create-benchmark-conformance-family.
 <!-- /ANCHOR:cross-refs -->

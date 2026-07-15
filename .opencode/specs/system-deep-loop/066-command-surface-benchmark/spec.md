@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: command-surface benchmark — a two-axis deep-alignment benchmark measuring command-family effectiveness and adherence"
-description: "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across all 37 commands, and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself. Evaluator-first: create-benchmark authors inputs and reports; scoring stays lane-local."
+description: "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across the full command corpus (37 baseline, 38 after the launcher ships), and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself. Evaluator-first: create-benchmark authors inputs and reports; scoring stays lane-local."
 status: planned
 trigger_phrases:
   - "command surface benchmark"
@@ -29,7 +29,7 @@ _memory:
       - "Whether provider event streams need per-provider normalization before direct-dispatch evidence is trustworthy"
     answered_questions:
       - "Two non-averaged axes: a deterministic sk-doc peer adapter plus a sampled DAB behavioral suite; the model matrix measures executor variance only (three-model design congregation, 2026-07-14)"
-      - "Host inside deep-alignment as a peer adapter and an extension of the existing DAB behavior_benchmark package — no new authority, artifact class, or benchmark package (2026-07-14)"
+      - "Host inside deep-alignment as a peer adapter and an extension of the existing DAB behavior_benchmark package — no new authority or artifact class, and no new behavior package or DAB prefix; conformance inputs ship as one deterministic conformance_benchmark package authored through create-benchmark (2026-07-14)"
       - "New packet under system-deep-loop as 066, distinct from the 033 behavior-benchmark framework and the 059/015 model-matrix hardening it reuses (operator, 2026-07-14)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -93,6 +93,11 @@ load-bearing claims were verified against the repository.
   sentinels) that measures executor variance only.
 - An independent reference oracle and held-out fixtures so the deterministic adapter is not self-validating.
 - A two-axis scorecard that never averages the deterministic P-level axis with the behavioral D-level axis.
+- A new `create-benchmark` `conformance_benchmark` family that templates the conformance-package inputs
+  (index, contract, lane-config, fixture-manifest) plus an authoring-command branch and a family-parity test,
+  so this and future deep-alignment conformance benchmarks are authored canonically.
+- A `/deep:command-benchmark` launcher that composes both axes behind one workflow-YAML router, generates the
+  Codex mirror, and reuses the alignment engine and the matrix scheduler rather than duplicating either.
 
 **Out of scope:**
 - Re-running or replacing generic `validate_document.py --type command` (a separate `sk-doc` responsibility).
@@ -123,13 +128,18 @@ load-bearing claims were verified against the repository.
 - **REQ-006 (P1):** The scorecard keeps two non-averaged axes — deterministic P0/P1/P2 verdict and behavioral
   D1–D5 terminal buckets — and distinguishes instrument validity from command conformance (a valid benchmark
   may publish a real FAIL subject result).
+- **REQ-007 (P1):** Conformance-benchmark authoring is canonical: a `create-benchmark` `conformance_benchmark`
+  family templates the package inputs, and a `/deep:command-benchmark` launcher composes both axes behind one
+  workflow-YAML router reusing the shipped engines, without either owning adapter, scoring, or scheduling logic.
 
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- All nine children pass `validate.sh --recursive --strict` at Errors:0.
+- All eleven children pass `validate.sh --recursive --strict` at Errors:0.
+- The `conformance_benchmark` family authors conformance packages canonically, and `/deep:command-benchmark`
+  composes and reports both axes without averaging, with its Codex mirror generated (not hand-authored).
 - The peer adapter runs the full discovered command corpus to convergence with raw-delta and reduced-report
   agreement, and exactly matches every public and held-out fixture's expected defect set.
 - DAB-012–027 are authored with pinned Claude baselines and produce quotable results; DAB-001–011 regression
@@ -171,12 +181,14 @@ load-bearing claims were verified against the repository.
 
 | Child | Purpose |
 |-------|---------|
-| `000-command-benchmark-contract` | Freeze the command census, topology taxonomy, two-axis verdict semantics, baseline counts, ownership boundaries, and phase handoff gates. |
-| `001-deterministic-fixtures-oracle` | Build and verify the independent public and held-out fixture corpus plus the reference oracle, before any adapter code. |
-| `002-command-contract-adapter` | Implement `sk-doc-command.cjs`, extend the reusable reference checks, and prove exact fixture outcomes without duplicating generic doc validation. |
-| `003-command-lane-integration` | Register and configure the peer adapter, run all canonical commands, prove convergence, and hard-gate raw-delta / reducer agreement. |
-| `004-command-behavior-evaluator` | Add shared framework schema v2 direct-dispatch, outcome-probe, setup-misbind, and boundary evidence while preserving DAB-001–011 scoring. |
-| `005-command-topology-pilot` | Author four pilot scenarios, one per command topology, and capture Claude plus one GPT driver to calibrate the evaluator. |
-| `006-command-scenario-rollout` | Expand to DAB-012–027, reconcile index and baseline rows, and capture a complete pinned Claude baseline. |
-| `007-bounded-command-matrix` | Run both GPT drivers across all scenarios plus eligible leaf sentinels, with explicit skips and contested-cell reruns. |
-| `008-scorecard-and-closeout` | Publish the two-axis scorecard and remediation backlog, reconcile packet status metadata, and run recursive strict validation. |
+| `000-command-benchmark-contract` | Freeze the command census (37 baseline, 38 after the launcher ships), topology taxonomy, two-axis verdict semantics, baseline counts, conformance-package shape, evidence-path layout, ownership boundaries, and phase handoff gates. |
+| `001-create-benchmark-conformance-family` | Add the canonical `create-benchmark` `conformance_benchmark` family — four templates, an authoring guide, routing projections, a `/create:benchmark` authoring branch, and a family-parity test — so conformance benchmarks are authored canonically. |
+| `002-deterministic-fixtures-oracle` | Build and verify the independent public and held-out fixture corpus plus the reference oracle, instantiating the fixture manifest from the new family template, before any adapter code. |
+| `003-command-contract-adapter` | Implement `sk-doc-command.cjs`, extend the reusable reference checks, and prove exact fixture outcomes without duplicating generic doc validation. |
+| `004-command-lane-integration` | Register and configure the peer adapter, run all canonical commands, prove convergence, and hard-gate raw-delta / reducer agreement. |
+| `005-command-behavior-evaluator` | Add shared framework schema v2 direct-dispatch, outcome-probe, setup-misbind, and boundary evidence while preserving DAB-001–011 scoring. |
+| `006-command-topology-pilot` | Author four pilot scenarios, one per command topology, and capture Claude plus one GPT driver to calibrate the evaluator. |
+| `007-command-scenario-rollout` | Expand to DAB-012–027, reconcile index and baseline rows, and capture a complete pinned Claude baseline. |
+| `008-bounded-command-matrix` | Run both GPT drivers across all scenarios plus eligible leaf sentinels, with explicit skips and contested-cell reruns. |
+| `009-command-benchmark-command` | Ship the `/deep:command-benchmark` launcher composing the conformance and behavioral axes behind one workflow-YAML router, generate the Codex mirror, and pass hermetic smoke verification. |
+| `010-scorecard-and-closeout` | Run the final 38-command census, publish the two-axis scorecard and remediation backlog, add closeout gates for the new family and launcher, reconcile packet status metadata, and run recursive strict validation. |

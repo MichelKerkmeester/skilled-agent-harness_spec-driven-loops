@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
-  "spec_folder": "system-deep-loop/066-command-surface-benchmark/000-command-benchmark-contract",
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/009-command-benchmark-command",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/009-command-benchmark-command",
   "parent_id": "system-deep-loop/066-command-surface-benchmark",
   "children_ids": [],
   "manual": {
@@ -11,31 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "command benchmark contract",
-      "command census freeze",
-      "command topology taxonomy",
-      "two-axis verdict semantics"
+      "command benchmark command",
+      "deep command-benchmark launcher",
+      "two-axis command benchmark launcher",
+      "run command surface benchmark"
     ],
     "key_topics": [
       "command",
       "benchmark",
-      "contract",
-      "census",
-      "freeze",
-      "topology",
-      "taxonomy",
+      "deep",
+      "command-benchmark",
+      "launcher",
       "two-axis",
-      "verdict",
-      "semantics",
-      "freezes",
-      "canonical"
+      "run",
+      "surface",
+      "ships",
+      "workflow-yaml",
+      "router",
+      "composes"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
       ".opencode/commands/scripts/validate-command-references.cjs",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -48,15 +49,21 @@
         "source": "derived"
       },
       {
-        "name": "validate-command-references.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "scoping.cjs",
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
         "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
         "source": "derived"
       },
       {
@@ -90,7 +97,13 @@
         "source": "derived"
       },
       {
-        "name": "exact",
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "assets",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -102,13 +115,7 @@
         "source": "derived"
       },
       {
-        "name": "behavioral",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
+        "name": "no",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -120,26 +127,14 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "instrument",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
+        "name": "presentation",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -150,7 +145,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria All",
+        "name": "Completion Criteria The",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,15 +157,15 @@
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "frontmatter",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against.",
-    "created_at": "2026-07-14T20:25:28.765Z",
-    "last_save_at": "2026-07-15T04:53:47.786Z",
+    "causal_summary": "Ships the /deep:command-benchmark workflow-YAML router that composes the deterministic conformance axis through the deep-alignment peer adapter and the behavioral DAB axis through the matrix scheduler over the shared runner behind one command, generates the Codex mirror, and passes hermetic smoke verification, without implementing adapter, scoring, or scheduling logic itself.",
+    "created_at": "2026-07-15T04:42:13.560Z",
+    "last_save_at": "2026-07-15T04:42:13.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,11 +173,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:aaead354f21dde212bd4c6f0f67d4a31919b5b205258a346ea85f428772e3ffb",
+    "source_fingerprint": "sha256:4e934748c28e1179933badfb6c0f786278d2c6aed540257c79dd80d3e2d4ce6c",
     "source_doc_hashes": {
-      "spec.md": "0666d91c0059ecc58d412429be8b71254bff1d5b54fc6f3d94256fe0e79f34ca",
-      "plan.md": "622f9ae1e41c6587b2743cd47f8f5ff76fa9216ab4d590b79ee99c2e97d8497c",
-      "tasks.md": "2cac5953360b89e0ab3b1f4e682033c82823926780af48885bd50a1a37005de2"
+      "spec.md": "fd43ed7da446f7f716b0eee85f6289183386ebd33a4493ee4f9fae1bb43cf9fd",
+      "plan.md": "80a0d6a655d1a867a43bfe43ec8cf6b31bf64bc228e674b201681587f0ee736d",
+      "tasks.md": "52e421519b4a1415962a3b36eb026d8fc6617f3070384f76cbf7f3add9456dd3"
     },
     "last_active_child_id": null,
     "last_active_at": null

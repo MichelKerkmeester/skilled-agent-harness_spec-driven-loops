@@ -56,6 +56,8 @@ Every downstream phase needs one frozen target to build against. Without a contr
 - Define four command topologies (workflow router, subaction router, direct-tool or plugin router, monolithic) with a per-command assignment rule.
 - Document the two non-averaged verdict axes and their severity and bucket vocabulary.
 - Record the ownership boundary against generic document validation and the per-phase handoff gates.
+- Freeze the conformance-package shape (the create-benchmark `conformance_benchmark` package layout under the deep-alignment mode `assets/` tree) and the run-evidence path layout `<spec-folder>/evidence/command-benchmark/<run-id>/` every executing phase writes into.
+- Record the boundary between authoring (create-benchmark) and running (`/deep:command-benchmark`), and freeze both the 37-command baseline census and the 38-command final census after the launcher ships.
 
 **Out of scope:**
 - Any adapter code, fixtures, scenarios, or matrix runs.
@@ -70,6 +72,7 @@ Every downstream phase needs one frozen target to build against. Without a contr
 - **REQ-003 (P1):** Document the two non-averaged verdict axes and forbid averaging deterministic severities with behavioral buckets.
 - **REQ-004 (P1):** Record that this benchmark does not re-run or reclassify generic command document validation.
 - **REQ-005 (P1):** Define per-phase handoff gates with evidence and exit codes that unblock the next phase.
+- **REQ-006 (P1):** Freeze the conformance-package shape, the run-evidence path layout, the authoring-versus-running boundary, and both the 37-command baseline and 38-command final census before any adapter or command phase builds against them.
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -79,6 +82,7 @@ Every downstream phase needs one frozen target to build against. Without a contr
 - Every command maps to exactly one topology and unclassified shapes fail closed.
 - The verdict-axis contract and ownership boundary are referenced by downstream phase specs.
 - Handoff gates are enumerated and testable.
+- The conformance-package shape, evidence-path layout, and the 37→38 census transition are frozen and referenced by the family, adapter, and launcher phases.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -97,4 +101,4 @@ Every downstream phase needs one frozen target to build against. Without a contr
 
 ## PHASE SEQUENCE
 
-Predecessor: parent packet root. Successor: 001-deterministic-fixtures-oracle.
+Predecessor: parent packet root. Successor: 001-create-benchmark-conformance-family.
