@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-deep-loop/065-deep-loop-innovation/006-recommendations-implementation/010-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts",
+  "description": "Plan the Deep Research mode certificate and receipt binding over the typed event-ledger substrate: one per-run certificate, per-transition receipts",
+  "keywords": [
+    "plan",
+    "deep",
+    "research",
+    "mode",
+    "certificate",
+    "receipt",
+    "binding",
+    "typed",
+    "event-ledger",
+    "substrate",
+    "one",
+    "per-run",
+    "per-transition",
+    "receipts"
+  ],
+  "lastUpdated": "2026-07-15T17:31:58.838Z",
+  "specId": "004",
+  "folderSlug": "certificates-and-receipts",
+  "parentChain": [
+    "system-deep-loop",
+    "065-deep-loop-innovation",
+    "006-recommendations-implementation",
+    "010-mode-and-lane-migrations",
+    "001-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
