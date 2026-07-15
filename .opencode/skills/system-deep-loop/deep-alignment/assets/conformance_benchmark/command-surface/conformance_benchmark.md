@@ -35,7 +35,7 @@ implement or run the check.
 | Out of scope | Command runtime behavior, natural-language router prose (which never triggers S5), parameterized targets that resolve only at run time, and non-command skill or agent artifacts. |
 | Canonical corpus source | `.opencode/commands/` (the live command tree, discovered by the adapter) |
 | Corpus selection rule | Every command source the adapter's `discover(scope)` resolves under the lane scope, together with the generated mirrors and declared workflow/presentation assets each source references. Membership is decided by discovery, never by a fixed count. |
-| Corpus refresh / verification command | `node .opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs --verify --manifest .opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/fixtures/fixture-manifest.json` |
+| Corpus refresh / verification command | `node .opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs --verify --manifest skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/fixtures/fixture-manifest.json` (the `--manifest` argument resolves against the oracle's `.opencode`-anchored repo root, so it omits the leading `.opencode/`) |
 | Expected corpus state | Fixture root hash `sha256:0d1e6ab84ad9214a0ad6eabeb5147e99499cfea640326aeeb66503f24e537bf8`, with every per-fixture hash recorded in the manifest. |
 
 The canonical source and selection rule decide membership. A copied artifact
@@ -163,8 +163,10 @@ mismatch is an instrument failure, never a subject finding.
 Stable inputs live in this mode-owned package. Run evidence lives at
 [`004-command-lane-integration/alignment/`](../../../../../../specs/system-deep-loop/066-command-surface-benchmark/004-command-lane-integration/alignment)
 inside the executing spec phase, including transcripts, state, raw deltas, reduced
-reports, and generated scorecards. The accepted run identity is `pending` (no
-accepted live conformance run captured yet); its input hash is `pending`.
+reports, and generated scorecards. The executing phase already holds a completed
+live convergence run over this lane (overall verdict FAIL, with open findings); a
+formally accepted, frozen fixture-corpus run identity and its input hash are not
+yet recorded (`pending`).
 
 ## 9. OWNERSHIP BOUNDARY
 

@@ -77,10 +77,12 @@ never reads.
     "{{MARKER_TWO_LITERAL_OR_REGEX}}"
   ],
   "expected_delegation": {
+    "evidence_kind": "{{TASK_DISPATCH_OR_SEAT_ARTIFACTS_OR_CANDIDATE_EVIDENCE}}",
     "leaf_agent": {{LEAF_AGENT_STRING_OR_RAW_NULL}},
     "min_task_events": {{MIN_TASK_EVENTS}},
     "route_proof_required": {{TRUE_OR_FALSE}},
-    "role_absorption_forbidden": {{TRUE_OR_FALSE}}
+    "role_absorption_forbidden": {{TRUE_OR_FALSE}},
+    "min_seats": {{MIN_SEATS}}
   },
   "budget_ms": {{BUDGET_MS}},
   "watchdog_ms": {{WATCHDOG_MS_OR_OMIT}},
@@ -88,7 +90,7 @@ never reads.
 }
 ```
 
-### Schema v2 (command / direct-tool / conformance families — keep this block OR the v1 block, not both)
+### Schema v2 (command / direct-tool / conformance families needing direct-dispatch targets, postconditions, or a fixture boundary — keep this block OR the v1 block, not both)
 
 ```json
 {
@@ -111,7 +113,7 @@ never reads.
     "{{MARKER_TWO_LITERAL_OR_REGEX}}"
   ],
   "expected_delegation": {
-    "evidence_kind": "{{TASK_DISPATCH_OR_DIRECT_DISPATCH_OR_SEAT_ARTIFACTS}}",
+    "evidence_kind": "{{TASK_DISPATCH_OR_DIRECT_DISPATCH_OR_SEAT_ARTIFACTS_OR_CANDIDATE_EVIDENCE}}",
     "leaf_agent": {{LEAF_AGENT_STRING_OR_RAW_NULL}},
     "min_task_events": {{MIN_TASK_EVENTS}},
     "route_proof_required": {{TRUE_OR_FALSE}},
@@ -126,14 +128,9 @@ never reads.
   },
   "artifacts_required": {{TRUE_OR_FALSE}},
   "postconditions": [
-    {
-      "kind": "{{FILE_EXISTS_OR_TEXT_CONTAINS_OR_JSON_FIELD_EQUALS_OR_CHANGED_PATHS_WITHIN}}",
-      "path": "{{FIXTURE_RELATIVE_PATH}}"
-    },
-    {
-      "kind": "changed_paths_within",
-      "prefix": "."
-    }
+    { "kind": "file_exists", "path": "{{FIXTURE_RELATIVE_PATH}}" },
+    { "kind": "text_contains", "path": "{{FIXTURE_RELATIVE_PATH}}", "substring": "{{REQUIRED_SUBSTRING}}" },
+    { "kind": "changed_paths_within", "prefix": "." }
   ],
   "boundary": {
     "allow_prefixes": ["."]
@@ -148,7 +145,9 @@ never reads.
 Field guidance (see framework.md for the authoritative enums):
   schema_version      : V2 ONLY. The exact int 2 opts into schema v2; omit it (or 1) for the v1 core block.
                         v1-in => v1-out is a compatibility requirement: a v1 scenario adds no v2 keys.
-  command_topology    : V2 ONLY. "workflow router" | "subaction router" | "direct-tool/plugin router" | "monolithic".
+  command_topology    : V2 command families. "workflow router" | "subaction router" | "direct-tool/plugin router" | "monolithic".
+                        Informational topology label carried by shipped command scenarios; it is not in the framework's normative
+                        machine-contract field table and the runner does not parse it. Omit it for non-command v2 cells.
   mode                : the package mode value (context|research|review|ai-council|improvement, or a declared extension such as alignment).
   entry_surface       : E1 command+suffix | E2 bare command (must halt) | E3 natural ask | E4 orchestrate-routed.
   clarity             : C1 vague | C2 concise-but-scoped | C3 fully specified.
@@ -164,10 +163,12 @@ Field guidance (see framework.md for the authoritative enums):
   presentation markers: literal strings or /regex/ (case-insensitive is always applied). Keep them minimal and mode-distinctive.
   leaf_agent          : a RAW JSON value — a quoted "agent-name" string when the cell delegates to a named LEAF, or the bare
                         literal null (most command/direct-dispatch and question_halt cells set null).
-  expected_delegation : evidence_kind (V2, default task_dispatch) selects how delegation is measured:
-                        task_dispatch  => Agent/task tool events, min_task_events + optional route_proof to leaf_agent.
-                        direct_dispatch => V2; case-insensitive stdout-line matches of expected_targets, guarded by forbidden_targets.
+  expected_delegation : evidence_kind (optional, default task_dispatch) selects how delegation is measured and is valid in
+                        BOTH schema versions; only expected_targets/forbidden_targets are v2-only (direct_dispatch):
+                        task_dispatch  => Agent/task tool events, min_task_events + optional route_proof to leaf_agent (research, review).
                         seat_artifacts => ai-council; distinct seat ids >= min_seats named in the persisted ai-council artifacts.
+                        candidate_evidence => improvement; a packet-local candidate AND an evaluator score, counted separately.
+                        direct_dispatch => v2 ONLY; case-insensitive stdout-line matches of expected_targets, guarded by forbidden_targets.
                         min_seats applies ONLY to seat_artifacts; expected_targets/forbidden_targets apply ONLY to direct_dispatch.
                         Each target is a literal substring or /regex/[flags]. question_halt cells usually set leaf_agent:null,
                         min_task_events:0.

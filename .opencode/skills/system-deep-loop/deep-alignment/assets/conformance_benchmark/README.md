@@ -24,10 +24,12 @@ authority and artifact class, selects its peer adapter, and records where the
 resulting evidence is written. The package does not execute, score, or reduce a
 run.
 
-**Package status:** Authored and ready to run — the `command-surface` inputs
-(contract, lane-config, fixtures) are complete and validated; no accepted live
-conformance run is captured yet, so run evidence is pending in the executing spec
-phase. **Owning mode:** `deep-alignment`.
+**Package status:** Authored and runnable — the `command-surface` inputs
+(contract, lane-config, fixtures) are complete and validated. The executing phase
+(`004-command-lane-integration`) already holds a completed live convergence run
+over the command surface (overall verdict FAIL, with open findings); a formally
+accepted, frozen fixture-corpus benchmark run identity is not yet recorded.
+**Owning mode:** `deep-alignment`.
 **Source specification:** `.opencode/specs/system-deep-loop/066-command-surface-benchmark/`.
 
 ## 2. BENCHMARK-ID INDEX
@@ -39,7 +41,7 @@ phase. **Owning mode:** `deep-alignment`.
 
 | Benchmark ID | Authority | Adapter | Corpus | Status | Source spec packet | Execution | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [`command-surface`](./command-surface/conformance_benchmark.md) | `sk-doc` | `sk-doc-command` | `.opencode/commands` tree (public + held-out fixtures) | Ready; run pending | `system-deep-loop/066-command-surface-benchmark` | [command](#exec-command-surface) | [`004/alignment/`](../../../../../specs/system-deep-loop/066-command-surface-benchmark/004-command-lane-integration/alignment) |
+| [`command-surface`](./command-surface/conformance_benchmark.md) | `sk-doc` | `sk-doc-command` | `.opencode/commands` tree (public + held-out fixtures) | Live convergence run complete (FAIL); fixture-run identity pending | `system-deep-loop/066-command-surface-benchmark` | [command](#exec-command-surface) | [`004/alignment/`](../../../../../specs/system-deep-loop/066-command-surface-benchmark/004-command-lane-integration/alignment) |
 
 ## 3. CORPUS
 

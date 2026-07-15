@@ -153,8 +153,10 @@ and conformance families over the OpenCode command surface — one `behavior_ben
 package plus one `conformance_benchmark` package — bound by a lane-owned matrix
 manifest and driven by a launcher that reports both axes without averaging. The
 composition standard and the matrix-manifest field shape live in
-[`references/shared/command_benchmark_composition.md`](references/shared/command_benchmark_composition.md);
-a request naming a "command benchmark" routes to both family guides plus that
+[`references/shared/command_benchmark_composition.md`](references/shared/command_benchmark_composition.md).
+Because it is not a family key, a bare "command benchmark" request has no single
+routing target: the router returns the unknown-fallback checklist, whose
+command-benchmark line directs the author to both family guides plus that
 composition doc.
 
 ### Family Boundary

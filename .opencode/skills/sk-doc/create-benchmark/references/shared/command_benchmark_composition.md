@@ -68,10 +68,10 @@ Authoritative top-level fields:
 | `requiredCellCount` | int | Total required cells; the run must satisfy exactly this many. |
 
 Each `requiredCells[]` entry carries `{ id, cellKind, role, scenarioId,
-scenarioPath, legName, samples, fixtureRef, skip }`: its scenario and leg, its
-sample count, a fixture-hash reference, and either a result pointer or a
-machine-readable `skip`. A cell is either produced or explicitly skipped — never
-silently dropped.
+scenarioPath, legName, samples, fixtureRef }` plus **exactly one of** `resultPointer`
+or `skip`: its scenario and leg, its sample count, a fixture-hash reference, and
+either a result pointer or a machine-readable `skip`. A cell is either produced
+(with a `resultPointer`) or explicitly skipped — never silently dropped.
 
 ## 3. AUTHORING ORDER
 

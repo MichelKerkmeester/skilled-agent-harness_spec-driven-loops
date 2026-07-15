@@ -16,10 +16,12 @@ version: 1.0.0.0
 
 Authoring depth for the model-benchmark (Lane B) inputs. This guide covers what you
 WRITE: the fixture families the model under test answers, and the profiles that
-drive a run. The profile author selects the scorer by id and sets the sampling
-seed; it does NOT restate how those inputs are scored — the evaluator rubric,
-scorer mechanics, reviewer verdict contract, and repeatability math are the
-deep-improvement lane's, and they stay lane-local. Cross-links throughout point at
+drive a run. It does NOT restate how those inputs are scored — the evaluator
+rubric, scorer selection and mechanics, reviewer verdict contract, and
+repeatability math are the deep-improvement lane's, and they stay lane-local. (A
+profile may carry a `scoring` block and a `seed`, but the single-pass path selects
+its scorer from the `--scorer` CLI flag, the sweep path ignores `scoring.scorer`
+entirely, and the runtime does not read `seed`; see the profile template.) Cross-links throughout point at
 those normative contracts; where this guide and a contract diverge, the contract
 prevails.
 
