@@ -28,7 +28,7 @@ prevails.
 ## 1. OVERVIEW: WHAT LANE A AUTHORING COVERS
 
 Lane A improves a **bounded agent `.md` file** without immediately mutating the source
-of truth. It is run by [`/deep:agent-improvement`](../../../../system-deep-loop/deep-improvement/SKILL.md)
+of truth. It is run by [`/deep:agent-improvement`](../../../../../commands/deep/agent-improvement.md)
 and is evaluator-first: it generates packet-local candidates, scores them with dynamic
 5-dimension scoring, and promotes only behind guarded gates plus explicit operator
 approval. The loop, its lifecycle, and its scoring are code and contracts that ship

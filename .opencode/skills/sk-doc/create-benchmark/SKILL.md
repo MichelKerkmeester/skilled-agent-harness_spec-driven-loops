@@ -5,7 +5,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.4.0.0
 ---
 
-<!-- Keywords: create-benchmark, benchmark_report.md, SOURCE.md, mcp_server benchmarks, benchmark promotion, skill-local benchmark, MCP bake-off, benchmark folder, behavior benchmark, behavior_benchmark.md, conformance benchmark, conformance_benchmark, peer adapter benchmark, deep-alignment benchmark, lane-config benchmark, sk-doc-command, scenario contract, DAB scenario, behavior-benchmark framework, claude-baseline, skill-benchmark, benchmark/README.md, run-label folder, skill-benchmark-report, Lane C benchmark, model-benchmark, benchmark fixture, benchmark profile, code-task oracle fixture, reviewer-prompt fixture, Lane B fixture -->
+<!-- Keywords: create-benchmark, benchmark_report.md, SOURCE.md, mcp_server benchmarks, benchmark promotion, skill-local benchmark, MCP bake-off, benchmark folder, behavior benchmark, behavior_benchmark.md, conformance benchmark, conformance_benchmark, peer adapter benchmark, deep-alignment benchmark, lane-config benchmark, sk-doc-command, scenario contract, DAB scenario, behavior-benchmark framework, claude-baseline, skill-benchmark, benchmark/README.md, run-label folder, skill-benchmark-report, Lane C benchmark, model-benchmark, benchmark fixture, benchmark profile, code-task oracle fixture, reviewer-prompt fixture, Lane B fixture, command benchmark, command-benchmark, command surface benchmark, command benchmark matrix -->
 
 # create-benchmark
 
@@ -36,7 +36,7 @@ Use this packet when a completed benchmark, or a benchmark's input artifacts, ne
 - **Model-benchmark** (section 11) — author a Lane B input fixture (code-task oracle, pattern/capability, or reviewer-prompt) or a run profile that selects fixtures, models, frameworks, scoring, and the gate.
 - **Lane A guide** (section 14) — author the Lane A (`agent_improvement`) authoring guide; rubrics, configs, and templates stay in-lane.
 
-Keyword triggers: `benchmark_report.md`, `SOURCE.md`, `mcp_server/benchmarks`, `MCP bake-off`; `behavior benchmark`, `behavior_benchmark.md`, `scenario contract`, `claude-baseline`; `conformance benchmark`, `conformance_benchmark`, `peer adapter benchmark`, `deep-alignment benchmark`, `lane-config benchmark`, `sk-doc-command`; `skill-benchmark`, `benchmark/README.md`, `run-label folder`, `benchmark package`; `model-benchmark`, `benchmark fixture`, `benchmark profile`, `reviewer-prompt fixture`.
+Keyword triggers: `benchmark_report.md`, `SOURCE.md`, `mcp_server/benchmarks`, `MCP bake-off`; `behavior benchmark`, `behavior_benchmark.md`, `scenario contract`, `claude-baseline`; `conformance benchmark`, `conformance_benchmark`, `peer adapter benchmark`, `deep-alignment benchmark`, `lane-config benchmark`, `sk-doc-command`; `skill-benchmark`, `benchmark/README.md`, `run-label folder`, `benchmark package`; `model-benchmark`, `benchmark fixture`, `benchmark profile`, `reviewer-prompt fixture`; `command benchmark`, `command-benchmark`, `command surface benchmark`, `command benchmark matrix`.
 
 ### Adoption Gate (MCP promotion)
 
@@ -118,6 +118,9 @@ FAMILY_DISK_KEY = {"mcp_promotion": "shared"}
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the benchmark family (MCP promotion, behavior, conformance, skill, model, agent)",
     "Confirm what is authored here vs lane-owned, then the storage location and run label",
+    "For a command benchmark, author BOTH a behavior and a conformance package for the "
+    "command surface and compose them via the matrix manifest "
+    "(references/shared/command_benchmark_composition.md)",
 ]
 
 def route_benchmark_request(request):
@@ -142,6 +145,17 @@ def route_benchmark_request(request):
         load_if_available(path, inventory, loaded, seen)
     return {"routing_key": routing_key, "resources": loaded}
 ```
+
+### Command Benchmark (composition, not a family)
+
+A "command benchmark" is not a seventh family key. It **composes** the behavior
+and conformance families over the OpenCode command surface — one `behavior_benchmark`
+package plus one `conformance_benchmark` package — bound by a lane-owned matrix
+manifest and driven by a launcher that reports both axes without averaging. The
+composition standard and the matrix-manifest field shape live in
+[`references/shared/command_benchmark_composition.md`](references/shared/command_benchmark_composition.md);
+a request naming a "command benchmark" routes to both family guides plus that
+composition doc.
 
 ### Family Boundary
 

@@ -166,6 +166,7 @@ then re-run Lane C so the renderer regenerates the pair. Never patch the `.md`.
 
 - [`scoring_contract.md`](../../../../system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md) — the authoritative D1-D5 computation: point weights, Mode A deterministic scoring, the opt-in advisor probe, live-mode dimensions, advisory signals, and funnel/bottleneck ranking.
 - [`operator_guide.md`](../../../../system-deep-loop/deep-improvement/references/skill_benchmark/operator_guide.md) — how to run Lane C: invocation, flags, dimension coverage, verdict bands, and target eligibility.
+- [`scenario_authoring.md`](../../../../system-deep-loop/deep-improvement/references/skill_benchmark/scenario_authoring.md) — how to author the Lane C scenarios and fixture corpus a run scores; the doctrine for the optional `benchmark/fixtures/` input pairs.
 - [`build-report.cjs`](../../../../system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs) — the renderer that owns `skill-benchmark-report.md` (see section 5).
 - [`/deep:skill-benchmark`](../../../../../commands/deep/skill-benchmark.md) — the command that drives a Lane C run.
 
@@ -179,6 +180,7 @@ then re-run Lane C so the renderer regenerates the pair. Never patch the `.md`.
 - [`../SKILL.md`](../../SKILL.md) — the create-benchmark workflow and report contracts.
 - [`README.md`](../shared/README.md) — the benchmark-creation reference map.
 - [`behavior_benchmark_guide.md`](../behavior_benchmark/behavior_benchmark_guide.md) — authoring guide for the distinct behavior-benchmark family (executor behavior at a deep-loop mode's invocation surface), not the Lane C skill-benchmark storage covered here.
+- [`create-manual-testing-playbook`](../../../create-manual-testing-playbook/SKILL.md) — the sibling sk-doc skill that authors a manual-testing scenario corpus; hand its corpus into the optional `benchmark/fixtures/` input pairs when a Lane C run scores against curated scenarios rather than live discovery.
 
 ---
 

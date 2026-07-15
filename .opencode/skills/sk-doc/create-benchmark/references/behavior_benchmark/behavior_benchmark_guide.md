@@ -227,7 +227,7 @@ benchmark — maps as follows:
 | Matrix scheduler | `deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs` |
 | Matrix manifest | `deep-alignment/assets/command_benchmark/command_benchmark_matrix.json` |
 | Driver legs | A Claude reference leg plus the OpenCode `gpt-5.5-fast` high and medium legs, as declared in the manifest |
-| Launcher | `/deep:command-benchmark` — composes both axes and reports them separately |
+| Launcher | [`/deep:command-benchmark`](../../../../../commands/deep/command-benchmark.md) — composes both axes and reports them separately |
 | Run evidence | `<executing-spec-phase>/evidence/command-benchmark/<run-id>/`, as bound by the launcher |
 | Source packet | `.opencode/specs/system-deep-loop/066-command-surface-benchmark/` |
 

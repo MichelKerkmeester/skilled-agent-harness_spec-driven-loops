@@ -16,8 +16,9 @@ version: 1.0.0.0
 
 Authoring depth for the model-benchmark (Lane B) inputs. This guide covers what you
 WRITE: the fixture families the model under test answers, and the profiles that
-drive a run. It does NOT restate how those inputs are scored — the evaluator rubric,
-scorer selection, reviewer verdict contract, and repeatability math are the
+drive a run. The profile author selects the scorer by id and sets the sampling
+seed; it does NOT restate how those inputs are scored — the evaluator rubric,
+scorer mechanics, reviewer verdict contract, and repeatability math are the
 deep-improvement lane's, and they stay lane-local. Cross-links throughout point at
 those normative contracts; where this guide and a contract diverge, the contract
 prevails.
@@ -319,8 +320,9 @@ node -e 'for (const f of process.argv.slice(1)) JSON.parse(require("fs").readFil
 ### Owning skill and sibling family
 
 - [`deep-improvement SKILL.md`](../../../../system-deep-loop/deep-improvement/SKILL.md) — the mode that owns and runs the model benchmark.
+- [`/deep:model-benchmark`](../../../../../commands/deep/model-benchmark.md) — the launcher command that runs a Lane B model benchmark.
 - [`behavior_benchmark_guide.md`](../behavior_benchmark/behavior_benchmark_guide.md) — the sibling authoring guide for the behavior-benchmark family.
-- [`../SKILL.md`](../../SKILL.md) — the `create-benchmark` packet contract for the four templated benchmark families and the two Lane A/D authoring guides this packet owns.
+- [`../SKILL.md`](../../SKILL.md) — the `create-benchmark` packet contract for the templated benchmark families and the Lane A agent-improvement authoring guide this packet owns.
 
 ---
 
