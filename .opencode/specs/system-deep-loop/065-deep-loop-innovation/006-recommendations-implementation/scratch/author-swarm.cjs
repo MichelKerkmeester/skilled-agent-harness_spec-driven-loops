@@ -10,7 +10,7 @@
  * on that folder, recording pass/fail. Operator-authorized parallel dispatch
  * (rule-15 swarm exception); concurrency-capped to be gentle on the shared OAuth.
  *
- * Usage: node author-swarm.cjs --wave <N> [--concurrency <k>] [--dry-run]
+ * Usage: node author-swarm.cjs --wave <N> [--concurrency <k>] [--executor codex|opencode|fallback] [--only <id[,id]>] [--dry-run]
  */
 const fs = require('fs');
 const path = require('path');
@@ -242,14 +242,19 @@ async function main() {
   const concurrency = parseInt((argv[argv.indexOf('--concurrency') + 1] || '2'), 10);
   const dryRun = argv.includes('--dry-run');
   const executorMode = argv.indexOf('--executor') >= 0 ? argv[argv.indexOf('--executor') + 1] : 'fallback';
+  const onlyArg = argv.indexOf('--only') >= 0 ? argv[argv.indexOf('--only') + 1] : null;
+  const onlyIds = onlyArg ? new Set(onlyArg.split(',').map((s) => s.trim())) : null;
   EXECUTOR_CHAIN = executorMode === 'codex' ? [CODEX]
     : executorMode === 'opencode' ? [OPENCODE]
     : [CODEX, OPENCODE]; // fallback (default): codex first, opencode when codex errors out
 
   const wl = loadJSON(WORKLIST, null);
   if (!wl || !Array.isArray(wl.items)) { console.error('FATAL: bad worklist'); process.exit(2); }
-  const items = wl.items.filter((x) => x.wave === wave && !x.done);
-  if (!items.length) { console.error(`No pending items for wave ${wave}`); process.exit(2); }
+  let items = wl.items.filter((x) => x.wave === wave && !x.done);
+  // --only narrows both dispatch AND post-process to the named ids, so re-authoring a
+  // single failed folder never rewrites its already-validated siblings' metadata.
+  if (onlyIds) items = items.filter((x) => onlyIds.has(String(x.id)));
+  if (!items.length) { console.error(`No pending items for wave ${wave}${onlyIds ? ` matching --only ${onlyArg}` : ''}`); process.exit(2); }
 
   console.log(`Swarm wave ${wave}: ${items.length} folders, concurrency ${concurrency}, executor chain [${EXECUTOR_CHAIN.map((e) => e.kind).join(' -> ')}]`);
   if (dryRun) {
