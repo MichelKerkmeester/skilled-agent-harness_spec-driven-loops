@@ -116,15 +116,15 @@
     ],
     "causal_summary": "The command and agent surface is uneven against the sk-doc create-skill canon along two axes that packet 131 did not touch (131 audited reality/routing drift — route manifests, asset tables, read-only proofs)",
     "created_at": "2026-07-14T18:04:41.863Z",
-    "last_save_at": "2026-07-14T20:17:40.695Z",
+    "last_save_at": "2026-07-14T21:33:08.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8790790026d68419623e0642a5eeec5fcfa44105b0cffe488b8188a2677bc1c5",
+    "source_fingerprint": "sha256:d9ec81c39dd0e111c3f5d5128c4f5594acc8615116b7f4421d4ccaf1778cf046",
     "source_doc_hashes": {
-      "spec.md": "237fdd225a0cad04e2d339d72698daa156061a4c78dbd1ddb86edc81d4a5965f"
+      "spec.md": "b45ea49b9aaa82cc97b073f768eff3d8a21eb7e345e8b861db82de68344e99b4"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-14T20:17:40.695Z"

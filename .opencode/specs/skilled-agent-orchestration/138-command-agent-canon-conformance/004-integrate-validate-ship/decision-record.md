@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: integrate-validate-ship — worktree FF-push + deferred codex home install"
-description: "ADRs for the final child of the 138 packet: (1) ship the integrated packet via an isolated-worktree FF-push onto origin/skilled/v4.0.0.0, operator-gated, and (2) defer the ~/.codex/prompts/ install and stale-symlink repair to operator confirmation."
+description: "ADRs for the final child of the 138 packet: (1) ship the integrated packet via an isolated-worktree FF-push onto origin/skilled/v4.0.0.0, operator-gated, and (2) the ~/.codex/prompts/ install and stale-symlink resolution, operator-gated. Both decisions were subsequently performed under operator direction."
 trigger_phrases:
   - "138 ship decision"
   - "worktree ff-push decision"
@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/138-command-agent-canon-conformance/004-integrate-validate-ship"
     last_updated_at: "2026-07-14T20:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Recorded ship-via-worktree ADR-001 and codex home-install deferral ADR-002"
-    next_safe_action: "Both ADRs await operator confirmation before ship and codex install"
+    recent_action: "ADR-001 ship + ADR-002 codex install both resolved: performed by operator"
+    next_safe_action: "None — both decisions executed; closeout reconciliation pending commit"
 ---
 # Decision Record: integrate-validate-ship — worktree FF-push + deferred codex home install
 
@@ -30,7 +30,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted (deferral); FF-push pending operator confirmation |
+| **Status** | Accepted; FF-push performed under operator direction (landed on `origin/skilled/v4.0.0.0`) |
 | **Date** | 2026-07-14 |
 | **Deciders** | Implementing session (blast-radius call), operator (confirmation pending) |
 
@@ -52,7 +52,7 @@ The 138 packet's conformance and parity work is complete and committed on the wo
 ### Consequences
 
 - Positive: zero unconfirmed shared-remote mutation; the integrated packet is complete and reviewable in-branch now.
-- Negative / trade-off: the work is not yet on `origin/skilled/v4.0.0.0`, so downstream sessions do not see it until the operator confirms the FF-push.
+- Resolution: the operator confirmed and the work landed on `origin/skilled/v4.0.0.0` (HEAD == origin, 0/0); downstream sessions now see it.
 
 <!-- /ANCHOR:adr-001 -->
 ---
@@ -64,7 +64,7 @@ The 138 packet's conformance and parity work is complete and committed on the wo
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted (deferral); install pending operator confirmation |
+| **Status** | Accepted; install performed under operator direction (37 prompts; stale symlink removed) |
 | **Date** | 2026-07-14 |
 | **Deciders** | Implementing session (blast-radius call), operator (confirmation pending) |
 
@@ -86,6 +86,6 @@ Phase 003 produced 37 repo-tracked codex command prompts and a `sync-prompts.cjs
 ### Consequences
 
 - Positive: zero unconfirmed user-home mutation; the repo deliverable and its gate are fully usable and reviewable now.
-- Negative / trade-off: Codex Desktop does not yet see the new prompts, and the broken `create` symlink remains until the operator confirms the install.
+- Resolution: the operator confirmed; the 37 prompts are installed in `~/.codex/prompts/` (0 symlinks) and the broken `create` symlink was removed.
 
 <!-- /ANCHOR:adr-002 -->

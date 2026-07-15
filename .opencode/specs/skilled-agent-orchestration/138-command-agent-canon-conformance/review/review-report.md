@@ -113,6 +113,20 @@ The packet's canon conformance work is structurally sound: 28/28 in-scope comman
 - **P2-001** (resolved iteration 2): Agent validator non-sequential numbering warning — documented and systemic (22 warnings for 11 agents with sanctioned section-0 dialect).
 - **P2-002** (refined to P1-004 iteration 3): HISTORICAL_SETTINGS omits deep-alignment — the omission changes the effective sandbox boundary, upgrading to P1.
 
+### Remediation Status (2026-07-14)
+
+All seven active P1 findings are remediated. The packet is shipped on `origin/skilled/v4.0.0.0` (HEAD == origin, 0/0) with recursive strict validate Errors:0 and per-file gates green.
+
+| Finding | Resolution | Evidence |
+|---------|-----------|----------|
+| P1-001 | Scope split documented: the canon-conformance axis covers the 28 seven-family command sources; the phase-003 prompt-parity axis covers the 37 prompt outputs. The 9 excluded canon sources are `agent_router.md` + 8 `deep/*.md` routers (already conformant under packet 064). The historical `deep-review-config.json` is left as the run-of-record. | This registry note |
+| P1-002 | `ai-council.toml` + `context.toml` regenerated from canonical markdown; gate green. | `sync-agents.cjs --check` → PASS 13/13 (exit 0) |
+| P1-003 | `~/.codex/prompts/` install performed (37 prompts; stale `create` symlink removed); parent scope + phase-004 docs reconciled. | 37 md / 0 symlinks in `~/.codex/prompts/`; `004-integrate-validate-ship/decision-record.md` ADR-002 |
+| P1-004 | `deep-alignment` added to `HISTORICAL_SETTINGS` as `workspace-write` with a durable WHY comment (behavior-preserving: it writes its own JSONL state/deltas/logs via Bash while treating every audited artifact as read-only by scope; forcing read-only would break the loop). | `sync-agents.cjs` `HISTORICAL_SETTINGS` |
+| P1-005 | Pre-write `lstat` symlink guard added to both generators — a pre-existing symlink at a generated output path is refused rather than written through. | `writeOutputs` in `sync-agents.cjs` + `sync-prompts.cjs` |
+| P1-006 | Phase-004 checklist + implementation-summary reconciled to the shipped state (9/9 P0, 12/12 P1; the three integration gates marked CONFIRMED with live evidence). | `004-integrate-validate-ship/{checklist,implementation-summary}.md` |
+| P1-007 | Parent phase map de-staled from all-`Planned` to actual child states: 001/002/003/004 Complete, 000 In progress (its P0/P1 gates are 8/8 and 11/11; the lone open item CHK-024 is an accepted P2 reducer-gap deferral to packet 015). Parent status stays In progress accordingly. | `spec.md` PHASE DOCUMENTATION MAP |
+
 ---
 
 ## 4. Remediation Workstreams

@@ -122,11 +122,11 @@ Aggregate file scope across the 5 phases; per-phase detail lives in each child's
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 0 | 000-foundations/ | Freeze immutable BASE + census; author deep-alignment lane-config JSONs (command-docs + agent-docs vs sk-doc); confirm the sk-doc/create-agent adapters run live and return real findings | Planned |
-| 1 | 001-command-template-conformance/ | Conform all 7 command families to create-command canon (numbered router-core). P0: `doctor/*` renumber; `memory/search.md` bang decision; recommended-section warning cleanup | Planned |
-| 2 | 002-agent-canon-conformance/ | Conform 13 agents (`.opencode` + `.claude`) to create-agent; regenerate `.codex/agents/*.toml`; wire `sync-agents.cjs --check` gate; `HISTORICAL_SETTINGS` coverage | Planned |
-| 3 | 003-codex-command-parity/ | Build `sync-prompts.cjs`; repo-track `.codex/prompts/` mirroring `.opencode/commands`; install to `~/.codex/prompts/`; repair the stale symlink; `--check` gate | Planned |
-| 4 | 004-integrate-validate-ship/ | Recursive strict validate; all gates green (`--type command|agent`, `sync-*.cjs --check`); ship via isolated worktree FF-push | Planned |
+| 0 | 000-foundations/ | Freeze immutable BASE + census; author deep-alignment lane-config JSONs (command-docs + agent-docs vs sk-doc); confirm the sk-doc/create-agent adapters run live and return real findings | In progress (own gates met; CHK-024 P2 reducer-gap deferred to 015) |
+| 1 | 001-command-template-conformance/ | Conform all 7 command families to create-command canon (numbered router-core). P0: `doctor/*` renumber; `memory/search.md` bang decision; recommended-section warning cleanup | Complete |
+| 2 | 002-agent-canon-conformance/ | Conform 13 agents (`.opencode` + `.claude`) to create-agent; regenerate `.codex/agents/*.toml`; wire `sync-agents.cjs --check` gate; `HISTORICAL_SETTINGS` coverage | Complete |
+| 3 | 003-codex-command-parity/ | Build `sync-prompts.cjs`; repo-track `.codex/prompts/` mirroring `.opencode/commands`; install to `~/.codex/prompts/`; repair the stale symlink; `--check` gate | Complete |
+| 4 | 004-integrate-validate-ship/ | Recursive strict validate; all gates green (`--type command|agent`, `sync-*.cjs --check`); ship via isolated worktree FF-push | In progress (shipped + gates green; formal closeout pending packet rollup) |
 
 ### Phase Transition Rules
 

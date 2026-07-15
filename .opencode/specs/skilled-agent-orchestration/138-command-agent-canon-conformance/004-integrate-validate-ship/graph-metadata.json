@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phases 000–003 each land their own conformance work and each pass `validate.sh --strict` independently, but \"each child is green\" is not the same claim as \"the packet is green as an integrated unit\"",
     "created_at": "2026-07-14T18:04:41.593Z",
-    "last_save_at": "2026-07-14T18:04:41.593Z",
+    "last_save_at": "2026-07-14T21:38:21.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f40ab6880e9ef5ca98355ef605d221903cce1b4340082a8b8fae11383258e5c",
+    "source_fingerprint": "sha256:403f1fca274726fa4790a94d7b675dede76f909a323bd7a332e1d8b99c1a6748",
     "source_doc_hashes": {
       "spec.md": "b133064984aca2e2c3d8447fe94cbfd2478df55cab0bd88543fab47a939a50f9",
       "plan.md": "a2c9fe88c822729538539704b28b1df7919afbe0fab89f150f7aba9cf83145fa",
       "tasks.md": "3641e35874bfbe05f838e5fb1782a20e18a67244ef03b5619ade35b30149e8f9",
-      "checklist.md": "915c1180fe72c26835cf5b34175b9490525dd293eeca5f075faf9ecae97ab45a",
-      "decision-record.md": "d0329880e306bb89588ce505f273fbce65548b2deb44a029fd8dd7f21d03e667",
-      "implementation-summary.md": "461cd7557108313ba569505f9c887914504e187729afc8a29e78eb4f31e3981e"
+      "checklist.md": "c817bc71f72554860bb240584ec21d88e953c802f5be6ec9070344543b13c774",
+      "decision-record.md": "0dfb2f7d6f96b8ad4c64ed90d52e340c2565fc84679b269fef088e1822b58e2d",
+      "implementation-summary.md": "175f9b1118b829fa01e0bb4e6303daa5d992ec6151fb4bc550fb666cc9b1486f"
     },
     "last_active_child_id": null,
     "last_active_at": null
