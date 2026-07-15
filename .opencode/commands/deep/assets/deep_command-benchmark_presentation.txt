@@ -1,0 +1,104 @@
+# Deep Command-Surface Benchmark Presentation Contract
+
+Presentation source of truth for `/deep:command-benchmark`. The Markdown router owns dispatch-context verification, the blocking input gate, input binding, and target selection. The workflow YAML owns target dispatch and evidence pointers. The reused engines own every subject check and result.
+
+## 1. Startup Presentation
+
+### Missing Spec Folder
+
+```
+SPEC FOLDER REQUIRED
+
+Provide the explicit spec folder that will own this benchmark run.
+Expected form: .opencode/specs/<track>/<packet-or-phase>
+
+Execution is blocked. The path will not be inferred from prior context or open files.
+```
+
+### `:auto` Setup Resolution
+
+Resolve `<spec-folder>` from the required positional input, `axis` from `--axis` or `all`, and `run_id` from `--run-id` or a UTC identifier. Continue only when the path is explicit and within `specs/` or `.opencode/specs/`. Invalid or missing bindings fail before any evidence directory is created.
+
+### Consolidated Setup
+
+```
+COMMAND BENCHMARK READY
+
+Spec folder: <spec_folder>
+Run ID: <run_id>
+Axis: <conformance|behavior|all>
+Mode: <AUTONOMOUS|INTERACTIVE>
+Conformance target: pre-bound command-surface alignment workflow
+Behavior target: bounded command behavior matrix
+
+The two subject axes remain separate. The launcher itself is excluded from the behavioral scenario set because measuring its own dispatcher would recurse; this command has a separate hermetic smoke.
+
+Options:
+A) Run the selected axis or axes
+B) Adjust explicit inputs
+C) Cancel
+```
+
+## 2. Checkpoint Layout
+
+| Checkpoint | Show |
+|---|---|
+| Inputs bound | Spec folder, run ID, mode, axis |
+| Conformance dispatched | Alignment workflow path, lane-config path, alignment evidence pointer |
+| Behavior dispatched | Matrix path, scheduler path, matrix-results pointer |
+| Evidence complete | Run manifest and separate axis pointers |
+
+Do not display a subject verdict while its instrument is invalid. Do not recast an owner-produced subject failure as an instrumentation failure.
+
+## 3. Results Display
+
+Render exactly one terminal line:
+
+```
+STATUS=<OK|FAIL> INSTRUMENT=<VALID|INVALID> CONFORMANCE=<native-result|NOT_RUN|NOT_EVALUATED> BEHAVIOR=<native-result|SKIPPED|NOT_RUN|NOT_EVALUATED>
+```
+
+`STATUS=OK` means every requested instrument completed validly. It does not mean the subject passed. `STATUS=FAIL` is reserved for invalid or failed dispatch/instrumentation. Therefore this is a valid terminal state:
+
+```
+STATUS=OK INSTRUMENT=VALID CONFORMANCE=FAIL BEHAVIOR=NOT_RUN
+```
+
+Never add, average, normalize, weight, or collapse the two subject fields.
+
+### Evidence Layout
+
+```
+<spec-folder>/
+├── alignment/
+└── evidence/command-benchmark/<run-id>/
+    ├── run-manifest.json
+    ├── deterministic/
+    │   └── alignment-evidence.json
+    ├── behavioral/
+    │   ├── matrix-results.json
+    │   └── cells/
+    └── scorecard/
+        ├── command-benchmark-scorecard.json
+        └── command-benchmark-scorecard.md
+```
+
+### Error Handling
+
+| Condition | Terminal handling |
+|---|---|
+| Missing or invalid binding | `STATUS=FAIL INSTRUMENT=INVALID`; both subject fields `NOT_EVALUATED` or `NOT_RUN` as applicable |
+| Alignment instrument invalid | Preserve diagnostics; conformance is `NOT_EVALUATED` |
+| Behavioral retryable environment result | Preserve retry evidence; behavior is `NOT_EVALUATED` |
+| Valid subject failure | `STATUS=OK INSTRUMENT=VALID`; preserve the failing native subject result |
+
+## 4. Next-Step Suggestions
+
+| Condition | Suggested action |
+|---|---|
+| Conformance subject reports findings | Inspect the alignment report and plan remediation separately |
+| Behavioral subject reports a non-passing result | Inspect the runner-owned cell evidence; do not reinterpret it in the launcher |
+| Instrument invalid | Repair the named input, fixture, or evidence fault before evaluating the subject |
+| Both axes valid | Use the run manifest and separate scorecard sections for closeout |
+
+The presentation layer never supplies checks, subject reduction, matrix expansion, or executor selection. It renders only bound inputs, owner-produced evidence, and the orthogonal instrument/subject envelope.

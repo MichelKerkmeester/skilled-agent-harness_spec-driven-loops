@@ -2,7 +2,7 @@
 name: deep-alignment
 description: "Autonomous standard-authority conformance: audit artifacts by lane; verify-first, known-deviation suppression, read-only default."
 allowed-tools: [Read, Grep, Glob, Task, Bash, memory_context, memory_search, code_graph_query]
-version: 1.0.0.1
+version: 1.0.0.2
 ---
 <!-- Note: read-only by default -- no Write/Edit in the default surface. Task/Bash are present but reserved for the gated, opt-in remediation pass; loop-owned state writes route through shared runtime scripts, not direct file edits. No WebFetch: alignment checks local artifacts against local authority standards. -->
 
@@ -33,7 +33,7 @@ Use this skill when:
 
 ### FORBIDDEN INVOCATION PATTERNS
 
-This skill is invoked EXCLUSIVELY through the `/deep:alignment` command. The command's YAML workflow owns state, dispatch, and convergence, mirroring every other mode in this hub.
+The general entry point for this skill is `/deep:alignment`. The specialized `/deep:command-benchmark` launcher may load the owned alignment workflow directly when it pre-binds the stable command-surface lane config and the executing spec folder. That launcher is an alignment alias, not another workflow mode; it must reuse this workflow without nesting the general command or copying its loop.
 
 **NEVER:**
 - Write a custom bash/shell dispatcher to parallelize lanes or iterations
@@ -44,6 +44,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:alignment` command. The com
 
 **ALWAYS:**
 - Invoke via `/deep:alignment :auto` or `/deep:alignment :confirm`, supplying `[target] [authority]` and flags such as `--lane-config <file.json>` and `--max-iterations=N` (the full flag set is `/deep:alignment`'s own `argument-hint`, not duplicated here)
+- For the specialized command-surface benchmark, load the matching owned alignment workflow with its lane config and spec folder already bound; keep `/deep:alignment` as the general operator entry point
 - Resolve lanes first (authority x artifact-class x scope) before any artifact is discovered
 - Re-verify every finding against live ground truth before it is asserted
 - Default to read-only; treat remediation as a separate, gated, opt-in pass
@@ -353,7 +354,7 @@ This skill operates within the behavioral framework defined in the active runtim
 
 ### Cross-Workflow Contracts
 
-`/deep:alignment` is this mode's invocation point; its command workflow owns state, dispatch, and convergence. The bound spec folder's `alignment/` subdirectory is the only writable state surface outside a gated `REMEDIATE` pass.
+`/deep:alignment` is this mode's general invocation point; its command workflow owns state, dispatch, and convergence. `/deep:command-benchmark` is the single specialized alias permitted to load that same workflow with the command-surface lane config and spec folder pre-bound. The bound spec folder's `alignment/` subdirectory is the only writable state surface outside a gated `REMEDIATE` pass.
 
 ### Tool Usage Guidelines
 

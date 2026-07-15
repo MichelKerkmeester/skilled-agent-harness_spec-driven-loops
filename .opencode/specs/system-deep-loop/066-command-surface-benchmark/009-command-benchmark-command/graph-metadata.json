@@ -14,7 +14,10 @@
       "command benchmark command",
       "deep command-benchmark launcher",
       "two-axis command benchmark launcher",
-      "run command surface benchmark"
+      "run command surface benchmark",
+      "command benchmark launcher implementation",
+      "deep command-benchmark smoke",
+      "command benchmark instrument validity"
     ],
     "key_topics": [
       "command",
@@ -25,23 +28,36 @@
       "two-axis",
       "run",
       "surface",
-      "ships",
-      "workflow-yaml",
-      "router",
-      "composes"
+      "implementation",
+      "smoke",
+      "instrument",
+      "validity"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/commands/deep/command-benchmark.md",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
       ".opencode/skills/system-deep-loop/mode-registry.json",
       ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/commands/deep/assets/deep_command-benchmark_auto.yaml",
+      ".opencode/commands/deep/assets/deep_command-benchmark_confirm.yaml",
+      ".opencode/commands/deep/assets/deep_command-benchmark_presentation.txt",
+      ".opencode/commands/scripts/smoke-command-benchmark.cjs",
+      ".codex/prompts/deep-command-benchmark.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "command-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/command-benchmark.md",
+        "source": "derived"
+      },
       {
         "name": "sync-prompts.cjs",
         "kind": "file",
@@ -67,6 +83,36 @@
         "source": "derived"
       },
       {
+        "name": "deep_command-benchmark_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_command-benchmark_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_command-benchmark_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_command-benchmark_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_command-benchmark_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep_command-benchmark_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-command-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/smoke-command-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-command-benchmark.md",
+        "kind": "doc",
+        "path": ".codex/prompts/deep-command-benchmark.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -85,7 +131,19 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Generated Codex",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -99,12 +157,6 @@
       {
         "name": "The Codex",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "assets",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -127,6 +179,12 @@
         "source": "derived"
       },
       {
+        "name": "Generate Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "instrument",
         "kind": "key_phrase",
         "path": "plan.md",
@@ -137,47 +195,25 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria The",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "References Parent",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "frontmatter",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Ships the /deep:command-benchmark workflow-YAML router that composes the deterministic conformance axis through the deep-alignment peer adapter and the behavioral DAB axis through the matrix scheduler over the shared runner behind one command, generates the Codex mirror, and passes hermetic smoke verification, without implementing adapter, scoring, or scheduling logic itself.",
     "created_at": "2026-07-15T04:42:13.560Z",
-    "last_save_at": "2026-07-15T04:42:13.560Z",
+    "last_save_at": "2026-07-15T13:01:42.708Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e934748c28e1179933badfb6c0f786278d2c6aed540257c79dd80d3e2d4ce6c",
+    "source_fingerprint": "sha256:dad522cf846a133b3bc5f23a4849a77b0a1f28c68798defe67abfd9c6f378111",
     "source_doc_hashes": {
-      "spec.md": "fd43ed7da446f7f716b0eee85f6289183386ebd33a4493ee4f9fae1bb43cf9fd",
-      "plan.md": "80a0d6a655d1a867a43bfe43ec8cf6b31bf64bc228e674b201681587f0ee736d",
-      "tasks.md": "52e421519b4a1415962a3b36eb026d8fc6617f3070384f76cbf7f3add9456dd3"
+      "spec.md": "95d59f9c1684e6149fe4aa23e8cd4cd43f553c3ffeb3aeaeea949dcb05546e13",
+      "plan.md": "a7035719e7e2a6dba9cd5a734aeffa2642f0977b8b07221cb33e28fe5e38b4f5",
+      "tasks.md": "5c96eff9ca6125e53bfae3d5b4c10dbdcc0f1b9d2ad1693cf7ebeabf56b29f7a",
+      "implementation-summary.md": "1f9aed7eb3be3573042b6b94ff94fbac001da9a258e860a10cb14679cfac03ec"
     },
     "last_active_child_id": null,
     "last_active_at": null

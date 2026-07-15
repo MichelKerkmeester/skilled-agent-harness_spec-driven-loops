@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: /deep:command-benchmark — the two-axis command-surface benchmark launcher"
 description: "Ships the /deep:command-benchmark workflow-YAML router that composes the deterministic conformance axis through the deep-alignment peer adapter and the behavioral DAB axis through the matrix scheduler over the shared runner behind one command, generates the Codex mirror, and passes hermetic smoke verification, without implementing adapter, scoring, or scheduling logic itself."
-status: planned
+status: complete
 trigger_phrases:
   - "command benchmark command"
   - "deep command-benchmark launcher"
@@ -12,10 +12,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/009-command-benchmark-command"
-    last_updated_at: "2026-07-15T05:30:00Z"
+    last_updated_at: "2026-07-15T12:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Reserved launcher child in the renumbered decomposition"
-    next_safe_action: "Ship /deep:command-benchmark with assets, Codex mirror, and hermetic smoke"
+    recent_action: "Generated Codex mirror (37/37) and verified all G009 gates"
+    next_safe_action: "Proceed to phase 010 scorecard and closeout"
     blockers: []
     key_files:
       - ".opencode/commands/deep/command-benchmark.md"
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
