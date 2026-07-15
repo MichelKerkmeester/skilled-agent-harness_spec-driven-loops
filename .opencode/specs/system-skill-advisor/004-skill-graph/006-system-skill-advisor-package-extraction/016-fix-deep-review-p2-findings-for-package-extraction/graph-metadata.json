@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction",
+  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction",
+  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "013/009/016",
+      "p2 remediation 015",
+      "mk_skill_advisor deep-review cleanup",
+      "013/009/016 plan",
+      "p2 remediation plan",
+      "013/009/016 tasks",
+      "p2 remediation tasks",
+      "013/009/016 checklist",
+      "p2 remediation verification",
+      "013/009/016 implementation",
+      "p2 remediation 015 summary"
+    ],
+    "key_topics": [
+      "remediation",
+      "deep-review",
+      "cleanup",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "implementation",
+      "summary",
+      "deep",
+      "review",
+      "passed"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/skill-label-sanitizer.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      "lib/utils/skill-label-sanitizer.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-label-sanitizer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/skill-label-sanitizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-status.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rename-invariants.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 015 deep review passed the `systemskilladvisor` to `mkskilladvisor` rename but left nine P2 advisories: stale parent graph metadata, an env-var discoverability gap, build freshness evidence, three missing rename-invariant tests, and one stale advisor README validation path",
+    "created_at": "2026-05-19T15:11:02.193Z",
+    "last_save_at": "2026-07-15T11:59:17.144Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eabe57f385d02c24b4d190a10a2d03ba2bf29aa391c1aeb31dc9714a96a5a3d7",
+    "source_doc_hashes": {
+      "spec.md": "787cdc88f7132f8a37ee55e58ad12b0e658618f3f9cd1708e690d55e2c894d74",
+      "plan.md": "f71bce7cc1677e5a7119948c64a4f9bae8c2e493caaa1f09a776a0bfefb4c53d",
+      "tasks.md": "9cb1266bb6e7510dc786997603933eb192569fd02991a0c10cffaa8ccf28775c",
+      "checklist.md": "882c5f1d4cc1344a5133f28704d27c22e550362da527b8b85e7e9699c2f6f145",
+      "implementation-summary.md": "a33c53270d3f48c5c8c2cea6de80e93277168e4fd5f22a283bb59c5e786b002c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

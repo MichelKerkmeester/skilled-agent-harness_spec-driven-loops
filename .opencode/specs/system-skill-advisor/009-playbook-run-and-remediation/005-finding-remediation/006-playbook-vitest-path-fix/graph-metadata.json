@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
+  "spec_folder": "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
+  "parent_id": "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook vitest path fix",
+      "F5 NC-004 NC-005 vitest",
+      "stale skill-advisor tests path",
+      "F5 plan vitest path",
+      "F5 tasks vitest path",
+      "F5 implementation summary"
+    ],
+    "key_topics": [
+      "playbook",
+      "vitest",
+      "path",
+      "nc-004",
+      "nc-005",
+      "stale",
+      "skill-advisor",
+      "tests",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Vitest Path Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Correct",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Trivial",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "NC-004 (`native-mcp-tools/ambiguous-brief-rendering.md:38`) and NC-005 (`lifecycle-redirect-metadata.md:36`) document a vitest command run from `system-spec-kit/mcpserver` against `skill-advisor/tests/...`, which resolves to NO test files (the tests moved to `system-skill-advisor/mcpserver/tests/` during the skill extraction)",
+    "created_at": "2026-05-26T21:20:49.841Z",
+    "last_save_at": "2026-07-15T11:59:28.964Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1a689930b8dfc0550df16b83deb9d86a3213b1146297acfb70485d9c89ca6cdc",
+    "source_doc_hashes": {
+      "spec.md": "96765bdf00ac82549b4f212ce1c498b3f1b21af7c5af7532dad593762e514a0c",
+      "plan.md": "3ecd2a5548513ae69e63db02a4abddd65b1137add433b115268e2a28c67aa89b",
+      "tasks.md": "bbf2c8eb54e89b945d7c565cd36f31813d52d220a6c9403945b2abb47fad3738",
+      "implementation-summary.md": "2b1ee763175252fb00c588cdb53556111457171e80331a90bd04d664d9974d80"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

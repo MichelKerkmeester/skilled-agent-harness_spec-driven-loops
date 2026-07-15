@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "sessionId": "fanout-gpt55-1-1783437123377-4illnj",
+  "status": "complete",
+  "openQuestions": [
+    {
+      "id": "q-label-approval",
+      "question": "Approve exact labels for the proposed parent-hub ambiguity fixture before freezing it into the 007 ratchet family.",
+      "source": "iterations/iteration-005.md"
+    },
+    {
+      "id": "q-conflict-authoring",
+      "question": "Decide whether any measured overlay conflicts should graduate to live graph-metadata conflicts_with edges.",
+      "source": "iterations/iteration-007.md"
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q-layer-1b",
+      "answer": "Layer-1b remains half-landed: deep-loop-workflows metadata still projects code-audit terms and scorer code compensates with codeAuditDeepReviewPenalty.",
+      "source": "iterations/iteration-001.md"
+    },
+    {
+      "id": "q-vocab-authority",
+      "answer": "Frozen scorer code should retain exact syntax/command anchors; parent-hub vocabulary should move to metadata with cross-hub ownership checks.",
+      "source": "iterations/iteration-002.md"
+    },
+    {
+      "id": "q-projection-guard",
+      "answer": "Guard coverage must mirror advisor projection buckets, not just graph derived.trigger_phrases.",
+      "source": "iterations/iteration-004.md"
+    },
+    {
+      "id": "q-runbook",
+      "answer": "Metadata cleanup must be an atomic reindex, guard, ratchet, and recapture operation.",
+      "source": "iterations/iteration-006.md"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-layer-1b-half-landed",
+      "severity": "P1",
+      "finding": "deep-loop-workflows still projects single-pass code-audit vocabulary while fusion.ts carries a compensating penalty.",
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/graph-metadata.json:80",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts:593"
+      ]
+    },
+    {
+      "id": "f-guard-trigger-only",
+      "severity": "P1",
+      "finding": "parent-hub-vocab-sync checks derived.trigger_phrases but advisor projection also scores intent_signals and derived keyword fields.",
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/parent-hub-vocab-sync.cjs:130",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts:216",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/derived.ts:62"
+      ]
+    },
+    {
+      "id": "f-ambiguity-needs-slice",
+      "severity": "P1",
+      "finding": "Parent-hub compatibility needs a labeled ambiguity slice because existing aggregate accuracy hides contested prompts.",
+      "sources": [
+        ".opencode/specs/system-skill-advisor/016-skill-advisor-tuning/007-eval-hardening/implementation-summary.md:63",
+        ".opencode/specs/system-skill-advisor/016-skill-advisor-tuning/007-eval-hardening/implementation-summary.md:129"
+      ]
+    },
+    {
+      "id": "f-semantic-hygiene-before-weights",
+      "severity": "P2",
+      "finding": "semantic_shadow false-fires should first be addressed through description/trigger hygiene, not lane-weight changes.",
+      "sources": [
+        ".opencode/specs/system-skill-advisor/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze/implementation-summary.md:46",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts:256"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    "Remove codeAuditDeepReviewPenalty before metadata cleanup",
+    "Tune lane weights before adding parent-hub ambiguity labels",
+    "Treat every key_file/source_doc as a user-facing alias",
+    "Author conflicts_with edges for every hub overlap",
+    "Use live SQLite mutation for read-only scorer experiments"
+  ]
+}

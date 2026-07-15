@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code",
+  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code",
+  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "013/009/006 validation cleanup",
+      "advisor extraction cleanup",
+      "remove spec_kit_memory advisor proxy",
+      "system_skill_advisor final validation",
+      "013/009/006 plan",
+      "advisor extraction validation plan",
+      "system_skill_advisor cleanup plan",
+      "013/009/006 tasks",
+      "advisor cleanup tasks",
+      "system_skill_advisor validation tasks",
+      "013/009/006 checklist",
+      "advisor cleanup checklist"
+    ],
+    "key_topics": [
+      "validation",
+      "cleanup",
+      "advisor",
+      "extraction",
+      "remove",
+      "proxy",
+      "final",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr-001",
+      "intentionally"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tools/index.ts",
+      ".claude/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validate Advisor Extraction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remove Deprecated Bridge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "ADR-001 intentionally allowed a short compatibility window where `speckitmemory` could expose advisor proxy tools while consumers moved to the standalone `systemskilladvisor` MCP server",
+    "created_at": "2026-05-14T12:45:00Z",
+    "last_save_at": "2026-07-15T11:59:15.306Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T12:45:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c8b7a6c1568cfc38efce9c1c2fcc969a8b9f8ec6da5b9afd7282df3644bd8ef9",
+    "source_doc_hashes": {
+      "spec.md": "f569e04697e709514f10e3afcfffc4d1e036cbda969735d047968b5edba24b98",
+      "plan.md": "2a6659618cb2699b7593e15d711c0b2962db13bf455ce9540d2f350863d3c3d5",
+      "tasks.md": "28a0d28193f5206c95f330b7bbc6da852229be4c41dfe7d2b5d5cdc6be8c7ed1",
+      "checklist.md": "497c43294866b3f23eb8501b1941c7b95ada0bfd0f8026e12405148ddd23601d",
+      "decision-record.md": "32f53851540d402de809e00e5be05f658d471c9d00a29ae518c2f000e4346e91",
+      "implementation-summary.md": "1af63d6aac52166c4ad9996c64990051eb0debf9f5f7055f1c57548576da3d13"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

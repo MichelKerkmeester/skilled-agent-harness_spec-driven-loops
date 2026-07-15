@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/007-advisor-bfs-consolidation",
+  "spec_folder": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/007-advisor-bfs-consolidation",
+  "parent_id": "system-skill-advisor/013-advisor-and-codegraph-migrated-items",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor BFS consolidation",
+      "transitive_path subgraph BFS",
+      "shared graph traversal helper",
+      "skill graph queries BFS",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "bfs",
+      "consolidation",
+      "subgraph",
+      "shared",
+      "graph",
+      "traversal",
+      "helper",
+      "skill",
+      "queries",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/bfs-traversal.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-bfs-traversal.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-queries-parity.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "bfs-traversal.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/bfs-traversal.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-queries.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-bfs-traversal.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-bfs-traversal.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-queries-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-queries-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Query",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor hand-rolls BFS twice for `transitivepath` and `subgraph` (`lib/skill-graph/skill-graph-queries.ts:296-354` and `:376-423`), duplicating caps and visited logic with no shared truncation signal",
+    "created_at": "2026-06-10T19:24:10Z",
+    "last_save_at": "2026-07-15T11:59:32.691Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:58cba361290880311d4e24a72e0fad51cf7e625ed627da3274834ea6e403e157",
+    "source_doc_hashes": {
+      "spec.md": "f5b8a2929d8db0f1d02ccc24c2261c96b05320139d0dc3760db6a488e329b7cc",
+      "plan.md": "3c30b6377dd45a43bc8ab608602cc72ac9237d82d4c49c42b730acd964282fbf",
+      "tasks.md": "666a8fafb26714c846480e5d3db832249a8d3e9016f74a4df5e7e97665862bd1",
+      "implementation-summary.md": "645eb615ffb54f5f72f9e1d3c43faf8f656348fc89b91e08fa910788db3efd61"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

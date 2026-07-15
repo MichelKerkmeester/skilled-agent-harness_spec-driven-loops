@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon",
+  "description": "The Skill Advisor ranks skills by metadata similarity (the 5-lane fusion scorer), not by whether the recommended skill has historically WORKED on",
+  "keywords": [
+    "skill",
+    "advisor",
+    "ranks",
+    "skills",
+    "metadata",
+    "similarity",
+    "5-lane",
+    "fusion",
+    "scorer",
+    "whether",
+    "recommended",
+    "historically",
+    "worked"
+  ],
+  "lastUpdated": "2026-07-06T16:57:18.763Z",
+  "specId": "007",
+  "folderSlug": "outcome-weighted-ranking-followon",
+  "parentChain": [
+    "system-skill-advisor",
+    "016-skill-advisor-tuning",
+    "002-skill-advisor-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

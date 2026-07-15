@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-skill-advisor/004-skill-graph/001-skill-graph-metadata-routing-boosts/research/iterations",
+  "description": "Research iteration artifacts for 011-skill-advisor-graph.",
+  "keywords": [
+    "research",
+    "iteration",
+    "artifacts",
+    "011-skill-advisor-graph",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "iterations"
+  ],
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
+  "specId": "011",
+  "folderSlug": "skill-advisor-graph-iterations",
+  "parentChain": [
+    "system-skill-advisor",
+    "004-skill-graph",
+    "004-skill-graph-metadata-routing-boosts",
+    "research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "migration": {
+    "flattened_at": "2026-04-21T13:00:00Z",
+    "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/research/011-skill-advisor-graph/iterations",
+    "new_spec_folder": "system-spec-kit/026-graph-and-context-optimization/research/011-skill-advisor-graph-pt-01/iterations",
+    "layout": "phase-root-children"
+  }
+}

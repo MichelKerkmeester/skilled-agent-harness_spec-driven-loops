@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/007-skill-advisor-production-hardening/006-codex-native-startup-advisor-hooks",
+  "spec_folder": "system-skill-advisor/007-skill-advisor-production-hardening/006-codex-native-startup-advisor-hooks",
+  "parent_id": "system-skill-advisor/007-skill-advisor-production-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "codex hook parity",
+      "codex cli hooks",
+      "codex startup context",
+      "codex advisor brief",
+      "codex userpromptsubmit",
+      "codex sessionstart",
+      "026/009/005",
+      "026/009/005 plan",
+      "codex hook parity plan",
+      "026/009/005 tasks",
+      "codex hook parity tasks",
+      "026/009/005 checklist"
+    ],
+    "key_topics": [
+      "codex",
+      "hook",
+      "parity",
+      "cli",
+      "hooks",
+      "startup",
+      "context",
+      "advisor",
+      "brief",
+      "userpromptsubmit",
+      "sessionstart",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+      "hooks/claude/user-prompt-submit.ts",
+      "decision-record.md",
+      "hooks/codex/user-prompt-submit.ts",
+      "hooks/codex/session-start.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "session-start.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Parity Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Superset",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Investigation Confirmed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fetch Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inspect Superset",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Codex CLI sessions do not receive the two payloads Claude Code receives:",
+    "created_at": "2026-04-22T06:39:13.790Z",
+    "last_save_at": "2026-07-15T11:59:24.409Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:98c462305735c5e5e168c6894e27d3ea04e44793593632acb32291d3b7740ed8",
+    "source_doc_hashes": {
+      "spec.md": "3e6fac999a9b0aaef59672d25e86161793f10b7721ddb99739ffb7b2b52e5706",
+      "plan.md": "9d4ebbbe9fa4c3e1e7fe70c2b385d4fe2117b7d6f3d9bf2bfbf2b76427de76f4",
+      "tasks.md": "fa1199a690473f718350782c8beb23b570066888687c7c0e103cca09446b92e9",
+      "checklist.md": "5b3f1cf27eacd856b02aa3e30ea5e5329881996a02cfad4f4c58c008f222805e",
+      "decision-record.md": "2b7024cb10777f153b0f47f69e40c85d763eb01643615673255399511fdd42d4",
+      "implementation-summary.md": "9cb5602b1addad1c360235ca843ceb99d14ea5b6d2b47038e1ad5bcfa07318cb",
+      "research/research.md": "fe148b5335193abece78c9dcde80d532175e10c896502eb1050de38538d19919"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

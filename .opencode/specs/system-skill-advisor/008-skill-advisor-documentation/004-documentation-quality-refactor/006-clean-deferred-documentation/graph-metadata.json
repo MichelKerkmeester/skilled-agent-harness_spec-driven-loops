@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
+  "spec_folder": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
+  "parent_id": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-advisor deferred cleanup",
+      "006 deferred cleanup",
+      "oxford comma sweep skill-advisor",
+      "F30 F33 cleanup",
+      "006 deferred cleanup plan",
+      "006 deferred cleanup tasks",
+      "006 deferred cleanup summary"
+    ],
+    "key_topics": [
+      "skill-advisor",
+      "deferred",
+      "cleanup",
+      "oxford",
+      "comma",
+      "sweep",
+      "f30",
+      "f33",
+      "plan",
+      "tasks",
+      "summary",
+      "children"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Children",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Each Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Clear",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Closed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Children 002-005 deferred a set of findings from the 001 research synthesis",
+    "created_at": "2026-05-16T00:00:00Z",
+    "last_save_at": "2026-07-15T11:59:26.263Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cccb559e65a5968d988e2bbe898082c542b942d735b6ffd31985fc6971242c07",
+    "source_doc_hashes": {
+      "spec.md": "e0fc37267c8f426aee7563465468d9362c8e947a0611576799b6f17ec666cd89",
+      "plan.md": "6c1f30dd14db9487e93e7ee2464f1548011fe65d2b36df880a08fc503efa9fc3",
+      "tasks.md": "266ae8a088c7978b7c1f54984d53c5f1c66781e7e4dd73b802d7991e3f874922",
+      "implementation-summary.md": "222a4b749a82afbdc5aef16f0a4249f9be689da77a06c1661503867b0213933b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor",
+  "description": "After 006 closed Tier A + Tier B + bulk Oxford comma sweep, the remaining deferred backlog covers: 135 semicolons (context-aware HVR sweep), F34",
+  "keywords": [
+    "closed",
+    "tier",
+    "bulk",
+    "oxford",
+    "comma",
+    "sweep",
+    "remaining",
+    "deferred",
+    "backlog",
+    "covers",
+    "semicolons",
+    "context-aware",
+    "hvr",
+    "f34"
+  ],
+  "lastUpdated": "2026-07-09T10:02:50.091Z",
+  "specId": "007",
+  "folderSlug": "finalize-documentation-quality-refactor",
+  "parentChain": [
+    "system-skill-advisor",
+    "008-skill-advisor-documentation",
+    "004-documentation-quality-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/010-skill-advisor-embedder-stack/007-skill-advisor-compat-contract-consolidation",
+  "description": "Wire 5 production-path inline 0.8/0.35 sites in skill-advisor to import from SKILL_ADVISOR_COMPAT_CONTRACT.defaults.",
+  "keywords": [
+    "wire",
+    "production-path",
+    "inline",
+    "sites",
+    "skill-advisor",
+    "import",
+    "defaults"
+  ],
+  "lastUpdated": "2026-07-09T10:02:50.273Z",
+  "specId": "007",
+  "folderSlug": "skill-advisor-compat-contract-consolidation",
+  "parentChain": [
+    "system-skill-advisor",
+    "010-skill-advisor-embedder-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

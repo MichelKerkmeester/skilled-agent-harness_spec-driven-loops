@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration",
+  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration",
+  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "move skill graph tools to advisor",
+      "skill_graph tools advisor ownership",
+      "013/009/008",
+      "system_skill_advisor skill_graph",
+      "skill graph advisor move plan",
+      "013/009/008 plan",
+      "skill_graph proxy cleanup",
+      "013/009/008 tasks",
+      "skill graph advisor move tasks",
+      "013/009/008 checklist",
+      "skill graph advisor move verification",
+      "013/009/008 decision record"
+    ],
+    "key_topics": [
+      "move",
+      "skill",
+      "graph",
+      "tools",
+      "advisor",
+      "ownership",
+      "plan",
+      "proxy",
+      "cleanup",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tools/index.ts",
+      "schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/commands/doctor/update.md",
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
+      ".opencode/commands/doctor/assets/doctor_update.yaml",
+      ".opencode/install_guides/SET-UP - Skill Advisor.md",
+      "handlers/index.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_skill-advisor.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_update.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_update.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - Skill Advisor.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - Skill Advisor.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Reality Targeted",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor extraction is structurally complete, but the four `skillgraph` MCP tools still live under `speckitmemory`",
+    "created_at": "2026-05-14T00:00:00Z",
+    "last_save_at": "2026-07-15T11:59:15.658Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T00:00:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e8fe051675deb9cef777a5469dc9d235a2abb3f0a9934545c27b2b3c433b9fbb",
+    "source_doc_hashes": {
+      "spec.md": "574dc1709820f56a864239c6013cab15048ae3e4829f1594728423ca444180f7",
+      "plan.md": "8aeb4c755a97d4c728131540b9683c8b5b7a209a43e5cc551dd33b882a00968e",
+      "tasks.md": "4dbcb55d31dcb9cdf8f931dea2b72e79b5b644270aa02f53a73a1ac4c25e1b55",
+      "checklist.md": "dd2eae48a24c1f74eaddd5bc3484e0df9fbdacf755deb406b304b84f3d60f003",
+      "decision-record.md": "db4a600e07a82fc4960ccd752cb6b018adf292847366af5ee6863683c93d7da5",
+      "implementation-summary.md": "a28b5efe4a498db1b46428f9e4fc78f8dafc8ee3a2b4fd4da7b17f91565198d9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

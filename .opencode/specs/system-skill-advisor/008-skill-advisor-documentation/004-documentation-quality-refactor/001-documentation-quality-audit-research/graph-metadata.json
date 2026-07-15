@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research",
+  "spec_folder": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research",
+  "parent_id": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-advisor docs audit",
+      "20-iter deep-research skill-advisor",
+      "cli-devin SWE 1.6 audit",
+      "skill-advisor findings ledger",
+      "001 audit research plan",
+      "20-iter deep-research plan skill-advisor",
+      "001 audit research tasks",
+      "001 audit research summary"
+    ],
+    "key_topics": [
+      "skill-advisor",
+      "docs",
+      "audit",
+      "20-iter",
+      "deep-research",
+      "cli-devin",
+      "swe",
+      "findings",
+      "ledger",
+      "research",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "correct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-skill-advisor docs need a coordinated audit before any rewrite/alignment work begins",
+    "created_at": "2026-05-16T00:00:00Z",
+    "last_save_at": "2026-07-15T11:59:25.515Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:970268ed1edea9025c390210fa99d92d2858bc49181349278c67e6771c7ed3f5",
+    "source_doc_hashes": {
+      "spec.md": "0aae041b1cb423359de128c9e7b2c1e713bbd6b301108003f1c2883b81f73316",
+      "plan.md": "86e067353c83a1e2a96f8d2450371350cc807d1b52942b282c76dae97181237c",
+      "tasks.md": "71389e2c1abe5dcf9fdae8daf262cbe98d87b1b6198e929b8c861b405d5324db",
+      "implementation-summary.md": "a015538b28e47770bfdf6e6283f07c02087e3a57827217c8c7263247d8ebd1d0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

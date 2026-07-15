@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/003-skill-metadata-embedding-quality-audit",
+  "spec_folder": "system-skill-advisor/004-skill-graph/003-skill-metadata-embedding-quality-audit",
+  "parent_id": "system-skill-advisor/004-skill-graph",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill metadata quality audit",
+      "graph metadata trigger phrases audit",
+      "skill description embedding quality",
+      "advisor recall improvement",
+      "skill metadata audit plan",
+      "skill metadata audit tasks",
+      "skill metadata audit summary"
+    ],
+    "key_topics": [
+      "skill",
+      "metadata",
+      "quality",
+      "audit",
+      "graph",
+      "trigger",
+      "phrases",
+      "description",
+      "embedding",
+      "advisor",
+      "recall",
+      "improvement"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/audit-report.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-report.md",
+        "kind": "doc",
+        "path": "research/audit-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "improved",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "concrete",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "current",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 015/004 seeded sweep proved that the cosine lane cannot flip routing decisions on the current 24-prompt corpus regardless of weight (V0–V6, including V6-cosine-dominant at semantic=0.30)",
+    "created_at": "2026-05-14T00:30:00Z",
+    "last_save_at": "2026-07-15T11:59:13.446Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T00:30:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aea9ff04425c040c5a8e3ebcf8b3299e41325e73bb0169e2230f07344e2fa4ca",
+    "source_doc_hashes": {
+      "spec.md": "c2ffb53c949b00dd8f58c9f171032d9ce61199f7ecaf270ab311bd148d0a8f7f",
+      "plan.md": "acf1c0ff9ff59dcbff1bc85910b12186e1ef34b06ca1aaa12cb1bf7a0290a98c",
+      "tasks.md": "ee8df21a8ff347643185707386c4f714382f57e14477cf27d3c535cadf8f0836",
+      "implementation-summary.md": "4ba4561154e377b59bc70957b08cba24e569e3b57eeaae603371ae3dd302fc29"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

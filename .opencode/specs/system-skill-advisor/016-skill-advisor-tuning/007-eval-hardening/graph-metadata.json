@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/016-skill-advisor-tuning/007-eval-hardening",
+  "spec_folder": "system-skill-advisor/016-skill-advisor-tuning/007-eval-hardening",
+  "parent_id": "system-skill-advisor/016-skill-advisor-tuning",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor eval hardening",
+      "scorer regression gate",
+      "ratcheted accuracy baseline",
+      "independent holdout gate",
+      "empirical ambiguity slice",
+      "advisor eval hardening plan",
+      "ratcheted baseline architecture",
+      "harness-regime capture",
+      "advisor eval hardening tasks",
+      "ratchet baseline task breakdown",
+      "advisor eval hardening checklist",
+      "ratchet baseline verification checklist"
+    ],
+    "key_topics": [
+      "advisor",
+      "eval",
+      "hardening",
+      "scorer",
+      "regression",
+      "gate",
+      "ratcheted",
+      "accuracy",
+      "baseline",
+      "independent",
+      "holdout",
+      "empirical"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Scorer Eval Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gates Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Confirm",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "sha256",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The scorer's release gate measured only aggregate top-1 accuracy over the full corpus, plus a synthetic dead-tie stability check and a holdout selected by taking every fifth row of the same 193-row training corpus",
+    "created_at": "2026-07-07T07:15:00.000Z",
+    "last_save_at": "2026-07-15T11:59:35.467Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e07c9cd4af501b2170191f941545988781e53438eb18979f86480ff73c493f0d",
+    "source_doc_hashes": {
+      "spec.md": "a21c9b78408361d415ea006ac5a34c800b51c6d2cfa7b02c73eb4c803ddb71f7",
+      "plan.md": "04d6873a6d18891c0563880227afa40d1dbbc10c0525cf0b34ea3ed2b234c280",
+      "tasks.md": "8c78215c71f8d4f23a979e7c86bab95219583780745d96c21000b1620e6c4740",
+      "checklist.md": "6878285559885336cf46894bee3537de2d95f8adece2f398ab7f42cf987ff18c",
+      "decision-record.md": "64112e2d2e91e1bf8c46cec7861ca06a4555cbb13743af08db2b9082c9f88198",
+      "implementation-summary.md": "292c305b118664c44cc580c273c8273dbe92eef166cf47939a14ab5306756173"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync",
+  "description": "The live `semanticshadow` lane is an intentional promotion to weight 0.05 / `shadowOnly:false` / `live:true` (source of truth",
+  "keywords": [
+    "live",
+    "semanticshadow",
+    "lane",
+    "intentional",
+    "promotion",
+    "weight",
+    "shadowonly",
+    "false",
+    "true",
+    "source",
+    "truth"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.014Z",
+  "specId": "004",
+  "folderSlug": "semantic-shadow-doc-sync",
+  "parentChain": [
+    "system-skill-advisor",
+    "009-playbook-run-and-remediation",
+    "005-finding-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

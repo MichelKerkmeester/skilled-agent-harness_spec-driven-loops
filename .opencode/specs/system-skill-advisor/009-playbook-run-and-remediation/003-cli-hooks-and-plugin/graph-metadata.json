@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/009-playbook-run-and-remediation/003-cli-hooks-and-plugin",
+  "spec_folder": "system-skill-advisor/009-playbook-run-and-remediation/003-cli-hooks-and-plugin",
+  "parent_id": "system-skill-advisor/009-playbook-run-and-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook cli hooks scenarios",
+      "CL scenarios skill advisor",
+      "028 phase 003",
+      "playbook cli hooks plan",
+      "028 phase 003 plan",
+      "playbook cli hooks tasks",
+      "028 phase 003 tasks",
+      "playbook cli hooks checklist",
+      "CL verdicts checklist",
+      "playbook cli hooks summary",
+      "CL results summary"
+    ],
+    "key_topics": [
+      "playbook",
+      "cli",
+      "hooks",
+      "scenarios",
+      "skill",
+      "advisor",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "verdicts",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-skill-advisor-bridge.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Run Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Confirm",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Pipe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pipe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The CLI hook scenarios validate the prompt-time advisor adapters for Claude, Gemini, Codex and Devin runtimes plus the OpenCode plugin bridge",
+    "created_at": "2026-05-26T20:10:28.064Z",
+    "last_save_at": "2026-07-15T11:59:27.779Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1a8a971742261386b280c63a398ee73930b886b9b728bd49488c4662bd0ae114",
+    "source_doc_hashes": {
+      "spec.md": "36b1943bc9aa490bb33e6e1b4dbe28d1d761c2d4b8b7e36c4852ae214961b0b1",
+      "plan.md": "2ba1218a0f5e52159dd3bbfce3b1e67a1b252129dc9ce66eeefc2c564db689ef",
+      "tasks.md": "8a98dc11e4fc61b51f223ab8337b86c96e2ededc66ed8c8ead3ed8bb5c03038b",
+      "checklist.md": "01c89af8133e9ad10c88c930ba8cc80b881207cc2239fa109ca06a4398437242",
+      "implementation-summary.md": "13b46f32b7b7e56d2e6f2ed58cdce869c6ecc6188bd63111c82be0dd37183441"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

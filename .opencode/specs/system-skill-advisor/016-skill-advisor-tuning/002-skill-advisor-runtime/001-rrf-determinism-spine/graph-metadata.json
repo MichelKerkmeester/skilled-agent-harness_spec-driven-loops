@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine",
+  "spec_folder": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine",
+  "parent_id": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor rrf determinism spine",
+      "skill advisor fuseResultsMulti import",
+      "advisor weighted sum to rank fusion",
+      "advisor byte-stable tiebreak",
+      "graph_causal signed score conflict re-rank",
+      "advisor rrf determinism spine plan",
+      "skill advisor fuseResultsMulti import sequencing",
+      "advisor weighted sum to rank fusion plan",
+      "graph_causal conflict re-rank plan",
+      "tasks advisor rrf determinism spine",
+      "skill advisor fuseResultsMulti import tasks",
+      "advisor conflict re-rank task breakdown"
+    ],
+    "key_topics": [
+      "advisor",
+      "rrf",
+      "determinism",
+      "spine",
+      "skill",
+      "fuseresultsmulti",
+      "import",
+      "weighted",
+      "sum",
+      "rank",
+      "fusion",
+      "byte-stable"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "shared/algorithms/rrf-fusion.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Determinism Spine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal Baseline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Skill Advisor fuses five lanes (`explicitauthor 0.42` / `lexical 0.28` / `graphcausal 0.13` / `derivedgenerated 0.12` / `semanticshadow 0.05`, `lane-registry.ts:8-19`) via a raw-score weighted SUM that mixes incomparable scales, per skill `weightedScore = rawScore  weights[lane]` (`fusion.ts:366`), fused `score = contributions.reduce((t,c) => t + c.weightedScore, 0)` (`fusion.ts:372`)",
+    "created_at": "2026-06-19T05:52:29.583Z",
+    "last_save_at": "2026-07-15T11:59:33.771Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cd92ced0eaeb26543171fc59fba36b3f0cd9e36f1facdf685cd1b8ed2867058b",
+    "source_doc_hashes": {
+      "spec.md": "7b3dca69eae2c13cbeddb3d7c954ed3b17593e2e1a7af0ff561f02f4278a42ac",
+      "plan.md": "8b672bc013de8aef4228562eaafe8336bfbeddeae2f922f91e70da24d1ca1241",
+      "tasks.md": "8f7997226528459df12b3b8568b03d156d347e931db689b38ab3dbf8ae5f8251",
+      "checklist.md": "28cb850ad9362aabc6e1b4d46d3639a8a7a549d20213b1d596daa9c9a9298b34",
+      "implementation-summary.md": "499a3560fe1560107e5984245b25854a4b59a21d163cc85234eacc2058bdeafb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

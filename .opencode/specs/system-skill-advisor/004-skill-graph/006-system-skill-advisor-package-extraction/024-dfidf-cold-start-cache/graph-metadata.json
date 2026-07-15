@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/024-dfidf-cold-start-cache",
+  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/024-dfidf-cold-start-cache",
+  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 dfidf follow-on",
+      "dfidf cold start cache",
+      "corpus stats cache"
+    ],
+    "key_topics": [
+      "dfidf",
+      "follow-on",
+      "cold",
+      "start",
+      "cache",
+      "corpus",
+      "stats",
+      "advisor",
+      "idf",
+      "module",
+      "computed",
+      "document"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/corpus/df-idf.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/cache/df-idf-cache.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "df-idf.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/corpus/df-idf.ts",
+        "source": "derived"
+      },
+      {
+        "name": "df-idf-cache.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/cache/df-idf-cache.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Persist",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Adds",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Small",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor corpus DF/IDF module computed document frequencies and IDF values from the provided corpus every time",
+    "created_at": "2026-05-15T10:50:17Z",
+    "last_save_at": "2026-07-15T11:59:18.548Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:46b1c94cda7d19aa426e8a60e694ff5e6231c7ad377c0a267f09fdff6b4cf9d6",
+    "source_doc_hashes": {
+      "spec.md": "cb100d319198f3011aa7ab6a26063eadaf67d67a88b3bf4a8e4017d3e4f30a62",
+      "plan.md": "6177f994b31ef5e8aa9cd687604bebef7a1c86d29680610fb8ddb83eeedebf4b",
+      "tasks.md": "1b8a8ace3a391af8bee178254749c01ab42bde5724e43974314e834523d7dcf1",
+      "checklist.md": "d9be8ba8a86262ad422d06cda32786d1bef820b4f1ae7d02ace429b6a71f15ae",
+      "implementation-summary.md": "45e234acebe2d4b9623c7aa13ad3607d27fc83a04fecce1194fc43ec02d35691"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

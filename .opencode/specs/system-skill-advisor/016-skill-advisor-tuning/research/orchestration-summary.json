@@ -1,0 +1,165 @@
+{
+  "run_id": "1783437123377-4illnj",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-skill-advisor/016-skill-advisor-tuning",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-skill-advisor/016-skill-advisor-tuning/research",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "gpt55-1",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-skill-advisor/016-skill-advisor-tuning/research/lineages/gpt55-1/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-07T15:12:03.381Z",
+        "end_at_iso": "2026-07-07T15:21:12.178Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 11,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T12:01:00.000Z",
+          "deltaMs": 11343381
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T12:02:00.000Z",
+          "deltaMs": 11283381
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T12:03:00.000Z",
+          "deltaMs": 11223381
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T12:04:00.000Z",
+          "deltaMs": 11163381
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T12:05:00.000Z",
+          "deltaMs": 11103381
+        }
+      ]
+    },
+    {
+      "label": "gpt55-2",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-skill-advisor/016-skill-advisor-tuning/research/lineages/gpt55-2/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-07T15:12:03.385Z",
+        "end_at_iso": "2026-07-07T15:20:53.768Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 11,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T00:01:00.000Z",
+          "deltaMs": 54543385
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T00:02:00.000Z",
+          "deltaMs": 54483385
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T00:03:00.000Z",
+          "deltaMs": 54423385
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T00:04:00.000Z",
+          "deltaMs": 54363385
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T00:05:00.000Z",
+          "deltaMs": 54303385
+        }
+      ]
+    },
+    {
+      "label": "gpt55-3",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-skill-advisor/016-skill-advisor-tuning/research/lineages/gpt55-3/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-07T15:12:03.387Z",
+        "end_at_iso": "2026-07-07T15:21:24.255Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 11,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T00:01:00.000Z",
+          "deltaMs": 54543387
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T00:02:00.000Z",
+          "deltaMs": 54483387
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T00:03:00.000Z",
+          "deltaMs": 54423387
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T00:04:00.000Z",
+          "deltaMs": 54363387
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-07-07T00:05:00.000Z",
+          "deltaMs": 54303387
+        }
+      ]
+    }
+  ]
+}

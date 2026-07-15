@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/004-standalone-mcp-launcher-runtime-configs",
+  "description": "Child 003 moved advisor source and DB ownership into the dedicated `system-skill-advisor` package, but the runtime still has no standalone advisor",
+  "keywords": [
+    "child",
+    "moved",
+    "advisor",
+    "source",
+    "ownership",
+    "dedicated",
+    "system-skill-advisor",
+    "package",
+    "runtime",
+    "still",
+    "standalone"
+  ],
+  "lastUpdated": "2026-07-09T10:02:49.597Z",
+  "specId": "004",
+  "folderSlug": "standalone-mcp-launcher-runtime-configs",
+  "parentChain": [
+    "system-skill-advisor",
+    "004-skill-graph",
+    "006-system-skill-advisor-package-extraction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/009-playbook-run-and-remediation/002-mcp-native-scenarios",
+  "spec_folder": "system-skill-advisor/009-playbook-run-and-remediation/002-mcp-native-scenarios",
+  "parent_id": "system-skill-advisor/009-playbook-run-and-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook mcp native scenarios",
+      "NC scenarios skill advisor",
+      "028 phase 002",
+      "playbook mcp native plan",
+      "028 phase 002 plan",
+      "playbook mcp native tasks",
+      "028 phase 002 tasks",
+      "playbook mcp native checklist",
+      "NC verdicts checklist",
+      "playbook mcp native summary",
+      "NC results summary"
+    ],
+    "key_topics": [
+      "playbook",
+      "mcp",
+      "native",
+      "scenarios",
+      "skill",
+      "advisor",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "verdicts",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "advisor-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Native Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Run Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Confirm",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Call",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Tool",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The native MCP tool scenarios NC-001..009 exercise `advisorrecommend`, `advisorstatus`, `advisorvalidate`, `advisorrebuild`, `skillgraphstatus/query/validate`",
+    "created_at": "2026-05-26T20:10:25.890Z",
+    "last_save_at": "2026-07-15T11:59:27.623Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0465f9800f2bbb063c20058bbe2087959d1bf159afd50395ba4408a38e498f19",
+    "source_doc_hashes": {
+      "spec.md": "b83509fbc904369c60c1eb11869e227860f44479999a4353b4b3389c30faa66b",
+      "plan.md": "406e9db7dd49ed8277df8c6c7d03f517237fd43544d01e44b051c7eca73754d4",
+      "tasks.md": "9691f6df569a356b9cda7c7a1d459c0f80df9e614b76e64cfe837377c887a816",
+      "checklist.md": "416c009826335732dd0272c6523d8456828b9f41a8fb1829534346e39abf1420",
+      "implementation-summary.md": "11fbba1432ff97a4c583809fb0762f883e44a83a621c389d565e2778d09897b0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

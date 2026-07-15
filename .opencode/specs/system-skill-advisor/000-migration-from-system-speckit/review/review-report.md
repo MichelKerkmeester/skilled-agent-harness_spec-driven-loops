@@ -13,17 +13,17 @@ The migration is structurally incomplete. No P0 blocker was found, and no orphan
 ## Findings
 
 ### P1-001 — Stale pre-move children_ids in skill-advisor CLI parent
-- File: `.opencode/specs/system-skill-advisor/008-skill-advisor-cli/graph-metadata.json:8`
+- File: `.opencode/specs/system-skill-advisor/011-skill-advisor-cli/graph-metadata.json:8`
 - Issue: lines 8-11 still point at old `system-spec-kit/027-xce-research-based-refinement/.../003-skill-advisor-cli/...` children that do not exist on disk.
-- Exact fix needed: remove lines 8-11 or replace them with the existing `system-skill-advisor/008-skill-advisor-cli/{000,001,002,003}-...` children already present at lines 12-15.
+- Exact fix needed: remove lines 8-11 or replace them with the existing `system-skill-advisor/011-skill-advisor-cli/{000,001,002,003}-...` children already present at lines 12-15.
 
 ### P1-002 — Migrated research iteration metadata still declares old system-spec-kit paths
-- File: `.opencode/specs/system-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts/research/iterations/graph-metadata.json:3`
+- File: `.opencode/specs/system-skill-advisor/004-skill-graph/004-skill-graph-metadata-routing-boosts/research/iterations/graph-metadata.json:3`
 - Issue: `packet_id` and `spec_folder` point at `system-spec-kit/026-graph-and-context-optimization/research/011-skill-advisor-graph-pt-01/iterations`, not the actual folder.
-- Exact fix needed: set both fields to `system-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts/research/iterations`.
-- File: `.opencode/specs/system-skill-advisor/003-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning/research/iterations/graph-metadata.json:3`
+- Exact fix needed: set both fields to `system-skill-advisor/004-skill-graph/004-skill-graph-metadata-routing-boosts/research/iterations`.
+- File: `.opencode/specs/system-skill-advisor/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning/research/iterations/graph-metadata.json:3`
 - Issue: `packet_id` and `spec_folder` point at `system-spec-kit/026-graph-and-context-optimization/research/013-advisor-phrase-booster-tailoring-pt-01/iterations`, not the actual folder.
-- Exact fix needed: set both fields to `system-skill-advisor/003-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning/research/iterations`.
+- Exact fix needed: set both fields to `system-skill-advisor/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning/research/iterations`.
 
 ### P1-003 — Touched system-speckit parents retain non-existent system-spec-kit children_ids
 - Files: `.opencode/specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/graph-metadata.json:6`, `.opencode/specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/graph-metadata.json:6`, `.opencode/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/graph-metadata.json:6`, `.opencode/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/graph-metadata.json:6`, and `.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/graph-metadata.json:7`.

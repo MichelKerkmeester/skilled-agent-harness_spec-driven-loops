@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/022-plugin-bridge-unit-test-isolation",
+  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/022-plugin-bridge-unit-test-isolation",
+  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 plugin bridge follow-on",
+      "plugin bridge unit isolation",
+      "bridge subprocess smoke"
+    ],
+    "key_topics": [
+      "plugin",
+      "bridge",
+      "follow-on",
+      "unit",
+      "isolation",
+      "subprocess",
+      "smoke",
+      "packet",
+      "deferred",
+      "because",
+      "behavioral",
+      "tests"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge-smoke.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-bridge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-bridge-smoke.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge-smoke.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Converts",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Small",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 018 deferred plugin bridge unit isolation because behavioral tests still spawned the bridge process for every assertion",
+    "created_at": "2026-05-15T10:50:15Z",
+    "last_save_at": "2026-07-15T11:59:18.186Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6973ab2e302c313cdfbaa327f1bd5b0819cf5242dfca5c036268da40c2486af7",
+    "source_doc_hashes": {
+      "spec.md": "d472c9fe6f50bbcc7e6b96fb3e1374c3b529beb88fd73b219227f4ff6e61b63d",
+      "plan.md": "6c4cf57c6be97edfe98fcf838aa2f8993fdc39369d76f5f5af9ef16ff7a4ade3",
+      "tasks.md": "50228c6fcbfb3a7eac189efdd4b97d8a8a03d918e7157138ea54818c810eee32",
+      "checklist.md": "1c89b3e184dd69f8ae2b5ffabd6b16f0c26ee478096c0cf1131057afe30732a3",
+      "implementation-summary.md": "96692d68ace2d5360c0c151636ec6722f43884314550bf742f018770a93067fa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

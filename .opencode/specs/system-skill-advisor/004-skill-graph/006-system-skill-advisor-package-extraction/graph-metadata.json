@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "parent_id": "system-skill-advisor/004-skill-graph",
+  "children_ids": [
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/002-system-skill-advisor-package-scaffold",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/003-advisor-source-db-tests-migration",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/004-standalone-mcp-launcher-runtime-configs",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/009-fix-script-filesystem-scope",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/010-skill-id-field-rename",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/013-remove-spec-kit-references",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/018-fix-followup-p2-findings-for-package-extraction",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/021-codegraph-rpc-surface",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/022-plugin-bridge-unit-test-isolation",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/023-subprocess-environment-whitelist",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/024-dfidf-cold-start-cache",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/025-parent-documentation-drift-refresh",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/028-generated-js-declaration-alignment",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/029-python-package-header-policy",
+    "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/030-any-type-justification-sweep"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system skill advisor extraction",
+      "skill advisor package move",
+      "skill advisor own skill folder",
+      "advisor mcp server separation",
+      "013/009 handover",
+      "skill advisor extraction handover",
+      "resume 013/009",
+      "advisor follow-on",
+      "system_skill_advisor next steps"
+    ],
+    "key_topics": [
+      "system",
+      "skill",
+      "advisor",
+      "extraction",
+      "package",
+      "move",
+      "own",
+      "folder",
+      "mcp",
+      "server",
+      "separation",
+      "handover"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-extraction-design-and-adr/research/standalone-mcp-discussion.md",
+      "001-extraction-design-and-adr/decision-record.md",
+      ".codex/config.toml",
+      ".claude/mcp.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "standalone-mcp-discussion.md",
+        "kind": "doc",
+        "path": "001-extraction-design-and-adr/research/standalone-mcp-discussion.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hard Operator Constraints The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Standalone Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "With Legacy Tool Bridge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover Document",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "From Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "To Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Completed",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Migrate the skill advisor subsystem out of system-spec-kit's MCP server into a dedicated `.opencode/skills/system-skill-advisor/` package with its own SKILL.md, references, manual_testing_playbook, feature_catalog, and a clear MCP server integration story.",
+    "created_at": "2026-05-14T02:00:00Z",
+    "last_save_at": "2026-07-15T11:59:13.964Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": "2026-05-14T02:00:00Z",
+    "source_docs": [
+      "spec.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:82376c140ec80aa7e85deaef0b112b8e5a5b8b5644d1311bb1770b9904a09430",
+    "source_doc_hashes": {
+      "spec.md": "49372a51b468290192fad59a17256b9dd010abdf9bf43902a564db154fecb2c5",
+      "handover.md": "73bf39ccc496d34bfd8bac0b9f83fdf9f288df86683455354bc960b9620c3376"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

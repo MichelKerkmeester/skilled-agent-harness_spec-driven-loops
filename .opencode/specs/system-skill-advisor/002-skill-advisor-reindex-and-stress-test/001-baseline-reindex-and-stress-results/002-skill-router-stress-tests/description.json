@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
+  "description": "Stress-test SKILL.md content + skill router routing efficiency via 6+ manual playbook CP-XXX scenarios dispatched across 3 external CLI executors",
+  "keywords": [
+    "stress-test",
+    "skill",
+    "content",
+    "router",
+    "routing",
+    "efficiency",
+    "via",
+    "manual",
+    "playbook",
+    "cp-xxx",
+    "scenarios",
+    "dispatched",
+    "across",
+    "external",
+    "cli",
+    "executors"
+  ],
+  "lastUpdated": "2026-07-09T10:02:45.416Z",
+  "specId": "002",
+  "folderSlug": "skill-router-stress-tests",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "002-skill-advisor-reindex-and-stress-test",
+    "001-baseline-reindex-and-stress-results"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

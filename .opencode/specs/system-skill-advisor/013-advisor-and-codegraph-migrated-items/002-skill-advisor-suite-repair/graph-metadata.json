@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/002-skill-advisor-suite-repair",
+  "spec_folder": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/002-skill-advisor-suite-repair",
+  "parent_id": "system-skill-advisor/013-advisor-and-codegraph-migrated-items",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor test repair",
+      "deep-loop-workflows merge fallout",
+      "fable-5 governor brief",
+      "scorer rename tests",
+      "divergence ratchet ledger",
+      "implementation plan skill advisor repair",
+      "deep-loop merge fallout fix",
+      "governor brief test alignment",
+      "parity re-baseline",
+      "divergence ledger regeneration",
+      "tasks skill advisor repair",
+      "deep-loop merge test tasks"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "test",
+      "repair",
+      "deep-loop-workflows",
+      "merge",
+      "fallout",
+      "fable-5",
+      "governor",
+      "brief",
+      "scorer",
+      "rename"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json",
+      ".claude/settings.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+        "source": "derived"
+      },
+      {
+        "name": "local-native-approved-divergences.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Drive",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Repair",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Prompt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-skill-advisor/mcpserver` vitest suite reported 61 of 553 tests failing in the working tree",
+    "created_at": "2026-06-15T16:20:19Z",
+    "last_save_at": "2026-07-15T11:59:31.938Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cee1b224409f9ed6ee2e83e2f5d5301eae4458ea96b2d2763a124159e68ab63d",
+    "source_doc_hashes": {
+      "spec.md": "d9bc3b8bc6a2f48eaf41135f9baf9cc7a8bd64d7788886d605c912f520425189",
+      "plan.md": "80fe5ef20ccfdcc23381833fb0639dd8f01dff5845a81b3ee36fcfae1dcb17e0",
+      "tasks.md": "292ea667de5107025b4933e02bb8db52694f82e0a4696072c712ed7757d000e5",
+      "checklist.md": "1f43368eceb8797acc0731736aa7fb5aef356af01feae23f781eb32255a5c4d4",
+      "implementation-summary.md": "9395ee65bf00233fb45200c9923d32803718f308c6c5c5e3e1c0bd8c97224a45"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

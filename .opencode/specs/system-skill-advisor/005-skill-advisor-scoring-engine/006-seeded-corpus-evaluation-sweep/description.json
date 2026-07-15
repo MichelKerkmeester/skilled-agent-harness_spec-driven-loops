@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/005-skill-advisor-scoring-engine/006-seeded-corpus-evaluation-sweep",
+  "description": "Phase 015/003 shipped the lane-weight sweep harness, the type extension, and a 24-prompt corpus, but the sweep run produced byte-identical numbers",
+  "keywords": [
+    "phase",
+    "shipped",
+    "lane-weight",
+    "sweep",
+    "harness",
+    "type",
+    "extension",
+    "24-prompt",
+    "corpus",
+    "run",
+    "produced",
+    "byte-identical",
+    "numbers"
+  ],
+  "lastUpdated": "2026-07-09T10:02:49.841Z",
+  "specId": "006",
+  "folderSlug": "seeded-corpus-evaluation-sweep",
+  "parentChain": [
+    "system-skill-advisor",
+    "005-skill-advisor-scoring-engine"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

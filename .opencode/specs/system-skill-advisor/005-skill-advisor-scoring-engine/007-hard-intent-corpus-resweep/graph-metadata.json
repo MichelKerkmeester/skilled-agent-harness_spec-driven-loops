@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/005-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep",
+  "spec_folder": "system-skill-advisor/005-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep",
+  "parent_id": "system-skill-advisor/005-skill-advisor-scoring-engine",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "harder intent prompt corpus",
+      "lexical false positive corpus",
+      "advisor cosine harder sweep",
+      "intent described misroute test",
+      "harder corpus plan",
+      "harder corpus tasks",
+      "harder corpus checklist",
+      "harder corpus summary"
+    ],
+    "key_topics": [
+      "harder",
+      "intent",
+      "prompt",
+      "corpus",
+      "lexical",
+      "false",
+      "positive",
+      "advisor",
+      "cosine",
+      "sweep",
+      "described",
+      "misroute"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/sweep-results-harder.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-results-harder.md",
+        "kind": "doc",
+        "path": "research/sweep-results-harder.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-improved",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Safety Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-vector",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "delta",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "edit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 015/004 + 015/006 proved that the existing 24-prompt corpus is lexical-saturated: even with audit-improved metadata + real Gemma vectors flowing through the cosine lane at any weight from 0 to 0.30, no candidate vector flipped a single routing decision",
+    "created_at": "2026-05-14T01:30:00Z",
+    "last_save_at": "2026-07-15T11:59:21.258Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T01:30:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:deec7c4b6fbc736b24fca9acffdd882b40a7d9897a864b5bb75f1df05e2b9f34",
+    "source_doc_hashes": {
+      "spec.md": "847189e225b1c45cdac6caadc23586155809647fe0fb376ccec6364b920eb091",
+      "plan.md": "2b74c87e97c6c4bec4f7a6c9012a4537bc9c54cd341cdc6cb3a8a941eaad293d",
+      "tasks.md": "42e6df7f559af9cd2e48b87c6a8e09a6dc368f3ee18fdeb3fd9fa75034d5c5ce",
+      "checklist.md": "8cf91f60a8084c257861ccd20107b34fc3b41c9b4f58e88f60a0b93bc2d21094",
+      "implementation-summary.md": "a8a63fd0347c5c0a6491ca63ffc7fc9a04d2935e882c90bbd480a99f8bb3c26f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

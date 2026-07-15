@@ -98,21 +98,21 @@ Each iteration reads the next unmigrated batch from spec.md, moves it, regenerat
 - [x] Reconcile `026/002-spec-kit-internals/` `children_ids` (drops `002-skill-advisor`)
 
 #### Batch 2b: Scattered leaves + embedder-stack cluster
-- [x] Append the 4 April-2026 hardening leaves into `system-skill-advisor/004-skill-advisor-production-hardening/` as children `005-008`
-- [x] Append the affordance-evidence leaf into `system-skill-advisor/003-skill-advisor-routing-engine/` as child `006`
-- [x] Merge the 3 May-2026 embedder-stack folders into new `system-skill-advisor/007-skill-advisor-embedder-stack/`
+- [x] Append the 4 April-2026 hardening leaves into `system-skill-advisor/007-skill-advisor-production-hardening/` as children `005-008`
+- [x] Append the affordance-evidence leaf into `system-skill-advisor/006-skill-advisor-routing-engine/` as child `006`
+- [x] Merge the 3 May-2026 embedder-stack folders into new `system-skill-advisor/010-skill-advisor-embedder-stack/`
 - [x] Reconcile the 5-6 source parents this touches in 026
 
 #### Batch 2c: 027 content extraction
-- [x] Move `027/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/` to `system-skill-advisor/008-skill-advisor-cli/`
-- [x] Extract the 8 advisor-only items out of `027/003-advisor-and-codegraph/` into `system-skill-advisor/009-advisor-and-codegraph-migrated-items/`
-- [x] Move `027/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` to `system-skill-advisor/010-skill-advisor-frontmatter-alignment/`
+- [x] Move `027/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/` to `system-skill-advisor/011-skill-advisor-cli/`
+- [x] Extract the 8 advisor-only items out of `027/003-advisor-and-codegraph/` into `system-skill-advisor/013-advisor-and-codegraph-migrated-items/`
+- [x] Move `027/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` to `system-skill-advisor/014-skill-advisor-frontmatter-alignment/`
 - [x] Renumber `027/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`'s remaining 4 code-graph-only children `001-004`, update `027/003-advisor-and-codegraph/spec.md` prose for its narrower remaining scope
 
 #### Batch 2d: 028 hub + destination renumber
-- [x] Move `028/002-skill-advisor/` to `system-skill-advisor/011-skill-advisor-phase-parent/`
+- [x] Move `028/002-skill-advisor/` to `system-skill-advisor/015-skill-advisor-phase-parent/`
 - [x] Renumber `028`'s remaining top-level children `003→002, 004→003, 005→004, 006→005`
-- [x] Rename `system-skill-advisor/001-skill-advisor-tuning/` to `012-skill-advisor-tuning/`, fix every internal `001`-referencing metadata field (`packet_pointer`, `children_ids`, frontmatter) to `012`
+- [x] Rename `system-skill-advisor/001-skill-advisor-tuning/` to `016-skill-advisor-tuning/`, fix every internal `001`-referencing metadata field (`packet_pointer`, `children_ids`, frontmatter) to `012`
 
 #### Batch 2e: Destination track finalization
 - [x] Rewrite `system-skill-advisor/spec.md` (track root) to narrate the full 001-012 history

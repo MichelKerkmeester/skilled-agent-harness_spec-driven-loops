@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/009-playbook-run-and-remediation/006-p1-routing-tuning",
+  "description": "After the P0 routing fixes and alias-awareness work, the regression suite still has non-alias P1 failures: ~6 in the Python harness and ~11 in the TS",
+  "keywords": [
+    "routing",
+    "alias-awareness",
+    "work",
+    "regression",
+    "suite",
+    "still",
+    "non-alias",
+    "failures",
+    "python",
+    "harness"
+  ],
+  "lastUpdated": "2026-07-09T10:02:50.210Z",
+  "specId": "006",
+  "folderSlug": "p1-routing-tuning",
+  "parentChain": [
+    "system-skill-advisor",
+    "009-playbook-run-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

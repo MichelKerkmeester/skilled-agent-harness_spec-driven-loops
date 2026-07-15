@@ -16,8 +16,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/specs/system-skill-advisor/spec.md"
-      - ".opencode/specs/system-skill-advisor/012-skill-advisor-tuning"
-      - ".opencode/specs/system-skill-advisor/001-skill-graph"
+      - ".opencode/specs/system-skill-advisor/016-skill-advisor-tuning"
+      - ".opencode/specs/system-skill-advisor/004-skill-graph"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-07-07-skill-advisor-extraction"

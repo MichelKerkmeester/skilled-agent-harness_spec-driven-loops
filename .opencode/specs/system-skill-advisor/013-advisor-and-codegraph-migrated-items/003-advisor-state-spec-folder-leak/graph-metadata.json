@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/003-advisor-state-spec-folder-leak",
+  "spec_folder": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/003-advisor-state-spec-folder-leak",
+  "parent_id": "system-skill-advisor/013-advisor-and-codegraph-migrated-items",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor state spec folder leak",
+      "stray .advisor-state directories",
+      "findAdvisorWorkspaceRoot fallback",
+      "skill-graph-generation.json in specs",
+      "workspace root hoist above specs",
+      "advisor state leak plan",
+      "workspace root hoist plan",
+      "hoistAboveSpecsTree",
+      "advisor state leak tasks",
+      "workspace root hoist tasks",
+      "advisor state leak checklist",
+      "workspace root hoist checklist"
+    ],
+    "key_topics": [
+      "advisor",
+      "state",
+      "spec",
+      "folder",
+      "leak",
+      "stray",
+      "advisor-state",
+      "directories",
+      "findadvisorworkspaceroot",
+      "fallback",
+      "skill-graph-generation",
+      "json"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/utils/workspace-root.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/utils/workspace-root.vitest.ts",
+      ".opencode/skills/.advisor-state/skill-graph-generation.json",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "scratch/stray-advisor-state-before.txt",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "workspace-root.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/utils/workspace-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workspace-root.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/utils/workspace-root.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-generation.json",
+        "kind": "config",
+        "path": ".opencode/skills/.advisor-state/skill-graph-generation.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "stray-advisor-state-before.txt",
+        "kind": "file",
+        "path": "scratch/stray-advisor-state-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill-advisor resolves where to write its runtime state via `findAdvisorWorkspaceRoot(start)` (`lib/utils/workspace-root.ts`), which walks up parent directories looking for the canonical sentinel `.opencode/skills/system-spec-kit/SKILL.md`",
+    "created_at": "2026-06-18T18:41:11.390Z",
+    "last_save_at": "2026-07-15T11:59:32.098Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fc87fc34eae01ce671f48802d89777ed9745ea8e3dc973d10ea4276dcddf635d",
+    "source_doc_hashes": {
+      "spec.md": "266eca71173baa6058707098264953caa4e1c56dc14c3936e40875fc4ea49c70",
+      "plan.md": "dbd29c5e986c207083337c006d04677bacbb10254d86a1de30e9cd2d573fece1",
+      "tasks.md": "a4e7ff01811ea844a1cc469a005d373b215f57c9eaa35881adaf4be1b9590518",
+      "checklist.md": "b59c30eda1d9e6e51093c02cd1e160ac4c2d97e3b606aacbfe370195a94f780f",
+      "implementation-summary.md": "5f86423346604843a296802cd913722264388fb375a9cd9fb409820e4b697f20"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

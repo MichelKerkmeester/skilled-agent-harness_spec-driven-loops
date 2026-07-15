@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory",
+  "spec_folder": "system-skill-advisor/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory",
+  "parent_id": "system-skill-advisor/010-skill-advisor-embedder-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared embedder logic skill-advisor",
+      "skill-advisor spec-memory embedder parity",
+      "auto sentinel default",
+      "nomic-embed-text-v1.5 default",
+      "content-type aware cascade",
+      "active embedder provider persistence",
+      "MEMORY_DB_PATH cross-server leakage",
+      "hf-model-server onnx shutdown crash",
+      "shared embedder logic checklist",
+      "skill-advisor embedder verification",
+      "provider persistence checklist",
+      "MEMORY_DB_PATH leakage checklist"
+    ],
+    "key_topics": [
+      "shared",
+      "embedder",
+      "logic",
+      "skill-advisor",
+      "spec-memory",
+      "parity",
+      "auto",
+      "sentinel",
+      "default",
+      "nomic-embed-text-v1",
+      "content-type",
+      "aware"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "mcp_server/lib/embedders/index.ts",
+      "lib/embedders/schema.ts",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      "shared/embeddings/factory.ts",
+      ".opencode/bin/hf-model-server.cjs",
+      "spec.md",
+      "tasks.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/adapter.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/types.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapter.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/adapter.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/types.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/registry.ts"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "schema.ts",
+        "kind": "code",
+        "path": "lib/embedders/schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "adapter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Promote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ship Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "See Round",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Notes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "file-based",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill-advisor and mk-spec-memory currently have separate embedder registries with competing defaults and parallel factory implementations",
+    "created_at": "2026-05-21T18:08:46.935Z",
+    "last_save_at": "2026-07-15T11:59:30.117Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f73e3977a3fbe85b98582a4ca03672903f94f332e4134970f4ace3cdba0d2644",
+    "source_doc_hashes": {
+      "spec.md": "09af5422c509a9cdf055d5a9e4c045682f051b0f2bfb1cb58c8aae21a9a53f2d",
+      "plan.md": "e97ea1e7acfc2a047c7ce4feb2e55ded6cced855dc775d7246f66e0a26dc35e0",
+      "tasks.md": "044de30442179187b770bdaa7ec6eae7ecac090f8292ab7353323e2769fe46f8",
+      "checklist.md": "9abbb347b8763b22a5ad9626713d9387712013f447806649e35d21c0814a9818",
+      "implementation-summary.md": "39ddb8558c0f7e432a2e7085cd2daa50384e73e09d39020cc6ad123596ab1f5f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

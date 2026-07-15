@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/006-skill-advisor-routing-engine",
+  "description": "Phase parent for intent routing optimization across the skill advisor system.",
+  "keywords": [
+    "phase",
+    "parent",
+    "intent",
+    "routing",
+    "optimization",
+    "across",
+    "skill",
+    "advisor",
+    "system"
+  ],
+  "lastUpdated": "2026-07-09T10:02:49.862Z",
+  "specId": "003",
+  "folderSlug": "skill-advisor-routing-engine",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

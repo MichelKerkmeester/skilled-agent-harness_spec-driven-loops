@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/016-skill-advisor-tuning/001-scorer-saturation-root-fix",
+  "spec_folder": "system-skill-advisor/016-skill-advisor-tuning/001-scorer-saturation-root-fix",
+  "parent_id": "system-skill-advisor/016-skill-advisor-tuning",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor scorer saturation root fix",
+      "explicit lane demotion channel",
+      "executor delegation resolver",
+      "advisor projection vocab",
+      "advisor scorer root fix plan",
+      "post-cap demotion plan",
+      "leverage-ordered workstream plan",
+      "advisor scorer root fix tasks",
+      "post-cap demotion tasks",
+      "executor delegation resolver tasks",
+      "advisor scorer root fix checklist",
+      "post-cap demotion verification"
+    ],
+    "key_topics": [
+      "advisor",
+      "scorer",
+      "saturation",
+      "root",
+      "explicit",
+      "lane",
+      "demotion",
+      "channel",
+      "executor",
+      "delegation",
+      "resolver",
+      "projection"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/graph-causal.ts",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/sk-code/SKILL.md",
+      "research/scorer-fix-recommendation.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-causal.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/graph-causal.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-fix-recommendation.md",
+        "kind": "doc",
+        "path": "research/scorer-fix-recommendation.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scorer Saturation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Class Root Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Projection Vocab",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Replace",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Land Layer",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor scorer treats explicit-lane disambiguation penalties as pre-clamp additive offsets and floors net-negative lane matches to zero, so a shipped penalty never survives as durable negative evidence and any saturating positive support erases the demotion",
+    "created_at": "2026-07-06T11:00:00.000Z",
+    "last_save_at": "2026-07-15T11:59:33.505Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b091a2ed70cd748b9f1d1e5344fa9468dbb20ec6b866342dd44b398d60e3ea06",
+    "source_doc_hashes": {
+      "spec.md": "8ac719a889863fb5214d656ebcc92be2b377a37d2742743179c6bb573c86aa26",
+      "plan.md": "4563e6a9b125399fa6d97c69642d2358269c122410bcf898e5ddd5f2abdc1e36",
+      "tasks.md": "f37ee6f172ab89b686d326a8ae2632765d3bb1c2b7c31d144683bd53a3590b0f",
+      "checklist.md": "c4a9344cdd711de396af7c976efa3b4f0980435307ee5737756f82e5385e7b22",
+      "implementation-summary.md": "7041d24e23560432aa34bb14720e4c891f305bc54502223b1a82ca80fad9c7fd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/008-skill-advisor-documentation/005-cross-skill-documentation-decoupling",
+  "description": "Three coordinated drift issues across the system-spec-kit + system-skill-advisor + system-code-graph triad",
+  "keywords": [
+    "three",
+    "coordinated",
+    "drift",
+    "issues",
+    "across",
+    "system-spec-kit",
+    "system-skill-advisor",
+    "system-code-graph",
+    "triad"
+  ],
+  "lastUpdated": "2026-07-08T05:23:49.923Z",
+  "specId": "005",
+  "folderSlug": "cross-skill-documentation-decoupling",
+  "parentChain": [
+    "system-skill-advisor",
+    "008-skill-advisor-documentation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

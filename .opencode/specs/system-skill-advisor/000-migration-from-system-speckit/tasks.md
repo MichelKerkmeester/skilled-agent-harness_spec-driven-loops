@@ -71,26 +71,26 @@ _memory:
 ### Batch 2b: Scattered leaves + embedder-stack cluster
 
 - [x] T010 Re-read `003-advisor-adjacent-116-realignment` and `006-shared-embedder-logic-with-spec-memory` spec.md content to confirm filing decisions
-- [x] T011 Append 4 hardening leaves into `system-skill-advisor/004-skill-advisor-production-hardening/` as `005-008`
-- [x] T012 Append affordance-evidence leaf into `system-skill-advisor/003-skill-advisor-routing-engine/` as `006`
-- [x] T013 Merge 3 embedder-stack folders into new `system-skill-advisor/007-skill-advisor-embedder-stack/`
+- [x] T011 Append 4 hardening leaves into `system-skill-advisor/007-skill-advisor-production-hardening/` as `005-008`
+- [x] T012 Append affordance-evidence leaf into `system-skill-advisor/006-skill-advisor-routing-engine/` as `006`
+- [x] T013 Merge 3 embedder-stack folders into new `system-skill-advisor/010-skill-advisor-embedder-stack/`
 - [x] T014 Reconcile the 5-6 source parents in 026 this touches
 - [x] T015 `validate.sh --strict --recursive` on `026/` and `system-skill-advisor/003, 004, 007`
 
 ### Batch 2c: 027 content extraction
 
-- [x] T016 `git mv` `027/.../003-skill-advisor-cli/` to `system-skill-advisor/008-skill-advisor-cli/`
-- [x] T017 Extract 8 advisor-only items from `027/003-advisor-and-codegraph/` into `system-skill-advisor/009-advisor-and-codegraph-migrated-items/`
-- [x] T018 `git mv` `027/.../021-system-skill-advisor` to `system-skill-advisor/010-skill-advisor-frontmatter-alignment/`
+- [x] T016 `git mv` `027/.../003-skill-advisor-cli/` to `system-skill-advisor/011-skill-advisor-cli/`
+- [x] T017 Extract 8 advisor-only items from `027/003-advisor-and-codegraph/` into `system-skill-advisor/013-advisor-and-codegraph-migrated-items/`
+- [x] T018 `git mv` `027/.../021-system-skill-advisor` to `system-skill-advisor/014-skill-advisor-frontmatter-alignment/`
 - [x] T019 Renumber `027/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`'s remaining children `001-004`, update parent spec.md prose
 - [x] T020 Reconcile `027/004-shared-infrastructure/001-mcp-to-cli-tool-transition/` and `027/000-release-cleanup/009-skill-frontmatter-alignment/` (contiguous renumber, 20+ siblings)
 - [x] T021 `validate.sh --strict --recursive` on `027/` and `system-skill-advisor/008-010`
 
 ### Batch 2d: 028 hub + destination renumber
 
-- [x] T022 `git mv` `028/002-skill-advisor/` to `system-skill-advisor/011-skill-advisor-phase-parent/`
+- [x] T022 `git mv` `028/002-skill-advisor/` to `system-skill-advisor/015-skill-advisor-phase-parent/`
 - [x] T023 Renumber `028`'s remaining top-level children `003→002, 004→003, 005→004, 006→005`
-- [x] T024 Rename `system-skill-advisor/001-skill-advisor-tuning/` to `012-skill-advisor-tuning/`, fix all `001`-referencing metadata fields to `012`
+- [x] T024 Rename `system-skill-advisor/001-skill-advisor-tuning/` to `016-skill-advisor-tuning/`, fix all `001`-referencing metadata fields to `012`
 - [x] T025 `validate.sh --strict --recursive` on `028/` and `system-skill-advisor/011-012`
 
 ### Batch 2e: Destination track finalization

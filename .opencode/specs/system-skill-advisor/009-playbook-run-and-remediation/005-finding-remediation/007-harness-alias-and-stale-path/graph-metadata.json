@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path",
+  "spec_folder": "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path",
+  "parent_id": "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/002-scorer-p0-routing-fixes",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "harness alias awareness",
+      "regression harness alias drift",
+      "lane weight sweep stale path",
+      "harness alias plan",
+      "harness alias tasks",
+      "harness alias impl summary"
+    ],
+    "key_topics": [
+      "harness",
+      "alias",
+      "awareness",
+      "regression",
+      "drift",
+      "lane",
+      "weight",
+      "sweep",
+      "stale",
+      "path",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/lane-weight-sweep.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "skill_advisor_regression.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py",
+        "source": "derived"
+      },
+      {
+        "name": "lane-weight-sweep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/lane-weight-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Harness Alias",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stale Test Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Both",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The regression harnesses (`skilladvisorregression.py` and the TS `evaluateRegressionCases` in `advisor-validate.ts`) match gold labels by strict string equality, so fixtures/corpus rows labelled `sk-deep-research` / `sk-deep-review` / `sk-deep-agent-improvement` fail against the live graph IDs `deep-research` / `deep-review` / `deep-agent-improvement`",
+    "created_at": "2026-05-27T00:00:00Z",
+    "last_save_at": "2026-07-15T11:59:29.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f5888a4e88aacafe5da64f65c35af6346c2c373fdf84406ba30a31f02ece8fd8",
+    "source_doc_hashes": {
+      "spec.md": "7ecfe96bade1d9a420069452f9c881958cad19ebe4c86e760e3eaf4d4ac0fb9f",
+      "plan.md": "2d0c47d167455c5d441f6165bbf431690d25d5cc0946ec60b9f9edd75db0db40",
+      "tasks.md": "ab7bf6685591af8f0a46ac8a5c61fa4c869fd0272a8ba86826fcfe1777b72cab",
+      "implementation-summary.md": "c21d6efce462d6d8e922702284e4d802ba9ef94b0fcb05af788605ba56b63d82"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

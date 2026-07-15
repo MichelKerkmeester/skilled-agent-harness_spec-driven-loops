@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/005-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
+  "spec_folder": "system-skill-advisor/005-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
+  "parent_id": "system-skill-advisor/005-skill-advisor-scoring-engine",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor ablation sweep",
+      "semantic lane promote",
+      "lane weight rebalance",
+      "advisor evaluation harness",
+      "ablation sweep plan",
+      "ablation sweep tasks",
+      "ablation sweep checklist",
+      "semantic lane promotion adr",
+      "advisor lane weight decision",
+      "semantic_shadow live",
+      "ablation sweep summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "ablation",
+      "sweep",
+      "semantic",
+      "lane",
+      "promote",
+      "weight",
+      "rebalance",
+      "evaluation",
+      "harness",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Use",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Vitest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Safety No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "promoted",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Child 001 wires the cosine lane shadow-only",
+    "created_at": "2026-05-13T19:30:00Z",
+    "last_save_at": "2026-07-15T11:59:20.709Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-13T19:30:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d6eaccbbe3ca983c43c108bca917a6ea82db7f6891f542d61fff76988cdeb2da",
+    "source_doc_hashes": {
+      "spec.md": "74d9d3eecac16b9cf216afd9bb0c08aaec23f530250d87da3c92ee393a86edf7",
+      "plan.md": "53c2fe0fae904d8b93eb08fa34f82d426baa85229647dca1c13deb1ca8ae421e",
+      "tasks.md": "ace11b5697c934a4ca51d7d6c3560ddd9294cfd9f0c379818c916f23f8c63a46",
+      "checklist.md": "3ea21d78fe09066c8b7ffe62530cf59ef90635edfb25ad6b54dcd45aba04cee3",
+      "decision-record.md": "b59b4dae7832ec99460ed1c4c7e7e7d9d899e455242cf08b8d30d8a29a77cc02",
+      "implementation-summary.md": "859e3c322f24bed5ac43f3a4858f39f7d1e771f210c70cab1ec124ed8b9a81e3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

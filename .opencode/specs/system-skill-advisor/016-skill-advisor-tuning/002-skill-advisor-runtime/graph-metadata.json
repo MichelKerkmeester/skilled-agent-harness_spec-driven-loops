@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime",
+  "spec_folder": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime",
+  "parent_id": "system-skill-advisor/016-skill-advisor-tuning",
+  "children_ids": [
+    "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine",
+    "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/002-runtime-lane-health-degrade",
+    "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/003-embedding-staleness-signal",
+    "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior",
+    "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/005-conflict-rerank-query-routing",
+    "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/006-provenance-drift-observability",
+    "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon",
+    "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution"
+  ],
+  "migrated": true,
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 skill advisor implementation parent",
+      "skill advisor child phase map",
+      "advisor implementation planning",
+      "028 skill advisor candidate tail",
+      "skill advisor research to implementation"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "implementation",
+      "parent",
+      "child",
+      "phase",
+      "map",
+      "planning",
+      "candidate",
+      "tail",
+      "research",
+      "surfaced"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "001-rrf-determinism-spine/spec.md",
+      "007-outcome-weighted-ranking-followon/spec.md",
+      "008-advisor-workspace-root-resolution/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wired Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and outcome-weighted ranking",
+    "created_at": "2026-06-16T14:27:21.651Z",
+    "last_save_at": "2026-07-15T11:59:33.636Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ea0cc7867bffcd79f943ffe35ad04b7b473a344c9ac312e970479640c3f80345",
+    "source_doc_hashes": {
+      "spec.md": "6c00064c0a235b6cb0f3c655460c2f925a356923d722ff4b0112074524233bdd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

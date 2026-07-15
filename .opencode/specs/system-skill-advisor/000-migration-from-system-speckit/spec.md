@@ -18,10 +18,10 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md"
-      - ".opencode/specs/system-skill-advisor/012-skill-advisor-tuning"
-      - ".opencode/specs/system-skill-advisor/001-skill-graph"
-      - ".opencode/specs/system-skill-advisor/009-advisor-and-codegraph-migrated-items"
-      - ".opencode/specs/system-skill-advisor/011-skill-advisor-phase-parent"
+      - ".opencode/specs/system-skill-advisor/016-skill-advisor-tuning"
+      - ".opencode/specs/system-skill-advisor/004-skill-graph"
+      - ".opencode/specs/system-skill-advisor/013-advisor-and-codegraph-migrated-items"
+      - ".opencode/specs/system-skill-advisor/015-skill-advisor-phase-parent"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-07-07-skill-advisor-extraction"
@@ -84,14 +84,14 @@ One track, `system-skill-advisor/`, holds every skill-advisor-scoped spec folder
 
 | Destination | Source | Notes |
 |---|---|---|
-| `001-skill-graph/` | `026/002-spec-kit-internals/002-skill-advisor/001-skill-graph/` | incl. the 30-item `006-system-skill-advisor-package-extraction` arc unchanged |
-| `002-skill-advisor-scoring-engine/` | `.../002-skill-advisor-scoring-engine/` | 8 children, as-is |
-| `003-skill-advisor-routing-engine/` | `.../003-skill-advisor-routing-engine/` | 5 children, plus a new appended child `006-skill-advisor-affordance-evidence` (moved in from `026/005-graph-impact-and-affordance/003-...`, Apr 25 2026, its subject is advisor graph-causal routing) |
-| `004-skill-advisor-production-hardening/` | `.../004-skill-advisor-production-hardening/` | 4 children, plus 4 new appended children (all Apr 2026 hardening/bugfix leaves): `005-fail-open-fallback` (was `026/000-.../001-release-readiness/001-...`), `006-codex-native-startup-advisor-hooks` (was `026/006-operator-tooling/001-hook-parity/003-...`), `007-skill-advisor-freshness-audit` (was `026/000-.../003-release-readiness-deep-review-audits/003-...`), `008-fix-skill-advisor-quality` (was `026/000-.../006-research/004-.../003-...`, date unconfirmed, verify content fit before filing here) |
-| `005-skill-advisor-documentation/` | `.../005-skill-advisor-documentation/` | 7 children incl. nested 8-child `004-documentation-quality-refactor`, as-is |
-| `006-playbook-run-and-remediation/` | `.../006-playbook-run-and-remediation/` | 6 children, as-is |
+| `004-skill-graph/` | `026/002-spec-kit-internals/002-skill-advisor/004-skill-graph/` | incl. the 30-item `006-system-skill-advisor-package-extraction` arc unchanged |
+| `005-skill-advisor-scoring-engine/` | `.../005-skill-advisor-scoring-engine/` | 8 children, as-is |
+| `006-skill-advisor-routing-engine/` | `.../006-skill-advisor-routing-engine/` | 5 children, plus a new appended child `006-skill-advisor-affordance-evidence` (moved in from `026/005-graph-impact-and-affordance/003-...`, Apr 25 2026, its subject is advisor graph-causal routing) |
+| `007-skill-advisor-production-hardening/` | `.../007-skill-advisor-production-hardening/` | 4 children, plus 4 new appended children (all Apr 2026 hardening/bugfix leaves): `005-fail-open-fallback` (was `026/000-.../001-release-readiness/001-...`), `006-codex-native-startup-advisor-hooks` (was `026/006-operator-tooling/001-hook-parity/003-...`), `007-skill-advisor-freshness-audit` (was `026/000-.../003-release-readiness-deep-review-audits/003-...`), `008-fix-skill-advisor-quality` (was `026/000-.../006-research/004-.../003-...`, date unconfirmed, verify content fit before filing here) |
+| `008-skill-advisor-documentation/` | `.../008-skill-advisor-documentation/` | 7 children incl. nested 8-child `004-documentation-quality-refactor`, as-is |
+| `009-playbook-run-and-remediation/` | `.../009-playbook-run-and-remediation/` | 6 children, as-is |
 
-**Move — May 2026 embedder-stack cluster (new `007-skill-advisor-embedder-stack/`)**
+**Move — May 2026 embedder-stack cluster (new `010-skill-advisor-embedder-stack/`)**
 
 Merges 3 scattered 026 folders (all first touched May 17-18 2026):
 - `026/.../003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack/` (+ 5 children) becomes `007/001`-`005`
@@ -101,15 +101,15 @@ Merges 3 scattered 026 folders (all first touched May 17-18 2026):
 - Judgment call: `003-skill-advisor-stack`'s own child `006-shared-embedder-logic-with-spec-memory` is dual-scoped (advisor deliverable, reuses spec-memory's embedder logic). Move it with its parent since the deliverable's subject is the advisor's stack, but re-read its spec.md at execution time to confirm before filing.
 
 **Move — 027 content (new `008`, `009`, `010`)**
-- `008-skill-advisor-cli/` from `027/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/` (whole, 4 children plus research)
-- `009-advisor-and-codegraph-migrated-items/` from the advisor-only slice of `027/003-advisor-and-codegraph/`: its 3 direct advisor-only children (`003-skill-advisor-cross-session-reconnect`, `004-skill-advisor-suite-repair`, `005-advisor-state-spec-folder-leak`) plus 5 advisor items pulled out of its nested `002-xce-feature-adoption-advisor-codegraph` (`001-advisor-observability`, `002-advisor-provenance-guard`, `003-advisor-packed-bm25-lexical`, `004-advisor-bfs-consolidation`, `005-advisor-feedback-calibration`)
-- `010-skill-advisor-frontmatter-alignment/` from `027/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` (single leaf)
+- `011-skill-advisor-cli/` from `027/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/` (whole, 4 children plus research)
+- `013-advisor-and-codegraph-migrated-items/` from the advisor-only slice of `027/003-advisor-and-codegraph/`: its 3 direct advisor-only children (`003-skill-advisor-cross-session-reconnect`, `004-skill-advisor-suite-repair`, `005-advisor-state-spec-folder-leak`) plus 5 advisor items pulled out of its nested `002-xce-feature-adoption-advisor-codegraph` (`001-advisor-observability`, `002-advisor-provenance-guard`, `003-advisor-packed-bm25-lexical`, `004-advisor-bfs-consolidation`, `005-advisor-feedback-calibration`)
+- `014-skill-advisor-frontmatter-alignment/` from `027/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` (single leaf)
 
 **Move — 028 hub (new `011`)**
-- `011-skill-advisor-phase-parent/` from `028/002-skill-advisor/` (whole, plus its 1 child)
+- `015-skill-advisor-phase-parent/` from `028/002-skill-advisor/` (whole, plus its 1 child)
 
 **Renumber existing destination content (becomes `012`)**
-- Rename `system-skill-advisor/001-skill-advisor-tuning/` to `012-skill-advisor-tuning/`, fixing every internal metadata and frontmatter reference from `001` to `012` (its 8 existing children keep their own numbers, only the parent slot number changes). Reconcile the destination track's own stale `descriptions.json` cache entries for this packet while touching it.
+- Rename `system-skill-advisor/001-skill-advisor-tuning/` to `016-skill-advisor-tuning/`, fixing every internal metadata and frontmatter reference from `001` to `012` (its 8 existing children keep their own numbers, only the parent slot number changes). Reconcile the destination track's own stale `descriptions.json` cache entries for this packet while touching it.
 
 ### Out of Scope (deviation from a literal "move everything" reading)
 
@@ -131,7 +131,7 @@ A short `context-index.md` in `system-skill-advisor/` points at each left-in-pla
 | File Path | Change Type | Description |
 |---|---|---|
 | `system-skill-advisor/description.json`, `graph-metadata.json` | Modify | Reflect new children 001-012 |
-| `system-skill-advisor/001-skill-advisor-tuning/**` | Rename to `012-skill-advisor-tuning/**` | Chronological renumber, this is the newest wave (July 2026) and must land last |
+| `system-skill-advisor/001-skill-advisor-tuning/**` | Rename to `016-skill-advisor-tuning/**` | Chronological renumber, this is the newest wave (July 2026) and must land last |
 | `026/002-spec-kit-internals/description.json`, `graph-metadata.json` | Modify | Drop `002-skill-advisor` child |
 | `026/005-graph-impact-and-affordance/description.json`, `graph-metadata.json` | Modify | Drop `003-...-affordance-evidence` child |
 | `026/006-operator-tooling/001-hook-parity/description.json`, `graph-metadata.json` | Modify | Drop `003-codex-native-...` child |
@@ -159,7 +159,7 @@ A short `context-index.md` in `system-skill-advisor/` points at each left-in-pla
 | REQ-001 | Every folder in the "Move" tables above lands at its new path via `git mv`, preserving file history | `git log --follow` on the new path still shows the pre-move commits |
 | REQ-002 | Every cross-reference to a moved old path is rewritten | Repo-wide `rg` for each old path fragment returns zero hits outside `.git/` history |
 | REQ-003 | Every touched parent's `children_ids` is reconciled | `validate.sh --strict --recursive` is clean on every touched folder |
-| REQ-004 | The destination track's newest packet renumbers from `001` to `012` as part of the same pass | `system-skill-advisor/012-skill-advisor-tuning/` metadata consistently says `012` everywhere (disk name, `graph-metadata.json`, spec.md frontmatter `packet_pointer`) |
+| REQ-004 | The destination track's newest packet renumbers from `001` to `012` as part of the same pass | `system-skill-advisor/016-skill-advisor-tuning/` metadata consistently says `012` everywhere (disk name, `graph-metadata.json`, spec.md frontmatter `packet_pointer`) |
 
 ### P1 - Required (complete OR user-approved deferral)
 

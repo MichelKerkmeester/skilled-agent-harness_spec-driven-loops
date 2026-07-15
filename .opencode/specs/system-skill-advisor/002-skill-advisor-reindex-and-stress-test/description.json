@@ -1,0 +1,31 @@
+{
+  "completionPct": 100,
+  "lastOutcome": "Phases 002-005 complete. Final CP replay: CP-100 sk-code-review, CP-101 non-memory top-1, CP-102 no recommendations, CP-103 sk-deep-review alias-aware PASS, CP-104 memory:save, CP-105 create:testing-playbook.",
+  "specFolder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test",
+  "description": "Phase parent for completed skill-advisor reindex/stress-test baseline plus follow-on router calibration phases discovered by that campaign.",
+  "keywords": [
+    "phase",
+    "parent",
+    "completed",
+    "skill-advisor",
+    "reindex",
+    "stress-test",
+    "baseline",
+    "plus",
+    "follow-on",
+    "router",
+    "calibration",
+    "phases",
+    "discovered",
+    "campaign"
+  ],
+  "lastUpdated": "2026-06-30T11:59:24.391Z",
+  "specId": "051",
+  "folderSlug": "skill-advisor-reindex-and-stress-test",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

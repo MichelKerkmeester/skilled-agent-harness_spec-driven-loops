@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Skill-advisor spec history lives in four different places under `system-speckit` (026, 027, 028, plus a half-built `system-skill-advisor` track), with no single folder a reader can open to understand the subsystem's full history",
     "created_at": "2026-07-07T10:52:55.670Z",
-    "last_save_at": "2026-07-09T10:02:49.512Z",
+    "last_save_at": "2026-07-15T12:06:35.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:821eeb636b479e9b8033233cccd083f588d81d40223512aca2fab0a0e70e78ac",
+    "source_fingerprint": "sha256:2ba0c3fd62792ac7e88ee8c6f3c11bfaa18aef92428730bbc218dc89bbe1de3f",
     "source_doc_hashes": {
-      "spec.md": "19764b2914798f507a6db9b7d6af21fb797a169d749408e5306a607664443b3c",
-      "plan.md": "928e8ab74190e079dec9c567a8a4b36830e1afb61a7c6ad655fe705572f4b934",
-      "tasks.md": "3ea4c0925a6690670930a89e06ceff730f66ca3930a9ced7b99dc37418cd3bfa",
+      "spec.md": "b55d7eed78999ede11c6bdd09c5962f6c8e7676d40dae1f57a0e1d9b0b7495d9",
+      "plan.md": "67f68fc2d98f900cb3b89bd30b595f63cb5d50ad867295a885ef655dc3d2e2d9",
+      "tasks.md": "61141b0b5dd0afaf05c64287283d259a3f7c54266216d996ac012d2192a72f03",
       "checklist.md": "6e6fa7114749bdeaae74e45ca3cad14a35369658eb32e6886915c1c5f82654dd",
-      "decision-record.md": "e8a622a586bb5ae50cba15a921e4e65ff89383207d40e1423e9987616d086b61",
-      "implementation-summary.md": "fce55ef07ee497d6e644b466d0de75a1c891c74a9ad2d5b03a713589002878f2"
+      "decision-record.md": "512812ab7e0cf753804de8ec210c81ea4849e3f82e71ad4bef21979efe813796",
+      "implementation-summary.md": "8e16126fea63d07393dc738c0066139c20dc19b95358066172a3b22b9be2d459"
     },
     "last_active_child_id": null,
     "last_active_at": null

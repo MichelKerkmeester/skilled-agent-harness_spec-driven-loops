@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename",
+  "description": "The advisor runtime is still registered as `systemskilladvisor`, which no longer matches the custom MCP identity pattern established by `mkcodeindex`",
+  "keywords": [
+    "advisor",
+    "runtime",
+    "still",
+    "registered",
+    "systemskilladvisor",
+    "longer",
+    "matches",
+    "custom",
+    "mcp",
+    "identity",
+    "pattern",
+    "established",
+    "mkcodeindex"
+  ],
+  "lastUpdated": "2026-07-08T05:23:49.686Z",
+  "specId": "015",
+  "folderSlug": "mcp-server-mk-skill-advisor-rename",
+  "parentChain": [
+    "system-skill-advisor",
+    "004-skill-graph",
+    "006-system-skill-advisor-package-extraction"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-05-26_21-38__manual-context-save.md"
+  ]
+}

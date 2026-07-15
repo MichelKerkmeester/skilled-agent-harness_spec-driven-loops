@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/005-skill-advisor-scoring-engine/005-routing-weight-sweep-harness",
+  "spec_folder": "system-skill-advisor/005-skill-advisor-scoring-engine/005-routing-weight-sweep-harness",
+  "parent_id": "system-skill-advisor/005-skill-advisor-scoring-engine",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lane weight sweep harness",
+      "advisor weight vector sweep",
+      "intent prompt corpus",
+      "skill advisor tuning",
+      "weight sweep harness plan",
+      "weight sweep harness tasks",
+      "weight sweep harness checklist",
+      "weight sweep summary"
+    ],
+    "key_topics": [
+      "lane",
+      "weight",
+      "sweep",
+      "harness",
+      "advisor",
+      "vector",
+      "intent",
+      "prompt",
+      "corpus",
+      "skill",
+      "tuning",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/sweep-results.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-results.md",
+        "kind": "doc",
+        "path": "research/sweep-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sweep Vitest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Safety No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 015/002 promoted the cosine lane to a live weight of 0.05 by following a single conservative weight vector",
+    "created_at": "2026-05-13T20:45:00Z",
+    "last_save_at": "2026-07-15T11:59:20.902Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-13T20:45:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:52c08bbbfc8a91d8d106446e86800b984a4d89136ac7d9099214429dd38f435f",
+    "source_doc_hashes": {
+      "spec.md": "1da03df6db7409d4a4da3069ec5761b8ab38637f8c4b5946003dc57e4121b916",
+      "plan.md": "21ae7491a1b9422b048447676f9a4b98add427ac4fdf15c72de04ce34eb6ceca",
+      "tasks.md": "5f256540700a43124602a71f6699c29c4b61cc82dbafb63af3dd7520fa65308c",
+      "checklist.md": "a05969f5c246af0c948e61690e9bfa843fbad6780093531564907e0bbb07231d",
+      "implementation-summary.md": "35a6566d5c82416b76122c4af9652e4657d952db4901857887f3f14e88a2a6ef"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

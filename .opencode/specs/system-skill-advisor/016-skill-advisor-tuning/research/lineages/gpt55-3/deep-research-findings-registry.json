@@ -1,0 +1,79 @@
+{
+  "sessionId": "fanout-gpt55-3-1783437123377-4illnj",
+  "openQuestions": [
+    {
+      "id": "q-cross-hub-fixture-labels",
+      "question": "What exact prompts should populate the cross-hub ambiguity fixture?",
+      "status": "open",
+      "nextStep": "Author fixtures in a read-only measurement packet before metadata cleanup."
+    },
+    {
+      "id": "q-command-bridge-schema",
+      "question": "Which compiled command-contract fields should become command bridge projection input?",
+      "status": "open",
+      "nextStep": "Inspect render-command-contract output and define a projection schema."
+    }
+  ],
+  "resolvedQuestions": [
+    { "id": "q-layer-1b", "answer": "Deep-loop review metadata still carries single-pass code-audit vocabulary; sk-code and explicit boosts already own it." },
+    { "id": "q-vocab-authority", "answer": "Metadata owns hub/mode aliases; code owns policy guards, command bridges until generated, and calibration." },
+    { "id": "q-conflicts", "answer": "conflicts_with should be measured-pair-only, not broad peer-hub taxonomy." },
+    { "id": "q-semantic-shadow", "answer": "Keep semantic_shadow frozen and pursue mcp-neighbor hygiene fixtures." }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-layer-1b-half-landed",
+      "severity": "P0",
+      "finding": "deep-loop-workflows still projects code-audit/severity review terms that should move to sk-code or become explicitly loop-shaped.",
+      "evidence": [
+        "file:.opencode/skills/deep-loop-workflows/graph-metadata.json:78",
+        "file:.opencode/skills/deep-loop-workflows/mode-registry.json:70",
+        "file:.opencode/skills/sk-code/graph-metadata.json:127"
+      ]
+    },
+    {
+      "id": "f-projection-gap",
+      "severity": "P1",
+      "finding": "parent-hub-vocab-sync does not validate the full advisor projection surface consumed by explicit/derived lanes.",
+      "evidence": [
+        "file:.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts:204",
+        "file:.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/parent-hub-vocab-sync.cjs:397"
+      ]
+    },
+    {
+      "id": "f-ambiguity-label-gap",
+      "severity": "P1",
+      "finding": "Existing ambiguity checks are low-margin or synthetic stability checks, not labeled cross-hub ambiguity semantics.",
+      "evidence": [
+        "file:.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts:548",
+        "file:.opencode/specs/system-skill-advisor/016-skill-advisor-tuning/007-eval-hardening/implementation-summary.md:129"
+      ]
+    },
+    {
+      "id": "f-command-bridges-hardcoded",
+      "severity": "P2",
+      "finding": "Command bridge projection is hardcoded while executor delegation already demonstrates metadata-derived alias tables.",
+      "evidence": [
+        "file:.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts:58",
+        "file:.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts:230"
+      ]
+    },
+    {
+      "id": "f-semantic-freeze-hygiene",
+      "severity": "P2",
+      "finding": "semantic_shadow should stay frozen; false-fire mitigation belongs in embedding hygiene and abstain fixtures.",
+      "evidence": [
+        "file:.opencode/specs/system-skill-advisor/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze/implementation-summary.md:79",
+        "file:.opencode/specs/system-skill-advisor/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze/implementation-summary.md:91"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    "Delete all deep-loop review vocabulary",
+    "Move every explicit scorer boost into metadata",
+    "Fail every shared phrase across hubs",
+    "Use ambiguity_slice_stable as empirical ambiguity FP/FN",
+    "Add broad conflicts_with edges",
+    "Raise semantic_shadow weight"
+  ]
+}

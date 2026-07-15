@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/008-skill-advisor-documentation/006-skill-readme-refinement-survey",
+  "spec_folder": "system-skill-advisor/008-skill-advisor-documentation/006-skill-readme-refinement-survey",
+  "parent_id": "system-skill-advisor/008-skill-advisor-documentation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006 skill readme refinement",
+      "cli-devin 17-skill audit",
+      "zero section 1 tables remediation",
+      "006 plan",
+      "006 tasks",
+      "006 implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "readme",
+      "refinement",
+      "cli-devin",
+      "17-skill",
+      "audit",
+      "zero",
+      "section",
+      "tables",
+      "remediation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/prompts/render_remediation.sh",
+      "research/prompts/audit.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "render_remediation.sh",
+        "kind": "script",
+        "path": "research/prompts/render_remediation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": "research/prompts/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refinement Survey",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 005 (`a1a1ca9d3`) refined the 3 system- skill READMEs",
+    "created_at": "2026-05-16T13:25:00Z",
+    "last_save_at": "2026-07-15T11:59:26.920Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c6eb8bd6761b84e2e2e1e0ded67870f5ceff598d12df2c4ae4b83e9771f937a4",
+    "source_doc_hashes": {
+      "spec.md": "2b150c0db42af16cca98a1ce419acd232502149f3af85ab91d1363db9ef33bb5",
+      "plan.md": "2e32d771e6e08dec18656e0cba22be684738b3ace3e913a8c938fbacb1246485",
+      "tasks.md": "0e2096318c06f1399c9b8b5101bfec9f3e75c48f150a40ca6493bfb7a013bd71",
+      "implementation-summary.md": "a29bcb04d477fbe7baf2b15b6f4f4306c0050b58f2be46c36adc1740fea3df64"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

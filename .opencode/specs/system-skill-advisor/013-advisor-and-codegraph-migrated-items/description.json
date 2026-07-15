@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/013-advisor-and-codegraph-migrated-items",
+  "description": "The advisor's cross-session reconnect hardening, test-suite repair, spec-folder-leak fix, and 5 shared-feature-adoption items (observability,",
+  "keywords": [
+    "advisor",
+    "cross-session",
+    "reconnect",
+    "hardening",
+    "test-suite",
+    "repair",
+    "spec-folder-leak",
+    "shared-feature-adoption",
+    "items",
+    "observability"
+  ],
+  "lastUpdated": "2026-07-09T10:02:50.314Z",
+  "specId": "009",
+  "folderSlug": "advisor-and-codegraph-migrated-items",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

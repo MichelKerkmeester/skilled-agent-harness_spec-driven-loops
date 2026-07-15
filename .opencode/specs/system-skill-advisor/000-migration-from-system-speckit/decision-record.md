@@ -120,7 +120,7 @@ The destination track's existing packet (disk name `999-skill-advisor-tuning/`, 
 ### Implementation
 
 **What changes**:
-- `system-skill-advisor/999-skill-advisor-tuning/` (disk name; metadata called it `001-skill-advisor-tuning/`) renamed to `012-skill-advisor-tuning/`, with every internal metadata and frontmatter reference corrected to `012`.
+- `system-skill-advisor/999-skill-advisor-tuning/` (disk name; metadata called it `001-skill-advisor-tuning/`) renamed to `016-skill-advisor-tuning/`, with every internal metadata and frontmatter reference corrected to `012`.
 - The 026/027/028 hubs land at `system-skill-advisor/001` through `011` in the order derived above.
 
 **How to roll back**: each batch is an independently committed `git mv` plus metadata regen. `git revert` the single commit for the affected batch restores the pre-move state for that batch only.

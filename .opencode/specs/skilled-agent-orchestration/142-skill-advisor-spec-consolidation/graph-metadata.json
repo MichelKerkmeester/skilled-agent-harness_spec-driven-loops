@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/142-skill-advisor-spec-consolidation",
+  "spec_folder": "skilled-agent-orchestration/142-skill-advisor-spec-consolidation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-advisor spec consolidation",
+      "system-skill-advisor track",
+      "skill-advisor spec folder renumber",
+      "consolidate skill-advisor specs",
+      "skill-advisor consolidation plan",
+      "skill-advisor migration",
+      "skill-advisor consolidation tasks",
+      "skill-advisor consolidation checklist",
+      "skill-advisor consolidation summary",
+      "system-skill-advisor track result"
+    ],
+    "key_topics": [
+      "skill-advisor",
+      "spec",
+      "consolidation",
+      "system-skill-advisor",
+      "track",
+      "folder",
+      "renumber",
+      "consolidate",
+      "specs",
+      "plan",
+      "migration",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fast-forward",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "two-phase",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "live",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-skill-advisor` track was formed on 2026-07-07 by extracting skill-advisor phases out of `system-speckit` packets 026/027/028, but four skill-advisor-owned packets predating that extraction were left stranded in `skilled-agent-orchestration/` top-level: `004-skill-advisor-refinement` (created 2026-03-03), `051-skill-advisor-reindex-and-stress-test` (2026-05-03), `070-ambiguity-window-confidence-fix` (2026-05-06), and `112-advisor-doc-trigger-harvest` (2026-06-11)",
+    "created_at": "2026-07-15T08:20:13.200Z",
+    "last_save_at": "2026-07-15T13:00:18.762Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f988048650f63a660fb93f0cff99ae1f53b1d6e7d76ff14ee6f556dbe3fb0f70",
+    "source_doc_hashes": {
+      "spec.md": "595eaf0b9ad4ac9731640e3a32c237d13b41cfe16d50ed2f482a6e735b1b442c",
+      "plan.md": "80faf5d4435c6e2e9e5d8966be06872960d0bdcc3d71f686dbbbcf0561b2f8ec",
+      "tasks.md": "bc118ccdfcc09bd934e11983b90b4a6ad88d1f897069f0ec299534a7b1c5723e",
+      "checklist.md": "cb9e70b488b09b174383829d8d654972c1a260863587d1f02f88f2ea59ebf662",
+      "implementation-summary.md": "3662e9fc1a5756cab9633054c8558c06713b08e69426e219c7d6b55b25aa7e6d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

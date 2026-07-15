@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory",
+  "description": "Skill-advisor and mk-spec-memory currently have separate embedder registries with competing defaults and parallel factory implementations",
+  "keywords": [
+    "skill-advisor",
+    "mk-spec-memory",
+    "currently",
+    "separate",
+    "embedder",
+    "registries",
+    "competing",
+    "defaults",
+    "parallel",
+    "factory",
+    "implementations"
+  ],
+  "lastUpdated": "2026-07-08T10:40:39.661Z",
+  "specId": "005",
+  "folderSlug": "shared-embedder-logic-with-spec-memory",
+  "parentChain": [
+    "system-skill-advisor",
+    "010-skill-advisor-embedder-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-05-26_19-08__shipped-phase-003-006-of-the-016-embedder-testing.md"
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/016-skill-advisor-tuning/005-executor-delegation-resolver",
+  "spec_folder": "system-skill-advisor/016-skill-advisor-tuning/005-executor-delegation-resolver",
+  "parent_id": "system-skill-advisor/016-skill-advisor-tuning",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "executor delegation resolver",
+      "cli-opencode delegation routing",
+      "metadata-driven executor aliases",
+      "post-fusion delegation override",
+      "executor delegation resolver plan",
+      "post-fusion override architecture",
+      "python ts executor parity",
+      "executor delegation resolver tasks",
+      "ws2 task breakdown",
+      "executor delegation resolver checklist",
+      "ws2 verification checklist",
+      "executor delegation resolver summary"
+    ],
+    "key_topics": [
+      "executor",
+      "delegation",
+      "resolver",
+      "cli-opencode",
+      "routing",
+      "metadata-driven",
+      "aliases",
+      "post-fusion",
+      "override",
+      "plan",
+      "architecture",
+      "python"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/executor-delegation-cases.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/executor-delegation.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "executor-delegation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation-cases.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/executor-delegation-cases.json",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/executor-delegation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "local-native-approved-divergences.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Driven Executor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delegation Resolver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Route",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor scorer routed explicit OpenCode delegation prompts to `cli-opencode` through an inline pre-clamp band-aid in the explicit lane (`+0.9` cli-opencode / `-3.0` sk-code)",
+    "created_at": "2026-07-06T19:37:38.596Z",
+    "last_save_at": "2026-07-15T11:59:35.184Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:841f9dc042521a8bffa1505a798cecb34842e05fefd614902175b555ac79ec65",
+    "source_doc_hashes": {
+      "spec.md": "1dbe4c255b70ac4dba05b714e1b6fcdfa8ac45e5cfa397e2a5f88ab65c220a6e",
+      "plan.md": "b86dc5110c2b2a7aa8ba21ea95e3fb39891263821021237b74dfd4b1681a9508",
+      "tasks.md": "d7622465299e496e7ed74c6fcb0f2613929702c704e91d2f590b8db34011fd09",
+      "checklist.md": "16ce7c56a04e8c4f0c171eab14c8d2d808a853f9069abc3dd5e12b7b6e234a42",
+      "implementation-summary.md": "aab175b54c3317aa244e34e81f5d2412696d5557b9de5083075ef06219ddd2b0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

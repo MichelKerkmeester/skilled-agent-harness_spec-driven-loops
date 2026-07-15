@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/013-remove-spec-kit-references",
+  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/013-remove-spec-kit-references",
+  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "013/009/013",
+      "spec-kit advisor ref cleanup",
+      "stale advisor docs",
+      "013/009/013 plan",
+      "spec-kit advisor docs cleanup plan",
+      "013/009/013 tasks",
+      "spec-kit advisor cleanup tasks",
+      "013/009/013 checklist",
+      "spec-kit advisor cleanup verification",
+      "013/009/013 implementation summary",
+      "spec-kit advisor cleanup summary"
+    ],
+    "key_topics": [
+      "spec-kit",
+      "advisor",
+      "ref",
+      "cleanup",
+      "stale",
+      "docs",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/system-spec-kit/scripts/observability/README.md",
+      ".opencode/install_guides/SET-UP - Skill Advisor.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/install_guides/SET-UP - AGENTS.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-enforcement.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - Skill Advisor.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - Skill Advisor.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Classify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Grep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor extraction moved skill-advisor ownership out of `system-spec-kit` into the sibling `system-skill-advisor` skill and standalone `systemskilladvisor` MCP server",
+    "created_at": "2026-05-19T15:11:02.192Z",
+    "last_save_at": "2026-07-15T11:59:16.581Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e9dd2b067a112c6bd51d210ce2786b3609c49540cda650544cc5610acfc7f49e",
+    "source_doc_hashes": {
+      "spec.md": "9512461eed7e59cea9445173929d7b2c42a1c0e488adebade8c9a33fa5ae0404",
+      "plan.md": "01a5ffcb277dd032bd5393eb351c385fd9f2fe5e2b52851e82d48cd4d8e31f48",
+      "tasks.md": "fdffdee6ab21d15d87d3d52e1001cd3716d29f5220dac98a3b6819958a543519",
+      "checklist.md": "59d20b1658ca7edf3dc3e29cac82959c750159ede49fd2b15e7302347bb1fb35",
+      "implementation-summary.md": "7a9e9cd9f8f67c835c1208aa705cefbb929e4c6600292db3f54b561b07d5dcb4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

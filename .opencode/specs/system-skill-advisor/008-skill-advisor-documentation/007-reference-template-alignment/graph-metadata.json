@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/008-skill-advisor-documentation/007-reference-template-alignment",
+  "spec_folder": "system-skill-advisor/008-skill-advisor-documentation/007-reference-template-alignment",
+  "parent_id": "system-skill-advisor/008-skill-advisor-documentation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system skill advisor reference template alignment",
+      "system-skill-advisor references",
+      "advisor reference folders",
+      "skill advisor smart router",
+      "system skill advisor reference alignment plan",
+      "advisor reference template implementation",
+      "system skill advisor reference alignment tasks",
+      "system skill advisor reference alignment checklist",
+      "system skill advisor reference alignment decision",
+      "system skill advisor reference alignment summary"
+    ],
+    "key_topics": [
+      "system",
+      "skill",
+      "advisor",
+      "reference",
+      "template",
+      "alignment",
+      "system-skill-advisor",
+      "references",
+      "folders",
+      "smart",
+      "router",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".opencode/skills/system-skill-advisor/README.md",
+      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/database/README.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Skill Advisor Reference Template Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Move",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor references were stored as one flat root folder with kebab-case filenames and inconsistent sk-doc reference-template structure",
+    "created_at": "2026-05-24T07:26:59Z",
+    "last_save_at": "2026-07-15T11:59:27.126Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f632420dc6e5b48e99d991e88ddaa89a44447066201dc2cdd1a107f7a730e132",
+    "source_doc_hashes": {
+      "spec.md": "19304967be4c98e2b08d13f565d9cf3b0919a535d87f911f54d10ff20c6d6cf6",
+      "plan.md": "b47ac72b6412f1cfc3177a4a7c1657cace598791db9168754a4d8d131502e06a",
+      "tasks.md": "b3b129d4c3ddc426f0745f3ffdd7285581d0c9a41c27ff67c6cac433d9fe848c",
+      "checklist.md": "db657e318213789b67673766a5d98a9f2ee1d7d3e878defdd7d0c4b0d86e1c0a",
+      "decision-record.md": "cee286f5a397e6180e57dee6de5cad0a2beeda3b76eb287a7c7e1c1da1e3df5c",
+      "implementation-summary.md": "60216598f0cbc68fb869ca596024a2f771d12bf5ad46116a3c9d7c439e2ed113"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

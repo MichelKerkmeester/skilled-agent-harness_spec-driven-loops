@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/010-skill-advisor-embedder-stack/001-pluggable-architecture",
+  "spec_folder": "system-skill-advisor/010-skill-advisor-embedder-stack/001-pluggable-architecture",
+  "parent_id": "system-skill-advisor/010-skill-advisor-embedder-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/001 pluggable architecture",
+      "skill-advisor EmbedderAdapter",
+      "skill-graph vec_metadata",
+      "022/001 plan",
+      "022/001 tasks",
+      "022/001 summary"
+    ],
+    "key_topics": [
+      "pluggable",
+      "architecture",
+      "skill-advisor",
+      "embedderadapter",
+      "skill-graph",
+      "plan",
+      "tasks",
+      "summary",
+      "author",
+      "lib",
+      "embedders",
+      "module"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "mcp_server/lib/embedders/adapter.ts",
+      "mcp_server/lib/embedders/types.ts",
+      "mcp_server/lib/embedders/registry.ts",
+      "mcp_server/lib/embedders/adapters/ollama.ts",
+      "mcp_server/lib/embedders/schema.ts",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "adapter.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/adapters/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "schema.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "env",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "registry",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ollama",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "jina-v3",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "minimal",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Author mcp_server/lib/embedders/ module mirroring 016 pattern: EmbedderAdapter + MANIFESTS + OllamaAdapter + dim-tagged vec_<dim> schema + vec_metadata pointer",
+    "created_at": "2026-05-18T08:07:25.979Z",
+    "last_save_at": "2026-07-15T11:59:29.539Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:827a71e87c998ffab21028da986295dd2998522781a795f3d98d825e6711425b",
+    "source_doc_hashes": {
+      "spec.md": "e3683a3bcd3192b720bbe87616d06a83dc4e43a27f12e518f50f3fafb9042787",
+      "plan.md": "af8523a154061d02ad1c3aeb9a91eadf1144e31e7df5cf255c155d8320ee51c2",
+      "tasks.md": "99630fd64c05042d488ff336abbe1c2c3e253c92bea9571d7742fac43846d48c",
+      "implementation-summary.md": "bfd11c672c9e63acc7c0d411d7df63aa91e7ffdc472eb923b50b23e4afac6c57"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

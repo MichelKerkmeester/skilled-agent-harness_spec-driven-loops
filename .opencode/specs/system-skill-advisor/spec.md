@@ -93,18 +93,18 @@ One track holds every skill-advisor-scoped spec folder, numbered in true chronol
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 000 | `000-migration-from-system-speckit/` | This extraction's own tracking spec (manifest, decisions, verification) | Complete |
-| 001 | `001-skill-graph/` | Skill-graph DB/tooling, incl. the 30-item package-extraction arc (originally 2026-04-21) | Phase parent |
-| 002 | `002-skill-advisor-scoring-engine/` | Scoring system: hooks, semantic routing, ablation sweeps, confidence calibration | Phase parent |
-| 003 | `003-skill-advisor-routing-engine/` | Intent routing, phrase boosters, hook surface integration, affordance evidence | Phase parent |
-| 004 | `004-skill-advisor-production-hardening/` | Plugin hardening, standards alignment, fail-open fallback, freshness audit | Phase parent |
-| 005 | `005-skill-advisor-documentation/` | Documentation-code alignment and quality refactor | Phase parent |
-| 006 | `006-playbook-run-and-remediation/` | Manual testing playbook run + remediation | Phase parent |
-| 007 | `007-skill-advisor-embedder-stack/` | Pluggable embedder architecture, zombie-launcher fix, compat-contract consolidation (2026-05-17) | Phase parent |
-| 008 | `008-skill-advisor-cli/` | CLI-fallback workstream for `mk_skill_advisor` (2026-06-06) | Phase parent |
-| 009 | `009-advisor-and-codegraph-migrated-items/` | Cross-session reconnect, suite repair, spec-folder-leak fix, 5 shared-feature-adoption items (2026-06-14) | Phase parent |
-| 010 | `010-skill-advisor-frontmatter-alignment/` | Canonical model-reference contract applied to the advisor skill (2026-06-16) | Complete |
-| 011 | `011-skill-advisor-phase-parent/` | Held hard-rule and dispatch-preflight hardening follow-up (2026-06-16) | In Progress |
-| 012 | `012-skill-advisor-tuning/` | Scorer saturation-class root fix (WS1-6), the newest wave (2026-07-06) | In Progress |
+| 001 | `004-skill-graph/` | Skill-graph DB/tooling, incl. the 30-item package-extraction arc (originally 2026-04-21) | Phase parent |
+| 002 | `005-skill-advisor-scoring-engine/` | Scoring system: hooks, semantic routing, ablation sweeps, confidence calibration | Phase parent |
+| 003 | `006-skill-advisor-routing-engine/` | Intent routing, phrase boosters, hook surface integration, affordance evidence | Phase parent |
+| 004 | `007-skill-advisor-production-hardening/` | Plugin hardening, standards alignment, fail-open fallback, freshness audit | Phase parent |
+| 005 | `008-skill-advisor-documentation/` | Documentation-code alignment and quality refactor | Phase parent |
+| 006 | `009-playbook-run-and-remediation/` | Manual testing playbook run + remediation | Phase parent |
+| 007 | `010-skill-advisor-embedder-stack/` | Pluggable embedder architecture, zombie-launcher fix, compat-contract consolidation (2026-05-17) | Phase parent |
+| 008 | `011-skill-advisor-cli/` | CLI-fallback workstream for `mk_skill_advisor` (2026-06-06) | Phase parent |
+| 009 | `013-advisor-and-codegraph-migrated-items/` | Cross-session reconnect, suite repair, spec-folder-leak fix, 5 shared-feature-adoption items (2026-06-14) | Phase parent |
+| 010 | `014-skill-advisor-frontmatter-alignment/` | Canonical model-reference contract applied to the advisor skill (2026-06-16) | Complete |
+| 011 | `015-skill-advisor-phase-parent/` | Held hard-rule and dispatch-preflight hardening follow-up (2026-06-16) | In Progress |
+| 012 | `016-skill-advisor-tuning/` | Scorer saturation-class root fix (WS1-6), the newest wave (2026-07-06) | In Progress |
 
 ### Phase Transition Rules
 
@@ -116,7 +116,7 @@ One track holds every skill-advisor-scoped spec folder, numbered in true chronol
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| `001-skill-graph` | `012-skill-advisor-tuning` | Each phase ships and validates independently | Per-phase strict validation evidence |
+| `004-skill-graph` | `016-skill-advisor-tuning` | Each phase ships and validates independently | Per-phase strict validation evidence |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -124,7 +124,7 @@ One track holds every skill-advisor-scoped spec folder, numbered in true chronol
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Two content-unconfirmed leftover items in `system-speckit/026-graph-and-context-optimization` were intentionally left there rather than moved or investigated further during this extraction: `006-operator-tooling/003-install-scripts-doctor-realignment/003-advisor-adjacent-116-realignment` (still template-scaffold prose, subject matter unconfirmed) and a content-confirmation judgment call already resolved for `007-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory` (confirmed advisor-scoped, moved).
+- Two content-unconfirmed leftover items in `system-speckit/026-graph-and-context-optimization` were intentionally left there rather than moved or investigated further during this extraction: `006-operator-tooling/003-install-scripts-doctor-realignment/003-advisor-adjacent-116-realignment` (still template-scaffold prose, subject matter unconfirmed) and a content-confirmation judgment call already resolved for `010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory` (confirmed advisor-scoped, moved).
 <!-- /ANCHOR:questions -->
 
 ---

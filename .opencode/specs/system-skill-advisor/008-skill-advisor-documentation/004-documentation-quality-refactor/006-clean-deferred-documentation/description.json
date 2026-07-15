@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
+  "description": "Children 002-005 deferred a set of findings from the 001 research synthesis",
+  "keywords": [
+    "children",
+    "deferred",
+    "set",
+    "findings",
+    "research",
+    "synthesis"
+  ],
+  "lastUpdated": "2026-07-09T10:02:50.082Z",
+  "specId": "006",
+  "folderSlug": "clean-deferred-documentation",
+  "parentChain": [
+    "system-skill-advisor",
+    "008-skill-advisor-documentation",
+    "004-documentation-quality-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

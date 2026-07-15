@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/007-skill-advisor-production-hardening/008-fix-skill-advisor-quality",
+  "spec_folder": "system-skill-advisor/007-skill-advisor-production-hardening/008-fix-skill-advisor-quality",
+  "parent_id": "system-skill-advisor/007-skill-advisor-production-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "F-006-B1",
+      "F-012-C2",
+      "F-013-C3",
+      "advisor quality",
+      "renderAdvisorBrief alignment",
+      "graph-causal conflict signal",
+      "projection trigger keyword duplication",
+      "task-intent confidence floor",
+      "ambiguity tie cluster",
+      "review and update disambiguation",
+      "F-006-B1 plan",
+      "F-012-C2 plan"
+    ],
+    "key_topics": [
+      "f-006-b1",
+      "f-012-c2",
+      "f-013-c3",
+      "advisor",
+      "quality",
+      "renderadvisorbrief",
+      "alignment",
+      "graph-causal",
+      "conflict",
+      "signal",
+      "projection",
+      "trigger"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+      "mcp_server/hooks/codex/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Quality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Eight",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Aligns Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Route Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "five",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Eight advisor-quality findings sit across the skill-advisor surface",
+    "created_at": "2026-05-01T05:18:47Z",
+    "last_save_at": "2026-07-15T11:59:24.687Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:99c597aaf4e97a2c760809ac240903794a1454e6ebb6fb5cc1601cd68b7fa300",
+    "source_doc_hashes": {
+      "spec.md": "200efd11f47b51a530a3ed94c68ec0ebf64e8c0f3ff419bcc9e7e8799539bc82",
+      "plan.md": "23a98c07a615c15c6e84f8cea305db1fcb5211dec90eafa999525ba68fc1ac0b",
+      "tasks.md": "ff3b4d80199d9a47a2b2f0f9de7da06d75216304e82d2b91ae10eea5e074d5f2",
+      "checklist.md": "9021b60d27a71cb3c5dd0f5abe7af981a4778ce0a7cd98a90c6960985534e786",
+      "implementation-summary.md": "fca57b3625f076a09fcb61a56bccec5e087e803615a9eeb4c4c2b152973e96f8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

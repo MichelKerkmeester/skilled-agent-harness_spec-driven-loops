@@ -1,0 +1,23 @@
+{
+  "specFolder": "skilled-agent-orchestration/142-skill-advisor-spec-consolidation",
+  "description": "The `system-skill-advisor` track was formed on 2026-07-07 by extracting skill-advisor phases out of `system-speckit` packets 026/027/028, but four",
+  "keywords": [
+    "system-skill-advisor",
+    "track",
+    "formed",
+    "extracting",
+    "skill-advisor",
+    "phases",
+    "system-speckit",
+    "packets",
+    "four"
+  ],
+  "lastUpdated": "2026-07-15T13:00:06.451Z",
+  "specId": "142",
+  "folderSlug": "skill-advisor-spec-consolidation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

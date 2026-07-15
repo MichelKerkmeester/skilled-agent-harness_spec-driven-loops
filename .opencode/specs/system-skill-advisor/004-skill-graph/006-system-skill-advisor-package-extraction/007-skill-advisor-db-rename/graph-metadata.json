@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename",
+  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename",
+  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill graph db rename",
+      "graph metadata index sqlite",
+      "old skill-graph sqlite cleanup",
+      "system skill advisor extraction follow-on",
+      "skill graph db rename plan",
+      "graph metadata index implementation",
+      "option b rename",
+      "skill graph db rename tasks",
+      "graph metadata index tasks",
+      "skill graph db rename checklist",
+      "graph metadata index verification",
+      "skill graph db rename implementation"
+    ],
+    "key_topics": [
+      "skill",
+      "graph",
+      "rename",
+      "metadata",
+      "index",
+      "sqlite",
+      "old",
+      "skill-graph",
+      "cleanup",
+      "system",
+      "advisor",
+      "extraction"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/projection-fallback-049-005.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-freshness.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts",
+      ".opencode/skills/system-skill-advisor/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-checkpoint.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "restore-checkpoint.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "projection-fallback-049-005.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/projection-fallback-049-005.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-freshness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-status.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "native-scorer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Option",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Option",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the system-skill-advisor extraction, two unrelated databases still used the filename `skill-graph.sqlite`",
+    "created_at": "2026-05-14T13:02:30Z",
+    "last_save_at": "2026-07-15T11:59:15.490Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T13:20:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:777d22d9e8d07bb2a9eb15255700817af28af92ac9847e4f8f39d1aa823e343e",
+    "source_doc_hashes": {
+      "spec.md": "68e25fe3e5d97effe01e08c7c7ac4669ce2d8683597ede94a2e3cac277b70411",
+      "plan.md": "c4cffaa22bf1daeacdc4881240eefc49eabd359e6b4a409aaea20c537d9c471c",
+      "tasks.md": "7d09689f82a0e4e22db3646394eb0f0bfbca8007df72f619c34a942d3a5666b0",
+      "checklist.md": "e3f3cd014f8ea21472d4f21702d576740b927abaf4ff55c04c6bf268fdb3cf11",
+      "implementation-summary.md": "8e6f53393cd5fc02dcd1293d9306dd4d44d1d1a32f27b015db60ce6cb671dafb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

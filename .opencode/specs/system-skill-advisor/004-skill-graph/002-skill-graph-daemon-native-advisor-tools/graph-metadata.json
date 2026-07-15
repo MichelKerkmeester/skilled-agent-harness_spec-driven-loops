@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/002-skill-graph-daemon-native-advisor-tools",
+  "spec_folder": "system-skill-advisor/004-skill-graph/002-skill-graph-daemon-native-advisor-tools",
+  "parent_id": "system-skill-advisor/004-skill-graph",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/009/002 skill graph daemon",
+      "advisor unification",
+      "native advisor",
+      "026/009/002 plan",
+      "advisor daemon plan",
+      "026/009/002 tasks",
+      "advisor daemon tasks",
+      "027 checklist",
+      "advisor daemon checklist",
+      "027 decisions",
+      "advisor daemon adr",
+      "026/008/008 implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "graph",
+      "daemon",
+      "advisor",
+      "unification",
+      "native",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "plan.md",
+      "decision-record.md",
+      "spec.md",
+      "checklist.md",
+      "tasks.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Graph Daemon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Unification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Complete Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preserve Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The legacy skill-advisor stack depended on manually refreshed graph files, hand-maintained trigger phrases, fixed Python scoring, and split ownership between Python scripts and the system-spec-kit MCP server",
+    "created_at": "2026-04-21T08:25:00.990Z",
+    "last_save_at": "2026-07-15T11:59:13.302Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:46d209b899d3a00c1b0ac21066d1955279a096486f7076eaa7752d2ca936de2f",
+    "source_doc_hashes": {
+      "spec.md": "4735438db1e2b6f56deebee81cb41f0ebfdbd6ca9dddcc81b556d2be06195273",
+      "plan.md": "1be1d5364fb961819b898441962d5a9d820fe6dce813da50947a456a0a489cd8",
+      "tasks.md": "fb9762dd590b97b9a4f7a88d83e36c4fbf45960182c46ff84deb72535fc90c05",
+      "checklist.md": "8bddf9ac7100f4a8737145db9b20821c738ef98e676e5b94f34497636bed819c",
+      "decision-record.md": "688a76b8a1c449d9f229a5ead0e32608412884291b8cbd3dcf085f5ccaec2837",
+      "implementation-summary.md": "3ca14311694e5725f2240d1c2877bb9d6f1260ce41b12ad682a4070a89b63074",
+      "research/research.md": "b2fb79f3230087b9a69ac59b39a4ec6785893af5c5dbb29d5c374b06bf6267e9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

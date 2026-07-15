@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/005-ambiguous-debug-review-routing",
+  "spec_folder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/005-ambiguous-debug-review-routing",
+  "parent_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "065/005 ambiguous debug review",
+      "ambiguous routing",
+      "CP-100",
+      "065/005 plan",
+      "ambiguous debug review plan",
+      "065/005 tasks",
+      "ambiguous debug review tasks",
+      "065/005 checklist",
+      "ambiguous debug review checklist",
+      "065/005 implementation summary",
+      "065/005 resource map",
+      "ambiguous debug review resources"
+    ],
+    "key_topics": [
+      "ambiguous",
+      "debug",
+      "review",
+      "routing",
+      "cp-100",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "resource",
+      "map"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "resource-map.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-code/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "my",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "calibrated",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. DEPENDENCIES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-001: [x] Reproduce CP-100",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-002: [x] Capture clear implementation controls",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan phase to improve ambiguous code/problem prompts so review or debug candidates outrank broad sk-code without overconfidence.",
+    "created_at": "2026-05-18T07:49:27.135Z",
+    "last_save_at": "2026-07-15T11:59:12.565Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:3dbbd8a692a6f703524f32d23567e940a73539627d8cfccec3616fef4366d0df",
+    "source_doc_hashes": {
+      "spec.md": "9d91beea266dd7c11203408b6fe733d5c5a1d8979bb1477675a8912be981c825",
+      "plan.md": "38af624e06dc0c734ba239fc6d1843c5737442ce60ae41fc14fc93624168ba41",
+      "tasks.md": "d3e915b08c3295cfc94fbac7d621c6a2a13afec6c6f2481f15281ca7a3646b93",
+      "checklist.md": "ecd028fff585a8594192ae0d883ea4a74491f0a2c80e058b285c8514df331a1e",
+      "implementation-summary.md": "383a52c9bb0ab15cef843bdfa40cac0cc174367c0ad09fd45eb43ac962d806e5",
+      "resource-map.md": "bf2a6223d3ad44c49b698eb5ada5af4bfe549110ea45e80f23877248e893dfc3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

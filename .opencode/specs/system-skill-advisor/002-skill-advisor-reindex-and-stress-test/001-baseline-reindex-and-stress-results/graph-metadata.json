@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+  "spec_folder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+  "parent_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test",
+  "children_ids": [
+    "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex",
+    "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "065/001 baseline",
+      "reindex stress baseline",
+      "skill advisor baseline results",
+      "065/001 baseline plan",
+      "baseline reindex stress plan",
+      "065/001 baseline tasks",
+      "065/001 baseline checklist",
+      "065 implementation summary",
+      "065 roll-up",
+      "065 handover",
+      "skill router battle plan",
+      "reindex stress test handover"
+    ],
+    "key_topics": [
+      "baseline",
+      "reindex",
+      "stress",
+      "skill",
+      "advisor",
+      "results",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "roll-up"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "handover.md",
+      "001-skill-reindex/reindex-diff.md",
+      "001-skill-reindex/implementation-summary.md",
+      "002-skill-router-stress-tests/test-report.md",
+      "specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex/reindex-diff.md",
+      "specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests/test-report.md",
+      "specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "001-skill-reindex/graph-metadata.json",
+      "001-skill-reindex/tasks.md",
+      ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/spec.md",
+      ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/plan.md",
+      ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/tasks.md",
+      ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/checklist.md",
+      ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "reindex-diff.md",
+        "kind": "doc",
+        "path": "001-skill-reindex/reindex-diff.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-report.md",
+        "kind": "doc",
+        "path": "002-skill-router-stress-tests/test-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "001-skill-reindex/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SUB-PHASE CONTROL",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. SCOPE BOUNDARY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. SUCCESS CRITERIA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "two",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: PRESERVE BASELINE",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Completed baseline phase preserving the original 065 reindex, live MCP replay, and router stress-test evidence.",
+    "created_at": "2026-05-18T07:49:27.126Z",
+    "last_save_at": "2026-07-15T11:59:11.631Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:6d45a08c6c485073c239966e94c2ba97a0282ea636cb1dbce592508d08d6f314",
+    "source_doc_hashes": {
+      "spec.md": "4cd2571cb2c5a31955b04004ecd84c7ed4079e4c3ba9b58ece32d6d68f9cc1a8",
+      "plan.md": "b1ed9efa2e8eeaf4676b7cc3c3e1ef8cf4d34bb5eede8a2c5ac8c788cf2d389d",
+      "tasks.md": "6f09f249babf7fc8846648fb4677de8ac69a9eaa54f933af707bd672e582e16c",
+      "checklist.md": "c6809db5c7de094053fcb6d349b96d21b05692c04f674180bd5be5348ac0cb10",
+      "implementation-summary.md": "95ae654ddffb2d76f2ff04da4966297374f10e012574e14822ad754040131d0d",
+      "handover.md": "8d53c40e67f8c0c0dd89be4d60648270ab1f98fde6791289201223207c55f51b",
+      "resource-map.md": "a80ee0be1ff93fa437d27f029b76c615190b5bfab321258875be37570e87c8ef"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

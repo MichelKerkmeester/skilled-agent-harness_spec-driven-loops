@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-skill-advisor/007-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run",
+  "description": "Six phases shipped with a consolidated list of deferred items:",
+  "keywords": [
+    "six",
+    "phases",
+    "shipped",
+    "consolidated",
+    "list",
+    "deferred",
+    "items"
+  ],
+  "lastUpdated": "2026-07-08T05:23:49.841Z",
+  "specId": "001",
+  "folderSlug": "deferred-remediation-telemetry-run",
+  "parentChain": [
+    "system-skill-advisor",
+    "007-skill-advisor-production-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

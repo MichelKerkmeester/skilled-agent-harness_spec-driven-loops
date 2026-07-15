@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/006-skill-advisor-routing-engine/005-advisor-setup-command",
+  "spec_folder": "system-skill-advisor/006-skill-advisor-routing-engine/005-advisor-setup-command",
+  "parent_id": "system-skill-advisor/006-skill-advisor-routing-engine",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor setup command",
+      "/doctor:skill-advisor",
+      "skill advisor set-up",
+      "skill advisor setup",
+      "005-advisor-setup-command",
+      "skill advisor setup command plan",
+      "/doctor:skill-advisor plan",
+      "skill advisor setup command tasks",
+      "005-advisor-setup-command tasks",
+      "skill advisor setup command checklist",
+      "005-advisor-setup-command checklist",
+      "skill advisor setup command implementation"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "setup",
+      "command",
+      "doctor",
+      "skill-advisor",
+      "set-up",
+      "005-advisor-setup-command",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/install_guides/SET-UP - Skill Advisor.md",
+      "checklist.md",
+      "review/review-report.md",
+      "review/resource-map.md",
+      "review/runner.sh",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - Skill Advisor.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - Skill Advisor.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "runner.sh",
+        "kind": "script",
+        "path": "review/runner.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Setup Command",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Deliver",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Slash Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Workflow Orchestration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill advisor scoring system (explicit lane TOKENBOOSTS, PHRASEBOOSTS, lexical CATEGORYHINTS, graph-metadata.json derived triggers/keywords) is manually maintained with no guided setup workflow",
+    "created_at": "2026-04-25T14:30:00Z",
+    "last_save_at": "2026-07-15T11:59:23.153Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ba668ca03726beb4e7f1d27b8bbe5483b34b63927d7a9153e1488f4c6296b65f",
+    "source_doc_hashes": {
+      "spec.md": "d771f25f1309f0a653d98caa5697a04afbfb5055a1b6241a1ce1faa7a705a6c1",
+      "plan.md": "0f7f07555bbccb91c4972ed7f156040cdd6d9068d5bd26399d9b6a4b2d42285a",
+      "tasks.md": "9b686a883c10dd570280a897922339f2da4f5d77545a5011bb7c5e442cdd54ec",
+      "checklist.md": "4244c64b52b2ae22f5db12597c95995d46284a54d8fb51595fb4b9780d8ee07d",
+      "implementation-summary.md": "f4c4dafd322160402d05164ece3abf1a52a2e4e54874174155fdf95542f25375"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

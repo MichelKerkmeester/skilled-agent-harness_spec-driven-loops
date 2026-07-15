@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/005-skill-advisor-scoring-engine",
+  "description": "Phase parent for skill advisor scoring optimization across 8 children: embed cache, cosine wiring, ablation/weight/corpus sweeps, and routing",
+  "keywords": [
+    "phase",
+    "parent",
+    "skill",
+    "advisor",
+    "scoring",
+    "optimization",
+    "across",
+    "children",
+    "embed",
+    "cache",
+    "cosine",
+    "wiring",
+    "ablation",
+    "weight",
+    "corpus",
+    "sweeps",
+    "routing"
+  ],
+  "lastUpdated": "2026-07-09T10:02:49.792Z",
+  "specId": "002",
+  "folderSlug": "skill-advisor-scoring-engine",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

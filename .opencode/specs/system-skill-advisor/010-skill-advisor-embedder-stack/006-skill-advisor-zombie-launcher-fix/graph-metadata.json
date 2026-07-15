@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/010-skill-advisor-embedder-stack/006-skill-advisor-zombie-launcher-fix",
+  "spec_folder": "system-skill-advisor/010-skill-advisor-embedder-stack/006-skill-advisor-zombie-launcher-fix",
+  "parent_id": "system-skill-advisor/010-skill-advisor-embedder-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-advisor zombie launcher",
+      "mk-skill-advisor-launcher duplicates",
+      "007 zombie launcher fix",
+      "daemon sqlite launcher race",
+      "007 zombie launcher plan",
+      "skill-advisor launcher fix plan",
+      "spawn-three launcher verification",
+      "007 zombie launcher tasks",
+      "skill-advisor launcher tasks",
+      "007 zombie launcher checklist",
+      "skill-advisor launcher verification",
+      "007 zombie launcher summary"
+    ],
+    "key_topics": [
+      "skill-advisor",
+      "zombie",
+      "launcher",
+      "mk-skill-advisor-launcher",
+      "duplicates",
+      "daemon",
+      "sqlite",
+      "race",
+      "plan",
+      "spawn-three",
+      "verification",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lease.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Zombie Launcher Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Launcher",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cutting Invariants",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After Phase 006 shipped, a live process audit at 2026-05-18T16:47Z still observed three `mk-skill-advisor-launcher` processes while `mk-code-index-launcher` and `mk-spec-memory-launcher` each held at one",
+    "created_at": "2026-05-18T16:55:50.377Z",
+    "last_save_at": "2026-07-15T11:59:30.276Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e29f4492f38a40db802d03f9785de2822ea9cfd17a3c1eb3403903c8c2960e41",
+    "source_doc_hashes": {
+      "spec.md": "c039bcc658d34fa77a988e0137097a738045d00878dc01bf536649ddeaa9504e",
+      "plan.md": "ffde0c32826ec20c16c95987d5eec036395a3d3a129b93b3690c92038847701e",
+      "tasks.md": "1f5b52979fa2eb93bd97b2fc50f52a9c31ffbbd9d90a0640395250a7271668ca",
+      "checklist.md": "3f41548a6c398df9d5c3368983f1f587ee1a16964a27b28d57b55bbe9a472397",
+      "implementation-summary.md": "5bbb58d41987608e22c87213df7839b1f398235a34fd44d95a44ad44f3b6c2a9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

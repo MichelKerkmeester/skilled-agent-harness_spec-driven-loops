@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
+  "spec_folder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
+  "parent_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "065/002 stress test",
+      "skill router stress",
+      "manual playbook scenarios",
+      "065/002 plan",
+      "065/002 tasks",
+      "065/001/002 checklist",
+      "router stress checklist",
+      "065/002 implementation summary",
+      "065/001/002 resource map",
+      "router stress resource map"
+    ],
+    "key_topics": [
+      "stress",
+      "test",
+      "skill",
+      "router",
+      "manual",
+      "playbook",
+      "scenarios",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "scenarios/CP-100-ambiguous.md",
+      "scenarios/CP-105-adversarial.md",
+      "scenarios/CP-101-false-positive.md",
+      "scenarios/CP-102-low-confidence.md",
+      "scenarios/CP-103-multi-skill.md",
+      "scenarios/CP-104-novel-phrasing.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "CP-100-ambiguous.md",
+        "kind": "doc",
+        "path": "scenarios/CP-100-ambiguous.md",
+        "source": "derived"
+      },
+      {
+        "name": "CP-105-adversarial.md",
+        "kind": "doc",
+        "path": "scenarios/CP-105-adversarial.md",
+        "source": "derived"
+      },
+      {
+        "name": "CP-101-false-positive.md",
+        "kind": "doc",
+        "path": "scenarios/CP-101-false-positive.md",
+        "source": "derived"
+      },
+      {
+        "name": "CP-102-low-confidence.md",
+        "kind": "doc",
+        "path": "scenarios/CP-102-low-confidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "CP-103-multi-skill.md",
+        "kind": "doc",
+        "path": "scenarios/CP-103-multi-skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "CP-104-novel-phrasing.md",
+        "kind": "doc",
+        "path": "scenarios/CP-104-novel-phrasing.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "high",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PASS",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "GO",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "retry",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "direct",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep-checkable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "methodology",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "bumped",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "concrete",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Stress-test SKILL.md content + skill router routing efficiency via 6+ manual playbook CP-XXX scenarios dispatched across 3 external CLI executors (cli-codex, cli-gemini)",
+    "created_at": "2026-05-18T07:49:27.130Z",
+    "last_save_at": "2026-07-15T11:59:11.923Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:e52c4ac1479e6a061827f7a78bed27c286c33516314d11bb7e41f97e46e33808",
+    "source_doc_hashes": {
+      "spec.md": "f587685dd5f0020b88a314a1b56a9187fc794a027fcaec4879045055d7b435bc",
+      "plan.md": "d31e748902aeb6e180fc414a09e63999005260020c412194b29595ce9ad938af",
+      "tasks.md": "3b791b1e51307faaa4487d514f277ba69cd471566858ec970d86cfed988dbe2a",
+      "checklist.md": "97823641d2796846dff004479f5eab6ce6c1c93454ac27e807f3bc0c04cb2ba6",
+      "implementation-summary.md": "5d2d4baa4b178960ffa6b57d1f8ccfc5333722eb6855dfc3e5c8f78b71fd6897",
+      "resource-map.md": "f32fa7a8ac668a7beb4782d4313cb931b4c7155510f2821766f0fde1c08b4f69"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

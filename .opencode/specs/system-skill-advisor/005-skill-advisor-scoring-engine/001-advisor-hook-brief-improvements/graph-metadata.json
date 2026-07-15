@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
+  "spec_folder": "system-skill-advisor/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
+  "parent_id": "system-skill-advisor/005-skill-advisor-scoring-engine",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-advisor hook improvements",
+      "skill-advisor system research",
+      "026/009/014",
+      "014 skill-advisor",
+      "014-f-001",
+      "014-f-007",
+      "sa-t1",
+      "tasks",
+      "bucket b",
+      "014 skill-advisor checklist",
+      "026/009/014 verification",
+      "014 skill-advisor hook improvements complete"
+    ],
+    "key_topics": [
+      "skill-advisor",
+      "hook",
+      "improvements",
+      "system",
+      "research",
+      "014-f-001",
+      "014-f-007",
+      "sa-t1",
+      "tasks",
+      "bucket",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+      "hooks/claude/hook-state.ts",
+      "lib/context/shared-payload.ts",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      "implementation-summary.md",
+      "hooks/codex/user-prompt-submit.ts",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-state.ts",
+        "kind": "code",
+        "path": "hooks/claude/hook-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shared-payload.ts",
+        "kind": "code",
+        "path": "lib/context/shared-payload.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Hook Improvements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Normalizing Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill-advisor system has already passed through sibling sub-phases `001`, `008`, and `009`, plus targeted parity closure in `007/006-integrity-parity-closure/`",
+    "created_at": "2026-04-24T01:10:00Z",
+    "last_save_at": "2026-07-15T11:59:20.201Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:29263858d91b8375134af66cd576390e945103d90e2c7b9800c29f5e8dd030ba",
+    "source_doc_hashes": {
+      "spec.md": "b01d8a981428af2a7a8173a546dbebb7263d55fdc13b7d6fc688da82e805e926",
+      "plan.md": "6628ecc2ab653549462d379ae30e167ab33820975321e48c295612763b683a3a",
+      "tasks.md": "6ad22521832650fcfa413499f31fb05aed6ce01b879f4bdffd22b70976246761",
+      "checklist.md": "ff64a33fb66c3560be80f178bcdb620ec3450c7cbb3548e7c24eb6efaf1e6da7",
+      "implementation-summary.md": "57e8515f685e342ae82d3d0df7db9adcead0cfa2323747940a8a2b1b1e6bcff2",
+      "resource-map.md": "1487f698cdc68b568cd771b14a065c7a6857b25e87daed5d1d5f852c9403711c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

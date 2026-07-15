@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/003-create-testing-playbook-routing",
+  "spec_folder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/003-create-testing-playbook-routing",
+  "parent_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "065/003 testing playbook routing",
+      "create testing playbook",
+      "CP-105",
+      "065/003 plan",
+      "testing playbook routing plan",
+      "065/003 tasks",
+      "testing playbook routing tasks",
+      "065/003 checklist",
+      "testing playbook routing checklist",
+      "065/003 implementation summary",
+      "065/003 resource map",
+      "testing playbook routing resources"
+    ],
+    "key_topics": [
+      "testing",
+      "playbook",
+      "routing",
+      "cp-105",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "resource",
+      "map",
+      "resources"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "resource-map.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "confidence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. SUCCESS CRITERIA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "regression",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-001: [x] Reproduce CP-105",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-002: [x] Locate testing-playbook route metadata",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan phase to route testing-playbook creation prompts to create:testing-playbook instead of generic documentation skills.",
+    "created_at": "2026-05-18T07:49:27.133Z",
+    "last_save_at": "2026-07-15T11:59:12.251Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:5bb39fc8db8949184558a808dda70b13003bbe5a07f9744be706e00f68e7b7c7",
+    "source_doc_hashes": {
+      "spec.md": "237a795df35b0d91237d0d5f03cd97d01844a69f313f27614faba1ad639a9181",
+      "plan.md": "502c7be98cf7bf8a025a90acdc0ebe1ef7714f3be88f833a2be24b9b5ec16c47",
+      "tasks.md": "1d29d0c0952cc72a15986068882ed473637568061d6ba8eae63f67f02269f4ba",
+      "checklist.md": "267e8b24f40ebcbfc81850ffba1be8fe949529b0ea8a643c6d6edca986fb29e1",
+      "implementation-summary.md": "0dea3030a0214cdb277d9b6c4e7b2b57b5767ec0f072781b3e54c7496a503805",
+      "resource-map.md": "e8c55552adbefb7f6731808d75ed4d2c43b257be90900c8077174b2062126a09"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

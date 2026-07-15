@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/013-advisor-and-codegraph-migrated-items",
+  "spec_folder": "system-skill-advisor/013-advisor-and-codegraph-migrated-items",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-skill-advisor/013-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect",
+    "system-skill-advisor/013-advisor-and-codegraph-migrated-items/002-skill-advisor-suite-repair",
+    "system-skill-advisor/013-advisor-and-codegraph-migrated-items/003-advisor-state-spec-folder-leak",
+    "system-skill-advisor/013-advisor-and-codegraph-migrated-items/004-advisor-observability",
+    "system-skill-advisor/013-advisor-and-codegraph-migrated-items/005-advisor-provenance-guard",
+    "system-skill-advisor/013-advisor-and-codegraph-migrated-items/006-advisor-packed-bm25-lexical",
+    "system-skill-advisor/013-advisor-and-codegraph-migrated-items/007-advisor-bfs-consolidation",
+    "system-skill-advisor/013-advisor-and-codegraph-migrated-items/008-advisor-feedback-calibration"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor cross-session reconnect",
+      "advisor suite repair",
+      "advisor state spec folder leak",
+      "advisor observability provenance bm25"
+    ],
+    "key_topics": [
+      "advisor",
+      "cross-session",
+      "reconnect",
+      "suite",
+      "repair",
+      "state",
+      "spec",
+      "folder",
+      "leak",
+      "observability",
+      "provenance",
+      "bm25"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codegraph Migrated Items",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor's cross-session reconnect hardening, test-suite repair, spec-folder-leak fix, and 5 shared-feature-adoption items (observability, provenance guard, packed BM25 lexical lane, BFS consolidation, feedback calibration) needed one home",
+    "created_at": "2026-07-07T11:51:52.950Z",
+    "last_save_at": "2026-07-15T11:59:31.663Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:588a15b2a2c65b740901def45e038cf9e8488606f9adc62c6e9a6e7102ed3574",
+    "source_doc_hashes": {
+      "spec.md": "a1f7dafb20dd45de7ea4538f08b224f9bec703206c424d5c5937173939967dff"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

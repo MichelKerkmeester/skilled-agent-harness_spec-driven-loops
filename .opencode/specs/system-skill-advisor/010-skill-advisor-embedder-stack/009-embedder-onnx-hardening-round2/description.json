@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2",
+  "description": "An independent adversarial code review of packet 005's Round 2 shipped diff (provider persistence, cross-server DB-path leak fix, onnx shutdown-crash",
+  "keywords": [
+    "independent",
+    "adversarial",
+    "code",
+    "review",
+    "packet",
+    "round",
+    "shipped",
+    "diff",
+    "provider",
+    "persistence",
+    "cross-server",
+    "db-path",
+    "leak",
+    "onnx",
+    "shutdown-crash"
+  ],
+  "lastUpdated": "2026-07-09T10:02:50.292Z",
+  "specId": "009",
+  "folderSlug": "embedder-onnx-hardening-round2",
+  "parentChain": [
+    "system-skill-advisor",
+    "010-skill-advisor-embedder-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

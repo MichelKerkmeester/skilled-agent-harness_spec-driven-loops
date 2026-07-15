@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/005-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring",
+  "spec_folder": "system-skill-advisor/005-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring",
+  "parent_id": "system-skill-advisor/005-skill-advisor-scoring-engine",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill embedding cache",
+      "cosine lane wiring",
+      "advisor shadow cosine",
+      "skill-graph embedding column",
+      "skill embedding cache plan",
+      "cosine lane wiring plan",
+      "skill embedding tasks",
+      "skill embedding checklist",
+      "skill embedding cache summary"
+    ],
+    "key_topics": [
+      "skill",
+      "embedding",
+      "cache",
+      "cosine",
+      "lane",
+      "wiring",
+      "advisor",
+      "shadow",
+      "skill-graph",
+      "column",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "shared/embeddings/factory.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Wire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Local Gemma",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Safety The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill advisor's `semanticshadow` lane at `scorer/lanes/semantic-shadow.ts` is not an embedding lane",
+    "created_at": "2026-05-13T19:30:00Z",
+    "last_save_at": "2026-07-15T11:59:20.558Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-13T19:30:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:99775ae2c8c919a8a7681b75fee95fc1977774fa64d98f8a603ce016b4d6cf35",
+    "source_doc_hashes": {
+      "spec.md": "2c4dd55ce9fbea2356a3b09613e54687a6ac94ce26e8f753b9627ddf7277e51f",
+      "plan.md": "9d18da56045e35861714d5fb8357a69086e1c9baa1b09a7388b1236a04972c38",
+      "tasks.md": "81921d92d66463e2f05a5804aae16f750bad86b64cd1faebc2e5ea6392727678",
+      "checklist.md": "b65f48f10d198778c3e0ee393e15ee3dec4f5c219a4d21c5d18742b938a400fb",
+      "implementation-summary.md": "19d9732b7ceb3d512e9604220b9393cfc5773dd79e6ca9198910d92d8774f1b1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

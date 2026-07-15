@@ -1,0 +1,28 @@
+{
+  "completionPct": 100,
+  "lastOutcome": "CP-105 now routes to create:testing-playbook top-1 at confidence 0.8387; advisor tests, typecheck, and build passed.",
+  "specFolder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/003-create-testing-playbook-routing",
+  "description": "Plan phase to route testing-playbook creation prompts to create:testing-playbook instead of generic documentation skills.",
+  "keywords": [
+    "plan",
+    "phase",
+    "route",
+    "testing-playbook",
+    "creation",
+    "prompts",
+    "instead",
+    "generic",
+    "documentation",
+    "skills"
+  ],
+  "lastUpdated": "2026-07-09T10:02:45.427Z",
+  "specId": "003",
+  "folderSlug": "create-testing-playbook-routing",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "002-skill-advisor-reindex-and-stress-test"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": []
+}

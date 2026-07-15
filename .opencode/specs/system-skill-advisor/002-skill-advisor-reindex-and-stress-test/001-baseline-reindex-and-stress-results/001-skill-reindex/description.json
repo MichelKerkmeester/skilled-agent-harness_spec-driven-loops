@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex",
+  "description": "Refresh skill advisor memory system: run skill graph rescan, advisor rebuild, and memory index scan; capture before/after snapshots for verification",
+  "keywords": [
+    "refresh",
+    "skill",
+    "advisor",
+    "memory",
+    "system",
+    "run",
+    "graph",
+    "rescan",
+    "rebuild",
+    "index",
+    "scan",
+    "capture",
+    "snapshots",
+    "verification"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.534Z",
+  "specId": "001",
+  "folderSlug": "skill-reindex",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "002-skill-advisor-reindex-and-stress-test",
+    "001-baseline-reindex-and-stress-results"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

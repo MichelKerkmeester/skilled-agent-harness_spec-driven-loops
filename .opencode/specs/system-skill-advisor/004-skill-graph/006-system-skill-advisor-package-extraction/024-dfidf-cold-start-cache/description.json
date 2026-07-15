@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/024-dfidf-cold-start-cache",
+  "description": "The advisor corpus DF/IDF module computed document frequencies and IDF values from the provided corpus every time",
+  "keywords": [
+    "advisor",
+    "corpus",
+    "idf",
+    "module",
+    "computed",
+    "document",
+    "frequencies",
+    "values",
+    "provided",
+    "every",
+    "time"
+  ],
+  "lastUpdated": "2026-07-08T05:23:49.728Z",
+  "specId": "024",
+  "folderSlug": "dfidf-cold-start-cache",
+  "parentChain": [
+    "system-skill-advisor",
+    "004-skill-graph",
+    "006-system-skill-advisor-package-extraction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

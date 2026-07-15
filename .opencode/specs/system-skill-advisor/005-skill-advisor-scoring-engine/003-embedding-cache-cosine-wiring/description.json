@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/005-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring",
+  "description": "The skill advisor's `semanticshadow` lane at `scorer/lanes/semantic-shadow.ts` is not an embedding lane",
+  "keywords": [
+    "skill",
+    "advisor",
+    "semanticshadow",
+    "lane",
+    "scorer",
+    "lanes",
+    "semantic-shadow",
+    "embedding"
+  ],
+  "lastUpdated": "2026-07-08T05:23:49.774Z",
+  "specId": "003",
+  "folderSlug": "embedding-cache-cosine-wiring",
+  "parentChain": [
+    "system-skill-advisor",
+    "005-skill-advisor-scoring-engine"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze",
+  "description": "The `semanticshadow` lane weight (0.05) had never been confirmed on the full 193-row corpus with real embeddings",
+  "keywords": [
+    "semanticshadow",
+    "lane",
+    "weight",
+    "never",
+    "confirmed",
+    "full",
+    "193-row",
+    "corpus",
+    "real",
+    "embeddings"
+  ],
+  "lastUpdated": "2026-07-07T06:45:33.904Z",
+  "specId": "008",
+  "folderSlug": "semantic-shadow-prove-or-freeze",
+  "parentChain": [
+    "system-skill-advisor",
+    "016-skill-advisor-tuning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2",
+  "spec_folder": "system-skill-advisor/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2",
+  "parent_id": "system-skill-advisor/010-skill-advisor-embedder-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009 embedder onnx hardening round 2",
+      "hf-model-server shutdown failsafe race",
+      "skill-advisor MEMORY_DB_PATH env var collision",
+      "setActiveEmbedder 3-arg provider clear",
+      "009 embedder onnx hardening plan",
+      "hf-model-server dynamic shutdown failsafe",
+      "skill-advisor dedicated db path env var plan",
+      "009 embedder onnx hardening tasks",
+      "009 embedder onnx hardening checklist",
+      "009 embedder onnx hardening round 2 summary",
+      "hf-model-server tiered shutdown failsafe implemented",
+      "skill-advisor MK_SKILL_ADVISOR_MEMORY_DB_PATH"
+    ],
+    "key_topics": [
+      "embedder",
+      "onnx",
+      "hardening",
+      "round",
+      "hf-model-server",
+      "shutdown",
+      "failsafe",
+      "race",
+      "skill-advisor",
+      "env",
+      "var",
+      "collision"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/hf-model-server.cjs",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/schema.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-bootstrap.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/hf-model-server-shutdown.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/__fixtures__/hf-model-server-shutdown-harness.cjs",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/embedders/schema.vitest.ts",
+      ".opencode/skills/system-skill-advisor/references/config/db_path_policy.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/hf-model-server.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-bootstrap.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-bootstrap.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server-shutdown.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/hf-model-server-shutdown.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server-shutdown-harness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/__fixtures__/hf-model-server-shutdown-harness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/embedders/schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db_path_policy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/references/config/db_path_policy.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/hf-model-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An independent adversarial code review of packet 005's Round 2 shipped diff (provider persistence, cross-server DB-path leak fix, onnx shutdown-crash mitigation — see `../005-shared-embedder-logic-with-spec-memory/implementation-summary.md`) found 4 gaps that Round 2's own verification never exercised: (1) `hf-model-server.cjs`'s graceful-shutdown failsafe timer can SIGKILL the process before a legitimately in-flight embed finishes draining; (2) the cross-server DB-leak fix reuses `MEMORYDBPATH`, an env var whose repo-wide established meaning is mk-spec-memory's database, creating a latent",
+    "created_at": "2026-07-08T08:41:59.423Z",
+    "last_save_at": "2026-07-15T11:59:30.704Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e2715f2ec7ad2b8df36c0bd5df12aa15e3830e28544cef98593e42a9e52c0be7",
+    "source_doc_hashes": {
+      "spec.md": "9e3c2308dfdd33c1ef6d7e1d7abe415e3ecd7cacce53fd838e455dddc0223cec",
+      "plan.md": "31d5dac8fc6ef601cc21bee2a2f924e96ca080f9d1dfafe3ebc69484376cb041",
+      "tasks.md": "09ec6295d57043a221839bfbfbed4d1c553b2ff2e5946c5ba3849e277fafd237",
+      "checklist.md": "ee4a6fda36323a7a312253cbd0edf7fa182ac72743bd878ff98b0e5550fb8253",
+      "implementation-summary.md": "9eea0f08d7964440e201a723a5c4314d45e8c3dd79c3701d9c2049dafd2ddf5a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

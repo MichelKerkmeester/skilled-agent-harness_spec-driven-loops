@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning",
+  "spec_folder": "system-skill-advisor/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning",
+  "parent_id": "system-skill-advisor/006-skill-advisor-routing-engine",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor phrase booster",
+      "phrase intent booster migration",
+      "skill advisor tailoring",
+      "tokenizer multi-word",
+      "gate 2 routing optimization",
+      "advisor phrase booster plan",
+      "phrase booster migration plan",
+      "advisor phrase booster tasks",
+      "phrase booster migration tasks",
+      "advisor phrase booster checklist",
+      "advisor phrase booster implementation",
+      "intent phrase migration complete"
+    ],
+    "key_topics": [
+      "advisor",
+      "phrase",
+      "booster",
+      "intent",
+      "migration",
+      "skill",
+      "tailoring",
+      "tokenizer",
+      "multi-word",
+      "gate",
+      "routing",
+      "optimization"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "scratch/phrase-boost-delta.md",
+      "scratch/post-regression.json",
+      "checklist.md",
+      "scratch/baseline-regression.json",
+      "scratch/baseline-queries.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      "research/deep-research-config.json",
+      "tasks.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "phrase-boost-delta.md",
+        "kind": "doc",
+        "path": "scratch/phrase-boost-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-regression.json",
+        "kind": "config",
+        "path": "scratch/post-regression.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-regression.json",
+        "kind": "config",
+        "path": "scratch/baseline-regression.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-queries.md",
+        "kind": "doc",
+        "path": "scratch/baseline-queries.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Phrase",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Booster Tailoring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target File",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Public",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill advisor's `INTENTBOOSTERS` dict (`skilladvisor.py:496`) contains 24 multi-word keys that the advisor's tokenizer splits on whitespace — making those booster entries effective no-ops",
+    "created_at": "2026-04-15T10:54:05.055Z",
+    "last_save_at": "2026-07-15T11:59:22.421Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:f82af716a434fe88f2aa8d69d7e704ca6bd9a01979d748db59cfa01aecea90c7",
+    "source_doc_hashes": {
+      "spec.md": "098f1e3e52f16f3c8c2bc80fe7104c4e03d394213c6c5767b2eb21388e2fd3d2",
+      "plan.md": "93770b777ee38c447cdb848ff75368acc6fc211352337772072c5c08c59d6c43",
+      "tasks.md": "900366514125cbcfd0255bac7240d5960d3ff4923ffe26e6dceac5d58c015b57",
+      "checklist.md": "984a331641afc4a1b781f4012635a90ea969627be14e73afa20b3be4d70c8228",
+      "implementation-summary.md": "2e7d565b0d2274ba9bae266c44e5b16787dc15433687b6d089dbe49b8d981c0f",
+      "research/research.md": "31f9a3f0b90bd555aadc774a8c2a5e687ea0be41275310310003c82cdc629990"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
