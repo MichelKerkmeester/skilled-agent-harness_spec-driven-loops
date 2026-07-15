@@ -76,11 +76,14 @@ async function main() {
   assert.ok(deepseekArgs.includes('--format'), 'deepseek leg uses opencode JSON format');
 
   // ── frozen v1 regression map ────────────────────────────────────────────
+  // The golden pins the original DAB-001..011 v1 scenarios. Higher-numbered DAB
+  // scenarios are the schema-v2 command suite and are covered by their own
+  // phase tests, so the v1 regression deliberately scopes to 001..011 only.
   const dabGolden = JSON.parse(fs.readFileSync(DAB_GOLDEN, 'utf8'));
   const dabFiles = fs.readdirSync(DAB_SCENARIOS)
-    .filter((name) => /^DAB-\d+.*\.md$/.test(name))
+    .filter((name) => /^DAB-0(0[1-9]|1[01])-.*\.md$/.test(name))
     .sort();
-  assert.equal(dabFiles.length, 11, 'all eleven DAB scenarios are frozen');
+  assert.equal(dabFiles.length, 11, 'all eleven frozen v1 DAB scenarios are present');
   assert.equal(Object.keys(dabGolden).length, 11, 'golden contains all eleven DAB entries');
   for (const file of dabFiles) {
     const contract = bench.parseScenario(path.join(DAB_SCENARIOS, file));
