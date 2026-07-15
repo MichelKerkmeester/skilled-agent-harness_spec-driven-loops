@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/008-mcp-tooling-parent/004-onboard-chrome-devtools",
+  "spec_folder": "mcp-tooling/008-mcp-tooling-parent/004-onboard-chrome-devtools",
+  "parent_id": "mcp-tooling/008-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "onboard chrome-devtools packet",
+      "mcp-chrome-devtools git mv",
+      "first workflow packet move",
+      "chrome-devtools self-path rewrite",
+      "phase 004 onboard-chrome-devtools",
+      "chrome-devtools onboarding plan",
+      "mcp-chrome-devtools move plan",
+      "self-path rewrite plan",
+      "phase 004 plan",
+      "chrome-devtools onboarding tasks",
+      "mcp-chrome-devtools move tasks",
+      "phase 004 tasks"
+    ],
+    "key_topics": [
+      "onboard",
+      "chrome-devtools",
+      "packet",
+      "mcp-chrome-devtools",
+      "git",
+      "first",
+      "workflow",
+      "move",
+      "self-path",
+      "rewrite",
+      "phase",
+      "onboard-chrome-devtools"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/004-onboard-chrome-devtools/spec.md",
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/004-onboard-chrome-devtools/plan.md",
+      ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/004-onboard-chrome-devtools/tasks.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/004-onboard-chrome-devtools/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/004-onboard-chrome-devtools/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/004-onboard-chrome-devtools/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Note",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "internal",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "corrected",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub skeleton exists but has no packet content",
+    "created_at": "2026-07-09T20:18:23Z",
+    "last_save_at": "2026-07-15T05:54:00.598Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f4c55607c13829c39da14f670311d46f6f6df991965f4b1bdc810d1996dddc5f",
+    "source_doc_hashes": {
+      "spec.md": "90c1ce4e70ff35caafa1dc4f07c8216564d6a68dea5fc8503e126a1448cd4b6e",
+      "plan.md": "1228bb15edb3d6b92879b91f54edf6982e6cd2b22a14f504c4a84cde3a8644f1",
+      "tasks.md": "6db25ee1fc7504bb91c3a72d030ab457d241120ea0dae90318ee5cbaf8d6923d",
+      "implementation-summary.md": "0f85a301b6150fea382dcefd68fe2ecfe024362834b0f394d4e8d95356cd58af"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
